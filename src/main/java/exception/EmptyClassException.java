@@ -10,6 +10,6 @@ public class EmptyClassException extends ClassException {
      * @return the message
      */
     public String getMessage() {
-        return "OOPS!!! The description of a deadline cannot be empty.";
+        return "OOPS!!! The description of a class cannot be empty.";
     }
 }

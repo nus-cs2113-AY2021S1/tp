@@ -3,8 +3,12 @@ package parser;
 
 import command.AddCommand;
 import command.ClearCommand;
+import command.DeleteCommand;
+import command.DoneCommand;
 import command.EditCommand;
 import command.ExitCommand;
+import command.FindCommand;
+import command.FindDateCommand;
 import command.HelpCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
@@ -15,10 +19,17 @@ import event.Assignment;
 import event.PersonalEvent;
 
 
-import exception.EditIndexOutOfBoundsException;
+import exception.DateFormatException;
+import exception.DeleteNumberFormatException;
+import exception.DoneNumberFormatException;
+import exception.EmptyDeleteException;
+import exception.EmptyDoneException;
 import exception.EmptyEventIndexException;
+import exception.EmptyFindDateException;
+import exception.EmptyFindException;
 import exception.InvalidSortCriteriaException;
 import exception.NoEventLocationException;
+import exception.NoEventLocationMarkerException;
 import exception.NoSortCriteriaException;
 import exception.UnknownErrorException;
 import exception.WrongEditFormatException;
@@ -38,6 +49,7 @@ import exception.NoEventTimeException;
 import exception.WrongCommandException;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -47,20 +59,20 @@ import java.time.format.DateTimeParseException;
  */
 public abstract class Parser {
     public static final String EXIT = "bye";
-    public static final String PRINT_Event_LIST = "list";
+    public static final String PRINT_EVENT_LIST = "list";
     public static final String PRINT_LOCATION_LIST = "locations";
     public static final String LOCATE_EVENT = "locate";
-    public static final String Event_DONE = "done";
+    public static final String EVENT_DONE = "done";
     public static final String ASSIGNMENT = "assignment";
     public static final String CLASS = "class";
     public static final String PERSONAL_EVENT = "personalEvent";
-    public static final String Event_DELETE = "delete";
-    public static final String Event_FIND = "find";
+    public static final String EVENT_DELETE = "delete";
+    public static final String EVENT_FIND = "find";
     public static final String EDIT = "edit";
     public static final String TIME_MARKER = "/t";
     public static final String SINGLE_SPACE = " ";
     public static final String LOCATION_MARKER = "/l";
-    private static final String Event_FIND_DATE = "date";
+    public static final String EVENT_FIND_DATE = "date";
     public static final String EDIT_INSTRUCTION = "Enter new event:";
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
@@ -74,12 +86,12 @@ public abstract class Parser {
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
 
-    public static Command parse(String fullCommand, int eventCount, LocationList locations) throws NuScheduleException {
+    public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
         // this block deals with exit and list command
         switch (fullCommand.trim()) {
         case EXIT:
             return new ExitCommand();
-        case PRINT_Event_LIST:
+        case PRINT_EVENT_LIST:
             return new PrintFullListCommand();
         case PRINT_LOCATION_LIST:
             return new PrintLocationCommand();
@@ -93,55 +105,55 @@ public abstract class Parser {
 
         String[] words = fullCommand.split(SINGLE_SPACE);
 
-        //        //this block deals with find command
-        //        if (words[0].equals(Event_FIND)) {
-        //            if (fullCommand.substring(4).isBlank()) {
-        //                throw new EmptyFindException();
-        //            }
-        //            return new FindCommand(fullCommand.substring(5));
-        //        }
-        //
-        //        //this block deals with find date command
-        //        if (words[0].equals(Event_FIND_DATE)) {
-        //            if (fullCommand.substring(4).isBlank()) {
-        //                throw new EmptyFindDateException();
-        //            }
-        //            try {
-        //                return new FindDateCommand(LocalDate.parse(fullCommand.substring(5)));
-        //            } catch (DateTimeParseException e) {
-        //                throw new DateFormatException();
-        //            }
-        //        }
-        //
-        //        int EventIndex;//to indicate what is the Event we are dealing with. may not be used.
-        //
-        //        //this block deals with done command
-        //        if (words[0].equals(Event_DONE)) {
-        //            if (fullCommand.substring(4).isBlank()) {
-        //                throw new EmptyDoneException();
-        //            }
-        //            try {
-        //                EventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
-        //            } catch (NumberFormatException e) {
-        //                throw new DoneNumberFormatException();
-        //            }
-        //            return new DoneCommand(EventIndex);
-        //        }
-        //
-        //        //this block deals with delete command
-        //        if (words[0].equals(Event_DELETE)) {
-        //            if (fullCommand.substring(6).isBlank()) {
-        //                throw new EmptyDeleteException();
-        //            }
-        //            try {
-        //                EventIndex = Integer.parseInt(fullCommand.substring(7)) - 1;
-        //            } catch (NumberFormatException e) {
-        //                throw new DeleteNumberFormatException();
-        //            }
-        //            return new DeleteCommand(EventIndex);
-        //        }
-        //
+        //this block deals with find command
+        if (words[0].equals(EVENT_FIND)) {
+            if (fullCommand.substring(4).isBlank()) {
+                throw new EmptyFindException();
+            }
+            return new FindCommand(fullCommand.substring(5));
+        }
 
+        //this block deals with find date command
+        if (words[0].equals(EVENT_FIND_DATE)) {
+            if (fullCommand.substring(4).isBlank()) {
+                throw new EmptyFindDateException();
+            }
+            try {
+                return new FindDateCommand(LocalDate.parse(fullCommand.substring(5)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
+            }
+        }
+
+        int eventIndex;//to indicate what is the Event we are dealing with. may not be used.
+
+        //this block deals with done command
+        if (words[0].equals(EVENT_DONE)) {
+            if (fullCommand.substring(4).isBlank()) {
+                throw new EmptyDoneException();
+            }
+            try {
+                eventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
+            } catch (NumberFormatException e) {
+                throw new DoneNumberFormatException();
+            }
+            return new DoneCommand(eventIndex);
+        }
+
+        //this block deals with delete command
+        if (words[0].equals(EVENT_DELETE)) {
+            if (fullCommand.substring(6).isBlank()) {
+                throw new EmptyDeleteException();
+            }
+            try {
+                eventIndex = Integer.parseInt(fullCommand.substring(7)) - 1;
+            } catch (NumberFormatException e) {
+                throw new DeleteNumberFormatException();
+            }
+            return new DeleteCommand(eventIndex);
+        }
+
+        //this block deals with sorting
         if (words[0].equals(SORT)) {
             if (fullCommand.length() == 4) {
                 throw new NoSortCriteriaException();
@@ -172,7 +184,7 @@ public abstract class Parser {
         //this block will change fullCommand, but this does not affect the later block since
         //it either return an EditCommand, or throw an exception
         if (words[0].equals(EDIT)) {
-            int eventIndex = -1;
+
             if (fullCommand.length() == 4) {
                 throw new EmptyEventIndexException();
             }
@@ -180,23 +192,16 @@ public abstract class Parser {
                 throw new EmptyEventIndexException();
             }
             try {
-                eventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
+                eventIndex = Integer.parseInt(words[1]) - 1;
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
             }
-            if (eventIndex >= eventCount || eventIndex == -1) {
-                throw new EditIndexOutOfBoundsException();
-            }
-            UI ui = new UI();
-            ui.print(EDIT_INSTRUCTION);
-            fullCommand = ui.readCommand();
-            words = fullCommand.split(SINGLE_SPACE);
 
             //the following part is almost the same as AddCommand, but returns EditCommand
             timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
 
-            switch (words[0]) {
+            switch (words[2]) {
             case ASSIGNMENT:
             case CLASS:
             case PERSONAL_EVENT:
@@ -207,8 +212,9 @@ public abstract class Parser {
                 if (locationDividerPosition == -1) {
                     throw new NoEventLocationException();
                 }
+                int prefixLength = words[0].length() + words[1].length() + words[2].length();
 
-                if (fullCommand.substring(words[0].length(), timeDividerPosition).isBlank()) {
+                if (fullCommand.substring(prefixLength, timeDividerPosition).isBlank()) {
                     throw new EmptyEventException();
                 }
 
@@ -222,21 +228,21 @@ public abstract class Parser {
 
                 try {
                     timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
-                    dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 4 + timeDivider)
+                    dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)
                             + "T"
                             + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
                             locationDividerPosition - 1);
 
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
-                    switch (words[0]) {
+                    switch (words[2]) {
                     case ASSIGNMENT:
-                        return new EditCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
+                        return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case CLASS:
-                        return new EditCommand(new Class(fullCommand.substring(words[0].length() + 1,
+                        return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case PERSONAL_EVENT:
-                        return new EditCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                        return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     default:
                         break;
@@ -260,12 +266,16 @@ public abstract class Parser {
         case PERSONAL_EVENT:
             timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
+            if (fullCommand.substring(words[0].length()).isBlank()) {
+                throw new EmptyEventException();
+            }
+
             if (timeDividerPosition == -1) {
                 throw new NoEventTimeMarkerException();
             }
 
             if (locationDividerPosition == -1) {
-                throw new NoEventLocationException();
+                throw new NoEventLocationMarkerException();
             }
 
             if (fullCommand.substring(words[0].length(), timeDividerPosition).isBlank()) {
@@ -319,6 +329,7 @@ public abstract class Parser {
      * @return the parsed location.
      */
     public static Location parseLocation(String input, LocationList locations) {
+        assert locations != null;
         Location location;
         String[] info = input.split("/");
         // parse location from event.txt file
