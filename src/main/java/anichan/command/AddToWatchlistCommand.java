@@ -33,7 +33,7 @@ public class AddToWatchlistCommand extends Command {
         Workspace activeWorkspace = user.getActiveWorkspace();
         addToWatchlist(animeData, storageManager, activeWorkspace);
         
-        Anime anime = animeData.getAnimeByID(animeIndex);
+        Anime anime = animeData.getAnime(animeIndex);
         String animeName = anime.getAnimeName();
 
         return animeName + " added to watchlist!";
