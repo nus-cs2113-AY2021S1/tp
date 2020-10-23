@@ -2,10 +2,18 @@
 
 ## Table of Contents
 #### [1. Introduction](#intro)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting up and getting started](#setup)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Usage of color libraries [JColor and jansi]](#color)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser](#parser)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 Usage of External Libraries](#color)
 #### [3. Product Scope](#scope)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
@@ -23,7 +31,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 This document describes the design, implementation and architecture of NotUS.
 
-#### <a id="setup"><ins>1.1 Setting up and getting started</ins></a>
+#### <a id="setup"><ins>1.1 Setting Up</ins></a>
 
 **Prerequisites:**
 * JDK 11
@@ -37,16 +45,14 @@ Ensures that you are using the correct JDK version (For this project we are usin
 
 ## <a id="design">2. Design & Implementation</a>
 
-This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
-NotUS is the main class of the application, and handles the initializing the appropriate classes to be used as well as
- the execution. The structure of the classes and packages are referenced from addressbook-level2, however, we
-  have made modifications to meet the needs of our application.
+This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes. <br>
+We have made references to <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook">addressbook-level2</a> for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 <p align="center">
   <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_Overview.png" />
-  <br><em>Figure 1</em>
+  <br><em>Figure #</em>
 </p>
 
 The architecture design is given in the diagram above. The main components of NotUS are:
@@ -59,18 +65,18 @@ The architecture design is given in the diagram above. The main components of No
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
 
-**NotUS** manages the flow of the application. On launch, it will create the necessary components, as listed above
- and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret
-the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
+#### <a id="notus"><ins>2.2 NotUS</ins></a>
+
+NotUs manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
 
 <p align="center">
   <img alt="NotUS" src="diagrams/out/Notus.png" />
-  <br><em>Figure 2</em>
+  <br><em>Figure #</em>
 </p>
 
-<br>
+#### <a id="parser"><ins>2.3 Parser</ins></a>
 
-**Parser**
+The Parser class handles all the user input from the command terminal. It makes sense of the user input and calls the respective commands into action.
 
 1. Receives the user input message as a whole.
 1. Interprets the type of command and splits the message to identify all the parameters provided.
@@ -78,39 +84,46 @@ the user input and execute the commands accordingly. The diagram below depicts t
  
 <p align="center">
   <img alt="Parser" src="diagrams/out/Parser.png" />
-  <br><em>Figure 3</em>
+  <br><em>Figure #</em>
 </p>
 
-**Command**
+#### <a id="commands"><ins>2.4 Commands</ins></a>
 
-#### <a id="color"><ins>2.2 Usage of color libraries [JColor and jansi]</ins></a>
+#### <a id="note"><ins>2.5 Notebook</ins></a>
 
-This application uses 2 color libraries, JColor and jansi, to print colored fonts on the terminals using ANSI escape
- codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **do not
-  support** ANSI escape code. Thus, we included the jansi library to support ANSI escape codes on Windows.
+#### <a id="event"><ins>2.6 Timetable</ins></a>
+
+#### <a id="tag"><ins>2.7 Tags</ins></a>
+
+#### <a id="storage"><ins>2.8 Storage</ins></a>
+
+#### <a id="ui"><ins>2.9 User Interface</ins></a>
+
+#### <a id="color"><ins>2.10 Usage of External Libraries</ins></a>
+
+This application uses 2 color libraries, <a href="https://github.com/dialex/JColor">JColor</a> and <a href="https://fusesource.github.io/jansi/">Jansi</a>, to print colored messages on the terminals using ANSI escape codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **does not support** ANSI escape code. Hence, there was a need for the Jansi library to support ANSI escape codes on Windows.
   
-Note on usage of JColor library:
+<ins>Note on usage of JColor library:</ins>
 
-IntelliJ's 'Dracula' and 'High Contrast' color schemes print white fonts as black and vice versa. Developers using
- either of the color scheme have to change the white and black console color to reflect the correct color that is
-  printed.
-  
-Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black
- and White to the correct RGB value.
- 
+IntelliJ's 'Dracula' and 'High Contrast' themes print white fonts as black and vice versa. Developers using either of the themes will have to change the white and black console color to reflect the correct color that is being printed. Instructions to do so are given below.
+
+- Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
+
+The figure below illustrates what you should see on your screen.
+
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
+ <br><em>Figure #</em>
 </p>
 
-Note on usage of jansi library:
+<ins>Note on usage of Jansi library:</ins>
 
-While jansi provides support for Windows terminal to print colored fonts, it does not work within IntelliJ IDEA
- console. Therefore, when running on IntelliJ console, comment out the following lines in NotUS.java main function:
+While Jansi provides support for Windows terminal to print colored texts, it does not work within IntelliJ IDEA console. Therefore, when running on IntelliJ console, comment out the following lines in NotUS.java main function:
+
+ `AnsiConsole.systemInstall();`
+ `AnsiConsole.systemUninstall();`
  
- AnsiConsole.systemInstall();
- AnsiConsole.systemUninstall();
- 
-Do uncomment them when building jar files for release.
+Remember to uncomment them when building jar files for release.
 
 <br>
 
