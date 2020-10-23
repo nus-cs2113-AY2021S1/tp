@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             String[] tokenized
         }
         */
-        Show show = new Show(input[1], numSeasons, seasonEpisodes,duration);
+        Show show = new Show(input[1], numSeasons, seasonEpisodes, duration);
         ShowList.setShow(name, show);
     }
 }

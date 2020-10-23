@@ -12,14 +12,16 @@
     - [2.d Before Writing Code](#2d-before-writing-code)
   - [3. Design](#3-design)
   - [4. Implementation](#4-implementation)
-    - [Add Command](#add)
-    - [Edit Command](#edit)
-    + [Rating Command](#rating-command)
-    + [ChangeRating Command](#change-rating-command)
-    + [Delete Command](#delete-command)
-    + [DeleteRating Command](#deleterating-command)
-    + [UpdateTimeLimit Command](#updatetimelimit-command-feature)
-    + [Storage Implementation](#storage)
+    - [Add](#add)
+    - [Edit](#edit)
+    - [Rating Command](#rating-command)
+    - [Change Rating Command](#change-rating-command)
+    - [Delete Command](#delete-command)
+    - [DeleteRating Command](#deleterating-command)
+    - [Add Review Command](#add-review-command)
+    - [Watch Command feature](#watch-command-feature)
+    - [UpdateTimeLimit Command feature](#updatetimelimit-command-feature)
+    - [Storage](#storage)
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
@@ -299,6 +301,21 @@ The deleteRating method in DeleteRatingCommand class is called.
 
 4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
 
+### Add Review Command
+
+The add review command is invoked by the InputParser method parseAddReview. It takes a string as input. Within the AddReview class
+
+**Step 1**
+The string is tokenised into separate words
+
+**Step 2**
+The corresponding show is retrieved from the WatchList
+
+**Step 3**
+The rating of the show is updated
+
+**Step 4**
+The review of the rating is added to the show
 
 ### Watch Command feature
 
