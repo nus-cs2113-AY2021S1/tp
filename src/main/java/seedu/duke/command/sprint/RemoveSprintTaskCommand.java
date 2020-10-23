@@ -8,26 +8,25 @@ import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class RemoveSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
-    private ProjectList projectListManager;
+    private ProjectList projectManager;
     private Project proj;
 
     public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectListManager = projectListManager;
+        this.projectManager = projectListManager;
     }
 
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project\n";
-        if (projectListManager.isEmpty()) {
+        assert !projectManager.isEmpty() : "No project\n";
+        if (projectManager.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;
         }
-        proj = projectListManager.getProject();
+        proj = projectManager.getProject();
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

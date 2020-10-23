@@ -7,11 +7,11 @@ import java.util.Hashtable;
 
 public abstract class MemberCommand extends Command {
 
-    ProjectList projectListManager;
+    ProjectList projectManager;
 
-    public MemberCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
+    public MemberCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
         super(parameters);
-        this.projectListManager = projectListManager;
+        this.projectManager = projectManager;
     }
 
 }

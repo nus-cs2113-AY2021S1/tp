@@ -10,13 +10,13 @@ import java.util.Hashtable;
 public class DeleteMemberCommand extends MemberCommand {
 
 
-    public DeleteMemberCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
-        super(parameters, projectListManager);
+    public DeleteMemberCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+        super(parameters, projectManager);
     }
 
     public void execute() {
         Project proj;
-        proj = projectListManager.getProject();
+        proj = projectManager.getProject();
         for (int i = 0; i < parameters.size(); i++) {
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
                 proj.getProjectMember().removeMember(new Member(parameters.get(Integer.toString(i))));
