@@ -8,11 +8,13 @@ abstract class Loader {
         return new FileLoader(folderName, fileName);
     }
 
-    public static Loader loadEmpty(){
+    public static Loader loadEmpty() {
         return new EmptyLoader();
     }
 
     abstract Optional<String> get(int xposition, int yposition) throws IllegalAccessException;
+
     abstract int getHeight() throws IllegalAccessException;
+
     abstract int getWidth() throws IllegalAccessException;
 }

@@ -31,12 +31,12 @@ public class Saver {
         initEntries();
     }
 
-    private void setWidthAndHeight(int width, int height){
+    private void setWidthAndHeight(int width, int height) {
         this.height = height;
         this.width = width;
     }
 
-    private void initEntries(){
+    private void initEntries() {
         this.entries = new String[height][width];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -54,11 +54,11 @@ public class Saver {
     }
 
     /**
-     * Clears the entire table and set it to the new size
+     * Clears the entire table and set it to the new size.
      * @param newWidth the new width
      * @param newHeight the new height
      */
-    public void resetSize(int newWidth, int newHeight){
+    public void resetSize(int newWidth, int newHeight) {
         setWidthAndHeight(newWidth, newHeight);
         initEntries();
     }

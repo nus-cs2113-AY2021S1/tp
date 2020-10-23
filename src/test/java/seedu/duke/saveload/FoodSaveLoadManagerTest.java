@@ -42,11 +42,11 @@ public class FoodSaveLoadManagerTest {
     @Test
     private void getFoodList_WithoutLoading() throws Exception {
         testManager.clearLoader();
-        assertThrows(IllegalAccessException.class ,() -> testManager.getFoodList());
+        assertThrows(IllegalAccessException.class, () -> testManager.getFoodList());
     }
 
     @Test
-    private void getFoodList_FileDoesNotExist() throws Exception{
+    private void getFoodList_FileDoesNotExist() throws Exception {
         assertThrows(FileNotFoundException.class, () -> testManager.load("Over the Moon!"));
     }
 

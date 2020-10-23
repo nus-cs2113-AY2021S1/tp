@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Handles reading of stored text file.
  * Note: the first five fields must be same
  */
-public class FileLoader extends Loader{
+public class FileLoader extends Loader {
     private static final String ROOT_DIRECTORY = System.getProperty("user.home");
     private static final String BASE_FOLDER_NAME =  ROOT_DIRECTORY + File.separator + "dietbook";
     private static final String EMPTY_SYMBOL = "%NULL&!!LL";
