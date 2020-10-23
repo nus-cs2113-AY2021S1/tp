@@ -4,8 +4,8 @@
   <OriginalElement />
   <nodes>
     <node x="757.5" y="481.0">seedu.duke.utility.SaveState</node>
-    <node x="45.0" y="353.5">seedu.duke.classes.WatchTime</node>
     <node x="71.5" y="62.5">seedu.duke.Duke</node>
+    <node x="45.0" y="353.5">seedu.duke.classes.WatchTime</node>
     <node x="373.5" y="376.5">seedu.duke.classes.Storage</node>
   </nodes>
   <notes />
@@ -33,8 +33,10 @@
       <point x="-115.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Orthogonal" zoom="0.9" x="209.9999999999999" y="433.22222222222223" />
-  <SelectedNodes />
+  <settings layout="Orthogonal" zoom="0.9" x="210.0" y="433.0" />
+  <SelectedNodes>
+    <node>seedu.duke.classes.WatchTime</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
