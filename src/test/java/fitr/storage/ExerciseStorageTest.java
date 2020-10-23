@@ -35,8 +35,8 @@ class ExerciseStorageTest {
 
     private ArrayList<Exercise> getValidExerciseList() {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), getCurrentDate()));
-        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), getCurrentDate()));
+        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500),"23/10/2020"));
+        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), "22/10/2020"));
         return exerciseList;
     }
 }

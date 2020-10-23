@@ -37,8 +37,8 @@ class FoodStorageTest {
 
     private ArrayList<Food> getValidFoodList() {
         ArrayList<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Test Food 1", new Calorie(100), 1, getCurrentDate()));
-        foodList.add(new Food("Test Food 2", new Calorie(50), 5, getCurrentDate()));
+        foodList.add(new Food("Test Food 1", new Calorie(100), 1, "23/10/2020"));
+        foodList.add(new Food("Test Food 2", new Calorie(50), 5, "22/10/2020"));
         return foodList;
     }
 }
