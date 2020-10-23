@@ -28,7 +28,7 @@ public class UserTest {
         assertEquals(2.00, user.getHeight());
         assertEquals(8.00, user.getWeight());
         assertEquals("Male", user.getGender());
-        assertEquals("Normal",user.getUserFitnessLevelString());
+        assertEquals("Normal", user.getUserFitnessLevelString());
     }
 
     @Test
