@@ -112,6 +112,14 @@ class WatchlistCommandTest {
         assertThrows(AniException.class, () -> watchlistCommand.execute(animeData, storageManager, user));
     }
 
+    @Test
+    void execute_watchlistNameMoreThan30CharactersForCreateWatchlist_throwsAniException() {
+        WatchlistCommand watchlistCommand = new WatchlistCommand("n",
+                                                                 "averylongwatchnamethatwouldfail",
+                                                                 0);
+        assertThrows(AniException.class, () -> watchlistCommand.execute(animeData, storageManager, user));
+    }
+
     // ========================== List ==========================
 
     @Test

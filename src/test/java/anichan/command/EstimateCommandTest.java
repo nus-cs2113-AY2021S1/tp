@@ -93,6 +93,6 @@ class EstimateCommandTest {
     @Test
     void execute_zeroWordsPerHourSpecified_throwsAniException() {
         EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, ZERO);
-        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, emptySM, user));
+        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, validSM, user));
     }
 }

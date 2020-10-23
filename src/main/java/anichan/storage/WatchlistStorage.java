@@ -24,6 +24,7 @@ public class WatchlistStorage extends Storage {
     private static final String ENCODED_WATCHLIST_CANNOT_BE_BLANK = "Encoded watchlist string should not be blank.";
 
     private static final int MAX_ANIME_INDEX = 511;
+    private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
     private final String storageDirectory;
@@ -130,6 +131,11 @@ public class WatchlistStorage extends Storage {
     private boolean isValidWatchlistString(String[] lineSplit) {
         boolean isValidSplitLength = (lineSplit.length == 2);
         if (!isValidSplitLength) {
+            return false;
+        }
+
+        String watchlistName = lineSplit[0];
+        if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
             return false;
         }
 
