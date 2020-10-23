@@ -21,12 +21,12 @@ public abstract class LocalStorage implements Storage {
 
         // Use relative path for Unix systems
         this.filePath = appendRelativePath(this.filePath, filePath);
-        file = createFileIfNotExists();
+        file = new File(this.filePath);
     }
 
     @Override
     public File save() throws IOException {
-        return file;
+        return createFileIfNotExists();
     }
 
     @Override
@@ -55,8 +55,6 @@ public abstract class LocalStorage implements Storage {
     }
 
     private File createFileIfNotExists() throws IOException {
-        File file = new File(filePath);
-
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             file.createNewFile();
