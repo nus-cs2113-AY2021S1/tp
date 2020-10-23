@@ -49,11 +49,11 @@ public class FoodSaveLoadManager {
         Food newFood;
         for (int j = 1; j < fileLoader.getHeight() + 1; j++) {
             newFood = new Food(
-                    fileLoader.get(j,1).orElse(DEFAULT_NAME),
-                    Integer.parseInt(fileLoader.get(j,2).orElse(DEFAULT_NUTRITION_VALUE)),
-                    Integer.parseInt(fileLoader.get(j,3).orElse(DEFAULT_NUTRITION_VALUE)),
-                    Integer.parseInt(fileLoader.get(j,4).orElse(DEFAULT_NUTRITION_VALUE)),
-                    Integer.parseInt(fileLoader.get(j,5).orElse(DEFAULT_NUTRITION_VALUE)));
+                    fileLoader.get(1,j).orElse(DEFAULT_NAME),
+                    Integer.parseInt(fileLoader.get(2,j).orElse(DEFAULT_NUTRITION_VALUE)),
+                    Integer.parseInt(fileLoader.get(3,j).orElse(DEFAULT_NUTRITION_VALUE)),
+                    Integer.parseInt(fileLoader.get(4,j).orElse(DEFAULT_NUTRITION_VALUE)),
+                    Integer.parseInt(fileLoader.get(5,j).orElse(DEFAULT_NUTRITION_VALUE)));
             foodlist.add(newFood);
         }
         return foodlist;
