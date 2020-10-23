@@ -5,7 +5,6 @@ import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Messages;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
@@ -26,7 +25,7 @@ public class CreateSprintCommand extends SprintCommand {
      */
     public void execute() {
         chooseProject();
-        Ui.showToUser(this.projOwner.toIDString());
+        Ui.showToUser(this.projOwner.toIdString());
         if (sprintList.size() == 0) {
             try {
                 createFirstSprint(projOwner);

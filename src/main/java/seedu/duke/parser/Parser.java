@@ -44,7 +44,7 @@ public class Parser {
             if (!rawArgs.contains("-")) {
                 params.clear();
                 parameters.clear();
-                if(!rawArgs.isBlank()){
+                if (!rawArgs.isBlank()) {
                     String[] arguments = rawArgs.split(" ");
                     params.addAll(Arrays.asList(arguments));
                     for (int i = 0; i < arguments.length; i++) {

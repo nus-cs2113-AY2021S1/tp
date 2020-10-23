@@ -55,7 +55,9 @@ public class SprintParser implements ExceptionsParser {
             }
             break;
         case ASSIGN:
-            new AllocateSprintTaskCommand(parameters, projectListManager).execute();
+            if (checkAllocateTaskParams(parameters, projectListManager)) {
+                new AllocateSprintTaskCommand(parameters, projectListManager).execute();
+            }
             break;
         default:
             throw new DukeException("Invalid action!");
@@ -63,19 +65,20 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Check if Project Manager contain any project
+     * Check if Project Manager contain any project.
      * @return True if ProjectManager.size > 0
      */
-    private boolean checkProjExist(ProjectManager projectList){
+    private boolean checkProjExist(ProjectManager projectList) {
         return projectList.size() != 0;
     }
 
     /**
-     * Validate parameters for CreateSprintCommand
+     * Validate parameters for CreateSprintCommand.
      */
-    private boolean checkCreateSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+    private boolean checkCreateSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
         /**
-         * Mandatory fields
+         * Mandatory fields.
          * - goal
          */
         if (!parameters.containsKey("goal")) {
@@ -83,7 +86,7 @@ public class SprintParser implements ExceptionsParser {
         }
 
         /**
-         * Optional fields
+         * Optional fields.
          * - project
          * - start
          */
@@ -99,9 +102,10 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Validate parameters for AddSprintTaskCommand
+     * Validate parameters for AddSprintTaskCommand.
      */
-    private boolean checkAddTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+    private boolean checkAddTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
         /**
          * Optional fields
          * - project
@@ -125,11 +129,12 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Validate parameters for RemoveprintTaskCommand
+     * Validate parameters for RemoveSprintTaskCommand.
      */
-    private boolean checkRemoveTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+    private boolean checkRemoveTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
         /**
-         * Optional fields
+         * Optional fields.
          * - project
          * - sprint
          *
@@ -151,11 +156,12 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Validate parameters for ViewSprintCommand
+     * Validate parameters for ViewSprintCommand.
      */
-    private boolean checkViewSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+    private boolean checkViewSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
         /**
-         * Optional fields with tags
+         * Optional fields with tags.
          * - project
          * - sprint
          */
@@ -165,13 +171,40 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Validate the "project" params
+     * Validate parameters for AllocateSprintTaskCommand.
+     */
+    private boolean checkAllocateTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
+        /**
+         * Mandatory fields.
+         * - user
+         * - task
+         */
+        if (!parameters.containsKey("user") || !parameters.containsKey("task")) {
+            throw new DukeException("Please indicate task and user for this command.");
+        }
+
+        /**
+         * Optional fields with tags.
+         * - project
+         * - sprint
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        Sprint selectedSprint = checkSprintParam(parameters, selectedProject);
+        checkUserParam(parameters, selectedProject);
+        checkTaskParam(parameters, selectedProject, selectedSprint, false);
+        return true;
+    }
+
+    /**
+     * Validate the "project" params.
      * Checks:
      * - parsable into an Integer
      * - Exist in Project Manager
      * - Contains sprints in selected Project (Also check when project is not specified)
      */
-    private Project checkProjectParam(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+    private Project checkProjectParam(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
         int selectedProg;
         if (parameters.containsKey("project")) {
             try {
@@ -189,11 +222,10 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Validate the "sprint" params
+     * Validate the "sprint" params.
      * Checks:
      * - parsable into an Integer
      * - Exist in Sprint Manager
-     *
      * Check if there is ongoing spring if "sprint" params is not specified
      */
     private Sprint checkSprintParam(Hashtable<String, String> parameters, Project proj) throws DukeException {
@@ -223,7 +255,7 @@ public class SprintParser implements ExceptionsParser {
                 throw new DukeException("Sprint not found.");
             }
         //Not Specified: Check if there is ongoing sprint
-        } else{
+        } else {
             if (proj.getSprintList().updateCurrentSprint()) {
                 selectedSprint = proj.getSprintList().getCurrentSprintIndex();
             } else {
@@ -234,7 +266,7 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
-     * Check if the "task" params is specified and validate the params
+     * Check if the "task" params is specified and validate the params.
      * Checks:
      * - parsable into an Integer
      * - Exist in backlog (Task Manager)
@@ -249,8 +281,9 @@ public class SprintParser implements ExceptionsParser {
             throw new DukeException("Please indicate task(s) to be allocated.");
         }
     }
-    private void checkTaskParamTag(Hashtable<String, String> parameters, String tag, Project proj, Sprint sprint
-            , boolean isAdd)
+
+    private void checkTaskParamTag(Hashtable<String, String> parameters, String tag, Project proj,
+                                   Sprint sprint, boolean isAdd)
             throws DukeException {
         String[] taskIds;
         if (tag.equals("task")) {
@@ -267,15 +300,31 @@ public class SprintParser implements ExceptionsParser {
             }
 
             if (!proj.getBacklog().checkTaskExist(taskId)) {
-                throw new DukeException("Task(s) not found.");
+                throw new DukeException("Task(s) not found in backlog.");
             }
 
             if (isAdd == sprint.checkTaskExist(taskId)) {
-                throw new DukeException(isAdd ?
-                        "Task(s) already exist"
-                        : "Task(s) not found.");
+                throw new DukeException(isAdd
+                        ? "Task(s) already exist"
+                        : "Task(s) not found in sprint.");
             }
 
+        }
+    }
+
+    /**
+     * Check if the "user" params is specified and validate the params.
+     * Checks:
+     * - Exist in MemberManager
+     */
+    private void checkUserParam(Hashtable<String, String> parameters, Project proj)
+            throws DukeException {
+        String[] userIds = parameters.get("user").split(" ");
+        for (String id : userIds) {
+            Member mem = proj.getProjectMember().getMember(id.trim());
+            if (mem == null) {
+                throw new DukeException("User(s) not found.");
+            }
         }
     }
 }

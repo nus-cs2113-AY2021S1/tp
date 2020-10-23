@@ -1,6 +1,5 @@
 package seedu.duke.command.sprint;
 
-import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
@@ -20,7 +19,7 @@ public class AddSprintTaskCommand extends SprintCommand {
     public void execute() {
 
         chooseProject();
-        Ui.showToUserLn(this.projOwner.toIDString());
+        Ui.showToUserLn(this.projOwner.toIdString());
 
         String[] taskIds = new String[0];
         if (parameters.containsKey("task")) {

@@ -26,7 +26,7 @@ public abstract class SprintCommand extends Command {
     public abstract void execute() throws DukeException;
 
     /**
-     * Choose the project to execute command
+     * Choose the project to execute command.
      * Validation completed at SprintParser
      */
     protected void chooseProject() {
@@ -43,7 +43,7 @@ public abstract class SprintCommand extends Command {
     }
 
     /**
-     * Choose the sprint to execute command
+     * Choose the sprint to execute command.
      * Validation completed at SprintParser
      */
     protected void chooseSprint() {
@@ -62,7 +62,7 @@ public abstract class SprintCommand extends Command {
     }
 
     /**
-     * Choose the sprint to execute command
+     * Choose the sprint to execute command.
      * Validation completed at SprintParser
      */
     protected void selectCurrentSprint() {

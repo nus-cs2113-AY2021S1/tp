@@ -111,6 +111,12 @@ public class Sprint implements Jsonable {
         return this.taskList;
     }
 
+    public String toIdString() {
+        StringBuilder sprintInString = new StringBuilder();
+        sprintInString.append(String.format("[Sprint ID: %s]", this.id));
+        return sprintInString.toString();
+    }
+
     public String toSimplifiedString() {
         StringBuilder sprintInString = new StringBuilder();
         sprintInString.append(String.format("[Sprint ID: %d]", this.id));

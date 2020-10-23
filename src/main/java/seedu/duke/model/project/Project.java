@@ -42,11 +42,12 @@ public class Project implements Jsonable {
         sprintList = new SprintManager();
     }
 
-    public String toIDString() {
+    public String toIdString() {
         StringBuilder projectInString = new StringBuilder();
         projectInString.append(String.format("[Project ID: %s]", this.projectID));
         return projectInString.toString();
     }
+
     @Override
     public String toString() {
         StringBuilder projectInString = new StringBuilder();

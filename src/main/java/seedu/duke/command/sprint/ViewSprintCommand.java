@@ -17,7 +17,7 @@ public class ViewSprintCommand extends SprintCommand {
 
 
         //Output to user
-        Ui.showToUserLn(this.projOwner.toIDString());
+        Ui.showToUserLn(this.projOwner.toIdString());
         Ui.showToUser(this.sprintOwner.toString());
 
     }

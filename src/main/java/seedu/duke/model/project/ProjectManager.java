@@ -13,7 +13,8 @@ public class ProjectManager {
 
     public void addProject(String title, String description, int projectDuration, int sprintLength) {
         int newProjectID = this.size() + 1;
-        this.projectList.put(newProjectID, new Project(newProjectID, title, description, projectDuration, sprintLength));
+        this.projectList.put(newProjectID,
+                new Project(newProjectID, title, description, projectDuration, sprintLength));
         this.selectedProject = newProjectID;
     }
 
