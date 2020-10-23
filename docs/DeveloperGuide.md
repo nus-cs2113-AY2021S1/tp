@@ -85,8 +85,8 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 1. Created by the parser function
 1. Gets the note that is referenced too either by title or index 
-1. toggles the pinned status of the note 
-1. returns the title as well as the pinned status of the note 
+1. Toggles the pinned status of the specified note. 
+1. Returns the title as well as the pinned status of the note. 
 
 <p align="center"> 
    <img alt="PinCommand" src="diagrams/out/PinCommand.png" 
