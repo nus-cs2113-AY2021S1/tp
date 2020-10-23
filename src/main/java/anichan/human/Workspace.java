@@ -8,6 +8,9 @@ import anichan.watchlist.Watchlist;
 import java.util.ArrayList;
 
 public class Workspace {
+
+    // ========================== Workspace Initialization ==========================
+
     public Bookmark bookmark;
 
     protected String workspaceName;
@@ -28,16 +31,23 @@ public class Workspace {
         this.bookmark = bookmark;
     }
 
+    public String getName() {
+        return workspaceName;
+    }
+
+    @Override
+    public String toString() {
+        return workspaceName;
+    }
+
+    // ========================== Watchlist & Bookmark ==========================
+
     public void setActiveWatchlist(Watchlist activeWatchlist) {
         this.activeWatchlist = activeWatchlist;
     }
 
     public void setWatchlistList(ArrayList<Watchlist> watchlistList) {
         this.watchlistList = watchlistList;
-    }
-
-    public String getName() {
-        return workspaceName;
     }
 
     public Watchlist getActiveWatchlist() {
@@ -88,11 +98,5 @@ public class Workspace {
         return bookmark.getNoteInString(bookmarkIndex);
 
     }
-
-    @Override
-    public String toString() {
-        return workspaceName;
-    }
-
 
 }
