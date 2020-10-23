@@ -43,6 +43,9 @@ public class ParseViewNoteCommand extends Parser {
                     isTitle = false;
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
                     return new ViewNoteCommand(index - 1);
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);

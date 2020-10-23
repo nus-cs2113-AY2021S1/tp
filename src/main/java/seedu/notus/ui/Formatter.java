@@ -49,6 +49,7 @@ public class Formatter {
      * Maximum length of a note's content to display.
      */
     private static final int CONTENT_CUTOFF = MAX_MESSAGE_LENGTH - 50;
+    private static final int CONTENT_INDENT = 3;
 
     //@@author R-Ramana
     /**
@@ -88,7 +89,8 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_STRING.repeat(4) + truncatedContent));
+            formattedString = formattedString.concat(encloseRow(EMPTY_STRING.repeat(CONTENT_INDENT)
+                    + truncatedContent));
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;

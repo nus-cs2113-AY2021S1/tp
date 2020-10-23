@@ -49,6 +49,10 @@ public class ParseTagCommand extends Parser {
                 case PREFIX_INDEX:
                     ExceptionType exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     index = Integer.parseInt(checkBlank(infoDetails[1].trim(), exception));
+
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
@@ -57,10 +61,6 @@ public class ParseTagCommand extends Parser {
 
             if (tags.isEmpty()) {
                 throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
-            }
-
-            if (index <= NULL_INDEX) {
-                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
