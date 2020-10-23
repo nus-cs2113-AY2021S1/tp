@@ -17,10 +17,11 @@
     + [4.h. Change Rating](#4h-changerating---changes-rating-of-your-show)
     + [4.i. Update episode](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     + [4.j. Update season](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    + [4.k. Manage your watch time](#4k-managing-your-watch-time-limit)
-        + [4.k.a Watching a show ](#4ka-watch---watch-a-show-in-your-watchlist)
-        + [4.k.b Updating your watch time limit](#4kb-updatetimelimit---update-your-watch-time-limit)
-    + [4.m. Exiting **WatchNext**](#4-m-bye---exits-the-program)
+    + [4.k. Adding a review](#4k-adding-a-review)     
+    + [4.l. Manage your watch time](#4l-managing-your-watch-time-limit)
+        + [4.l.a Watching a show ](#4la-watch---watch-a-show-in-your-watchlist)
+        + [4.l.b Updating your watch time limit](#4lb-updatetimelimit---update-your-watch-time-limit)
+    + [4.m. Exiting **WatchNext**](#4m-bye---exits-the-program)
 - [5. Frequently Asked Questions](#5-faq)   
 - [6. Command Summary](#6-command-summary)   
 
@@ -45,7 +46,7 @@ For students, **WatchNext** serves the same purpose for lectures and webcasts.
 
 ### 1.b. Why use **WatchNext**?
 
-**WatchNext** allows users who watch shows on multiple free streaming platforms or other open source stream websites to keep track of which episode they are at.
+**WatchNext** allows you to watch shows on multiple free streaming platforms or other open source stream websites and keep track of which episode you are at.
 <br>It is difficult and can be taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
@@ -146,6 +147,15 @@ Expected outcome:
   
  <img src = "images/edit.PNG" width = "500">
   
+ &nbsp;
+ 
+ To help you better understand the flow of this command we have included a program flow to illustrate the process.
+ 
+ <img src = "images/programFlowUG.PNG" width = "500">
+ 
+ <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
+
+ 
  &nbsp;
  
 ### 4.d. `rating` - Modifies rating of your show
@@ -263,11 +273,11 @@ This command allows us to add a review for a show, including adding a rating.
  Example of usage:
  `season Friends 3`
 
-### 4.m. Managing your watch time limit
+### 4.l. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.m.a. `watch` - Watch a show in your watchlist
+### 4.l.a. `watch` - Watch a show in your watchlist
 
 This command increments the current episode that you are on, and updates your watch time limit.
 
@@ -283,9 +293,9 @@ This command increments the current episode that you are on, and updates your wa
   
  &nbsp;
 
-### 4.m.b. `updatetimelimit` - update your watch time limit
+### 4.l.b. `updatetimelimit` - update your watch time limit
 
-This command updates the current episode that you are on, and updates your current watch time limit.
+This command updates your current watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
@@ -303,7 +313,7 @@ This command updates the current episode that you are on, and updates your curre
   
  &nbsp;
  
-### 4. n. `bye` - Exits the program
+### 4.m. `bye` - Exits the program
 This command exits the program.
 
 Format:
@@ -328,9 +338,9 @@ Expected outcome:
 
 **A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary. 
 
+
+
 ### 6. Command Summary
-
-
 
 |Action|Format|Example|
 |--------|----------|---------------|
