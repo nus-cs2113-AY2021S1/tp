@@ -1,4 +1,4 @@
-package seedu.dietbook;
+package seedu.dietbook.exception;
 
 public class DietException extends Exception {
     public DietException(String message) {

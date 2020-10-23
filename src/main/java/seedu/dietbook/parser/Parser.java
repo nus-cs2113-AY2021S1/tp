@@ -1,23 +1,16 @@
-package seedu.dietbook;
+package seedu.dietbook.parser;
 
-import seedu.calculator.Calculator;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.ActivityLevel;
-
-import java.io.FileNotFoundException;
+import seedu.dietbook.exception.DietException;
+import seedu.dietbook.Manager;
 
 public class Parser {
     public static final String COMMAND_NAME = "name";
-    public static final String COMMAND_LIST = "list";
     public static final String COMMAND_INFO = "info";
-    public static final String COMMAND_EXIT = "exit";
     public static final String COMMAND_ADD = "add";
-    public static final String COMMAND_CLEAR = "clear";
-    public static final String COMMAND_DELETE = "delete";
     public static final String COMMAND_CALCULATE = "calculate";
-    public static final String COMMAND_DATA = "data";
-    public static final String COMMAND_USERINFO = "userinfo";
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
@@ -28,7 +21,7 @@ public class Parser {
      * @param userInput which is user input.
      * @return First word which is the command of the user input.
      */
-    private static String getCommand(String userInput) {
+    public static String getCommand(String userInput) {
         return userInput.split(" ")[0];
     }
 
@@ -38,7 +31,7 @@ public class Parser {
      * @return parameter part of the user input.
      * @throws DietException when the user input is of a wrong format.
      */
-    private static String getCommandParam(String userInput) throws DietException {
+    public static String getCommandParam(String userInput) throws DietException {
         String command = getCommand(userInput);
         String[] input = {userInput};
 
@@ -83,7 +76,7 @@ public class Parser {
      * @return name of the food that was added.
      * @throws DietException when the user input is of a wrong format.
      */
-    private static String getProcessedAdd(String userInput, FoodList foodList) throws DietException {
+    public static String getProcessedAdd(String userInput, FoodList foodList) throws DietException {
         int portionSize = 1;
         String foodName = "Food Name";
         int calorie = 0;
@@ -131,7 +124,7 @@ public class Parser {
      * @param manager the manager object.
      * @throws DietException when the user input is of a wrong format.
      */
-    private static void executeProcessedInfo(String userInput, Manager manager) throws DietException {
+    public static void executeProcessedInfo(String userInput, Manager manager) throws DietException {
         Gender gender = Gender.MALE;
         ActivityLevel actLvl = ActivityLevel.NONE;
         int age = 0;
@@ -193,7 +186,7 @@ public class Parser {
      * @return index part of the user input.
      * @throws DietException when the user input is of a wrong format.
      */
-    private static int getCommandIndex(String userInput) throws DietException {
+    public static int getCommandIndex(String userInput) throws DietException {
         String command = getCommand(userInput);
 
         if (userInput.split(command).length < 2 || userInput.split(command)[1].equals(" ")) {
@@ -203,72 +196,6 @@ public class Parser {
             return Integer.parseInt(userInput.split(" ")[1]);
         } catch (NumberFormatException e) {
             throw new DietException("OOPS!!! No integer index detected!");
-        }
-    }
-
-    /**
-     * Makes sense of the user input and carries out the functions according to the command given.
-     * @param userInput user input.
-     * @throws DietException when the program does not recognize the command given.
-     */
-    public static void parse(String userInput, Manager manager, Ui ui) throws DietException, FileNotFoundException {
-        Calculator calculator = manager.getCalculator();
-        switch (getCommand(userInput)) {
-        case COMMAND_NAME:
-            manager.setName(getCommandParam(userInput));
-            ui.printAskForUserInfoMessage(manager.getName());
-            return;
-        case COMMAND_EXIT:
-            ui.printExitMessage(manager.getName());
-            DietBook.isExit = true;
-            return;
-        case COMMAND_LIST:
-            ui.printFoodList(manager.getFoodList().toString());
-            return;
-        case COMMAND_USERINFO:
-            ui.printPersonInfo(manager.getPerson().toString());
-            return;
-        case COMMAND_DATA:
-            manager.getDataBase().init();
-            ui.printDatabase(manager.getDataBase().getFoodList());
-            return;
-        case COMMAND_DELETE:
-            try {
-                ui.printDeletedFood(manager.getFoodList().delete(getCommandIndex(userInput)));
-                manager.setCalculator();
-            } catch (IndexOutOfBoundsException e) {
-                throw new DietException("No such index!");
-            }
-            return;
-        case COMMAND_CLEAR:
-            ui.printClearFoodListMessage();
-            manager.getFoodList().clear();
-            return;
-        case COMMAND_CALCULATE:
-            manager.setCalculator();
-            if (getCommandParam(userInput).equals("all")) {
-                ui.printAllNutrientIntake(calculator.calculateCalorie(), calculator.calculateCarb(),
-                        calculator.calculateProtein(), calculator.calculateFat());
-            } else if (getCommandParam(userInput).equals("calorie")) {
-                ui.printCalorieIntake(calculator.calculateCalorie());
-            } else if (getCommandParam(userInput).equals("carbohydrate")) {
-                ui.printCarbohydrateIntake(calculator.calculateCarb());
-            } else if (getCommandParam(userInput).equals("protein")) {
-                ui.printProteinIntake(calculator.calculateProtein());
-            } else {
-                ui.printFatIntake(calculator.calculateFat());
-            }
-            return;
-        case COMMAND_INFO:
-            executeProcessedInfo(userInput, manager);
-            ui.printTutorialMessage();
-            return;
-        case COMMAND_ADD:
-            ui.printNewFood(getProcessedAdd(userInput, manager.getFoodList()));
-            manager.setCalculator();
-            return;
-        default:
-            throw new DietException("There's no such command!");
         }
     }
 }

@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.list.FoodList;
+import seedu.dietbook.exception.DietException;
+import seedu.dietbook.command.Command;
 
 public class DietBook {
     private FoodList foodList;
@@ -22,11 +24,10 @@ public class DietBook {
         while (!isExit) {
             try {
                 String userInput = dietBook.manager.readCommand();
-                Parser.parse(userInput, dietBook.manager, dietBook.ui);
+                Command c = dietBook.manager.manage(userInput);
+                c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
-            } finally {
-                System.out.println("__________________");
             }
         }
     }
