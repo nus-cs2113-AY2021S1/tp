@@ -28,7 +28,7 @@ public class BookmarkCommand extends Command {
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        if(typeOfBookmarkCommand.equals("listing")) {
+        if (typeOfBookmarkCommand.equals("listing")) {
             ArrayList<Displayable> allBookmarks;
             allBookmarks = bookmarks.getInnerList();
             int i = 1;
