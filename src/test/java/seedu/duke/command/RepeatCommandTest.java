@@ -26,7 +26,7 @@ class RepeatCommandTest {
 
     private UserData data = new UserData();
     private Ui ui = new Ui();
-    private Storage storage = new Storage("data");
+    private Storage storage = new Storage("data", ui);
 
     @BeforeEach
     void setupEventLists() throws DukeException {

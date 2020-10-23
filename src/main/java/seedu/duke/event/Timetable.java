@@ -1,5 +1,6 @@
 package seedu.duke.event;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -23,6 +24,15 @@ public class Timetable extends Event {
     public void setLocation(String location) {
         this.location = location;
         hasLocation = true;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    @Override
+    public Timetable clone() throws CloneNotSupportedException {
+        return (Timetable) super.clone();
     }
 
     @Override

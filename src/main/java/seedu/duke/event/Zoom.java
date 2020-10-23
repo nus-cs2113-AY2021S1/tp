@@ -27,10 +27,19 @@ public class Zoom extends Event {
         this.zoomLink = zoomLink;
     }
 
+    public String getZoomLink() {
+        return this.zoomLink;
+    }
+
+    @Override
+    public Zoom clone() throws CloneNotSupportedException {
+        return (Zoom) super.clone();
+    }
+
     @Override
     public String toString() {
         if (hasTime && hasDate) {
-            return "[Z]" + super.toString() + ", Link: " + zoomLink + " on "  + date + ", " + time;
+            return "[Z]" + super.toString() + ", Link: " + zoomLink + " on " + date + ", " + time;
         } else {
             return "[Z]" + super.toString() + ", Link: " + zoomLink;
         }
