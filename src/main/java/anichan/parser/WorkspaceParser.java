@@ -10,11 +10,18 @@ import java.util.logging.Logger;
 public class WorkspaceParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
     public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
+    public static final String COMMAND_NEW = "n";
+    public static final String COMMAND_SWITCH = "s";
+    public static final String COMMAND_list = "l";
+    public static final String COMMAND_LIST = COMMAND_list;
+    public static final String COMMAND_DELETE = "d";
+    public static final String REGEX_SPACE_CHARACTER = " ";
+
     private String commandOption;
     private String commandDescription;
 
     public WorkspaceCommand parse(String description) throws AniException {
-        assert description != null : "description should not be null.";
+        assert description != null : "Description should not be null.";
 
         String[] paramGiven = parameterSplitter(description);
         paramIsSetCheck(paramGiven);
@@ -23,7 +30,7 @@ public class WorkspaceParser extends CommandParser {
         parameterParser(paramGiven);
 
         LOGGER.log(Level.INFO, "Returning WorkspaceCommand object with option: "
-                + commandOption + ", and information: " + commandDescription);
+                + commandOption + ", and description: " + commandDescription);
 
         return new WorkspaceCommand(commandOption, commandDescription);
     }
@@ -37,27 +44,27 @@ public class WorkspaceParser extends CommandParser {
         try {
             String cleanedCommand = paramGiven[1].trim();
 
-            String[] givenOption = cleanedCommand.split(" ", 2);
+            String[] givenOption = cleanedCommand.split(REGEX_SPACE_CHARACTER, 2);
 
             switch (givenOption[0]) {
-            case "n":
-                commandOption = "n";
+            case COMMAND_NEW:
+                commandOption = COMMAND_NEW;
                 break;
-            case "s":
-                commandOption = "s";
+            case COMMAND_SWITCH:
+                commandOption = COMMAND_SWITCH;
                 break;
-            case "l":
-                commandOption = "l";
+            case COMMAND_LIST:
+                commandOption = COMMAND_LIST;
                 break;
-            case "d":
-                commandOption = "d";
+            case COMMAND_DELETE:
+                commandOption = COMMAND_DELETE;
                 break;
             default:
-                LOGGER.log(Level.WARNING, "Invalid parameters provided");
+                LOGGER.log(Level.WARNING, EXCEPTION_INVALID_PARAMETERS);
                 throw new AniException(EXCEPTION_INVALID_PARAMETERS);
             }
 
-            if (!commandOption.equals("l")) {
+            if (!commandOption.equals(COMMAND_LIST)) {
                 commandDescription = givenOption[1].trim();
             }
         } catch (IndexOutOfBoundsException exception) {

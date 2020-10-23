@@ -115,4 +115,11 @@ COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
 20. Zipang [Id: 20]
 Browsing Page: 1
 
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
+
 COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 33rd-chan!

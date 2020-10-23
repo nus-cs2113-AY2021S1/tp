@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 
 
 public class User extends Human {
+
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
-
 
     protected Gender gender;
     protected Workspace activeWorkspace;
@@ -62,15 +62,15 @@ public class User extends Human {
         }
     }
 
+    public Workspace getActiveWorkspace() {
+        return activeWorkspace;
+    }
+
     public void setWorkspaceList(ArrayList<Workspace> workspaceList) {
         this.workspaceList = workspaceList;
         if (workspaceList.size() != 0) {
             activeWorkspace = workspaceList.get(0);
         }
-    }
-
-    public Workspace getActiveWorkspace() {
-        return activeWorkspace;
     }
 
     public ArrayList<Workspace> getWorkspaceList() {
@@ -147,7 +147,7 @@ public class User extends Human {
         return null;
     }
 
-    public boolean doesWorkplaceExist(String checkWorkspace)  {
+    public boolean doesWorkplaceExist(String checkWorkspace) {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(checkWorkspace)) {
                 return true;
@@ -156,9 +156,6 @@ public class User extends Human {
 
         return false;
     }
-
-
-
 
     @Override
     public String toString() {

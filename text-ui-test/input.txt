@@ -32,4 +32,5 @@ bookmark -l
 add -a 1
 search -n cowboy
 browse -p 1
+workspace -l
 exit

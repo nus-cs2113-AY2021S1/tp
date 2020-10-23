@@ -116,7 +116,7 @@ public class Main {
                 LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
 
                 storageManager.saveWorkspace(newWorkspace);
-                LOGGER.log(Level.INFO, "Workspace saved to storage: ");
+                LOGGER.log(Level.INFO, "Workspace saved to storage: " + newWorkspace.getName());
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());

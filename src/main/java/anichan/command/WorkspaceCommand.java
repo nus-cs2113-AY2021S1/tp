@@ -13,24 +13,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WorkspaceCommand extends Command {
-    private final String option;
-    private final String optionInformation;
     private static final String CREATE_OPTION = "n";
     private static final String SWITCH_OPTION = "s";
     private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
-    public WorkspaceCommand(String option, String optionInformation) {
-        this.option = option;
-        this.optionInformation = optionInformation;
+    private final String commandOption;
+    private final String commandDescription;
+
+    public WorkspaceCommand(String commandOption, String commandDescription) {
+        this.commandOption = commandOption;
+        this.commandDescription = commandDescription;
     }
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (option != null) : "Option should not be null.";
+        assert (commandOption != null) : "Option should not be null.";
 
-        switch (option) {
+        switch (commandOption) {
         case CREATE_OPTION:
             return createWorkspace(user, storageManager);
         case SWITCH_OPTION:
@@ -46,7 +47,7 @@ public class WorkspaceCommand extends Command {
     }
 
     public String createWorkspace(User user, StorageManager storageManager) throws AniException {
-        Workspace newWorkspace = user.addWorkspace(optionInformation);
+        Workspace newWorkspace = user.addWorkspace(commandDescription);
 
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
         watchlistList.add(new Watchlist("Default"));
@@ -58,7 +59,7 @@ public class WorkspaceCommand extends Command {
     }
 
     public String switchWorkspace(User user) throws AniException {
-        String trimmedName = optionInformation;
+        String trimmedName = commandDescription;
         user.switchActiveWorkspace(trimmedName);
 
         LOGGER.log(Level.INFO, "Successfully added new workspace: " + trimmedName);
@@ -66,15 +67,15 @@ public class WorkspaceCommand extends Command {
     }
 
     public String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
-        if (user.getActiveWorkspace().toString().equals(optionInformation)) {
+        if (user.getActiveWorkspace().toString().equals(commandDescription)) {
             throw new AniException("Please switch workspace before trying to delete it.");
         }
 
-        user.deleteWorkspace(optionInformation);
-        storageManager.deleteWorkspace(optionInformation);
+        user.deleteWorkspace(commandDescription);
+        storageManager.deleteWorkspace(commandDescription);
 
-        LOGGER.log(Level.INFO, "Successfully deleted workspace: " + optionInformation);
-        return "Successfully deleted workspace: " + optionInformation;
+        LOGGER.log(Level.INFO, "Successfully deleted workspace: " + commandDescription);
+        return "Successfully deleted workspace: " + commandDescription;
     }
 
     public String listWorkspace(User user) {
