@@ -1,9 +1,11 @@
 package seedu.eduke8.parser;
 
-import seedu.eduke8.command.AnswerCommand;
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
-import seedu.eduke8.command.HintCommand;
+import seedu.eduke8.command.AnswerCommand;
+import seedu.eduke8.command.BookmarkCommand;
 import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
@@ -26,6 +28,11 @@ public class QuizParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private Question question;
+    private BookmarkList bookmarks;
+
+    public QuizParser(BookmarkList bookmarks) {
+        this.bookmarks = bookmarks;
+    }
 
     public void setQuestion(Question question) {
         assert question != null;
@@ -37,7 +44,7 @@ public class QuizParser implements Parser {
      * Parses the user input.
      *
      * @param optionList the option list that contains the list of options available for the current question
-     * @param userInput the string input typed by the user
+     * @param userInput  the string input typed by the user
      * @return a Command object which when executed will carry out the appropriate action
      */
     @Override
@@ -45,8 +52,11 @@ public class QuizParser implements Parser {
         if ("hint".equals(userInput)) {
             LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
+        } else if ("bookmark".equals(userInput)) {
+            LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
+            return new BookmarkCommand(question, "storing", bookmarks);
         }
-        
+
         try {
             ArrayList<Displayable> options = optionList.getInnerList();
             int chosenIndex = Integer.parseInt(userInput) - 1;
