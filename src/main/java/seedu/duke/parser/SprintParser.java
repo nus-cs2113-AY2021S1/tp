@@ -5,18 +5,16 @@ import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
+import seedu.duke.command.sprint.EditSprintCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.ui.Ui;
-
-import java.time.LocalDate;
 import java.util.Hashtable;
-import java.util.logging.Level;
 
 import static seedu.duke.command.CommandSummary.CREATE;
+import static seedu.duke.command.CommandSummary.EDIT;
 import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.VIEW;
@@ -37,6 +35,11 @@ public class SprintParser implements ExceptionsParser {
         case CREATE:
             if (checkCreateSprintParams(parameters, projectListManager)) {
                 new CreateSprintCommand(parameters, projectListManager).execute();
+            }
+            break;
+        case EDIT:
+            if (checkEditSprintParams(parameters, projectListManager)) {
+                new EditSprintCommand(parameters, projectListManager).execute();
             }
             break;
         case ADDTASK:
@@ -98,6 +101,29 @@ public class SprintParser implements ExceptionsParser {
                 throw new DukeException("Please indicate your start date in this following format: YYYYMMDD");
             }
         }
+        return true;
+    }
+
+    /**
+     * Validate parameters for EditSprintCommand.
+     */
+    private boolean checkEditSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
+        /**
+         * Mandatory fields.
+         * - goal
+         */
+        if (!parameters.containsKey("goal")) {
+            throw new DukeException("Please indicate your goal for this sprint.");
+        }
+
+        /**
+         * Optional fields with tags.
+         * - project
+         * - sprint
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        checkSprintParam(parameters, selectedProject);
         return true;
     }
 
