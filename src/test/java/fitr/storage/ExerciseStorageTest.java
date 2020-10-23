@@ -20,9 +20,11 @@ class ExerciseStorageTest {
 
         assertEquals(expectedExerciseList.get(0).getNameOfExercise(), actualExerciseList.get(0).getNameOfExercise());
         assertEquals(expectedExerciseList.get(0).getCalories(), actualExerciseList.get(0).getCalories());
+        assertEquals(expectedExerciseList.get(0).getDate(), actualExerciseList.get(0).getDate());
 
         assertEquals(expectedExerciseList.get(1).getNameOfExercise(), actualExerciseList.get(1).getNameOfExercise());
         assertEquals(expectedExerciseList.get(1).getCalories(), actualExerciseList.get(1).getCalories());
+        assertEquals(expectedExerciseList.get(1).getDate(), actualExerciseList.get(0).getDate());
     }
 
     @Test
