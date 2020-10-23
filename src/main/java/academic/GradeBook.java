@@ -11,8 +11,7 @@ public class GradeBook {
     }
 
     public static void deleteGrade(Integer indexToBeDeleted, ArrayList<Grade> currentGrades) {
-        currentGrades.remove(indexToBeDeleted - 0);
-        //TODO: Fix remove() not recognising index
+        currentGrades.remove(indexToBeDeleted - 1);
     }
 
     public static String printCap(ArrayList<Grade> currentGrades) {

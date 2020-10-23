@@ -11,8 +11,7 @@ public class PersonBook {
     }
 
     public static void deletePerson(Integer indexToBeDeleted, ArrayList<Person> listOfPerson) {
-        listOfPerson.remove(indexToBeDeleted - 0);
-        //TODO: Fix remove() not recognising index
+        listOfPerson.remove(indexToBeDeleted - 1);
     }
 
     public static String printPersonBook(ArrayList<Person> listOfPerson) {
