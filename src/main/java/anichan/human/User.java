@@ -15,6 +15,7 @@ public class User extends Human {
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
+    public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
 
     protected Gender gender;
     protected Workspace activeWorkspace;
@@ -133,7 +134,8 @@ public class User extends Human {
         if (targetWorkspace != null) {
             workspaceList.remove(targetWorkspace);
         } else {
-            throw new AniException("Workspace does not exist!");
+            LOGGER.log(Level.WARNING, EXCEPTION_WORKPLACE_NOT_FOUND);
+            throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
         }
     }
 
