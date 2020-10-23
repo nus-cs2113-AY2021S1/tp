@@ -7,6 +7,7 @@ import static seedu.notus.ui.AsciiArt.getGoodbyeArt;
 import static seedu.notus.ui.AsciiArt.getNotusLogo;
 import static seedu.notus.ui.Formatter.LS;
 
+//@@author R-Ramana
 public class AsciiArtTest {
 
     String expectedNotusLogo = LS

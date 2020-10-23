@@ -1,6 +1,6 @@
 package seedu.notus.command;
 
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 
+//@@author Chongjx
 /**
  * Deletes an existing Tag.
  */

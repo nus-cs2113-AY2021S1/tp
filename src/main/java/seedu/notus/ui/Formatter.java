@@ -17,15 +17,16 @@ import static com.diogonunes.jcolor.Ansi.PREFIX;
 import static com.diogonunes.jcolor.Ansi.RESET;
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+/**
+ * Represents a Formatter object. Handles and standardise the format of all the information.
+ */
 public class Formatter {
-
     /**
      * A platform independent line separator.
      */
     public static final String LS = System.lineSeparator();
 
     private static final String ROW_SPLIT = "=";
-    private static final String COLUMN_SPLIT = "|";
     private static final String COLUMN_START = "|| ";
     private static final String COLUMN_END = " ||";
     private static final String EMPTY_STRING = " ";
@@ -44,6 +45,7 @@ public class Formatter {
      */
     private static final int ANSI_PREFIX_LENGTH = 5;
 
+    //@@author R-Ramana
     /**
      * Method compiles the ArrayList items and appends the items to a String.
      *
@@ -57,6 +59,7 @@ public class Formatter {
         return formattedString;
     }
 
+    //@@author R-Ramana
     /**
      * Method compiles the ArrayList items and appends the items to a String.
      *
@@ -85,6 +88,7 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
+    //@@author Narzyl
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
@@ -107,6 +111,7 @@ public class Formatter {
         return formattedString;
     }
 
+    //@@author brandonywl
     /**
      * Formats a provided event to an ArrayList format.
      *
@@ -132,6 +137,7 @@ public class Formatter {
         return formatString(formatEvent(event), false);
     }
 
+    //@@author brandonywl
     /**
      * Provides a wrapper around formatEvent to add a header at the head of the ArrayList.
      *
@@ -145,7 +151,7 @@ public class Formatter {
         return formatString(result, true);
     }
 
-
+    //@@author brandonywl
     /**
      * Converts a header and an ArrayList of reminders into a formatted string to be printed.
      *
@@ -166,6 +172,7 @@ public class Formatter {
         return formatString(result, true);
     }
 
+    //@@author brandonywl
     /**
      * Formats a provided event to an ArrayList format.
      *
@@ -180,6 +187,7 @@ public class Formatter {
         return result;
     }
 
+    //@@author Chongjx
     /**
      * Formats a string to be printed out.
      *

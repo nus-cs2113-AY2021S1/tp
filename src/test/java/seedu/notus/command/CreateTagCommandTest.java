@@ -3,8 +3,8 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.notus.data.notebook.TagManager;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.TagManager;
+import seedu.notus.data.tag.Tag;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author Chongjx
 class CreateTagCommandTest {
 
     private Tag tagRed;

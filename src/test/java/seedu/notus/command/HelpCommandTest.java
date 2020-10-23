@@ -8,6 +8,7 @@ import seedu.notus.ui.Formatter;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author R-Ramana
 class HelpCommandTest {
 
     private static final String HELP_STRING = "The recognized commands and their usages are listed below. "

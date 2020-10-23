@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.TagManager;
+import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.Timetable;
 
 import seedu.notus.storage.StorageManager;
@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author Narzyl
 class AddNoteCommandTest {
     Notebook notebook;
     Timetable timetable;

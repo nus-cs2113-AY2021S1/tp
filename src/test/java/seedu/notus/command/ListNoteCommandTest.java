@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.Tag;
-import seedu.notus.ui.Formatter;
+import seedu.notus.data.tag.Tag;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author R-Ramana
 class ListNoteCommandTest {
 
     Notebook notebook;

@@ -6,6 +6,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 
+//@@author Nazryl
 /**
  * Deletes a Note from the Notebook.
  */

@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+//@@author brandonywl
 /**
  * Represents a TimeTable object. Contains all the events.
  */

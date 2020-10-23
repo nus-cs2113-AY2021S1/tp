@@ -10,7 +10,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
 import java.util.ArrayList;
 
-
+//@@author Nazryl
 /**
  * Adds a Note into the Notebook.
  */

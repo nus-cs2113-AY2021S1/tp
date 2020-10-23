@@ -2,7 +2,7 @@ package seedu.notus.command;
 
 import com.diogonunes.jcolor.Attribute;
 
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+//@@author Chongjx
 /**
  * Creates Tag for the notes.
  */

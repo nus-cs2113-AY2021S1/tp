@@ -13,6 +13,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
+//@@author prachi2023
 /**
  * Pins or unpins a Note in the Notebook.
  */

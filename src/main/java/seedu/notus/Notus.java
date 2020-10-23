@@ -3,7 +3,7 @@ package seedu.notus;
 import seedu.notus.command.Command;
 import seedu.notus.command.ExitCommand;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.TagManager;
+import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.Timetable;
 import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.AsciiArt;
@@ -20,6 +20,7 @@ public class Notus {
     private Notebook notebook;
     private Timetable timetable;
     private TagManager tagManager;
+    private Parser parser;
 
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
             + AsciiArt.getNotusLogo() + Formatter.LS
@@ -35,6 +36,7 @@ public class Notus {
         this.notebook = new Notebook();
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
+        this.parser = new Parser();
 
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
@@ -46,7 +48,7 @@ public class Notus {
         do {
             interfaceManager.prints(ENTER_COMMAND_MSG);
             String userCommandText = interfaceManager.getUserCommandInput();
-            command = new Parser().parseCommand(userCommandText);
+            command = parser.parseCommand(userCommandText);
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));

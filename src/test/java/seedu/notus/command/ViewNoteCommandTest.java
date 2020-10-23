@@ -8,11 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
 
+//@@author R-Ramana
 class ViewNoteCommandTest {
     private Note noteWithoutTags;
     private Note noteWithTags;

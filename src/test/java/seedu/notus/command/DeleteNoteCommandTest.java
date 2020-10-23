@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.TagManager;
+import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.Timetable;
 
 import seedu.notus.storage.StorageManager;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author Nazryl
 class DeleteNoteCommandTest {
     private Notebook deletedNotebook;
     private Notebook expectedNotebook;

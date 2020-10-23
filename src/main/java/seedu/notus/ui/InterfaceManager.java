@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+//@@author Narzyl
 /**
  * Represents a InterfaceManager. Manages the input and output of the application.
  */

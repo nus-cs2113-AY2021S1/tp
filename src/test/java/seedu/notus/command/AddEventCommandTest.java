@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author brandonywl
 /**
  * Driver class of AddEventCommandTest to ensure that adding an event to a timetable is correct. Variables point to the
  * same object in memory.

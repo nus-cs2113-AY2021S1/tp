@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+//@@author brandonywl
 /**
  * Represents a DateTimeManager. Manages the date and time info.
  */

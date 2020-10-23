@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//@@author brandonywl
 public abstract class RecurringEvent extends Event {
     private LocalDate endRecurrenceDate;
     private String recurrenceType;

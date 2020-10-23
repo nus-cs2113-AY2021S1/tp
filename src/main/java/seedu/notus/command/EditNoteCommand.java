@@ -7,6 +7,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_LINE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_CONTENT;
 
+//@@author Nazryl
 public class EditNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-n";

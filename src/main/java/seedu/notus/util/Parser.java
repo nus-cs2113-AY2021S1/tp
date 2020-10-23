@@ -26,7 +26,7 @@ import seedu.notus.command.ViewNoteCommand;
 import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.exception.SystemException.ExceptionType;
 import seedu.notus.data.notebook.Note;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.data.timetable.DailyEvent;
@@ -40,7 +40,6 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELETE_LINE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
-import static seedu.notus.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
@@ -74,6 +73,7 @@ public class Parser {
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
     private static final int NULL_INDEX = 0;
 
+    //@@author Chongjx
     /**
      * Parses userInput string into a Command to be executed.
      *
@@ -108,7 +108,6 @@ public class Parser {
                 return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
                 return prepareViewNote(userMessage);
-                // return prepareViewNote(userMessage);
             case EditNoteCommand.COMMAND_WORD:
                 // return prepareEditNote(userMessage);
             case EditEventCommand.COMMAND_WORD:
@@ -143,6 +142,7 @@ public class Parser {
         }
     }
 
+    //@@author Chongjx
     /**
      * Splits the userMessage into the respective info by the delimiter.
      *
@@ -168,6 +168,7 @@ public class Parser {
         }
     }
 
+    //@@author brandonywl
     /**
      * Checks if an input string if blank. If it is, throw the provided system exception. If it is not, return that
      * string trimmed.
@@ -185,6 +186,7 @@ public class Parser {
         }
     }
 
+    //@@author Chongjx
     /**
      * Creates and returns a Tag object based on the info provided.
      *
@@ -215,6 +217,7 @@ public class Parser {
         return new Tag(tagName, tagColor);
     }
 
+    //@@author Nazryl
     /**
      * Prepare userInput into Note before adding into Notebook.
      *
@@ -264,6 +267,7 @@ public class Parser {
         }
     }
 
+    //@@author brandonywl
     /**
      * Takes a user string designated to add an event and prepares it by extracting relevant information from the
      * provided required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow
@@ -390,6 +394,7 @@ public class Parser {
         return new AddEventCommand(event);
     }
 
+    //@@author Narzyl
     /**
      * Used for input of note content and processing the input into a readable data.
      *
@@ -437,6 +442,7 @@ public class Parser {
         return inputString;
     }
 
+    //@@author Narzyl
     /**
      * Delete the last line for mistakes made in inputContent().
      *
@@ -449,6 +455,7 @@ public class Parser {
         commandInput.delete(lastChar, commandInput.length());
     }
 
+    //@@author Narzyl
     /**
      * Prepare userInput into a int before deletion.
      *
@@ -496,6 +503,7 @@ public class Parser {
         throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
     }
 
+    //@@author R-Ramana
     /**
      * Prepare userInput into a int before archiving.
      *
@@ -543,6 +551,7 @@ public class Parser {
         throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
     }
 
+    //@@author R-Ramana
     /**
      * Prepare userInput into a int before un-archiving.
      *
@@ -590,8 +599,7 @@ public class Parser {
         throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
     }
 
-
-
+    //@@author R-Ramana
     /**
      * Ensures that the user does not leave input blank after entering the find command word.
      *
@@ -614,6 +622,7 @@ public class Parser {
         return new FindCommand(userMessage);
     }
 
+    //@@author R-Ramana
     /**
      * Returns a ListNote Command.
      * ListNoteCommand is overloaded, so depending on the user input i.e
@@ -665,7 +674,6 @@ public class Parser {
                     break;
                 case PREFIX_ARCHIVE:
                     isTag = false;
-                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     isArchive = true;
                     break;
                 default:
@@ -697,6 +705,7 @@ public class Parser {
         }
     }
 
+    //@@author brandonywl
     private Command prepareListEvent(String userMessage) throws SystemException {
         if (userMessage == null) {
             return new ListEventCommand();
@@ -743,6 +752,7 @@ public class Parser {
         }
     }
 
+    //@@author prachi2023
     private Command prepareViewNote(String userMessage) throws SystemException {
         String title;
         int index;
@@ -781,6 +791,7 @@ public class Parser {
         throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
     }
 
+    //@@author brandonywl
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
      * @param userMessage User Input without the action word.
@@ -813,6 +824,7 @@ public class Parser {
     }
     */
 
+    //@@author prachi2023
     private Command preparePin(String userMessage) throws SystemException {
         String title;
         int index;
@@ -851,6 +863,7 @@ public class Parser {
         throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
     }
 
+    //@@author Chongjx
     /**
      * Returns a CreateTagCommand or a DeleteTagCommand based on the user message.
      *
@@ -889,6 +902,7 @@ public class Parser {
         }
     }
 
+    //@@author Chongjx
     /**
      * Returns a TagCommand to tag a note.
      *
@@ -934,6 +948,7 @@ public class Parser {
         return new TagCommand(index - 1, tags);
     }
 
+    //@@author R-Ramana
     /**
      * Set Up method for logging
      * Takes in a Logger variable to ensure that separates loggers can be used
@@ -961,23 +976,4 @@ public class Parser {
             logger.log(Level.SEVERE, "File logger not working.", error);
         }
     }
-
-    /*
-    private Command prepareRemind(String userMessage) {
-       return new RemindCommand(index, isToRemind);
-    }
-    */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

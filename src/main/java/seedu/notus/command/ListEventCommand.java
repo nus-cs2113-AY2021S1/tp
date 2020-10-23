@@ -11,6 +11,7 @@ import java.util.HashMap;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
 
+//@@author brandonywl
 /**
  * Lists all the Events in the Timetable. Can limit search to specific time periods.
  */

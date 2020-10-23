@@ -1,8 +1,8 @@
 package seedu.notus.ui;
 
-
 import static seedu.notus.ui.Formatter.LS;
 
+//@@author R-Ramana
 public class AsciiArt {
     // ASCII art code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
     // Slight modifications made to make it easier on the eyes

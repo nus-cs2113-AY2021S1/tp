@@ -3,6 +3,7 @@ package seedu.notus.command;
 import seedu.notus.ui.AsciiArt;
 import seedu.notus.ui.Formatter;
 
+//@@author R-Ramana
 /**
  * Exits the program.
  */

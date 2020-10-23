@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
-import seedu.notus.data.notebook.TagManager;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.TagManager;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.notus.command.DeleteTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.command.DeleteTagCommand.HEADER_DELETE_TAG;
 
+//@@author Chongjx
 class DeleteTagCommandTest {
 
     private Tag tagRed;

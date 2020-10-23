@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+//@@author brandonywl
 class TimetableTest {
     private static final String TEST_TITLE_1 = "CS2113 Tutorial";
     private static final String TEST_TITLE_2 = "CS2113 Lecture";

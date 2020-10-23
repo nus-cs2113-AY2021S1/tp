@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.notebook.TagManager;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.TagManager;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import static seedu.notus.command.TagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author Chongjx
 class TagCommandTest {
 
     private Tag tagRed;

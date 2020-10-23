@@ -1,8 +1,9 @@
-package seedu.notus.data.notebook;
+package seedu.notus.data.tag;
 
 import com.diogonunes.jcolor.Attribute;
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+//@@author Chongjx
 /**
  * Represents a tag with respective color bind to it.
  */

@@ -1,17 +1,12 @@
 package seedu.notus.command;
 
-import seedu.notus.data.notebook.Note;
-import seedu.notus.data.notebook.Notebook;
 import seedu.notus.ui.Formatter;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.notus.util.PrefixSyntax.SUFFIX_INDEX;
 
+//@@author R-Ramana
 /**
  * Archives a Note from the Notebook.
  */

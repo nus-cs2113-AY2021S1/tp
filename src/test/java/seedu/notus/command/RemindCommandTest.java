@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author brandonywl
 class RemindCommandTest {
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the reminders for today!";
     private static final String TEST_TITLE_1 = "CS2113 Tutorial";

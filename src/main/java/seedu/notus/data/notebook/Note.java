@@ -1,17 +1,20 @@
 package seedu.notus.data.notebook;
 
+import seedu.notus.data.tag.Tag;
+import seedu.notus.data.tag.TaggableObject;
+
 import java.util.ArrayList;
 
+//@@author Narzyl
 /**
  * Represents a Note. Contains all the information of a note.
  */
-public class Note {
+public class Note extends TaggableObject {
 
     private String title;
     private ArrayList<String> content;
     private Boolean isPinned;
     private boolean isArchived;
-    private ArrayList<Tag> tags;
 
     /**
      * Constructs a Note object with its title, content and pinned status provided.
@@ -21,11 +24,11 @@ public class Note {
      * @param isPinned status of the note.
      */
     public Note(String title, ArrayList<String> content, Boolean isPinned, boolean isArchived) {
+        super();
         this.title = title;
         this.content = content;
         this.isPinned = isPinned;
         this.isArchived = isArchived;
-        tags = new ArrayList<>();
     }
 
     /**
@@ -38,7 +41,7 @@ public class Note {
      */
     public Note(String title, ArrayList<String> content, Boolean isPinned, boolean isArchived, ArrayList<Tag> tags) {
         this(title, content, isPinned, isArchived);
-        this.tags = tags;
+        super.setTags(tags);
     }
 
     /**
@@ -76,22 +79,5 @@ public class Note {
 
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
-    }
-
-    public ArrayList<Tag> getTags() {
-        return this.tags;
-    }
-
-    public String getTagsName() {
-        String tagsName = "";
-
-        for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString());
-        }
-        return tagsName;
-    }
-
-    public void setTags(ArrayList<Tag> tags) {
-        this.tags = tags;
     }
 }

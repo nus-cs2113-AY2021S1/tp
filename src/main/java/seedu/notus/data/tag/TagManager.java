@@ -1,4 +1,6 @@
-package seedu.notus.data.notebook;
+package seedu.notus.data.tag;
+
+import seedu.notus.data.notebook.Note;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,20 +13,21 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+//@@author Chongjx
 /**
  * Represents a TagManager. Manages the tags for the notes.
  */
 public class TagManager {
     private static final Logger LOGGER = Logger.getLogger("TagManager");
 
-    private Map<Tag, ArrayList<Note>> tagMap;
+    private Map<Tag, ArrayList<TaggableObject>> tagMap;
 
     public TagManager() {
         setupLogger();
         tagMap = new HashMap<>();
     }
 
-    public Map<Tag, ArrayList<Note>> getTagMap() {
+    public Map<Tag, ArrayList<TaggableObject>> getTagMap() {
         return tagMap;
     }
 
@@ -101,6 +104,7 @@ public class TagManager {
         note.getTags().add(tag);
     }
 
+
     /**
      * Removes a Tag from the Note.
      *
@@ -127,8 +131,8 @@ public class TagManager {
             return false;
         }
 
-        for (Note n : tagMap.get(existingTag)) {
-            n.getTags().remove(existingTag);
+        for (TaggableObject taggableObject : tagMap.get(existingTag)) {
+            taggableObject.getTags().remove(existingTag);
         }
         LOGGER.log(Level.INFO, "Delete tag: " + tag.getTagName());
         tagMap.remove(existingTag);
@@ -168,7 +172,7 @@ public class TagManager {
         } else {
             ArrayList<String> result = new ArrayList<>();
             for (Tag t : tagMap.keySet()) {
-                result.add(t.toString() + " ");
+                result.add(t.toString());
             }
             return result;
         }

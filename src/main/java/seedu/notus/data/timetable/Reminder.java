@@ -3,6 +3,7 @@ package seedu.notus.data.timetable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author brandonywl
 /**
  * A reminder class that holds the event to remind as well as the date to remind.
  */

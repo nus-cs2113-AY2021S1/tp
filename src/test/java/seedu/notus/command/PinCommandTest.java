@@ -11,6 +11,7 @@ import seedu.notus.data.notebook.Notebook;
 
 import java.util.ArrayList;
 
+//@@author prachi2023
 class PinCommandTest {
     private Note notePinned;
     private Note noteNotPinned;

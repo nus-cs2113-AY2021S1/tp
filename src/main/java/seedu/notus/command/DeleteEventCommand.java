@@ -7,7 +7,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import java.util.ArrayList;
 
-
+//@@author brandonywl
 /**
  * This class allows us to store relevant information regarding the events to be deleted from the timetable and
  * manipulate it before executing it via the execute method.

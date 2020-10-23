@@ -1,7 +1,8 @@
 package seedu.notus.command;
 
+import seedu.notus.data.tag.TaggableObject;
 import seedu.notus.data.notebook.Note;
-import seedu.notus.data.notebook.Tag;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import static seedu.notus.ui.Formatter.formatNotes;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 
+//@@author R-Ramana
 /**
  * Lists all the Notes in the Notebook.
  */
@@ -141,7 +143,7 @@ public class ListNoteCommand extends Command {
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
-        Map<Tag, ArrayList<Note>> tagMap = tagManager.getTagMap();
+        Map<Tag, ArrayList<TaggableObject>> tagMap = tagManager.getTagMap();
         ArrayList<Tag> tagList = new ArrayList<>();
 
         for (String tag : tags) {
@@ -162,7 +164,14 @@ public class ListNoteCommand extends Command {
         //      1 for the values corresponding to CS2113 and the other for important tag
         ArrayList<ArrayList<Note>> values = new ArrayList<>();
         for (int i = 0; i < tagList.size(); i++) {
-            values.add(tagMap.get(tagList.get(i)));
+            ArrayList<TaggableObject> taggableObject = tagMap.get(tagList.get(i));
+            ArrayList<Note> tagObjectsAsNote = new ArrayList<>();
+            for (TaggableObject tagObject : taggableObject) {
+                if (tagObject instanceof Note) {
+                    tagObjectsAsNote.add((Note) tagObject);
+                }
+            }
+            values.add(tagObjectsAsNote);
         }
 
         // Account for note duplicates (multiple tags).

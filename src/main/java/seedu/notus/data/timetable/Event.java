@@ -1,5 +1,6 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.TaggableObject;
 import seedu.notus.ui.Formatter;
 
 import java.time.LocalDate;
@@ -9,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+//@@author brandonywl
 /**
  * Represents an Event. Contains all the information of an Event.
  */
-public class Event implements Comparable<Event> {
+public class Event extends TaggableObject implements Comparable<Event> {
     public static final String REMINDER_DAY = "day";
     public static final String REMINDER_WEEK = "week";
 

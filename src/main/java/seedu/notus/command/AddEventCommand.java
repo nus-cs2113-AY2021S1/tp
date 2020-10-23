@@ -12,6 +12,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
+//@@author brandonywl
 /**
  * This class allows us to store relevant information regarding the events to add to the timetable and manipulate it
  * before executing it via the execute method.

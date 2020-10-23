@@ -2,6 +2,8 @@ package seedu.notus.data.notebook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.tag.Tag;
+import seedu.notus.data.tag.TagManager;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+//@@author Chongjx
 class TagManagerTest {
 
     private Tag tagCS2113;

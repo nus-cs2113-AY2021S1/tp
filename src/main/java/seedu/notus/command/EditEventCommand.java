@@ -7,6 +7,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
+//@@author brandonywl
 /**
  * Edits a Note in the Notebook or an Event from the Timetable.
  */

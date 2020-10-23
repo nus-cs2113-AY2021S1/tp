@@ -4,6 +4,7 @@ import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
 
+//@@author Chongjx
 /**
  * Lists all the Tags.
  */

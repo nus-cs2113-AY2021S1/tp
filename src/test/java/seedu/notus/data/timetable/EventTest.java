@@ -1,10 +1,8 @@
 package seedu.notus.data.timetable;
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//@@author brandonywl
 /**
  * Test Driver for all functionality of EventClass.
  */
