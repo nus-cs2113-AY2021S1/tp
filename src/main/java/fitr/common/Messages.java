@@ -37,11 +37,16 @@ public class Messages {
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";
     public static final String HEIGHT_OUTPUT_HEADER = "Height (in m): ";
     public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg): ";
+    public static final String FITNESS_OUTPUT_HEADER = "Your fitness level: ";
     public static final String LINE_BREAK = "\n";
     public static final String MALE_SYMBOL = "M";
     public static final String FEMALE_SYMBOL = "F";
     public static final String MALE_STRING = "Male";
     public static final String FEMALE_STRING = "Female";
+    public static final String FIT_STRING = "Fit";
+    public static final String UNFIT_STRING = "Unfit";
+    public static final String NORMAL_STRING = "Normal";
+    public static final String NULL_STRING = "NULL";
 
     public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!";
 
@@ -66,11 +71,12 @@ public class Messages {
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
 
     //EditProfileCommand class messages
-    public static final String EDIT_NAME = "edit name";
-    public static final String EDIT_HEIGHT = "edit height";
-    public static final String EDIT_WEIGHT = "edit weight";
-    public static final String EDIT_AGE = "edit age";
-    public static final String EDIT_GENDER = "edit gender";
+    public static final String EDIT_NAME = "name";
+    public static final String EDIT_HEIGHT = "height";
+    public static final String EDIT_WEIGHT = "weight";
+    public static final String EDIT_AGE = "age";
+    public static final String EDIT_GENDER = "gender";
+    public static final String EDIT_FITNESS = "fitness";
     public static final String MISSING_FILE = "Theres no file";
     public static final String EDIT_NAME_HEADER = "Change your name to: ";
     public static final String NAME_ECHO_HEADER = "Name changed to: ";
@@ -84,4 +90,5 @@ public class Messages {
     public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
     public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " 
             + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
+    public static final String FITNESS_ECHO_HEADER = "Fitness level changed to: ";
 }

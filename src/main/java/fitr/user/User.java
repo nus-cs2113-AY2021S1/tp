@@ -1,5 +1,6 @@
 package fitr.user;
 
+import fitr.common.Commands;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.Calorie;
@@ -22,11 +23,16 @@ import static fitr.common.Messages.AGE_OUTPUT_HEADER;
 import static fitr.common.Messages.GENDER_OUTPUT_HEADER;
 import static fitr.common.Messages.HEIGHT_OUTPUT_HEADER;
 import static fitr.common.Messages.WEIGHT_OUTPUT_HEADER;
+import static fitr.common.Messages.FITNESS_OUTPUT_HEADER;
 import static fitr.common.Messages.LINE_BREAK;
 import static fitr.common.Messages.MALE_SYMBOL;
 import static fitr.common.Messages.FEMALE_SYMBOL;
 import static fitr.common.Messages.MALE_STRING;
 import static fitr.common.Messages.FEMALE_STRING;
+import static fitr.common.Messages.FIT_STRING;
+import static fitr.common.Messages.UNFIT_STRING;
+import static fitr.common.Messages.NORMAL_STRING;
+import static fitr.common.Messages.NULL_STRING;
 import static fitr.common.Messages.INPUT_FITNESS_LEVEL;
 
 /**
@@ -44,12 +50,13 @@ public class User {
         setup();
     }
 
-    public User(String name, int age, double height, double weight, String gender) {
+    public User(String name, int age, double height, double weight, String gender, int userFitnessLevel) {
         this.name = name;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.gender = gender;
+        this.userFitnessLevel = userFitnessLevel;
     }
 
     /**
@@ -208,7 +215,8 @@ public class User {
     public String toString() {
         return NAME_OUTPUT_HEADER + getName() + LINE_BREAK + AGE_OUTPUT_HEADER + getAge() + LINE_BREAK
                 + GENDER_OUTPUT_HEADER + getGender() + LINE_BREAK + HEIGHT_OUTPUT_HEADER + getHeight()
-                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight();
+                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight() + LINE_BREAK + FITNESS_OUTPUT_HEADER
+                + getUserFitnessLevelString();
     }
 
     public Calorie calculateCalorieBurnt(ExerciseList exerciseList) {
@@ -245,5 +253,17 @@ public class User {
 
     public int getFitnessLevel() {
         return userFitnessLevel;
+    }
+
+    public String getUserFitnessLevelString() {
+        if (userFitnessLevel == 0) {
+            return UNFIT_STRING;
+        } else if (userFitnessLevel == 1) {
+            return NORMAL_STRING;
+        } else if (userFitnessLevel == 2) {
+            return FIT_STRING;
+        } else {
+            return NULL_STRING;
+        }
     }
 }
