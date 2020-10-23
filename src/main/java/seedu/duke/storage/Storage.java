@@ -1,13 +1,17 @@
 package seedu.duke.storage;
 
+import seedu.duke.exceptions.CustomException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class Storage {
     File file;
+    String dir;
 
     public Storage(String dir) {
+        this.dir = dir;
         createFile(dir);
     }
 
@@ -18,7 +22,7 @@ public abstract class Storage {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             } else {
-                System.out.println("File already exists");
+                System.out.println(file.getName() + " already exists");
             }
         } catch (IOException e) {
             System.out.println("Error:");
@@ -30,7 +34,7 @@ public abstract class Storage {
         return file;
     }
 
-    public abstract void readFile() throws FileNotFoundException;
+    public abstract void readFile() throws FileNotFoundException, CustomException;
 
-    public abstract void updateFile() throws IOException;
+    public abstract void updateFile() throws IOException, CustomException;
 }

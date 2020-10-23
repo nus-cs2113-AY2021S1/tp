@@ -1,6 +1,8 @@
 package seedu.duke.ui;
 
 import seedu.duke.Bus;
+import seedu.duke.BusStops;
+import seedu.duke.DiningOptions;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
@@ -24,6 +26,7 @@ public class Ui {
                 + "|_|   \\ \\_|  / /      \\ \\    \\_V_/    @NUS\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("How can I help?");
+        printMostSearchedBusStop();
         printLine();
     }
 
@@ -45,21 +48,16 @@ public class Ui {
                 + "3./bus: Displays buses available at each bus stop\n"
                 + "4./allbus: Lists all buses available in NUS Zone a\n"
                 + "5./liststops: Lists all bus stops in NUS Zone a\n"
-                + "6./exit: Exit program\n"
-                + "7./help: List all available commands");
+                + "6./dine: Search for dining options within a faculty\n"
+                + "7./dineinfo: Search for a specific dining outlet\n"
+                + "8./exit: Exit program\n"
+                + "9./help: List all available commands");
         printLine();
     }
 
     public static void printExitMessage() {
         printLine();
         System.out.println("So long buddy!");
-        printLine();
-    }
-
-    public static void printRouteSelectionMessage() {
-        printLine();
-        System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for"
-                + " your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
         printLine();
     }
 
@@ -95,6 +93,18 @@ public class Ui {
         printLine();
     }
 
+    public static void printResetSearchFreqMessage() {
+        printLine();
+        System.out.println("The search frequencies of all bus stops have been reset to 0!");
+        printLine();
+    }
+
+    private static void printMostSearchedBusStop() {
+        if (BusStops.mostSearchedBusStop() != null) {
+            System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
+        }
+    }
+
     public static void printAllBusMessage(ArrayList<Bus> allBuses) {
         printLine();
         System.out.println("The buses available in NUS are: ");
@@ -108,4 +118,35 @@ public class Ui {
         }
         printLine();
     }
+
+    public static void printPossibleLocsMessage(ArrayList<String> possibleLocs) {
+        printLine();
+        System.out.println("Hmm, did you mean any of these locations?");
+        for (String location : possibleLocs) {
+            System.out.println(location);
+        }
+        System.out.println("Please type the command again with the correct location.");
+        printLine();
+    }
+
+    public static int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        System.out.println("The dining options available at " + tempFaculty + " are:");
+        for (DiningOptions info : foodPlaceInfo) {
+            displayCount++;
+            System.out.println(displayCount + ". " + info.getName());
+        }
+        return displayCount;
+    }
+
+    public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
+        if (searchList.size() == 0) {
+            System.out.println("No match found.");
+        } else {
+            System.out.println("The stores that match your search:");
+            for (DiningOptions item : searchList) {
+                System.out.println("\n" + item.toString());
+            }
+        }
+    }
+
 }

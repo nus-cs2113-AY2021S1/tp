@@ -1,0 +1,46 @@
+@startuml
+
+allowmixing
+actor User
+
+Package " "<<rectangle>> {
+rectangle Main
+rectangle Ui
+rectangle Logic
+rectangle Model
+rectangle Storage
+}
+
+User --> Ui
+Ui -down-> Main
+Main -up-> Logic
+Logic -> Model
+Model -> Logic
+Logic -left> Ui
+Logic --> Storage
+Storage --> Logic
+
+'abstract class AbstractList
+'abstract AbstractCollection
+'interface List
+'interface Collection
+'
+'List <|-- AbstractList
+'Collection <|-- AbstractCollection
+'
+'Collection <|- List
+'AbstractCollection <|- AbstractList
+'AbstractList <|-- ArrayList
+'
+'class ArrayList {
+'Object[] elementData
+'size()
+'}
+'
+'enum TimeUnit {
+'DAYS
+'HOURS
+'MINUTES
+'}
+
+@enduml
