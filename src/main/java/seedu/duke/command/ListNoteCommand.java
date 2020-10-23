@@ -5,9 +5,7 @@ import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static seedu.duke.ui.Formatter.formatNotes;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
