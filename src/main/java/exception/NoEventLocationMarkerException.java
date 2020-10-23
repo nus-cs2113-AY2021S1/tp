@@ -1,4 +1,5 @@
 package exception;
+
 /**
  * Represents the exception happens when the user trying to create an event
  * without using /l to give it a location.
