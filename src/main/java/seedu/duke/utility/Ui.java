@@ -231,8 +231,8 @@ public class Ui {
             + "\n" + WatchTime.userReportString());
     }
 
-    public static void printSearchSuccessful(String name){
-        System.out.println("The show: "+name+" is found, here is the detailed information: ");
+    public static void printSearchSuccessful(String name) {
+        System.out.println("The show: " + name + " is found, here is the detailed information: ");
         System.out.println(ShowList.getShowList().get(name).toString());
     }
 

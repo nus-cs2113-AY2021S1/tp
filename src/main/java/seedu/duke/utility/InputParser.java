@@ -118,9 +118,9 @@ public class InputParser {
             parseAddReviewCommand(input);
             return command;
 
-            case "search":
-                parseSearchCommand(command,input);
-                return command;
+        case "search":
+            parseSearchCommand(command,input);
+            return command;
 
         case "":
             Ui.printNoInputException();
@@ -198,7 +198,7 @@ public class InputParser {
         }
     }
 
-    private static void parseSearchCommand(String command,String input){
+    private static void parseSearchCommand(String command,String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
             SearchCommand searchCommand = new SearchCommand(command,tokenizedString);
