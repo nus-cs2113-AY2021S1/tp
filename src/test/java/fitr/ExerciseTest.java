@@ -21,29 +21,5 @@ public class ExerciseTest {
         assertEquals("exercise",tempExercise.getNameOfExercise());
     }
 
-    @Test
-    public void getCaloricBurnRate_validExerciseWithoutSpecifiedDuration_success() {
-        Exercise tempExercise = new Exercise("exercise",tempCalorie);
-        assertEquals(500,tempExercise.getCaloricBurnRate());
-    }
-
-    @Test
-    public void getCaloricBurnRate_validExerciseWithSpecifiedDuration_success() {
-        Exercise tempExercise = new Exercise("exercise",tempCalorie,2);
-        assertEquals(250,tempExercise.getCaloricBurnRate());
-    }
-
-    @Test
-    public void getDurationOfExercise_validExerciseWithSpecifiedDuration_success() {
-        Exercise tempExercise = new Exercise("exercise",tempCalorie,2);
-        assertEquals(2,tempExercise.getDuration());
-    }
-
-    @Test
-    public void getDurationOfExercise_validExerciseWithoutSpecifiedDuration_success() {
-        Exercise tempExercise = new Exercise("exercise",tempCalorie);
-        assertEquals(1,tempExercise.getDuration());
-    }
-
 
 }

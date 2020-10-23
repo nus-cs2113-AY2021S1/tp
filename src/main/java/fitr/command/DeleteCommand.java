@@ -1,8 +1,10 @@
 package fitr.command;
 
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
-import fitr.storage.Storage;
+import fitr.list.GoalList;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
@@ -14,7 +16,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
+                        User user, GoalList goalList, Recommender recommender) {
         try {
             command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];
@@ -23,20 +26,20 @@ public class DeleteCommand extends Command {
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
                         + foodList.getFood(deletionIndex - 1).getFoodName());
                 foodList.deleteFood(deletionIndex - 1);
-                storage.writeFoodList(foodList);
+                storageManager.writeFoodList(foodList);
             } else if (type.equals("exercise")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
                         + exerciseList.getExercise(deletionIndex - 1).getNameOfExercise());
                 exerciseList.deleteExercise(deletionIndex - 1);
-                storage.writeExerciseList(exerciseList);
+                storageManager.writeExerciseList(exerciseList);
             }
         } catch (IndexOutOfBoundsException e) {
             Ui.printCustomError("Sorry that index does not exist in the list");
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry index deletion must be an number");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry there is an error in the file");
+            Ui.printCustomError("Sorry, there is an error in the file");
         }
     }
 

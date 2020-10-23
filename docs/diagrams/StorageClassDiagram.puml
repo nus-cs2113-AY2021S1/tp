@@ -1,0 +1,32 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 75
+skinparam packageStyle Rectangle
+
+hide circle
+hide empty members
+
+skinparam Class {
+    BorderThickness 1
+    BorderColor #000000
+}
+
+class Fitr
+class User
+class FoodList
+class ExerciseList
+class Storage
+class Food
+class Exercise
+
+FoodList --o "*" Food
+ExerciseList --o "*" Exercise
+
+Fitr --> "1" Storage
+Storage ..> User
+Storage ..> FoodList
+Storage ..> ExerciseList
+
+@enduml

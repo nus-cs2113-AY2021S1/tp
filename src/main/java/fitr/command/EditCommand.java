@@ -1,11 +1,13 @@
 package fitr.command;
 
 import fitr.Calorie;
+import fitr.Recommender;
 import fitr.common.Commands;
 import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
-import fitr.storage.Storage;
+import fitr.list.GoalList;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
@@ -21,7 +23,8 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
+                        User user, GoalList goalList, Recommender recommender) {
         Matcher matcher = ARGUMENT_FORMAT.matcher(command.trim());
         int index;
 
@@ -62,9 +65,9 @@ public class EditCommand extends Command {
         }
 
         try {
-            storage.writeUserConfigFile(user);
-            storage.writeExerciseList(exerciseList);
-            storage.writeFoodList(foodList);
+            storageManager.writeUserProfile(user);
+            storageManager.writeExerciseList(exerciseList);
+            storageManager.writeFoodList(foodList);
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
 
@@ -122,12 +125,6 @@ public class EditCommand extends Command {
                 + "[previous: " + exerciseList.getExercise(index - 1).getCalories() + "]");
         int newCalories = Integer.parseInt(Ui.read());
         exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(newCalories));
-        exerciseList.getExercise(index - 1).setCaloricBurnRate();
-
-        Ui.printCustomMessage("Enter new duration "
-                + "[previous: " + exerciseList.getExercise(index - 1).getDuration() + "]");
-        int newDuration = Integer.parseInt(Ui.read());
-        exerciseList.getExercise(index - 1).setDurationOfExercise(newDuration);
 
         Ui.printCustomMessage("Successfully edited exercise!");
     }
@@ -148,7 +145,6 @@ public class EditCommand extends Command {
                 + "[previous: " + foodList.getFood(index - 1).getCalories() + "]");
         int newCalories = Integer.parseInt(Ui.read());
         foodList.getFood(index - 1).setCaloriesInFood(new Calorie(newCalories));
-        foodList.getFood(index - 1).setCaloricRate();
 
         Ui.printCustomMessage("Enter new quantity "
                 + "[previous: " + foodList.getFood(index - 1).getAmountOfFood() + "]");
