@@ -22,7 +22,6 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
-        command = command.split(" ", 2)[1];
         try {
             String nameOfExercise = command.split("/", 2)[0];
             if (nameOfExercise.isEmpty()) {
