@@ -48,11 +48,11 @@ public class Parser {
         } else {
             switch (command) {
             case COMMAND_NAME:
-                return userInput.split(" ")[1];
+                return userInput.split("name")[1].trim();
             case COMMAND_CALCULATE:
                 for (String param: PARAM_CALCULATE) {
                     if (userInput.contains(param)) {
-                        return userInput.split(" ")[1];
+                        return userInput.split("calculate")[1].trim();
                     }
                 }
                 throw new DietException("Incorrect nutrient type");
@@ -249,11 +249,11 @@ public class Parser {
             if (getCommandParam(userInput).equals("all")) {
                 ui.printAllNutrientIntake(calculator.calculateCalorie(), calculator.calculateCarb(),
                         calculator.calculateProtein(), calculator.calculateFat());
-            } else if (getCommandParam(userInput).contains("calorie")) {
+            } else if (getCommandParam(userInput).equals("calorie")) {
                 ui.printCalorieIntake(calculator.calculateCalorie());
-            } else if (getCommandParam(userInput).contains("carbohydrate")) {
+            } else if (getCommandParam(userInput).equals("carbohydrate")) {
                 ui.printCarbohydrateIntake(calculator.calculateCarb());
-            } else if (getCommandParam(userInput).contains("protein")) {
+            } else if (getCommandParam(userInput).equals("protein")) {
                 ui.printProteinIntake(calculator.calculateProtein());
             } else {
                 ui.printFatIntake(calculator.calculateFat());
