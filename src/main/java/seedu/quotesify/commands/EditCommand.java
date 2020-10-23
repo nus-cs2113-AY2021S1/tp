@@ -51,11 +51,34 @@ public class EditCommand extends Command {
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             editQuote(quotes, ui);
             break;
+        case TAG_QUOTE_REFLECTION:
+            QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            editQuoteReflection(quoteList, ui);
+            break;
         default:
             ui.printListOfEditCommands();
             break;
         }
         storage.save();
+    }
+
+    private void editQuoteReflection(QuoteList quoteList, TextUi ui) {
+        try {
+            if (information.contains(FLAG_EDIT)) {
+                int quoteNumToEdit = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_EDIT);
+                String editedReflection = QuoteParser.getEditedReflection(information);
+                if (!editedReflection.isEmpty()) {
+                    quoteList.updateReflection(editedReflection, quoteNumToEdit);
+                    ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit) ,editedReflection);
+                } else {
+                    throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+                }
+            } else {
+                throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
+            }
+        } catch (QuotesifyException e){
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
     private void editQuote(QuoteList quotes, TextUi ui) {
@@ -64,7 +87,7 @@ public class EditCommand extends Command {
                 int quoteNumToEdit = QuoteParser.parseQuoteNumber(information, quotes, Command.FLAG_EDIT);
                 Quote oldQuote = quotes.getQuote(quoteNumToEdit);
                 Quote editedQuote = QuoteParser.getEditedQuote(information);
-                quotes.editQuote(editedQuote, quoteNumToEdit);
+                quotes.updateQuote(editedQuote, quoteNumToEdit);
                 ui.printEditQuote(oldQuote, editedQuote);
             } else {
                 throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);

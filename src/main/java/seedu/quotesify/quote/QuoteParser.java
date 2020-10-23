@@ -145,30 +145,6 @@ public class QuoteParser {
         }
     }
 
-    public static Quote parseEditParameters(String userInput) throws QuotesifyException {
-        assert !userInput.isEmpty() : "field should not be empty";
-        String[] quoteNumberAndQuote = userInput.split(Command.FLAG_EDIT, 2);
-
-
-
-
-        String[]  quoteAndInformation = userInput.split(Command.FLAG_DELIMITER, 2);
-        String quote = trimAndCheckEmptyQuote(quoteAndInformation[0]);
-
-        HashMap<String, String> referenceAndAuthorName = parseReferenceAndAuthor(quoteAndInformation[1]);
-        String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD);
-        String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD);
-
-        if (!reference.isEmpty() && !authorName.isEmpty()) {
-            Author author = new Author(authorName);
-            return new Quote(quote, reference, author);
-        } else if (!reference.isEmpty()) {
-            throw new QuotesifyException(ERROR_MISSING_REFERENCE);
-        } else {
-            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
-        }
-    }
-
     public static int parseQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
         try {
             int quoteNumberToEdit = Integer.parseInt(userInput.split(command, 2)[0].trim());
@@ -187,8 +163,15 @@ public class QuoteParser {
         return parseAddParameters(quoteAndInformation);
     }
 
-    public static String getReflectionToAdd(String userInput) throws QuotesifyException {
-        String quoteNumAndReflection = userInput.split(Command.FLAG_REFLECT, 2)[1];
-        return quoteNumAndReflection.trim();
+    public static String getReflectionToAdd(String userInput) {
+        String reflection = userInput.split(Command.FLAG_REFLECT, 2)[1].trim();
+        return reflection;
     }
+
+    public static String getEditedReflection(String userInput) {
+        String updatedReflection = userInput.split(Command.FLAG_EDIT, 2)[1].trim();
+        return updatedReflection;
+    }
+
+
 }

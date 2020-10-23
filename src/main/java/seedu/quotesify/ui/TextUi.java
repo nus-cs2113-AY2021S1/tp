@@ -172,6 +172,10 @@ public class TextUi {
         System.out.printf((UiMessage.DELETE_QUOTE_REFLECTION_MESSAGE) + "\n", quote);
     }
 
+    public  void printEditQuoteReflection(Quote quote, String updatedReflection) {
+        System.out.printf((UiMessage.EDIT_QUOTE_REFLECTION) + "\n", quote.toString(), updatedReflection);
+    }
+
     public void printFindQuoteFail() {
         System.out.printf(UiMessage.FIND_QUOTE_FAIL);
     }

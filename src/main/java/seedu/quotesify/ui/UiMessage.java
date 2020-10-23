@@ -74,6 +74,8 @@ public class UiMessage {
             + System.lineSeparator() + "Quote: [%s]" + System.lineSeparator() + "Reflection: [%s]";
     public static final String LIST_QUOTE_NO_REFLECTION = "That quote does not have any reflection attached!";
     public static final String DELETE_QUOTE_REFLECTION_MESSAGE = "Reflection for the quote \"%s\" has been deleted!";
+    public static final String EDIT_QUOTE_REFLECTION = "Reflection has been updated!"
+            + System.lineSeparator() + "Quote: [%s]" + System.lineSeparator() + "Reflection: [%s]";
 
     // Help page commands
     public static final String ADD_BOOK_COMMAND = "Add book: " + "add -b BOOK_TITLE /by AUTHOR";
