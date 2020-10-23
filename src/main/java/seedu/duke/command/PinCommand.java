@@ -85,8 +85,10 @@ public class PinCommand extends Command {
         }
 
         note.togglePinned();
+
         LOGGER.log(Level.INFO, "Pin status of note toggled");
-        return note.getTitle() + " pinned: " + note.getPinned();
+        return note.getTitle() + " pinned: " + note.getPinnedString();
+        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
     }
 
     private void setupLogger() {

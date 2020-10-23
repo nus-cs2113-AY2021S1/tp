@@ -62,6 +62,11 @@ public class Note {
         this.content = content;
     }
 
+    /**
+     * Gets the pinned status of a note.
+     *
+     * @return true if note is pinned, false otherwise.
+     */
     public boolean getPinned() {
         return (isPinned);
     }

@@ -1,16 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.data.notebook.Note;
-import seedu.duke.data.notebook.Notebook;
 import seedu.duke.ui.Formatter;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Archives a Note from the Notebook.
@@ -41,7 +35,7 @@ public class ArchiveNoteCommand extends Command {
     /**
      * Constructs a ArchiveNoteCommand to archive a Note.
      *
-     * @param title of the item to be deleted.
+     * @param title of the item to be archived.
      */
     public ArchiveNoteCommand(String title) {
         this.title = title;
@@ -55,6 +49,7 @@ public class ArchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.archiveNotes(index);
             } else {
+                // archiveNotes(title) returns a boolean, false if no such title exists
                 if (!notebook.archiveNotes(title)) {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }

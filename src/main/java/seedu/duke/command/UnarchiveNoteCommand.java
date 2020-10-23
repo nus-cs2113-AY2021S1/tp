@@ -1,10 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.Formatter;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -39,7 +35,7 @@ public class UnarchiveNoteCommand extends Command {
     /**
      * Constructs a UnarchiveNoteCommand to un-archive a Note.
      *
-     * @param title of the item to be deleted.
+     * @param title of the item to be un-archived.
      */
     public UnarchiveNoteCommand(String title) {
         this.title = title;
@@ -53,6 +49,7 @@ public class UnarchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.unarchiveNotes(index);
             } else {
+                // unarchiveNotes(title) returns a boolean, false if no such title exists
                 if (!notebook.unarchiveNotes(title)) {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }
