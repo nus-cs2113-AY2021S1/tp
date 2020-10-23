@@ -13,7 +13,7 @@ import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
 
-//@@author R-Ramana
+//@@author prachi2023
 class ViewNoteCommandTest {
     private Note noteWithoutTags;
     private Note noteWithTags;
@@ -59,7 +59,7 @@ class ViewNoteCommandTest {
         String contentTwo = "";
 
         for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString());
+            tagsName = tagsName.concat(t.toString()).concat(" ");
         }
 
         for (String line : NOTE1_CONTENT) {
@@ -83,7 +83,7 @@ class ViewNoteCommandTest {
         String contentTwo = "";
 
         for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString());
+            tagsName = tagsName.concat(t.toString()).concat(" ");
         }
 
         for (String line : NOTE1_CONTENT) {
