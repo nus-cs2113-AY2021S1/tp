@@ -1,4 +1,4 @@
-package seedu.calculator;
+package seedu.dietbook.calculator;
 
 import org.junit.jupiter.api.Test;
 import seedu.dietbook.food.Food;

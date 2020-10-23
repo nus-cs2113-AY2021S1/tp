@@ -3,7 +3,7 @@ package seedu.dietbook;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.ActivityLevel;
 import seedu.dietbook.person.Person;
-import seedu.calculator.Calculator;
+import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.person.Gender;
 

@@ -1,6 +1,6 @@
 package seedu.dietbook;
 
-import seedu.calculator.Calculator;
+import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.ActivityLevel;

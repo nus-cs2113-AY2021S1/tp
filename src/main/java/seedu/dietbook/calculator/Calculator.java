@@ -1,4 +1,4 @@
-package seedu.calculator;
+package seedu.dietbook.calculator;
 
 import seedu.dietbook.food.Food;
 
