@@ -14,6 +14,17 @@ public class Module {
     private BookmarkList bookmarks;
     private List<Slot> slots;
 
+    public static ArrayList<String> getModuleList() {
+        return moduleList;
+    }
+
+    public static void setModuleList(ArrayList<String> moduleList) {
+        Module.moduleList = moduleList;
+    }
+
+    private static ArrayList<String> moduleList;
+
+
     public Module(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
         bookmarks = new BookmarkList();
