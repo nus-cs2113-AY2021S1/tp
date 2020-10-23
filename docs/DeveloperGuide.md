@@ -2,7 +2,6 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 **Bookmark Component**
 
@@ -22,14 +21,14 @@ As shown in figure 1, `BookmarkRun` is
 * The main class to be called when the bookmark mode is accessed.
 * The main class to access other bookmark classes.
 
-Given below, figure 2, is the sequence diagram of how the classes interact with each 
+Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
 [uml diagram]
 ![Bookmark Sequence Diagram](<Images/sequence_bookmark.png>)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
-As shown in figure 2, when `BookmarkRun` is called, 
+As shown in Figure 2, when `BookmarkRun` is called, 
 `BookmarkParser` will be called and return a `BookmarkCommand`. 
 Afterwards, `BookmarkRun` will then call `executeCommand` in `BookmarkCommand` which executes 
 the intended actions 
