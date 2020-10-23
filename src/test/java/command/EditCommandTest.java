@@ -41,9 +41,8 @@ class EditCommandTest {
         LocationList locations = new LocationList();
         storage.loadLocationData(locations.getLocationList());
         Assertions.assertThrows(UndefinedEventException.class, () -> {
-            Parser.parse("edit 1 assignment something /t 2020-02-02 20:00 /l somewhere", locations).
-                    execute(new EventList(), new LocationList(), new BusStopList(), new UI(),
-                            storage);
+            Parser.parse("edit 1 assignment something /t 2020-02-02 20:00 /l somewhere", locations)
+                    .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage);
         });
     }
 
