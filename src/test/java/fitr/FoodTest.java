@@ -12,13 +12,13 @@ public class FoodTest {
 
     @Test
     public void getCaloriesConsumed_validFoodAndCalorie_success() {
-        Food tempExercise = new Food("food",tempCalorie);
+        Food tempExercise = new Food("food",tempCalorie, getCurrentDate());
         assertEquals(500,tempCalorie.get());
     }
 
     @Test
     public void getNameOfFood_validFoodAndCalorie_success() {
-        Food tempExercise = new Food("exercise",tempCalorie);
+        Food tempExercise = new Food("exercise",tempCalorie, getCurrentDate());
         assertEquals("exercise",tempExercise.getFoodName());
     }
 
@@ -30,7 +30,7 @@ public class FoodTest {
 
     @Test
     public void getAmountOfFoodUnspecified_validFoodWithSpecifiedAmount_success() {
-        Food tempExercise = new Food("exercise",tempCalorie);
+        Food tempExercise = new Food("exercise",tempCalorie, getCurrentDate());
         assertEquals(1,tempExercise.getAmountOfFood());
     }
 }
