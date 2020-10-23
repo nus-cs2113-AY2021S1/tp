@@ -80,7 +80,7 @@ public class Formatter {
         for (Note note: notes) {
             String colorText = colorize(i + ". " + TITLE + note.getTitle() + EMPTY_STRING
                     + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
-            formattedString = formattedString.concat(colorText);
+            formattedString = formattedString.concat(encloseRow(colorText));
 
             int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
 
@@ -88,7 +88,7 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(EMPTY_STRING.repeat(4) + truncatedContent);
+            formattedString = formattedString.concat(encloseRow(EMPTY_STRING.repeat(4) + truncatedContent));
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;
