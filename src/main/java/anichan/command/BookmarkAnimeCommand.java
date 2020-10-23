@@ -43,7 +43,7 @@ public class BookmarkAnimeCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
         Workspace workspace = user.getActiveWorkspace();
-        Bookmark bookmark = Workspace.getBookmark();
+        Bookmark bookmark = user.getActiveWorkspace().getBookmark();
         switch (bookmarkAction) {
         case BookmarkParser.EPISODE_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_EDIT);
@@ -52,7 +52,7 @@ public class BookmarkAnimeCommand extends Command {
             break;
         case BookmarkParser.ADD_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD);
-            result = addBookmarkEntry(animeData, workspace);
+            result = addBookmarkEntry(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser.DELETE_PARAM:
@@ -72,7 +72,7 @@ public class BookmarkAnimeCommand extends Command {
             String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
             result += animeInfo + System.lineSeparator() + System.lineSeparator();
             result += "Notes for anime:";
-            String notesInfo = getAnimeNotesFromBookmark(workspace);
+            String notesInfo = getAnimeNotesFromBookmark(bookmark);
             result += notesInfo;
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
@@ -86,8 +86,8 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    private String getAnimeNotesFromBookmark(Workspace bookmark) {
-        String notesInfo = bookmark.getBookmarkNote(bookmarkIndex - 1);
+    private String getAnimeNotesFromBookmark(Bookmark bookmark) {
+        String notesInfo = bookmark.getNoteInString(bookmarkIndex - 1);
         return notesInfo;
     }
 
@@ -116,12 +116,12 @@ public class BookmarkAnimeCommand extends Command {
     }
 
 
-    private String addBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
+    private String addBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkAnimeIndex(animeData);
         String result;
         Anime animeToAdd = animeData.getAnime(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
-        workspace.addBookmarkEntry(animeIndex - 1);
+        bookmark.addAnimeBookmark(animeIndex - 1);
         return result;
     }
 
@@ -154,8 +154,8 @@ public class BookmarkAnimeCommand extends Command {
         }
     }
 
-    private String listBookmark(AnimeData animeData, Workspace workspace) throws AniException {
-        return workspace.getBookmarkListInString(animeData);
+    private String listBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
+        return bookmark.getListInString(animeData);
     }
 
     public String getBookmarkAction() {

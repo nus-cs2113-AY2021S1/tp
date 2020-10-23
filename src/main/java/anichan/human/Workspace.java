@@ -31,6 +31,10 @@ public class Workspace {
         this.bookmark = bookmark;
     }
 
+    public Bookmark getBookmark(){
+        return bookmark;
+    }
+
     public String getName() {
         return workspaceName;
     }
@@ -62,9 +66,7 @@ public class Workspace {
         return watchlistList;
     }
 
-    public static Bookmark getBookmark(){
-        return bookmark;
-    }
+
 
     public String getBookmarkListInString(AnimeData animeData) {
         return bookmark.getListInString(animeData);
