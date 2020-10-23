@@ -204,8 +204,8 @@ public class Storage<T> {
      *     connection and file does not exist locally.
      */
     public ArrayList<String> loadModuleList() throws IOException, DukeException {
-        String moduleListPath = "./data/modulelist.txt";
-        moduleListPath = moduleListPath.replace('/', File.separatorChar);
+        String moduleListPath = filePath;
+        moduleListPath = moduleListPath.replace("timetable", "modulelist");
         File f = new File(moduleListPath);
         ArrayList<String> moduleList = new ArrayList<>();
         String s = "";
