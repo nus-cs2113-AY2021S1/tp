@@ -5,7 +5,7 @@ before_install:
   - chmod +x gradlew
 
 script: >-
-  ./gradlew clean checkstyleMain checkstyleTest test
+  ./gradlew clean checkstyleMain checkstyleTest test jacocoTestReport coveralls
 
 cache:
   directories:
@@ -13,4 +13,5 @@ cache:
     - $HOME/.gradle/wrapper/
 
 after_success:
+  - ./gradlew jacocoTestReport coveralls
   - bash <(curl -s https://codecov.io/bash)
