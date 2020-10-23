@@ -38,6 +38,12 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 <a name="global"></a> 
 ### Global
 
+>[i] Notes on command format:
+>* Word contained in <brackets> are parameters to be supplied by the user.
+>eg. in delete <bookmark_number>, bookmark_number is a parameter which can be used as delete 1.
+>* Items in square brackets are optional.
+>eg. show [<day>] can be used as show or as show [mon].
+
 The commands below can be used in both modes of the app.   
  
 <a name="mode"></a>  
