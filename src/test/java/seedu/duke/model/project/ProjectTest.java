@@ -12,14 +12,14 @@ public class ProjectTest {
     void getProjectSprint_emptyArrayList_returnsIndexOutOfBoundsException() {
         Project project = new Project("SCRUM", "Deliver a cli for agile developers",
                 60, 30);
-        assertThrows(IndexOutOfBoundsException.class, () -> project.getAllSprints().getSprint(2));
+        assertThrows(IndexOutOfBoundsException.class, () -> project.getSprintList().getSprint(2));
     }
 
     @Test
     void getProjectMember_emptyArrayList_returnsIndexOutOfBoundsException() {
         Project project = new Project("SCRUM", "Deliver a cli for agile developers",
                 60, 30);
-        assertThrows(IndexOutOfBoundsException.class, () -> project.getAllSprints().getSprint(2));
+        assertThrows(IndexOutOfBoundsException.class, () -> project.getSprintList().getSprint(2));
     }
 
 }

@@ -134,9 +134,9 @@ public class StorageManager {
         project.setDescription(description);
         project.setProjectDuration(projectDuration);
         project.setSprintLength(sprintLength);
-        project.setAllSprints(allSprints);
+        project.setSprintList(allSprints);
         project.setBacklog(backlog);
-        project.setMembers(members);
+        project.setMemberList(members);
         project.setStartDate(getDateFromJsonObj(jsonProject, "startDate"));
         project.setEndDate(getDateFromJsonObj(jsonProject, "endDate"));
         return project;
@@ -152,7 +152,7 @@ public class StorageManager {
             ArrayList<Integer> allocatedTaskIds = getIntegersFromJsonArray(rawAllocatedTaskIds);
             String userId = (String) rawMember.get("userId");
             member.setUserId(userId);
-            member.setAllocatedTaskIds(allocatedTaskIds);
+            member.setTaskList(allocatedTaskIds);
             members.add(member);
         }
         projectMembers.setMemberList(members);
@@ -187,13 +187,13 @@ public class StorageManager {
         task.setDone(isDone);
 
         ArrayList<String> membersAllocatedTo = new ArrayList<>();
-        task.setMembersAllocatedTo(membersAllocatedTo);
+        task.setMemberList(membersAllocatedTo);
         JsonArray rawMembersAllocate = (JsonArray) jsonObject.get("membersAllocatedTo");
         rawMembersAllocate.asCollection(membersAllocatedTo);
 
         JsonArray rawSprintAllocate = (JsonArray) jsonObject.get("sprintAllocatedTo");
         ArrayList<Integer> sprintAllocatedTo = getIntegersFromJsonArray(rawSprintAllocate);
-        task.setSprintAllocatedTo(sprintAllocatedTo);
+        task.setSprintList(sprintAllocatedTo);
         return task;
     }
 
@@ -220,8 +220,8 @@ public class StorageManager {
             sprint.setGoal(goal);
             sprint.setStartDate(getDateFromJsonObj(rawSprint, "startDate"));
             sprint.setEndDate(getDateFromJsonObj(rawSprint, "endDate"));
-            sprint.setSprintTaskIds(sprintTaskIds);
-            sprint.setProjAllocatedTo(project);
+            sprint.setTaskList(sprintTaskIds);
+            sprint.setOwner(project);
 
             sprints.add(sprint);
         }

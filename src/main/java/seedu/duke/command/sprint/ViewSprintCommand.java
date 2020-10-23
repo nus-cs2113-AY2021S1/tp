@@ -30,7 +30,7 @@ public class ViewSprintCommand extends SprintCommand {
             return;
         }
         proj = projectManager.getProject();
-        allSprint = proj.getAllSprints();
+        allSprint = proj.getSprintList();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);

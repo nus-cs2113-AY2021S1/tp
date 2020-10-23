@@ -60,7 +60,7 @@ public class TaskCommand {
                                 + task.getTitle()
                                 + " has been removed from project.");
                         proj.getProjectBacklog().removeTask(i);
-                        ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
+                        ArrayList<Sprint> allSprints = proj.getSprintList().getSprintList();
                         for (Sprint sprint : allSprints) {
                             if (sprint.checkTaskExist(i)) {
                                 sprint.removeSprintTask(i);

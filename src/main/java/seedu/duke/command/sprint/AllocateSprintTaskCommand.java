@@ -29,7 +29,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             return;
         }
         proj = projectManager.getProject();
-        allSprint = proj.getAllSprints();
+        allSprint = proj.getSprintList();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
                 int taskId = Integer.parseInt(this.parameters.get("task"));

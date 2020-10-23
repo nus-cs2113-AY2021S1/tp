@@ -57,9 +57,9 @@ class StorageManagerTest {
     
     private Project generateProject() {
         Project project = new Project("Game", "Among Us", 100, 10);
-        project.setAllSprints(generateSprintList(project));
+        project.setSprintList(generateSprintList(project));
         project.setBacklog(generateProjectBacklog(project));
-        project.setMembers(generateProjectMembers());
+        project.setMemberList(generateProjectMembers());
         project.setStartDate(LocalDate.parse("2020-10-10"));
         project.setEndDate(LocalDate.parse("2021-01-10"));
         return project;

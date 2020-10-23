@@ -36,7 +36,7 @@ public class CreateSprintCommand extends SprintCommand {
         }
         proj = projectListManager.getProject();
         if (validateParams()) {
-            allSprint = proj.getAllSprints();
+            allSprint = proj.getSprintList();
             if (allSprint.size() == 0) {
                 try {
                     createFirstSprint(proj);
