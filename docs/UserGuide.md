@@ -320,13 +320,30 @@ Expected outcome:
 
 ### 5. FAQ
 
-**Q**: Is my watchlist saved after I exit the program?
+**Q**: Is my watchlist saved after I exit the program?  
 
-**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.
+**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.  
+
+**Q**: Where can I find the watchlist file if I want to share it with my friends?  
+
+**A**: The file will be stored at the same path of the jar file, inside the "data" folder.  
+
+**Q**: Can I edit my watchlist directly in the local file?  
+
+**A**: Yes, it is allowed but not recommended. The file is written in a specific format. If the format is not consistent, **WatchList** will be unable to load up the file so stored shows message may disappear.  
 
 **Q**: What should I do if there was an error while I was typing in some input?
 
-**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary. 
+**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary.  
+
+**Q**: What format should I use if I want to track my lectures?  
+
+**A**:  
+
+
+
+
+
 
 ### 6. Command Summary
 
