@@ -69,14 +69,14 @@ public class EditCommand extends Command {
                 String editedReflection = QuoteParser.getEditedReflection(information);
                 if (!editedReflection.isEmpty()) {
                     quoteList.updateReflection(editedReflection, quoteNumToEdit);
-                    ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit) ,editedReflection);
+                    ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit), editedReflection);
                 } else {
                     throw new QuotesifyException(ERROR_MISSING_REFLECTION);
                 }
             } else {
                 throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
             }
-        } catch (QuotesifyException e){
+        } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
     }
