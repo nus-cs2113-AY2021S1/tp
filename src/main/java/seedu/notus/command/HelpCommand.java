@@ -43,8 +43,9 @@ public class HelpCommand extends Command {
         colorize(ListTagCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
         colorize(PinCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
         colorize(RemindCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(TagCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(ViewNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT())
+        colorize(TagNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
+        colorize(TagEventCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
+        colorize(ViewNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT())
     };
 
     @Override

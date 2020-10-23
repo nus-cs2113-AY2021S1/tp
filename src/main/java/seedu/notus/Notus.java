@@ -9,7 +9,7 @@ import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.AsciiArt;
 import seedu.notus.ui.InterfaceManager;
 import seedu.notus.ui.Formatter;
-import seedu.notus.util.Parser;
+import seedu.notus.util.parser.ParserManager;
 
 /**
  * Entry point of the NotUS application.
@@ -20,7 +20,7 @@ public class Notus {
     private Notebook notebook;
     private Timetable timetable;
     private TagManager tagManager;
-    private Parser parser;
+    private ParserManager parserManager;
 
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
             + AsciiArt.getNotusLogo() + Formatter.LS
@@ -36,7 +36,7 @@ public class Notus {
         this.notebook = new Notebook();
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
-        this.parser = new Parser();
+        this.parserManager = new ParserManager();
 
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
@@ -48,7 +48,7 @@ public class Notus {
         do {
             interfaceManager.prints(ENTER_COMMAND_MSG);
             String userCommandText = interfaceManager.getUserCommandInput();
-            command = parser.parseCommand(userCommandText);
+            command = parserManager.parseCommand(userCommandText);
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));

@@ -14,7 +14,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//@@author R-Ramana
+//@@author prachi2023
 /**
  * Views a specific Note in the Notebook.
  */

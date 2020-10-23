@@ -14,9 +14,9 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 /**
  * Tags or untags a Note.
  */
-public class TagCommand extends Command {
+public class TagNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag";
+    public static final String COMMAND_WORD = "tag-n";
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
@@ -34,7 +34,7 @@ public class TagCommand extends Command {
     /**
      * Constructs a TagCommand to tag or untag a Note.
      */
-    public TagCommand(int index, ArrayList<Tag> tags) {
+    public TagNoteCommand(int index, ArrayList<Tag> tags) {
         this.index = index;
         this.tags = tags;
     }
@@ -44,7 +44,7 @@ public class TagCommand extends Command {
         try {
             assert index >= 0;
             Note note = notebook.getNotes().get(index);
-            ArrayList<String> executedMessage = tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE,
+            ArrayList<String> executedMessage = tagManager.tagAndUntag(note, tags, TAG_NOTE_MESSAGE,
                     UNTAG_NOTE_MESSAGE);
             executedMessage.add(0, TAG_NOTE_HEADER);
             return Formatter.formatString(executedMessage, true);

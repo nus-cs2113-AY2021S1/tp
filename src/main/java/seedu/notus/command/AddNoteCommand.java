@@ -3,7 +3,7 @@ package seedu.notus.command;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
 
-import static seedu.notus.util.Parser.inputContent;
+import static seedu.notus.util.parser.Parser.inputContent;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;

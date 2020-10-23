@@ -5,7 +5,6 @@ import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.data.timetable.Reminder;
 import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.timetable.Event;
-import seedu.notus.data.timetable.Timetable;
 
 import com.diogonunes.jcolor.Attribute;
 
@@ -26,16 +25,18 @@ public class Formatter {
      */
     public static final String LS = System.lineSeparator();
 
-    private static final String ROW_SPLIT = "=";
-    private static final String COLUMN_START = "|| ";
-    private static final String COLUMN_END = " ||";
+    private static final String ROW_SPLIT = "-";
+    private static final String COLUMN_START = "| ";
+    private static final String COLUMN_END = " |";
     private static final String EMPTY_STRING = " ";
+    private static final String CONTINUATION = "...";
+    private static final String TITLE = "Title: ";
     private static final char EMPTY_CHAR = ' ';
 
     /**
      * Maximum number of characters within a row.
      */
-    private static final int MAX_ROW_LENGTH = 100;
+    private static final int MAX_ROW_LENGTH = 150;
     /**
      * Maximum length of message to within a row, minus the start and end formatting.
      */
@@ -44,6 +45,10 @@ public class Formatter {
      * Length of a ansi defined color.
      */
     private static final int ANSI_PREFIX_LENGTH = 5;
+    /**
+     * Maximum length of a note's content to display.
+     */
+    private static final int CONTENT_CUTOFF = MAX_MESSAGE_LENGTH - 50;
 
     //@@author R-Ramana
     /**
@@ -73,14 +78,17 @@ public class Formatter {
         formattedString = formattedString.concat(generatesHeader(header));
 
         for (Note note: notes) {
-            String colorText = colorize(i + ". Title: " + note.getTitle() + " "
+            String colorText = colorize(i + ". " + TITLE + note.getTitle() + EMPTY_STRING
                     + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
             formattedString = formattedString.concat(colorText);
 
-            int truncatedContentLength = Math.min(note.getContent().get(0).length(), MAX_MESSAGE_LENGTH - 50);
+            int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
 
-            String truncatedContent = note.getContent().get(0).substring(0, truncatedContentLength).concat("...");
-            formattedString = formattedString.concat(LS + truncatedContent + LS);
+            String truncatedContent = note.getContent()
+                    .get(0)
+                    .substring(0, truncatedContentLength)
+                    .concat(CONTINUATION);
+            formattedString = formattedString.concat(EMPTY_STRING.repeat(4) + truncatedContent);
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;

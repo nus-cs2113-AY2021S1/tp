@@ -1,7 +1,5 @@
 package seedu.notus.data.tag;
 
-import seedu.notus.data.notebook.Note;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,32 +91,31 @@ public class TagManager {
     }
 
     /**
-     * Tags a Note with the provided Tag.
+     * Tags a taggableObject with the provided Tag.
      *
-     * @param note Note to be tagged.
+     * @param taggableObject Object to be tagged.
      * @param tag Provided Tag.
      */
-    public void tagNote(Note note, Tag tag) {
+    public void tagNote(TaggableObject taggableObject, Tag tag) {
         LOGGER.log(Level.INFO, "Adding tag to note: " + tag.getTagName());
-        tagMap.get(tag).add(note);
-        note.getTags().add(tag);
+        tagMap.get(tag).add(taggableObject);
+        taggableObject.getTags().add(tag);
     }
 
-
     /**
-     * Removes a Tag from the Note.
+     * Removes a Tag from a taggableObject.
      *
-     * @param note Note to be untagged.
+     * @param taggableObject Object to be untagged.
      * @param tag Tag to be removed.
      */
-    public void removeTag(Note note, Tag tag) {
-        LOGGER.log(Level.INFO, "Removing tag from note: " + tag.getTagName());
-        tagMap.get(tag).remove(note);
-        note.getTags().remove(tag);
+    public void removeTag(TaggableObject taggableObject, Tag tag) {
+        LOGGER.log(Level.INFO, "Removing tag: " + tag.getTagName());
+        tagMap.get(tag).remove(taggableObject);
+        taggableObject.getTags().remove(tag);
     }
 
     /**
-     * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
+     * Deletes a Tag from the Map. Object that have the Tag will be untagged.
      *
      * @param tag Tag to be deleted.
      * @return True if there exist the tag and is deleted, false otherwise.
@@ -179,29 +176,29 @@ public class TagManager {
     }
 
     /**
-     * Rebinds all the tags in the note to the existing tags in the database.
+     * Rebinds all the tags in the object to the existing tags in the database.
      *
-     * @param note Note to have the tags rebind.
+     * @param taggableObject Object to have the tags rebind.
      */
-    public void rebindTags(Note note) {
-        int numTagsToCheck = note.getTags().size();
+    public void rebindTags(TaggableObject taggableObject) {
+        int numTagsToCheck = taggableObject.getTags().size();
 
-        // loop through all the tags in notes
+        // loop through all the tags in object
         for (int i = 0; i < numTagsToCheck; ++i) {
-            // always check against the tag of the first note
-            Tag tag = note.getTags().get(0);
+            // always check against the tag of the first object
+            Tag tag = taggableObject.getTags().get(0);
             LOGGER.log(Level.INFO, "Attempt to match with existing tag: " + tag.getTagName());
             // check if the tag exists in the database
             Tag existingTag = getTag(tag.getTagName());
-            note.getTags().remove(tag);
+            taggableObject.getTags().remove(tag);
 
             if (existingTag == null) {
                 LOGGER.log(Level.INFO, "Tag does not exist");
                 // if the tag does not exist in the database, create the tag and tag to note
                 createTag(tag, false);
-                tagNote(note, tag);
-            } else if (!note.getTags().contains(existingTag)) {
-                tagNote(note, existingTag);
+                tagNote(taggableObject, tag);
+            } else if (!taggableObject.getTags().contains(existingTag)) {
+                tagNote(taggableObject, existingTag);
             }
         }
     }
@@ -210,14 +207,14 @@ public class TagManager {
      * Handles tagging and untagging of note with the given list of tags. If the note already has the tag, untags it,
      * else tags the note. Returns the result of each tagging and untagging operation.
      *
-     * @param note Note to be tagged or untagged.
+     * @param taggableObject Object to be tagged or untagged.
      * @param tags List of tags.
-     * @param tagNoteString String for tagging of note.
-     * @param untagNoteString String for untagging of note.
+     * @param tagString String for tagging of note.
+     * @param untagString String for untagging of note.
      * @return Result of all tagging and untagging operation.
      */
-    public ArrayList<String> tagAndUntagNote(Note note, ArrayList<Tag> tags, String tagNoteString,
-                                          String untagNoteString) {
+    public ArrayList<String> tagAndUntag(TaggableObject taggableObject, ArrayList<Tag> tags, String tagString,
+                                         String untagString) {
         ArrayList<String> result = new ArrayList<>();
 
         for (Tag t : tags) {
@@ -225,15 +222,15 @@ public class TagManager {
             Tag existingTag = getTag(t.getTagName());
 
             // check if the note contains such tag
-            if (note.getTags().contains(existingTag)) {
-                removeTag(note, existingTag);
-                result.add(untagNoteString + existingTag);
+            if (taggableObject.getTags().contains(existingTag)) {
+                removeTag(taggableObject, existingTag);
+                result.add(untagString + existingTag);
             } else {
                 // runs the create tag in case existing tag is null, if it is not null, updates the tag
                 createTag(t, false);
                 existingTag = getTag(t.getTagName());
-                tagNote(note, existingTag);
-                result.add(tagNoteString + existingTag);
+                tagNote(taggableObject, existingTag);
+                result.add(tagString + existingTag);
             }
         }
         return result;

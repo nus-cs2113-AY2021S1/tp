@@ -9,7 +9,7 @@ import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
-import static seedu.notus.command.TagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.command.TagNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author Chongjx
-class TagCommandTest {
+class TagNoteCommandTest {
 
     private Tag tagRed;
     private Tag tagBlue;
@@ -133,8 +133,8 @@ class TagCommandTest {
     }
 
     private String getCommandExecutionString(Notebook notebook, TagManager tagManager, int index, ArrayList<Tag> tags) {
-        TagCommand tagCommand = new TagCommand(index, tags);
-        tagCommand.setData(notebook, null, tagManager, null);
-        return tagCommand.execute();
+        TagNoteCommand tagNoteCommand = new TagNoteCommand(index, tags);
+        tagNoteCommand.setData(notebook, null, tagManager, null);
+        return tagNoteCommand.execute();
     }
 }

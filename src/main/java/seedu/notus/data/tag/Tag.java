@@ -97,4 +97,25 @@ public class Tag {
     public String toString() {
         return colorize("[" + tagName + "]", tagAttribute);
     }
+
+    public String toSaveString() {
+        String colorString = "";
+
+        if (tagAttribute.equals(Attribute.BRIGHT_RED_TEXT())) {
+            colorString = COLOR_RED_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_GREEN_TEXT())) {
+            colorString = COLOR_GREEN_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_BLUE_TEXT())) {
+            colorString = COLOR_BLUE_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_YELLOW_TEXT())) {
+            colorString = COLOR_YELLOW_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_CYAN_TEXT())) {
+            colorString = COLOR_CYAN_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_MAGENTA_TEXT())) {
+            colorString = COLOR_MAGENTA_STRING;
+        } else if (tagAttribute.equals(Attribute.BRIGHT_WHITE_TEXT())) {
+            colorString = COLOR_WHITE_STRING;
+        }
+        return tagName + " " + colorString;
+    }
 }

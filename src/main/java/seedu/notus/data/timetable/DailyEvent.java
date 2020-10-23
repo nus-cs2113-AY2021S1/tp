@@ -1,5 +1,7 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
