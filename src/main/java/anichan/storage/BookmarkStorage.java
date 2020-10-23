@@ -1,6 +1,7 @@
 package anichan.storage;
 
 import anichan.bookmark.Bookmark;
+import anichan.bookmark.Note;
 import anichan.exception.AniException;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 
 public class BookmarkStorage extends Storage {
     private static final String BOOKMARK_FILE_NAME = "bookmark.txt";
-    private static final String BOOKMARK_LINE_DELIMITER = ",";
+    private static final String BOOKMARK_LINE_DELIMITER = "~";
 
     private final String storageDirectory;
 
@@ -42,23 +43,32 @@ public class BookmarkStorage extends Storage {
         StringBuilder sbBookmark = new StringBuilder();
         ArrayList<Integer> animeBookmarkList = bookmark.getAnimeBookmarkList();
         ArrayList<Integer> animeEpisode = bookmark.getAnimeEpisode();
+        ArrayList<Note> animeNote = bookmark.getAnimeNote();
         for (int i = 0; i < bookmark.getBookmarkSize(); i++) {
             sbBookmark.append(animeBookmarkList.get(i));
-            sbBookmark.append(",");
+            sbBookmark.append(BOOKMARK_LINE_DELIMITER);
             sbBookmark.append(animeEpisode.get(i));
+            sbBookmark.append(BOOKMARK_LINE_DELIMITER);
+            Note note = animeNote.get(i);
+
+            for (int j = 0; j < note.getSize(); j++) {
+                sbBookmark.append(note.getNote(j));
+                sbBookmark.append(BOOKMARK_LINE_DELIMITER);
+            }
+            if (note.getSize() != 0) {
+                sbBookmark.setLength(sbBookmark.length() - 1); // Remove "~" for the last item in the string.
+            }
             sbBookmark.append(System.lineSeparator());
         }
-
-        sbBookmark.setLength(sbBookmark.length() - 2);  // Remove ", " for the last item in the string.
         String encodedBookmarkString = sbBookmark.toString();
-        assert (encodedBookmarkString.isBlank()) : "Encoded bookmark string should not be blank.";
+        //assert (encodedBookmarkString.isBlank()) : "Encoded bookmark string should not be blank.";
         return encodedBookmarkString;
     }
 
     private String decode(String[] fileLines, Bookmark bookmark) {
         boolean hasCorruptedBookmark = false;
         for (String line : fileLines) {
-            String[] lineSplit = line.split(BOOKMARK_LINE_DELIMITER, 2);
+            String[] lineSplit = line.split(BOOKMARK_LINE_DELIMITER, 3);
             if (!isValidBookmarkString(lineSplit)) {
                 hasCorruptedBookmark = true;
                 continue;
@@ -66,7 +76,15 @@ public class BookmarkStorage extends Storage {
 
             int bookmarkIndex = Integer.parseInt(lineSplit[0]);
             int bookmarkEpisode = Integer.parseInt(lineSplit[1]);
-            bookmark.addAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode);
+            Note note = new Note();
+            String[] lineSplitNotes = lineSplit[2].split(BOOKMARK_LINE_DELIMITER);
+            if (lineSplitNotes[0].trim().length() > 0) {
+                for (String noteString : lineSplitNotes) {
+                    note.addNote(noteString.trim());
+                }
+            }
+
+            bookmark.addAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode, note);
         }
 
         if (hasCorruptedBookmark) {
@@ -79,7 +97,7 @@ public class BookmarkStorage extends Storage {
     // ========================== Validation ==========================
 
     private boolean isValidBookmarkString(String[] lineSplit) {
-        boolean isValidSplitLength = (lineSplit.length == 2);
+        boolean isValidSplitLength = (lineSplit.length == 3);
         if (!isValidSplitLength) {
             return false;
         }
