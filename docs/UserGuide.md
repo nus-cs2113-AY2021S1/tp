@@ -34,11 +34,12 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 4. Launch the file using the `java` command: `java -jar zoomaster.jar`.  
   
 ## Features   
+
 >[i] Notes on command format:
->* Word contained in <brackets> are parameters to be supplied by the user. <br>
->eg. in delete <bookmark_number>, bookmark_number is a parameter which can be used as delete 1.
->* Items in square brackets are optional. <br>
->eg. show [<day>] can be used as show or as show [mon].
+>* Word contained in {currly brackets} are parameters to be supplied by the user. <br>
+>eg. in delete {bookmark_number}, bookmark_number is a parameter which can be used as delete 1.
+>* Items in with (optional) are optional inputs. <br>
+>eg. show {DAY(optional)} can be used as show or as show [mon].
 
 <a name="global"></a> 
 ### Global
@@ -153,12 +154,15 @@ Example of usage:
 <a name="showtimetable"></a>
 #### Show timetable: `show`
 Show the timetable for a certain day or the whole week.
+Day inputs are in three letter abbreviations eg mon, tue, wed.
+Today can also be a day input to show the timetable for today.
 ```
 Format: show {DAY(optional)}
 ```
 Example of usage:   
 * `show`
 * `show mon`
+* `show today`
 
 <br/><br/> 
 <a name="addtimeslot"></a>
