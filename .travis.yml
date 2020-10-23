@@ -5,14 +5,7 @@ before_install:
   - chmod +x gradlew
 
 script: >-
-  ./gradlew clean checkstyleMain checkstyleTest coveralls
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ./config/travis/deploy_github_pages.sh
-  on:
-    branch: master
+  ./gradlew clean checkstyleMain checkstyleTest coveralls test
 
 cache:
   directories:
