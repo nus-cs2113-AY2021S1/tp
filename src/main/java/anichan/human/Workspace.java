@@ -11,7 +11,7 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    private static Bookmark bookmark;
+    private Bookmark bookmark;
 
     protected String workspaceName;
 

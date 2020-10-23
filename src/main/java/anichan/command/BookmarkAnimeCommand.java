@@ -38,7 +38,6 @@ public class BookmarkAnimeCommand extends Command {
         bookmarkAction = null;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
-
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
@@ -63,7 +62,7 @@ public class BookmarkAnimeCommand extends Command {
         case BookmarkParser.LIST_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
             result = BOOKMARK_LIST_HEADER;
-            String bookmarkList = listBookmark(animeData, workspace);
+            String bookmarkList = listBookmark(animeData, bookmark);
             result += bookmarkList;
             break;
         case BookmarkParser.INFO_PARAM:
