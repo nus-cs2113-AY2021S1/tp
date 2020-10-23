@@ -9,7 +9,7 @@ activate ":FinanceTools"
 activate ":FileStorage"
 
 ":FileStorage" -> ":FinanceTools" : ArrayList Updated
-destroy ":FileStorage"
+deactivate ":FileStorage"
 
 ":FinanceTools" -> User : Information Up-to-date
 deactivate ":FinanceTools"
