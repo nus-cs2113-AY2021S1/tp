@@ -6,7 +6,7 @@ partition UserCallCommand {
       :edit friends;
   }
 
-#lightblue: system:
+#lightblue:Program Output:
 Input the detail of the show you want to change;
 
 partition UserInteraction {
@@ -15,23 +15,23 @@ partition UserInteraction {
    repeat
    :User input;
    split
-    :name(i)<
+    :name|
    split again
-    :episode(i)<
+    :episode|
    split again
-    :season<
+    :season|
    split again
-    : duration<
+    : duration|
 
     split again
-    : done<
+    : done|
    end split
    #lightblue: show data updated;
    repeat while (input != done)
    :done ;
   }
 
-#lightblue: system:
+#lightblue:Program Output:
 updated successfully;
 stop
 @enduml
