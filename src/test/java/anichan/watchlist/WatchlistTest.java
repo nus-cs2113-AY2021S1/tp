@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class WatchlistTest {
     private static final int SAMPLE_ANIME_INDEX_ONE = 1;
@@ -29,15 +29,15 @@ class WatchlistTest {
     void testEquals() {
         // Same object -> returns true.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
-        assertTrue(firstWatchlist.equals(duplicateNameWatchlist));
+        assertEquals(firstWatchlist, duplicateNameWatchlist);
 
         // Null -> returns false.
-        assertFalse(firstWatchlist.equals(null));
+        assertNotEquals(firstWatchlist, null);
 
         // Different type -> returns false.
-        assertFalse(firstWatchlist.equals("testing"));
+        assertNotEquals(firstWatchlist, "testing");
 
         // Different watchlist name object -> returns false.
-        assertFalse(firstWatchlist.equals(secondWatchlist));
+        assertNotEquals(firstWatchlist, secondWatchlist);
     }
 }
