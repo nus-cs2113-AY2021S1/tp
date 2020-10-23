@@ -8,6 +8,7 @@ import anichan.exception.AniException;
 import anichan.human.Workspace;
 import anichan.parser.BookmarkParser;
 import anichan.storage.StorageManager;
+
 import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
@@ -39,6 +40,7 @@ public class BookmarkAnimeCommand extends Command {
         bookmarkAction = null;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
+
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
@@ -89,8 +91,8 @@ public class BookmarkAnimeCommand extends Command {
         String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
         result += animeInfo + System.lineSeparator() + System.lineSeparator();
 
-        Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex -1);
-        if ( bookmarkEpisodeInfo != 0){
+        Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex - 1);
+        if (bookmarkEpisodeInfo != 0) {
             result += "Current Episode: ";
             result += bookmarkEpisodeInfo;
             result += System.lineSeparator() + System.lineSeparator();
@@ -143,7 +145,7 @@ public class BookmarkAnimeCommand extends Command {
     }
 
     private void checkAnimeNotInBookmark(Bookmark bookmark) throws AniException {
-        if (bookmark.checkExist(animeIndex-1)){
+        if (bookmark.checkExist(animeIndex - 1)) {
             String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + ANIME_ID_EXIST_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);

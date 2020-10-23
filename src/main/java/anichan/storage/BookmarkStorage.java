@@ -56,7 +56,7 @@ public class BookmarkStorage extends Storage {
                 sbBookmark.append(BOOKMARK_LINE_DELIMITER);
             }
             if (note.getSize() != 0) {
-                sbBookmark.setLength(sbBookmark.length() -1); // Remove "~" for the last item in the string.
+                sbBookmark.setLength(sbBookmark.length() - 1); // Remove "~" for the last item in the string.
             }
             sbBookmark.append(System.lineSeparator());
         }

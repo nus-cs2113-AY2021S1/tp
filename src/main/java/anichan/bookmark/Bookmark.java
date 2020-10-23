@@ -56,11 +56,11 @@ public class Bookmark {
         return animeEpisode;
     }
 
-    public ArrayList<Note> getAnimeNote(){
+    public ArrayList<Note> getAnimeNote() {
         return noteList;
     }
 
-    public int getBookmarkEpisode(Integer bookmarkIndex){
+    public int getBookmarkEpisode(Integer bookmarkIndex) {
         return animeEpisode.get(bookmarkIndex);
     }
 

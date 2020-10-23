@@ -29,7 +29,7 @@ public class Workspace {
         this.bookmark = bookmark;
     }
 
-    public Bookmark getBookmark(){
+    public Bookmark getBookmark() {
         return bookmark;
     }
 
