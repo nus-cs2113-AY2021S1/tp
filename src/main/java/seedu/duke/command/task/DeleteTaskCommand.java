@@ -14,7 +14,6 @@ import java.util.Hashtable;
 
 public class DeleteTaskCommand extends Command {
     private final ProjectList projectListManager;
-    private Project proj;
 
     public DeleteTaskCommand(Hashtable<String,String> parameters, ProjectList projectListManager) {
         super(parameters);

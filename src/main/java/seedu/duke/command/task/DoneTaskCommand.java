@@ -40,6 +40,8 @@ public class DoneTaskCommand extends Command {
                 }
             } catch (NumberFormatException e) {
                 Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);
+            } catch (NullPointerException e) {
+                Ui.showError("The task does not exist or has been deleted.");
             }
         }
     }

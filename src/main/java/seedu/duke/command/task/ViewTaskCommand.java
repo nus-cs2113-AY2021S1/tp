@@ -34,6 +34,7 @@ public class ViewTaskCommand extends TaskCommand {
                 Task task;
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
                 //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
+                //Change to getNextId because each task's ID does not decrease with deletion.
                 if (backlogId <= proj.getProjectBacklog().getNextId()) {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     Ui.showToUserLn(task.toString());
@@ -44,7 +45,7 @@ public class ViewTaskCommand extends TaskCommand {
         } catch (IndexOutOfBoundsException e) {
             Ui.showError("There are no projects! Please create a project first.");
         } catch (NullPointerException e) {
-            Ui.showError("The requested task has been removed from the project.");
+            Ui.showError("The task does not exist or has been deleted.");
         } catch (NumberFormatException e) {
             Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);
         }

@@ -49,6 +49,8 @@ public class ChangeTaskPriorityCommand extends Command {
             throw new DukeException("Task ID entered is out of bounds!");
         } catch (IllegalArgumentException e) {
             throw new DukeException("Priority entered is invalid!");
+        } catch (NullPointerException e) {
+            Ui.showError("The task does not exist or has been deleted.");
         }
 
     }

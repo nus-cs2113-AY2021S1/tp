@@ -8,6 +8,7 @@ import seedu.duke.command.task.ViewTaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -47,15 +48,25 @@ public class TaskParser implements ExceptionsParser {
             }
             break;
         case DELETE:
+            assert parameters.get("0") != null : "Invalid Input";
+            if (parameters.get("0") == null) {
+                Ui.showError("Please do not enter dashes.");
+                return;
+            }
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
-                throw new DukeException("please give a task number");
+                throw new DukeException("please give a task number!");
             } else {
                 new DeleteTaskCommand(parameters, projectListManager).execute();
             }
             break;
         case DONE:
+            assert parameters.get("0") != null : "Invalid Input";
+            if (parameters.get("0") == null) {
+                Ui.showError("Please do not enter dashes.");
+                return;
+            }
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
-                throw new DukeException("please give a task number");
+                throw new DukeException("please give a task number!");
             } else {
                 new DoneTaskCommand(parameters, projectListManager).execute();
             }
