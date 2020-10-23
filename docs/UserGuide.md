@@ -153,8 +153,8 @@ Example of usage:
 
 <a name="showtimetable"></a>
 #### Show timetable: `show`
-Show the timetable for a certain day or the whole week.
-Day inputs are in three letter abbreviations eg mon, tue, wed.
+Show the timetable for a certain day or the whole week. <br>
+Day inputs are in three letter abbreviations eg mon, tue, wed. <br>
 Today can also be a day input to show the timetable for today.
 ```
 Format: show {DAY(optional)}
