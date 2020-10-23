@@ -5,7 +5,6 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class AddNoteCommand extends Command {
             if (storageManager.noteExists(note)) {
                 content = storageManager.getNoteContent(note);
             }
-        } catch (SystemException exception){
+        } catch (SystemException exception) {
             return Formatter.formatString(exception.getMessage());
         }
 
@@ -74,7 +73,7 @@ public class AddNoteCommand extends Command {
         //Save the notes in storage
         try {
             StorageManager.saveNote(note);
-        } catch (IOException exception){
+        } catch (IOException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
         }
 

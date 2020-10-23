@@ -41,11 +41,10 @@ public class Duke {
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
 
-        try{
+        try {
             storageManager.createFiles();
             storageManager.loadAll(notebook, timetable, tagManager, storageManager);
-            interfaceManager.prints("created files");
-        } catch (SystemException exception){
+        } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }
         interfaceManager.prints(WELCOME_MSG_STRING);

@@ -1,6 +1,9 @@
 package seedu.duke.command;
 
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
+
+import java.io.IOException;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -54,6 +57,13 @@ public class ArchiveNoteCommand extends Command {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }
             }
+            // Save the changed details
+            try {
+                StorageManager.saveAllNoteDetails(notebook);
+            } catch (IOException e) {
+                return Formatter.formatString(e.getMessage());
+            }
+
             return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);

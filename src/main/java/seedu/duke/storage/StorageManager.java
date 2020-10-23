@@ -28,32 +28,28 @@ public class StorageManager {
     private static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
 
-    /** Delimiter to separate information. */
-    private static final String DELIMITER = "|";
-    public static final String TAG_DELIMITER = ":";
-
     /**
      * Checks if the file directories exist otherwise creates them.
      * It also creates the files for the Notebook and timetable information if it does not already exist
      *
      * @throws SystemException when it is unable to create a file
      */
-    public static void createFiles() throws SystemException{
+    public static void createFiles() throws SystemException {
         //Create directories
         String dataPath = FOLDER_DIR;
         String notesPath = FOLDER_DIR + NOTES_DIR;
         String notebookFilePath = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         String timetableFilePath = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
-        String paths[] = {dataPath, notesPath};
-        String files[] = {notebookFilePath, timetableFilePath};
+        String[] paths = {dataPath, notesPath};
+        String[] files = {notebookFilePath, timetableFilePath};
 
         for (String path: paths) {
             createDirectory(path);
         }
 
         for (String file: files) {
-            try{
+            try {
                 createFile(file);
             } catch (IOException exception) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
@@ -99,20 +95,44 @@ public class StorageManager {
         }
     }
 
-    public static boolean noteExists (Note note) {
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
-        File file = new File (path);
-        if (!file.exists()){
-            return false;
+    /**
+     * Clears the content in the original file storing all the note details.
+     * Replaces it with the new note content details.
+     *
+     * @param notebook notebook that stores all the notes to be saved
+     * @throws IOException thrown when unable to write to the file
+     */
+    public static void saveAllNoteDetails(Notebook notebook) throws IOException {
+        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        FileWriter fw = new FileWriter(path);
+        fw.write(" ");
+        fw.close();
+
+        for (Note note: notebook.getNotes()) {
+            saveNoteDetails(note);
         }
-        return true;
     }
 
-    public static void saveNote(Note note) throws IOException{
-        if (noteExists(note)){
+    public static void saveNote(Note note) throws IOException {
+        if (!noteExists(note)) {
             saveNoteContent(note);
             saveNoteDetails(note);
         }
+    }
+
+    /**
+     * Returns a boolean of whether the file storing the content of the note already exists.
+     *
+     * @param note note whose file status needs to be checked
+     * @return boolean
+     */
+    public static boolean noteExists(Note note) {
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        File file = new File(path);
+        if (!file.exists()) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -139,8 +159,34 @@ public class StorageManager {
         fwAppend.close();
     }
 
-    public void loadNoteDetails(Notebook notebook) {
+    public ArrayList<String> getNoteContent(Note note) throws SystemException {
+        ArrayList<String> content = new ArrayList<>();
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        File f = new File(path);
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
 
+        while (s.hasNext()) {
+            content.add(s.nextLine());
+        }
+        return content;
+    }
+
+    public static void deleteNoteContentFile(String noteTitle) throws SystemException {
+        String path = FOLDER_DIR + NOTES_DIR + "/" + noteTitle + ".txt";
+        File file = new File(path);
+
+        if (file.exists()) {
+            if (!file.delete()) {
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_DELETION_ERROR);
+            }
+        } else {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
     }
 
     /**
@@ -169,38 +215,21 @@ public class StorageManager {
      * @param notebook The Notebook to be loaded into.
      * @param timetable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager, StorageManager storageManager) throws SystemException {
+    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager,
+                        StorageManager storageManager) throws SystemException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         File f = new File(path);
         Scanner s;
-        try{
-             s = new Scanner(f);
-        } catch (FileNotFoundException exception){
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
-        while(s.hasNext()){
+        while (s.hasNext()) {
             String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = new Parser().parseCommand(taskDetails);
             command.setData(notebook, timetable, tagManager, storageManager);
             command.execute();
         }
     }
-
-    public ArrayList<String> getNoteContent (Note note) throws SystemException {
-        ArrayList<String> content = new ArrayList<>();
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
-        File f = new File(path);
-        Scanner s;
-        try{
-            s = new Scanner(f);
-        } catch (FileNotFoundException exception){
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
-        }
-
-        while(s.hasNext()){
-            content.add(s.nextLine());
-        }
-        return content;
-    }
-
 }
