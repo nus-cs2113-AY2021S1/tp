@@ -193,7 +193,7 @@ public abstract class Appliance {
     }
 
     /**
-     * Method to check validity of inputted parameter
+     * Method to check validity of inputted parameter.
      *
      * @param lowerBound parameter must be larger than this.
      * @param upperBound parameter must be smaller than this.
