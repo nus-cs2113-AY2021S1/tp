@@ -26,10 +26,6 @@ public class AnimeStorage {
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
 
 
-    public AnimeStorage() {
-    }
-
-
     public ArrayList<Anime> readAnimeDatabase() throws AniException {
         LOGGER.log(Level.INFO, "Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();

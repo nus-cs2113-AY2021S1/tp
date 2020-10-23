@@ -2,14 +2,12 @@ package anichan.anime;
 
 import anichan.exception.AniException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AnimeData {
     private ArrayList<Anime> animeDataList;
-    private ArrayList<Anime> animeOriginalDataList;
-    private static final String FILE_DOES_NOT_EXIST = "Error Loading AnimeStorage";
+    //private ArrayList<Anime> animeOriginalDataList;
 
     public AnimeData(ArrayList<Anime> animeDataList) {
         this.animeDataList = animeDataList;
