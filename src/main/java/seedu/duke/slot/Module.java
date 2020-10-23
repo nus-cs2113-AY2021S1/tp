@@ -88,7 +88,7 @@ public class Module {
 
     public String getBookmarks() {
         String message = "";
-        List<Bookmark> bookmarkList = bookmarks.getBookmarkList();
+        List<Bookmark> bookmarkList = bookmarks.getBookmarks();
         for (Bookmark bookmark : bookmarkList) {
             message += bookmark.getBookmarkAsString() + "\n";
         }
@@ -97,7 +97,7 @@ public class Module {
         }
         for (Slot slot : slots) {
             message += slot.toString() + "\n";
-            List<Bookmark> slotBookmarkList = slot.getBookmarkList();
+            List<Bookmark> slotBookmarkList = slot.getBookmarkList().getBookmarks();
             for (Bookmark bookmark : slotBookmarkList) {
                 message += "  " + bookmark.getBookmarkAsString() + "\n";
             }

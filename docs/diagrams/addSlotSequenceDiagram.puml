@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+skinparam ParticipantPadding 20
 
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Timetable" as Timetable

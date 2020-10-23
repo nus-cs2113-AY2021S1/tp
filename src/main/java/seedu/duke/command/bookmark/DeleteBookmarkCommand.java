@@ -1,6 +1,5 @@
 package seedu.duke.command.bookmark;
 
-import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
@@ -50,7 +49,7 @@ public class DeleteBookmarkCommand extends Command {
             ui.print(message);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
-                    + bookmarks.getBookmarkList().size());
+                    + bookmarks.getBookmarks().size());
         }
     }
 }

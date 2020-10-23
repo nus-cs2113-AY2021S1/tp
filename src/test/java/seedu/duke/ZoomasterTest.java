@@ -9,7 +9,7 @@ import seedu.duke.command.ChangeModeCommand;
 import static seedu.duke.Parser.parse;
 import seedu.duke.Duke;
 
-class DukeTest {
+class ZoomasterTest {
     @Test
     public void sampleTest() {
         assertTrue(true);

@@ -1,13 +1,11 @@
 package seedu.duke;
 
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
-import seedu.duke.slot.SlotList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;
 
-public class Duke {
+public class Zoomaster {
 
     private Storage<BookmarkList> bookmarkStorage;
     private Storage<Timetable> timetableStorage;
@@ -22,7 +20,7 @@ public class Duke {
      * @param bookmarkFilePath The filepath of the bookmark txt file.
      * @param timetableFilePath The filepath of the slot txt file.
      */
-    public Duke(String bookmarkFilePath, String timetableFilePath) {
+    public Zoomaster(String bookmarkFilePath, String timetableFilePath) {
         ui = new Ui();
 
         bookmarkStorage = new Storage<>(bookmarkFilePath, BookmarkList.class);
@@ -65,6 +63,6 @@ public class Duke {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Duke("./data/bookmarks.txt", "./data/slots.txt").run();
+        new Zoomaster("./data/bookmarks.txt", "./data/slots.txt").run();
     }
 }

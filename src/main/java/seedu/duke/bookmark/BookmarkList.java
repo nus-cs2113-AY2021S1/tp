@@ -98,7 +98,7 @@ public class BookmarkList extends ItemList {
      *
      * @return The bookmark list.
      */
-    public ArrayList<Bookmark> getBookmarkList() {
+    public ArrayList<Bookmark> getBookmarks() {
         return bookmarks;
     }
 
@@ -202,7 +202,7 @@ public class BookmarkList extends ItemList {
         return message;
     }
 
-    public String launchAllBookmarks() {  // for module
+    public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
             message = "Empty List" + lineSeparator;

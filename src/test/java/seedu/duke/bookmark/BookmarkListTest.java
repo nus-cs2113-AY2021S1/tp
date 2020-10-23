@@ -80,7 +80,7 @@ class BookmarkListTest {
         bookmarks.addBookmark(bookmarkTest);
         ArrayList<Bookmark> bookmarksExpected = new ArrayList<>();
         bookmarksExpected.add(bookmarkTest);
-        assertEquals(bookmarksExpected, bookmarks.getBookmarkList());
+        assertEquals(bookmarksExpected, bookmarks.getBookmarks());
     }
 
     /**

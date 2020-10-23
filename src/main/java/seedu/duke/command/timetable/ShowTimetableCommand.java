@@ -5,6 +5,7 @@ import seedu.duke.Ui;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.Day;
 import seedu.duke.slot.Module;
 import seedu.duke.slot.Slot;
 import seedu.duke.exception.DukeException;
@@ -35,10 +36,10 @@ public class ShowTimetableCommand extends Command {
             }
             String details = command.substring(SHOW_KW.length() + 1).trim();
             if (details.toLowerCase().equals("today")) {
-                day = getDayToday();
+                day = Day.getDayToday();
             }
-            if (isDay(details)) {
-                day = getDayFromCommand(details);
+            if (Day.isDay(details)) {
+                day = Day.getDayFromCommand(details);
             } else {
                 String[] something = details.split(" ", 2);
                 module = something[0];
@@ -76,53 +77,53 @@ public class ShowTimetableCommand extends Command {
         ui.print(message);
     }
 
-    private boolean isDay(String input) {
-        boolean isDay = false;
-        if (input.compareToIgnoreCase(Slot.MON) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
-            isDay = true;
-        }
-        return isDay;
-    }
+//    private boolean isDay(String input) {
+//        boolean isDay = false;
+//        if (input.compareToIgnoreCase(Slot.MON) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
+//            isDay = true;
+//        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
+//            isDay = true;
+//        }
+//        return isDay;
+//    }
 
-    private String getDayFromCommand(String input) {
-        String outputData;
-        if (input.compareToIgnoreCase(Slot.MON) == 0) {
-            outputData = Slot.MON;
-        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
-            outputData = Slot.TUE;
-        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
-            outputData = Slot.WED;
-        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
-            outputData = Slot.THU;
-        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
-            outputData = Slot.FRI;
-        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
-            outputData = Slot.SAT;
-        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
-            outputData = Slot.SUN;
-        } else {
-            outputData = null;
-        }
-        return outputData;
-    }
+//    private String getDayFromCommand(String input) {
+//        String outputData;
+//        if (input.compareToIgnoreCase(Slot.MON) == 0) {
+//            outputData = Slot.MON;
+//        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
+//            outputData = Slot.TUE;
+//        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
+//            outputData = Slot.WED;
+//        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
+//            outputData = Slot.THU;
+//        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
+//            outputData = Slot.FRI;
+//        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
+//            outputData = Slot.SAT;
+//        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
+//            outputData = Slot.SUN;
+//        } else {
+//            outputData = null;
+//        }
+//        return outputData;
+//    }
 
     private String getMessageSlotsInADay(List<Module> modules, List<Slot> slots, String day) {
         StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
         boolean hasIndicatorOnDay = false;
-        if (day.equals(getDayToday())) {
+        if (day.equals(Day.getDayToday())) {
             hasIndicatorOnDay = true;
         }
 
@@ -162,9 +163,13 @@ public class ShowTimetableCommand extends Command {
 
     private String getMessageTimetable(List<Module> modules, List<Slot> slots) {
         StringBuilder message = new StringBuilder();
-        for (String d: Slot.days) {
-            message.append(d).append("\n");
-            message.append(getMessageSlotsInADay(modules, slots, d));
+//        for (String d: Slot.days) {
+//            message.append(d).append("\n");
+//            message.append(getMessageSlotsInADay(modules, slots, d));
+//        }
+        for (Day day: Day.values()) {
+            message.append(day.toString()).append("\n");
+            message.append(getMessageSlotsInADay(modules, slots, day.toString()));
         }
         return message.toString();
     }
@@ -203,46 +208,46 @@ public class ShowTimetableCommand extends Command {
      *
      * @return outputDay String of today's day of the week readable by Slot class.
      */
-    public static String getDayToday() {
-        String outputDay;
-
-        assert (LocalDate.now().getDayOfWeek().getValue() <= 7) && (LocalDate.now().getDayOfWeek().getValue() >= 1) :
-                "LocalDate.now().getDayOfWeek().getValue() only returns value within range 1 to 7";
-        switch (LocalDate.now().getDayOfWeek().getValue()) {
-        case 1:
-            outputDay = "mon";
-            break;
-        case 2:
-            outputDay = "tue";
-            break;
-        case 3:
-            outputDay = "wed";
-            break;
-        case 4:
-            outputDay = "thu";
-            break;
-        case 5:
-            outputDay = "fri";
-            break;
-        case 6:
-            outputDay = "sat";
-            break;
-        case 7:
-            outputDay = "sun";
-            break;
-        default:
-            outputDay = "mon";
-            break;
-        }
-
-        return outputDay;
-    }
+//    public static String getDayToday() {
+//        String outputDay;
+//
+//        assert (LocalDate.now().getDayOfWeek().getValue() <= 7) && (LocalDate.now().getDayOfWeek().getValue() >= 1) :
+//                "LocalDate.now().getDayOfWeek().getValue() only returns value within range 1 to 7";
+//        switch (LocalDate.now().getDayOfWeek().getValue()) {
+//        case 1:
+//            outputDay = "mon";
+//            break;
+//        case 2:
+//            outputDay = "tue";
+//            break;
+//        case 3:
+//            outputDay = "wed";
+//            break;
+//        case 4:
+//            outputDay = "thu";
+//            break;
+//        case 5:
+//            outputDay = "fri";
+//            break;
+//        case 6:
+//            outputDay = "sat";
+//            break;
+//        case 7:
+//            outputDay = "sun";
+//            break;
+//        default:
+//            outputDay = "mon";
+//            break;
+//        }
+//
+//        return outputDay;
+//    }
 
     public static boolean hasLessonNow(Slot slot) {
         boolean isOverlap = false;
         LocalTime timeNow = LocalTime.now();
         if (slot.getStartTime().isBefore(timeNow) && slot.getEndTime().isAfter(timeNow)
-                && getDayToday().equals(slot.getDay())) {
+                && Day.getDayToday().equals(slot.getDay())) {
             isOverlap = true;
         }
         return isOverlap;
