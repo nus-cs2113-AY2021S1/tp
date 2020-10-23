@@ -51,6 +51,15 @@ shadowJar {
     archiveClassifier = null
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+
+
 checkstyle {
     toolVersion = '8.23'
 }

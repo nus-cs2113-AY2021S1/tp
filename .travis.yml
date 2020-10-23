@@ -5,7 +5,7 @@ before_install:
   - chmod +x gradlew
 
 script: >-
-  ./gradlew clean checkstyleMain checkstyleTest test jacocoTestReport coveralls
+  ./gradlew clean checkstyleMain checkstyleTest test check jacocoTestReport coveralls
 
 cache:
   directories:
