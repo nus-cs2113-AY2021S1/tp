@@ -66,7 +66,8 @@ public class SystemException extends Exception {
         // General exception type
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
         EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
-        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!");
+        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
+        EXCEPTION_FILE_NOT_FOUND_ERROR("Unable to find a file!");
 
         /** The exception message. */
         private final String exceptionMessage;

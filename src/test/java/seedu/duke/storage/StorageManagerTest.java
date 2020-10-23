@@ -8,8 +8,6 @@ import seedu.duke.data.notebook.Notebook;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 class StorageManagerTest {
 
     @Test

@@ -1,8 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -50,10 +53,17 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
+        try {
+            if (storageManager.noteExists(note)) {
+                content = storageManager.getNoteContent(note);
+            }
+        } catch (SystemException exception){
+            return Formatter.formatString(exception.getMessage());
+        }
+
         if (content.isEmpty()) {
             content = inputContent();
         }
-
         // Edit the note
         note.setContent(content);
 
@@ -63,8 +73,7 @@ public class AddNoteCommand extends Command {
 
         //Save the notes in storage
         try {
-            storageManager.saveNoteDetails(note);
-            storageManager.saveNoteContent(note);
+            StorageManager.saveNote(note);
         } catch (IOException exception){
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
         }

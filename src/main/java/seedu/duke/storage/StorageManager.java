@@ -1,13 +1,20 @@
 package seedu.duke.storage;
 
+import seedu.duke.command.AddNoteCommand;
+import seedu.duke.command.Command;
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
+import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
+import seedu.duke.util.Parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Represents a StorageManager. Manages the saving and loading of task list data.
@@ -23,7 +30,7 @@ public class StorageManager {
 
     /** Delimiter to separate information. */
     private static final String DELIMITER = "|";
-    private static final String TAG_DELIMITER = ":";
+    public static final String TAG_DELIMITER = ":";
 
     /**
      * Checks if the file directories exist otherwise creates them.
@@ -92,6 +99,22 @@ public class StorageManager {
         }
     }
 
+    public static boolean noteExists (Note note) {
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        File file = new File (path);
+        if (!file.exists()){
+            return false;
+        }
+        return true;
+    }
+
+    public static void saveNote(Note note) throws IOException{
+        if (noteExists(note)){
+            saveNoteContent(note);
+            saveNoteDetails(note);
+        }
+    }
+
     /**
      * Saves an individual note to the storage file.
      *
@@ -110,17 +133,14 @@ public class StorageManager {
      * @param note Note of which details are to be saved to the file
      */
     public static void saveNoteDetails(Note note) throws IOException {
-        String path = FOLDER_DIR + "/" + NOTEBOOK_FILE_PATH;
-        createFile(path);
+        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         FileWriter fwAppend = new FileWriter(path, true);
-        String noteDetails = note.getTitle()
-                + DELIMITER
-                + note.getPinnedString()
-                + DELIMITER
-                + note.getTags()
-                + System.lineSeparator();
-        fwAppend.write(noteDetails);
+        fwAppend.write(note.toSaveString());
         fwAppend.close();
+    }
+
+    public void loadNoteDetails(Notebook notebook) {
+
     }
 
     /**
@@ -147,9 +167,40 @@ public class StorageManager {
      * Loads the Notebook and Timetable from the storage file.
      *
      * @param notebook The Notebook to be loaded into.
-     * @param timeTable The Timetable to be loaded into.
+     * @param timetable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timeTable){
-
+    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager, StorageManager storageManager) throws SystemException {
+        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        File f = new File(path);
+        Scanner s;
+        try{
+             s = new Scanner(f);
+        } catch (FileNotFoundException exception){
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+        while(s.hasNext()){
+            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
+            Command command = new Parser().parseCommand(taskDetails);
+            command.setData(notebook, timetable, tagManager, storageManager);
+            command.execute();
+        }
     }
+
+    public ArrayList<String> getNoteContent (Note note) throws SystemException {
+        ArrayList<String> content = new ArrayList<>();
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        File f = new File(path);
+        Scanner s;
+        try{
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception){
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+
+        while(s.hasNext()){
+            content.add(s.nextLine());
+        }
+        return content;
+    }
+
 }

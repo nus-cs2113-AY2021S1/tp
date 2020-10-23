@@ -2,6 +2,8 @@ package seedu.duke.data.notebook;
 
 import java.util.ArrayList;
 
+import static seedu.duke.util.PrefixSyntax.*;
+
 /**
  * Represents a Note. Contains all the information of a note.
  */
@@ -98,5 +100,21 @@ public class Note {
 
     public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String toSaveString() {
+        String noteDetails = "";
+        String tagDetails = "";
+
+        for (Tag tag: this.tags){
+            tagDetails += PREFIX_DELIMITER+ PREFIX_TAG + " " + tag.toSaveString() + " ";
+        }
+        noteDetails += PREFIX_DELIMITER + PREFIX_TITLE + " " + this.title + " "
+                    + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
+                    + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
+                    + tagDetails
+                    + STRING_NEW_LINE;
+
+        return noteDetails;
     }
 }
