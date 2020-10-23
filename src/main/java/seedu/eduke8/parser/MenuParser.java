@@ -1,13 +1,15 @@
 package seedu.eduke8.parser;
 
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
-import seedu.eduke8.command.AboutCommand;
-import seedu.eduke8.command.ExitCommand;
 import seedu.eduke8.command.HelpCommand;
 import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.command.TextbookCommand;
 import seedu.eduke8.command.TopicsCommand;
+import seedu.eduke8.command.AboutCommand;
 import seedu.eduke8.command.QuizCommand;
+import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.ExitCommand;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
@@ -26,7 +28,10 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAN
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public MenuParser() {
+    private BookmarkList bookmarks;
+
+    public MenuParser(BookmarkList bookmarks) {
+        this.bookmarks = bookmarks;
     }
 
     /**
@@ -39,6 +44,7 @@ public class MenuParser implements Parser {
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
+
 
         LOGGER.log(Level.INFO, "Begin parsing command.");
         String[] commandArr = userInput.trim().split(" ", 0);
@@ -72,7 +78,10 @@ public class MenuParser implements Parser {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
-            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks);
+        case "bookmark":
+            System.out.println("bookmarks are as follows: ");
+            return new BookmarkCommand("listing", bookmarks);
         case "exit":
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
             return new ExitCommand();
