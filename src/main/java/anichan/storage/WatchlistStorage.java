@@ -23,6 +23,7 @@ public class WatchlistStorage extends Storage {
     private static final String LOAD_SUCCESS = "Loaded successfully.";
     private static final String ENCODED_WATCHLIST_CANNOT_BE_BLANK = "Encoded watchlist string should not be blank.";
 
+    private static final int MAX_ANIME_INDEX = 511;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
     private final String storageDirectory;
@@ -108,10 +109,17 @@ public class WatchlistStorage extends Storage {
 
         String[] animes = animeListString.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
-            if (!isValidAnimeIndex(animeIndex)) {
+            String trimmedIndex = animeIndex.trim();
+            if (!isValidAnimeIndex(trimmedIndex)) {
                 return null;
             }
-            animeList.add(Integer.parseInt(animeIndex));
+
+            int parsedInteger = Integer.parseInt(trimmedIndex);
+            if (parsedInteger > MAX_ANIME_INDEX) {
+                return null;
+            }
+
+            animeList.add(parsedInteger);
         }
 
         return new Watchlist(watchlistName, animeList);
@@ -131,8 +139,15 @@ public class WatchlistStorage extends Storage {
 
     private boolean isValidAnimeIndex(String animeIndex) {
         boolean isAnimeIndexBlank = animeIndex.isBlank();
-        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
+        if (isAnimeIndexBlank) {
+            return false;
+        }
 
-        return !isAnimeIndexBlank && isAnimeIndexInteger;
+        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
+        if (!isAnimeIndexInteger) {
+            return false;
+        }
+
+        return isAnimeIndexInteger;
     }
 }

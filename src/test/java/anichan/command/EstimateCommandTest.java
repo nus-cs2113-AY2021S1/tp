@@ -29,6 +29,7 @@ class EstimateCommandTest {
                                                        + File.separator;
 
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
+    private static final int ZERO = 0;
 
     private StorageManager validSM;
     private StorageManager emptySM;
@@ -86,6 +87,12 @@ class EstimateCommandTest {
     @Test
     void execute_emptyFile_throwsAniException() {
         EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
+        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, emptySM, user));
+    }
+
+    @Test
+    void execute_zeroWordsPerHourSpecified_throwsAniException() {
+        EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, ZERO);
         assertThrows(AniException.class, () -> estimateCommand.execute(animeData, emptySM, user));
     }
 }

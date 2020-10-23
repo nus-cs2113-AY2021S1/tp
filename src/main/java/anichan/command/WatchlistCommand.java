@@ -24,18 +24,19 @@ public class WatchlistCommand extends Command {
     private static final String WATCHLIST_NAME_IS_NOT_UNIQUE = "Watchlist name is used already!";
     private static final String EMPTY_WATCHLIST_LIST = "Uhh.. You have no watchlist..";
     private static final String INVALID_WATCHLIST_INDEX = "This is not a valid watchlist index.";
-    private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
     private static final String CANNOT_SELECT_ACTIVE_WATCHLIST = "You cannot select the active watchlist..";
     private static final String CANNOT_DELETE_LAST_WATCHLIST = "You cannot delete the last watchlist!";
 
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     private final String option;
-    private final String optionInformation;
+    private final String watchlistName;
+    private final int watchlistIndex;
 
-    public WatchlistCommand(String option, String optionInformation) {
+    public WatchlistCommand(String option, String watchlistName, int watchlistIndex) {
         this.option = option;
-        this.optionInformation = optionInformation;
+        this.watchlistName = watchlistName;
+        this.watchlistIndex = watchlistIndex - 1; // 1-based to 0-based numbering
     }
 
     @Override
@@ -59,7 +60,7 @@ public class WatchlistCommand extends Command {
     }
 
     private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        Watchlist createdWatchlist = new Watchlist(optionInformation);
+        Watchlist createdWatchlist = new Watchlist(watchlistName);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
         boolean isWatchlistNameUnique = !watchlistList.contains(createdWatchlist);
@@ -69,8 +70,8 @@ public class WatchlistCommand extends Command {
 
         watchlistList.add(createdWatchlist);
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
-        LOGGER.log(Level.INFO, "Watchlist \"" + optionInformation + "\" created successfully.");
-        return "Watchlist \"" + optionInformation + "\" has been created successfully!";
+        LOGGER.log(Level.INFO, "Watchlist \"" + watchlistName + "\" created successfully.");
+        return "Watchlist \"" + watchlistName + "\" has been created successfully!";
     }
 
     private String listWatchlistList(Workspace activeWorkspace) {
@@ -95,11 +96,10 @@ public class WatchlistCommand extends Command {
     }
 
     private String selectWatchlist(Workspace activeWorkspace) throws AniException {
-        int selectIndex = parseInteger(optionInformation);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        validateModificationOption(watchlistList, selectIndex);
+        validateModificationOption(watchlistList, watchlistIndex);
 
-        Watchlist selectedWatchlist = watchlistList.get(selectIndex);
+        Watchlist selectedWatchlist = watchlistList.get(watchlistIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         if (selectedWatchlist.equals(activeWatchlist)) {
             LOGGER.log(Level.INFO, "Select failed because the active watchlist is selected.");
@@ -112,13 +112,12 @@ public class WatchlistCommand extends Command {
     }
 
     private String deleteWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        int deleteIndex = parseInteger(optionInformation);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        validateModificationOption(watchlistList, deleteIndex);
+        validateModificationOption(watchlistList, watchlistIndex);
 
-        Watchlist deletedWatchlist = watchlistList.get(deleteIndex);
+        Watchlist deletedWatchlist = watchlistList.get(watchlistIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        watchlistList.remove(deleteIndex);
+        watchlistList.remove(watchlistIndex);
 
         String commandOutput = "Watchlist \"" + deletedWatchlist.getName() + "\" has been deleted successfully!";
         if (deletedWatchlist.equals(activeWatchlist)) {
@@ -144,15 +143,6 @@ public class WatchlistCommand extends Command {
 
         if (index < 0 || index >= watchlistList.size()) {
             throw new AniException(INVALID_WATCHLIST_INDEX);
-        }
-    }
-
-    private int parseInteger(String optionInformation) throws AniException {
-        try {
-            // Input received as one-based numbering, then converted to zero-based numbering.
-            return Integer.parseInt(optionInformation) - 1;
-        } catch (NumberFormatException exception) {
-            throw new AniException(WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER);
         }
     }
 }

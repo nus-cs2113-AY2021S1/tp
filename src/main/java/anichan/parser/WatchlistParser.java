@@ -18,6 +18,7 @@ public class WatchlistParser extends CommandParser {
     private static final String INVALID_OPTION = "Watchlist command only accepts the options: -n, -l, -s, and -d.";
     private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
     private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
+    private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index is zero!";
     private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
 
     private static final int CREATION_REQUIRED_PARAMETER_COUNT = 2;
@@ -37,9 +38,20 @@ public class WatchlistParser extends CommandParser {
         }
 
         String[] parsedParts = parameterParser(paramGiven[1]);
+        int watchlistIndex = 0;
+        if (!parsedParts[2].equals(BLANK)) {
+            watchlistIndex = parseStringToInteger(parsedParts[2]);
+            if (watchlistIndex == 0) {
+                throw new AniException(WATCHLIST_INDEX_IS_ZERO);
+            }
+        }
+
         LOGGER.log(Level.INFO, "Returning WatchlistCommand object with option: "
                                     + parsedParts[0] + ", and information: " + parsedParts[1]);
-        return new WatchlistCommand(parsedParts[0], parsedParts[1]);
+
+        String option = parsedParts[0];
+        String watchlistName = parsedParts[1];
+        return new WatchlistCommand(option, watchlistName, watchlistIndex);
     }
 
     private String[] parameterParser(String parameter) throws AniException {
@@ -48,15 +60,17 @@ public class WatchlistParser extends CommandParser {
         switch (option) {
         case CREATE_OPTION:
             checkCreationParameters(parsedParts);
-            return parsedParts;
+            String watchlistName = parsedParts[1];
+            return new String[]{option, watchlistName, BLANK};
         case LIST_OPTION:
             checkListParameters(parsedParts);
-            return new String[]{option, BLANK};
+            return new String[]{option, BLANK, BLANK};
         case SELECT_OPTION:
             // Fallthrough because select option will call checkModificationParameters method too.
         case DELETE_OPTION:
             checkModificationParameters(parsedParts);
-            return parsedParts;
+            String watchlistIndex = parsedParts[1];
+            return new String[]{option, BLANK, watchlistIndex};
         default:
             throw new AniException(INVALID_OPTION);
         }
