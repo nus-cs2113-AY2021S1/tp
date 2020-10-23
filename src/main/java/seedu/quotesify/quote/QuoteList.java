@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
-    private ArrayList<seedu.quotesify.quote.Quote> quotes = super.getList();
+public class QuoteList extends QuotesifyList<Quote> {
+    private ArrayList<Quote> quotes = super.getList();
 
     public QuoteList() {
         super(new ArrayList<>());
     }
 
-    public QuoteList(ArrayList<seedu.quotesify.quote.Quote> quotes) {
+    public QuoteList(ArrayList<Quote> quotes) {
         super(quotes);
     }
 
-    public seedu.quotesify.quote.Quote getQuote(int index) {
+    public Quote getQuote(int index) {
         return quotes.get(index);
     }
 
@@ -27,33 +27,33 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
         return quotes.size();
     }
 
-    public int getIndex(seedu.quotesify.quote.Quote quote) {
+    public int getIndex(Quote quote) {
         return quotes.indexOf(quote);
     }
 
-    public void editQuote(seedu.quotesify.quote.Quote quote, int quoteNumber) {
+    public void editQuote(Quote quote, int quoteNumber) {
         quotes.set(quoteNumber, quote);
     }
 
-    public seedu.quotesify.quote.Quote addReflection(String reflection, int quoteNumber) {
-        seedu.quotesify.quote.Quote quote = quotes.get(quoteNumber);
+    public Quote addReflection(String reflection, int quoteNumber) {
+        Quote quote = quotes.get(quoteNumber);
         quote.setReflection(reflection);
         quotes.set(quoteNumber, quote);
         return quote;
     }
 
+    public void deleteReflection(int index) {
+        quotes.get(index).setReflectionNull();
+    }
+
     @Override
-    public void add(seedu.quotesify.quote.Quote newQuote) {
+    public void add(Quote newQuote) {
         quotes.add(newQuote);
     }
 
     @Override
     public void delete(int index) {
         quotes.remove(index);
-    }
-
-    public void deleteReflection(int index) {
-        quotes.get(index).setReflectionNull();
     }
 
     @Override
@@ -65,29 +65,29 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
         return quotesToReturn;
     }
 
-    public seedu.quotesify.quote.QuoteList filterByCategory(String categoryName) {
-        ArrayList<seedu.quotesify.quote.Quote> filteredQuotes = (ArrayList<seedu.quotesify.quote.Quote>) quotes.stream()
+    public QuoteList filterByCategory(String categoryName) {
+        ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
                 .filter(quote -> {
                     ArrayList<String> categories = quote.getCategories();
                     return categories.contains(categoryName);
                 }).collect(Collectors.toList());
-        return new seedu.quotesify.quote.QuoteList(filteredQuotes);
+        return new QuoteList(filteredQuotes);
     }
 
     public String getRandomQuote() {
         try {
             Random rand = new Random();
             int randomQuoteNumber = rand.nextInt(getSize() - 1);
-            seedu.quotesify.quote.Quote quoteToPrint = getQuote(randomQuoteNumber);
+            Quote quoteToPrint = getQuote(randomQuoteNumber);
             return quoteToPrint.toString();
         } catch (IllegalArgumentException e) {
             return "*Inserts inspirational quote here*";
         }
     }
 
-    public String getAllQuotesByAuthor(seedu.quotesify.quote.QuoteList quoteList, String authorName) {
+    public String getAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         String listToReturn = "";
-        for (seedu.quotesify.quote.Quote quote : quoteList.getList()) {
+        for (Quote quote : quoteList.getList()) {
             if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             }
@@ -95,9 +95,9 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
         return listToReturn;
     }
 
-    public String getAllQuotesByReference(seedu.quotesify.quote.QuoteList quoteList, String reference) {
+    public String getAllQuotesByReference(QuoteList quoteList, String reference) {
         String listToReturn = "";
-        for (seedu.quotesify.quote.Quote quote : quoteList.getList()) {
+        for (Quote quote : quoteList.getList()) {
             if (quote.hasReference() && quote.getReference().equals(reference)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             }
@@ -105,9 +105,9 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
         return listToReturn;
     }
 
-    public String getAllQuotesByReferenceAndAuthor(seedu.quotesify.quote.QuoteList quoteList, String reference, String authorName) {
+    public String getAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
         String listToReturn = "";
-        for (seedu.quotesify.quote.Quote quote : quoteList.getList()) {
+        for (Quote quote : quoteList.getList()) {
             if (quote.hasReference() && quote.getReference().equals(reference)) {
                 if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
                     listToReturn += quote.toString() + System.lineSeparator();
@@ -117,9 +117,9 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
         return listToReturn;
     }
 
-    public String findQuoteByKeyword(seedu.quotesify.quote.QuoteList quoteList, String keyword) {
+    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
         String listToReturn = "";
-        for (seedu.quotesify.quote.Quote quote : quoteList.getList()) {
+        for (Quote quote : quoteList.getList()) {
             if (quote.getQuote().contains(keyword)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             } else if (quote.hasReference() && quote.getReference().contains(keyword)) {
@@ -134,7 +134,7 @@ public class QuoteList extends QuotesifyList<seedu.quotesify.quote.Quote> {
     @Override
     public JSONArray toJsonArray() {
         JSONArray list = new JSONArray();
-        for (seedu.quotesify.quote.Quote quote : quotes) {
+        for (Quote quote : quotes) {
             list.add(quote.toJson());
         }
         return list;
