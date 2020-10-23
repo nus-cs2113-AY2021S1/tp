@@ -11,7 +11,7 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    public Bookmark bookmark;
+    private Bookmark bookmark;
 
     protected String workspaceName;
 
@@ -29,6 +29,10 @@ public class Workspace {
         this.workspaceName = workspaceName;
         this.watchlistList = watchlistList;
         this.bookmark = bookmark;
+    }
+
+    public Bookmark getBookmark(){
+        return bookmark;
     }
 
     public String getName() {
