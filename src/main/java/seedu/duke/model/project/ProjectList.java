@@ -8,7 +8,7 @@ public class ProjectList {
 
     public ProjectList() {
         this.projectList = new ArrayList<>(10);
-        this.selectedProject = 0;
+        this.selectedProject = 1;
     }
 
     public void addProject(Project project) {
