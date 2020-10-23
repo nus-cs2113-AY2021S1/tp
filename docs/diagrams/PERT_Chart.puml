@@ -80,7 +80,7 @@ Package PERT CHART {
         List Notes
         Find Notes
         ----
-        1.5 MD
+        3 MD
     ]
     Rectangle JunXiang_3 [
         Jun Xiang
@@ -141,7 +141,7 @@ Package PERT CHART {
         ====
         Archive Notes
         ----
-        1.5 MD
+        3 MD
     ]
     Rectangle Nazryl_2 [
         Nazryl
