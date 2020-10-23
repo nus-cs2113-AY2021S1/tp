@@ -42,12 +42,12 @@ public class BookmarkAnimeCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
-        Bookmark bookmark = user.getActiveWorkspace().bookmark;
         Workspace workspace = user.getActiveWorkspace();
+        Bookmark bookmark = Workspace.getBookmark();
         switch (bookmarkAction) {
         case BookmarkParser.EPISODE_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_EDIT);
-            result = editBookmarkEpisode(animeData, workspace);
+            result = editBookmarkEpisode(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser.ADD_PARAM:
@@ -57,7 +57,7 @@ public class BookmarkAnimeCommand extends Command {
             break;
         case BookmarkParser.DELETE_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_DELETE);
-            result = deleteBookmarkEntry(animeData, workspace);
+            result = deleteBookmarkEntry(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser.LIST_PARAM:
@@ -69,16 +69,15 @@ public class BookmarkAnimeCommand extends Command {
         case BookmarkParser.INFO_PARAM:
             LOGGER.log(Level.INFO, "Executing anime info for bookmark");
             result = "Here is the information for that anime." + System.lineSeparator();
-            String animeInfo = getAnimeInfoFromBookmark(animeData, workspace);
+            String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
             result += animeInfo + System.lineSeparator() + System.lineSeparator();
-
             result += "Notes for anime:";
             String notesInfo = getAnimeNotesFromBookmark(workspace);
             result += notesInfo;
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
             LOGGER.log(Level.INFO, "Executing bookmark add note");
-            result = addNoteToBookmark(animeData, workspace);
+            result = addNoteToBookmark(animeData, bookmark);
             break;
         default:
             break;
@@ -87,32 +86,32 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    private String getAnimeNotesFromBookmark(Workspace workspace) {
-        String notesInfo = workspace.getBookmarkNote(bookmarkIndex - 1);
+    private String getAnimeNotesFromBookmark(Workspace bookmark) {
+        String notesInfo = bookmark.getBookmarkNote(bookmarkIndex - 1);
         return notesInfo;
     }
 
-    private String addNoteToBookmark(AnimeData animeData, Workspace workspace) throws AniException {
+    private String addNoteToBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         String result;
-        checkBookmarkIndex(workspace);
-        workspace.addBookmarkNote(bookmarkIndex - 1, bookmarkNote);
-        Anime animeToDelete = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
+        checkBookmarkIndex(bookmark);
+        bookmark.addNote(bookmarkIndex - 1, bookmarkNote);
+        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Adding note:\"" + bookmarkNote + "\" to " + animeToDelete.getAnimeName() + "!";
         return result;
     }
 
-    private String getAnimeInfoFromBookmark(AnimeData animeData, Workspace workspace) throws AniException {
-        checkBookmarkIndex(workspace);
-        String animeInfo = workspace.getBookmarkInfo(animeData, bookmarkIndex - 1);
+    private String getAnimeInfoFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
+        checkBookmarkIndex(bookmark);
+        String animeInfo = bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex - 1);
         return animeInfo;
     }
 
-    private String deleteBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
-        checkBookmarkIndex(workspace);
+    private String deleteBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
+        checkBookmarkIndex(bookmark);
         String result;
-        Anime animeToDelete = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
+        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Removing " + animeToDelete.getAnimeName() + "! :(";
-        workspace.removeBookmarkEntry(bookmarkIndex - 1);
+        bookmark.removeAnimeBookmark(bookmarkIndex - 1);
         return result;
     }
 
@@ -126,19 +125,18 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    private String editBookmarkEpisode(AnimeData animeData, Workspace workspace) throws AniException {
-        checkBookmarkIndex(workspace);
+    private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
+        checkBookmarkIndex(bookmark);
         String result;
-        assert bookmarkEpisode >= 0 : "bookmarkEpisode should be positive";
-        workspace.editBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
-        Anime animeToEdit = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
+        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
+        Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
         return result;
     }
 
-    private void checkBookmarkIndex(Workspace workspace) throws AniException {
+    private void checkBookmarkIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
-        if (bookmarkIndex > workspace.getBookmarkSize() || bookmarkIndex <= 0) {
+        if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);

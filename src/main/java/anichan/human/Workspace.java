@@ -11,7 +11,7 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    public Bookmark bookmark;
+    private static Bookmark bookmark;
 
     protected String workspaceName;
 
@@ -60,6 +60,10 @@ public class Workspace {
 
     public ArrayList<Watchlist> getWatchlistList() {
         return watchlistList;
+    }
+
+    public static Bookmark getBookmark(){
+        return bookmark;
     }
 
     public String getBookmarkListInString(AnimeData animeData) {
