@@ -133,6 +133,7 @@ and it continues as per normal, with the data loaded.
 
 The following sequence diagram shows how the storage feature works,
 with a focus on how it obtains the username:
+
 ![Storage Sequence Diagram](diagrams/Storage%20Sequence%20Diagram.svg)
 
 #### Design Considerations
