@@ -25,13 +25,26 @@ public class Ui {
             + "   example: deleteexp CS2113T\n"
             + "7. minus <module code> <time> <week number>\n"
             + "   example: minus CS2113T 2 1\n"
-            + "8. exit\n";
+            + "8. breakdown\n"
+            + "9. addtask <module code> <task description>\n"
+            + "   example: addtask CS2113T revise for exam\n"
+            + "10.deletetask <task number>\n"
+            + "   example: deletetask 1\n"
+            + "11.done <task number>\n"
+            + "   example: done 1\n"
+            + "12.listtask\n"
+            + "13.exit\n";
     public static final String LOGO = "|\\\\        /|         |======            ||\n"
             + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
             + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
             + "||  \\\\  /   |||   ||  |  |||   ||  ||    ||\\\\ | __/ ||\n"
             + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
             + "*****************************************************|\n";
+    public static final String BYE_LOGO =  "_______    _______\n"
+            + "||   \\\\\\  //||\n"
+            + "||___//\\\\// ||___\n"
+            + "||   \\\\ ||  ||\n"
+            + "||___// ||  ||____\n";
 
     /**
      * Reads input entered by the user.
@@ -81,6 +94,7 @@ public class Ui {
      */
     public void printExitScreen(String name) {
         System.out.println("All changes saved.");
+        System.out.println(BYE_LOGO);
         System.out.println("Bye " + name + ". Hope to see you again soon!" + System.lineSeparator());
     }
 
@@ -147,16 +161,17 @@ public class Ui {
     }
 
     public void printBreakDownAnalysis(ModuleList modList, int week) {
-        ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
+        ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
         breakDown.printTimeBreakDownAndAnalysis(modList, week);
     }
 
     /**
      * Prints the task added line when the user added a task to the task list.
      *
-     * @param tasks task list
+     * @param list task list
      */
-    public void printTaskIsAdded(ArrayList<Task> tasks, String modCode) {
+    public void printTaskIsAdded(TaskList list, String modCode) {
+        ArrayList<Task> tasks = list.getTaskData();
         System.out.println("Got it. I've added this task under " + modCode + ":");
         System.out.println(tasks.get(tasks.size() - 1));
     }
@@ -164,13 +179,14 @@ public class Ui {
     /**
      * Prints the number of tasks stored in the task list.
      *
-     * @param tasks task list
+     * @param list task list
      */
-    public void printNumberOfTasks(ArrayList<Task> tasks) {
-        if (tasks.size() > 1) {
-            System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
-        } else if (tasks.size() == 1) {
+    public void printNumberOfTasks(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
+        if (tasks.size() == 1) {
             System.out.println("Now you have 1 task in the list." + System.lineSeparator());
+        } else if (tasks.size() > 1) {
+            System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
         } else {
             System.out.println("You currently have no task :-)" + System.lineSeparator());
         }
@@ -178,10 +194,31 @@ public class Ui {
 
     /**
      * Prints invalid task number when task number entered does not exist.
+     *
+     * @param list task list
      */
-    public void printInvalidTaskNumber(ArrayList<Task> tasks) {
+    public void printInvalidTaskNumber(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
         System.out.println("Invalid task number.");
         System.out.println("Enter a task number from 1 to " + tasks.size() + "." + System.lineSeparator());
+    }
+
+    /**
+     * Prints out the task list.
+     *
+     * @param list task list
+     */
+    public void printTaskList(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
+        if (tasks.size() == 0) {
+            System.out.println("The current task list is empty.");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 1; i <= tasks.size(); i++) {
+                System.out.println(i + ". " + tasks.get(i - 1));
+            }
+        }
+        System.out.println(); //adds a new line after the list
     }
 
 }

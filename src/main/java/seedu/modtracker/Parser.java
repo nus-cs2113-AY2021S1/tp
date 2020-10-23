@@ -14,7 +14,7 @@ public class Parser {
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
-    public static final String COMMAND_BREAKDOWN = "breakdown";
+    public static final String COMMAND_ANALYSIS = "analysis";
     public static final String COMMAND_ADDTASK = "addtask";
     public static final String COMMAND_DELETETASK = "deletetask";
     public static final String COMMAND_DONE = "done";
@@ -28,6 +28,7 @@ public class Parser {
      * @param name    name entered by the user
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
+     * @param taskList task list
      */
     public void parse(String input, ModuleList modList, String name, Storage storage,
                       boolean toPrint, TaskList taskList) {
@@ -73,8 +74,20 @@ public class Parser {
                 System.out.println("");
             }
             break;
-        case COMMAND_BREAKDOWN:
+        case COMMAND_ANALYSIS: // can help to update the params for this? thanks!
             ui.printBreakDownAnalysis(modList, 1);
+            break;
+        case COMMAND_ADDTASK:
+            taskList.addTask(input);
+            break;
+        case COMMAND_DELETETASK:
+            taskList.deleteTasks(input);
+            break;
+        case COMMAND_DONE:
+            taskList.setDone(input);
+            break;
+        case COMMAND_LISTTASK:
+            ui.printTaskList(taskList);
             break;
         case COMMAND_HELP:
             assert toPrint : "toPrint should be true";
@@ -92,18 +105,6 @@ public class Parser {
                 ui.printExitScreen(name);
                 exit = true;
             }
-            break;
-        case COMMAND_ADDTASK:
-            taskList.addTask(input);
-            break;
-        case COMMAND_DELETETASK:
-            taskList.deleteTasks(input);
-            break;
-        case COMMAND_DONE:
-            taskList.setDone(input);
-            break;
-        case COMMAND_LISTTASK:
-            //ui.printTaskList();
             break;
         default:
             assert toPrint : "toPrint should be true";

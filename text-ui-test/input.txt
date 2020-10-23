@@ -6,7 +6,7 @@ addexp CS3200 8
 addexp CS1000 8
 addtime CS1000 7 1
 list 2
-breakdown
+analysis 1
 deletemod CS1000
 deletemod cs2113t
 deletemod CS3200

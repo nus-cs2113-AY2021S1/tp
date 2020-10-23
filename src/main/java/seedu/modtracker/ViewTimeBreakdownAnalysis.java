@@ -7,28 +7,29 @@ import static seedu.modtracker.Analysis.noInput;
 import static seedu.modtracker.Analysis.tooLittleTimeSpent;
 import static seedu.modtracker.Analysis.tooMuchTimeSpent;
 
-public class ViewTimeBreakDownAnalysis {
+public class ViewTimeBreakdownAnalysis {
     private static final int LOWER_BOUND_OF_JUST_NICE = -30;
     private static final String FULL_BAR = "█";
     private static final String HALF_BAR = "▌";
-    private static final String NO_INPUT = "| NO INPUT";
-    private static final String ACTUAL = "Actual   ";
-    private static final String EXPECTED = "Expected ";
-    private static final String ANALYSIS = "Analysis:";
+    public static final String NO_INPUT = "NO INPUT";
+    public static final String ACTUAL = "Actual   | ";
+    public static final String EXPECTED = "Expected | ";
+    public static final String ANALYSIS = "Analysis:";
     private static final int UPPER_BOUND_OF_JUST_NICE = 30;
-    private static final String TOO_LITTLE_TIME_SPENT = "You seem to be spending too little time on the module.\n"
+    public static final String TOO_LITTLE_TIME_SPENT = "You seem to be spending too little time on the module.\n"
             + "Perhaps you should spend more time on this module.";
-    private static final String JUST_RIGHT = "Good Job! Great time management!";
-    private static final String TOO_MUCH_TIME_SPENT = "Seems like you are spending too much time one this module.\n"
+    public static final String JUST_RIGHT = "Good Job! Great time management!";
+    public static final String TOO_MUCH_TIME_SPENT = "Seems like you are spending too much time one this module.\n"
             + "Do you perhaps need help for this module?";
-    private static final String MODULE_WEEK = "Module    Week ";
-    private static final int NO_TIME_SPENT = 0;
+    public static final String MODULE_WEEK = "Module    Week ";
+    private static final int NONE = 0;
     public static final String NO_VALID_INPUTS = "None of the modules has any valid inputs.";
     public static final int INDEX_OFFSET = 1;
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
+    public static final String NO_TIME_SPENT = "Seems like you didn't spend any time on your modules this week.";
 
     /**
      * Prints the breakdown and analysis of the
@@ -39,13 +40,7 @@ public class ViewTimeBreakDownAnalysis {
      */
     public void printTimeBreakDownAndAnalysis(ModuleList list, int weekNumber) {
 
-        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
-            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
-            return;
-        }
-
-        if (list.getData().isEmpty()) {
-            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+        if (!validateInputs(list, weekNumber)) {
             return;
         }
 
@@ -53,12 +48,24 @@ public class ViewTimeBreakDownAnalysis {
         assert weekNumber <= MAX_WEEK_VALUE : "Week number should be between 1 and 13 inclusive.";
         assert !list.getData().isEmpty() : "modList should not be empty";
 
-
         printTime(list, weekNumber);
-        boolean toPrintAnalysis = printBreakDown(list, weekNumber);
+        boolean toPrintAnalysis = printBreakdown(list, weekNumber);
         if (toPrintAnalysis) {
             printAnalysis(list, weekNumber);
         }
+    }
+
+    public boolean validateInputs(ModuleList list, int weekNumber) {
+        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
+            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
+            return false;
+        }
+
+        if (list.getData().isEmpty()) {
+            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -68,7 +75,7 @@ public class ViewTimeBreakDownAnalysis {
      * @param weekNumber specified week number.
      * @return true if total time spent on the modules is greater than zero, otherwise false.
      */
-    private boolean printBreakDown(ModuleList list, int weekNumber) {
+    public boolean printBreakdown(ModuleList list, int weekNumber) {
         double totalTimeSpent = 0;
         ArrayList<Module> modList = list.getData();
         boolean modsWithValidInputExist = false;
@@ -86,17 +93,15 @@ public class ViewTimeBreakDownAnalysis {
         }
 
         System.out.println("Total time spent: " + totalTimeSpent + " H");
-        if (totalTimeSpent == NO_TIME_SPENT) {
-            System.out.println("Seems like you didn't spend any time on your modules this week."
-                    + System.lineSeparator());
+        if (totalTimeSpent == NONE) {
+            System.out.println(NO_TIME_SPENT + System.lineSeparator());
             return false;
         }
-        //perform error handling here
-        //no input for all, total time is 0, total time > 0
+
         for (Module m : modList) {
             if (m.doesActualTimeExist(weekNumber)) {
                 double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
-                if (actualTime > NO_TIME_SPENT) {
+                if (actualTime > NONE) {
                     int percentage;
                     percentage = (int) (actualTime * 100 / totalTimeSpent);
                     System.out.println(percentage + "% of time is spent on " + m.getModuleCode());
@@ -177,6 +182,13 @@ public class ViewTimeBreakDownAnalysis {
         }
     }
 
+    /**
+     * Computes the analysis of actual time spent on the module for the week.
+     *
+     * @param m          module taken.
+     * @param weekNumber specified week number.
+     * @return analysis of actual time spent compare to the expected workload.
+     */
     private Analysis computeAnalysisOfTimeSpent(Module m, int weekNumber) {
         double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
         int expectedTime = m.getExpectedWorkload();
@@ -186,7 +198,7 @@ public class ViewTimeBreakDownAnalysis {
             return noInput;
         } else if (percentageDifference < LOWER_BOUND_OF_JUST_NICE) {
             return tooLittleTimeSpent;
-        } else if (percentageDifference <= UPPER_BOUND_OF_JUST_NICE) {
+        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE) {
             return justRight;
         } else {
             return tooMuchTimeSpent;
@@ -194,12 +206,13 @@ public class ViewTimeBreakDownAnalysis {
     }
 
     private void printBarGraph(double time) {
-        StringBuilder output = new StringBuilder("| ");
+        StringBuilder output = new StringBuilder();
         boolean endsWithHalfBlock = !hasDecimalPlaces(time);
 
-        for (int i = 0; i < time; i++) {
+        for (int i = 0; i < (int) time; i++) {
             output.append(FULL_BAR);
         }
+
         if (endsWithHalfBlock) {
             output.append(HALF_BAR);
         }

@@ -18,6 +18,12 @@ public class ModuleList {
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
+    private static final String NO_WORKLOAD_ERROR = "Cannot minus actual time as there is no actual time inputted.";
+    private static final String HOURS_EXCEED_ERROR = "Sorry you are trying to remove too many hours";
+    private static final String HOURS_REMOVAL = " hours have been removed from ";
+    private static final String HOUR_REMOVAL = " hour has been removed from ";
+    private static final String HOURS_ADD = " hours have been added to ";
+    private static final String HOUR_ADD = " hour has been added to ";
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -30,7 +36,7 @@ public class ModuleList {
      */
     public boolean checkIfModuleExist(String input) {
         Module currentMod = new Module(input);
-        for (Module mod: modList) {
+        for (Module mod : modList) {
             if (mod.equals(currentMod)) {
                 return true;
             }
@@ -41,7 +47,7 @@ public class ModuleList {
     /**
      * Checks if the module is valid.
      *
-     * @param module module code typed in by user.
+     * @param module  module code typed in by user.
      * @param toPrint whether the UI should print the output.
      * @return true if module code is valid, false otherwise.
      */
@@ -65,7 +71,7 @@ public class ModuleList {
     /**
      * Checks if the time is valid.
      *
-     * @param hours number of hours typed in by user.
+     * @param hours   number of hours typed in by user.
      * @param toPrint whether the UI should print the output.
      * @return true if number of hours is valid, false otherwise.
      */
@@ -84,7 +90,7 @@ public class ModuleList {
      * Creates a module and adds the module to the list of modules if the module
      * does not exist.
      *
-     * @param input module code typed in by user.
+     * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -123,7 +129,7 @@ public class ModuleList {
      * list of modules if module does not exist.
      * If module already exist, update expected time based on user input.
      *
-     * @param input module code and expected time typed in by user.
+     * @param input   module code and expected time typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -166,7 +172,7 @@ public class ModuleList {
     /**
      * Deletes the module if module exists.
      *
-     * @param input module code typed in by user.
+     * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -200,7 +206,7 @@ public class ModuleList {
     /**
      * Deletes the expected time of the module if module exists.
      *
-     * @param input module code and expected time typed in by user.
+     * @param input   module code and expected time typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -235,46 +241,91 @@ public class ModuleList {
     /**
      * Adds time to actual workload to an existing module.
      *
-     * @param input module code, added time spent and week input by user.
+     * @param input   module code, added time spent and week input by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        commandInfo[1] = commandInfo[1].toUpperCase();
-        Module currentModule = new Module(commandInfo[1]);
-        int index = modList.indexOf(currentModule);
-        modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
-        if (toPrint) {
-            System.out.println(commandInfo[2] + " hours are added to " + commandInfo[1] + System.lineSeparator());
-            storage.appendToFile(input);
+        String modCode;
+        double hours;
+        modCode = commandInfo[1].toUpperCase();
+        hours = Double.parseDouble(commandInfo[2]);
+        if (!checkIfModuleValid(modCode, toPrint)) {
+            return;
+        }
+        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+        if (!checkIfModuleExist(modCode)) {
+            if (toPrint) {
+                ui.printNotExist(modCode);
+            }
+        } else {
+            Module currentModule = new Module(modCode);
+            int index = modList.indexOf(currentModule);
+            modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
+            if (toPrint) {
+                if (hours > 1) {
+                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + System.lineSeparator());
+                } else {
+                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + System.lineSeparator());
+                }
+                storage.appendToFile(input);
+            }
         }
     }
 
     /**
      * Minus time from actual workload to an existing module.
      *
-     * @param input module code, removed time spent and week input by user.
+     * @param input   module code, removed time spent and week input by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
+        String modCode;
+        double hours;
         String[] commandInfo = input.trim().split(" ", 4);
-        commandInfo[1] = commandInfo[1].toUpperCase();
-        Module currentModule = new Module(commandInfo[1]);
-        int index = modList.indexOf(currentModule);
-        int week = Integer.parseInt(commandInfo[3]);
-        if (modList.get(index).doesActualTimeExist(week)) {
-            modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
+        modCode = commandInfo[1].toUpperCase();
+        hours = Double.parseDouble(commandInfo[2]);
+
+        if (!checkIfModuleValid(modCode, toPrint)) {
+            return;
+        }
+        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+        if (!checkIfModuleExist(modCode)) {
             if (toPrint) {
-                System.out.println(commandInfo[2] + " hours are removed from "
-                        + commandInfo[1] + System.lineSeparator());
-                storage.appendToFile(input);
+                ui.printNotExist(modCode);
             }
         } else {
-            if (toPrint) {
-                System.out.println("Cannot minus actual time as there is no actual time inputted."
-                        + System.lineSeparator());
+            Module currentModule = new Module(modCode);
+            int index = modList.indexOf(currentModule);
+            int week = Integer.parseInt(commandInfo[3]);
+            if (modList.get(index).doesActualTimeExist(week)) {
+                if (!modList.get(index).doesHoursExceedTotal(hours, week)) {
+                    modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
+                    if (toPrint) {
+                        if (hours > 1) {
+                            System.out.println(commandInfo[2] + HOURS_REMOVAL
+                                    + modCode + System.lineSeparator());
+                        } else {
+                            System.out.println(commandInfo[2] + HOUR_REMOVAL
+                                    + modCode + System.lineSeparator());
+                        }
+                        storage.appendToFile(input);
+                    }
+                } else {
+                    if (toPrint) {
+                        System.out.println(HOURS_EXCEED_ERROR
+                                + System.lineSeparator());
+                    }
+                }
+            } else {
+                if (toPrint) {
+                    System.out.println(NO_WORKLOAD_ERROR
+                            + System.lineSeparator());
+                }
             }
         }
     }

@@ -5,14 +5,17 @@ package seedu.modtracker;
  */
 public class Task {
     protected String description;
+    protected String modCode;
     protected boolean isDone;
 
     /**
      * Constructor.
      *
+     * @param modCode module code
      * @param description name of task
      */
-    public Task(String description) {
+    public Task(String modCode, String description) {
+        this.modCode = modCode;
         this.description = description;
         this.isDone = false;
     }
@@ -44,21 +47,12 @@ public class Task {
     }
 
     /**
-     * Gets the name of the task.
-     *
-     * @return name of the task
-     */
-    public String getDisplayString() {
-        return description;
-    }
-
-    /**
      * Formats the display of tasks according to tasks type.
      *
      * @return the required display format depending on type of task
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description.trim();
+        return "[" + getStatusIcon() + "] " + "[" + modCode + "] " + description.trim();
     }
 }
