@@ -1,7 +1,7 @@
 package fitr.parser;
 
 import fitr.command.Command;
-import fitr.command.EditCommand;
+import fitr.command.EditEntryCommand;
 import fitr.command.EditProfileCommand;
 import fitr.command.InvalidCommand;
 import fitr.common.Commands;
@@ -16,17 +16,18 @@ public class EditCommandParser {
     private final String argument;
 
     public EditCommandParser(String argument) {
-        this.argument = argument;
+        this.argument = argument.trim().toLowerCase();
     }
 
     public Command editCommand() {
-        Matcher matcher = ARGUMENT_FORMAT.matcher(argument.trim());
+        Matcher matcher = ARGUMENT_FORMAT.matcher(argument);
 
         if (!matcher.matches()) {
             Ui.printInvalidCommandError();
         }
 
-        String editArgument = matcher.group("argument");
+        String editArgument = matcher.group("argument").trim();
+        String index = matcher.group("index").trim();
 
         switch (editArgument) {
         case Messages.EDIT_NAME:
@@ -38,7 +39,7 @@ public class EditCommandParser {
             return new EditProfileCommand(editArgument);
         case Commands.COMMAND_EXERCISE:
         case Commands.COMMAND_FOOD:
-            return new EditCommand(argument);
+            return new EditEntryCommand(editArgument, index);
         default:
             return new InvalidCommand(argument);
         }

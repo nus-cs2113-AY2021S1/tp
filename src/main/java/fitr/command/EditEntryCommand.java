@@ -12,41 +12,32 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class EditCommand extends Command {
-    public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<argument>\\S+)(?<index>.*)");
+public class EditEntryCommand extends Command {
+    private final String index;
 
-    public EditCommand(String arguments) {
-        command = arguments.toLowerCase();
+    public EditEntryCommand(String arguments, String index) {
+        command = arguments;
+        this.index = index;
     }
 
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
-        Matcher matcher = ARGUMENT_FORMAT.matcher(command.trim());
-        int index;
-
-        if (!matcher.matches()) {
-            Ui.printInvalidCommandError();
-            return;
-        }
-
-        String argument = matcher.group("argument");
-
-        switch (argument) {
-        case Commands.COMMAND_EXERCISE:
-            index = Integer.parseInt(matcher.group("index").trim());
-            editExercise(exerciseList, index);
-            break;
-        case Commands.COMMAND_FOOD:
-            index = Integer.parseInt(matcher.group("index").trim());
-            editFood(foodList, index);
-            break;
-        default:
-            Ui.printInvalidCommandError();
-            break;
+        try {
+            switch (command) {
+            case Commands.COMMAND_EXERCISE:
+                editExercise(exerciseList, Integer.parseInt(index));
+                break;
+            case Commands.COMMAND_FOOD:
+                editFood(foodList, Integer.parseInt(index));
+                break;
+            default:
+                Ui.printInvalidCommandError();
+                break;
+            }
+        } catch (NumberFormatException e) {
+            Ui.printCustomError("Error: Invalid index entered!");
         }
 
         try {
@@ -65,7 +56,12 @@ public class EditCommand extends Command {
 
     private void editExercise(ExerciseList exerciseList, int index) {
         if (exerciseList.getSize() == 0) {
-            Ui.printCustomError("Exercise list is empty!");
+            Ui.printCustomError("Error: Exercise list is empty!");
+            return;
+        }
+
+        if (index <= 0 || index > exerciseList.getSize()) {
+            Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
 
@@ -86,6 +82,11 @@ public class EditCommand extends Command {
     private void editFood(FoodList foodList, int index) {
         if (foodList.getSize() == 0) {
             Ui.printCustomError("Food list is empty!");
+            return;
+        }
+
+        if (index <= 0 || index > foodList.getSize()) {
+            Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
 

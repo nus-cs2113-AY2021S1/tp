@@ -9,8 +9,6 @@ import fitr.command.Command;
 import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
-import fitr.command.EditCommand;
-import fitr.command.EditProfileCommand;
 import fitr.command.RecommendCommand;
 import fitr.command.HelpCommand;
 import fitr.command.DeleteCommand;
