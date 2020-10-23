@@ -13,13 +13,7 @@ import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.Slot;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;
@@ -226,17 +220,18 @@ public class Ui {
     }
 
     private void printJsonParseErrorMessage(String weblink) {
-        printRed("Unable to parse modules from " + weblink +".\n"
+        printRed("Unable to parse modules from " + weblink + "\n"
                 + "The app will not check for valid modules\n");
     }
 
     private void printConnectionErrorMessage(String weblink) {
-        printRed("Unable to connect to " + weblink +".\n"
-                + "Please check your internet connection. \n"
+        printRed("Unable to connect to " + weblink + "\n"
+                + "Please check your internet connection\n"
                 + "The app will not check for valid modules\n");
     }
 
-    private void printErrorLoadingFile() { printRed("Error loading file.\n");
+    private void printErrorLoadingFile() {
+        printRed("Error loading file.\n");
     }
 
     private void printErrorWritingToFile() {

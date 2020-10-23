@@ -154,7 +154,17 @@ public class AddSlotCommand extends Command {
         newSlot.addBookmark(bookmark);
     }
 
-    private boolean isValidModule(String module, Timetable timetable) throws DukeException {
+    /**
+     * Validates the module code with the list of modules moduleList.
+     *
+     * @param module The module code to be added.
+     * @param timetable The timetable object for the module to be added to.
+     *
+     * @return
+     * true if module exist in the list or list is null.
+     *     false if module does not exists in the list.
+     */
+    private boolean isValidModule(String module, Timetable timetable) {
         if (timetable.moduleList == null) { // If unable to get list of modules, always return true.
             return true;
         }
