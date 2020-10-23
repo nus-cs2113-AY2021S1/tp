@@ -131,12 +131,12 @@ Expected outcome:
 
 ### <span style="color:red">Displaying tasks</span> : `list` 
 
-Default display mode: display **all** tasks by **adding sequence**.
-`-d`: display **all** tasks by **date**, from past to future.
-`-p`: display **all** tasks by **priority**, from HIGH to LOW.
-`-w`: display **only tasks in current week** by **adding sequence**. 
-`-m`: display **only tasks in current month** by **adding sequence**.
-`d/DATE`: display **all tasks of a date provided** by adding sequence**.
+Default display mode: display **all** tasks by **adding sequence**.  
+`-d`: display **all** tasks by **date**, from past to future.  
+`-p`: display **all** tasks by **priority**, from HIGH to LOW.  
+`-w`: display **only tasks in current week** by **adding sequence**.   
+`-m`: display **only tasks in current month** by **adding sequence**.  
+`d/DATE`: display **all tasks of a date provided** by adding sequence**.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
