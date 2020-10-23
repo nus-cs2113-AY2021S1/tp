@@ -94,7 +94,9 @@ public class RemoveCommand extends Command {
                 + "/" + chapter.toString() + ".txt");
             //logger.log(Level.INFO, "Deleting chapter...");
             boolean isRemoved = storage.deleteDirectory(directory);
-            if (!isRemoved) {
+            boolean isRemovedFromDue = storage.removeChapterFromDue(
+                    access.getModule().toString(), chapter.toString());
+            if (!isRemoved && !isRemovedFromDue) {
                 //logger.log(Level.WARNING, "problem deleting chapter");
                 throw new IOException("There was a problem deleting chapter in directory.");
             }
