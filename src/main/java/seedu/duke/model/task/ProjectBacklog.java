@@ -55,10 +55,6 @@ public class ProjectBacklog implements Jsonable {
         backlogTasks.add(new Task(newTaskId, title, description, priority));
     }
 
-    public int idSize() {
-        return nextId;
-    }
-
     public boolean checkValidPriority(String input) {
         for (Priority priority : Priority.values()) {
             if (priority.name().equals(input)) {

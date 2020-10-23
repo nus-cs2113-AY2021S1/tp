@@ -32,23 +32,21 @@ public class ViewTaskCommand extends TaskCommand {
             Ui.showToUserLn("The details of the tasks are as follows: ");
             for (int i = 0; i < parameters.size(); i++) {
                 Task task;
-                try {
-                    int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                    //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
-                    if (backlogId <= proj.getProjectBacklog().idSize()) {
-                        task = proj.getProjectBacklog().getTask(backlogId);
-                        Ui.showToUserLn(task.toString());
-                    } else {
-                        Ui.showError(Messages.MESSAGE_INVALID_ID);
-                    }
-                } catch (NumberFormatException e) {
-                    Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);
+                int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
+                //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
+                if (backlogId <= proj.getProjectBacklog().getNextId()) {
+                    task = proj.getProjectBacklog().getTask(backlogId);
+                    Ui.showToUserLn(task.toString());
+                } else {
+                    Ui.showError(Messages.MESSAGE_INVALID_ID);
                 }
             }
         } catch (IndexOutOfBoundsException e) {
             Ui.showError("There are no projects! Please create a project first.");
         } catch (NullPointerException e) {
             Ui.showError("The requested task has been removed from the project.");
+        } catch (NumberFormatException e) {
+            Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);
         }
     }
 }
