@@ -88,8 +88,12 @@ public class AddCommand extends Command {
         try {
             int quoteNum = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_REFLECT);
             String reflection = QuoteParser.getReflectionToAdd(information);
-            Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
-            ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
+            if (!reflection.isEmpty()) {
+                Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
+                ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
+            } else {
+                throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+            }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add reflection to quote failed");

@@ -97,12 +97,17 @@ public class DeleteCommand extends Command {
 
     private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
         try {
+            if (information.trim().isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
+            }
             int quoteNumber = Integer.parseInt(information.trim()) - 1;
             Quote quoteToBeDeleted = quotes.getQuote(quoteNumber);
             quotes.delete(quoteNumber);
             ui.printDeleteQuote(quoteToBeDeleted.getQuote());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
