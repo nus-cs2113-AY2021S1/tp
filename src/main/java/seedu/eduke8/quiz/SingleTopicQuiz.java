@@ -1,7 +1,11 @@
 package seedu.eduke8.quiz;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.*;
+import seedu.eduke8.command.Command;
+import seedu.eduke8.command.AnswerCommand;
+import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
@@ -73,7 +77,8 @@ public class SingleTopicQuiz implements Quiz {
 
             Command command = getCommand(ui, optionList);
 
-            assert (command instanceof AnswerCommand || command instanceof HintCommand || command instanceof BookmarkCommand);
+            assert (command instanceof AnswerCommand || command instanceof HintCommand
+                    || command instanceof BookmarkCommand);
 
             while (!(command instanceof AnswerCommand)) {
                 command.execute(optionList, ui);

@@ -1,7 +1,11 @@
 package seedu.eduke8.parser;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.*;
+import seedu.eduke8.command.Command;
+import seedu.eduke8.command.AnswerCommand;
+import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
@@ -26,7 +30,7 @@ public class QuizParser implements Parser {
     private Question question;
     private BookmarkList bookmarks;
 
-    public QuizParser(BookmarkList bookmarks){
+    public QuizParser(BookmarkList bookmarks) {
         this.bookmarks = bookmarks;
     }
 
