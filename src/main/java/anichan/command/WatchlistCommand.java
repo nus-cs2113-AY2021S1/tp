@@ -48,7 +48,7 @@ public class WatchlistCommand extends Command {
         case CREATE_OPTION:
             return createWatchlist(storageManager, activeWorkspace);
         case LIST_OPTION:
-            return listAllWatchlist(activeWorkspace);
+            return listWatchlistList(activeWorkspace);
         case SELECT_OPTION:
             return selectWatchlist(activeWorkspace);
         case DELETE_OPTION:
@@ -73,7 +73,7 @@ public class WatchlistCommand extends Command {
         return "Watchlist \"" + optionInformation + "\" has been created successfully!";
     }
 
-    private String listAllWatchlist(Workspace activeWorkspace) {
+    private String listWatchlistList(Workspace activeWorkspace) {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         if (watchlistList.size() == 0) {
             LOGGER.log(Level.INFO, "Empty watchlistList message because size is 0");

@@ -53,7 +53,7 @@ public class WatchlistParser extends CommandParser {
             checkListParameters(parsedParts);
             return new String[]{option, BLANK};
         case SELECT_OPTION:
-            // Fallthrough because SELECT will call checkModificationParameters method too.
+            // Fallthrough because select option will call checkModificationParameters method too.
         case DELETE_OPTION:
             checkModificationParameters(parsedParts);
             return parsedParts;

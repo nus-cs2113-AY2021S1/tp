@@ -2,12 +2,11 @@ package anichan.watchlist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import anichan.bookmark.Bookmark;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 class WatchlistTest {
     private static final int SAMPLE_ANIME_INDEX_ONE = 1;
@@ -27,17 +26,18 @@ class WatchlistTest {
     }
 
     @Test
-    void testEqual() {
-        // Test Equals on duplicated named watchlist.
+    void testEquals() {
+        // Same object -> returns true.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
-        assertEquals(duplicateNameWatchlist, firstWatchlist);
-        assertNotEquals(secondWatchlist, duplicateNameWatchlist);
+        assertTrue(firstWatchlist.equals(duplicateNameWatchlist));
 
-        // Test Equals on non-Watchlist object.
-        Bookmark bookmark = new Bookmark();
-        assertNotEquals(bookmark, firstWatchlist);
+        // Null -> returns false.
+        assertFalse(firstWatchlist.equals(null));
 
-        // Test Equals on Null object.
-        assertNotEquals(firstWatchlist, null);
+        // Different type -> returns false.
+        assertFalse(firstWatchlist.equals("testing"));
+
+        // Different watchlist name object -> returns false.
+        assertFalse(firstWatchlist.equals(secondWatchlist));
     }
 }
