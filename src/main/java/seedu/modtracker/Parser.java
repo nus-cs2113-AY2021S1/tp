@@ -33,7 +33,7 @@ public class Parser {
     public void parse(String input, ModuleList modList, String name, Storage storage,
                       boolean toPrint, TaskList taskList) {
         Ui ui = new Ui();
-        assert input != null;
+        assert input != null : "Input should not be null";
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {

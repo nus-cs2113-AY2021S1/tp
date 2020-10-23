@@ -37,11 +37,45 @@ public class Storage {
      * Returns a scanner object to read the file.
      *
      * @return Scanner to read the file of the Storage object.
-     * @throws FileNotFoundException If the file cannot be found.
      */
-    public Scanner getReader() throws FileNotFoundException {
+    protected Scanner getReader() {
         assert file != null : "File should not be null";
-        return new Scanner(file);
+        try {
+            return new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Returns the username, if any.
+     *
+     * @return Name found in the file.
+     */
+    public String getName() {
+        Scanner reader = getReader();
+        assert reader != null : "Reader should not be null";
+        if (!reader.hasNext()) {
+            return null;
+        }
+        return reader.nextLine();
+    }
+
+    /**
+     * Loads the rest of the data from the file.
+     */
+    public void loadData(ModTracker modTracker) {
+        Parser parser = new Parser();
+        Scanner reader = getReader();
+        assert reader != null : "Reader should not be null";
+        assert reader.hasNext() : "First line should be filled with the name";
+        reader.nextLine();
+        while (reader.hasNext()) {
+            String input = reader.nextLine();
+            parser.parse(input, modTracker.getModList(), "",
+                    this, false, modTracker.getTaskList());
+        }
     }
 
     /**
