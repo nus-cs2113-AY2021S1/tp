@@ -6,6 +6,7 @@ import seedu.duke.command.member.MemberCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -19,6 +20,11 @@ public class MemberParser implements ExceptionsParser {
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                 ProjectList projectListManager)
             throws DukeException {
+        assert parameters.get("0") != null : "Invalid Input";
+        if (parameters.get("0") == null) {
+            Ui.showError("Please do not enter dashes.");
+            return;
+        }
         if (parameters.get("0").isBlank()) {
             throw new DukeException("missing name");
         }

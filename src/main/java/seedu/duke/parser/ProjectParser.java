@@ -5,6 +5,7 @@ import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
@@ -52,6 +53,11 @@ public class ProjectParser implements ExceptionsParser {
             }
             break;
         case SELECT:
+            assert parameters.get("0") != null : "Invalid Input";
+            if (parameters.get("0") == null) {
+                Ui.showError("Please do not enter dashes.");
+                return;
+            }
             int index = Integer.parseInt(parameters.get("0"));
             if (index <= projectListManager.size() && index > 0) {
                 new SelectProjectCommand(parameters, projectListManager).execute();
