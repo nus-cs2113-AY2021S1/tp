@@ -5,7 +5,7 @@ before_install:
   - chmod +x gradlew
 
 script: >-
-  ./gradlew clean checkstyleMain checkstyleTest test check jacocoTestReport coveralls
+  ./gradlew clean checkstyleMain checkstyleTest test check jacocoTestReport
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
