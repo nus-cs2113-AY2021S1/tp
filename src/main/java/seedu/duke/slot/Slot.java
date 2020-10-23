@@ -84,7 +84,7 @@ public class Slot {
     public int getStartMinutes() {
         int hours = Integer.parseInt(startTime.toString().substring(0,2));
         int minutes = Integer.parseInt(startTime.toString().substring(3));
-        return hours*60 + minutes;
+        return hours * 60 + minutes;
     }
 
     public void setEndTime(LocalTime timeInput) {
@@ -98,7 +98,7 @@ public class Slot {
     public int getEndMinutes() {
         int hours = Integer.parseInt(endTime.toString().substring(0,2));
         int minutes = Integer.parseInt(endTime.toString().substring(3));
-        return hours*60 + minutes;
+        return hours * 60 + minutes;
     }
 
     public static LocalTime convertIntToLocalTime(int hours, int minutes) {
@@ -107,7 +107,7 @@ public class Slot {
         if (hours < 10) {
             h = "0" + h;
         }
-        if (minutes < 10){
+        if (minutes < 10) {
             m = "0" + m;
         }
         return LocalTime.parse(h + ":" + m);

@@ -7,6 +7,9 @@ import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class Duke {
 
     private Storage<BookmarkList> bookmarkStorage;
@@ -15,6 +18,7 @@ public class Duke {
     private BookmarkList bookmarks;
     private Timetable timetable;
     private Timetable planner;
+    //private ArrayList<File> files;
     private Ui ui;
 
     /**
@@ -29,13 +33,15 @@ public class Duke {
 
         bookmarkStorage = new Storage<>(bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(timetableFilePath, Timetable.class);
-        plannerStorage = new Storage<>(plannerFilePath, Timetable.class);
+        //plannerStorage = new Storage<>(plannerFilePath, Timetable.class);
 
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
-            Timetable temp = plannerStorage.loadPlanner();
-            planner = Storage.initialiseEmptySlots(temp);
+            planner = new Timetable();
+            //files = plannerStorage.loadFiles();
+            //Timetable temp = plannerStorage.loadPlanner();
+            //planner = Storage.initialiseEmptySlots(temp);
 
         } catch (DukeException e) {
             ui.showErrorMessage(e);

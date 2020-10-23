@@ -70,97 +70,52 @@ public class Storage<T> {
         }
     }
 
+    public ArrayList<File> getFiles() {
+        File folder = new File(filePath);
+        return new ArrayList<>(Arrays.asList(folder.listFiles()));
+    }
+
     public T loadPlanner() throws DukeException {
 
         File folder = new File(filePath);
+        try {
+            createDirectory();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         if (folder.listFiles() == null) {
             return createNewInstance();
         }
 
-        ArrayList<File> listOfFiles = new ArrayList<>(Arrays.asList(folder.listFiles()));
+        try {
+            ArrayList<File> listOfFiles = getFiles();
+            StringBuilder fileAsString = new StringBuilder();
+            String opening = "{" + System.lineSeparator() + "  \"modules\": [";
+            fileAsString.append(opening);
+            for (File f : listOfFiles) {
+                try {
+                    StringBuilder line = new StringBuilder(Files.readString(Paths.get(f.getPath())));
+                    fileAsString.append(line.delete(0, 16));
+                    fileAsString.delete(fileAsString.length() - 6, fileAsString.length());
+                    fileAsString.append(",");
+                } catch (IOException e) {
+                    return createNewInstance();
+                }
+            }
+            fileAsString.delete(fileAsString.length() - 1, fileAsString.length());
+            String closing = System.lineSeparator() + "  ]" + System.lineSeparator() + "}";
+            fileAsString.append(closing).append(System.lineSeparator());
 
-        StringBuilder fileAsString = new StringBuilder();
-        String opening = "{" + System.lineSeparator() + "  \"modules\": [";
-        String closing = System.lineSeparator() + "  ]" + System.lineSeparator() + "}";
-
-        fileAsString.append(opening);
-        for (File f : listOfFiles) {
-            try {
-                StringBuilder line = new StringBuilder(Files.readString(Paths.get(f.getPath())));
-                fileAsString.append(line.delete(0,16));
-                fileAsString.delete(fileAsString.length() - 6, fileAsString.length());
-                fileAsString.append(",");
-            } catch (IOException e) {
+            if (!fileAsString.toString().equals("null")) {
+                Gson gson = new Gson();
+                return gson.fromJson(fileAsString.toString(), storageClass);
+            } else {
                 return createNewInstance();
             }
-        }
 
-        fileAsString.delete(fileAsString.length() - 1, fileAsString.length());
-        fileAsString.append(closing).append(System.lineSeparator());
-
-        // System.out.println(fileAsString.toString());
-
-        if (!fileAsString.toString().equals("null")) {
-            Gson gson = new Gson();
-            return gson.fromJson(fileAsString.toString(), storageClass);
-        } else {
+        } catch (Exception e) {
+            System.out.println("No timetable in planner folder.");
             return createNewInstance();
-        }
-    }
-
-    public static Timetable initialiseEmptySlots(Timetable timetable) {
-
-        ArrayList<Slot> slots = new ArrayList<>(timetable.getFullSlotList());
-
-        ArrayList<ArrayList<Integer>> array = new ArrayList<>(7);
-        for (int i = 0; i < 7; i++) {
-            array.add(new ArrayList<>(Collections.nCopies(300, 0)));
-        }
-
-        for (Slot s: slots) {
-            markAsFull(array, s.getStartMinutes(), s.getEndMinutes(), s.getDay());
-        }
-
-        Module module = new Module("EMPTY");
-        generateEmptySlots(array, module);
-
-        //System.out.println(module.getSlotList());
-
-        Timetable emptyTimetable = new Timetable();
-        emptyTimetable.addModule(module);
-        return emptyTimetable;
-    }
-
-    private static void markAsFull(ArrayList<ArrayList<Integer>> array, int start, int end, String day) {
-        int count = 0;
-        for (String d: Slot.days) {
-            if (d.equals(day)) {
-                for (int i = start/5; i < end/5; i++) {
-                    array.get(count).set(i, 1);
-                }
-            }
-            count++;
-        }
-    }
-
-    private static void generateEmptySlots(ArrayList<ArrayList<Integer>> array, Module module) {
-        int count = 0;
-        for (String s: Slot.days) {
-            for (int i = 0; i < 287; i++) {
-                if (array.get(count).get(i) == 0) {
-                    int startHours = (i * 5) / 60;
-                    int startMinutes = (i * 5) % 60;
-                    LocalTime start = Slot.convertIntToLocalTime(startHours % 288, startMinutes % 288);
-                    do {
-                        i++;
-                    } while (array.get(count).get(i) == 0 && i < 287);
-                    int endHours = (i * 5) / 60;
-                    int endMinutes = (i * 5) % 60;
-                    LocalTime end = Slot.convertIntToLocalTime(endHours % 288, endMinutes % 288);
-                    module.addSlot(new Slot(start, end, s, "<empty slot>"));
-                }
-            }
-            count++;
         }
     }
 

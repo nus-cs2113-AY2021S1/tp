@@ -2,6 +2,8 @@ package seedu.duke;
 
 import seedu.duke.command.ClearCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
+import seedu.duke.command.planner.AddMeetingCommand;
+import seedu.duke.command.planner.LoadPlannerCommand;
 import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
@@ -105,12 +107,14 @@ public class Parser {
     private static Command createPlannerCommand(String input) throws DukeException {
         Command command;
 
-        if (input.startsWith(AddSlotCommand.ADD_KW)) {
-            return new AddSlotCommand(input);
+        if (input.startsWith(AddMeetingCommand.ADD_KW)) {
+            return new AddMeetingCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
         //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
         //    return new ClearCommand();
+        } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
+            return new LoadPlannerCommand();
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
