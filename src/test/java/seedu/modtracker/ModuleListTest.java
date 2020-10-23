@@ -54,7 +54,8 @@ class ModuleListTest {
     public void deleteModule_removeModule_ModuleRemoved() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expected = "CS5000 is removed." + System.lineSeparator();
+        String expected = "CS5000 is removed." + System.lineSeparator()
+                + "All tasks under CS5000 are deleted." + System.lineSeparator();
 
         modulesTest.deleteMod("deleteMod CS5000", true, storage);
         assertFalse(modulesTest.checkIfModuleExist("CS5000"));

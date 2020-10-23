@@ -196,6 +196,16 @@ public class ModuleList {
                     ui.printNotExist(modCode);
                 }
             }
+            TaskList taskList = new TaskList();
+            ArrayList<Task> tasks = taskList.getTaskData();
+            int i;
+            for (i = 1; i <= tasks.size(); i++) {
+                String mod = tasks.get(i - 1).getModCode().trim();
+                if (mod.equals(modCode)) {
+                    tasks.remove(i - 1);
+                    i--;
+                }
+            }
         } catch (IndexOutOfBoundsException e) {
             if (toPrint) {
                 System.out.println(ERROR_DELETEMOD + System.lineSeparator());

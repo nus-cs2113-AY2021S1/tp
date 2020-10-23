@@ -67,10 +67,13 @@ CS1000
 Good Job! Great time management!
 
 CS1000 is removed.
+All tasks under CS1000 are deleted.
 
 CS2113T is removed.
+All tasks under CS2113T are deleted.
 
 CS3200 is removed.
+All tasks under CS3200 are deleted.
 
 All changes saved.
 _______    _______

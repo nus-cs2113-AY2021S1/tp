@@ -46,6 +46,10 @@ public class Task {
         return (isDone ? "✓" : "✘");
     }
 
+    public String getModCode() {
+        return modCode;
+    }
+
     /**
      * Formats the display of tasks according to tasks type.
      *
