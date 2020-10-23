@@ -12,14 +12,16 @@
     - [2.d Before Writing Code](#2d-before-writing-code)
   - [3. Design](#3-design)
   - [4. Implementation](#4-implementation)
-    - [Add Command](#add)
-    - [Edit Command](#edit)
-    + [Rating Command](#rating-command)
-    + [ChangeRating Command](#change-rating-command)
-    + [Delete Command](#delete-command)
-    + [DeleteRating Command](#deleterating-command)
-    + [UpdateTimeLimit Command](#updatetimelimit-command-feature)
-    + [Storage Implementation](#storage)
+    - [Add](#add)
+    - [Edit](#edit)
+    - [Rating Command](#rating-command)
+    - [Change Rating Command](#change-rating-command)
+    - [Delete Command](#delete-command)
+    - [DeleteRating Command](#deleterating-command)
+    - [Add Review Command](#add-review-command)
+    - [Watch Command feature](#watch-command-feature)
+    - [UpdateTimeLimit Command feature](#updatetimelimit-command-feature)
+    - [Storage](#storage)
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
@@ -115,45 +117,205 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 
 ### Add
 
-The `add` command allows users to add a new show which they are watching to the `ShowList`. It is invoked by the inputParser. The addCommand class checks for the correct number of inputs and throws an exception when the number of arguments is mismatched.
+The `add` command allows users to add a new show which they are watching to the `ShowList`. It is invoked by the 
+inputParser.
+
+Given below is an example of usage scenario of how the add command behaves at each step
+
+**Step 1**
+
+* The user types in `add friends 10,2 30` , adding the show to the list with it's title,number of seasons, number of 
+episdoes and duration of each episode
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised exceptions are thrown when the number of arguments entered by the user is mismatched
+
+
+**Step 2**
+
+* The AddCommand class calls the AddCommand method which then creates a new instance of the Show class.
+
+
+**Step 3**
+
+* After the AddCommand method is called,it does the following things:
+
+1.Splits the input from the user to 4 seperate parameters (Title,Number of seasons,Number of episodes,Duration)
+
+2.Creates a new Show instance with the 4 parameters
+
+3.Added the show into the show list
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
 
 ### Edit 
 
-The `edit` command allows the user to change the details of each show that they are waatching after they have added the show. It is self-contained, including its own parser and methods which allows the user to change any parameter they wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
+The `edit` command allows the user to change the details of each show that they are waatching after they have added the
+show. It is self-contained, including its own parser and methods which allows the user to change any parameter they 
+wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
 
 
 ### Rating Command
  
-The rating command was implemented in such a way where it takes in 2 parameters, the show to be rated and the desired rating for the show.
+The `rating` command was implemented in such a way where it takes in 2 parameters, the show to be rated and the desired
+rating for the show.
 
-Duke searches the list for the show that was inputted, if not found, a NullPointer exception will be thrown. Also, if the rating given is a negative number of exceeds 10, an IndexOutofBounds exception would be thrown. 
+After having retrieved the show from the show list, the rating command sets the rating of the show and then proceeds to
+update it back into the show list.
 
-After having retrieved the show in the list, the rating command sets the rating of the show and then proceeds to update it back into the show list.
+Given below is an example of usage scenario of how the rating command behaves at each step
+
+**Step 1**
+
+* The user types in `rating friends 10` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised IndexOutOfBoundsException will be thrown if user enters a rating with value less than 0 or more than 10. 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of RatingCommand class is called and the command is returned to the main program. 
+The rateShow method in RatingCommand class is called.
+
+**Step 3**
+
+* After the rateShow method is called, it the following things:
+
+1.Retrieves the show to be rated from the show list
+
+2.Sets the rating for the show to the rating provided by the user 
+
+3.Updates the show back into the show list.
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
 
 ### Change Rating Command
   
+The `changerating` command takes in 2 parameters, the show which rating is to be changed and the new rating to be
+updated to.
 
-The change rating command was implemented in a similar way to the Rating Command. The command takes in 2 parameters, the show which rating is to be changed and the new rating to be updated to. 
+The command changes the rating of a desired show
 
-A Nullpointer exception is thrown when the show inputted is not in the show list and a IndexOutOfBounds exception is thrown when the updated rating is a negative number or greater than 10.
+Given below is an example usage scenario and how the ChangeRatingCommand Class behaves at each step.
 
-After having retrieved the show from the show list, the change rating command proceeds to update the rating of the show before updating the show back into the show list.
+**Step 1**
+
+* The user types in `changerating friends 3` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised IndexOutOfBoundsException will be thrown if user enters a rating with value less than 0 or more than 10. 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of ChangeRatingCommand class is called and the command is returned to the main program. 
+The changeRating method in ChangeRatingCommand class is called.
+
+**Step 3**
+
+* After the changeRating method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Updates the new rating to the show
+
+3.Updates the show back into the show list.
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
 
 ### Delete Command
   
-The delete command takes in 1 parameter, the show to be deleted.
+The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the show
+from the showlist
 
-A Nullpointer exception is thrown when the show to be deleted cannot be found in the show list.
+Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
 
-If the show is found, the delete command proceeds to delete the show from the list.
+**Step 1**
+
+* The user types in `delete friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of DeleteCommand class is called and the command is returned to the main program. 
+The delete method in DeleteCommand class is called.
+
+**Step 3**
+
+* After the delete method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Deletes the show from the show list
+
+3.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
 
 ### DeleteRating Command 
 
-The delete rating command takes in 1 parameter, the show which rating is to be deleted.
+The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
+proceeds to delete the rating of the show that was inputted by the user.
 
-A Nullpointer exception is thrown when the show to be deleted cannot be found in the show list.
+Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
 
-If the show is found, the delete rating command sets the rating back to -1 , essentially deleting the rating
+**Step 1**
+
+* The user types in `deleterating friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of DeleteRatingCommand class is called and the command is returned to the main program. 
+The deleteRating method in DeleteRatingCommand class is called.
+
+**Step 3**
+
+* After the deleteRating method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Deletes the show's rating by setting the rating to -1 (essentially deleting it)
+
+3.Updates the show back into the show list
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+### Add Review Command
+
+The add review command is invoked by the InputParser method parseAddReview. It takes a string as input. Within the AddReview class
+
+**Step 1**
+The string is tokenised into separate words
+
+**Step 2**
+The corresponding show is retrieved from the WatchList
+
+**Step 3**
+The rating of the show is updated
+
+**Step 4**
+The review of the rating is added to the show
 
 ### Watch Command feature
 

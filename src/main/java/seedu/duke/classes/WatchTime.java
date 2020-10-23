@@ -48,6 +48,15 @@ public class WatchTime {
         }
     }
 
+    public static boolean checkIfDifferentDay(LocalDate recordedDate) {
+        LocalDate currentDate = LocalDate.now();
+        if (currentDate.equals(recordedDate)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static void watchDurationUpdate(int showMinutes) {
         if (isNewDay()) {
             recordedDate = LocalDate.now();
@@ -68,7 +77,10 @@ public class WatchTime {
         response += recordedDate.toString();
         response += System.lineSeparator();
         response += "Time left today : ";
-        response += (dailyWatchLimit - durationWatchedToday);
+        int timeLeft = dailyWatchLimit - durationWatchedToday;
+        response += (timeLeft / 60);
+        response += " hour(s) ";
+        response += (timeLeft % 60);
         response += " minutes. To update the time allocated to watching shows, use the 'updateTimeLimit' command.";
         return response;
     }

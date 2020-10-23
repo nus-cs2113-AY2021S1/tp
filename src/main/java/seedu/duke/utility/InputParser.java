@@ -10,6 +10,7 @@ import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
 import seedu.duke.commands.WatchCommand;
+import seedu.duke.commands.AddReviewCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,6 +112,11 @@ public class InputParser {
         case "watchtime":
             parseWatchTimeCommand();
             return command;
+
+        case "addreview":
+            parseAddReviewCommand(input);
+            return command;
+
 
         case "":
             Ui.printNoInputException();
@@ -324,6 +330,20 @@ public class InputParser {
      */
     private static void parseWatchTimeCommand() {
         Ui.printDailyWatchTracking();
+    }
+
+    /**
+     * Adds a review.
+     * @param input user input
+     */
+    private  static void parseAddReviewCommand(String input) {
+        try {
+            new AddReviewCommand(input);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
+        }
     }
 }
 

@@ -1,0 +1,37 @@
+@startuml
+
+start
+
+partition UserCallCommand {
+      :edit friends;
+  }
+
+#lightblue: system:
+Input the detail of the show you want to change;
+
+partition UserInteraction {
+
+
+   repeat
+   :User input;
+   split
+    :name(i)<
+   split again
+    :episode(i)<
+   split again
+    :season<
+   split again
+    : duration<
+
+    split again
+    : done<
+   end split
+   #lightblue: show data updated;
+   repeat while (input != done)
+   :done ;
+  }
+
+#lightblue: system:
+updated successfully;
+stop
+@enduml
