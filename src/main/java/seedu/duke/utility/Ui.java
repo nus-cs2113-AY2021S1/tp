@@ -231,6 +231,11 @@ public class Ui {
             + "\n" + WatchTime.userReportString());
     }
 
+    public static void printSearchSuccessful(String name) {
+        System.out.println("The show: " + name + " is found, here is the detailed information: ");
+        System.out.println(ShowList.getShowList().get(name).toString());
+    }
+
     public static void printInvalidEpisodesInputException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
@@ -275,5 +280,7 @@ public class Ui {
         printLine();
         System.out.println(WatchTime.userReportString());
     }
+
+
 }
 
