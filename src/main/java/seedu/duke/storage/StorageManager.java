@@ -22,6 +22,58 @@ public class StorageManager {
 
     private static final String DELIMITER = "|";
 
+    /**
+     * Checks if the file directories exist otherwise creates them.
+     * It also creates the files for the Notebook and timetable information if it does not already exist
+     *
+     * @throws SystemException when it is unable to create a file
+     */
+    public static void createFiles() throws SystemException{
+        //Create directories
+        String dataPath = FOLDER_DIR;
+        String notesPath = FOLDER_DIR + NOTES_DIR;
+        String notebookFilePath = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        String timetableFilePath = FOLDER_DIR + TIMETABLE_FILE_PATH;
+
+        String paths[] = {dataPath, notesPath};
+        String files[] = {notebookFilePath, timetableFilePath};
+
+        for (String path: paths) {
+            createDirectory(path);
+        }
+
+        for (String file: files) {
+            try{
+                createFile(file);
+            } catch (IOException exception) {
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
+            }
+        }
+    }
+
+    /**
+     * Creates a directory path data/notes. In case both data and /notes do not exist.
+     */
+    private static void createDirectory(String path) {
+
+        File Directory = new File(path);
+        //  File noteDirectory = new File(notePath);
+        if (!Directory.exists()) {
+            Directory.mkdir();
+        }
+    }
+
+    /**
+     * Checks if a file exists. If it does not, creates file with the input path
+     * @param path path of file to be created
+     * @throws IOException thrown when directory does not exist. Unable to create file
+     */
+    private static void createFile(String path) throws IOException {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+    }
 
     /**
      * Saves all the Notes in the Notebook to the storage file.
@@ -100,33 +152,5 @@ public class StorageManager {
                             + System.lineSeparator();
         fwAppend.write(noteDetails);
         fwAppend.close();
-    }
-
-    /**
-     * Creates a directory path data/notes. In case both data and /notes do not exist.
-     */
-    private static void createDirectory() {
-        String dataPath = FOLDER_DIR;
-        String notePath = FOLDER_DIR + NOTES_DIR;
-        File dataDirectory = new File(dataPath);
-        File noteDirectory = new File(notePath);
-        if (!dataDirectory.exists()) {
-            dataDirectory.mkdir();
-        }
-        if (!noteDirectory.exists()) {
-            noteDirectory.mkdir();
-        }
-    }
-
-    /**
-     * Checks if a file exists. If it does not, creates file with the input path
-     * @param path path of file to be created
-     * @throws IOException thrown when directory does not exist. Unable to create file
-     */
-    private static void createFile(String path) throws IOException {
-        File file = new File(path);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
     }
 }
