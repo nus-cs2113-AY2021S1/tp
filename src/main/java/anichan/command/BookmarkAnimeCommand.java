@@ -74,6 +74,7 @@ public class BookmarkAnimeCommand extends Command {
         case BookmarkParser.ADD_NOTE_PARAM:
             LOGGER.log(Level.INFO, "Executing bookmark add note");
             result = addNoteToBookmark(animeData, bookmark);
+            storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         default:
             break;
@@ -89,7 +90,7 @@ public class BookmarkAnimeCommand extends Command {
         result += animeInfo + System.lineSeparator() + System.lineSeparator();
 
         Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex -1);
-        if ( bookmarkEpisodeInfo != -1){
+        if ( bookmarkEpisodeInfo != 0){
             result += "Current Episode: ";
             result += bookmarkEpisodeInfo;
             result += System.lineSeparator() + System.lineSeparator();

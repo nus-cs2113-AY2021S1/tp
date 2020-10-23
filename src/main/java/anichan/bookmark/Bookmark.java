@@ -29,14 +29,14 @@ public class Bookmark {
 
     public void addAnimeBookmark(Integer animeIndex) {
         this.animeBookmarkList.add(animeIndex);
-        this.animeEpisode.add(-1);
+        this.animeEpisode.add(0);
         this.noteList.add(new Note());
     }
 
-    public void addAnimeBookmarkEpisode(Integer animeIndex, Integer episodeNumber) {
+    public void addAnimeBookmarkEpisode(Integer animeIndex, Integer episodeNumber, Note note) {
         this.animeBookmarkList.add(animeIndex);
         this.animeEpisode.add(episodeNumber);
-        this.noteList.add(new Note());
+        this.noteList.add(note);
     }
 
     public void removeAnimeBookmark(int bookmarkIndex) {
@@ -54,6 +54,10 @@ public class Bookmark {
 
     public ArrayList<Integer> getAnimeEpisode() {
         return animeEpisode;
+    }
+
+    public ArrayList<Note> getAnimeNote(){
+        return noteList;
     }
 
     public int getBookmarkEpisode(Integer bookmarkIndex){
