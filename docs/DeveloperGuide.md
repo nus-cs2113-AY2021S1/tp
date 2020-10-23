@@ -1,20 +1,36 @@
 # WatchNext Developer Guide
 
 
-* [1. Introduction](#1-introduction)
-    + [1.a Purpose](#1a-purpose)
-    + [1.b Scope](#1b-scope)
-* [2. Setting up](#2-setting-up)
-    + [2.a Prerequisites](#2a-prerequisites)
-    + [2.b Setting up project](#2b-setting-up-the-project-in-your-computer)
-    + [2.c Verifying the setup](#2c-verifying-the-setup)
-    + [2.d Before Writing Code](#1)
-* [3. Design](#3-design)
-* [4. Implementation](#4-implementation)
-- [5. Documentation](#5-documentation)   
-- [6. Testing](#6-testing)   
-- [7. Dev Ops](#7-dev-ops)  
-- [Appendices](#user-stories)  
+- [WatchNext Developer Guide](#watchnext-developer-guide)
+  - [1. Introduction](#1-introduction)
+    - [1.a Purpose](#1a-purpose)
+    - [1.b Scope](#1b-scope)
+  - [2. Setting up](#2-setting-up)
+    - [2.a Prerequisites](#2a-prerequisites)
+    - [2.b Setting up the project in your computer](#2b-setting-up-the-project-in-your-computer)
+    - [2.c Verifying the setup](#2c-verifying-the-setup)
+    - [2.d Before Writing Code](#2d-before-writing-code)
+  - [3. Design](#3-design)
+  - [4. Implementation](#4-implementation)
+    - [Add Command](#add)
+    - [Edit Command](#edit)
+    + [Rating Command](#rating-command)
+    + [ChangeRating Command](#change-rating-command)
+    + [Delete Command](#delete-command)
+    + [DeleteRating Command](#deleterating-command)
+    + [UpdateTimeLimit Command](#updatetimelimit-command-feature)
+    + [Storage Implementation](#storage)
+  - [5. Documentation](#5-documentation)
+  - [6. Testing](#6-testing)
+  - [7. Dev Ops](#7-dev-ops)
+  - [Appendices](#appendices)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+  - [User Stories](#user-stories)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+
    
 ## 1. Introduction
 
@@ -87,28 +103,322 @@ This will generate all the resources required by the application and tests.
 
 ## 3. Design
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
-<br>The Ui and the Scanner components work together as event emitters. The <code>Ui</code> class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the <code>Ui</code> class guides the user with prompts to rectify the errors.<br>
-<br>Events will be passed onto the <code>InputParser</code> which serves as the dispatcher. The <code>InputParser</code> uses various string manipulation operations from the <code>StringOperations</code> class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The <code>InputParser</code> communicates the events to event consumers which are the command classes in this case. <br>
-<br>All available operations will be processed by the classes in the commands package. Every command class, like the <code>AddCommand</code> class, inherits from the <code>Command</code> class. Each individual command class is able to contain all the processing required for each command with the inputs passed in during the initiation of each command object. <br>
-<br>During runtime, the show related data is all stored in the <code>ShowList</code> class. The data is accessible and can be modified statically by all the command classes. The <code>ShowList</code> contains <code>Show</code> objects which describes the attributes of a show. 
-<br>Certain commands relating to the monitoring of the amount of time users spend watching shows depend on information from the <code>WatchTime</code> class. The class tracks the date and time remaining for the users to watch shows for the day. The time limit will be set by the user. <br>
-<br>On the initiation of WatchNext, the <code>Storage</code> object will be initiated and retrieves any user data that has been saved from previous runs. The data is stored in plain text and can be manually edited by advanced users. The data is stored in <code>data/showList.txt</code>. After the execution of every command, the <code>Storage</code> object calls upon the save command to automatically update the save data file. The commands relating to saving and loading data can be accessed from the <code>SaveState</code> interface.<br>
-<br>Throughout the lifespan of the program, various errors may occur. The <code>ErrorHandling</code> class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The <code>Ui</code> class informs the users of the errors detected and suggests actions for rectification. <br>
+<br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
+<br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
+<br>All available operations will be processed by the classes in the commands package. Every command class, like the `AddCommand` class, inherits from the `Command` class. Each individual command class is able to contain all the processing required for each command with the inputs passed in during the initiation of each command object. <br>
+<br>During runtime, the show related data is all stored in the `ShowList` class. The data is accessible and can be modified statically by all the command classes. The `ShowList` contains `Show` objects which describes the attributes of a show. 
+<br>Certain commands relating to the monitoring of the amount of time users spend watching shows depend on information from the `WatchTime` class. The class tracks the date and time remaining for the users to watch shows for the day. The time limit will be set by the user. <br>
+<br>On the initiation of WatchNext, the `Storage` object will be initiated and retrieves any user data that has been saved from previous runs. The data is stored in plain text and can be manually edited by advanced users. The data is stored in `data/showList.txt`. After the execution of every command, the `Storage` object calls upon the save command to automatically update the save data file. The commands relating to saving and loading data can be accessed from the `SaveState` interface.<br>
+<br>Throughout the lifespan of the program, various errors may occur. The `ErrorHandling` class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The `Ui` class informs the users of the errors detected and suggests actions for rectification. <br>
 
 ## 4. Implementation
+
+### Add
+
+The `add` command allows users to add a new show which they are watching to the `ShowList`. It is invoked by the 
+inputParser.
+
+Given below is an example of usage scenario of how the add command behaves at each step
+
+**Step 1**
+
+* The user types in `add friends 10,2 30` , adding the show to the list with it's title,number of seasons, number of 
+episdoes and duration of each episode
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised exceptions are thrown when the number of arguments entered by the user is mismatched
+
+
+**Step 2**
+
+* The AddCommand class calls the AddCommand method which then creates a new instance of the Show class.
+
+
+**Step 3**
+
+* After the AddCommand method is called,it does the following things:
+
+1.Splits the input from the user to 4 seperate parameters (Title,Number of seasons,Number of episodes,Duration)
+
+2.Creates a new Show instance with the 4 parameters
+
+3.Added the show into the show list
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+
+### Edit 
+
+The `edit` command allows the user to change the details of each show that they are waatching after they have added the
+show. It is self-contained, including its own parser and methods which allows the user to change any parameter they 
+wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
+
+
+### Rating Command
+ 
+The `rating` command was implemented in such a way where it takes in 2 parameters, the show to be rated and the desired
+rating for the show.
+
+After having retrieved the show from the show list, the rating command sets the rating of the show and then proceeds to
+update it back into the show list.
+
+Given below is an example of usage scenario of how the rating command behaves at each step
+
+**Step 1**
+
+* The user types in `rating friends 10` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised IndexOutOfBoundsException will be thrown if user enters a rating with value less than 0 or more than 10. 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of RatingCommand class is called and the command is returned to the main program. 
+The rateShow method in RatingCommand class is called.
+
+**Step 3**
+
+* After the rateShow method is called, it the following things:
+
+1.Retrieves the show to be rated from the show list
+
+2.Sets the rating for the show to the rating provided by the user 
+
+3.Updates the show back into the show list.
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+### Change Rating Command
+  
+The `changerating` command takes in 2 parameters, the show which rating is to be changed and the new rating to be
+updated to.
+
+The command changes the rating of a desired show
+
+Given below is an example usage scenario and how the ChangeRatingCommand Class behaves at each step.
+
+**Step 1**
+
+* The user types in `changerating friends 3` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised IndexOutOfBoundsException will be thrown if user enters a rating with value less than 0 or more than 10. 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of ChangeRatingCommand class is called and the command is returned to the main program. 
+The changeRating method in ChangeRatingCommand class is called.
+
+**Step 3**
+
+* After the changeRating method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Updates the new rating to the show
+
+3.Updates the show back into the show list.
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+### Delete Command
+  
+The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the show
+from the showlist
+
+Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
+
+**Step 1**
+
+* The user types in `delete friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of DeleteCommand class is called and the command is returned to the main program. 
+The delete method in DeleteCommand class is called.
+
+**Step 3**
+
+* After the delete method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Deletes the show from the show list
+
+3.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+### DeleteRating Command 
+
+The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
+proceeds to delete the rating of the show that was inputted by the user.
+
+Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
+
+**Step 1**
+
+* The user types in `deleterating friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of DeleteRatingCommand class is called and the command is returned to the main program. 
+The deleteRating method in DeleteRatingCommand class is called.
+
+**Step 3**
+
+* After the deleteRating method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Deletes the show's rating by setting the rating to -1 (essentially deleting it)
+
+3.Updates the show back into the show list
+
+4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+### Watch Command feature
+
+The WatchCommand class extends Command by providing methods to 
+increment the current episode in the persistent watch history of the user. It also updates the watch time limit as indicated previously by the user.
+
+Given below is an example usage scenario and how the WatchCommand class behaves at each step.
+
+**Step 1**
+
+* The user types in `watch friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** Customised IndexOutOfBoundsException and NullPointerException will be thrown if the user enters invalid commands.
+
+**Step 2**
+
+* A new instance of WatchCommand class is called and the command is returned to the main program. 
+The processCommand method in WatchCommand class is called.
+
+**Step 3**
+
+* The processCommand method in WatchCommand class is then called. This method does three main things:
+
+1.Check the status of user's watch progress: In middle of series , finished season and finished series.
+
+2.Increment current episode  and new season if applicable. No change is done if user has finished series. 
+
+3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
+
+### UpdateTimeLimit Command feature
+
+The UpdateTimeLimit class extends Command by providing methods to 
+update the current time limit of the user from the WatchTime class. 
+
+Given below is an example usage scenario and how the UpdateTimeLimit class behaves at each step.
+
+**Step 1**
+
+* The user types in `updatetimelimit 120`.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** Customised IndexOutOfBoundsException and NullPointerException will be thrown if the user enters invalid commands.
+
+**Step 2**
+
+* A new instance of UpdateTimeLimit class is called and the command is returned to the main program. 
+The processCommand method in UpdateTimeLimit class is called.
+
+**Step 3**
+
+* The processCommand method in UpdateTimeLimit class will call the WatchTIme class and update its `dailywatchtime` variable
+to the desired value, which is 120 in this case.
+
+* The change will then be reflected to the user, and be saved to the userData.txt file.
+
+### Storage  
+
+For the storage function, the file which named userData will be put in a specific file path with a fixed format.  
+
+The saveState function will save the watch time detail at the beginning and then follow by the show list. Everytime a command is executed by users, the file will be rewrite to update new contain. If the file or the folder does not exist in the specific path, the app will create it automatically.  
+
+The loadState function will read the file line by line. It will first call the loadWatchTimeDetail function to read the watch time detail, which is always the first three lines of the file, and then return a WatchTime instance.
+
+The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
+
+
 ## 5. Documentation
+
+This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
+
+
 ## 6. Testing
+
+
+We have written J-Unit test for the main functionalities for the program, such as `command` classes. The test can be found under `/src/test`.
+
+When using gradle to build the project, these tests are run automatically and will catch any runtime errors. If you have added new functionality, please remember to add a J-Unit test for the new functionality.
+
+
+Two main forms of testing was used for the development of **WatchNext**. 
+
+1. Text-ui-test
+    1. This seeks to test the general flow of the program and simulates the "expected" or "smooth" lifespan of the program.
+    2. This is useful to ensure that the changes to one class does not inadvertently affect the operation of another. Any changes to the operation of another class will show through this test and can be rectified by the developer.
+    3. Text-ui-test is also a good final litmus test on the smooth running of the program before it is released to production. 
+    
+2. J-unit
+    1. The test mainly focuses on the correctness of each individual class.
+    2. This tests the functions within each class and ensures that it behaves as expected by testing the output of each function against what is expected.
+    3. The benefits include ensuring that the coupling between the classes do not cause any unexpected behaviour when another class has been modified.
+    4. The errors thrown from the J-unit tests allow the developer to zoom in on the classes which are not showing the expected behaviour to quickly and effectively rectify the bugs.
+
+
 ## 7. Dev Ops
+
+When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
+
 ##  Appendices
 
 
 ### Target user profile
 
-{Describe the target user profile}
+**WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
+the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
+to limit your weekly show progress to help manage your time.
+
+**WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+There exists many options for streaming all sorts of video content from the giant media service provider company netflix, to other platforms that lean
+towards user sourced content.<br><br> This poses a new challenge to any tech-savvy person who wants to make sure they do not miss a single episode of their 
+favourite show. Netflix and other established streaming platforms are able to keep track of the user's progress, but should be the user use more than one
+streaming platform, there is no avenue of communication between the streaming platforms to synchronise this data.<br><br> **WatchNext** seeks to fill in this gap 
+by providing users with a single streamlined platform to keep track of the episodes of all their favourite shows. They do not need to worry about re-watching
+or missing episodes with the help of **WatchNext's** show progress tracking features. <br>
+<br>**WatchNext** also helps users track the total time they spend watching shows across all platforms. This provides users with an encompassing view of the
+actual time they spend watching shows and is a feature that is not provided by most other platforms.
+
 
 ## User Stories
 
