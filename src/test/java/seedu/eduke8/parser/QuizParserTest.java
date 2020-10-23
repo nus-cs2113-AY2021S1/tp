@@ -2,6 +2,7 @@ package seedu.eduke8.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
@@ -23,9 +24,10 @@ public class QuizParserTest extends Eduke8Test {
 
     @Test
     public void quizParser_wrongStringInput_expectIncorrectCommandReturn() {
+        BookmarkList bookmarks = new BookmarkList();
         ArrayList<Displayable> optionsArrayList = new ArrayList<>();
         OptionList optionList = new OptionList(optionsArrayList);
-        QuizParser quizParser = new QuizParser();
+        QuizParser quizParser = new QuizParser(bookmarks);
 
         Command badCommand = quizParser.parseCommand(optionList, "one");
         assertTrue(badCommand instanceof IncorrectCommand);
@@ -36,6 +38,7 @@ public class QuizParserTest extends Eduke8Test {
 
     @Test
     public void quizParser_correctStringInput_success() {
+        BookmarkList bookmarks = new BookmarkList();
         Hint hint = new Hint("description");
         Option option = new Option("1");
         ArrayList<Displayable> optionsArrayList = new ArrayList<>(
@@ -43,7 +46,7 @@ public class QuizParserTest extends Eduke8Test {
         );
         OptionList optionList = new OptionList(optionsArrayList);
         Explanation explanation = new Explanation("explanation");
-        QuizParser quizParser = new QuizParser();
+        QuizParser quizParser = new QuizParser(bookmarks);
         Question question = new Question("description", optionList, hint, explanation);
 
         quizParser.setQuestion(question);

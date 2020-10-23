@@ -1,6 +1,7 @@
 package seedu.eduke8;
 
 import org.json.simple.parser.ParseException;
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.parser.MenuParser;
@@ -9,6 +10,7 @@ import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,6 +26,7 @@ public class Eduke8 {
     private static final String LOG_PATH = "data/logs/" + DATE_TIME_NOW.format(DATE_TIME_FORMATTER) + ".log";
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    public BookmarkList bookmarks = new BookmarkList();
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;
     private LogStorage logStorage;
@@ -31,7 +34,7 @@ public class Eduke8 {
     private Ui ui;
 
     private Eduke8(String dataPath, String logPath) {
-        menuParser = new MenuParser();
+        menuParser = new MenuParser(bookmarks);
         topicsStorage = new TopicsStorage(dataPath);
         logStorage = new LogStorage(logPath);
         ui = new Ui();
