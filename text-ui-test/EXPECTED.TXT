@@ -1,49 +1,86 @@
-Hello welcome to AniChan
-                 _  _____ _                 
-     /\         (_)/ ____| |                
-    /  \   _ __  _| |    | |__   __ _ _ __  
-   / /\ \ | '_ \| | |    | '_ \ / _` | '_ \ 
-  / ____ \| | | | | |____| | | | (_| | | | |
- /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
-                                            
-                                            
-Before we start, let me learn more about you!
+Welcome to AniChan!
+                  _  _____ _
+      /\         (_)/ ____| |
+     /  \   _ __  _| |    | |__   __ _ _ __
+    / /\ \ | '_ \| | |    | '_ \ / _` | '_ \
+   / ____ \| | | | | |____| | | | (_| | | | |
+  /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
+
+-------------------------------------------------------------
+User: File does not exist.
+-------------------------------------------------------------
 What's your name?
-Hello James Gosling! What might your date of birth be?
-What might your gender be? (Male/Female/Others)
-Name= James Gosling, birthdate= 01/02/1999, gender= Male
-===Running Sample Anime Class===
-Release Date in String: 30/Dec/2020
-===End of Sample Anime Class===
-===Running Anime Data Print check===
-===End of Anime Data Print check===
-Anime-2020
-Uhh.. It's empty.. :(
+Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
 
-===Running Sample Anime List Class===
----------------------------------
-Index: 1
-Name: Adventures of Adventurers
-Episodes: 24
-Release Date:30/Dec/2020
-Rating: 65
-Genre: [Science, Action, Dance]
----------------------------------
-Index: 2
-Name: Actions in Action
-Episodes: 13
-Release Date:15/Apr/1997
-Rating: 80
-Genre: [Adventure, Action, Dance]
-===End of Sample Anime List Class===
-What would you like to do today?
-1. Add a profile (addprofile)
-2. Edit a profile (editprofile)
-3. Browse through all anime (browse)
-4. Create a watchlist (watchlist)
-5. Add to watchlist (add)
-6. Bookmark an anime (bookmark)
-7. Help (help)
-8. Exit (exit)
+Default (Default) #> OOPS!!! Parameter : -n requires an additional field
 
-Sayonara!
+Default (Default) #> OOPS!!! Invalid parameters detected!
+
+Default (Default) #> OOPS!!! No parameter provided
+
+Default (Default) #> Successfully added new workspace: Crunchy Cinnamon
+
+Default (Default) #> Successfully added new workspace: CrispyDonut
+
+Default (Default) #> Successfully added new workspace: RED VELVET Crumblesss
+
+Default (Default) #> Watchlist "a" has been created successfully!
+
+Default (Default) #> Watchlist "b" has been created successfully!
+
+Default (Default) #> Watchlist "ops" has been created successfully!
+
+Default (Default) #> "ops" is now your active watchlist!
+
+Default (ops) #> Watchlist "ops" has been deleted successfully!
+Changed active watchlist to: "Default".
+
+Default (Default) #> Currently, you have 3 watchlist(s):
+	1. Default
+	2. a
+	3. b
+
+Default (Default) #> Cowboy Bebop added to watchlist!
+
+Default (Default) #> Trigun added to watchlist!
+
+Default (Default) #> Saving 1. Cowboy Bebop to bookmark.
+
+Default (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
+
+Default (Default) #> Editing Cowboy Bebop to have 5 episode
+
+Default (Default) #> Listing all anime in bookmark:
+	1. Cowboy Bebop Ep: 5
+	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
+
+
+Default (Default) #> OOPS!!! Anime is already in this watchlist!
+
+Default (Default) #> [ID:1] Cowboy Bebop
+[ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
+
+
+Default (Default) #> 1. Cowboy Bebop [Id: 1]
+2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door [Id: 2]
+3. Trigun [Id: 3]
+4. Witch Hunter Robin [Id: 4]
+5. Beet the Vandel Buster [Id: 5]
+6. Eyeshield 21 [Id: 6]
+7. Honey and Clover [Id: 7]
+8. Hungry Heart: Wild Striker [Id: 8]
+9. Initial D Fourth Stage [Id: 9]
+10. Monster [Id: 10]
+11. Naruto [Id: 11]
+12. One Piece [Id: 12]
+13. The Prince of Tennis [Id: 13]
+14. Ring ni Kakero 1 [Id: 14]
+15. School Rumble [Id: 15]
+16. Desert Punk [Id: 16]
+17. Texhnolyze [Id: 17]
+18. Trinity Blood [Id: 18]
+19. Yakitate!! Japan [Id: 19]
+20. Zipang [Id: 20]
+Browsing Page: 1
+
+Default (Default) #> Sayonara Abec Steiner 33rd-chan!
