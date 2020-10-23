@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Timetable {
     private List<Module> modules;
-    public ArrayList<String> moduleList = new ArrayList<>();
-
 
     public Timetable() {
         modules = new ArrayList<>();

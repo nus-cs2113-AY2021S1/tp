@@ -113,12 +113,9 @@ public class Ui {
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        clearScreen();
         System.out.println(LINE);
 
-        System.out.println("\u001b[34;1mHELLO FROM:");
-        System.out.println("\u001b[0m");
-
+        System.out.println("\t\t\t\t  ++++{  WELCOME TO  }++++");
         System.out.println(ansi().bg(WHITE));
         System.out.println(ansi().fg(CYAN).a(logo2).reset());
 
