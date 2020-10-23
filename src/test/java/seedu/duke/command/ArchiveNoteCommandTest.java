@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArchiveNoteCommandTest {
-    final int MAX_ROW_LENGTH = 100;
+    int maxRowLength = 100;
 
     Notebook notebook;
     ArrayList<String> content;
@@ -56,9 +56,9 @@ class ArchiveNoteCommandTest {
         int index = 1;
         String title = NotebookStub.getArchiveNoteTitle(index);
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(title)
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, index - 1);
 
@@ -70,9 +70,9 @@ class ArchiveNoteCommandTest {
         int index = 50;
         String title = NotebookStub.getArchiveNoteTitle(index);
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(title)
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, index - 1);
 
@@ -83,9 +83,9 @@ class ArchiveNoteCommandTest {
     void execute_validTitle_returnsArchiveMessage() {
         String title = "random text";
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(NotebookStub.getArchiveNoteTitle(title))
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, title);
 
@@ -96,9 +96,9 @@ class ArchiveNoteCommandTest {
     void execute_invalidTitle_returnsNoNotes() {
         String title = "rando";
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(NotebookStub.getArchiveNoteTitle(title))
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, title);
 

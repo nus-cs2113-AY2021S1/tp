@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UnarchiveNoteCommandTest {
-    final int MAX_ROW_LENGTH = 100;
-    final int INDEX = 1;
+    int maxRowLength = 100;
+    int index = 1;
 
     Notebook notebook;
     ArrayList<String> content;
@@ -51,7 +51,7 @@ class UnarchiveNoteCommandTest {
         notebook.addNote(testNote3);
         notebook.addNote(testNote4);
 
-        notebook.archiveNotes(INDEX - 1);
+        notebook.archiveNotes(index - 1);
         notebook.archiveNotes("random text");
     }
 
@@ -60,9 +60,9 @@ class UnarchiveNoteCommandTest {
         int index = 1;
         String title = NotebookStub.getUnarchiveNoteTitle(index);
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(title, true)
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, index - 1);
 
@@ -74,9 +74,9 @@ class UnarchiveNoteCommandTest {
         int index = 50;
         String title = NotebookStub.getUnarchiveNoteTitle(index);
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(title)
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, index - 1);
 
@@ -87,9 +87,9 @@ class UnarchiveNoteCommandTest {
     void execute_validTitle_returnsUnarchiveMessage() {
         String title = "random text";
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(NotebookStub.getUnarchiveNoteTitle(title), true)
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, title);
 
@@ -100,9 +100,9 @@ class UnarchiveNoteCommandTest {
     void execute_invalidTitle_returnsNoNotes() {
         String title = "rando";
 
-        String expected = "=".repeat(MAX_ROW_LENGTH)
+        String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(NotebookStub.getUnarchiveNoteTitle(title))
-                + "=".repeat(MAX_ROW_LENGTH)
+                + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, title);
 
