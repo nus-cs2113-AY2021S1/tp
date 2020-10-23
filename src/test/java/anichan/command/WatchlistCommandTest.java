@@ -81,9 +81,9 @@ class WatchlistCommandTest {
         assertEquals(4, activeWorkspace.getWatchlistList().size());
 
         // List all watchlist (check not equal to empty watchlist list message)
-        WatchlistCommand listAllWatchlist = new WatchlistCommand("l", "", 0);
+        WatchlistCommand listWatchlistList = new WatchlistCommand("l", "", 0);
         String emptyListMessage = "Uhh.. You have no watchlist to list..";
-        assertNotEquals(emptyListMessage, listAllWatchlist.execute(animeData, storageManager, user));
+        assertNotEquals(emptyListMessage, listWatchlistList.execute(animeData, storageManager, user));
 
         // Select 3rd watchlist (index 2 in the watchlistList arraylist)
         WatchlistCommand selectWatchlist = new WatchlistCommand("s", "", 3);
