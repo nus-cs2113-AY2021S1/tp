@@ -5,7 +5,7 @@ before_install:
   - chmod +x gradlew
 
 script: >-
-  ./gradlew clean checkstyleMain checkstyleTest coveralls test
+  ./gradlew clean checkstyleMain checkstyleTest test
 
 cache:
   directories:
