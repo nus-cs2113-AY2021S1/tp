@@ -123,7 +123,8 @@ public class Storage<T> {
         fw.close();
     }
 
-
+    // Solution below adapted from AY2021S1-CS2113T-T09-2
+    // https://github.com/AY2021S1-CS2113T-T09-2/tp/../data/storage/Decoder.java
     private ArrayList<String> nusModuleListFromNusMods() throws DukeException {
 
         try {
@@ -144,7 +145,7 @@ public class Storage<T> {
             while (sc.hasNext()) { // if line is empty, means finish reading
                 jsonAsString += sc.nextLine();
             }
-            //System.out.print(buffer.toString());
+
             JSONParser parse = new JSONParser();
             JSONArray moduleArray = (JSONArray) parse.parse(jsonAsString);
             ArrayList<String> moduleList = new ArrayList<>();
