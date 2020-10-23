@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.ClearCommand;
+import seedu.duke.command.LaunchNowCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
@@ -44,6 +45,8 @@ public class Parser {
 
         if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
             command = new ExitCommand();
+        } else if (input.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
+            command = new LaunchNowCommand();
         } else if (input.startsWith(ChangeModeCommand.MODE_KW)) {
             command = new ChangeModeCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
