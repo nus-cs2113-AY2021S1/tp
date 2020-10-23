@@ -36,7 +36,7 @@ public class UnarchiveNoteCommand extends Command {
     /**
      * Constructs a UnarchiveNoteCommand to un-archive a Note.
      *
-     * @param title of the item to be deleted.
+     * @param title of the item to be un-archived.
      */
     public UnarchiveNoteCommand(String title) {
         this.title = title;
@@ -50,6 +50,7 @@ public class UnarchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.unarchiveNotes(index);
             } else {
+                // unarchiveNotes(title) returns a boolean, false if no such title exists
                 if (!notebook.unarchiveNotes(title)) {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }

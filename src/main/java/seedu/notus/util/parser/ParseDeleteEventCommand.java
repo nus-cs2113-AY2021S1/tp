@@ -18,6 +18,7 @@ public class ParseDeleteEventCommand extends Parser {
 
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
+     *
      * @return Returns a DeleteEventCommand to be executed by Duke.
      * @throws SystemException When the index is not numeric (e.g. index = 1%s).
      */

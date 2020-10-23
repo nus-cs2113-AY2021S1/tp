@@ -26,9 +26,10 @@ public class ParseArchiveOrUnarchiveNoteCommand extends Parser {
     }
 
     /**
-     * Prepare userInput into a int before archiving.
+     * Prepares userInput before archiving.
+     * User can archive or unarchive either via integer value of index or String value of title.
      *
-     * @return Result of the archived note command.
+     * @return Returns an ArchiveNoteCommand or UnarchiveNoteCommand to be executed by NotUS.
      * @throws SystemException if an error occurs.
      */
     @Override

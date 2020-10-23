@@ -22,7 +22,7 @@ public class ParseFindCommand extends Parser {
     /**
      * Ensures that the user does not leave input blank after entering the find command word.
      *
-     * @return new FindCommand Command.
+     * @return Returns a FindCommand to be executed by NotUS.
      * @throws SystemException for missing keyword.
      */
     @Override

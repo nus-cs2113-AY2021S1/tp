@@ -21,9 +21,9 @@ public class ParseDeleteNoteCommand extends Parser {
     }
 
     /**
-     * Prepare userInput into a int before deletion.
+     * Parses the into an int or string for DeleteNoteCommand.
      *
-     * @return Result of the delete note command.
+     * @return Returns a DeleteNoteCommand to be executed by NotUS.
      * @throws SystemException if an error occurs.
      */
     @Override

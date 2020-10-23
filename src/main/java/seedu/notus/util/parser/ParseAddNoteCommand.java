@@ -24,9 +24,9 @@ public class ParseAddNoteCommand extends Parser {
     }
 
     /**
-     * Parse userInput into Note before adding into Notebook.
+     * Parses userInput into Note before adding into Notebook.
      *
-     * @return Result of the add note command.
+     * @return Returns an AddNoteCommand to be executed by NotUS.
      * @throws SystemException if an error occurs.
      */
     @Override

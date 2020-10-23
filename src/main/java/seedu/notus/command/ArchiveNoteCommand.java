@@ -1,12 +1,13 @@
 package seedu.notus.command;
 
+//@@author R-Ramana
+
 import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
-//@@author R-Ramana
 /**
  * Archives a Note from the Notebook.
  */
@@ -36,7 +37,7 @@ public class ArchiveNoteCommand extends Command {
     /**
      * Constructs a ArchiveNoteCommand to archive a Note.
      *
-     * @param title of the item to be deleted.
+     * @param title of the item to be archived.
      */
     public ArchiveNoteCommand(String title) {
         this.title = title;
@@ -50,6 +51,7 @@ public class ArchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.archiveNotes(index);
             } else {
+                // archiveNotes(title) returns a boolean, false if no such title exists
                 if (!notebook.archiveNotes(title)) {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }

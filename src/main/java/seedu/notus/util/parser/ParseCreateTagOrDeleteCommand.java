@@ -25,9 +25,9 @@ public class ParseCreateTagOrDeleteCommand extends Parser {
     }
 
     /**
-     * Returns a CreateTagCommand or a DeleteTagCommand based on the user message.
+     * Parses the userMessage to an arrayList of tags that is to be created or deleted.
      *
-     * @return either a new CreateTagCommand or DeleteTagCommand.
+     * @return Returns a CreateTagCommand or DeleteTagCommand to be executed by NotUS.
      * @throws SystemException for missing tag prefix or tag name.
      */
     @Override

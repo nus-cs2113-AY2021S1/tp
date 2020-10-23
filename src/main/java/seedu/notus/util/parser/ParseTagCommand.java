@@ -26,9 +26,9 @@ public class ParseTagCommand extends Parser {
     }
 
     /**
-     * Returns a TagCommand to tag a note.
+     * Parses the userMessage into an arrayList of tags that is be tagged or untagged from the object.
      *
-     * @return a new TagCommand.
+     * @return Returns a TagCommand to be executed by NotUS.
      * @throws SystemException for invalid index input, missing tag prefix or tag name.
      */
     @Override

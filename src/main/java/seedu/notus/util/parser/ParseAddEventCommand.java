@@ -43,7 +43,7 @@ public class ParseAddEventCommand extends Parser {
      * Takes the format "add-e /t {Title} /timing {YYYY-MM-DD HH:MM} [/rem [How much earlier to remind]]
      * [/rec {How often to re-occur}] [/stop {YYYY-MM-DD HH:MM}]
      *
-     * @return Returns an AddEventCommand to be executed by Duke.
+     * @return Returns an AddEventCommand to be executed by NotUS.
      * @throws SystemException Information provided by the tags are blank, wrong or do not have a default value.
      */
     @Override

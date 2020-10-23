@@ -31,7 +31,7 @@ public class ParseListNoteCommand extends Parser {
      * tags and up/down are optional parameters for users to input
      * up/down is to sort the list alphabetically either A-Z or Z-A
      *
-     * @return new ListNoteCommand Command.
+     * @return Returns a ListNoteCommand to be executed by NotUS.
      */
     @Override
     public Command parse() throws SystemException {
