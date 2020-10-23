@@ -18,7 +18,7 @@ public class FavList {
     public static void listFav() {
     }
 
-    public static ArrayList<Fav> getList(){
+    public static ArrayList<Fav> getList() {
         return favList;
     }
 }
