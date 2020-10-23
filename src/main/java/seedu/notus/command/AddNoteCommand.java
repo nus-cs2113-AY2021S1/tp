@@ -8,6 +8,8 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
+import java.util.ArrayList;
+
 
 /**
  * Adds a Note into the Notebook.
@@ -38,7 +40,7 @@ public class AddNoteCommand extends Command {
 
     @Override
     public String execute() {
-        String content = note.getContent();
+        ArrayList<String> content = note.getContent();
 
         // Search for duplicates
         if (notebook.getNote(note.getTitle())) {
@@ -46,7 +48,7 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
-        if (content.isBlank()) {
+        if (content.isEmpty()) {
             content = inputContent();
         }
 

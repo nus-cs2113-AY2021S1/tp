@@ -47,6 +47,6 @@ public class AddEventCommand extends Command {
     @Override
     public String execute() {
         timetable.addEvent(event);
-        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS + Formatter.LS + event.toString();
+        return Formatter.formatEventString(COMMAND_SUCCESSFUL_MESSAGE, event);
     }
 }
