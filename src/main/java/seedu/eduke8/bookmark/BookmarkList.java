@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 public class BookmarkList implements DisplayableList {
 
-    private ArrayList<Displayable> bookmarks = new ArrayList<>();
+    private ArrayList<Displayable> bookmarks;
+
+    public BookmarkList(ArrayList<Displayable> bookmarks) {
+        this.bookmarks = bookmarks;
+    }
 
     @Override
     public ArrayList<Displayable> getInnerList() {

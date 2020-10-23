@@ -28,7 +28,7 @@ public class TopicsStorage extends LocalStorage {
     private static final String KEY_EXPLANATION = "explanation";
     private static final String KEY_CORRECT_OPTION = "correct";
 
-    public TopicsStorage(String filePath) {
+    public TopicsStorage(String filePath) throws IOException {
         super(filePath);
     }
 

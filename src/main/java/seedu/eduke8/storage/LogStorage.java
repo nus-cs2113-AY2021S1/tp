@@ -1,19 +1,11 @@
 package seedu.eduke8.storage;
 
-import org.json.simple.parser.ParseException;
-import seedu.eduke8.common.Displayable;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 public class LogStorage extends LocalStorage {
-    public LogStorage(String filePath) {
+    public LogStorage(String filePath) throws IOException {
         super(filePath);
     }
 
@@ -29,20 +21,13 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(ch);
 
         // Log all to the file
-        File logFile = super.save();
-
-        FileHandler fh = new FileHandler(logFile.getAbsolutePath());
+        FileHandler fh = new FileHandler(file.getAbsolutePath());
         fh.setFormatter(new SimpleFormatter());
         fh.setLevel(Level.ALL);
         LOGGER.addHandler(fh);
 
         LOGGER.log(Level.INFO, "Logging to file started");
 
-        return logFile;
-    }
-
-    @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException {
-        return null;
+        return file;
     }
 }
