@@ -1,19 +1,20 @@
 package seedu.duke.model.project;
 
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class ProjectManager {
-    public ArrayList<Project> projectList;
+    public Hashtable<Integer, Project> projectList;
     public int selectedProject;
 
     public ProjectManager() {
-        this.projectList = new ArrayList<>(10);
-        this.selectedProject = 1;
+        this.projectList = new Hashtable<>();
+        this.selectedProject = -1;
     }
 
-    public void addProject(Project project) {
-        projectList.add(project);
-        selectedProject = projectList.size();
+    public void addProject(String title, String description, int projectDuration, int sprintLength) {
+        int newProjectID = this.size() + 1;
+        this.projectList.put(newProjectID, new Project(newProjectID, title, description, projectDuration, sprintLength));
+        this.selectedProject = newProjectID;
     }
 
     public void selectProject(int index) {
@@ -28,7 +29,11 @@ public class ProjectManager {
         return projectList.isEmpty();
     }
 
-    public Project getProject() {
-        return projectList.get(selectedProject - 1);
+    public Project getSelectedProject() {
+        return projectList.get(selectedProject);
+    }
+
+    public Project getProject(int index) {
+        return projectList.get(index);
     }
 }

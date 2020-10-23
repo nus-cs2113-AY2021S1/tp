@@ -6,9 +6,15 @@ import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.model.member.Member;
+import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
+import seedu.duke.model.sprint.Sprint;
+import seedu.duke.ui.Ui;
 
+import java.time.LocalDate;
 import java.util.Hashtable;
+import java.util.logging.Level;
 
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.ADDTASK;
@@ -22,12 +28,21 @@ public class SprintParser implements ExceptionsParser {
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                 ProjectManager projectListManager)
             throws DukeException {
+
+        if (!checkProjExist(projectListManager)) {
+            throw new DukeException("Please create a project first.");
+        }
+
         switch (action.toLowerCase()) {
         case CREATE:
-            new CreateSprintCommand(parameters, projectListManager).execute();
+            if (checkCreateSprintParams(parameters, projectListManager)) {
+                new CreateSprintCommand(parameters, projectListManager).execute();
+            }
             break;
         case ADDTASK:
-            new AddSprintTaskCommand(parameters, projectListManager).execute();
+            if (checkAddTaskParams(parameters, projectListManager)) {
+                new AddSprintTaskCommand(parameters, projectListManager).execute();
+            }
             break;
         case REMOVETASK:
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
@@ -37,13 +52,200 @@ public class SprintParser implements ExceptionsParser {
             }
             break;
         case VIEW:
-            new ViewSprintCommand(parameters, projectListManager).execute();
+            if (checkViewSprintParams(parameters, projectListManager)) {
+                new ViewSprintCommand(parameters, projectListManager).execute();
+            }
             break;
         case ASSIGN:
             new AllocateSprintTaskCommand(parameters, projectListManager).execute();
             break;
         default:
             throw new DukeException("Invalid action!");
+        }
+    }
+
+    /**
+     * Check if Project Manager contain any project
+     * @return True if ProjectManager.size > 0
+     */
+    private boolean checkProjExist(ProjectManager projectList){
+        return projectList.size() != 0;
+    }
+
+    /**
+     * Validate parameters for CreateSprintCommand
+     */
+    private boolean checkCreateSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+        /**
+         * Mandatory fields
+         * - goal
+         */
+        if (!parameters.containsKey("goal")) {
+            throw new DukeException("Please indicate your goal for this sprint.");
+        }
+
+        /**
+         * Optional fields
+         * - project
+         * - start
+         */
+        checkProjectParam(parameters, projectManager);
+        if (parameters.containsKey("start")) {
+            try {
+                DateTimeParser.parseDate(parameters.get("start"));
+            } catch (DukeException e) {
+                throw new DukeException("Please indicate your start date in this following format: YYYYMMDD");
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Validate parameters for AddSprintTaskCommand
+     */
+    private boolean checkAddTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+        /**
+         * Optional fields
+         * - project
+         * - sprint
+         *
+         * Mandatory fields
+         * - task (with or without tag)
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        Sprint selectedSprint = new Sprint();
+
+        if (parameters.containsKey("task")) {
+            selectedSprint = checkSprintParam(parameters, selectedProject);
+
+        } else if (parameters.containsKey("0")) {
+            selectedProject.getSprintList().updateCurrentSprint();
+            selectedSprint = selectedProject.getSprintList().getCurrentSprint();
+        }
+        checkTaskParam(parameters, selectedProject, selectedSprint);
+        return true;
+    }
+
+    /**
+     * Validate parameters for ViewSprintCommand
+     */
+    private boolean checkViewSprintParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+        /**
+         * Optional fields with tags
+         * - project
+         * - sprint
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        checkSprintParam(parameters, selectedProject);
+        return true;
+    }
+
+    /**
+     * Validate the "project" params
+     * Checks:
+     * - parsable into an Integer
+     * - Exist in Project Manager
+     * - Contains sprints in selected Project (Also check when project is not specified)
+     */
+    private Project checkProjectParam(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+        int selectedProg;
+        if (parameters.containsKey("project")) {
+            try {
+                selectedProg = Integer.parseInt(parameters.get("project"));
+            } catch (NumberFormatException error) {
+                throw new DukeException("Please include a positive integer for Project ID.");
+            }
+            if (selectedProg > projectManager.size()) {
+                throw new DukeException("Project not found.");
+            }
+        } else {
+            selectedProg = projectManager.selectedProject;
+        }
+        return projectManager.getProject(selectedProg);
+    }
+
+    /**
+     * Validate the "sprint" params
+     * Checks:
+     * - parsable into an Integer
+     * - Exist in Sprint Manager
+     *
+     * Check if there is ongoing spring if "sprint" params is not specified
+     */
+    private Sprint checkSprintParam(Hashtable<String, String> parameters, Project proj) throws DukeException {
+        if (proj.getSprintList().size() == 0) {
+            throw new DukeException("Please create a sprint for Project " + proj.getProjectID() + " first.");
+        }
+
+        int selectedSprint;
+        //Specified with tag
+        if (parameters.containsKey("sprint")) {
+            try {
+                selectedSprint = Integer.parseInt(parameters.get("sprint"));
+            } catch (NumberFormatException error) {
+                throw new DukeException("Please include a positive integer for Sprint ID.");
+            }
+            if (selectedSprint > proj.getSprintList().size()) {
+                throw new DukeException("Sprint not found.");
+            }
+        //Specified without tag
+        } else if (parameters.containsKey("0")) {
+            try {
+                selectedSprint = Integer.parseInt(parameters.get("0"));
+            } catch (NumberFormatException error) {
+                throw new DukeException("Please include a positive integer for Sprint ID.");
+            }
+            if (selectedSprint > proj.getSprintList().size()) {
+                throw new DukeException("Sprint not found.");
+            }
+        //Not Specified: Check if there is ongoing sprint
+        } else{
+            if (proj.getSprintList().updateCurrentSprint()) {
+                selectedSprint = proj.getSprintList().getCurrentSprintIndex();
+            } else {
+                throw new DukeException("No ongoing sprint. Maybe you can specify using -sprint tag");
+            }
+        }
+        return proj.getSprintList().getSprint(selectedSprint);
+    }
+
+    /**
+     * Check if the "task" params is specified and validate the params
+     * Checks:
+     * - parsable into an Integer
+     * - Exist in backlog (Task Manager)
+     */
+    private void checkTaskParam(Hashtable<String, String> parameters, Project proj, Sprint sprint) throws DukeException {
+        if (parameters.containsKey("task")) {
+            checkTaskParamTag(parameters, "task", proj, sprint);
+        } else if (parameters.containsKey("0")) {
+            checkTaskParamTag(parameters, "0", proj, sprint);
+        } else {
+            throw new DukeException("Please indicate task(s) to be allocated.");
+        }
+    }
+    private void checkTaskParamTag(Hashtable<String, String> parameters, String tag, Project proj, Sprint sprint)
+            throws DukeException {
+        String[] taskIds;
+        if (tag.equals("task")) {
+            taskIds = parameters.get(tag).split(" ");
+        } else {
+            taskIds = parameters.values().toArray(new String[0]);
+        }
+        for (String id : taskIds) {
+            int taskId;
+            try {
+                taskId = Integer.parseInt(id);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Please include positive integer for task IDs.");
+            }
+            if (!proj.getBacklog().checkTaskExist(taskId)) {
+                throw new DukeException("Task(s) not found.");
+            }
+            if (sprint.checkTaskExist(taskId)) {
+                throw new DukeException("Task(s) already exist");
+            }
+
         }
     }
 }

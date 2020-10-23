@@ -15,9 +15,8 @@ public class RemoveSprintTaskCommand extends SprintCommand {
     private ProjectManager projectManager;
     private Project proj;
 
-    public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
-        super(parameters);
-        this.projectManager = projectListManager;
+    public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
+        super(parameters, projectList);
     }
 
     public void execute() {
@@ -26,7 +25,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             Ui.showError("Please create a project first.");
             return;
         }
-        proj = projectManager.getProject();
+        proj = projectManager.getSelectedProject();
         allSprint = proj.getSprintList();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

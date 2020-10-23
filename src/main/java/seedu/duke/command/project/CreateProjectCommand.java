@@ -35,9 +35,9 @@ public class CreateProjectCommand extends ProjectCommand {
         int sd;
         sd = Integer.parseInt(parameters.get(SPRINT_DURATION).trim());
 
-        Project proj = new Project(title, description, duration, sd);
+        projectManager.addProject(title, description, duration, sd);
         Ui.showToUserLn("Project successfully created.");
-        projectManager.addProject(proj);
-        Ui.showToUserLn(proj.toString());
+        Project addProj = projectManager.getSelectedProject();
+        Ui.showToUserLn(addProj.toString());
     }
 }

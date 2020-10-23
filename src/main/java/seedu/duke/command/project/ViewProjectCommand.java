@@ -21,7 +21,7 @@ public class ViewProjectCommand extends ProjectCommand {
         if (projectManager.isEmpty()) {
             Ui.showError("No projects are created.");
         } else {
-            Project project = projectManager.getProject();
+            Project project = projectManager.getSelectedProject();
             assert project != null : "The project is null";
             Ui.showToUserLn(project.toString());
 

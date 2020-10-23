@@ -16,7 +16,7 @@ public class MemberParser implements ExceptionsParser {
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                 ProjectManager projectListManager)
             throws DukeException {
-        if (parameters.get("0").isBlank()) {
+        if (!parameters.containsKey("0")) {
             throw new DukeException("missing name");
         }
         if (projectListManager.isEmpty()) {

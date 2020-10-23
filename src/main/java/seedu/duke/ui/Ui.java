@@ -29,7 +29,7 @@ public class Ui {
         while (input.isEmpty()) {
             input = in.nextLine().trim();
         }
-        return input;
+        return input.strip();
     }
 
     /**

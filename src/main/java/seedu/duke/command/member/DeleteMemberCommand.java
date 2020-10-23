@@ -16,7 +16,7 @@ public class DeleteMemberCommand extends MemberCommand {
 
     public void execute() {
         Project proj;
-        proj = projectManager.getProject();
+        proj = projectManager.getSelectedProject();
         for (int i = 0; i < parameters.size(); i++) {
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
                 proj.getProjectMember().removeMember(new Member(parameters.get(Integer.toString(i))));

@@ -30,7 +30,7 @@ public class TaskCommand {
         priority = tasks.get(PRIORITY);
 
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             if (!proj.getProjectBacklog().checkValidPriority(priority)) {
                 throw new DukeException("Invalid priority");
             }
@@ -47,7 +47,7 @@ public class TaskCommand {
 
     public void deleteTaskCommand(Hashtable<String,String> taskIdString, ProjectManager projectListManager) {
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             if (taskIdString.isEmpty()) {
                 Ui.showError("Missing parameters.");
             }
@@ -81,7 +81,7 @@ public class TaskCommand {
     public void viewTaskCommand(Hashtable<String, String> taskId, ProjectManager projectListManager) {
 
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             if (taskId.isEmpty()) {
                 Ui.showError("Missing parameters.");
             }
@@ -117,7 +117,7 @@ public class TaskCommand {
         priority = tasks.get(PRIORITY).trim();
 
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             try {
                 task = proj.getProjectBacklog().getTask(id);
                 if (!proj.getProjectBacklog().checkValidPriority(priority)) {
@@ -139,7 +139,7 @@ public class TaskCommand {
     public void doneTaskCommand(Hashtable<String, String> taskId, ProjectManager projectListManager) {
 
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             for (int i = 0; i < taskId.size(); i++) {
                 Task task;
                 try {

@@ -16,6 +16,7 @@ public class Project implements Jsonable {
     private SprintManager sprintList;
     private TaskManager backlog;
     private ProjectMembers memberList;
+    private int projectID;
     private String title;
     private String description;
 
@@ -30,7 +31,8 @@ public class Project implements Jsonable {
     public Project() {
     }
 
-    public Project(String title, String description, int projectDuration, int sprintLength) {
+    public Project(int projectID, String title, String description, int projectDuration, int sprintLength) {
+        this.projectID = projectID;
         this.title = title;
         this.description = description;
         this.projectDuration = projectDuration;
@@ -40,10 +42,16 @@ public class Project implements Jsonable {
         sprintList = new SprintManager();
     }
 
+    public String toIDString() {
+        StringBuilder projectInString = new StringBuilder();
+        projectInString.append(String.format("[Project ID: %s]", this.projectID));
+        return projectInString.toString();
+    }
     @Override
     public String toString() {
         StringBuilder projectInString = new StringBuilder();
         projectInString.append("\n============================ PROJECT ============================\n");
+        projectInString.append(String.format("[ID: %s]\n", this.projectID));
         projectInString.append(String.format("[Title: %s]\n", this.title));
         projectInString.append(String.format("[Description: %s]\n", this.description));
         if (!memberList.getAllMembers().isEmpty()) {
@@ -72,6 +80,11 @@ public class Project implements Jsonable {
     }
 
     //Getters
+
+    public int getProjectID() {
+        return projectID;
+    }
+
     public SprintManager getSprintList() {
         return sprintList;
     }

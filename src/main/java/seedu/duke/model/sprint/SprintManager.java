@@ -34,16 +34,20 @@ public class SprintManager implements Jsonable {
         return currentSprintIndex;
     }
 
-    public void setCurrentSprintIndex(int currentSprintIndex) {
-        this.currentSprintIndex = currentSprintIndex;
+    public void setCurrentSprintIndex(int sprintId) {
+        this.currentSprintIndex = sprintId;
     }
 
     public int size() {
         return sprintList.size();
     }
 
-    public Sprint getSprint(int index) {
-        return sprintList.get(index);
+    public Sprint getSprint(int sprintId) {
+        return sprintList.get(sprintId - 1);
+    }
+
+    public Sprint getCurrentSprint() {
+        return sprintList.get(this.currentSprintIndex - 1);
     }
 
     public void addSprint(Project proj, String goal, LocalDate start, LocalDate end) {
@@ -52,11 +56,11 @@ public class SprintManager implements Jsonable {
     }
 
     public boolean updateCurrentSprint() {
-        for (int i = 0; i < this.size(); i++) {
-            Sprint current = this.getSprint(i);
+        for (int id = 1; id <= this.size(); id++) {
+            Sprint current = this.getSprint(id);
             if (DateTimeParser.diff(LocalDate.now(), current.getEndDate()) >= 0
                     && DateTimeParser.diff(current.getStartDate(), LocalDate.now()) >= 0) {
-                this.setCurrentSprintIndex(i);
+                this.setCurrentSprintIndex(id);
                 return true;
 
             }

@@ -13,66 +13,47 @@ import java.time.LocalDate;
 import java.util.Hashtable;
 
 public class CreateSprintCommand extends SprintCommand {
-    private SprintManager allSprint;
-    private ProjectManager projectListManager;
-    private Project proj;
 
     /**
      * Creates a new DELETE command with arguments.
      */
-    public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
-        super(parameters);
-        this.projectListManager = projectListManager;
+    public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
+        super(parameters, projectList);
     }
 
     /**
      * Abstract method that execute the command.
      */
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project\n";
-        if (projectListManager.isEmpty()) {
-            Ui.showError("Please create a project first.");
-            return;
-        }
-        proj = projectListManager.getProject();
-        if (validateParams()) {
-            allSprint = proj.getSprintList();
-            if (allSprint.size() == 0) {
-                try {
-                    createFirstSprint(proj);
-                } catch (DukeException e) {
-                    e.printExceptionMessage();
-                }
-            } else {
-                createSubsequentSprint(proj);
+        chooseProject();
+        Ui.showToUser(this.projOwner.toIDString());
+        if (sprintList.size() == 0) {
+            try {
+                createFirstSprint(projOwner);
+            } catch (DukeException e) {
+                e.printExceptionMessage();
             }
         } else {
-            Ui.showError("Missing goal for this sprint.");
+            createSubsequentSprint(projOwner);
         }
     }
 
     private void createFirstSprint(Project proj) throws DukeException {
 
+        String sprintGoal = this.parameters.get("goal");
         LocalDate sprintStart = LocalDate.now();
-        if (!(this.parameters.get("start") == null)) {
+        if (this.parameters.containsKey("start")) {
             sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
-        } else {
-            throw new DukeException("no start date");
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        String sprintGoal;
-        if (!(this.parameters.get("goal").isBlank())) {
-            sprintGoal = this.parameters.get("goal");
-        } else {
-            throw new DukeException("no goal");
-        }
-        allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
+
+        sprintList.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);
         proj.setStartDate(sprintStart);
         proj.setEndDate(projEndDate);
 
-        Ui.showToUserLn("Project will start along with the newly created sprint");
+        Ui.showToUserLn("\nProject will start along with the newly created sprint");
         Ui.showToUserLn("Project period: " + sprintStart + " to " + projEndDate);
         printCreatedSprint();
 
@@ -81,26 +62,24 @@ public class CreateSprintCommand extends SprintCommand {
     private void createSubsequentSprint(Project proj) {
 
         String sprintGoal = this.parameters.get("goal");
-        Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
+        Sprint prevSprint = sprintList.getSprint(sprintList.size());
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(), sprintStart) >= 0) {
             Ui.showToUserLn("\nAll sprints are already created.");
             return;
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
+        sprintList.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
         if (!this.parameters.containsKey("start")) {
             Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
         printCreatedSprint();
     }
 
-    private boolean validateParams() {
-        return this.parameters.containsKey("goal");
-    }
 
     private void printCreatedSprint() {
-        Sprint createdSprint = allSprint.getSprint(allSprint.size() - 1);
+        Sprint createdSprint = sprintList.getSprint(sprintList.size());
         Ui.showToUserLn(createdSprint.toString());
     }
+
 }
