@@ -22,15 +22,22 @@ public class Saver {
         rootDirectory.mkdir();
     }
 
-    private final String[][] entries;
-    private final int height;
-    private final int width;
+    private String[][] entries;
+    private int height;
+    private int width;
 
     public Saver(int width, int height) {
+        setWidthAndHeight(width,height);
+        initEntries();
+    }
+
+    private void setWidthAndHeight(int width, int height){
         this.height = height;
         this.width = width;
-        this.entries = new String[height][width];
+    }
 
+    private void initEntries(){
+        this.entries = new String[height][width];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 entries[j][i] = EMPTY_SYMBOL;
@@ -44,6 +51,16 @@ public class Saver {
 
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Clears the entire table and set it to the new size
+     * @param newWidth the new width
+     * @param newHeight the new height
+     */
+    public void resetSize(int newWidth, int newHeight){
+        setWidthAndHeight(newWidth, newHeight);
+        initEntries();
     }
 
     /**
