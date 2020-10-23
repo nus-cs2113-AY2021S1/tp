@@ -1,7 +1,7 @@
-package seedu.duke;
+package seedu.dietbook;
 
-import seedu.duke.food.Food;
-import seedu.duke.person.ActivityLevel;
+import seedu.dietbook.food.Food;
+import seedu.dietbook.person.ActivityLevel;
 
 import java.util.List;
 
