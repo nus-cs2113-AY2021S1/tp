@@ -74,7 +74,7 @@ public class Parser {
                 System.out.println("");
             }
             break;
-        case COMMAND_ANALYSIS:
+        case COMMAND_ANALYSIS: // can help to update the params for this? thanks!
             ui.printBreakDownAnalysis(modList, 1);
             break;
         case COMMAND_ADDTASK:
