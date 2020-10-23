@@ -4,6 +4,7 @@ import org.fusesource.jansi.AnsiConsole;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
@@ -12,6 +13,8 @@ import seedu.duke.ui.AsciiArt;
 import seedu.duke.ui.InterfaceManager;
 import seedu.duke.ui.Formatter;
 import seedu.duke.util.Parser;
+
+import java.io.IOException;
 
 /**
  * Entry point of the NotUS application.
@@ -38,6 +41,12 @@ public class Duke {
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
 
+        try{
+            storageManager.createFiles();
+            interfaceManager.prints("created files");
+        } catch (SystemException exception){
+            interfaceManager.prints(exception.getMessage());
+        }
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
 

@@ -14,13 +14,16 @@ import java.io.IOException;
  */
 public class StorageManager {
     /** Default folders directory. */
-    private static final String FOLDER_DIR = "data";
+    public static final String FOLDER_DIR = "data";
     private static final String NOTES_DIR = "/notes";
-    /** Default file path. */
-    private static final String NOTEBOOK_FILE_PATH = "notebook.txt";
-    private static final String TIMETABLE_FILE_PATH = "timetable.txt";
 
+    /** Default file path. */
+    private static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
+    private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
+
+    /** Delimiter to separate information. */
     private static final String DELIMITER = "|";
+    private static final String TAG_DELIMITER = ":";
 
     /**
      * Checks if the file directories exist otherwise creates them.
@@ -55,11 +58,9 @@ public class StorageManager {
      * Creates a directory path data/notes. In case both data and /notes do not exist.
      */
     private static void createDirectory(String path) {
-
-        File Directory = new File(path);
-        //  File noteDirectory = new File(notePath);
-        if (!Directory.exists()) {
-            Directory.mkdir();
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdir();
         }
     }
 
@@ -81,7 +82,6 @@ public class StorageManager {
      * @param notebook The Notebook containing all the notes to be saved.
      */
     public static void saveNotebook(Notebook notebook) throws SystemException {
-        createDirectory();
         for (int i = 0; i < notebook.getSize();i++) {
             try {
                 saveNoteContent(notebook.getNote(i));
@@ -92,6 +92,36 @@ public class StorageManager {
         }
     }
 
+    /**
+     * Saves an individual note to the storage file.
+     *
+     * @param note The note to be saved
+     */
+    public static void saveNoteContent(Note note) throws IOException {
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        createFile(path);
+        FileWriter fw = new FileWriter(path);
+        fw.write(note.getContent().toString());
+        fw.close();
+    }
+
+    /**
+     * Saves the details of notes such as title, tags and pinned status to the notebook text file.
+     * @param note Note of which details are to be saved to the file
+     */
+    public static void saveNoteDetails(Note note) throws IOException {
+        String path = FOLDER_DIR + "/" + NOTEBOOK_FILE_PATH;
+        createFile(path);
+        FileWriter fwAppend = new FileWriter(path, true);
+        String noteDetails = note.getTitle()
+                + DELIMITER
+                + note.getPinnedString()
+                + DELIMITER
+                + note.getTags()
+                + System.lineSeparator();
+        fwAppend.write(noteDetails);
+        fwAppend.close();
+    }
 
     /**
      * Saves all the Events in the Timetable to the storage file.
@@ -121,36 +151,5 @@ public class StorageManager {
      */
     public void loadAll(Notebook notebook, Timetable timeTable){
 
-    }
-
-    /**
-     * Saves an individual note to the storage file.
-     *
-     * @param note The note to be saved
-     */
-    public static void saveNoteContent(Note note) throws IOException {
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
-        createFile(path);
-        FileWriter fwAppend = new FileWriter(path, true);
-        fwAppend.write(note.getContent().toString()); // Needs to be edited. String changed to Arraylist
-        fwAppend.close();
-    }
-
-    /**
-     * Saves the details of notes such as title, tags and pinned status to the notebook text file.
-     * @param note Note of which details are to be saved to the file
-     */
-    private static void saveNoteDetails(Note note) throws IOException {
-        String path = FOLDER_DIR + "/" + NOTEBOOK_FILE_PATH;
-        createFile(path);
-        FileWriter fwAppend = new FileWriter(path, true);
-        String noteDetails = note.getTitle()
-                            + DELIMITER
-                            + note.getPinnedString()
-                            + DELIMITER
-                            + note.getTags()
-                            + System.lineSeparator();
-        fwAppend.write(noteDetails);
-        fwAppend.close();
     }
 }
