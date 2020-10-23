@@ -140,8 +140,8 @@ class StorageManagerTest {
     void loadWatchlistList_someInvalidWatchlist_failToLoadSome() throws AniException {
         String someInvalidResult = invalidFileSM.loadWatchlistList(SOME_INVALID_WORKSPACE, watchlistListForLoad);
         String expectedSomeInvalidResult = "Not all loaded successfully (some invalid).";
-        // assertEquals(1, watchlistListForLoad.size());
-        // assertEquals(someInvalidResult, expectedSomeInvalidResult);
+        assertEquals(1, watchlistListForLoad.size());
+        assertEquals(someInvalidResult, expectedSomeInvalidResult);
     }
 
     @Test
