@@ -2,7 +2,7 @@ package anichan.parser;
 
 import anichan.command.WatchlistCommand;
 import anichan.exception.AniException;
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,18 +14,24 @@ public class WatchlistParser extends CommandParser {
     private static final String DELETE_OPTION = "d";
     private static final String BLANK = "";
 
+    private static final String TOO_MUCH_ARGUMENTS = "Watchlist command" + TOO_MUCH_FIELDS;
+    private static final String INVALID_OPTION = "Watchlist command only accepts the options: -n, -l, -s, and -d.";
+    private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
+    private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
+    private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
+
     private static final int CREATION_REQUIRED_PARAMETER_COUNT = 2;
     private static final int LIST_REQUIRED_PARAMETER_COUNT = 1;
     private static final int MODIFICATION_REQUIRED_PARAMETER_COUNT = 2;
 
-    private static final Logger LOGGER = getAniLogger(WatchlistParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistParser.class.getName());
 
     public WatchlistCommand parse(String description) throws AniException {
-        assert description != null : "description should not be null.";
+        assert description != null : DESCRIPTION_CANNOT_BE_NULL;
         String[] paramGiven = parameterSplitter(description);
         paramIsSetCheck(paramGiven);
         if (paramGiven.length > 2) {
-            throw new AniException("Watchlist command" + TOO_MUCH_FIELDS);
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         } else if (!paramGiven[0].isBlank()) {
             throw new AniException(paramGiven[0] + NOT_RECOGNISED);
         }
@@ -37,7 +43,7 @@ public class WatchlistParser extends CommandParser {
     }
 
     private String[] parameterParser(String parameter) throws AniException {
-        String[] parsedParts = parameter.split(" ", 2);
+        String[] parsedParts = parameter.split(SPLIT_WHITESPACE, 2);
         String option = parsedParts[0];
         switch (option) {
         case CREATE_OPTION:
@@ -45,38 +51,37 @@ public class WatchlistParser extends CommandParser {
             return parsedParts;
         case LIST_OPTION:
             checkListParameters(parsedParts);
-            String[] paddedParsedParts = {option, BLANK};
-            return paddedParsedParts;
+            return new String[]{option, BLANK};
         case SELECT_OPTION:
             // Fallthrough because SELECT will call checkModificationParameters method too.
         case DELETE_OPTION:
             checkModificationParameters(parsedParts);
             return parsedParts;
         default:
-            throw new AniException("Watchlist command only accepts the options: -n, -l, -s, and -d.");
+            throw new AniException(INVALID_OPTION);
         }
     }
 
     private void checkCreationParameters(String[] parsedParts) throws AniException {
         if (parsedParts.length != CREATION_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException("Watchlist name cannot be empty!");
+            throw new AniException(WATCHLIST_NAME_IS_EMPTY);
         }
     }
 
     private void checkListParameters(String[] parsedParts) throws AniException {
         if (parsedParts.length != LIST_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException("Watchlist list option" + TOO_MUCH_FIELDS);
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         }
     }
 
     private void checkModificationParameters(String[] parsedParts) throws AniException {
         if (parsedParts.length != MODIFICATION_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException("Watchlist index cannot be empty!");
+            throw new AniException(WATCHLIST_INDEX_IS_EMPTY);
         }
 
         String watchlistIndex = parsedParts[1];
         if (!isInt(watchlistIndex)) {
-            throw new AniException("\"" + watchlistIndex + "\" is not a number!");
+            throw new AniException(WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER);
         }
     }
 }
