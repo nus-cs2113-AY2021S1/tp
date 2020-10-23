@@ -31,6 +31,8 @@ class BookmarkParserTest {
 
     private static final String VALID_SINGLE_INPUT_TEST = "1";
     private static final String VALID_SINGLE_INPUT_TEST2 = "10";
+    private static final String VALID_ADD_TEST= "-a 1";
+    private static final String VALID_DELETE_TEST= "-d 1";
     private static final String VALID_NOTE_TEST = "1 -n test";
     private final String VALID_LIST_TEST = "-l";
     private static final String VALID_EDIT_TEST = "1 -e 1";
@@ -61,6 +63,18 @@ class BookmarkParserTest {
     void execute_validEdit_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
         test1.parse(VALID_EDIT_TEST);
+    }
+
+    @Test
+    void execute_validAdd_Successful() throws AniException {
+        BookmarkParser test1 = new BookmarkParser();
+        test1.parse(VALID_ADD_TEST);
+    }
+
+    @Test
+    void execute_validDelete_Successful() throws AniException {
+        BookmarkParser test1 = new BookmarkParser();
+        test1.parse(VALID_DELETE_TEST);
     }
 
     //==================== Invalid Input Iest ===========================

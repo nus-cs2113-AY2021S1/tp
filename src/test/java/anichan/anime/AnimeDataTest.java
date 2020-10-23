@@ -23,7 +23,6 @@ class AnimeDataTest {
     @BeforeEach
     void setUp() throws AniException {
         animeData = new AnimeData();
-        System.out.println(animeData.returnAnimeInfo(0));
     }
 
     @Test
