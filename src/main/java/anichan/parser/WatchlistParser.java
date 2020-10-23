@@ -18,7 +18,7 @@ public class WatchlistParser extends CommandParser {
     private static final String INVALID_OPTION = "Watchlist command only accepts the options: -n, -l, -s, and -d.";
     private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
     private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
-    private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index is zero!";
+    private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index cannot be zero!";
     private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
 
     private static final int CREATION_REQUIRED_PARAMETER_COUNT = 2;
