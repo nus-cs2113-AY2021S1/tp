@@ -56,6 +56,10 @@ public class Bookmark {
         return animeEpisode;
     }
 
+    public int getBookmarkEpisode(Integer bookmarkIndex){
+        return animeEpisode.get(bookmarkIndex);
+    }
+
     public Anime getAnimeBookmarkByIndex(AnimeData animeData, Integer bookmarkIndex) {
         int animeIndex = this.animeBookmarkList.get(bookmarkIndex);
         return animeData.getAnime(animeIndex);
@@ -100,10 +104,6 @@ public class Bookmark {
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
             sbAnimeList.append(animeData.getAnime(animeIndex));
-            if (animeEpisode.get(i) != -1) {
-                sbAnimeList.append(" Ep: ");
-                sbAnimeList.append(animeEpisode.get(i));
-            }
             sbAnimeList.append(System.lineSeparator());
         }
         return sbAnimeList.toString();

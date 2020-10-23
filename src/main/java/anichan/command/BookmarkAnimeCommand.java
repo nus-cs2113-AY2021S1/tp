@@ -69,11 +69,7 @@ public class BookmarkAnimeCommand extends Command {
         case BookmarkParser.INFO_PARAM:
             LOGGER.log(Level.INFO, "Executing anime info for bookmark");
             result = "Here is the information for that anime." + System.lineSeparator();
-            String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
-            result += animeInfo + System.lineSeparator() + System.lineSeparator();
-            result += "Notes for anime:";
-            String notesInfo = getAnimeNotesFromBookmark(bookmark);
-            result += notesInfo;
+            result += getBookmarkInfo(animeData, bookmark);
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
             LOGGER.log(Level.INFO, "Executing bookmark add note");
@@ -83,6 +79,25 @@ public class BookmarkAnimeCommand extends Command {
             break;
         }
         LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_SUCCESS);
+        return result;
+    }
+
+
+    private String getBookmarkInfo(AnimeData animeData, Bookmark bookmark) throws AniException {
+        String result = "";
+        String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
+        result += animeInfo + System.lineSeparator() + System.lineSeparator();
+
+        Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex -1);
+        if ( bookmarkEpisodeInfo != -1){
+            result += "Current Episode: ";
+            result += bookmarkEpisodeInfo;
+            result += System.lineSeparator() + System.lineSeparator();
+        }
+
+        result += "Notes for anime:";
+        String notesInfo = getAnimeNotesFromBookmark(bookmark);
+        result += notesInfo;
         return result;
     }
 
