@@ -8,15 +8,13 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class CalendarCommand extends Command {
     private Map<LocalDate, ArrayList<Event>> calendarMap = new TreeMap<>();
+    private int eventsWithoutDateCount = 0;
 
     public CalendarCommand(String command) {
         this.command = command;
@@ -25,31 +23,40 @@ public class CalendarCommand extends Command {
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         ArrayList<EventList> eventLists = data.getAllEventLists();
-        for(EventList list : eventLists) {
+        for (EventList list : eventLists) {
             ArrayList<Event> events = list.getEvents();
             addEventsToCalendar(events);
         }
-        for(Map.Entry<LocalDate, ArrayList<Event>> entry : calendarMap.entrySet()) {
+        ui.printCalendarStart(calendarMap.size(), eventsWithoutDateCount);
+        for (Map.Entry<LocalDate, ArrayList<Event>> entry : calendarMap.entrySet()) {
             ui.printCalendar(entry);
         }
     }
 
     private void addEventsToCalendar(ArrayList<Event> events) {
         for (Event e : events) {
+            ArrayList<Event> eventRepeatList = e.getRepeatEventList();
+            if (eventRepeatList != null) {
+                addEventsToCalendar(eventRepeatList);
+            }
             addEventToCalendar(e);
         }
     }
 
     private void addEventToCalendar(Event e) {
         LocalDate eventDate = e.getDate();
-        ArrayList<Event> eventsOnDate;
-        if(calendarMap.containsKey(eventDate)) {
-            eventsOnDate = calendarMap.get(eventDate);
-            eventsOnDate.add(e);
+        if (eventDate != null) {
+            ArrayList<Event> eventsOnDate;
+            if (calendarMap.containsKey(eventDate)) {
+                eventsOnDate = calendarMap.get(eventDate);
+                eventsOnDate.add(e);
+            } else {
+                eventsOnDate = new ArrayList<>();
+                eventsOnDate.add(e);
+                calendarMap.put(eventDate, eventsOnDate);
+            }
         } else {
-            eventsOnDate = new ArrayList<>();
-            eventsOnDate.add(e);
-            calendarMap.put(eventDate, eventsOnDate);
+            eventsWithoutDateCount++;
         }
     }
 

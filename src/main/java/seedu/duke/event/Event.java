@@ -4,6 +4,7 @@ import seedu.duke.exception.DukeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class Event implements Cloneable {
@@ -69,7 +70,6 @@ public abstract class Event implements Cloneable {
     }
 
 
-
     public String getDescription() {
         return this.description;
     }
@@ -115,5 +115,11 @@ public abstract class Event implements Cloneable {
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + getDescription();
+    }
+
+    public String toCalendarString() {
+        return String.format("%s | ", time.format(DateTimeFormatter.ofPattern("K:mm a")))
+                + String.format("%s | ", getStatus())
+                + String.format("%s ", getDescription());
     }
 }
