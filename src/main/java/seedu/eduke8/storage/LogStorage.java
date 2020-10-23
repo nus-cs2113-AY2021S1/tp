@@ -29,7 +29,7 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(ch);
 
         // Log all to the file
-        File logFile = createFileIfNotExists();
+        File logFile = super.save();
 
         FileHandler fh = new FileHandler(logFile.getAbsolutePath());
         fh.setFormatter(new SimpleFormatter());
