@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StorageManagerTest {
@@ -21,8 +20,7 @@ class StorageManagerTest {
     private static final String SOME_INVALID_WORKSPACE = "SomeInvalidWorkspace";
     private static final String ALL_INVALID_WORKSPACE = "AllInvalidWorkspace";
     private static final String SCRIPT_FILE_NAME = "script.txt";
-    private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator + "c"
-                                                         + File.separator;
+    private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator;
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
                                                         + "data" + File.separator + "StorageManagerTest"
                                                         + File.separator;
@@ -70,7 +68,7 @@ class StorageManagerTest {
     }
 
     @Test
-    void testRetrieveWorkspaceList() {
+    void retrieveWorkspaceList() {
         // Valid Workspace Directory
         String[] validWorkspaceList = invalidFileSM.retrieveWorkspaceList();
         assertEquals(2, validWorkspaceList.length);
@@ -83,17 +81,9 @@ class StorageManagerTest {
     // ========================== User Saving and Loading ==========================
 
     @Test
-    void testSaveUser() throws AniException {
-        validFileSM.saveUser(userToSave);
-    }
-
-    @Test
-    void testLoadUser() throws AniException {
+    void loadUser() throws AniException {
         // Invalid Directory
-        assertThrows(AniException.class, () -> {
-            userToLoad = invalidDirectorySM.loadUser();
-            fail();
-        });
+        assertThrows(AniException.class, () -> userToLoad = invalidDirectorySM.loadUser());
 
         // Valid Directory (Use result from testSaveUser())
         userToLoad = validFileSM.loadUser();
@@ -103,29 +93,18 @@ class StorageManagerTest {
 
     @Test
     void loadUser_emptyUserFile_throwsAniException() {
-        assertThrows(AniException.class, () -> {
-            userToLoad = emptySM.loadUser();
-            fail();
-        });
+        assertThrows(AniException.class, () -> userToLoad = emptySM.loadUser());
     }
 
     @Test
     void loadUser_invalidUserFile_throwsAniException() {
-        assertThrows(AniException.class, () -> {
-            userToLoad = invalidFileSM.loadUser();
-            fail();
-        });
+        assertThrows(AniException.class, () -> userToLoad = invalidFileSM.loadUser());
     }
 
     // ========================== Watchlist Saving and Loading ==========================
 
     @Test
-    void testSaveWatchlistList() throws AniException {
-        validFileSM.saveWatchlistList(VALID_WORKSPACE, watchlistListForSave);
-    }
-
-    @Test
-    void testLoadWatchlistList() throws AniException {
+    void loadWatchlistList() throws AniException {
         // Valid Watchlist File
         String validResult = validFileSM.loadWatchlistList(VALID_WORKSPACE, watchlistListForLoad);
         String expectedValidResult = "Loaded successfully.";
@@ -134,7 +113,6 @@ class StorageManagerTest {
         // Invalid Directory
         assertThrows(AniException.class, () -> {
             invalidDirectorySM.loadWatchlistList(VALID_WORKSPACE, watchlistListForLoad);
-            fail();
         });
 
         // Empty Watchlist File
@@ -145,7 +123,6 @@ class StorageManagerTest {
         // No Watchlist File
         assertThrows(AniException.class, () -> {
             emptySM.loadWatchlistList(EMPTY_WORKSPACE, watchlistListForLoad);
-            fail();
         });
     }
 
@@ -153,8 +130,8 @@ class StorageManagerTest {
     void loadWatchlistList_someInvalidWatchlist_failToLoadSome() throws AniException {
         String someInvalidResult = invalidFileSM.loadWatchlistList(SOME_INVALID_WORKSPACE, watchlistListForLoad);
         String expectedSomeInvalidResult = "Not all loaded successfully (some invalid).";
-        // assertEquals(1, watchlistListForLoad.size());
-        // assertEquals(someInvalidResult, expectedSomeInvalidResult);
+        assertEquals(3, watchlistListForLoad.size());
+        assertEquals(someInvalidResult, expectedSomeInvalidResult);
     }
 
     @Test
@@ -166,8 +143,9 @@ class StorageManagerTest {
     }
 
     // ========================== Script Reading ==========================
+
     @Test
-    void testReadScriptFile() throws AniException {
+    void readScriptFile() throws AniException {
         // Valid Script File
         String fileString = validFileSM.loadScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
         assertNotNull(fileString);
@@ -175,13 +153,11 @@ class StorageManagerTest {
         // Invalid Directory
         assertThrows(AniException.class, () -> {
             invalidDirectorySM.loadScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
-            fail();
         });
 
         // Empty Script File
         assertThrows(AniException.class, () -> {
             emptySM.loadScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
-            fail();
         });
     }
 }

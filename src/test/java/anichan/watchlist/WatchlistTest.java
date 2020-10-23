@@ -2,7 +2,6 @@ package anichan.watchlist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import anichan.bookmark.Bookmark;
 
 import java.util.ArrayList;
 
@@ -27,17 +26,18 @@ class WatchlistTest {
     }
 
     @Test
-    void testEqual() {
-        // Test Equals on duplicated named watchlist.
+    void testEquals() {
+        // Same object -> returns true.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
-        assertEquals(duplicateNameWatchlist, firstWatchlist);
-        assertNotEquals(secondWatchlist, duplicateNameWatchlist);
+        assertEquals(firstWatchlist, duplicateNameWatchlist);
 
-        // Test Equals on non-Watchlist object.
-        Bookmark bookmark = new Bookmark();
-        assertNotEquals(bookmark, firstWatchlist);
-
-        // Test Equals on Null object.
+        // Null -> returns false.
         assertNotEquals(firstWatchlist, null);
+
+        // Different type -> returns false.
+        assertNotEquals(firstWatchlist, "testing");
+
+        // Different watchlist name object -> returns false.
+        assertNotEquals(firstWatchlist, secondWatchlist);
     }
 }

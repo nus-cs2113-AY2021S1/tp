@@ -1,28 +1,25 @@
 package anichan;
 
 import anichan.anime.AnimeData;
-import anichan.anime.AnimeStorage;
 import anichan.bookmark.Bookmark;
 import anichan.command.Command;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.parser.Parser;
 import anichan.ui.Ui;
 import anichan.watchlist.Watchlist;
 import anichan.storage.StorageManager;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
-    private static final Logger LOGGER = getAniLogger(Main.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
 
     private final Ui ui;
     private final Parser parser;
