@@ -79,6 +79,10 @@ public class Task implements Jsonable {
         memberList.add(memberId);
     }
 
+    public void removeFromMember(String memberId) {
+        memberList.remove((Object) memberId);
+    }
+
     public ArrayList<String> getAllocatedMembers() {
         return memberList;
     }
@@ -87,7 +91,7 @@ public class Task implements Jsonable {
         sprintList.add(sprintId);
     }
 
-    public void removefromSprint(int sprintId) {
+    public void removeFromSprint(int sprintId) {
         sprintList.remove((Object) sprintId);
     }
 

@@ -6,11 +6,13 @@ import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.command.sprint.EditSprintCommand;
+import seedu.duke.command.sprint.DeallocateSprintTaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
+import seedu.duke.model.task.Task;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.CREATE;
@@ -18,7 +20,8 @@ import static seedu.duke.command.CommandSummary.EDIT;
 import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.VIEW;
-import static seedu.duke.command.CommandSummary.ASSIGN;
+import static seedu.duke.command.CommandSummary.ALLOCATE;
+import static seedu.duke.command.CommandSummary.DEALLOCATE;
 
 public class SprintParser implements ExceptionsParser {
 
@@ -57,9 +60,14 @@ public class SprintParser implements ExceptionsParser {
                 new ViewSprintCommand(parameters, projectListManager).execute();
             }
             break;
-        case ASSIGN:
+        case ALLOCATE:
             if (checkAllocateTaskParams(parameters, projectListManager)) {
                 new AllocateSprintTaskCommand(parameters, projectListManager).execute();
+            }
+            break;
+        case DEALLOCATE:
+            if (checkDeallocateTaskParams(parameters, projectListManager)) {
+                new DeallocateSprintTaskCommand(parameters, projectListManager).execute();
             }
             break;
         default:
@@ -223,6 +231,33 @@ public class SprintParser implements ExceptionsParser {
     }
 
     /**
+     * Validate parameters for DeallocateSprintTaskCommand.
+     */
+    private boolean checkDeallocateTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager)
+            throws DukeException {
+        /**
+         * Mandatory fields.
+         * - user
+         * - task
+         */
+        if (!parameters.containsKey("user") || !parameters.containsKey("task")) {
+            throw new DukeException("Please indicate task and user for this command.");
+        }
+
+        /**
+         * Optional fields with tags.
+         * - project
+         * - sprint
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        Sprint selectedSprint = checkSprintParam(parameters, selectedProject);
+        checkUserParam(parameters, selectedProject);
+        checkTaskParam(parameters, selectedProject, selectedSprint, false);
+        checkAllocation(parameters, selectedProject);
+        return true;
+    }
+
+    /**
      * Validate the "project" params.
      * Checks:
      * - parsable into an Integer
@@ -336,6 +371,28 @@ public class SprintParser implements ExceptionsParser {
             }
 
         }
+    }
+
+    /**
+     * Check if all "task"  are allocated to "user".
+     */
+    private void checkAllocation(Hashtable<String, String> parameters, Project proj)
+            throws DukeException {
+        String[] taskIds = parameters.get("task").split(" ");
+        String[] userIds = parameters.get("user").split(" ");
+
+        for (String taskIdInString : taskIds) {
+            int taskId = Integer.parseInt(taskIdInString);
+            Task task = proj.getBacklog().getTask(taskId);
+            for (String mem : task.getAllocatedMembers()) {
+                for (String userId : userIds) {
+                    if (mem.equals(userId)) {
+                        return;
+                    }
+                }
+            }
+        }
+        throw new DukeException("Task(s) not allocated to member(s)");
     }
 
     /**

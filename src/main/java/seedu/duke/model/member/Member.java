@@ -43,6 +43,11 @@ public class Member implements Jsonable {
         taskList.add(taskid);
     }
 
+    public void deallocateTask(int taskid) {
+        taskList.remove((Object) taskid);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         /* Check if o is an instance of Member or not
