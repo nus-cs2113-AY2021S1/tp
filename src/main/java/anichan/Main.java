@@ -133,7 +133,7 @@ public class Main {
 
         // ========================== AnimeDate Setup ==========================
         try {
-        animeData = new AnimeData();
+            animeData = new AnimeData();
         } catch (AniException exception) {
             ui.printMessage("\tAnimeData: " + exception.getMessage());
             LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());

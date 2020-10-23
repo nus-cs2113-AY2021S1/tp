@@ -17,16 +17,16 @@ public class AnimeData {
     }
 
     public AnimeData() throws AniException {
-            AnimeStorage animeStorage = new AnimeStorage();
-            loadAnimeData(animeStorage.readAnimeDatabase());
+        AnimeStorage animeStorage = new AnimeStorage();
+        loadAnimeData(animeStorage.readAnimeDatabase());
     }
 
-    public void loadAnimeData(ArrayList<Anime> animeDataList){
+    public void loadAnimeData(ArrayList<Anime> animeDataList) {
         this.animeDataList = animeDataList;
     }
 
     public Anime getAnime(Integer animeIndex) {
-            return animeDataList.get(animeIndex);
+        return animeDataList.get(animeIndex);
     }
 
     public int getSize() {
