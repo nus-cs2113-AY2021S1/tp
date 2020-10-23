@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    private static final String ANIME_DATA_SOURCE_DIRECTORY = "/AniListData";
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
 
@@ -132,13 +131,12 @@ public class Main {
         }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
-        // ========================== Anime Data Setup ==========================
-
+        // ========================== AnimeDate Setup ==========================
         try {
-            AnimeStorage animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_DIRECTORY);
-            animeData = new AnimeData(animeStorage.readAnimeDatabase());
-        } catch (IOException e) {
-            ui.printErrorMessage(e.getMessage());
+            animeData = new AnimeData();
+        } catch (AniException exception) {
+            ui.printMessage("\tAnimeData: " + exception.getMessage());
+            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
         }
     }
 
