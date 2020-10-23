@@ -27,6 +27,7 @@ public class Parser {
 
     /**
      * Parses the user input and return a corresponding command.
+     *
      * @param userInput String of user input
      * @return a Command object
      */
@@ -39,6 +40,7 @@ public class Parser {
 
         String userCommand = matcher.group("command").trim();
         String arguments = matcher.group("arguments").trim();
+
         switch (userCommand.toLowerCase()) {
         case Commands.COMMAND_FOOD:
             return new AddFoodCommand(arguments);

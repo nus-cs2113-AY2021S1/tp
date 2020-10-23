@@ -4,7 +4,7 @@ import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+import fitr.storage.StorageManager;
 import fitr.user.User;
 
 import java.util.logging.Logger;
@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         LOGGER.fine("Exiting the application.");
     }

@@ -1,2 +1,2 @@
-Test Exercise 1,500,10
-Test Exercise 2,100,5
+Test Exercise 1,500
+Test Exercise 2,100
