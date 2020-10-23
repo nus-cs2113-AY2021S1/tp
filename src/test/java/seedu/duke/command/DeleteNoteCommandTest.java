@@ -34,8 +34,8 @@ class DeleteNoteCommandTest {
         contentTwo.add("Core library");
         contentTwo.add("Standard library");
 
-        Note javaNote = new Note("Java OOP", contentOne, true, false);
-        Note cppNote = new Note("C++ Standard Libraries", contentTwo, false, false);
+        Note javaNote = new Note("Java OOP", contentOne, true);
+        Note cppNote = new Note("C++ Standard Libraries", contentTwo, false);
 
         AddNoteCommand command = null;
         try {

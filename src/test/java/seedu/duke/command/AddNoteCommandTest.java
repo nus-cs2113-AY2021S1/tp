@@ -36,7 +36,7 @@ class AddNoteCommandTest {
         content.add("Encapsulation");
         content.add("Abstraction");
 
-        Note note = new Note("Java OOP", content, true, false);
+        Note note = new Note("Java OOP", content, true);
         AddNoteCommand command = null;
         try {
             command = new AddNoteCommand(note);
@@ -68,7 +68,7 @@ class AddNoteCommandTest {
         content.add("Encapsulation");
         content.add("Abstraction");
 
-        Note note = new Note("Java OOP", content, true, false);
+        Note note = new Note("Java OOP", content, true);
         notebook.addNote(note);
         AddNoteCommand command = null;
         try {

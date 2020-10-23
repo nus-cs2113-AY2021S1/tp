@@ -52,24 +52,24 @@ class TagManagerTest {
         tags.add(tagImportant);
         tags.add(tagSchool);
 
-        noteCS2113 = new Note("CS2113", contentOne, false, false, tags);
+        noteCS2113 = new Note("CS2113", contentOne, false, tags);
 
-        noteJavaOop = new Note("Java OOP", contentTwo, false, false, tags);
+        noteJavaOop = new Note("Java OOP", contentTwo, false, tags);
 
         tags = new ArrayList<>();
 
         tags.add(tagSchool);
         tags.add(tagImportant);
 
-        noteMath = new Note("Math Note", contentThree, false, false, tags);
+        noteMath = new Note("Math Note", contentThree, false, tags);
 
         tags = new ArrayList<>();
 
         tags.add(tagPersonal);
 
-        notePersonal = new Note("Personal Note", contentFour, false, false, tags);
+        notePersonal = new Note("Personal Note", contentFour, false, tags);
 
-        noteDefault = new Note("Default", contentFive, false, false);
+        noteDefault = new Note("Default", contentFive, false);
 
         emptyTagManager = new TagManager();
         defaultTagManager = new TagManager();

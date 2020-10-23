@@ -50,10 +50,10 @@ class ListNoteCommandTest {
         tagSet.add(tagCs2113);
         tagSet.add(tagNus);
 
-        defaultNote = new Note("Default", content, false, false, tag);
-        testNote1 = new Note("TestNote1", contentOne, true, false);
-        cs2113 = new Note("CS2113", contentTwo, true, false, tagSet);
-        songLyrics = new Note("Song Lyrics", contentThree, false, false);
+        defaultNote = new Note("Default", content, false, tag);
+        testNote1 = new Note("TestNote1", contentOne, true);
+        cs2113 = new Note("CS2113", contentTwo, true, tagSet);
+        songLyrics = new Note("Song Lyrics", contentThree, false);
 
         //notebook.addNote(testNote1);
         //notebook.addNote(CS2113);

@@ -255,8 +255,8 @@ public class Parser {
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
 
             // Add to note
-            note = tags.isEmpty() ? new Note(title, content, isPinned, isArchived) :
-                    new Note(title, content, isPinned, isArchived, tags);
+            note = tags.isEmpty() ? new Note(title, content, isPinned) :
+                    new Note(title, content, isPinned, tags);
 
             return new AddNoteCommand(note);
         } catch (ArrayIndexOutOfBoundsException exception) {

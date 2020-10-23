@@ -42,8 +42,8 @@ class ViewNoteCommandTest {
         tags.add(tag1);
         tags.add(tag2);
 
-        noteWithoutTags = new Note(NOTE1_TITLE, NOTE1_CONTENT, true, false);
-        noteWithTags = new Note(NOTE2_TITLE, NOTE2_CONTENT, false, false, tags);
+        noteWithoutTags = new Note(NOTE1_TITLE, NOTE1_CONTENT, true);
+        noteWithTags = new Note(NOTE2_TITLE, NOTE2_CONTENT, false, tags);
 
         notebook = new Notebook();
 

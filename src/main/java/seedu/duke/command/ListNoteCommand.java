@@ -192,6 +192,8 @@ public class ListNoteCommand extends Command {
             if (isSorted) {
                 // Sort the tagged notes
                 sortedTaggedNotes = notebook.getSortedList(isAscendingOrder, null, notes);
+            } else {
+                sortedTaggedNotes = notes;
             }
             return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes);
         }
