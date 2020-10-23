@@ -37,7 +37,7 @@ public class EditEntryCommand extends Command {
                 break;
             }
         } catch (NumberFormatException e) {
-            Ui.printCustomError("Error: Invalid index entered!");
+            Ui.printCustomError("Error: Invalid value entered!");
         }
 
         try {
@@ -45,7 +45,6 @@ public class EditEntryCommand extends Command {
             storageManager.writeFoodList(foodList);
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
-
         }
     }
 
@@ -74,6 +73,12 @@ public class EditEntryCommand extends Command {
         Ui.printCustomMessage("Enter new calories "
                 + "[previous: " + exerciseList.getExercise(index - 1).getCalories() + "]");
         int newCalories = Integer.parseInt(Ui.read());
+
+        if (newCalories < 0) {
+            Ui.printCustomError("Error: Calories cannot be negative!");
+            return;
+        }
+
         exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(newCalories));
 
         Ui.printCustomMessage("Successfully edited exercise!");
@@ -99,11 +104,23 @@ public class EditEntryCommand extends Command {
         Ui.printCustomMessage("Enter new calories "
                 + "[previous: " + foodList.getFood(index - 1).getCalories() + "]");
         int newCalories = Integer.parseInt(Ui.read());
+
+        if (newCalories < 0) {
+            Ui.printCustomError("Error: Calories cannot be negative!");
+            return;
+        }
+
         foodList.getFood(index - 1).setCaloriesInFood(new Calorie(newCalories));
 
         Ui.printCustomMessage("Enter new quantity "
                 + "[previous: " + foodList.getFood(index - 1).getAmountOfFood() + "]");
         int newFoodQuantity = Integer.parseInt(Ui.read());
+
+        if (newFoodQuantity < 0) {
+            Ui.printCustomError("Error: Quantity cannot be negative!");
+            return;
+        }
+
         foodList.getFood(index - 1).setAmountOfFood(newFoodQuantity);
 
         Ui.printCustomMessage("Successfully edited food!");
