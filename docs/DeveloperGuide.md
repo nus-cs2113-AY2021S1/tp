@@ -78,6 +78,11 @@ The `UI` component,
 ### Model component
 
 ### Storage component
+**API:** [`Storage.java`](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/src/main/java/seedu/duke/Storage.java)
+
+The Storage class is responsible for encoding and saving objects into .txt files, as well as reading and decoding files. 
+
+It uses the Gson library to encode and decode objects to and from JSON.
 
 ### Common classes
 slots class
