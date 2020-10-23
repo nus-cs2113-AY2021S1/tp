@@ -23,8 +23,7 @@ public class SearchCommand extends Command {
         String showName = inputs.get(1);
         if (ShowList.getShowList().containsKey(showName)) {
             Ui.printSearchSuccessful(showName);
-        }
-        else {
+        } else {
             throw new NullPointerException();
         }
     }
