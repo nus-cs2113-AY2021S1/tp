@@ -27,19 +27,15 @@ public class ModTracker {
      * Runs the program until termination.
      */
     public void run() {
-        String name = startAndGetName();
-        loadData();
-        runCommandLoopUntilExitCommand(name);
-    }
-
-    /**
-     * Starts the program, prints the welcome message and name-enter prompt.
-     *
-     * @return name of user
-     */
-    private String startAndGetName() {
         ui.printWelcomeScreen();
-        return ui.printNamePrompt();
+        String name = storage.getName();
+        if (name == null) {
+            name = ui.printNamePrompt();
+            storage.appendToFile(name);
+        }
+        ui.printGreeting(name);
+        storage.loadData(this);
+        runCommandLoopUntilExitCommand(name);
     }
 
     /**
@@ -55,21 +51,16 @@ public class ModTracker {
         }
     }
 
-    protected void loadData() {
-        try {
-            Parser parser = new Parser();
-            Scanner reader = storage.getReader();
-            while (reader.hasNext()) {
-                String input = reader.nextLine();
-                parser.parse(input, modList, "", storage, false, taskList);
-            }
-        } catch (FileNotFoundException e) {
-            ui.printErrorMessage(e.getMessage());
-        }
-    }
-
     public ModuleList getModList() {
         return modList;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public TaskList getTaskList() {
+        return taskList;
     }
 
 }

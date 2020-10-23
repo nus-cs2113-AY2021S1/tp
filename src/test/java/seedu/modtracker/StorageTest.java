@@ -18,9 +18,10 @@ public class StorageTest {
     @Test
     public void load_validFormat_success() throws Exception {
         ModTracker modTracker = new ModTracker(TEST_DATA_FILEPATH);
-        modTracker.loadData();
+        modTracker.getStorage().loadData(modTracker);
         ModuleList actualModList = modTracker.getModList();
 
+        assertEquals(actualModList.getData().size(), 2);
         assertTrue(actualModList.checkIfModuleExist("CS1000"));
         assertTrue(actualModList.checkIfModuleExist("EE2000"));
         assertFalse(actualModList.checkIfModuleExist("CS1231"));

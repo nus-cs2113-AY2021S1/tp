@@ -80,13 +80,18 @@ public class Ui {
         String name = in.nextLine();
         if (name.isEmpty()) {
             printInvalidCommand();
-            printNamePrompt();
-        } else {
-            System.out.println("");
-            System.out.println("Hello " + name + "!");
-            System.out.println("What can I do for you?" + System.lineSeparator());
+            name = printNamePrompt();
         }
         return name;
+    }
+
+    /**
+     * Greets the user by his/ her name.
+     */
+    public void printGreeting(String name) {
+        System.out.println("");
+        System.out.println("Hello " + name + "!");
+        System.out.println("What can I do for you?" + System.lineSeparator());
     }
 
     /**
