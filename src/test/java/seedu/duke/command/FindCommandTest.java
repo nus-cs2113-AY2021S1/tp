@@ -34,41 +34,41 @@ class FindCommandTest {
 
     @Test
     void execute_keywordTest_returnsTestNote1AndTestNote2() {
-//        String keyword = "Test";
-//
-//        String expected = "Here are the matching notes in your list:"
-//                + Formatter.LS
-//                + "1. TestNote1 "
-//                + Formatter.LS
-//                + "2. TestNote2 "
-//                + Formatter.LS;
-//        String result = getCommandExecutionString(notebook, keyword);
-//
-//        assertEquals(expected, result);
+        //String keyword = "Test";
+
+        //String expected = "Here are the matching notes in your list:"
+                //+ Formatter.LS
+                //+ "1. TestNote1 "
+                //+ Formatter.LS
+                //+ "2. TestNote2 "
+                //+ Formatter.LS;
+        //String result = getCommandExecutionString(notebook, keyword);
+
+        //assertEquals(expected, result);
     }
 
     @Test
     void execute_keywordDef_returnsDefault() {
-//        String keyword = "def";
-//
-//        String expected = "Here are the matching notes in your list:"
-//                + Formatter.LS
-//                + "1. Default "
-//                + Formatter.LS;
-//        String result = getCommandExecutionString(notebook, keyword);
-//
-//        assertEquals(expected, result);
+        //String keyword = "def";
+
+        //String expected = "Here are the matching notes in your list:"
+                //+ Formatter.LS
+                //+ "1. Default "
+                //+ Formatter.LS;
+        //String result = getCommandExecutionString(notebook, keyword);
+
+        //assertEquals(expected, result);
     }
 
     @Test
     void execute_keywordNil_returnsNoMatch() {
-//        String keyword = "NIL";
-//
-//        String expected = "There are no matching notes. "
-//                + "Please try another search query.";
-//        String result = getCommandExecutionString(notebook, keyword);
-//
-//        assertEquals(expected, result);
+        //String keyword = "NIL";
+
+        //String expected = "There are no matching notes. "
+                //+ "Please try another search query.";
+        //String result = getCommandExecutionString(notebook, keyword);
+
+        //assertEquals(expected, result);
     }
 
     private String getCommandExecutionString(Notebook notebook, String keyword) {
