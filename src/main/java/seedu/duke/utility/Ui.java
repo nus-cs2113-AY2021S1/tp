@@ -80,6 +80,8 @@ public class Ui {
                 + "\n"
                 + ("changerating") + " - Changes rating of your show\n"
                 + "\n"
+                + ("addreview") + " - Adds a review of your show\n"
+                + "\n"
                 + ("episode") + " - Update your episode progress\n"
                 + "\n"
                 + ("season") + " - Update your season progress\n"
