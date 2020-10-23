@@ -2,7 +2,6 @@ package anichan.command;
 
 import anichan.anime.Anime;
 import anichan.anime.AnimeData;
-import anichan.command.Command;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
