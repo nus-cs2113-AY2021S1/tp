@@ -83,7 +83,7 @@ public class BookmarkParser extends CommandParser {
             break;
         case ADD_NOTE_PARAM:
             paramFieldCheck(paramParts);
-            paramExtraFieldCheck(paramParts);
+            paramParts = paramGiven.split(" ",2);
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
             bookmarkAnimeCommand.setBookmarkNote(paramParts[1].trim());
             break;

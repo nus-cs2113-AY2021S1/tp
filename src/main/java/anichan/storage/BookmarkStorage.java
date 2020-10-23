@@ -48,10 +48,11 @@ public class BookmarkStorage extends Storage {
             sbBookmark.append(animeEpisode.get(i));
             sbBookmark.append(System.lineSeparator());
         }
-
-        sbBookmark.setLength(sbBookmark.length() - 2);  // Remove ", " for the last item in the string.
+        //if (sbBookmark.length() != 0) {
+        //sbBookmark.setLength(sbBookmark.length() - 2);  // Remove ", " for the last item in the string.
+        //}
         String encodedBookmarkString = sbBookmark.toString();
-        assert (encodedBookmarkString.isBlank()) : "Encoded bookmark string should not be blank.";
+        //assert (encodedBookmarkString.isBlank()) : "Encoded bookmark string should not be blank.";
         return encodedBookmarkString;
     }
 
