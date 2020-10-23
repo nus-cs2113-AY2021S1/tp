@@ -120,7 +120,7 @@ public class Bookmark {
     public boolean checkExist(Integer animeIndex) {
         boolean alreadyExist = false;
         for (Integer animeID : animeBookmarkList) {
-            if (animeID == animeIndex) {
+            if (animeID.equals(animeIndex)) {
                 alreadyExist = true;
             }
         }
