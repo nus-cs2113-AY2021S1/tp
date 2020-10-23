@@ -4,6 +4,7 @@ import fitr.Calorie;
 import fitr.Food;
 import org.junit.jupiter.api.Test;
 
+import static fitr.DateManager.getCurrentDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FoodTest {
@@ -23,7 +24,7 @@ public class FoodTest {
 
     @Test
     public void getAmountOfFoodSpecified_validFoodWithSpecifiedAmount_success() {
-        Food tempExercise = new Food("exercise",tempCalorie,2);
+        Food tempExercise = new Food("exercise",tempCalorie,2, getCurrentDate());
         assertEquals(2,tempExercise.getAmountOfFood());
     }
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static fitr.DateManager.getCurrentDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -34,8 +35,8 @@ class FoodStorageTest {
 
     private ArrayList<Food> getValidFoodList() {
         ArrayList<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Test Food 1", new Calorie(100), 1));
-        foodList.add(new Food("Test Food 2", new Calorie(50), 5));
+        foodList.add(new Food("Test Food 1", new Calorie(100), 1, getCurrentDate()));
+        foodList.add(new Food("Test Food 2", new Calorie(50), 5, getCurrentDate()));
         return foodList;
     }
 }

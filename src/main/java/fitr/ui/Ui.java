@@ -77,11 +77,11 @@ public class Ui {
         System.out.printf(HELP_SPACER, COMMAND_EXERCISE, "Adds exercise entry to Fitr program");
         printCustomMessage(SPACER + FORMAT + FORMAT_EXERCISE);
 
-        System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile information");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW_FOOD, "View food entries");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
+        System.out.printf(HELP_SPACER, "view " + COMMAND_VIEW_PROFILE, "View your profile information");
+        System.out.printf(HELP_SPACER, "view " + COMMAND_VIEW_BMI, "View your BMI");
+        System.out.printf(HELP_SPACER, "view " + COMMAND_VIEW_FOOD, "View food entries");
+        System.out.printf(HELP_SPACER, "view " + COMMAND_VIEW_EXERCISE, "View exercise entries");
+        System.out.printf(HELP_SPACER, "view " + COMMAND_VIEW_SUMMARY, "View calorie summary");
 
         System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry");
         printCustomMessage(SPACER + FORMAT + FORMAT_DELETE);

@@ -7,6 +7,7 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import org.junit.jupiter.api.Test;
 
+import static fitr.DateManager.getCurrentDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
@@ -36,10 +37,10 @@ public class UserTest {
     public void testCalorieCalculation_positiveInputs_correctResult() {
         FoodList foodList = new FoodList();
         ExerciseList exerciseList = new ExerciseList();
-        foodList.addFood(new Food("Chicken", new Calorie(200), 1));
-        foodList.addFood(new Food("Duck", new Calorie(200), 1));
-        exerciseList.addExercise(new Exercise("Squats", new Calorie(100)));
-        exerciseList.addExercise(new Exercise("Running", new Calorie(100)));
+        foodList.addFood(new Food("Chicken", new Calorie(200), 1, getCurrentDate()));
+        foodList.addFood(new Food("Duck", new Calorie(200), 1, getCurrentDate()));
+        exerciseList.addExercise(new Exercise("Squats", new Calorie(100), getCurrentDate()));
+        exerciseList.addExercise(new Exercise("Running", new Calorie(100), getCurrentDate()));
         User user = new User("John Doe", 22, 1.70, 80, "Male", 2);
         assertEquals(200, user.calculateCalorieBurnt(exerciseList).get());
         assertEquals(400, user.calculateCalorieConsumed(foodList).get());

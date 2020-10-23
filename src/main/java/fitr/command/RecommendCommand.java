@@ -14,6 +14,7 @@ import fitr.Exercise;
 
 import java.io.IOException;
 
+import static fitr.DateManager.getCurrentDate;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
 import static fitr.common.Messages.EXERCISE_HEADER;
@@ -34,7 +35,7 @@ public class RecommendCommand extends Command {
                     + recommendList.getExercise(i).getSets().get(fitnessLevel) + " sets of "
                     + recommendList.getExercise(i).getDuration().get(fitnessLevel) + " minutes");
         }
-        Ui.printCustomMessage("Will you be doing this workout?/n type y for yes and n for no");
+        Ui.printCustomMessage("Will you be doing this workout?\n type y for yes and n for no");
         String checker = Ui.read();
         if (checker.equals("y")) {
             Ui.printCustomMessage("The following Exercises has been added:");
@@ -49,7 +50,7 @@ public class RecommendCommand extends Command {
                         + EXERCISE_HEADER + standardExercise.getName()
                         + SPACE_FORMATTING + BURNT_CAL_HEADER
                         + caloriesBurnt.get());
-                exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt));
+                exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
             }
             try {
                 storageManager.writeExerciseList(exerciseList);

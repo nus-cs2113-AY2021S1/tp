@@ -20,5 +20,4 @@ public class Commands {
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_CUSTOM = "custom";
     public static final String COMMAND_GOAL = "goal";
-    public static final String COMMAND_RECOMMEND = "recommend";
 }
