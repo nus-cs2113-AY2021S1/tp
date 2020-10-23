@@ -64,11 +64,11 @@ public class DeleteNoteCommand extends Command {
             }
 
             if (isDeleted &&  title.isBlank()) {
-                StorageManager.deleteNoteContentFile(deletedTitle);
+                //StorageManager.deleteNoteContentFile(deletedTitle);
                 StorageManager.saveAllNoteDetails(notebook);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else if (isDeleted) {
-                StorageManager.deleteNoteContentFile(title);
+                //StorageManager.deleteNoteContentFile(title);
                 StorageManager.saveAllNoteDetails(notebook);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
             } else {
@@ -78,8 +78,8 @@ public class DeleteNoteCommand extends Command {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         } catch (IOException e) {
             return Formatter.formatString("Unable to write to file");
-        } catch (SystemException exception) {
+        } /*catch (SystemException exception) {
             return Formatter.formatString(exception.getMessage());
-        }
+        }*/
     }
 }

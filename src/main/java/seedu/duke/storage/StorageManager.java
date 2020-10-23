@@ -26,6 +26,7 @@ public class StorageManager {
 
     /** Default file path. */
     private static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
+    private static final String TAG_FILE_PATH = "/tags.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
 
     /**
@@ -38,11 +39,13 @@ public class StorageManager {
         //Create directories
         String dataPath = FOLDER_DIR;
         String notesPath = FOLDER_DIR + NOTES_DIR;
+
         String notebookFilePath = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        String tagsFilePath = FOLDER_DIR + TAG_FILE_PATH;
         String timetableFilePath = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
         String[] paths = {dataPath, notesPath};
-        String[] files = {notebookFilePath, timetableFilePath};
+        String[] files = {notebookFilePath, tagsFilePath, timetableFilePath};
 
         for (String path: paths) {
             createDirectory(path);
@@ -105,7 +108,7 @@ public class StorageManager {
     public static void saveAllNoteDetails(Notebook notebook) throws IOException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         FileWriter fw = new FileWriter(path);
-        fw.write(" ");
+        fw.write("");
         fw.close();
 
         for (Note note: notebook.getNotes()) {

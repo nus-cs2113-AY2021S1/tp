@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ class PinCommandTest {
 
     private static final String NOTE1_TITLE = "TestNote1";
     private static final String NOTE2_TITLE = "TestNote2";
+
+    private static final String UNSUCCESFUL_MESSAGE = Formatter.formatString(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
 
     @BeforeEach
     void setUp() {
@@ -58,14 +61,14 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
+        assertEquals(UNSUCCESFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
+        assertEquals(UNSUCCESFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
     }
 
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
+        assertEquals(UNSUCCESFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
+        assertEquals(UNSUCCESFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
     }
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {
