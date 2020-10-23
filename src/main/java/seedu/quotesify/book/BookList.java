@@ -66,7 +66,8 @@ public class BookList extends QuotesifyList<Book> {
         String booksToReturn = "";
 
         for (Book book : books) {
-            booksToReturn += getIndex(book) + 1 + ". " + book.toString() + System.lineSeparator();
+            booksToReturn += getIndex(book) + 1 + ". " + book.getStatusIcon()
+                    + book.toString() + System.lineSeparator();
         }
 
         return booksToReturn;
@@ -142,6 +143,22 @@ public class BookList extends QuotesifyList<Book> {
         Author author = filteredBooks.getBook(0).getAuthor();
 
         return author;
+    }
+
+    public BookList filterDone(boolean isDone) {
+        ArrayList<Book> filteredBooks;
+
+        if (isDone) {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> book.isDone())
+                    .collect(Collectors.toList());
+        } else {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> !book.isDone())
+                    .collect(Collectors.toList());
+        }
+
+        return new BookList(filteredBooks);
     }
 
     public BookList filterByAuthor(String authorName) {
