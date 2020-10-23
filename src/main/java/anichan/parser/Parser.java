@@ -1,6 +1,5 @@
 package anichan.parser;
 
-
 import anichan.command.HelpCommand;
 import anichan.command.Command;
 import anichan.command.ExitCommand;
@@ -30,11 +29,8 @@ public class Parser {
         }
 
         switch (command) {
-        case "addws":
-            return new AddWorkspaceParser().parse(description);
-
-        case "switchws":
-            return new SwitchWorkspaceParser().parse(description);
+        case "workspace":
+            return new WorkspaceParser().parse(description);
 
         case "browse":
             return new BrowseParser().parse(description);
@@ -44,6 +40,9 @@ public class Parser {
 
         case "watchlist":
             return new WatchlistParser().parse(description);
+            
+        case "view":
+            return new ViewWatchlistParser().parse(description);
 
         case "add":
             return new AddToWatchlistParser().parse(description);

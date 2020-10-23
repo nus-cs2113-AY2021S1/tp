@@ -21,14 +21,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    private static final String ANIME_DATA_SOURCE_FOLDER = "/AniListData";
+    private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
 
     private final Ui ui;
     private final Parser parser;
     private final StorageManager storageManager;
 
-    private AnimeStorage animeStorage;
     private AnimeData animeData;
     private User user;
 
@@ -36,7 +35,7 @@ public class Main {
         user = null;
         ui = new Ui();
         parser = new Parser();
-        storageManager = new StorageManager("data" + File.separator);
+        storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
 
         LOGGER.log(Level.INFO, "AniChan started! Initializing...");
 
@@ -85,7 +84,7 @@ public class Main {
         // ========================== New User Setup ==========================
 
         if (user == null) {
-            LOGGER.log(Level.INFO, "Creating new user");
+            LOGGER.log(Level.INFO, "Creating new user..");
 
             while (true) {
                 try {
@@ -103,20 +102,20 @@ public class Main {
 
         // ========================== Workspace Setup ==========================
 
-        LOGGER.log(Level.INFO, "Workspace setup... ");
+        LOGGER.log(Level.INFO, "Workspace setup..");
 
         user.setWorkspaceList(workspaceList);
         if (user.getTotalWorkspaces() == 0) {
-            Workspace newWorkspace = user.addWorkspace("Default");
-            ArrayList<Watchlist> watchlistList = new ArrayList<>();
-            watchlistList.add(new Watchlist("Default"));
-            newWorkspace.setWatchlistList(watchlistList);
-            user.setActiveWorkspace(newWorkspace);
-            LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
-
             try {
+                Workspace newWorkspace = user.addWorkspace("Default");
+                ArrayList<Watchlist> watchlistList = new ArrayList<>();
+                watchlistList.add(new Watchlist("Default"));
+                newWorkspace.setWatchlistList(watchlistList);
+                user.setActiveWorkspace(newWorkspace);
+                LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
+
                 storageManager.saveWorkspace(newWorkspace);
-                LOGGER.log(Level.INFO, "Workspace saved to storage: ");
+                LOGGER.log(Level.INFO, "Workspace saved to storage: " + newWorkspace.getName());
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
@@ -132,13 +131,12 @@ public class Main {
         }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
-        // ========================== Anime Data Setup ==========================
-
+        // ========================== AnimeDate Setup ==========================
         try {
-            animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_FOLDER);
-            animeData = new AnimeData(animeStorage.readAnimeDatabase());
-        } catch (IOException e) {
-            ui.printErrorMessage(e.getMessage());
+            animeData = new AnimeData();
+        } catch (AniException exception) {
+            ui.printMessage("\tAnimeData: " + exception.getMessage());
+            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
         }
     }
 
@@ -152,6 +150,7 @@ public class Main {
 
                 if (command.getShouldExit()) {
                     ui.printGoodbyeMessage(user.getHonorificName());
+                    ui.shutdownUi();
                     break;
                 }
             } catch (AniException exception) {

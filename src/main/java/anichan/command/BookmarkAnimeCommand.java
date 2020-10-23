@@ -120,7 +120,7 @@ public class BookmarkAnimeCommand extends Command {
     private String addBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
         checkAnimeIndex(animeData);
         String result;
-        Anime animeToAdd = animeData.getAnimeByID(animeIndex - 1);
+        Anime animeToAdd = animeData.getAnime(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
         workspace.addBookmarkEntry(animeIndex - 1);
         return result;

@@ -4,17 +4,21 @@ import anichan.bookmark.Bookmark;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.watchlist.Watchlist;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 public class StorageManager {
-    private static final Logger LOGGER = getAniLogger(StorageManager.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -59,6 +63,22 @@ public class StorageManager {
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
     }
 
+    // ========================== Workspace Deletion ==========================
+
+    public void deleteWorkspace(String name) throws AniException {
+        String deletePathString = storageDirectory + name;
+        Path deletePath = Paths.get(deletePathString);
+
+        try {
+            Files.walk(deletePath)
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        } catch (IOException e) {
+            throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
+        }
+    }
+
     // ========================== Watchlist Saving and Loading ==========================
 
     public void saveWatchlistList(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
@@ -79,9 +99,9 @@ public class StorageManager {
         return bookmarkStorage.load(workspaceName, bookmark);
     }
 
-    // ========================== Script Reading ==========================
+    // ========================== Script Loading ==========================
 
-    public String readScript(String workspaceName, String fileName) throws AniException {
+    public String loadScript(String workspaceName, String fileName) throws AniException {
         return scriptStorage.readScript(workspaceName, fileName);
     }
 }
