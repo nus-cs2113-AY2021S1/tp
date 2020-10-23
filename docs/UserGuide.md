@@ -30,32 +30,35 @@
 
 <img src = "images/quickstart.PNG" width = "600">
 
-#### **WatchNext** is a program made for teenagers and young adults.
+#### **WatchNext** is a show tracker made for teenagers and young adults.
 
 ### 1.a. What does **WatchNext** do?
 
-For users who use multiple free streaming platforms or other open source stream websites,
-the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
-to limit your weekly show progress to help manage your time.
+For users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites,
+WatchNext will track their progress for the different shows they watch, and upcoming shows that they intend to watch.In addition, it provides a tracker 
+to limit users' weekly watch time to help users better manage their time.
 
-For students, **WatchNext** is able to do the same for lectures and webcasts.
+For students, **WatchNext** is serves the same purpose for lectures and webcasts.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
 
 ### 1.b. Why use **WatchNext**?
 
-**WatchNext** allows users who watch shows on multiple free streaming platforms or other open source stream websites.It is very difficult and especially taxing to track your favourite shows through browser bookmarks, 
-especially for younger teenagers and adults who serve a large part of the user demographic in consuming said media.
+**WatchNext** allows users who watch shows on multiple free streaming platforms or other open source stream websites to keep track of which episode they are at.
+<br>It is difficult and can be taxing to track your favourite shows through browser bookmarks.
+This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
-For students, there is also a need for to manually track lecture videos and webcast progress.
+For students, there is also a need for to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
 
-This motivated our team to create an application that would not only help track all your shows and lectures if necessary, but also potentially create a community where everyone will be able to share their favourite shows and their current watchlist.
- 
+This motivated our team to create an application that would not only help track all your shows and lectures, 
+but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends.
+<!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet -->
  
 ### 1.c. What will this guide do?
 
-This guide aims to educate you on how to use our application by providing example usages of all its features. The features can be found in [Section 4: “Features”](#4-features).
+This guide aims to equip you with the knowledge on how to use our application by providing example usages of all its features. 
+The features can be found in [Section 4: “Features”](#4-features).
 
 Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started!
 
@@ -257,13 +260,13 @@ This command updates the season for an existing show that you currently have in 
  
 ### 4.k.a. `watch` - Watch a show in your watchlist
 
-This command updates the current episode that you are on, and updates your current watch time limit.
+This command increments the current episode that you are on, and updates your watch time limit.
 
  Format:
   `watch <SHOWNAME> `
   
  Example of usage:
- `watch friends `
+ `watch friends`
  
  Expected outcome:
   
@@ -311,6 +314,10 @@ Expected outcome:
 **Q**: Is my watchlist saved after I exit the program?
 
 **A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.
+
+**Q**: What should I do if there was an error while I was typing in some input?
+
+**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary. 
 
 ### 6. Command Summary
 
