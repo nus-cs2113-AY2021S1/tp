@@ -2,6 +2,7 @@ package seedu.eduke8.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.QuizQuestionsManager;
 import seedu.eduke8.quiz.SingleTopicQuiz;
@@ -19,7 +20,8 @@ public class QuizCommandTest extends Eduke8Test {
     public void execute_badTopicName_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
         Ui ui = new Ui();
         TopicList topicList = createTestTopicList();
-        Command badQuizCommand = new QuizCommand(topicList, 1, "badname", ui);
+        BookmarkList bookmarks = new BookmarkList();
+        Command badQuizCommand = new QuizCommand(topicList, 1, "badname", ui, bookmarks);
         badQuizCommand.execute(topicList, ui);
         assertTrue(true);
     }
@@ -28,7 +30,8 @@ public class QuizCommandTest extends Eduke8Test {
     public void execute_wrongTopicNum_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
         Ui ui = new Ui();
         TopicList topicList = createTestTopicList();
-        Command badQuizCommand = new QuizCommand(topicList, 50, "First Topic", ui);
+        BookmarkList bookmarks = new BookmarkList();
+        Command badQuizCommand = new QuizCommand(topicList, 50, "First Topic", ui, bookmarks);
         badQuizCommand.execute(topicList, ui);
         assertTrue(true);
     }
