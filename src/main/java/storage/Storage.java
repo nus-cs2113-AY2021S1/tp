@@ -495,4 +495,10 @@ public class Storage {
         s.close();
         return histories;
     }
+
+    public boolean removeChapterFromDue(String module, String chapter) {
+        File fileToDelete = new File(getFilePath() + "/" + module
+                + "/dues/" + chapter + "due.txt");
+        return deleteDirectory(fileToDelete);
+    }
 }
