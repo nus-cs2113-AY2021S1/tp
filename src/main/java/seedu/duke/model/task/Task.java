@@ -87,6 +87,10 @@ public class Task implements Jsonable {
         sprintList.add(sprintId);
     }
 
+    public void removefromSprint(int sprintId) {
+        sprintList.remove((Object) sprintId);
+    }
+
     public ArrayList<Integer> getAllocatedSprints() {
         return sprintList;
     }

@@ -45,9 +45,7 @@ public class SprintParser implements ExceptionsParser {
             }
             break;
         case REMOVETASK:
-            if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
-                throw new DukeException("please give a task number");
-            } else {
+            if (checkRemoveTaskParams(parameters, projectListManager)) {
                 new RemoveSprintTaskCommand(parameters, projectListManager).execute();
             }
             break;
@@ -122,7 +120,33 @@ public class SprintParser implements ExceptionsParser {
             selectedProject.getSprintList().updateCurrentSprint();
             selectedSprint = selectedProject.getSprintList().getCurrentSprint();
         }
-        checkTaskParam(parameters, selectedProject, selectedSprint);
+        checkTaskParam(parameters, selectedProject, selectedSprint, true);
+        return true;
+    }
+
+    /**
+     * Validate parameters for RemoveprintTaskCommand
+     */
+    private boolean checkRemoveTaskParams(Hashtable<String, String> parameters, ProjectManager projectManager) throws DukeException {
+        /**
+         * Optional fields
+         * - project
+         * - sprint
+         *
+         * Mandatory fields
+         * - task (with or without tag)
+         */
+        Project selectedProject = checkProjectParam(parameters, projectManager);
+        Sprint selectedSprint = new Sprint();
+
+        if (parameters.containsKey("task")) {
+            selectedSprint = checkSprintParam(parameters, selectedProject);
+
+        } else if (parameters.containsKey("0")) {
+            selectedProject.getSprintList().updateCurrentSprint();
+            selectedSprint = selectedProject.getSprintList().getCurrentSprint();
+        }
+        checkTaskParam(parameters, selectedProject, selectedSprint, false);
         return true;
     }
 
@@ -215,16 +239,18 @@ public class SprintParser implements ExceptionsParser {
      * - parsable into an Integer
      * - Exist in backlog (Task Manager)
      */
-    private void checkTaskParam(Hashtable<String, String> parameters, Project proj, Sprint sprint) throws DukeException {
+    private void checkTaskParam(Hashtable<String, String> parameters, Project proj, Sprint sprint, boolean isAdd)
+            throws DukeException {
         if (parameters.containsKey("task")) {
-            checkTaskParamTag(parameters, "task", proj, sprint);
+            checkTaskParamTag(parameters, "task", proj, sprint, isAdd);
         } else if (parameters.containsKey("0")) {
-            checkTaskParamTag(parameters, "0", proj, sprint);
+            checkTaskParamTag(parameters, "0", proj, sprint, isAdd);
         } else {
             throw new DukeException("Please indicate task(s) to be allocated.");
         }
     }
-    private void checkTaskParamTag(Hashtable<String, String> parameters, String tag, Project proj, Sprint sprint)
+    private void checkTaskParamTag(Hashtable<String, String> parameters, String tag, Project proj, Sprint sprint
+            , boolean isAdd)
             throws DukeException {
         String[] taskIds;
         if (tag.equals("task")) {
@@ -239,11 +265,15 @@ public class SprintParser implements ExceptionsParser {
             } catch (NumberFormatException e) {
                 throw new DukeException("Please include positive integer for task IDs.");
             }
+
             if (!proj.getBacklog().checkTaskExist(taskId)) {
                 throw new DukeException("Task(s) not found.");
             }
-            if (sprint.checkTaskExist(taskId)) {
-                throw new DukeException("Task(s) already exist");
+
+            if (isAdd == sprint.checkTaskExist(taskId)) {
+                throw new DukeException(isAdd ?
+                        "Task(s) already exist"
+                        : "Task(s) not found.");
             }
 
         }
