@@ -1,5 +1,6 @@
 # AniChan User Guide
 
+![AniChan Logo](images/AniChan-Logo.png)
 
 
 ## Table of Contents

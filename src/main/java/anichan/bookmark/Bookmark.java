@@ -58,7 +58,7 @@ public class Bookmark {
 
     public Anime getAnimeBookmarkByIndex(AnimeData animeData, Integer bookmarkIndex) {
         int animeIndex = this.animeBookmarkList.get(bookmarkIndex);
-        return animeData.getAnimeByID(animeIndex);
+        return animeData.getAnime(animeIndex);
     }
 
     public int getBookmarkSize() {
@@ -99,7 +99,7 @@ public class Bookmark {
             sbAnimeList.append(i + 1);
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
-            sbAnimeList.append(animeData.getAnimeByID(animeIndex));
+            sbAnimeList.append(animeData.getAnime(animeIndex));
             if (animeEpisode.get(i) != -1) {
                 sbAnimeList.append(" Ep: ");
                 sbAnimeList.append(animeEpisode.get(i));

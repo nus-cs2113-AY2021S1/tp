@@ -1,26 +1,30 @@
 package anichan.anime;
 
+import anichan.exception.AniException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AnimeData {
-    public ArrayList<Anime> animeDataList;
-    public ArrayList<Anime> animeOriginalDataList;
+    private ArrayList<Anime> animeDataList;
+    //private ArrayList<Anime> animeOriginalDataList;
 
     public AnimeData(ArrayList<Anime> animeDataList) {
         this.animeDataList = animeDataList;
-        this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
+        //this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
     }
 
-    public Anime getAnime(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
-        try {
-            return animeDataList.get(animeIndex);
-        } catch (IndexOutOfBoundsException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            throw e;
-        }
+    public AnimeData() throws AniException {
+        AnimeStorage animeStorage = new AnimeStorage();
+        loadAnimeData(animeStorage.readAnimeDatabase());
+    }
 
+    public void loadAnimeData(ArrayList<Anime> animeDataList) {
+        this.animeDataList = animeDataList;
+    }
+
+    public Anime getAnime(Integer animeIndex) {
+        return animeDataList.get(animeIndex);
     }
 
     public int getSize() {
@@ -78,22 +82,11 @@ public class AnimeData {
     public ArrayList<Anime> findName(String description) {
         ArrayList<Anime> findList = new ArrayList<>();
         System.out.println("Looking for \"" + description + "\"");
-        for (Anime anime : animeOriginalDataList) {
+        for (Anime anime : animeDataList) {
             if (anime.getAnimeName().contains(description)) {
                 findList.add(anime);
             }
         }
         return findList;
-    }
-
-    //Functions below uses original data list
-    public Anime getAnimeByID(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
-        try {
-            return animeOriginalDataList.get(animeIndex);
-        } catch (IndexOutOfBoundsException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            throw e;
-        }
     }
 }
