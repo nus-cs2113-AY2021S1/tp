@@ -10,3 +10,5 @@ LEC|false|cs1010|2020-10-27|13:40|nus|0
 LAB|true|cs1010|2020-10-14|14:40|nus|0
 LAB|true|cs1010|2020-10-21|14:40|nus|0
 LAB|true|cs1010|2020-10-21|14:40|nus|0
+EXAM|true|cs1010|2020-10-10|12:30|nus|0
+EXAM|true|cs1010|2020-10-10|12:30|nus|0

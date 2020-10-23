@@ -36,7 +36,20 @@ public class Duke {
      * Greets the user upon start up and exit.
      */
     public void run() {
-        Ui.printWelcomeMessage();
+        //the following are all test code
+        String code = "CS1010";
+        System.out.println("THIS is some testing:::::::\n");
+        ModuleChecker moduleChecker = new ModuleChecker();
+        System.out.println("This is after creating a Module checker object\n");
+        if (moduleChecker.isModuleValid(code)) {
+            System.out.println(code + " is in the module list\n");
+        } else {
+            System.out.println("Nothing is found\n");
+        }
+        System.out.println("This is after calling the isModuleValid function\n");
+
+        // the above are all testing codes
+        //Ui.printWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {
             try {
