@@ -116,6 +116,7 @@ public class Ui {
         case COMMAND_GOAL:
             printCustomError("Please input in the correct format!");
             printCustomMessage(FORMAT + FORMAT_GOAL);
+            break;
         default:
             printInvalidCommandError();
             break;

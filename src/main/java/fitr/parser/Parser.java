@@ -4,16 +4,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fitr.command.AddFoodCommand;
+import fitr.command.ClearCommand;
 import fitr.command.Command;
 import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
 import fitr.command.EditProfileCommand;
+import fitr.command.RecommendCommand;
 import fitr.command.HelpCommand;
 import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
+
+import static fitr.DateManager.getCurrentDate;
 
 /**
  * Parses the user input.
@@ -23,6 +27,7 @@ public class Parser {
 
     /**
      * Parses the user input and return a corresponding command.
+     *
      * @param userInput String of user input
      * @return a Command object
      */
@@ -35,6 +40,7 @@ public class Parser {
 
         String userCommand = matcher.group("command").trim();
         String arguments = matcher.group("arguments").trim();
+
         switch (userCommand.toLowerCase()) {
         case Commands.COMMAND_FOOD:
             return new AddFoodCommand(arguments);
@@ -42,16 +48,20 @@ public class Parser {
             return new AddExerciseCommand(arguments);
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
+        case Commands.COMMAND_RECOMMEND:
+            return new RecommendCommand();
         case Commands.COMMAND_EDIT_PROFILE:
             return new EditProfileCommand(arguments);
         case Commands.COMMAND_HELP:
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
             return new DeleteCommand(arguments);
+        case Commands.COMMAND_CLEAR:
+            return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
-            return new AddGoalCommand(arguments);
+            return new AddGoalCommand(arguments, getCurrentDate());
         default:
             return new InvalidCommand(arguments);
         }
