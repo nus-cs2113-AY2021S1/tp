@@ -187,12 +187,13 @@ public class ListNoteCommand extends Command {
 
         // if no /archive or pinned notes and there are /tags
         if (!notebook.checkPinned() && tags != null) {
+            ArrayList<Note> sortedTaggedNotes = new ArrayList<>();
+
             if (isSorted) {
-                ArrayList<Note> sortedTaggedNotes = new ArrayList<>();
                 // Sort the tagged notes
-                notes = notebook.getSortedList(isAscendingOrder, null, sortedTaggedNotes);
+                sortedTaggedNotes = notebook.getSortedList(isAscendingOrder, null, notes);
             }
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes);
         }
 
         // if no /archive and there are both pinned notes and /tags

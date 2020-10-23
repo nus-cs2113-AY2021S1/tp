@@ -183,7 +183,13 @@ public class Notebook {
     public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean isPinned, ArrayList<Note> noteArrayList) {
         ArrayList<Note> sortedNotes = new ArrayList<>();
 
-        if (isPinned) {
+        if (isPinned == null) {
+            // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
+            sortedNotes = (ArrayList<Note>) noteArrayList.stream()
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        } else if (isPinned) {
             // Takes only the pinned notes in the notebook and sorts them according to title, alphabetically (a-z)
             sortedNotes = (ArrayList<Note>) noteArrayList.stream()
                     .filter(Objects::nonNull)
@@ -195,12 +201,6 @@ public class Notebook {
             sortedNotes = (ArrayList<Note>) noteArrayList.stream()
                     .filter(Objects::nonNull)
                     .filter((s) -> !s.getPinned())
-                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
-                    .collect(Collectors.toList());
-        } else if (isPinned == null) {
-            // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
-            sortedNotes = (ArrayList<Note>) noteArrayList.stream()
-                    .filter(Objects::nonNull)
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
         }
