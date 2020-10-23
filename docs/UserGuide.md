@@ -250,12 +250,21 @@ This command updates the season for an existing show that you currently have in 
  <img src = "images/season.PNG" width = "500">
   
  &nbsp;
- 
-### 4.k. Managing your watch time limit
+
+### 4.k. Adding a review
+This command allows us to add a review for a show, including adding a rating.
+
+ Format:
+  `addreview <SHOWNAME> <RATING> <REVIEW>`
+  
+ Example of usage:
+ `season Friends 3`
+
+### 4.m. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.k.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your watchlist
 
 This command updates the current episode that you are on, and updates your current watch time limit.
 
@@ -271,7 +280,7 @@ This command updates the current episode that you are on, and updates your curre
   
  &nbsp;
 
-### 4.k.b. `updatetimelimit` - update your watch time limit
+### 4.m.b. `updatetimelimit` - update your watch time limit
 
 This command updates the current episode that you are on, and updates your current watch time limit.
 
@@ -291,7 +300,7 @@ This command updates the current episode that you are on, and updates your curre
   
  &nbsp;
  
-### 4. m. `bye` - Exits the program
+### 4. n. `bye` - Exits the program
 This command exits the program.
 
 Format:
@@ -331,8 +340,5 @@ Expected outcome:
 |Watch a show  |`watch <SHOWNAME>`|  `watch Friends`|
 |Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 100`|
 |Exit program |`bye`|   `bye`|
-
-
-
 
 
