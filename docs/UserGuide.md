@@ -38,7 +38,7 @@ For users who watch their favourite shows on multiple free streaming platforms a
 WatchNext will track their progress for the different shows they watch, and upcoming shows that they intend to watch.In addition, it provides a tracker 
 to limit users' weekly watch time to help users better manage their time.
 
-For students, **WatchNext** is serves the same purpose for lectures and webcasts.
+For students, **WatchNext** serves the same purpose for lectures and webcasts.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
