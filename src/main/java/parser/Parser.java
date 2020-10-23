@@ -212,10 +212,9 @@ public abstract class Parser {
                 if (locationDividerPosition == -1) {
                     throw new NoEventLocationException();
                 }
-                int prefixLength=words[0].length() + words[1].length() + words[2].length();
+                int prefixLength = words[0].length() + words[1].length() + words[2].length();
 
-                if (fullCommand.substring(prefixLength,
-                        timeDividerPosition).isBlank()) {
+                if (fullCommand.substring(prefixLength, timeDividerPosition).isBlank()) {
                     throw new EmptyEventException();
                 }
 
