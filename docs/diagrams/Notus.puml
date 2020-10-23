@@ -12,7 +12,9 @@ NotUS <-- Parser: new Command
 NotUS -> Command: setData()
 NotUS <-- Command
 NotUS -> Command: execute()
-NotUS <-- Command: execute result
+Command -> Formatter: formatString()
+Command <-- Formatter: string
+NotUS <-- Command: string
 NotUS -> InterfaceManager: prints()
 NotUS <-- InterfaceManager
 

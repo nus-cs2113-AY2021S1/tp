@@ -5,6 +5,7 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting up and getting started](#setup)
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Usage of color libraries [JColor and jansi]](#color)
 #### [3. Product Scope](#scope)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
@@ -29,7 +30,7 @@ This document describes the design, implementation and architecture of NotUS.
 * IntelliJ IDE
 
 Fork this repo and clone it onto your local machine.
-Import the project as a <b>Gradle project</b>.
+Import the project as a **Gradle project**.
 Ensures that you are using the correct JDK version (For this project we are using JDK 11).
 
 <br>
@@ -38,7 +39,8 @@ Ensures that you are using the correct JDK version (For this project we are usin
 
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
 NotUS is the main class of the application, and handles the initializing the appropriate classes to be used as well as
- the execution.
+ the execution. The structure of the classes and packages are referenced from addressbook-level2, however, we
+  have made modifications to meet the needs of our application.
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
@@ -80,6 +82,35 @@ the user input and execute the commands accordingly. The diagram below depicts t
 </p>
 
 **Command**
+
+#### <a id="color"><ins>2.2 Usage of color libraries [JColor and jansi]</ins></a>
+
+This application uses 2 color libraries, JColor and jansi, to print colored fonts on the terminals using ANSI escape
+ codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **do not
+  support** ANSI escape code. Thus, we included the jansi library to support ANSI escape codes on Windows.
+  
+Note on usage of JColor library:
+
+IntelliJ's 'Dracula' and 'High Contrast' color schemes print white fonts as black and vice versa. Developers using
+ either of the color scheme have to change the white and black console color to reflect the correct color that is
+  printed.
+  
+Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black
+ and White to the correct RGB value.
+ 
+<p align="center">
+  <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
+</p>
+
+Note on usage of jansi library:
+
+While jansi provides support for Windows terminal to print colored fonts, it does not work within IntelliJ IDEA
+ console. Therefore, when running on IntelliJ console, comment out the following lines in NotUS.java main function:
+ 
+ AnsiConsole.systemInstall();
+ AnsiConsole.systemUninstall();
+ 
+Do uncomment them when building jar files for release.
 
 <br>
 
