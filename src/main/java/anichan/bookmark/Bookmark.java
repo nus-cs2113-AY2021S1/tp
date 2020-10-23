@@ -112,4 +112,14 @@ public class Bookmark {
     public String getAnimeBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
         return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
     }
+
+    public boolean checkExist(Integer animeIndex) {
+        boolean alreadyExist = false;
+        for (Integer animeID : animeBookmarkList) {
+            if (animeID == animeIndex) {
+                alreadyExist = true;
+            }
+        }
+        return alreadyExist;
+    }
 }

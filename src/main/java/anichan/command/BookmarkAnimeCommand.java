@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class BookmarkAnimeCommand extends Command {
 
     private static final String ANIME_ID_ERROR = " Anime index is outside AnimeData range (too big or too small).";
+    private static final String ANIME_ID_EXIST_ERROR = " Anime index is already in bookmark.";
     private static final String BOOKMARK_ID_ERROR = " Bookmark index is outside Bookmark range (too big or too small).";
     private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
     private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
@@ -117,11 +118,21 @@ public class BookmarkAnimeCommand extends Command {
 
     private String addBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkAnimeIndex(animeData);
+        checkAnimeNotInBookmark(bookmark);
         String result;
         Anime animeToAdd = animeData.getAnime(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
         bookmark.addAnimeBookmark(animeIndex - 1);
         return result;
+    }
+
+    private void checkAnimeNotInBookmark(Bookmark bookmark) throws AniException {
+        if (bookmark.checkExist(animeIndex-1)){
+            String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
+                    + System.lineSeparator() + ANIME_ID_EXIST_ERROR;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);
+            throw new AniException(invalidAnimeIndex);
+        }
     }
 
     private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
