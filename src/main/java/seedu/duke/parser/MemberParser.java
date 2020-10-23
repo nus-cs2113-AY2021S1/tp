@@ -1,5 +1,7 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.member.AddMemberCommand;
+import seedu.duke.command.member.DeleteMemberCommand;
 import seedu.duke.command.member.MemberCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
@@ -20,12 +22,15 @@ public class MemberParser implements ExceptionsParser {
         if (parameters.get("0").isBlank()) {
             throw new DukeException("missing name");
         }
+        if (projectListManager.isEmpty()) {
+            throw new DukeException("You currently have no projects created");
+        }
         switch (action.toLowerCase()) {
         case ADD:
-            new MemberCommand().addMemberCommand(parameters, projectListManager);
+            new AddMemberCommand(parameters, projectListManager).execute();
             break;
         case DELETE:
-            new MemberCommand().deleteMemberCommand(parameters, projectListManager);
+            new DeleteMemberCommand(parameters, projectListManager).execute();
             break;
         default:
             throw new DukeException("Invalid action");

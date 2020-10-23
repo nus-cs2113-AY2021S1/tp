@@ -4,18 +4,16 @@ import seedu.duke.command.project.CreateProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectList;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.CREATE;
-import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.DURATION;
 import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
+import static seedu.duke.command.CommandSummary.VIEW;
+import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.SELECT;
 
 public class ProjectParser implements ExceptionsParser {
@@ -47,10 +45,19 @@ public class ProjectParser implements ExceptionsParser {
             }
             break;
         case VIEW:
-            new ViewProjectCommand(parameters, projectListManager).execute();
+            if (projectListManager.size() == 0) {
+                throw new DukeException("You currently have no projects created");
+            } else {
+                new ViewProjectCommand(parameters, projectListManager).execute();
+            }
             break;
         case SELECT:
-            new SelectProjectCommand(parameters, projectListManager).execute();
+            int index = Integer.parseInt(parameters.get("0"));
+            if (index <= projectListManager.size() && index > 0) {
+                new SelectProjectCommand(parameters, projectListManager).execute();
+            } else {
+                throw new DukeException("Invalid index, no corresponding project exists");
+            }
             break;
         default:
             throw new DukeException("Invalid action!");

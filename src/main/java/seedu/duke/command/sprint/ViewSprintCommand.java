@@ -13,24 +13,24 @@ import java.util.Hashtable;
 
 public class ViewSprintCommand extends SprintCommand {
     private SprintList allSprint;
-    private final ProjectList projectListManager;
+    private final ProjectList projectManager;
     private Project proj;
 
     public ViewSprintCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectListManager = projectListManager;
+        this.projectManager = projectListManager;
     }
 
     /**
      * Abstract method that execute the command.
      */
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project\n";
-        if (projectListManager.isEmpty()) {
+        assert !projectManager.isEmpty() : "No project\n";
+        if (projectManager.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;
         }
-        proj = projectListManager.getProject();
+        proj = projectManager.getProject();
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
