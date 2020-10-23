@@ -43,7 +43,7 @@ public class Task {
      * @return tick or cross symbol
      */
     public String getStatusIcon() {
-        return (isDone ? "✓" : "✘");
+        return (isDone ? "/" : "X");
     }
 
     public String getModCode() {
