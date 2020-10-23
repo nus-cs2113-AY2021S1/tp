@@ -58,8 +58,7 @@ public class NuSchedule {
             try {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
-                int eventCount = events.getSize();
-                Command c = Parser.parse(fullCommand, eventCount, locations);
+                Command c = Parser.parse(fullCommand, locations);
                 c.execute(events, locations, busStops, ui, storage);
                 isExit = c.isExit();
             } catch (NuScheduleException e) {

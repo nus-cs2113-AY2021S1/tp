@@ -2,7 +2,7 @@ package exception;
 
 /**
  * Represents the exception happens when the user trying to create a Class
- * without using \at to give it a time.
+ * without using /t to give it a time.
  */
 public class NoClassTimeMarkerException extends ClassException {
     /**
@@ -11,6 +11,6 @@ public class NoClassTimeMarkerException extends ClassException {
      * @return the message.
      */
     public String getMessage() {
-        return "OOPS!!! You should mark the time for a class with \"/at\"";
+        return "OOPS!!! You should mark the time for a class with \"/t\"";
     }
 }
