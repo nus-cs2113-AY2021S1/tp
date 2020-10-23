@@ -51,8 +51,8 @@ public class Parser {
             return new ViewCommand(arguments);
         case Commands.COMMAND_RECOMMEND:
             return new RecommendCommand();
-        case Commands.COMMAND_EDIT_PROFILE:
-            return new EditCommand(arguments);
+        case Commands.COMMAND_EDIT:
+            return new EditCommandParser(arguments).editCommand();
         case Commands.COMMAND_HELP:
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:

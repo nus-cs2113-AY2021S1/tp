@@ -36,21 +36,6 @@ public class EditCommand extends Command {
         String argument = matcher.group("argument");
 
         switch (argument) {
-        case Messages.EDIT_NAME:
-            editName(user);
-            break;
-        case Messages.EDIT_HEIGHT:
-            editHeight(user);
-            break;
-        case Messages.EDIT_WEIGHT:
-            editWeight(user);
-            break;
-        case Messages.EDIT_AGE:
-            editAge(user);
-            break;
-        case Messages.EDIT_GENDER:
-            editGender(user);
-            break;
         case Commands.COMMAND_EXERCISE:
             index = Integer.parseInt(matcher.group("index").trim());
             editExercise(exerciseList, index);
@@ -65,7 +50,6 @@ public class EditCommand extends Command {
         }
 
         try {
-            storageManager.writeUserProfile(user);
             storageManager.writeExerciseList(exerciseList);
             storageManager.writeFoodList(foodList);
         } catch (IOException e) {
@@ -77,36 +61,6 @@ public class EditCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
-    }
-
-    private void editName(User user) {
-        Ui.printCustomMessage(Messages.EDIT_NAME_HEADER);
-        user.setName();
-        Ui.printCustomMessage(Messages.NAME_ECHO_HEADER + user.getName());
-    }
-
-    private void editHeight(User user) {
-        Ui.printCustomMessage(Messages.EDIT_HEIGHT_HEADER);
-        user.setupHeight();
-        Ui.printCustomMessage(Messages.HEIGHT_ECHO_HEADER + user.getHeight());
-    }
-
-    private void editWeight(User user) {
-        Ui.printCustomMessage(Messages.EDIT_WEIGHT_HEADER);
-        user.setupWeight();
-        Ui.printCustomMessage(Messages.WEIGHT_ECHO_HEADER + user.getWeight());
-    }
-
-    private void editAge(User user) {
-        Ui.printCustomMessage(Messages.EDIT_AGE_HEADER);
-        user.setupAge();
-        Ui.printCustomMessage(Messages.AGE_ECHO_HEADER + user.getAge());
-    }
-
-    private void editGender(User user) {
-        Ui.printCustomMessage(Messages.EDIT_GENDER_HEADER);
-        user.setupGender();
-        Ui.printCustomMessage(Messages.GENDER_ECHO_HEADER + user.getGender());
     }
 
     private void editExercise(ExerciseList exerciseList, int index) {
