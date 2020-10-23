@@ -40,7 +40,7 @@ public class AddSlotCommand extends Command {
             throw new DukeException(DukeExceptionType.INVALID_ADD_SLOT);
         }
         String[] stringArray = details.trim().split(" ", 2);
-        moduleCode = stringArray[0];
+        moduleCode = stringArray[0].toUpperCase();
         if (stringArray.length > 1) {
             commands = Arrays.asList(stringArray[1].split(","));
         }
@@ -61,6 +61,8 @@ public class AddSlotCommand extends Command {
         if (timetable.moduleExists(moduleCode)) {
             module = timetable.getModule(moduleCode);
             message += moduleCode + " already exists\n";
+        } else if (!isValidModule(moduleCode, timetable)) {
+            throw new DukeException(DukeExceptionType.INVALID_MODULE);
         } else {
             module = timetable.addModule(moduleCode);
             message += moduleCode + " added\n";
@@ -150,5 +152,15 @@ public class AddSlotCommand extends Command {
         }
         Bookmark bookmark = new Bookmark(lesson, url);
         newSlot.addBookmark(bookmark);
+    }
+
+    private boolean isValidModule(String module, Timetable timetable) throws DukeException {
+        if (timetable.moduleList == null) { // If unable to get list of modules, always return true.
+            return true;
+        }
+        if (timetable.moduleList.contains(module)) {
+            return true;
+        }
+        return false;
     }
 }

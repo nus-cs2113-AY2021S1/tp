@@ -1,7 +1,7 @@
 {
   "bookmarks": [
     {
-      "description": "CS2113",
+      "description": "23",
       "url": "www.google.com"
     }
   ],

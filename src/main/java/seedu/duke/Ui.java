@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.fusesource.jansi.AnsiConsole;
 import seedu.duke.command.ChangeModeCommand;
+import seedu.duke.command.ClearCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
@@ -236,7 +237,8 @@ public class Ui {
         if (Parser.programMode == 0) {
             print("Unknown input\n" + "Available inputs in Main menu are\n"
                     + "1) mode {bookmark/timetable}\n"
-                    + "2) exit\n");
+                    + "2) " + ClearCommand.CLEAR_KW + "\n"
+                    + "3) exit\n");
         } else if (Parser.programMode == 1) {
             print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
                     + "1) " + AddBookmarkCommand.ADD_KW + "\n"
@@ -244,15 +246,17 @@ public class Ui {
                     + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
                     + "4) " + FindBookmarkCommand.FIND_KW + "\n"
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + "\n"
-                    + "6) " + ChangeModeCommand.MODE_KW + " timetable\n"
-                    + "7) " + ExitCommand.BYE_KW + "\n");
+                    + "6) " + ClearCommand.CLEAR_KW + "\n"
+                    + "7) " + ChangeModeCommand.MODE_KW + " timetable\n"
+                    + "8) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
             print("Unknown input\n" + "Available inputs in Timetable mode are\n"
                     + "1) " + AddSlotCommand.ADD_KW + "\n"
                     + "2) " + DeleteSlotCommand.DEL_KW + "\n"
                     + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
                     + "4) " + ChangeModeCommand.MODE_KW + " bookmark\n"
-                    + "5) " + ExitCommand.BYE_KW + "\n");
+                    + "5) " + ClearCommand.CLEAR_KW + "\n"
+                    + "6) " + ExitCommand.BYE_KW + "\n");
         }
     }
 

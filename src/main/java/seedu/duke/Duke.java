@@ -7,6 +7,8 @@ import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;
 
+import java.io.IOException;
+
 public class Duke {
 
     private Storage<BookmarkList> bookmarkStorage;
@@ -31,8 +33,11 @@ public class Duke {
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
+            timetable.moduleList = timetableStorage.loadModuleList();
         } catch (DukeException e) {
             ui.showErrorMessage(e);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
