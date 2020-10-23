@@ -81,11 +81,6 @@ class StorageManagerTest {
     // ========================== User Saving and Loading ==========================
 
     @Test
-    void saveUser() throws AniException {
-        validFileSM.saveUser(userToSave);
-    }
-
-    @Test
     void loadUser() throws AniException {
         // Invalid Directory
         assertThrows(AniException.class, () -> userToLoad = invalidDirectorySM.loadUser());
@@ -107,11 +102,6 @@ class StorageManagerTest {
     }
 
     // ========================== Watchlist Saving and Loading ==========================
-
-    @Test
-    void saveWatchlistList() throws AniException {
-        validFileSM.saveWatchlistList(VALID_WORKSPACE, watchlistListForSave);
-    }
 
     @Test
     void loadWatchlistList() throws AniException {

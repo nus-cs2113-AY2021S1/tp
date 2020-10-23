@@ -21,7 +21,6 @@ public class WatchlistStorage extends Storage {
     private static final String NO_WATCHLIST_LOADED = "No watchlist loaded successfully (all invalid).";
     private static final String SOME_WATCHLIST_LOADED = "Not all loaded successfully (some invalid).";
     private static final String LOAD_SUCCESS = "Loaded successfully.";
-    private static final String ENCODED_WATCHLIST_CANNOT_BE_BLANK = "Encoded watchlist string should not be blank.";
 
     private static final int MAX_ANIME_INDEX = 511;
     private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
@@ -89,9 +88,7 @@ public class WatchlistStorage extends Storage {
             sbWatchlist.append(System.lineSeparator());
         }
 
-        String encodedWatchlistString = sbWatchlist.toString();
-        assert (!encodedWatchlistString.isBlank()) : ENCODED_WATCHLIST_CANNOT_BE_BLANK;
-        return encodedWatchlistString;
+        return sbWatchlist.toString();
     }
 
     private Watchlist decode(String line) {
