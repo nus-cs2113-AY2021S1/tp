@@ -99,6 +99,18 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public void printGreen(String message) {
+        System.out.println(LINE);
+        System.out.print(ansi().fg(GREEN).a(message).reset());
+        System.out.println(LINE);
+    }
+
+    public void printYellow(String message) {
+        System.out.println(LINE);
+        System.out.print(ansi().fg(YELLOW).a(message).reset());
+        System.out.println(LINE);
+    }
+
     public void clearScreen() {
         System.out.print("\033[2J");
     }
@@ -153,6 +165,9 @@ public class Ui {
         case WRITE_FILE_ERROR:
             printErrorWritingToFile();
             break;
+        case ERROR_LOADING_FILE:
+            printErrorLoadingFile();
+            break;
         case INVALID_ADD_BOOKMARK_INPUT:
             printInvalidAddBookmarkInputMessage();
             break;
@@ -174,11 +189,17 @@ public class Ui {
         case ERROR_LAUNCHING_URL:
             printErrorLaunchUrlMessage();
             break;
+        case INVALID_ADD_SLOT:
+            printRed("Invalid add command!\n");  //More detailed?
+            break;
         case INVALID_COMMAND_FORMAT:
-            print("invalid command format\n");
+            printRed("invalid command format\n");
             break;
         case INVALID_MODULE:
-            print("module does not exist\n");
+            printRed("module does not exist\n");
+            break;
+        case INVALID_SLOT_NUMBER:
+            printRed("Invalid slot number!\n");  //More detailed?
             break;
         case INVALID_TIME_FORMAT:
             printInvalidTimeFormat();
@@ -192,10 +213,30 @@ public class Ui {
         case EMPTY_TIMETABLE:
             printEmptyTimetableMessage();
             break;
+        case CONNECTION_ERROR:
+            printConnectionErrorMessage(dukeException.getInfo());
+            break;
+        case JSON_PARSE_ERROR:
+            printJsonParseErrorMessage(dukeException.getInfo());
+            break;
         default:
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printJsonParseErrorMessage(String weblink) {
+        printRed("Unable to parse modules from " + weblink +".\n"
+                + "The app will not check for valid modules\n");
+    }
+
+    private void printConnectionErrorMessage(String weblink) {
+        printRed("Unable to connect to " + weblink +".\n"
+                + "Please check your internet connection. \n"
+                + "The app will not check for valid modules\n");
+    }
+
+    private void printErrorLoadingFile() { printRed("Error loading file.\n");
     }
 
     private void printErrorWritingToFile() {
@@ -235,12 +276,12 @@ public class Ui {
 
     private void printUnknownInputMessage() {
         if (Parser.programMode == 0) {
-            print("Unknown input\n" + "Available inputs in Main menu are\n"
+            printYellow("Unknown input\n" + "Available inputs in Main menu are\n"
                     + "1) mode {bookmark/timetable}\n"
                     + "2) " + ClearCommand.CLEAR_KW + "\n"
                     + "3) exit\n");
         } else if (Parser.programMode == 1) {
-            print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
+            printYellow("Unknown input\n" + "Available inputs in Bookmark mode are\n"
                     + "1) " + AddBookmarkCommand.ADD_KW + "\n"
                     + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
                     + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
@@ -250,7 +291,7 @@ public class Ui {
                     + "7) " + ChangeModeCommand.MODE_KW + " timetable\n"
                     + "8) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
-            print("Unknown input\n" + "Available inputs in Timetable mode are\n"
+            printYellow("Unknown input\n" + "Available inputs in Timetable mode are\n"
                     + "1) " + AddSlotCommand.ADD_KW + "\n"
                     + "2) " + DeleteSlotCommand.DEL_KW + "\n"
                     + "3) " + ShowTimetableCommand.SHOW_KW + "\n"

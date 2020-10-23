@@ -126,12 +126,13 @@ public class Storage<T> {
     // Solution below adapted from AY2021S1-CS2113T-T09-2
     // https://github.com/AY2021S1-CS2113T-T09-2/tp/../data/storage/Decoder.java
     private ArrayList<String> nusModuleListFromNusMods() throws DukeException {
-
+        String weblink = ""; // For connection exception
         try {
             int year = LocalDate.now().getYear();
 
             URL url = new URL("https://api.nusmods.com/v2/" + year + "-" + (year + 1) +
                     "/moduleList.json"); // create url based on current year
+            weblink = url.toString();
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -157,9 +158,9 @@ public class Storage<T> {
             return moduleList;
 
         } catch (IOException e) {
-            throw new DukeException(DukeExceptionType.CONNECTION_ERROR);
+            throw new DukeException(DukeExceptionType.CONNECTION_ERROR, weblink);
         } catch (ParseException e) {
-            throw new DukeException(DukeExceptionType.JSON_PARSE_ERROR);
+            throw new DukeException(DukeExceptionType.JSON_PARSE_ERROR, weblink);
         }
     }
 
