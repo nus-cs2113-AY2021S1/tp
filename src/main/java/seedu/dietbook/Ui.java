@@ -261,16 +261,39 @@ public class Ui {
     }
 
     /**
-     * Prints a message to show that the food specified has been deleted from the food list.
+     * Returns a string representation of a list of nutritional intake and recommendation related commands
+     * that users can input.
      *
-     * @param deletedFood The string representation of the food that was deleted from the food list.
+     * @return A string representation of a list of nutritional intake and recommendation related commands
+     *     that users can input.
      */
-    public void printDeletedFood(String deletedFood) {
-        assert deletedFood != null : "String representation of the food that was deleted should not be null";
-        assert trimStringGetLength(deletedFood) > 0 : "String representation of the food that was deleted should"
-                + " not be an empty string";
-        print("Noted. I've removed this food item:" + LINE_SEPARATOR
-                + "  " + trimString(deletedFood));
+    private String getCalculatorRelatedCommands() {
+        return "  To get recommended calorie intake: recommend" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  To calculate carbohydrate intake: calculate carbohydrate" + LINE_SEPARATOR
+                + "  To calculate carbohydrate intake within a time period: calculate carbohydrate "
+                + "yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To calculate carbohydrate intake from a certain date until now: calculate carbohydrate "
+                + "yyy-mm-ddTHH:mm" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  To calculate calorie intake: calculate calorie" + LINE_SEPARATOR
+                + "  To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To calculate calorie intake from a certain date until now: calculate calorie "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  To calculate protein intake: calculate protein" + LINE_SEPARATOR
+                + "  To calculate protein intake within a time period: calculate protein yyyy-mm-ddTHH:mm "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To calculate protein intake from a certain date until now: calculate protein "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  To calculate fat intake: calculate fat" + LINE_SEPARATOR
+                + "  To calculate fat intake within a time period: calculate fat yyyy-mm-ddTHH:mm "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To calculate fat intake from a certain date until now: calculate fat "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  To calculate all nutritional intake: calculate all" + LINE_SEPARATOR
+                + "  To calculate all nutritional intake within a time period: calculate all "
+                + "yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To calculate all nutritional intake from a certain date until now: calculate all "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR;
     }
 
     /**
