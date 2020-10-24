@@ -32,9 +32,9 @@ public class Goal {
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
         String rawStatus = checkGoalStatus(goal, foodList, exerciseList, user);
         if (rawStatus.equals("unknown!") || rawStatus.equals("0.0")) {
-            return "\u2718";
+            return "✘";
         } else if (rawStatus.equals("100.0")) {
-            return "\u2713";
+            return "✓";
         }
         return rawStatus + "%";
     }

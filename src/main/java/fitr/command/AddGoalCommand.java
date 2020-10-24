@@ -69,8 +69,8 @@ public class AddGoalCommand extends Command {
         String descriptionPart = (goalType == "E") ? "Burn" : "Eat";
         boolean isPositiveNumber = command.substring(1).trim().matches("\\d+");
 
-        if(Objects.equals(command.split(" ", 2)[0].trim().charAt(0), '>')) {
-            if(isPositiveNumber) {
+        if (Objects.equals(command.split(" ", 2)[0].trim().charAt(0), '>')) {
+            if (isPositiveNumber) {
                 newGoal = new Goal(createdDate, goalType, descriptionPart + " more than "
                         + command.substring(1).trim() + " calories");
             } else {
