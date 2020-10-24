@@ -4,7 +4,12 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.constants.FilterMessages;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.FilterCommandException;
+import seedu.duke.exceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.NameException;
+import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;

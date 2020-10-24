@@ -7,7 +7,7 @@ import seedu.duke.words.Words;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.FilterMessages.*;
+import static seedu.duke.constants.FilterMessages.NO_FILTER_RESULT;
 
 public class FilterList {
 
@@ -40,14 +40,14 @@ public class FilterList {
         }
 
         String userInput = Parsers.getUserInput(SCANNER);
-        if (userInput.trim().equalsIgnoreCase("y") ||
-                userInput.trim().equalsIgnoreCase("yes")) {
+        if (userInput.trim().equalsIgnoreCase("y")
+                || userInput.trim().equalsIgnoreCase("yes")) {
             System.out.printf(FilterMessages.FILTER_MESSAGE, filteredWords.size());
             for (Words word : filteredWords) {
                 System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
-        } else if (userInput.trim().equalsIgnoreCase("n") ||
-                userInput.trim().equalsIgnoreCase("no")) {
+        } else if (userInput.trim().equalsIgnoreCase("n")
+                || userInput.trim().equalsIgnoreCase("no")) {
             System.out.printf(FilterMessages.FILTER_MESSAGE_LIMIT, printLimit, filteredWords.size());
             for (int i = 0; i < printLimit; i++) {
                 Words word = filteredWords.get(i);
