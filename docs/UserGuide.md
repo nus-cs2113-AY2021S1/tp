@@ -488,7 +488,7 @@ Example of usage: `help`
 
 Expected outcome:
 ```
-Feeling stuck? Well here are the things you can do with Quotesify v1.0:
+Feeling stuck? Well here are the things you can do with Quotesify v2.0:
 
 1. Book Management
 Add book: add -b BOOK_TITLE /by AUTHOR
@@ -546,6 +546,24 @@ Hope this helps!
 
 Enter the following command | To do this
 --------------------------- | -----------
+`add -b BOOK_TITLE /by AUTHOR` | Add book
+`delete -b BOOK_TITLE /by AUTHOR` | Delete book
+`list -b [/by AUTHOR]` | List books
+`add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]` | Add quote
+`delete -q QUOTE_NUMBER` | Delete quote
+`list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
+`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
+`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
+`delete -bm BOOK_TITLE` | Delete bookmark
+`list -bm` | List bookmarks
+`add -t TASK /by DEADLINE` | Add task
+`done -t TASK_NUMBER` | Mark task as done
+`delete -t TASK_NUMBER` | Delete task
+`list -t` | List tasks
+`add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
+`delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
+`list -c [CATEGORY]` | List all categories / List items in a category
+`edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
 `delete -r BOOK_TITLE /by AUTHOR` | Delete rating
 `list -r [/RATING_SCORE]` | List ratings
