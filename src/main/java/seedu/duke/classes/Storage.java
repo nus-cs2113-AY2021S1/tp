@@ -107,6 +107,7 @@ public class Storage implements SaveState {
 
             String[] splitReview = s.nextLine().split("Review: ");
             String review = splitReview[1];
+            shows.getShow(name).setReview(String.join(" ", review));
 
             String[] splitDuration = s.nextLine().split("Duration: ");
             int duration = Integer.parseInt(splitDuration[1]);
@@ -120,7 +121,7 @@ public class Storage implements SaveState {
             String[] splitCurrentEpisode = s.nextLine().split("Current Episode: ");
             int currentEpisode = Integer.parseInt(splitCurrentEpisode[1]);
             shows.getShow(name).setEpisodeWatched(currentEpisode);
-            shows.getShow(name).setReview(String.join(" ", review));
+
 
         }
         return shows;
