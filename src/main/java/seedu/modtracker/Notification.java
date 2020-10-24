@@ -49,11 +49,12 @@ public class Notification {
         return false;
     }
 
-    public void getNumNotification(ModuleList list) {
+    public int getNumNotification(ModuleList list) {
+        numOfNotification = 0;
         ArrayList<Module> modList = list.getData();
         updateCurrentWeek();
         if (currentWeek == 0) {
-            return;
+            return 0;
         }
         for (Module mod : modList) {
             ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
@@ -70,6 +71,7 @@ public class Notification {
                 }
             }
         }
+        return numOfNotification;
     }
 
     public void randomise(String[] lines) {
@@ -80,7 +82,7 @@ public class Notification {
     }
 
     public void printNotification(ModuleList list) {
-        getNumNotification(list);
+        numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
             System.out.println(ON_TRACK);
             randomise(lines);
@@ -98,13 +100,11 @@ public class Notification {
                 case tooMuchTimeSpent:
                     System.out.println(String.format(TOO_MUCH_TIME, mod.getModuleCode()));
                     System.out.println();
-                    isFine = false;
                     break;
                 case tooLittleTimeSpent:
                     System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode()));
                     System.out.println();
                     isBehind = true;
-                    isFine = false;
                     break;
                 default:
                     break;
@@ -114,15 +114,11 @@ public class Notification {
         if (isBehind) {
             randomise(pushForward);
         }
-        if (isFine) {
-            System.out.println(ON_TRACK);
-            randomise(lines);
-        }
     }
 
     public void start() {
         ModuleList list = new ModuleList();
-        getNumNotification(list);
+        numOfNotification = getNumNotification(list);
         if (numOfNotification > 0) {
             System.out.println("You have " + numOfNotification + " notifications.");
             System.out.println(OPEN + System.lineSeparator());
