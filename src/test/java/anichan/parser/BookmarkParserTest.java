@@ -48,6 +48,7 @@ class BookmarkParserTest {
         BookmarkParser testInfo2 = new BookmarkParser();
         BookmarkAnimeCommand testCommand2 = testInfo2.parse(VALID_SINGLE_INPUT_TEST2);
         assertEquals(testCommand.getBookmarkAction(), "i");
+        assertEquals(testCommand2.getBookmarkAction(), "i");
     }
 
     @Test

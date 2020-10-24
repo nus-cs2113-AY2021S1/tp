@@ -1,7 +1,6 @@
 package anichan.command;
 
 import anichan.anime.AnimeData;
-import anichan.bookmark.Bookmark;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
@@ -28,8 +27,6 @@ class BookmarkAnimeCommandTest {
             + File.separator + "data" + File.separator;
     private static StorageManager storageManager;
     private static User user;
-    private static Workspace activeWorkspace;
-
 
     private static final String VALID_ADD_TEST = "-a 1";
     private static final String VALID_ADD_TEST2 = "-a 2";
@@ -119,7 +116,6 @@ class BookmarkAnimeCommandTest {
         Workspace newWorkspace = user.addWorkspace("Default");
         newWorkspace.setWatchlistList(watchlistList);
         user.setActiveWorkspace(newWorkspace);
-        activeWorkspace = user.getActiveWorkspace();
     }
 
     @Test
