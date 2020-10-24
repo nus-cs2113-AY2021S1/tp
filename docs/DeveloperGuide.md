@@ -1,16 +1,16 @@
 # Developer Guide
 
 ## Table of content
-1. [Introduction](#1-introduction)<br>
+1. [<b>Introduction</b>](#1-introduction)<br>
 1.1. [Overview](#11-overview)<br>
 1.2. [Purpose](#12-purpose)<br>
 1.3. [Scope](#13-scope)<br>
-2. [Setting Up](#2-setting-up)<br>
+2. [<b>Setting Up</b>](#2-setting-up)<br>
 2.1. [Prerequisites](#21-prerequisites)<br>
 2.2. [Setting up the project in your computer](#22-setting-up-the-project-in-your-computer)<br>
-3. [Design](#3-design)<br>
+3. [<b>Design</b>](#3-design)<br>
 3.1. [Architecture](#31-architecture)<br>
-4. [Implementation](#4-implementation)<br>
+4. [<b>Implementation</b>](#4-implementation)<br>
 4.1. [Print prompt feature](#41-print-prompt-feature)<br>
 4.2. [Remove feature](#42-remove-feature)<br>
 4.3. [Revise feature](#43-revise-feature)<br>
@@ -19,7 +19,7 @@
 4.6. [Scheduler feature](#46-scheduler-feature)<br>
 4.7. [History feature](#47-history-feature)<br>
 4.8. [Exclusion feature](#48-exclusion-feature)<br>
-5. [Appendix: Requirements](#5-appendix-requirements)<br>
+5. [<b>Appendix: Requirements</b>](#5-appendix-requirements)<br>
 5.1. [Product scope](#51-product-scope)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target user profile](#511-target-user-profile)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2. [Value proposition](#512-value-proposition)<br>
@@ -27,7 +27,7 @@
 5.3. [Use Cases](#53-use-cases)<br>
 5.4. [Non-Functional Requirements](#54-non-functional-requirements)<br>
 5.5. [Glossary](#55-glossary)<br>
-6. [Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)<br>
+6. [<b>Appendix: Instructions for manual testing</b>](#6-appendix-instructions-for-manual-testing)<br>
 
 ## 1. Introduction
 
