@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BrowseCommandTest {
-
     private User user;
     private static AnimeData animeData;
     private static StorageManager storageManager;
@@ -34,6 +33,7 @@ public class BrowseCommandTest {
 
     private static final String EMPTY_STRING = "";
     private static final String OUTPUT_FIRST_ANIME = "1. Cowboy Bebop [Id: 1]";
+    private static final String OUTPUT_FIRST_ANIME_2 = "501. Wind: A Breath of Heart OVA [Id: 501]";
     private static final String OUTPUT_PAGE_1 = "Browsing Page: 1";
     private static final String OUTPUT_PAGE_2 = "Browsing Page: 2";
     private static final String OUTPUT_PAGE_3 = "Browsing Page: 3";
@@ -53,8 +53,8 @@ public class BrowseCommandTest {
     void execute_printLastSeries_correctOutput() throws AniException {
         BrowseCommand testBrowse = testParse.parse(LAST_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
-        result = result.substring(384,407);
-        assertEquals("511. Major S2 [Id: 511]", result);
+        result = result.substring(0,42);
+        assertEquals(OUTPUT_FIRST_ANIME_2, result);
     }
 
     @Test
