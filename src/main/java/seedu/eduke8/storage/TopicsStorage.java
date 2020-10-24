@@ -33,7 +33,7 @@ public class TopicsStorage extends LocalStorage {
     }
 
     /**
-     * Returns topics loaded from a local file in JSON format
+     * Returns topics loaded from a local file in JSON format.
      *
      * @return Topics loaded into an ArrayList.
      * @throws IOException  If the file is not found or cannot be read.

@@ -43,7 +43,7 @@ public class SingleTopicQuiz implements Quiz {
      *
      * @param ui  Ui to print quiz messages.
      * @throws Eduke8Exception if numberOfQuestions used to construct QuizQuestionsManager <= 0
-     * or > number of question in the topic.
+     *     or > number of question in the topic.
      */
     @Override
     public void startQuiz(Ui ui) throws Eduke8Exception {

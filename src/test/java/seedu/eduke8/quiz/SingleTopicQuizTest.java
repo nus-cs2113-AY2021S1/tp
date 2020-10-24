@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SingleTopicQuizTest extends Eduke8Test {
     @Test
     public void startQuiz_zeroQuestions_expectEduke8Exception() {
-        BookmarkList bookmarks = new BookmarkList();
+        BookmarkList bookmarks = createTestBookmarkList();
         Topic topic = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
         SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, 0, bookmarks);
 
@@ -21,7 +21,7 @@ public class SingleTopicQuizTest extends Eduke8Test {
 
     @Test
     public void startQuiz_tooManyQuestions_expectEduke8Exception() {
-        BookmarkList bookmarks = new BookmarkList();
+        BookmarkList bookmarks = createTestBookmarkList();
         Topic topic = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
         int questionsInTopic = topic.getQuestionList().getCount();
 

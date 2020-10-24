@@ -1,5 +1,6 @@
 package seedu.eduke8;
 
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
@@ -73,5 +74,10 @@ public abstract class Eduke8Test {
         );
 
         return new OptionList(options);
+    }
+
+    protected BookmarkList createTestBookmarkList() {
+        QuestionList questionList = createTestQuestionList();
+        return new BookmarkList(questionList.getInnerList());
     }
 }
