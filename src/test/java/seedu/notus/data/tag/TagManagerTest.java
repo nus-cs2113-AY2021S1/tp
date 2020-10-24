@@ -1,9 +1,8 @@
-package seedu.notus.data.notebook;
+package seedu.notus.data.tag;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.notus.data.tag.Tag;
-import seedu.notus.data.tag.TagManager;
+import seedu.notus.data.notebook.Note;
 
 import java.util.ArrayList;
 

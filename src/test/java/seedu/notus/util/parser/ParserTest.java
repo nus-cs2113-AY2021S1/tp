@@ -1,4 +1,4 @@
-package seedu.notus.util;
+package seedu.notus.util.parser;
 
 import org.junit.jupiter.api.Test;
 
