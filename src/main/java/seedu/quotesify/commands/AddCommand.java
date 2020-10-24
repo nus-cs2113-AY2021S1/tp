@@ -343,6 +343,7 @@ public class AddCommand extends Command {
             String deadline = taskNameAndDeadline[1].trim();
             assert !deadline.isEmpty() : "deadline should not be empty";
             newToDo = new ToDo(taskName, deadline);
+            newToDo.updateDateFormat();
             toDos.add(newToDo);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
@@ -351,6 +352,7 @@ public class AddCommand extends Command {
 
         return newToDo;
     }
+
 
     public boolean isExit() {
         return false;
