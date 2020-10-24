@@ -137,6 +137,15 @@ on whether the user searches for tasks or events, the condition will check for t
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
 
+### Printing countdown feature
+The feature is facilitated by `CountdownCommand`.
+
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+
+Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
+exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
+
 ## Documentation
 
 ### Documentation guide
