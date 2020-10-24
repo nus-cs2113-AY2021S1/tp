@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.fusesource.jansi.AnsiConsole;
 import seedu.duke.command.ChangeModeCommand;
+import seedu.duke.command.ClearCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
@@ -12,13 +13,7 @@ import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.Slot;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;
@@ -81,6 +76,8 @@ public class Ui {
             System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
+        } else if (Parser.getProgramMode() == 3) {
+            System.out.print(ansi().fg(WHITE).a("[Planner mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
@@ -98,6 +95,18 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public void printGreen(String message) {
+        System.out.println(LINE);
+        System.out.print(ansi().fg(GREEN).a(message).reset());
+        System.out.println(LINE);
+    }
+
+    public void printYellow(String message) {
+        System.out.println(LINE);
+        System.out.print(ansi().fg(YELLOW).a(message).reset());
+        System.out.println(LINE);
+    }
+
     public void clearScreen() {
         System.out.print("\033[2J");
     }
@@ -106,10 +115,9 @@ public class Ui {
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        clearScreen();
         System.out.println(LINE);
-        System.out.println("HELLO FROM:");
 
+        System.out.println("\t\t\t\t  ++++{  WELCOME TO  }++++");
         System.out.println(ansi().bg(WHITE));
         System.out.println(ansi().fg(CYAN).a(logo2).reset());
 
@@ -151,6 +159,9 @@ public class Ui {
         case WRITE_FILE_ERROR:
             printErrorWritingToFile();
             break;
+        case ERROR_LOADING_FILE:
+            printErrorLoadingFile();
+            break;
         case INVALID_ADD_BOOKMARK_INPUT:
             printInvalidAddBookmarkInputMessage();
             break;
@@ -172,11 +183,17 @@ public class Ui {
         case ERROR_LAUNCHING_URL:
             printErrorLaunchUrlMessage();
             break;
+        case INVALID_ADD_SLOT:
+            printRed("Invalid add command!\n");  //More detailed?
+            break;
         case INVALID_COMMAND_FORMAT:
-            print("invalid command format\n");
+            printRed("invalid command format\n");
             break;
         case INVALID_MODULE:
-            print("module does not exist\n");
+            printRed("module does not exist\n");
+            break;
+        case INVALID_SLOT_NUMBER:
+            printRed("Invalid slot number!\n");  //More detailed?
             break;
         case INVALID_TIME_FORMAT:
             printInvalidTimeFormat();
@@ -190,10 +207,31 @@ public class Ui {
         case EMPTY_TIMETABLE:
             printEmptyTimetableMessage();
             break;
+        case CONNECTION_ERROR:
+            printConnectionErrorMessage(dukeException.getInfo());
+            break;
+        case JSON_PARSE_ERROR:
+            printJsonParseErrorMessage(dukeException.getInfo());
+            break;
         default:
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printJsonParseErrorMessage(String weblink) {
+        printRed("Unable to parse modules from " + weblink + "\n"
+                + "The app will not check for valid modules\n");
+    }
+
+    private void printConnectionErrorMessage(String weblink) {
+        printRed("Unable to connect to " + weblink + "\n"
+                + "Please check your internet connection\n"
+                + "The app will not check for valid modules\n");
+    }
+
+    private void printErrorLoadingFile() {
+        printRed("Error loading file.\n");
     }
 
     private void printErrorWritingToFile() {
@@ -232,26 +270,30 @@ public class Ui {
     }
 
     public void printHelpMessage() {
+        assert (Parser.programMode >= 0) && (Parser.programMode <= 2) : "only modes of Zoomaster are 0, 1, 2";
         if (Parser.programMode == 0) {
-            print("Available inputs in Main menu are\n"
+            printYellow("Available inputs in Main menu are\n"
                     + "1) mode {bookmark/timetable}\n"
-                    + "2) exit\n");
+                    + "2) " + ClearCommand.CLEAR_KW + "\n"
+                    + "3) exit\n");
         } else if (Parser.programMode == 1) {
-            print("Available inputs in Bookmark mode are\n"
+            printYellow("Available inputs in Bookmark mode are\n"
                     + "1) " + AddBookmarkCommand.ADD_KW + "\n"
                     + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
                     + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
                     + "4) " + FindBookmarkCommand.FIND_KW + "\n"
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + "\n"
-                    + "6) " + ChangeModeCommand.MODE_KW + " timetable\n"
-                    + "7) " + ExitCommand.BYE_KW + "\n");
+                    + "6) " + ClearCommand.CLEAR_KW + "\n"
+                    + "7) " + ChangeModeCommand.MODE_KW + " timetable\n"
+                    + "8) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
-            print("Available inputs in Timetable mode are\n"
+            printYellow("Available inputs in Timetable mode are\n"
                     + "1) " + AddSlotCommand.ADD_KW + "\n"
                     + "2) " + DeleteSlotCommand.DEL_KW + "\n"
                     + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
                     + "4) " + ChangeModeCommand.MODE_KW + " bookmark\n"
-                    + "5) " + ExitCommand.BYE_KW + "\n");
+                    + "5) " + ClearCommand.CLEAR_KW + "\n"
+                    + "6) " + ExitCommand.BYE_KW + "\n");
         }
     }
 

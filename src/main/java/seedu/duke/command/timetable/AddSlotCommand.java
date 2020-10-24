@@ -12,6 +12,7 @@ import seedu.duke.slot.Slot;
 import seedu.duke.slot.Timetable;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class AddSlotCommand extends Command {
             throw new DukeException(DukeExceptionType.INVALID_ADD_SLOT);
         }
         String[] stringArray = details.trim().split(" ", 2);
-        moduleCode = stringArray[0];
+        moduleCode = stringArray[0].toUpperCase();
         if (stringArray.length > 1) {
             commands = Arrays.asList(stringArray[1].split(","));
         }
@@ -60,6 +61,8 @@ public class AddSlotCommand extends Command {
         if (timetable.moduleExists(moduleCode)) {
             module = timetable.getModule(moduleCode);
             message += moduleCode + " already exists\n";
+        } else if (!isValidModule(moduleCode)) {
+            throw new DukeException(DukeExceptionType.INVALID_MODULE);
         } else {
             module = timetable.addModule(moduleCode);
             message += moduleCode + " added\n";
@@ -73,7 +76,7 @@ public class AddSlotCommand extends Command {
         ui.print(message);
     }
 
-    private String createSlotAndBookmark(Module module, String command) {
+    protected String createSlotAndBookmark(Module module, String command) {
         assert module != null : "module should mot be null";
         String message = "";
         try {
@@ -86,7 +89,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String create(String command, Module module) throws DukeException {
+    protected String create(String command, Module module) throws DukeException {
         String message = "";
         List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
         if (isAddModuleBookmark(slotAndBookmark)) {
@@ -94,8 +97,15 @@ public class AddSlotCommand extends Command {
         } else {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
-            LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
-            LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
+            LocalTime startTime;
+            LocalTime endTime;
+            try {
+                startTime = LocalTime.parse(slotAndBookmark.get(2));
+                endTime = LocalTime.parse(slotAndBookmark.get(3));
+            } catch (DateTimeParseException e) {
+                throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT, "Invalid time format. ("
+                        + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ") Please check format.");
+            }
             Slot newSlot;
             if (module.isOverlapTimeSlot(day, startTime, endTime)) {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
@@ -110,8 +120,8 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
-            String lesson, Slot newSlot) throws DukeException {
+    protected String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
+                                                  String lesson, Slot newSlot) throws DukeException {
         String message = "";
         if (slotAndBookmark.size() == 5) {
             createBookmark(slotAndBookmark.get(4), lesson, newSlot);
@@ -122,7 +132,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
+    protected String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
         String description = slotAndBookmark.get(0);
         String url = slotAndBookmark.get(1);
         Bookmark bookmark = new Bookmark(description, url);
@@ -131,7 +141,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private boolean isAddModuleBookmark(List<String> slotAndBookmark) {
+    protected boolean isAddModuleBookmark(List<String> slotAndBookmark) {
         return (slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
                 && slotAndBookmark.size() == 2;
     }
@@ -144,5 +154,23 @@ public class AddSlotCommand extends Command {
         newSlot.addBookmark(bookmark);
     }
 
+    /**
+     * Validates the module code with the list of modules moduleList.
+     *
+     * @param module The module code to be added.
+     *
+     * @return
+     * true if module exist in the list or list is null.
+     *     false if module does not exists in the list.
+     */
+    private boolean isValidModule(String module) {
+        if (Module.getModuleList() == null) { // If unable to get list of modules, always return true.
+            return true;
+        }
 
+        if (Module.getModuleList().contains(module)) {
+            return true;
+        }
+        return false;
+    }
 }

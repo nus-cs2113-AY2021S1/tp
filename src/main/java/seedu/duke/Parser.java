@@ -1,7 +1,13 @@
 package seedu.duke;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ChangeModeCommand;
+import seedu.duke.command.ClearCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
+import seedu.duke.command.planner.AddMeetingCommand;
+import seedu.duke.command.planner.LoadPlannerCommand;
 import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
@@ -47,10 +53,12 @@ public class Parser {
             command = new ClearCommand();
         } else if (input.toLowerCase().equals(HelpCommand.HELP_KW)) {
             command = new HelpCommand();
-        }else if (programMode == 1) {
+        } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
             command = createTimetableCommand(input);
+        } else if (programMode == 3) {
+            command = createPlannerCommand(input);
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
@@ -71,14 +79,12 @@ public class Parser {
         } else if (input.startsWith(LaunchBookmarkCommand.LAUNCH_KW)) {
             return new LaunchBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
-            command = new FindBookmarkCommand(input);
+            return new FindBookmarkCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            command = new ClearCommand();
+            return new ClearCommand();
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
-
-        return command;
     }
 
     //@@author TYS0n1
@@ -99,6 +105,23 @@ public class Parser {
         }
 
         return command;
+    }
+
+    private static Command createPlannerCommand(String input) throws DukeException {
+        Command command;
+
+        if (input.startsWith(AddMeetingCommand.ADD_KW)) {
+            return new AddMeetingCommand(input);
+        } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
+            return new ShowTimetableCommand(input);
+        //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+        //    return new ClearCommand();
+        } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
+            return new LoadPlannerCommand();
+        } else {
+            throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
+        }
+
     }
 
     public static int getProgramMode() {

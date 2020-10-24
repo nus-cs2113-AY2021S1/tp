@@ -1,10 +1,8 @@
 package seedu.duke.command.timetable;
 
-import seedu.duke.Duke;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Storage;
+
 import seedu.duke.Ui;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
@@ -24,7 +22,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -36,7 +34,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -48,7 +46,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -60,7 +58,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -72,7 +70,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -84,7 +82,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -96,7 +94,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -108,7 +106,7 @@ public class ShowTimetableCommandTest {
             setupTimetable();
             timetable.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
@@ -146,7 +144,7 @@ public class ShowTimetableCommandTest {
             AddSlotCommand addSlot5 = new AddSlotCommand("add cg2271 lab fri 08:00 10:00 ");
             addSlot5.execute(new BookmarkList(), time1, new Ui());
         } catch (DukeException e) {
-
+            assertEquals(false, true);
         }
     }
 
