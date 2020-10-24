@@ -31,7 +31,7 @@ public class QuoteList extends QuotesifyList<Quote> {
         return quotes.indexOf(quote);
     }
 
-    public void editQuote(Quote quote, int quoteNumber) {
+    public void updateQuote(Quote quote, int quoteNumber) {
         quotes.set(quoteNumber, quote);
     }
 
@@ -40,6 +40,14 @@ public class QuoteList extends QuotesifyList<Quote> {
         quote.setReflection(reflection);
         quotes.set(quoteNumber, quote);
         return quote;
+    }
+
+    public void deleteReflection(int index) {
+        quotes.get(index).setReflectionNull();
+    }
+
+    public void updateReflection(String editedReflection, int quoteNumber) {
+        quotes.get(quoteNumber).setReflection(editedReflection);
     }
 
     @Override

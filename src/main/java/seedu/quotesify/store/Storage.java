@@ -194,10 +194,12 @@ public class Storage {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
         String title = (String) json.get("title");
+        boolean isDone = (boolean) json.get("isDone");
         JSONArray array = (JSONArray) json.get("categories");
+        long rating = (long) json.get("rating");
         ArrayList<String> categories = (ArrayList<String>) array.stream()
                 .collect(Collectors.toList());
-        return new Book(author, title, categories);
+        return new Book(author, title, isDone, categories, (int) rating);
     }
 
     private Quote parseQuoteObject(JSONObject json) throws NullPointerException {
@@ -225,8 +227,10 @@ public class Storage {
 
     private Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
+        String name = (String) json.get("authorOfRatedBook");
+        Author author = new Author(name);
         long rating = (long) json.get("rating");
-        return new Rating((int) rating, title);
+        return new Rating(new Book(author, title), (int) rating);
     }
 
     private Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class BookList extends QuotesifyList<Book> {
     private ArrayList<Book> books = super.getList();
+    private BookTitleComparator comparator = new BookTitleComparator();
 
     public BookList() {
         super(new ArrayList<>());
@@ -46,6 +47,10 @@ public class BookList extends QuotesifyList<Book> {
         return books.get(index);
     }
 
+    public void sort() {
+        books.sort(comparator);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -61,7 +66,8 @@ public class BookList extends QuotesifyList<Book> {
         String booksToReturn = "";
 
         for (Book book : books) {
-            booksToReturn += getIndex(book) + 1 + ". " + book.toString() + System.lineSeparator();
+            booksToReturn += getIndex(book) + 1 + ". " + book.getStatusIcon()
+                    + book.toString() + System.lineSeparator();
         }
 
         return booksToReturn;
@@ -69,6 +75,7 @@ public class BookList extends QuotesifyList<Book> {
 
     public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
         ArrayList<Book> similarBooks = find(title, authorName);
+
         if (!similarBooks.isEmpty()) {
             throw new QuotesifyException(Command.ERROR_BOOK_ALREADY_EXISTS);
         }
@@ -125,6 +132,33 @@ public class BookList extends QuotesifyList<Book> {
         } else {
             return null;
         }
+    }
+
+    public Author findExistingAuthor(String authorName) {
+        BookList filteredBooks = filterByAuthor(authorName);
+
+        if (filteredBooks.isEmpty()) {
+            return null;
+        }
+        Author author = filteredBooks.getBook(0).getAuthor();
+
+        return author;
+    }
+
+    public BookList filterDone(boolean isDone) {
+        ArrayList<Book> filteredBooks;
+
+        if (isDone) {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> book.isDone())
+                    .collect(Collectors.toList());
+        } else {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> !book.isDone())
+                    .collect(Collectors.toList());
+        }
+
+        return new BookList(filteredBooks);
     }
 
     public BookList filterByAuthor(String authorName) {

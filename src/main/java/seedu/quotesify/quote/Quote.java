@@ -108,16 +108,25 @@ public class Quote implements JsonSerializer {
         return reflection;
     }
 
+    public void setReflectionNull() {
+        reflection = null;
+    }
+
     @Override
     public String toString() {
         String quoteWithoutInformation = '\"' + quote + '\"';
         String quoteInformation = "";
+
         if (author != null && reference != null) {
-            quoteInformation = " - " + author.getName() + ", (" + reference + ')';
+            quoteInformation = " - by " + author.getName() + ", (from " + reference + ')';
         } else if (author != null) {
-            quoteInformation = " - " + author.getName();
+            quoteInformation = " - by " + author.getName();
         } else if (reference != null) {
-            quoteInformation = " - " + reference;
+            quoteInformation = " - from " + reference;
+        }
+
+        if (reflection != null) {
+            quoteInformation += " [R]";
         }
         return quoteWithoutInformation + quoteInformation;
     }

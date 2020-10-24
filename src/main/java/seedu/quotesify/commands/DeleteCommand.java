@@ -1,5 +1,8 @@
 package seedu.quotesify.commands;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.bookmark.Bookmark;
@@ -9,17 +12,23 @@ import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.lists.QuotesifyList;
+import seedu.quotesify.parser.JsonSerializer;
 import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
+import seedu.quotesify.ui.UiMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class DeleteCommand extends Command {
     private String type;
@@ -59,12 +68,15 @@ public class DeleteCommand extends Command {
         case TAG_BOOKMARK:
             BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            String title = information.trim();
-            deleteBookmark(bookList, bookmarks, title, ui);
+            deleteBookmarkByIndex(bookmarks,information.trim(),ui);
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             deleteQuote(quotes, ui, information);
+            break;
+        case TAG_QUOTE_REFLECTION:
+            QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            deleteQuoteReflection(quoteList, ui, information);
             break;
         default:
             ui.printListOfDeleteCommands();
@@ -73,27 +85,54 @@ public class DeleteCommand extends Command {
         storage.save();
     }
 
+    private void deleteQuoteReflection(QuoteList quoteList, TextUi ui, String information) {
+        try {
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
+            quoteList.deleteReflection(quoteNumber);
+            ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).getQuote());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println(ERROR_INVALID_QUOTE_NUM);
+        }
+    }
+
     private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
         try {
+            if (information.trim().isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
+            }
             int quoteNumber = Integer.parseInt(information.trim()) - 1;
             Quote quoteToBeDeleted = quotes.getQuote(quoteNumber);
             quotes.delete(quoteNumber);
             ui.printDeleteQuote(quoteToBeDeleted.getQuote());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-        String bookTitle = information.trim();
-        if (bookTitle.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE);
+        if (information.isEmpty()) {
+            System.out.println(ERROR_RATING_MISSING_INPUTS);
+            return;
+        }
+
+        String[] titleAndAuthor;
+        String title;
+        String author;
+        try {
+            titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
+            title = titleAndAuthor[0].trim();
+            author = titleAndAuthor[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
             return;
         }
 
         Rating ratingToBeDeleted = null;
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+            if (rating.getTitleOfRatedBook().equals(title)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
                 ratingToBeDeleted = rating;
                 break;
             }
@@ -103,8 +142,9 @@ public class DeleteCommand extends Command {
             System.out.println(ERROR_RATING_NOT_FOUND);
             return;
         }
+        ratingToBeDeleted.getRatedBook().setRating(0);
         ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
-        ui.printDeleteRating(bookTitle);
+        ui.printDeleteRating(title, author);
     }
 
     private void deleteBook(BookList books, TextUi ui) {
@@ -112,6 +152,7 @@ public class DeleteCommand extends Command {
             int bookIndex = Integer.parseInt(information.trim()) - 1;
             Book book = books.getBook(bookIndex);
             String bookTitle = book.getTitle();
+            String author = book.getAuthor().getName();
 
             // clear bookmarks before deleting the entire book.
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
@@ -119,11 +160,10 @@ public class DeleteCommand extends Command {
 
             // delete ratings before deleting the entire book.
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            Rating ratingToBeDeleted;
             for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(bookTitle)) {
-                    ratingToBeDeleted = rating;
-                    ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+                if (rating.getTitleOfRatedBook().equals(bookTitle)
+                        && rating.getAuthorOfRatedBook().equals(author)) {
+                    ratings.delete(ratings.getList().indexOf(rating));
                     break;
                 }
             }
@@ -141,8 +181,13 @@ public class DeleteCommand extends Command {
     private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        if (CategoryParser.isValidParameters(parameters)) {
+        int result = CategoryParser.validateParametersResult(parameters);
+        if (result == 1) {
             executeParameters(categories, parameters, ui);
+        } else if (result == 0) {
+            deleteCategory(categories, parameters[0], ui);
+        } else {
+            ui.printErrorMessage(ERROR_MISSING_CATEGORY);
         }
     }
 
@@ -208,13 +253,26 @@ public class DeleteCommand extends Command {
         }
     }
 
+    private void deleteCategory(CategoryList categoryList, String categories, TextUi ui) {
+        for (String name : categories.split(" ")) {
+            try {
+                Category category = categoryList.getCategoryByName(name);
+                categoryList.deleteCategoryInBooksAndQuotes(name);
+                categoryList.getList().remove(category);
+                ui.printRemoveCategory(name);
+            } catch (QuotesifyException e) {
+                ui.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
         ToDo toDoToBeDeleted = toDos.find(index);
         if (toDoToBeDeleted != null) {
             toDos.delete(index);
             ui.printDeleteToDo(toDoToBeDeleted);
         } else {
-            System.out.println(ERROR_TODO_NOT_FOUND);
+            ui.printErrorMessage(ERROR_TODO_NOT_FOUND);
         }
     }
 
@@ -234,7 +292,18 @@ public class DeleteCommand extends Command {
         if (targetBook != null) {
             removeBookmarkFromBook(targetBook, bookmarks, ui);
         } else {
-            System.out.println(ERROR_NO_BOOK_FOUND);
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+        }
+    }
+
+    private void deleteBookmarkByIndex(BookmarkList bookmarks, String index, TextUi ui) {
+        int indexNum = convertBookmarkIndexToInt(index, ui);
+        if (indexNum <= bookmarks.getSize()) {
+            Bookmark targetBookmark = bookmarks.findByIndex(indexNum - 1);
+            bookmarks.delete(indexNum);
+            ui.printDeleteBookmark(targetBookmark);
+        } else {
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         }
     }
 
@@ -245,7 +314,7 @@ public class DeleteCommand extends Command {
             bookmarks.delete(bookmarkToBeDeleted);
             ui.printDeleteBookmark(bookmarkToBeDeleted);
         } else {
-            System.out.println(ERROR_BOOKMARK_NOT_FOUND);
+            ui.printErrorMessage(ERROR_BOOKMARK_NOT_FOUND);
         }
     }
 
@@ -262,6 +331,17 @@ public class DeleteCommand extends Command {
         if (bookmarkToBeDeleted != null) {
             bookmarks.delete(bookmarkToBeDeleted);
         }
+    }
+
+    private int convertBookmarkIndexToInt(String indexString, TextUi ui) {
+        int index = -1;
+        try {
+            index = Integer.parseInt(information) - 1;
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_BOOKMARK_NUM);
+        }
+
+        return index;
     }
 
     @Override
