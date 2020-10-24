@@ -33,7 +33,8 @@ public class Ui {
             + "11.done <task number>\n"
             + "   example: done 1\n"
             + "12.listtask\n"
-            + "13.exit\n";
+            + "13.exit\n"
+            + "14.reset\n";
     public static final String LOGO = "|\\\\        /|         |======            ||\n"
             + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
             + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
@@ -45,6 +46,7 @@ public class Ui {
             + "||___//\\\\// ||___\n"
             + "||   \\\\ ||  ||\n"
             + "||___// ||  ||____\n";
+    public static final String CONFIRMATION = "yes";
 
     /**
      * Reads input entered by the user.
@@ -227,4 +229,21 @@ public class Ui {
         System.out.println(); //adds a new line after the list
     }
 
+    /**
+     * Confirms with the user whether he/ she wants to clear all data.
+     *
+     * @return true if user wants to reset data.
+     */
+    public boolean confirmReset() {
+        System.out.println("---WARNING!---");
+        System.out.println("This will delete all your past data.");
+        System.out.println("Type '" + CONFIRMATION + "' if you wish to continue.");
+        String input = in.nextLine();
+        if (input.equalsIgnoreCase("yes")) {
+            System.out.println("Okay, your data has been deleted :(");
+            return true;
+        }
+        System.out.println("Reset not confirmed. Your data is safe :)");
+        return false;
+    }
 }

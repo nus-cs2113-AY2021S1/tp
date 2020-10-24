@@ -96,6 +96,17 @@ public class Storage {
         }
     }
 
+    public void resetFile() {
+        String name = getName();
+        try {
+            FileWriter fw = new FileWriter(filePath, false);
+            fw.write(name + System.lineSeparator());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void unlockFile() {
         boolean unlock = file.setWritable(true);
         if (!unlock) {

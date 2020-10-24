@@ -20,6 +20,7 @@ public class Parser {
     public static final String COMMAND_DELETETASK = "deletetask";
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_LISTTASK = "listtask";
+    public static final String COMMAND_RESET = "reset";
 
     /**
      * Parses user inputs.
@@ -111,6 +112,14 @@ public class Parser {
             } else {
                 ui.printExitScreen(name);
                 exit = true;
+            }
+            break;
+        case COMMAND_RESET:
+            assert toPrint : "toPrint should be true";
+            if (ui.confirmReset()) {
+                storage.resetFile();
+                modList.clear();
+                taskList.clear();
             }
             break;
         default:
