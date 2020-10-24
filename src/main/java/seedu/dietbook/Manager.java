@@ -1,6 +1,17 @@
 package seedu.dietbook;
 
-import seedu.dietbook.command.*;
+import seedu.dietbook.command.AddCommand;
+import seedu.dietbook.command.CalculateCommand;
+import seedu.dietbook.command.ClearCommand;
+import seedu.dietbook.command.Command;
+import seedu.dietbook.command.DataCommand;
+import seedu.dietbook.command.DeleteCommand;
+import seedu.dietbook.command.ExitCommand;
+import seedu.dietbook.command.HelpCommand;
+import seedu.dietbook.command.InfoCommand;
+import seedu.dietbook.command.ListCommand;
+import seedu.dietbook.command.NameCommand;
+import seedu.dietbook.command.UserinfoCommand;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.ActivityLevel;
 import seedu.dietbook.person.Person;
