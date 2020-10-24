@@ -220,4 +220,10 @@ A all-in-one solution for note-taking and managing your schedule.
 
 ## <a id="testinstr">7. Instructions for Manual Testing</a>
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Download the jar file and copy it into an empty folder.
+1. Open a new terminal window and navigate to the same directory where the notus.jar is located. As a shortcut if you are on windows, you can open the folder where the notus.jar is located > click on the address bar > type `cmd` > press enter on your keyboard.
+1. Enter the command `java -jar notus.jar` into the terminal window to launch the application. The application should now be running.
+1. Enter the command `help` to get a list of all available commands and its usages.
+1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
+1. Simply enter `exit` to terminate and exit the application.
+
