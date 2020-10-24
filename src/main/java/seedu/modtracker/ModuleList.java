@@ -357,5 +357,8 @@ public class ModuleList {
         return output;
     }
 
+    public void clear() {
+        modList = new ArrayList<>();
+    }
 }
 

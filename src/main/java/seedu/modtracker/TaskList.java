@@ -122,4 +122,8 @@ public class TaskList {
     public ArrayList<Task> getTaskData() {
         return tasks;
     }
+
+    public void clear() {
+        tasks = new ArrayList<>();
+    }
 }
