@@ -167,6 +167,22 @@ Step 5: `ReviseCommand#repeatRevision` then repeats the revision session on card
 
 Step 6: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
 
+### 4.4. List feature
+#### 4.4.1. Implementation
+
+The revise mechanism is executed by `ListCommand`. It extends from the abstract class `Command`. 
+In addition, it implements the following operations:
+* `ListCommand#execute()` — checks the `Access` level of user and calls the respective list methods. 
+* `ListCommand#listModules()` — lists all modules in admin level
+* `ListCommand#listChapters()` — lists all chapters in module level
+* `ListCommand#listCards()` — lists all flashcards in chapter level
+
+Given below is an example usage scenario and how the list mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the module level. 
+
+Step 2: The user executes `list` command to list all chapters in current module. 
+
 ### 4.5. Add flashcard feature
 #### 4.5.1. Implementation
 The add flashcard mechanism is facilitated by `AddCommand`. It extends from the abstract class `Command`.
@@ -216,6 +232,21 @@ Step 3:
 
 Step 4:
 * Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
+
+### 4.7. History feature
+#### 4.7.1. Implementation
+
+The history mechanism is executed by `HistoryCommand`. It extends from the abstract class `Command`. 
+In addition, it implements the following operations:
+
+* `HistoryCommand#execute()` — calls the list method to list the history. 
+* `HistoryCommand#listHistory()` — lists the revision completed in the session/in a day.
+
+Given below is an example usage scenario and how the history mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the admin level. 
+
+Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
 
 ### 4.8 Exclusion Feature
 ##### 4.8.1 Implementation
