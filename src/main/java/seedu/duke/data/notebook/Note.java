@@ -10,6 +10,7 @@ public class Note {
     private String title;
     private ArrayList<String> content;
     private Boolean isPinned;
+    private boolean isArchived;
     private ArrayList<Tag> tags;
 
     /**
