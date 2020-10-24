@@ -158,7 +158,7 @@ public class BookmarkAnimeCommand extends Command {
         String result;
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
+        result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode.";
         return result;
     }
 

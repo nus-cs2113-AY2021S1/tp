@@ -285,51 +285,81 @@ Here are the anime in Default watchlist:
 <br/>
 
 ### 3.8 Bookmark an Anime: `bookmark`
-This command handles all bookmark related operations: 
-* List all anime within bookmark.
-* Add an anime into bookmark.
-* Delete an anime from bookmark. 
-* Edit episode for an anime within bookmark
-* View details of an anime within bookmark [v2.0]
+Bookmark an anime and store additional information.
 
-Format: 
+Format and Operation: 
 
-`bookmark -l` will list bookmark
+* `bookmark -l` will **list** all Anime within bookmark
+* `bookmark -a <ANIME_ID>` will **add** the Anime into bookmark
+* `bookmark -d <BOOKMARK_ID>` will **delete** the Anime with bookmark id from bookmark
+* `bookmark <BOOKMARK_ID> -e <EPISODE>` will **edit** the episode for an Anime within Bookmark
+* `bookmark <BOOKMARK_ID> -n <NOTE>` will add a **note** for an Anime within Bookmark
+* `bookmark <BOOKMARK_ID>` will view **info** of an anime within bookmark
 
-`bookmark -a <ANIME_ID>` will add the Anime into bookmark
+<br/>
 
-`bookmark -d <BOOKMARK_ID>` will delete the Anime with bookmark id from bookmark
-
-`bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for Anime with bookmark id
-
-Example of usage: `bookmark -l`
+Example of list: `bookmark -l`
 
 The expected outcome: 
 ```
  Listing all anime in bookmark: 
 	1. InuYasha the Movie 3: Swords of an Honorable Ruler Ep: 5
-	2. To Heart
+	2. To Heart 2
 ```
 
-Example of usage: `bookmark -a 410`
+<br/>
+
+Example of add Bookmark entry: `bookmark -a 410`
 
 The expected outcome: 
 ```
 Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
 ```
 
-Example of usage: `bookmark -d 1`
+<br/>
+
+Example of delete Bookmark entry: `bookmark -d 1`
 
 The expected outcome: 
 ```
-Removing InuYasha the Movie 3: Swords of an Honorable Ruler! :(
+Removing InuYasha the Movie 2: The Castle Beyond the Looking Glass! :(
 ```
 
-Example of usage: `bookmark 1 -e 5`
+<br/>
+
+Example of edit Bookmark episode: `bookmark 2 -e 5`
 
 The expected outcome: 
 ```
-Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
+Editing To Heart 2 to have 5 episode.
+```
+
+<br/>
+
+Example of add note to bookmark: `bookmark 2 -n Episode 5: Schedule push back`
+
+The expected outcome: 
+```
+Adding note:"Episode 5: Schedule push back" to To Heart 2!
+```
+
+<br/>
+
+Example of Bookmark info: `bookmark 2`
+
+The expected outcome: 
+```
+Here is the information for that anime.
+Index: 430
+Name: To Heart 2
+Episodes: 13
+Release Date: 03/Oct/2005
+Rating: 59
+Genre: [Comedy, Drama, Romance, Slice of Life]
+
+Notes for anime:
+1. Episode 5: Schedule push back
+
 ```
 
 <br/>
