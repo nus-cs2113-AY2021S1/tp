@@ -21,6 +21,7 @@ public class Parser {
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_LISTTASK = "listtask";
     public static final String COMMAND_RESET = "reset";
+    public static final String COMMAND_DELETETIME = "deletetime";
 
     /**
      * Parses user inputs.
@@ -53,7 +54,12 @@ public class Parser {
             modList.deleteExp(input, toPrint, storage);
             break;
         case COMMAND_OPEN_NOTIFICATION:
-            notification.printNotification(modList);
+            input = input.toLowerCase().trim();
+            if (input.equals(COMMAND_OPEN_NOTIFICATION)) {
+                notification.printNotification(modList);
+            } else {
+                ui.printInvalidCommand();
+            }
             break;
         case COMMAND_ADDTIME:
             try {
@@ -66,6 +72,14 @@ public class Parser {
         case COMMAND_MINUS:
             try {
                 modList.minusTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
+            break;
+        case COMMAND_DELETETIME:
+            try {
+                modList.deleteTime(input, toPrint, storage);
             } catch (Exception e) {
                 ui.printErrorMessage(e.getMessage());
                 System.out.println("");
