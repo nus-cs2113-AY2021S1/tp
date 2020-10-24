@@ -32,7 +32,9 @@ public class ModTracker {
         }
         ui.printGreeting(name);
         storage.loadData(this);
+        storage.unlockFile();
         runCommandLoopUntilExitCommand(name);
+        storage.lockFile();
     }
 
     /**

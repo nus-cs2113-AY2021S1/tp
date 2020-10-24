@@ -95,4 +95,18 @@ public class Storage {
             e.printStackTrace();
         }
     }
+
+    public void unlockFile() {
+        boolean unlock = file.setWritable(true);
+        if (!unlock) {
+            System.out.println("Error setting file to be writable");
+        }
+    }
+
+    public void lockFile() {
+        boolean lock = file.setReadOnly();
+        if (!lock) {
+            System.out.println("Error making data file read-only");
+        }
+    }
 }
