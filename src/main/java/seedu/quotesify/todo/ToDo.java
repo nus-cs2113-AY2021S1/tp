@@ -75,7 +75,7 @@ public class ToDo implements JsonSerializer {
             return "[" + this.getStatusIcon() + "] "
                     + this.name + " (by: "
                     + formattedDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                    + ", " +formattedDeadline.getDayOfWeek() + ")";
+                    + ", " + formattedDeadline.getDayOfWeek() + ")";
         } else {
             return "[" + this.getStatusIcon() + "] "
                     + this.name + " (by: " + this.deadline + ")";
@@ -93,7 +93,7 @@ public class ToDo implements JsonSerializer {
             formattedDeadline = LocalDate.parse(deadline);
             isDeadlineFormatted = true;
         } catch (DateTimeParseException e) {
-            System.out.println(UiMessage.INCORRECT_DATE_FORMAT_MESSAGE);
+            formattedDeadline = LocalDate.parse("3000-12-31");
             isDeadlineFormatted = false;
         }
     }
