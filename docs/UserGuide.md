@@ -42,9 +42,8 @@
 
 For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 
-**WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
+**WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
-<br><br> 
 ### 1.b. Why use **WatchNext**?
 
 **WatchNext** allows you to watch shows on multiple free streaming platforms or other open source stream websites and keep track of which episode you are at.
@@ -54,16 +53,16 @@ This is especially pertinent for younger teenagers and adults who make up a larg
 For students, there is also a need for to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
 
 This motivated our team to create an application that would not only help track all your shows and lectures, 
-but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends.
+but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends. <br>
 <!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet -->
- <br><br> 
+
 ### 1.c. What will this guide do?
 
 This guide aims to equip you with the knowledge on how to use our application by providing you with detailed examples for all of **WatchNext's** features. 
 The features can be found in [Section 4: “Features”](#4-features).
 
 Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
-<br><br><br>
+<br><br>
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -173,7 +172,7 @@ Example of usage:
   
  &nbsp;
  
- To help you better understand the flow of this command we have included a program flow to illustrate the process.
+ To help you better understand the flow of this command we have included a program flow diagram to illustrate the process.
  
  <img src = "images/programFlowUG.png" width = "450">
  
@@ -393,7 +392,7 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ
+### 5. FAQ <br>
 
 **Q**: Is my watchlist saved after I exit the program?  
 

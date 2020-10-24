@@ -2,18 +2,16 @@
 
 start
 
-partition UserCallCommand {
+partition UserInvokesCommand {
       :edit friends;
   }
 
 #lightblue:Program Output:
-Input the detail of the show you want to change;
+"Input the detail of the show you want to change";
 
 partition UserInteraction {
 
-
-   repeat
-   :User input;
+   repeat :user input;
    split
     :name|
    split again
@@ -22,16 +20,15 @@ partition UserInteraction {
     :season|
    split again
     : duration|
-
     split again
     : done|
    end split
-   #lightblue: show data updated;
+   #lightblue: Updates show data;
    repeat while (input != done)
    :done ;
   }
 
 #lightblue:Program Output:
-updated successfully;
+"Show details updated successfully";
 stop
 @enduml
