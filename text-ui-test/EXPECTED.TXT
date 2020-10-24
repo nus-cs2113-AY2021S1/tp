@@ -1,5 +1,5 @@
-________________________________________________________________________________________________________________________________________________
- _______  __ ______ ________ _______   ______   ______  __    __
+_____________________________________________________________________________________________________________________________________
+_______  __ ______ ________ _______   ______   ______  __    __
 |   __  \|  |   ___|__    __|   __  \ /  __  \ /  __  \|  | /  /
 |  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /
 |  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /
@@ -10,5 +10,29 @@ Hello! Welcome to DietBook!
 I am Diet, your guide to using DietBook. What is your name?
 Please input in the following format:
   name YOUR_NAME
-________________________________________________________________________________________________________________________________________________
-__________________
+  Example: name Jack
+_____________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________
+Hi Jack!
+Before we get started, I would like to know about about you so that I can make more
+accurate calculations for you :). Therefore, could you please share with me the following:
+- Your gender either F for female or M for male or O for others.
+- Your age which is a positive integer.
+- Your height in cm.
+- Your original weight in kg, the weight when you first started using DietBook or you current weight.
+- Your current weight in kg.
+- Your target weight in kg, or your current weight if that is also your target weight.
+- Your activity level, represented by a number from 1 to 5.
+  1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
+  2 = You engage in some form of light exercise or have a job that requires some physical activity.
+  3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
+  4 = You engage in vigorous exercise or have a physically demanding job.
+  5 = You engage in extremely vigorous exercise or have an extremely physically demanding job.
+
+Please input your details in the following format:
+  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL
+  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2
+_____________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________
+Bye Jack! Hope to see you again soon!
+_____________________________________________________________________________________________________________________________________
