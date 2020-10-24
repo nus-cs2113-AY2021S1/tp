@@ -13,8 +13,8 @@
     - [Logic Component](#logic-component)
       - [Design of Parser](#design-of-parser)
       - [Implementation of MenuParser](#implementation-of-menuparser)
-    - [Design of QuizQuestionsManager](#design-of-quizquestionsmanager)
-    - [Implementation of QuizQuestionsManager](#implementation-of-quizquestionsmanager)
+      - [Design of QuizQuestionsManager](#design-of-quizquestionsmanager)
+      - [Implementation of QuizQuestionsManager](#implementation-of-quizquestionsmanager)
     - [Storage Component](#storage-component)
       - [Design of TopicsStorage](#design-of-topicsstorage)
       - [Implementation of TopicsStorage](#implementation-of-topicsstorage)
@@ -178,7 +178,7 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         options available. As such, the contents of the case with reference “help” is run, which is a return statement 
         containing a new HelpCommand(). This leads to the execution of the `help` command.
         
-### Design of QuizQuestionsManager
+#### Design of QuizQuestionsManager
 
 To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
@@ -192,7 +192,7 @@ The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes a
 
 Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user answers all of them on the command line interface.
 
-### Implementation of QuizQuestionsManager
+#### Implementation of QuizQuestionsManager
 
 As mentioned in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
 
