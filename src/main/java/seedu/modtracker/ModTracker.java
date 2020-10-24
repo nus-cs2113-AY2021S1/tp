@@ -1,8 +1,5 @@
 package seedu.modtracker;
 
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
  * Main entry-point for the java.seedu.modtracker application.
  */

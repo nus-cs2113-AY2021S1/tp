@@ -19,25 +19,32 @@ public class TaskList {
      *
      * @param str input entered by user
      */
-    public void setDone(String str) {
+    public void setDone(String str, boolean toPrint, Storage storage) {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
             TaskList taskList = new TaskList();
             if (tasks.size() == 0) {
+                assert toPrint : "toPrint should be true";
                 ui.printTaskList(taskList);
             } else if (num <= tasks.size() && num > 0) {
                 if (tasks.get(num - 1).getDoneStatus()) {
+                    assert toPrint : "toPrint should be true";
                     System.out.println(MARKED_DONE_PREVIOUSLY + System.lineSeparator());
                 } else {
                     tasks.get(num - 1).setAsDone();
-                    System.out.println(MARKED_DONE);
-                    System.out.println(tasks.get(num - 1) + System.lineSeparator());
+                    if (toPrint) {
+                        System.out.println(MARKED_DONE);
+                        System.out.println(tasks.get(num - 1) + System.lineSeparator());
+                        storage.appendToFile(str);
+                    }
                 }
             } else {
+                assert toPrint : "toPrint should be true";
                 ui.printInvalidTaskNumber(taskList);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            assert toPrint : "toPrint should be true";
             ui.printErrorMessage(e.getMessage());
             System.out.println("");
         }
@@ -49,22 +56,30 @@ public class TaskList {
      *
      * @param str input entered by user
      */
-    public void deleteTasks(String str) {
+    public void deleteTasks(String str, boolean toPrint, Storage storage) {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
             TaskList taskList = new TaskList();
             if (tasks.size() == 0) {
+                assert toPrint : "toPrint should be true";
                 ui.printTaskList(taskList);
             } else if (num <= tasks.size() && num > 0) {
-                System.out.println(TASK_DELETED);
-                System.out.println(tasks.get(num - 1));
+                if (toPrint) {
+                    System.out.println(TASK_DELETED);
+                    System.out.println(tasks.get(num - 1));
+                }
                 tasks.remove(num - 1);
-                ui.printNumberOfTasks(taskList);
+                if (toPrint) {
+                    ui.printNumberOfTasks(taskList);
+                    storage.appendToFile(str);
+                }
             } else {
+                assert toPrint : "toPrint should be true";
                 ui.printInvalidTaskNumber(taskList);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            assert toPrint : "toPrint should be true";
             ui.printErrorMessage(e.getMessage());
             System.out.println("");
         }
@@ -75,7 +90,7 @@ public class TaskList {
      *
      * @param str input entered by user
      */
-    public void addTask(String str) {
+    public void addTask(String str, boolean toPrint, Storage storage) {
         try {
             String[] split = str.trim().split(" ", 3);
             String modCode = split[1];
@@ -84,6 +99,7 @@ public class TaskList {
                 return;
             }
             if (!modList.checkIfModuleExist(modCode)) {
+                assert toPrint : "toPrint should be true";
                 /*Module currentModule = new Module(modCode);
                 modList.modList.add(currentModule);*/
                 ui.printNotExist(modCode);
@@ -91,9 +107,13 @@ public class TaskList {
             }
             TaskList taskList = new TaskList();
             tasks.add(new Task(modCode, split[2]));
-            ui.printTaskIsAdded(taskList, modCode);
-            ui.printNumberOfTasks(taskList);
+            if (toPrint) {
+                ui.printTaskIsAdded(taskList, modCode);
+                ui.printNumberOfTasks(taskList);
+                storage.appendToFile(str);
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
+            assert toPrint : "toPrint should be true";
             ui.printErrorMessage(e.getMessage());
             System.out.println("");
         }
