@@ -16,7 +16,7 @@ public abstract class LocalStorage implements Storage {
     protected static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     protected File file;
 
-    protected LocalStorage(String filePath) throws IOException {
+    protected LocalStorage(String filePath) {
         assert filePath != null;
 
         // Use relative path for Unix systems

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.logging.*;
 
 public class LogStorage extends LocalStorage {
-    public LogStorage(String filePath) throws IOException {
+    public LogStorage(String filePath) {
         super(filePath);
     }
 
@@ -21,6 +21,8 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(ch);
 
         // Log all to the file
+        file = super.save();
+
         FileHandler fh = new FileHandler(file.getAbsolutePath());
         fh.setFormatter(new SimpleFormatter());
         fh.setLevel(Level.ALL);

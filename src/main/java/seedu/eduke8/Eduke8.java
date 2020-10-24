@@ -39,10 +39,11 @@ public class Eduke8 {
         try {
             topicsStorage = new TopicsStorage(dataPath);
             logStorage = new LogStorage(logPath);
-            userStorage = new UserStorage(userPath);
 
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
+
+            userStorage = new UserStorage(userPath, topicList);
             bookmarkList = new BookmarkList(userStorage.load());
         } catch (ParseException | IOException e) {
             ui.printError(ERROR_STORAGE_FAIL);

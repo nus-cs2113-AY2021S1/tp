@@ -28,11 +28,12 @@ public class TopicsStorage extends LocalStorage {
     private static final String KEY_EXPLANATION = "explanation";
     private static final String KEY_CORRECT_OPTION = "correct";
 
-    public TopicsStorage(String filePath) throws IOException {
+    public TopicsStorage(String filePath) {
         super(filePath);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public ArrayList<Displayable> load() throws IOException, ParseException {
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
@@ -48,6 +49,7 @@ public class TopicsStorage extends LocalStorage {
         return topicsAsObjects;
     }
 
+    @SuppressWarnings("unchecked")
     private Topic parseToTopicObject(JSONObject topic) {
         String topicTitle = (String) topic.get(KEY_TOPIC);
 
@@ -63,6 +65,7 @@ public class TopicsStorage extends LocalStorage {
         return new Topic(topicTitle, questionList);
     }
 
+    @SuppressWarnings("unchecked")
     private Question parseToQuestionObject(JSONObject question) {
         String questionDescription = (String) question.get(KEY_DESCRIPTION);
         JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
