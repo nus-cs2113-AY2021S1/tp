@@ -45,7 +45,6 @@ public class ApplianceList {
         for (Appliance a : applianceList) {
             if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
-                System.out.println("true");
                 break;
             }
         }
