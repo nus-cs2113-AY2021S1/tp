@@ -33,6 +33,7 @@ class PersonTest {
         person.setGender(Gender.OTHERS);
         assertEquals("others", person.getGender().getDescription());
     }
+    
     @Test
     void gender_setGenderToNull_expectAssertionError() {
         assertThrows(AssertionError.class, () -> person.setGender(null));
