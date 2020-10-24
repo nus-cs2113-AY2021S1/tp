@@ -125,6 +125,19 @@ While Jansi provides support for Windows terminal to print colored texts, it doe
  
 Remember to uncomment them when building jar files for release.
 
+**PinCommand**
+
+1. Created by the parser function
+1. Gets the note that is referenced too either by title or index 
+1. Toggles the pinned status of the specified note. 
+1. Returns the title as well as the pinned status of the note. 
+
+<p align="center"> 
+   <img alt="PinCommand" src="diagrams/out/PinCommand.png" 
+   <br><em>Figure 4</em>
+</p>
+
+
 <br>
 
 ## <a id="scope">3. Product Scope</a>
