@@ -3,8 +3,8 @@ package seedu.duke.model.project;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.model.member.ProjectMembers;
-import seedu.duke.model.sprint.SprintList;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.sprint.SprintManager;
+import seedu.duke.model.task.TaskManager;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,9 +13,10 @@ import java.time.LocalDate;
 
 public class Project implements Jsonable {
 
-    private SprintList allSprints;
-    private ProjectBacklog backlog;
-    private ProjectMembers members;
+    private SprintManager sprintList;
+    private TaskManager backlog;
+    private ProjectMembers memberList;
+    private int projectID;
     private String title;
     private String description;
 
@@ -30,24 +31,32 @@ public class Project implements Jsonable {
     public Project() {
     }
 
-    public Project(String title, String description, int projectDuration, int sprintLength) {
+    public Project(int projectID, String title, String description, int projectDuration, int sprintLength) {
+        this.projectID = projectID;
         this.title = title;
         this.description = description;
         this.projectDuration = projectDuration;
         this.sprintLength = sprintLength;
-        backlog = new ProjectBacklog(this);
-        members = new ProjectMembers();
-        allSprints = new SprintList();
+        backlog = new TaskManager(this);
+        memberList = new ProjectMembers();
+        sprintList = new SprintManager();
+    }
+
+    public String toIdString() {
+        StringBuilder projectInString = new StringBuilder();
+        projectInString.append(String.format("[Project ID: %s]", this.projectID));
+        return projectInString.toString();
     }
 
     @Override
     public String toString() {
         StringBuilder projectInString = new StringBuilder();
         projectInString.append("\n============================ PROJECT ============================\n");
+        projectInString.append(String.format("[ID: %s]\n", this.projectID));
         projectInString.append(String.format("[Title: %s]\n", this.title));
         projectInString.append(String.format("[Description: %s]\n", this.description));
-        if (!members.getAllMembers().isEmpty()) {
-            projectInString.append(members.toString());
+        if (!memberList.getAllMembers().isEmpty()) {
+            projectInString.append(memberList.toString());
         } else {
             projectInString.append("[No members added]\n");
         }
@@ -62,8 +71,8 @@ public class Project implements Jsonable {
         } else {
             projectInString.append("[Project backlog is empty]\n");
         }
-        if (this.allSprints.size() != 0) {
-            projectInString.append(allSprints.toString());
+        if (this.sprintList.size() != 0) {
+            projectInString.append(sprintList.toString());
         } else {
             projectInString.append("[There are no Sprints]\n");
         }
@@ -72,12 +81,17 @@ public class Project implements Jsonable {
     }
 
     //Getters
-    public SprintList getAllSprints() {
-        return allSprints;
+
+    public int getProjectID() {
+        return projectID;
+    }
+
+    public SprintManager getSprintList() {
+        return sprintList;
     }
 
     public ProjectMembers getProjectMember() {
-        return members;
+        return memberList;
     }
 
     public int getProjectDuration() {
@@ -96,19 +110,19 @@ public class Project implements Jsonable {
         return startDate;
     }
 
-    public ProjectBacklog getBacklog() {
+    public TaskManager getBacklog() {
         return backlog;
     }
 
-    public ProjectMembers getMembers() {
-        return members;
+    public ProjectMembers getMemberList() {
+        return memberList;
     }
 
     public LocalDate getEndDate() {
         return endDate;
     }
 
-    public ProjectBacklog getProjectBacklog() {
+    public TaskManager getProjectBacklog() {
         return backlog;
     }
 
@@ -131,16 +145,16 @@ public class Project implements Jsonable {
         this.endDate = endDate;
     }
     
-    public void setAllSprints(SprintList allSprints) {
-        this.allSprints = allSprints;
+    public void setSprintList(SprintManager sprintList) {
+        this.sprintList = sprintList;
     }
 
-    public void setBacklog(ProjectBacklog backlog) {
+    public void setBacklog(TaskManager backlog) {
         this.backlog = backlog;
     }
 
-    public void setMembers(ProjectMembers members) {
-        this.members = members;
+    public void setMemberList(ProjectMembers memberList) {
+        this.memberList = memberList;
     }
 
     public void setTitle(String title) {
@@ -192,8 +206,8 @@ public class Project implements Jsonable {
         jObj.put("startDate", this.startDate == null ? null : this.startDate.toString());
         jObj.put("endDate", this.endDate == null ? null : this.endDate.toString());
         jObj.put("backlog", backlog);
-        jObj.put("members", members);
-        jObj.put("allSprints", allSprints);
+        jObj.put("members", memberList);
+        jObj.put("allSprints", sprintList);
         jObj.toJson(writer);
     }
 }

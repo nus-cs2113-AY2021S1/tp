@@ -1,15 +1,15 @@
 package seedu.duke.command.member;
 
 import seedu.duke.command.Command;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
 
 public abstract class MemberCommand extends Command {
 
-    ProjectList projectManager;
+    ProjectManager projectManager;
 
-    public MemberCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public MemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters);
         this.projectManager = projectManager;
     }

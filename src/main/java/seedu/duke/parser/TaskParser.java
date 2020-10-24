@@ -2,10 +2,8 @@ package seedu.duke.parser;
 
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.TITLE;
@@ -21,7 +19,7 @@ public class TaskParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectList projectListManager)
+                                                ProjectManager projectListManager)
             throws DukeException {
 
         switch (action.toLowerCase()) {

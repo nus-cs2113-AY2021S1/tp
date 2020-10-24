@@ -11,16 +11,16 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class ProjectBacklog implements Jsonable {
+public class TaskManager implements Jsonable {
 
     private Project proj;
     public ArrayList<Task> backlogTasks;
     int nextId;
 
-    public ProjectBacklog() {
+    public TaskManager() {
     }
 
-    public ProjectBacklog(Project proj) {
+    public TaskManager(Project proj) {
         this.proj = proj;
         backlogTasks = new ArrayList<>(100);
         nextId = 1;
@@ -70,7 +70,7 @@ public class ProjectBacklog implements Jsonable {
             if (task.getId() == taskId) {
                 ArrayList<Integer> allocatedSprint = task.getAllocatedSprints();
                 for (Integer sprintId : allocatedSprint) {
-                    proj.getAllSprints().getSprint(sprintId).removeSprintTask(taskId);
+                    proj.getSprintList().getSprint(sprintId).removeSprintTask(taskId);
                 }
                 backlogTasks.remove(task);
                 return;

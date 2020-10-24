@@ -5,20 +5,25 @@ import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
-public class ViewSprintCommand extends SprintCommand {
+public class EditSprintCommand extends SprintCommand {
 
-    public ViewSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
+    /**
+     * Creates a new DELETE command with arguments.
+     */
+    public EditSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList);
     }
 
+    /**
+     * Abstract method that execute the command.
+     */
     public void execute() {
         chooseProject();
         chooseSprint();
-
-
+        String sprintGoal = this.parameters.get("goal");
+        this.sprintOwner.setGoal(sprintGoal);
         //Output to user
         Ui.showToUserLn(this.projOwner.toIdString());
         Ui.showToUser(this.sprintOwner.toString());
-
     }
 }
