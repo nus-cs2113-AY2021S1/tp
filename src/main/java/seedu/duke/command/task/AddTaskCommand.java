@@ -3,8 +3,7 @@ package seedu.duke.command.task;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
@@ -15,10 +14,9 @@ import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TITLE;
 
 public class AddTaskCommand extends Command {
-    private final ProjectList projectListManager;
+    private final ProjectManager projectListManager;
     private Project proj;
-
-    public AddTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
+    public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;
     }
@@ -40,7 +38,7 @@ public class AddTaskCommand extends Command {
         priority = parameters.get(PRIORITY);
 
 
-        Project proj = projectListManager.getProject();
+        Project proj = projectListManager.getSelectedProject();
         if (!proj.getProjectBacklog().checkValidPriority(priority)) {
             throw new DukeException("Invalid priority!");
         }

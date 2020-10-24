@@ -3,7 +3,7 @@ package seedu.duke.command.task;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
@@ -13,10 +13,10 @@ import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TASK_ID;
 
 public class ChangeTaskPriorityCommand extends Command {
-    private final ProjectList projectListManager;
+    private final ProjectManager projectListManager;
     private Project proj;
 
-    public ChangeTaskPriorityCommand(Hashtable<String,String> parameters, ProjectList projectListManager) {
+    public ChangeTaskPriorityCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;
     }
@@ -36,7 +36,7 @@ public class ChangeTaskPriorityCommand extends Command {
         id = Integer.parseInt(parameters.get(TASK_ID));
         priority = parameters.get(PRIORITY).trim();
 
-        Project proj = projectListManager.getProject();
+        Project proj = projectListManager.getSelectedProject();
         try {
             task = proj.getProjectBacklog().getTask(id);
             if (!proj.getProjectBacklog().checkValidPriority(priority)) {

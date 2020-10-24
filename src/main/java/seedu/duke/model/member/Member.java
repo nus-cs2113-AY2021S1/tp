@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Member implements Jsonable {
 
     private String userId;
-    private ArrayList<Integer> allocatedTaskIds;
+    private ArrayList<Integer> taskList;
     
     public Member() {
     }
 
     public Member(String userId) {
         this.userId = userId;
-        allocatedTaskIds = new ArrayList<>();
+        taskList = new ArrayList<>();
 
     }
 
@@ -31,17 +31,22 @@ public class Member implements Jsonable {
         this.userId = userId;
     }
 
-    public ArrayList<Integer> getAllocatedTaskIds() {
-        return allocatedTaskIds;
+    public ArrayList<Integer> getTaskList() {
+        return taskList;
     }
 
-    public void setAllocatedTaskIds(ArrayList<Integer> allocatedTaskIds) {
-        this.allocatedTaskIds = allocatedTaskIds;
+    public void setTaskList(ArrayList<Integer> taskList) {
+        this.taskList = taskList;
     }
 
     public void allocateTask(int taskid) {
-        allocatedTaskIds.add(taskid);
+        taskList.add(taskid);
     }
+
+    public void deallocateTask(int taskid) {
+        taskList.remove((Object) taskid);
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -72,7 +77,7 @@ public class Member implements Jsonable {
         final JsonObject jMember = new JsonObject();
         jMember.put("userId", userId);
         final JsonArray jTasks = new JsonArray();
-        jTasks.addAll(allocatedTaskIds);
+        jTasks.addAll(taskList);
         jMember.put("allocatedTaskIds", jTasks);
         jMember.toJson(writer);
     }

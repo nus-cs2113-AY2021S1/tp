@@ -4,8 +4,8 @@ import seedu.duke.command.project.CreateProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.ProjectList;
 import seedu.duke.ui.Ui;
+import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
 
@@ -21,7 +21,7 @@ public class ProjectParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectList projectListManager)
+                                                ProjectManager projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
         case CREATE:

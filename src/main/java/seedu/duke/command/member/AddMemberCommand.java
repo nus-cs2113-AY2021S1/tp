@@ -2,7 +2,7 @@ package seedu.duke.command.member;
 
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
@@ -10,13 +10,13 @@ import java.util.Hashtable;
 public class AddMemberCommand extends MemberCommand {
 
 
-    public AddMemberCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public AddMemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters, projectManager);
     }
 
     public void execute() {
         Member m;
-        Project proj = projectManager.getProject();
+        Project proj = projectManager.getSelectedProject();
         for (int i = 0; i < parameters.size(); i++) {
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
                 Ui.showToUserLn(parameters.get(Integer.toString(i)) + " is already associated to the project.");

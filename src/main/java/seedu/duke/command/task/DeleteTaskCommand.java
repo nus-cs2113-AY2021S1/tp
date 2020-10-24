@@ -2,9 +2,8 @@ package seedu.duke.command.task;
 
 import seedu.duke.command.Command;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.task.ProjectBacklog;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Messages;
 import seedu.duke.ui.Ui;
@@ -13,9 +12,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class DeleteTaskCommand extends Command {
-    private final ProjectList projectListManager;
+    private final ProjectManager projectListManager;
 
-    public DeleteTaskCommand(Hashtable<String,String> parameters, ProjectList projectListManager) {
+    public DeleteTaskCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;
     }
@@ -27,7 +26,7 @@ public class DeleteTaskCommand extends Command {
             Ui.showError("Please create a project first.");
             return;
         }
-        Project proj = projectListManager.getProject();
+        Project proj = projectListManager.getSelectedProject();
         if (parameters.isEmpty()) {
             Ui.showError("Missing parameters.");
         }
@@ -40,7 +39,7 @@ public class DeleteTaskCommand extends Command {
                             + task.getTitle()
                             + " has been removed from project.");
                     proj.getProjectBacklog().removeTask(taskId);
-                    ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
+                    ArrayList<Sprint> allSprints = proj.getSprintList().getSprintList();
                     for (Sprint sprint : allSprints) {
                         if (sprint.checkTaskExist(taskId)) {
                             sprint.removeSprintTask(taskId);

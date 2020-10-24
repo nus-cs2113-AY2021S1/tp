@@ -1,7 +1,7 @@
 package seedu.duke.command.task;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Messages;
 import seedu.duke.ui.Ui;
@@ -9,10 +9,10 @@ import seedu.duke.ui.Ui;
 import java.util.Hashtable;
 
 public class ViewTaskCommand extends TaskCommand {
-    private final ProjectList projectListManager;
+    private final ProjectManager projectListManager;
     private Project proj;
 
-    public ViewTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
+    public ViewTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;
     }
@@ -25,7 +25,7 @@ public class ViewTaskCommand extends TaskCommand {
         }
 
         try {
-            Project proj = projectListManager.getProject();
+            Project proj = projectListManager.getSelectedProject();
             if (parameters.isEmpty()) {
                 Ui.showError("Missing parameters.");
                 return;

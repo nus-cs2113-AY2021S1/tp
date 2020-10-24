@@ -1,17 +1,16 @@
 package seedu.duke.command.project;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class ViewProjectCommand extends ProjectCommand {
 
-    private final ProjectList projectManager;
+    private final ProjectManager projectManager;
 
-    public ViewProjectCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public ViewProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters);
         this.projectManager = projectManager;
     }
@@ -22,7 +21,7 @@ public class ViewProjectCommand extends ProjectCommand {
         if (projectManager.isEmpty()) {
             Ui.showError("No projects are created.");
         } else {
-            Project project = projectManager.getProject();
+            Project project = projectManager.getSelectedProject();
             assert project != null : "The project is null";
             Ui.showToUserLn(project.toString());
 

@@ -4,11 +4,11 @@ import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.task.TaskManager;
 import seedu.duke.model.member.ProjectMembers;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.model.task.Priority;
 import seedu.duke.model.task.Task;
 
@@ -121,8 +121,8 @@ public class StorageManager {
 
     private Project convertToProject(JsonObject jsonProject) {
         Project project = new Project();
-        SprintList allSprints = convertSprintsList((JsonObject) jsonProject.get("allSprints"), project);
-        ProjectBacklog backlog = convertBacklog((JsonObject) jsonProject.get("backlog"), project);
+        SprintManager allSprints = convertSprintsList((JsonObject) jsonProject.get("allSprints"), project);
+        TaskManager backlog = convertBacklog((JsonObject) jsonProject.get("backlog"), project);
         ProjectMembers members = convertProjectMembers((JsonArray) jsonProject.get("members"));
 
         String title = (String) jsonProject.get("title");
@@ -134,9 +134,9 @@ public class StorageManager {
         project.setDescription(description);
         project.setProjectDuration(projectDuration);
         project.setSprintLength(sprintLength);
-        project.setAllSprints(allSprints);
+        project.setSprintList(allSprints);
         project.setBacklog(backlog);
-        project.setMembers(members);
+        project.setMemberList(members);
         project.setStartDate(getDateFromJsonObj(jsonProject, "startDate"));
         project.setEndDate(getDateFromJsonObj(jsonProject, "endDate"));
         return project;
@@ -152,15 +152,15 @@ public class StorageManager {
             ArrayList<Integer> allocatedTaskIds = getIntegersFromJsonArray(rawAllocatedTaskIds);
             String userId = (String) rawMember.get("userId");
             member.setUserId(userId);
-            member.setAllocatedTaskIds(allocatedTaskIds);
+            member.setTaskList(allocatedTaskIds);
             members.add(member);
         }
         projectMembers.setMemberList(members);
         return projectMembers;
     }
 
-    private ProjectBacklog convertBacklog(JsonObject rawBacklog, Project project) {
-        ProjectBacklog backlog = new ProjectBacklog();
+    private TaskManager convertBacklog(JsonObject rawBacklog, Project project) {
+        TaskManager backlog = new TaskManager();
         ArrayList<Task> backlogTasks = new ArrayList<>();
         JsonArray rawTasks = (JsonArray) rawBacklog.get("backlogTasks");
         for (Object rawTask : rawTasks) {
@@ -187,21 +187,21 @@ public class StorageManager {
         task.setDone(isDone);
 
         ArrayList<String> membersAllocatedTo = new ArrayList<>();
-        task.setMembersAllocatedTo(membersAllocatedTo);
+        task.setMemberList(membersAllocatedTo);
         JsonArray rawMembersAllocate = (JsonArray) jsonObject.get("membersAllocatedTo");
         rawMembersAllocate.asCollection(membersAllocatedTo);
 
         JsonArray rawSprintAllocate = (JsonArray) jsonObject.get("sprintAllocatedTo");
         ArrayList<Integer> sprintAllocatedTo = getIntegersFromJsonArray(rawSprintAllocate);
-        task.setSprintAllocatedTo(sprintAllocatedTo);
+        task.setSprintList(sprintAllocatedTo);
         return task;
     }
 
-    private SprintList convertSprintsList(JsonObject rawSprints, Project project) {
-        SprintList sprintList = new SprintList();
-        sprintList.setCurrentSprintIndex(((BigDecimal) rawSprints.get("currentSprintIndex")).intValue());
-        sprintList.setSprintList(convertSprint((JsonArray) rawSprints.get("sprintList"), project));
-        return sprintList;
+    private SprintManager convertSprintsList(JsonObject rawSprints, Project project) {
+        SprintManager sprintManager = new SprintManager();
+        sprintManager.setCurrentSprintIndex(((BigDecimal) rawSprints.get("currentSprintIndex")).intValue());
+        sprintManager.setSprintList(convertSprint((JsonArray) rawSprints.get("sprintList"), project));
+        return sprintManager;
     }
 
     private ArrayList<Sprint> convertSprint(JsonArray sprintList, Project project) {
@@ -220,8 +220,8 @@ public class StorageManager {
             sprint.setGoal(goal);
             sprint.setStartDate(getDateFromJsonObj(rawSprint, "startDate"));
             sprint.setEndDate(getDateFromJsonObj(rawSprint, "endDate"));
-            sprint.setSprintTaskIds(sprintTaskIds);
-            sprint.setProjAllocatedTo(project);
+            sprint.setTaskList(sprintTaskIds);
+            sprint.setOwner(project);
 
             sprints.add(sprint);
         }

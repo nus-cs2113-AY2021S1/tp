@@ -1,8 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class Parser {
     private boolean exit = false;
 
 
-    public String parser(String userInput, ProjectList projectListManager) {
+    public String parser(String userInput, ProjectManager projectListManager) {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
@@ -45,10 +44,12 @@ public class Parser {
             if (!rawArgs.contains("-")) {
                 params.clear();
                 parameters.clear();
-                String[] arguments = rawArgs.split(" ");
-                params.addAll(Arrays.asList(arguments));
-                for (int i = 0; i < arguments.length; i++) {
-                    parameters.put("" + i, arguments[i]);
+                if (!rawArgs.isBlank()) {
+                    String[] arguments = rawArgs.split(" ");
+                    params.addAll(Arrays.asList(arguments));
+                    for (int i = 0; i < arguments.length; i++) {
+                        parameters.put("" + i, arguments[i]);
+                    }
                 }
             } else {
                 parameters.clear();
