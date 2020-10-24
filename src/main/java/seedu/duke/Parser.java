@@ -1,6 +1,10 @@
 package seedu.duke;
 
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ChangeModeCommand;
 import seedu.duke.command.ClearCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.planner.AddMeetingCommand;
 import seedu.duke.command.planner.LoadPlannerCommand;
@@ -10,10 +14,7 @@ import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.bookmark.LaunchBookmarkCommand;
 import seedu.duke.command.bookmark.FindBookmarkCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
-import seedu.duke.command.ExitCommand;
 import seedu.duke.command.bookmark.ShowBookmarkCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.ChangeModeCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -50,6 +51,8 @@ public class Parser {
             command = new ChangeModeCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
             command = new ClearCommand();
+        } else if (input.toLowerCase().equals(HelpCommand.HELP_KW)) {
+            command = new HelpCommand();
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {

@@ -2,12 +2,16 @@ package seedu.duke;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.Timetable;
 import seedu.duke.slot.Module;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

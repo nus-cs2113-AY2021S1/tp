@@ -150,7 +150,8 @@ public class Ui {
     public void showErrorMessage(DukeException dukeException) {
         switch (dukeException.getError()) {
         case UNKNOWN_INPUT:
-            printUnknownInputMessage();
+            print("Unknown input\n");
+            printHelpMessage();
             break;
         case INVALID_MODE:
             printUnknownModeMessage();
@@ -268,14 +269,15 @@ public class Ui {
         printRed("Please enter " + info + " with input!\n");
     }
 
-    private void printUnknownInputMessage() {
+    public void printHelpMessage() {
+        assert (Parser.programMode >= 0) && (Parser.programMode <= 2) : "only modes of Zoomaster are 0, 1, 2";
         if (Parser.programMode == 0) {
-            printYellow("Unknown input\n" + "Available inputs in Main menu are\n"
+            printYellow("Available inputs in Main menu are\n"
                     + "1) mode {bookmark/timetable}\n"
                     + "2) " + ClearCommand.CLEAR_KW + "\n"
                     + "3) exit\n");
         } else if (Parser.programMode == 1) {
-            printYellow("Unknown input\n" + "Available inputs in Bookmark mode are\n"
+            printYellow("Available inputs in Bookmark mode are\n"
                     + "1) " + AddBookmarkCommand.ADD_KW + "\n"
                     + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
                     + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
@@ -285,7 +287,7 @@ public class Ui {
                     + "7) " + ChangeModeCommand.MODE_KW + " timetable\n"
                     + "8) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
-            printYellow("Unknown input\n" + "Available inputs in Timetable mode are\n"
+            printYellow("Available inputs in Timetable mode are\n"
                     + "1) " + AddSlotCommand.ADD_KW + "\n"
                     + "2) " + DeleteSlotCommand.DEL_KW + "\n"
                     + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
