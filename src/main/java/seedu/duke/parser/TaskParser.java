@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.task.AddTaskCommand;
 import seedu.duke.command.task.ChangeTaskPriorityCommand;
 import seedu.duke.command.task.DeleteTaskCommand;
@@ -24,8 +25,8 @@ import static seedu.duke.command.CommandSummary.VIEW;
 public class TaskParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
 
         switch (action.toLowerCase()) {
@@ -43,36 +44,30 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             } else {
-                new AddTaskCommand(parameters, projectListManager).execute();
+                return new AddTaskCommand(parameters, projectListManager);
             }
-            break;
         case DELETE:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
-                return;
             }
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number!");
             } else {
-                new DeleteTaskCommand(parameters, projectListManager).execute();
+                return new DeleteTaskCommand(parameters, projectListManager);
             }
-            break;
         case DONE:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
-                return;
             }
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
-                throw new DukeException("please give a task number!");
+                throw new DukeException("Please give a task number!");
             } else {
-                new DoneTaskCommand(parameters, projectListManager).execute();
+                return new DoneTaskCommand(parameters, projectListManager);
             }
-            break;
         case VIEW:
-            new ViewTaskCommand(parameters, projectListManager).execute();
-            break;
+            return new ViewTaskCommand(parameters, projectListManager);
         case PRIORITY:
             if (!parameters.containsKey(TASK_ID) || !parameters.containsKey(PRIORITY)) {
                 throw new DukeException("Missing parameters.");
@@ -83,9 +78,8 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             } else {
-                new ChangeTaskPriorityCommand(parameters, projectListManager).execute();
+                return new ChangeTaskPriorityCommand(parameters, projectListManager);
             }
-            break;
         default:
             throw new DukeException("Invalid action!");
         }

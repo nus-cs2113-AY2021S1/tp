@@ -22,8 +22,7 @@ public class AddTaskCommand extends Command {
         this.projectListManager = projectListManager;
     }
 
-    public void execute()
-            throws DukeException {
+    public void execute() {
         assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
@@ -41,7 +40,8 @@ public class AddTaskCommand extends Command {
 
         Project proj = projectListManager.getSelectedProject();
         if (!proj.getProjectBacklog().checkValidPriority(priority)) {
-            throw new DukeException("Invalid priority!");
+            Ui.showError("Invalid priority!");
+            return;
         }
         proj.getProjectBacklog().addTask(title, description, priority);
         Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);

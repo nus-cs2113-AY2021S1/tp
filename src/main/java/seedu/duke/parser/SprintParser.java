@@ -290,6 +290,9 @@ public class SprintParser implements ExceptionsParser {
         if (proj.getSprintList().size() == 0) {
             throw new DukeException("Please create a sprint for Project " + proj.getProjectID() + " first.");
         }
+        if (!parameters.isEmpty()) {
+            throw new DukeException("Invalid action!");
+        }
 
         int selectedSprint;
         //Specified with tag

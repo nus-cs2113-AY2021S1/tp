@@ -1,6 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
+import seedu.duke.command.EmptyCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
@@ -64,7 +65,7 @@ public class Parser {
                 case MEMBER:
                     return new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case TASK:
-                    //return new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
+                    return new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case SPRINT:
                     return new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 default:
@@ -76,7 +77,7 @@ public class Parser {
         } else {
             return new InvalidCommand(parameters);
         }
-        return new InvalidCommand(parameters);
+        return new EmptyCommand(parameters);
     }
 
     public static boolean isStringContainsNumber(String s) {

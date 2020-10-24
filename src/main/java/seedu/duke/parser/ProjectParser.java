@@ -31,33 +31,36 @@ public class ProjectParser implements ExceptionsParser {
                 throw new DukeException("Missing parameters.");
             }
             if (parameters.get(TITLE).isBlank()) {
-                throw new DukeException("no title");
+                throw new DukeException("No title.");
             }
             if (parameters.get(DESCRIPTION).isBlank()) {
-                throw new DukeException("no description");
+                throw new DukeException("No description.");
             }
             if (parameters.get(DURATION).isBlank() || !Parser.isStringContainsNumber(parameters.get(DURATION))) {
-                throw new DukeException("please give a number for duration");
+                throw new DukeException("Please give a number for duration.");
             }
             if (parameters.get(SPRINT_DURATION).isBlank()
                     || !Parser.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
-                throw new DukeException("please give a number for sprint duration");
+                throw new DukeException("Please give a number for sprint duration.");
             } else {
                 return new CreateProjectCommand(parameters, projectListManager);
             }
         case VIEW:
-            return new ViewProjectCommand(parameters, projectListManager);
+            if (!parameters.isEmpty()) {
+                throw new DukeException("Invalid action!");
+            } else {
+                return new ViewProjectCommand(parameters, projectListManager);
+            }
         case SELECT:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
-                return;
             }
             int index = Integer.parseInt(parameters.get("0"));
             if (index <= projectListManager.size() && index > 0) {
                 return new SelectProjectCommand(parameters, projectListManager);
             } else {
-                throw new DukeException("Invalid index, no corresponding project exists");
+                throw new DukeException("Invalid index, no corresponding project exists.");
             }
         default:
             throw new DukeException("Invalid action!");
