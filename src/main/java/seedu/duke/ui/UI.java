@@ -30,8 +30,8 @@ public class UI {
         case "list":
             printHelpList();
             break;
-        case "history":
-            printHelpHistory();
+        case "start":
+            printHelpStart();
             break;
         case "stats":
             printHelpStats();
@@ -82,8 +82,8 @@ public class UI {
         System.out.println("List all available quizzes by typing 'list'.");
     }
 
-    public static void printHelpHistory() {
-        System.out.println("Show history and results of quizzes taken in this session by typing 'history'.");
+    public static void printHelpStart() {
+        System.out.println("Embark your writings session!");
     }
 
     public static void printHelpStats() {
