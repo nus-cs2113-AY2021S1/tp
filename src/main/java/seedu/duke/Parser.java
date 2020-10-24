@@ -1,6 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ChangeModeCommand;
+import seedu.duke.command.ClearCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.planner.AddMeetingCommand;
 import seedu.duke.command.planner.LoadPlannerCommand;
@@ -49,7 +53,7 @@ public class Parser {
             command = new ClearCommand();
         } else if (input.toLowerCase().equals(HelpCommand.HELP_KW)) {
             command = new HelpCommand();
-        }else if (programMode == 1) {
+        } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
             command = createTimetableCommand(input);
