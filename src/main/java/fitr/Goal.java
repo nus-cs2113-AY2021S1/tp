@@ -22,4 +22,8 @@ public class Goal {
     public String getGoalType() {
         return goalType;
     }
+
+    public String toString() {
+        return createdDate + " [" + goalType + "] " + description;
+    }
 }

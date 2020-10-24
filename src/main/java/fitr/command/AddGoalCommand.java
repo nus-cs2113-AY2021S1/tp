@@ -28,6 +28,7 @@ public class AddGoalCommand extends Command {
                         User user, GoalList goalList, Recommender recommender) {
         try {
             String goalType = command.split(" ", 2)[0].trim();
+            Ui.printCustomError(goalType);
             switch (goalType) {
             //Food goal
             case COMMAND_FOOD:
