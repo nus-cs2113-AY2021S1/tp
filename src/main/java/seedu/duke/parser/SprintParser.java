@@ -305,7 +305,7 @@ public class SprintParser implements ExceptionsParser {
             if (selectedSprint > proj.getSprintList().size()) {
                 throw new DukeException("Sprint not found.");
             }
-        //Specified without tag
+            //Specified without tag
         } else if (parameters.containsKey("0")) {
             try {
                 selectedSprint = Integer.parseInt(parameters.get("0"));
@@ -315,7 +315,7 @@ public class SprintParser implements ExceptionsParser {
             if (selectedSprint > proj.getSprintList().size()) {
                 throw new DukeException("Sprint not found.");
             }
-        //Not Specified: Check if there is ongoing sprint
+            //Not Specified: Check if there is ongoing sprint
         } else {
             if (proj.getSprintList().updateCurrentSprint()) {
                 selectedSprint = proj.getSprintList().getCurrentSprintIndex();
@@ -334,6 +334,7 @@ public class SprintParser implements ExceptionsParser {
      */
     private void checkTaskParam(Hashtable<String, String> parameters, Project proj, Sprint sprint, boolean isAdd)
             throws DukeException {
+
         if (parameters.containsKey("task")) {
             checkTaskParamTag(parameters, "task", proj, sprint, isAdd);
         } else if (parameters.containsKey("0")) {

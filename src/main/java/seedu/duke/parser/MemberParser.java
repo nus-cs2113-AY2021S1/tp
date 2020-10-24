@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.command.member.AddMemberCommand;
 import seedu.duke.command.member.DeleteMemberCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -16,8 +17,13 @@ public class MemberParser implements ExceptionsParser {
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                 ProjectManager projectListManager)
             throws DukeException {
+        assert parameters.get("0") != null : "Invalid Input";
+        if (parameters.get("0") == null) {
+            Ui.showError("Please do not enter dashes.");
+            return;
+        }
         if (!parameters.containsKey("0")) {
-            throw new DukeException("missing name");
+            throw new DukeException("Missing name!");
         }
         if (projectListManager.isEmpty()) {
             throw new DukeException("You currently have no projects created");
