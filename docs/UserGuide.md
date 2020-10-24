@@ -15,6 +15,10 @@
 - [Command summary](#command-summary)
 
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 ## Quick start
 
 
@@ -22,7 +26,7 @@
 
 2. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/download/v1.0/planus.jar).
 
-3. For first time Windows user, open command prompt and run the following line:
+3. For first time Windows user, open command prompt and run the following line to enable color display of command prompt:
 
     `reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1`
     
@@ -40,6 +44,11 @@
 6. Type a command in command prompt/terminal and press Enter to execute it.
 
 7. Refer to the [Features](#features) below for details of each command.
+
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 
 ## Features 
@@ -72,7 +81,7 @@
     - e.g. "#1029 meeting", 1029 is the index.
     
     
-### Showing all commands : `help`
+### <span style="color:red">Showing all commands</span> : `help`
 
 Shows the commands available with the formats.
 
@@ -86,7 +95,7 @@ Expected outcome:
 
 ![help](images/help.PNG)
 
-### Adding a task : `add`
+### <span style="color:red">Adding a task</span> : `add`
 
 Add a task to the task list and display a message.
 Default date will be the day when the tasked is added.
@@ -104,7 +113,7 @@ Expected outcome:
     Task added.
 
 
-### Editing a task : `edit`
+### <span style="color:red">Editing a task</span> : `edit`
 
 Edit a task in the task list using index and display a message.
 
@@ -120,14 +129,14 @@ Expected outcome:
     Task edited.
 
 
-### Displaying tasks : `list` 
+### <span style="color:red">Displaying tasks</span> : `list` 
 
-Default display mode: display **all** tasks by **adding sequence**.
-`-d`: display **all** tasks by **date**, from past to future.
-`-p`: display **all** tasks by **priority**, from HIGH to LOW.
-`-w`: display **only tasks in current week** by **adding sequence**. 
-`-m`: display **only tasks in current month** by **adding sequence**.
-`d/DATE`: display **all tasks of a date provided** by adding sequence**.
+Default display mode: display **all** tasks by **adding sequence**.  
+`-d`: display **all** tasks by **date**, from past to future.  
+`-p`: display **all** tasks by **priority**, from HIGH to LOW.  
+`-w`: display **only tasks in current week** by **adding sequence**.   
+`-m`: display **only tasks in current month** by **adding sequence**.  
+`d/DATE`: display **all tasks of a date provided** by adding sequence**.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
@@ -148,7 +157,7 @@ Expected outcome:
 
 
 
-### Searching relevant task(s) : `search`
+### <span style="color:red">Searching relevant task(s)</span> : `search`
 
 Search and display task(s) with given keyword, this feature is case-insensitive.
 
@@ -163,7 +172,7 @@ Expected outcome:
 ![search](images/search.PNG)
 
 
-### Removing a task : `delete`
+### <span style="color:red">Removing a task</span> : `delete`
 
 Delete a task from the task list us an index.
 
@@ -178,7 +187,7 @@ Expected outcome:
     Task deleted.
     
 
-### Clearing tasks : `clear`
+### <span style="color:red">Clearing tasks</span> : `clear`
 
 Delete all tasks in the list.
 
@@ -193,7 +202,7 @@ Expected outcome:
     All tasks cleared.
 
 
-### Exiting program : `bye`
+### <span style="color:red">Exiting program</span> : `bye`
 
 Display a message and exits the program.
 
@@ -213,12 +222,24 @@ Expected outcome:
 Data will be automatically saved after modification commands like 
 `add`, `delete`, `edit` and so forth.
 
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Copy the existing data file to the computer, then create a "data" folder under the 
 same folder as "planus.jar". Lastly, copy the data file to "data" folder and name it "data.json".
+
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 
 ## Command Summary
 
