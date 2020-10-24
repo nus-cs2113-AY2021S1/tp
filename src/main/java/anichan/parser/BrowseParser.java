@@ -10,7 +10,6 @@ import static anichan.logger.AniLogger.getAniLogger;
 
 public class BrowseParser extends CommandParser {
     private static final String SORT_PARAM = "s";
-    private static final String FILTER_PARAM = "f";
     private static final String ORDER_PARAM = "o";
     private static final String PAGE_PARAM = "p";
     private static final String ASCENDING_FIELD = "asc";
@@ -53,11 +52,6 @@ public class BrowseParser extends CommandParser {
                 paramFieldCheck(paramParts);
                 paramExtraFieldCheck(paramParts);
                 checkSortType(paramParts);
-                break;
-            case FILTER_PARAM:
-                paramFieldCheck(paramParts);
-                paramExtraFieldCheck(paramParts);
-                browseCommand.setFilter(paramParts[1]);
                 break;
             case ORDER_PARAM:
                 paramFieldCheck(paramParts);
