@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class QuestionList implements DisplayableList {
 
-    private ArrayList<Displayable> questions;  // list of questions for the particular topic
+    private ArrayList<Displayable> questions;  // list of questions for a particular topic
 
     public QuestionList(ArrayList<Displayable> questions) {
         // The question list for topics must contain some questions about the topic
