@@ -235,17 +235,16 @@ public class AddCommand extends Command {
         }
     }
 
-    private void addCategoryToQuote(Category category, String index, TextUi ui) {
+    private void addCategoryToQuote(Category category, String quoteNum, TextUi ui) {
         // ignore this action if user did not provide quote number
-        if (index.isEmpty()) {
+        if (quoteNum.isEmpty()) {
             return;
         }
 
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        ArrayList<Quote> quotes = quoteList.getList();
         try {
-            int quoteNum = Integer.parseInt(index) - 1;
-            Quote quote = quotes.get(quoteNum);
+            int quoteIndex = Integer.parseInt(quoteNum) - 1;
+            Quote quote = quoteList.getList().get(quoteIndex);
 
             if (quote.getCategories().contains(category.getCategoryName())) {
                 String errorMessage = String.format(ERROR_CATEGORY_ALREADY_EXISTS,

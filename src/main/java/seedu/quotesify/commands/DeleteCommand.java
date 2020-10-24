@@ -206,6 +206,10 @@ public class DeleteCommand extends Command {
                 deleteCategoryFromBook(category, bookTitle, ui);
                 deleteCategoryFromQuote(category, quoteNum, ui);
                 categoryList.updateListInCategory(category);
+
+                if (category.getSize() == 0) {
+                    categoryList.remove(category);
+                }
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
@@ -257,13 +261,25 @@ public class DeleteCommand extends Command {
         for (String name : categories.split(" ")) {
             try {
                 Category category = categoryList.getCategoryByName(name);
-                categoryList.deleteCategoryInBooksAndQuotes(name);
-                categoryList.getList().remove(category);
+                deleteCategoryInBooksAndQuotes(name);
+                categoryList.remove(category);
                 ui.printRemoveCategory(name);
             } catch (QuotesifyException e) {
                 ui.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    public void deleteCategoryInBooksAndQuotes(String oldCategory) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
+            book.getCategories().remove(oldCategory);
+        });
+
+        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
+            quote.getCategories().remove(oldCategory);
+        });
     }
 
     private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
