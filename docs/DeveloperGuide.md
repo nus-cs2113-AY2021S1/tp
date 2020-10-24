@@ -1,50 +1,67 @@
 # Developer Guide
 
+## Introduction
+**Welcome to Quotesify!**
+
+Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add
+books and the related quotes that you wish to remember. You can categorize your books and quotes by author,
+customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
+your reading experience.
+
+This guide will provide information on the design and implementation of Quotesify. It will help you get started
+on your journey of being a contributor to Quotesify. This guide will also explain the steps to test out the program,
+so that you will have a better understanding of the current status of Quotesify.
+
+## Setting up
+1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases),
+and clone the fork to your computer.
+2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
+click `File` > `Close Project` to close any existing project.
+3. Set up the correct JDK version for Gradle:
+    1. Click `Configure` > `Project Defaults` > `Project Structure`.
+    2. Click `New…` and find the directory where you saved your JDK.
+4. Click `Import Project`.
+5. Locate the *build.gradle* file and select it.
+6. Click `OK`.
+7. Click `Open as Project`.
+8. Click `OK` to accept all default settings.
+9. To verify the set up, locate the `Quotesify.java` file, right-click it and select `Run Quotesify.main()`.
+If the setup is correct, you should see something like this as shown below:
+
+[INSERT OUTCOME HERE]
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Feature: Add rating
-The proposed *add rating* feature will rely on an existing book object, and a rating object will then be created
+The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
 * The book object will store an attribute named rating, which will be set by this feature.
-* The rating object will be made up of the book object and a rating score, which is stored in a list of ratings
-named Rating List.
+* The rating object will be made up of the book object and a rating score, which is stored in a list of ratings.
 
-Given below is the class diagram of classes related to ratings:
+Given below is the sequence diagram for adding rating to a book:
 
-[TO INSERT CLASS DIAGRAM HERE]
+![Sequence Diagram for Add Ratings](images/SeqDiagram_AddRating.png)
 
-* A `Book` has a `0..1` multiplicity to `Rating` as a book can have only 1 rating or have not been rated at all.
-* A `Rating` has a `1` multiplicity to `Book` as 1 rating represent only 1 book.
-* A `Rating` has a `1` multiplicity to `RatingList` as the rating will only be stored in 1 rating list.
-* A `RatingList` has a `*` multiplicity to `Rating` as the rating list can stored multiple rating objects.
-* There is composition between `Book` and `Rating` as a rating can only be created when the book exists.
-The rating will be deleted when the book is deleted.
+* The sequence diagram shows the process of *Add Rating* from the execute() method in AddCommand class.
+The switch statement in the execute() method to decide the item that the user is adding is not shown in the diagram.
+* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
+* In the addRating() method, if the user input such as book title, author or rating score is missing
+, a message will be printed to inform the user and the method is returned.
+* There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
+in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
+If all these conditions are met, the book will be rated.
+* When rating a book, the attribute *rating* of the book is set to the rating score. A rating object containing the
+book details and rating score will also be created and stored in the rating list.
+This list of ratings will be used when listing or finding ratings.
 
-#### Design consideration:
-* The rating object stores a book object, which consists of the book title and author,
-instead of only the book title. This will uniquely identify books and allow books with the same title
-but different authors to be rated.
-
-### Feature: List rating
-The proposed *list rating* feature will print all the rating objects found in the rating list.
-* Details stored in the rating objects like the book title, author and its rating score will be printed.
-* If a rating score is specified by the user, only rating objects with that rating score will be printed.
-* The messages are printed using `Ui` which relies on `UiMessage`.
-
-#### Design consideration:
-* The rating list is sorted according to the rating score, with the highest rating at the top. This is for
-better user experience where users would usually like to see their favourites and do not need to scroll
-all the way to the bottom.
-
-### Feature: Find rating
-The proposed *find rating* feature will loop through the rating list to find if the rating exists.
-* If the rating is found, the details of the book and its rating score will be printed.
-* If the rating is not found, a message to indicate unsucessful search will be printed.
-* The messages are printed using `Ui` which relies on `UiMessage`.
-
-[INSERT SEQUENCE DIAGRAM HERE]
+#### Design Consideration
+* Saving the ratings in a Rating List
+    * Pros: Helps in listing and finding ratings as not all books are rated.
+    * Cons: Increases memory usage.
+* Using both book title and author to identify a rating instead of just book title
+    * Pros: Allows books with the same title but different author to be rated.
 
 ### Feature Add bookmark
 The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
@@ -55,6 +72,7 @@ bookmarks named `BookmarkList`.
 
 ## Product scope
 ### Target user profile
+The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
 * can type fast
@@ -64,7 +82,8 @@ bookmarks named `BookmarkList`.
 
 ### Value proposition
 
-Improves the reading experience of users with quick and easy features
+Quotesify will help you to improve your reading experience with quick and easy features such as book management,
+quote management, progress tracker, category management and a rating system for your books.
 
 ## User Stories
 
