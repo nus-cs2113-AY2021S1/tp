@@ -183,24 +183,20 @@ Example of usage:
  
  &nbsp;
  
-### 4.d. `rating` - Modifies rating of your show
+### 4.d. `addreview` - Adding a review
 
- The `rating` command gives a rating (out of 10) for an existing show in your watchlist.
+The `addreview` command allows you to add a review for a show, including adding a rating.
+
+ Format:
+  `addreview <SHOWNAME> <RATING> <REVIEW>`
+  
+ Example of usage:
+ `addreview Friends 9 very funny `
  
-   Format:
-    `rating <SHOWNAME> <SCORE>`
-    
-**[NOTE]**
-
-*The `<SCORE>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
-    
-   Example of usage:
-   `rating Friends 9`
+  Expected outcome:
    
-   Expected outcome:
-    
-   <img src = "images/rating.PNG" width = "450">
-    
+  <img src = "images/addreview.PNG" width = "450">
+
    &nbsp;
  
 ### 4.e. `list` - Displays all your shows in the list
@@ -315,27 +311,12 @@ The `season` command updates the current season of an existing show in your watc
   
  &nbsp;
 
-### 4.k. `addreview` - Adding a review
 
-The `addreview` command allows you to add a review for a show, including adding a rating.
-
- Format:
-  `addreview <SHOWNAME> <RATING> <REVIEW>`
-  
- Example of usage:
- `addreview Friends 9 very funny `
- 
-  Expected outcome:
-   
-  <img src = "images/addreview.PNG" width = "450">
-
-   &nbsp;
-
-### 4.l. Managing your watch time limit
+### 4.k. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.l.a. `watch` - Watch a show in your watchlist
+### 4.k.a. `watch` - Watch a show in your watchlist
 
 The `watch` command increments the current episode that you are on, and updates your watch time limit.
 
@@ -351,7 +332,7 @@ The `watch` command increments the current episode that you are on, and updates 
   
  &nbsp;
 
-### 4.l.b. `updatetimelimit` - update your watch time limit
+### 4.k.b. `updatetimelimit` - update your watch time limit
 
 The `updatetimelimit` command updates your current watch time limit.
 
@@ -373,7 +354,7 @@ The `updatetimelimit` command updates your current watch time limit.
   
  &nbsp;
 
-### 4.m. `search` - search a show in the watchlist  
+### 4.l. `search` - search a show in the watchlist  
 
 The `search` command searches for a specific show in the watchlist and prints out the show information.  
 
@@ -393,7 +374,7 @@ The `search` command searches for a specific show in the watchlist and prints ou
  
  &nbsp;
   
-### 4.n. `bye` - Exits the program
+### 4.m. `bye` - Exits the program
 
 The `bye` command exits the program.
 

@@ -70,8 +70,6 @@ public class Ui {
                 + " \n"
                 + ("edit") + " - Edits your show details\n"
                 + " \n"
-                + ("rating") + " - Set rating of your show\n"
-                + "\n"
                 + ("list") + " - Displays all your shows in thw watchlist\n"
                 + "\n"
                 + ("delete") + " - Deletes your show\n"
