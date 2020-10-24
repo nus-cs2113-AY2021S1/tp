@@ -12,11 +12,11 @@ import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
 import seedu.duke.logic.commands.RouteCommand;
 import seedu.duke.logic.commands.RouteMapCommand;
-import seedu.duke.logic.commands.favCommand.AddFavCommand;
-import seedu.duke.logic.commands.favCommand.DeleteFavCommand;
-import seedu.duke.logic.commands.favCommand.DescFavCommand;
-import seedu.duke.logic.commands.favCommand.ExecFavCommand;
-import seedu.duke.logic.commands.favCommand.ListFavCommand;
+import seedu.duke.logic.commands.favcommand.AddFavCommand;
+import seedu.duke.logic.commands.favcommand.DeleteFavCommand;
+import seedu.duke.logic.commands.favcommand.DescFavCommand;
+import seedu.duke.logic.commands.favcommand.ExecFavCommand;
+import seedu.duke.logic.commands.favcommand.ListFavCommand;
 import seedu.duke.logic.commands.ResetSearchFreqCommand;
 
 public class Parser {

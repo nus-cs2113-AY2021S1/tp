@@ -1,4 +1,4 @@
-package seedu.duke.logic.commands.favCommand;
+package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.commands.Command;
