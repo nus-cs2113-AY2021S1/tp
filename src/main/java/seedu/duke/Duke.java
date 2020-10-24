@@ -16,8 +16,11 @@ public class Duke {
 
     private Storage<BookmarkList> bookmarkStorage;
     private Storage<Timetable> timetableStorage;
+    private Storage<Timetable> plannerStorage;
     private BookmarkList bookmarks;
     private Timetable timetable;
+    private Timetable planner;
+    //private ArrayList<File> files;
     private Ui ui;
 
     /**
@@ -29,13 +32,14 @@ public class Duke {
      */
     public Duke(String bookmarkFilePath, String timetableFilePath) {
         ui = new Ui();
-
+      
         bookmarkStorage = new Storage<>(getJarFilepath() + bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(getJarFilepath() + timetableFilePath, Timetable.class);
-
+      
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
+            planner = new Timetable();
             Module.setModuleList(timetableStorage.loadModuleList());
         } catch (DukeException e) {
             ui.showErrorMessage(e);
@@ -56,11 +60,15 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, timetable, ui);
+                if (Parser.programMode == 3) {
+                    c.execute(bookmarks, planner, ui);
+                } else {
+                    c.execute(bookmarks, timetable, ui);
+                }
                 isExit = c.isExit();
-
                 bookmarkStorage.save(bookmarks);
                 timetableStorage.save(timetable);
+
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
             }

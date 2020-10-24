@@ -78,9 +78,10 @@ public class SlotList extends ItemList {
     private void loadSlot(String line) {
         try {
             slots.add(Slot.initSlot(line));
-        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
-            // TODO: to be fixed
-            System.out.println("Error");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bound");
+        } catch (DateTimeParseException e) {
+            System.out.println("Incorrect time format");
         }
     }
 
