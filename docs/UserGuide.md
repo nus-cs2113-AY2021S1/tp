@@ -176,7 +176,7 @@ Example of usage:
  
  To help you better understand the flow of this command we have included a program flow to illustrate the process.
  
- <img src = "images/programFlowUG.png" width = "500">
+ <img src = "images/programFlowUG.png" width = "450">
  
  <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
 
@@ -216,7 +216,7 @@ season that you are currently at.
    
    Expected outcome:
     
-   <img src = "images/list.PNG" width = "450">
+   <img src = "images/list.PNG" width = "500">
     
    &nbsp;
 
@@ -232,7 +232,7 @@ season that you are currently at.
  
  Expected outcome:
   
- <img src = "images/delete.PNG" width = "450">
+ <img src = "images/delete.PNG" width = "400">
 
  &nbsp;
   
@@ -280,7 +280,7 @@ The `episode` command updates the current episode of an existing show in your wa
 **[NOTE]**
 
 *This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
-[comment]: <> (Think I need help with explaining this better)
+
 
  Format:
   `episode <SHOWNAME> <EPISODE>`
@@ -290,7 +290,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Expected outcome:
   
- <img src = "images/episode.PNG" width = "500">
+ <img src = "images/episode.PNG" width = "600">
   
  &nbsp;
  
@@ -301,7 +301,7 @@ The `season` command updates the current season of an existing show in your watc
 **[NOTE]**
 
 *This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
-[comment]: <> (Think I need help with explaining this better)
+
 
  Format:
   `season <SHOWNAME> <SEASON>`
@@ -311,7 +311,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Expected outcome:
   
- <img src = "images/season.PNG" width = "500">
+ <img src = "images/season.PNG" width = "600">
   
  &nbsp;
 
@@ -323,7 +323,7 @@ The `addreview` command allows you to add a review for a show, including adding 
   `addreview <SHOWNAME> <RATING> <REVIEW>`
   
  Example of usage:
- `addreview Friends 9 cool show `
+ `addreview Friends 9 very funny `
  
   Expected outcome:
    
@@ -347,7 +347,7 @@ The `watch` command increments the current episode that you are on, and updates 
  
  Expected outcome:
   
- <img src = "images/watch.PNG" width = "550">
+ <img src = "images/watch.PNG" width = "600">
   
  &nbsp;
 
@@ -369,7 +369,7 @@ The `updatetimelimit` command updates your current watch time limit.
  
  Expected outcome:
   
- <img src = "images/updatetimelimit.PNG" width = "600">
+ <img src = "images/updatetimelimit.PNG" width = "800">
   
  &nbsp;
 
@@ -430,7 +430,6 @@ Expected outcome:
 **Q**: What format should I use if I want to track my lectures?  
 
 **A**: A suggested format would be `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of a format that suits you!
-[comment]: <> (Is this answer ok?)
 
 
 

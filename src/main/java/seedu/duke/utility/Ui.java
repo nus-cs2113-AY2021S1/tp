@@ -240,6 +240,7 @@ public class Ui {
     }
 
     public static void printSearchSuccessful(String name) {
+        printLine();
         System.out.println("The show: " + name + " is found, here is the detailed information: ");
         System.out.println(ShowList.getShowList().get(name).toString());
     }
