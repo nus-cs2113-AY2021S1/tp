@@ -18,10 +18,10 @@ class BunnyFilterTest {
         }
     }
 
-    @Test
-    void filterBunny_filterIdeaTerm_getOneResult() {
-        FilterExecutor.executeFilterCommand("filter bunny i\\ fun");
-
-
-    }
+//    @Test
+//    void filterBunny_filterIdeaTerm_getOneResult() {
+//        FilterExecutor.executeFilterCommand("filter bunny i\\ fun");
+//
+//
+//    }
 }
