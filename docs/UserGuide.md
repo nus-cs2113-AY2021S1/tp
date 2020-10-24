@@ -314,8 +314,24 @@ The `updatetimelimit` command updates your current watch time limit.
  <img src = "images/updatetimelimit.PNG" width = "500">
   
  &nbsp;
+
+### 4.m. `search` - search a show in the watchlist  
+
+The `search` command searches a specific show in the watchlist and prints out the show information.  
+
+ Format:
+ `search <SHOWNAME>`  
  
-### 4.m. `bye` - Exits the program
+ Example of usage:
+ `search Friends`  
+  
+ Expected output:
+ 
+ <img src = "images/searchshows.png" width = "500">  
+ 
+ &nbsp;
+  
+### 4.n. `bye` - Exits the program
 The `bye` command exits the program.
 
 Format:
@@ -375,6 +391,7 @@ Expected outcome:
 |Update season |`season <SHOWNAME> <SEASON>`|   `season Friends 3`|
 |Watch a show  |`watch <SHOWNAME>`|  `watch Friends`|
 |Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 100`|
+|Search a show |`search <SHOWNAME>`|  `search Friends`|
 |Exit program |`bye`|   `bye`|
 
 
