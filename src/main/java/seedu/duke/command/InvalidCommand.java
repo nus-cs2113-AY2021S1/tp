@@ -6,11 +6,6 @@ import java.util.Hashtable;
 
 public class InvalidCommand extends Command {
 
-    /**
-     * Creates a new abstract command.
-     *
-     * @param parameters
-     */
     public InvalidCommand(Hashtable<String, String> parameters) {
         super(parameters);
     }

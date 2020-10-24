@@ -10,5 +10,5 @@ public abstract class TaskCommand extends Command {
         super(parameters);
     }
 
-    public abstract void execute() ;
+    public abstract void execute();
 }

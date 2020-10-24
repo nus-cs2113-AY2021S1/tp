@@ -1,6 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
+import seedu.duke.command.EmptyCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
@@ -46,30 +47,36 @@ public class SprintParser implements ExceptionsParser {
             if (checkEditSprintParams(parameters, projectListManager)) {
                 return new EditSprintCommand(parameters, projectListManager);
             }
+            break;
         case ADDTASK:
             if (checkAddTaskParams(parameters, projectListManager)) {
                 return new AddSprintTaskCommand(parameters, projectListManager);
             }
+            break;
         case REMOVETASK:
             if (checkRemoveTaskParams(parameters, projectListManager)) {
                 return new RemoveSprintTaskCommand(parameters, projectListManager);
             }
+            break;
         case VIEW:
             if (checkViewSprintParams(parameters, projectListManager)) {
                 return new ViewSprintCommand(parameters, projectListManager);
             }
+            break;
         case ALLOCATE:
             if (checkAllocateTaskParams(parameters, projectListManager)) {
                 return new AllocateSprintTaskCommand(parameters, projectListManager);
             }
+            break;
         case DEALLOCATE:
             if (checkDeallocateTaskParams(parameters, projectListManager)) {
                 return new DeallocateSprintTaskCommand(parameters, projectListManager);
             }
+            break;
         default:
             throw new DukeException("Invalid action!");
         }
-        return new InvalidCommand(parameters);
+        return new EmptyCommand(parameters);
     }
 
     /**
