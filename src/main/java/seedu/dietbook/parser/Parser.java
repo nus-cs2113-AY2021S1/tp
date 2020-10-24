@@ -5,15 +5,22 @@ import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.ActivityLevel;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.Manager;
+import seedu.dietbook.checker.InputChecker;
+
+/**
+ * Parser class of the program.
+ * The parser class takes in user input and process it into command data that manager can use.
+ *
+ * @author tikimonarch
+ */
 
 public class Parser {
     public static final String COMMAND_NAME = "name";
     public static final String COMMAND_INFO = "info";
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
-    public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
-    public static final String[] PARAM_ADD = {"n/","x/","k/"};
+
 
 
     /**
@@ -33,40 +40,24 @@ public class Parser {
      */
     public static String getCommandParam(String userInput) throws DietException {
         String command = getCommand(userInput);
-        String[] input = {userInput};
 
-        if (userInput.split(command).length < 2
-                || userInput.split(command)[1].equals(" ")) {
-            throw new DietException("Error! Missing command parameters!");
-        } else {
-            switch (command) {
-            case COMMAND_NAME:
-                return userInput.split("name")[1].trim();
-            case COMMAND_CALCULATE:
-                for (String param: PARAM_CALCULATE) {
-                    if (userInput.contains(param)) {
-                        return userInput.split("calculate")[1].trim();
-                    }
-                }
-                throw new DietException("Incorrect nutrient type");
-            case COMMAND_ADD:
-                for (String param: PARAM_ADD) {
-                    if (!userInput.contains(param)) {
-                        throw new DietException("Missing or incorrect add statement");
-                    }
-                }
-                return userInput.substring(userInput.indexOf(' ') + 1);
-            case COMMAND_INFO:
-                for (String param: PARAM_INFO) {
-                    if (!userInput.contains(param)) {
-                        throw new DietException("Missing or incorrect info statement");
-                    }
-                }
-                return userInput.substring(userInput.indexOf(' ') + 1);
-            default:
-                return null;
-            }
+        InputChecker.checkEmpty(userInput, command);
+        switch (command) {
+        case COMMAND_NAME:
+            return userInput.split("name")[1].trim();
+        case COMMAND_CALCULATE:
+            InputChecker.checkNutrientType(userInput);
+            return userInput.split("calculate")[1].trim();
+        case COMMAND_ADD:
+            InputChecker.checkAddParam(userInput);
+            return userInput.substring(userInput.indexOf(' ') + 1);
+        case COMMAND_INFO:
+            InputChecker.checkInfoParam(userInput);
+            return userInput.substring(userInput.indexOf(' ') + 1);
+        default:
+            return null;
         }
+
     }
 
     /**
@@ -80,9 +71,9 @@ public class Parser {
         int portionSize = 1;
         String foodName = "Food Name";
         int calorie = 0;
-        int carb = 0;
-        int protein = 0;
-        int fat = 0;
+        int carb = -1;
+        int protein = -1;
+        int fat = -1;
         String trimmedParam;
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
@@ -96,21 +87,26 @@ public class Parser {
                 switch (param) {
                 case "x/":
                     portionSize = Integer.parseInt(trimmedParam);
+                    InputChecker.checkFoodLimit(portionSize);
                     break;
                 case "n/":
                     foodName = trimmedParam;
                     break;
                 case "k/":
                     calorie = Integer.parseInt(trimmedParam);
+                    InputChecker.checkFoodLimit(calorie);
                     break;
                 case "c/":
                     carb = Integer.parseInt(trimmedParam);
+                    InputChecker.checkFoodLimit(carb);
                     break;
                 case "p/":
                     protein = Integer.parseInt(trimmedParam);
+                    InputChecker.checkFoodLimit(protein);
                     break;
                 default:
                     fat = Integer.parseInt(trimmedParam);
+                    InputChecker.checkFoodLimit(fat);
                     break;
                 }
             }
@@ -133,8 +129,7 @@ public class Parser {
         int tarWeight = 0;
         String trimmedParam;
         String[] processedParam;
-        String[] paramList = {"g/", "a/", "h/", "o/", "t/", "l/"};
-        for (String param: paramList) {
+        for (String param: PARAM_INFO) {
             processedParam = getCommandParam(userInput).split(param);
             trimmedParam = processedParam[1].trim();
             if (processedParam[1].contains("/")) {
@@ -143,6 +138,7 @@ public class Parser {
             switch (param) {
             case "g/":
                 String processGender = trimmedParam;
+                InputChecker.checkGender(processGender);
                 if (processGender.equals("M")) {
                     gender = Gender.MALE;
                 } else {
@@ -151,18 +147,23 @@ public class Parser {
                 break;
             case "a/":
                 age = Integer.parseInt(trimmedParam);
+                InputChecker.checkAgeLimit(age);
                 break;
             case "h/":
                 height = Integer.parseInt(trimmedParam);
+                InputChecker.checkHeightLimit(height);
                 break;
             case "o/":
                 orgWeight = Integer.parseInt(trimmedParam);
+                InputChecker.checkWeightLimit(orgWeight);
                 break;
             case "t/":
                 tarWeight = Integer.parseInt(trimmedParam);
+                InputChecker.checkWeightLimit(tarWeight);
                 break;
             default:
                 String processActLvl = trimmedParam;
+                InputChecker.checkActivity(processActLvl);
                 if (processActLvl.equals("1")) {
                     actLvl = ActivityLevel.NONE;
                 } else if (processActLvl.equals("2")) {
@@ -189,9 +190,7 @@ public class Parser {
     public static int getCommandIndex(String userInput) throws DietException {
         String command = getCommand(userInput);
 
-        if (userInput.split(command).length < 2 || userInput.split(command)[1].equals(" ")) {
-            throw new DietException("OOPS!!! Missing index of duke.task!");
-        }
+        InputChecker.checkEmpty(userInput, command);
         try {
             return Integer.parseInt(userInput.split(" ")[1]);
         } catch (NumberFormatException e) {

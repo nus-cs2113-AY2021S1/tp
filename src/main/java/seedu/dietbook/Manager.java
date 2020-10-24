@@ -12,6 +12,14 @@ import seedu.dietbook.parser.Parser;
 
 import java.util.Scanner;
 
+/**
+ * Manager class of the program.
+ * The manager class takes in the checked and processed input and carry out the command specified.
+ * Initialization of important classes such as FoodList and Person is done here.
+ *
+ * @author tikimonarch
+ */
+
 public class Manager {
     private Person person;
     private FoodList foodList;
@@ -78,8 +86,9 @@ public class Manager {
     }
 
     /**
-     * Makes sense of the user input and carries out the functions according to the command given.
+     * Takes in the user input and returns the command to be carried.
      * @param userInput user input.
+     * @return <code>Command</code> for the command specified.
      * @throws DietException when the program does not recognize the command given.
      */
     public Command manage(String userInput) throws DietException {

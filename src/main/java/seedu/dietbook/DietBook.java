@@ -7,12 +7,29 @@ import seedu.dietbook.list.FoodList;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.command.Command;
 
+/**
+ * Main class of the program.
+ * The DietBook program is an application which can store, display and check your daily dietary intake.
+ *
+ * @author tikimonarch
+ */
+
 public class DietBook {
     private FoodList foodList;
     private Ui ui;
     private Manager manager;
     private DataBase dataBase;
     public static boolean isExit = false;
+
+    /**
+     * Constructor for new DietBook.
+     */
+    public DietBook() {
+        ui = new Ui();
+        foodList = new FoodList();
+        dataBase = new DataBase();
+        manager = new Manager(foodList, dataBase);
+    }  
 
     /**
      * Main method to run the program.
@@ -30,15 +47,5 @@ public class DietBook {
                 dietBook.ui.printErrorMessage(e.getMessage());
             }
         }
-    }
-
-    /**
-     * Constructor for new DietBook.
-     */
-    public DietBook() {
-        ui = new Ui();
-        foodList = new FoodList();
-        dataBase = new DataBase();
-        manager = new Manager(foodList, dataBase);
     }
 }
