@@ -44,4 +44,9 @@ public class Zoom extends Event {
             return "[Z]" + super.toString() + ", Link: " + zoomLink;
         }
     }
+
+    @Override
+    public String toCalendarString() {
+        return "Z | " + super.toCalendarString() + String.format("| %s", getZoomLink());
+    }
 }
