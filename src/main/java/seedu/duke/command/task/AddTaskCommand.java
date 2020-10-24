@@ -16,6 +16,7 @@ import static seedu.duke.command.CommandSummary.TITLE;
 public class AddTaskCommand extends Command {
     private final ProjectManager projectListManager;
     private Project proj;
+
     public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;
