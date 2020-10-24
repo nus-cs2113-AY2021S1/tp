@@ -7,7 +7,7 @@ import seedu.dietbook.Ui;
 public class ExitCommand extends Command {
     @Override
     public void execute(Manager manager, Ui ui) {
-        ui.printExitMessage(manager.getName());
+        ui.printExitMessage();
         DietBook.isExit = true;
     }
 }

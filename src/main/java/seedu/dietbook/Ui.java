@@ -83,11 +83,9 @@ public class Ui {
     /**
      * Prints an exit message when DietBook is closed.
      *
-     * @param name The name of the user.
      */
-    public void printExitMessage(String name) {
-        performAssertionsForStringInputs(name, "Name");
-        print("Bye " + trimString(name) + "! Hope to see you again soon!");
+    public void printExitMessage() {
+        print("Bye! Hope to see you again soon!");
     }
 
     /**
