@@ -8,8 +8,7 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
-<br/>&nbsp;3.2 [Adding a user: `addws`](#32-adding-a-user-adduser)
-<br/>&nbsp;3.3 [Switching users: `switchws`](#33-switching-users-switchuser)
+<br/>&nbsp;3.2 [Workspace management: `workspace`](#32-workspace-management)
 <br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
 <br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
@@ -65,31 +64,64 @@ Format: `help`
 
 <br/>
 
-### 3.2 Adding a user: `addws`
-Adds a new workspace to user.
+### 3.2 Workspace management: `workspace`
 
-Format: `addws -n <NAME>`
+This command handles all workspace related operations:
+* Creates new workspace
+* Switches workspace
+* Lists existing workspaces
+* Deletes workspace
 
-Example of usage: `addws -n Crispy Donuts Studio`
+Therefore, the command parameter for workspace command is dependent on the operation you wish to use. 
+For example, -l would signify list workspace while -d signifies delete.
+
+#### 3.2.1 Creating new workspace
+
+Format: `workspace -n <NAME>`
+
+Example of usage: `workspace -n Crispy Donuts Studio`
 
 The expected outcome:
 ```
 Successfully added new workspace: Crispy Donuts Studio
 ```
 
-<br/>
+#### 3.2.2 Switching workspace
 
-### 3.3 Switching users: `switchws`
-Switch the current active workspace of user.
+Format: `workspace -s <NAME>`
 
-Format: `switchws -n <NAME>`
-
-Example of usage: `switchws -n Crispy Donuts Studio`
+Example of usage: `workspace -s Crispy Donuts Studio`
 
 The expected outcome:
 ```
-Workspace changed to Crispy Donuts Studio
+Workspace switched to Crispy Donuts Studio
 ```
+
+#### 3.2.3 Listing workspaces
+
+Format: `workspace -l`
+
+Example of usage: `workspace -l`
+
+The expected outcome:
+```
+Currently, you have 2 workspace(s):
+1. Default
+2. Crispy Donuts Studio
+```
+
+#### 3.2.4 Deleting workspace
+
+Format: `workspace -d <NAME>`
+
+Example of usage: `workspace -d Default`
+
+The expected outcome:
+```
+Successfully deleted workspace: Default
+```
+
+
 
 <br/>
 
