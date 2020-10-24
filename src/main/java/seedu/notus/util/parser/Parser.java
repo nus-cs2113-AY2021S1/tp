@@ -44,7 +44,7 @@ public abstract class Parser {
      * @return Split strings.
      * @throws NullPointerException when the userMessage is empty.
      */
-    static ArrayList<String[]> splitInfoDetails(String userMessage) throws SystemException {
+    ArrayList<String[]> splitInfoDetails(String userMessage) throws SystemException {
         try {
             String[] splitMessage = userMessage.split(PREFIX_DELIMITER);
             ArrayList<String[]> splitMessageContent = new ArrayList<>();
@@ -72,7 +72,7 @@ public abstract class Parser {
      * @return Trimmed non-blank string.
      * @throws SystemException Occurs when input is blank.
      */
-    static String checkBlank(String input, SystemException.ExceptionType exceptionType) throws SystemException {
+    String checkBlank(String input, SystemException.ExceptionType exceptionType) throws SystemException {
         if (input.isBlank()) {
             throw new SystemException(exceptionType);
         } else {
@@ -88,7 +88,7 @@ public abstract class Parser {
      * @return new Tag object.
      * @throws SystemException for missing tag name.
      */
-    static Tag handleTagPrefix(String[] tagMessage) throws SystemException {
+    Tag handleTagPrefix(String[] tagMessage) throws SystemException {
         String tagName;
         String tagColor = "";
         String tagsInfo;
