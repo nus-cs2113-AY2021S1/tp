@@ -77,7 +77,7 @@ class BookmarkParserTest {
         test1.parse(VALID_DELETE_TEST);
     }
 
-    //==================== Invalid Input Iest ===========================
+    //==================== Invalid Input Test ===========================
 
     @Test
     void execute_invalidSingleParameter_ThrowsAniException() throws AniException {

@@ -22,7 +22,7 @@ class AnimeDataTest {
             + "Genre: [Action, Adventure, Drama, Sci-Fi]";
 
     @BeforeAll
-    void setUp() throws AniException {
+    static void setUp() throws AniException {
         animeData = new AnimeData();
     }
 
