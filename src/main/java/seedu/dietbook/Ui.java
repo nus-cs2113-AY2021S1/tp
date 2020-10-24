@@ -35,7 +35,8 @@ public class Ui {
                 + "Hello! Welcome to DietBook!" + LINE_SEPARATOR
                 + "I am Diet, your guide to using DietBook. What is your name?" + LINE_SEPARATOR
                 + "Please input in the following format:" + LINE_SEPARATOR
-                + "  name YOUR_NAME");
+                + "  name YOUR_NAME" + LINE_SEPARATOR
+                + "  Example: name Jack");
     }
 
     /**
