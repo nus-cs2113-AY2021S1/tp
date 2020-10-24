@@ -23,7 +23,7 @@
     - [4.k.b. `updatetimelimit` - update your watch time limit](#4kb-updatetimelimit---update-your-watch-time-limit)
     - [4.l. `search` - search a show in the watchlist](#4l-search---search-a-show-in-the-watchlist)
     - [4.m. `bye` - Exits the program](#4m-bye---exits-the-program)
-- [5. FAQ](#5-faq-br)
+- [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 
 
@@ -392,7 +392,8 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ <br>
+### 5. FAQ 
+<br>
 
 **Q**: Is my watchlist saved after I exit the program?  
 
