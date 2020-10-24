@@ -12,7 +12,7 @@ public class FindCommandStub extends FindCommand {
     }
 
     public static String execute(String keywords) {
-        if (keywords == "Test") {
+        if (keywords.equals("test")) {
             return keywords;
         }
         return null;

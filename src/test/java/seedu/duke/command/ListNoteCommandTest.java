@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.data.notebook.TagManager;
 import seedu.duke.ui.Formatter;
 import seedu.duke.ui.FormatterStub;
 
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ListNoteCommandTest {
 
     Notebook notebook;
+    TagManager tagManager;
 
     int maxRowLength = 100;
 
@@ -37,6 +39,7 @@ class ListNoteCommandTest {
     @BeforeEach
     void setup() {
         notebook = new Notebook();
+        tagManager = new TagManager();
 
         tagSports = new Tag("Sports", Tag.COLOR_RED_STRING);
         tagCs2113 = new Tag("CEG", Tag.COLOR_YELLOW_STRING);
@@ -306,6 +309,92 @@ class ListNoteCommandTest {
     }
 
     @Test
+    void execute_InvalidTag_NoResult() {
+        notebook.addNote(testNote1);
+        notebook.addNote(songLyrics);
+        notebook.addNote(defaultNote);
+        notebook.addNote(cs2113);
+
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("heyya");
+
+        String error = "Your tags return no result. Please try an alternative tag or check your spellings ";
+
+        String expected = printDivider(false)
+                + FormatterStub.encloseRow(error)
+                + printDivider(true);
+
+        String actual = getCommandExecutionString(notebook, tags);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void execute_ValidTagSortUp_NotesWithTag() {
+        notebook.addNote(testNote1);
+        notebook.addNote(songLyrics);
+        notebook.addNote(defaultNote);
+
+        tagManager.createTag(tagCs2113, false);
+        tagManager.createTag(tagNus, false);
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("NUS");
+        tags.add("CEG");
+        tagManager.tagNote(songLyrics, tagCs2113);
+        tagManager.tagNote(songLyrics, tagNus);
+        tagManager.tagNote(testNote1, tagNus);
+
+
+        String expected = printDivider(false)
+                + FormatterStub.encloseRow("Here are the list of pinned notes:")
+                + printDivider(true)
+                + "[96m1. Title: TestNote1 [94m[NUS][0m[0m"
+                + Formatter.LS + "testing..." + Formatter.LS
+                + printDivider(true)
+                + printDivider(true)
+                + printDivider(false)
+                + FormatterStub.encloseRow("Here are the list of unpinned notes:")
+                + printDivider(true)
+                + "[96m1. Title: Song Lyrics [93m[CEG][0m[94m[NUS][0m[0m"
+                + Formatter.LS + "I like to move it move it..." + Formatter.LS
+                + printDivider(true) + printDivider(true);
+
+        String actual = getCommandExecutionString(notebook, true, tags);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void execute_ValidTag_NotesWithTag() {
+        notebook.addNote(testNote1);
+        notebook.addNote(songLyrics);
+        notebook.addNote(defaultNote);
+
+        tagManager.createTag(tagCs2113, false);
+        tagManager.createTag(tagNus, false);
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("NUS");
+        tags.add("CEG");
+        tagManager.tagNote(songLyrics, tagCs2113);
+        tagManager.tagNote(songLyrics, tagNus);
+
+        String expected = printDivider(false)
+                + FormatterStub.encloseRow("Here are the list of pinned notes:")
+                + printDivider(true)
+                + printDivider(true)
+                + printDivider(false)
+                + FormatterStub.encloseRow("Here are the list of unpinned notes:")
+                + printDivider(true)
+                + "[96m1. Title: Song Lyrics [93m[CEG][0m[94m[NUS][0m[0m"
+                + Formatter.LS + "I like to move it move it..." + Formatter.LS
+                + printDivider(true) + printDivider(true);
+
+        String actual = getCommandExecutionString(notebook, tags);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void execute_ArchivedNotes_ArchiveList() {
         int index = 2;
         String title = "CS2113";
@@ -360,13 +449,13 @@ class ListNoteCommandTest {
 
     private String getCommandExecutionString(Notebook notebook, Boolean isAscendingOrder, ArrayList<String> tags) {
         ListNoteCommand listNoteCommand = new ListNoteCommand(isAscendingOrder, tags);
-        listNoteCommand.setData(notebook, null, null, null);
+        listNoteCommand.setData(notebook, null, tagManager, null);
         return listNoteCommand.execute();
     }
 
     private String getCommandExecutionString(Notebook notebook, ArrayList<String> tags) {
         ListNoteCommand listNoteCommand = new ListNoteCommand(tags);
-        listNoteCommand.setData(notebook, null, null, null);
+        listNoteCommand.setData(notebook, null, tagManager, null);
         return listNoteCommand.execute();
     }
 }

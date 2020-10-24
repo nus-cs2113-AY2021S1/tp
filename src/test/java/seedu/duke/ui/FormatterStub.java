@@ -66,6 +66,31 @@ public class FormatterStub extends Formatter {
                     + System.lineSeparator();
         }
 
+        if (message.contains("Your tags return no result.")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "             ||"
+                    + System.lineSeparator();
+        }
+
+        if (message.contains("There are no")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "                                  ||"
+                    + System.lineSeparator();
+        }
+
+        if (message.equals("test")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + "Here are the matching notes in your list:"
+                    + "                                                      ||"
+                    + System.lineSeparator();
+        }
+
+
         return "";
     }
 
