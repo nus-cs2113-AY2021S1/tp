@@ -18,20 +18,61 @@ class UiTest {
     }
 
     @Test
-    void stringDateTime_nullInput_expectAssertionError() {
-        assertThrows(AssertionError.class, () -> ui.stringDateTime(null));
+    void stringDateTimePeriod_startDateTimeIsNullInput_expectAssertionError() {
+        LocalDateTime end = LocalDateTime.parse("2020-10-21T23:59");
+        assertThrows(AssertionError.class, () -> ui.stringDateTimePeriod(null, end));
     }
 
     @Test
-    void stringDateTime_LocalDateTime_returnsStringOfLocalDateTime() {
-        LocalDateTime dateTime = LocalDateTime.parse("2020-10-21T23:59");
-        assertEquals("21 Oct 2020 2359",ui.stringDateTime(dateTime));
+    void stringDateTimePeriod_endDateTimeIsNullInput_expectAssertionError() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-21T23:59");
+        assertThrows(AssertionError.class, () -> ui.stringDateTimePeriod(start, null));
     }
 
     @Test
-    void stringDateTime_LocalDateTimeWithSeconds_returnsStringOfLocalDateTimeWithoutSeconds() {
-        LocalDateTime dateTime = LocalDateTime.parse("2020-10-21T23:59:22");
-        assertEquals("21 Oct 2020 2359",ui.stringDateTime(dateTime));
+    void stringDateTimePeriod_endDateTimeIsBeforeStartTime_expectAssertionError() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-21T23:59");
+        LocalDateTime end = LocalDateTime.parse("2020-10-20T23:59");
+        assertThrows(AssertionError.class, () -> ui.stringDateTimePeriod(start, end));
+    }
+
+    @Test
+    void stringDateTimePeriod_endDateTimeIsInTheFuTure_expectAssertionError() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-21T23:59");
+        LocalDateTime end = LocalDateTime.now().plusDays(3);
+        assertThrows(AssertionError.class, () -> ui.stringDateTimePeriod(start, end));
+    }
+
+    @Test
+    void stringDateTimePeriod_StartDateTimeIsInTheFuture_expectAssertionError() {
+        LocalDateTime start = LocalDateTime.now().plusDays(3);
+        LocalDateTime end = LocalDateTime.now().plusDays(5);
+        assertThrows(AssertionError.class, () -> ui.stringDateTimePeriod(start, end));
+    }
+
+
+    @Test
+    void stringDateTimePeriod_sameStartAndEndDateTime_returnsStringOfTimePeriod() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-21T23:59");
+        LocalDateTime end = LocalDateTime.parse("2020-10-21T23:59");
+        assertEquals(" between 21 Oct 2020 2359 and 21 Oct 2020 2359",
+                ui.stringDateTimePeriod(start, end));
+    }
+
+    @Test
+    void stringDateTimePeriod_validStartAndEndDateTime_returnsStringOfTimePeriod() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-19T23:59");
+        LocalDateTime end = LocalDateTime.parse("2020-10-21T23:59");
+        assertEquals(" between 19 Oct 2020 2359 and 21 Oct 2020 2359",
+                ui.stringDateTimePeriod(start, end));
+    }
+
+    @Test
+    void stringDateTimePeriod_validStartAndEndDateTimeWithSeconds_returnsStringOfTimePeriodWithoutSeconds() {
+        LocalDateTime start = LocalDateTime.parse("2020-10-19T23:59:22");
+        LocalDateTime end = LocalDateTime.parse("2020-10-21T23:59:22");
+        assertEquals(" between 19 Oct 2020 2359 and 21 Oct 2020 2359",
+                ui.stringDateTimePeriod(start, end));
     }
 
     @Test
@@ -57,30 +98,5 @@ class UiTest {
     @Test
     void trimStringGetLength_StringWithLeadingAndTrailingSpaces_returnsLengthFour() {
         assertEquals(4, ui.trimStringGetLength("    food    "));
-    }
-
-    @Test
-    void trimString_nullInput_expectAssertionError() {
-        assertThrows(AssertionError.class, () -> ui.trimString(null));
-    }
-
-    @Test
-    void trimString_StringWithLeadingSpaces_returnsStringWithoutLeadingSpaces() {
-        assertEquals("food", ui.trimString("    food"));
-    }
-
-    @Test
-    void trimString_StringWithTrailingSpaces_returnsStringWithoutTrailingSpaces() {
-        assertEquals("food", ui.trimString("food    "));
-    }
-
-    @Test
-    void trimString_StringWithLeadingAndTrailingSpaces_returnsStringWithoutLeadingAndTrailingSpaces() {
-        assertEquals("food", ui.trimString("    food    "));
-    }
-
-    @Test
-    void trimString_StringWithNoLeadingAndTrailingSpaces_returnsString() {
-        assertEquals("food", ui.trimString("food"));
     }
 }
