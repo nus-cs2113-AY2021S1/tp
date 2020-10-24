@@ -1,8 +1,10 @@
 package anichan.parser;
 
+import anichan.command.BookmarkAnimeCommand;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BookmarkParserTest {
@@ -42,39 +44,45 @@ class BookmarkParserTest {
     @Test
     void execute_validSingleParameter_Successful() throws AniException {
         BookmarkParser testInfo1 = new BookmarkParser();
-        testInfo1.parse(VALID_SINGLE_INPUT_TEST);
+        BookmarkAnimeCommand testCommand = testInfo1.parse(VALID_SINGLE_INPUT_TEST);
         BookmarkParser testInfo2 = new BookmarkParser();
-        testInfo2.parse(VALID_SINGLE_INPUT_TEST2);
+        BookmarkAnimeCommand testCommand2 = testInfo2.parse(VALID_SINGLE_INPUT_TEST2);
+        assertEquals(testCommand.getBookmarkAction(), "i");
     }
 
     @Test
     void execute_validFieldForNote_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        test1.parse(VALID_NOTE_TEST);
+        BookmarkAnimeCommand testCommand = test1.parse(VALID_NOTE_TEST);
+        assertEquals(testCommand.getBookmarkAction(), "n");
     }
 
     @Test
     void execute_validList_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        test1.parse(VALID_LIST_TEST);
+        BookmarkAnimeCommand testCommand = test1.parse(VALID_LIST_TEST);
+        assertEquals(testCommand.getBookmarkAction(), "l");
     }
 
     @Test
     void execute_validEdit_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        test1.parse(VALID_EDIT_TEST);
+        BookmarkAnimeCommand testCommand = test1.parse(VALID_EDIT_TEST);
+        assertEquals(testCommand.getBookmarkAction(), "e");
     }
 
     @Test
     void execute_validAdd_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        test1.parse(VALID_ADD_TEST);
+        BookmarkAnimeCommand testCommand = test1.parse(VALID_ADD_TEST);
+        assertEquals(testCommand.getBookmarkAction(), "a");
     }
 
     @Test
     void execute_validDelete_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        test1.parse(VALID_DELETE_TEST);
+        BookmarkAnimeCommand testCommand = test1.parse(VALID_DELETE_TEST);
+        assertEquals(testCommand.getBookmarkAction(), "d");
     }
 
     //==================== Invalid Input Test ===========================

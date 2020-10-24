@@ -42,6 +42,10 @@ public class Anime {
         animeID = totalAnime;
     }
 
+    public static void setTotalAnime(int animeCount) {
+        totalAnime = animeCount;
+    }
+
     public int getAnimeID() {
         return animeID;
     }

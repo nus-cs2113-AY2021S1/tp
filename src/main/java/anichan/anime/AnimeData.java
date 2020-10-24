@@ -15,6 +15,7 @@ public class AnimeData {
     }
 
     public AnimeData() throws AniException {
+        Anime.setTotalAnime(0);
         AnimeStorage animeStorage = new AnimeStorage();
         loadAnimeData(animeStorage.readAnimeDatabase());
     }
