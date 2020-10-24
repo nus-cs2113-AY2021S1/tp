@@ -89,11 +89,11 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 * The maximum length for a Show `SHOWNAME` is 100 characters.
 
-* The `<SHOWNAME>` to be entered is case-sensitive.
+* The `<SHOWNAME>` to be entered is case-sensitive.<br><br>
 
-<br><br><br> 
-## 4. Features
-<br> 
+
+## 4. Features <br>
+
 #### 4.a. `help` - Views help
  The help list contains information about all the possible accepted commands.
  
