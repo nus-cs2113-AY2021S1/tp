@@ -1,5 +1,6 @@
 File created: FavList.txt
 File created: freqList.txt
+File Read
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hello from
  _       _       ____     __       __
