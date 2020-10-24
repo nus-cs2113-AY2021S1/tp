@@ -31,7 +31,7 @@ public class MonthStructure extends DisplayDateStructure {
 
         // Display day name
         for (int i = 1; i <= DAYS_PER_WEEK; i++) {
-            String dayOfWeek = DayOfWeek.of(i).getDisplayName(WEEK_TEXT_STYLE, LOCALE);
+            String dayOfWeek = DayOfWeek.of(i).getDisplayName(WEEKDAY_TEXT_STYLE, LOCALE);
             putsIntoArrayWithCentralise(dayOfWeek,
                 screen[currentRow], currentCol, currentCol + DAY_COLUMN_WIDTH);
             currentCol += DAY_COLUMN_WIDTH;
