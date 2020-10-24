@@ -453,8 +453,10 @@ Coming soon!
 |Feature|Command|
 |---|---|
 | Help                                     | `help`                                                   |
-| Add workspace                            | `addws -n <NAME>>`                                       |
-| Switch workspace                         | `switchws -n <NAME>`                                     |
+| Add workspace                            | `workspace -n <NAME>`                                    |
+| Switch workspace                         | `workspace -s <NAME>`                                    |
+| List workspace                           | `workspace -l`                                           |
+| Delete workspace                         | `workspace -d <NAME>`                                    |
 | Browse                                   | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
 | Create watchlist                         | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                       | `watchlist -l`                                           |
