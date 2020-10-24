@@ -8,6 +8,7 @@ import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Module;
 import seedu.duke.slot.Slot;
 import seedu.duke.exception.DukeException;
+import seedu.duke.slot.SlotContainer;
 import seedu.duke.slot.Timetable;
 
 import java.time.LocalDate;
@@ -126,25 +127,38 @@ public class ShowTimetableCommand extends Command {
             hasIndicatorOnDay = true;
         }
 
+        ArrayList<Slot> thisDaySlots = new ArrayList<>();
+        ArrayList<String> thisDayModuleCodesList = new ArrayList<>();
         for (Slot s: slots) {
             for (Module module : modules) {
                 if (module.slotExists(s) && s.getDay().equals(day)) {
-                    if (hasLessonNow(s)) {
-                        message.append(getHighlighBoxUpperMessage());
-                        message.append(s.toString()).append(" ").append(module.getModuleCode()).append("\n");
-                        message.append(getHighlighBoxLowerMessage());
-                        hasIndicatorOnDay = false;
-                    } else {
-                        if (s.getStartTime().isAfter(LocalTime.now())
-                                && hasIndicatorOnDay == true) {
-                            message.append(getIndicatorMessage());
-                            hasIndicatorOnDay = false;
-                        }
-                        message.append(s.toString()).append(" ").append(module.getModuleCode()).append("\n");
-                    }
-                    hasSlotOnDay = true;
+                    thisDaySlots.add(s);
+                    thisDayModuleCodesList.add(module.getModuleCode());
                 }
             }
+        }
+        SlotContainer slotContainer = new SlotContainer(thisDaySlots, thisDayModuleCodesList);
+        SlotContainer sortedSlotContainer = sortSlotsByTime(slotContainer);
+        ArrayList<Slot> sortedSlots = sortedSlotContainer.getSlotList();
+        ArrayList<String> sortedModuleCodes = sortedSlotContainer.getModuleCodesList();
+
+        for (int i = 0; i < sortedSlots.size(); i++) {
+            if (hasLessonNow(sortedSlots.get(i))) {
+                message.append(getHighlighBoxUpperMessage());
+                message.append(sortedSlots.get(i).toString()).append(" ")
+                        .append(sortedModuleCodes.get(i)).append("\n");
+                message.append(getHighlighBoxLowerMessage());
+                hasIndicatorOnDay = false;
+            } else {
+                if (sortedSlots.get(i).getStartTime().isAfter(LocalTime.now())
+                        && hasIndicatorOnDay == true) {
+                    message.append(getIndicatorMessage());
+                    hasIndicatorOnDay = false;
+                }
+                message.append(sortedSlots.get(i).toString()).append(" ")
+                        .append(sortedModuleCodes.get(i)).append("\n");
+            }
+            hasSlotOnDay = true;
         }
 
         if (!hasSlotOnDay) {
@@ -158,6 +172,33 @@ public class ShowTimetableCommand extends Command {
 
         message.append("\n");
         return message.toString();
+    }
+
+    private SlotContainer sortSlotsByTime(SlotContainer slotContainer) {
+        ArrayList<Slot> thisDaySlots = slotContainer.getSlotList();
+        ArrayList<String> thisDayModuleCodesList = slotContainer.getModuleCodesList();
+        ArrayList<Slot> sortedThisDaySlots = new ArrayList<>();
+        ArrayList<String> sortedThisDayModuleCodesList = new ArrayList<>();
+        int indextEarlistTimeSlot;
+        Slot earlistTimeSlot;
+
+        while(thisDaySlots.size() != 0) {
+            earlistTimeSlot = thisDaySlots.get(0);
+            indextEarlistTimeSlot = 0;
+            for (int i = 1; i < thisDaySlots.size(); i++) {
+                if(earlistTimeSlot.getStartTime().isAfter(thisDaySlots.get(i).getStartTime())) {
+                    earlistTimeSlot = thisDaySlots.get(i);
+                    indextEarlistTimeSlot = i;
+                }
+            }
+            sortedThisDaySlots.add(thisDaySlots.get(indextEarlistTimeSlot));
+            sortedThisDayModuleCodesList.add(thisDayModuleCodesList.get(indextEarlistTimeSlot));
+            thisDaySlots.remove(indextEarlistTimeSlot);
+            thisDayModuleCodesList.remove(indextEarlistTimeSlot);
+        }
+
+
+        return new SlotContainer(sortedThisDaySlots, sortedThisDayModuleCodesList);
     }
 
     private String getMessageTimetable(List<Module> modules, List<Slot> slots) {
