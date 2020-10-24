@@ -6,6 +6,7 @@ import seedu.rex.commands.AddPatientCommand;
 import seedu.rex.commands.BookApptCommand;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.CreateApptCommand;
+import seedu.rex.commands.DeleteApptCommand;
 import seedu.rex.commands.DeleteDoctorCommand;
 import seedu.rex.commands.DeletePatientCommand;
 import seedu.rex.commands.EditApptCommand;
@@ -46,12 +47,26 @@ public class Parser {
         return new Patient(name, nric, dateOfBirth);
     }
 
+    /**
+     * Reads in appointment and returns Appointment object.
+     *
+     * @param line Line to parse.
+     * @return Appointment object.
+     */
     public static Appointment readAppointment(String line) {
         String[] appointmentComponents = line.split(", ");
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
-        String nric = appointmentComponents[2];
-        String doctorName = appointmentComponents[3];
+        String nric;
+        String doctorName;
+        if (bookedStatus.contentEquals("booked")) {
+            nric = appointmentComponents[2];
+            doctorName = appointmentComponents[3];
+        } else {
+            nric = null;
+            doctorName = null;
+        }
+
         Appointment appointment = new Appointment(date);
         if (bookedStatus.equals("booked")) {
             appointment.bookPatient(Rex.getPatients().getPatientFromNric(nric));
@@ -109,11 +124,12 @@ public class Parser {
         case DeleteDoctorCommand.COMMAND_WORD:
             command = new DeleteDoctorCommand(trimmedCommand);
             break;
-
         case EditApptCommand.COMMAND_WORD:
             command = new EditApptCommand(trimmedCommand);
             break;
-
+        case DeleteApptCommand.COMMAND_WORD:
+            command = new DeleteApptCommand(trimmedCommand);
+            break;
         default:
             throw new RexException(Command.COMMAND_ERROR);
         }
@@ -121,6 +137,12 @@ public class Parser {
     }
 
 
+    /**
+     * Parses and reads doctor.
+     *
+     * @param line Line to parse.
+     * @return Doctor object.
+     */
     public static Doctor readDoctor(String line) {
         assert line != null && !line.equals("") : "No doctors to read!";
 

@@ -4,6 +4,7 @@ import seedu.rex.Rex;
 import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
+import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
@@ -31,7 +32,7 @@ public class CreateApptCommand extends Command {
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui,
-                        Storage storage) {
+                        Storage storage) throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
         assert storage != null : "storage is null";
@@ -45,6 +46,6 @@ public class CreateApptCommand extends Command {
         } catch (DateTimeParseException e) {
             ui.showDateInputError();
         }
-
+        storage.saveAppointments(appointments);
     }
 }

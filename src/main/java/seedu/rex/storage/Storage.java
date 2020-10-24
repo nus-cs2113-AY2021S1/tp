@@ -103,7 +103,6 @@ public class Storage {
         StringBuilder appointmentsFileContent = new StringBuilder();
 
         for (Appointment appointment : appointments.getAppointments()) {
-            // Need to format tasks
             appointmentsFileContent.append(appointment);
             appointmentsFileContent.append(System.lineSeparator());
         }
@@ -196,6 +195,12 @@ public class Storage {
         return doctors;
     }
 
+    /**
+     * Saves doctor to text file.
+     *
+     * @param doctors Doctors list.
+     * @throws RexException If there is error writing file.
+     */
     public void saveDoctors(DoctorList doctors) throws RexException {
         assert doctors != null : "Saving null doctors ArrayList";
 

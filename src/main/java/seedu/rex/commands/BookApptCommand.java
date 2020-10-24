@@ -5,9 +5,11 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -58,15 +60,19 @@ public class BookApptCommand extends Command {
         }
 
         try {
-            String indexSelected = ui.getAppointmentToBook(appointments);
-            int index = Integer.parseInt(indexSelected) - 1;
-            if (index < 0 || index >= appointments.getSize()) {
-                throw new RexException("Index error!");
-            }
+            ui.showAvailableAppointmentsMessage();
             Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
-            appointments.getAppointmentByIndex(index).bookPatient(patients.getPatientFromNric(nric));
-            appointments.getAppointmentByIndex(index).bookDoctor(doctors.getDoctorFromName(doctorName));
-            ui.showAppointmentBookedMessage(appointments.getAppointmentByIndex(index));
+            ArrayList<Integer> indicesToShow = new ArrayList<>();
+            for (int i = 0; i < appointments.getSize(); i++) {
+                Appointment appointment = appointments.getAppointments().get(i);
+                if (!appointment.isBooked()) {
+                    indicesToShow.add(i);
+                }
+            }
+            Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAvailableAppointments());
+            chosenAppointment.bookPatient(patients.getPatientFromNric(nric));
+            chosenAppointment.bookDoctor(doctors.getDoctorFromName(doctorName));
+            ui.showAppointmentBookedMessage(chosenAppointment);
 
             assert !appointments.isEmpty() : "No appointments!";
             storage.saveAppointments(appointments);

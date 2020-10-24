@@ -12,6 +12,7 @@ import seedu.rex.storage.Storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -127,7 +128,7 @@ public class Ui {
      * @return String command from user.
      */
     public String readCommand() {
-        System.out.println("Enter command: ");
+        printWithIndent("Enter command: ");
         return in.nextLine();
     }
 
@@ -200,31 +201,6 @@ public class Ui {
     }
 
     /**
-     * Gets appointment to be booked.
-     *
-     * @param appointments Arraylist of appointments.
-     * @return User input.
-     * @throws RexException If no appointments are available.
-     */
-    public String getAppointmentToBook(AppointmentList appointments) throws RexException {
-        showLine();
-        printWithIndent("Here are the list of available appointments.");
-        int counter = 0;
-        for (Appointment appointment : appointments.getAppointments()) {
-            if (!appointment.isBooked()) {
-                counter++;
-                printWithIndent(counter + ". " + appointment.getDate().toString());
-            }
-        }
-        if (counter == 0) {
-            throw new RexException("No appointments available!");
-        }
-        printWithIndent("Please enter the index of appointment to book");
-        showLine();
-        return in.nextLine();
-    }
-
-    /**
      * Gets appointment to be edited.
      *
      * @param appointments Arraylist of appointments.
@@ -235,7 +211,7 @@ public class Ui {
         showLine();
         printWithIndent("Here are the list of available appointments.");
         int counter = 0;
-        for (Appointment appointment : appointments.getAppointments()) {
+        for (Appointment appointment : appointments.getAvailableAppointments()) {
             counter++;
             printWithIndent(counter + ". " + appointment.getDate().toString());
 
@@ -243,7 +219,7 @@ public class Ui {
         if (counter == 0) {
             throw new RexException("No appointments available!");
         }
-        printWithIndent("Please enter the index of appointment to edit");
+        printWithIndent("Please enter the index of appointment to change to");
         showLine();
         return in.nextLine();
     }
@@ -257,15 +233,6 @@ public class Ui {
         showLine();
         printWithIndent("Appointment on " + appointment.getDate() + " booked!");
 
-    }
-
-    /**
-     * Prints patient creation message.
-     *
-     * @param nric Patient's NRIC.
-     */
-    public void showCreatePatientMessage(String nric) {
-        printWithIndent("Creating patient " + nric);
     }
 
     /**
@@ -309,34 +276,118 @@ public class Ui {
         }
     }
 
+    /**
+     * Gets doctor name from user.
+     *
+     * @return Doctor's name.
+     */
     public String getDoctorName() {
         printWithIndent("Enter doctor name: ");
         return in.nextLine().toUpperCase().trim();
     }
 
+    /**
+     * Shows the doctor added.
+     *
+     * @param newDoctor Doctor added.
+     */
     public void showDoctorAdded(Doctor newDoctor) {
         printWithIndent("Doctor added: " + newDoctor.getName());
     }
 
+    /**
+     * Shows deleted doctor.
+     *
+     * @param deletedDoctor Deleted doctor.
+     */
     public void showDoctorDeleted(Doctor deletedDoctor) {
         printWithIndent("Doctor successfully deleted: ");
         printWithIndent(deletedDoctor.toString());
     }
 
+    /**
+     * Shows doctor not found message.
+     *
+     * @param doctorName Name of doctor.
+     */
     public void printDoctorNotFound(String doctorName) {
         printWithIndent("Patient " + doctorName + " not found in database!");
     }
 
-    public LocalDate getAppointmentDate() {
-        while (true) {
-            try {
-                printWithIndent("Enter appointment date (YYYY-MM-DD) including the dashes: ");
-                return LocalDate.parse(in.nextLine().trim());
-            } catch (DateTimeParseException e) {
-                showLine();
-                showDateInputError();
-                showLine();
-            }
+    /**
+     * Displays only the Objects in ArrayList that is required to be shown.
+     *
+     * @param list Generic ArrayList
+     * @param <T>  Generic class
+     * @return Object in ArrayList
+     */
+    public <T> int displayArrayList(ArrayList<T> list) {
+        int i;
+        for (i = 0; i < list.size(); i++) {
+            printWithIndent((i + 1) + ". " + list.get(i));
         }
+        return list.size();
+    }
+
+    /**
+     * Alerts user that there is a maximum allowable input.
+     *
+     * @param maxAllowableInput maximum allowable input
+     */
+    public void indexOutOfBoundsMessage(int maxAllowableInput) throws RexException {
+        throw new RexException("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
+    }
+
+    /**
+     * Gets object of Arraylist corresponding to user selection.
+     *
+     * @param list Generic ArrayList
+     * @param <T>  Generic class
+     * @return Object in ArrayList
+     */
+    public <T> T getItemOfArrayList(ArrayList<T> list) throws RexException {
+        int maxIndex = displayArrayList(list);
+        if (maxIndex < 1) {
+            throw new RexException("There are no available appointments to choose.");
+        }
+        printWithIndent("Enter the index: ");
+        String inputString = in.nextLine();
+        int input = Integer.parseInt(inputString);
+        try {
+            return list.get(input - 1);
+        } catch (IndexOutOfBoundsException e) {
+            indexOutOfBoundsMessage(maxIndex);
+            return null;
+        }
+    }
+
+    /**
+     * Shows available appointments message.
+     */
+    public void showAvailableAppointmentsMessage() {
+        printWithIndent("Here are the list of available appointments: ");
+    }
+
+    /**
+     * Shows edit appointment message.
+     */
+    public void showEditAppointmentMessage() {
+        printWithIndent("Here are the appointments. Choose one to edit");
+    }
+
+    /**
+     * Shows deleted appointment.
+     *
+     * @param appointment Deleted appointment.
+     */
+    public void showDeleteAppointmentMessage(Appointment appointment) {
+        printWithIndent("Deleted appointment: " + appointment);
+    }
+
+    /**
+     * Shows delete appointment message.
+     */
+    public void showDeleteAppointmentMessage() {
+        printWithIndent("Choose appointment to delete: ");
     }
 }
