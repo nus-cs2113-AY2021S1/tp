@@ -27,6 +27,15 @@ public class UserStorage extends LocalStorage {
     public File save() throws IOException {
         file = super.save();
 
+        // Get all the questions seen before
+        JSONArray questions = new JSONArray();
+
+        // Store if they were correct, bookmarked, any notes
+
+        /*
+         * [{question: "", correct: "", bookmarked: "", note: ""}]
+         * */
+
         // First Employee
         JSONObject employeeDetails = new JSONObject();
         employeeDetails.put("firstName", "Lokesh");
@@ -70,10 +79,6 @@ public class UserStorage extends LocalStorage {
         }
 
         JSONArray objectsAsJsonArray = getJsonArrayFromFile();
-
-        /*
-        * [{question: "", bookmarked: "", note: ""}]
-        * */
 
 
         return null;

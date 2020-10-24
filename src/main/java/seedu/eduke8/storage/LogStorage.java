@@ -13,7 +13,6 @@ public class LogStorage extends LocalStorage {
         super(filePath);
     }
 
-    //
     /**
      * Sets up saving logs to file instead of default print to console.
      * Returns file where the logs are saved.
