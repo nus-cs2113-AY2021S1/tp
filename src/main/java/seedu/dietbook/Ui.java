@@ -106,7 +106,14 @@ public class Ui {
     }
 
     /**
-     * Prints a message to show that the food specified has been added to the food list.
+     * Prints a message that notifies the user that DietBook has been initialised.
+     */
+    public void printInitialisationCompleteMessage() {
+        print("Thank you! DietBook has been initialised and you may start by entering any valid commands. "
+                + LINE_SEPARATOR
+                + "If you require a list of valid commands, you can enter: help");
+    }
+
      *
      * @param newFood The string representation of the new food item that was added to the food list.
      */
