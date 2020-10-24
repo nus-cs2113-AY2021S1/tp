@@ -1,7 +1,6 @@
 package fitr.storage;
 
 import fitr.Goal;
-import fitr.command.AddGoalCommand;
 import fitr.list.GoalList;
 
 import java.io.File;
@@ -17,7 +16,6 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 public class GoalStorage {
     private static final Logger LOGGER = Logger.getLogger(GoalStorage.class.getName());
     private static final String GOAL_LIST_PATH = "goals.txt";
-    private static final String ACHIEVEMENTS_LIST_PATH = "src/main/resources/achievementList.txt";
 
     public GoalStorage() throws IOException {
         File goalListFile = new File(GOAL_LIST_PATH);
