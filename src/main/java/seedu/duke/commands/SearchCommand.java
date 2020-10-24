@@ -19,12 +19,14 @@ public class SearchCommand extends Command {
         }
     }
 
-    public void processCommand() {
+    public boolean processCommand() {
         String showName = inputs.get(1);
         if (ShowList.getShowList().containsKey(showName)) {
             Ui.printSearchSuccessful(showName);
+            return true;
         } else {
-            throw new NullPointerException();
+            Ui.printShowNotInList();
+            return false;
         }
     }
 }
