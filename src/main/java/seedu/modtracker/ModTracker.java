@@ -1,8 +1,5 @@
 package seedu.modtracker;
 
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
  * Main entry-point for the java.seedu.modtracker application.
  */
@@ -35,7 +32,9 @@ public class ModTracker {
         }
         ui.printGreeting(name);
         storage.loadData(this);
+        storage.unlockFile();
         runCommandLoopUntilExitCommand(name);
+        storage.lockFile();
     }
 
     /**

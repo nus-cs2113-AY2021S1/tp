@@ -75,18 +75,20 @@ public class Parser {
             }
             break;
         case COMMAND_ANALYSIS: // can help to update the params for this? thanks!
+            assert toPrint : "toPrint should be true";
             ui.printBreakDownAnalysis(modList, 1);
             break;
         case COMMAND_ADDTASK:
-            taskList.addTask(input);
+            taskList.addTask(input, toPrint, storage);
             break;
         case COMMAND_DELETETASK:
-            taskList.deleteTasks(input);
+            taskList.deleteTasks(input, toPrint, storage);
             break;
         case COMMAND_DONE:
-            taskList.setDone(input);
+            taskList.setDone(input, toPrint, storage);
             break;
         case COMMAND_LISTTASK:
+            assert toPrint : "toPrint should be true";
             ui.printTaskList(taskList);
             break;
         case COMMAND_HELP:
