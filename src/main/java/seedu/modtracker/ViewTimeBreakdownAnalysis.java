@@ -189,7 +189,7 @@ public class ViewTimeBreakdownAnalysis {
      * @param weekNumber specified week number.
      * @return analysis of actual time spent compare to the expected workload.
      */
-    private Analysis computeAnalysisOfTimeSpent(Module m, int weekNumber) {
+    public Analysis computeAnalysisOfTimeSpent(Module m, int weekNumber) {
         double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
         int expectedTime = m.getExpectedWorkload();
 
@@ -198,7 +198,7 @@ public class ViewTimeBreakdownAnalysis {
             return noInput;
         } else if (percentageDifference < LOWER_BOUND_OF_JUST_NICE) {
             return tooLittleTimeSpent;
-        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE) {
+        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE || actualTime == expectedTime) {
             return justRight;
         } else {
             return tooMuchTimeSpent;

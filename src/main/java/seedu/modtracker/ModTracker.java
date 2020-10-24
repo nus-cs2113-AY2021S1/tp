@@ -8,6 +8,7 @@ public class ModTracker {
     private ModuleList modList;
     private Storage storage;
     private TaskList taskList;
+    private Notification notification;
 
     public static void main(String[] args) {
         new ModTracker("data/modtracker.txt").run();
@@ -18,6 +19,7 @@ public class ModTracker {
         modList = new ModuleList();
         storage = new Storage(filePath);
         taskList = new TaskList();
+        notification = new Notification();
     }
 
     /**
@@ -33,6 +35,7 @@ public class ModTracker {
         ui.printGreeting(name);
         storage.loadData(this);
         storage.unlockFile();
+        notification.start();
         runCommandLoopUntilExitCommand(name);
         storage.lockFile();
     }
