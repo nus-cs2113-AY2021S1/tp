@@ -17,11 +17,12 @@
     + [4.h. Change Rating](#4h-changerating---changes-rating-of-your-show)
     + [4.i. Update episode](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     + [4.j. Update season](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    + [4.k. Adding a review](#4k-adding-a-review)     
+    + [4.k. Adding a review](#4k-addreview---adding-a-review)     
     + [4.l. Manage your watch time](#4l-managing-your-watch-time-limit)
         + [4.l.a Watching a show ](#4la-watch---watch-a-show-in-your-watchlist)
         + [4.l.b Updating your watch time limit](#4lb-updatetimelimit---update-your-watch-time-limit)
-    + [4.m. Exiting **WatchNext**](#4m-bye---exits-the-program)
+    + [4.m. Finding shows](#4m-search---search-a-show-in-the-watchlist)
+    + [4.n. Exiting **WatchNext**](#4n-bye---exits-the-program)
 - [5. Frequently Asked Questions](#5-faq)   
 - [6. Command Summary](#6-command-summary)   
 
@@ -67,7 +68,7 @@ Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-qui
 
 Ensure that you have Java 11 installed in your Computer.
 
-1.Download the latest version from [here](https://github.com/AY2021S1-CS2113T-W12-3/tp).
+1.Download the latest version from [here](https://github.com/AY2021S1-CS2113T-W12-3/tp/releases).
 
 2.Copy the file to the folder you want to use as the home folder for your program.
 
@@ -87,8 +88,9 @@ Ensure that you have Java 11 installed in your Computer.
 
 *Words in `UPPER_CASE` and within the `<>` field are the parameters to be supplied by the user e.g. rating `<SCORE>`.
 
-*The maximum length for a Show `NAME` is 100 characters.
+*The maximum length for a Show `SHOWNAME` is 100 characters.
 
+*The `<SHOWNAME>` to be entered is case-sensitive.
 
 
 ## 4. Features
@@ -115,14 +117,22 @@ Expected outcome:
    `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS> <DURATION OF EPISODE>`
    
    **[NOTE]**
-   The `<DURATION OF EPISODE>` is in minutes.
+   
+   *The `<DURATION OF EPISODE>` is in minutes.
+   
+   *If a show has 2 seasons, you will need to input two episodes (see example of usage below) for the `<NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>` field. The program will not add the show into the watchlist otherwise.
+   
+   *You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (example of usage below for `<RunningMan>`)
    
   Example of usage:
+  
   `add Friends 2 10,10 60`
+  
+  `add RunningMan 3 10,12,11 90`
  
  Expected outcome:
   
- <img src = "images/add.PNG" width = "500">
+ <img src = "images/add.PNG" width = "400">
   
  &nbsp;
  
@@ -135,24 +145,38 @@ Expected outcome:
      
    Example of usage:
     `edit Friends`
+ 
+ 
     
- Then you will be prompted to enter the fields you want to change such as:
+ You will be prompted thereafter to enter the fields you want to change such as:
  name, season, episode, duration(of an episode).
  
-    Example of usage:
+ Format:
+    `name <SHOWNAME>`, `season <NUMBER OF SEASONS>`, `episode <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>`, `duration <DURATION OF EPISODE>`
+ 
+Example of usage:
      `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 90`
+     
      
  When you have completed all changes, input `done`.
  
+**[NOTE]**
+
+*The `<DURATION OF EPISODE>` is in minutes.  
+
+*The program will wait for your command to edit the show details until you input `done`.
+
+
+ 
  Expected outcome:
   
- <img src = "images/edit.PNG" width = "500">
+ <img src = "images/edit.PNG" width = "550">
   
  &nbsp;
  
  To help you better understand the flow of this command we have included a program flow to illustrate the process.
  
- <img src = "images/programFlowUG.PNG" width = "500">
+ <img src = "images/programFlowUG.png" width = "500">
  
  <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
 
@@ -160,21 +184,27 @@ Expected outcome:
  &nbsp;
  
 ### 4.d. `rating` - Modifies rating of your show
+
  The `rating` command gives a rating (out of 10) for an existing show in your watchlist.
  
    Format:
     `rating <SHOWNAME> <SCORE>`
+    
+**[NOTE]**
+
+*The `<SCORE>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
     
    Example of usage:
    `rating Friends 9`
    
    Expected outcome:
     
-   <img src = "images/rating.PNG" width = "500">
+   <img src = "images/rating.PNG" width = "450">
     
    &nbsp;
  
 ### 4.e. `list` - Displays all your shows in the list
+
 The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
 season that you are currently at.
 
@@ -191,6 +221,7 @@ season that you are currently at.
    &nbsp;
 
 ### 4.f. `delete` - Deletes your show
+
  The `delete` command removes a specified show from the watchlist.
  
  Format:
@@ -207,6 +238,7 @@ season that you are currently at.
   
  
 ### 4.g. `deleterating` - Deletes rating of your show
+
 The `deleterating` command deletes the rating for an existing show in the watchlist.
 
  Format:
@@ -217,27 +249,38 @@ The `deleterating` command deletes the rating for an existing show in the watchl
  
  Expected outcome:
   
- <img src = "images/deleterating.PNG" width = "500">
+ <img src = "images/deleterating.PNG" width = "400">
 
  &nbsp;
 
 ### 4.h. `changerating` - Changes rating of your show
+
 The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
  Format:
   `changerating <SHOWNAME> <NEWRATING>`
+  
+  **[NOTE]**
+  
+  *The `<NEWRATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
   
  Example of usage:
  `changerating Friends 10`
  
  Expected outcome:
   
- <img src = "images/changerating.PNG" width = "500">
+ <img src = "images/changerating.PNG" width = "400">
   
  &nbsp;
 
 ### 4.i. `episode` - Changes the episode of the show you are currently watching
-The `episode` command updates the episode of an existing show in your watchlist.
+
+The `episode` command updates the current episode of an existing show in your watchlist.
+
+**[NOTE]**
+
+*This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
+[comment]: <> (Think I need help with explaining this better)
 
  Format:
   `episode <SHOWNAME> <EPISODE>`
@@ -252,7 +295,13 @@ The `episode` command updates the episode of an existing show in your watchlist.
  &nbsp;
  
 ### 4.j. `season` - Changes the season of the show you are currently watching
-The `season` command updates the season of an existing show in your watchlist.
+
+The `season` command updates the current season of an existing show in your watchlist.
+
+**[NOTE]**
+
+*This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
+[comment]: <> (Think I need help with explaining this better)
 
  Format:
   `season <SHOWNAME> <SEASON>`
@@ -267,13 +316,20 @@ The `season` command updates the season of an existing show in your watchlist.
  &nbsp;
 
 ### 4.k. `addreview` - Adding a review
-The `addreview` command allows us to add a review for a show, including adding a rating.
+
+The `addreview` command allows you to add a review for a show, including adding a rating.
 
  Format:
   `addreview <SHOWNAME> <RATING> <REVIEW>`
   
  Example of usage:
- `addreview Friends 3`
+ `addreview Friends 9 cool show `
+ 
+  Expected outcome:
+   
+  <img src = "images/addreview.PNG" width = "450">
+
+   &nbsp;
 
 ### 4.l. Managing your watch time limit
 
@@ -291,7 +347,7 @@ The `watch` command increments the current episode that you are on, and updates 
  
  Expected outcome:
   
- <img src = "images/watch.PNG" width = "500">
+ <img src = "images/watch.PNG" width = "550">
   
  &nbsp;
 
@@ -303,35 +359,42 @@ The `updatetimelimit` command updates your current watch time limit.
   `updatetimelimit <DURATION LIMIT> `
   
   **[NOTE]**
- 1. `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
- 2. If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+  
+ * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
+ 
+ * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
  
  Example of usage:
- `updatetimelimit 420 `
+ `updatetimelimit 120 `
  
  Expected outcome:
   
- <img src = "images/updatetimelimit.PNG" width = "500">
+ <img src = "images/updatetimelimit.PNG" width = "600">
   
  &nbsp;
 
 ### 4.m. `search` - search a show in the watchlist  
 
-The `search` command searches a specific show in the watchlist and prints out the show information.  
+The `search` command searches for a specific show in the watchlist and prints out the show information.  
 
  Format:
  `search <SHOWNAME>`  
  
  Example of usage:
  `search Friends`  
+ 
+ **[NOTE]**
+ 
+ *The `<SHOWNAME>` is case-sensitive.
   
  Expected output:
  
- <img src = "images/searchshows.png" width = "500">  
+ <img src = "images/searchshows.png" width = "550">  
  
  &nbsp;
   
 ### 4.n. `bye` - Exits the program
+
 The `bye` command exits the program.
 
 Format:
@@ -366,8 +429,8 @@ Expected outcome:
 
 **Q**: What format should I use if I want to track my lectures?  
 
-**A**:  
-
+**A**: A suggested format would be `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of a format that suits you!
+[comment]: <> (Is this answer ok?)
 
 
 
@@ -376,6 +439,9 @@ Expected outcome:
 
 
 ### 6. Command Summary
+
+This section showcases the list of available features and usage examples for your reference.
+             
 
 |Action|Format|Example|
 |--------|----------|---------------|
