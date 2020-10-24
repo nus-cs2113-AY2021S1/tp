@@ -15,6 +15,11 @@ class BrowseParserTest {
     private static AnimeData animeData;
     private static StorageManager storageManager;
     User user;
+
+    private static final String NON_INT_PAGE_NUM = "-p twenty";
+    private static final String OUTPUT_FIRST_ANIME = "1. Cowboy Bebop [Id: 1]";
+    private static final String BROWSING_PAGE_1 = "Browsing Page: 1";
+    private static final String INVALID_ORDER_TEST = "-o whateverOrder";
     protected static final String INVALID_PARAMETERS_TEST1 = "-n name";
     protected static final String INVALID_PARAMETERS_TEST2 = "-sort name";
     protected static final String INVALID_FIELD_TEST1 = "-s   ";
@@ -47,12 +52,27 @@ class BrowseParserTest {
         BrowseCommand testBrowse = testParse.parse("- ");
         testBrowse.setAnimePerPage(1);
         String result = testBrowse.execute(animeData, storageManager, user);
-        assertEquals("1. Cowboy Bebop [Id: 1]" +
-                System.lineSeparator() + "Browsing Page: 1", result);
+        assertEquals(OUTPUT_FIRST_ANIME + System.lineSeparator() + BROWSING_PAGE_1, result);
     }
 
     @Test
-    void parse_invalidField_ThrowsAniException() {
+    void parse_invalidPageNum_throwsAniException() {
+        BrowseParser testParse = new BrowseParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(NON_INT_PAGE_NUM);
+        });
+    }
+
+    @Test
+    void parse_invalidOrderType_throwsAniException() {
+        BrowseParser testParse = new BrowseParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(INVALID_ORDER_TEST);
+        });
+    }
+
+    @Test
+    void parse_invalidField_throwsAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_FIELD_TEST1);

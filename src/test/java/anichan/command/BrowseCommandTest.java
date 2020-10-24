@@ -102,6 +102,7 @@ public class BrowseCommandTest {
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(OUTPUT_DSC_ANIME + System.lineSeparator() + OUTPUT_PAGE_3, result);
     }
+
     @Test
     void execute_browseByRatingAsc_correctOutput() throws AniException {
         BrowseCommand testBrowse = testParse.parse(RATING_SORT_ASC_3);
@@ -109,6 +110,7 @@ public class BrowseCommandTest {
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(OUTPUT_ASC_RATING + System.lineSeparator() + OUTPUT_PAGE_3, result);
     }
+
     @Test
     void execute_browseByRatingDsc_correctOutput() throws AniException {
         BrowseCommand testBrowse = testParse.parse(RATING_SORT_DSC_3);
