@@ -289,12 +289,12 @@ Bookmark an anime and store additional information.
 
 Format and Operation: 
 
-* `bookmark -l` will **list** all Anime within bookmark
-* `bookmark -a <ANIME_ID>` will **add** the Anime into bookmark
-* `bookmark -d <BOOKMARK_ID>` will **delete** the Anime with bookmark id from bookmark
-* `bookmark <BOOKMARK_ID> -e <EPISODE>` will **edit** the episode for an Anime within Bookmark
-* `bookmark <BOOKMARK_ID> -n <NOTE>` will add a **note** for an Anime within Bookmark
-* `bookmark <BOOKMARK_ID>` will view **info** of an anime within bookmark
+* `bookmark -l` will list all Anime within bookmark
+* `bookmark -a <ANIME_ID>` will add the Anime into bookmark
+* `bookmark -d <BOOKMARK_ID>` will delete the Anime with bookmark id from bookmark
+* `bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for an Anime within Bookmark
+* `bookmark <BOOKMARK_ID> -n <NOTE>` will add a note for an Anime within Bookmark
+* `bookmark <BOOKMARK_ID>` will view info of an anime within bookmark
 
 <br/>
 
