@@ -59,11 +59,14 @@ public class Ui {
                 + "accurate calculations for you :). Therefore, could you please share with me the "
                 + "following:" + LINE_SEPARATOR
                 + "- Your gender either F for " + Gender.FEMALE.getDescription() + " or M for "
-                + Gender.MALE.getDescription() + "." + LINE_SEPARATOR
+                + Gender.MALE.getDescription() +  " or O for " + Gender.OTHERS.getDescription() + "."
+                + LINE_SEPARATOR
                 + "- Your age which is a positive integer." + LINE_SEPARATOR
                 + "- Your height in cm." + LINE_SEPARATOR
-                + "- Your original weight in kg." + LINE_SEPARATOR
-                + "- Your target weight in kg, or your original weight if that is also your target weight."
+                + "- Your original weight in kg, the weight when you first started using DietBook or "
+                + "you current weight." + LINE_SEPARATOR
+                + "- Your current weight in kg." + LINE_SEPARATOR
+                + "- Your target weight in kg, or your current weight if that is also your target weight."
                 + LINE_SEPARATOR
                 + "- Your activity level, represented by a number from 1 to 5." + LINE_SEPARATOR
                 + "  1 = " + ActivityLevel.NONE.getDescription() + LINE_SEPARATOR
@@ -72,9 +75,11 @@ public class Ui {
                 + "  4 = " + ActivityLevel.HIGH.getDescription() + LINE_SEPARATOR
                 + "  5 = " + ActivityLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
                 + "Please input your details in the following format:" + LINE_SEPARATOR
-                + "  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL"
-                        + LINE_SEPARATOR
-                + "  Example: info g/F a/21 h/165 o/65 t/55 l/2");
+                + "  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT "
+                + "l/ACTIVITY_LEVEL" + LINE_SEPARATOR
+                + "  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2");
+    }
+
     }
 
     /**
