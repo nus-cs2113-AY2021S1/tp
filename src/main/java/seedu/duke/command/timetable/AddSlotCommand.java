@@ -76,7 +76,7 @@ public class AddSlotCommand extends Command {
         ui.print(message);
     }
 
-    private String createSlotAndBookmark(Module module, String command) {
+    protected String createSlotAndBookmark(Module module, String command) {
         assert module != null : "module should mot be null";
         String message = "";
         try {
@@ -89,7 +89,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String create(String command, Module module) throws DukeException {
+    protected String create(String command, Module module) throws DukeException {
         String message = "";
         List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
         if (isAddModuleBookmark(slotAndBookmark)) {
@@ -120,8 +120,8 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
-            String lesson, Slot newSlot) throws DukeException {
+    protected String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
+                                                  String lesson, Slot newSlot) throws DukeException {
         String message = "";
         if (slotAndBookmark.size() == 5) {
             createBookmark(slotAndBookmark.get(4), lesson, newSlot);
@@ -132,7 +132,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
+    protected String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
         String description = slotAndBookmark.get(0);
         String url = slotAndBookmark.get(1);
         Bookmark bookmark = new Bookmark(description, url);
@@ -141,7 +141,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    private boolean isAddModuleBookmark(List<String> slotAndBookmark) {
+    protected boolean isAddModuleBookmark(List<String> slotAndBookmark) {
         return (slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
                 && slotAndBookmark.size() == 2;
     }
