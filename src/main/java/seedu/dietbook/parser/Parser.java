@@ -145,10 +145,10 @@ public class Parser {
             case "g/":
                 String processGender = trimmedParam;
                 InputChecker.checkGender(processGender);
-                if (processGender.equals("M")) {
-                    gender = Gender.MALE;
-                } else {
+                if (processGender.equals("F")) {
                     gender = Gender.FEMALE;
+                } else {
+                    gender = Gender.OTHERS;
                 }
                 break;
             case "a/":
