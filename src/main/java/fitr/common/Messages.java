@@ -71,6 +71,7 @@ public class Messages {
     public static final String DATE_HEADER = "Date: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
+    public static final String EMPTY_STRING = "";
 
     //EditProfileCommand class messages
     public static final String EDIT_NAME = "name";
