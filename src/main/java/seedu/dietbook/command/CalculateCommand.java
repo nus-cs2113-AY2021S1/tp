@@ -23,19 +23,24 @@ public class CalculateCommand extends Command {
         manager.setCalculator();
         switch (this.param) {
         case "all":
-            ui.printAllNutrientIntake(this.calorie, this.carb, this.protein, this.fat);
+            //ui.printAllIntakeAndFoods();
+            //ui.printAllNutrientIntake(this.calorie, this.carb, this.protein, this.fat);
             break;
         case "calorie":
-            ui.printCalorieIntake(this.calorie);
+            //ui.printCalorieIntakeAndFoods();
+            //ui.printCalorieIntake(this.calorie);
             break;
         case "carbohydrate":
-            ui.printCarbohydrateIntake(this.carb);
+            //ui.printCarbIntakeAndFoods();
+            //ui.printCarbohydrateIntake(this.carb);
             break;
         case "protein":
-            ui.printProteinIntake(this.protein);
+            //ui.printProteinIntakeAndFoods();
+            //ui.printProteinIntake(this.protein);
             break;
         default:
-            ui.printFatIntake(this.fat);
+            //ui.printFatIntakeAndFoods();
+            //ui.printFatIntake(this.fat);
         }
     }
 }
