@@ -8,7 +8,7 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
-<br/>&nbsp;3.2 [Workspace management: `workspace`](#32-workspace-management)
+<br/>&nbsp;3.2 [Workspace management: `workspace`](#32-workspace-management-workspace)
 <br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
 <br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
