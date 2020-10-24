@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.member.AddMemberCommand;
 import seedu.duke.command.member.DeleteMemberCommand;
 import seedu.duke.exception.DukeException;
@@ -13,22 +14,15 @@ import static seedu.duke.command.CommandSummary.DELETE;
 public class MemberParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
-        if (!parameters.containsKey("0")) {
-            throw new DukeException("missing name");
-        }
-        if (projectListManager.isEmpty()) {
-            throw new DukeException("You currently have no projects created");
-        }
+
         switch (action.toLowerCase()) {
         case ADD:
-            new AddMemberCommand(parameters, projectListManager).execute();
-            break;
+            return new AddMemberCommand(parameters, projectListManager);
         case DELETE:
-            new DeleteMemberCommand(parameters, projectListManager).execute();
-            break;
+            return new DeleteMemberCommand(parameters, projectListManager);
         default:
             throw new DukeException("Invalid action");
         }

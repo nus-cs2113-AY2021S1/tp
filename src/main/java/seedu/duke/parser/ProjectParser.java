@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.project.CreateProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
@@ -19,8 +20,8 @@ import static seedu.duke.command.CommandSummary.SELECT;
 public class ProjectParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
         case CREATE:
@@ -41,24 +42,17 @@ public class ProjectParser implements ExceptionsParser {
                     || !Parser.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
                 throw new DukeException("please give a number for sprint duration");
             } else {
-                new CreateProjectCommand(parameters, projectListManager).execute();
+                return new CreateProjectCommand(parameters, projectListManager);
             }
-            break;
         case VIEW:
-            if (projectListManager.size() == 0) {
-                throw new DukeException("You currently have no projects created");
-            } else {
-                new ViewProjectCommand(parameters, projectListManager).execute();
-            }
-            break;
+            return new ViewProjectCommand(parameters, projectListManager);
         case SELECT:
             int index = Integer.parseInt(parameters.get("0"));
             if (index <= projectListManager.size() && index > 0) {
-                new SelectProjectCommand(parameters, projectListManager).execute();
+                return new SelectProjectCommand(parameters, projectListManager);
             } else {
                 throw new DukeException("Invalid index, no corresponding project exists");
             }
-            break;
         default:
             throw new DukeException("Invalid action!");
         }

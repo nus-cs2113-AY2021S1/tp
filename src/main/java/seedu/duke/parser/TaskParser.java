@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
@@ -18,8 +19,8 @@ import static seedu.duke.command.CommandSummary.VIEW;
 public class TaskParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
 
         switch (action.toLowerCase()) {
@@ -73,5 +74,6 @@ public class TaskParser implements ExceptionsParser {
         default:
             throw new DukeException("Invalid action!");
         }
+        return null;
     }
 }

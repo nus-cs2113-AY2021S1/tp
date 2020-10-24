@@ -1,5 +1,7 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
+import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.RemoveSprintTaskCommand;
@@ -26,8 +28,8 @@ import static seedu.duke.command.CommandSummary.DEALLOCATE;
 public class SprintParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
 
         if (!checkProjExist(projectListManager)) {
@@ -37,42 +39,37 @@ public class SprintParser implements ExceptionsParser {
         switch (action.toLowerCase()) {
         case CREATE:
             if (checkCreateSprintParams(parameters, projectListManager)) {
-                new CreateSprintCommand(parameters, projectListManager).execute();
+                return new CreateSprintCommand(parameters, projectListManager);
             }
             break;
         case EDIT:
             if (checkEditSprintParams(parameters, projectListManager)) {
-                new EditSprintCommand(parameters, projectListManager).execute();
+                return new EditSprintCommand(parameters, projectListManager);
             }
-            break;
         case ADDTASK:
             if (checkAddTaskParams(parameters, projectListManager)) {
-                new AddSprintTaskCommand(parameters, projectListManager).execute();
+                return new AddSprintTaskCommand(parameters, projectListManager);
             }
-            break;
         case REMOVETASK:
             if (checkRemoveTaskParams(parameters, projectListManager)) {
-                new RemoveSprintTaskCommand(parameters, projectListManager).execute();
+                return new RemoveSprintTaskCommand(parameters, projectListManager);
             }
-            break;
         case VIEW:
             if (checkViewSprintParams(parameters, projectListManager)) {
-                new ViewSprintCommand(parameters, projectListManager).execute();
+                return new ViewSprintCommand(parameters, projectListManager);
             }
-            break;
         case ALLOCATE:
             if (checkAllocateTaskParams(parameters, projectListManager)) {
-                new AllocateSprintTaskCommand(parameters, projectListManager).execute();
+                return new AllocateSprintTaskCommand(parameters, projectListManager);
             }
-            break;
         case DEALLOCATE:
             if (checkDeallocateTaskParams(parameters, projectListManager)) {
-                new DeallocateSprintTaskCommand(parameters, projectListManager).execute();
+                return new DeallocateSprintTaskCommand(parameters, projectListManager);
             }
-            break;
         default:
             throw new DukeException("Invalid action!");
         }
+        return new InvalidCommand(parameters);
     }
 
     /**
