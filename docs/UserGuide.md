@@ -25,16 +25,16 @@
 
 ## 1. Introduction
 
-AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
+**AniChan** is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
 
 
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
-3. Copy the file to the folder you want to use as the home folder for your AniChan.
-4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
-5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
+2. Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
+3. Copy the file to the folder you want to use as the home folder for **AniChan**.
+4. Open **Command Prompt** or **Powershell** and change directory into the folder. Run `java -jar anichan.jar`. 
+5. Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
 
 
 ## 3. Features 
@@ -223,7 +223,7 @@ The expected outcome:
 
 Example of usage: `watchlist -d 2`
 * For deletion to succeed, you must have at least two watchlist.
-* If the currently active (selected) watchlist is deleted, then AniChan will automatically set
+* If the currently active (selected) watchlist is deleted, then **AniChan** will automatically set
 the first watchlist in the list of watchlist to be the new active watchlist.
 
 The expected outcome: 
@@ -396,7 +396,7 @@ Estimates the time required to finish translating a script, users may provide
 their estimated words per hour speed or use the average translator speed as an estimate.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
-* **Only one** `.txt` file is accepted by AniChan.
+* **Only one** `.txt` file is accepted by **AniChan**.
 * You have to specify the file extension too! E.g. `script.txt`.
 * If the option `-wph` is not specified, **AniChan** will calculate the estimation timings
 using the average translator's translation speed of 400, 500, and 600 words per hour. 
@@ -421,7 +421,7 @@ You would need 2 hour(s) 58 minute(s).
 ```
 
 ### 3.12 Exit AniChan: `exit`
-Exit AniChan 
+Exit **AniChan** 
 
 Format: `exit`
 
@@ -436,9 +436,9 @@ Sayonara <NAME>!
 
 ### 3.13 Saving and loading data
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are 
-created or modified, and will be **loaded automatically** when AniChan is launched. 
+created or modified, and will be **loaded automatically** when **AniChan** is launched. 
 
-In the folder where AniChan is launched, there will be a `data` folder which would contain these data:
+In the folder where **AniChan** is launched, there will be a `data` folder which would contain these data:
 * User data is stored in `data/user.txt`.
 * Watchlist(s) data are stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if your workspace is named "AniTranslator",
 then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
@@ -448,7 +448,7 @@ then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 
 **Q:** What is a workspace?
 <br/>
-**A:** Workspace is a functionality in AniChan which provides users the flexibility to organise information. 
+**A:** Workspace is a functionality in **AniChan** which provides users the flexibility to organise information. 
 As application data like watchlist and bookmarks are linked to workspace, switching workspace would provide a 
 clean slate environment to work in.
 
@@ -457,14 +457,14 @@ clean slate environment to work in.
 **Q:** How can I save my data?
 <br/>
 **A:** **AniChan** automatically saves your data on every action you take. You can find them in `/data` folder in the same
-directory you run AniChan in.
+directory you run **AniChan** in.
 
 <br/>
 
 **Q:** Can I edit the information in `data` directory?
 <br/>
-**A:** Yes! As AniChan saves and loads your information from the data directory, editing the files in `data` folder
-works. However, we would strongly recommend you not to as you may cause data corruption. Use AniChan instead if you
+**A:** Yes! As **AniChan** saves and loads your information from the data directory, editing the files in `data` folder
+works. However, we would strongly recommend you not to as you may cause data corruption. Use **AniChan** instead if you
 wish to edit your information!
 
 ## 5. Command Summary
