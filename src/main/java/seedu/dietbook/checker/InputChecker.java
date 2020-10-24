@@ -10,6 +10,9 @@ import seedu.dietbook.exception.DietException;
  */
 
 public class InputChecker {
+    /**
+     * The value limits are based on current limits observed in th world.
+     */
     public static final int AGE_CAP = 125;
     public static final int FOOD_CAP = 100000;
     public static final int HEIGHT_CAP = 273;
@@ -30,6 +33,21 @@ public class InputChecker {
         if (userInput.split(command).length < 2
                 || userInput.split(command)[1].equals(" ")) {
             throw new DietException("Error! Missing command parameters!");
+        }
+    }
+
+    /**
+     * Takes in processed user input to check for options specified with an empty field.
+     * @param input user input.
+     * @throws DietException when an option is specified but its field is empty.
+     */
+    public static void checkEmptyOption(String[] input) throws DietException {
+        try {
+            if (input[1].trim().charAt(1) == '/') {
+                throw new DietException("Error! Option specified with empty field!");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DietException("Error! Option specified with empty field!");
         }
     }
 
@@ -78,10 +96,14 @@ public class InputChecker {
      * @throws DietException when it is not one of the expected nutrient type.
      */
     public static void checkNutrientType(String userInput) throws DietException {
+        boolean checkContain = false;
         for (String param: PARAM_CALCULATE) {
-            if (!userInput.contains(param)) {
-                throw new DietException("Incorrect nutrient type!");
+            if (userInput.contains(param)) {
+                checkContain = true;
             }
+        }
+        if (!checkContain) {
+            throw new DietException("Incorrect nutrient type!");
         }
     }
 
@@ -91,10 +113,14 @@ public class InputChecker {
      * @throws DietException when it is not one of the expected activity level.
      */
     public static void checkActivity(String userInput) throws DietException {
+        boolean checkContain = false;
         for (String param: PARAM_ACTIVITY) {
-            if (!userInput.contains(param)) {
-                throw new DietException("No such activity level!");
+            if (userInput.contains(param)) {
+                checkContain = true;
             }
+        }
+        if (!checkContain) {
+            throw new DietException("No such activity level!");
         }
     }
 
@@ -104,10 +130,14 @@ public class InputChecker {
      * @throws DietException when it is not one of the expected gender input.
      */
     public static void checkGender(String userInput) throws DietException {
+        boolean checkContain = false;
         for (String param: PARAM_GENDER) {
-            if (!userInput.contains(param)) {
-                throw new DietException("Please key in the specified gender characters.");
+            if (userInput.contains(param)) {
+                checkContain = true;
             }
+        }
+        if (!checkContain) {
+            throw new DietException("Please key in the specified gender characters.");
         }
     }
 

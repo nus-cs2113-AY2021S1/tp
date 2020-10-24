@@ -80,6 +80,7 @@ public class Parser {
         for (String param: paramList) {
             if (getCommandParam(userInput).contains(param)) {
                 processedParam = getCommandParam(userInput).split(param);
+                InputChecker.checkEmptyOption(processedParam);
                 trimmedParam = processedParam[1].trim();
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
@@ -131,6 +132,7 @@ public class Parser {
         String[] processedParam;
         for (String param: PARAM_INFO) {
             processedParam = getCommandParam(userInput).split(param);
+            InputChecker.checkEmptyOption(processedParam);
             trimmedParam = processedParam[1].trim();
             if (processedParam[1].contains("/")) {
                 trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
