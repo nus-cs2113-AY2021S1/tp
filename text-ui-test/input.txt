@@ -18,11 +18,7 @@ add laj1201 tutorial_2 thu 08:00 10:00
 add cg2271 tutorial thu 11:00 12:00 
 add cg2271 lab fri 08:00 10:00 
 add cs2101 tutorial_2 fri 10:00 12:00 
-add cs2113t lecture fri 16:00 18:00 
-show
-show today
-show mon
-show sat
+add cs2113t lecture fri 16:00 18:00
 add 1111
 delete 1
 exit

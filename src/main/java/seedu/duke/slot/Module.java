@@ -13,6 +13,15 @@ public class Module {
     private String moduleCode;
     private BookmarkList bookmarks;
     private List<Slot> slots;
+    private static ArrayList<String> moduleList;
+
+    public static ArrayList<String> getModuleList() {
+        return moduleList;
+    }
+
+    public static void setModuleList(ArrayList<String> moduleList) {
+        Module.moduleList = moduleList;
+    }
 
     public Module(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();

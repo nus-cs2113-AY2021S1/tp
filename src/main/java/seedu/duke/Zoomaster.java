@@ -3,7 +3,11 @@ package seedu.duke;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
+import seedu.duke.slot.Module;
 import seedu.duke.slot.Timetable;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Zoomaster {
 
@@ -23,14 +27,17 @@ public class Zoomaster {
     public Zoomaster(String bookmarkFilePath, String timetableFilePath) {
         ui = new Ui();
 
-        bookmarkStorage = new Storage<>(bookmarkFilePath, BookmarkList.class);
-        timetableStorage = new Storage<>(timetableFilePath, Timetable.class);
+        bookmarkStorage = new Storage<>(getJarFilepath() + bookmarkFilePath, BookmarkList.class);
+        timetableStorage = new Storage<>(getJarFilepath() + timetableFilePath, Timetable.class);
 
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
+            Module.setModuleList(timetableStorage.loadModuleList());
         } catch (DukeException e) {
             ui.showErrorMessage(e);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,6 +70,17 @@ public class Zoomaster {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Zoomaster("./data/bookmarks.txt", "./data/slots.txt").run();
+        new Zoomaster("./data/bookmarks.txt", "./data/timetable.txt").run();
     }
+
+
+    /**
+     * Returns path of jar file during execution to allow
+     * app to create txt file in the same location.
+     */
+    private static String getJarFilepath() {
+        return new File(Zoomaster.class.getProtectionDomain().getCodeSource().getLocation()
+                .getPath()).getParent().replace("%20", " ");
+    }
+
 }
