@@ -184,7 +184,7 @@ public class Parser {
                 break;
             }
         }
-        manager.setPerson(manager.getName(), gender, age, height, orgWeight, tarWeight, actLvl);
+        //manager.setPerson(manager.getName(), gender, age, height, orgWeight, tarWeight, actLvl);
     }
 
     /**
