@@ -107,9 +107,8 @@ public class OnCommand extends Command {
 
     private String onAppliance(Appliance toOnAppliance, String outputResults, boolean isList) {
         boolean onResult = toOnAppliance.switchOn();
-        String setParameterStatement = setParameter(parameter, toOnAppliance);
         assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-
+        String setParameterStatement = setParameter(parameter, toOnAppliance);
         if (!isList) {
             if (onResult) {
                 outputResults = setParameterStatement.contains("Previous set temperature will be set.")
