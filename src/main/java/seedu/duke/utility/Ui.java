@@ -72,7 +72,7 @@ public class Ui {
                 + " \n"
                 + ("rating") + " - Set rating of your show\n"
                 + "\n"
-                + ("list") + " - Displays all your shows in list\n"
+                + ("list") + " - Displays all your shows in thw watchlist\n"
                 + "\n"
                 + ("delete") + " - Deletes your show\n"
                 + " \n"
@@ -80,11 +80,13 @@ public class Ui {
                 + "\n"
                 + ("changerating") + " - Changes rating of your show\n"
                 + "\n"
-                + ("addreview") + " - Adds a review of your show\n"
+                + ("addreview") + " - Adds a review to your show\n"
                 + "\n"
                 + ("episode") + " - Update your episode progress\n"
                 + "\n"
                 + ("season") + " - Update your season progress\n"
+                + "\n"
+                + ("search") + " - Look for your show in the watchlist\n"
                 + "\n"
                 + ("updatetimelimit") + " - Update your watch time limit\n"
                 + "\n"
@@ -154,6 +156,12 @@ public class Ui {
     public static void printChangeEpisode(String showName) {
         printLine();
         System.out.println("Updated current episode : " + ShowList.getShow(showName).toString());
+
+    }
+
+    public static void printReviewAdded(String showName) {
+        printLine();
+        System.out.println("Your review for " + showName + " has been added.");
 
     }
 

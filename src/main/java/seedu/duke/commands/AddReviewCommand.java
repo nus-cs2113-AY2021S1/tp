@@ -1,7 +1,8 @@
 package seedu.duke.commands;
 
-import seedu.duke.utility.ShowList;
 import seedu.duke.classes.Show;
+import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
 
 public class AddReviewCommand extends Command {
 
@@ -15,5 +16,6 @@ public class AddReviewCommand extends Command {
         s.setRating(Integer.parseInt(tokenizedInput[2]));
         s.setReview(String.join(" ", tokenizedInput[3]));
         ShowList.setShow(showName,s);
+        Ui.printReviewAdded(showName);
     }
 }
