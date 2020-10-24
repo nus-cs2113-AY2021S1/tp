@@ -452,6 +452,21 @@ then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 As application data like watchlist and bookmarks are linked to workspace, switching workspace would provide a 
 clean slate environment to work in.
 
+<br/>
+
+**Q:** How can I save my data?
+<br/>
+**A:** **AniChan** automatically saves your data on every action you take. You can find them in `/data` folder in the same
+directory you run AniChan in.
+
+<br/>
+
+**Q:** Can I edit the information in `data` directory?
+<br/>
+**A:** Yes! As AniChan saves and loads your information from the data directory, editing the files in `data` folder
+works. However, we would strongly recommend you not to as you may cause data corruption. Use AniChan instead if you
+wish to edit your information!
+
 ## 5. Command Summary
 
 |Feature|Command|
