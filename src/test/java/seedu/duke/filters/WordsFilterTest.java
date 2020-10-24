@@ -19,21 +19,6 @@ class WordsFilterTest {
         WordList.addVerb("verb sleep d/rest at night");
         WordList.addNoun("noun class d/place to study");
         WordList.addVerb("verb love d/fall for somebody");
-        WordList.addNoun("noun xxx d/do something");
-        WordList.addAdjective("adjective qkwlejqlw d/qweoiwqeei");
-        WordList.addAdjective("adjective adqwndqw d/qwioewqoie");
-        WordList.addNoun("noun qwkbqewk d/qwbeqiwkeeqw");
-        WordList.addVerb("verb qwoeiewqhi d/qwehoqiwenqew");
-        WordList.addVerb("verb qweioiqewoqwe d/qwenoqweioeqw");
-        WordList.addVerb("verb qwoieqwej d/qweqwheqew");
-        WordList.addAdjective("adjective qowejqwoqwe d/qwenoqweqw");
-        WordList.addNoun("noun qwoekqwe d/qwebowqeqw");
-        WordList.addVerb("verb opqweeqw d/qwebqiweqwe");
-        WordList.addAdjective("adjective qowihoinc d/nm,adladsm;as./");
-        WordList.addNoun("noun qowiwqoe d/qwjcnbjksbam,z.opp");
-        WordList.addVerb("verb qowejewqkqwe d/doasasdiasld");
-        WordList.addAdjective("adjective asdlkajdlkas d/dopqwjeoqneq");
-        WordList.addNoun("noun assadkasd d/wqiowqebqweqw");
     }
 
     @Test
