@@ -177,7 +177,13 @@ public class Ui {
     }
 
     /**
-     * Prints all the information related to the user.
+     * Prints a message to show that the food list has been successfully cleared and is now empty.
+     */
+    public void printClearFoodListMessage() {
+        print("All previous data has been deleted..." + LINE_SEPARATOR
+                + "DietBook is now empty.");
+    }
+
      *
      * @param personInfo The user's personal information.
      */
