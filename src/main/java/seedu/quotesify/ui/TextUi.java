@@ -352,7 +352,7 @@ public class TextUi {
     }
 
     public void printHelpPage() {
-        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v1.0:"
+        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v2.0:"
                 + System.lineSeparator());
 
         System.out.println("1. Book Management");

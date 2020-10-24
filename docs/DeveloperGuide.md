@@ -1,6 +1,6 @@
 # Developer Guide
 
-## Introduction
+## 1.0 Introduction
 **Welcome to Quotesify!**
 
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add
@@ -12,7 +12,7 @@ This guide will provide information on the design and implementation of Quotesif
 on your journey of being a contributor to Quotesify. This guide will also explain the steps to test out the program,
 so that you will have a better understanding of the current status of Quotesify.
 
-## Setting up
+## 2.0 Setting up
 1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases),
 and clone the fork to your computer.
 2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
@@ -27,17 +27,30 @@ click `File` > `Close Project` to close any existing project.
 8. Click `OK` to accept all default settings.
 9. To verify the set up, locate the `Quotesify.java` file, right-click it and select `Run Quotesify.main()`.
 If the setup is correct, you should see something like this as shown below:
+```
+________                __                .__  _____       
+\_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.
+ /  / \  \|  |  \/  _ \   __\/ __ \ /  ___/  \   __<   |  |
+/   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
+\_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
+       \__>                      \/     \/          \/    
+Welcome to Quotesify v2.0!
 
-[INSERT OUTCOME HERE]
+What would you like to do with Quotesify?
+```
 
-## Design & implementation
+## 3.0 Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### Feature: Add rating
+### 3.1 Feature: Rating system for books
+
+[INSERT CLASS DIAGRAM AND EXPLANATION]
+
+#### 3.1.1 Add rating
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
-* The book object will store an attribute named rating, which will be set by this feature.
+* The book object will store an attribute named *rating*, which will be set by this feature.
 * The rating object will be made up of the book object and a rating score, which is stored in a list of ratings.
 
 Given below is the sequence diagram for adding rating to a book:
@@ -56,12 +69,29 @@ If all these conditions are met, the book will be rated.
 book details and rating score will also be created and stored in the rating list.
 This list of ratings will be used when listing or finding ratings.
 
-#### Design Consideration
+##### Design Consideration
 * Saving the ratings in a Rating List
     * Pros: Helps in listing and finding ratings as not all books are rated.
     * Cons: Increases memory usage.
 * Using both book title and author to identify a rating instead of just book title
     * Pros: Allows books with the same title but different author to be rated.
+
+#### 3.1.2 Find ratings
+The *find ratings* feature will search if the rating for a particular book exists in Quotesify
+and print details about the rating.
+
+Given below is the sequence diagram for finding ratings:
+
+![Sequence Diagram for Find Ratings](images/SeqDiagram_FindRating.png)
+
+* The sequence diagram shows the process of *Find Rating* from the execute() method in FindCommand class.
+The switch statement in the execute() method to decide the item that the user is finding is not shown in the diagram.
+* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
+* In the findRating() method, if the user input such as the book to search for is missing, a message will be printed
+to inform the user and the method is returned.
+* The list of ratings will be looped to see if the rating exists for the particular book.
+* Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
+will be printed to the user.
 
 ### Feature Add bookmark
 The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
@@ -70,8 +100,8 @@ be created in the process.
 bookmarks named `BookmarkList`.
 
 
-## Product scope
-### Target user profile
+## 4.0 Product scope
+### 4.1 Target user profile
 The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
@@ -80,34 +110,40 @@ The intended user of Quotesify is someone that meets the following criterias:
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-### Value proposition
+### 4.2 Value proposition
 
 Quotesify will help you to improve your reading experience with quick and easy features such as book management,
 quote management, progress tracker, category management and a rating system for your books.
 
-## User Stories
+## 5.0 User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
+|v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
+|v1.0|user|categorize my listings|can view quotes from a specific category that I want|
+|v1.0|long time user|have a page to see a list of books and categories of my notes|can navigate into the relevant book/category without having to remember the titles|
+|v1.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
+|v1.0|beginner reader|add deadlines to books I am reading|can keep track of my readling deadlines|
+|v1.0|avid reader|be able to keep track of books|can filter out books I have read and those that are on my list of books to read|
+|v1.0|forgetful user|add bookmarks to my book|can find the page where I last stopped|
 |v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
 |v1.0|user|save quotes I find meaningful|can view my favourite quotes whenever I want|
+|v2.0|forgetful reader|be reminded of quotes I saved|can remember them better in the long run|
+|v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
-## Non-Functional Requirements
-
+## 6.0 Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 
-## Glossary
+## 7.0 Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## 8.0 Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
-### Launch and shutdown
+### 8.1 Launch and shutdown
 
 #### Initial launch
    1. Ensure `Java 11` and above is installed.
