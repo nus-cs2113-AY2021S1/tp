@@ -94,7 +94,7 @@ Ensure that you have Java 11 installed in your Computer.
 ## 4. Features
  
 #### 4.a. `help` - Views help
- The help list contains information about all accepted commands.
+ The help list contains information about all the possible accepted commands.
  
  Format:
   `help`
@@ -112,7 +112,7 @@ Expected outcome:
  The `add` command adds a show into your existing watchlist.
  
   Format:
-   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>`
+   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS> <DURATION OF EPISODE>`
    
    **[NOTE]**
    The `<DURATION OF EPISODE>` is in minutes.
@@ -127,7 +127,8 @@ Expected outcome:
  &nbsp;
  
 #### 4.c. `edit` - Edits your show details
- The `edit` command edits the name or number of seasons/episodes an existing show in your watchlist.
+ The `edit` command edits either the name of the show, number of seasons, number of episodes or the duration 
+ of an episode depending on the input of the user when prompted.
   
    Format:
      `edit <SHOWNAME>`
@@ -174,7 +175,8 @@ Expected outcome:
    &nbsp;
  
 ### 4.e. `list` - Displays all your shows in the list
-This command displays all existing shows in your watchlist in an easy-to-read format, including the episode and season that you are currently at.
+The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
+season that you are currently at.
 
    Format:
     `list`
@@ -189,7 +191,7 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
    &nbsp;
 
 ### 4.f. `delete` - Deletes your show
- This command removes a specified show from the watchlist.
+ The `delete` command removes a specified show from the watchlist.
  
  Format:
   `delete <SHOWNAME>`
@@ -205,7 +207,7 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
   
  
 ### 4.g. `deleterating` - Deletes rating of your show
-This command deletes the rating for an existing show in the watchlist.
+The `deleterating` command deletes the rating for an existing show in the watchlist.
 
  Format:
   `deleterating <SHOWNAME>`
@@ -220,10 +222,10 @@ This command deletes the rating for an existing show in the watchlist.
  &nbsp;
 
 ### 4.h. `changerating` - Changes rating of your show
-This command changes the rating for an existing show which already has a rating in the watchlist.
+The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
  Format:
-  `changerating <SHOWNAME> <NEWSCORE>`
+  `changerating <SHOWNAME> <NEWRATING>`
   
  Example of usage:
  `changerating Friends 10`
@@ -235,7 +237,7 @@ This command changes the rating for an existing show which already has a rating 
  &nbsp;
 
 ### 4.i. `episode` - Changes the episode of the show you are currently watching
-This command updates the episode for an existing show that you currently have in your watchlist.
+The `episode` command updates the episode of an existing show in your watchlist.
 
  Format:
   `episode <SHOWNAME> <EPISODE>`
@@ -250,7 +252,7 @@ This command updates the episode for an existing show that you currently have in
  &nbsp;
  
 ### 4.j. `season` - Changes the season of the show you are currently watching
-This command updates the season for an existing show that you currently have in your watchlist.
+The `season` command updates the season of an existing show in your watchlist.
 
  Format:
   `season <SHOWNAME> <SEASON>`
@@ -264,14 +266,14 @@ This command updates the season for an existing show that you currently have in 
   
  &nbsp;
 
-### 4.k. Adding a review
-This command allows us to add a review for a show, including adding a rating.
+### 4.k. `addreview` - Adding a review
+The `addreview` command allows us to add a review for a show, including adding a rating.
 
  Format:
   `addreview <SHOWNAME> <RATING> <REVIEW>`
   
  Example of usage:
- `season Friends 3`
+ `addreview Friends 3`
 
 ### 4.l. Managing your watch time limit
 
@@ -279,7 +281,7 @@ This command allows us to add a review for a show, including adding a rating.
  
 ### 4.l.a. `watch` - Watch a show in your watchlist
 
-This command increments the current episode that you are on, and updates your watch time limit.
+The `watch` command increments the current episode that you are on, and updates your watch time limit.
 
  Format:
   `watch <SHOWNAME> `
@@ -295,7 +297,7 @@ This command increments the current episode that you are on, and updates your wa
 
 ### 4.l.b. `updatetimelimit` - update your watch time limit
 
-This command updates your current watch time limit.
+The `updatetimelimit` command updates your current watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
@@ -314,7 +316,7 @@ This command updates your current watch time limit.
  &nbsp;
  
 ### 4.m. `bye` - Exits the program
-This command exits the program.
+The `bye` command exits the program.
 
 Format:
  `bye`
