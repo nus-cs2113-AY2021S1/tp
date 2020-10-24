@@ -5,6 +5,8 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
+import java.util.ArrayList;
+
 // maybe can extend from statsCalculator
 public class TopicalStatsCalculator extends StatsCalculator {
 
@@ -12,8 +14,13 @@ public class TopicalStatsCalculator extends StatsCalculator {
     private QuestionList topicQuestionList;
 
     public TopicalStatsCalculator(Topic topic) {
+        super();
         this.topic = topic;
         this.topicQuestionList = topic.getQuestionList();
+    }
+
+    TopicalStatsCalculator() {
+        super();
     }
 
     // check each qn and see if they are done
@@ -27,11 +34,16 @@ public class TopicalStatsCalculator extends StatsCalculator {
         return questionAttemptCount;
     }
 
-    public int calculateTopicalCompletionPercentage() {
-        return calculateProgressionLevelPercentage(calculateTopicalQuestionsAttemptCount(),
-                topicQuestionList.getCount());
-
+    public int getTopicQuestionsCount() {
+        return topicQuestionList.getCount();
     }
+
+    /*
+    public int calculateTopicCompletionPercentage() {
+        return calculateProgressionLevelPercentage(calculateTopicalQuestionsAttemptCount(),
+                getTopicQuestionsCount());
+    }
+    */
 
     // check each qn and see if they are correct
     public int calculateTopicalQuestionsCorrectCount() {
@@ -44,11 +56,18 @@ public class TopicalStatsCalculator extends StatsCalculator {
         return questionCorrectCount;
     }
 
-    // Percentage
-    public int calculateTopicalAccuracyPercentage() {
-        return calculateProgressionLevelPercentage(calculateTopicalQuestionsCorrectCount(),
-                calculateTopicalQuestionsAttemptCount());
+    /*
+    // Division by zero for percentage is possible here
+    public int calculateTopicAccuracyPercentage() {
+        if (calculateTopicalQuestionsAttemptCount() > 0) {
+            return calculateProgressionLevelPercentage(calculateTopicalQuestionsCorrectCount(),
+                    calculateTopicalQuestionsAttemptCount());
+        } else {
+            return -1;
+        }
     }
+    */
+
 
     // check each qn and calculate number of hints used
     public int calculateTopicalHintUsage() {
@@ -81,5 +100,9 @@ public class TopicalStatsCalculator extends StatsCalculator {
     public int calculateTopicalProgressionPercentage() {
         return calculateProgressionLevelPercentage(calculateTopicalPointsEarned(),
                 calculateTopicalPointsAvailable());
+    }
+
+    public ArrayList<Displayable> getTopics() {
+        return topics;
     }
 }

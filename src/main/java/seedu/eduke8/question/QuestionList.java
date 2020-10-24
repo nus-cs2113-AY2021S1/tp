@@ -30,7 +30,7 @@ public class QuestionList implements DisplayableList {
     @Override
     public Displayable find(String description) throws Eduke8Exception {
         for (Displayable question : questions) {
-            if (description.equals(question.getDescription())) {
+            if (description.equalsIgnoreCase(question.getDescription())) {
                 return question;
             }
         }

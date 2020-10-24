@@ -26,6 +26,8 @@ public class Ui {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------"
             + "-----------------------------------------------------";
+    private static final String HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS = "---------------"
+            + "---------------------------  ";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
             + System.lineSeparator() + "understand software engineering and OOP principles through a"
             + System.lineSeparator() + "gamified platform and enhances their " + "learning experience."
@@ -48,6 +50,9 @@ public class Ui {
     private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:"
             + System.lineSeparator() + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
+    private static final String POINT_SYSTEM_RULE = "Point system in E-Duke-8: For correct answers, "
+            + "you earn 2 points if you did not request for hint, " + System.lineSeparator()
+            + "and 1 point if you did. No point is awarded for wrong answers.";
 
     public String getInputFromUser() {
         System.out.print("Enter your command or 'help': ");
@@ -189,4 +194,62 @@ public class Ui {
             System.out.println("s.");
         }
     }
+
+    public void printPointSystemRules() {
+        System.out.println(POINT_SYSTEM_RULE + System.lineSeparator());
+    }
+
+    public void showPointsEarned(int pointsEarned, int pointsAvailable) {
+        System.out.println("You have earned " + pointsEarned + " points out of a total of "
+                + pointsAvailable + " points available!");
+    }
+
+    public void showTotalProgression(int progressionLevelPercentage, boolean progressOverHalf) {
+        System.out.print("Therefore, your E-Duke-8 progress is " + progressionLevelPercentage + "%. ");
+        if (progressOverHalf) {
+            System.out.println("Good job! Keep it up!" + System.lineSeparator());
+        } else {
+            System.out.println("Let's do some more quizzes!" + System.lineSeparator());
+        }
+    }
+
+    public void printTopicProgressionHeader() {
+        System.out.println("Topics' Progression");
+        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printTopicDescriptionForStats(Displayable topic) {
+        System.out.println(topic.getDescription());
+    }
+
+    public void showTopicalQuestionsCompletionLevel(int questionsAttempted, int questionsTotal) {
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAttempted + "/" + questionsTotal
+                + " questions done");
+    }
+
+    /*
+    public void showTopicAccuracyLevel(int questionsAnsweredCorrectly,
+                                       int questionsAttempted, int accuracyPercentage) {
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + "/"
+                + questionsAttempted + "questions correctly answered [" + accuracyPercentage + "%]");
+    }
+    */
+
+    public void showTopicAccuracyLevel(int questionsAnsweredCorrectly, int questionsAttempted) {
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + "/"
+                + questionsAttempted + " questions correctly answered");
+    }
+
+
+
+    public void showTopicalHintUsage(int hintUsage) {
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + hintUsage
+                + (hintUsage <= 1 ? " hint used" : " hints used"));
+    }
+
+    public void showTopicalPoints(int pointsEarned, int pointsAvailable, int progressionPercentage) {
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + pointsEarned + " points earned / "
+                + pointsAvailable + " available [" + progressionPercentage + "%]");
+    }
+
 }

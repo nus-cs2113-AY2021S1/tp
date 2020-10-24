@@ -50,10 +50,6 @@ public class UserStatsCalculator extends StatsCalculator {
 
     // determines if progression is over 50%, print diff messages
     public boolean isProgressionOverHalf() {
-        if (calculateOverallProgressionLevelPercentage() >= 50) {
-            return true;
-        } else {
-            return false;
-        }
+        return calculateOverallProgressionLevelPercentage() >= 50;
     }
 }
