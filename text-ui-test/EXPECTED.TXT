@@ -14,8 +14,8 @@ Please input in the following format:
 _____________________________________________________________________________________________________________________________________
 _____________________________________________________________________________________________________________________________________
 Hi Jack!
-Before we get started, I would like to know about about you so that I can make more
-accurate calculations for you :). Therefore, could you please share with me the following:
+Before we get started, I would like to know about about you.
+Therefore, could you please share with me the following so I can make more accurate calculations for you :)
 - Your gender either F for female or M for male or O for others.
 - Your age which is a positive integer.
 - Your height in cm.
