@@ -33,18 +33,18 @@
 <img src = "images/quickstart.PNG" width = "600">
 
 #### **WatchNext** is a show tracker made for teenagers and young adults.
+<br><br> 
+### 1.a. What is **WatchNext**?
 
-### 1.a. What does **WatchNext** do?
-
-For users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites,
-WatchNext will track their progress for the different shows they watch, and upcoming shows that they intend to watch. In addition, it provides a tracker 
-to limit users' weekly watch time to help users better manage their time.
+**WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
+**WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
+<br>It additionally serves as a tracker to limit your weekly watch time to help you better manage your time.
 
 For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
-
+<br><br> 
 ### 1.b. Why use **WatchNext**?
 
 **WatchNext** allows you to watch shows on multiple free streaming platforms or other open source stream websites and keep track of which episode you are at.
@@ -56,14 +56,14 @@ For students, there is also a need for to manually track lecture videos and webc
 This motivated our team to create an application that would not only help track all your shows and lectures, 
 but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends.
 <!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet -->
- 
+ <br><br> 
 ### 1.c. What will this guide do?
 
-This guide aims to equip you with the knowledge on how to use our application by providing example usages of all its features. 
+This guide aims to equip you with the knowledge on how to use our application by providing you with detailed examples for all of **WatchNext's** features. 
 The features can be found in [Section 4: “Features”](#4-features).
 
-Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started!
-
+Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
+<br><br><br>
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -92,9 +92,9 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 * The `<SHOWNAME>` to be entered is case-sensitive.
 
-
+<br><br><br> 
 ## 4. Features
- 
+<br> 
 #### 4.a. `help` - Views help
  The help list contains information about all the possible accepted commands.
  
@@ -397,29 +397,25 @@ Expected outcome:
 
 **Q**: Is my watchlist saved after I exit the program?  
 
-**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.  
+**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.  <br><br> 
 
 **Q**: Where can I find the watchlist file if I want to share it with my friends?  
 
-**A**: The file will be stored at the same path of the jar file, inside the "data" folder.  
+**A**: The file will be stored in the same path as the jar file, inside the "data" folder. Look for `data/userData.txt`.  <br><br> 
 
 **Q**: Can I edit my watchlist directly in the local file?  
 
-**A**: Yes, it is allowed but not recommended. The file is written in a specific format. If the format is not consistent, **WatchList** will be unable to load up the file so stored shows message may disappear.  
+**A**: Yes, it is possible but not recommended. The save file stores the data in a specific format. If the format is not consistent, **WatchList** will be unable to load up file. Your stored shows may disappear.  <br><br> 
 
 **Q**: What should I do if there was an error while I was typing in some input?
 
-**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary.  
+**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary. <br><br> 
 
 **Q**: What format should I use if I want to track my lectures?  
 
-**A**: A suggested format would be `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of a format that suits you!
+**A**: We suggest you try `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of any format that suits you!<br><br> 
 
-
-
-
-
-
+<br>
 
 ### 6. Command Summary
 
