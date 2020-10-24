@@ -51,8 +51,8 @@ public class Ui {
      * @param name The name of the user.
      */
     public void printAskForUserInfoMessage(String name) {
-        assert name != null : "Name should not be null";
-        assert trimStringGetLength(name) > 0 : "Name should not be an empty string";
+        performAssertionsForStringInputs(name, "Name");
+
         print("Hi " + trimString(name) + "!" + LINE_SEPARATOR
                 + "Before we get started, I would like to know about about you so that I can make more "
                 + LINE_SEPARATOR
@@ -80,12 +80,25 @@ public class Ui {
                 + "  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2");
     }
 
+    /**
+     * Prints an exit message when DietBook is closed.
+     *
+     * @param name The name of the user.
+     */
+    public void printExitMessage(String name) {
+        performAssertionsForStringInputs(name, "Name");
+        print("Bye " + trimString(name) + "! Hope to see you again soon!");
     }
 
     /**
-     * Prints a message that notifies the user that DietBook has been initialised and shows a list of user
-     * commands that the user can input.
+     * Prints an error message given what or where the error is.
+     *
+     * @param errorMessage Message detailing what or where the error is.
      */
+    public void printErrorMessage(String errorMessage) {
+        performAssertionsForStringInputs(errorMessage,"Error message");
+
+        print(":( " + trimString(errorMessage));
     }
 
     /**
@@ -97,16 +110,84 @@ public class Ui {
                 + "If you require a list of valid commands, you can enter: help");
     }
 
-     *
-     * @param newFood The string representation of the new food item that was added to the food list.
+    /**
+     * Prints a string representation of a list of the commands that users can use.
      */
-    public void printNewFood(String newFood) {
-        assert newFood != null : "String representation of the food that was added should not be null";
-        assert trimStringGetLength(newFood) > 0 : "String representation of the food that was added should not "
-                + "be an empty string";
-        print("Got it! I've added this food item:" + LINE_SEPARATOR
-                + "  " + trimString(newFood));
+    public void printHelpCommandMessage() {
+        print("Listed below are the valid commands for DietBook:" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "For database related commands" + LINE_SEPARATOR
+                + getDatabaseRelatedCommands() + LINE_SEPARATOR
+                + "For food list related commands" + LINE_SEPARATOR
+                + getFoodListRelatedCommands() + LINE_SEPARATOR
+                + "For user information related commands" + LINE_SEPARATOR
+                + getUserRelatedCommands() + LINE_SEPARATOR
+                + "For nutritional intake and recommendation related commands" + LINE_SEPARATOR
+                + getCalculatorRelatedCommands() + LINE_SEPARATOR
+                + "For other system related commands" + LINE_SEPARATOR
+                + getSystemRelatedCommands());
     }
+
+    // Methods required to print database related commands or messages.
+
+    /**
+     * Prints all the food in the database sorted by the canteen and then the store it is found.
+     *
+     * @param foodDatabase The string representation of all the food items stored in the database.
+     */
+    public void printDatabase(String foodDatabase) {
+        performAssertionsForStringInputs(foodDatabase,
+                "Food database");
+
+        print("Here are the food items in the database:" + LINE_SEPARATOR + foodDatabase);
+    }
+
+    /**
+     * Prints the food items in the database containing the food name of the food that user wants to
+     * add sorted by the canteen and then the store it is found.
+     * This method is only used if more than one food item in the database contains the food name given.
+     *
+     * @param matchingFoodDatabase The string representation of the food items stored in the
+     *     database containing the food name given.
+     */
+    public void printMatchingFoodsInDatabase(String matchingFoodDatabase) {
+        performAssertionsForStringInputs(matchingFoodDatabase,
+                "Matching food database");
+
+        print("Here are the matching food items in the database:" + LINE_SEPARATOR
+                + matchingFoodDatabase + LINE_SEPARATOR + LINE_SEPARATOR
+                + "Please re-enter with the full name of the food item above in the following format:"
+                + LINE_SEPARATOR + "  add n/FOOD_NAME x/PORTION_SIZE");
+    }
+
+    // Methods required to print user information related commands and messages.
+
+    /**
+     * Prints all the information related to the user.
+     *
+     * @param personInfo The user's personal information.
+     */
+    public void printPersonInfo(String personInfo) {
+        performAssertionsForStringInputs(personInfo,
+                "Person information");
+
+        print("Here is your information:" + LINE_SEPARATOR
+                + personInfo);
+    }
+
+    /**
+     * Prints all the updated information related to the user.
+     *
+     * @param personInfo The user's personal information.
+     */
+    public void printEditedPersonInfo(String personInfo) {
+        performAssertionsForStringInputs(personInfo,
+                "Updated person information");
+
+        print("Here is your updated information:" + LINE_SEPARATOR
+                + personInfo);
+    }
+
+    // Methods required for printing FoodList related commands and messages.
 
     /**
      * Prints all the food items in the food list in the order that they were added or a message stating
@@ -115,11 +196,13 @@ public class Ui {
      * @param allFood The string representation of all the food items in the food list.
      */
     public void printFoodList(String allFood) {
-        assert allFood != null : "String representation of all food in food list should not be null";
+        performAssertionsForNullStringInputs(allFood,
+                "String representation of all food in food list");
+
         if (trimStringGetLength(allFood) < 1) {
             print("DietBook is currently empty.");
         } else {
-            print("Here are the food items in DietBook:" + LINE_SEPARATOR + trimString(allFood));
+            print("Here are the food items in DietBook:" + LINE_SEPARATOR + allFood);
         }
     }
 
@@ -132,43 +215,44 @@ public class Ui {
      * @param start Starting date time of the time period given.
      * @param end Ending date time of the time period given.
      */
-    public void printFoodListGivenTimePeriod(String foods, LocalDateTime start, LocalDateTime end) {
-        assert foods != null : "String representation of food items in the food list recorded during the "
-                + "time period given should not be null";
-        assert start != null : "Starting date time of the time period should not be null";
-        assert end != null : "Ending date time of the time period should not be null";
-        assert !start.isAfter(end) : "Starting date time should not be later than ending date time "
-                + "of the time period";
-        String stringStart = stringDateTime(start);
-        String stringEnd = stringDateTime(end);
+    public void printFoodList(String foods, LocalDateTime start, LocalDateTime end) {
+        performAssertionsForNullStringInputs(foods,
+                "String representation of food items in the food list recorded during the time "
+                        + "period given");
+        performAssertionsForTimePeriod(start, end);
+
         if (trimStringGetLength(foods) < 1) {
-            print("No food item was recorded in DietBook between " + stringStart + " and " + stringEnd + ".");
+            print("No food item was recorded in DietBook" + stringDateTimePeriod(start, end) + ".");
         } else {
-            print("Here are the food items recorded in DietBook between " + stringStart + " and " + stringEnd
-                    + " :" + LINE_SEPARATOR + trimString(foods));
+            print("Here are the food items recorded in DietBook" + stringDateTimePeriod(start, end) + ":"
+                    + LINE_SEPARATOR + foods);
         }
     }
 
     /**
-     * Returns a string representation of the date time in the format dd MMM yyyy HHmm.
+     * Prints a message to show that the food specified has been added to the food list.
      *
-     * @param dateTime The date time that needs to be converted into a String.
-     * @return Returns a string representation of the date and time in the format dd MMM yyyy HHmm.
+     * @param newFood The string representation of the new food item that was added to the food list.
      */
-    public String stringDateTime(LocalDateTime dateTime) {
-        assert dateTime != null : "Date time to be converted into string should not be null";
-        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
+    public void printNewFood(String newFood) {
+        performAssertionsForStringInputs(newFood,
+                "String representation of the food that was added");
+
+        print("Got it! I've added this food item:" + LINE_SEPARATOR
+                + "  " + trimString(newFood));
     }
 
     /**
-     * Prints all the food in the database sorted by the canteen and then the store it is found.
+     * Prints a message to show that the food specified has been deleted from the food list.
      *
-     * @param foodDatabase The string representation of all the food items stored in the database.
+     * @param deletedFood The string representation of the food that was deleted from the food list.
      */
-    public void printDatabase(String foodDatabase) {
-        assert foodDatabase != null : "Food database should not be null";
-        assert trimStringGetLength(foodDatabase) > 0 : "Food database should not be empty";
-        print("Here are the food items in the database:" + LINE_SEPARATOR + trimString(foodDatabase));
+    public void printDeletedFood(String deletedFood) {
+        performAssertionsForStringInputs(deletedFood,
+                "String representation of the food that was deleted");
+
+        print("Noted. I've removed this food item:" + LINE_SEPARATOR
+                + "  " + trimString(deletedFood));
     }
 
     /**
@@ -179,75 +263,227 @@ public class Ui {
                 + "DietBook is now empty.");
     }
 
+    // Methods required to print nutritional intake and recommendation related commands and messages.
+
+    /**
+     * Prints the daily recommended calorie intake of the user based on the user's personal information.
      *
-     * @param personInfo The user's personal information.
+     * @param calorieRecommendation The daily recommended calorie intake of the user.
      */
-    public void printPersonInfo(String personInfo) {
-        assert personInfo != null : "Person information should not be null";
-        assert trimStringGetLength(personInfo) > 0 : "Person information should not be an empty string";
-        print("Here is your information:" + LINE_SEPARATOR
-                + trimString(personInfo));
+    public void printCalorieRecommendation(String name, int calorieRecommendation) {
+        performAssertionsForStringInputs(name, "Name");
+        performAssertionsForCalorieRecommendation(calorieRecommendation);
+
+        print("Hi " + trimString(name) + "!" + LINE_SEPARATOR
+                + "Here is your daily recommended calorie intake: " + calorieRecommendation + "kcal");
     }
 
     /**
-     * Prints the total amount of carbohydrates consumed by the user.
+     * Prints the total amount of carbohydrates consumed by the user and the list of food items which had
+     * their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total carbohydrate intake.
      *
-     * @param carbohydrateIntake The total amount of carbohydrates of all the food in the food list.
+     * @param carbIntake The total amount of carbohydrates of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
      */
-    public void printCarbohydrateIntake(int carbohydrateIntake) {
-        assert carbohydrateIntake >= 0 : "Total carbohydrate intake should be equals to or greater than 0";
-        print("Total carbohydrate intake: " + carbohydrateIntake + "g");
+    public void printCarbIntakeAndFoods(int carbIntake, String recalculatedFoods) {
+        print(stringOneIntakeAndFoodsWithoutTime(carbIntake,"carbohydrate",
+                "g", recalculatedFoods));
     }
 
     /**
-     * Prints the total amount of calories consumed by the user.
+     * Prints the total amount of carbohydrates consumed by the user within a given time period and a list of
+     * the foods recorded into the food list during the same time period which had their nutritional
+     * information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total carbohydrate
+     * intake within a given time period.
+     *
+     * @param carbIntake The total amount of carbohydrates of food in the food list recorded during the
+     *     time period given.
+     * @param recalculatedFoods The list of food items recorded during the given time period which had their
+     *     nutritional information recalculated by DietBook.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printCarbIntakeAndFoods(int carbIntake, String recalculatedFoods,
+                                        LocalDateTime start, LocalDateTime end) {
+        String carbIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(carbIntake,
+                "carbohydrate", "g", recalculatedFoods);
+        print(stringIntakeAndFoodsWithTime(carbIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of calories consumed by the user and the list of food items which had
+     * their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total calorie intake.
      *
      * @param calorieIntake The total amount of calories of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
      */
-    public void printCalorieIntake(int calorieIntake) {
-        assert calorieIntake >= 0 : "Total calorie intake should be equals to or greater than 0";
-        print("Total calorie intake: " + calorieIntake + "kcal");
+    public void printCalorieIntakeAndFoods(int calorieIntake, String recalculatedFoods) {
+        print(stringOneIntakeAndFoodsWithoutTime(calorieIntake,"calorie","kcal",
+                recalculatedFoods));
     }
 
     /**
-     * Prints the total amount of proteins consumed by the user.
+     * Prints the total amount of calories consumed by the user within a given time period and a list of
+     * the foods recorded into the food list during the same time period which had their nutritional
+     * information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total calorie
+     * intake within a given time period.
+     *
+     * @param calorieIntake The total amount of calories of food in the food list recorded during the
+     *     time period given.
+     * @param recalculatedFoods The list of food items recorded during the given time period which had their
+     *     nutritional information recalculated by DietBook.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printCalorieIntakeAndFoods(int calorieIntake, String recalculatedFoods,
+                                           LocalDateTime start, LocalDateTime end) {
+        String calorieIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(calorieIntake,
+                "calorie", "kcal", recalculatedFoods);
+        print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of proteins consumed by the user and the list of food items which had
+     * their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total protein intake.
      *
      * @param proteinIntake The total amount of proteins of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
      */
-    public void printProteinIntake(int proteinIntake) {
-        assert proteinIntake >= 0 : "Total protein intake should be equals to or greater than 0 ";
-        print("Total protein intake: " + proteinIntake + "g");
+    public void printProteinIntakeAndFoods(int proteinIntake, String recalculatedFoods) {
+        print(stringOneIntakeAndFoodsWithoutTime(proteinIntake,"protein","g",
+                recalculatedFoods));
     }
 
     /**
-     * Prints the total amount of fats consumed by the user.
+     * Prints the total amount of proteins consumed by the user within a given time period and a list of
+     * the foods recorded into the food list during the same time period which had their nutritional
+     * information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total protein
+     * intake within a given time period.
+     *
+     * @param proteinIntake The total amount of proteins of food in the food list recorded during the
+     *     time period given.
+     * @param recalculatedFoods The list of food items recorded during the given time period which had their
+     *     nutritional information recalculated by DietBook.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printProteinIntakeAndFoods(int proteinIntake, String recalculatedFoods,
+                                           LocalDateTime start, LocalDateTime end) {
+        String proteinIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(proteinIntake,
+                "protein", "g", recalculatedFoods);
+        print(stringIntakeAndFoodsWithTime(proteinIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of fats consumed by the user and the list of food items which had
+     * their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total fat intake.
      *
      * @param fatIntake The total amount of fats of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
      */
-    public void printFatIntake(int fatIntake) {
-        assert fatIntake >= 0 : "Total fat intake should be equals to or greater than 0";
-        print("Total fat intake: " + fatIntake + "g");
+    public void printFatIntakeAndFoods(int fatIntake, String recalculatedFoods) {
+        print(stringOneIntakeAndFoodsWithoutTime(fatIntake,"fat","g",
+                recalculatedFoods));
     }
 
     /**
-     * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user.
+     * Prints the total amount of fats consumed by the user within a given time period and a list of
+     * the foods recorded into the food list during the same time period which had their nutritional
+     * information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total fat
+     * intake within a given time period.
      *
+     * @param fatIntake The total amount of fats of food in the food list recorded during the
+     *     time period given.
+     * @param recalculatedFoods The list of food items recorded during the given time period which had their
+     *     nutritional information recalculated by DietBook.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printFatIntakeAndFoods(int fatIntake, String recalculatedFoods,
+                                       LocalDateTime start, LocalDateTime end) {
+        String fatIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(fatIntake,
+                "fat", "g", recalculatedFoods);
+        print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user and the
+     * list of food items which had their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating the individual intakes.
+     *
+     * @param carbIntake The total amount of carbohydrates of all the food in the food list.
      * @param calorieIntake The total amount of calories of all the food in the food list.
-     * @param carbohydrateIntake The total amount of carbohydrates of all the food in the food list.
      * @param proteinIntake The total amount of proteins of all the food in the food list.
      * @param fatIntake The total amount of fats of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
      */
-    public void printAllNutrientIntake(int calorieIntake, int carbohydrateIntake, int proteinIntake,
-                                       int fatIntake) {
-        assert carbohydrateIntake >= 0 : "Total carbohydrate intake should be equals to or greater than 0";
-        assert calorieIntake >= 0 : "Total calorie intake should be equals to or greater than 0";
-        assert proteinIntake >= 0 : "Total protein intake should be equals to or greater than 0 ";
-        assert fatIntake >= 0 : "Total fat intake should be equals to or greater than 0";
+    public void printAllIntakeAndFoods(int calorieIntake, int carbIntake, int proteinIntake,
+                                       int fatIntake, String recalculatedFoods) {
+        print(stringAllIntakeAndFoodsWithoutTime(carbIntake, calorieIntake,proteinIntake,
+                fatIntake, recalculatedFoods));
+    }
 
-        print("Total calorie intake: " + calorieIntake + "kcal" + LINE_SEPARATOR
-                + "Total carbohydrate intake: " + carbohydrateIntake + "g" + LINE_SEPARATOR
-                + "Total protein intake: " + proteinIntake + "g" + LINE_SEPARATOR
-                + "Total fat intake: " + fatIntake + "g");
+    /**
+     * Prints the total amount of total amount of calories, carbohydrates, fats and proteins consumed by
+     * the user within a given time period and a list of the foods recorded into the food list during the
+     * same time period which had their nutritional information recalculated by DietBook if any.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating the individual intake
+     * within a given time period.
+     *
+     * @param calorieIntake The total amount of calories of food in the food list recorded during the
+     *     time period given.
+     * @param carbIntake The total amount of carbohydrates of food in the food list recorded during the
+     *     time period given.
+     * @param proteinIntake The total amount of proteins of food in the food list recorded during the
+     *     time period given.
+     * @param fatIntake The total amount of fats of food in the food list recorded during the
+     *     time period given.
+     * @param recalculatedFoods The list of food items recorded during the given time period which had their
+     *     nutritional information recalculated by DietBook.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printAllIntakeAndFoods(int calorieIntake, int carbIntake, int proteinIntake,
+                                       int fatIntake, String recalculatedFoods,
+                                       LocalDateTime start, LocalDateTime end) {
+        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(carbIntake, calorieIntake,
+                proteinIntake,fatIntake, recalculatedFoods);
+        print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
+    }
+
     // Helper methods for system related commands or messages
 
     /**
@@ -326,15 +562,167 @@ public class Ui {
     }
 
     /**
-     * Prints an error message given what or where the error is.
+     * Returns a string representation of a list of database related commands that users can input.
      *
-     * @param errorMessage Message detailing what or where the error is.
+     * @return A string representation of a list of database related commands that users can input.
      */
-    public void printErrorMessage(String errorMessage) {
-        assert errorMessage != null : "Error message should not be null";
-        assert trimStringGetLength(errorMessage) > 0 : "Error message should not be an empty string";
-        print(":( Oh no..." + trimString(errorMessage));
+    private String getDatabaseRelatedCommands() {
+        return "  To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
+                + "  To view all food in the database: data" + LINE_SEPARATOR;
     }
+
+    // Helper methods for calculator related commands and messages
+
+    /**
+     * Returns a string with a header and recalculatedFoods or a string stating that no food items had their
+     * nutritional information recalculated if calculatedFoods is an empty string.
+     *
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
+     * @return A string with a header and recalculatedFoods or a string stating that no food items had their
+     *     nutritional information recalculated if calculatedFoods is an empty string.
+     */
+    private String recalculatedFoodsMessage(String recalculatedFoods) {
+        String message = "No food items had their nutritional information recalculated by DietBook.";
+        if (trimStringGetLength(recalculatedFoods) > 0) {
+            message = "Food items which had their nutritional information recalculated by DietBook: "
+                    + LINE_SEPARATOR + recalculatedFoods;
+        }
+        return message;
+    }
+
+    /**
+     * Return a string representation of  the amount of a nutrient consumed by the user which can be either
+     * the total amount consumed or amount consumed in a given time period.
+     *
+     * @param nutrientIntake The amount of a particular type of nutrient consumed.
+     * @param nutrientType A string representation of the type of nutrient consumed.
+     * @param nutrientUnit A string representation of the unit of the nutrient consumed.
+     * @return The amount of a nutrient consumed by the user which can be either the total amount consumed
+     *     or amount consumed in a given time period.
+     */
+    private String stringNutritionalIntake(int nutrientIntake, String nutrientType, String nutrientUnit) {
+        return "Total " + nutrientType + " intake: " + nutrientIntake + nutrientUnit;
+    }
+
+    /**
+     * Returns a string representation of the total amount of a nutrient consumed by the user and
+     * the list of food items which had their nutritional information recalculated by DietBook if any.
+     *
+     * @param nutrientIntake The amount of a particular type of nutrient consumed.
+     * @param nutrientType A string representation of the type of nutrient consumed.
+     * @param nutrientUnit A string representation of the unit of the nutrient consumed.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
+     * @return A string representation of the the total amount of a nutrient consumed by the user and
+     *     the list of food items which had their nutritional information recalculated by DietBook if any.
+     */
+    private String stringOneIntakeAndFoodsWithoutTime(int nutrientIntake, String nutrientType,
+                                                      String nutrientUnit, String recalculatedFoods) {
+        performAssertionsForStringInputs(nutrientType,"Nutrient Type");
+        performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
+        performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
+        performAssertionsForNullStringInputs(recalculatedFoods,
+                "List of foods that had their nutritional information recalculated");
+
+        String stringNutrientIntake = stringNutritionalIntake(nutrientIntake, nutrientType, nutrientUnit);
+        String message = recalculatedFoodsMessage(recalculatedFoods);
+        return stringNutrientIntake + LINE_SEPARATOR + message;
+    }
+
+    /**
+     * Returns a string representation of the total amount of a nutrient or all nutrientS consumed by the
+     * user  during a given time period and the list of food items recorded during the same time period
+     * which had their nutritional information recalculated by DietBook if any.
+     *
+     * @param intakeAndFoodsWithoutTime A string representation of the the total amount of a nutrient or
+     *     all nutrients consumed by the user and the list of food items which had their nutritional
+     *     information recalculated by DietBook if any.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     * @return A string representation of the the total amount of a nutrient or all nutrient consumed by the
+     *     user during a given time period and the list of food items recorded during the same time period
+     *     which had their nutritional information recalculated by DietBook if any.
+     */
+    private String stringIntakeAndFoodsWithTime(String intakeAndFoodsWithoutTime,
+                                                LocalDateTime start, LocalDateTime end) {
+        performAssertionsForTimePeriod(start, end);
+
+        String timePeriod = "Time period:" + stringDateTimePeriod(start, end);
+        return timePeriod + LINE_SEPARATOR + LINE_SEPARATOR + intakeAndFoodsWithoutTime;
+    }
+
+    /**
+     * Returns a string representation of the total amount of all nutrients consumed by the user and
+     * the list of food items which had their nutritional information recalculated by DietBook if any.
+     *
+     * @param carbIntake The total amount of carbohydrates of all the food in the food list.
+     * @param calorieIntake The total amount of calories of all the food in the food list.
+     * @param proteinIntake The total amount of proteins of all the food in the food list.
+     * @param fatIntake The total amount of fats of all the food in the food list.
+     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
+     *     DietBook.
+     * @return A string representation of the total amount of all nutrients consumed by the user and
+     *     the list of food items which had their nutritional information recalculated by DietBook if any.
+     */
+    private String stringAllIntakeAndFoodsWithoutTime(int carbIntake, int calorieIntake, int proteinIntake,
+                                                     int fatIntake, String recalculatedFoods) {
+        performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
+        performAssertionsForNutritionalIntake(calorieIntake, "calorie");
+        performAssertionsForNutritionalIntake(proteinIntake, "protein");
+        performAssertionsForNutritionalIntake(fatIntake, "fat");
+        performAssertionsForNullStringInputs(recalculatedFoods,
+                "List of foods that had their nutritional information recalculated");
+
+        String stringCarbIntake = stringNutritionalIntake(carbIntake,"carbohydrate", "g");
+        String stringCalorieIntake = stringNutritionalIntake(calorieIntake,"calorie",
+                "kcal");
+        String stringProteinIntake = stringNutritionalIntake(proteinIntake,"protein", "g");
+        String stringFatIntake = stringNutritionalIntake(fatIntake,"fat", "g");
+        String message = recalculatedFoodsMessage(recalculatedFoods);
+
+        return stringCarbIntake + LINE_SEPARATOR
+                + stringCalorieIntake + LINE_SEPARATOR
+                + stringProteinIntake + LINE_SEPARATOR
+                + stringFatIntake + LINE_SEPARATOR
+                + message;
+
+    }
+
+    // Other helper methods
+
+    /**
+     * Prints the given message to the user.
+     *
+     * @param message The message to show the user.
+     */
+    private void print(String message) {
+        performAssertionsForStringInputs(message, "Message to print");
+        String divider =
+                "__________________________________________________________________________________________"
+                + "___________________________________________";
+
+        System.out.println(divider + LINE_SEPARATOR
+                + trimString(message) + LINE_SEPARATOR
+                + divider);
+
+    }
+
+    /**
+     * Returns a string representation of the time period with date time in the format dd MMM yyyy HHmm.
+     *
+     * @param start Starting date time of the time period given that needs to be converted into a String.
+     * @param end Ending date time of the time period given that needs to be converted into a String.
+     * @return The string representation of time period with date time in the format dd MMM yyyy HHmm.
+     */
+    public String stringDateTimePeriod(LocalDateTime start, LocalDateTime end) {
+        performAssertionsForTimePeriod(start, end);
+
+        String stringStart = start.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
+        String stringEnd = end.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
+        return " between " +  stringStart + " and " + stringEnd;
+    }
+
 
     /**
      * Returns an integer representing the length of the string after it has been trimmed for leading and
@@ -345,7 +733,8 @@ public class Ui {
      *     trailing spaces.
      */
     public int trimStringGetLength(String string) {
-        assert string != null : "String to trim and have length determined should not be null";
+        performAssertionsForNullStringInputs(string, "String to trim and have length determined");
+
         return trimString(string).length();
     }
 
@@ -355,26 +744,71 @@ public class Ui {
      * @param string The string to be trimmed for leading and trailing spaces.
      * @return A string that has been trimmed for leading and trailing spaces.
      */
-    public String trimString(String string) {
-        assert string != null : "String to trim should not be null";
+    private String trimString(String string) {
+        performAssertionsForNullStringInputs(string, "String to trim");
+
         return string.trim();
     }
 
     /**
-     * Prints the given message to the user.
+     * Performs assertions for the string inputs.
      *
-     * @param message The message to show the user.
+     * @param string The input value.
+     * @param stringDescription A description of what the input value represents.
      */
-    public void print(String message) {
-        assert message != null : "Message to print should not be null";
-        assert trimStringGetLength(message) > 0 : "Message to print should not be an empty string";
-        String divider =
-                "__________________________________________________________________________________________"
-                + "____________________";
+    private void performAssertionsForStringInputs(String string, String stringDescription) {
+        performAssertionsForNullStringInputs(string, stringDescription);
+        assert trimStringGetLength(string) > 0 : stringDescription + " should not be an empty string";
+    }
 
-        System.out.println(divider + LINE_SEPARATOR
-                + trimString(message) + LINE_SEPARATOR
-                + divider);
+    /**
+     * Performs assertions for the time inputs.
+     *
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    private void performAssertionsForTimePeriod(LocalDateTime start, LocalDateTime end) {
+        assert start != null : "Starting date time of the time period given should not be null";
+        assert end != null : "Ending date time of the time period given should not be null";
+        assert !start.isAfter(end) : "Starting date time should not be later than ending date time "
+                + "of the time period";
+        assert start.isBefore(LocalDateTime.now()) : "Starting date time of the time period given should "
+                + "not be in the future";
+        assert end.isBefore(LocalDateTime.now()) : "Ending date time of the time period given should not be"
+                + " in the future";
+    }
 
+    /**
+     * Performs assertions for null string inputs.
+     *
+     * @param string The input value.
+     * @param stringDescription A description of what the input value represents.
+     */
+    private void performAssertionsForNullStringInputs(String string, String stringDescription) {
+        assert string != null : stringDescription + " should not be null";
+    }
+
+    /**
+     * Performs assertions for nutritional intake inputs.
+     *
+     * @param nutrientIntake The nutritional intake value.
+     * @param nutrientType The nutrient type.
+     */
+    private void performAssertionsForNutritionalIntake(int nutrientIntake, String nutrientType) {
+        assert nutrientIntake >= 0 : "Total " + nutrientType + " intake should be equals to or greater than 0";
+    }
+
+    /**
+     * Performs assertions for the calorie recommendation input.
+     *
+     * @param calorieRecommendation The recommended daily calorie intake for the user.
+     */
+    private void performAssertionsForCalorieRecommendation(int calorieRecommendation) {
+        // A minimum daily intake of 1200 calorie is required to stay healthy.
+        assert calorieRecommendation >= 1200 : "Daily calorie recommendation should be equals to or greater"
+                + " than 1200";
+        // Highest calorie intake for an athlete currently stands at 12000.
+        assert calorieRecommendation <= 12000 : "Daily calorie recommendation should be equals to or less "
+                + "than 12,000";
     }
 }
