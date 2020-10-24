@@ -39,7 +39,7 @@ public class LaunchBookmarkCommand extends Command {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
             }
             description = details.trim();
-            launchTypeFlag = 2; // (flag to launch bookmarks with matching module and description)
+            launchTypeFlag = 2; // (flag to launch bookmarks with matching description)
         }
     }
 

@@ -41,10 +41,9 @@ public enum Day {
             outputDay = SAT.toString();
             break;
         case 7:
-            outputDay = SUN.toString();
-            break;
+            // Fallthrough
         default:
-            outputDay = MON.toString();
+            outputDay = SUN.toString();
             break;
         }
 
@@ -104,7 +103,7 @@ public enum Day {
             day = "sat";
             break;
         case SUN:
-            // fallthrough
+            // Fallthrough
         default:
             day = "sun";
             break;

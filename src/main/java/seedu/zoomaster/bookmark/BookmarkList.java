@@ -1,14 +1,14 @@
 package seedu.zoomaster.bookmark;
 
-import seedu.zoomaster.ItemList;
 import seedu.zoomaster.exception.ZoomasterException;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
-public class BookmarkList extends ItemList {
+public class BookmarkList {
     private ArrayList<Bookmark> bookmarks;
     private final String lineSeparator = System.lineSeparator();
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());

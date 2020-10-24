@@ -1,6 +1,5 @@
 package seedu.zoomaster.command;
 
-
 import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;

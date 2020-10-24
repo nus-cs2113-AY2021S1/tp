@@ -15,7 +15,6 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-
 /**
  * Represents the user command exit the Duke program.
  */
@@ -102,8 +101,8 @@ public class AddSlotCommand extends Command {
                 startTime = LocalTime.parse(slotAndBookmark.get(2));
                 endTime = LocalTime.parse(slotAndBookmark.get(3));
             } catch (DateTimeParseException e) {
-                throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT
-                        , "  Invalid time format for slot. (" + slotAndBookmark.get(2)
+                throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
+                        "  Invalid time format for slot. (" + slotAndBookmark.get(2)
                         + " " + slotAndBookmark.get(3) + ") Please check format.");
             }
             if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
