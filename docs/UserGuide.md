@@ -38,7 +38,7 @@ provided by PlaNUS and the instructions required for each step.
 
     `java -jar planus.jar`
     
-    Following content is display if there's no exsisting data file:
+    Following content is display if there's no existing data file:
     
     ![initial display](images/init.PNG)
     
@@ -58,7 +58,7 @@ provided by PlaNUS and the instructions required for each step.
 ## Features 
 
 
-### :information_source: Notes about command format:
+### Notes about command format:
 ```
 - Words in UPPER_CASE are the parameters to be supplied by the user. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
@@ -70,7 +70,7 @@ provided by PlaNUS and the instructions required for each step.
     
 - Within square bracket, optional flags could be enabled, flags are separated by '|'.
     - e.g. in "list [-d|-p|-w|-m]",
-    The flag parameter is an optional parameter. When it is used, any **one** of the flags
+    The flag parameter is an optional parameter. When it is used, any one of the flags
     like -d or -p or -w or -m could be enabled. 
     
 - Input date format is dd-MM-yyyy.
@@ -141,7 +141,7 @@ Default display mode: display **all** tasks by **adding sequence**.
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.  
 `-w`: display **only tasks in current week** by **adding sequence**.   
 `-m`: display **only tasks in current month** by **adding sequence**.  
-`d/DATE`: display **all tasks of a date provided** by adding sequence**.  
+`d/DATE`: display **all tasks of a date provided** by adding sequence.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
