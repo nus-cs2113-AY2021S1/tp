@@ -14,8 +14,7 @@ public abstract class Command {
     /**
      * Execution of command depends on which command subclass the command belongs to.
      */
-    public abstract void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                                 Storage bookmarkStorage, Storage slotStorage) throws DukeException;
+    public abstract void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException;
 
     /**
      * Returns true if the command is an ExitCommand.
@@ -24,3 +23,4 @@ public abstract class Command {
         return isExitCommand;
     }
 }
+

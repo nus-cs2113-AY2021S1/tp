@@ -21,8 +21,7 @@ public class ChangeModeCommand extends Command {
 
 
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui)
             throws DukeException {
         if (setToMode == 1) {
             Parser.programMode = 1;
@@ -30,6 +29,9 @@ public class ChangeModeCommand extends Command {
         } else if (setToMode == 2) {
             Parser.programMode = 2;
             ui.print("Changing to timetable mode" + System.lineSeparator());
+        } else if (setToMode == 3) {
+            Parser.programMode = 3;
+            ui.print("Changing to planner mode" + System.lineSeparator());
         } else {
             throw new DukeException(DukeExceptionType.INVALID_MODE);
         }
@@ -49,6 +51,8 @@ public class ChangeModeCommand extends Command {
             outputData = 1;
         } else if (modeData.compareTo("timetable") == 0) {
             outputData = 2;
+        } else if (modeData.compareTo("planner") == 0) {
+            outputData = 3;
         } else {
             outputData = 0;
         }

@@ -10,6 +10,9 @@ import seedu.duke.slot.Slot;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,9 @@ public class ShowTimetableCommand extends Command {
                 throw new DukeException(DukeExceptionType.INVALID_COMMAND_FORMAT);
             }
             String details = command.substring(SHOW_KW.length() + 1).trim();
+            if (details.toLowerCase().equals("today")) {
+                day = getDayToday();
+            }
             if (isDay(details)) {
                 day = getDayFromCommand(details);
             } else {
@@ -48,11 +54,10 @@ public class ShowTimetableCommand extends Command {
     }
 
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException {
         String message = "";
         List<Module> modules = timetable.getFullModuleList();
-        if (day != null) { // show and show day
+        if (day != null) { // "show" and "show day" and "show today"
             List<Slot> list = new ArrayList<>(timetable.getFullSlotList());
             message += getMessageLessonAtTime(modules, list, day);
         } else if (module != null && !showBookmarks) {
@@ -116,17 +121,41 @@ public class ShowTimetableCommand extends Command {
     private String getMessageSlotsInADay(List<Module> modules, List<Slot> slots, String day) {
         StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
+        boolean hasIndicatorOnDay = false;
+        if (day.equals(getDayToday())) {
+            hasIndicatorOnDay = true;
+        }
+
         for (Slot s: slots) {
             for (Module module : modules) {
                 if (module.slotExists(s) && s.getDay().equals(day)) {
-                    message.append(s.toString()).append(" ").append(module.getModuleCode()).append("\n");
+                    if (hasLessonNow(s)) {
+                        message.append(getHighlighBoxUpperMessage());
+                        message.append(s.toString()).append(" ").append(module.getModuleCode()).append("\n");
+                        message.append(getHighlighBoxLowerMessage());
+                        hasIndicatorOnDay = false;
+                    } else {
+                        if (s.getStartTime().isAfter(LocalTime.now())
+                                && hasIndicatorOnDay == true) {
+                            message.append(getIndicatorMessage());
+                            hasIndicatorOnDay = false;
+                        }
+                        message.append(s.toString()).append(" ").append(module.getModuleCode()).append("\n");
+                    }
                     hasSlotOnDay = true;
                 }
             }
         }
+
         if (!hasSlotOnDay) {
             message.append("No lessons" + "\n");
         }
+
+        if (hasIndicatorOnDay == true) {
+            message.append(getIndicatorMessage());
+            hasIndicatorOnDay = false;
+        }
+
         message.append("\n");
         return message.toString();
     }
@@ -167,5 +196,75 @@ public class ShowTimetableCommand extends Command {
             message += "no slots for " + module.getModuleCode() + "\n";
         }
         return message;
+    }
+
+    /**
+     * Returns String of today's day of the week.
+     *
+     * @return outputDay String of today's day of the week readable by Slot class.
+     */
+    public static String getDayToday() {
+        String outputDay;
+
+        assert (LocalDate.now().getDayOfWeek().getValue() <= 7) && (LocalDate.now().getDayOfWeek().getValue() >= 1) :
+                "LocalDate.now().getDayOfWeek().getValue() only returns value within range 1 to 7";
+        switch (LocalDate.now().getDayOfWeek().getValue()) {
+        case 1:
+            outputDay = "mon";
+            break;
+        case 2:
+            outputDay = "tue";
+            break;
+        case 3:
+            outputDay = "wed";
+            break;
+        case 4:
+            outputDay = "thu";
+            break;
+        case 5:
+            outputDay = "fri";
+            break;
+        case 6:
+            outputDay = "sat";
+            break;
+        case 7:
+            outputDay = "sun";
+            break;
+        default:
+            outputDay = "mon";
+            break;
+        }
+
+        return outputDay;
+    }
+
+    public static boolean hasLessonNow(Slot slot) {
+        boolean isOverlap = false;
+        LocalTime timeNow = LocalTime.now();
+        if (slot.getStartTime().isBefore(timeNow) && slot.getEndTime().isAfter(timeNow)
+                && getDayToday().equals(slot.getDay())) {
+            isOverlap = true;
+        }
+        return isOverlap;
+    }
+
+    public static String getIndicatorMessage() {
+        DateTimeFormatter hoursAndMinutes = DateTimeFormatter.ofPattern("HH:mm");
+        String currentTimeMessage = "<----" + "Current Time: " + LocalTime.now().format(hoursAndMinutes)
+                + "---->" + "\n";
+
+        return "\u001b[34m" + currentTimeMessage + "\u001b[0m";
+    }
+
+    public static String getHighlighBoxUpperMessage() {
+        String message = "[====" + "Lesson now" + "====]" + "\n";
+
+        return "\u001b[32m" + message + "\u001b[0m";
+    }
+
+    public static String getHighlighBoxLowerMessage() {
+        String message = "[==================]" + "\n";
+
+        return "\u001b[32m" + message + "\u001b[0m";
     }
 }

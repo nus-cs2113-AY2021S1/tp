@@ -78,9 +78,10 @@ public class SlotList extends ItemList {
     private void loadSlot(String line) {
         try {
             slots.add(Slot.initSlot(line));
-        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
-            // TODO: to be fixed
-            System.out.println("Error");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bound");
+        } catch (DateTimeParseException e) {
+            System.out.println("Incorrect time format");
         }
     }
 
@@ -88,7 +89,7 @@ public class SlotList extends ItemList {
      * Returns the the data of all Slots in the list to be saved in the text file.
      *
      * @return the data of all the Slots.
-     */ 
+     */
     public String getData() {
         StringBuilder data = new StringBuilder();
         for (Slot slot : slots) {
@@ -133,5 +134,4 @@ public class SlotList extends ItemList {
     public void deleteSlot(Slot slot) {
         slots.remove(slot);
     }
-
 }

@@ -33,21 +33,21 @@ public class Bookmark {
     }
 
     /**
-     * Returns the topic, URL and description that can be detected from the given input.
+     * Returns the description and url that can be detected from the given input.
      *
      * @param input the string input by the user.
-     * @return a list of strings containing the topic, URL and the description.
-     * @throws DukeException if the command format is invalid, if the description is empty or if the url is invalid.
+     * @return a list of strings containing the description and url.
+     * @throws DukeException if the command format is invalid or if the url is invalid.
      */
     public static List<String> extractDescriptionAndUrl(String input) throws DukeException {
-        List<String> DescriptionUrl = new ArrayList<>(Arrays.asList(input.split(" ", 2)));
-        if (DescriptionUrl.size() != 2) {
+        List<String> descriptionUrl = Arrays.asList(input.split(" ", 2));
+        if (descriptionUrl.size() != 2) {
             throw new DukeException(DukeExceptionType.INVALID_ADD_BOOKMARK_INPUT);
         }
-        if (!isUrlValid(DescriptionUrl.get(1))) {
+        if (!isUrlValid(descriptionUrl.get(1))) {
             throw new DukeException(DukeExceptionType.INVALID_URL);
         }
-        return DescriptionUrl;
+        return descriptionUrl;
     }
 
     private static Boolean isUrlValid(String url) {
@@ -60,6 +60,7 @@ public class Bookmark {
     /**
      * This method opens the URL of the bookmark in a web browser.
      *
+     * @return a string
      * @throws DukeException if there is an error launching the URL.
      */
     public String launch() throws DukeException {
