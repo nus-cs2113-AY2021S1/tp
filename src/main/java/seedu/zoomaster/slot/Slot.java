@@ -51,7 +51,8 @@ public class Slot {
         try {
             bookmark = bookmarks.getBookmark(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, "" + bookmarks.getSize());
+            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, "" 
+                                         + bookmarks.getSize());
         }
         return bookmark;
     }
