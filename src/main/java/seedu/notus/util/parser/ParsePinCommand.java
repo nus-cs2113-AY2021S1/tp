@@ -40,7 +40,6 @@ public class ParsePinCommand extends Parser {
                     title = checkBlank(infoDetails[1], exception);
                     return new PinCommand(title);
                 case PREFIX_INDEX:
-                    isTitle = false;
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     if (index <= NULL_INDEX) {

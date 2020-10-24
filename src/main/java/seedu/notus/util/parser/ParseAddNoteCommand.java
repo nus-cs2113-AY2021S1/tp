@@ -58,7 +58,6 @@ public class ParseAddNoteCommand extends Parser {
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
-
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
 
             // Add to note

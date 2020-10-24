@@ -53,7 +53,6 @@ public class ParseCreateTagOrDeleteCommand extends Parser {
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
         }
-
         if (isCreate) {
             return new CreateTagCommand(tags);
         } else {
