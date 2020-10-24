@@ -37,7 +37,9 @@ public class AddExerciseCommand extends Command {
                 }
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
                 storageManager.writeExerciseList(exerciseList);
-                Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
+                Ui.printCustomMessage("The following exercise has been added:\n"
+                        + "Name of Exercise: " + nameOfExercise + "\n"
+                        + "Burnt Cal: " + amountOfCaloriesBurnt.get());
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }
