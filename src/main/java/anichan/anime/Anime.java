@@ -25,7 +25,6 @@ public class Anime {
         this.rating = 0;
         this.totalEpisodes = 0;
         this.genre = null;
-        totalAnime++;
         animeID = totalAnime;
     }
 
@@ -131,5 +130,9 @@ public class Anime {
     @Override
     public String toString() {
         return getAnimeName();
+    }
+
+    public static void setTotalAnime(int totalAnime) {
+        Anime.totalAnime = totalAnime;
     }
 }

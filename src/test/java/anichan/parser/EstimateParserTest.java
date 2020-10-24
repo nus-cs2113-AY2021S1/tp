@@ -24,6 +24,7 @@ public class EstimateParserTest {
     void parse_invalidParameters_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse(""));
         assertThrows(AniException.class, () -> estimateParser.parse("script"));
+        assertThrows(AniException.class, () -> estimateParser.parse("/path/to/script"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -one -two"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt script_two.txt"));
 
@@ -32,6 +33,7 @@ public class EstimateParserTest {
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph one"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 0"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 777 0"));
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 999999999999"));
     }
 
     @Test

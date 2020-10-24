@@ -5,7 +5,6 @@ import anichan.exception.AniException;
 
 public class SearchParser extends CommandParser {
 
-
     private SearchCommand searchCommand;
 
     public SearchParser() {

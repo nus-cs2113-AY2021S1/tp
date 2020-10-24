@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class EstimateCommand extends Command {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
     private static final int MINUTES_PER_HOUR = 60;
+    private static final String SPLIT_WHITESPACE = " ";
 
     // On average, translator translates about 400 to 600 words in an hour, so a multiple
     // of 100 (400, 500, 600) is chosen to provide users with various estimation times so
@@ -32,8 +33,12 @@ public class EstimateCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
         String fileContent = storageManager.loadScript(activeWorkspace.getName(), scriptFileName);
-        int wordCount = fileContent.split(" ").length;
+        int wordCount = fileContent.split(SPLIT_WHITESPACE).length;
         LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
+
+        if (wordsPerHour == 0) {
+            throw new AniException("Please provide a valid words per hour value!");
+        }
 
         StringBuilder commandResult = new StringBuilder();
         if (wordsPerHour != NO_WORDS_PER_HOUR_PROVIDED) {

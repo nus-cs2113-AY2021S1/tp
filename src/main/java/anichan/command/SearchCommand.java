@@ -23,6 +23,7 @@ public class SearchCommand extends Command {
     private static final String SEARCH_TYPE_INVALID_LOG = "Search Type has the wrong values.";
     private static final int SEARCH_BY_NAME = 0;
     private static final int SEARCH_BY_GENRE = 1;
+    private static final int NO_SEARCH_SELECTED = -1;
 
     private static final Logger LOGGER = getAniLogger(SearchCommand.class.getName());
 
@@ -32,15 +33,14 @@ public class SearchCommand extends Command {
     private int searchType;
 
     public SearchCommand() {
+        searchTerm = "";
         searchGenre = "";
         result = "";
-        searchType = SEARCH_BY_NAME;
+        searchType = NO_SEARCH_SELECTED;
     }
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (searchTerm.isEmpty() || searchGenre.isEmpty()) : ASSERT_SEARCH_TERM_EMPTY;
-
         switch (searchType) {
         case SEARCH_BY_NAME:
             searchForAnime(animeData);
@@ -85,10 +85,6 @@ public class SearchCommand extends Command {
     public void setSearchGenre(String searchGenre) {
         this.searchGenre = searchGenre;
         this.searchType = SEARCH_BY_GENRE;
-    }
-
-    public int getSearchType() {
-        return searchType;
     }
 
     public void setSearchType(int searchType) {
