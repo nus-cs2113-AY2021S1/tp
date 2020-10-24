@@ -70,9 +70,7 @@ public class Ui {
                 + " \n"
                 + ("edit") + " - Edits your show details\n"
                 + " \n"
-                + ("rating") + " - Set rating of your show\n"
-                + "\n"
-                + ("list") + " - Displays all your shows in list\n"
+                + ("list") + " - Displays all your shows in thw watchlist\n"
                 + "\n"
                 + ("delete") + " - Deletes your show\n"
                 + " \n"
@@ -80,11 +78,13 @@ public class Ui {
                 + "\n"
                 + ("changerating") + " - Changes rating of your show\n"
                 + "\n"
-                + ("addreview") + " - Adds a review of your show\n"
+                + ("addreview") + " - Adds a review to your show\n"
                 + "\n"
                 + ("episode") + " - Update your episode progress\n"
                 + "\n"
                 + ("season") + " - Update your season progress\n"
+                + "\n"
+                + ("search") + " - Look for your show in the watchlist\n"
                 + "\n"
                 + ("updatetimelimit") + " - Update your watch time limit\n"
                 + "\n"
@@ -154,6 +154,12 @@ public class Ui {
     public static void printChangeEpisode(String showName) {
         printLine();
         System.out.println("Updated current episode : " + ShowList.getShow(showName).toString());
+
+    }
+
+    public static void printReviewAdded(String showName) {
+        printLine();
+        System.out.println("Your review for " + showName + " has been added.");
 
     }
 
@@ -231,6 +237,12 @@ public class Ui {
             + "\n" + WatchTime.userReportString());
     }
 
+    public static void printSearchSuccessful(String name) {
+        printLine();
+        System.out.println("The show: " + name + " is found, here is the detailed information: ");
+        System.out.println(ShowList.getShowList().get(name).toString());
+    }
+
     public static void printInvalidEpisodesInputException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
@@ -275,5 +287,7 @@ public class Ui {
         printLine();
         System.out.println(WatchTime.userReportString());
     }
+
+
 }
 

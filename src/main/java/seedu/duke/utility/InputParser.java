@@ -5,12 +5,12 @@ import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
 import seedu.duke.commands.EditCommand;
-import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
 import seedu.duke.commands.WatchCommand;
 import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.SearchCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,10 +73,6 @@ public class InputParser {
             parseSeasonUpdateCommand(input, command);
             return command;
 
-        case "rating":
-            parseAddRatingCommand(input);
-            return command;
-
         case "deleterating":
             parseDeleteRatingCommand(input);
             return command;
@@ -117,10 +113,14 @@ public class InputParser {
             parseAddReviewCommand(input);
             return command;
 
+        case "search":
+            parseSearchCommand(command,input);
+            return command;
 
         case "":
             Ui.printNoInputException();
             return command;
+
 
         default:
             Ui.printBadInputException();
@@ -193,6 +193,20 @@ public class InputParser {
         }
     }
 
+    private static void parseSearchCommand(String command,String input) {
+        ArrayList<String> tokenizedString = tokenizeStringArray(input);
+        try {
+            SearchCommand searchCommand = new SearchCommand(command,tokenizedString);
+            searchCommand.processCommand();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printSpecifyShowName();
+            return;
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
+            return;
+        }
+    }
+
     private static void parseEpisodeUpdateCommand(String input, String command) {
         ArrayList<String> updateInputs = tokenizeStringArray(input);
         UpdateShowEpisodeProgressCommand updateShowProgress;
@@ -216,28 +230,6 @@ public class InputParser {
             return;
         }
         updateShowSeason.processCommand();
-    }
-
-    /**
-     * Parses command for adding a rating in an existing show in the watch list.
-     *
-     * @param input Command inputted by user in string format.
-     * @throws IndexOutOfBoundsException if input is empty or rating was not specified.
-     * @throws NullPointerException      if the input is invalid or show could not be found.
-     */
-    private static void parseAddRatingCommand(String input) {
-        input = removeFirstWord(input);
-        try {
-            String[] tokenizedInput = input.split(" ");
-            int showRating = Integer.parseInt(tokenizedInput[1]);
-            RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
-            newShowRating.rateShow(tokenizedInput[0], showRating);
-            Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
-        } catch (NullPointerException e) {
-            Ui.printBadInputException();
-        } catch (IndexOutOfBoundsException e) {
-            Ui.printInvalidRatingInput();
-        }
     }
 
     /**
@@ -343,6 +335,8 @@ public class InputParser {
             Ui.printInvalidFormatException();
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 }
