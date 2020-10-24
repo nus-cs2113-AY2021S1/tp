@@ -309,14 +309,20 @@ public class Ui {
     }
 
     /**
-     * Prints an exit message when DietBook is closed.
+     * Returns a string representation of a list of food list related commands that users can input.
      *
-     * @param name The name of the user.
+     * @return A string representation of a list of food list related commands that users can input.
      */
-    public void printExitMessage(String name) {
-        assert name != null : "Name should not be null";
-        assert trimStringGetLength(name) > 0 : "Name should not be an empty string";
-        print("Bye " + trimString(name) + "! Hope to see you again soon!");
+    private String getFoodListRelatedCommands() {
+        return "  To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
+                + "[p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
+                + "  To view all food in DietBook: list" + LINE_SEPARATOR
+                + "  To view all food in DietBook recorded within a time period: list yyyy-mm-ddTHH:mm "
+                + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+                + "  To view all food in DietBook recorded from a certain date until now: list "
+                + "yyyy-mm-ddTHH:mm " + LINE_SEPARATOR
+                + "  To delete a food from DietBook: delete INDEX" + LINE_SEPARATOR
+                + "  To delete all food items from the DietBook: clear" + LINE_SEPARATOR;
     }
 
     /**
