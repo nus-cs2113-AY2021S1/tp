@@ -73,7 +73,7 @@ This command handles all workspace related operations:
 * Deletes workspace
 
 Therefore, the command parameter for workspace command is dependent on the operation you wish to use. 
-For example, -l would signify list workspace while -d signifies delete.
+For example, `-l` would signify list workspace while `-d` signifies delete.
 
 #### 3.2.1 Creating new workspace
 
