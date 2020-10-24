@@ -6,10 +6,14 @@ import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
 import anichan.parser.BookmarkParser;
-import anichan.parser.BrowseParser;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.BeforeAll;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +36,7 @@ class BookmarkAnimeCommandTest {
     private static final String VALID_ADD_TEST2 = "-a 2";
     private static final String VALID_ADD_TEST3 = "-a 3";
     private static final String VALID_ADD_TEST4 = "-a 4";
-    private final String VALID_LIST_TEST = "-l";
+    private static final String VALID_LIST_TEST = "-l";
     private static final String VALID_DELETE_TEST = "-d 2";
     private static final String VALID_EDIT_TEST = "1 -e 1";
     private static final String VALID_NOTE_TEST = "1 -n test";

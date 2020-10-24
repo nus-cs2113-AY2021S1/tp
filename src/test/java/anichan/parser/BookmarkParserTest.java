@@ -25,16 +25,16 @@ class BookmarkParserTest {
     private static final String NEGATIVE_BOOKMARKID_EDIT_TEST = "-1 -e 1";
     private static final String INVALID_FIELD_NOTE_TEST1 = "1 -n  ";
     private static final String INVALID_FIELD_NOTE_TEST2 = "1 -n  -afds";
-    private final String INVALID_FIELD_LIST = "-l test";
+    private static final String INVALID_FIELD_LIST = "-l test";
     private static final String INVALID_SINGLE_INPUT_TEST = "a";
     private static final String UNKNOWN_PARAMETER = "-h";
 
     private static final String VALID_SINGLE_INPUT_TEST = "1";
     private static final String VALID_SINGLE_INPUT_TEST2 = "10";
-    private static final String VALID_ADD_TEST= "-a 1";
-    private static final String VALID_DELETE_TEST= "-d 1";
+    private static final String VALID_ADD_TEST = "-a 1";
+    private static final String VALID_DELETE_TEST = "-d 1";
     private static final String VALID_NOTE_TEST = "1 -n test";
-    private final String VALID_LIST_TEST = "-l";
+    private static final String VALID_LIST_TEST = "-l";
     private static final String VALID_EDIT_TEST = "1 -e 1";
 
     //==================== Valid Input Test ===========================
@@ -105,7 +105,7 @@ class BookmarkParserTest {
         });
     }
 
-        @Test
+    @Test
     void execute_invalidFirstParameter_ThrowsAniException() throws AniException {
         BookmarkParser testAdd1 = new BookmarkParser();
         assertThrows(AniException.class, () -> {
