@@ -221,8 +221,6 @@ Enter new exercise name: [previous: Push ups]
 Push ups
 Enter new calories [previous: 500]
 1000
-Enter new duration [previous: 20]
-30
 Successfully edited exercise!
 ```
 
