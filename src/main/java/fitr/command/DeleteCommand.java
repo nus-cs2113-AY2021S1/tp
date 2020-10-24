@@ -19,7 +19,6 @@ public class DeleteCommand extends Command {
     public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         try {
-            command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];
             if (type.equals("food")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);

@@ -12,6 +12,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 
+import static fitr.DateManager.getCurrentDate;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 
 public class AddExerciseCommand extends Command {
@@ -22,7 +23,6 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
-        command = command.split(" ", 2)[1];
         try {
             String nameOfExercise = command.split("/", 2)[0];
             if (nameOfExercise.isEmpty()) {
@@ -35,7 +35,7 @@ public class AddExerciseCommand extends Command {
                 if (amountOfCaloriesBurnt.get() < -1) {
                     throw new NumberFormatException();
                 }
-                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
+                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
                 storageManager.writeExerciseList(exerciseList);
                 Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
             } else {
