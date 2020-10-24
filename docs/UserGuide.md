@@ -1,6 +1,19 @@
 # User Guide for E-Duke-8
 
-- Table of Contents {:toc}
+- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
+  - [Introduction](#introduction)
+  - [Quick Start](#quick-start)
+  - [Features](#features)
+    - [Welcome Page](#welcome-page)
+    - [Viewing E-Duke-8 information : `about`](#viewing-e-duke-8-information--about)
+    - [Viewing available commands : `help`](#viewing-available-commands--help)
+    - [Listing all topics : `topics`](#listing-all-topics--topics)
+    - [Accessing the CS2113T textbook content: `textbook`](#accessing-the-cs2113t-textbook-content-textbook)
+    - [Starting a quiz: `quiz`](#starting-a-quiz-quiz)
+    - [Showing a hint : `hint`](#showing-a-hint--hint)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [FAQ](#faq)
+  - [Command summary](#command-summary)
 
 ## Introduction
 
