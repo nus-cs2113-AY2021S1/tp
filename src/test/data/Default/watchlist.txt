@@ -1,4 +1,2 @@
 First | []
-Second | [1, 2]
-Third | [3]
 Test | []

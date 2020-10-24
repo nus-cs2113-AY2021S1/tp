@@ -11,10 +11,8 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    public Bookmark bookmark;
-
+    private Bookmark bookmark;
     protected String workspaceName;
-
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 
@@ -29,6 +27,10 @@ public class Workspace {
         this.workspaceName = workspaceName;
         this.watchlistList = watchlistList;
         this.bookmark = bookmark;
+    }
+
+    public Bookmark getBookmark() {
+        return bookmark;
     }
 
     public String getName() {
@@ -61,42 +63,4 @@ public class Workspace {
     public ArrayList<Watchlist> getWatchlistList() {
         return watchlistList;
     }
-
-    public String getBookmarkListInString(AnimeData animeData) {
-        return bookmark.getListInString(animeData);
-    }
-
-    public void removeBookmarkEntry(Integer bookmarkIndex) {
-        bookmark.removeAnimeBookmark(bookmarkIndex);
-    }
-
-    public void addBookmarkEntry(Integer animeIndex) {
-        bookmark.addAnimeBookmark(animeIndex);
-    }
-
-    public Integer getBookmarkSize() {
-        return bookmark.getBookmarkSize();
-    }
-
-    public Anime getAnimeFromBookmark(AnimeData animeData, Integer bookmarkIndex) {
-        return bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex);
-    }
-
-    public void editBookmarkEpisode(Integer bookmarkIndex, Integer bookmarkEpisode) {
-        bookmark.editAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode);
-    }
-
-    public String getBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
-        return bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex);
-    }
-
-    public void addBookmarkNote(Integer bookmarkIndex, String note) {
-        bookmark.addNote(bookmarkIndex, note);
-    }
-
-    public String getBookmarkNote(Integer bookmarkIndex) {
-        return bookmark.getNoteInString(bookmarkIndex);
-
-    }
-
 }

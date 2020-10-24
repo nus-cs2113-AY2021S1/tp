@@ -80,11 +80,37 @@ COOKIES N CREME CH33SECAKE (Default) #> Saving 1. Cowboy Bebop to bookmark.
 
 COOKIES N CREME CH33SECAKE (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
 
+COOKIES N CREME CH33SECAKE (Default) #> Saving 2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 500. Wind: A Breath of Heart (2004) to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 3. Trigun to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 430. To Heart 2 to bookmark.
+
 COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode
 
+COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 4 episode
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 6 episode
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing Wind: A Breath of Heart (2004) to have 8 episode
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test 2 withspace" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing 123" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing on 2" to InuYasha the Movie 2: The Castle Beyond the Looking Glass!
+
 COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
-	1. Cowboy Bebop Ep: 5
+	1. Cowboy Bebop
 	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
+	3. Cowboy Bebop: The Movie - Knockin' on Heaven's Door
+	4. Wind: A Breath of Heart (2004)
+	5. Trigun
+	6. To Heart 2
 
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Anime is already in this watchlist!

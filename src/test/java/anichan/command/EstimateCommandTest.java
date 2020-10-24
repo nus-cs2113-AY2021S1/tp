@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class EstimateCommandTest {
     private static final String SCRIPT_FILE_NAME = "script.txt";
@@ -30,6 +29,7 @@ class EstimateCommandTest {
                                                        + File.separator;
 
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
+    private static final int ZERO = 0;
 
     private StorageManager validSM;
     private StorageManager emptySM;
@@ -56,40 +56,43 @@ class EstimateCommandTest {
 
     @Test
     void execute_validScriptFile_success() throws AniException {
-        // Words per hour not specified.
+        // Words per hour (wph) not specified.
         String expectedNoWphResult = "Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).";
         expectedNoWphResult += System.lineSeparator();
         expectedNoWphResult += "Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).";
         expectedNoWphResult += System.lineSeparator();
         expectedNoWphResult += "Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).";
 
-        EstimateCommand estimateCommandNoWph = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
-        String noWphResult = estimateCommandNoWph.execute(animeData, validSM, user);
+        EstimateCommand noWph = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
+        String noWphResult = noWph.execute(animeData, validSM, user);
         assertEquals(expectedNoWphResult, noWphResult);
 
-        // Words per hour specified.
-        String expectedWphResult = "You would need 2 hour(s) 58 minute(s).";
+        // Words per hour specified (with hours and minutes).
+        EstimateCommand wphWithHoursAndMinutes = new EstimateCommand(SCRIPT_FILE_NAME, 777);
+        String wphWithHoursAndMinutesResult = wphWithHoursAndMinutes.execute(animeData, validSM, user);
+        assertEquals("You would need 2 hour(s) 58 minute(s).", wphWithHoursAndMinutesResult);
 
-        EstimateCommand estimateCommandHaveWph = new EstimateCommand(SCRIPT_FILE_NAME, 777);
-        String haveWphResult = estimateCommandHaveWph.execute(animeData, validSM, user);
-        assertEquals(expectedWphResult, haveWphResult);
+        // Words per hour specified (with only hours).
+        EstimateCommand wphWithOnlyHours = new EstimateCommand(SCRIPT_FILE_NAME, 2288);
+        String wphWithOnlyHoursResult = wphWithOnlyHours.execute(animeData, validSM, user);
+        assertEquals("You would need 1 hour(s).", wphWithOnlyHoursResult);
     }
 
     @Test
     void execute_invalidDirectory_throwsAniException() {
         EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
-        assertThrows(AniException.class, () -> {
-            estimateCommand.execute(animeData, invalidDirectorySM, user);
-            fail();
-        });
+        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, invalidDirectorySM, user));
     }
 
     @Test
     void execute_emptyFile_throwsAniException() {
         EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
-        assertThrows(AniException.class, () -> {
-            estimateCommand.execute(animeData, emptySM, user);
-            fail();
-        });
+        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, emptySM, user));
+    }
+
+    @Test
+    void execute_zeroWordsPerHourSpecified_throwsAniException() {
+        EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, ZERO);
+        assertThrows(AniException.class, () -> estimateCommand.execute(animeData, validSM, user));
     }
 }

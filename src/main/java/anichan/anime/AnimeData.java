@@ -10,11 +10,13 @@ public class AnimeData {
     //private ArrayList<Anime> animeOriginalDataList;
 
     public AnimeData(ArrayList<Anime> animeDataList) {
+        Anime.setTotalAnime(0);
         this.animeDataList = animeDataList;
         //this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
     }
 
     public AnimeData() throws AniException {
+        Anime.setTotalAnime(0);
         AnimeStorage animeStorage = new AnimeStorage();
         loadAnimeData(animeStorage.readAnimeDatabase());
     }

@@ -34,6 +34,7 @@ class WatchlistParserTest {
         assertThrows(AniException.class, () -> watchlistParser.parse("-d"));
 
         assertThrows(AniException.class, () -> watchlistParser.parse("-l a"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-s 0"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s one"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d one"));
     }
