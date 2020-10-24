@@ -67,9 +67,10 @@ public class RecommendCommand extends Command {
             } else {
                 throw new FitrException();
             }
-        } catch (FitrException e){
+        } catch (FitrException e) {
             Ui.printCustomError("Sorry, that is an invalid command");
-        } catch (IOException e){
+        } catch (IOException e)
+        {
             Ui.printCustomError("Sorry there is an error with the file");
         }
 
