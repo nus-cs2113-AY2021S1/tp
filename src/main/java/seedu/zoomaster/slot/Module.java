@@ -67,7 +67,8 @@ public class Module {
         return slot;
     }
 
-    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) throws ZoomasterException {
+    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) 
+        throws ZoomasterException {
         Slot slot = new Slot(startTime, endTime, day, lesson);
         return slot;
     }
