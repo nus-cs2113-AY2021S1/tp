@@ -28,6 +28,7 @@ public class ViewTaskCommand extends TaskCommand {
             Project proj = projectListManager.getProject();
             if (parameters.isEmpty()) {
                 Ui.showError("Missing parameters.");
+                return;
             }
             Ui.showToUserLn("The details of the tasks are as follows: ");
             for (int i = 0; i < parameters.size(); i++) {
