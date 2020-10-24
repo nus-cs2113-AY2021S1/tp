@@ -38,6 +38,13 @@ public class SingleTopicQuiz implements Quiz {
         quizParser = new QuizParser(bookmarks);
     }
 
+    /**
+     * Starts a quiz with a single topic.
+     *
+     * @param ui  Ui to print quiz messages.
+     * @throws Eduke8Exception if numberOfQuestions used to construct QuizQuestionsManager <= 0
+     * or > number of question in the topic.
+     */
     @Override
     public void startQuiz(Ui ui) throws Eduke8Exception {
         LOGGER.log(Level.INFO, "New quiz started.");

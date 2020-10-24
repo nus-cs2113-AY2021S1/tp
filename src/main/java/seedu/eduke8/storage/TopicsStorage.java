@@ -32,6 +32,13 @@ public class TopicsStorage extends LocalStorage {
         super(filePath);
     }
 
+    /**
+     * Returns topics loaded from a local file in JSON format
+     *
+     * @return Topics loaded into an ArrayList.
+     * @throws IOException  If the file is not found or cannot be read.
+     * @throws ParseException  If the file contents cannot be parsed as a JSON.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public ArrayList<Displayable> load() throws IOException, ParseException {
