@@ -445,15 +445,19 @@ then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 * Bookmark(s) data are also stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
 ## 4. FAQ
-Coming soon!
 
+**Q:** What is a workspace?
+<br/>
+**A:** Workspace is a functionality in AniChan which provides users the flexibility to organise information. 
+As application data like watchlist and bookmarks are linked to workspace, switching workspace would provide a 
+clean slate environment to work in.
 
 ## 5. Command Summary
 
 |Feature|Command|
 |---|---|
 | Help                                     | `help`                                                   |
-| Add workspace                            | `workspace -n <NAME>`                                    |
+| Create new workspace                     | `workspace -n <NAME>`                                    |
 | Switch workspace                         | `workspace -s <NAME>`                                    |
 | List workspace                           | `workspace -l`                                           |
 | Delete workspace                         | `workspace -d <NAME>`                                    |
