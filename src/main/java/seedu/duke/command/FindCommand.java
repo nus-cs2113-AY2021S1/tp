@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 
-import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
-
 /**
  * Finds Notes in the Notebook.(Possible to add find in event too)
  */
@@ -51,9 +49,7 @@ public class FindCommand extends Command {
         setupLogger();
         LOGGER.log(Level.INFO, "Logger Setup, will proceed to execute FindCommand.");
 
-        ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().toLowerCase().contains(keywords.toLowerCase()))
-                .collect(Collectors.toList());
+        ArrayList<Note> filteredNotes = notebook.findNotes(keywords);
 
         LOGGER.log(Level.INFO, "Filtered Notes into an ArrayList of notes. "
                 + "Filtered Notes only has notes with title containing the keyword.");

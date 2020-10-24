@@ -33,6 +33,39 @@ public class FormatterStub extends Formatter {
                     + System.lineSeparator();
         }
 
+        if (message.equals("The notebook is empty!")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "                                                                         ||"
+                    + System.lineSeparator();
+        }
+
+        if (message.equals("Here are the list of notes:")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "                                                                    ||"
+                    + System.lineSeparator();
+        }
+
+        if (message.equals("Here are the list of pinned notes:")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "                                                             ||"
+                    + System.lineSeparator();
+        }
+
+        if (message.equals("Here are the list of unpinned notes:")
+                || message.equals("Here are the list of archived notes:")) {
+            return System.lineSeparator()
+                    + "|| "
+                    + message
+                    + "                                                           ||"
+                    + System.lineSeparator();
+        }
+
         return "";
     }
 

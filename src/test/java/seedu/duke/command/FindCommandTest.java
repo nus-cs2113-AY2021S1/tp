@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.jupiter.api.Test;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
-
-import org.junit.jupiter.api.Test;
-import seedu.duke.ui.Formatter;
+import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.FormatterStub;
 
 import java.util.ArrayList;
 
@@ -15,6 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class FindCommandTest {
 
     Notebook notebook;
+    int maxRowLength = 100;
+
+    ArrayList<Tag> tag = new ArrayList<>();
+    Tag tagImpt;
 
     @BeforeEach
     void setup() {
@@ -23,28 +26,30 @@ class FindCommandTest {
 
         content.add("default");
 
-        Note defaultNote = new Note("Default", content, false);
-        Note testNote1 = new Note("TestNote1", content, false);
+        tag.add(tagImpt);
+
+        Note defaultNote = new Note("Default", content, false, tag);
+        Note testNote1 = new Note("TestNote1", content, true, tag);
         Note testNote2 = new Note("TestNote2", content, false);
+        Note testNote3 = new Note("Song Lyrics", content, true);
 
         notebook.addNote(defaultNote);
         notebook.addNote(testNote1);
         notebook.addNote(testNote2);
+        notebook.addNote(testNote3);
     }
 
     @Test
     void execute_keywordTest_returnsTestNote1AndTestNote2() {
-        //String keyword = "Test";
+        String keyword = "Test";
 
-        //String expected = "Here are the matching notes in your list:"
-                //+ Formatter.LS
-                //+ "1. TestNote1 "
-                //+ Formatter.LS
-                //+ "2. TestNote2 "
-                //+ Formatter.LS;
-        //String result = getCommandExecutionString(notebook, keyword);
+        String expected = "=".repeat(maxRowLength)
+                + FormatterStub.encloseRow(FindCommandStub.execute(keyword))
+                + "=".repeat(maxRowLength)
+                + System.lineSeparator();
+        String result = getCommandExecutionString(notebook, keyword);
 
-        //assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test

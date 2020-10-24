@@ -46,7 +46,7 @@ Ensures that you are using the correct JDK version (For this project we are usin
 ## <a id="design">2. Design & Implementation</a>
 
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes. <br>
-We have made references to <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook">addressbook-level2</a> for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
+Diagrams found in our documentation were generated using <a href="https://plantuml.com/">PlantUML</a> and references were made to <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook">addressbook-level2</a> for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
@@ -64,6 +64,13 @@ The architecture design is given in the diagram above. The main components of No
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
+
+A Program Evaluation Review Technique (PERT) Chart was created prior to the start of developing NotUS and was constantly updated based on progress and updates from the development team's weekly meetings. A PERT chart is a project management tool that provides a visual representation of a project's timeline. The chart breaks down the individual tasks and aids in identifying task dependencies. A diagram of the PERT chart used for this application is shown below.
+
+<p align="center">
+  <img alt="PERT Chart" src="diagrams/out/PERT_Chart.png" />
+  <br><em>Figure #</em>
+</p>
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 

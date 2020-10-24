@@ -347,6 +347,12 @@ public class Notebook {
         return archivedNotes;
     }
 
+    public ArrayList<Note> findNotes(String keywords) {
+        return (ArrayList<Note>) notes.stream()
+                .filter((s) -> s.getTitle().toLowerCase().contains(keywords.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
     public int getSize() {
         return notes.size();
     }

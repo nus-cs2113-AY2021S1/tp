@@ -1,21 +1,19 @@
 package seedu.duke.command;
 
-import com.diogonunes.jcolor.Attribute;
-import static com.diogonunes.jcolor.Ansi.colorize;
-
 import seedu.duke.ui.Formatter;
+import static seedu.duke.command.HelpCommand.getColor;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.duke.command.HelpCommand.getColor;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 class HelpCommandTest {
 
     private static final String HELP_STRING = "The recognized commands and their usages are listed below. "
             + "Parameters listed in brackets, [ ], represent optional inputs.";
 
-    public static final String[] COMMANDS_USAGE = {
-        HELP_STRING,
+    public static final String[] COMMANDS_USAGE = {HELP_STRING,
             colorize(AddNoteCommand.COMMAND_USAGE, getColor(false)),
             colorize(AddEventCommand.COMMAND_USAGE, getColor(true)),
             colorize(ArchiveNoteCommand.COMMAND_USAGE, getColor(false)),

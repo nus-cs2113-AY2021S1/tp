@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.NotebookStub;
@@ -89,6 +90,20 @@ class UnarchiveNoteCommandTest {
 
         String expected = "=".repeat(maxRowLength)
                 + FormatterStub.encloseRow(NotebookStub.getUnarchiveNoteTitle(title), true)
+                + "=".repeat(maxRowLength)
+                + System.lineSeparator();
+        String result = getCommandExecutionString(notebook, title);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void execute_existingNoteTitle_returnsNoNoteMessage() {
+        String title = "random text";
+        notebook.unarchiveNotes(title);
+
+        String expected = "=".repeat(maxRowLength)
+                + FormatterStub.encloseRow("nil")
                 + "=".repeat(maxRowLength)
                 + System.lineSeparator();
         String result = getCommandExecutionString(notebook, title);
