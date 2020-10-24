@@ -57,7 +57,12 @@ public class StorageManager {
     }
 
     public User loadUserProfile() throws FileNotFoundException {
-        return userStorage.loadUserProfile();
+        try {
+            return userStorage.loadUserProfile();
+        } catch (InvalidFileFormatException e) {
+            Ui.printCustomError("Error: Invalid user file - creating a new user!");
+            return new User();
+        }
     }
 
     public void writeUserProfile(User user) throws IOException {

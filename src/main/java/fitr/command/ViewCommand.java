@@ -27,6 +27,7 @@ import static fitr.common.Messages.SPACE_FORMATTING;
 import static fitr.common.Messages.CAL_HEADER;
 import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
+import static fitr.common.Messages.DATE_HEADER;
 
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
@@ -72,7 +73,8 @@ public class ViewCommand extends Command {
             while (index < foodList.getSize()) {
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                         + FOOD_HEADER + foodList.getFood(index).getFoodName()
-                        + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories());
+                        + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories()
+                        + SPACE_FORMATTING + DATE_HEADER + foodList.getFood(index).getDate());
                 index++;
                 printIndex++;
             }
@@ -90,8 +92,8 @@ public class ViewCommand extends Command {
             while (index < exerciseList.getSize()) {
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                         + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
-                        + SPACE_FORMATTING + BURNT_CAL_HEADER
-                        + exerciseList.getExercise(index).getCalories());
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories()
+                        + SPACE_FORMATTING + DATE_HEADER + exerciseList.getExercise(index).getDate());
                 index++;
                 printIndex++;
             }

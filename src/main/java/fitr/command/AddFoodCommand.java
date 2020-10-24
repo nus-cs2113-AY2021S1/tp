@@ -14,6 +14,7 @@ import fitr.user.User;
 import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.DateManager.getCurrentDate;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -35,11 +36,15 @@ public class AddFoodCommand extends Command {
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories));
+                foodList.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
                 storageManager.writeFoodList(foodList);
-                Ui.printCustomMessage("The following food has been added: " + nameOfFood);
+                Ui.printCustomMessage("The following food has been added:\n"
+                        + "Name of Food: " + nameOfFood + "\n"
+                        + "Calorie Consumed: " + amountOfCalories.get()
+                );
             } else if (command.split(" ").length == 2) {
-                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
+                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0])
+                        * Integer.parseInt(command.split(" ")[1]));
                 int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
@@ -47,9 +52,11 @@ public class AddFoodCommand extends Command {
                 if (amountOfFood < 0) {
                     throw new FitrException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
+                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
                 storageManager.writeFoodList(foodList);
-                Ui.printCustomMessage("The following food has been added: " + nameOfFood);
+                Ui.printCustomMessage("The following food has been added:\n"
+                        + "Name of Food: " + nameOfFood + "\n"
+                        + "Calorie Consumed: " + amountOfCalories.get());
             }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError("Sorry, invalid calorie amount entered");

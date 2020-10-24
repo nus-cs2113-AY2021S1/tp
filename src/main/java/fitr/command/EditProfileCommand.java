@@ -30,6 +30,8 @@ public class EditProfileCommand extends Command {
             editAge(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_GENDER)) {
             editGender(user);
+        } else if (command.equalsIgnoreCase(Messages.EDIT_FITNESS)) {
+            editFitness(user);
         } else {
             Ui.printInvalidCommandError();
         }
@@ -74,5 +76,11 @@ public class EditProfileCommand extends Command {
         Ui.printCustomMessage(Messages.EDIT_GENDER_HEADER);
         user.setupGender();
         Ui.printCustomMessage(Messages.GENDER_ECHO_HEADER + user.getGender());
+    }
+
+    private void editFitness(User user) {
+        Ui.printCustomMessage(Messages.INPUT_FITNESS_LEVEL);
+        user.setupFitnessLevel();
+        Ui.printCustomMessage(Messages.FITNESS_ECHO_HEADER + user.getUserFitnessLevelString());
     }
 }
