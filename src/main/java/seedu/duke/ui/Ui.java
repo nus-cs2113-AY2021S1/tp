@@ -130,16 +130,21 @@ public class Ui {
     }
 
     public void printReminder(ArrayList<Event> events) {
-        System.out.println("You have the following events today: ");
-        Collections.sort(events, new Comparator<Event>() {
-            @Override
-            public int compare(Event o1, Event o2) {
-                return o1.getTime().compareTo(o2.getTime());
+        if (events.size() == 0) {
+            System.out.println("You have no events today!");
+        } else {
+            System.out.println("You have the following events today: ");
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(Event o1, Event o2) {
+                    return o1.getTime().compareTo(o2.getTime());
+                }
+            });
+            for (int i = 0; i < events.size(); i++) {
+                System.out.println(events.get(i).toString());
             }
-        });
-        for (int i = 0; i < events.size(); i++) {
-            System.out.println(events.get(i).toString());
         }
+
     }
 
     public void printStorageSavedMessage() {
