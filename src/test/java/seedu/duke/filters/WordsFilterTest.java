@@ -1,6 +1,7 @@
 package seedu.duke.filters;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.wordlist.WordList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,9 +41,17 @@ class WordsFilterTest {
         WordList.wordList.clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
-        FilterExecutor.executeFilterCommand("filter by\\type -noun -verb");
+        try {
+            FilterExecutor.executeFilterCommand("filter by\\type -noun -verb");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(7, WordsFilter.filteredWords.size());
-        FilterExecutor.executeFilterCommand("filter -continue by\\type -noun");
+        try {
+            FilterExecutor.executeFilterCommand("filter -continue by\\type -noun");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(4, WordsFilter.filteredWords.size());
     }
 
@@ -51,9 +60,17 @@ class WordsFilterTest {
         WordList.wordList.clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
-        FilterExecutor.executeFilterCommand("filter by\\start -gr -co -s -ho");
+        try {
+            FilterExecutor.executeFilterCommand("filter by\\start -gr -co -s -ho");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(4, WordsFilter.filteredWords.size());
-        FilterExecutor.executeFilterCommand("filter -continue by\\start -g");
+        try {
+            FilterExecutor.executeFilterCommand("filter -continue by\\start -g");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(1, WordsFilter.filteredWords.size());
     }
 
@@ -62,11 +79,23 @@ class WordsFilterTest {
         WordList.wordList.clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
-        FilterExecutor.executeFilterCommand("filter by\\include -mp -pu -a -e");
+        try {
+            FilterExecutor.executeFilterCommand("filter by\\include -mp -pu -a -e");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(10, WordsFilter.filteredWords.size());
-        FilterExecutor.executeFilterCommand("filter -continue by\\include -e");
+        try {
+            FilterExecutor.executeFilterCommand("filter -continue by\\include -e");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(8, WordsFilter.filteredWords.size());
-        FilterExecutor.executeFilterCommand("filter -continue by\\include -lo");
+        try {
+            FilterExecutor.executeFilterCommand("filter -continue by\\include -lo");
+        } catch (FilterCommandException e) {
+            e.printStackTrace();
+        }
         assertEquals(1, WordsFilter.filteredWords.size());
     }
 }
