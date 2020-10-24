@@ -15,6 +15,6 @@ public class InfoCommand extends Command {
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
         Parser.executeProcessedInfo(this.userInput, manager);
-        ui.printTutorialMessage();
+        ui.printInitialisationCompleteMessage();
     }
 }
