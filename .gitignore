@@ -1,17 +1,22 @@
-# IDEA files
-/.idea/
-/out/
-/*.iml
-
 # Gradle build files
 /.gradle/
 /build/
 src/main/resources/docs/
 
+# IDEA files
+/.idea/
+/out/
+/*.iml
+
+# Storage/log files
+/data/
+/config.json
+/preferences.json
+/*.log.*
+
+# Test sandbox files
+src/test/data/sandbox/
+
 # MacOS custom attributes files created by Finder
 .DS_Store
-*.iml
-bin/
-
-/text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+docs/_site/
