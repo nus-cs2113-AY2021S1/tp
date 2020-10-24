@@ -13,13 +13,7 @@ import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.Slot;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;

@@ -182,11 +182,11 @@ public class ShowTimetableCommand extends Command {
         int indextEarlistTimeSlot;
         Slot earlistTimeSlot;
 
-        while(thisDaySlots.size() != 0) {
+        while (thisDaySlots.size() != 0) {
             earlistTimeSlot = thisDaySlots.get(0);
             indextEarlistTimeSlot = 0;
             for (int i = 1; i < thisDaySlots.size(); i++) {
-                if(earlistTimeSlot.getStartTime().isAfter(thisDaySlots.get(i).getStartTime())) {
+                if (earlistTimeSlot.getStartTime().isAfter(thisDaySlots.get(i).getStartTime())) {
                     earlistTimeSlot = thisDaySlots.get(i);
                     indextEarlistTimeSlot = i;
                 }
