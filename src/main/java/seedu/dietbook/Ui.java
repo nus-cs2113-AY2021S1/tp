@@ -297,11 +297,15 @@ public class Ui {
     }
 
     /**
-     * Prints a message to show that the food list has been successfully cleared and is now empty.
+     * Returns a string representation of a list of user information related commands that users can input.
+     *
+     * @return A string representation of a list of user information related commands that users can input.
      */
-    public void printClearFoodListMessage() {
-        print("All previous data has been deleted..." + LINE_SEPARATOR
-                + "DietBook is now empty.");
+    private String getUserRelatedCommands() {
+        return "  To show user information: userinfo" + LINE_SEPARATOR
+                + "  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
+                + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]"
+                + LINE_SEPARATOR;
     }
 
     /**
