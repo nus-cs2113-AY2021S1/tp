@@ -25,6 +25,7 @@ public class Parser {
 
     /**
      * Returns the command of a user input.
+     *
      * @param userInput which is user input.
      * @return First word which is the command of the user input.
      */
@@ -34,6 +35,7 @@ public class Parser {
 
     /**
      * Returns the subsequent parameter after the command from the user input.
+     *
      * @param userInput user input.
      * @return parameter part of the user input.
      * @throws DietException when the user input is of a wrong format.
@@ -62,6 +64,7 @@ public class Parser {
 
     /**
      * Processes the parameters for <code>add</code> command of user input and adds a <code>Food</code> object.
+     *
      * @param userInput user input.
      * @param foodList the FoodList object.
      * @return name of the food that was added.
@@ -117,6 +120,7 @@ public class Parser {
 
     /**
      * Processes the parameters for <code>info</code> command of user input and updates the <code>Person</code> object.
+     *
      * @param userInput user input.
      * @param manager the manager object.
      * @throws DietException when the user input is of a wrong format.
@@ -185,6 +189,7 @@ public class Parser {
 
     /**
      * Returns the index after the command of a user input, e.g. delete 3.
+     *
      * @param userInput user input.
      * @return index part of the user input.
      * @throws DietException when the user input is of a wrong format.

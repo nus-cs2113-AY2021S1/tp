@@ -87,6 +87,7 @@ public class Manager {
 
     /**
      * Takes in the user input and returns the command to be carried.
+     *
      * @param userInput user input.
      * @return <code>Command</code> for the command specified.
      * @throws DietException when the program does not recognize the command given.

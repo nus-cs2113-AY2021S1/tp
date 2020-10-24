@@ -25,6 +25,7 @@ public class InputChecker {
 
     /**
      * Takes in user input and command to check for any expected parameters after the command.
+     *
      * @param userInput user input.
      * @param command command in user input.
      * @throws DietException when at least one parameter is expected but not present.
@@ -38,6 +39,7 @@ public class InputChecker {
 
     /**
      * Takes in processed user input to check for options specified with an empty field.
+     *
      * @param input user input.
      * @throws DietException when an option is specified but its field is empty.
      */
@@ -53,6 +55,7 @@ public class InputChecker {
 
     /**
      * Takes in user input to check if the expected number and type of parameter for the add command is present.
+     *
      * @param userInput user input.
      * @throws DietException when expected parameters are missing.
      */
@@ -66,6 +69,7 @@ public class InputChecker {
 
     /**
      * Takes in user input to check if the expected number and type of parameter for the info command is present.
+     *
      * @param userInput user input.
      * @throws DietException when expected parameters are missing.
      */
@@ -79,6 +83,7 @@ public class InputChecker {
 
     /**
      * Takes in an integer from food to check if the value is within the logical limit.
+     *
      * @param foodValue integer value of attributes.
      * @throws DietException when value is not within the limit.
      */
@@ -92,6 +97,7 @@ public class InputChecker {
 
     /**
      * Takes in user input to check if the nutrient type is of the expected input.
+     *
      * @param userInput user input.
      * @throws DietException when it is not one of the expected nutrient type.
      */
@@ -109,6 +115,7 @@ public class InputChecker {
 
     /**
      * Takes in user input to check if the activity level is of the expected input.
+     *
      * @param userInput user input.
      * @throws DietException when it is not one of the expected activity level.
      */
@@ -126,6 +133,7 @@ public class InputChecker {
 
     /**
      * Takes in user input to check if the gender is of the expected input.
+     *
      * @param userInput user input.
      * @throws DietException when it is not one of the expected gender input.
      */
@@ -143,6 +151,7 @@ public class InputChecker {
 
     /**
      * Takes in an integer age to check if the value is within the logical limit.
+     *
      * @param age integer value of age.
      * @throws DietException when value is not within the limit.
      */
@@ -156,6 +165,7 @@ public class InputChecker {
 
     /**
      * Takes in an integer height to check if the value is within the logical limit.
+     *
      * @param height integer value of height.
      * @throws DietException when value is not within the limit.
      */
@@ -169,6 +179,7 @@ public class InputChecker {
 
     /**
      * Takes in an integer weight to check if the value is within the logical limit.
+     *
      * @param weight integer value of weight.
      * @throws DietException when value is not within the limit.
      */
