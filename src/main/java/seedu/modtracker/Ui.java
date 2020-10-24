@@ -139,7 +139,8 @@ public class Ui {
      * Prints the message when module is deleted.
      */
     public void printDelete(String moduleCode) {
-        System.out.println(moduleCode + " is removed." + System.lineSeparator());
+        System.out.println(moduleCode + " is removed.");
+        System.out.println("All tasks under " + moduleCode + " are deleted." + System.lineSeparator());
     }
 
     /**
