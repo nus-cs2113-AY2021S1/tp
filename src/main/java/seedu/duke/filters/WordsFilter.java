@@ -10,8 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static seedu.duke.filters.FilterList.printFilterList;
-
 /**
  * A class containing algorithms that execute the filter.
  */
@@ -27,7 +25,7 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param types Types of words need filtering.
      */
-    public static void filterByType(boolean isNewFilter, String[] types, int printLimit) {
+    public static void filterByType(boolean isNewFilter, String[] types) {
         if (isNewFilter) {
             filteredWords.clear();
             addTagsToFilteredList(FilterType.WORD_TYPE, types);
@@ -36,8 +34,6 @@ public class WordsFilter {
                     .filter((w) -> Arrays.asList(types).contains(w.getType()))
                     .collect(Collectors.toList());
         }
-
-        printFilterList(printLimit);
     }
 
     /**
@@ -46,7 +42,7 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param startStrings Array of strings that need filtering.
      */
-    public static void filterByStartingString(boolean isNewFilter, String[] startStrings, int printLimit) {
+    public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
         if (isNewFilter) {
             filteredWords.clear();
             addTagsToFilteredList(FilterType.STARTING_STRING, startStrings);
@@ -55,8 +51,6 @@ public class WordsFilter {
             generateListOfRemoveWords(FilterType.STARTING_STRING, startStrings, wordsToRemove);
             removeRedundantWords(wordsToRemove);
         }
-
-        printFilterList(printLimit);
     }
 
     /**
@@ -65,7 +59,7 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param includedStrings Array of strings that needs filtering.
      */
-    public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings, int printLimit) {
+    public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings) {
         if (isNewFilter) {
             filteredWords.clear();
             addTagsToFilteredList(FilterType.INCLUDING_STRING, includedStrings);
@@ -74,8 +68,6 @@ public class WordsFilter {
             generateListOfRemoveWords(FilterType.INCLUDING_STRING, includedStrings, wordsToRemove);
             removeRedundantWords(wordsToRemove);
         }
-
-        printFilterList(printLimit);
     }
 
     private static void generateListOfRemoveWords(FilterType filterType, String[] patterns,
