@@ -9,7 +9,6 @@ import fitr.command.Command;
 import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
-import fitr.command.EditProfileCommand;
 import fitr.command.RecommendCommand;
 import fitr.command.HelpCommand;
 import fitr.command.DeleteCommand;
@@ -50,8 +49,8 @@ public class Parser {
             return new ViewCommand(arguments);
         case Commands.COMMAND_RECOMMEND:
             return new RecommendCommand();
-        case Commands.COMMAND_EDIT_PROFILE:
-            return new EditProfileCommand(arguments);
+        case Commands.COMMAND_EDIT:
+            return new EditCommandParser(arguments).editCommand();
         case Commands.COMMAND_HELP:
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
