@@ -29,11 +29,17 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 ## Quick Start  
   
 1. Ensure that you have Java 11 or above installed.  
-2. Down the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
+2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 3. Copy the `.jar` file to the folder that you want to use as the home folder.
 4. Launch the file using the `java` command: `java -jar zoomaster.jar`.  
   
 ## Features   
+
+>[i] Notes on command format:
+>* Word contained in {currly brackets} are parameters to be supplied by the user. <br>
+>eg. in delete {bookmark_number}, bookmark_number is a parameter which can be used as delete 1.
+>* Items in with (optional) are optional inputs. <br>
+>eg. show {DAY(optional)} can be used as show or as show [mon].
 
 <a name="global"></a> 
 ### Global
@@ -42,8 +48,9 @@ The commands below can be used in both modes of the app.
  
 <a name="mode"></a>  
 #### Switch mode: `mode`
-Switches between the “bookmark” and “timetable” modes. Depending on the mode, 
-the behaviour of the commands below changes.
+You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select, 
+the behaviour of the commands below changes. <br>
+There are two modes for Zoomaster, Bookmark and Timetable.
 
 ```
 Format: mode {bookmark/timetable}
@@ -147,13 +154,16 @@ Example of usage:
 
 <a name="showtimetable"></a>
 #### Show timetable: `show`
-Show the timetable for a certain day or the whole week.
+Show the timetable for a certain day or the whole week. <br>
+Day inputs are in three letter abbreviations eg mon, tue, wed. <br>
+Today can also be a day input to show the timetable for today.
 ```
 Format: show {DAY(optional)}
 ```
 Example of usage:   
 * `show`
 * `show mon`
+* `show today`
 
 <br/><br/> 
 <a name="addtimeslot"></a>

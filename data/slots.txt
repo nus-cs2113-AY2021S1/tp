@@ -289,6 +289,69 @@
             "lineSeparator": "\r\n",
             "items": []
           }
+        },
+        {
+          "startTime": {
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "fri",
+          "title": "lab2",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "fri",
+          "title": "lab3",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "fri",
+          "title": "lab",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
         }
       ]
     }

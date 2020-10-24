@@ -97,9 +97,9 @@ public class AddSlotCommand extends Command {
             LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
             LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
             Slot newSlot;
-            if (module.slotExists(lesson, day, startTime, endTime)) {
+            if (module.isOverlapTimeSlot(day, startTime, endTime)) {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message +=  "  " + lesson + " slot already exists\n";
+                message +=  "  " + lesson + " overlaps with an existing timeslot\n";
             } else {
                 newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                 module.addSlot(newSlot);
@@ -143,4 +143,6 @@ public class AddSlotCommand extends Command {
         Bookmark bookmark = new Bookmark(lesson, url);
         newSlot.addBookmark(bookmark);
     }
+
+
 }

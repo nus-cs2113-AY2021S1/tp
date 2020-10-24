@@ -142,7 +142,8 @@ public class Ui {
     public void showErrorMessage(DukeException dukeException) {
         switch (dukeException.getError()) {
         case UNKNOWN_INPUT:
-            printUnknownInputMessage();
+            print("Unknown input\n");
+            printHelpMessage();
             break;
         case INVALID_MODE:
             printUnknownModeMessage();
@@ -230,13 +231,13 @@ public class Ui {
         printRed("Please enter " + info + " with input!\n");
     }
 
-    private void printUnknownInputMessage() {
+    public void printHelpMessage() {
         if (Parser.programMode == 0) {
-            print("Unknown input\n" + "Available inputs in Main menu are\n"
+            print("Available inputs in Main menu are\n"
                     + "1) mode {bookmark/timetable}\n"
                     + "2) exit\n");
         } else if (Parser.programMode == 1) {
-            print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
+            print("Available inputs in Bookmark mode are\n"
                     + "1) " + AddBookmarkCommand.ADD_KW + "\n"
                     + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
                     + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
@@ -245,7 +246,7 @@ public class Ui {
                     + "6) " + ChangeModeCommand.MODE_KW + " timetable\n"
                     + "7) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
-            print("Unknown input\n" + "Available inputs in Timetable mode are\n"
+            print("Available inputs in Timetable mode are\n"
                     + "1) " + AddSlotCommand.ADD_KW + "\n"
                     + "2) " + DeleteSlotCommand.DEL_KW + "\n"
                     + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
