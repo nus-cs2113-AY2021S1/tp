@@ -15,6 +15,7 @@ import fitr.Exercise;
 
 import java.io.IOException;
 
+import static fitr.DateManager.getCurrentDate;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
 import static fitr.common.Messages.EXERCISE_HEADER;
@@ -42,6 +43,7 @@ public class RecommendCommand extends Command {
                     + recommendList.getExercise(i).getDuration().get(fitnessLevel) + " minutes"
                     + SPACE_FORMATTING + BURNT_CAL_HEADER + calorieBurnt);
         }
+      
         Ui.printCustomMessage("Will you be doing this workout?\n"
                 + "type y for yes and n for no!");
         String checker = Ui.read();
@@ -59,9 +61,9 @@ public class RecommendCommand extends Command {
                             + EXERCISE_HEADER + standardExercise.getName()
                             + SPACE_FORMATTING + BURNT_CAL_HEADER
                             + caloriesBurnt.get());
-                    exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt));
-                }
-                storageManager.writeExerciseList(exerciseList);
+                    exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
+                    storageManager.writeExerciseList(exerciseList);
+                }    
             } else if (checker.equals("n")) {
                 Ui.printCustomMessage("Next time then!");
             } else {

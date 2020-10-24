@@ -14,6 +14,7 @@ import fitr.user.User;
 import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.DateManager.getCurrentDate;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -35,7 +36,7 @@ public class AddFoodCommand extends Command {
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories));
+                foodList.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
                 storageManager.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added:\n"
                         + "Name of Food: " + nameOfFood + "\n"
@@ -51,7 +52,7 @@ public class AddFoodCommand extends Command {
                 if (amountOfFood < 0) {
                     throw new FitrException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
+                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
                 storageManager.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added:\n"
                         + "Name of Food: " + nameOfFood + "\n"

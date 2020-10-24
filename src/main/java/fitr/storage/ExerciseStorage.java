@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static fitr.DateManager.getCurrentDate;
 import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 /**
@@ -55,11 +56,11 @@ public class ExerciseStorage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
 
-            if (arguments.length != 2) {
+            if (arguments.length != 3) {
                 throw new InvalidFileFormatException();
             }
 
-            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1]))));
+            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])), arguments[2]));
         }
 
         LOGGER.fine("Exercise list file read successfully.");
@@ -80,7 +81,8 @@ public class ExerciseStorage {
         for (int i = 0; i < exerciseList.getSize(); i++) {
             exercise = exerciseList.getExercise(i);
             file.write(exercise.getNameOfExercise()
-                    + COMMA_SEPARATOR + exercise.getCalories() + System.lineSeparator());
+                    + COMMA_SEPARATOR + exercise.getCalories()
+                    + COMMA_SEPARATOR + exercise.getDate() + System.lineSeparator());
         }
 
         LOGGER.fine("Exercise list file written successfully.");
