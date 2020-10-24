@@ -4,7 +4,7 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify v1.0!
+Welcome to Quotesify v2.0!
 Before you continue, here's something:
 *Inserts inspirational quote here*
 
