@@ -3,12 +3,16 @@ package seedu.duke.functions;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.commands.CommandChecker;
 
+import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
+import seedu.duke.filters.FilterList;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
@@ -48,7 +52,15 @@ public class CommandExecutor {
             WordList.listWords();
             break;
         case FILTER_WORDS:
-            FilterExecutor.executeFilterCommand(userInput);
+            try {
+                FilterExecutor.executeFilterCommand(userInput);
+            } catch (FilterCommandException e) {
+                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
+            }
+            break;
+        case LIST_FILTER:
+            int printLimit = FilterCommandSlicer.getWordPrintLimitFromListFilterCommand(userInput);
+            FilterList.printFilterList(printLimit);
             break;
         case BUNNY:
             try {
