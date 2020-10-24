@@ -253,6 +253,16 @@ public class Ui {
                 + "Total carbohydrate intake: " + carbohydrateIntake + "g" + LINE_SEPARATOR
                 + "Total protein intake: " + proteinIntake + "g" + LINE_SEPARATOR
                 + "Total fat intake: " + fatIntake + "g");
+    // Helper methods for system related commands or messages
+
+    /**
+     * Returns a string representation of a list of system related commands that users can input.
+     *
+     * @return A string representation of a list of system related commands that users can input.
+     */
+    private String getSystemRelatedCommands() {
+        return "  To view a list of valid commands: help" + LINE_SEPARATOR
+                + "  To exit DietBook: exit";
     }
 
     /**
