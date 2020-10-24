@@ -204,11 +204,25 @@ public class EditCommand extends Command {
 
             Category category = categoryList.getCategoryByName(oldCategory);
             category.setCategoryName(newCategory);
-            categoryList.editCategoryInBooksAndQuotes(oldCategory, newCategory);
+            editCategoryInBooksAndQuotes(oldCategory, newCategory);
             ui.printEditCategory(oldCategory, newCategory);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
+    }
+
+    public void editCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
+            book.getCategories().remove(oldCategory);
+            book.getCategories().add(newCategory);
+        });
+
+        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
+            quote.getCategories().remove(oldCategory);
+            quote.getCategories().add(newCategory);
+        });
     }
 
     @Override

@@ -251,7 +251,7 @@ public class TextUi {
             for (Quote quote : quoteList.getList()) {
                 int index = allQuotes.getIndex(quote) + 1;
                 // used print() because quote.toString() has additional line separator
-                System.out.print(index + ". " + quote.toString());
+                System.out.println(index + ". " + quote.toString());
             }
         }
     }
