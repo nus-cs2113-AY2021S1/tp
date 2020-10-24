@@ -21,6 +21,11 @@ public class Ui {
     public Ui() {
     }
 
+    // Methods in the Ui class are organised according to their function in the order of: system related,
+    // database related, person related, food list related, calculator related and other helper methods.
+
+    // Methods required to print system related commands or messages.
+
     /**
      * Prints the welcome message from DietBook when it is fist booted up.
      */
