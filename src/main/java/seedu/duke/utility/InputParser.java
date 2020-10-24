@@ -5,7 +5,6 @@ import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
 import seedu.duke.commands.EditCommand;
-import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
@@ -72,10 +71,6 @@ public class InputParser {
 
         case "season":
             parseSeasonUpdateCommand(input, command);
-            return command;
-
-        case "rating":
-            parseAddRatingCommand(input);
             return command;
 
         case "deleterating":
@@ -238,28 +233,6 @@ public class InputParser {
     }
 
     /**
-     * Parses command for adding a rating in an existing show in the watch list.
-     *
-     * @param input Command inputted by user in string format.
-     * @throws IndexOutOfBoundsException if input is empty or rating was not specified.
-     * @throws NullPointerException      if the input is invalid or show could not be found.
-     */
-    private static void parseAddRatingCommand(String input) {
-        input = removeFirstWord(input);
-        try {
-            String[] tokenizedInput = input.split(" ");
-            int showRating = Integer.parseInt(tokenizedInput[1]);
-            RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
-            newShowRating.rateShow(tokenizedInput[0], showRating);
-            Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
-        } catch (NullPointerException e) {
-            Ui.printBadInputException();
-        } catch (IndexOutOfBoundsException e) {
-            Ui.printInvalidRatingInput();
-        }
-    }
-
-    /**
      * Parses command for deleting a rating in an existing show in the watch list.
      *
      * @param input Command inputted by user in string format.
@@ -362,6 +335,8 @@ public class InputParser {
             Ui.printInvalidFormatException();
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 }
