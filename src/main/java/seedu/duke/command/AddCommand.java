@@ -1,6 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.*;
+import seedu.duke.DateTimeParser;
+import seedu.duke.DukeException;
+import seedu.duke.ModuleChecker;
+import seedu.duke.Storage;
+import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Activity;
 import seedu.duke.calendar.event.Exam;
@@ -109,7 +113,7 @@ public class AddCommand extends Command {
             }
             break;
         default:
-                throw new DukeException("invalid command");
+            throw new DukeException("invalid command");
         }
         Ui.printAddMessage(calendarList, isTask);
         if (isTask) {
@@ -316,9 +320,4 @@ public class AddCommand extends Command {
         }
         return isTask;
     }
-
-//    public boolean isValid(String code) {
-//        ModuleChecker moduleChecker = new ModuleChecker();
-//        return moduleChecker.isModuleValid(code);
-//    }
 }

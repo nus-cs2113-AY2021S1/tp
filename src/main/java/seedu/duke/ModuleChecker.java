@@ -16,9 +16,9 @@ import java.net.URLConnection;
  * A module checker class to check if the module code entered by the user is valid.
  */
 public class ModuleChecker {
-    private boolean isValid;
+    public static final String LINK = "https://api.nusmods.com/v2/2018-2019/moduleList.json";
 
-    private final String LINK = "https://api.nusmods.com/v2/2018-2019/moduleList.json";
+    private boolean isValid;
 
     public ModuleChecker() {
         this.isValid = false;
@@ -35,7 +35,9 @@ public class ModuleChecker {
 
         if (moduleCode.length() < 6 || moduleCode.length() > 8) {
             isValid = false;
-        } else isValid = modList.contains(moduleCode.toUpperCase());
+        } else {
+            isValid = modList.contains(moduleCode.toUpperCase());
+        }
         return isValid;
     }
 
@@ -53,8 +55,8 @@ public class ModuleChecker {
         try {
             URL url = new URL(onlineLink);// create new url
             URLConnection myConnection = url.openConnection();// try to connect and echo back
-            HttpURLConnection httpURLConnection = (HttpURLConnection) myConnection;
-            httpEcho = httpURLConnection.getResponseCode();
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
+            httpEcho = httpUrlConnection.getResponseCode();
             if (httpEcho != HttpURLConnection.HTTP_OK) {
                 System.out.println("Cannot connect website!");
             } else {
