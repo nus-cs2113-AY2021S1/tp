@@ -35,6 +35,7 @@ public class AddCommand extends Command {
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
+    private ModuleChecker moduleChecker = new ModuleChecker();
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -84,6 +85,7 @@ public class AddCommand extends Command {
             } catch (Exception e) {
                 throw new DukeException("exam");
             }
+
             break;
         case LECTURE:
             try {
@@ -107,7 +109,7 @@ public class AddCommand extends Command {
             }
             break;
         default:
-            throw new DukeException("invalid command");
+                throw new DukeException("invalid command");
         }
         Ui.printAddMessage(calendarList, isTask);
         if (isTask) {
@@ -224,7 +226,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the exam to.
      * @param command      the attributes of the exam.
-     * @throws Exception if the module code is empty.
+     * @throws Exception   if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -238,6 +240,9 @@ public class AddCommand extends Command {
 
         if (moduleCode.isEmpty()) {
             throw new DukeException("exam");
+        } else if (! moduleChecker.isModuleValid(moduleCode)) {
+            System.out.println("invalid module code!");
+            throw new DukeException("exam");
         } else {
             calendarList.addEvent(new Exam(moduleCode, date, time, venue));
         }
@@ -248,7 +253,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the activity to.
      * @param command      the attributes of the activity.
-     * @throws Exception if the description is empty.
+     * @throws Exception   if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
         String eventDescription;
@@ -273,8 +278,8 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the deadline task to.
      * @param command      the attributes of deadline task.
-     * @return to show that is is a task.
-     * @throws Exception if the description is empty.
+     * @return isTask      true if it is a task.
+     * @throws Exception   if the description is empty.
      */
     private boolean addDeadlineTask(CalendarList calendarList, String[] command) throws Exception {
         String taskDescription;
@@ -311,4 +316,9 @@ public class AddCommand extends Command {
         }
         return isTask;
     }
+
+//    public boolean isValid(String code) {
+//        ModuleChecker moduleChecker = new ModuleChecker();
+//        return moduleChecker.isModuleValid(code);
+//    }
 }

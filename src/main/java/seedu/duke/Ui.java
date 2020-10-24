@@ -36,9 +36,9 @@ public class Ui {
                 + "2. deadline <task description> /ddMMyy\n"
                 + "3. act <activity description> @<venue> /ddMMyy HHmm\n"
                 + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
-                + "5. lect <module code> @<venue> /ddMMyy HHmm\n"
-                + "6. tut <module code> @<venue> /ddMMyy HHmm\n"
-                + "7. lab <module code> @<venue> /ddMMyy HHmm\n"
+                + "5. lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm\n"
+                + "6. tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm\n"
+                + "7. lab <module code> @<venue> -r <number of lab> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
@@ -446,20 +446,20 @@ public class Ui {
             System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lect <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the lecture in this format: \n"
+                    + "lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tut <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the tutorial in this format: \n"
+                    + "tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the lab in this format: \n"
+                    + "lab <module code> @<venue> /ddMMyy HHmm");
             break;
         case "exam":
-            System.out.println("Error: Please key in the exam in this format: exam <module code> @<exam venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the exam in this format: \n"
+                    + "exam <module code> @<exam venue> /ddMMyy HHmm");
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
@@ -500,6 +500,10 @@ public class Ui {
         case "invalid view info":
             System.out.println(
                     "Error: To view the additional information of the event: /v <event number>");
+            break;
+        case "invalid module code":
+            System.out.println(
+                    "Error: The module code cannot be found in NUS module list.");
             break;
         default:
             System.out.println("Unknown Error.");
