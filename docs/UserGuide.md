@@ -2,7 +2,6 @@
 
 - [**WatchNext** User Guide](#watchnext-user-guide)
   - [1. Introduction](#1-introduction)
-      - [**WatchNext** is a show tracker made for teenagers and young adults.](#watchnext-is-a-show-tracker-made-for-teenagers-and-young-adults)
     - [1.a. What does **WatchNext** do?](#1a-what-does-watchnext-do)
     - [1.b. Why use **WatchNext**?](#1b-why-use-watchnext)
     - [1.c. What will this guide do?](#1c-what-will-this-guide-do)
@@ -12,21 +11,20 @@
       - [4.a. `help` - Views help](#4a-help---views-help)
       - [4.b. `add` - Adds a show](#4b-add---adds-a-show)
       - [4.c. `edit` - Edits your show details](#4c-edit---edits-your-show-details)
-    - [4.d. `rating` - Modifies rating of your show](#4d-rating---modifies-rating-of-your-show)
+    - [4.d. `addreview` - Adding a review](#4d-addreview---adding-a-review)
     - [4.e. `list` - Displays all your shows in the list](#4e-list---displays-all-your-shows-in-the-list)
     - [4.f. `delete` - Deletes your show](#4f-delete---deletes-your-show)
     - [4.g. `deleterating` - Deletes rating of your show](#4g-deleterating---deletes-rating-of-your-show)
     - [4.h. `changerating` - Changes rating of your show](#4h-changerating---changes-rating-of-your-show)
     - [4.i. `episode` - Changes the episode of the show you are currently watching](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     - [4.j. `season` - Changes the season of the show you are currently watching](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    - [4.k. `addreview` - Adding a review](#4k-addreview---adding-a-review)
-    - [4.l. Managing your watch time limit](#4l-managing-your-watch-time-limit)
-    - [4.l.a. `watch` - Watch a show in your watchlist](#4la-watch---watch-a-show-in-your-watchlist)
-    - [4.l.b. `updatetimelimit` - update your watch time limit](#4lb-updatetimelimit---update-your-watch-time-limit)
-    - [4.m. `search` - search a show in the watchlist](#4m-search---search-a-show-in-the-watchlist)
-    - [4.n. `bye` - Exits the program](#4n-bye---exits-the-program)
-    - [5. FAQ](#5-faq)
-    - [6. Command Summary](#6-command-summary)
+    - [4.k Managing your watch time limit](#4k-managing-your-watch-time-limit)
+    - [4.k.a. `watch` - Watch a show in your watchlist](#4ka-watch---watch-a-show-in-your-watchlist)
+    - [4.k.b. `updatetimelimit` - update your watch time limit](#4kb-updatetimelimit---update-your-watch-time-limit)
+    - [4.l. `search` - search a show in the watchlist](#4l-search---search-a-show-in-the-watchlist)
+    - [4.m. `bye` - Exits the program](#4m-bye---exits-the-program)
+- [5. FAQ](#5-faq)
+- [6. Command Summary](#6-command-summary)
 
 
 
@@ -35,18 +33,18 @@
 <img src = "images/quickstart.PNG" width = "600">
 
 #### **WatchNext** is a show tracker made for teenagers and young adults.
+<br><br> 
+### 1.a. What is **WatchNext**?
 
-### 1.a. What does **WatchNext** do?
-
-For users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites,
-WatchNext will track their progress for the different shows they watch, and upcoming shows that they intend to watch. In addition, it provides a tracker 
-to limit users' weekly watch time to help users better manage their time.
+**WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
+**WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
+<br>It additionally serves as a tracker to limit your weekly watch time to help you better manage your time.
 
 For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
-
+<br><br> 
 ### 1.b. Why use **WatchNext**?
 
 **WatchNext** allows you to watch shows on multiple free streaming platforms or other open source stream websites and keep track of which episode you are at.
@@ -58,14 +56,14 @@ For students, there is also a need for to manually track lecture videos and webc
 This motivated our team to create an application that would not only help track all your shows and lectures, 
 but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends.
 <!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet -->
- 
+ <br><br> 
 ### 1.c. What will this guide do?
 
-This guide aims to equip you with the knowledge on how to use our application by providing example usages of all its features. 
+This guide aims to equip you with the knowledge on how to use our application by providing you with detailed examples for all of **WatchNext's** features. 
 The features can be found in [Section 4: “Features”](#4-features).
 
-Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started!
-
+Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
+<br><br><br>
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -94,9 +92,9 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 * The `<SHOWNAME>` to be entered is case-sensitive.
 
-
+<br><br><br> 
 ## 4. Features
- 
+<br> 
 #### 4.a. `help` - Views help
  The help list contains information about all the possible accepted commands.
  
@@ -139,7 +137,7 @@ Expected outcome:
  &nbsp;
  
 #### 4.c. `edit` - Edits your show details
- The `edit` command allows you to edit the name of the show, number of seasons, number of episodes or the duration 
+ The `edit` command allows you to edit the name of the show, number of seasons, number of episodes, or the duration 
  of an episode depending on the input of the user when prompted.
   
    Format:
@@ -151,7 +149,7 @@ Expected outcome:
  
     
  You will be prompted thereafter to enter the fields you want to change such as:
- name, season, episode, duration(of an episode).
+ name, season, episode, duration (of an episode).
  
  Format:
     `name <SHOWNAME>`, `season <NUMBER OF SEASONS>`, `episode <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>`, `duration <DURATION OF EPISODE>`
@@ -207,6 +205,8 @@ The `addreview` command allows you to add a review for a show, including adding 
 The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
 season that you are currently at.
 
+The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
+
    Format:
     `list`
     
@@ -231,7 +231,7 @@ season that you are currently at.
  
  Expected outcome:
   
- <img src = "images/delete.PNG" width = "400">
+ <img src = "images/delete.PNG" width = "350">
 
  &nbsp;
   
@@ -289,7 +289,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Expected outcome:
   
- <img src = "images/episode.PNG" width = "600">
+ <img src = "images/episode.PNG" width = "800">
   
  &nbsp;
  
@@ -310,7 +310,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Expected outcome:
   
- <img src = "images/season.PNG" width = "600">
+ <img src = "images/season.PNG" width = "800">
   
  &nbsp;
 
@@ -331,7 +331,7 @@ The `watch` command increments the current episode that you are on, and automati
  
  Expected outcome:
   
- <img src = "images/watch.PNG" width = "600">
+ <img src = "images/watch.PNG" width = "800">
   
  &nbsp;
 
@@ -397,29 +397,25 @@ Expected outcome:
 
 **Q**: Is my watchlist saved after I exit the program?  
 
-**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.  
+**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.  <br><br> 
 
 **Q**: Where can I find the watchlist file if I want to share it with my friends?  
 
-**A**: The file will be stored at the same path of the jar file, inside the "data" folder.  
+**A**: The file will be stored in the same path as the jar file, inside the "data" folder. Look for `data/userData.txt`.  <br><br> 
 
 **Q**: Can I edit my watchlist directly in the local file?  
 
-**A**: Yes, it is allowed but not recommended. The file is written in a specific format. If the format is not consistent, **WatchList** will be unable to load up the file so stored shows message may disappear.  
+**A**: Yes, it is possible but not recommended. The save file stores the data in a specific format. If the format is not consistent, **WatchList** will be unable to load up file. Your stored shows may disappear.  <br><br> 
 
 **Q**: What should I do if there was an error while I was typing in some input?
 
-**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary.  
+**A**: It depends on the nature of the error. WatchNext provides insightful error messages which will inform and guide you on any actions necessary. <br><br> 
 
 **Q**: What format should I use if I want to track my lectures?  
 
-**A**: A suggested format would be `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of a format that suits you!
+**A**: We suggest you try `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of any format that suits you!<br><br> 
 
-
-
-
-
-
+<br>
 
 ### 6. Command Summary
 
@@ -429,9 +425,9 @@ This section showcases the list of available features and usage examples for you
 |Action|Format|Example|
 |--------|----------|---------------|
 |Display help | `help`| `help`|
-|Add show  |`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10`|
+|Add show  |`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
 |Edit show |`edit <SHOWNAME>`| `edit Friends`|
-|Add rating |`rating <SHOWNAME> <SCORE>`| `rating Friends 9`|
+|Add review |`addreview <SHOWNAME> <RATING> <REVIEW>`| `rating Friends 9 very funny`|
 |Show watchlist |`list`|  `list`|
 |Delete show |`delete <SHOWNAME>`|   `delete Friends`|
 |Change rating |`changerating <SHOWNAME> <NEWSCORE>`|   `changerating Friends 10`|
