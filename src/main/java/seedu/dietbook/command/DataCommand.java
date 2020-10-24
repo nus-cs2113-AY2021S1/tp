@@ -8,6 +8,6 @@ public class DataCommand extends Command {
     @Override
     public void execute(Manager manager, Ui ui) {
         manager.getDataBase().init();
-        ui.printDatabase(manager.getDataBase().getFoodList());
+        //ui.printDatabase(manager.getDataBase().getFoodList());
     }
 }
