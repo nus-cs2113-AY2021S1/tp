@@ -153,7 +153,7 @@ public class Show {
             des.append(" ");
         }
         if (review != null) {
-            des.append("| Review: " );
+            des.append("| Review: ");
             des.append(review);
         }
         return des.toString();

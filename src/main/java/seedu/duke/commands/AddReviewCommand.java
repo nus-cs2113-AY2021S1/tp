@@ -6,7 +6,8 @@ import seedu.duke.utility.Ui;
 
 public class AddReviewCommand extends Command {
 
-    public AddReviewCommand(String input) throws ArrayIndexOutOfBoundsException,NullPointerException,IndexOutOfBoundsException {
+    public AddReviewCommand(String input) throws ArrayIndexOutOfBoundsException,NullPointerException,
+            IndexOutOfBoundsException {
         String[] tokenizedInput = input.split(" ");
         int rating = Integer.parseInt(tokenizedInput[2]);
 
