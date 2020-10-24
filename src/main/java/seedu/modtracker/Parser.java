@@ -10,6 +10,7 @@ public class Parser {
     public static final String COMMAND_ADDEXP = "addexp";
     public static final String COMMAND_DELETEMOD = "deletemod";
     public static final String COMMAND_DELETEEXP = "deleteexp";
+    public static final String COMMAND_OPEN_NOTIFICATION = "open";
     public static final String COMMAND_MINUS = "minus";
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
@@ -33,6 +34,7 @@ public class Parser {
      */
     public void parse(String input, ModuleList modList, String name, Storage storage,
                       boolean toPrint, TaskList taskList) {
+        Notification notification = new Notification();
         Ui ui = new Ui();
         assert input != null : "Input should not be null";
         String[] command = input.trim().split(" ");
@@ -49,6 +51,9 @@ public class Parser {
             break;
         case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);
+            break;
+        case COMMAND_OPEN_NOTIFICATION:
+            notification.printNotification(modList);
             break;
         case COMMAND_ADDTIME:
             try {
