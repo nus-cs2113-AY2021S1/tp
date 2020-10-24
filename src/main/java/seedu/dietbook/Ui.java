@@ -86,23 +86,6 @@ public class Ui {
      * Prints a message that notifies the user that DietBook has been initialised and shows a list of user
      * commands that the user can input.
      */
-    public void printTutorialMessage() {
-        print("Thank you! DietBook has been initialised and you may start by entering any of the commands "
-                + "listed below." + LINE_SEPARATOR + LINE_SEPARATOR
-                + "To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
-                + "To view all food in the database: data" + LINE_SEPARATOR
-                + "To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
-                + "[p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
-                + "To view all food in DietBook: list" + LINE_SEPARATOR
-                + "To delete a food from DietBook: delete INDEX" + LINE_SEPARATOR
-                + "To delete all food items from the DietBook: clear" + LINE_SEPARATOR
-                + "To show user information: userinfo" + LINE_SEPARATOR
-                + "To calculate carbohydrate intake: calculate carbohydrate" + LINE_SEPARATOR
-                + "To calculate calorie intake: calculate calorie" + LINE_SEPARATOR
-                + "To calculate protein intake: calculate protein" + LINE_SEPARATOR
-                + "To calculate fat intake: calculate fat" + LINE_SEPARATOR
-                + "To calculate all nutritional intake: calculate all" + LINE_SEPARATOR
-                + "To exit DietBook: exit");
     }
 
     /**
