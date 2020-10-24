@@ -1,5 +1,6 @@
 package seedu.eduke8.ui;
 
+import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.note.Note;
@@ -8,6 +9,7 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ui {
@@ -189,4 +191,32 @@ public class Ui {
             System.out.println("s.");
         }
     }
+
+    public void printBookmarkedIndicator() {
+        printMessage("Bookmarked this question!");
+    }
+
+    public void printListOfBookmarkedQuestions(BookmarkList bookmarks) {
+        int i = 1;
+        ArrayList<Displayable> allBookmarks;
+        allBookmarks = bookmarks.getInnerList();
+        String output = "";
+        for (Displayable question : allBookmarks) {
+            String optionOutput = "";
+            Question properQuestion = (Question) question;
+            ArrayList<Displayable> optionsAvailable = properQuestion.getOptionList().getInnerList();
+            int j = 1;
+            for (Displayable option : optionsAvailable) {
+                optionOutput += "\n    " + j + ") " + option.getDescription()
+                        + ((j == optionsAvailable.size()) ? "\n" : "");
+                j++;
+            }
+            output += i + ". " + question.getDescription() + optionOutput + " "
+                    + ((i == allBookmarks.size()) ? "" : "\n");
+            i++;
+        }
+        printMessage(output);
+    }
+
+
 }
