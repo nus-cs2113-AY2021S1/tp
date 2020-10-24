@@ -62,7 +62,7 @@ public class Parser {
         case Commands.COMMAND_GOAL:
             return new AddGoalCommand(arguments, getCurrentDate());
         default:
-            return new InvalidCommand(arguments);
+            return new InvalidCommand(userCommand);
         }
     }
 

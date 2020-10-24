@@ -56,7 +56,7 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
-            viewAchievements(goalList);
+            viewGoal(foodList, exerciseList, goalList, user);
         } else {
             Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
         }
@@ -121,12 +121,14 @@ public class ViewCommand extends Command {
         Ui.printCustomMessage(user.toString());
     }
 
-    private void viewAchievements(GoalList goalList) {
+    private void viewGoal(FoodList foodList, ExerciseList exerciseList, GoalList goalList, User user) {
         if (goalList.getSize() == 0) {
             Ui.printCustomMessage(EMPTY_GOAL_LIST);
         } else {
             for (int i = 0; i < goalList.getSize(); i++) {
-                Ui.printCustomMessage((i + 1) + ". " + goalList.getGoal(i).toString());
+                Goal goal = goalList.getGoal(i);
+                Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
+                        + goal.getStatus(goal, foodList, exerciseList, user) + "] " + goal.getDescription());
             }
         }
     }
