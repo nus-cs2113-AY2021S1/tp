@@ -39,13 +39,13 @@ What would you like to do with Quotesify?
 I have removed category [action] from "book1"!
 
 What would you like to do with Quotesify?
-There are no items tagged as [action].
+Category [action] does not exist!
 
 What would you like to do with Quotesify?
 I have removed category [motivational] from "quote1"!
 
 What would you like to do with Quotesify?
-There are no items tagged as [motivational].
+Category [motivational] does not exist!
 
 What would you like to do with Quotesify?
 Here are the list of items tagged as [nice]:
@@ -54,6 +54,7 @@ BOOKS:
 
 QUOTES:
 1. "quote1"
+
 What would you like to do with Quotesify?
 The book [book1 by me] has been deleted!
 
