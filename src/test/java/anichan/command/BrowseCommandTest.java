@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BrowseCommandTest {
 
-    User user;
+    private User user;
     private static AnimeData animeData;
     private static StorageManager storageManager;
-    BrowseParser testParse = new BrowseParser();
+    private final BrowseParser testParse = new BrowseParser();
 
     private static final String NAME_SORT_ASC_2 = "-s name -o asc -p 2";
     private static final String NAME_SORT_DSC_3 = "-s name -o dsc -p 3";
@@ -52,7 +52,9 @@ public class BrowseCommandTest {
     @Test
     void execute_printLastSeries_correctOutput() throws AniException {
         BrowseCommand testBrowse = testParse.parse(LAST_PAGE);
-        testBrowse.execute(animeData, storageManager, user);
+        String result = testBrowse.execute(animeData, storageManager, user);
+        result = result.substring(384,407);
+        assertEquals("511. Major S2 [Id: 511]", result);
     }
 
     @Test

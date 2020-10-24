@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SearchCommandTest {
     private static AnimeData animeData;
     private static StorageManager storageManager;
-    User user;
+    private User user;
 
     private static final String SEARCH_ANIME_1 = "fate";
     private static final String SEARCH_ANIME_NONEXISTENT = "CS2113T The Great Refactoring!";

@@ -16,7 +16,7 @@ class SearchParserTest {
     private static final String VALID_GENRE = "-g Music";
     private static AnimeData animeData;
     private static StorageManager storageManager;
-    User user;
+    private User user;
 
     private static final String INVALID_PARAMETERS_TEST1 = "-n ";
     private static final String INVALID_PARAMETERS_TEST2 = "-a Cowboy Bebop";
