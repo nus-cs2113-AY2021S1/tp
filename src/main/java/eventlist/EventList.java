@@ -78,13 +78,13 @@ public class EventList {
         assert events != null;
         switch (type) {
         case "description":
-            Collections.sort(events, Event.descriptionComparator);
+            events.sort(Event.descriptionComparator);
             break;
         case "time":
-            Collections.sort(events, Event.timeComparator);
+            events.sort(Event.timeComparator);
             break;
         default:
-            Collections.sort(events, Event.locationComparator);
+            events.sort(Event.locationComparator);
             break;
         }
 

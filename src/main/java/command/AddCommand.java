@@ -3,6 +3,7 @@ package command;
 import event.Event;
 import eventlist.EventList;
 import exception.NuScheduleException;
+import exception.WritingFileException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
@@ -32,10 +33,11 @@ public class AddCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @throws WritingFileException the file is not correctly written.
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
-            throws NuScheduleException {
+            throws WritingFileException {
         events.addEvent(event);
         ui.printAddEventMessage(event);
         ui.printNumEvent(events.getSize());

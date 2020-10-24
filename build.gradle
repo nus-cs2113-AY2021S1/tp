@@ -33,7 +33,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "NUSchedule"
+    archiveBaseName = "TPv1.0"
     archiveClassifier = null
 }
 

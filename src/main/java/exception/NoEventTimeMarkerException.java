@@ -10,6 +10,6 @@ public class NoEventTimeMarkerException extends NuScheduleException {
      * @return the message.
      */
     public String getMessage() {
-        return "Please enter your command in the correct format.";
+        return "Please mark the time of the event by \"/t\".";
     }
 }
