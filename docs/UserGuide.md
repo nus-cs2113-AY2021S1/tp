@@ -9,16 +9,20 @@ It helps you to prioritise your work and balance your time spent among your modu
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-    1. [View help: `help`](#i-view-help-help)
-    1. [Add a module: `addmod`](#ii-add-a-module-addmod)
-    1. [Add expected module workload: `addexp`](#iii-add-expected-module-workload-addexp) 
-    1. [Add actual time spent on a module: `addtime`](#iv-add-actual-time-spent-on-a-module-addtime)
-    1. [List expected and actual time spent of all modules: `list`](#v-list-expected-and-actual-time-spent-of-all-modules-list)
-    1. [Delete a module: `deletemod`](#vi-delete-a-module-deletemod)
-    1. [Delete expected module workload: `deleteexp`](#vii-delete-expected-module-workload-deleteexp)
-    1. [Minus from actual time spent on a module: `minus`](#viii-minus-from-actual-time-spent-on-a-module-minus) 
-    1. [Exit the program : `exit`](#ix-exit-the-program--exit)
-    1. [Save user data](#x-saving-the-data)
+    1. [View help: `help`](#1-view-help-help)
+    1. [Add a module: `addmod`](#2-add-a-module-addmod)
+    1. [Add expected module workload: `addexp`](#3-add-expected-module-workload-addexp) 
+    1. [Add actual time spent on a module: `addtime`](#4-add-actual-time-spent-on-a-module-addtime)
+    1. [List expected and actual time spent of all modules: `list`](#5-list-expected-and-actual-time-spent-of-all-modules-list)
+    1. [Delete a module: `deletemod`](#6-delete-a-module-deletemod)
+    1. [Delete expected module workload: `deleteexp`](#7-delete-expected-module-workload-deleteexp)
+    1. [Minus from actual time spent on a module: `minus`](#8-minus-from-actual-time-spent-on-a-module-minus) 
+    1. [Add tasks: `addtask`](#9-add-tasks-addtask)
+    1. [List all tasks: `listtask`](#10-list-all-tasks-listtask)
+    1. [Mark task as done: `done`](#11-mark-task-as-done-done)
+    1. [Delete a task: `deletetask`](#12-delete-a-task-deletetask)
+    1. [Exit the program : `exit`](#13-exit-the-program--exit)
+    1. [Save user data](#14-save-user-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -51,7 +55,12 @@ It helps you to prioritise your work and balance your time spent among your modu
 
 ## Features 
 
-### i. View help: `help`
+### Notes about command format:
+1. Items in <> are the parameters to be supplied by the user.
+   e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
+
+
+### 1. View help: `help`
 Shows a list of the commands available.
 
 Format: `help`
@@ -61,7 +70,7 @@ Expected output:
 <A list of available commands will be shown here>
 ````
 
-### ii. Add a module: `addmod`
+### 2. Add a module: `addmod`
 Adds a module to the database.
 
 Format: `addmod <module code>`
@@ -78,7 +87,7 @@ Expected output:
 CS2113T is added.
 ````
 
-### iii. Add expected module workload: `addexp` 
+### 3. Add expected module workload: `addexp` 
 Adds the expected workload of the module to the database.
 
 Format: `addexp <module code> <expected workload>`
@@ -97,7 +106,7 @@ Expected output:
 CS2113T, Expected Workload: 10h is added.
 ````
 
-### iv. Add actual time spent on a module: `addtime`
+### 4. Add actual time spent on a module: `addtime`
 Adds the time spent on the indicated module.
 
 Format: `addtime <module code> <time spent> <week number>`
@@ -115,7 +124,7 @@ Expected output:
 3 hours are added to CS2113T.
 ````
 
-### v. List expected and actual time spent of all modules: `list`
+### 5. List expected and actual time spent of all modules: `list`
 Shows a list of the modules, their expected module workload, and the actual time spent for the specific week.
 
 Format: `list <week number>`
@@ -135,7 +144,7 @@ Expected output:
 +------+---------+----------+----------+
 ````
 
-### vi. Delete a module: `deletemod`
+### 6. Delete a module: `deletemod`
 Deletes the specified module code from the database.
 
 Format: `deletemod <module code>`
@@ -152,7 +161,7 @@ Expected output:
 CS2113T is removed.
 ````
 
-### vii. Delete expected module workload: `deleteexp`
+### 7. Delete expected module workload: `deleteexp`
 Deletes the expected workload of specified module code from the database.
 
 Format: `deleteexp <module code>`
@@ -169,7 +178,7 @@ Expected output:
 Expected Workload of CS2113T is removed.
 ````
 
-### viii. Minus from actual time spent on a module: `minus`
+### 8. Minus from actual time spent on a module: `minus`
 Minus the actual time spent on a specified module.
 
 Format: `minus <module code> <time spent> <week number>` 
@@ -187,7 +196,73 @@ Expected output:
 3 hours are removed from CS2113T
 ````
 
-### ix. Exit the program : `exit`
+### 9. Add tasks: `addtask`
+Add a task under a specified module.
+
+Format: `addtask <module code> <task description>`
+
+* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` specified by the user must exist in the database. 
+
+Example of usage:
+
+`addtask CS2113T finish project`
+
+Expected output:
+````
+Got it. I've added this task under CS2113T:
+[X] [CS2113T] finish project
+Now you have 1 task in the list.
+````
+
+### 10. List all tasks: `listtask`
+List all tasks in the database.
+
+Format: `listtask`
+
+Expected output:
+````
+Here are the tasks in your list:
+1. [X] [CS2113T] finish project
+````
+
+### 11. Mark task as done: `done`
+Mark a specified task as done.
+
+Format: `done <task number>`
+
+* `task number` is between 1 and the number of tasks in the database inclusive.
+
+Example of usage:
+
+`done 1`
+
+
+Expected output:
+````
+Nice! I've marked this task as done:
+[/] [CS2113T] finish project
+````
+
+### 12. Delete a task: `deletetask`
+Delete a specified task from the database.
+
+Format: `deletetask <task number>`
+
+* `task number` is between 1 and the number of tasks in the database inclusive.
+
+Example of usage:
+
+`deletetask 1`
+
+Expected output:
+````
+Noted. I've removed this task:
+[/] [CS2113T] finish project
+You currently have no task :-)
+````
+
+### 13. Exit the program : `exit`
 Exits the program.
 
 Format: `exit`
@@ -198,7 +273,7 @@ All changes saved.
 Bye <username>. Hope to see you again soon!
 ````
 
-### x. Save user data
+### 14. Save user data
 Saves time spent in the hard disk automatically after any command that changes the data. There is no need to save manually. 
 
 
@@ -209,13 +284,18 @@ Saves time spent in the hard disk automatically after any command that changes t
 **A**: No, all the commands are case insensitive. Eg. typing in `HELP` will be taken in as a `help` command.
 
 ## Command Summary
-
-* Viewing help: `help`
-* Adding a module: `addmod <module code>`
-* Adding expected module workload: `addexp <module code> <expected workload>`
-* Add to actual time spent on a module: `addtime <module code> <time spent> <week number>`
-* Listing all modules: `list <week number>`
-* Deleting a module: `deletemod <module code>`
-* Deleting expected module workload: `deleteexp <module code>`
-* Minus from time spent on the module: `minus <module code> <time spent> <week number>`
-* Exiting the program : `exit`
+|Feature|Command|
+|--------|--------|
+Viewing help|`help`|
+Adding a module|`addmod <module code>`|
+Adding expected module workload|`addexp <module code> <expected workload>`|
+Add to actual time spent on a module|`addtime <module code> <time spent> <week number>`|
+Listing all modules|`list <week number>`|
+Deleting a module|`deletemod <module code>`|
+Deleting expected module workload|`deleteexp <module code>`|
+Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
+Add tasks|`addtask <module code> <task description>`|
+List all tasks|`listtask`|
+Mark task as done|`done <task number>`|
+Delete a task|`deletetask <task number>`|
+Exiting the program|`exit`|
