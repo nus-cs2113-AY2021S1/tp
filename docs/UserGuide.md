@@ -29,7 +29,7 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 ## Quick Start  
   
 1. Ensure that you have Java 11 or above installed.  
-2. Down the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
+2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 3. Copy the `.jar` file to the folder that you want to use as the home folder.
 4. Launch the file using the `java` command: `java -jar zoomaster.jar`.  
   
@@ -48,8 +48,9 @@ The commands below can be used in both modes of the app.
  
 <a name="mode"></a>  
 #### Switch mode: `mode`
-Switches between the “bookmark” and “timetable” modes. Depending on the mode, 
-the behaviour of the commands below changes.
+You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select, 
+the behaviour of the commands below changes. <br>
+There are two modes for Zoomaster, Bookmark and Timetable.
 
 ```
 Format: mode {bookmark/timetable}
