@@ -1,6 +1,6 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.model.framework.Appliance;
+import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 
 public class DeleteCommand extends Command {

@@ -1,4 +1,4 @@
-package seedu.smarthomebot.model;
+package seedu.smarthomebot.data.location;
 
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class LocationList {
 
-    private static ArrayList<String> locations;
+    private static ArrayList<String> locationList;
 
     public LocationList() {
-        locations = new ArrayList<>();
+        this.locationList = new ArrayList<>();
     }
 
     /**
@@ -21,7 +21,8 @@ public class LocationList {
     public void addLocation(String location) throws DuplicateDataException {
         // create location from Appliance
         if (!isLocationCreated(location)) {
-            this.locations.add(location);
+            String toAdd = location;
+            this.locationList.add(toAdd);
         } else {
             throw new DuplicateDataException();
         }
@@ -37,15 +38,15 @@ public class LocationList {
             throw new InvalidRemovalLocationException();
         } else {
             int removeIndex = getRemoveLocationIndex(location);
-            locations.remove(removeIndex);
+            locationList.remove(removeIndex);
         }
     }
 
-    private int getRemoveLocationIndex(String location) {
+    private int getRemoveLocationIndex(String toRemoveLocation) {
         int removeIndex = -1;
         int locationIndex = 0;
-        for (String l : locations) {
-            if (l.equals(location)) {
+        for (String location : locationList) {
+            if (location.equals(toRemoveLocation)) {
                 removeIndex = locationIndex;
                 break;
             } else {
@@ -56,13 +57,13 @@ public class LocationList {
     }
 
     public ArrayList<String> getLocations() {
-        return locations;
+        return this.locationList;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (String l : locations) {
-            sb.append(l);
+        for (String location : this.locationList) {
+            sb.append(location);
             sb.append("\n");
         }
         return sb.toString();
@@ -71,13 +72,13 @@ public class LocationList {
     /**
      * Returns true if location string is not found.
      *
-     * @param location used to identify the display index
+     * @param toCheckLocation used to identify the display index
      * @return isValid true if location is not found in list
      */
-    public boolean isLocationCreated(String location) {
+    public boolean isLocationCreated(String toCheckLocation) {
         boolean isValid = false;
-        for (String l : locations) {
-            if (l.equals(location)) {
+        for (String location : locationList) {
+            if (location.equals(toCheckLocation)) {
                 isValid = true;
                 break;
             }

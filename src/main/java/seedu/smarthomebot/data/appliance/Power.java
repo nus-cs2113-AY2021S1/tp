@@ -1,4 +1,4 @@
-package seedu.smarthomebot.model.framework;
+package seedu.smarthomebot.data.appliance;
 
 import seedu.smarthomebot.ui.TextUi;
 

@@ -1,6 +1,6 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.model.framework.Appliance;
+import seedu.smarthomebot.data.appliance.Appliance;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;

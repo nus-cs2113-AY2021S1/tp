@@ -1,15 +1,18 @@
 package seedu.smarthomebot.storage;
 
 import seedu.smarthomebot.commons.Messages;
-import seedu.smarthomebot.model.framework.type.AirConditioner;
-import seedu.smarthomebot.model.ApplianceList;
-import seedu.smarthomebot.model.framework.type.Fan;
-import seedu.smarthomebot.model.framework.type.Lights;
-import seedu.smarthomebot.model.LocationList;
-import seedu.smarthomebot.model.framework.type.SmartPlug;
+import seedu.smarthomebot.data.appliance.type.AirConditioner;
+import seedu.smarthomebot.data.appliance.ApplianceList;
+import seedu.smarthomebot.data.appliance.type.Fan;
+import seedu.smarthomebot.data.appliance.type.Lights;
+import seedu.smarthomebot.data.location.LocationList;
+import seedu.smarthomebot.data.appliance.type.SmartPlug;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
+import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
+import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 import seedu.smarthomebot.storage.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
+
 import java.nio.charset.StandardCharsets;
 
 import java.io.File;
@@ -65,7 +68,7 @@ public class StorageFile {
             }
 
             myReader.close();
-        }  catch (FileNotFoundException | DuplicateDataException e) {
+        } catch (FileNotFoundException | DuplicateDataException e) {
             ui.printToUser("Load File does not exist. No contents will be loaded.");
         } catch (IOException e) {
             ui.printToUser("Load File is corrupted.");
@@ -90,21 +93,21 @@ public class StorageFile {
 
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
-                    Fan fan = new Fan(name, location, power);
+                    Fan fan = new Fan(name, location, power, locationList);
                     applianceList.addAppliance(fan);
                     fan.getSpeedFromLoadFile(parameter);
                     break;
                 case AirConditioner.TYPE_WORD:
-                    AirConditioner ac = new AirConditioner(name, location, power);
+                    AirConditioner ac = new AirConditioner(name, location, power, locationList);
                     applianceList.addAppliance(ac);
                     ac.getTemperatureFromLoadFile(parameter);
                     break;
                 case Lights.TYPE_WORD:
-                    Lights light = new Lights(name, location, power);
+                    Lights light = new Lights(name, location, power, locationList);
                     applianceList.addAppliance(light);
                     break;
                 case SmartPlug.TYPE_WORD:
-                    SmartPlug smartPlug = new SmartPlug(name, location, power);
+                    SmartPlug smartPlug = new SmartPlug(name, location, power, locationList);
                     applianceList.addAppliance(smartPlug);
                     break;
                 default:
@@ -113,7 +116,7 @@ public class StorageFile {
                 // when user exit, get the current system and save in datafile
                 applianceList.getAppliance(i).loadDataFromFile(powerConsumption);
                 i++;
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | InvalidApplianceNameException | LocationNotFoundException e) {
                 throw new FileCorruptedException();
             }
         }
