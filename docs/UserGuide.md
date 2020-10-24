@@ -58,7 +58,7 @@ provided by PlaNUS and the instructions required for each step.
 ## Features 
 
 
-### :informationsource: Notes about command format:
+### :information_source: Notes about command format:
 ```
 - Words in UPPER_CASE are the parameters to be supplied by the user. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
