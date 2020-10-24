@@ -248,6 +248,31 @@ public class ModuleList {
         }
     }
 
+    public void deleteTime(String input, boolean toPrint, Storage storage) {
+        String[] commandInfo = input.trim().split(" ", 3);
+        String modCode;
+        modCode = commandInfo[1].toUpperCase();
+        if (!checkIfModuleValid(modCode, toPrint)) {
+            return;
+        }
+        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+        if (!checkIfModuleExist(modCode)) {
+            if (toPrint) {
+                ui.printNotExist(modCode);
+            }
+        } else {
+            Module currentModule = new Module(modCode);
+            int index = modList.indexOf(currentModule);
+            modList.get(index).deleteActualTime(commandInfo[2]);
+            if (toPrint) {
+                System.out.println("Actual time of " + modCode + " of week " + commandInfo[2] + " is removed.");
+                System.out.println();
+                storage.appendToFile(input);
+            }
+        }
+    }
+
     /**
      * Adds time to actual workload to an existing module.
      *
