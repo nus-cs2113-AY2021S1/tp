@@ -13,8 +13,8 @@ public class Messages {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
 
     //Format messages
-    public static final String FORMAT_FOOD = "food <Name of food> / <Number of Calories> <Quantity (Optional)>";
-    public static final String FORMAT_EXERCISE = "exercise <Name of exercise> / "
+    public static final String FORMAT_FOOD = "food <Name of food> /<Number of Calories> <Quantity (Optional)>";
+    public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
             + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
             + "or delete exercise <Index from Exercise List>";
@@ -68,6 +68,7 @@ public class Messages {
     public static final String EXERCISE_HEADER = "Exercise: ";
     public static final String SPACE_FORMATTING = "\n    ";
     public static final String CAL_HEADER = "Cal: ";
+    public static final String DATE_HEADER = "Date: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
 

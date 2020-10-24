@@ -12,6 +12,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 
+import static fitr.DateManager.getCurrentDate;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 
 public class AddExerciseCommand extends Command {
@@ -34,9 +35,11 @@ public class AddExerciseCommand extends Command {
                 if (amountOfCaloriesBurnt.get() < -1) {
                     throw new NumberFormatException();
                 }
-                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
+                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
                 storageManager.writeExerciseList(exerciseList);
-                Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
+                Ui.printCustomMessage("The following exercise has been added:\n"
+                        + "Name of Exercise: " + nameOfExercise + "\n"
+                        + "Burnt Cal: " + amountOfCaloriesBurnt.get());
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }
