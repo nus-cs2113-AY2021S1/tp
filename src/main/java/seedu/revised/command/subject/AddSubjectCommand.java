@@ -6,11 +6,14 @@ import seedu.revised.card.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.ui.Ui;
 
+import java.util.logging.Logger;
+
 
 /**
  * Adds an instance of the <code>Deadline</code> class into a <code>TaskList</code>.
  */
 public class AddSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(AddSubjectCommand.class.getName());
     private String fullCommand;
 
     public AddSubjectCommand(String fullCommand) {
@@ -18,6 +21,7 @@ public class AddSubjectCommand extends SubjectCommand {
     }
 
     public Subject execute(SubjectList subjectList) throws NoSubjectException, RepeatedSubjectException {
+        logger.info("Begin checking string command to get the title of the subject to be added.");
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
@@ -36,6 +40,8 @@ public class AddSubjectCommand extends SubjectCommand {
         Subject temp = new Subject(title);
         subjectList.getList().add(temp);
         Ui.printSubject(temp, subjectList);
+        logger.info("Finish creating a new subject.");
+        logger.fine(String.format("The subject is %s", temp.getTitle()));
         return null;
     }
 
