@@ -56,7 +56,7 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
 ### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
-The `DIVIDER_OPTION` is an optional parameter indicating your preferable type of line divider. The list of dividers is:
+The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
 1. ----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -124,7 +124,8 @@ Format: `adj [WORD] \d[DESCRIPTION]`
 List all words stored in the program.  
 Format: list words
 
-### Adding bunny idea: `bunny`
+### Adding a bunny idea: `bunny`
+
 Add a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
@@ -201,6 +202,40 @@ Example output:
 save bunny
 --------------------------------------------------------------
 Bunny list saved!
+--------------------------------------------------------------
+```
+### Deleting a bunny idea: `delete bunny`
+Delete a selected bunny from the list of bunny ideas.
+Format: `delete bunny BUNNY_INDEX`
+* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+
+Example usages:
+- `delete bunny 2`
+
+Example output:  
+```
+delete bunny 2
+--------------------------------------------------------------
+Bunny deleted: 
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
+
+### Deleting a bunny idea: `random bunny`
+The app will pick a random bunny from your list of plot bunnies for you to work on.
+Format: `random bunny`
+
+Example usages:
+- `random bunny`
+
+Example output:  
+```
+random bunny
+--------------------------------------------------------------
+Random Bunny: 
+  idea: some very funny idea
+  genre: humor
 --------------------------------------------------------------
 ```
 
@@ -467,6 +502,7 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
+| divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
@@ -477,6 +513,8 @@ Format: `exit`
 | save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
 | filter       | `filter [-continue] [limit\PRINT_LIMIT] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `<br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br><br>`limit\PRINT_LIMIT` (OPTIONAL): indicate number of words that you want to print from your filter list</br><br>`by\TYPE_OF_FILTER`:<br>- type: arguments can be `-verb`, `-noun` and `-adjective`<br>- start: arguments can be -STRING<br>- include: arguments can be -STRING|
 | list filter  | `list filter [limit\PRINT_LIMIT]`<br>Print the filter list with a limited number of words indicated by `PRINT_LIMIT` (OPTIONAL)</br>|
+| delete bunny | `delete bunny BUNNY_INDEX` </br>Deletes a selected bunny from the list. <\br>`BUNNY_INDEX` is the index of the bunny in the list|
+| random bunny | `random bunny` </br>Selects a random bunny from the list.|
 | name         | `name`</br>Generates a random name                                                                    |
 | list name    | `list name`</br>List all the stored names                                                             |
 | filter name  | `filter name <NAME>`</br>Gets the list of names after filtering                                       |
