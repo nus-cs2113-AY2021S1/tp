@@ -31,9 +31,7 @@ public class DoneCommand extends Command {
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            int index = computeToDoIndex(information.trim());
-            doneToDo(toDos,index,ui);
+            new DoneToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOK:
             new DoneBookCommand(arguments).execute(ui, storage);
