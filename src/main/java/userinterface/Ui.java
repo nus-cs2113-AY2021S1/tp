@@ -78,4 +78,12 @@ public class Ui {
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
     }
+
+    public static void printHighlightLocationError() {
+        printLine("This command can only be called at main menu!");
+    }
+
+    public static void printHighlight(bookmark.BookmarkRun bookmarkRun) {
+        bookmarkRun.run("list star");
+    }
 }
