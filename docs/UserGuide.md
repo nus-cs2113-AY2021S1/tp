@@ -167,7 +167,7 @@ Generate a name randomly from the stored database of names.
 Format: `name`
 
 Example usages:
-`name`
+- `name`
 
 Example output:  
 ```
@@ -182,7 +182,7 @@ Displays all the names currently stored in the names database.
 Format: `list name`
 
 Example usages:
-`list name`
+- `list name`
 
 Example output:  
 ```
@@ -199,7 +199,7 @@ Gets the list of names after filtering from the stored list of names.
 Format: `filter name <NAME>`
 
 Example usages:
-`filter name 2`
+- `filter name 2`
 
 Example output:  
 ```
@@ -210,7 +210,7 @@ name 2
 ```
 
 Example usages:
-`filter name name`
+- `filter name name`
 
 Example output:  
 ```
@@ -227,7 +227,7 @@ Adds a name to the list of names currently stored in the names database.
 Format: `add name <NAME>`
 
 Example usages:
-`add name name 3`
+- `add name name 3`
 
 Example output:  
 ```
@@ -242,7 +242,7 @@ Removes a name from the list of names currently stored in the names database.
 Format: `delete name <INDEX>`
 
 Example usages:
-`delete name 3`
+- `delete name 3`
 
 Example output:  
 ```
