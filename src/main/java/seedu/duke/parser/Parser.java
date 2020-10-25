@@ -9,6 +9,9 @@ import seedu.duke.command.GoalCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.ReminderCommand;
 import seedu.duke.command.RepeatCommand;
+import seedu.duke.command.DoneCommand;
+import seedu.duke.command.UndoneCommand;
+import seedu.duke.command.CalendarCommand;
 import seedu.duke.exception.DukeException;
 
 import java.util.Arrays;
@@ -67,6 +70,14 @@ public class Parser {
         case "reminder":
             return new ReminderCommand();
 
+        case "done":
+            return DoneCommand.parse(argument);
+
+        case "undone":
+            return UndoneCommand.parse(argument);
+
+        case "calendar":
+            return CalendarCommand.parse(argument);
 
         default:
             throw new DukeException("Invalid Command.");

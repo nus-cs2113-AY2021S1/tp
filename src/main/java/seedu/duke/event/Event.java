@@ -4,6 +4,7 @@ import seedu.duke.exception.DukeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class Event implements Cloneable {
@@ -58,6 +59,13 @@ public abstract class Event implements Cloneable {
         this.isDone = true;
     }
 
+    /**
+     * Sets the event's done status to false.
+     */
+    public void markAsUndone() {
+        this.isDone = false;
+    }
+
 
     /**
      * Returns a string representation of event's done status.
@@ -67,7 +75,6 @@ public abstract class Event implements Cloneable {
     public String getStatus() {
         return (isDone) ? "✓" : "✕";
     }
-
 
 
     public String getDescription() {
@@ -115,5 +122,11 @@ public abstract class Event implements Cloneable {
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + getDescription();
+    }
+
+    public String toCalendarString() {
+        return String.format("%s | ", time.format(DateTimeFormatter.ofPattern("K:mm a")))
+                + String.format("%s | ", getStatus())
+                + String.format("%s ", getDescription());
     }
 }

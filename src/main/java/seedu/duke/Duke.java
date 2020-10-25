@@ -62,7 +62,7 @@ public class Duke {
                 isExit = c.isExit();
 
                 c.execute(data, ui, storage);
-                StorageParser.saveParser(storage, data, c);
+
             } catch (DukeException e) {
                 ui.printErrorMessage(e.getMessage());
             }

@@ -43,4 +43,9 @@ public class Timetable extends Event {
             return "[T]" + super.toString() + " on " + date + ", " + time;
         }
     }
+
+    @Override
+    public String toCalendarString() {
+        return "T | " + super.toCalendarString() + String.format("| %s", getLocation());
+    }
 }

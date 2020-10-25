@@ -4,10 +4,12 @@ import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Goal;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -82,6 +84,29 @@ public class Ui {
         printDividerLine();
     }
 
+    public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
+        System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        printDividerLine();
+        ArrayList<Event> eventsOnDate;
+        eventsOnDate = entry.getValue();
+        eventsOnDate.sort(Comparator.comparing(Event::getTime));
+        for (Event e : eventsOnDate) {
+            System.out.println(e.toCalendarString());
+        }
+        printDividerLine();
+        //print there are how many task without date
+    }
+
+    public void printCalendarStart(int size, int count) {
+        System.out.println("Calendar has " + size + " dates to display.");
+        if (count > 1) {
+            System.out.println(count + " events not on the calendar because they have no date.");
+        } else if (count > 0) {
+            System.out.println(count + " event not on the calendar because it has no date.");
+        }
+        printDividerLine();
+    }
+
     public void printCheckMessage() {
 
     }
@@ -144,7 +169,15 @@ public class Ui {
                 System.out.println(events.get(i).toString());
             }
         }
+    }
+    public void printEventMarkedDoneMessage(Event doneEvent) {
+        System.out.println("You have successfully marked this event as done!");
+        System.out.println(doneEvent);
+    }
 
+    public void printEventMarkedUndoneMessage(Event undoneEvent) {
+        System.out.println("You have successfully marked this event as undone!");
+        System.out.println(undoneEvent);
     }
 
     public void printStorageSavedMessage() {
