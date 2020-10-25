@@ -321,6 +321,26 @@ public class Ui {
     }
 
     /**
+     * Prints the total amount of carbohydrates consumed by the user and a list of the foods which had
+     * their nutritional information recalculated by DietBook if any, given a start date.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total carbohydrate
+     * intake given a start date.
+     *
+     * @param carbIntake The total amount of carbohydrates of food in the food list recorded from the
+     *     start date till now.
+     * @param recalculatedFoods The list of food items recorded from the start date till now which had
+     *     their nutritional information recalculated by DietBook.
+     * @param start Starting date time to calculate from.
+     */
+    public void printCarbIntakeAndFoods(int carbIntake, String recalculatedFoods,
+                                        LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCarbIntakeAndFoods(carbIntake, recalculatedFoods, start, end);
+    }
+
+    /**
      * Prints the total amount of calories consumed by the user and the list of food items which had
      * their nutritional information recalculated by DietBook if any.
      * Some food items only have partial nutritional information as users did not provide all the
@@ -356,6 +376,26 @@ public class Ui {
         String calorieIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(calorieIntake,
                 "calorie", "kcal", recalculatedFoods);
         print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of calories consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a start date.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total calorie intake,
+     * given a start date.
+     *
+     * @param calorieIntake The total amount of calories of food in the food list recorded from the
+     *     start date till now.
+     * @param recalculatedFoods The list of food items recorded from the start date till now which had
+     *     their nutritional information recalculated by DietBook.
+     * @param start Starting date time to calculate from.
+     */
+    public void printCalorieIntakeAndFoods(int calorieIntake, String recalculatedFoods,
+                                        LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCalorieIntakeAndFoods(calorieIntake, recalculatedFoods, start, end);
     }
 
     /**
@@ -397,6 +437,26 @@ public class Ui {
     }
 
     /**
+     * Prints the total amount of proteins consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a start date.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total protein intake,
+     * given a start date.
+     *
+     * @param proteinIntake The total amount of proteins of food in the food list recorded from the
+     *     start date till now.
+     * @param recalculatedFoods The list of food items recorded from the start date till now which had
+     *     their nutritional information recalculated by DietBook.
+     * @param start Starting date time to calculate from.
+     */
+    public void printProteinIntakeAndFoods(int proteinIntake, String recalculatedFoods,
+                                           LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printProteinIntakeAndFoods(proteinIntake, recalculatedFoods, start, end);
+    }
+
+    /**
      * Prints the total amount of fats consumed by the user and the list of food items which had
      * their nutritional information recalculated by DietBook if any.
      * Some food items only have partial nutritional information as users did not provide all the
@@ -432,6 +492,26 @@ public class Ui {
         String fatIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(fatIntake,
                 "fat", "g", recalculatedFoods);
         print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of fats consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a start date.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating total fat intake,
+     * given a start date.
+     *
+     * @param fatIntake The total amount of fats of food in the food list recorded from the start date till
+     *     now.
+     * @param recalculatedFoods The list of food items recorded from the start date till now which had
+     *     their nutritional information recalculated by DietBook.
+     * @param start Starting date time to calculate from.
+     */
+    public void printFatIntakeAndFoods(int fatIntake, String recalculatedFoods,
+                                           LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printFatIntakeAndFoods(fatIntake, recalculatedFoods, start, end);
     }
 
     /**
@@ -482,6 +562,35 @@ public class Ui {
         String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(calorieIntake,
                 carbIntake, proteinIntake, fatIntake, recalculatedFoods);
         print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    /**
+     * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user and a
+     * list of the foods which had their nutritional information recalculated by DietBook if any, given a
+     * start date.
+     * Some food items only have partial nutritional information as users did not provide all the
+     * information when the food items were added. Hence, DietBook does an internal calculation for the
+     * the missing information and these calculated values are used when tabulating the individual intakes,
+     * given a start date.
+     *
+     * @param calorieIntake The total amount of calories of food in the food list recorded from the start
+     *     date till now.
+     * @param carbIntake The total amount of carbohydrates of food in the food list recorded from the start
+     *     date till now.
+     * @param proteinIntake The total amount of proteins of food in the food list recorded from the start
+     *     date till now.
+     * @param fatIntake The total amount of fats of food in the food list recorded from the start date till
+     *     now.
+     * @param recalculatedFoods The list of food items recorded from the start date till now which had
+     *     their nutritional information recalculated by DietBook.
+     * @param start Starting date time to calculate from.
+     */
+    public void printAllIntakeAndFoods(int calorieIntake, int carbIntake, int proteinIntake,
+                                       int fatIntake, String recalculatedFoods,
+                                       LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printAllIntakeAndFoods(calorieIntake, carbIntake, proteinIntake, fatIntake, recalculatedFoods, start,
+                end);
     }
 
     // Helper methods for system related commands or messages
@@ -794,14 +903,15 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     private void performAssertionsForTimePeriod(LocalDateTime start, LocalDateTime end) {
+        LocalDateTime now = LocalDateTime.now();
         assert start != null : "Starting date time of the time period given should not be null";
         assert end != null : "Ending date time of the time period given should not be null";
         assert !start.isAfter(end) : "Starting date time should not be later than ending date time "
                 + "of the time period";
-        assert start.isBefore(LocalDateTime.now()) : "Starting date time of the time period given should "
-                + "not be in the future";
-        assert end.isBefore(LocalDateTime.now()) : "Ending date time of the time period given should not be"
-                + " in the future";
+        assert !start.isAfter(now) : "Starting date time of the time period given should "
+                + "not be in the future" + start + LocalDateTime.now();
+        assert !end.isAfter(now) : "Ending date time of the time period given should not be"
+                + " in the future" + end + LocalDateTime.now();
     }
 
     /**
