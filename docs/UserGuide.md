@@ -2,20 +2,24 @@
 
 ## Introduction
 
-Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
+Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). 
+It aids users in creating and managing their writings and ideas. 
+As a fast-typing writer, this CLI app is highly suitable for you.
+
+This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
 
 ## Quick Start
 
 1. Check that your computer has Java **11** installed.
-1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-1.Copy the file to the folder you want to use as the home folder.
-1.Type in a command prompt ./duke.jar and press Enter.
-1.Type the `help` command and press Enter to get started.
-1.Some example commands you can try:
-    1.`list words` : List the vocabulary stored in the word list.
-    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-    1.`exit` : Exits the app.
-1.Refer to the Features below for details of each command.
+1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
+1. Copy the file to the folder you want to use as the home folder.
+1. Type in a command prompt ./duke.jar and press Enter.
+1. Type the `help` command and press Enter to get started.
+1. Some example commands you can try:
+    1. `list words` : List the vocabulary stored in the word list.
+    1. `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+    1. `exit` : Exits the app.
+1. Refer to the Features below for details of each command.
 
 ## Features 
 
@@ -30,6 +34,7 @@ Type “help COMMAND_NAME” to figure out how to use the particular command.
 - filter bunny
 - save bunny
 - list
+- list filter
 - start
 - filter 
 - stats
@@ -82,7 +87,7 @@ Format: `adj [WORD] \d[DESCRIPTION]`
 List all words stored in the program.  
 Format: list words
 
-### Add bunny idea: `bunny`
+### Adding bunny idea: `bunny`
 Add a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
@@ -123,7 +128,7 @@ Here are the bunnies stored in the program:
 ------------------------------------------------------
 ```
 
-### Filter bunny ideas: `filter bunny`
+### Filtering bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 Format: `filter bunny i\IDEA g\[GENRE]`  
 Example usages:
@@ -146,7 +151,7 @@ number bunny filtered: 2
 -------------------------------------------------------
 ```
 
-### Save bunny ideas: `save bunny`
+### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
 Format: `save bunny`  
@@ -253,19 +258,23 @@ name 3 has been deleted from the Names list!
 ```
 
 ### Filtering words in word bank: `filter`
-Filter out the words you need in the list based on your own filtering mode.  
-Format: `filter [-continue] by\TYPE_OF_FILTER -ARGUMENTS[1..*]`: 
-- -continue (OPTIONAL): this tag is used to tell the program to continue filtering on the last filtered list. 
-Without this tag, the previous filtered list would be cleared and the program will filter on the entire word list. 
-- TYPE_OF_FILTER: 
-    1. type: the next arguments should be “-verb”, “-noun”, “-adjective”.
-    2. start: the next arguments should be in the form of -STRING.
-    3. include: the next arguments should be in the form of -STRING.
+Filter out the words you need in the list based on your own filtering mode. 
+
+Format: `filter [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -ARGUMENTS[1..*]`: 
+- You must input the command in order for the program to work properly.
+- `-continue` (OPTIONAL): You can use this tag to tell the program to continue filtering on the last filtered list. 
+Without this tag, the previous filtered list would be cleared, and the program will filter on the entire word list. 
+- `limit\PRINT_LIMIT` (OPTIONAL): You can use this tag to tell the program to limit the number of words that are printed 
+from your filter result. Without this tag, the program will just print all the words.
+- `by\TYPE_OF_FILTER`: 
+    1. `type`: the next tag `ARGUMENTS` should be `-verb` and/or `-noun` and/or `-adjective`.
+    2. `start`: the next `ARGUMENTS` should be in the form of `-STRING`.
+    3. `include`: the next `ARGUMENTS` should be in the form of `-STRING`.
 
 Example usages and example outputs (step by step):
 - `filter by\type -noun -adjective`  
 ```
-Words filtered by indicated type are:
+Printing all 7 word(s) from your filtered list:
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
 computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
@@ -275,22 +284,56 @@ beautiful: having beauty; giving pleasure to the senses or to the mind
 nice: pleasant or attractive
 meaningful : important and serious
 ```
-- `filter -continue by\start -h -gr -co -ni`  
+- `filter -continue limit\3 by\start -h -gr -co -ni`  
 ```
-Words filtered by indicated type are:
+Your filtered list has more than 3 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `y`
+```
+Printing all 4 word(s) from your filtered list:
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
 computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
 and control other machines
 nice: pleasant or attractive
 ```
-- `filter -continue by\include -a -pu`  
+- `filter -continue limit\1 by\include -a -pu`  
 ```
-Words filtered by indicated type are: 
+Your filtered list has more than 1 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `n`
+```
+Printing the first 1 out of 5 word(s) from your filtered list:
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
-computer: an electronic machine that can store, organize and find information, 
-do processes with numbers and other data, and control other machines
 ```
+### Listing your filter list: `list filter`
+List your filter list onto the screen.
+
+Format: `list filter [limit\PRINT_LIMIT]`
+- You must input the command in order for the program to work properly.
+- `limit\PRINT_LIMIT` (OPTIONAL): You can use this tag to tell the program to limit the number of words that are printed 
+from your filter result. Without this tag, the program will just print all the words.
+
+Example of usage and example outputs: `list filter limit\3`
+```
+Your filtered list has more than 3 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `y`
+```
+Printing all 5 word(s) from your filtered list:
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
+and control other machines
+class: a group of students who are taught together
+beautiful: having beauty; giving pleasure to the senses or to the mind
+nice: pleasant or attractive
+meaningful : important and serious
+```
+
 ### Begin your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
