@@ -74,6 +74,13 @@ Before you begin, here's what you need to do:
 ### 2. Quote Management
 ### 3. Progress Tracker
 ### 4. Category Management
+Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
+With the categories you have created, you can simply tag them to any book or quote and list all of them in a categorised fashion.
+Whenever you have second thoughts about a given category name, simply change the name or remove it whilst Quotesify helps you
+update the change across all books and quotes.
+
+If you are someone who likes being neat, organised and efficient, this feature is for you!
+
 ### 5. Rating System for books
 The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
 how you feel about the books you read, and will always be ready to recommend a book to a fellow book reader.

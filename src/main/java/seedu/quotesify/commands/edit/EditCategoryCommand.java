@@ -18,7 +18,6 @@ public class EditCategoryCommand extends EditCommand {
     public void execute(TextUi ui, Storage storage) {
         CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
         editCategory(categories, ui);
-        storage.save();
     }
 
     private void editCategory(CategoryList categoryList, TextUi ui) {
