@@ -30,9 +30,11 @@ public class BusData {
     }
 
     public static Bus selectBus(String busCode) {
-        for (Bus bus : buses) {
-            if (bus.getBusNumber().equals(busCode.toUpperCase())) {
-                return bus;
+        if(buses.size() > 0) {
+            for (Bus bus : buses) {
+                if (bus.getBusNumber().equals(busCode.toUpperCase())) {
+                    return bus;
+                }
             }
         }
         return null;
