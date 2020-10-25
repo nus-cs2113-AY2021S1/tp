@@ -17,9 +17,9 @@ class DeleteTest {
     }
 
     @Test
-    public void deleteCommand_invalidData(){
-        final String[] invalidInputs = { "", " ",  "&*^%*&^", "abc"};
-        for(int i=0; i< invalidInputs.length; i++) {
+    public void deleteCommand_invalidData() {
+        final String[] invalidInputs = {"", " ", "&*^%*&^", "abc"};
+        for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
             assertThrows(InvalidCommandException.class, () -> new Add("delete " + invalidInputs[finalI]));
         }
