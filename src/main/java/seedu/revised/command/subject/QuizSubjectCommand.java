@@ -2,7 +2,6 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
-import seedu.revised.card.quiz.Result;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.ui.Ui;
