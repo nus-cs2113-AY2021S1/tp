@@ -74,14 +74,17 @@ public class AddCommand extends Command {
                 case "Personal":
                     addPersonal(data, ui, argumentWords);
                     ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
                     break;
                 case "Zoom":
                     addZoom(data, ui, argumentWords);
                     ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
                     break;
                 case "Timetable":
                     addTimetable(data, ui, argumentWords);
                     ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
                     break;
                 default:
                     throw new EventAddErrorException("Invalid event type ot be added!");

@@ -143,6 +143,7 @@ public class RepeatCommand extends Command {
         int count = Integer.parseInt(words[3]);
         repeat(eventToRepeat, startDate, repeatType, count);
         ui.printRepeatAdd(eventToRepeat);
+        storage.saveFile(storage.getFileLocation(eventList.getName()), data, eventList.getName());
     }
 
     private void repeat(Event eventToRepeat, LocalDate startDate, String repeatType, int count) throws DukeException {

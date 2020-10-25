@@ -28,6 +28,28 @@ public class Storage {
 
     private Ui ui;
 
+    /**
+     * Returns the path to the file specified by the user.
+     *
+     * @param name Name of the event type stored in the file that will be returned
+     * @return path to the file storing the event type.
+     */
+    public Path getFileLocation(String name) {
+        switch (name) {
+        case "Personal":
+            return filePersonalPath;
+        case "Zoom":
+            return fileZoomPath;
+        case "Timetable":
+            return fileTimeTablePath;
+        case "Goal":
+            return fileGoalPath;
+        default:
+            ui.printErrorMessage("Error! No such file exists");
+            return null;
+
+        }
+    }
 
     /**
      * Creates a new storage manager that can load and save files to and from a given filepath.
@@ -37,11 +59,6 @@ public class Storage {
     public Storage(String initPath, Ui ui) {
 
         //firstly, make string representation of storage files
-
-
-
-
-
         //Directory words only contain info on making the folder
         //File words contain the info on how to make the file itself
         String[] pathDirectoryWords = initPath.split(",");
@@ -81,6 +98,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a txt file for the event if it does not exists yet.
+     *
+     * @param fileText path object of the file to be created if non-existent
+     * @param fileType String of the type of event data this file will store
+     */
     private void initialiseFile(Path fileText, String fileType) {
 
         if (!Files.exists(fileText)) {
@@ -94,17 +117,27 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Saves All information onto the computer.
+     *
+     * @param data UserData object where all the current user event information is stored
+     */
     public void saveAll(UserData data) {
         saveFile(filePersonalPath, data, "Personal");
         saveFile(fileTimeTablePath, data, "Timetable");
         saveFile(fileZoomPath, data, "Zoom");
         saveFile(fileGoalPath, data, "Goal");
 
-        ui.printStorageSavedMessage();
 
     }
 
+    /**
+     * Saves information to a specified file.
+     *
+     * @param fileName Path object of the file for information to be saved currently
+     * @param data UserData object where all the current user event information is stored
+     * @param fileType Name of the information type that will be saved.
+     */
     public void saveFile(Path fileName, UserData data, String fileType) {
 
         try {
