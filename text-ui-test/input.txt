@@ -1,27 +1,79 @@
+hello
+add aslkdfj www.google.com
 mode bookmark
 show
+add asdlfkj www.google.com
+show
+add jasdkf www.yahoo.com
+show asdlfkj
+launch asdlfkj
+launch 2
+show
 delete 1
-add description www.bookmark.com
 show
-add description2 www.bookmark2.com
-show
-delete 1
-show
+add something www.google.com
+find something
+find asdf
 mode timetable
-add laj1201 tutorial_1 mon 08:00 10:00 
-add geh1034 lecture mon 14:00 16:00 
-add laj1201 lecture tue 14:00 16:00 
-add cs2101 tutorial_1 tue 10:00 12:00 
-add cg2271 lecture wed 09:00 11:00 
-add cs2113t tutorial wed 11:00 12:00 
-add laj1201 tutorial_2 thu 08:00 10:00 
-add cg2271 tutorial thu 11:00 12:00 
-add cg2271 lab fri 08:00 10:00 
-add cs2101 tutorial_2 fri 10:00 12:00 
-add cs2113t lecture fri 16:00 18:00
+show
 show mon
-show fri
-show tue
-add 1111
-delete 1
+show today
+show cs2113t
+show cs2113t bookmarks
+add cs2113t
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+add cs2113t lecture mon 01:00 03:00 www.google.com, tut mon 03:00 05:00
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+add cs2113t lecture wed 12:00 13:00 www.google.com, else www.yahoo.com
+add cs2113t lecture wed 12:00 13:00 www.yahoo.com
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+add cs2113t lecture wed 12:00 11:00 www.google.com
+add cs2113t lecture 12:00 11:00 www.google.com
+add cs2113t lecture sun 17:00 19:00 www.google.com, lecture sun 17:30 20:00, lecture sun 16:30 17:01
+add cs2102 lecture sun 17:00 19:00, lecture sun 16:00 17:01, lecture sun 18:59 20:00
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+launch now
+launch cs2113t
+launch cs2113t 1
+add cs2113t 1 www.google.com
+add cs2113t 1sd www.google.com
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+launch cs2113t 1
+delete cs2113t 1 bookmarks
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+delete cs2113t 1
+show
+show mon
+show today
+show cs2113t
+show cs2113t bookmarks
+delete cs2113t bookmarks
+show cs2113t
+show cs2113t bookmarks
+delete cs2113t
+show cs2113t
 exit

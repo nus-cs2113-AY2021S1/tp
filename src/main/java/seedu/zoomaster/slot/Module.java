@@ -99,24 +99,28 @@ public class Module {
         String message = "";
         List<Bookmark> bookmarkList = bookmarks.getBookmarks();
         for (Bookmark bookmark : bookmarkList) {
-            message += bookmark.getBookmarkAsString() + "\n";
+            message += bookmark.getBookmarkAsString();
+        }
+        if (!message.isBlank()) {
+            message += System.lineSeparator();
         }
         if (bookmarkList.isEmpty()) {
-            message += "no bookmarks found in module\n\n";
+            message += "no bookmarks found in module" + System.lineSeparator() + System.lineSeparator();
         }
         for (int i = 0; i < slots.size(); i++) {
             Slot slot = slots.get(i);
-            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + "\n";
+            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + System.lineSeparator();
             List<Bookmark> slotBookmarkList = slot.getBookmarkList().getBookmarks();
             for (Bookmark bookmark : slotBookmarkList) {
-                message += "  " + bookmark.getBookmarkAsString() + "\n";
+                message += "  " + bookmark.getBookmarkAsString();
             }
             if (slotBookmarkList.isEmpty()) {
-                message += "  no bookmarks found in slot\n\n";
+                message += "  no bookmarks found in slot" + System.lineSeparator();
             }
+            message += System.lineSeparator();
         }
         if (message.isBlank()) {
-            message += "no bookmarks found in " + moduleCode + "\n";
+            message += "no bookmarks found in " + moduleCode + System.lineSeparator();
         }
         return message;
     }

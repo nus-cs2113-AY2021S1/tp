@@ -122,9 +122,9 @@ public class BookmarkList {
     public String showBookmarks() {
         String message = "Here are the bookmarks in your list:" + lineSeparator;
         for (int i = 0; i < bookmarks.size(); i++) {
-            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
         }
-        return message;
+        return message + lineSeparator;
     }
 
     /**
@@ -179,7 +179,7 @@ public class BookmarkList {
                 message = "No bookmarks contain the specified keyword!" + lineSeparator;
             }
         }
-        return message;
+        return message + lineSeparator;
     }
 
     private String launchMatchingBookmarks(String description) {
@@ -198,7 +198,7 @@ public class BookmarkList {
         if (!errorMessage.isBlank()) {
             message += "Failed to launch these bookmarks:" + lineSeparator + errorMessage;
         }
-        return message;
+        return message+ lineSeparator;
     }
 
     public String launchAllBookmarks() {

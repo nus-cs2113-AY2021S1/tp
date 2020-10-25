@@ -133,7 +133,8 @@ public class AddSlotCommand extends Command {
                 } else if (timetable.isOverlapTimeSlot(day, startTime, endTime)) {
                     // message +=  "  " + lesson + " overlaps with an existing timeslot\n";
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
-                            "  Invalid time for slot. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");
+                            "  Slot clash. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")"
+                            + " Please check timetable.");
                 } else {
                     newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                     module.addSlot(newSlot);
