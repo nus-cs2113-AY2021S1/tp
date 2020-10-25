@@ -4,6 +4,11 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+  * [1. Book Management](#1-book-management)
+  * [2. Quote Management](#2-quote-management)
+  * [3. Progress Tracker](#3-progress-tracker)
+  * [4. Category Management](#4-category-management)
+  * [5. Rating System for books](#5-rating-system-for-books)
 - [Usage](#usage)
   * [Book Management](#book-management)
     * [Adding a book](#adding-a-book-add--b)
@@ -65,7 +70,18 @@ Before you begin, here's what you need to do:
 
 ## Features 
 
-{Give detailed description of each feature}
+### 1. Book Management
+### 2. Quote Management
+### 3. Progress Tracker
+### 4. Category Management
+### 5. Rating System for books
+The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
+how you feel about the books you read, and will always be ready to recommend a book to a fellow book reader.
+Ratings can be edited whenever you change your mind about the book, or be deleted when you are not interested
+in that rating anymore. Ratings can also be listed according to their ratings - with your favourites at the top - as
+well as be searched based on the book title and author.
+
+With this rating system, you will never forget how you feel about the books that you have read!
 
 ## Usage
 

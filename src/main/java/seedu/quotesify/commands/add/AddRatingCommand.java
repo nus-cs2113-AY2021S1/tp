@@ -22,7 +22,6 @@ public class AddRatingCommand extends AddCommand {
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         addRating(ratings, ui);
-        storage.save();
     }
 
     private void addRating(RatingList ratings, TextUi ui) {

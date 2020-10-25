@@ -17,7 +17,6 @@ public class DeleteRatingCommand extends DeleteCommand {
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         deleteRating(ratings, ui);
-        storage.save();
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
