@@ -420,5 +420,3 @@ Reset not confirmed. Your data is safe :)
 |Exiting the program|`exit`|
 |Deleting module and task data|`reset`|
 
-
-[Home Page](#README.md)
