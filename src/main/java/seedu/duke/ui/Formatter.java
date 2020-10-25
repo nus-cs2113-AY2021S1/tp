@@ -9,7 +9,9 @@ import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.Timetable;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 import static com.diogonunes.jcolor.Ansi.POSTFIX;
@@ -97,9 +99,45 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    public static String formatTimetable(String header, Timetable timetable) {
-        String formattedString = "";
-        return formattedString;
+    /**
+     * Takes an array list of events and converts it to a formatted, non-indexed string for output.
+     *
+     * @param header Success message.
+     * @param year Year of timetable
+     * @param month Month of timetable
+     * @param timetable Events to be printed
+     * @return Formatted string of non-indexed events in timetable
+     */
+    public static String formatTimetable(String header, int year, int month,
+                                         HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
+        String formattedString;
+        if (month != 0) {
+            formattedString = generatesHeader(header + String.format(" %d-%d", year, month));
+        } else {
+            formattedString = generatesHeader(header + " " + year);
+        }
+        ArrayList<String> unformattedEvents = Event.yearCalendarToString(timetable);
+        for (String event : unformattedEvents) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+
+        return encloseTopAndBottom(formattedString);
+    }
+
+    /**
+     * Takes an array list of events and converts it to a formatted, indexed string for output.
+     *
+     * @param header Success message.
+     * @param events Events to be printed
+     * @return Formatted string of indexed events in timetable
+     */
+    public static String formatTimetable(String header, ArrayList<Event> events) {
+        String formattedString = generatesHeader(header);
+        ArrayList<String> eventStrings = Event.calendarToString(events);
+        for (String event : eventStrings) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+        return encloseTopAndBottom(formattedString);
     }
 
     public static String formatEvent(String header, Event event) {
