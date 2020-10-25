@@ -18,13 +18,15 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. [Delete a module: `deletemod`](#7-delete-a-module-deletemod)
     1. [Delete expected module workload: `deleteexp`](#8-delete-expected-module-workload-deleteexp)
     1. [Minus from actual time spent on a module: `minus`](#9-minus-from-actual-time-spent-on-a-module-minus) 
-    1. [Add tasks: `addtask`](#10-add-tasks-addtask)
-    1. [List all tasks: `listtask`](#11-list-all-tasks-listtask)
-    1. [Mark task as done: `done`](#12-mark-task-as-done-done)
-    1. [Delete a task: `deletetask`](#13-delete-a-task-deletetask)
-    1. [Exit the program : `exit`](#14-exit-the-program--exit)
-    1. [Save user data](#15-save-user-data)
-    1. [Delete user data: `reset`](#16-delete-module-and-task-data-reset)
+    1. [Delete actual time spent on a module: `deletetime`](#10-delete-actual-time-spent-on-a-module-deletetime)
+    1. [Add tasks: `addtask`](#11-add-tasks-addtask)
+    1. [List all tasks: `listtask`](#12-list-all-tasks-listtask)
+    1. [Mark task as done: `done`](#13-mark-task-as-done-done)
+    1. [Delete a task: `deletetask`](#14-delete-a-task-deletetask)
+    1. [Open notification: `open`](#15-open-notification)
+    1. [Exit the program : `exit`](#16-exit-the-program--exit)
+    1. [Save user data](#17-save-user-data)
+    1. [Delete user data: `reset`](#18-delete-module-and-task-data-reset)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -58,9 +60,11 @@ has successfully executed.
 
 ## Features 
 
-### Notes about command format:
+### Notes:
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
+   
+2. The module code is valid if it contain 6-8 characters without any spacing. 
 
 
 ### 1. View help: `help`
@@ -78,7 +82,7 @@ Adds a module to the database.
 
 Format: `addmod <module code>`
 
-* The `module code` must contain 6-8 characters without any spacing. 
+* The `module code` is valid. 
 * The `module code` does not exist in the database.
 
 Example of usage:
@@ -95,9 +99,9 @@ Adds the expected workload of the module to the database.
 
 Format: `addexp <module code> <expected workload>`
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `expected workload` is in hours.
-* If the `module code` already exist, this command replaces its expected workload with the new expected workload.
+* If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
 Example of usage:
@@ -114,7 +118,7 @@ Adds the time spent on the indicated module.
 
 Format: `addtime <module code> <time spent> <week number>`
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
@@ -188,7 +192,7 @@ Deletes the specified module code from the database.
 
 Format: `deletemod <module code>`
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `module code` exists in the database.
 
 Example of usage:
@@ -205,7 +209,7 @@ Deletes the expected workload of specified module code from the database.
 
 Format: `deleteexp <module code>`
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `module code` exists in the database.
 
 Example of usage:
@@ -222,7 +226,7 @@ Minus the actual time spent on a specified module.
 
 Format: `minus <module code> <time spent> <week number>` 
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
@@ -235,12 +239,29 @@ Expected output:
 3 hours are removed from CS2113T
 ````
 
-### 10. Add tasks: `addtask`
+### 10. Delete actual time spent on a module: `deletetime`
+Deletes the actual time spent on a specified module.
+
+Format: `delete <module code> <week number>` 
+
+* The `module code` is valid.
+* The `week number` must be between 1 and 13 inclusive.
+
+Example of usage:
+
+`deletetime CS2113T 3`
+
+Expected output:
+````
+Actual time of CS2113T of week 3 is removed.
+````
+
+### 11. Add tasks: `addtask`
 Adds a task under a specified module.
 
 Format: `addtask <module code> <task description>`
 
-* The `module code` must contain 6-8 characters without any spacing.
+* The `module code` is valid.
 * The `module code` specified by the user must exist in the database. 
 
 Example of usage:
@@ -254,7 +275,7 @@ Got it. I've added this task under CS2113T:
 Now you have 1 task in the list.
 ````
 
-### 11. List all tasks: `listtask`
+### 12. List all tasks: `listtask`
 Lists all tasks in the database.
 
 Format: `listtask`
@@ -265,7 +286,7 @@ Here are the tasks in your list:
 1. [X] [CS2113T] finish project
 ````
 
-### 12. Mark task as done: `done`
+### 13. Mark task as done: `done`
 Marks a specified task as done.
 
 Format: `done <task number>`
@@ -283,7 +304,7 @@ Nice! I've marked this task as done:
 [/] [CS2113T] finish project
 ````
 
-### 13. Delete a task: `deletetask`
+### 14. Delete a task: `deletetask`
 Deletes a specified task from the database.
 
 Format: `deletetask <task number>`
@@ -301,7 +322,23 @@ Noted. I've removed this task:
 You currently have no task :-)
 ````
 
-### 14. Exit the program : `exit`
+
+### 15. Open notification: `open`
+Opens the notification with a randomised encouraging message.
+
+Format: `open`
+
+A possible expected output:
+
+```
+Oh no! It appears you are spending too little time on CS1010.
+   
+The harder you work, the closer you are to success!
+````
+
+Note: The actual output may differ as the encouraging message is randomised.
+
+### 16. Exit the program : `exit`
 Exits the program.
 
 Format: `exit`
@@ -312,7 +349,7 @@ All changes saved.
 Bye <username>. Hope to see you again soon!
 ````
 
-### 15. Save user data
+### 17. Save user data
 The program will save your data such as your name, modules, time spent and tasks
 to the hard disk automatically. There is no need to save these manually. 
 
@@ -323,7 +360,7 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 16. Delete module and task data: `reset`
+### 18. Delete module and task data: `reset`
 Deletes all module and tasks data. 
 The program will also prompt the user to confirm this action.
 
@@ -372,9 +409,11 @@ Reset not confirmed. Your data is safe :)
 |Deleting a module|`deletemod <module code>`|
 |Deleting expected module workload|`deleteexp <module code>`|
 |Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
+|Deleting actual time spent on the module|`delete <module code> <week number>`|
 |Add tasks|`addtask <module code> <task description>`|
 |List all tasks|`listtask`|
 |Mark task as done|`done <task number>`|
 |Delete a task|`deletetask <task number>`|
+|Open notification|`open`|
 |Exiting the program|`exit`|
 |Deleting module and task data|`reset`|
