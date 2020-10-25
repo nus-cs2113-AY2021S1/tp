@@ -2,8 +2,27 @@ package fitr.ui;
 
 import java.util.Scanner;
 
-import static fitr.common.Commands.*;
-import static fitr.common.Messages.*;
+import static fitr.common.Commands.COMMAND_BYE;
+import static fitr.common.Commands.COMMAND_DELETE;
+import static fitr.common.Commands.COMMAND_EDIT;
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_VIEW;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_FOOD;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+import static fitr.common.Messages.ERROR_INVALID_COMMAND;
+import static fitr.common.Messages.FORMAT_DELETE;
+import static fitr.common.Messages.FORMAT_EDIT_FOOD;
+import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Messages.FORMAT_FOOD;
+import static fitr.common.Messages.FORMAT_GOAL;
+import static fitr.common.Messages.MESSAGE_BYE;
+import static fitr.common.Messages.MESSAGE_GREET;
+import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
 
 /**
  * Prints messages.
