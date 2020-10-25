@@ -49,6 +49,9 @@ public class UiMessage {
     public static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
     public static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
     public static final String EMPTY_TODO_LIST_MESSAGE = "There are no task created";
+    public static final String INCORRECT_DATE_FORMAT_MESSAGE = "The format of the date you provide is incorrect! "
+            + "I will add the task with a deadline of plain task instead." + System.lineSeparator()
+            + "Note that this task may not be displayed in order of time.";
     public static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
     public static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
     public static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";

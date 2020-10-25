@@ -256,6 +256,7 @@ public class ListCommand extends Command {
     }
 
     private void listToDos(ToDoList toDoList, TextUi ui) {
+        toDoList.sortByDate();
         ui.printAllToDos(toDoList);
     }
 
