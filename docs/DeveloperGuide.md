@@ -18,9 +18,7 @@
     * [Minus Time](#minus-time)
     * [View modules](#view-modules)
     * [Breakdown and analysis](#breakdown-and-analysis)
-    * [Proposed] Sharing of data to a central database for better analysis
     * [Add Task](#add-task)
-    * [Delete Task](#delete-task)
     * [Mark Task as Done](#mark-task-as-done)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
@@ -216,12 +214,12 @@ Alternative 2: Always add a new module
 -	Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
           already in the list of modules.  
           
-#### Add Time
+### Add Time
 The add time feature edits the actual workload for a specific module as indicated by the user. 
 This is done by adding time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks.
 
-##### Current implementation
+#### Current implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
@@ -266,12 +264,12 @@ The following sequence diagram illustrates what happens when a user executes `ad
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
 
 
-#### Minus Time
+### Minus Time
 The minus time feature edits the actual workload for a specific module as indicated by the user. 
 This is done by removing time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks. This feature is the opposite of the add time feature. 
 
-##### Current implementation
+#### Current implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
@@ -336,9 +334,9 @@ The following sequence diagram illustrates what happens when a user executes `mi
     * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
 
-#### View modules
+### View modules
 
-##### Current Implementation
+#### Current Implementation
 
 The view module command allows the user to view all the modules taken,
 the respective time spent and expected module workload at a glance. It prints 
@@ -373,9 +371,9 @@ The following sequence diagram shows how the view module command works.
 ![view-module](diagrams/ModViewSequence.png)
 
 
-#### Breakdown and Analysis
+### Breakdown and Analysis
 
-##### Current Implementation
+#### Current Implementation
 
 The analysis command allows the user to view the breakdown of the total time spent
 in the week across all modules and provides a simple analysis of how they are doing.
@@ -423,7 +421,7 @@ The following sequence diagram shows how the analysis command works.
 ### Add Task
 The add task feature allows user to add a task under an existing module. 
 
-#### Proposed Implementation
+#### Current Implementation
 The `addtask` command is executed by the `parse` method in the `Parser` class, which then calls the `addTask` method 
 in the `TaskList` class. The `addTask` method performs all the necessary logic for the add task feature.
 
@@ -446,43 +444,18 @@ valid module code.
 1. The `addTask` method will create a new `Task` object by the constructor in `Task` class, with `Section 3` (task description). 
 1. The `addTask` method adds the `Task` object to the array list `tasks`.
 
-{will insert a sequence diagram here}
+![addtask](diagrams/addtask.png)
 
-### Future Implementation
+#### Future Implementation
 A future implementation requires user to enter the expected time required to complete the task. The `addTask` method will split the 
 user input into 4 sections, with `Section 4` as the expected time required to complete the task. `Section 4` will then be
 used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#mark-task-as-done)
 section.
 
-### Delete Task
-The delete task feature allows user to delete a task object.
-
-#### Proposed Implementation
-The `deletetask` command is executed by the `parse` method in the `Parser` class, which then calls the `deleteTask` method
-in the `TaskList` class. The `deleteTask` method performs all the necessary logic for the delete task feature.
-
-Given below is an example usage scenario.
-1. The user input the `deletetask` command and the `parse` method in `Parser` parses the command.
-1. `parse` calls the `deleteTask` method in `TaskList`.
-1. The `deleteTask` method splits the user input into 2 sections:
-    * `Section 1`: command
-    * `Section 2`: task number corresponding to the index of `Task` object in array list `tasks`
-1. The `deleteTask` method will check if the array list `tasks` is empty.
-    * If array list is empty, `Ui` will notify the user that there is no `Task` to delete.
-    * Else if array list is not empty, `deleteTask` method will execute the next step.
-1. The `deleteTask` method will check the validity of `Section 2` (task number).
-    * If task number is not an integer, an exception will be thrown and the `deleteTask` method terminates.
-    * If task number is out of bounds, `Ui` will prompt the user to enter a valid task number.
-    * Else if task number is valid, `deleteTask` method will execute the next step.
-1. The `deleteTask` method will remove the `Task` with index corresponding to `Section 2` (task number) from the array 
-list `tasks` by using the ArrayList util package method `.remove()`. 
-
-{will insert a sequence diagram here}
-
 ### Mark Task as Done
 The mark task as done feature allows user to mark an existing task as done.
 
-### Proposed Implementation
+#### Current Implementation
 The `done` command is executed by the `parse` method in the `Parser` class, which then calls the `setDone` method in the
 `TaskList` class. The `setDone` method performs all the necessary logic for the mark task as done feature.
 
@@ -502,9 +475,9 @@ Given below is an example usage scenario.
 1. The `setDone` method will then call the `setAsDone` method in `Task` class to mark the `Task` corresponding to 
 `Section 2` (task number) as done. 
     
-{will insert a sequence diagram here}   
+![markdone](diagrams/markdone.png)  
    
-### Future Implementation
+#### Future Implementation
 1. When the `Task` is set as done, the `setDone` method will call the `addTime` method in `ModuleList` class
 to add the expected time required to complete the task to the actual time spent on the module.
     * This future implementation requires `Section 4` (expected time required to complete the task) from the future 
@@ -564,4 +537,3 @@ through graphical icons and audio indicator. Most apps like the mobile apps that
 ## Appendix: Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
