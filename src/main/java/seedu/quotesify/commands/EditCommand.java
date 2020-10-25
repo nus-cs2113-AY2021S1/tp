@@ -5,6 +5,7 @@ import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
+import seedu.quotesify.commands.edit.EditBookCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
@@ -18,10 +19,12 @@ import seedu.quotesify.ui.TextUi;
 
 public class EditCommand extends Command {
 
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public EditCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -40,8 +43,7 @@ public class EditCommand extends Command {
             editRating(ratings, ui);
             break;
         case TAG_BOOK:
-            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            editBook(books, ui);
+            new EditBookCommand(arguments).execute(ui, storage);
             break;
         case TAG_CATEGORY:
             CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
@@ -95,54 +97,6 @@ public class EditCommand extends Command {
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-        }
-    }
-
-    private void editBook(BookList books, TextUi ui) {
-        try {
-            String[] bookDetails = information.split(FLAG_EDIT, 2);
-            if (bookDetails.length == 1) {
-                bookDetails = new String[]{bookDetails[0], ""};
-            }
-
-            int bookIndex = Integer.parseInt(bookDetails[0].trim()) - 1;
-            String newTitle = bookDetails[1].trim();
-            if (newTitle.isEmpty()) {
-                throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);
-            }
-
-            Book book = books.getBook(bookIndex);
-            String oldTitle = book.getTitle();
-            String authorName = book.getAuthor().getName();
-
-            books.ensureNoSimilarBooks(newTitle, authorName);
-            book.setTitle(newTitle);
-            ui.printEditBook(oldTitle, newTitle);
-
-            checkRatingForOldTitle(book, oldTitle, authorName);
-
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
-        }
-    }
-
-    private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
-        // check ratings in rating list before editing the title.
-        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-        int currentRatingOfBook = 0;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(oldTitle)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                currentRatingOfBook = rating.getRating();
-                ratings.delete(ratings.getList().indexOf(rating));
-                break;
-            }
-        }
-
-        if (currentRatingOfBook != 0) {
-            ratings.add(new Rating(book, currentRatingOfBook));
         }
     }
 
