@@ -43,14 +43,19 @@ public class EmailParseCommand extends Command {
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         System.out.println("Please enter the email body!");
+        ui.printDividerLine();
         String emailBody = ui.receiveCommand();
         ArrayList<LocalDate> dateList = detectDate(emailBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
         if(finalDate == null) {
-            System.out.println("No date detected in the email body! The personal event will only contain the description.");
-            Personal personalEvent = new Personal(emailSubject);
-            data.addToEventList("Personal", personalEvent);
+            if (emailSubject.equals("")) {
+                System.out.println("Empty email subject and no date/time fields, event won't be created!");
+            } else {
+                System.out.println("No date detected in the email body! The personal event will only contain the description.");
+                Personal personalEvent = new Personal(emailSubject);
+                data.addToEventList("Personal", personalEvent);
+            }
         } else {
             ArrayList<LocalTime> timeList = detectTime(emailBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
@@ -112,11 +117,16 @@ public class EmailParseCommand extends Command {
         Pattern timePattern = Pattern.compile("\\b(1[0-9]|0?[0-9]|2[0-3])([:.][0-5][0-9])?[\\h]?([AP][M])?\\b");
         Matcher timeMatcher = timePattern.matcher(upperCaseEmailBody);
 
-        while(timeMatcher.find()) {
+        while (timeMatcher.find()) {
             String time = timeMatcher.group(0);
             if(time.contains(".")) {
                 time = time.replaceAll("\\.", ":");
             }
+            // problems currently are 4PM wont work, 4 PM wont work too
+            // check if have AM/PM
+            // if dont have colon then add ":00 " in between
+            // if have colon but no space, add space before AM/PM
+            // might need to make AM/PM into lowercase
             timeListInString.add(time);
         }
 
@@ -177,6 +187,44 @@ public class EmailParseCommand extends Command {
         return dateList;
     }
 
+
+    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
+        LocalDate finalDate = null;
+        if (dateCount > 1) {
+            System.out.println("We have detected " + dateCount + " dates in this email body!");
+            System.out.println("Please select the date you want for this event from the list below!");
+            int dateNumber = 0;
+            ui.printDividerLine();
+            for (LocalDate date : dateList) {
+                System.out.println(dateNumber + 1 + " " + date);
+                //System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                dateNumber++;
+            }
+            ui.printDividerLine();
+            boolean dateChosen = false;
+            while (!dateChosen) {
+                try {
+                    int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
+                    if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
+                        System.out.println("Invalid date number to choose! Please choose again!");
+                    } else {
+                        finalDate = dateList.get(dateNumberChosen - 1);
+                    }
+                    dateChosen = true;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid date number to choose! Please choose again!");
+                }
+            }
+        } else if (dateCount == 0) {
+            System.out.println("No dates detected for this email body!");
+        } else {
+            finalDate = dateList.get(0);
+            System.out.println("One date detected and chosen: " + finalDate);
+        }
+
+        return finalDate;
+    }
+
     private ArrayList<LocalDate> verifyDate(ArrayList<String> dateListInString) {
         ArrayList<LocalDate> dateList = new ArrayList<>();
         for (String dateInString : dateListInString) {
@@ -194,6 +242,9 @@ public class EmailParseCommand extends Command {
 
     private String detectDay(String date) {
         String day = null;
+        if (date.contains("ST") || date.contains("ND") || date.contains("RD") || date.contains("TH")) {
+            date = date.substring(0, date.length() - 2);
+        }
         Pattern dayPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1])){2}\\b");
         Matcher dayMatcher = dayPattern.matcher(date);
         if (dayMatcher.find()) {
@@ -273,42 +324,6 @@ public class EmailParseCommand extends Command {
         }
 
         return month;
-    }
-
-    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
-        LocalDate finalDate = null;
-        if (dateCount > 1) {
-            System.out.println("We have detected " + dateCount + " dates in this email body!");
-            System.out.println("Please select the date you want for this event from the list below!");
-            int dateNumber = 0;
-            for (LocalDate date : dateList) {
-                ui.printDividerLine();
-                System.out.println(dateNumber + 1 + " " + date);
-                //System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                ui.printDividerLine();
-            }
-            boolean dateChosen = false;
-            while (!dateChosen) {
-                try {
-                    int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
-                    if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
-                        System.out.println("Invalid date number to choose! Please choose again!");
-                    } else {
-                        finalDate = dateList.get(dateNumberChosen - 1);
-                    }
-                    dateChosen = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid date number to choose! Please choose again!");
-                }
-            }
-        } else if (dateCount == 0) {
-            System.out.println("No dates detected for this email body!");
-        } else {
-            finalDate = dateList.get(0);
-            System.out.println("One date detected and chosen: " + finalDate);
-        }
-
-        return finalDate;
     }
 
 
