@@ -1,4 +1,4 @@
-package seedu.revised.task;
+package seedu.revised.card.task;
 
 public class Todo extends Task {
 

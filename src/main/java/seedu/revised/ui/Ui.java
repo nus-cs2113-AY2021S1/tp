@@ -9,10 +9,8 @@ import seedu.revised.card.Flashcard;
 
 import seedu.revised.card.quiz.Result;
 
-import seedu.revised.task.Deadline;
-import seedu.revised.task.Event;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.Task;
+import seedu.revised.card.task.TaskList;
 
 import java.io.File;
 import java.time.LocalDateTime;
