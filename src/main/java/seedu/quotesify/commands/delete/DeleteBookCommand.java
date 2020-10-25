@@ -19,7 +19,6 @@ public class DeleteBookCommand extends DeleteCommand {
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         deleteBook(books, ui);
-        storage.save();
     }
 
     private void deleteBook(BookList books, TextUi ui) {

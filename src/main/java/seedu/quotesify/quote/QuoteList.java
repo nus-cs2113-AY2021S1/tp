@@ -32,7 +32,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     }
 
     public void updateQuote(Quote quote, int quoteNumber) {
-        if (!quotes.get(quoteNumber).getReflection().isEmpty())  {
+        if (quotes.get(quoteNumber).getReflection() != null)  {
             quote.setReflection(quotes.get(quoteNumber).getReflection());
         }
         quotes.set(quoteNumber, quote);

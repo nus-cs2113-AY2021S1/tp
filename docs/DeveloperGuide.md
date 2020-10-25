@@ -129,7 +129,6 @@ quote management, progress tracker, category management and a rating system for 
 |v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
 |v1.0|user|categorize my listings|can view quotes from a specific category that I want|
 |v1.0|long time user|have a page to see a list of books and categories of my notes|can navigate into the relevant book/category without having to remember the titles|
-|v1.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
 |v1.0|beginner reader|add deadlines to books I am reading|can keep track of my readling deadlines|
 |v1.0|avid reader|be able to keep track of books|can filter out books I have read and those that are on my list of books to read|
@@ -137,6 +136,7 @@ quote management, progress tracker, category management and a rating system for 
 |v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
 |v1.0|user|save quotes I find meaningful|can view my favourite quotes whenever I want|
 |v2.0|forgetful reader|be reminded of quotes I saved|can remember them better in the long run|
+|v2.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
@@ -241,21 +241,39 @@ quote management, progress tracker, category management and a rating system for 
    * `edit -b 3 /to`: New title not specified. 
    
    Expected: Book title will not be edited. An error message will be printed. 
+   
 ### Adding a quote
 
-1. * Test case 1: `add -q Life's short, smile while you still have teeth`
-   * Test case 2: `add -q I am your father /by Darth Vader`
-   * Test case 3: `add -q That’s my spot! /from The Big Bang Theory`
-   * Test case 4: `add -q Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+1. Add a quote without author and reference to Quotesify
+
+    Test case: `add -q life's short, smile while you still have teeth`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+
+2. Add a quote with an author name to Quotesify
+
+    Test case: `add -q luke, I am your father /by darth vader`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+
+3. Add a quote with reference to Quotesify
+
+    Test case:`add -q get schwifty /from rick and morty`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+    
+4. Add a quote with an author and reference to 
+
+    Test case: `add -q so everyone’s supposed to sleep every single night now? /by rick /from rick and morty`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
    
-   Expected: Quote is added to Quotesify. A message will be prompted to indicate that 
-   the quote has been successfully added.
-   
-2. Other incorrect commands to try:
+5. Incorrect commands to try:
    * `add -q` : quote field left empty
-   * `add -q You can't see me /by` : author tag with missing author name
-   * `add -q My name is Inigo Montoya /from` : reference tag with missing reference title
-   * `add -q I am your father /by /from` : missing reference title and author name
+   * `add -q ` : empty space entered for quote field  
+   * `add -q you can't see me /by` : author tag with missing author name
+   * `add -q my name is inigo montoya /from` : reference tag with missing reference title
+   * `add -q i am your father /by /from` : missing reference title and author name
    
    Expected: Quote will not be added. A message with error details will be shown.
    
@@ -263,22 +281,11 @@ quote management, progress tracker, category management and a rating system for 
 
 1. Test case: `list -q`
 
-   Expected: The entire list of quotes with reference and author name (if present) will be displayed.
-   
-### Listing quotes from a specific reference
-
-1. Test case: `list -q /from The Big Bang Theory`
-
-   Expected: The list of quotes with the specified reference title will be displayed.
-   
-2. Other incorrect commands to try:
-   * `list -q /from` : reference tag with missing reference title
-   
-   Expected: No quotes are listed. A message with error details will be shown.
+   Expected: The entire list of quotes with reference and author name (if present) in Quotesify will be displayed.
    
 ### Listing quotes by a specific author
 
-1. Test case: `list -q /by Rick`
+1. Test case: `list -q /by rick`
 
    Expected: The list of quotes with the specified author name will be displayed.
    
@@ -287,39 +294,33 @@ quote management, progress tracker, category management and a rating system for 
    
    Expected: No quotes are listed. A message with error details will be shown.
    
+### Listing quotes from a specific reference
+
+1. Test case: `list -q /from rick and morty`
+
+   Expected: The list of quotes with the specified reference title will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /from` : reference tag with missing reference title
+   
+   Expected: No quotes are listed. A message with error details will be shown.
+   
 ### Listing quotes from a specific reference and by a specific author
 
-1. Test case: `list -q /from Rick and Morty /by Rick`
+1. Test case: `list -q /from rick and morty /by rick`
 
    Expected: The list of quotes with the specified reference title and author name will be displayed.
    
 2. Other incorrect commands to try:
-   * `list -q /from Rick and Morty /by` : reference and author tag with missing author name
-   * `list -q /from /by Rick` : reference and author tag with missing reference title
+   * `list -q /from rick and morty /by` : reference and author tag with missing author name
+   * `list -q /from /by rick` : reference and author tag with missing reference title
    * `list -q /from /by` : missing reference title and author name
    
    Expected: No quotes are listed. A message with error details will be shown.
    
-### Deleting a quote
-
-1. Test case: `delete -q 3`
-
-   Expected: Quote will be deleted from Quotesify. A message will be prompted to indicate that 
-   the quote has been successfully deleted.
-   
-2. Other incorrect commands to try:
-   * `delete -q`: missing quote number field
-   * `delete -q X`: non integer inout
-   * `delete -q 9999999`: non existent quote number
-   
-   Expected: No quote is deleted. A message with error details will be shown.
-   
 ### Editing a quote
 
-1. * Test case 1: `edit -q 1 /to I pretty much spend all day, every day just looking forward to go back to sleep`
-   * Test case 2: `edit -q 2 /to Don't give up on your dreams, keep sleeping! /by Stranger`
-   * Test case 3: `edit -q 2 /to That’s my spot! /from The Big Bang Theory`
-   * Test case 4: `edit -q 2 /to Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+1. Test case: `edit -q 2 /to no, i am your mummy /by darth vader`
    
    Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
    
@@ -327,9 +328,23 @@ quote management, progress tracker, category management and a rating system for 
    * `edit -q` : missing quote number and updated quote
    * `edit -q 1 /to`: missing updated quote
    * `edit -q 1 You can't see me` : missing "/to" flag
-   * `edit -q 9999999 /to You can't see me` : none existent quote number
+   * `edit -q 9999999 /to You can't see me` : non-existent quote number
    
    Expected: Quote will not be updated. A message with error details will be shown.
+   
+### Deleting a quote
+
+1. Test case: `delete -q 1`
+
+   Expected: Quote will be deleted from Quotesify. A message will be prompted to indicate that 
+   the quote has been successfully deleted.
+   
+2. Other incorrect commands to try:
+   * `delete -q`: missing quote number field
+   * `delete -q X`: non integer input
+   * `delete -q 9999999`: non existent quote number
+   
+   Expected: No quote is deleted. A message with error details will be shown.
    
 ### Finding a quote
 
@@ -341,7 +356,61 @@ quote management, progress tracker, category management and a rating system for 
    * `find -q`: missing keyword
    * `find -q `: empty space as keyword
    
-   Expected: No quotes will be found. A message with error details will be shown.
+   Expected: No quotes will be found and listed. A message with error details will be shown.
+   
+### Adding reflection to a quote
+
+1. Test case: `add -qr 1 /reflect No, that's not true. It's impossible!`
+    
+   Expected: Reflection is added to quote. A message will be prompted to indicate that the reflection has been successfully added.
+   * Quotes with reflection will have a "[R]" tag attached to differentiate.
+   
+5. Incorrect commands to try:
+   * `add -qr` : missing quote number, reflection tag and reflection
+   * `add -qr 1 /reflect` : reflection field missing
+   * `add -qr 9999 /reflect Reflection is here` : non-existent quote
+   
+   Expected: Reflection will not be added. A message with error details will be shown.
+   
+### Listing reflection of a quote
+
+1. Test case: `list -qr 1`
+
+   Expected: The reflection attached to the specified quote will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -qr` : missing quote number
+   * `list -qr 9999` : non-existent quote
+   
+   Expected: Reflection is not listed. A message with error details will be shown.
+   
+### Editing reflection of a quote
+
+1. Test case: `edit -qr 1 /to Who is Yoda’s daddy?`
+   
+   Expected: Reflection will be updated, a prompt displaying updated reflection will be shown.
+   
+2. Other incorrect commands to try:
+   * `edit -qr` : missing quote number, to tag and updated reflection
+   * `edit -qr 1 /to`: missing updated reflection
+   * `edit -qr 1 nothing to reflect` : missing to flag
+   * `edit -qr 9999999 /to updated reflection here!` : non-existent quote number
+   
+   Expected: Reflection will not be updated. A message with error details will be shown.
+   
+### Deleting reflection of a quote
+
+1. Test case: `delete -qr 1`
+
+   Expected: Reflection will be deleted from the quote. A message will be prompted to indicate that 
+   the reflection has been successfully deleted.
+   
+2. Other incorrect commands to try:
+   * `delete -qr`: missing quote number field
+   * `delete -qr X`: non integer input
+   * `delete -qr 9999999`: non existent quote number
+   
+   Expected: Quote reflection is not deleted. A message with error details will be shown.
 
 ### Adding categories
 1. Add one or more category to a book

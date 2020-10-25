@@ -15,7 +15,6 @@ public class DoneBookCommand extends DoneCommand {
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         doneBooks(books, ui);
-        storage.save();
     }
 
     private void doneBooks(BookList books, TextUi ui) {

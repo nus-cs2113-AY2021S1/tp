@@ -19,7 +19,6 @@ public class EditBookCommand extends EditCommand {
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         editBook(books, ui);
-        storage.save();
     }
 
     private void editBook(BookList books, TextUi ui) {
