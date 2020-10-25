@@ -287,29 +287,29 @@ Format: `add -q QUOTE {[/by AUTHOR] | [/from REFERENCE]}`
 
 Example of usage: 
 
-1. `add -q Life is short, smile while you still have teeth`
-2. `add -q Luke, I am your father /by Darth Vader`
-3. `add -q Get schwifty! /from Rick and Morty`
-4. `add -q So everyone’s supposed to sleep every single night now? /from Rick and Morty /by Rick`
+1. `add -q life is short, smile while you still have teeth`
+2. `add -q luke, i am your father /by darth vader`
+3. `add -q get schwifty! /from rick and morty`
+4. `add -q so everyone’s supposed to sleep every single night now? /from rick and morty /by rick`
 
 Expected outcome 1:
 ```
-The quote ["Life is short, smile while you still have teeth"] has been added!
+The quote ["life is short, smile while you still have teeth"] has been added!
 ```
 
 Expected outcome 2:
 ```
-The quote ["Luke, I am your father" - by Darth Vader] has been added!
+The quote ["luke, i am your father" - by darth vader] has been added!
 ```
 
 Expected outcome 3:
 ```
-The quote ["Get schwifty!" - from Rick and Morty] has been added!
+The quote ["get schwifty!" - from rick and morty] has been added!
 ```
 
 Expected outcome 4:
 ```
-The quote ["So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)] has been added!
+The quote ["so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)] has been added!
 ```
 
 #### Listing all quotes: `list -q`
@@ -322,10 +322,10 @@ Example of usage: `list -q`
 Expected outcome:
 ```
 Here are all your quotes:
-1. "Life is short, smile while you still have teeth"
-2. "Luke, I am your father" - by Darth Vadar
-3. "Get schwifty!" - from Rick and Morty
-4. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+1. "life is short, smile while you still have teeth"
+2. "luke, i am your father" - by darth vadar
+3. "get schwifty!" - from rick and morty
+4. "so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Listing quotes from a specific reference: `list -q`
@@ -338,8 +338,8 @@ Example of usage: `list -q /from Rick and Morty`
 Expected outcome:
 ```
 Here is a list of quotes from Rick and Morty:
-"Get schwifty!" - from Rick and Morty
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+"get schwifty!" - from rick and morty
+"so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Listing quotes from a specific author: `list -q`
@@ -347,12 +347,12 @@ Lists all quotes tagged under the specified author.
 
 Format: `list -q /by AUTHOR`
 
-Example of usage: `list -q /by Darth Vader`
+Example of usage: `list -q /by darth vader`
 
 Expected outcome:
 ```
-Here is a list of quotes by Darth Vader:
-"Luke, I am your father" - by Darth Vadar
+Here is a list of quotes by darth vader:
+"luke, i am your father" - by darth vadar
 ```
 
 #### Listing quotes from a specific reference and author: `list -q`
@@ -360,12 +360,12 @@ Lists all quotes tagged under the specified reference and author.
 
 Format: `list -q /by AUTHOR /from REFERENCE`
 
-Example of usage: `list -q /by Rick /from Rick and Morty`
+Example of usage: `list -q /by rick /from rick and morty`
 
 Expected outcome:
 ```
-Here is a list of quotes from Rick and Morty by Rick:
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+Here is a list of quotes from rick and morty by rick:
+"so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Editing an existing quote: `edit -q`
@@ -377,11 +377,11 @@ Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
 * The specified quote should exist in Quotesify.
 * Format of quote follows adding of quote above.
 
-Example of usage: `edit -q 1 /to No, I am your father /by Darth Vader`
+Example of usage: `edit -q 2 /to no, i am your mummy /by darth vader`
 
 Expected outcome:
 ```
-The quote has been edited from: ["Luke, I am your father" - by Darth Vadar] to ["No, I am your father" - by Darth Vadar]!
+The quote has been edited from: ["luke, i am your father" - by darth vadar] to ["no, i am your mummy" - by darth vadar]!
 ```
 
 #### Deleting a quote: `delete -q`
@@ -396,7 +396,7 @@ Example of usage: `delete -q 1`
 
 Expected outcome:
 ```
-The quote "Life is short, smile while you still have teeth" has been deleted!
+The quote "life is short, smile while you still have teeth" has been deleted!
 ```
 
 #### Finding quotes: `find -q`
@@ -411,8 +411,8 @@ Example of usage: `find -q sleep`
 Expected outcome:
 ```
 Here are the results of my search:
-"I pretty much spend all day, every day just looking forward to go back to sleep"
-"Don't give up on your dreams, keep sleeping!" - by Stranger
+"i pretty much spend all day, every day just looking forward to go back to sleep"
+"don't give up on your dreams, keep sleeping!" - by stranger
 ```
 
 #### Adding reflection to a quote: `add -qr`
@@ -428,7 +428,7 @@ Example of usage: `add -qr 1 /reflect No, that’s not true. It’s impossible!`
 
 Expected outcome:
 ```
-Reflection has been added to quote: "No, I am your father" - by Darth vader [R]
+Reflection has been added to quote: "no, i am your father" - by darth vader [R]
 Reflection: No, that’s not true. It’s impossible!
 ```
 
@@ -446,7 +446,7 @@ Example of usage: `list -qr 1`
 Expected outcome:
 ```
 Here is the reflection you are looking for!
-Quote: "No, I am your father" - by Darth vader [R]
+Quote: "no, i am your father" - by darth vader [R]
 Reflection: No, that’s not true. It’s impossible!
 ```
 
@@ -464,7 +464,7 @@ Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
 Expected outcome:
 ```
 Reflection has been updated!
-Quote: "No, I am your father" - by Darth Vader [R]
+Quote: "no, i am your father" - by darth vader [R]
 Reflection: Who is Yoda’s daddy?
 ```
 
@@ -481,7 +481,7 @@ Example of usage: `delete -qr 1`
 
 Expected outcome:
 ```
-Reflection for the quote "No, I am your father" has been deleted!
+Reflection for the quote "no, i am your father" has been deleted!
 ```
 
 ### Category Management
