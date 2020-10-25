@@ -5,6 +5,7 @@ import seedu.duke.BusStops;
 import seedu.duke.DiningOptions;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.favorite.Fav;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -147,6 +148,22 @@ public class Ui {
                 System.out.println("\n" + item.toString());
             }
         }
+    }
+
+    public static void printFavList(ArrayList<Fav> favList) {
+        printLine();
+        int index = 0;
+        for (Fav item : favList) {
+            index++;
+            System.out.println(index + ". " + item.toString());
+        }
+        printLine();
+    }
+
+    public static void printClearFavMessage() {
+        printLine();
+        System.out.println("Your favourites has been cleared.");
+        printLine();
     }
 
 }
