@@ -6,7 +6,6 @@ import fitr.command.EditProfileCommand;
 import fitr.command.InvalidCommand;
 import fitr.common.Commands;
 import fitr.common.Messages;
-import fitr.ui.Ui;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +22,7 @@ public class EditCommandParser {
         Matcher matcher = ARGUMENT_FORMAT.matcher(argument);
 
         if (!matcher.matches()) {
-            Ui.printInvalidCommandError();
+            return new InvalidCommand(argument);
         }
 
         String editArgument = matcher.group("argument").trim();
