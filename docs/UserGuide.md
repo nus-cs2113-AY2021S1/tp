@@ -203,7 +203,7 @@ Example usages:
 
 Example output:  
 ```
-filter name 2`  
+filter name 2
 --------------------------------------------------------------
 name 2
 --------------------------------------------------------------
@@ -264,33 +264,33 @@ Without this tag, the previous filtered list would be cleared and the program wi
 
 Example usages and example outputs (step by step):
 - `filter by\type -noun -adjective`  
-
-`Words filtered by indicated type are:`    
-`house: a building for people to live in, usually for one family`  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
-and control other machines`  
-`class: a group of students who are taught together`  
-`beautiful: having beauty; giving pleasure to the senses or to the mind`  
-`nice: pleasant or attractive`  
-`meaningful : important and serious`  
-
+```
+Words filtered by indicated type are:
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
+and control other machines
+class: a group of students who are taught together
+beautiful: having beauty; giving pleasure to the senses or to the mind
+nice: pleasant or attractive
+meaningful : important and serious
+```
 - `filter -continue by\start -h -gr -co -ni`  
-
-`Words filtered by indicated type are:`   
-`house: a building for people to live in, usually for one family`  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
-and control other machines`  
-`nice: pleasant or attractive`  
-
+```
+Words filtered by indicated type are:
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
+and control other machines
+nice: pleasant or attractive
+```
 - `filter -continue by\include -a -pu`  
-
-`Words filtered by indicated type are: `  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, `  
-`do processes with numbers and other data, and control other machines`
-
+```
+Words filtered by indicated type are: 
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, 
+do processes with numbers and other data, and control other machines
+```
 ### Begin your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
