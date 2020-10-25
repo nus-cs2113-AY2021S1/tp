@@ -89,7 +89,7 @@ Format: `adj [WORD] \d[DESCRIPTION]`
 List all words stored in the program.  
 Format: list words
 
-### Add bunny idea: `bunny`
+### Adding a bunny idea: `bunny`
 Add a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
@@ -130,7 +130,7 @@ Here are the bunnies stored in the program:
 ------------------------------------------------------
 ```
 
-### Filter bunny ideas: `filter bunny`
+### Filtering bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 Format: `filter bunny i\IDEA g\[GENRE]`  
 Example usages:
@@ -153,7 +153,7 @@ number bunny filtered: 2
 -------------------------------------------------------
 ```
 
-### Save bunny ideas: `save bunny`
+### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
 Format: `save bunny`  
@@ -166,6 +166,40 @@ Example output:
 save bunny
 --------------------------------------------------------------
 Bunny list saved!
+--------------------------------------------------------------
+```
+### Deleting a bunny idea: `delete bunny`
+Delete a selected bunny from the list of bunny ideas.
+Format: `delete bunny BUNNY_INDEX`
+* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+
+Example usages:
+- `delete bunny 2`
+
+Example output:  
+```
+delete bunny 2
+--------------------------------------------------------------
+Bunny deleted: 
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
+
+### Deleting a bunny idea: `random bunny`
+The app will pick a random bunny from your list of plot bunnies for you to work on.
+Format: `random bunny`
+
+Example usages:
+- `random bunny`
+
+Example output:  
+```
+random bunny
+--------------------------------------------------------------
+Random Bunny: 
+  idea: some very funny idea
+  genre: humor
 --------------------------------------------------------------
 ```
 
