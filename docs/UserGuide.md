@@ -120,6 +120,59 @@ Here is a list of all books:
 4. The Chronicles of Narnia by CS Lewis
 ~~~
 
+#### Listing book details: `list -b`
+Want to check a book's details? You can list the details of a book by specifying the book number.
+
+Format: `list -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+`list -b 2`
+
+Expected outcome:
+
+Case 1: When the book has not been rated and not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 2: When the book has been rated but not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
+~~~
+
+Case 3: When the book has not been rated but completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter 
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 4: When the book has been rated and completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
+~~~
+
 #### Listing books by an Author: `list -b`
 You can list all books currently in your booklist with the same author. 
 
