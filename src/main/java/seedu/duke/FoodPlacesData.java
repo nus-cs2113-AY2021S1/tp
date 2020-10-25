@@ -33,9 +33,9 @@ public class FoodPlacesData {
             {"Liang Ban Kung Fu", "The Deck level 2", "Mon-Sat, 8.00am-8.00pm"},
             {"The Deck", "FASS", "Mon-Fri, 7.30am-4.00pm/8.00pm Sat,7.30am-3.00pm"},
             {"The Coffee Hut", "Arts Block AS2 (Beside LT13)", "Mon-Fri, 8.00am-6.00pm"},
-            {"Omo store", "COM1", "24-Jul"},
-            {"Cool Spot Drinks", "COM2", "24-Jul"},
-            {"Takeaway Food Kiosks", "COM2", "24-Jul"},
+            {"Omo store", "COM1", "24/7"},
+            {"Cool Spot Drinks", "COM2", "24/7"},
+            {"Takeaway Food Kiosks", "COM2", "24/7"},
             {"Cafe Delight", "Ventus", "Mon-Fri, 8.00am-6.00pm"},
             {"Reedz Café", "SFAH", "Mon-Fri, 8.30am-5.30pm Sat/Sun, 8.00am-3.00pm"},
             {"University Club", "SFAH", "Mon-Fri, 11.30am-2.30pm (Last seating 2pm, Last order 2.10pm) "
@@ -55,7 +55,7 @@ public class FoodPlacesData {
             {"Platypus Food Bar", "Engineering Block E2A", "Mon-Fri, 9.00am-7.30pm"},
             {"E2 Halal Cafeteria - Halal Certified", "Engineering Block E2", "Mon-Fri, 7.00am-7.00pm Sat, "
                     + "08.00-am-1.00pm"},
-            {"Cheers", "Engineering Block E3", "24-Jul"},
+            {"Cheers", "Engineering Block E3", "24/7"},
             {"Spinelli Coffee Company", "Engineering Block EA", "Mon-Fri, 8.00am-6.30pm"},
             {"Subway Mobile Cart - Halal Certified", "Engineering Block E4", "Mon-Fri, 11.00am-6.00pm"},
             {"Arise & Shine", "Engineering Block E4", "Mon-Fri, 7.00am-8.00pm Sat/Sun/PH, 7.00am-3.00pm"},
@@ -74,8 +74,8 @@ public class FoodPlacesData {
             {"Waa Cow", "Stephen Riady Centre", "Mon-Thu, 11.30am-7.30pm Fri, 11.30am-9.30pm Sat, 12.00pm-3.00pm"},
             {"Super Snacks", "Stephen Riady Centre", "Daily, 11.00am-2.00am"},
             {"2359 Li Ji Coffeehouse", "Stephen Riady Centre", "Mon-Fri, 11.00am-1.00am Sat/Sun/PH, 11.00am-10.00pm"},
-            {"Octobox", "Stephen Riady Centre", "24-Jul"},
-            {"Fairprice Xpress", "Stephen Riady Centre", "24-Jul"},
+            {"Octobox", "Stephen Riady Centre", "24/7"},
+            {"Fairprice Xpress", "Stephen Riady Centre", "24/7"},
             {"Fine Food", "Town Plaza", "Mon-Sun, 7.00am-10.00pm"},
             {"The Royals Bistro - Halal Certified", "Town Plaza", "Mon-Sat, 11.00am-8.30pm"},
             {"Sapore Italiano", "Town Plaza", "Mon-Sun, 11.00am-10.00pm"},
@@ -83,7 +83,7 @@ public class FoodPlacesData {
             {"Subway - Halal Certified", "Town Plaza", "Mon-Sat, 10.00am-10.00pm Sun, 10.00am-9.00pm"},
             {"Udon Food Bar", "Town Plaza", "Mon-Sat, 11.00am-10.00pm"},
             {"Cheers", "Town Plaza", "Mon-Sat, 11.00am-10.00pm"},
-            {"Starbucks", "Education Resource Centre", "24-Jul"},
+            {"Starbucks", "Education Resource Centre", "24/7"},
             {"Agora Cafe", "Yale-NUS East Core", "Mon-Sun, 8.30am-9.00pm"}
     };
 
