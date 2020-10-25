@@ -49,23 +49,6 @@ Example of usage:
 
 `help filter name`
 
-### Settings for Fluffle: `settings`
-Allows the user to change settings for Fluffle, as well as user profile.  
-For the divider, it must be no longer than 40 characters long.  
-Format: `settings [NAME]` or `settings [DIVIDER OPTION]`
-- The `NAME` is a string indicating the username you want to change to. 
-- The `DIVIDER_OPTION` is a parameter indicating your preferable type of line divider.  
-The list of dividers is:
-   1. ‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵
-   2. •❅──────✧❅✦❅✧──────❅•
-   3. \----------------------------------------------------------------
-   4. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
-   5. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-Examples:
-- `settings John Doe` changes displaying name to John Doe.
-- `settings 2` changes divider option to 2.
-
 ### Adding a noun: `noun`
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun [WORD] \d[DESCRIPTION]`
@@ -387,14 +370,6 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| settings     | `settings n\[NAME]`                                                                                   |
-|              | e.g., settings n\Jane Doe d\2                                                                         |
-|              | The list of dividers is                                                                               |
-|              | 1. ‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵                                                             |
-|              | 2. •❅──────✧❅✦❅✧──────❅•                                                                           |
-|              | 3. ______________________________________                                                             |
-|              | 4. =^..^=                                                                                             |
-|              | 5. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                                                      |
 | noun         | `noun [WORD] d\[DESCRIPTION]`                                                                         |
 |              | Example: noun bus d\vehicle                                                                           |
 | verb         | `verb [WORD] d\[DESCRIPTION]`                                                                         |
