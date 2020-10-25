@@ -34,4 +34,16 @@ public class Food {
     public String getDate() {
         return date;
     }
+
+    public void setNameOfFood(String nameOfFood) {
+        this.nameOfFood = nameOfFood;
+    }
+
+    public void setCaloriesInFood(Calorie caloriesInFood) {
+        this.caloriesInFood = caloriesInFood;
+    }
+
+    public void setAmountOfFood(int amountOfFood) {
+        this.amountOfFood = amountOfFood;
+    }
 }

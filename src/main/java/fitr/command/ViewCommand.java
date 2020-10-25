@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Goal;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
@@ -11,6 +12,7 @@ import fitr.ui.Ui;
 import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
+import static fitr.common.Messages.EMPTY_GOAL_LIST;
 import static fitr.common.Messages.FOOD_LIST_HEADER;
 import static fitr.common.Messages.EXERCISE_LIST_HEADER;
 import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
@@ -26,12 +28,14 @@ import static fitr.common.Messages.CAL_HEADER;
 import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.DATE_HEADER;
+import static fitr.common.Messages.EMPTY_STRING;
 
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_GOAL;
 
 public class ViewCommand extends Command {
 
@@ -52,8 +56,10 @@ public class ViewCommand extends Command {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
+        } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
+            viewGoal(foodList, exerciseList, goalList, user);
         } else {
-            Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
+            Ui.printFormatError("view");
         }
     }
 
@@ -64,12 +70,18 @@ public class ViewCommand extends Command {
         } else {
             int index = 0;
             int printIndex = index + 1;
+            String lastDate = EMPTY_STRING;
             Ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
+                if (!lastDate.equals(foodList.getFood(index).getDate())) {
+                    Ui.printCustomMessage(EMPTY_STRING);
+                    Ui.printMessageInYellow(DATE_HEADER + foodList.getFood(index).getDate());
+                    lastDate = foodList.getFood(index).getDate();
+                    printIndex = 1;
+                }
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                         + FOOD_HEADER + foodList.getFood(index).getFoodName()
-                        + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories()
-                        + SPACE_FORMATTING + DATE_HEADER + foodList.getFood(index).getDate());
+                        + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories());
                 index++;
                 printIndex++;
             }
@@ -83,12 +95,18 @@ public class ViewCommand extends Command {
         } else {
             int index = 0;
             int printIndex = index + 1;
+            String lastDate = EMPTY_STRING;
             Ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
+                if (!lastDate.equals(exerciseList.getExercise(index).getDate())) {
+                    Ui.printCustomMessage(EMPTY_STRING);
+                    Ui.printMessageInYellow(DATE_HEADER + exerciseList.getExercise(index).getDate());
+                    lastDate = exerciseList.getExercise(index).getDate();
+                    printIndex = 1;
+                }
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                         + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
-                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories()
-                        + SPACE_FORMATTING + DATE_HEADER + exerciseList.getExercise(index).getDate());
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories());
                 index++;
                 printIndex++;
             }
@@ -114,6 +132,18 @@ public class ViewCommand extends Command {
     private void viewProfile(User user) {
         Ui.printCustomMessage(USER_PROFILE_HEADER);
         Ui.printCustomMessage(user.toString());
+    }
+
+    private void viewGoal(FoodList foodList, ExerciseList exerciseList, GoalList goalList, User user) {
+        if (goalList.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_GOAL_LIST);
+        } else {
+            for (int i = 0; i < goalList.getSize(); i++) {
+                Goal goal = goalList.getGoal(i);
+                Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
+                        + goal.getStatus(goal, foodList, exerciseList, user) + "] " + goal.getDescription());
+            }
+        }
     }
 
     @Override

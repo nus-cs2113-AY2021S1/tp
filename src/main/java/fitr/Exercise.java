@@ -22,4 +22,13 @@ public class Exercise {
     public String getDate() {
         return date;
     }
+
+    public void setNameOfExercise(String nameOfExercise) {
+        this.nameOfExercise = nameOfExercise;
+    }
+
+    public void setCaloriesBurnt(Calorie caloriesBurnt) {
+        this.caloriesBurnt = caloriesBurnt;
+    }
+
 }
