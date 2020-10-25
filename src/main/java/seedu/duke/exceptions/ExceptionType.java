@@ -10,7 +10,9 @@ public enum ExceptionType {
     INVALID_BUS_STOP("Oh no! I do not understand which bus stop you are looking for"),
     INVALID_FACULTY("Oh no! Please enter a faculty."),
     INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
-    INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite");
+    INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite"),
+    UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
+    READ_FILE_FAIL("It is unfortunate that the program is unable to read the file");
 
     private String message;
 
