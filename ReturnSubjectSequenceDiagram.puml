@@ -1,0 +1,38 @@
+@startuml
+title __revisED's Return Maths Subject Sequence Diagram__\n
+
+actor Bob
+Bob -> Revised** : run()
+activate Revised
+
+Revised -> Ui : printStart()
+activate Ui
+Ui --> Revised --
+loop !exit program
+Revised -> Ui : readCommand()
+activate Ui
+Ui --> Revised --
+Revised -> SubjectParser : parse()
+activate SubjectParser
+SubjectParser -> Revised-- : ReturnSubjectCommand
+Revised -> ReturnSubjectCommand : execute()
+activate ReturnSubjectCommand
+ReturnSubjectCommand -> SubjectList ++
+loop Subjects in SubjectList
+opt subject title equals maths
+SubjectList --> ReturnSubjectCommand : Maths
+ReturnSubjectCommand --> Revised : Maths
+end
+SubjectList --> ReturnSubjectCommand --
+end
+ReturnSubjectCommand --> Revised -- : NoSubjectException
+Revised -> ReturnSubjectCommand ++ : goToSubject()
+ReturnSubjectCommand -> Ui ++ : printGoToSubject()
+Ui --> ReturnSubjectCommand --
+loop  !exit subject
+ReturnSubjectCommand -> Ui ++ : readCommand
+Ui --> ReturnSubjectCommand --
+ReturnSubjectCommand -> TopicParser++ : parse
+end
+end
+@enduml
