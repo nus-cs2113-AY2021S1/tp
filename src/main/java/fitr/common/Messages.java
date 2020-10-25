@@ -14,6 +14,7 @@ public class Messages {
 
     //Format messages
     public static final String FORMAT_FOOD = "food <Name of food> /<Number of Calories> <Quantity (Optional)>";
+    public static final String FORMAT_EDIT_FOOD = "food <Name of food> /<Number of Calories> <Quantity>";
     public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
             + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
