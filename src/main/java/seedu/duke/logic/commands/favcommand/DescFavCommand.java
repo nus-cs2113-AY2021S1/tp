@@ -1,8 +1,8 @@
 package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.favorite.FavList;
-import seedu.duke.logic.commands.Command;
+import seedu.duke.model.favorite.FavList;
+import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.logic.parser.DescFavParser;
 import seedu.duke.ui.Ui;
 
