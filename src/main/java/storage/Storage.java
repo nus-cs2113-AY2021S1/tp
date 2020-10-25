@@ -446,12 +446,12 @@ public class Storage {
                 historyFileCreated = f.createNewFile();
             } else {
                 ui.showToUser("the file " + date + ".txt already exists in history folder\n"
-                        + "It stores the revision completed in the session/in a day\n");
+                        + "It stores the revision completed in the session/in a day");
             }
 
             if (historyFileCreated) {
                 ui.showToUser("Successfully created new file " + date + ".txt in history folder\n"
-                        + "It stores the revision completed in the session/in a day\n");
+                        + "It stores the revision completed in the session/in a day");
             }
         } catch (IOException e) {
             ui.showError("Error creating the file.");

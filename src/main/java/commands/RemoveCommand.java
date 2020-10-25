@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import common.KajiLog;
 import exception.IncorrectAccessLevelException;
 import manager.admin.ModuleList;
 import manager.card.Card;
@@ -14,12 +15,10 @@ import ui.Ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class RemoveCommand extends Command {
-    //private static Logger logger = Logger.getLogger("RemoveCommandLog");
+    private static Logger logger = KajiLog.getLogger(RemoveCommand.class.getName());
 
     public static final String COMMAND_WORD = "remove";
 
@@ -69,7 +68,7 @@ public class RemoveCommand extends Command {
             ArrayList<Module> allModules = modules.getAllModules();
             Module module = allModules.get(removeIndex);
             File directory = new File(storage.getFilePath() + "/" + module.toString());
-            //logger.log(Level.INFO, "Deleting module...");
+            logger.info("Deleting module: " + module.toString());
             boolean isRemoved = storage.deleteDirectory(directory);
             if (!isRemoved) {
                 throw new IOException("There was a problem deleting module in directory.");
@@ -78,6 +77,7 @@ public class RemoveCommand extends Command {
             allModules.remove(removeIndex);
             result.append(String.format(MESSAGE_REMAINING_MODULE, allModules.size()));
         } catch (IndexOutOfBoundsException e) {
+            logger.info(MESSAGE_INVALID_INDEX_MODULE);
             result.append(MESSAGE_INVALID_INDEX_MODULE);
         }
         return result.toString();
@@ -92,18 +92,17 @@ public class RemoveCommand extends Command {
             Chapter chapter = allChapters.get(removeIndex);
             File directory = new File(storage.getFilePath() + "/" + access.getModule()
                 + "/" + chapter.toString() + ".txt");
-            //logger.log(Level.INFO, "Deleting chapter...");
+            logger.info("Deleting chapter: " + chapter.toString());
             boolean isRemoved = storage.deleteDirectory(directory);
             boolean isRemovedFromDue = storage.removeChapterFromDue(
                     access.getModule().toString(), chapter.toString());
             if (!isRemoved && !isRemovedFromDue) {
-                //logger.log(Level.WARNING, "problem deleting chapter");
                 throw new IOException("There was a problem deleting chapter in directory.");
             }
             result.append(String.format(MESSAGE_SUCCESS_CHAPTER, chapter.toString()));
             allChapters.remove(removeIndex);
             result.append(String.format(MESSAGE_REMAINING_CHAPTER, allChapters.size()));
-            //logger.log(Level.INFO, "Chapter successfully deleted.");
+            logger.info("Chapter: " + chapter.toString() + " successfully deleted.");
         } catch (IndexOutOfBoundsException e) {
             result.append(MESSAGE_INVALID_INDEX_CHAPTER);
         }
@@ -117,13 +116,14 @@ public class RemoveCommand extends Command {
             CardList cards = access.getChapter().getCards();
             ArrayList<Card> allCards = cards.getAllCards();
             Card card = allCards.get(removeIndex);
-            //logger.log(Level.INFO, "Deleting flashcard...");
+            logger.info("Deleting flashcard: " + card.toString());
             cards.removeCard(removeIndex);
             result.append(MESSAGE_SUCCESS_FLASHCARD + card.toString() + "\n"
                     + String.format(MESSAGE_REMAINING_FLASHCARD, cards.getCardCount()));
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
-            //logger.log(Level.INFO, "Flashcard successfully deleted.");
+            logger.info("Flashcard successfully deleted.");
         } catch (IndexOutOfBoundsException e) {
+            logger.info(MESSAGE_INVALID_INDEX_FLASHCARD);
             result.append(MESSAGE_INVALID_INDEX_FLASHCARD);
         }
         return result.toString();
