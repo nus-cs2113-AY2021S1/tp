@@ -2,6 +2,7 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 public class DeleteSubjectCommand extends SubjectCommand {
@@ -17,14 +18,13 @@ public class DeleteSubjectCommand extends SubjectCommand {
      * @param subjectList the <code>TaskList</code> instance of the TaskList class for the user to delete from
      * @return
      */
-    public Subject execute(SubjectList subjectList) throws NumberFormatException {
+    public void execute(SubjectList subjectList, Storage storage) throws NumberFormatException {
         String[] message = this.fullCommand.split(" ");
         int number = Integer.valueOf(message[1]);
         Subject subject = subjectList.getList().get(number - 1);
         assert !(number <= 0 && number > subjectList.getList().size());
         subjectList.getList().remove(number - 1);
         Ui.printSubjectDelete(subject, subjectList.getList().size());
-        return null;
     }
 
     /**

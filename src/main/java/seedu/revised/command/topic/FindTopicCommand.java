@@ -13,13 +13,12 @@ public class FindTopicCommand extends TopicCommand {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) {
+    public void execute(Subject subject) {
         TopicList topicList = subject.getTopics();
         String[] message = this.fullcommand.split(" ");
         Ui.printFindTopic(topicList,message[1]);
         FindTaskCommand findTaskCommand = new FindTaskCommand(this.fullcommand);
         findTaskCommand.execute(subject.getTasks());
-        return null;
     }
 
     /**

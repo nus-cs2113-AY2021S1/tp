@@ -8,28 +8,34 @@ import seedu.revised.parser.FlashcardParser;
 import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
-public class ReturnTopicCommand extends TopicCommand {
+public class GoToTopicCommand extends TopicCommand {
     private String fullcommand;
     private TaskList tasks;
 
-    public ReturnTopicCommand(String fullcommand) {
+    public GoToTopicCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) throws NoTopicException {
+    public void execute(Subject subject) throws NoTopicException {
         String[] message = this.fullcommand.split(" ");
+        Topic gotoTopic = null;
         if (message[1].isEmpty()) {
             throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         for (Topic topic : subject.getTopics().getList()) {
             if (topic.getTitle().equals(message[1])) {
-                return topic;
+                gotoTopic = topic;
+                break;
             }
         }
-        throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
+        if (gotoTopic == null) {
+            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
+        }
+
+        goToTopic(gotoTopic);
     }
 
-    public void goToTopic(Topic topic, Subject subject) {
+    private void goToTopic(Topic topic) {
         Ui.printGoToTopic(topic);
         boolean isTopicExit = false;
         while (!isTopicExit) {

@@ -6,7 +6,7 @@ import seedu.revised.command.subject.ExitSubjectCommand;
 import seedu.revised.command.subject.ExportCommand;
 import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
-import seedu.revised.command.subject.ReturnSubjectCommand;
+import seedu.revised.command.subject.GoToSubjectCommand;
 import seedu.revised.command.subject.SorrySubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
@@ -40,7 +40,7 @@ public class SubjectParser {
         } else if (fullCommand.equals("help")) {
             return new HelpSubjectCommand();
         } else if (fullCommand.startsWith("subject")) {
-            return new ReturnSubjectCommand(fullCommand);
+            return new GoToSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("quiz")) {
             return new QuizSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("results")) {

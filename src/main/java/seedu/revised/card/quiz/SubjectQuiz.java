@@ -53,11 +53,10 @@ public class SubjectQuiz extends Quiz {
     /**
      * Begins the quiz for the user.
      *
-     * @param results The results of the subject
      * @throws NoFlashcardException If the topic has no flashcards
      * @throws NoTopicException     If the subject has no topic
      */
-    public void startQuiz(ResultList results) throws NoFlashcardException, NoTopicException {
+    public void startQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start of the quiz");
         logger.fine(String.format("The subject being tested is  %s", this.subject));
         setUpQuiz();

@@ -17,7 +17,7 @@ public class ResultTopicCommand extends TopicCommand {
 
     }
 
-    public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
+    public void execute(Subject subject) throws NoTopicException, InvalidTopicException {
         logger.info("Begin finding the topic for which the results feature has to be called.");
 
         String[] message = this.fullcommand.split(" ");
@@ -37,7 +37,5 @@ public class ResultTopicCommand extends TopicCommand {
                 + "application prints" + "the results.");
         logger.fine(String.format("The subject is %s", resultTopic.getTitle()));
         Ui.printTopicResults(resultTopic);
-
-        return null;
     }
 }

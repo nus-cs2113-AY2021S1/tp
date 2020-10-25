@@ -9,9 +9,8 @@ import seedu.revised.command.topic.TopicCommand;
 import seedu.revised.ui.Ui;
 
 public class HelpTopicCommand extends TopicCommand {
-    public Topic execute(Subject subject) {
+    public void execute(Subject subject) {
         Ui.printTopicHelp();
-        return null;
     }
 
     public boolean isExit() {

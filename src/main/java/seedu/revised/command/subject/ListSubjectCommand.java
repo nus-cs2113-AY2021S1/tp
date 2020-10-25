@@ -1,14 +1,13 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 public class ListSubjectCommand extends SubjectCommand {
 
-    public Subject execute(SubjectList subjectList) {
+    public void execute(SubjectList subjectList, Storage storage) {
         Ui.printSubjectList(subjectList.getList());
-        return null;
     }
 
     public boolean isExit() {

@@ -9,7 +9,7 @@ import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
 import seedu.revised.command.topic.ListTopicCommand;
-import seedu.revised.command.topic.ReturnTopicCommand;
+import seedu.revised.command.topic.GoToTopicCommand;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.exception.topic.RepeatedTopicException;
@@ -25,7 +25,7 @@ public class TopicCommandTest {
     private AddTopicCommand addCommand;
     private DeleteTopicCommand deleteCommand;
     private FindTopicCommand findCommand;
-    private ReturnTopicCommand returnCommand;
+    private GoToTopicCommand returnCommand;
     private ListTopicCommand listCommand;
 
     @BeforeEach

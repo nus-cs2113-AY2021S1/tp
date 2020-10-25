@@ -4,6 +4,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 
@@ -17,7 +18,7 @@ public class AddSubjectCommand extends SubjectCommand {
         this.fullCommand = fullCommand;
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException, RepeatedSubjectException {
+    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, RepeatedSubjectException {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
@@ -36,7 +37,6 @@ public class AddSubjectCommand extends SubjectCommand {
         Subject temp = new Subject(title);
         subjectList.getList().add(temp);
         Ui.printSubject(temp, subjectList);
-        return null;
     }
 
     /**
