@@ -19,7 +19,7 @@ public class EditEntryCommand extends Command {
     private static final Pattern EXERCISE_FORMAT =
             Pattern.compile("(?<index>\\d+)\\s*(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)");
     private static final Pattern FOOD_FORMAT =
-            Pattern.compile("(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s*(?<quantity>\\d+)");
+            Pattern.compile("(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s+(?<quantity>\\d+)");
     private final String arguments;
 
     public EditEntryCommand(String command, String arguments) {
