@@ -47,7 +47,7 @@ public class FluffleMessages {
     /** Bunny deletion message. */
     public static final String BUNNY_DELETED_MSG = "Bunny deleted: \n";
 
-    /** Bunny random selection message */
+    /** Bunny random selection message. */
     public static final String BUNNY_RANDOMLY_SELECTED_MSG = "Random Bunny: \n";
 
     /** New character added messages. */

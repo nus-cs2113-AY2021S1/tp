@@ -1,4 +1,5 @@
 package seedu.duke.bunnylist;
+
 import seedu.duke.bunny.Bunny;
 import seedu.duke.ui.UI;
 
@@ -9,7 +10,7 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 
 public class GenBunny {
 
-    public static void pickRandomBunny(ArrayList<Bunny> bunniesList){
+    public static void pickRandomBunny(ArrayList<Bunny> bunniesList) {
         Random rand = new Random();
         int bunnySelected = rand.nextInt(bunniesList.size());
         // print response
