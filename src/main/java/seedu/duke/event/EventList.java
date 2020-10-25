@@ -51,4 +51,8 @@ public class EventList {
 
     }
 
+    public int getSize() {
+        return events.size();
+    }
+
 }

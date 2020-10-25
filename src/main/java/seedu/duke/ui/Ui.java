@@ -7,6 +7,7 @@ import seedu.duke.event.Goal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Scanner;
@@ -151,6 +152,23 @@ public class Ui {
     public void printDeadlineChangedMessage(Event eventUpdated) {
         System.out.println("You have successfully updated the deadline for this event!");
         System.out.println(eventUpdated);
+    }
+
+    public void printReminder(ArrayList<Event> events) {
+        if (events.size() == 0) {
+            System.out.println("You have no events today!");
+        } else {
+            System.out.println("You have the following events today: ");
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(Event o1, Event o2) {
+                    return o1.getTime().compareTo(o2.getTime());
+                }
+            });
+            for (int i = 0; i < events.size(); i++) {
+                System.out.println(events.get(i).toString());
+            }
+        }
     }
 
     public void printEventMarkedDoneMessage(Event doneEvent) {
