@@ -74,8 +74,8 @@ public class FilterCommandSlicer {
     }
 
     /**
-     * Gets the word types need filtering (noun, verb, adjective).
-     * Invalid word type will not be recognized for this version.
+     * Gets the word types need filtering.
+     * Available word types are noun, verb and adjective.
      *
      * @param command Contains the word types need filtering.
      * @return Array of strings referring to word types.
@@ -83,19 +83,37 @@ public class FilterCommandSlicer {
      */
     public static String[] getTargetedWordTypes(String command) throws FilterCommandException {
         ArrayList<String> types = new ArrayList<>();
-        if (command.toLowerCase().contains(Tags.NOUN_TAG)) {
-            types.add(Tags.NOUN);
-        }
-        if (command.toLowerCase().contains(Tags.VERB_TAG)) {
-            types.add(Tags.VERB);
-        }
-        if (command.toLowerCase().contains(Tags.ADJECTIVE_TAG)) {
-            types.add(Tags.ADJECTIVE);
+        ArrayList<String> availableWordTypes = new ArrayList<>();
+        initializeAvailableWordTypes(availableWordTypes);
+        int index = command.indexOf(Tags.DASH);
+
+        while (index >= 0) {
+            int nextIndex = command.indexOf(Tags.DASH, index + 1);
+            String wordType;
+
+            if (nextIndex != -1) {
+                wordType = command.substring(index + 1, nextIndex).trim();
+            } else {
+                wordType = command.substring(index + 1).trim();
+            }
+
+            if (wordType.startsWith("continue")) {
+                index = command.indexOf(Tags.DASH, index + 1);
+                continue;
+            }
+
+            if (availableWordTypes.contains(wordType)) {
+                types.add(wordType);
+            } else {
+                throw new FilterCommandException();
+            }
+            index = command.indexOf(Tags.DASH, index + 1);
         }
 
         if (types.size() == 0) {
             throw new FilterCommandException();
         }
+
         return types.toArray(new String[0]);
     }
 
@@ -109,26 +127,38 @@ public class FilterCommandSlicer {
     public static String[] getTargetedStringTags(String command) throws FilterCommandException {
         ArrayList<String> targetedStrings = new ArrayList<>();
         int index = command.indexOf(Tags.DASH);
+
         while (index >= 0) {
             int nextIndex = command.indexOf(Tags.DASH, index + 1);
             String stringToAdd;
+
             if (nextIndex != -1) {
                 stringToAdd = command.substring(index + 1, nextIndex).trim();
             } else {
                 stringToAdd = command.substring(index + 1).trim();
             }
+
             if (stringToAdd.length() != 0) {
                 targetedStrings.add(stringToAdd);
             } else {
                 throw new FilterCommandException();
             }
+
             index = command.indexOf(Tags.DASH, index + 1);
         }
 
         if (targetedStrings.size() == 0) {
             throw new FilterCommandException();
         }
+
         return targetedStrings.toArray(new String[0]);
+    }
+
+    private static void initializeAvailableWordTypes(ArrayList<String> availableWordTypes) {
+        availableWordTypes.clear();
+        availableWordTypes.add(Tags.NOUN);
+        availableWordTypes.add(Tags.VERB);
+        availableWordTypes.add(Tags.ADJECTIVE);
     }
 
 }

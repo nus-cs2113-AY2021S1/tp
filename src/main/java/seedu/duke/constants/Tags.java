@@ -39,7 +39,4 @@ public class Tags {
     public static final String NOUN = "noun";
     public static final String VERB = "verb";
     public static final String ADJECTIVE = "adjective";
-    public static final String VERB_TAG = " -verb";
-    public static final String NOUN_TAG = " -noun";
-    public static final String ADJECTIVE_TAG = " -adjective";
 }
