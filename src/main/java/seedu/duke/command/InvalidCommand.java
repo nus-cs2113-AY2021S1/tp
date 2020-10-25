@@ -12,6 +12,6 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
-        Ui.showToUser("Invalid action!");
+        Ui.showToUserLn("Invalid action!");
     }
 }

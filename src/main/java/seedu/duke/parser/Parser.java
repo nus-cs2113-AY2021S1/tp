@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.EmptyCommand;
+import seedu.duke.command.HelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
@@ -10,11 +11,8 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duke.command.CommandSummary.BYE;
-import static seedu.duke.command.CommandSummary.PROJECT;
-import static seedu.duke.command.CommandSummary.TASK;
-import static seedu.duke.command.CommandSummary.MEMBER;
-import static seedu.duke.command.CommandSummary.SPRINT;
+import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.HELP;
 
 
 public class Parser {
@@ -31,6 +29,9 @@ public class Parser {
             System.out.println(BYE);
             exit = true;
             return null;
+        }
+        if (userInput.equals(HELP)) {
+            return new HelpCommand(parameters);
         }
 
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
@@ -58,6 +59,8 @@ public class Parser {
 
             try {
                 switch (command.toLowerCase()) {
+                case HELP:
+                    return new HelpParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case PROJECT:
                     return new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case MEMBER:
