@@ -12,6 +12,8 @@ import seedu.revised.card.SubjectList;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.exception.task.RepeatedDateTimeException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.exception.task.TaskEventException;
 import seedu.revised.exception.task.TaskTodoException;
