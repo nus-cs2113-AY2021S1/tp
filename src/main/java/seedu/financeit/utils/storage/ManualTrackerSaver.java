@@ -2,12 +2,12 @@ package seedu.financeit.utils.storage;
 
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.Constants;
-import seedu.financeit.manualtracker.Ledger;
-import seedu.financeit.manualtracker.LedgerList;
-import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.manualtracker.subroutine.Entry;
-import seedu.financeit.manualtracker.subroutine.EntryList;
-import seedu.financeit.manualtracker.subroutine.EntryTracker;
+import seedu.financeit.datatrackers.manualtracker.Ledger;
+import seedu.financeit.datatrackers.manualtracker.LedgerList;
+import seedu.financeit.datatrackers.manualtracker.ManualTracker;
+import seedu.financeit.datatrackers.entrytracker.Entry;
+import seedu.financeit.datatrackers.entrytracker.EntryList;
+import seedu.financeit.datatrackers.entrytracker.EntryTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
 
@@ -33,12 +33,12 @@ public class ManualTrackerSaver extends SaveHandler {
         StringBuilder saveString = new StringBuilder();
         int size = ledList.getItemsSize();
         for (int i = 0; i < size; i++) {
-            Ledger ledger = (Ledger) ledList.getItemAtIndex(i);
+            Ledger ledger = (Ledger) ledList.getItemAtCurrIndex(i);
             saveString.append(this.getSaveString(ledger));
             EntryList entryList = ledger.entryList;
             int entryListSize = entryList.getItemsSize();
             for (int x = 0; x < entryListSize; x++) {
-                Entry ent = (Entry) entryList.getItemAtIndex(x);
+                Entry ent = (Entry) entryList.getItemAtCurrIndex(x);
                 saveString.append(this.getSaveString(ent));
             }
         }
@@ -65,7 +65,7 @@ public class ManualTrackerSaver extends SaveHandler {
                     classContents[1] = " -i";
                 }
                 classContents[2] = CategoryMap.categoryToInputMap.get(classContents[2]);
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
+                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtCurrIndex(ledgerIndex));
                 inputString = "new /time " + classContents[4] + " /cat "
                     + classContents[2] + " /desc " + classContents[5] + " /amt "
                     + classContents[3] + classContents[1];

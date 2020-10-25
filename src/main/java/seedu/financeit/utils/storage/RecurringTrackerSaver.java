@@ -1,9 +1,9 @@
 package seedu.financeit.utils.storage;
 
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.recurringtracker.RecurringEntry;
-import seedu.financeit.recurringtracker.RecurringEntryList;
-import seedu.financeit.recurringtracker.RecurringTracker;
+import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
+import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
+import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,7 +27,7 @@ public class RecurringTrackerSaver extends SaveHandler {
         StringBuilder saveString = new StringBuilder();
         int size = entries.getItemsSize();
         for (int i = 0; i < size; i++) {
-            RecurringEntry entry = (RecurringEntry) entries.getItemAtIndex(i);
+            RecurringEntry entry = (RecurringEntry) entries.getItemAtCurrIndex(i);
             saveString.append(entry.toString() + System.lineSeparator());
         }
         FileWriter fileWriter = new FileWriter(fullPath);
