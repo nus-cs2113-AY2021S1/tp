@@ -13,6 +13,7 @@ public class FavList {
     }
 
     public static void deleteFav(int index) {
+        favList.remove(index + 1);
     }
 
     public static void listFav() {
@@ -20,5 +21,9 @@ public class FavList {
 
     public static ArrayList<Fav> getList() {
         return favList;
+    }
+
+    public static int getSize() {
+        return favList.size();
     }
 }
