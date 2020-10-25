@@ -1,8 +1,20 @@
 package parser;
 
 
-import command.*;
-
+import command.AddCommand;
+import command.ClearCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.DoneCommand;
+import command.EditCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.FindDateCommand;
+import command.HelpCommand;
+import command.LocateCommand;
+import command.PrintFullListCommand;
+import command.PrintLocationCommand;
+import command.SortCommand;
 import event.Assignment;
 import event.PersonalEvent;
 
