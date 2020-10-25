@@ -206,7 +206,7 @@ public class BookmarkList {
         if (bookmarks.size() == 0) {
             message = "Empty List" + lineSeparator;
         } else {
-            message = launchBookmarksFromSlot();
+            message = launchBookmarksFromList();
             if (!message.isEmpty()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             }
@@ -214,7 +214,7 @@ public class BookmarkList {
         return message;
     }
 
-    private String launchBookmarksFromSlot() {
+    private String launchBookmarksFromList() {
         String message = "";
         String errorMessage = "";
         for (int i = 0; i < bookmarks.size(); i++) {

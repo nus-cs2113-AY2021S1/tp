@@ -14,6 +14,7 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
+import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
 import seedu.zoomaster.exception.ZoomasterException;
@@ -102,6 +103,8 @@ public class Parser {
             return new ShowTimetableCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
             command = new ClearCommand();
+        } else if (input.startsWith(LaunchModuleAndSlotBookmark.LAUNCH_KW)) {
+            command = new LaunchModuleAndSlotBookmark(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }

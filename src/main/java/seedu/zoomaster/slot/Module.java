@@ -65,8 +65,7 @@ public class Module {
         return slot;
     }
 
-    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) 
-        throws ZoomasterException {
+    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) {
         Slot slot = new Slot(startTime, endTime, day, lesson);
         return slot;
     }
@@ -105,19 +104,25 @@ public class Module {
         if (bookmarkList.isEmpty()) {
             message += "no bookmarks found in module\n\n";
         }
-        for (Slot slot : slots) {
-            message += slot.toString() + "\n";
+        for (int i = 0; i < slots.size(); i++) {
+            Slot slot = slots.get(i);
+            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + "\n";
             List<Bookmark> slotBookmarkList = slot.getBookmarkList().getBookmarks();
             for (Bookmark bookmark : slotBookmarkList) {
                 message += "  " + bookmark.getBookmarkAsString() + "\n";
             }
             if (slotBookmarkList.isEmpty()) {
-                message += "  no bookmarks found in slot\n";
+                message += "  no bookmarks found in slot\n\n";
             }
         }
         if (message.isBlank()) {
             message += "no bookmarks found in " + moduleCode + "\n";
         }
+        return message;
+    }
+
+    public String launchBookmarks() {
+        String message = bookmarks.launchAllBookmarks();
         return message;
     }
 
