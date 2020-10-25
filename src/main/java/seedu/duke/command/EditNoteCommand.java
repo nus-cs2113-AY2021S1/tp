@@ -106,7 +106,7 @@ public class EditNoteCommand extends Command {
         // Delete lines
         if (!deleteLists.isEmpty()) {
             for (int key : deleteLists.keySet()) {
-                if (key < content.size()) {
+                if (key < content.size() && content.size() != 1) {
                     content.remove(key);
                 } else {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_INVALID_LINE);
