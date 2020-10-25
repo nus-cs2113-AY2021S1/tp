@@ -170,6 +170,7 @@ public class Ui {
             }
         }
     }
+
     public void printEventMarkedDoneMessage(Event doneEvent) {
         System.out.println("You have successfully marked this event as done!");
         System.out.println(doneEvent);
