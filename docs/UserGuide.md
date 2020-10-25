@@ -616,34 +616,34 @@ Hope this helps!
 Enter the following command | To do this
 --------------------------- | -----------
 `add -b BOOK_TITLE /by AUTHOR` | Add book
-`delete -b BOOK_TITLE /by AUTHOR` | Delete book
-`list -b [/by AUTHOR]` | List books
 `add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]` | Add quote
-`delete -q QUOTE_NUMBER` | Delete quote
-`list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
-`edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
-`find -q KEYWORD` | Find quotes
 `add -qr QUOTE_NUMBER /reflect REFLECTION` | Add quote reflection
-`delete -qr QUOTE_NUMBER` | Delete quote reflection
+`add -t TASK /by DEADLINE` | Add task
+`add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
+`add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
+`list -b [/by AUTHOR]` | List books
+`list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
+`list -bm` | List bookmarks
+`list -t` | List tasks
+`list -c [CATEGORY]` | List all categories / List items in a category
+`list -r [/RATING_SCORE]` | List ratings
+`edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
+`edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
+`edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
+`delete -b BOOK_TITLE /by AUTHOR` | Delete book
+`delete -q QUOTE_NUMBER` | Delete quote
+`delete -qr QUOTE_NUMBER` | Delete quote reflection
+`delete -bm BOOK_TITLE` | Delete bookmark
+`delete -t TASK_NUMBER` | Delete task
+`delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
+`delete -r BOOK_TITLE /by AUTHOR` | Delete rating
+`find -q KEYWORD` | Find quotes
+`find -r BOOK_TITLE /by AUTHOR` | Find rating
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
-`delete -bm BOOK_TITLE` | Delete bookmark
-`list -bm` | List bookmarks
-`add -t TASK /by DEADLINE` | Add task
 `done -t TASK_NUMBER` | Mark task as done
-`delete -t TASK_NUMBER` | Delete task
-`list -t` | List tasks
-`add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
-`delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
-`list -c [CATEGORY]` | List all categories / List items in a category
-`edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
-`add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
-`delete -r BOOK_TITLE /by AUTHOR` | Delete rating
-`list -r [/RATING_SCORE]` | List ratings
-`edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
-`find -r BOOK_TITLE /by AUTHOR` | Find rating
 `help` | Show help page
 `bye` | Terminate the program
 
