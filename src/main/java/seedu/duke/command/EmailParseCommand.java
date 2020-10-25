@@ -52,7 +52,7 @@ public class EmailParseCommand extends Command {
             if (emailSubject.equals("")) {
                 System.out.println("Empty email subject and no date/time fields, event won't be created!");
             } else {
-                System.out.println("No date detected in the email body! The personal event will only contain the description.");
+                System.out.println("Since no date was detected in the email body, the personal event will only contain the description.");
                 Personal personalEvent = new Personal(emailSubject);
                 data.addToEventList("Personal", personalEvent);
             }
@@ -80,11 +80,11 @@ public class EmailParseCommand extends Command {
             System.out.println("We have detected " + timeCount + " time slots in this email body!");
             System.out.println("Please select the time you want for this event from the list below!");
             int timeNumber = 0;
+            ui.printDividerLine();
             for (LocalTime time : timeList) {
-                ui.printDividerLine();
                 System.out.println(timeNumber + 1 + " " + time);
-                ui.printDividerLine();
             }
+            ui.printDividerLine();
             boolean timeChosen = false;
             while (!timeChosen) {
                 try {
@@ -119,14 +119,18 @@ public class EmailParseCommand extends Command {
 
         while (timeMatcher.find()) {
             String time = timeMatcher.group(0);
-            if(time.contains(".")) {
+            if (time.contains(".")) {
                 time = time.replaceAll("\\.", ":");
             }
-            // problems currently are 4PM wont work, 4 PM wont work too
-            // check if have AM/PM
-            // if dont have colon then add ":00 " in between
-            // if have colon but no space, add space before AM/PM
-            // might need to make AM/PM into lowercase
+            if (time.contains("PM") || time.contains("AM")) {
+                if (!time.contains(":")) {
+                    time = time.substring(0, time.length() - 2) + ":00 " + time.substring(time.length() - 2);
+                }
+                if (!time.contains(" ")) {
+                    time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
+                }
+            }
+            time = time.toLowerCase();
             timeListInString.add(time);
         }
 
@@ -196,7 +200,7 @@ public class EmailParseCommand extends Command {
             int dateNumber = 0;
             ui.printDividerLine();
             for (LocalDate date : dateList) {
-                System.out.println(dateNumber + 1 + " " + date);
+                System.out.println(dateNumber + 1 + ". " + date);
                 //System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 dateNumber++;
             }
@@ -216,7 +220,7 @@ public class EmailParseCommand extends Command {
                 }
             }
         } else if (dateCount == 0) {
-            System.out.println("No dates detected for this email body!");
+            System.out.println("No date detected in the email!");
         } else {
             finalDate = dateList.get(0);
             System.out.println("One date detected and chosen: " + finalDate);
