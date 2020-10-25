@@ -495,6 +495,17 @@ public class Ui {
     }
 
     /**
+     * Returns a string stating that DietBook is ready for use.
+     *
+     * @return A string stating that DietBook is ready for use.
+     */
+    private String getStartMessage() {
+        return "and you may start by entering any valid commands. "
+                + LINE_SEPARATOR
+                + "If you require a list of valid commands, you can enter: help";
+    }
+
+    /**
      * Returns a string representation of a list of system related commands that users can input.
      *
      * @return A string representation of a list of system related commands that users can input.
