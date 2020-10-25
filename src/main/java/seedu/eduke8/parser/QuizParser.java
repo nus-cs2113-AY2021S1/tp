@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
-
 /**
  * Parses user input during a quiz activity.
  */
 public class QuizParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final String COMMAND_HINT = "hint";
+    private static final String COMMAND_BOOKMARK = "bookmark";
+    private static final String BOOKMARK_STORE = "storing";
 
     private Question question;
     private BookmarkList bookmarks;
@@ -49,12 +49,12 @@ public class QuizParser implements Parser {
      */
     @Override
     public Command parseCommand(DisplayableList optionList, String userInput) {
-        if ("hint".equals(userInput)) {
+        if (COMMAND_HINT.equals(userInput)) {
             LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
-        } else if ("bookmark".equals(userInput)) {
+        } else if (COMMAND_BOOKMARK.equals(userInput)) {
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
-            return new BookmarkCommand(question, "storing", bookmarks);
+            return new BookmarkCommand(question, BOOKMARK_STORE, bookmarks);
         }
 
         try {

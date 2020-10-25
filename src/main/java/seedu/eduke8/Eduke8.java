@@ -3,14 +3,12 @@ package seedu.eduke8;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
-import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.parser.MenuParser;
 import seedu.eduke8.storage.LogStorage;
 import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
