@@ -16,7 +16,7 @@ public class Commands {
     public static final String COMMAND_DELETE = "delete";
     public static final String COMMAND_BYE = "bye";
     public static final String COMMAND_CLEAR = "clear";
-    public static final String COMMAND_EDIT_PROFILE = "edit";
+    public static final String COMMAND_EDIT = "edit";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_CUSTOM = "custom";
     public static final String COMMAND_GOAL = "goal";

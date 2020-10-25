@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Goal;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
@@ -11,6 +12,7 @@ import fitr.ui.Ui;
 import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
+import static fitr.common.Messages.EMPTY_GOAL_LIST;
 import static fitr.common.Messages.FOOD_LIST_HEADER;
 import static fitr.common.Messages.EXERCISE_LIST_HEADER;
 import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
@@ -33,6 +35,7 @@ import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_GOAL;
 
 public class ViewCommand extends Command {
 
@@ -53,6 +56,8 @@ public class ViewCommand extends Command {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
+        } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
+            viewGoal(foodList, exerciseList, goalList, user);
         } else {
             Ui.printFormatError("view");
             //Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
@@ -128,6 +133,18 @@ public class ViewCommand extends Command {
     private void viewProfile(User user) {
         Ui.printCustomMessage(USER_PROFILE_HEADER);
         Ui.printCustomMessage(user.toString());
+    }
+
+    private void viewGoal(FoodList foodList, ExerciseList exerciseList, GoalList goalList, User user) {
+        if (goalList.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_GOAL_LIST);
+        } else {
+            for (int i = 0; i < goalList.getSize(); i++) {
+                Goal goal = goalList.getGoal(i);
+                Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
+                        + goal.getStatus(goal, foodList, exerciseList, user) + "] " + goal.getDescription());
+            }
+        }
     }
 
     @Override

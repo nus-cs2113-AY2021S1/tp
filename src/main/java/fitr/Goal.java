@@ -1,5 +1,11 @@
 package fitr;
 
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.user.User;
+
+import static fitr.goal.CheckGoalStatus.checkGoalStatus;
+
 public class Goal {
     protected String createdDate;
     protected String goalType;
@@ -21,5 +27,15 @@ public class Goal {
 
     public String getGoalType() {
         return goalType;
+    }
+
+    public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
+        String rawStatus = checkGoalStatus(goal, foodList, exerciseList, user);
+        if (rawStatus.equals("unknown!") || rawStatus.equals("0.0")) {
+            return "✘";
+        } else if (rawStatus.equals("100.0")) {
+            return "✓";
+        }
+        return rawStatus + "%";
     }
 }
