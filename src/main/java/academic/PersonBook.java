@@ -32,13 +32,8 @@ public class PersonBook {
         StringBuilder listToPrint = new StringBuilder();
         for (Person person : listOfPerson) {
             if (person != null) {
-                listToPrint.append(listIndex + 1);
-                listToPrint.append(". [" + person.nameOfPerson + "]");
-                listToPrint.append(" [" + person.contactNumberOfPerson + "]");
-                listToPrint.append(" [" + person.emailOfPerson + "]");
-                if (Person.isStar(person)) {
-                    listToPrint.append(" (*)");
-                }
+                listToPrint.append((listIndex + 1) + ".");
+                listToPrint.append(combinePersonDetails(person));
                 listIndex++;
                 if (listOfPerson.size() != listIndex) {
                     listToPrint.append("\n");
@@ -47,5 +42,17 @@ public class PersonBook {
         }
 
         return listToPrint.toString();
+    }
+
+    public static String combinePersonDetails(Person person) {
+        StringBuilder personDetails = new StringBuilder();
+
+        personDetails.append("[" + person.nameOfPerson + "]");
+        personDetails.append(" [" + person.contactNumberOfPerson + "]");
+        personDetails.append(" [" + person.emailOfPerson + "]");
+        if (Person.isStar(person)) {
+            personDetails.append(" (*)");
+        }
+        return personDetails.toString();
     }
 }

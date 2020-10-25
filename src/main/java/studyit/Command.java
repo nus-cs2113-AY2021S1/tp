@@ -10,6 +10,7 @@ import academic.AcademicStorage;
 import academic.AcademicCommandParser;
 import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
+import academic.AcademicUi;
 
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
@@ -44,7 +45,7 @@ public class Command {
             HelpMessage.printHelpMessage();
         } else if (commandType == CommandType.HIGHLIGHT) {
             if (StudyIt.getCurrentMode() == Mode.MENU) {
-                Ui.printHighlight(bookmarkRun);
+                Ui.printHighlight(bookmarkRun, currentGrades, listOfPerson);
             } else {
                 Ui.printHighlightLocationError();
             }
@@ -132,7 +133,8 @@ public class Command {
             } else if (commandType == AcademicCommandType.STAR_CONTACT) {
                 Ui.printLine("Marking this person as star");
                 PersonBook.starContact(AcademicCommandParser.parseStarContact(command), listOfPerson);
-
+            } else if (commandType == AcademicCommandType.LIST_STAR) {
+                AcademicUi.printStarList(currentGrades, listOfPerson);
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }

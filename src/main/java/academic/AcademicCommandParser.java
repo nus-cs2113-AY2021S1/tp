@@ -35,6 +35,8 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.STAR_GRADE;
         } else if (commandModified.startsWith("star contact")) {
             return AcademicCommandType.STAR_CONTACT;
+        } else if (commandModified.startsWith("list star")) {
+            return AcademicCommandType.LIST_STAR;
         } else {
             throw new InvalidCommandException();
         }

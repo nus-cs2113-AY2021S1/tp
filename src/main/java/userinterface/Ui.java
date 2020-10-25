@@ -1,13 +1,20 @@
 package userinterface;
 
+import academic.AcademicUi;
+import academic.Grade;
+import academic.Person;
 import bookmark.BookmarkUi;
+import bookmark.BookmarkRun;
 import exceptions.InvalidModeException;
 import studyit.ModeNames;
 import studyit.Mode;
 import studyit.CommandParser;
 import studyit.StudyIt;
 import studyit.StudyItLog;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
@@ -83,7 +90,9 @@ public class Ui {
         printLine("This command can only be called at main menu!");
     }
 
-    public static void printHighlight(bookmark.BookmarkRun bookmarkRun) {
+    public static void printHighlight(BookmarkRun bookmarkRun, ArrayList<Grade> currentGrades,
+                                            ArrayList<Person> listOfPerson) {
         bookmarkRun.run("list star");
+        AcademicUi.printStarList(currentGrades, listOfPerson);
     }
 }

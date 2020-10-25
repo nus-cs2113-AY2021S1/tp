@@ -53,16 +53,8 @@ public class GradeBook {
         StringBuilder listToPrint = new StringBuilder();
         for (Grade grade : currentGrades) {
             if (grade != null) {
-                listToPrint.append(listIndex + 1);
-                listToPrint.append(". [" + grade.moduleName + "]");
-                listToPrint.append(" [" + grade.moduleCredits + "MC]");
-                listToPrint.append(" [" + grade.moduleGrade + "]");
-                if (Grade.isGradeSued(grade)) {
-                    listToPrint.append(" (This mod is SU-ed)");
-                }
-                if (Grade.isGradeStar(grade)) {
-                    listToPrint.append(" (*)");
-                }
+                listToPrint.append(listIndex + 1 + ".");
+                listToPrint.append(combineGradeDetails(grade));
                 listIndex++;
                 if (currentGrades.size() != listIndex) {
                     listToPrint.append("\n");
@@ -70,5 +62,20 @@ public class GradeBook {
             }
         }
         return listToPrint.toString();
+    }
+
+    public static String combineGradeDetails(Grade grade) {
+        StringBuilder gradeDetail = new StringBuilder();
+
+        gradeDetail.append("[" + grade.moduleName + "]");
+        gradeDetail.append(" [" + grade.moduleCredits + "MC]");
+        gradeDetail.append(" [" + grade.moduleGrade + "]");
+        if (Grade.isGradeSued(grade)) {
+            gradeDetail.append(" (This mod is SU-ed)");
+        }
+        if (Grade.isGradeStar(grade)) {
+            gradeDetail.append(" (*)");
+        }
+        return gradeDetail.toString();
     }
 }
