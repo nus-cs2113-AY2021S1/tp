@@ -8,7 +8,6 @@ import seedu.smarthomebot.logic.parser.Parser;
 import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.storage.ReadStorageFile;
-import seedu.smarthomebot.storage.StorageFile;
 import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 

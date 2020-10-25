@@ -9,11 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 
 public class WriteStorageFile extends StorageFile {
 
-    private static final String filePath = "data/SmartHomeBot.txt";
+    private static final String FILE_PATH = "data/SmartHomeBot.txt";
     private final TextUi ui = new TextUi();
 
     public WriteStorageFile(ApplianceList applianceList, LocationList locationList) {
@@ -23,10 +22,10 @@ public class WriteStorageFile extends StorageFile {
     @Override
     public void execute() {
         try {
-            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             createFile();
             clearFile();
-            FileWriter myWriter = new FileWriter(filePath, StandardCharsets.UTF_8);
+            FileWriter myWriter = new FileWriter(FILE_PATH);
             myWriter.write(locationList.getLocations().toString() + "\n");
             for (int i = 0; i < applianceList.getAllAppliance().size(); i++) {
                 myWriter.write(applianceList.getAppliance(i).writeFileFormat() + System.lineSeparator());
@@ -39,8 +38,8 @@ public class WriteStorageFile extends StorageFile {
 
     public void createFile() {
         try {
-            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
-            File myObj = new File(filePath);
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            File myObj = new File(FILE_PATH);
             if (!myObj.getParentFile().exists()) {
                 myObj.getParentFile().mkdirs();
             }
@@ -55,8 +54,8 @@ public class WriteStorageFile extends StorageFile {
 
     public void clearFile() {
         try {
-            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
-            PrintWriter writer = new PrintWriter(filePath);
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            PrintWriter writer = new PrintWriter(FILE_PATH);
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {

@@ -16,14 +16,13 @@ import seedu.smarthomebot.ui.TextUi;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
 
 public class ReadStorageFile extends StorageFile {
 
-    private static final String filePath = "data/SmartHomeBot.txt";
+    private static final String FILE_PATH = "data/SmartHomeBot.txt";
     private final TextUi ui = new TextUi();
 
     public ReadStorageFile(ApplianceList applianceList, LocationList locationList) {
@@ -33,10 +32,10 @@ public class ReadStorageFile extends StorageFile {
     @Override
     public void execute() {
         try {
-            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             int i = 0;
-            File myFile = new File(filePath);
-            Scanner myReader = new Scanner(myFile, StandardCharsets.UTF_8);
+            File myFile = new File(FILE_PATH);
+            Scanner myReader = new Scanner(myFile);
             String locationList = myReader.nextLine();
             try {
                 readToLocationList(locationList);
