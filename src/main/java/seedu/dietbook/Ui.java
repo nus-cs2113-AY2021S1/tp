@@ -450,7 +450,7 @@ public class Ui {
      */
     public void printAllIntakeAndFoods(int calorieIntake, int carbIntake, int proteinIntake,
                                        int fatIntake, String recalculatedFoods) {
-        print(stringAllIntakeAndFoodsWithoutTime(carbIntake, calorieIntake,proteinIntake,
+        print(stringAllIntakeAndFoodsWithoutTime(calorieIntake, carbIntake, proteinIntake,
                 fatIntake, recalculatedFoods));
     }
 
@@ -479,8 +479,8 @@ public class Ui {
     public void printAllIntakeAndFoods(int calorieIntake, int carbIntake, int proteinIntake,
                                        int fatIntake, String recalculatedFoods,
                                        LocalDateTime start, LocalDateTime end) {
-        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(carbIntake, calorieIntake,
-                proteinIntake,fatIntake, recalculatedFoods);
+        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(calorieIntake,
+                carbIntake, proteinIntake, fatIntake, recalculatedFoods);
         print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
     }
 
@@ -691,7 +691,7 @@ public class Ui {
      * @return A string representation of the total amount of all nutrients consumed by the user and
      *     the list of food items which had their nutritional information recalculated by DietBook if any.
      */
-    private String stringAllIntakeAndFoodsWithoutTime(int carbIntake, int calorieIntake, int proteinIntake,
+    private String stringAllIntakeAndFoodsWithoutTime(int calorieIntake, int carbIntake, int proteinIntake,
                                                      int fatIntake, String recalculatedFoods) {
         performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
         performAssertionsForNutritionalIntake(calorieIntake, "calorie");
@@ -707,8 +707,8 @@ public class Ui {
         String stringFatIntake = stringNutritionalIntake(fatIntake,"fat", "g");
         String message = recalculatedFoodsMessage(recalculatedFoods);
 
-        return stringCarbIntake + LINE_SEPARATOR
-                + stringCalorieIntake + LINE_SEPARATOR
+        return stringCalorieIntake + LINE_SEPARATOR
+                + stringCarbIntake + LINE_SEPARATOR
                 + stringProteinIntake + LINE_SEPARATOR
                 + stringFatIntake + LINE_SEPARATOR
                 + message;
