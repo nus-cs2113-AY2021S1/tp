@@ -6,6 +6,6 @@ public class DukeException extends Exception {
     }
 
     public void printExceptionMessage() {
-        System.out.println("Exception found: " + this.getMessage());
+        System.out.println(this.getMessage());
     }
 }

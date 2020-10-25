@@ -15,6 +15,6 @@ public abstract class ProjectCommand extends Command {
         super(parameters);
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract void execute();
 
 }

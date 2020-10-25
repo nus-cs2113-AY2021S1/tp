@@ -23,7 +23,7 @@ public abstract class SprintCommand extends Command {
         this.projectList = projectList;
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract void execute();
 
     /**
      * Choose the project to execute command.

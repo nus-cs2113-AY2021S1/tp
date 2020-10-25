@@ -1,5 +1,6 @@
 package seedu.duke.command.member;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
@@ -20,9 +21,11 @@ public class DeleteMemberCommand extends MemberCommand {
         for (int i = 0; i < parameters.size(); i++) {
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
                 proj.getProjectMember().removeMember(new Member(parameters.get(Integer.toString(i))));
-                Ui.showToUserLn(parameters.get(Integer.toString(i)) + " has been removed from the project.");
+                Ui.showToUserLn(parameters.get(Integer.toString(i))
+                        + " has been removed from the project.");
             } else {
-                Ui.showToUserLn(parameters.get(Integer.toString(i)) + " is not associated with the project.");
+                Ui.showToUserLn(parameters.get(Integer.toString(i))
+                        + " is not associated with the project.");
             }
         }
     }

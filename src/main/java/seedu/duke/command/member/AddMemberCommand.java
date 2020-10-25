@@ -1,5 +1,6 @@
 package seedu.duke.command.member;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
@@ -19,7 +20,8 @@ public class AddMemberCommand extends MemberCommand {
         Project proj = projectManager.getSelectedProject();
         for (int i = 0; i < parameters.size(); i++) {
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
-                Ui.showToUserLn(parameters.get(Integer.toString(i)) + " is already associated to the project.");
+                Ui.showToUserLn(parameters.get(Integer.toString(i))
+                        + " is already associated to the project.");
             } else {
                 m = new Member(parameters.get(Integer.toString(i)));
                 proj.getProjectMember().addMember(m);

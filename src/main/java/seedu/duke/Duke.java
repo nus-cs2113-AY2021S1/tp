@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.command.Command;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.parser.Parser;
@@ -61,9 +62,9 @@ public class Duke {
         String input;
         while (!parser.isExit()) {
             input = Ui.getUserCommand();
-            String parserOutput = parser.parser(input, projectManager);
-            if (parserOutput != null) {
-                System.out.println(parserOutput);
+            Command command = parser.parser(input, projectManager);
+            if (command != null) {
+                command.execute();
             }
         }
     }
