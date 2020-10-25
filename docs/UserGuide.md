@@ -19,6 +19,30 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
 
 ## Features 
 
+### Changing line divider in Fluffle: `divider`
+Allows the user to change the line divider divider used in Fluffle.
+Format: `divider DIVIDER_OPTION`
+The `DIVIDER_OPTION` is an optional parameter indicating your preferable type of line divider. The list of dividers is:
+1. ----------------------------------------------------------------
+1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
+1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Example usages:
+* `divider 1` changes divider option to 2
+
+Example output: 
+```
+divider 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Changing line divider...
+--------------------------------------------------------------
+```
+```
+divider 3
+=^..^=  =^..^=  =^..^=   =^..^=   =^..^=   =^..^=   =^..^=
+Changing line divider...
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+
 ### Viewing help: `help`
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
