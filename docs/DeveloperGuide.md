@@ -80,7 +80,7 @@ The following sequence diagram shows how the components interact with each other
 <center><i>Figure 3: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</i></center>
    
 ## Bunny class family
-![UML Bunny class diagram]()
+![UML Bunny class diagram](docs/graphics/diagrams/classDiagram_BunnyList.png)
 <center><i>Figure 4:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. The BunnyList class has the public ArrayList of bunnies bunniesList that is accessed by the DeleteBunny class method deleteBunny which removes a selected bunny from the bunniesList ArrayList. Similarly, bunniesList is also accessed by the BunnyFilter class which contains the filterBunny function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA`or the `GENRE` when running the command
 
@@ -95,14 +95,12 @@ The BunnySaver class accesses the bunniesList and overwrites the current bunny.t
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
 The target user group are creative writers.
 * Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow
 * Writers who enjoy creating short pieces but lack the organisation to do so
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 The application aims to provide the writer with the following services:
 * Provide them with an organised way to store and select their plot ideas which may be otherwise abandoned
 * Provide them with customised prompt suggestions to inspire them to write
@@ -113,6 +111,7 @@ The application aims to provide the writer with the following services:
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 
 ## Non-Functional Requirements
