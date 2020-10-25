@@ -9,12 +9,12 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
 1. Check that your computer has Java **11** installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1.Copy the file to the folder you want to use as the home folder.
-1.Type in a command prompt ./duke.jar and press Enter.
+1.Type in a command prompt `java -jar duke.jar` and press Enter.
 1.Type the `help` command and press Enter to get started.
 1.Some example commands you can try:
-    1.`list words` : List the vocabulary stored in the word list.
-    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-    1.`exit` : Exits the app.
+    1.`list words`: List the vocabulary stored in the word list.
+    1.`filter bunny g/fantasy`: Filters bunny ideas that are of the fantasy genre.
+    1.`exit`: Exits the app.
 1.Refer to the Features below for details of each command.
 
 ## Features 
@@ -37,8 +37,6 @@ Type “help COMMAND_NAME” to figure out how to use the particular command.
 - name
 - list name
 - filter name
-- add name
-- delete name
 - clear
 - exit
 
@@ -92,33 +90,37 @@ Example usages:
 - `bunny i\test idea 2 g\ fantasy`
 
 Example output:  
-`bunny i\test idea 2 g\ fantasy  `  
- `--------------------------------------------------`  
- `New bunny added!`  
-   `idea: test idea 2`  
-   `genre:  fantasy`  
- `---------------------------------------------------`
+```
+bunny i\test idea 2 g\ fantasy    
+ --------------------------------------------------  
+ New bunny added!  
+   idea: test idea 2  
+   genre:  fantasy 
+ ---------------------------------------------------
+ ```
 
 ### Listing bunny ideas: `list bunny`
 List all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
 Example usage: `list bunny`  
 Example output:  
-`list bunny`  
-`-----------------------------------------------------`  
-`Here are the bunnies stored in the program:`  
-`1.`  
-  `idea: test idea 1`  
-  `genre: fantasy`  
-  
-`2.`  
-  `idea: test idea 2`  
- `genre: romance`  
+```
+list bunny
+--------------------------------------------------------------
+Here are the bunnies stored in the program:
+1.
+  idea: test idea 1
+  genre: fantasy
 
-`3.`  
-  `idea: test idea 3`  
-  `genre: none`  
-`------------------------------------------------------`
+2.
+  idea: test idea 2
+  genre: romance
+
+3.
+  idea: test idea 3
+  genre: none
+--------------------------------------------------------------
+```
 
 ### Filter bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
@@ -128,20 +130,22 @@ Example usages:
 - filter bunny i\test idea 2 g\ fantasy
 
 Example output:
-`filter bunny g\ fantasy`  
-`------------------------------------------------------`  
-`1.`  
-  `idea: bunny idea 1`  
-  `genre: fantasy`  
+```
+filter bunny g\ fantasy
+--------------------------------------------------------------
+1.
+  idea: bunny idea 1
+  genre: fantasy
 
-`2.`  
-  `idea: test idea 2`  
-  `genre: fantasy`  
+2.
+  idea: test idea 2
+  genre: fantasy
 
-`number bunny filtered: 2`  
-`-------------------------------------------------------`
+number bunny filtered: 2
+--------------------------------------------------------------
+```
 
-### Save bunny ideas: `save bunny`
+### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
 Format: `save bunny`  
@@ -150,93 +154,42 @@ Example usages:
 - `save bunny`
 
 Example output:  
-`save bunny`  
-`--------------------------------------------------------------`  
-`Bunny list saved!`  
-`--------------------------------------------------------------`
+```
+save bunny
+--------------------------------------------------------------
+Bunny list saved!
+--------------------------------------------------------------
+```
+
+### Deleting a bunny idea: `save bunny`
+Delete a selected bunny from the list of bunny ideas.
+Format: `delete  bunny BUNNY_INDEX`  
+* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+
+Example usages:
+- `delete  bunny`
+
+Example output:  
+```
+delete bunny 2
+--------------------------------------------------------------
+Bunny deleted: 
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
 ### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
 Format: `name`
 
-Example usages:
-- `name`
-
-Example output:  
-`name`  
-`--------------------------------------------------------------`  
-`name 2`  
-`--------------------------------------------------------------`
-
-
-### Generating names from name database: `list name`
+### Generating names from name database: `list names`
 Displays all the names currently stored in the names database.  
-Format: `list name`
+Format: `list names`
 
-Example usages:
-- `list name`
-
-Example output:  
-`list name`  
-`--------------------------------------------------------------`  
-`1. name 1`
-`2. name 2`
-`3. name 3`
-`--------------------------------------------------------------`
-
-
-### Generating names from name database: `filter name`
+### Generating names from name database: `filter names`
 Gets the list of names after filtering from the stored list of names.  
-Format: `filter name <NAME>`
-
-Example usages:
-- `filter name 2`
-
-Example output:  
-`filter name 2`  
-`--------------------------------------------------------------`  
-`name 2`  
-`--------------------------------------------------------------`
-
-Example usages:
-- `filter name name`
-
-Example output:  
-`filter name name`  
-`--------------------------------------------------------------`  
-`1. name 1`
-`2. name 2`
-`3. name 3`
-`--------------------------------------------------------------`
-
-
-### Generating names from name database: `add name`
-Adds a name to the list of names currently stored in the names database.
-Format: `add name <NAME>`
-
-Example usages:
-- `add name name 3`
-
-Example output:  
-`add name name 3`  
-`--------------------------------------------------------------`  
-`name 3 has been added to the Names list!`  
-`--------------------------------------------------------------`
-
-
-### Generating names from name database: `delete name`
-Removes a name from the list of names currently stored in the names database.
-Format: `delete name <INDEX>`
-
-Example usages:
-- `delete name 3`
-
-Example output:  
-`delete name 3`  
-`--------------------------------------------------------------`  
-`name 3 has been deleted from the Names list!`  
-`--------------------------------------------------------------`
-
+Format: `filter names [NAME]`
 
 ### Filtering words in word bank: `filter`
 Filter out the words you need in the list based on your own filtering mode.  
@@ -398,14 +351,10 @@ Format: `exit`
 |              | TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
 | name         | `name`                                                                                                |
 |              | Generates a random name                                                                               |
-| list name    | `list name`                                                                                           |
+| list names   | `list names`                                                                                          |
 |              | List all the stored names                                                                             |
-| filter name  | `filter name <NAME>`                                                                                  |
+| filter names | `filter names [NAME]`                                                                                 |
 |              | Gets the list of names after filtering                                                                |
-| add name     | `add name <NAME>`                                                                                     |
-|              | Adds a name to the list of stored names                                                               |
-| delete name  | `delete name <INDEX>`                                                                                 |
-|              | Removes a name from the list of stored names given the index                                          |
 |              |                                                                                                       |
 | stats        | `stats`                                                                                               |
 |              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
