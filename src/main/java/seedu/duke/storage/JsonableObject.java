@@ -10,20 +10,48 @@ import java.util.ArrayList;
 
 public interface JsonableObject extends Jsonable {
 
+    /**
+     * Parse the given JsonObject and map the values to the current class
+     * @param jsonObj JsonObject that contains all the key-value pairs
+     */
     void fromJson(JsonObject jsonObj);
 
+    /**
+     * Retrieves the value with the given key and parse it as an integer
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return Integer value of the key-value pair
+     */
     static int parseInt(JsonObject jsonObject, String key) {
         return ((BigDecimal) jsonObject.get(key)).intValue();
     }
 
+    /**
+     * Retrieves the value with the given key and parse it as an boolean
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return Boolean value of the key-value pair
+     */
     static boolean parseBoolean(JsonObject jsonObject, String key) {
         return (Boolean) jsonObject.get(key);
     }
 
+    /**
+     * Retrieves the value with the given key and parse it as an string
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return String value of the key-value pair
+     */
     static String parseString(JsonObject jsonObject, String key) {
         return (String) jsonObject.get(key);
     }
 
+    /**
+     * Retrieves the value with the given key and parse it as an LocalDate
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return LocalDate value of the key-value pair
+     */
     static LocalDate parseDate(JsonObject jsonObject, String key) {
         Object rawDate = jsonObject.get(key);
         if (rawDate != null) {
@@ -31,7 +59,13 @@ public interface JsonableObject extends Jsonable {
         }
         return null;
     }
-
+    
+    /**
+     * Retrieves the value with the given key and parse it as an list of integers
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return ArrayList<Integer> value of the key-value pair
+     */
     static ArrayList<Integer> parseIntegerList(JsonObject jsonObject, String key) {
         ArrayList<Integer> list = new ArrayList<>();
         JsonArray jsonArr = (JsonArray) jsonObject.get(key);
@@ -43,6 +77,12 @@ public interface JsonableObject extends Jsonable {
         return list;
     }
 
+    /**
+     * Retrieves the value with the given key and parse it as an list of strings
+     * @param jsonObject Json object that contains the key
+     * @param key Key of the key-value pair
+     * @return ArrayList<String> value of the key-value pair
+     */
     static ArrayList<String> parseStringList(JsonObject jsonObject, String key) {
         ArrayList<String> list = new ArrayList<>();
         JsonArray jsonArr = (JsonArray) jsonObject.get(key);

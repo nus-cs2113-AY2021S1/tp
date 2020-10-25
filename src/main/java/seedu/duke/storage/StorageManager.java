@@ -45,9 +45,9 @@ public class StorageManager {
     }
 
     /**
-     * Load the data file and deserialize it as a list of Project objects.
+     * Load the data file and deserialize it as ProjectManager.
      * File name of the data file is specified when the StorageManager object is instantiated.
-     *
+     * If JSON is empty or invalid, no operations will be done to ProjectManager.
      * @throws IOException Thrown when there is error opening the file or reading to the file.
      */
     public void load() throws IOException {
