@@ -46,11 +46,9 @@ public class StudyIt {
             System.out.println("placeholder error message");
         }
 
-        //assert false : "dummy assertion";
         MainMenu.printWelcome();
         new StudyIt().run();
         StudyItLog.logger.info("Starting process");
-
     }
 
     public void run() {
