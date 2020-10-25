@@ -1,13 +1,20 @@
 package userinterface;
 
+import academic.AcademicUi;
+import academic.Grade;
+import academic.Person;
 import bookmark.BookmarkUi;
+import bookmark.BookmarkRun;
 import exceptions.InvalidModeException;
 import studyit.ModeNames;
 import studyit.Mode;
 import studyit.CommandParser;
 import studyit.StudyIt;
 import studyit.StudyItLog;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
@@ -77,5 +84,13 @@ public class Ui {
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
+    }
+
+    public static void printHighlight(BookmarkRun bookmarkRun, ArrayList<Grade> currentGrades,
+                                            ArrayList<Person> listOfPerson) {
+        System.out.println("Here are your starred items:");
+        bookmarkRun.run("list star");
+        System.out.println();
+        AcademicUi.printStarList(currentGrades, listOfPerson);
     }
 }

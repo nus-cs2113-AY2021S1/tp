@@ -31,6 +31,12 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.DELETE_GRADE;
         } else if (commandModified.startsWith("su grade")) {
             return AcademicCommandType.SU_GRADE;
+        } else if (commandModified.startsWith("star grade")) {
+            return AcademicCommandType.STAR_GRADE;
+        } else if (commandModified.startsWith("star contact")) {
+            return AcademicCommandType.STAR_CONTACT;
+        } else if (commandModified.startsWith("list star")) {
+            return AcademicCommandType.LIST_STAR;
         } else {
             throw new InvalidCommandException();
         }
@@ -68,13 +74,15 @@ public class AcademicCommandParser extends CommandParser {
     public static String[] parseImportedPerson(String importedStatement) {
         int positionOfFirstDivider = importedStatement.indexOf("|");
         int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
-        int positionOfThirdDivider = importedStatement.lastIndexOf("|");
+        int positionOfThirdDivider = importedStatement.indexOf("|",positionOfSecondDivider + 1);
+        int positionOfFourthDivider = importedStatement.lastIndexOf("|");
 
         String var1 = importedStatement.substring(positionOfFirstDivider + 1,positionOfSecondDivider).trim();
         String var2 = importedStatement.substring(positionOfSecondDivider + 1,positionOfThirdDivider).trim();
-        String var3 = importedStatement.substring(positionOfThirdDivider + 1).trim();
+        String var3 = importedStatement.substring(positionOfThirdDivider + 1, positionOfFourthDivider).trim();
+        String var4 = importedStatement.substring(positionOfFourthDivider + 1).trim();
 
-        return new String[]{var1, var2, var3};
+        return new String[]{var1, var2, var3, var4};
 
     }
 
@@ -82,15 +90,17 @@ public class AcademicCommandParser extends CommandParser {
         int positionOfFirstDivider = importedStatement.indexOf("|");
         int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
         int positionOfThirdDivider = importedStatement.indexOf("|", positionOfSecondDivider + 1);
-        int positionOfFourthDivider = importedStatement.lastIndexOf("|");
+        int positionOfFourthDivider = importedStatement.indexOf("|", positionOfThirdDivider + 1);
+        int positionOfFifthDivider = importedStatement.lastIndexOf("|");
 
 
         String var1 = importedStatement.substring(positionOfFirstDivider + 1,positionOfSecondDivider).trim();
         String var2 = importedStatement.substring(positionOfSecondDivider + 1,positionOfThirdDivider).trim();
         String var3 = importedStatement.substring(positionOfThirdDivider + 1,positionOfFourthDivider).trim();
-        String var4 = importedStatement.substring(positionOfFourthDivider + 1).trim();
+        String var4 = importedStatement.substring(positionOfFourthDivider + 1,positionOfFifthDivider).trim();
+        String var5 = importedStatement.substring(positionOfFifthDivider + 1).trim();
 
-        return new String[]{var1, var2, var3, var4};
+        return new String[]{var1, var2, var3, var4, var5};
 
     }
 
@@ -106,4 +116,11 @@ public class AcademicCommandParser extends CommandParser {
         return Integer.parseInt(command.substring(8).trim());
     }
 
+    public static Integer parseStarGrade(String command) {
+        return Integer.parseInt(command.substring("star grade".length()).trim());
+    }
+
+    public static Integer parseStarContact(String command) {
+        return Integer.parseInt(command.substring("star contact".length()).trim());
+    }
 }

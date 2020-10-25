@@ -10,6 +10,7 @@ import academic.AcademicStorage;
 import academic.AcademicCommandParser;
 import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
+import academic.AcademicUi;
 
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
@@ -42,6 +43,8 @@ public class Command {
             Ui.changeModeCommand(command);
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
+        } else if (commandType == CommandType.HIGHLIGHT) {
+            Ui.printHighlight(bookmarkRun, currentGrades, listOfPerson);
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
             handleNonGeneralCommand(command, commandType, bookmarkRun, flashcardRun, timeTableRun,
@@ -117,9 +120,17 @@ public class Command {
                 GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
 
             } else if (commandType == AcademicCommandType.SU_GRADE) {
-                Ui.printLine("SUing grade");
-                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command),currentGrades);
+                Ui.printLine("SU-ing grade");
+                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command), currentGrades);
 
+            } else if (commandType == AcademicCommandType.STAR_GRADE) {
+                Ui.printLine("Marking this grade as star");
+                GradeBook.starGrade(AcademicCommandParser.parseStarGrade(command), currentGrades);
+            } else if (commandType == AcademicCommandType.STAR_CONTACT) {
+                Ui.printLine("Marking this person as star");
+                PersonBook.starContact(AcademicCommandParser.parseStarContact(command), listOfPerson);
+            } else if (commandType == AcademicCommandType.LIST_STAR) {
+                AcademicUi.printStarList(currentGrades, listOfPerson);
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }

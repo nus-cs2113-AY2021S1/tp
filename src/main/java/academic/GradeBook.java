@@ -8,9 +8,12 @@ import java.util.ArrayList;
 public class GradeBook {
     public static void addGrade(String[] args, ArrayList<Grade> currentGrades) {
         currentGrades.add(new Grade(args[0], Integer.parseInt(args[1]), args[2]));
-        if (args.length == 4) {
+        if (args.length == 5) {
             if (args[3].equals("true")) {
                 Grade.suGrade(currentGrades.get(currentGrades.size() - 1));
+            }
+            if (args[4].equals("true")) {
+                Grade.changeStarGrade(currentGrades.get(currentGrades.size() - 1));
             }
         }
     }
@@ -37,19 +40,21 @@ public class GradeBook {
         Grade.suGrade(currentGrades.get(indexToBeSued - 1));
     }
 
+    public static void starGrade(Integer indexToBeStar, ArrayList<Grade> currentGrades) {
+        if (indexToBeStar > 0 && indexToBeStar <= currentGrades.size()) {
+            Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
+        } else {
+            System.out.println("Invalid star index! Please try again!");
+        }
+    }
 
     public static String printListOfGrades(ArrayList<Grade> currentGrades) {
         int listIndex = 0;
         StringBuilder listToPrint = new StringBuilder();
         for (Grade grade : currentGrades) {
             if (grade != null) {
-                listToPrint.append(listIndex + 1);
-                listToPrint.append(". [" + grade.moduleName + "]");
-                listToPrint.append(" [" + grade.moduleCredits + "MC]");
-                listToPrint.append(" [" + grade.moduleGrade + "]");
-                if (Grade.isGradeSued(grade)) {
-                    listToPrint.append(" (This mod is SUed)");
-                }
+                listToPrint.append(listIndex + 1 + ".");
+                listToPrint.append(combineGradeDetails(grade));
                 listIndex++;
                 if (currentGrades.size() != listIndex) {
                     listToPrint.append("\n");
@@ -57,5 +62,20 @@ public class GradeBook {
             }
         }
         return listToPrint.toString();
+    }
+
+    public static String combineGradeDetails(Grade grade) {
+        StringBuilder gradeDetail = new StringBuilder();
+
+        gradeDetail.append("[" + grade.moduleName + "]");
+        gradeDetail.append(" [" + grade.moduleCredits + "MC]");
+        gradeDetail.append(" [" + grade.moduleGrade + "]");
+        if (Grade.isGradeSued(grade)) {
+            gradeDetail.append(" (This mod is SU-ed)");
+        }
+        if (Grade.isGradeStar(grade)) {
+            gradeDetail.append(" (*)");
+        }
+        return gradeDetail.toString();
     }
 }
