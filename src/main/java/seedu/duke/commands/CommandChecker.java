@@ -12,8 +12,11 @@ public enum CommandChecker {
     ADJ,
     LIST_WORDS,
     FILTER_WORDS,
+    LIST_FILTER,
 
     GEN_NAME,
+    ADD_NAME,
+    DELETE_NAME,
     LIST_NAMES,
     FILTER_NAMES,
 
@@ -21,6 +24,7 @@ public enum CommandChecker {
     LIST_BUNNY,
     FILTER_BUNNY,
     SAVE_BUNNY,
+    DELETE_BUNNY,
 
     CHARACTER,
     LIST_CHARACTER,
@@ -72,6 +76,8 @@ public enum CommandChecker {
             return CommandChecker.FILTER_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("save bunny")) {
             return CommandChecker.SAVE_BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("delete bunny")) {
+            return CommandChecker.DELETE_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else if (userInput.toLowerCase().trim().startsWith("scene")) {
@@ -80,9 +86,15 @@ public enum CommandChecker {
             return CommandChecker.TOPIC;
         } else if (userInput.toLowerCase().trim().startsWith("name")) {
             return CommandChecker.GEN_NAME;
-        } else if (userInput.toLowerCase().trim().startsWith("list names")) {
+        } else if (userInput.toLowerCase().trim().startsWith("add name")) {
+            return CommandChecker.ADD_NAME;
+        } else if (userInput.toLowerCase().trim().startsWith("delete name")) {
+            return CommandChecker.DELETE_NAME;
+        } else if (userInput.toLowerCase().trim().startsWith("list name")) {
             return CommandChecker.LIST_NAMES;
-        } else if (userInput.toLowerCase().trim().startsWith("filter names")) {
+        } else if (userInput.toLowerCase().trim().startsWith("list filter")) {
+            return CommandChecker.LIST_FILTER;
+        } else if (userInput.toLowerCase().trim().startsWith("filter name")) {
             return CommandChecker.FILTER_NAMES;
         } else if (userInput.toLowerCase().trim().startsWith("filter")) {
             return CommandChecker.FILTER_WORDS;

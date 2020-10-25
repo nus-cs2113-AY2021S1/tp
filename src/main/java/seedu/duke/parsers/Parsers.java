@@ -5,7 +5,6 @@ import seedu.duke.exceptions.MissingParamsException;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
@@ -76,14 +75,14 @@ public class Parsers {
         // clear filter options
         parsedParams.clear();
 
-        if (!userInput.contains("/")) {
+        if (!userInput.contains("\\")) {
             throw new MissingParamsException();
         }
 
-        while (userInput.indexOf("/", startPositionIndex) != -1) {
+        while (userInput.indexOf("\\", startPositionIndex) != -1) {
             // identify placement
-            startPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
-            endPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            startPositionIndex = userInput.indexOf("\\", startPositionIndex + 1);
+            endPositionIndex = userInput.indexOf("\\", startPositionIndex + 1);
             // if reached end of string
             if (endPositionIndex == -1) {
                 break;
@@ -122,14 +121,14 @@ public class Parsers {
         // clear filter options
         parsedParams.clear();
 
-        if (!userInput.contains("/")) {
+        if (!userInput.contains("\\")) {
             throw new MissingParamsException();
         }
 
-        while (userInput.indexOf("/", startPositionIndex) != -1) {
+        while (userInput.indexOf("\\", startPositionIndex) != -1) {
             // identify placement
-            startPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
-            endPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            startPositionIndex = userInput.indexOf("\\", startPositionIndex + 1);
+            endPositionIndex = userInput.indexOf("\\", startPositionIndex + 1);
             // if reached end of string
             if (endPositionIndex == -1) {
                 break;

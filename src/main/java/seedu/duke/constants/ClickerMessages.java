@@ -20,11 +20,6 @@ public class ClickerMessages {
             + "No previous settings loaded";
     public static final String SETTINGS_FILE_NOT_FOUND_MSG = "userSettings.txt save file not found" + NEWLINE
             + "Creating new file...";
-    public static final String LOADING_HISTORY_MSG = "Loading history.txt save file...";
-    public static final String HISTORY_FILE_EMPTY_MSG = "history.txt save file empty" + NEWLINE
-            + "No previous settings loaded";
-    public static final String HISTORY_FILE_NOT_FOUND_MSG = "history.txt save file not found" + NEWLINE
-            + "Creating new file...";
 
     /** File creator function messages.  */
     public static final String NEW_FILE_CREATED_MSG_FORMAT = "New file created";
@@ -49,6 +44,10 @@ public class ClickerMessages {
     public static final String BUNNY_WRONG_FORMAT = "Bunny command wrong format";
     public static final String BUNNY_MISSING_IDEA_MSG = "Bunny command missing idea?";
 
+    /** Bunny deletion message. */
+    public static final String BUNNY_DELETED_MSG = "Bunny deleted:";
+
+
     /** New character added messages. */
     public static final String ADD_CHARACTER_MSG = "New character added!";
     public static final String LIST_CHARACTER_MSG = "Here are the characters stored in the program:";
@@ -57,5 +56,21 @@ public class ClickerMessages {
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
 
+    /** Writings parsing messages. */
+    public static final String ASSERTION_ID_ERROR = "This ID is invalid, please provide an ID from rage 0-1000";
 
+    public static final String SUCCESSFUL_ADD_WRITING_TO_DATABASE = "Done! We have added your writing to our storage! "
+            + "You can type \"stats\" " + "for future reference!";
+    public static final String INSTRUCTION_FOR_ADDING_NEW_WRITINGS = "Now you can type your content, "
+            + "terminate by typing \"end\"";
+    public static final String TYPE_COMMAND_INSTRUCTION = "Please indicate your type by typing in \"type\" command";
+    public static final String ASKING_FOR_TITLE = "Please let us know the title of your writing";
+    public static final String ASKING_FOR_TYPE = "Please let us know your type of writings, either poem or essay";
+    public static final String ASKING_FOR_TOPIC = "Please indicate your topic by typing in \"topic\" command";
+    public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
+            + "\"start\" command to add";
+    public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
+
+    /** User interactive messages. */
+    public static final String HELP_MESSAGE = "Please type in \"help\" command for information!";
 }

@@ -40,6 +40,8 @@ public class BunnyList {
             genre = commandArguments.get(GENRE_TAG);
         }
 
+        assert !idea.equals(genre) : "Idea same as genre!";
+
         // todo: add the character list to bunny in ver 2
         //ArrayList<Character> characters = new ArrayList<>();
         Bunny newBunny = new Bunny(idea.trim(), genre.trim());
@@ -49,12 +51,14 @@ public class BunnyList {
     }
 
     public static void listBunny() {
-        assert !(bunniesList.size() == 0) : "No elements in list!";
-
         UI.listBunnyMessage();
         for (int i = 0; i < bunniesList.size(); i++) {
             System.out.println((i + 1) + ".\n" + bunniesList.get(i).getDescription());
         }
+    }
+
+    public static int numBunny() {
+        return bunniesList.size();
     }
 
 }

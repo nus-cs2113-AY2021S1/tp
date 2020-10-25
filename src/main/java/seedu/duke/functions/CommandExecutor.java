@@ -1,25 +1,28 @@
 package seedu.duke.functions;
 
 import seedu.duke.bunnylist.BunnyList;
+import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.commands.CommandChecker;
 
+import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
+import seedu.duke.filters.FilterList;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
-import seedu.duke.filters.FilterExecutor;
 import seedu.duke.names.Names;
-import seedu.duke.writing.Essay;
-import seedu.duke.writing.Poem;
 import seedu.duke.writing.WritingList;
 
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
@@ -28,7 +31,7 @@ import static seedu.duke.ui.UI.printHelp;
 import static seedu.duke.ui.UI.printHelpMessage;
 
 public class CommandExecutor {
-    public static void executeCommand(CommandChecker commandChecker, String userInput) {
+    public static void executeCommand(CommandChecker commandChecker, String userInput, WritingList writings) {
         switch (commandChecker) {
         case HELP:
             String[] command = userInput.split(" ", 2);
@@ -57,7 +60,15 @@ public class CommandExecutor {
             WordList.listWords();
             break;
         case FILTER_WORDS:
-            FilterExecutor.executeFilterCommand(userInput);
+            try {
+                FilterExecutor.executeFilterCommand(userInput);
+            } catch (FilterCommandException e) {
+                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
+            }
+            break;
+        case LIST_FILTER:
+            int printLimit = FilterCommandSlicer.getWordPrintLimitFromListFilterCommand(userInput);
+            FilterList.printFilterList(printLimit);
             break;
         case BUNNY:
             try {
@@ -88,33 +99,72 @@ public class CommandExecutor {
                 UI.failedToSaveBunny();
             }
             break;
+        case DELETE_BUNNY:
+            try {
+                DeleteBunny.deleteBunny(userInput, bunniesList);
+            } catch (BunnyIndexOutOfBoundsException e) {
+                UI.bunnyIndexOutOfBounds();
+            }
+            break;
         case GEN_NAME:
             try {
                 Names.getName();
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            break;
+        case ADD_NAME:
+            try {
+                Names.addName(userInput);
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            break;
+        case DELETE_NAME:
+            try {
+                Names.deleteName(userInput);
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(e);
             }
             break;
         case FILTER_NAMES:
-            Names.filterNames(userInput);
+            try {
+                Names.filterNames(userInput);
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             break;
         case LIST_NAMES:
-            Names.listNames();
+            try {
+                Names.listNames();
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             break;
         case STATS:
             WritingList.printWritings();
             break;
         case START:
-            WritingList.checkStart();
+            WritingList.checkStart(writings);
             break;
         case TYPE:
-            WritingList.checkType();
+            WritingList.checkType(writings);
             break;
         case COUNT_WRITINGS:
             WritingList.printWritingSize();
             break;
         case RESET_WRITINGS:
-            WritingList.clearAll();
+            WritingList.clearAll(writings);
             break;
         case DELETE:
             break;

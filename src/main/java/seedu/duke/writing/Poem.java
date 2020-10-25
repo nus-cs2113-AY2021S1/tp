@@ -60,6 +60,17 @@ public class Poem extends Writings {
         return this.numberOfWords;
     }
 
+    @Override
+    public void printPoemProperties() {
+        System.out.println("This poem has " + getNumberOfLines()
+                + " and " + getNumberOfWords());
+    }
+
+    @Override
+    public void printEssayProperties() {
+
+    }
+
     public void setNumberOfWords() {
         int count = 0;
         for (int i = 0; i < this.content.length(); i++) {
