@@ -39,7 +39,6 @@ public class ReturnSubjectCommand extends SubjectCommand {
      */
     public Subject execute(SubjectList subjectList) throws NoSubjectException {
         String[] message = this.fullcommand.split(" ");
-        //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
             throw new NoSubjectException(Ui.printNoSubjectError());
         }
@@ -60,7 +59,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 Command c = TopicParser.parse(fullCommand);
                 if (c instanceof ReturnTopicCommand) {
                     Topic topic = ((ReturnTopicCommand) c).execute(subject);
-                    ((ReturnTopicCommand) c).goToTopic(topic, subject);
+                    ((ReturnTopicCommand) c).goToTopic(topic);
                 } else if (c instanceof QuizTopicCommand) {
                     Topic topic = ((QuizTopicCommand) c).execute(subject);
                     TopicQuiz topicQuiz = new TopicQuiz(topic);
