@@ -7,7 +7,8 @@ import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.parser.Parser;
 import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
-import seedu.smarthomebot.storage.StorageFile;
+import seedu.smarthomebot.storage.ReadStorageFile;
+import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
 /**
@@ -20,7 +21,8 @@ public class Main {
     private TextUi ui = new TextUi();
     private final ApplianceList applianceList = new ApplianceList();
     private final LocationList locationList = new LocationList();
-    private final StorageFile storage = new StorageFile(applianceList, locationList);
+    private WriteStorageFile writeFile = new WriteStorageFile(applianceList, locationList);
+    private ReadStorageFile readFile = new ReadStorageFile(applianceList, locationList);
 
     public static void main(String[] args) {
         new Main().run();
@@ -40,7 +42,7 @@ public class Main {
     private void start() {
         this.ui = new TextUi();
         ui.showWelcomeMessage();
-        storage.readFile();
+        readFile.execute();
     }
 
     /** Prints the Goodbye message and exits. */
@@ -57,7 +59,7 @@ public class Main {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
-            storage.writeToFile();
+            writeFile.execute();
             if (result != null) {
                 ui.printResultToUser(result);
             }

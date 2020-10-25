@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            Appliance toDeleteAppliance = applianceList.removeAppliance(this.userEnteredName);
+            Appliance toDeleteAppliance = applianceList.deleteAppliance(this.userEnteredName);
             return new CommandResult("Deleting " + toDeleteAppliance + ".......DELETED.");
         } catch (ApplianceNotFoundException e) {
             return new CommandResult(this.userEnteredName + " does not exist.");

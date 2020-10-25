@@ -21,7 +21,7 @@ public class ApplianceList {
         }
     }
 
-    public Appliance removeAppliance(String userEnteredName) throws ApplianceNotFoundException {
+    public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
         for (Appliance appliance : this.getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
                 applianceList.remove(appliance);
@@ -54,7 +54,7 @@ public class ApplianceList {
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
         for (int x = this.getAllAppliance().size() - 1; x >= 0; x--) {
             if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
-                this.removeAppliance((this.getAppliance(x).getName()));
+                this.deleteAppliance((this.getAppliance(x).getName()));
             }
         }
     }
