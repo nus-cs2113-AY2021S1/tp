@@ -55,6 +55,7 @@ public class Messages {
     public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!";
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
     public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...";
+    public static final String EMPTY_EXERCISE_LIST_DATE = "The exercise list on that date is empty...";
     public static final String EMPTY_GOAL_LIST = "The goal list is empty...";
     public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
     public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:";
@@ -73,6 +74,7 @@ public class Messages {
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
     public static final String EMPTY_STRING = "";
+    public static final String ERROR_INVALID_DATE = "Sorry, please enter a correct date in the format dd/MM/yyyy";
 
     //EditProfileCommand class messages
     public static final String EDIT_NAME = "name";

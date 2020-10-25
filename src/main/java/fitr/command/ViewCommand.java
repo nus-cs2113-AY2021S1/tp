@@ -9,26 +9,7 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
-import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
-import static fitr.common.Messages.EMPTY_FOOD_LIST;
-import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
-import static fitr.common.Messages.EMPTY_GOAL_LIST;
-import static fitr.common.Messages.FOOD_LIST_HEADER;
-import static fitr.common.Messages.EXERCISE_LIST_HEADER;
-import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
-import static fitr.common.Messages.CALORIE_BURNT_HEADER;
-import static fitr.common.Messages.NET_CALORIE_HEADER;
-import static fitr.common.Messages.BMI_HEADER;
-import static fitr.common.Messages.USER_PROFILE_HEADER;
-import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
-import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
-import static fitr.common.Messages.FOOD_HEADER;
-import static fitr.common.Messages.SPACE_FORMATTING;
-import static fitr.common.Messages.CAL_HEADER;
-import static fitr.common.Messages.EXERCISE_HEADER;
-import static fitr.common.Messages.BURNT_CAL_HEADER;
-import static fitr.common.Messages.DATE_HEADER;
-import static fitr.common.Messages.EMPTY_STRING;
+import java.text.SimpleDateFormat;
 
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
@@ -36,6 +17,7 @@ import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Messages.*;
 
 public class ViewCommand extends Command {
 
@@ -58,7 +40,10 @@ public class ViewCommand extends Command {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
             viewGoal(foodList, exerciseList, goalList, user);
-        } else {
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
+            viewExerciseByDate(exerciseList, command.split(" ")[1]);
+        }
+        else {
             Ui.printFormatError("view");
         }
     }
@@ -142,6 +127,35 @@ public class ViewCommand extends Command {
                 Goal goal = goalList.getGoal(i);
                 Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
                         + goal.getStatus(goal, foodList, exerciseList, user) + "] " + goal.getDescription());
+            }
+        }
+    }
+
+    private void viewExerciseByDate(ExerciseList exerciseList, String date) {
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        } catch (Exception ex) {
+            Ui.printCustomError(ERROR_INVALID_DATE);
+        }
+        ExerciseList exercisesOnThatDate = new ExerciseList();
+        for(int i = 0; i < exerciseList.getSize(); i++) {
+            if(date.equals(exerciseList.getExercise(i).getDate())) {
+                exercisesOnThatDate.addExercise(exerciseList.getExercise(i));
+            }
+        }
+        if (exercisesOnThatDate.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_EXERCISE_LIST_DATE);
+        } else {
+            int index = 0;
+            int printIndex = index + 1;
+            Ui.printCustomMessage(EXERCISE_LIST_HEADER);
+            Ui.printMessageInYellow(DATE_HEADER + date);
+            while (index < exerciseList.getSize()) {
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories());
+                index++;
+                printIndex++;
             }
         }
     }
