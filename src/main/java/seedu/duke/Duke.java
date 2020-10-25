@@ -40,8 +40,7 @@ public class Duke {
      * Welcome the user and initialise the local storage.
      */
     private void init() {
-        ArrayList<Project> projectList = new ArrayList<>(projectManager.projectList.values());
-        sm = new StorageManager(dataFilename, projectList);
+        sm = new StorageManager(dataFilename, projectManager);
         try {
             sm.load();
         } catch (IOException e) {

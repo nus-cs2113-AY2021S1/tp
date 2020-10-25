@@ -199,6 +199,7 @@ public class Project implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jObj = new JsonObject();
+        jObj.put("projectID", this.projectID);
         jObj.put("title", this.title);
         jObj.put("description", this.description);
         jObj.put("projectDuration", this.projectDuration);

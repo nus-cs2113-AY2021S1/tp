@@ -1,8 +1,15 @@
 package seedu.duke.model.project;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsonable;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Hashtable;
 
-public class ProjectManager {
+public class ProjectManager implements Jsonable {
     public Hashtable<Integer, Project> projectList;
     public int selectedProject;
 
@@ -36,5 +43,26 @@ public class ProjectManager {
 
     public Project getProject(int index) {
         return projectList.get(index);
+    }
+
+
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        final JsonObject jsonProjMgr = new JsonObject();
+        jsonProjMgr.put("selectedProject", this.selectedProject);
+        jsonProjMgr.put("projectList", new JsonArray(this.projectList.values()));
+        jsonProjMgr.toJson(writer);
     }
 }

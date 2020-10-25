@@ -1,6 +1,5 @@
 package seedu.duke.model.sprint;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.model.project.Project;
@@ -174,9 +173,8 @@ public class Sprint implements Jsonable {
         jObj.put("goal", goal);
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
-        final JsonArray jsonSprintTaskIds = new JsonArray();
-        jsonSprintTaskIds.addAll(taskList);
-        jObj.put("sprintTaskIds", jsonSprintTaskIds);
+        jObj.put("sprintTaskIds", taskList);
+        jObj.put("owner", owner.getProjectID());
         jObj.toJson(writer);
     }
 }

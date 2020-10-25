@@ -1,6 +1,5 @@
 package seedu.duke.model.task;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 
@@ -171,13 +170,12 @@ public class Task implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jTask = new JsonObject();
-        final JsonArray members = new JsonArray(memberList);
         jTask.put("id", id);
         jTask.put("title", title);
         jTask.put("description", description);
         jTask.put("priority", priority.name());
         jTask.put("isDone", isDone);
-        jTask.put("membersAllocatedTo", members);
+        jTask.put("membersAllocatedTo", memberList);
         jTask.put("sprintAllocatedTo", sprintList);
         jTask.toJson(writer);
     }

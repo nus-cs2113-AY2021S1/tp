@@ -1,6 +1,5 @@
 package seedu.duke.model.sprint;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
@@ -94,8 +93,7 @@ public class SprintManager implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jSprintObj = new JsonObject();
-        final JsonArray jSprintList = new JsonArray(sprintList);
-        jSprintObj.put("sprintList", jSprintList);
+        jSprintObj.put("sprintList", sprintList);
         jSprintObj.put("currentSprintIndex", currentSprintIndex);
         jSprintObj.toJson(writer);
     }

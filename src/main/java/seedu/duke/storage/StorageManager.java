@@ -4,6 +4,7 @@ import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.TaskManager;
 import seedu.duke.model.member.ProjectMembers;
 import seedu.duke.model.member.Member;
@@ -28,25 +29,16 @@ public class StorageManager {
     private static final String INVALID_FILE_REGEX = "";
 
     private final Path filepath;
-    private final ArrayList<Project> projects;
+    private final ProjectManager projectManager;
 
-    public StorageManager(String filename, ArrayList<Project> projects) {
+    public StorageManager(String filename, ProjectManager projectManager) {
         if (isValidFilename(filename)) {
             filepath = Paths.get("./data", filename);
         } else {
             filepath = Paths.get(DEFAULT_FILEPATH);
         }
-        this.projects = projects == null ? new ArrayList<>() : projects;
+        this.projectManager = projectManager;
         init();
-    }
-
-    //Getters
-    public Path getFilepath() {
-        return filepath;
-    }
-
-    public ArrayList<Project> getProjects() {
-        return projects;
     }
 
     //Public functions to be invoked
@@ -57,9 +49,8 @@ public class StorageManager {
      */
     public void save() {
         try {
-            JsonArray jsonProjects = new JsonArray(projects);
             FileWriter fw = new FileWriter((filepath.toFile()));
-            Jsoner.serialize(jsonProjects, fw);
+            Jsoner.serialize(projectManager, fw);
             fw.close();
         } catch (IOException e) {
             System.out.println("[Warning] Cannot save to data file, data will be lost when this program ends!");
@@ -115,7 +106,7 @@ public class StorageManager {
         ArrayList<JsonObject> jsonProjects = new ArrayList<>(raw.size());
         for (Object o : raw) {
             Project project = convertToProject((JsonObject) o);
-            projects.add(project);
+            projectManager.projectList.put(project.getProjectID(), project);
         }
     }
 

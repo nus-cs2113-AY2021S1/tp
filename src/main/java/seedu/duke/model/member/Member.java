@@ -1,6 +1,5 @@
 package seedu.duke.model.member;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 
@@ -76,9 +75,7 @@ public class Member implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonObject jMember = new JsonObject();
         jMember.put("userId", userId);
-        final JsonArray jTasks = new JsonArray();
-        jTasks.addAll(taskList);
-        jMember.put("allocatedTaskIds", jTasks);
+        jMember.put("allocatedTaskIds", taskList);
         jMember.toJson(writer);
     }
 }

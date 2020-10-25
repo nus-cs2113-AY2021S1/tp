@@ -137,6 +137,7 @@ public class TaskManager implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonObject jsonBacklog = new JsonObject();
         final JsonArray jsonTasks = new JsonArray(backlogTasks);
+        jsonBacklog.put("owner", proj.getProjectID());
         jsonBacklog.put("backlogTasks", jsonTasks);
         jsonBacklog.put("nextId", nextId);
         jsonBacklog.toJson(writer);
