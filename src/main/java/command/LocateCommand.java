@@ -12,7 +12,7 @@ import ui.UI;
 import java.util.ArrayList;
 
 /**
- * Represents the command call when the user wants to locate an event
+ * Represents the command call when the user wants to locate an event.
  */
 public class LocateCommand extends Command {
     private String input;
@@ -22,21 +22,20 @@ public class LocateCommand extends Command {
     }
 
     /**
-     * Provides location information when user gives a number within size of EventList or name of a location
+     * Provides location information when user gives a number within size of EventList or name of a location.
      *
      * @param events    the list of Events.
      * @param locations the list of Locations.
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
-     * @throws NuScheduleException
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
-        int event_num;
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
+        int eventNum;
         try {
-            event_num = Integer.parseInt(input);
-            Event event = events.get(event_num-1);
+            eventNum = Integer.parseInt(input);
+            Event event = events.get(eventNum-1);
             Location location = event.getLocation();
             System.out.println(event.getDescription() + " is located at:");
             System.out.println(location);
