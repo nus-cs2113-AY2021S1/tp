@@ -1,14 +1,14 @@
 package seedu.zoomaster.bookmark;
 
-import seedu.zoomaster.ItemList;
 import seedu.zoomaster.exception.ZoomasterException;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
-public class BookmarkList extends ItemList {
+public class BookmarkList {
     private ArrayList<Bookmark> bookmarks;
     private final String lineSeparator = System.lineSeparator();
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
@@ -97,7 +97,7 @@ public class BookmarkList extends ItemList {
      *
      * @return The bookmark list.
      */
-    public ArrayList<Bookmark> getBookmarkList() {
+    public ArrayList<Bookmark> getBookmarks() {
         return bookmarks;
     }
 
@@ -122,9 +122,9 @@ public class BookmarkList extends ItemList {
     public String showBookmarks() {
         String message = "Here are the bookmarks in your list:" + lineSeparator;
         for (int i = 0; i < bookmarks.size(); i++) {
-            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
         }
-        return message;
+        return message + lineSeparator;
     }
 
     /**
@@ -173,7 +173,7 @@ public class BookmarkList extends ItemList {
             message = "Empty List" + lineSeparator;
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
-            if (!message.isEmpty()) {
+            if (!message.isBlank()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             } else {
                 message = "No bookmarks contain the specified keyword!" + lineSeparator;
@@ -189,24 +189,24 @@ public class BookmarkList extends ItemList {
             if (bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
                 try {
                     bookmarks.get(i).launch();
-                    message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                    message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
                 } catch (ZoomasterException e) {
-                    errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                    errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
                 }
             }
         }
         if (!errorMessage.isBlank()) {
             message += "Failed to launch these bookmarks:" + lineSeparator + errorMessage;
         }
-        return message;
+        return message + lineSeparator;
     }
 
-    public String launchAllBookmarks() {  // for module
+    public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
             message = "Empty List" + lineSeparator;
         } else {
-            message = launchBookmarksFromSlot();
+            message = launchBookmarksFromList();
             if (!message.isEmpty()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             }
@@ -214,7 +214,7 @@ public class BookmarkList extends ItemList {
         return message;
     }
 
-    private String launchBookmarksFromSlot() {
+    private String launchBookmarksFromList() {
         String message = "";
         String errorMessage = "";
         for (int i = 0; i < bookmarks.size(); i++) {

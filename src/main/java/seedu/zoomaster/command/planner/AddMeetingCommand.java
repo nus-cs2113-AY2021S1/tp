@@ -11,7 +11,6 @@ import seedu.zoomaster.slot.Timetable;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

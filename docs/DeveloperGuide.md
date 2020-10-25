@@ -131,7 +131,7 @@ Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
 Given below is a sequence diagram of how the feature works.
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
+![](./diagrams/addSlotSequenceDiagram.png)
 <br>
 <br>
 Step 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
