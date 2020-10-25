@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DateTimeParser;
 import seedu.duke.DukeException;
-import seedu.duke.ModuleChecker;
+import seedu.duke.resources.ModuleChecker;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -244,7 +244,7 @@ public class AddCommand extends Command {
 
         if (moduleCode.isEmpty()) {
             throw new DukeException("exam");
-        } else if (! moduleChecker.isModuleValid(moduleCode)) {
+        } else if (!moduleChecker.isModuleValid(moduleCode)) {
             System.out.println("invalid module code!");
             throw new DukeException("exam");
         } else {

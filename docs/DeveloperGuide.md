@@ -32,6 +32,12 @@ The table below shows the information and contact details of developers.
 
 ## Setting Up
 
+Before diving into the project development and testing, here are some essential tools required in this project:
+
+1. **JAVA 11.0.8**
+    * sd
+1. **Intellij IDEA**
+
 ## Design
 This section describes the design overview of the application.
 
