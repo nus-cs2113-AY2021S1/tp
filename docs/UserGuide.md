@@ -1,5 +1,35 @@
 # User Guide
 
+## Table of Contents
+
+[Introduction](#introduction) <br>
+[Quick start](#quick-start) <br>
+[Features](#features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding a noun: `noun`](#adding-a-noun-noun) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding a verb: `verb`](#adding-a-verb-verb) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding an adjective: `adj`](#adding-an-adjective-adj) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Listing words: `list words`](#listing-words-list-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding bunny idea: `bunny`](#adding-bunny-idea-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Listing bunny ideas: `list bunny`](#listing-bunny-ideas-list-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `list name`](#generating-names-from-name-database-list-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `filter name`](#generating-names-from-name-database-filter-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `add name`](#generating-names-from-name-database-add-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `delete name`](#generating-names-from-name-database-delete-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word bank: `filter`](#filtering-words-in-word-bank-filter) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter`](#listing-your-filter-list-list-filter) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Beginning your writing session: `start`](#beginning-your-writing-session-start) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “type” of your writing: `type`](#choosing-the-type-of-your-writing-type) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “topic” of your writing: `topic`](#choosing-the-topic-of-your-writing-topic) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Tracking your past writings: `stats`](#tracking-your-past-writings-stats) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Clearing certain object in database: `clear`](#clearing-certain-object-in-database-clear) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Closing the program: `exit`](#closing-the-program-exit) <br>
+[FAQ](#FAQ) <br>
+[Command summary](#command-summary) <br>
+
 ## Introduction
 
 Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). 
@@ -8,7 +38,7 @@ As a fast-typing writer, this CLI app is highly suitable for you.
 
 This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
 
-## Quick Start
+## Quick start
 
 1. Check that your computer has Java **11** installed.
 1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
@@ -58,7 +88,7 @@ Example of usage:
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun [WORD] \d[DESCRIPTION]`
 
-### Adding a noun: `noun`
+### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb [WORD] \d[DESCRIPTION]`
 
@@ -317,7 +347,7 @@ nice: pleasant or attractive
 meaningful : important and serious
 ```
 
-### Begin your writing session: `start`
+### Beginning your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
 - `topic`  
@@ -381,7 +411,7 @@ This writing was created on 2020-10-18
 --------------------------------------------------------------
 ```
 
-### Clear certain object in database: `clear`
+### Clearing certain object in database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
 
 Format: `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT`  
@@ -402,11 +432,11 @@ Format: `exit`
 
 **Q**: Do I need to leave a space before each input tag?
 
-**A**: Yes, the space is necessary. (e.g., add t\science st\chemistry)
+**A**: Yes, the space is necessary. (e.g., noun computer engineering d\the best engineering major)
 
 **Q**: Do the parameters need to be keyed in in order?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data .txt files of your previous Fluffle home folder.
+**A**: Yes. You should key in the parameters in order for the program to work properly.
 
 
 ## Command Summary
