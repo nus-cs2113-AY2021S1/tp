@@ -24,7 +24,6 @@ public class AddCategoryCommand extends AddCommand {
     public void execute(TextUi ui, Storage storage) {
         CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
         addCategoryToBookOrQuote(categories, ui);
-        storage.save();
     }
 
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
