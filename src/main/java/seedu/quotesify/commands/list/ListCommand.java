@@ -28,7 +28,6 @@ public class ListCommand extends Command {
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }
-        assert details.length == 2;
         type = details[0];
         information = details[1];
     }
