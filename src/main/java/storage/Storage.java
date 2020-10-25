@@ -146,7 +146,7 @@ public class Storage {
      * @param busStopList ArrayList of BusStops in BusStopList
      */
     public void loadBusStopData(ArrayList<BusStop> busStopList) {
-        File f = new File("data/bus_stops.txt");
+        File f = new File("./data/bus_stops.txt");
         Scanner s;
         try {
             s = new Scanner(f);
@@ -171,12 +171,12 @@ public class Storage {
      * @param locationList ArrayList of Locations in LocationList
      */
     public void loadLocationData(ArrayList<Location> locationList) {
-        File f = new File("data/locations.txt");
+        File f = new File("./data/locations.txt");
         Scanner s = null;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
-            System.out.println(f.getName() + "not found: " + e.getMessage());
+            System.out.println(f.getName() + " not found: " + e.getMessage());
             return;
         }
 
