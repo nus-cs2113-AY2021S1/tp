@@ -1,6 +1,7 @@
 package fitr.command;
 
 import fitr.Recommender;
+import fitr.exception.FitrException;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
@@ -8,6 +9,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 
+import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
@@ -35,10 +37,13 @@ public class DeleteCommand extends Command {
                 storageManager.writeExerciseList(listManager.getExerciseList());
             } else if (type.equals(COMMAND_GOAL)) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
-                Ui.printCustomMessage("The following has been deleted from the list of goals:\n\t"
+                Ui.printCustomMessage("The following has been deleted from the list of goals: "
                         + listManager.getGoal(deletionIndex - 1).getDescription());
                 listManager.deleteGoal(deletionIndex - 1);
-                storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(), listManager.getExerciseList(), user);
+                storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
+                        listManager.getExerciseList(), user);
+            } else {
+                throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
             Ui.printCustomError("Sorry that index does not exist in the list");
@@ -46,6 +51,8 @@ public class DeleteCommand extends Command {
             Ui.printCustomError("Sorry index deletion must be an number");
         } catch (IOException e) {
             Ui.printCustomError("Sorry, there is an error in the file");
+        } catch (FitrException e) {
+            Ui.printFormatError(COMMAND_DELETE);
         }
     }
 

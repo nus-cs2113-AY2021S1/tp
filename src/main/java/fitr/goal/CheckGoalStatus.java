@@ -10,7 +10,8 @@ import java.text.NumberFormat;
 
 public class CheckGoalStatus {
 
-    public static String checkGoalStatus(String status, Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
+    public static String checkGoalStatus(String status, Goal goal, FoodList foodList,
+                                         ExerciseList exerciseList, User user) {
         int targetCalorie;
         int userConsumedCalorie = user.calculateCalorieConsumed(foodList).get();
         int userBurntCalorie = user.calculateCalorieBurnt(exerciseList).get();
