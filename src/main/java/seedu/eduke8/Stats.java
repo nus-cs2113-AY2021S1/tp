@@ -52,7 +52,7 @@ public class Stats {
                     specificTopicStatsCalculator.getTopicQuestionsCount());
 
             // not using this as getting the percentage might cause a divisionByZero exception
-           /* ui.showTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
+            /* ui.showTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
                     specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount(),
                     specificTopicStatsCalculator.calculateTopicAccuracyPercentage()); */
 

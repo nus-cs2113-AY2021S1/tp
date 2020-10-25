@@ -9,14 +9,6 @@ Hello! I'm E-Duke-8!
 What would you like to learn today?
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-E-Duke-8 is a desktop app that helps CS2113/T students learn and
-understand software engineering and OOP principles through a
-gamified platform and enhances their learning experience.
-
-You can attempt bite-sized quizzes based on your choice of topic
-and access key concepts for easy revision!
-------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 These are the commands that you can use:
 1) about
 2) help
