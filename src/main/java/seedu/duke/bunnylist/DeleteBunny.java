@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class DeleteBunny {
 
-    public static void deleteBunny(String userInput, ArrayList<Bunny> bunniesList) throws BunnyIndexOutOfBoundsException {
+    public static void deleteBunny(String userInput, ArrayList<Bunny> bunniesList)
+            throws BunnyIndexOutOfBoundsException {
 
         int bunnyNum;
 
