@@ -1,10 +1,11 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.edit;
 
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
+import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
