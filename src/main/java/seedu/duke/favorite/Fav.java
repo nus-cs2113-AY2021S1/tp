@@ -17,4 +17,8 @@ public class Fav {
         return desc;
     }
 
+    public String toString() {
+        return command + ": " + desc;
+    }
+
 }
