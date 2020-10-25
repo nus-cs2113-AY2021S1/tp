@@ -24,6 +24,8 @@ public class Storage extends ParamHandler {
     int deleteIndex;
     boolean activateDelete = false;
 
+
+
     public Storage() {
         super();
     }

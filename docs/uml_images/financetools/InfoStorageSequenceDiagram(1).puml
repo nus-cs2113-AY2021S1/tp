@@ -12,10 +12,10 @@ activate ":Storage"
 activate ":FileStorage"
 
 ":FileStorage" -> ":Storage" : File Updated
-destroy ":FileStorage"
+deactivate ":FileStorage"
 
 ":Storage" -> ":FinanceTools" : Storage Updated
-destroy ":Storage"
+deactivate ":Storage"
 
 ":FinanceTools" -> User : Information Updated
 deactivate ":FinanceTools"
