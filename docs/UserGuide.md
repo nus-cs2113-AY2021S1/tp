@@ -9,24 +9,24 @@ It helps you to prioritise your work and balance your time spent among your modu
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-    1. [View help: `help`](#1-view-help-help)
-    1. [Add a module: `addmod`](#2-add-a-module-addmod)
-    1. [Add expected module workload: `addexp`](#3-add-expected-module-workload-addexp) 
-    1. [Add actual time spent on a module: `addtime`](#4-add-actual-time-spent-on-a-module-addtime)
-    1. [List expected and actual time spent of all modules: `list`](#5-list-expected-and-actual-time-spent-of-all-modules-list)
-    1. [Analyse actual time spent on all modules: `analyse`](#6-analyse-actual-time-spent-on-all-modules-analyse)
-    1. [Delete a module: `deletemod`](#7-delete-a-module-deletemod)
-    1. [Delete expected module workload: `deleteexp`](#8-delete-expected-module-workload-deleteexp)
-    1. [Minus from actual time spent on a module: `minus`](#9-minus-from-actual-time-spent-on-a-module-minus) 
-    1. [Delete actual time spent on a module: `deletetime`](#10-delete-actual-time-spent-on-a-module-deletetime)
-    1. [Add tasks: `addtask`](#11-add-tasks-addtask)
-    1. [List all tasks: `listtask`](#12-list-all-tasks-listtask)
-    1. [Mark task as done: `done`](#13-mark-task-as-done-done)
-    1. [Delete a task: `deletetask`](#14-delete-a-task-deletetask)
-    1. [Open notification: `open`](#15-open-notification-open)
-    1. [Exit the program : `exit`](#16-exit-the-program--exit)
-    1. [Save user data](#17-save-user-data)
-    1. [Delete user data: `reset`](#18-delete-module-and-task-data-reset)
+    1. [View help: `help`](#view-help-help)
+    1. [Add a module: `addmod`](#add-a-module-addmod)
+    1. [Add expected module workload: `addexp`](#add-expected-module-workload-addexp) 
+    1. [Add actual time spent on a module: `addtime`](#add-actual-time-spent-on-a-module-addtime)
+    1. [List expected and actual time spent of all modules: `list`](#list-expected-and-actual-time-spent-of-all-modules-list)
+    1. [Analyse actual time spent on all modules: `analyse`](#analyse-actual-time-spent-on-all-modules-analyse)
+    1. [Delete a module: `deletemod`](#delete-a-module-deletemod)
+    1. [Delete expected module workload: `deleteexp`](#delete-expected-module-workload-deleteexp)
+    1. [Minus from actual time spent on a module: `minus`](#minus-from-actual-time-spent-on-a-module-minus) 
+    1. [Delete actual time spent on a module: `deletetime`](#delete-actual-time-spent-on-a-module-deletetime)
+    1. [Add tasks: `addtask`](#add-tasks-addtask)
+    1. [List all tasks: `listtask`](#list-all-tasks-listtask)
+    1. [Mark task as done: `done`](#mark-task-as-done-done)
+    1. [Delete a task: `deletetask`](#delete-a-task-deletetask)
+    1. [Open notification: `open`](#open-notification-open)
+    1. [Exit the program : `exit`](#exit-the-program--exit)
+    1. [Save user data](#save-user-data)
+    1. [Delete user data: `reset`](#delete-module-and-task-data-reset)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -63,9 +63,7 @@ has successfully executed.
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
-   
-2. The module code is valid if it contains 6-8 characters without any spacing. 
-
+1. The module code is valid if it contains 6-8 characters without any spacing. 
 
 ### 1. View help: `help`
 Shows a list of the commands available.
@@ -413,7 +411,7 @@ Reset not confirmed. Your data is safe :)
 |Deleting a module|`deletemod <module code>`|
 |Deleting expected module workload|`deleteexp <module code>`|
 |Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
-|Deleting actual time spent on the module|`delete <module code> <week number>`|
+|Deleting actual time spent on the module|`deletetime <module code> <week number>`|
 |Add tasks|`addtask <module code> <task description>`|
 |List all tasks|`listtask`|
 |Mark task as done|`done <task number>`|
