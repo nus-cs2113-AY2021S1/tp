@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import seedu.duke.exceptions.CustomException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class Storage {
@@ -33,11 +34,7 @@ public abstract class Storage {
         return file;
     }
 
-    public String getDir() {
-        return this.dir;
-    }
-
-    public abstract void readFile() throws CustomException;
+    public abstract void readFile() throws FileNotFoundException, CustomException;
 
     public abstract void updateFile() throws IOException, CustomException;
 }
