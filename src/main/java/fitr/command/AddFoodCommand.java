@@ -4,9 +4,7 @@ import fitr.Calorie;
 import fitr.Food;
 import fitr.Recommender;
 import fitr.exception.FitrException;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -22,8 +20,7 @@ public class AddFoodCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
             String nameOfFood = command.split("/", 2)[0];
             nameOfFood = nameOfFood.trim();
@@ -36,8 +33,8 @@ public class AddFoodCommand extends Command {
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
-                storageManager.writeFoodList(foodList);
+                listManager.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
+                storageManager.writeFoodList(listManager.getFoodList());
                 Ui.printCustomMessage("The following food has been added:\n"
                         + "Name of Food: " + nameOfFood + "\n"
                         + "Calorie Consumed: " + amountOfCalories.get()
@@ -52,8 +49,8 @@ public class AddFoodCommand extends Command {
                 if (amountOfFood < 0) {
                     throw new FitrException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
-                storageManager.writeFoodList(foodList);
+                listManager.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
+                storageManager.writeFoodList(listManager.getFoodList());
                 Ui.printCustomMessage("The following food has been added:\n"
                         + "Name of Food: " + nameOfFood + "\n"
                         + "Calorie Consumed: " + amountOfCalories.get());

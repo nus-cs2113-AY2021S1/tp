@@ -7,6 +7,7 @@ import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 

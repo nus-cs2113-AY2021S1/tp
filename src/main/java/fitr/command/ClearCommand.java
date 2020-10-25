@@ -2,10 +2,7 @@ package fitr.command;
 
 import fitr.Recommender;
 import fitr.common.Commands;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
-
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -23,23 +20,22 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storage, User user,
-                        GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storage, User user, Recommender recommender) {
         if (command.length() == 0) {
             LOGGER.fine("Clearing food and exercise lists.");
-            foodList.clearList();
-            exerciseList.clearList();
+            listManager.clearFoodList();
+            listManager.clearExerciseList();
             Ui.printCustomMessage("Food and exercise lists are both cleared!");
         } else {
             switch (command) {
             case Commands.COMMAND_FOOD:
                 LOGGER.fine("Clearing food list.");
-                foodList.clearList();
+                listManager.clearFoodList();
                 Ui.printCustomMessage("Food list is cleared!");
                 break;
             case Commands.COMMAND_EXERCISE:
-                LOGGER.fine("Clearing exercise lists.");
-                exerciseList.clearList();
+                LOGGER.fine("Clearing exercise list.");
+                listManager.clearExerciseList();
                 Ui.printCustomMessage("Exercise list is cleared!");
                 break;
             default:
@@ -49,8 +45,8 @@ public class ClearCommand extends Command {
         }
 
         try {
-            storage.writeExerciseList(exerciseList);
-            storage.writeFoodList(foodList);
+            storage.writeExerciseList(listManager.getExerciseList());
+            storage.writeFoodList(listManager.getFoodList());
         } catch (IOException e) {
             Ui.printCustomError("The file cannot be written!");
         }
