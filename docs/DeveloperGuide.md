@@ -96,10 +96,17 @@ The BunnySaver class accesses the bunniesList and overwrites the current bunny.t
 ### Target user profile
 
 {Describe the target user profile}
+The target user group are creative writers.
+* Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow
+* Writers who enjoy creating short pieces but lack the organisation to do so
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+The application aims to provide the writer with the following services:
+* Provide them with an organised way to store and select their plot ideas which may be otherwise abandoned
+* Provide them with customised prompt suggestions to inspire them to write
+* Provide them with a system to organise longer writing projects in a neat and logical manner to facilitate the writing of long works
 
 ## User Stories
 
