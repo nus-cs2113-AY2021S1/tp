@@ -87,7 +87,7 @@ public class Parser {
             com = new DescFavCommand();
             break;
         case "/execfav":
-            com = new ExecFavCommand();
+            com = new ExecFavCommand(parts[1]);
             break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
