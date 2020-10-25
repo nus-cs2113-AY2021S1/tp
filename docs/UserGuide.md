@@ -60,7 +60,7 @@ Expected outcome:
 ### Adding a food item: `food`
 Adds a new food to the list of foods you have eaten.
 
-Format: `exercise NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED`
+Format: `food NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED`
 
 - The `NAME_OF_FOOD` can be in a natural language format.
 - The `AMOUNT_OF_CALORIES_CONSUMED` has to be a positive number.  
@@ -211,35 +211,27 @@ Weight (in kg) changed to: 90.0
 ### Editing previous exercise entry: `edit exercise`
 Edits a previous exercise entry in the exercise list.
 
-Format: `edit exercise INDEX`
-- `INDEX` must be a positive integer: 1, 2, 3, ...
+Format: `edit exercise INDEX NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
+- `INDEX` and `AMOUNT_OF_CALORIES_BURNT` must be a positive integer: 1, 2, 3, ...
+
+Example of usage: `edit exercise 1 Push ups /500`
 
 Expected outcome:
 ```
-Editing: Push ups
-Enter new exercise name: [previous: Push ups]
-Push ups
-Enter new calories [previous: 500]
-1000
-Successfully edited exercise!
+Successfully edited exercise to: Push ups
 ```
 
 ### Editing previous food entry: `edit food`
 Edits a previous food entry in the food list.
 
-Format: `edit food INDEX`
-- `INDEX` must be a positive integer: 1, 2, 3, ...
+Format: `edit food INDEX NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED QUANTITY`
+- `INDEX`, `AMOUNT_OF_CALORIES_CONSUMED` and `QUANTITY` must be a positive integer: 1, 2, 3, ...
+
+Example of usage: `edit food 1 Rice /2000`
 
 Expected outcome:
 ```
-Editing: Rice
-Enter new food name: [previous: Rice]
-Chicken rice
-Enter new calories [previous: 1000]
-2000
-Enter new quantity [previous: 1]
-1
-Successfully edited food!
+Successfully edited food to: rice
 ```
 
 ### Viewing help: `help`

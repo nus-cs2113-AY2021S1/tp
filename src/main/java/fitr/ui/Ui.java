@@ -2,27 +2,27 @@ package fitr.ui;
 
 import java.util.Scanner;
 
-import static fitr.common.Commands.COMMAND_FOOD;
-import static fitr.common.Commands.COMMAND_EXERCISE;
-import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
-import static fitr.common.Commands.COMMAND_VIEW_BMI;
-import static fitr.common.Commands.COMMAND_VIEW_FOOD;
-import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
-import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
-import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_BYE;
+import static fitr.common.Commands.COMMAND_DELETE;
+import static fitr.common.Commands.COMMAND_EDIT;
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Commands.COMMAND_VIEW;
-
-import static fitr.common.Messages.FORMAT_FOOD;
-import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_FOOD;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 import static fitr.common.Messages.FORMAT_DELETE;
+import static fitr.common.Messages.FORMAT_EDIT_FOOD;
+import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Messages.FORMAT_FOOD;
 import static fitr.common.Messages.FORMAT_GOAL;
-
+import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.MESSAGE_GREET;
 import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
-import static fitr.common.Messages.MESSAGE_BYE;
-import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 
 /**
  * Prints messages.
@@ -83,6 +83,11 @@ public class Ui {
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_EXERCISE, "View exercise entries");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_SUMMARY, "View calorie summary");
 
+        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_EXERCISE, "Edit a previous exercise entry");
+        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EXERCISE);
+        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_FOOD, "Edit a previous food entry");
+        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EDIT_FOOD);
+
         System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry");
         printCustomMessage(SPACER + FORMAT + FORMAT_DELETE);
 
@@ -90,16 +95,6 @@ public class Ui {
     }
 
     public static void printFormatError(String command) {
-        if (command.equals(COMMAND_VIEW)) {
-            printCustomError(ERROR_INVALID_COMMAND);
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_FOOD, "View food entries");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
-            return;
-        }
-
         switch (command) {
         case COMMAND_FOOD:
             printCustomError("Please input in the correct format!");
@@ -116,6 +111,17 @@ public class Ui {
         case COMMAND_GOAL:
             printCustomError("Please input in the correct format!");
             printCustomMessage(FORMAT + FORMAT_GOAL);
+            break;
+        case COMMAND_VIEW:
+            printCustomError("Please input in the correct format!");
+            printCustomMessage(FORMAT + "view <TYPE>");
+            System.out.printf(HELP_SPACER, "<TYPE>", "<DESCRIPTION>");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_FOOD, "View food entries");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
+            System.out.printf(HELP_SPACER, COMMAND_GOAL, "View your food and exercise goals");
             break;
         default:
             printInvalidCommandError();

@@ -1,9 +1,7 @@
 package fitr.command;
 
 import fitr.Recommender;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -20,28 +18,27 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
             String type = command.split(" ", 2)[0].toLowerCase();
             if (type.equals(COMMAND_FOOD)) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
-                        + foodList.getFood(deletionIndex - 1).getFoodName());
-                foodList.deleteFood(deletionIndex - 1);
-                storageManager.writeFoodList(foodList);
+                        + listManager.getFood(deletionIndex - 1).getFoodName());
+                listManager.deleteFood(deletionIndex - 1);
+                storageManager.writeFoodList(listManager.getFoodList());
             } else if (type.equals(COMMAND_EXERCISE)) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
-                        + exerciseList.getExercise(deletionIndex - 1).getNameOfExercise());
-                exerciseList.deleteExercise(deletionIndex - 1);
-                storageManager.writeExerciseList(exerciseList);
+                        + listManager.getExercise(deletionIndex - 1).getNameOfExercise());
+                listManager.deleteExercise(deletionIndex - 1);
+                storageManager.writeExerciseList(listManager.getExerciseList());
             } else if (type.equals(COMMAND_GOAL)) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of goals:\n\t"
-                        + goalList.getGoal(deletionIndex - 1).getDescription());
-                goalList.deleteGoal(deletionIndex - 1);
-                storageManager.writeGoalList(goalList, foodList, exerciseList, user);
+                        + listManager.getGoal(deletionIndex - 1).getDescription());
+                listManager.deleteGoal(deletionIndex - 1);
+                storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(), listManager.getExerciseList(), user);
             }
         } catch (IndexOutOfBoundsException e) {
             Ui.printCustomError("Sorry that index does not exist in the list");

@@ -14,6 +14,7 @@ public class Messages {
 
     //Format messages
     public static final String FORMAT_FOOD = "food <Name of food> /<Number of Calories> <Quantity (Optional)>";
+    public static final String FORMAT_EDIT_FOOD = "food <Name of food> /<Number of Calories> <Quantity>";
     public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
             + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
@@ -72,6 +73,7 @@ public class Messages {
     public static final String DATE_HEADER = "Date: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
+    public static final String EMPTY_STRING = "";
 
     //EditProfileCommand class messages
     public static final String EDIT_NAME = "name";
