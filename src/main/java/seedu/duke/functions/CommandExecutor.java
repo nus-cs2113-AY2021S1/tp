@@ -30,6 +30,7 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
+import static seedu.duke.ui.UI.printHelp;
 import static seedu.duke.ui.UI.printHelpMessage;
 import static seedu.duke.ui.UI.printHelpQuiz;
 
@@ -37,7 +38,12 @@ public class CommandExecutor {
     public static void executeCommand(CommandChecker commandChecker, String userInput, WritingList writings) {
         switch (commandChecker) {
         case HELP:
-            printHelpMessage(userInput);
+            String[] command = userInput.split(" ", 2);
+            if (command.length > 1) {
+                printHelpMessage(command[1]);
+            } else {
+                printHelpMessage(userInput);
+            }
             break;
         case DIVIDER:
             try {
