@@ -91,6 +91,8 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 System.out.println(Ui.printOutOfBoundsError());
             } catch (IllegalArgumentException | DateTimeParseException d) {
                 System.out.println(Ui.printInvalidFormatError());
+            } catch (RepeatedDateTimeException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(Ui.printError(e));
             }

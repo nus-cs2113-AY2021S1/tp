@@ -6,7 +6,10 @@ import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.ui.Ui;
 
+import java.util.logging.Logger;
+
 public class ResultSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(ResultSubjectCommand.class.getName());
     private String fullcommand;
 
     public ResultSubjectCommand(String fullcommand) {
@@ -15,23 +18,26 @@ public class ResultSubjectCommand extends SubjectCommand {
     }
 
     public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
-
+        logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
             throw new InvalidSubjectException(Ui.printInvalidSubjectError());
         }
-        Subject quizSubject = null;
+        Subject resultSubject = null;
 
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(message[1])) {
-                quizSubject = subject;
+                resultSubject = subject;
             }
         }
-        if (quizSubject == null) {
+        if (resultSubject == null) {
             throw new NoSubjectException(Ui.printNoSubjectError());
         }
-        assert (quizSubject != null) : "No such subject exists!";
-        Ui.printSubjectResults(quizSubject);
+        assert (resultSubject != null) : "No such subject exists!";
+        Ui.printSubjectResults(resultSubject);
+        logger.info("Finish reading the command to find the subject for the results feature.Now, the "
+                + "application prints the results.");
+        logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
         return null;
     }
 }
