@@ -42,11 +42,15 @@ What would you like to do with Quotesify?
 
 ## 3.0 Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### 3.1 Feature: Rating system for books
+Given below is the class diagram for classes related to the Rating System in Quotesify:
 
-[INSERT CLASS DIAGRAM AND EXPLANATION]
+![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
+
+* A `Book` must exists before a `Rating` can be created.
+* The `XRatingCommand` class represents `AddRatingCommand`, `DeleteRatingCommand`, `ListRatingCommand`
+, `EditRatingCommand`, `FindRatingCommand` classes which all extends their respective parent `XCommand` classes.
+* All the `XCommand` classes extends the abstract `Command` class.
 
 #### 3.1.1 Add rating
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
