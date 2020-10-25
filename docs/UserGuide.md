@@ -740,27 +740,32 @@ Enter the following command | To do this
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
 `list -b [/by AUTHOR]` | List books
+`list -b BOOK_NUMBER` | List book detail
+`list -b done/undone` | List books by completion
 `list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
 `list -bm` | List bookmarks
 `list -t` | List tasks
 `list -c [CATEGORY]` | List all categories / List items in a category
 `list -r [/RATING_SCORE]` | List ratings
+`edit -b BOOK_NUMBER /to NEW_TITLE` | Edit book title
 `edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
-`delete -b BOOK_TITLE /by AUTHOR` | Delete book
+`delete -b BOOK_NUMBER` | Delete book
 `delete -q QUOTE_NUMBER` | Delete quote
 `delete -qr QUOTE_NUMBER` | Delete quote reflection
 `delete -bm BOOK_TITLE` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
 `delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
 `delete -r BOOK_TITLE /by AUTHOR` | Delete rating
+`find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
 `find -r BOOK_TITLE /by AUTHOR` | Find rating
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
+`done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
 `help` | Show help page
 `bye` | Terminate the program
