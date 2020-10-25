@@ -20,7 +20,7 @@ public class Names {
             int index = randomGenerator.nextInt(nameList.size());
             System.out.println(nameList.get(index));
         } else {
-            System.out.println("No stored Names! Try adding some names first!");
+            throw new NameException("No stored Names! Try adding some names first!");
         }
     }
 
@@ -38,7 +38,7 @@ public class Names {
                 System.out.println(name);
             }
         } else {
-            System.out.println("No stored Names! Try adding some names first!");
+            throw new NameException("No stored Names! Try adding some names first!");
         }
     }
 
@@ -52,7 +52,7 @@ public class Names {
                 System.out.println(i + 1 + ". " + nameList.get(i));
             }
         } else {
-            System.out.println("No stored Names! Try adding some names first!");
+            throw new NameException("No stored Names! Try adding some names first!");
         }
     }
 
@@ -62,9 +62,13 @@ public class Names {
     public static void addName(String name) throws NameException {
         NamesDB.loadDB(nameList);
         String nameToAdd = name.replaceAll("(?i)add name", "").trim();
-        nameList.add(nameToAdd);
-        NamesDB.updateDB(nameList);
-        System.out.println(nameToAdd + " has been added to the Names list!");
+        if (nameToAdd.length() > 0) {
+            nameList.add(nameToAdd);
+            NamesDB.updateDB(nameList);
+            System.out.println(nameToAdd + " has been added to the Names list!");
+        } else {
+            throw new NameException("Please enter a valid name!");
+        }
     }
 
     /**
@@ -80,10 +84,10 @@ public class Names {
                 NamesDB.updateDB(nameList);
                 System.out.println(nameToDelete + " has been deleted from the Names list!");
             } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                System.out.println("Please enter a valid index!");
+                throw new NameException("Please enter a valid index!");
             }
         } else {
-            System.out.println("No stored Names! Try adding some names first!");
+            throw new NameException("No stored Names! Try adding some names first!");
         }
     }
 }
