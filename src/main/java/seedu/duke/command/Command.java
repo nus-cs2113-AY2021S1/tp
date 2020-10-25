@@ -1,7 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.exception.DukeException;
-
 import java.util.Hashtable;
 
 public abstract class Command {

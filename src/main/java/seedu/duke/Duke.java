@@ -1,14 +1,12 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
-import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
