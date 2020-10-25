@@ -53,7 +53,7 @@ public class Bookmark {
         if (url.contains(" ")) {
             return false;
         }
-        return url.startsWith("www.") || url.startsWith("https://");
+        return url.startsWith("www.") || url.startsWith("https://") || url.startsWith("http://");
     }
 
     /**

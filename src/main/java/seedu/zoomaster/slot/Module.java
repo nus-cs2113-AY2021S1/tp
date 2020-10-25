@@ -13,7 +13,7 @@ public class Module {
     private String moduleCode;
     private BookmarkList bookmarks;
     private List<Slot> slots;
-    private static ArrayList<String> moduleList;
+    private static ArrayList<String> moduleList; //List of all NUS module codes
 
     public static ArrayList<String> getModuleList() {
         return moduleList;

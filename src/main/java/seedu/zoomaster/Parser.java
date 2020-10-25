@@ -48,7 +48,7 @@ public class Parser {
     private static Command createCommand(String input) throws ZoomasterException {
         Command command;
 
-        if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
+        if (input.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0) {
             command = new ExitCommand();
         } else if (input.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
             command = new LaunchNowCommand();
@@ -56,8 +56,8 @@ public class Parser {
             command = new ChangeModeCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
             command = new ClearCommand();
-        } else if (input.toLowerCase().equals(HelpCommand.HELP_KW)) {
-            command = new HelpCommand();
+        } else if (input.startsWith(HelpCommand.HELP_KW)) {
+            command = new HelpCommand(input);
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
@@ -74,7 +74,7 @@ public class Parser {
     //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws ZoomasterException {
 
-        if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
+        if (input.compareToIgnoreCase(ShowBookmarkCommand.SHOW_KW) == 0) {
             return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
             return new DeleteBookmarkCommand(input);
