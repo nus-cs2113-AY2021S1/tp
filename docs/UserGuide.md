@@ -65,7 +65,7 @@ has successfully executed.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
 1. The module code is valid if it contains 6-8 characters without any spacing. 
 
-### 1. View help: `help`
+### 1. View help: `help` <a name="1-view-help-help"></a>
 Shows a list of the commands available.
 
 Format: `help`
@@ -75,7 +75,7 @@ Expected output:
 <A list of available commands will be shown here>
 ````
 
-### 2. Add a module: `addmod`
+### 2. Add a module: `addmod` <a name="2-add-a-module-addmod"></a>
 Adds a module to the database.
 
 Format: `addmod <module code>`
