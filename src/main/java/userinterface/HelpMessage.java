@@ -8,6 +8,7 @@ public class HelpMessage extends Ui {
             + "help                 - prints out help message\n"
             + "location             - tells you your current mode\n"
             + "cd <mode index/name> - changes the program to the corresponding mode\n"
+            + "highlight            - prints out the important items you stored\n"
             + "exit                 - exit the program/mode you are currently at\n";
 
     private static final String currentModes = "These are the modes you can go to:\n"

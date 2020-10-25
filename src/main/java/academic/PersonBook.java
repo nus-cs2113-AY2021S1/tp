@@ -8,10 +8,23 @@ import java.util.ArrayList;
 public class PersonBook {
     public static void addPerson(String[] args, ArrayList<Person> listOfPerson) {
         listOfPerson.add(new Person(args[0],args[1],args[2]));
+        if (args.length == 4) {
+            if (args[3].equals("true")) {
+                Person.changePersonStar(listOfPerson.get(listOfPerson.size() - 1));
+            }
+        }
     }
 
     public static void deletePerson(Integer indexToBeDeleted, ArrayList<Person> listOfPerson) {
         listOfPerson.remove(indexToBeDeleted - 1);
+    }
+
+    public static void starContact(Integer indexToBeStar, ArrayList<Person> listOfPerson) {
+        if (indexToBeStar > 0 && indexToBeStar <= listOfPerson.size()) {
+            Person.changePersonStar(listOfPerson.get(indexToBeStar - 1));
+        } else {
+            System.out.println("Invalid star index! Please try again");
+        }
     }
 
     public static String printPersonBook(ArrayList<Person> listOfPerson) {
@@ -19,18 +32,27 @@ public class PersonBook {
         StringBuilder listToPrint = new StringBuilder();
         for (Person person : listOfPerson) {
             if (person != null) {
-                listToPrint.append(listIndex + 1);
-                listToPrint.append(". [" + person.nameOfPerson + "]");
-                listToPrint.append(" [" + person.contactNumberOfPerson + "]");
-                listToPrint.append(" [" + person.emailOfPerson + "]");
+                listToPrint.append((listIndex + 1) + ".");
+                listToPrint.append(combinePersonDetails(person));
                 listIndex++;
                 if (listOfPerson.size() != listIndex) {
                     listToPrint.append("\n");
                 }
-
             }
         }
 
         return listToPrint.toString();
+    }
+
+    public static String combinePersonDetails(Person person) {
+        StringBuilder personDetails = new StringBuilder();
+
+        personDetails.append("[" + person.nameOfPerson + "]");
+        personDetails.append(" [" + person.contactNumberOfPerson + "]");
+        personDetails.append(" [" + person.emailOfPerson + "]");
+        if (Person.isStar(person)) {
+            personDetails.append(" (*)");
+        }
+        return personDetails.toString();
     }
 }
