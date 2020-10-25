@@ -9,20 +9,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 
+import java.util.ArrayList;
+
 class PinCommandTest {
     private Note notePinned;
     private Note noteNotPinned;
 
     private Notebook notebook;
 
-    private static final String NOTE_CONTENT = "This is a test note.";
+    private static final ArrayList<String> NOTE_CONTENT = new ArrayList<>();
+
     private static final String NOTE1_TITLE = "TestNote1";
     private static final String NOTE2_TITLE = "TestNote2";
 
     @BeforeEach
     void setUp() {
-        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true);
-        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false);
+        NOTE_CONTENT.add("This is a test note.");
+        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true, false);
+        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false, false);
 
         notebook = new Notebook();
 
@@ -39,8 +43,8 @@ class PinCommandTest {
         assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputIndex(notebook, 0));
         assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputIndex(notebook, 1));
 
-        assertTrue(notePinned.getPinned().equals("N"));
-        assertTrue(noteNotPinned.getPinned().equals("Y"));
+        assertTrue(notePinned.getPinnedString().equals("N"));
+        assertTrue(noteNotPinned.getPinnedString().equals("Y"));
     }
 
     @Test
@@ -48,8 +52,8 @@ class PinCommandTest {
         assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputTitle(notebook, NOTE1_TITLE));
         assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputTitle(notebook, NOTE2_TITLE));
 
-        assertTrue(notePinned.getPinned().equals("N"));
-        assertTrue(noteNotPinned.getPinned().equals("Y"));
+        assertTrue(notePinned.getPinnedString().equals("N"));
+        assertTrue(noteNotPinned.getPinnedString().equals("Y"));
     }
 
     @Test
@@ -73,7 +77,7 @@ class PinCommandTest {
 
     private String getExecutionStringInputTitle(Notebook notebook, String title) {
         PinCommand pinCommand = new PinCommand(title);
-        pinCommand.setData(notebook, null, null, null);
+        pinCommand.setData(notebook, null,null, null);
 
         return pinCommand.execute();
     }

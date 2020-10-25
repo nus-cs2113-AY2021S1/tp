@@ -1,37 +1,38 @@
 package seedu.duke.command;
 
-import com.diogonunes.jcolor.Attribute;
-import static com.diogonunes.jcolor.Ansi.colorize;
-
 import seedu.duke.ui.Formatter;
+import static seedu.duke.command.HelpCommand.getColor;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static com.diogonunes.jcolor.Ansi.colorize;
+
 class HelpCommandTest {
 
     private static final String HELP_STRING = "The recognized commands and their usages are listed below. "
-            + "Parameters listed in brackets, [ ] represent optional inputs.";
+            + "Parameters listed in brackets, [ ], represent optional inputs.";
 
-    public static final String[] COMMANDS_USAGE = {
-        HELP_STRING,
-        colorize(AddNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(AddEventCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(CreateTagCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(DeleteNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(DeleteEventCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(DeleteTagCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(EditNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(EditEventCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(ExitCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(FindCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(ListEventCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(ListNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(ListTagCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(PinCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(RemindCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()),
-        colorize(TagCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()),
-        colorize(ViewNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT())
+    public static final String[] COMMANDS_USAGE = {HELP_STRING,
+            colorize(AddNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(AddEventCommand.COMMAND_USAGE, getColor(true)),
+            colorize(ArchiveNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(CreateTagCommand.COMMAND_USAGE, getColor(true)),
+            colorize(DeleteNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(DeleteEventCommand.COMMAND_USAGE, getColor(true)),
+            colorize(DeleteTagCommand.COMMAND_USAGE, getColor(false)),
+            colorize(EditNoteCommand.COMMAND_USAGE, getColor(true)),
+            colorize(EditEventCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ExitCommand.COMMAND_USAGE, getColor(true)),
+            colorize(FindCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ListEventCommand.COMMAND_USAGE, getColor(true)),
+            colorize(ListNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ListTagCommand.COMMAND_USAGE, getColor(true)),
+            colorize(PinCommand.COMMAND_USAGE, getColor(false)),
+            colorize(RemindCommand.COMMAND_USAGE, getColor(true)),
+            colorize(TagCommand.COMMAND_USAGE, getColor(false)),
+            colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(true)),
+            colorize(ViewNoteCommand.COMMAND_USAGE, getColor(false))
     };
 
     @Test
