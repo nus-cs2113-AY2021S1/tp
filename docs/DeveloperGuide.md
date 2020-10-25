@@ -58,10 +58,11 @@ Given below is the sequence diagram for adding rating to a book:
 
 ![Sequence Diagram for Add Ratings](images/SeqDiagram_AddRating.png)
 
-* The sequence diagram shows the process of *Add Rating* from the execute() method in AddCommand class.
-The switch statement in the execute() method to decide the item that the user is adding is not shown in the diagram.
-* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
-* In the addRating() method, if the user input such as book title, author or rating score is missing
+* The sequence diagram shows the process of *Add Rating* from the `execute()` method in `AddRatingCommand` class,
+which extends the `AddCommand` class. The switch statement in the `execute()` method to decide the item that the user
+is adding is not shown in the diagram.
+* The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
+* In the `addRating()` method, if the user input such as book title, author or rating score is missing
 , a message will be printed to inform the user and the method is returned.
 * There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
 in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
@@ -85,10 +86,11 @@ Given below is the sequence diagram for finding ratings:
 
 ![Sequence Diagram for Find Ratings](images/SeqDiagram_FindRating.png)
 
-* The sequence diagram shows the process of *Find Rating* from the execute() method in FindCommand class.
-The switch statement in the execute() method to decide the item that the user is finding is not shown in the diagram.
-* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
-* In the findRating() method, if the user input such as the book to search for is missing, a message will be printed
+* The sequence diagram shows the process of *Find Rating* from the `execute()` method in `FindRatingCommand` class
+which extends the `FindCommand` class. The switch statement in the `execute()` method to decide the item that the
+user is finding is not shown in the diagram.
+* The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
+* In the `findRating()` method, if the user input such as the book to search for is missing, a message will be printed
 to inform the user and the method is returned.
 * The list of ratings will be looped to see if the rating exists for the particular book.
 * Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
