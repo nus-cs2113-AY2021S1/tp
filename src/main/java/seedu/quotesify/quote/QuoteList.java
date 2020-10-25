@@ -1,6 +1,7 @@
 package seedu.quotesify.quote;
 
 import org.json.simple.JSONArray;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -30,8 +31,23 @@ public class QuoteList extends QuotesifyList<Quote> {
         return quotes.indexOf(quote);
     }
 
-    public void editQuote(Quote quote, int quoteNumber) {
+    public void updateQuote(Quote quote, int quoteNumber) {
         quotes.set(quoteNumber, quote);
+    }
+
+    public Quote addReflection(String reflection, int quoteNumber) {
+        Quote quote = quotes.get(quoteNumber);
+        quote.setReflection(reflection);
+        quotes.set(quoteNumber, quote);
+        return quote;
+    }
+
+    public void deleteReflection(int index) {
+        quotes.get(index).setReflectionNull();
+    }
+
+    public void updateReflection(String editedReflection, int quoteNumber) {
+        quotes.get(quoteNumber).setReflection(editedReflection);
     }
 
     @Override

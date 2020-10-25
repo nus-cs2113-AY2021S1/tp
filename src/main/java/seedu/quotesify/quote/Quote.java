@@ -11,6 +11,7 @@ public class Quote implements JsonSerializer {
     private String quote;
     private ArrayList<String> categories = new ArrayList<>();
     private String reference;
+    private String reflection;
 
     public Quote(String quote) {
         this.quote = quote;
@@ -37,6 +38,14 @@ public class Quote implements JsonSerializer {
         this.quote = quote;
         this.categories = categories;
         this.reference = reference;
+    }
+
+    public Quote(Author author, String quote, ArrayList<String> categories, String reference, String reflection) {
+        this.author = author;
+        this.quote = quote;
+        this.categories = categories;
+        this.reference = reference;
+        this.reflection = reflection;
     }
 
     public Author getAuthor() {
@@ -91,16 +100,33 @@ public class Quote implements JsonSerializer {
         this.categories = categories;
     }
 
+    public void setReflection(String reflection) {
+        this.reflection = reflection;
+    }
+
+    public String getReflection() {
+        return reflection;
+    }
+
+    public void setReflectionNull() {
+        reflection = null;
+    }
+
     @Override
     public String toString() {
         String quoteWithoutInformation = '\"' + quote + '\"';
         String quoteInformation = "";
+
         if (author != null && reference != null) {
-            quoteInformation = " - " + author.getName() + ", (" + reference + ')';
+            quoteInformation = " - by " + author.getName() + ", (from " + reference + ')';
         } else if (author != null) {
-            quoteInformation = " - " + author.getName();
+            quoteInformation = " - by " + author.getName();
         } else if (reference != null) {
-            quoteInformation = " - " + reference;
+            quoteInformation = " - from " + reference;
+        }
+
+        if (reflection != null) {
+            quoteInformation += " [R]";
         }
         return quoteWithoutInformation + quoteInformation;
     }
@@ -116,6 +142,7 @@ public class Quote implements JsonSerializer {
         json.put("quote", this.getQuote());
         json.put("categories", this.getCategories());
         json.put("reference", this.getReference());
+        json.put("reflection", this.getReflection());
         return json;
     }
 }

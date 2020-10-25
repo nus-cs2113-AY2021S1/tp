@@ -6,6 +6,7 @@ import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ToDoList extends QuotesifyList<ToDo> {
     private ArrayList<ToDo> todos = super.getList();
@@ -52,6 +53,10 @@ public class ToDoList extends QuotesifyList<ToDo> {
         }
 
         return toDosToReturn;
+    }
+
+    public void sortByDate() {
+        todos.sort(Comparator.comparing(todo -> todo.getFormattedDeadline()));
     }
 
     @Override

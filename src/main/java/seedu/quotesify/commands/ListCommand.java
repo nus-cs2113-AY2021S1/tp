@@ -1,10 +1,12 @@
 package seedu.quotesify.commands;
 
+import seedu.quotesify.book.Book;
 import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
@@ -58,6 +60,10 @@ public class ListCommand extends Command {
             QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
             break;
+        case TAG_QUOTE_REFLECTION:
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            listQuoteReflection(quotes, ui);
+            break;
         case TAG_BOOK:
             BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             listBooks(bookList, ui);
@@ -74,14 +80,46 @@ public class ListCommand extends Command {
                 listAllBooks(bookList, ui);
             } else if (information.contains(FLAG_AUTHOR)) {
                 listBooksByAuthor(bookList, ui);
+            } else if (information.contains(DONE_KEYWORD)) {
+                listBooksDoneOrUndone(bookList, ui);
             } else {
-                throw new QuotesifyException(ERROR_LIST_UNKNOWN_COMMAND);
+                listBookDetails(bookList, ui);
             }
         } catch (IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            if (information.contains(FLAG_AUTHOR)) {
+                ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            } else {
+                ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+            }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_LIST_UNKNOWN_COMMAND);
         }
+    }
+
+    private void listBooksDoneOrUndone(BookList bookList, TextUi ui) {
+        if (information.trim().equals(DONE_KEYWORD)) {
+            listBooksDone(bookList, ui);
+        } else if (information.trim().equals("undone")) {
+            listBooksUndone(bookList, ui);
+        }
+    }
+
+    private void listBooksDone(BookList bookList, TextUi ui) {
+        BookList completedBooks = bookList.filterDone(true);
+        ui.printListDoneBook(completedBooks);
+    }
+
+    private void listBooksUndone(BookList bookList, TextUi ui) {
+        BookList undoneBooks = bookList.filterDone(false);
+        ui.printListUndoneBook(undoneBooks);
+    }
+
+    private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
+        int bookIndex = Integer.parseInt(information.trim()) - 1;
+        Book book = bookList.getBook(bookIndex);
+        ui.printBookDetails(book);
     }
 
     private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {
@@ -98,6 +136,24 @@ public class ListCommand extends Command {
             throw new QuotesifyException(ERROR_NO_BOOKS_BY_AUTHOR);
         }
         ui.printBooksByAuthor(filteredBooks, authorName);
+    }
+
+    private void listQuoteReflection(QuoteList quotes, TextUi ui) {
+        try {
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
+            if (information.isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
+            } else if (quoteNumber < 0 || quoteNumber > quotes.getSize()) {
+                throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+            } else {
+                Quote quote = quotes.getQuote(quoteNumber);
+                ui.printQuoteAndReflection(quote);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
     private void listQuotes(QuoteList quoteList, TextUi ui) {
@@ -200,6 +256,7 @@ public class ListCommand extends Command {
     }
 
     private void listToDos(ToDoList toDoList, TextUi ui) {
+        toDoList.sortByDate();
         ui.printAllToDos(toDoList);
     }
 

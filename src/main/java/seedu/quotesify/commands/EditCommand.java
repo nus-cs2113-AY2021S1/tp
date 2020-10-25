@@ -16,8 +16,6 @@ import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.logging.Level;
-
 public class EditCommand extends Command {
 
     private String type;
@@ -53,6 +51,10 @@ public class EditCommand extends Command {
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             editQuote(quotes, ui);
             break;
+        case TAG_QUOTE_REFLECTION:
+            QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            editQuoteReflection(quoteList, ui);
+            break;
         default:
             ui.printListOfEditCommands();
             break;
@@ -60,13 +62,32 @@ public class EditCommand extends Command {
         storage.save();
     }
 
+    private void editQuoteReflection(QuoteList quoteList, TextUi ui) {
+        try {
+            if (information.contains(FLAG_EDIT)) {
+                int quoteNumToEdit = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_EDIT);
+                String editedReflection = QuoteParser.getEditedReflection(information);
+                if (!editedReflection.isEmpty()) {
+                    quoteList.updateReflection(editedReflection, quoteNumToEdit);
+                    ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit), editedReflection);
+                } else {
+                    throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+                }
+            } else {
+                throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
+    }
+
     private void editQuote(QuoteList quotes, TextUi ui) {
         try {
             if (information.contains(FLAG_EDIT)) {
-                int quoteNumToEdit = QuoteParser.getQuoteNumberToEdit(information, quotes);
+                int quoteNumToEdit = QuoteParser.parseQuoteNumber(information, quotes, Command.FLAG_EDIT);
                 Quote oldQuote = quotes.getQuote(quoteNumToEdit);
                 Quote editedQuote = QuoteParser.getEditedQuote(information);
-                quotes.editQuote(editedQuote, quoteNumToEdit);
+                quotes.updateQuote(editedQuote, quoteNumToEdit);
                 ui.printEditQuote(oldQuote, editedQuote);
             } else {
                 throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
@@ -83,6 +104,7 @@ public class EditCommand extends Command {
             if (bookDetails.length == 1) {
                 bookDetails = new String[]{bookDetails[0], ""};
             }
+
             int bookIndex = Integer.parseInt(bookDetails[0].trim()) - 1;
             String newTitle = bookDetails[1].trim();
             if (newTitle.isEmpty()) {
@@ -91,23 +113,13 @@ public class EditCommand extends Command {
 
             Book book = books.getBook(bookIndex);
             String oldTitle = book.getTitle();
+            String authorName = book.getAuthor().getName();
 
-            // check if book has ratings before editing the title.
-            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            int currentRatingOfBook = 0;
-            for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(oldTitle)) {
-                    currentRatingOfBook = rating.getRating();
-                    ratings.delete(ratings.getList().indexOf(rating));
-                    break;
-                }
-            }
-            if (currentRatingOfBook != 0) {
-                ratings.add(new Rating(currentRatingOfBook, newTitle));
-            }
-
+            books.ensureNoSimilarBooks(newTitle, authorName);
             book.setTitle(newTitle);
             ui.printEditBook(oldTitle, newTitle);
+
+            checkRatingForOldTitle(book, oldTitle, authorName);
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
@@ -116,49 +128,68 @@ public class EditCommand extends Command {
         }
     }
 
-    private void editRating(RatingList ratings, TextUi ui) {
-
-        String[] ratingDetails;
-        String titleToUpdate;
-
-        try {
-            ratingDetails = information.split(" ", 2);
-            titleToUpdate = ratingDetails[1].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE);
-            return;
-        }
-
-        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
-        boolean isValid = ((ratingScore != 0) && isRated(ratings, titleToUpdate));
-
-        if (isValid) {
-            Rating ratingToUpdate = null;
-            for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(titleToUpdate)) {
-                    ratingToUpdate = rating;
-                }
-            }
-            assert ratingToUpdate != null;
-            ratingToUpdate.setRating(ratingScore);
-            ui.printEditRatingToBook(ratingScore, titleToUpdate);
-        }
-    }
-
-    private boolean isRated(RatingList ratings, String titleToUpdate) {
-        boolean isRated = false;
+    private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
+        // check ratings in rating list before editing the title.
+        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+        int currentRatingOfBook = 0;
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(titleToUpdate)) {
-                isRated = true;
+            if (rating.getTitleOfRatedBook().equals(oldTitle)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
+                currentRatingOfBook = rating.getRating();
+                ratings.delete(ratings.getList().indexOf(rating));
                 break;
             }
         }
 
-        if (!isRated) {
-            System.out.println(ERROR_RATING_NOT_FOUND);
-            return false;
+        if (currentRatingOfBook != 0) {
+            ratings.add(new Rating(book, currentRatingOfBook));
         }
-        return true;
+    }
+
+    private void editRating(RatingList ratings, TextUi ui) {
+        if (information.isEmpty()) {
+            System.out.println(ERROR_RATING_MISSING_INPUTS);
+            return;
+        }
+
+        String[] ratingDetails;
+        String title;
+        String author;
+        try {
+            ratingDetails = information.split(" ", 2);
+            String[] titleAndAuthor = ratingDetails[1].split(Command.FLAG_AUTHOR, 2);
+            title = titleAndAuthor[0].trim();
+            author = titleAndAuthor[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
+            return;
+        }
+        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
+        Rating existingRating = checkIfRatingExists(ratings, title, author);
+        boolean isValid = ((ratingScore != 0) && (existingRating != null));
+
+        if (isValid) {
+            existingRating.setRating(ratingScore);
+            existingRating.getRatedBook().setRating(ratingScore);
+            ui.printEditRatingToBook(ratingScore, title, author);
+        }
+    }
+
+    private Rating checkIfRatingExists(RatingList ratings, String title, String author) {
+        Rating existingRating = null;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(title)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
+                existingRating = rating;
+                break;
+            }
+        }
+
+        if (existingRating == null) {
+            System.out.println(ERROR_RATING_NOT_FOUND);
+            return null;
+        }
+        return existingRating;
     }
 
     private void editCategory(CategoryList categoryList, TextUi ui) {
@@ -167,16 +198,31 @@ public class EditCommand extends Command {
             String oldCategory = oldAndNewCategories[0];
             String newCategory = oldAndNewCategories[1];
 
-            Category category = categoryList.getCategoryByName(oldCategory);
             if (categoryList.isExistingCategory(newCategory)) {
                 throw new QuotesifyException("Category [" + newCategory + "] already exists!");
             }
 
+            Category category = categoryList.getCategoryByName(oldCategory);
             category.setCategoryName(newCategory);
+            editCategoryInBooksAndQuotes(oldCategory, newCategory);
             ui.printEditCategory(oldCategory, newCategory);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
+    }
+
+    public void editCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
+            book.getCategories().remove(oldCategory);
+            book.getCategories().add(newCategory);
+        });
+
+        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
+            quote.getCategories().remove(oldCategory);
+            quote.getCategories().add(newCategory);
+        });
     }
 
     @Override

@@ -1,12 +1,109 @@
 # Developer Guide
 
-## Design & implementation
+## 1.0 Introduction
+**Welcome to Quotesify!**
+
+Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add
+books and the related quotes that you wish to remember. You can categorize your books and quotes by author,
+customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
+your reading experience.
+
+This guide will provide information on the design and implementation of Quotesify. It will help you get started
+on your journey of being a contributor to Quotesify. This guide will also explain the steps to test out the program,
+so that you will have a better understanding of the current status of Quotesify.
+
+## 2.0 Setting up
+1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases),
+and clone the fork to your computer.
+2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
+click `File` > `Close Project` to close any existing project.
+3. Set up the correct JDK version for Gradle:
+    1. Click `Configure` > `Project Defaults` > `Project Structure`.
+    2. Click `New…` and find the directory where you saved your JDK.
+4. Click `Import Project`.
+5. Locate the *build.gradle* file and select it.
+6. Click `OK`.
+7. Click `Open as Project`.
+8. Click `OK` to accept all default settings.
+9. To verify the set up, locate the `Quotesify.java` file, right-click it and select `Run Quotesify.main()`.
+If the setup is correct, you should see something like this as shown below:
+
+```
+________                __                .__  _____       
+\_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.
+ /  / \  \|  |  \/  _ \   __\/ __ \ /  ___/  \   __<   |  |
+/   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
+\_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
+       \__>                      \/     \/          \/    
+Welcome to Quotesify v2.0!
+
+What would you like to do with Quotesify?
+```
+
+## 3.0 Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-## Product scope
-### Target user profile
+### 3.1 Feature: Rating system for books
 
+[INSERT CLASS DIAGRAM AND EXPLANATION]
+
+#### 3.1.1 Add rating
+The *add rating* feature will rely on an existing book object, and a rating object will then be created
+in the process.
+* The book object will store an attribute named *rating*, which will be set by this feature.
+* The rating object will be made up of the book object and a rating score, which is stored in a list of ratings.
+
+Given below is the sequence diagram for adding rating to a book:
+
+![Sequence Diagram for Add Ratings](images/SeqDiagram_AddRating.png)
+
+* The sequence diagram shows the process of *Add Rating* from the execute() method in AddCommand class.
+The switch statement in the execute() method to decide the item that the user is adding is not shown in the diagram.
+* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
+* In the addRating() method, if the user input such as book title, author or rating score is missing
+, a message will be printed to inform the user and the method is returned.
+* There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
+in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
+If all these conditions are met, the book will be rated.
+* When rating a book, the attribute *rating* of the book is set to the rating score. A rating object containing the
+book details and rating score will also be created and stored in the rating list.
+This list of ratings will be used when listing or finding ratings.
+
+##### Design Consideration
+* Saving the ratings in a Rating List
+    * Pros: Helps in listing and finding ratings as not all books are rated.
+    * Cons: Increases memory usage.
+* Using both book title and author to identify a rating instead of just book title
+    * Pros: Allows books with the same title but different author to be rated.
+
+#### 3.1.2 Find ratings
+The *find ratings* feature will search if the rating for a particular book exists in Quotesify
+and print details about the rating.
+
+Given below is the sequence diagram for finding ratings:
+
+![Sequence Diagram for Find Ratings](images/SeqDiagram_FindRating.png)
+
+* The sequence diagram shows the process of *Find Rating* from the execute() method in FindCommand class.
+The switch statement in the execute() method to decide the item that the user is finding is not shown in the diagram.
+* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
+* In the findRating() method, if the user input such as the book to search for is missing, a message will be printed
+to inform the user and the method is returned.
+* The list of ratings will be looped to see if the rating exists for the particular book.
+* Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
+will be printed to the user.
+
+### Feature Add bookmark
+The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+be created in the process.
+* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
+bookmarks named `BookmarkList`.
+
+
+## 4.0 Product scope
+### 4.1 Target user profile
+The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
 * can type fast
@@ -14,32 +111,130 @@
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-### Value proposition
+### 4.2 Value proposition
 
-Improves the reading experience of users with quick and easy features
+Quotesify will help you to improve your reading experience with quick and easy features such as book management,
+quote management, progress tracker, category management and a rating system for your books.
 
-## User Stories
+## 5.0 User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
+|v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
+|v1.0|user|categorize my listings|can view quotes from a specific category that I want|
+|v1.0|long time user|have a page to see a list of books and categories of my notes|can navigate into the relevant book/category without having to remember the titles|
+|v1.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
+|v1.0|beginner reader|add deadlines to books I am reading|can keep track of my readling deadlines|
+|v1.0|avid reader|be able to keep track of books|can filter out books I have read and those that are on my list of books to read|
+|v1.0|forgetful user|add bookmarks to my book|can find the page where I last stopped|
+|v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
+|v1.0|user|save quotes I find meaningful|can view my favourite quotes whenever I want|
+|v2.0|forgetful reader|be reminded of quotes I saved|can remember them better in the long run|
+|v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
-## Non-Functional Requirements
-
+## 6.0 Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
-2.
+2. A user should have no problems using the various commands without referring to the help page after some time.
 
-## Glossary
+## 7.0 Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## 8.0 Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### 8.1 Launch and shutdown
 
-### Launch and shutdown
+#### Initial launch
+   1. Ensure `Java 11` and above is installed.
+   2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
+   3. Save the jar file in a desired file directory.
+   4. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
+   5. Run `java -jar Quotesify.jar` to launch Quotesify.
+   
+#### Shutdown
+   1. To terminate Quotesify, enter the `bye` command.
+   2. Data will be automatically saved into a data file.
+   
+#### Subsequent launch
+   1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
+   2. Run `java -jar Quotesify.jar` to launch Quotesify.
+   3. Data will be automatically loaded from the data file upon launch.
+   
+### Adding a book
+1. Test case: `add -b Harry Potter /by JK Rowling`
+    
+   Expected: Book is added to Quotesify. A message will be prompted to indicate that
+   the book has been successfully added.
+   
+2. Other incorrect commands to try:
+    * `add -b`: Book title left empty
+    * `add -b /by JK Rowling`: Book title left empty with author name specified
+    * `add -b title`: Author name left empty
+    * `add -b title /by`: Author name left empty with author tag specified
+    
+    Expected: Book will not be added. An error message will by printed.
+    
+### List all existing books
+1. Test case: `list -b`
 
+   Expected: All existing books in booklist will be listed.
+   
+### List book details
+1. Test case: `list -b 2`
+
+   Expected: Book details of book with the book index 2 from list of all books will be printed.
+   
+2. Other incorrect commands to try:
+   * `list -b Harry Potter /by JK Rowling`: Wrong format. 
+   * `list -b 10000`: Index out of range of booklist.
+   
+   Expected: Book details will not be printed. An error message will be printed instead.
+   
+### List books by author
+1. Test case: `list -b /by JK Rowling`
+
+   Expected: Books with the author JK Rowling will be listed. 
+   
+2. Other incorrect commands to try:
+   * `list -b JK Rowling`: Flag `/by` not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+   
+### Find books by keyword
+1. Test case: `find -b Harry`
+
+   Expected: Books with the title or author name containing Harry will be listed. 
+   
+2. Other incorrect commands to try:
+   * `find -b`: Keyword not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+
+### Delete books
+1. Test case: `delete -b 3`
+
+   Expected: Book with the book index of 3 in booklist will be deleted from list.
+   Successful message will be printed.
+   
+2. Other incorrect commands to try:
+   * `delete -b Harry Potter`: Wrong format
+   * `delete -b 10000`: Index out of range of booklist.
+   
+   Expected: Book will not be deleted. An error message will be printed.
+
+### Edit book
+1. Test case: `edit -b 3 /to Harry Potterrrrr`
+
+   Expected: Book title of book with the book index of 3 will be changed to Harry Potterrrrr.
+   
+2. Other incorrect commands to try: 
+   * `edit -b Harry Potter /to Harry Potterrrrr`: Wrong format
+   * `edit -b 3 Harry Potterrrrr`: Flag `/to` not specified. 
+   * `edit -b 3 /to`: New title not specified. 
+   
+   Expected: Book title will not be edited. An error message will be printed. 
 ### Adding a quote
 
 1. * Test case 1: `add -q Life's short, smile while you still have teeth`
@@ -111,18 +306,161 @@ Improves the reading experience of users with quick and easy features
    * `delete -q X`: non integer inout
    * `delete -q 9999999`: non existent quote number
    
-   Expected: No quote is deleted. A message with error details will 
+   Expected: No quote is deleted. A message with error details will be shown.
+   
+### Editing a quote
+
+1. * Test case 1: `edit -q 1 /to I pretty much spend all day, every day just looking forward to go back to sleep`
+   * Test case 2: `edit -q 2 /to Don't give up on your dreams, keep sleeping! /by Stranger`
+   * Test case 3: `edit -q 2 /to That’s my spot! /from The Big Bang Theory`
+   * Test case 4: `edit -q 2 /to Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+   
+   Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
+   
+2. Other incorrect commands to try:
+   * `edit -q` : missing quote number and updated quote
+   * `edit -q 1 /to`: missing updated quote
+   * `edit -q 1 You can't see me` : missing "/to" flag
+   * `edit -q 9999999 /to You can't see me` : none existent quote number
+   
+   Expected: Quote will not be updated. A message with error details will be shown.
+   
+### Finding a quote
+
+1. Test case: `find -q sleep`
+
+   Expected: Quotes related to the keyword will be shown.
+   
+2. Other incorrect commands to try:
+   * `find -q`: missing keyword
+   * `find -q `: empty space as keyword
+   
+   Expected: No quotes will be found. A message with error details will be shown.
+
+### Adding categories
+1. Add one or more category to a book
+   - Prerequisites: A book should exist in Quotesify.
+   - Assume that the book "Harry Potter" is added into Quotesify assigned to index 1.
+   - Test case: `add -c fantasy -b 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to the book successfully.
+   - Test case: `add -c fantasy romance -b 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to the book successfully.
+     
+2. Add one or more category to a quote
+   - Prerequisites: A quote should exist in Quotesify.
+   - Assume that the quote "Life is great!" is added into Quotesify assigned to index 1.
+   - Test case: `add -c inspirational -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to the quote successfully.
+   - Test case: `add -c inspirational happy -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to the quote successfully.
+     
+3. Add one or more category to a book and quote
+   - Prerequisites: A book and quote should exist in Quotesify.
+   - Assume that an existing book and quote are both assigned to index 1.
+   - Test case: `add -c inspirational -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to both book and quote successfully.
+   - Test case: `add -c inspirational action -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to both book and quote successfully.
+
+4. Incorrect commands to try
+   - `add -c` missing category name, book or quote
+   - `add -c action` missing a book or quote
+   - `add -c action -b 0 -q 0` invalid book and quote index
+   - `add -c -b 1 -q 1` missing category name
+   
+   Expected: An error message will be prompted. No changes will be made.
+   
+### Listing all categories
+1. List all existing categories
+   - Test case: `list -c`
+     
+     Expected: A list of categories with the total number of items tagged under each category will be displayed.
+
+### Listing a specific category
+1. List all books and quotes tagged by a specific category
+   - Test case: `list -c action`
+     
+     Expected: A list of books and quotes tagged under that category will be displayed.
+
+2. Incorrect commands to try
+   - `list -c 123` invalid category name
+   
+   Expected: An error message will be displayed indicating that no such category exists.
+   
+### Deleting existing categories
+1. Remove one or more category from a book
+   - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+   - Assume the book "Harry Potter" is tagged with [action, fantasy] category and assigned with index 1.
+   - Test case: `delete -c action -b 1`
+     
+     Expected: A message will be prompted to indicate that category has been removed from book successfully.
+   - Test case: `delete -c action fantasy -b 1`
+   
+     Expected: A message will be prompted to indicate that categories have been removed from book successfully.
+     
+2. Remove one or more category from a quote
+    - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+    - Assume the quote "Life is great!" is tagged with [inspirational, happy] category and assigned with index 1.
+    - Test case: `delete -c inspirational -q 1`
+     
+      Expected: A message will be prompted to indicate that category has been removed from quote successfully.
+    - Test case: `delete -c inspirational happy -q 1`
+     
+      Expected: A message will be prompted to indicate that categories have been removed from quote successfully.
+
+3. Remove one or more category from a book and quote
+   - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+   - Assume that a book and quote are both tagged with [action, happy] categories.
+   - Test case: `delete -c action -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been removed from both book and quote successfully.
+   - Test case: `delete -c action happy -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been removed from both book and quote successfully.
+
+4. Remove one or more category from list
+   - Test case: `delete -c action`
+   
+   Expected: A message will be prompted to indicate that category has been removed from all book and quotes.
+   - Test case: `delete -c action fantasy`
+   
+   Expected: A message will be prompted to indicate that categories has been removed from all book and quotes.
+   
+5. Incorrect commands to try
+   - `delete -c` missing category name, book or quote
+   - `delete -c action -b 0 -q 0` invalid book and quote index
+   - `delete -c -b 1 -q 1` missing category name
+   
+   Expected: An error message will be prompted. No changes will be made.
+         
+### Editing an existing category
+1. Edit an existing category name
+   - Test case: `edit -c love /to romance`
+     
+     Expected: A message will be prompted indicating that category has been changed successfully. All books and quotes tagged under the old category will be changed as well.
+
+2. Incorrect commands to try
+   - `edit -c` missing existing and new category name
+   - `edit -c love` missing new category name
+   
+   Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
 ### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
 
-2. Test case: `add -r 5 Harry Potter`
+2. Test case: `add -r 5 Harry Potter /by JK Rowling`
 
    Expected: Rating is added to the book. A message will be prompted to indicate rating has been added successfully.
 
 3. Other incorrect commands to try:
-   * `add -r`: rating score and/or book title fields left empty
+   * `add -r`: rating score, book title and/or author fields left empty
    * `add -r 1000 Harry Potter`: rating score is out of the range
    * `add -r 3 x`: where x is a book that does not exist
    
@@ -149,38 +487,39 @@ Improves the reading experience of users with quick and easy features
    
 ### Deleting a book rating
 
-1. Test case: `delete -r Harry Potter`
+1. Test case: `delete -r Harry Potter /by JK Rowling`
 
    Expected: Rating is deleted from book. A message will be prompted to indicate rating has 
    been deleted successfully.
    
 2. Other incorrect commands to try:
-   * `delete -r`: book title field left empty
+   * `delete -r`: book title and/or author fields left empty
    * `delete -r x`: where x is a book that has not been rated
    
    Expected: No rating is deleted. A message with error details will be prompted.
    
 ### Editing a book rating
 
-1. Test case: `edit -r 4 Harry Potter`
+1. Test case: `edit -r 4 Harry Potter /by JK Rowling`
 
    Expected: Rating is edited to the new rating. A message will be prompted to indicate rating has
    been edited successfully.
    
 2. Other incorrect commands to try:
-   * `edit -r 1000 Harry Potter`: rating score is out of the range
+   * `edit -r`: rating score, book title and/or author fields left empty
+   * `edit -r 1000 Harry Potter /by JK Rowling`: rating score is out of the range
    * `edit -r 3 x`: where x is a book that has not been rated
    
    Expected: No rating is edited. A message with error details will be prompted.
    
 ### Finding a book rating
 
-1. Test case: `find -r Harry Potter`
+1. Test case: `find -r Harry Potter /by JK Rowling`
 
-   Expected: The rating for book titled "Harry Potter" will be shown.
+   Expected: The rating for book titled "Harry Potter" by JK Rowling will be shown.
    
 2. Other incorrect commands to try:
-   * `find -r`: book title field left empty
+   * `find -r`: book title and/or author fields left empty
    * `find -r x`: where x is a book that has not been rated
    
    Expected: No rating is found and listed. A message with error details will be prompted.

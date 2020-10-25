@@ -4,7 +4,7 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify v1.0!
+Welcome to Quotesify v2.0!
 Before you continue, here's something:
 *Inserts inspirational quote here*
 
@@ -16,19 +16,17 @@ What would you like to do with Quotesify?
 The book [book1 by me] has been added!
 
 What would you like to do with Quotesify?
-Here are all your quotes:
-1. "quote1"
-
+The quote ["quote1"] has been added!
 
 What would you like to do with Quotesify?
-I have tagged [action] category to "book1"!
+I have tagged category [action] to "book1"!
 
 What would you like to do with Quotesify?
-I have tagged [motivational] category to "quote1"!
+I have tagged category [motivational] to "quote1"!
 
 What would you like to do with Quotesify?
-I have tagged [nice] category to "book1"!
-I have tagged [nice] category to "quote1"!
+I have tagged category [nice] to "book1"!
+I have tagged category [nice] to "quote1"!
 
 What would you like to do with Quotesify?
 Here is the list of all categories:
@@ -38,16 +36,16 @@ Here is the list of all categories:
 
 
 What would you like to do with Quotesify?
-I have removed [action] category from "book1"!
+I have removed category [action] from "book1"!
 
 What would you like to do with Quotesify?
-There are no items tagged as [action].
+Category [action] does not exist!
 
 What would you like to do with Quotesify?
-I have removed [motivational] category from "quote1"!
+I have removed category [motivational] from "quote1"!
 
 What would you like to do with Quotesify?
-There are no items tagged as [motivational].
+Category [motivational] does not exist!
 
 What would you like to do with Quotesify?
 Here are the list of items tagged as [nice]:
@@ -56,6 +54,7 @@ BOOKS:
 
 QUOTES:
 1. "quote1"
+
 What would you like to do with Quotesify?
 The book [book1 by me] has been deleted!
 

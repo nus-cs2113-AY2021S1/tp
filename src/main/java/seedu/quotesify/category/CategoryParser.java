@@ -1,6 +1,7 @@
 package seedu.quotesify.category;
 
 import seedu.quotesify.exception.QuotesifyException;
+import seedu.quotesify.ui.UiMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,7 @@ public class CategoryParser {
 
     private static final String ERROR_MISSING_CATEGORY = "Missing category name";
     private static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
-    private static final String ERROR_MISSING_EDIT_PARAMS = "Please specify both an existing and a new category name!";
+    private static final String ERROR_MISSING_EDIT_PARAMS = "Invalid parameters!";
 
     private static Stack<String> convertStringArrayToStack(String[] tokens) {
         Stack<String> parameters = new Stack<>();
@@ -47,29 +48,28 @@ public class CategoryParser {
         return new String[]{categories, bookTitle, quoteNum};
     }
 
-    public static boolean isValidParameters(String[] parameters) {
+    public static int validateParametersResult(String[] parameters) {
         String categoryName = parameters[0];
         String bookNum = parameters[1];
         String quoteNum = parameters[2];
 
         if (categoryName.isEmpty()) {
-            System.out.println(ERROR_MISSING_CATEGORY);
-            return false;
+            return -1;
         }
 
         if (quoteNum.isEmpty() && bookNum.isEmpty()) {
-            System.out.println(ERROR_MISSING_BOOK_OR_QUOTE);
-            return false;
+            return 0;
         }
-        return true;
+        return 1;
     }
 
     public static String[] getEditParameters(String information) throws QuotesifyException {
         try {
-            String[] oldAndNewCategory = information.split(" ");
-            return new String[]{oldAndNewCategory[0], oldAndNewCategory[1]};
+            String[] oldAndNewCategory = information.split(" /to ", 2);
+            return new String[]{oldAndNewCategory[0].trim(), oldAndNewCategory[1].trim()};
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS);
+            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS
+                    + System.lineSeparator() + UiMessage.EDIT_CATEGORY_COMMAND);
         }
     }
 

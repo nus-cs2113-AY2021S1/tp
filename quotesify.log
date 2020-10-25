@@ -249,4 +249,100 @@ INFO: added book to booklist
 Oct 17, 2020 9:58:30 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add book to booklist
 Oct 17, 2020 9:58:30 PM seedu.quotesify.commands.AddCommand execute
+Oct 20, 2020 2:49:04 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add reflection to quote list
+Oct 20, 2020 3:46:41 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 20, 2020 3:46:41 PM seedu.quotesify.commands.AddCommand execute
 INFO: added book to booklist
+Oct 20, 2020 3:51:00 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 20, 2020 3:51:00 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 20, 2020 3:51:25 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 20, 2020 3:51:25 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 20, 2020 3:52:30 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 20, 2020 3:52:30 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 21, 2020 2:45:30 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 21, 2020 2:45:30 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 21, 2020 2:53:24 PM seedu.quotesify.commands.BookmarkCommand handleBookmarkByNumber
+INFO: add bookmark to bookmarkList failed
+Oct 21, 2020 7:36:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 21, 2020 7:36:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 21, 2020 7:38:17 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 21, 2020 7:38:17 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 21, 2020 7:42:49 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 21, 2020 7:42:49 PM seedu.quotesify.commands.AddCommand addBook
+INFO: add book to booklist failed
+Oct 21, 2020 7:42:49 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 21, 2020 7:42:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 21, 2020 7:42:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 21, 2020 7:43:02 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 21, 2020 7:43:02 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 21, 2020 7:45:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 21, 2020 7:45:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completedOct 22, 2020 12:14:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 22, 2020 12:14:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 22, 2020 12:14:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:14:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 22, 2020 12:23:26 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 22, 2020 12:23:26 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 22, 2020 12:24:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:24:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 22, 2020 12:24:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:24:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 23, 2020 11:25:41 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:25:41 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:25:47 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:25:47 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:27:30 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:27:30 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:28:32 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:28:32 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:29:13 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:29:13 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:30:53 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 23, 2020 11:30:53 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 23, 2020 11:31:57 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add reflection to quote list
+Oct 23, 2020 11:35:35 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add reflection to quote list

@@ -1,8 +1,6 @@
 package seedu.quotesify.category;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -55,6 +53,10 @@ public class CategoryList extends QuotesifyList<Category> {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         category.setBookList(bookList.filterByCategory(category.getCategoryName()));
         category.setQuoteList(quoteList.filterByCategory(category.getCategoryName()));
+    }
+
+    public void remove(Category category) {
+        categories.remove(category);
     }
 
     @Override

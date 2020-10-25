@@ -194,10 +194,12 @@ public class Storage {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
         String title = (String) json.get("title");
+        boolean isDone = (boolean) json.get("isDone");
         JSONArray array = (JSONArray) json.get("categories");
+        long rating = (long) json.get("rating");
         ArrayList<String> categories = (ArrayList<String>) array.stream()
                 .collect(Collectors.toList());
-        return new Book(author, title, categories);
+        return new Book(author, title, isDone, categories, (int) rating);
     }
 
     private Quote parseQuoteObject(JSONObject json) throws NullPointerException {
@@ -205,10 +207,11 @@ public class Storage {
         Author author = parseAuthorObject(authorObj);
         String quote = (String) json.get("quote");
         String reference = (String) json.get("reference");
+        String reflection = (String) json.get("reflection");
         JSONArray array = (JSONArray) json.get("categories");
         ArrayList<String> categories = (ArrayList<String>) array.stream()
                 .collect(Collectors.toList());
-        return new Quote(author, quote, categories, reference);
+        return new Quote(author, quote, categories, reference, reflection);
     }
 
     private Category parseCategoryObject(JSONObject json) throws NullPointerException {
@@ -224,8 +227,10 @@ public class Storage {
 
     private Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
+        String name = (String) json.get("authorOfRatedBook");
+        Author author = new Author(name);
         long rating = (long) json.get("rating");
-        return new Rating((int) rating, title);
+        return new Rating(new Book(author, title), (int) rating);
     }
 
     private Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
@@ -239,7 +244,9 @@ public class Storage {
         String name = (String) json.get("name");
         String deadline = (String) json.get("deadline");
         boolean isDone = (boolean) json.get("isDone");
-        return new ToDo(name, deadline, isDone);
+        ToDo newToDo = new ToDo(name, deadline, isDone);
+        newToDo.updateDateFormat();
+        return newToDo;
     }
 
     private Author parseAuthorObject(JSONObject json) {

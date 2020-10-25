@@ -2,6 +2,8 @@ package seedu.quotesify.book;
 
 import org.json.simple.JSONArray;
 import seedu.quotesify.author.Author;
+import seedu.quotesify.commands.Command;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class BookList extends QuotesifyList<Book> {
     private ArrayList<Book> books = super.getList();
+    private BookTitleComparator comparator = new BookTitleComparator();
 
     public BookList() {
         super(new ArrayList<>());
@@ -44,6 +47,10 @@ public class BookList extends QuotesifyList<Book> {
         return books.get(index);
     }
 
+    public void sort() {
+        books.sort(comparator);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -59,10 +66,19 @@ public class BookList extends QuotesifyList<Book> {
         String booksToReturn = "";
 
         for (Book book : books) {
-            booksToReturn += getIndex(book) + 1 + ". " + book.toString() + System.lineSeparator();
+            booksToReturn += getIndex(book) + 1 + ". " + book.getStatusIcon()
+                    + book.toString() + System.lineSeparator();
         }
 
         return booksToReturn;
+    }
+
+    public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
+        ArrayList<Book> similarBooks = find(title, authorName);
+
+        if (!similarBooks.isEmpty()) {
+            throw new QuotesifyException(Command.ERROR_BOOK_ALREADY_EXISTS);
+        }
     }
 
     public ArrayList<Book> find(String title, String authorName) {
@@ -78,7 +94,23 @@ public class BookList extends QuotesifyList<Book> {
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor)
                             && bookTitle.toLowerCase().equals(lowerCaseTitle);
                 }).collect(Collectors.toList());
+
         return filteredBooks;
+    }
+
+    public BookList findByKeyword(String keyword) {
+        assert !keyword.isEmpty();
+        String lowerCaseKeyword = keyword.toLowerCase();
+
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    String authorName = book.getAuthor().getName();
+                    String bookTitle = book.getTitle();
+                    return authorName.toLowerCase().contains(lowerCaseKeyword)
+                            || bookTitle.toLowerCase().contains(lowerCaseKeyword);
+                }).collect(Collectors.toList());
+
+        return new BookList(filteredBooks);
     }
 
     public Book findByTitle(String title) {
@@ -102,6 +134,33 @@ public class BookList extends QuotesifyList<Book> {
         }
     }
 
+    public Author findExistingAuthor(String authorName) {
+        BookList filteredBooks = filterByAuthor(authorName);
+
+        if (filteredBooks.isEmpty()) {
+            return null;
+        }
+        Author author = filteredBooks.getBook(0).getAuthor();
+
+        return author;
+    }
+
+    public BookList filterDone(boolean isDone) {
+        ArrayList<Book> filteredBooks;
+
+        if (isDone) {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> book.isDone())
+                    .collect(Collectors.toList());
+        } else {
+            filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> !book.isDone())
+                    .collect(Collectors.toList());
+        }
+
+        return new BookList(filteredBooks);
+    }
+
     public BookList filterByAuthor(String authorName) {
         String lowerCaseAuthor = authorName.toLowerCase();
 
@@ -111,6 +170,7 @@ public class BookList extends QuotesifyList<Book> {
                     String bookAuthorName = bookAuthor.getName();
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor);
                 }).collect(Collectors.toList());
+
         return new BookList(filteredBooks);
     }
 
