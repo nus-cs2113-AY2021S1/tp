@@ -1,15 +1,15 @@
 package seedu.quotesify.parser;
 
 import seedu.quotesify.commands.BookmarkCommand;
-import seedu.quotesify.commands.AddCommand;
+import seedu.quotesify.commands.add.AddCommand;
 import seedu.quotesify.commands.Command;
-import seedu.quotesify.commands.DeleteCommand;
+import seedu.quotesify.commands.delete.DeleteCommand;
 import seedu.quotesify.commands.DoneCommand;
-import seedu.quotesify.commands.EditCommand;
+import seedu.quotesify.commands.edit.EditCommand;
 import seedu.quotesify.commands.ExitCommand;
-import seedu.quotesify.commands.FindCommand;
+import seedu.quotesify.commands.find.FindCommand;
 import seedu.quotesify.commands.HelpCommand;
-import seedu.quotesify.commands.ListCommand;
+import seedu.quotesify.commands.list.ListCommand;
 
 public class Parser {
     private static final String COMMAND_ADD = "add";

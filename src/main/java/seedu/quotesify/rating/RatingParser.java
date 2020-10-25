@@ -1,6 +1,6 @@
 package seedu.quotesify.rating;
 
-import seedu.quotesify.commands.AddCommand;
+import seedu.quotesify.commands.add.AddCommand;
 
 import java.util.logging.Level;
 
