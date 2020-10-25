@@ -186,20 +186,48 @@ Example of usage:
 The `addreview` command allows you to add a review for a show, including adding a rating.
 
  Format:
-  `addreview <SHOWNAME> <RATING> <REVIEW>`
+  `addreview <SHOWNAME> <RATING> / <REVIEW>`
   
   * The `<RATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
   
  Example of usage:
- `addreview Friends 9 very funny `
+ `addreview Friends 9 / very funny `
  
    Expected outcome:
  
   <img src = "images/addreview.PNG" width = "450">
 
    &nbsp;
+   
+### 4.e. `changereview` - Changing a review
+
+The `changereview` command allows you to change a review for a show that is already in the show list.
+
+ Format:
+  `changereview <SHOWNAME> / <REVIEW>`
+  
+ Example of usage:
+ `changereview Friends / very unfunny `
  
-### 4.e. `list` - Displays all your shows in the list
+   Expected outcome:
+   
+   TODO: Bernado the UI god
+   
+### 4.f. `deletereview` - Deletes a review
+
+The `deletereview` command allows you to delete a review for a show that is already in the show list.
+
+ Format:
+  `deletereview <SHOWNAME>`
+  
+ Example of usage:
+ `deletereview Friends `
+ 
+   Expected outcome: 
+   
+   TODO: Bernado the UI god  
+ 
+### 4.g. `list` - Displays all your shows in the list
 
 The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
 season that you are currently at.
@@ -218,7 +246,7 @@ The rating of your show will also be shown if you have added it using the [addre
     
    &nbsp;
 
-### 4.f. `delete` - Deletes your show
+### 4.h. `delete` - Deletes your show
 
  The `delete` command removes a specified show from the watchlist.
  
@@ -235,7 +263,7 @@ The rating of your show will also be shown if you have added it using the [addre
  &nbsp;
   
  
-### 4.g. `deleterating` - Deletes rating of your show
+### 4.i. `deleterating` - Deletes rating of your show
 
 The `deleterating` command deletes the rating for an existing show in the watchlist.
 
@@ -251,12 +279,12 @@ The `deleterating` command deletes the rating for an existing show in the watchl
 
  &nbsp;
 
-### 4.h. `changerating` - Changes rating of your show
+### 4.j. `changerating` - Changes rating of your show
 
 The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
  Format:
-  `changerating <SHOWNAME> <NEWRATING>`
+  `changerating <SHOWNAME> / <NEWRATING>`
   
   > **[NOTE]**
   >
@@ -271,7 +299,7 @@ The `changerating` command changes the rating for an existing show which already
   
  &nbsp;
 
-### 4.i. `episode` - Changes the episode of the show you are currently watching
+### 4.k. `episode` - Changes the episode of the show you are currently watching
 
 The `episode` command updates the current episode of an existing show in your watchlist.
 
@@ -292,7 +320,7 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
-### 4.j. `season` - Changes the season of the show you are currently watching
+### 4.l. `season` - Changes the season of the show you are currently watching
 
 The `season` command updates the current season of an existing show in your watchlist.
 
@@ -314,11 +342,11 @@ The `season` command updates the current season of an existing show in your watc
  &nbsp;
 
 
-### 4.k. Managing your watch time limit
+### 4.m. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.k.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your watchlist
 
 The `watch` command increments the current episode that you are on, and automatically updates your watch time limit.
 
@@ -334,7 +362,7 @@ The `watch` command increments the current episode that you are on, and automati
   
  &nbsp;
 
-### 4.k.b. `updatetimelimit` - update your watch time limit
+### 4.m.b. `updatetimelimit` - update your watch time limit
 
 The `updatetimelimit` command updates your current watch time limit.
 
@@ -356,7 +384,7 @@ The `updatetimelimit` command updates your current watch time limit.
   
  &nbsp;
 
-### 4.l. `search` - search a show in the watchlist  
+### 4.n. `search` - search a show in the watchlist  
 
 The `search` command helps you search for a specific show in the watchlist and prints out the show information.  
 
@@ -376,7 +404,7 @@ The `search` command helps you search for a specific show in the watchlist and p
  
  &nbsp;
   
-### 4.m. `bye` - Exits the program
+### 4.o. `bye` - Exits the program
 
 The `bye` command exits the program.
 
