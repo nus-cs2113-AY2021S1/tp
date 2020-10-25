@@ -12,17 +12,19 @@
       - [4.b. `add` - Adds a show](#4b-add---adds-a-show)
       - [4.c. `edit` - Edits your show details](#4c-edit---edits-your-show-details)
     - [4.d. `addreview` - Adding a review](#4d-addreview---adding-a-review)
-    - [4.e. `list` - Displays all your shows in the list](#4e-list---displays-all-your-shows-in-the-list)
-    - [4.f. `delete` - Deletes your show](#4f-delete---deletes-your-show)
-    - [4.g. `deleterating` - Deletes rating of your show](#4g-deleterating---deletes-rating-of-your-show)
-    - [4.h. `changerating` - Changes rating of your show](#4h-changerating---changes-rating-of-your-show)
-    - [4.i. `episode` - Changes the episode of the show you are currently watching](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
-    - [4.j. `season` - Changes the season of the show you are currently watching](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    - [4.k Managing your watch time limit](#4k-managing-your-watch-time-limit)
-    - [4.k.a. `watch` - Watch a show in your watchlist](#4ka-watch---watch-a-show-in-your-watchlist)
-    - [4.k.b. `updatetimelimit` - update your watch time limit](#4kb-updatetimelimit---update-your-watch-time-limit)
-    - [4.l. `search` - search a show in the watchlist](#4l-search---search-a-show-in-the-watchlist)
-    - [4.m. `bye` - Exits the program](#4m-bye---exits-the-program)
+    - [4.e. `changereview` - Changing a review](#4d-addreview---adding-a-review)
+    - [4.f. `deletereview` - Deletes a review](#4f-deletereview---deletes-a-review)
+    - [4.g. `list` - Displays all your shows in the list](#4g-list---displays-all-your-shows-in-the-list)
+    - [4.h. `delete` - Deletes your show](#4h-delete---deletes-your-show)
+    - [4.i. `deleterating` - Deletes rating of your show](#4i-deleterating---deletes-rating-of-your-show)
+    - [4.j. `changerating` - Changes rating of your show](#4j-changerating---changes-rating-of-your-show)
+    - [4.k. `episode` - Changes the episode of the show you are currently watching](#4k-episode---changes-the-episode-of-the-show-you-are-currently-watching)
+    - [4.l. `season` - Changes the season of the show you are currently watching](#4l-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.m. Managing your watch time limit](#4m-managing-your-watch-time-limit)
+    - [4.m.a. `watch` - Watch a show in your watchlist](#4ma-watch---watch-a-show-in-your-watchlist)
+    - [4.m.b. `updatetimelimit` - update your watch time limit](#4mb-updatetimelimit---update-your-watch-time-limit)
+    - [4.n. `search` - search a show in the watchlist](#4n-search---search-a-show-in-the-watchlist)
+    - [4.o. `bye` - Exits the program](#4o-bye---exits-the-program)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 
@@ -160,7 +162,7 @@ Example of usage:
  When you have completed all changes, input `done`.
  
 > **[NOTE]**
-
+>
 >  * The `<DURATION OF EPISODE>` is in minutes.  
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
@@ -188,8 +190,11 @@ The `addreview` command allows you to add a review for a show, including adding 
  Format:
   `addreview <SHOWNAME> <RATING> / <REVIEW>`
   
-  * The `<RATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
-  
+  > **[NOTE]**
+  >
+  > * The `<RATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
+
+
  Example of usage:
  `addreview Friends 9 / very funny `
  
@@ -206,13 +211,18 @@ The `changereview` command allows you to change a review for a show that is alre
  Format:
   `changereview <SHOWNAME> / <REVIEW>`
   
+   > **[NOTE]**
+   >
+   > * You can change the rating of your show with the [changerating](#4j-changerating---changes-rating-of-your-show) command.
+
+  
  Example of usage:
- `changereview Friends / very unfunny `
+ `changereview friends / very unfunny `
  
    Expected outcome:
    
-   TODO: Bernado the UI god
-   
+  <img src = "images/changereview.PNG" width = "450">
+     
 ### 4.f. `deletereview` - Deletes a review
 
 The `deletereview` command allows you to delete a review for a show that is already in the show list.
@@ -225,7 +235,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
    Expected outcome: 
    
-   TODO: Bernado the UI god  
+  <img src = "images/deletereview.PNG" width = "450">
  
 ### 4.g. `list` - Displays all your shows in the list
 
