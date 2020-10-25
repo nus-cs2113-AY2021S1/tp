@@ -26,11 +26,11 @@ public class Parser {
     /**
      * Parses user inputs.
      *
-     * @param input   user input
-     * @param modList module list
-     * @param name    name entered by the user
-     * @param storage storage object to load and store data
-     * @param toPrint whether the UI should print the output
+     * @param input    user input
+     * @param modList  module list
+     * @param name     name entered by the user
+     * @param storage  storage object to load and store data
+     * @param toPrint  whether the UI should print the output
      * @param taskList task list
      */
     public void parse(String input, ModuleList modList, String name, Storage storage,
@@ -94,9 +94,9 @@ public class Parser {
                 System.out.println("");
             }
             break;
-        case COMMAND_ANALYSIS: // can help to update the params for this? thanks!
+        case COMMAND_ANALYSIS:
             assert toPrint : "toPrint should be true";
-            ui.printBreakDownAnalysis(modList, 1);
+            ui.printBreakDownAnalysis(modList, Integer.parseInt(command[1]));
             break;
         case COMMAND_ADDTASK:
             taskList.addTask(input, toPrint, storage);
