@@ -30,9 +30,9 @@ public class Duke {
      */
     public static void main(String[] args) throws IOException {
         new Duke();
-        favFile.readFile();
         boolean isOngoing = true;
         try {
+            favFile.readFile();
             freqFile.readFile();
         } catch (CustomException e) {
             Ui.showError(e);
