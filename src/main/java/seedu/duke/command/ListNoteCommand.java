@@ -23,8 +23,9 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[/sort up OR down]";
 
-    public static final String PINNED_MESSAGE = "Here are the list of pinned notes:";
-    public static final String UNPINNED_MESSAGE = "Here are the list of unpinned notes:";
+    public static final String PINNED_NOTES_MESSAGE = "Here are the list of pinned notes:";
+    public static final String UNPINNED_NOTES_MESSAGE = "Here are the list of unpinned notes:";
+    public static final String ARCHIVE_NOTES_MESSAGE = "Here are the list of archived notes:";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes:";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
@@ -110,7 +111,7 @@ public class ListNoteCommand extends Command {
         // no sorting, no viewing, no filtering of notes in the archived notebook.
         if (isArchived) {
             notes = notebook.getArchivedNotes();
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+            return formatNotes(ARCHIVE_NOTES_MESSAGE, notes);
         }
 
         // if no /archive or /tags and there is no pinned notes at all this if-else block will be executed
@@ -142,7 +143,7 @@ public class ListNoteCommand extends Command {
                 unpinned = notebook.getSortedList(isAscendingOrder, false);
             }
 
-            return formatNotes(PINNED_MESSAGE, UNPINNED_MESSAGE, pinned, unpinned);
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -192,6 +193,8 @@ public class ListNoteCommand extends Command {
             if (isSorted) {
                 // Sort the tagged notes
                 sortedTaggedNotes = notebook.getSortedList(isAscendingOrder, null, notes);
+            } else {
+                sortedTaggedNotes = notes;
             }
             return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes);
         }
@@ -207,7 +210,7 @@ public class ListNoteCommand extends Command {
                 pinned = notebook.getSortedList(isAscendingOrder, true, notes);
                 unpinned = notebook.getSortedList(isAscendingOrder, false, notes);
             }
-            return formatNotes(PINNED_MESSAGE, UNPINNED_MESSAGE, pinned, unpinned);
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
         }
 
         return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);

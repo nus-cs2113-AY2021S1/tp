@@ -83,6 +83,14 @@ public class Note {
         isPinned = pinned;
     }
 
+    public void toggleArchived() {
+        isArchived = !isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
+    }
+
     public ArrayList<Tag> getTags() {
         return this.tags;
     }
