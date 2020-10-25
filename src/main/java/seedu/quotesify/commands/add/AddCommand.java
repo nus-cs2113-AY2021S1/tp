@@ -1,14 +1,10 @@
 package seedu.quotesify.commands.add;
 
-import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.category.Category;
-import seedu.quotesify.category.CategoryList;
-import seedu.quotesify.category.CategoryParser;
-import seedu.quotesify.commands.add.AddBookCommand;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.commands.add.AddCategoryCommand;
+import seedu.quotesify.commands.add.AddToDoCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
@@ -22,7 +18,6 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -76,9 +71,8 @@ public class AddCommand extends Command {
             addLogger.log(Level.INFO, "rating of book has completed");
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            ToDo newToDo = addToDo(toDos, ui);
-            ui.printAddToDo(newToDo);
+            addLogger.log(Level.INFO, "going yo add task to ToDoList");
+            new AddToDoCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfAddCommands();
@@ -171,34 +165,6 @@ public class AddCommand extends Command {
             System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
         }
         return bookToRate;
-    }
-
-    private ToDo addToDo(ToDoList toDos, TextUi ui) {
-        String[] taskNameAndDeadline = information.split("/by", 2);
-        ToDo newToDo = null;
-
-        try {
-            // if user did not provide deadline, let titleAndAuthor[1] be "not specified"
-            if (taskNameAndDeadline.length == 1) {
-                taskNameAndDeadline = new String[]{taskNameAndDeadline[0], "not specified"};
-            }
-            if (taskNameAndDeadline[0].isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_TASK_NAME);
-            }
-
-            String taskName = taskNameAndDeadline[0].trim();
-            assert !taskName.isEmpty() : "task name should not be empty";
-            String deadline = taskNameAndDeadline[1].trim();
-            assert !deadline.isEmpty() : "deadline should not be empty";
-            newToDo = new ToDo(taskName, deadline);
-            newToDo.updateDateFormat();
-            toDos.add(newToDo);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add toDo to toDoList failed");
-        }
-
-        return newToDo;
     }
 
 
