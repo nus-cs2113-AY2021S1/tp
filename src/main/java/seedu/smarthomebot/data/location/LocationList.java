@@ -37,7 +37,6 @@ public class LocationList {
             throw new InvalidRemovalLocationException();
         } else {
             int removeIndex = getRemoveLocationIndex(location);
-            assert removeIndex < 0 : "Index should be positive.";
             locationList.remove(removeIndex);
         }
     }
