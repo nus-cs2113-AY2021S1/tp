@@ -1,7 +1,9 @@
 package seedu.duke.ui;
 
 import seedu.duke.bunny.Bunny;
-import seedu.duke.constants.ClickerMessages;
+import seedu.duke.constants.FluffleMessages;
+import seedu.duke.exceptions.DividerCommandWrongFormatException;
+import seedu.duke.exceptions.DividerIndexOutOfBoundsException;
 
 import java.util.HashMap;
 
@@ -16,7 +18,47 @@ public class UI {
     /**
      * Line divider set to default before settings are loaded. Default is the first one.
      */
-    public static String currentLineDivider = getDivider(1);
+    public static String currentLineDivider = PLAIN_TEXT_DIVIDER;
+
+    public static void changeLineDivider(String userInput)
+            throws DividerCommandWrongFormatException, DividerIndexOutOfBoundsException {
+        if (userInput.trim().toLowerCase().contains("divider")) {
+            int dividerNum = getDividerNumFromInput(userInput);
+            currentLineDivider = getDivider(dividerNum);
+            UI.changeDividerMessage();
+        } else {
+            throw new DividerCommandWrongFormatException();
+        }
+    }
+
+    private static void changeDividerMessage() {
+        System.out.println("Changing line divider...");
+    }
+
+    public static int getDividerNumFromInput(String userInput) throws DividerIndexOutOfBoundsException {
+        int dividerNum;
+        try {
+            dividerNum = Integer.parseInt(userInput.replaceAll("[\\D]", ""));
+            if (dividerNum > 3 || dividerNum < 1) {
+                throw new DividerIndexOutOfBoundsException();
+            }
+        } catch (NumberFormatException exception) {
+            throw new DividerIndexOutOfBoundsException();
+        }
+        return dividerNum;
+    }
+
+    public static String getDivider(int input) {
+        String divider = "";
+        if (input == 1) {
+            divider = PLAIN_TEXT_DIVIDER;
+        } else if (input == 2) {
+            divider = CAT_TEXT_DIVIDER;
+        } else if (input == 3) {
+            divider = FENCE_TEXT_DIVIDER;
+        }
+        return divider;
+    }
 
     // Main Help function
     public static void printHelpMessage(String input) {
@@ -110,18 +152,6 @@ public class UI {
         System.out.println("Exit the program by typing 'exit'.");
     }
 
-    public static String getDivider(int input) {
-        String divider = "";
-        if (input == 1) {
-            divider = PLAIN_TEXT_DIVIDER;
-        } else if (input == 2) {
-            divider = CAT_TEXT_DIVIDER;
-        } else if (input == 3) {
-            divider = FENCE_TEXT_DIVIDER;
-        }
-        return divider;
-    }
-
     /**
      * Prints the personalised greeting message.
      *
@@ -129,7 +159,7 @@ public class UI {
      */
     public static void printHelloMessage(String username) {
         printDivider();
-        System.out.printf(ClickerMessages.HELLO_GREETING, username);
+        System.out.printf(FluffleMessages.HELLO_GREETING, username);
         printDivider();
     }
 
@@ -139,7 +169,7 @@ public class UI {
      * @param username user indicated name
      */
     public static void printFarewellMessage(String username) {
-        System.out.printf(ClickerMessages.FAREWELL_GREETING, username);
+        System.out.printf(FluffleMessages.FAREWELL_GREETING, username);
     }
 
     /**
@@ -150,43 +180,43 @@ public class UI {
     }
 
     public static void addBunnyMessage(String bunny) {
-        System.out.println(ClickerMessages.ADD_BUNNY_MSG + "\n" + bunny);
+        System.out.println(FluffleMessages.ADD_BUNNY_MSG + "\n" + bunny);
     }
 
     public static void bunnyWrongFormat() {
-        System.out.println(ClickerMessages.BUNNY_WRONG_FORMAT);
+        System.out.println(FluffleMessages.BUNNY_WRONG_FORMAT);
     }
 
     public static void bunnyMissingIdea() {
-        System.out.println(ClickerMessages.BUNNY_MISSING_IDEA_MSG);
+        System.out.println(FluffleMessages.BUNNY_MISSING_IDEA_MSG);
     }
 
     public static void listBunnyMessage() {
-        System.out.println(ClickerMessages.LIST_BUNNY_MSG);
+        System.out.println(FluffleMessages.LIST_BUNNY_MSG);
     }
 
     public static void listCharacterMessage() {
-        System.out.println(ClickerMessages.LIST_CHARACTER_MSG);
+        System.out.println(FluffleMessages.LIST_CHARACTER_MSG);
     }
 
     public static void addNounMessage(String noun) {
-        System.out.println(ClickerMessages.ADD_NOUN_MSG + noun);
+        System.out.println(FluffleMessages.ADD_NOUN_MSG + noun);
     }
 
     public static void addVerbMessage(String verb) {
-        System.out.println(ClickerMessages.ADD_VERB_MSG + verb);
+        System.out.println(FluffleMessages.ADD_VERB_MSG + verb);
     }
 
     public static void addAdjectiveMessage(String adj) {
-        System.out.println(ClickerMessages.ADD_ADJECTIVE_MSG + adj);
+        System.out.println(FluffleMessages.ADD_ADJECTIVE_MSG + adj);
     }
 
     public static void listWordsMessage() {
-        System.out.println(ClickerMessages.LIST_WORDS_MSG);
+        System.out.println(FluffleMessages.LIST_WORDS_MSG);
     }
 
     public static void commandNotRecognisedMsg() {
-        System.out.println(ClickerMessages.COMMAND_UNRECOGNISED_MSG);
+        System.out.println(FluffleMessages.COMMAND_UNRECOGNISED_MSG);
     }
 
     public static void numBunnyLoaded(int numBunnies, int numBunniesLoaded) {
@@ -231,15 +261,23 @@ public class UI {
     }
 
     public static void bunnyDeleted(int bunnyNum) {
-        System.out.print(ClickerMessages.BUNNY_DELETED_MSG);
+        System.out.print(FluffleMessages.BUNNY_DELETED_MSG);
         System.out.print(bunniesList.get(bunnyNum - 1).getDescription());
     }
 
     public static void printAskForName(String username) {
-        System.out.print(ClickerMessages.ASK_FOR_NAME);
+        System.out.print(FluffleMessages.ASK_FOR_NAME);
     }
 
     public static void bunnyIndexOutOfBounds() {
         System.out.println("Bunny index is not in list.");
+    }
+
+    public static void DividerCommandWrongFormat() {
+        System.out.println("Divider command of wrong format");
+    }
+
+    public static void DividerIndexOutOfBounds() {
+        System.out.println("Divider index indicated out of bounds");
     }
 }

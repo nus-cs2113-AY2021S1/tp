@@ -1,6 +1,6 @@
 package seedu.duke.constants;
 
-public class ClickerMessages {
+public class FluffleMessages {
     public static final String NEWLINE = System.lineSeparator();
 
     /** Greeting message formats. */

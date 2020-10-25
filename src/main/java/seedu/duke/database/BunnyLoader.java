@@ -3,14 +3,13 @@ package seedu.duke.database;
 import seedu.duke.bunny.Bunny;
 import seedu.duke.exceptions.SettingObjectWrongFormatException;
 import seedu.duke.parsers.Parsers;
-import seedu.duke.ui.UI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.ClickerMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
+import static seedu.duke.constants.FluffleMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
 import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
 import static seedu.duke.constants.Tags.BUNNY_GENRE_TAG;
 import static seedu.duke.constants.Tags.BUNNY_IDEA_TAG;

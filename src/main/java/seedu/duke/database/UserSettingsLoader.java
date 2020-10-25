@@ -5,11 +5,7 @@ import seedu.duke.parsers.Parsers;
 
 import java.io.FileNotFoundException;
 
-import static seedu.duke.constants.ClickerMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
-import static seedu.duke.constants.ClickerMessages.LOADING_SETTINGS_MSG;
-import static seedu.duke.constants.ClickerMessages.SETTINGS_FILE_NOT_FOUND_MSG;
 import static seedu.duke.constants.FilePaths.DEFAULT_USER_SETTINGS_FILE_PATH;
-import static seedu.duke.constants.FilePaths.TEST_FILE_PATH;
 import static seedu.duke.constants.Tags.USERNAME_TAG;
 import static seedu.duke.database.FileFunctions.autoCreateNewFile;
 import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
