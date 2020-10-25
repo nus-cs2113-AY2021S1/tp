@@ -23,6 +23,7 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. [Delete a task: `deletetask`](#12-delete-a-task-deletetask)
     1. [Exit the program : `exit`](#13-exit-the-program--exit)
     1. [Save user data](#14-save-user-data)
+    1. [Delete user data: `reset`](#15-delete-module-and-task-data-reset)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -197,7 +198,7 @@ Expected output:
 ````
 
 ### 9. Add tasks: `addtask`
-Add a task under a specified module.
+Adds a task under a specified module.
 
 Format: `addtask <module code> <task description>`
 
@@ -216,7 +217,7 @@ Now you have 1 task in the list.
 ````
 
 ### 10. List all tasks: `listtask`
-List all tasks in the database.
+Lists all tasks in the database.
 
 Format: `listtask`
 
@@ -227,7 +228,7 @@ Here are the tasks in your list:
 ````
 
 ### 11. Mark task as done: `done`
-Mark a specified task as done.
+Marks a specified task as done.
 
 Format: `done <task number>`
 
@@ -245,7 +246,7 @@ Nice! I've marked this task as done:
 ````
 
 ### 12. Delete a task: `deletetask`
-Delete a specified task from the database.
+Deletes a specified task from the database.
 
 Format: `deletetask <task number>`
 
@@ -274,14 +275,52 @@ Bye <username>. Hope to see you again soon!
 ````
 
 ### 14. Save user data
-Saves time spent in the hard disk automatically after any command that changes the data. There is no need to save manually. 
+The program will save your data such as your name, modules, time spent and tasks
+to the hard disk automatically. There is no need to save these manually. 
 
+When you exit and run the program again, your data will be loaded from the
+hard disk, and you can use the app as per normal, 
+continuing from where you left off.
+
+The external file which stores your data will be locked to read-only 
+when it is not in use, keeping your data safe and secure.
+
+### 15. Delete module and task data: `reset`
+Deletes all module and tasks data. 
+The program will also prompt the user to confirm this action.
+
+Format: `reset`
+
+Expected output:
+````
+---WARNING!---
+This will delete all your past data.
+Type 'yes' if you wish to continue.
+````
+
+**Case 1: User enters `yes`**
+
+Note: `yes` is case-insensitive here.
+
+Expected output:
+````
+Okay, your data has been deleted :(
+````
+
+**Case 2: User enters `no`**
+
+Note: any other input will fall under this case.
+
+Expected output:
+````
+Reset not confirmed. Your data is safe :)
+````
 
 ## FAQ
 
-**Q**: Are the commands case sensitive? 
+**Q**: Are the commands case-sensitive? 
 
-**A**: No, all the commands are case insensitive. Eg. typing in `HELP` will be taken in as a `help` command.
+**A**: No, all the commands are case-insensitive. Eg. typing in `HELP` will be taken in as a `help` command.
 
 ## Command Summary
 |Feature|Command|
@@ -299,3 +338,4 @@ List all tasks|`listtask`|
 Mark task as done|`done <task number>`|
 Delete a task|`deletetask <task number>`|
 Exiting the program|`exit`|
+Deleting module and task data|`reset`|
