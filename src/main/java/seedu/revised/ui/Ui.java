@@ -1,16 +1,16 @@
 package seedu.revised.ui;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 
 import seedu.revised.card.Flashcard;
 
 import seedu.revised.card.quiz.Result;
 
 import seedu.revised.card.task.Task;
-import seedu.revised.card.task.TaskList;
+import seedu.revised.list.TaskList;
 
 import java.io.File;
 import java.time.LocalDateTime;

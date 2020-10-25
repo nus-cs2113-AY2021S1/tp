@@ -5,7 +5,7 @@ import seedu.revised.command.Command;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
 
 public class SubjectCommand extends Command {

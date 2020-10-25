@@ -3,13 +3,9 @@ package seedu.revised.command.topic;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.command.flashcard.FlashcardCommand;
-import seedu.revised.exception.FailedParseException;
-import seedu.revised.exception.flashcard.NoFlashcardException;
-import seedu.revised.exception.flashcard.RepeatedFlashcardException;
-import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.FlashcardParser;
-import seedu.revised.card.task.TaskList;
+import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
 public class ReturnTopicCommand extends TopicCommand {

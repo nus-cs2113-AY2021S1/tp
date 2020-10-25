@@ -1,20 +1,14 @@
 package seedu.revised;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
-import seedu.revised.card.quiz.ResultList;
+import seedu.revised.list.SubjectList;
+import seedu.revised.list.ResultList;
 import seedu.revised.card.quiz.SubjectQuiz;
 import seedu.revised.command.subject.ExportCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
-import seedu.revised.exception.FailedParseException;
-import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.storage.DataLoadingException;
-import seedu.revised.exception.subject.InvalidSubjectException;
-import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
-import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.SubjectParser;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;

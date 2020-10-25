@@ -5,7 +5,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.NoTopicException;
-import seedu.revised.storage.Storage;
+import seedu.revised.list.ResultList;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;

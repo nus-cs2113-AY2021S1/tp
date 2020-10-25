@@ -2,11 +2,8 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
-import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.list.TopicList;
 import seedu.revised.exception.topic.InvalidTopicException;
-import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.exception.topic.RepeatedTopicException;
 import seedu.revised.ui.Ui;
 

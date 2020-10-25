@@ -3,6 +3,7 @@ package seedu.revised.card.quiz;
 import seedu.revised.card.Flashcard;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.list.ResultList;
 
 import java.util.ArrayList;
 import java.util.List;

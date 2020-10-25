@@ -2,7 +2,7 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 import seedu.revised.command.task.FindTaskCommand;
 import seedu.revised.ui.Ui;
 

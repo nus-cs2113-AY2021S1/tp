@@ -2,7 +2,7 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.ui.Ui;
 
