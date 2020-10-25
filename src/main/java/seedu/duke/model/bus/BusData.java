@@ -8,6 +8,7 @@ public class BusData {
     private static ArrayList<Bus> buses = new ArrayList<>();
 
     public static void createBusList(ArrayList<Bus> busList) {
+        buses.clear();
         buses.addAll(busList);
     }
 
