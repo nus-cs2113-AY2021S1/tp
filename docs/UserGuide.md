@@ -64,7 +64,7 @@ has successfully executed.
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
    
-2. The module code is valid if it contain 6-8 characters without any spacing. 
+2. The module code is valid if it contains 6-8 characters without any spacing. 
 
 
 ### 1. View help: `help`
@@ -242,7 +242,7 @@ Expected output:
 ### 10. Delete actual time spent on a module: `deletetime`
 Deletes the actual time spent on a specified module.
 
-Format: `delete <module code> <week number>` 
+Format: `deletetime <module code> <week number>` 
 
 * The `module code` is valid.
 * The `week number` must be between 1 and 13 inclusive.
@@ -327,6 +327,10 @@ You currently have no task :-)
 Opens the notification with a randomised encouraging message.
 
 Format: `open`
+
+Example of usage:
+
+`open`
 
 A possible expected output:
 
