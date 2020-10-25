@@ -7,6 +7,12 @@ import seedu.revised.ui.Ui;
 
 public class SorrySubjectCommand extends SubjectCommand {
 
+    /**
+     * throws a FailedParseException indicating that the program does not understand user input
+     *
+     * @param subjectList
+     * @return null
+     */
     public Subject execute(SubjectList subjectList) throws FailedParseException {
         throw new FailedParseException(Ui.printFailedParseError());
     }

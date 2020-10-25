@@ -17,7 +17,7 @@ public class ResultSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Shows results of the quiz a <code>Subject</code> in a <code>SubjectList</code>
+     * Shows results of the quiz of a <code>Subject</code> in a <code>SubjectList</code>
      *
      * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class to get the results from.
      * @return null

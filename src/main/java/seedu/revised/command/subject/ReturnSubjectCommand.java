@@ -31,6 +31,12 @@ public class ReturnSubjectCommand extends SubjectCommand {
         this.fullcommand = fullcommand;
     }
 
+    /**
+     * Enters a subject the user specified.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user retrieve subject from.
+     * @return Subject for the user to enter.
+     */
     public Subject execute(SubjectList subjectList) throws NoSubjectException {
         String[] message = this.fullcommand.split(" ");
         //Subject currentSubject = new Subject(message[1]);

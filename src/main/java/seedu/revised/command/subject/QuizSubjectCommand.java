@@ -21,6 +21,12 @@ public class QuizSubjectCommand extends SubjectCommand {
         return this.fullcommand;
     }
 
+    /**
+     * Quiz subjects in a <code>SubjectList</code>.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to quiz on.
+     * @return Subject for the user to quiz on.
+     */
     public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the quiz has to be conducted.");
         String[] message = this.fullcommand.split(" ");

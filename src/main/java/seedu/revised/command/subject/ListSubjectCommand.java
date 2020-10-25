@@ -9,7 +9,12 @@ import java.util.logging.Logger;
 public class ListSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(ListSubjectCommand.class.getName());
 
-
+    /**
+     * List subjects in a <code>SubjectList</code>.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to list subjects from.
+     * @return null
+     */
     public Subject execute(SubjectList subjectList) {
         logger.info("Begin listing subjects in the SubjectList.");
 
