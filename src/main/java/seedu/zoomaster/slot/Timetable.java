@@ -3,6 +3,7 @@ package seedu.zoomaster.slot;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,32 @@ public class Timetable {
 
     public void deleteModule(Module module) {
         modules.remove(module);
+    }
+
+    public boolean isOverlapTimeSlot(String day, LocalTime startTime, LocalTime endTime) {
+        boolean isOverlap = false;
+        List<Slot> slotList = getFullSlotList();
+        for (Slot slot : slotList) {
+            if (slot.getDay().equals(day)) {
+                if ((isTimeAGreaterEqualsTimeB(startTime, slot.getEndTime())
+                        && isTimeAGreaterEqualsTimeB(endTime, slot.getEndTime()))
+                        || (isTimeAGreaterEqualsTimeB(slot.getStartTime(), startTime)
+                        && isTimeAGreaterEqualsTimeB(slot.getStartTime(), endTime))) {
+                    continue;
+                }
+                isOverlap = true;
+                break;
+            }
+        }
+        return isOverlap;
+    }
+
+    public boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
+        boolean isGreaterEquals = false;
+        if (timeA.isAfter(timeB) || timeA.equals(timeB)) {
+            isGreaterEquals = true;
+        }
+        return isGreaterEquals;
     }
 
     public Slot getSlotByIndexInDay(String day, int index) throws ZoomasterException {
