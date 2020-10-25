@@ -356,7 +356,8 @@ public class InputParser {
         try {
             String[] tokenizedInput = input.split(" ");
             String showName = tokenizedInput[0];
-            String review = tokenizedInput[1];
+            int indexOfSlash = input.indexOf("/");
+            String review = input.substring(indexOfSlash + 1);
             ChangeReviewCommand changingReview = new ChangeReviewCommand(showName);
             changingReview.changeReview(showName,review);
             Ui.printChangeReview(showName);

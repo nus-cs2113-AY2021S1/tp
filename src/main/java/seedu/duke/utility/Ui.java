@@ -203,7 +203,7 @@ public class Ui {
 
     public static void printDeleteReview(String showName) {
         printLine();
-        System.out.print("The review for " + (showName) + " has been deleted.");
+        System.out.println("The review for " + (showName) + " has been deleted.");
     }
 
     public static void printDeleteShow(String showName) {
