@@ -17,7 +17,6 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
     1.`exit` : Exits the app.
 1.Refer to the Features below for details of each command.
 
-
 ## Features 
 
 {Give detailed description of each feature}
@@ -38,9 +37,17 @@ Example of usage:
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another Computer?
 
-**A**: {your answer here}
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data .txt files of your previous Fluffle home folder.
+
+**Q**: Do I need to leave a space before each input tag?
+
+**A**: Yes, the space is necessary. (e.g., add t\science st\chemistry)
+
+**Q**: Do the parameters need to be keyed in in order?
+
+**A**: No. Our code will detect the indicators in any order as long as they are properly spaced out.
 
 ## Command Summary
 
