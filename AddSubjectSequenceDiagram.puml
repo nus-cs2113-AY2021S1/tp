@@ -2,32 +2,30 @@
 title __revisED's Add Maths Subject Sequence Diagram__\n
 
 actor Bob
-Bob -> Revised** : run()
+Bob -> Revised**: run()
 activate Revised
-
-Revised -> Ui : printStart()
-activate Ui
+Revised -> Ui++: printStart()
 Ui --> Revised --
 loop !exit program
-Revised -> Ui : readCommand()
-activate Ui
+Revised -> Ui ++ : readCommand()
 Ui --> Revised --
-Revised -> SubjectParser : parse()
-activate SubjectParser
-SubjectParser -> Revised-- : AddSubjectCommand
-Revised -> AddSubjectCommand : execute()
+Revised -> SubjectParser ++ : parse()
+SubjectParser -> AddSubjectCommand**
 activate AddSubjectCommand
+AddSubjectCommand --> SubjectParser -- : AddSubjectCommand
+SubjectParser --> Revised-- : AddSubjectCommand
+Revised -> AddSubjectCommand ++ : execute()
 alt new Subject
 AddSubjectCommand -> Subject **
 activate Subject
-Subject -> AddSubjectCommand-- : Maths
+Subject --> AddSubjectCommand-- : Maths
 AddSubjectCommand -> SubjectList++ : add()
-SubjectList -> AddSubjectCommand--
+SubjectList --> AddSubjectCommand--
 AddSubjectCommand -> Ui ++: printSubject()
 Ui --> AddSubjectCommand --
 AddSubjectCommand --> Revised
 else command not understood
-AddSubjectCommand --> Revised -- : NoSubjectException
+AddSubjectCommand --> Revised  : NoSubjectException
 
 else subject exists
 AddSubjectCommand --> Revised -- : RepeatedSubjectException

@@ -2,21 +2,19 @@
 title __revisED's Return Maths Subject Sequence Diagram__\n
 
 actor Bob
-Bob -> Revised** : run()
+Bob -> Revised ** : run()
 activate Revised
-
-Revised -> Ui : printStart()
-activate Ui
+Revised -> Ui ++ : printStart()
 Ui --> Revised --
 loop !exit program
-Revised -> Ui : readCommand()
-activate Ui
+Revised -> Ui ++ : readCommand()
 Ui --> Revised --
-Revised -> SubjectParser : parse()
-activate SubjectParser
-SubjectParser -> Revised-- : ReturnSubjectCommand
-Revised -> ReturnSubjectCommand : execute()
+Revised -> SubjectParser ++ : parse()
+SubjectParser -> ReturnSubjectCommand **
 activate ReturnSubjectCommand
+ReturnSubjectCommand --> SubjectParser -- : ReturnSubjectCommand
+SubjectParser --> Revised-- : ReturnSubjectCommand
+Revised -> ReturnSubjectCommand ++ : execute()
 ReturnSubjectCommand -> SubjectList ++
 loop Subjects in SubjectList
 opt subject title equals maths
