@@ -363,17 +363,18 @@ Reset not confirmed. Your data is safe :)
 ## Command Summary
 |Feature|Command|
 |--------|--------|
-Viewing help|`help`|
-Adding a module|`addmod <module code>`|
-Adding expected module workload|`addexp <module code> <expected workload>`|
-Add to actual time spent on a module|`addtime <module code> <time spent> <week number>`|
-Listing all modules|`list <week number>`|
-Deleting a module|`deletemod <module code>`|
-Deleting expected module workload|`deleteexp <module code>`|
-Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
-Add tasks|`addtask <module code> <task description>`|
-List all tasks|`listtask`|
-Mark task as done|`done <task number>`|
-Delete a task|`deletetask <task number>`|
-Exiting the program|`exit`|
-Deleting module and task data|`reset`|
+|Viewing help|`help`|
+|Adding a module|`addmod <module code>`|
+|Adding expected module workload|`addexp <module code> <expected workload>`|
+|Add to actual time spent on a module|`addtime <module code> <time spent> <week number>`|
+|Listing all modules|`list <week number>`|
+|Analyse actual time spent on all modules|`analyse <week number>`|
+|Deleting a module|`deletemod <module code>`|
+|Deleting expected module workload|`deleteexp <module code>`|
+|Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
+|Add tasks|`addtask <module code> <task description>`|
+|List all tasks|`listtask`|
+|Mark task as done|`done <task number>`|
+|Delete a task|`deletetask <task number>`|
+|Exiting the program|`exit`|
+|Deleting module and task data|`reset`|
