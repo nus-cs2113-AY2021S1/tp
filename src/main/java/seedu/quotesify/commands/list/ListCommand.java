@@ -34,7 +34,6 @@ public class ListCommand extends Command {
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }
-        assert details.length == 2;
         type = details[0];
         information = details[1];
     }
@@ -50,12 +49,10 @@ public class ListCommand extends Command {
             listRatings(ratingList, ui);
             break;
         case TAG_TODO:
-            ToDoList toDoList = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            listToDos(toDoList,ui);
+            new ListToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
-            BookmarkList bookmarkList = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            listBookmarks(bookmarkList, ui);
+            new ListBookmarkCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -168,15 +165,6 @@ public class ListCommand extends Command {
         } else {
             System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToPrint);
         }
-    }
-
-    private void listToDos(ToDoList toDoList, TextUi ui) {
-        toDoList.sortByDate();
-        ui.printAllToDos(toDoList);
-    }
-
-    private void listBookmarks(BookmarkList bookmarkList, TextUi ui) {
-        ui.printAllBookmarks(bookmarkList);
     }
 
     @Override

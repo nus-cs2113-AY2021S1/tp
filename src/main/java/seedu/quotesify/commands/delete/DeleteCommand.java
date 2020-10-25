@@ -46,14 +46,10 @@ public class DeleteCommand extends Command {
             deleteRating(ratings, ui);
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            int index = computeToDoIndex(information.trim());
-            deleteToDo(toDos, index, ui);
+            new DeleteToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
-            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            deleteBookmarkByIndex(bookmarks,information.trim(),ui);
+            new DeleteBookmarkCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             new DeleteQuoteCommand(arguments).execute(ui, storage);
@@ -113,69 +109,6 @@ public class DeleteCommand extends Command {
         ratingToBeDeleted.getRatedBook().setRating(0);
         ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
         ui.printDeleteRating(title, author);
-    }
-
-    private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
-        ToDo toDoToBeDeleted = toDos.find(index);
-        if (toDoToBeDeleted != null) {
-            toDos.delete(index);
-            ui.printDeleteToDo(toDoToBeDeleted);
-        } else {
-            ui.printErrorMessage(ERROR_TODO_NOT_FOUND);
-        }
-    }
-
-    private int computeToDoIndex(String information) {
-        int index = 0;
-        try {
-            index = Integer.parseInt(information);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_TODO_NUM);
-        }
-
-        return index;
-    }
-
-    private void deleteBookmark(BookList books, BookmarkList bookmarks, String titleName, TextUi ui) {
-        Book targetBook = books.findByTitle(titleName);
-        if (targetBook != null) {
-            removeBookmarkFromBook(targetBook, bookmarks, ui);
-        } else {
-            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
-        }
-    }
-
-    private void deleteBookmarkByIndex(BookmarkList bookmarks, String index, TextUi ui) {
-        int indexNum = convertBookmarkIndexToInt(index, ui);
-        if (indexNum <= bookmarks.getSize()) {
-            Bookmark targetBookmark = bookmarks.findByIndex(indexNum - 1);
-            bookmarks.delete(indexNum);
-            ui.printDeleteBookmark(targetBookmark);
-        } else {
-            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
-        }
-    }
-
-    private void removeBookmarkFromBook(Book targetBook, BookmarkList bookmarks, TextUi ui) {
-        Bookmark bookmarkToBeDeleted = bookmarks.find(targetBook);
-
-        if (bookmarkToBeDeleted != null) {
-            bookmarks.delete(bookmarkToBeDeleted);
-            ui.printDeleteBookmark(bookmarkToBeDeleted);
-        } else {
-            ui.printErrorMessage(ERROR_BOOKMARK_NOT_FOUND);
-        }
-    }
-
-    private int convertBookmarkIndexToInt(String indexString, TextUi ui) {
-        int index = -1;
-        try {
-            index = Integer.parseInt(information) - 1;
-        } catch (NumberFormatException e) {
-            ui.printErrorMessage(ERROR_INVALID_BOOKMARK_NUM);
-        }
-
-        return index;
     }
 
     @Override
