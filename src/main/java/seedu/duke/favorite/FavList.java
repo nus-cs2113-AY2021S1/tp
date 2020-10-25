@@ -32,7 +32,7 @@ public class FavList {
         if (index == 0 || index > favList.size()) {
             throw new CustomException(ExceptionType.INVALID_INDEX);
         }
-        assert index > 0 && index < FavList.getList().size() : "Index out of bounds.";
+        assert index > 0 && index <= FavList.getList().size() : "Index out of bounds.";
         String oldDesc = favList.get(index - 1).getDesc();
         if (oldDesc.equals(newDesc)) {
             throw new CustomException(ExceptionType.SAME_DESCRIPTION);

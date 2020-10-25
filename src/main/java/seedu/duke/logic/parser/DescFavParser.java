@@ -2,7 +2,6 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.favorite.FavList;
 
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
@@ -37,7 +36,7 @@ public class DescFavParser extends Parser {
                 throw new CustomException(ExceptionType.NO_DELIMITER);
             }
         } catch (StringIndexOutOfBoundsException error) {
-            logger.warning("Either of the parameters is missing");
+            logger.warning("Either of the parameters is missing.");
             throw new CustomException(ExceptionType.NO_INPUT);
         }
     }
@@ -46,6 +45,8 @@ public class DescFavParser extends Parser {
         if (components[0].trim().isEmpty() & components[1].trim().isEmpty()) {
             throw new CustomException(ExceptionType.NO_INPUT);
         }
+        assert !(components[0].trim().isEmpty() && components[1].trim().isEmpty()) : "Component 1 is empty.";
+
     }
 
     private String checkDescription(String description) throws CustomException {

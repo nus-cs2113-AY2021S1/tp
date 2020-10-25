@@ -1,7 +1,6 @@
 package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.favorite.FavList;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.parser.DescFavParser;
@@ -23,7 +22,12 @@ public class DescFavCommand extends Command {
         int index = parser.getIndex();
         String description = parser.getDescription();
         String oldDesc = FavList.changeDesc(index, description);
-        String command = FavList.getList().get(index - 1).getCommand();
+        String command = getCommand(index);
         Ui.printDescChangeMessage(command, oldDesc, description);
+    }
+
+    private String getCommand(int index) {
+        assert index > 0 && index <= FavList.getList().size() : "Index out of bounds.";
+        return FavList.getList().get(index - 1).getCommand();
     }
 }
