@@ -2,20 +2,24 @@
 
 ## Introduction
 
-Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
+Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). 
+It aids users in creating and managing their writings and ideas. 
+As a fast-typing writer, this CLI app is highly suitable for you.
+
+This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
 
 ## Quick Start
 
 1. Check that your computer has Java **11** installed.
-1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-1.Copy the file to the folder you want to use as the home folder.
-1.Type in a command prompt ./duke.jar and press Enter.
-1.Type the `help` command and press Enter to get started.
-1.Some example commands you can try:
-    1.`list words` : List the vocabulary stored in the word list.
-    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-    1.`exit` : Exits the app.
-1.Refer to the Features below for details of each command.
+1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
+1. Copy the file to the folder you want to use as the home folder.
+1. Type in a command prompt ./duke.jar and press Enter.
+1. Type the `help` command and press Enter to get started.
+1. Some example commands you can try:
+    1. `list words` : List the vocabulary stored in the word list.
+    1. `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+    1. `exit` : Exits the app.
+1. Refer to the Features below for details of each command.
 
 ## Features 
 
@@ -54,6 +58,7 @@ Type “help COMMAND_NAME” to figure out how to use the particular command.
 - filter bunny
 - save bunny
 - list
+- list filter
 - start
 - filter 
 - stats
@@ -90,6 +95,7 @@ List all words stored in the program.
 Format: list words
 
 ### Adding a bunny idea: `bunny`
+
 Add a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
@@ -294,19 +300,23 @@ name 3 has been deleted from the Names list!
 ```
 
 ### Filtering words in word bank: `filter`
-Filter out the words you need in the list based on your own filtering mode.  
-Format: `filter [-continue] by\TYPE_OF_FILTER -ARGUMENTS[1..*]`: 
-- -continue (OPTIONAL): this tag is used to tell the program to continue filtering on the last filtered list. 
-Without this tag, the previous filtered list would be cleared and the program will filter on the entire word list. 
-- TYPE_OF_FILTER: 
-    1. type: the next arguments should be “-verb”, “-noun”, “-adjective”.
-    2. start: the next arguments should be in the form of -STRING.
-    3. include: the next arguments should be in the form of -STRING.
+Filter out the words you need in the list based on your own filtering mode. 
+
+Format: `filter [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -ARGUMENTS[1..*]`: 
+- You must input the command in order for the program to work properly.
+- `-continue` (OPTIONAL): You can use this tag to tell the program to continue filtering on the last filtered list. 
+Without this tag, the previous filtered list would be cleared, and the program will filter on the entire word list. 
+- `limit\PRINT_LIMIT` (OPTIONAL): You can use this tag to tell the program to limit the number of words that are printed 
+from your filter result. Without this tag, the program will just print all the words.
+- `by\TYPE_OF_FILTER`: 
+    1. `type`: the next tag `ARGUMENTS` should be `-verb` and/or `-noun` and/or `-adjective`.
+    2. `start`: the next `ARGUMENTS` should be in the form of `-STRING`.
+    3. `include`: the next `ARGUMENTS` should be in the form of `-STRING`.
 
 Example usages and example outputs (step by step):
 - `filter by\type -noun -adjective`  
 ```
-Words filtered by indicated type are:
+Printing all 7 word(s) from your filtered list:
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
 computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
@@ -316,22 +326,56 @@ beautiful: having beauty; giving pleasure to the senses or to the mind
 nice: pleasant or attractive
 meaningful : important and serious
 ```
-- `filter -continue by\start -h -gr -co -ni`  
+- `filter -continue limit\3 by\start -h -gr -co -ni`  
 ```
-Words filtered by indicated type are:
+Your filtered list has more than 3 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `y`
+```
+Printing all 4 word(s) from your filtered list:
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
 computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
 and control other machines
 nice: pleasant or attractive
 ```
-- `filter -continue by\include -a -pu`  
+- `filter -continue limit\1 by\include -a -pu`  
 ```
-Words filtered by indicated type are: 
+Your filtered list has more than 1 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `n`
+```
+Printing the first 1 out of 5 word(s) from your filtered list:
 grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
-computer: an electronic machine that can store, organize and find information, 
-do processes with numbers and other data, and control other machines
 ```
+### Listing your filter list: `list filter`
+List your filter list onto the screen.
+
+Format: `list filter [limit\PRINT_LIMIT]`
+- You must input the command in order for the program to work properly.
+- `limit\PRINT_LIMIT` (OPTIONAL): You can use this tag to tell the program to limit the number of words that are printed 
+from your filter result. Without this tag, the program will just print all the words.
+
+Example of usage and example outputs: `list filter limit\3`
+```
+Your filtered list has more than 3 word(s)
+Do you want to print all the filtered list? y/n
+```
+User input: `y`
+```
+Printing all 5 word(s) from your filtered list:
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
+and control other machines
+class: a group of students who are taught together
+beautiful: having beauty; giving pleasure to the senses or to the mind
+nice: pleasant or attractive
+meaningful : important and serious
+```
+
 ### Begin your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
@@ -428,48 +472,22 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| noun         | `noun [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: noun bus d\vehicle                                                                           |
-| verb         | `verb [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: verb eat d\to consume                                                                        |
-| adjective    | `adj [WORD] d\[DESCRIPTION]`                                                                          |
-|              | Example: adj hungry d\having the desire to eat food                                                   |
-| list words   | `list words`                                                                                          |
-|              | Lists all the words stored in the program.                                                            |
-| bunny        | `bunny i\IDEA g\[GENRE]`                                                                              |
-|              | Adds a bunny idea to the list of bunnies in the current run.                                          |
-| list bunny   | `list bunny`                                                                                          |
-|              | Lists all the bunny ideas                                                                             |
-| filter bunny | `filter bunny i\IDEA g\[GENRE]`                                                                       |
-|              | Filters bunny by terms in idea or genre (must have at least 1 filter parameter)                       |
-| save bunny   | `save bunny`                                                                                          |
-|              | Saves all the bunny ideas into a text file                                                            |
-| filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `                                           |
-|              | `-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command. |
-|              | TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
-| name         | `name`                                                                                                |
-|              | Generates a random name                                                                               |
-| list name    | `list name`                                                                                           |
-|              | List all the stored names                                                                             |
-| filter name  | `filter name <NAME>`                                                                                  |
-|              | Gets the list of names after filtering                                                                |
-| add name     | `add name <NAME>`                                                                                     |
-|              | Adds a name to the list of stored names                                                               |
-| delete name  | `delete name <INDEX>`                                                                                 |
-|              | Removes a name from the list of stored names given the index                                          |
-| stats        | `stats`                                                                                               |
-|              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
-|              | This is a poem  <br>Written by Goethe                                                                 |
-|              | Id: 5 <br> DER ERLKÖNIG                                                                               |
-|              | Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.|
-|              |                                                                                                       |
-|              | This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
+| noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
+| verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
+| adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
+| list words   | `list words`</br>Lists all the words stored in the program.                                           |
+| bunny        | `bunny i\IDEA g\[GENRE]`</br>Adds a bunny idea to the list of bunnies in the current run.             |
+| list bunny   | `list bunny`</br>Lists all the bunny ideas                                                            |
+| filter bunny | `filter bunny i\IDEA g\[GENRE]`</br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
+| save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
+| filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `</br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br>TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
+| name         | `name`</br>Generates a random name                                                                    |
+| list name    | `list name`</br>List all the stored names                                                             |
+| filter name  | `filter name <NAME>`</br>Gets the list of names after filtering                                       |
+| add name     | `add name <NAME>`</br>Adds a name to the list of stored names                                         |
+| delete name  | `delete name <INDEX>`</br>Removes a name from the list of stored names given the index                |
+| stats        | `stats`</br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..</br>This is a poem  <br>Written by Goethe</br>Id: 5 <br> DER ERLKÖNIG</br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.</br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | list         | `list`                                                                                                |
-| clear        | `clear`                                                                                               |
-|              | `clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`                                  |
-|              | TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list|
-|              | SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  
-| reset        | `reset <NAME_OF_CATEGORY>`                                                                            |
-|              | NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |
-| exit         | `exit`                                                                                                |
-|              | Exits the program.                                                                                    |    
+| clear        | `clear`</br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  
+| reset        | `reset <NAME_OF_CATEGORY>`</br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |
+| exit         | `exit`</br>Exits the program.                                                                                    |    

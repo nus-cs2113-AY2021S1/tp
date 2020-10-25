@@ -4,7 +4,7 @@ public class FilterMessages {
     public static final String INVALID_FILTER_CODE = "invalid filter type in the code";
     public static final String NO_FILTER_RESULT = "Filter returns no result!!";
     public static final String FILTER_MESSAGE = "Printing all %d word(s) from your filtered list:\n";
-    public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s)"
+    public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s) "
             + "from your filtered list:\n";
     public static final String PRINT_LIMIT_NOT_FOUND = "Print limit is not specified in your command.";
     public static final String FILTER_UNKNOWN_COMMAND = "Filter command format is incorrect.";
