@@ -1,7 +1,10 @@
 package fitr.storage;
 
 import fitr.Goal;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.user.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,7 +46,7 @@ public class GoalStorage {
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
-            goalList.add(new Goal(arguments[0], arguments[1], arguments[2]));
+            goalList.add(new Goal(arguments[0], arguments[1], arguments[2], arguments[3]));
         }
 
         LOGGER.fine("Goal list file read successfully.");
@@ -56,7 +59,7 @@ public class GoalStorage {
      * @param goalList the goal list to write to the file
      * @throws IOException if an I/O error has occurred
      */
-    public void writeGoalList(GoalList goalList) throws IOException {
+    public void writeGoalList(GoalList goalList, FoodList foodList, ExerciseList exerciseList, User user) throws IOException {
         LOGGER.fine("Attempting to write to file: " + GOAL_LIST_PATH);
         FileWriter fileWriter = new FileWriter(GOAL_LIST_PATH);
         Goal goal;
@@ -65,6 +68,7 @@ public class GoalStorage {
             goal = goalList.getGoal(i);
             fileWriter.write(goal.getCreatedDate()
                     + COMMA_SEPARATOR + goal.getGoalType()
+                    + COMMA_SEPARATOR + goal.getStatus(goal,foodList, exerciseList, user)
                     + COMMA_SEPARATOR + goal.getDescription() + System.lineSeparator());
         }
 

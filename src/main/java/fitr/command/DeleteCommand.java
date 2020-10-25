@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
     public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         try {
-            String type = command.split(" ", 2)[0];
+            String type = command.split(" ", 2)[0].toLowerCase();
             if (type.equals(COMMAND_FOOD)) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
                 Ui.printCustomMessage("The following has been deleted from the list of goals:\n\t"
                         + goalList.getGoal(deletionIndex - 1).getDescription());
                 goalList.deleteGoal(deletionIndex - 1);
-                storageManager.writeGoalList(goalList);
+                storageManager.writeGoalList(goalList, foodList, exerciseList, user);
             }
         } catch (IndexOutOfBoundsException e) {
             Ui.printCustomError("Sorry that index does not exist in the list");

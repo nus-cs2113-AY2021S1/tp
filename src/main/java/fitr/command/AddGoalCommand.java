@@ -51,7 +51,7 @@ public class AddGoalCommand extends Command {
                 Ui.printFormatError(COMMAND_GOAL);
                 break;
             }
-            storageManager.writeGoalList(goalList);
+            storageManager.writeGoalList(goalList, foodList, exerciseList, user);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printCustomError("Please input in the correct format!");
         } catch (IOException e) {

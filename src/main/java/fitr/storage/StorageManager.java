@@ -73,8 +73,8 @@ public class StorageManager {
         return goalStorage.loadGoalList();
     }
 
-    public void writeGoalList(GoalList goalList) throws IOException {
-        goalStorage.writeGoalList(goalList);
+    public void writeGoalList(GoalList goalList, FoodList foodList, ExerciseList exerciseList, User user) throws IOException {
+        goalStorage.writeGoalList(goalList, foodList, exerciseList, user);
     }
 
     public ArrayList<String> loadTipList() throws IOException {
