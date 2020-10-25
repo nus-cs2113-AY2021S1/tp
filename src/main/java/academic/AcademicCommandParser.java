@@ -17,12 +17,12 @@ public class AcademicCommandParser extends CommandParser {
 
         if (commandModified.startsWith("add contact")) {
             return AcademicCommandType.ADD_CONTACT;
-        } else if (commandModified.startsWith("check contact")) {
-            return AcademicCommandType.CHECK_CONTACT;
+        } else if (commandModified.startsWith("list contact")) {
+            return AcademicCommandType.LIST_CONTACT;
         } else if (commandModified.startsWith("add grade")) {
             return AcademicCommandType.ADD_GRADE;
-        } else if (commandModified.startsWith("check grade")) {
-            return AcademicCommandType.CHECK_GRADE;
+        } else if (commandModified.startsWith("check cap")) {
+            return AcademicCommandType.CHECK_CAP;
         } else if (commandModified.equalsIgnoreCase("list grade")) {
             return AcademicCommandType.LIST_GRADE;
         } else if (commandModified.startsWith("delete contact")) {

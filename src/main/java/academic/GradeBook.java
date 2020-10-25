@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class GradeBook {
     public static void addGrade(String[] args, ArrayList<Grade> currentGrades) {
-        currentGrades.add(new Grade(args[0], Integer.parseInt(args[1]), args[2]));
+        currentGrades.add(new Grade(args[0], Integer.parseInt(args[1]), args[2].toUpperCase()));
         if (args.length == 5) {
             if (args[3].equals("true")) {
                 Grade.suGrade(currentGrades.get(currentGrades.size() - 1));
@@ -51,6 +51,9 @@ public class GradeBook {
     public static String printListOfGrades(ArrayList<Grade> currentGrades) {
         int listIndex = 0;
         StringBuilder listToPrint = new StringBuilder();
+        if (currentGrades.size() == 0) {
+            listToPrint.append("You have not added any grades!");
+        }
         for (Grade grade : currentGrades) {
             if (grade != null) {
                 listToPrint.append(listIndex + 1 + ".");

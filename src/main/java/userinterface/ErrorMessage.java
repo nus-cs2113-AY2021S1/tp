@@ -13,7 +13,7 @@ public class ErrorMessage extends Ui {
     }
 
     public static void printInvalidNumber() {
-        printLine("Please enter a number when applicable!\n"
+        printLine("Please enter a valid number when applicable!\n"
                 + "or you can type \"help\" for more information");
     }
 

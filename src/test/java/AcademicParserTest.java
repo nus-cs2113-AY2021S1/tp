@@ -19,9 +19,9 @@ class AcademicParserTest {
         AcademicCommandParser academicCommandParser = new AcademicCommandParser();
 
         assertEquals(AcademicCommandType.ADD_CONTACT, academicCommandParser.getAcademicCommandType("add contact"));
-        assertEquals(AcademicCommandType.CHECK_CONTACT, academicCommandParser.getAcademicCommandType("check contact"));
+        assertEquals(AcademicCommandType.LIST_CONTACT, academicCommandParser.getAcademicCommandType("list contact"));
         assertEquals(AcademicCommandType.ADD_GRADE, academicCommandParser.getAcademicCommandType("add grade"));
-        assertEquals(AcademicCommandType.CHECK_GRADE, academicCommandParser.getAcademicCommandType("check grade"));
+        assertEquals(AcademicCommandType.CHECK_CAP, academicCommandParser.getAcademicCommandType("check cap"));
         assertEquals(AcademicCommandType.LIST_GRADE, academicCommandParser.getAcademicCommandType("list grade"));
     }
 

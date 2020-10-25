@@ -30,40 +30,32 @@ public class AcademicRun {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
             if (commandType == AcademicCommandType.ADD_CONTACT) {
-                Ui.printLine("Adding Contact");
                 PersonBook.addPerson(AcademicCommandParser.getContact(command), listOfPerson);
-
-            } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
+                Ui.printLine("Adding Contact");
+            } else if (commandType == AcademicCommandType.LIST_CONTACT) {
                 Ui.printLine(PersonBook.printPersonBook(listOfPerson));
-
             } else if (commandType == AcademicCommandType.ADD_GRADE) {
-                Ui.printLine("Adding Grade");
                 GradeBook.addGrade(AcademicCommandParser.getGrade(command), currentGrades);
-
-            } else if (commandType == AcademicCommandType.CHECK_GRADE) {
+                Ui.printLine("Adding Grade");
+            } else if (commandType == AcademicCommandType.CHECK_CAP) {
                 Ui.printLine(GradeBook.printCap(currentGrades));
-
             } else if (commandType == AcademicCommandType.LIST_GRADE) {
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
-
             } else if (commandType == AcademicCommandType.DELETE_PERSON) {
-                Ui.printLine("Deleting contact");
                 PersonBook.deletePerson(AcademicCommandParser.parseDeletePerson(command),listOfPerson);
-
+                Ui.printLine("Deleting contact");
             } else if (commandType == AcademicCommandType.DELETE_GRADE) {
-                Ui.printLine("Deleting grade");
                 GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
-
+                Ui.printLine("Deleting grade");
             } else if (commandType == AcademicCommandType.SU_GRADE) {
-                Ui.printLine("SU-ing grade");
                 GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command), currentGrades);
-
+                Ui.printLine("SU-ing grade");
             } else if (commandType == AcademicCommandType.STAR_GRADE) {
-                Ui.printLine("Marking this grade as star");
                 GradeBook.starGrade(AcademicCommandParser.parseStarGrade(command), currentGrades);
+                Ui.printLine("Marking this grade as star");
             } else if (commandType == AcademicCommandType.STAR_CONTACT) {
-                Ui.printLine("Marking this person as star");
                 PersonBook.starContact(AcademicCommandParser.parseStarContact(command), listOfPerson);
+                Ui.printLine("Marking this person as star");
             } else if (commandType == AcademicCommandType.LIST_STAR) {
                 AcademicUi.printStarList(currentGrades, listOfPerson);
             } else {
@@ -75,7 +67,7 @@ public class AcademicRun {
         } catch (StringIndexOutOfBoundsException e) {
             ErrorMessage.printUnidentifiableInput();
             StudyItLog.logger.info("Invalid academic command. Sting Index out of bounds.");
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ErrorMessage.printInvalidNumber();
             StudyItLog.logger.info("Invalid Number.");
         } catch (InvalidGradeException e) {

@@ -30,6 +30,9 @@ public class PersonBook {
     public static String printPersonBook(ArrayList<Person> listOfPerson) {
         int listIndex = 0;
         StringBuilder listToPrint = new StringBuilder();
+        if (listOfPerson.size() == 0) {
+            listToPrint.append("You have not added any contacts!");
+        }
         for (Person person : listOfPerson) {
             if (person != null) {
                 listToPrint.append((listIndex + 1) + ".");
