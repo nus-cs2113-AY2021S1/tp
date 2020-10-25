@@ -98,9 +98,20 @@ public class Ui {
      * Prints a message that notifies the user that DietBook has been initialised.
      */
     public void printInitialisationCompleteMessage() {
-        print("Thank you! DietBook has been initialised and you may start by entering any valid commands. "
-                + LINE_SEPARATOR
-                + "If you require a list of valid commands, you can enter: help");
+        print("Thank you! DietBook has been initialised " + getStartMessage());
+    }
+
+
+    /**
+     * Prints the welcome back message when user reboots up DietBook after the first initialisation.
+     *
+     * @param name The name of the user.
+     */
+    public void printWelcomeBackMessage(String name) {
+        performAssertionsForStringInputs(name, "Name");
+
+        print(getLogo() + LINE_SEPARATOR + "Welcome back to DietBook " + trimString(name) + "!" + LINE_SEPARATOR
+                + "All your previous data has been successfully loaded " + getStartMessage());
     }
 
     /**
