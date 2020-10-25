@@ -2,14 +2,11 @@ package command;
 
 import event.Event;
 import eventlist.EventList;
-import exception.NuScheduleException;
 import location.Location;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
-
-import java.util.ArrayList;
 
 /**
  * Represents the command call when the user wants to locate an event.
