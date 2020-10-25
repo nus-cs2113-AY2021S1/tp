@@ -124,8 +124,10 @@ Given below is an example of usage scenario of how the add command behaves at ea
 
 **Step 1**
 
-* The user types in `add friends 10,2 30` , adding the show to the list with it's title,number of seasons, number of 
-episdoes and duration of each episode
+* The user types in `add friends 2 10,10 30` , adding the show to the showlist. The details added to the show list include
+the title of the show, the number of seasons of the show, the number of episodes in each season(seperated by the comma) and 
+the duration of each episode. 
+
 The parseInput method in InputParser class is called to parse the command.
 
 **[NOTE]** 
@@ -140,13 +142,13 @@ Customised exceptions are thrown when the number of arguments entered by the use
 
 **Step 3**
 
-* After the AddCommand method is called,it does the following things:
+* After the AddCommand method is called,the following steps will are carried out:
 
-1.Splits the input from the user to 4 seperate parameters (Title,Number of seasons,Number of episodes,Duration)
+1.Splits the input from the user to 4 separate parameters (Title,Number of seasons,Number of episodes,Duration)
 
 2.Creates a new Show instance with the 4 parameters
 
-3.Added the show into the show list
+3.Adds the show into the show list
 
 4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
 

@@ -80,6 +80,10 @@ public class Ui {
                 + "\n"
                 + ("addreview") + " - Adds a review to your show\n"
                 + "\n"
+                + ("changereview") + " - Changes review of your show\n"
+                + "\n"
+                + ("deletereview") + " - Deletes review of your show\n"
+                + "\n"
                 + ("episode") + " - Update your episode progress\n"
                 + "\n"
                 + ("season") + " - Update your season progress\n"
@@ -159,7 +163,7 @@ public class Ui {
 
     public static void printReviewAdded(String showName) {
         printLine();
-        System.out.println("Your review for " + showName + " has been added.");
+        System.out.println("Your review for " + (showName) + " has been added.");
 
     }
 
@@ -187,9 +191,19 @@ public class Ui {
         System.out.println("The rating for " + (showName) + " has been updated to " + (rating));
     }
 
+    public static void printChangeReview(String showName) {
+        printLine();
+        System.out.println("The review for " + (showName) + " has been changed");
+    }
+
     public static void printDeleteRating(String showName) {
         printLine();
         System.out.println("The rating for " + (showName) + " has been deleted.");
+    }
+
+    public static void printDeleteReview(String showName) {
+        printLine();
+        System.out.print("The review for " + (showName) + " has been deleted.");
     }
 
     public static void printDeleteShow(String showName) {
