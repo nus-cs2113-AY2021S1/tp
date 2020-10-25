@@ -93,10 +93,24 @@ Format: `view exercise`
 Expected outcome:
 ```
 Here is the list of your exercises:
-[1] Exercise: swim
-    Burnt Cal: 500
-[2] Exercise: run
-    Burnt Cal: 10
+
+Date: 05/10/2020
+[1] Exercise: Thigh stretch
+    Burnt Cal: 6
+
+Date: 23/10/2020
+[1] Exercise: Thigh stretch
+    Burnt Cal: 6
+
+Date: 24/10/2020
+[1] Exercise: Triceps dips
+    Burnt Cal: 7
+[2] Exercise: Cossack Squat
+    Burnt Cal: 20
+[3] Exercise: Russian Twists
+    Burnt Cal: 15
+[4] Exercise: Thigh stretch
+    Burnt Cal: 6
 ```
 
 ### Viewing the food list: `view food`
@@ -107,14 +121,18 @@ Format: `view food`
 Expected outcome:
 ```
 Here is the list of your food:
+
+Date: 22/10/2020
 [1] Food: chicken
     Cal: 10
-[2] Food: fish
+[2] Food: chicken
     Cal: 10
-[3] Food: egg
-    Cal: 50
-[4] Food: fish
-    Cal: 500
+
+Date: 23/10/2020
+[1] Food: chicken
+    Cal: 10
+[2] Food: chicken
+    Cal: 10
 ```
 
 ### Viewing the user profile: `view profile`
@@ -130,6 +148,7 @@ Age: 22
 Gender: Male
 Height (in m): 1.8
 Weight (in kg): 80.0
+Your fitness level: Fit
 ```
 
 ### Viewing the user's BMI: `view bmi`
@@ -150,26 +169,37 @@ Format: `view summary`
 
 Expected outcome:
 ```
+Date: 05/10/2020
 Total calorie consumed:
-570
+0
 Total calorie burnt:
-510
+-6
 Net calorie:
-60
+-6
+
+Date: 22/10/2020
+Total calorie consumed:
+2
+Total calorie burnt:
+0
+Net calorie:
+2
+
 ```
 
 ### Editing the user's profile: `edit`
 Changes the user's name, age, gender, height (in m), or weight (in kg).
 
-Format: `edit ARGUMENT`
+Format: `edit TYPE`
 
-Argument | Format | Description | Notes for input
+Type | Format | Description | Notes for input
 ----- | ------ | -------- | ------
 name | `edit name` | Changes name in user profile | Not case-sensitive
 age | `edit age` | Changes age in user profile | Only number inputs allowed, decimal number is not allowed
 gender | `edit gender` | Changes gender in user profile | Not case-sensitive, only takes in `m` or `f` input.
 height | `edit height` | Changes height in user profile | Only number inputs allowed, decimal number is allowed
 weight | `edit weight` | Changes weight in user profile | Only number inputs allowed, decimal number is allowed
+fitness | `edit fitness` | Changes fitness level in user profile | Only number inputs 0,1 or 2 is allowed
 
 Examples of usage:
 
@@ -203,11 +233,19 @@ Height (in m) changed to: 1.9
 ```
 Edit weight
 ```
+edit weight
 Change your weight (in kg) to: 
 90
 Weight (in kg) changed to: 90.0
 ```
-
+Edit fitness
+```
+edit fitness
+Please indicate your fitness level to be used for determining intensity of exercises.
+(0 for Unfit; 1 for Normal; 2 for Fit): 
+2
+Fitness level changed to: Fit
+```
 ### Editing previous exercise entry: `edit exercise`
 Edits a previous exercise entry in the exercise list.
 
