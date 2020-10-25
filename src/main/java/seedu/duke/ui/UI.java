@@ -238,4 +238,8 @@ public class UI {
     public static void printAskForName(String username) {
         System.out.print(ClickerMessages.ASK_FOR_NAME);
     }
+
+    public static void bunnyIndexOutOfBounds() {
+        System.out.println("Bunny index is not in list.");
+    }
 }
