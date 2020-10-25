@@ -17,7 +17,6 @@ public class EditRatingCommand extends EditCommand {
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         editRating(ratings, ui);
-        storage.save();
     }
 
     private void editRating(RatingList ratings, TextUi ui) {

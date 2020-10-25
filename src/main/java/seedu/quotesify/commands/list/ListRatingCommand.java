@@ -20,7 +20,6 @@ public class ListRatingCommand extends ListCommand {
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         listRatings(ratings, ui);
-        storage.save();
     }
 
     private void listRatings(RatingList ratingList, TextUi ui) {
