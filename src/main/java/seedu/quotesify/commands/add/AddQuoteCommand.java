@@ -17,14 +17,14 @@ public class AddQuoteCommand extends AddCommand {
     }
 
     public void execute(TextUi ui, Storage storage) {
-        QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        addQuote(quotes, ui);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        addQuote(quoteList, ui);
     }
 
-    private void addQuote(QuoteList quotes, TextUi ui) {
+    private void addQuote(QuoteList quoteList, TextUi ui) {
         try {
             Quote quote = QuoteParser.parseAddParameters(information);
-            quotes.add(quote);
+            quoteList.add(quote);
             ui.printAddQuote(quote);
             addLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {

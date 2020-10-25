@@ -13,16 +13,16 @@ public class FindQuoteCommand extends FindCommand {
     }
 
     public void execute(TextUi ui, Storage storage) {
-        QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        findQuote(quotes, ui);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        findQuote(quoteList, ui);
         storage.save();
     }
 
-    private void findQuote(QuoteList quotes, TextUi ui) {
+    private void findQuote(QuoteList quoteList, TextUi ui) {
         try {
             String keyword = information.trim();
             if (!keyword.isEmpty()) {
-                String resultList = quotes.findQuoteByKeyword(quotes, keyword);
+                String resultList = quoteList.findQuoteByKeyword(quoteList, keyword);
                 if (!resultList.isEmpty()) {
                     ui.printFindQuoteSuccess(resultList);
                 } else {

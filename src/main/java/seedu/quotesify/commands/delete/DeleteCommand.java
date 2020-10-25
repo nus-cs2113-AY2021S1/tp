@@ -1,17 +1,7 @@
 package seedu.quotesify.commands.delete;
 
-import seedu.quotesify.book.Book;
-import seedu.quotesify.book.BookList;
-import seedu.quotesify.bookmark.Bookmark;
-import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.commands.Command;
-import seedu.quotesify.lists.ListManager;
-import seedu.quotesify.quote.QuoteList;
-import seedu.quotesify.rating.Rating;
-import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.store.Storage;
-import seedu.quotesify.todo.ToDo;
-import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
 public class DeleteCommand extends Command {
@@ -53,24 +43,13 @@ public class DeleteCommand extends Command {
             new DeleteQuoteCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE_REFLECTION:
-            QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-            deleteQuoteReflection(quoteList, ui, information);
+            new DeleteQuoteReflectionCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfDeleteCommands();
             break;
         }
         storage.save();
-    }
-
-    private void deleteQuoteReflection(QuoteList quoteList, TextUi ui, String information) {
-        try {
-            int quoteNumber = Integer.parseInt(information.trim()) - 1;
-            quoteList.deleteReflection(quoteNumber);
-            ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).getQuote());
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-        }
     }
 
     @Override
