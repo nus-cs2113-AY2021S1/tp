@@ -1,2 +1,2 @@
-/t hello /pin true 
-/t bye /pin false /tag end PURPLE 
+/t TestNote1 /pin false 
+/t TestNote2 /pin true 

@@ -8,6 +8,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.ui.Formatter.LS;
+
 /**
  * Represents a Note. Contains all the information of a note.
  */
