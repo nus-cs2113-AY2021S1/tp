@@ -80,16 +80,31 @@ Format: `add -b BOOK_TITLE /by AUTHOR`
 * You must specify both the title and the author of the book. 
 
 Example of usage:
-
 `add -b Harry Potter /by JK Rowling`
 
+Expected outcome:
+~~~
+The book [Harry Potter by JK Rowling] has been added!
+~~~
+
+#### Completing a book: `done -b`
+Finished reading a book? You can now mark your book as done.
+
+Format: `done -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+ `done -b 2`
 
 Expected outcome:
-
-`The book [Harry Potter by JK Rowling] has been added!`
+~~~
+The book [Harry Potter by JK Rowling] has been marked as done!
+~~~
 
 #### Listing all existing books: `list -b`
-You can list all books currently in your booklist. 
+Want to see what books you have in your reading list? You can list all books currently in your booklist. 
 
 Format: `list -b`
 
