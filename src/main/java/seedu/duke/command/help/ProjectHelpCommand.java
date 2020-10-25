@@ -13,10 +13,10 @@ public class ProjectHelpCommand extends Command {
     @Override
     public void execute() {
         Ui.showToUserLn("1. Create project");
-        Ui.showToUserLn("   Format: project /create -title <title> " +
-                "-desc <description> -dur <duration> -sd <sprint interval>");
-        Ui.showToUserLn("   Example: project /create -title MeTube " +
-                "-desc video streaming software -dur 90 -sd 10");
+        Ui.showToUserLn("   Format: project /create -title <title> "
+                + "-desc <description> -dur <duration> -sd <sprint interval>");
+        Ui.showToUserLn("   Example: project /create -title MeTube "
+                + "-desc video streaming software -dur 90 -sd 10");
         Ui.showToUserLn("2. View project");
         Ui.showToUserLn("   Format & example: project /view");
         Ui.showToUserLn("3. Select project");

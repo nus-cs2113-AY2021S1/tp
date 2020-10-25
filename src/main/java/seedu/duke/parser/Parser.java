@@ -11,7 +11,11 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.BYE;
+import static seedu.duke.command.CommandSummary.PROJECT;
+import static seedu.duke.command.CommandSummary.TASK;
+import static seedu.duke.command.CommandSummary.MEMBER;
+import static seedu.duke.command.CommandSummary.SPRINT;
 import static seedu.duke.command.CommandSummary.HELP;
 
 

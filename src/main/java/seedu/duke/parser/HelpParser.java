@@ -1,6 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
 import seedu.duke.command.help.MemberHelpCommand;
 import seedu.duke.command.help.ProjectHelpCommand;
 import seedu.duke.command.help.SprintHelpCommand;

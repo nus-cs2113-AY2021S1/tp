@@ -13,8 +13,8 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute() {
-        Ui.showToUserLn("Here is the list of commands used in SCRUMptious. " +
-                "Type \"help /*\", where * is the command number for more information on that specific command.");
+        Ui.showToUserLn("Here is the list of commands used in SCRUMptious. "
+                + "Type \"help /*\", where * is the command number for more information on that specific command.");
         Ui.showToUserLn("1. Project");
         Ui.showToUserLn("2. Member");
         Ui.showToUserLn("3. Task");
