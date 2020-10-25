@@ -36,7 +36,8 @@ public class GoalStorage {
      * @return an ArrayList of Goal objects
      * @throws FileNotFoundException if the file is not found
      */
-    public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException, InvalidFileFormatException {
+    public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException,
+            InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + GOAL_LIST_PATH);
         ArrayList<Goal> goalList = new ArrayList<>();
         String line;
@@ -48,7 +49,7 @@ public class GoalStorage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
 
-            if(arguments.length != 4) {
+            if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
             goalList.add(new Goal(arguments[0], arguments[1], arguments[2], arguments[3]));

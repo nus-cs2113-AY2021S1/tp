@@ -57,7 +57,8 @@ public class EditEntryCommand extends Command {
         try {
             storageManager.writeExerciseList(listManager.getExerciseList());
             storageManager.writeFoodList(listManager.getFoodList());
-            storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(), listManager.getExerciseList(), user);
+            storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
+                    listManager.getExerciseList(), user);
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
         }
@@ -143,12 +144,12 @@ public class EditEntryCommand extends Command {
     private void editGoal(GoalList goalList, String arguments) {
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
-        if(!matcher.matches()) {
+        if (!matcher.matches()) {
             Ui.printFormatError(arguments);
             return;
         }
 
-        if(goalList.getSize() == 0) {
+        if (goalList.getSize() == 0) {
             Ui.printCustomError("Goal list is empty!");
             return;
         }
@@ -162,17 +163,18 @@ public class EditEntryCommand extends Command {
         String goalDescription = matcher.group("goalDescription").trim();
         String goalType = matcher.group("goalType").trim();
 
-        if(!(goalType.equals(Commands.COMMAND_EXERCISE) || goalType.equals(Commands.COMMAND_FOOD))) {
+        if (!(goalType.equals(Commands.COMMAND_EXERCISE) || goalType.equals(Commands.COMMAND_FOOD))) {
             Ui.printCustomError("Error: Invalid goal type!");
             return;
         }
 
         Goal goal = goalList.getGoal(index - 1);
         String createdDate = goal.getCreatedDate();
-        goalType = goalType.equals(Commands.COMMAND_EXERCISE)? "E":"F";
+        goalType = goalType.equals(Commands.COMMAND_EXERCISE) ? "E" : "F";
         Goal editedGoal = formatGoal(createdDate, goalType, goalDescription);
         goal.setGoal(editedGoal, "0.0");
 
-        Ui.printCustomMessage("Successfully edited goal to: [" + editedGoal.getGoalType() + "] " + editedGoal.getDescription());
+        Ui.printCustomMessage("Successfully edited goal to: [" + editedGoal.getGoalType()
+                + "] " + editedGoal.getDescription());
     }
 }

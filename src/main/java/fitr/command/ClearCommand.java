@@ -43,6 +43,7 @@ public class ClearCommand extends Command {
                 LOGGER.fine("Clearing goal list.");
                 listManager.clearGoalList();
                 Ui.printCustomError("Goal list is cleared!");
+                break;
             default:
                 Ui.printCustomMessage("Invalid clear command entered!");
                 break;
