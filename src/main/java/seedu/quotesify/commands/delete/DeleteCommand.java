@@ -65,8 +65,7 @@ public class DeleteCommand extends Command {
             deleteBookmarkByIndex(bookmarks,information.trim(),ui);
             break;
         case TAG_QUOTE:
-            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-            deleteQuote(quotes, ui, information);
+            new DeleteQuoteCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE_REFLECTION:
             QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -86,22 +85,6 @@ public class DeleteCommand extends Command {
             ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).getQuote());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
-        }
-    }
-
-    private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
-        try {
-            if (information.trim().isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
-            }
-            int quoteNumber = Integer.parseInt(information.trim()) - 1;
-            Quote quoteToBeDeleted = quotes.getQuote(quoteNumber);
-            quotes.delete(quoteNumber);
-            ui.printDeleteQuote(quoteToBeDeleted.getQuote());
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
         }
     }
 
