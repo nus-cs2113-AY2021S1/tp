@@ -31,7 +31,7 @@ public class ShowTimetableCommand extends Command {
             day = "ALL";
         } else {
             if (command.charAt(SHOW_KW.length()) != ' ') {
-                throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
+                throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
             }
             String details = command.substring(SHOW_KW.length() + 1).trim();
             if (details.toLowerCase().equals("today")) {
@@ -46,7 +46,7 @@ public class ShowTimetableCommand extends Command {
                     if (something[1].compareTo("bookmarks") == 0) {
                         showBookmarks = true;
                     } else {
-                        throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
+                        throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
                     }
                 }
             }
@@ -60,13 +60,13 @@ public class ShowTimetableCommand extends Command {
         if (day != null) { // "show" and "show day" and "show today"
             List<Slot> list = new ArrayList<>(timetable.getFullSlotList());
             message += getMessageLessonAtTime(modules, list, day);
-        } else if (module != null && !showBookmarks) {
+        } else if (isShowModule()) {
             if (!timetable.moduleExists(module)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
             message += getMessageForModule(matchedModule);
-        } else if (module != null && showBookmarks) {
+        } else if (isShowModuleBookmarks()) {
             if (!timetable.moduleExists(module)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
             }
@@ -187,7 +187,9 @@ public class ShowTimetableCommand extends Command {
         if (!slots.isEmpty()) {
             message += module.getModuleCode() + "\n";
             for (int i = 0; i < slots.size(); i++) {
-                message += "  " + (i + 1) + ". " + slots.get(i).toString() + "\n";
+                Slot slot = slots.get(i);
+                String dayString = (isShowModule() ? slot.getDay() + " " : "");
+                message += "  " + (i + 1) + ". " + dayString + slot.toString() + "\n";
             }
         } else {
             message += "no slots for " + module.getModuleCode() + "\n";
@@ -223,5 +225,13 @@ public class ShowTimetableCommand extends Command {
         String message = "[==================]" + "\n";
 
         return "\u001b[32m" + message + "\u001b[0m";
+    }
+
+    private boolean isShowModuleBookmarks() {
+        return module != null && showBookmarks;
+    }
+
+    private boolean isShowModule() {
+        return module != null && !showBookmarks;
     }
 }
