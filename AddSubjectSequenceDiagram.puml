@@ -1,0 +1,36 @@
+@startuml
+title __revisED's Add Maths Subject Sequence Diagram__\n
+
+actor Bob
+Bob -> Revised** : run()
+activate Revised
+
+Revised -> Ui : printStart()
+activate Ui
+Ui --> Revised --
+loop !exit program
+Revised -> Ui : readCommand()
+activate Ui
+Ui --> Revised --
+Revised -> SubjectParser : parse()
+activate SubjectParser
+SubjectParser -> Revised-- : AddSubjectCommand
+Revised -> AddSubjectCommand : execute()
+activate AddSubjectCommand
+alt new Subject
+AddSubjectCommand -> Subject **
+activate Subject
+Subject -> AddSubjectCommand-- : Maths
+AddSubjectCommand -> SubjectList++ : add()
+SubjectList -> AddSubjectCommand--
+AddSubjectCommand -> Ui ++: printSubject()
+Ui --> AddSubjectCommand --
+AddSubjectCommand --> Revised
+else command not understood
+AddSubjectCommand --> Revised -- : NoSubjectException
+
+else subject exists
+AddSubjectCommand --> Revised -- : RepeatedSubjectException
+end
+end
+@enduml
