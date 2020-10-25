@@ -91,9 +91,9 @@ public class RecurringTracker {
             //User-inputted index ("/id") is parsed, converted to zero-based index
             //and stored in entries.indexToModify (private)
             entries.handleParams(packet);
-            entry = (RecurringEntry) entries.getItemAtIndex();
+            entry = (RecurringEntry) entries.getItemAtCurrIndex();
             String entryName = entry.getName();
-            entries.removeItemAtIndex();
+            entries.removeItemAtCurrIndex();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entryName));
         } catch (InsufficientParamsException exception) {
@@ -117,7 +117,7 @@ public class RecurringTracker {
 
         try {
             entries.handleParams(packet);
-            entry = (RecurringEntry) entries.getItemAtIndex();
+            entry = (RecurringEntry) entries.getItemAtCurrIndex();
             //Remove "/id" so it doesn't get parsed by entry and lead to
             //printing of UnrecognizedParamMessage
             packet.removeParamsFromMap("/id");

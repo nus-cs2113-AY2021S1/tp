@@ -21,6 +21,10 @@ public abstract class ItemList extends ParamHandler {
         this.items.add(item);
     }
 
+    public void setIndexToModify(int index) {
+        this.indexToModify = index;
+    }
+
     /**
      * Add the given item and sort the list according to the given comparator.
      *
@@ -75,14 +79,14 @@ public abstract class ItemList extends ParamHandler {
      * @throws IndexOutOfBoundsException If no index has been parsed yet and
      *                                   it attempts to access index -1.
      */
-    public Item getItemAtIndex() throws IndexOutOfBoundsException {
+    public Item getItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         int index = this.indexToModify;
         return this.items.get(index);
     }
 
     //Manually specify index in the code, if necessary
-    public Item getItemAtIndex(int index) throws IndexOutOfBoundsException {
+    public Item getItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
         assert index < items.size();
         return this.items.get(index);
     }
@@ -98,13 +102,13 @@ public abstract class ItemList extends ParamHandler {
      * @throws IndexOutOfBoundsException If no index has been parsed yet and
      *                                   it attempts to access index -1.
      */
-    public void removeItemAtIndex() throws IndexOutOfBoundsException {
+    public void removeItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         this.items.remove(this.indexToModify);
     }
 
     //Manually specify index in the code, if necessary
-    public void removeItemAtIndex(int index) throws IndexOutOfBoundsException {
+    public void removeItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
         assert index < this.items.size();
         this.items.remove(index);
     }

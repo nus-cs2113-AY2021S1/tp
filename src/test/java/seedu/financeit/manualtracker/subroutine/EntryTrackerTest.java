@@ -12,16 +12,24 @@ public class EntryTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
     private static final int NUM_ENTRIES = 20;
 
+    /**
+     * Function sets up the "opened" ledger whereby entry operations will be performed upon.
+     */
     @BeforeEach
     void setup() {
-        EntryTracker.setCurrLedger(TypicalLedgerEntries.generateTypicalLedgerOne());
+        EntryTracker.setCurrLedger(TypicalLedgerEntries.getInstance().generateTypicalLedger1());
     }
 
+    /**
+     * Test handleCreateEntry that evaluates if valid entries are added into the list, and
+     * invalid are not added into the list.
+     */
     @Test
     public void testEntryTrackerByList() {
         CommandPacket testPacket;
         int count = 0;
         int numCorrectEntries = 0;
+        // Illegal Params that will be generated with the Entry for negative test.
         String[] wrongParams = {
             "time",
             "cat",
@@ -91,7 +99,7 @@ public class EntryTrackerTest {
         EntryTracker.setTestPacket(testPacket);
         EntryTracker.handleEditEntry();
 
-        Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtIndex(0);
+        Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtCurrIndex(0);
         assertEquals(actualEntry, expectedEntry);
         EntryTracker.entryList.removeAllItems();
     }

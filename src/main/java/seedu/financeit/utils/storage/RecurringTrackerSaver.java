@@ -27,7 +27,7 @@ public class RecurringTrackerSaver extends SaveHandler {
         StringBuilder saveString = new StringBuilder();
         int size = entries.getItemsSize();
         for (int i = 0; i < size; i++) {
-            RecurringEntry entry = (RecurringEntry) entries.getItemAtIndex(i);
+            RecurringEntry entry = (RecurringEntry) entries.getItemAtCurrIndex(i);
             saveString.append(entry.toString() + System.lineSeparator());
         }
         FileWriter fileWriter = new FileWriter(fullPath);

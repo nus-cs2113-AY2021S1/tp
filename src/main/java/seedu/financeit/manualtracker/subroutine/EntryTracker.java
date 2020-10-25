@@ -8,6 +8,9 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.goaltracker.GoalTracker;
 import seedu.financeit.manualtracker.Ledger;
+import seedu.financeit.manualtracker.subroutine.EntryCommands.CreateEntryCommand;
+import seedu.financeit.manualtracker.subroutine.EntryCommands.EditEntryCommand;
+import seedu.financeit.manualtracker.subroutine.EntryCommands.RetrieveEntryCommand;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -134,22 +137,20 @@ public class EntryTracker {
     }
 
     static FiniteStateMachine.State handleDeleteEntry() {
+        RetrieveEntryCommand command = new RetrieveEntryCommand("/id");
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry = new Entry();
-        entryList.setRequiredParams(
-            "/id"
-        );
+        Entry entry;
         try {
-            entryList.handleParams(packet);
-            entry = (Entry) entryList.getItemAtIndex();
-            entryList.removeItemAtIndex();
+            command.handlePacket(packet, entryList);
+            entry = (Entry) entryList.getItemAtCurrIndex();
+            entryList.removeItemAtCurrIndex();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
-            if (!entry.getHasParsedAllRequiredParams()) {
+            if (!command.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -181,18 +182,18 @@ public class EntryTracker {
         boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
             ? false
             : true;
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry = new Entry();
-        entry.setRequiredParams(
+        CreateEntryCommand command = new CreateEntryCommand(
             "/time",
             "/desc",
             "/cat",
             "/amt",
             "-i or -e"
         );
-
+        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+        Entry entry;
         try {
-            entry.handlePacket(packet);
+            command.handlePacket(packet);
+            entry = command.getCurrEntry();
             if (entryList.isItemDuplicate(entry)) {
                 throw new DuplicateInputException();
             }
@@ -209,7 +210,7 @@ public class EntryTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Duplicate item already exists in the list; not added!");
         } finally {
-            if (!entry.getHasParsedAllRequiredParams()) {
+            if (!command.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -218,15 +219,14 @@ public class EntryTracker {
     }
 
     static FiniteStateMachine.State handleEditEntry() {
+        RetrieveEntryCommand retrieveEntryCommand = new RetrieveEntryCommand("/id");
+        EditEntryCommand editEntryCommand;
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
-        entryList.setRequiredParams(
-            "/id"
-        );
         try {
-            entryList.handleParams(packet);
-            entry = (Entry) entryList.getItemAtIndex();
-            entry.handleParams(packet);
+            retrieveEntryCommand.handlePacket(packet, entryList);
+            entry = (Entry) entryList.getItemAtCurrIndex();
+            editEntryCommand.handlePacket(entry, packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {

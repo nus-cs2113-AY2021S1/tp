@@ -33,12 +33,12 @@ public class ManualTrackerSaver extends SaveHandler {
         StringBuilder saveString = new StringBuilder();
         int size = ledList.getItemsSize();
         for (int i = 0; i < size; i++) {
-            Ledger ledger = (Ledger) ledList.getItemAtIndex(i);
+            Ledger ledger = (Ledger) ledList.getItemAtCurrIndex(i);
             saveString.append(this.getSaveString(ledger));
             EntryList entryList = ledger.entryList;
             int entryListSize = entryList.getItemsSize();
             for (int x = 0; x < entryListSize; x++) {
-                Entry ent = (Entry) entryList.getItemAtIndex(x);
+                Entry ent = (Entry) entryList.getItemAtCurrIndex(x);
                 saveString.append(this.getSaveString(ent));
             }
         }
@@ -65,7 +65,7 @@ public class ManualTrackerSaver extends SaveHandler {
                     classContents[1] = " -i";
                 }
                 classContents[2] = CategoryMap.categoryToInputMap.get(classContents[2]);
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
+                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtCurrIndex(ledgerIndex));
                 inputString = "new /time " + classContents[4] + " /cat "
                     + classContents[2] + " /desc " + classContents[5] + " /amt "
                     + classContents[3] + classContents[1];

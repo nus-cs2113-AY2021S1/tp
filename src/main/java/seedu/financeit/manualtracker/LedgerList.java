@@ -66,6 +66,5 @@ public class LedgerList extends ItemList {
                 ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
-
     }
 }

@@ -5,12 +5,9 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.ParamChecker;
 
-import java.util.ArrayList;
-
 import static seedu.financeit.manualtracker.subroutine.TestCommands.generateCreateEntryCorrectCommand;
 
 public class TypicalEntryEntries {
-    static ArrayList<String> commandInputs = new ArrayList<>();
     static CommandPacket packet;
     static int seed;
     private static TypicalEntryEntries typicalEntryEntries = null;
@@ -20,7 +17,7 @@ public class TypicalEntryEntries {
     }
 
     public void setSeed(int seed) {
-        seed = seed;
+        this.seed = seed;
         this.packet = generateCreateEntryCorrectCommand(seed);
     }
 
