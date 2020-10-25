@@ -8,7 +8,7 @@ import seedu.revised.ui.Ui;
 import java.io.File;
 import java.io.IOException;
 
-public class ExportCommand extends SubjectCommand {
+public class ExportSubjectCommand extends SubjectCommand {
 
     public Subject execute(SubjectList subjectList, Storage storage) throws IOException {
         File exportFile = storage.export(subjectList.getList());
