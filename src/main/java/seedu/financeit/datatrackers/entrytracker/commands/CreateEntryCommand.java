@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.entrytracker.EntryCommands;
+package seedu.financeit.datatrackers.entrytracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
@@ -13,19 +13,34 @@ import seedu.financeit.utils.ParamChecker;
 import java.time.LocalTime;
 import java.util.Arrays;
 
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
+
 /**
- * Command class to edit an existing entry instance with specified parameter values.
- * Entry to be edited must be referenced via the constructor argument.
+ * Command class to create an entry instance, and populates it with parameter values.
+ * The populated entry will be stored within the class, and can be retrieved by calling a
+ * corresponding getter method.
  */
-public class EditEntryCommand extends ParamHandler {
+public class CreateEntryCommand extends ParamHandler {
     Entry entry;
 
-    public EditEntryCommand(Entry entry) {
-        this.entry = entry;
+    public CreateEntryCommand() {
+        this.setRequiredParams(
+            PARAM_TIME,
+            PARAM_DESCRIPTION,
+            PARAM_CATEGORY,
+            PARAM_AMOUNT,
+            PARAM_INC + " or " + PARAM_EXP
+        );
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
+            this.entry = new Entry();
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {
             // Fall-through
@@ -60,11 +75,19 @@ public class EditEntryCommand extends ParamHandler {
             String[] ignoreParams = {
                 "/id"
             };
-            if (!Arrays.asList(ignoreParams).contains(paramType)) {
+            if (! Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
             break;
         }
+    }
+
+    /**
+     * Gets the entry that is generated from the command.
+     * @return Entry instance
+     */
+    public Entry getCurrEntry() {
+        return this.entry;
     }
 }

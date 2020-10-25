@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.entrytracker.EntryCommands;
+package seedu.financeit.datatrackers.recurringtracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
@@ -6,29 +6,34 @@ import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
-import seedu.financeit.datatrackers.entrytracker.EntryList;
+import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.util.Arrays;
 
-import static seedu.financeit.utils.ParamChecker.*;
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_AUTO;
+import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 /**
  * Command class to reference an existing entry instance with specified parameter values.
- * Ledger will then be referenced for the ItemList instance as currItem.
+ * Entry will then be referenced for the ItemList instance as currItem.
  */
 public class RetrieveEntryCommand extends ParamHandler {
-    EntryList entryList;
+    RecurringEntryList entryList;
 
-    public RetrieveEntryCommand(String... params) {
+    public RetrieveEntryCommand() {
         this.setRequiredParams(
             PARAM_INDEX
         );
     }
 
-    public void handlePacket(CommandPacket packet, EntryList entryList)
+    public void handlePacket(CommandPacket packet, RecurringEntryList entryList)
         throws InsufficientParamsException, ItemNotFoundException {
         this.entryList = entryList;
         this.handleParams(packet);
@@ -44,13 +49,14 @@ public class RetrieveEntryCommand extends ParamHandler {
             return;
         default:
             String[] ignoreParams = {
-                PARAM_TIME,
-                PARAM_DESCRIPTION,
-                PARAM_CATEGORY,
+                PARAM_DAY,
+                PARAM_AUTO,
                 PARAM_AMOUNT,
-                PARAM_INC + " or " + PARAM_EXP
+                PARAM_DESCRIPTION,
+                PARAM_EXP,
+                PARAM_INC
             };
-            if (! Arrays.asList(ignoreParams).contains(paramType)) {
+            if (!Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }

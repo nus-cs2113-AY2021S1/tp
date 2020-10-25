@@ -2,7 +2,7 @@ package seedu.financeit.datatrackers.entrytracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.datatrackers.entrytracker.EntryCommands.CreateEntryCommand;
+import seedu.financeit.datatrackers.entrytracker.commands.CreateEntryCommand;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.ParamChecker;
 

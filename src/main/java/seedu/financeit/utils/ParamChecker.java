@@ -251,12 +251,12 @@ public class ParamChecker {
             if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
                 LoggerCentre.loggerParamChecker.log(Level.WARNING,
                     String.format("Expected input out of bounds... Err: %s", exception.getMessage()));
-                errorMessage = "Amount provided is too long in length! " +
-                    "Maximum amount is of 100 digits long.\n";
+                errorMessage = "Amount provided is too long in length! "
+                    + "Maximum amount is of 100 digits long.\n";
             } else if (output < 0) {
-                    LoggerCentre.loggerParamChecker.log(Level.WARNING,
-                        String.format("Expected positive double... Err: %s", exception.getMessage()));
-                    errorMessage = "Expected Positive decimal value with at most 2 d.p!\n";
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected positive double... Err: %s", exception.getMessage()));
+                errorMessage = "Expected Positive decimal value with at most 2 d.p!\n";
             } else {
                 LoggerCentre.loggerParamChecker.log(Level.WARNING,
                     String.format("Double not recognised... Err: %s", exception.getMessage()));

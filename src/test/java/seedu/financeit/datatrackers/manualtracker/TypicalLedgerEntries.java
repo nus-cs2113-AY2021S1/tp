@@ -2,7 +2,7 @@ package seedu.financeit.datatrackers.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.datatrackers.manualtracker.ManualTrackerCommands.CreateLedgerCommand;
+import seedu.financeit.datatrackers.manualtracker.commands.CreateLedgerCommand;
 
 import java.time.LocalDate;
 

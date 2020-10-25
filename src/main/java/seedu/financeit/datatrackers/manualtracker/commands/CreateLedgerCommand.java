@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.manualtracker.ManualTrackerCommands;
+package seedu.financeit.datatrackers.manualtracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;

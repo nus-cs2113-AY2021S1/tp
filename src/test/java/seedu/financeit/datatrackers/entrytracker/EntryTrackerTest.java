@@ -6,7 +6,11 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.datatrackers.manualtracker.TypicalLedgerEntries;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.financeit.datatrackers.entrytracker.TestCommands.*;
+import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateCreateEntryCorrectCommand;
+import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateCreateEntryErrorCommand;
+import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateDeleteEntryByIdCorrectCommand;
+import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateDeleteEntryByIdErrorCommand;
+import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateEditEntryCorrectCommand;
 
 public class EntryTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
@@ -87,19 +91,18 @@ public class EntryTrackerTest {
     @Test
     public void testEntryTrackerByEditEntries() {
         int commonSeed = 3;
-        CommandPacket testPacket;
         TypicalEntryEntries.getInstance().setSeed(commonSeed);
-        Entry expectedEntry = TypicalEntryEntries.getInstance().generateTypicalEntryFromSeed();
 
         TypicalEntryEntries.getInstance().generateTypicalEntry1();
         EntryTracker.setTestPacket(TypicalEntryEntries.getInstance().packet);
         EntryTracker.handleCreateEntry(false);
 
-        testPacket = generateEditEntryCorrectCommand(commonSeed);
+        CommandPacket testPacket = generateEditEntryCorrectCommand(commonSeed);
         EntryTracker.setTestPacket(testPacket);
         EntryTracker.handleEditEntry();
 
         Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtCurrIndex(0);
+        Entry expectedEntry = TypicalEntryEntries.getInstance().generateTypicalEntryFromSeed();
         assertEquals(actualEntry, expectedEntry);
         EntryTracker.entryList.removeAllItems();
     }

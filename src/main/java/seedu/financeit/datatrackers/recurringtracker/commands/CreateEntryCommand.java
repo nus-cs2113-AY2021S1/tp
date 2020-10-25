@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.RecurringTrackerCommands;
+package seedu.financeit.datatrackers.recurringtracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
@@ -10,8 +10,11 @@ import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
-import static seedu.financeit.utils.ParamChecker.*;
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 
 /**
  * Command class to create an entry instance, and populates it with parameter values.

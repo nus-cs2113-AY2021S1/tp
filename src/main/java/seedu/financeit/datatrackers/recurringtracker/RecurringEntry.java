@@ -20,7 +20,7 @@ public class RecurringEntry extends Item {
         super();
     }
 
-    public void setDay(int day){
+    public void setDay(int day) {
         this.day = day;
     }
 

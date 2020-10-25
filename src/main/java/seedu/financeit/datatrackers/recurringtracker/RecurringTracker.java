@@ -5,9 +5,9 @@ import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.datatrackers.recurringtracker.RecurringTrackerCommands.CreateEntryCommand;
-import seedu.financeit.datatrackers.recurringtracker.RecurringTrackerCommands.EditEntryCommand;
-import seedu.financeit.datatrackers.recurringtracker.RecurringTrackerCommands.RetrieveEntryCommand;
+import seedu.financeit.datatrackers.recurringtracker.commands.CreateEntryCommand;
+import seedu.financeit.datatrackers.recurringtracker.commands.EditEntryCommand;
+import seedu.financeit.datatrackers.recurringtracker.commands.RetrieveEntryCommand;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 

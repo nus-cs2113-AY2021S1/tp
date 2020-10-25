@@ -73,7 +73,8 @@ public class TestCommands {
     }
 
     public static CommandPacket generateCreateEntryCorrectCommand(int seed) {
-        String paramTime = ("".concat(String.valueOf(seed % 24))) ;
+        // Generates entries with time range from 0000 to 2400 in 24-h intervals.
+        String paramTime = ("".concat(String.valueOf(seed % 24)));
         String paramCat = "tpt";
         String paramAmt = "1500";
         CommandPacket testPacket = TestUtil.createCommandPacket(
@@ -105,7 +106,8 @@ public class TestCommands {
     }
 
     public static CommandPacket generateEditEntryCorrectCommand(int seed) {
-        String paramTime = ("".concat(String.valueOf(seed % 24))) ;
+        // Generates entries with time range from 0000 to 2400 in 24-h intervals.
+        String paramTime = ("".concat(String.valueOf(seed % 24)));
         String paramCat = "tpt";
         String paramAmt = "1500";
         CommandPacket testPacket = TestUtil.createCommandPacket(

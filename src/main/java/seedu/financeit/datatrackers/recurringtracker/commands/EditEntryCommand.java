@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.RecurringTrackerCommands;
+package seedu.financeit.datatrackers.recurringtracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
