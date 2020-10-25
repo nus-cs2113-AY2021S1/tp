@@ -3,7 +3,7 @@
 skinparam defaultTextAlignment center
 skinparam roundcorner 20
 
-Package PERT CHART {
+Package PERT_CHART {
     Rectangle Ramana_1 [
         Ramana
         ....
@@ -15,7 +15,7 @@ Package PERT CHART {
         1 MD
     ]
     Rectangle JunXiang_1 [
-        Jun Xiang
+        Jun Xiang, Nazryl
         ....
         Software Architecture
         ====
@@ -111,6 +111,7 @@ Package PERT CHART {
         Event Function
         ====
         Edit Events
+        Alert on Clashing Events
         ----
         2 MD
     ]

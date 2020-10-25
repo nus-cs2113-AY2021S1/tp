@@ -70,7 +70,7 @@ public class ViewNoteCommand extends Command {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
-                return COMMAND_UNSUCCESSFUL_MESSAGE;
+                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
             }
             LOGGER.log(Level.INFO, "Note found using index");
             noteExists = true;
@@ -85,18 +85,10 @@ public class ViewNoteCommand extends Command {
         }
         if (!noteExists) {
             LOGGER.log(Level.INFO, "Note does not exist.");
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
-        // format output string
-        String stringToPrint = note.getTitle() + " " + note.getTagsName();
-
-        for (String line : note.getContent()) {
-            stringToPrint += Formatter.LS + line;
-        }
-        return stringToPrint;
-        //to be used with formatter
-        //return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
+        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, note);
     }
 
     private void setupLogger() {

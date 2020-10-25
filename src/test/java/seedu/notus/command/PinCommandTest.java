@@ -4,11 +4,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.notus.command.PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
+import seedu.notus.ui.Formatter;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 //@@author prachi2023
@@ -41,32 +45,43 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_PinsAndUnpinsNotes() {
-        //assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputIndex(notebook, 0));
-        //assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputIndex(notebook, 1));
+        String expected1 = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
+        String expected2 = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
 
-        //assertTrue(notePinned.getPinned().equals("N"));
-        //assertTrue(noteNotPinned.getPinned().equals("Y"));
+        assertEquals(expected1, getExecutionStringInputIndex(notebook, 0));
+        assertEquals(expected2, getExecutionStringInputIndex(notebook, 1));
+
+        assertFalse(notePinned.getPinned());
+        assertTrue(noteNotPinned.getPinned());
     }
 
     @Test
     void execute_inputTitle_NoteExists_PinsAndUnpinsNotes() {
-        //assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputTitle(notebook, NOTE1_TITLE));
-        //assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputTitle(notebook, NOTE2_TITLE));
+        String expected1 = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
+        String expected2 = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
 
-        //assertTrue(notePinned.getPinned().equals("N"));
-        //assertTrue(noteNotPinned.getPinned().equals("Y"));
+        assertEquals(expected1, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
+        assertEquals(expected2, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
+
+        assertFalse(notePinned.getPinned());
+        assertTrue(noteNotPinned.getPinned());
     }
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
+        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+
+        assertEquals(expected, getExecutionStringInputIndex(notebook, 5));
+        assertEquals(expected, getExecutionStringInputIndex(notebook, 3));
     }
 
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
-        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
+
+        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+
+        assertEquals(expected, getExecutionStringInputTitle(notebook, "Title"));
+        assertEquals(expected, getExecutionStringInputTitle(notebook, "Random"));
     }
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {

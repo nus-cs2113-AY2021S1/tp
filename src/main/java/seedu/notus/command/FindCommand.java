@@ -11,9 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import java.util.stream.Collectors;
-
-import static seedu.notus.util.PrefixSyntax.SUFFIX_INDEX;
 
 //@@author R-Ramana
 /**
@@ -52,33 +49,17 @@ public class FindCommand extends Command {
         setupLogger();
         LOGGER.log(Level.INFO, "Logger Setup, will proceed to execute FindCommand.");
 
-        StringBuilder notes = new StringBuilder();
-
-        ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().toLowerCase().contains(keywords.toLowerCase()))
-                .collect(Collectors.toList());
+        ArrayList<Note> filteredNotes = notebook.findNotes(keywords);
 
         LOGGER.log(Level.INFO, "Filtered Notes into an ArrayList of notes. "
                 + "Filtered Notes only has notes with title containing the keyword.");
 
-
-        for (int i = 0; i < filteredNotes.size(); i++) {
-            notes.append(i + 1)
-                    .append(SUFFIX_INDEX)
-                    .append(filteredNotes.get(i).getTitle())
-                    .append(" ")
-                    .append(filteredNotes.get(i).getTagsName())
-                    .append(Formatter.LS);
-        }
-
-        LOGGER.log(Level.INFO, "Filtered notes stored as a string to be returned.");
-
         if (filteredNotes.isEmpty()) {
             LOGGER.log(Level.INFO, "Filtered notes is empty.");
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
         LOGGER.log(Level.INFO, "Filtered notes will be returned.");
-        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS + notes;
+        return Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, filteredNotes);
     }
 
     public void setupLogger() {

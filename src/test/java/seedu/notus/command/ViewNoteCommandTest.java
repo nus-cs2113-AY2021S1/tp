@@ -3,15 +3,17 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.notus.command.ViewNoteCommand.COMMAND_SUCCESSFUL_MESSAGE;
+import static seedu.notus.command.ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
 //@@author prachi2023
 class ViewNoteCommandTest {
@@ -54,23 +56,8 @@ class ViewNoteCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_returnsContent() {
-        String tagsName = "";
-        String contentOne = "";
-        String contentTwo = "";
-
-        for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString()).concat(" ");
-        }
-
-        for (String line : NOTE1_CONTENT) {
-            contentOne += Formatter.LS + line;
-        }
-        for (String line : NOTE2_CONTENT) {
-            contentTwo += Formatter.LS + line;
-        }
-
-        String note1ExpectedOutput = NOTE1_TITLE + " " + contentOne;
-        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + contentTwo;
+        String note1ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithoutTags);
+        String note2ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithTags);
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputIndex(notebook, 0));
         assertEquals(note2ExpectedOutput, getExecutionStringInputIndex(notebook, 1));
@@ -78,23 +65,8 @@ class ViewNoteCommandTest {
 
     @Test
     void execute_inputTitle_NoteExists_returnsContent() {
-        String tagsName = "";
-        String contentOne = "";
-        String contentTwo = "";
-
-        for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString()).concat(" ");
-        }
-
-        for (String line : NOTE1_CONTENT) {
-            contentOne += Formatter.LS + line;
-        }
-        for (String line : NOTE2_CONTENT) {
-            contentTwo += Formatter.LS + line;
-        }
-
-        String note1ExpectedOutput = NOTE1_TITLE + " " + contentOne;
-        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + contentTwo;
+        String note1ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithoutTags);
+        String note2ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithTags);
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
         assertEquals(note2ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
@@ -102,14 +74,20 @@ class ViewNoteCommandTest {
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
-        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
+
+        String unsuccessfulMessage = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+
+        assertEquals(unsuccessfulMessage, getExecutionStringInputIndex(notebook, 5));
+        assertEquals(unsuccessfulMessage, getExecutionStringInputIndex(notebook, 3));
     }
 
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
-        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
+
+        String unsuccessfulMessage = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+
+        assertEquals(unsuccessfulMessage, getExecutionStringInputTitle(notebook, "Title"));
+        assertEquals(unsuccessfulMessage, getExecutionStringInputTitle(notebook, "Random"));
     }
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {

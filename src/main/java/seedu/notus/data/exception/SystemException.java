@@ -36,6 +36,7 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_INDEX("Missing index!"),
 
         EXCEPTION_MISSING_PIN("Missing pin!"),
+        EXCEPTION_MISSING_ARCHIVE("Missing archive!"),
 
         EXCEPTION_MISSING_KEYWORD("No search query input. Please enter a keyword for search results."),
 

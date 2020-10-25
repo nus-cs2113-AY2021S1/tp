@@ -248,7 +248,11 @@ public class Notebook {
      * Adds a note into the notebook.
      */
     public void addNote(Note note) {
-        notes.add(note);
+        if (note.getIsArchived()) {
+            archivedNotes.add(note);
+        } else {
+            notes.add(note);
+        }
     }
 
     /**
@@ -281,6 +285,7 @@ public class Notebook {
         Note archivedNote = notes.get(index);
 
         archivedNotes.add(archivedNote);
+        archivedNote.toggleArchived();
         notes.remove(index);
 
         return archivedNote.getTitle();
@@ -302,6 +307,7 @@ public class Notebook {
 
         if (isDeleted) {
             archivedNotes.add(archivedNote);
+            archivedNote.toggleArchived();
         }
 
         return isDeleted;
@@ -318,6 +324,7 @@ public class Notebook {
         Note unarchivedNote = archivedNotes.get(index);
 
         notes.add(unarchivedNote);
+        unarchivedNote.toggleArchived();
         archivedNotes.remove(unarchivedNote);
 
         return unarchivedNote.getTitle();
@@ -339,6 +346,7 @@ public class Notebook {
 
         if (isDeleted) {
             notes.add(unarchivedNote);
+            unarchivedNote.toggleArchived();
         }
 
         return isDeleted;
@@ -348,7 +356,17 @@ public class Notebook {
         return archivedNotes;
     }
 
+    public ArrayList<Note> findNotes(String keywords) {
+        return (ArrayList<Note>) notes.stream()
+                .filter((s) -> s.getTitle().toLowerCase().contains(keywords.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
     public int getSize() {
         return notes.size();
+    }
+
+    public int getArchivedNoteSize() {
+        return archivedNotes.size();
     }
 }

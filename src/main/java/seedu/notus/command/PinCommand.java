@@ -1,6 +1,7 @@
 package seedu.notus.command;
 
 import seedu.notus.data.notebook.Note;
+import seedu.notus.ui.Formatter;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -67,8 +68,7 @@ public class PinCommand extends Command {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
-                return COMMAND_UNSUCCESSFUL_MESSAGE;
-                //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
             }
             LOGGER.log(Level.INFO, "Note found using index");
         } else {
@@ -82,14 +82,13 @@ public class PinCommand extends Command {
 
         if (note == null) {
             LOGGER.log(Level.INFO, "Note does not exist.");
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
         note.togglePinned();
 
         LOGGER.log(Level.INFO, "Pin status of note toggled");
-        return note.getTitle() + " pinned: " + note.getPinnedString();
-        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
+        return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
     }
 
     private void setupLogger() {

@@ -46,7 +46,7 @@ Ensures that you are using the correct JDK version (For this project we are usin
 ## <a id="design">2. Design & Implementation</a>
 
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes. <br>
-We have made references to <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook">addressbook-level2</a> for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
+Diagrams found in our documentation were generated using <a href="https://plantuml.com/">PlantUML</a> and references were made to <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook">addressbook-level2</a> for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
@@ -64,6 +64,13 @@ The architecture design is given in the diagram above. The main components of No
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
+
+A Program Evaluation Review Technique (PERT) Chart was created prior to the start of developing NotUS and was constantly updated based on progress and updates from the development team's weekly meetings. A PERT chart is a project management tool that provides a visual representation of a project's timeline. The chart breaks down the individual tasks and aids in identifying task dependencies. A diagram of the PERT chart used for this application is shown below.
+
+<p align="center">
+  <img alt="PERT Chart" src="diagrams/out/PERT_Chart.png" />
+  <br><em>Figure #</em>
+</p>
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
@@ -213,4 +220,10 @@ A all-in-one solution for note-taking and managing your schedule.
 
 ## <a id="testinstr">7. Instructions for Manual Testing</a>
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Download the jar file and copy it into an empty folder.
+1. Open a new terminal window and navigate to the same directory where the notus.jar is located. As a shortcut if you are on windows, you can open the folder where the notus.jar is located > click on the address bar > type `cmd` > press enter on your keyboard.
+1. Enter the command `java -jar notus.jar` into the terminal window to launch the application. The application should now be running.
+1. Enter the command `help` to get a list of all available commands and its usages.
+1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
+1. Simply enter `exit` to terminate and exit the application.
+

@@ -85,4 +85,33 @@ public class Note extends TaggableObject {
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
     }
+
+    public void toggleArchived() {
+        isArchived = !isArchived;
+    }
+
+    public boolean getIsArchived() {
+        return this.isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
+    }
+
+    public ArrayList<Tag> getTags() {
+        return this.tags;
+    }
+
+    public String getTagsName() {
+        String tagsName = "";
+
+        for (Tag t : tags) {
+            tagsName = tagsName.concat(t.toString());
+        }
+        return tagsName;
+    }
+
+    public void setTags(ArrayList<Tag> tags) {
+        this.tags = tags;
+    }
 }
