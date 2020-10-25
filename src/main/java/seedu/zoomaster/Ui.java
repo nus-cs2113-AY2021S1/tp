@@ -14,6 +14,7 @@ import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
 import seedu.zoomaster.exception.ZoomasterException;
 
+import javax.swing.JSeparator;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;
@@ -29,7 +30,8 @@ import static org.fusesource.jansi.Ansi.ansi;
  * Represents the user interface on the command line and deals with interactions with the user.
  */
 public class Ui {
-    private static final String LINE = "____________________________________________________________\n";
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String LINE = "____________________________________________________________" + NEW_LINE;
     private Scanner scanner;
 
     private String logo2 =
@@ -129,7 +131,7 @@ public class Ui {
      * Prints a message before exiting the program.
      */
     public void showExitScreen() {
-        String message = "Bye. Hope to see you again soon!\n";
+        String message = "Bye. Hope to see you again soon!" + NEW_LINE;
         print(message);
         AnsiConsole.systemUninstall();
     }
@@ -138,19 +140,19 @@ public class Ui {
      * Prints the error message if data file is not found.
      */
     public void showLoadingError() {
-        String message = "Data file not found\n";
+        String message = "Data file not found" + NEW_LINE;
         printRed(message);
     }
 
     /**
-     * This method detects the type of dukeException error and prints the corresponding error message.
+     * This method detects the type of ZoomasterException error and prints the corresponding error message.
      *
-     * @param dukeException The dukeException error.
+     * @param e The ZoomasterException error.
      */
-    public void showErrorMessage(ZoomasterException dukeException) {
-        switch (dukeException.getError()) {
+    public void showErrorMessage(ZoomasterException e) {
+        switch (e.getError()) {
         case UNKNOWN_INPUT:
-            print("Unknown input\n");
+            print("Unknown input" + NEW_LINE);
             printHelpMessage();
             break;
         case INVALID_MODE:
@@ -169,13 +171,13 @@ public class Ui {
             printEmptyBookmarkDescriptionMessage();
             break;
         case EMPTY_COMMAND:
-            printEmptyCommandMessage(dukeException.getInfo());
+            printEmptyCommandMessage(e.getInfo());
             break;
         case NON_INTEGER_INPUT:
             printUseIntegerAsInput();
             break;
         case BOOKMARK_NUMBER_OUT_OF_BOUNDS:
-            printUseValidBookmarkNumberMessage(dukeException.getInfo());
+            printUseValidBookmarkNumberMessage(e.getInfo());
             break;
         case INVALID_URL:
             printInvalidUrl();
@@ -183,17 +185,14 @@ public class Ui {
         case ERROR_LAUNCHING_URL:
             printErrorLaunchUrlMessage();
             break;
-        case INVALID_ADD_SLOT:
-            printRed("Invalid add command!\n");  //More detailed?
-            break;
         case INVALID_COMMAND_FORMAT:
-            printRed("invalid command format\n");
+            printRed("invalid command format" + NEW_LINE);
             break;
         case INVALID_MODULE:
-            printRed("module does not exist\n");
+            printRed("module does not exist" + NEW_LINE);
             break;
         case INVALID_SLOT_NUMBER:
-            printRed("Invalid slot number!\n");  //More detailed?
+            printInvalidSlotNumber(e.getInfo());
             break;
         case INVALID_TIME_FORMAT:
             printInvalidTimeFormat();
@@ -208,10 +207,10 @@ public class Ui {
             printEmptyTimetableMessage();
             break;
         case CONNECTION_ERROR:
-            printConnectionErrorMessage(dukeException.getInfo());
+            printConnectionErrorMessage(e.getInfo());
             break;
         case JSON_PARSE_ERROR:
-            printJsonParseErrorMessage(dukeException.getInfo());
+            printJsonParseErrorMessage(e.getInfo());
             break;
         default:
             // unable to get dukeExceptionType
@@ -219,102 +218,107 @@ public class Ui {
         }
     }
 
+    private void printInvalidSlotNumber(String index) {
+        printRed("Invalid slot number. Please enter a valid index number between 1 and " + index + NEW_LINE
+                + "Enter command: \"show <module>\" to view slot index" + NEW_LINE);
+    }
+
     private void printJsonParseErrorMessage(String weblink) {
-        printRed("Unable to parse modules from " + weblink + "\n"
-                + "The app will not check for valid modules\n");
+        printRed("Unable to parse modules from " + weblink + NEW_LINE
+                + "The app will not check for valid modules" + NEW_LINE);
     }
 
     private void printConnectionErrorMessage(String weblink) {
-        printRed("Unable to connect to " + weblink + "\n"
-                + "Please check your internet connection\n"
-                + "The app will not check for valid modules\n");
+        printRed("Unable to connect to " + weblink + NEW_LINE
+                + "Please check your internet connection" + NEW_LINE
+                + "The app will not check for valid modules" + NEW_LINE);
     }
 
     private void printErrorLoadingFile() {
-        printRed("Error loading file.\n");
+        printRed("Error loading file." + NEW_LINE);
     }
 
     private void printErrorWritingToFile() {
-        printRed("Error writing to file.\n");
+        printRed("Error writing to file." + NEW_LINE);
     }
 
     private void printUseIntegerAsInput() {
-        printRed("Command requires an integer input\n");
+        printRed("Command requires an integer input" + NEW_LINE);
     }
 
 
     private void printUseValidBookmarkNumberMessage(String info) {
-        printRed("Please enter a valid index number between 1 and " + info + "\n");
+        printRed("Please enter a valid index number between 1 and " + info + NEW_LINE);
     }
 
     private void printErrorLaunchUrlMessage() {
-        printRed("Error launching url\n");
+        printRed("Error launching url" + NEW_LINE);
     }
 
     private void printInvalidUrl() {
-        printRed("Invalid URL" + "\n" + "URL must start with either 'www.'"
-                + " or 'https://' and have no spaces\n");
+        printRed("Invalid URL" + NEW_LINE + "URL must start with either 'www.'"
+                + " or 'https://' and have no spaces" + NEW_LINE);
     }
 
     private void printInvalidAddBookmarkInputMessage() {
-        printRed("Invalid bookmark input\n"
-                + "Format: add {module(optional)} {description} {URL}\n");
+        printRed("Invalid bookmark input" + NEW_LINE
+                + "Format: add {module(optional)} {description} {URL}" + NEW_LINE);
     }
 
     private void printEmptyBookmarkDescriptionMessage() {
-        printRed("Bookmark description required!\n");
+        printRed("Bookmark description required!" + NEW_LINE);
     }
 
     private void printEmptyCommandMessage(String info) {
-        printRed("Please enter " + info + " with input!\n");
+        printRed("Please enter " + info + " with input!" + NEW_LINE);
     }
 
     public void printHelpMessage() {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 2) : "only modes of Zoomaster are 0, 1, 2";
         if (Parser.programMode == 0) {
-            printYellow("Available inputs in Main menu are\n"
-                    + "1) mode {bookmark/timetable}\n"
-                    + "2) " + ClearCommand.CLEAR_KW + "\n"
-                    + "3) exit\n");
+            printYellow("Available inputs in Main menu are" + NEW_LINE
+                    + "1) mode {bookmark/timetable}" + NEW_LINE
+                    + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "3) exit" + NEW_LINE);
         } else if (Parser.programMode == 1) {
-            printYellow("Available inputs in Bookmark mode are\n"
-                    + "1) " + AddBookmarkCommand.ADD_KW + "\n"
-                    + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
-                    + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
-                    + "4) " + FindBookmarkCommand.FIND_KW + "\n"
-                    + "5) " + LaunchBookmarkCommand.LAUNCH_KW + "\n"
-                    + "6) " + ClearCommand.CLEAR_KW + "\n"
-                    + "7) " + ChangeModeCommand.MODE_KW + " timetable\n"
-                    + "8) " + ExitCommand.BYE_KW + "\n");
+            printYellow("Available inputs in Bookmark mode are" + NEW_LINE
+                    + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
+                    + "2) " + DeleteBookmarkCommand.DEL_KW + NEW_LINE
+                    + "3) " + ShowBookmarkCommand.LIST_KW + NEW_LINE
+                    + "4) " + FindBookmarkCommand.FIND_KW + NEW_LINE
+                    + "5) " + LaunchBookmarkCommand.LAUNCH_KW + NEW_LINE
+                    + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "7) " + ChangeModeCommand.MODE_KW + " timetable" + NEW_LINE
+                    + "8) " + ExitCommand.BYE_KW + NEW_LINE);
         } else if (Parser.programMode == 2) {
-            printYellow("Available inputs in Timetable mode are\n"
-                    + "1) " + AddSlotCommand.ADD_KW + "\n"
-                    + "2) " + DeleteSlotCommand.DEL_KW + "\n"
-                    + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
-                    + "4) " + ChangeModeCommand.MODE_KW + " bookmark\n"
-                    + "5) " + ClearCommand.CLEAR_KW + "\n"
-                    + "6) " + ExitCommand.BYE_KW + "\n");
+            printYellow("Available inputs in Timetable mode are" + NEW_LINE
+                    + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
+                    + "2) " + DeleteSlotCommand.DEL_KW + NEW_LINE
+                    + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
+                    + "4) " + ChangeModeCommand.MODE_KW + " bookmark" + NEW_LINE
+                    + "5) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "6) " + ExitCommand.BYE_KW + NEW_LINE);
         }
     }
 
     private void printUnknownModeMessage() {
-        printRed("Unknown mode input\n" + "Valid modes: bookmark, timetable\n");
+        printRed("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable" + NEW_LINE);
     }
 
     private void printUnknownDayMessage() {
-        printRed("Unknown day input\n"
-              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+        printRed("Unknown day input" + NEW_LINE
+              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday" + NEW_LINE);
     }
 
     private void printEmptyTimetableMessage() {
-        printRed("Timetable is empty\n");
+        printRed("Timetable is empty" + NEW_LINE);
     }
 
     private void printInvalidSlotInput() {
-        printRed("Invalid slot input\n");
+        printRed("Invalid slot input" + NEW_LINE);
     }
 
     private void printInvalidTimeFormat() {
-        printRed("Invalid time format\n");
+        printRed("Invalid time format" + NEW_LINE);
     }
 }

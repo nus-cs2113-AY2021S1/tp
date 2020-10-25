@@ -68,7 +68,7 @@ public class Bookmark {
         } catch (IOException e) {
             throw new ZoomasterException(ZoomasterExceptionType.ERROR_LAUNCHING_URL);
         }
-        return "  [" + description + "] " + url + "\n";
+        return "  [" + description + "] " + url;
     }
 
     private void launchUrl() throws IOException {

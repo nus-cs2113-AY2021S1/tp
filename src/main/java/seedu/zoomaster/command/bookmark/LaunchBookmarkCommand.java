@@ -39,7 +39,7 @@ public class LaunchBookmarkCommand extends Command {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
             }
             description = details.trim();
-            launchTypeFlag = 2; // (flag to launch bookmarks with matching module and description)
+            launchTypeFlag = 2; // (flag to launch bookmarks with matching description)
         }
     }
 
@@ -56,11 +56,11 @@ public class LaunchBookmarkCommand extends Command {
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);
-                String message = "Nice! I've launched this bookmark!:\n" + bookmark.launch();
+                String message = "Nice! I've launched this bookmark!:\n" + bookmark.launch() + System.lineSeparator();
                 ui.print(message);
             } catch (IndexOutOfBoundsException e) {
                 throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
-                        + bookmarks.getBookmarkList().size());
+                        + bookmarks.getBookmarks().size());
             }
             return;
         } else if (launchTypeFlag == 2) { // Launch based on matching module and description
