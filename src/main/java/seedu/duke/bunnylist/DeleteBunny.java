@@ -5,7 +5,6 @@ import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DeleteBunny {
 
@@ -22,7 +21,7 @@ public class DeleteBunny {
         bunniesList.remove(bunnyNum - 1);
     }
 
-    private static int getNumFromInput(String userInput, int numBunnies) throws BunnyIndexOutOfBoundsException {
+    public static int getNumFromInput(String userInput, int numBunnies) throws BunnyIndexOutOfBoundsException {
         int bunnyNum;
         try {
             bunnyNum = Integer.parseInt(userInput.replaceAll("[\\D]", ""));
