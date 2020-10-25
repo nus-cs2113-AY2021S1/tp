@@ -289,8 +289,7 @@ public class Person {
      */
     private void performAssertionsForWeight(int weight, String weightType) {
         assert weight > 0 : weightType + " of person should be greater than 0";
-        // The heaviest person in the world has a weight of 442kg
-        assert weight < 443 : weightType + " of person should less than 443";
+        assert weight < 500 : weightType + " of person should less than 500";
     }
 
     /**
@@ -300,8 +299,7 @@ public class Person {
      */
     private void performAssertionsForHeight(int height) {
         assert height > 0 : "Height of person should be greater than 0";
-        // Tallest person in the world has a height of 272cm
-        assert height < 273 : "Height of person should be less than 273";
+        assert height < 300 : "Height of person should be less than 300";
     }
 
     /**
@@ -330,7 +328,6 @@ public class Person {
      */
     private void performAssertionsForAgeInput(int age) {
         assert age > 0 : "The age of person should be greater than 0";
-        // Oldest person to have ever lived, lived until 122 years and 164 days.
-        assert age < 123 : "The age of person should be lesser than 123";
+        assert age < 150 : "The age of person should be lesser than 150";
     }
 }
