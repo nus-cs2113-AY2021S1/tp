@@ -18,6 +18,8 @@ import static seedu.duke.ui.UI.printFilteredBunny;
 
 public class BunnyFilter {
 
+    public static HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
+
     public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList)
             throws MissingFilterOptionsException, NoFilteredItemsException {
 
@@ -59,7 +61,7 @@ public class BunnyFilter {
         int i;
         HashMap<Integer, Bunny> numberedBunny = new HashMap<>();
         Set<Map.Entry<Integer, Bunny>> entries = numberedBunny.entrySet();
-        HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
+        filteredBunny.clear();
 
         // add all the numbered tasks to a hashmap
         for (i = 1; i <= bunniesList.size(); i++) {

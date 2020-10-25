@@ -1,25 +1,43 @@
 package seedu.duke.filters;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.bunnylist.BunnyList;
-import seedu.duke.exceptions.BunnyIdeaMissingException;
-import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.NoFilteredItemsException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.duke.bunnylist.BunnyList.bunniesList;
+import static seedu.duke.bunnylist.BunnyListTest.initializeBunnyListTestDatabase;
 
 
 class BunnyFilterTest {
 
-    private static void initializeBunnyListTestDatabase() {
+    @Test
+    void filterBunny_filterIdeaTerm_getOneResult() {
+        BunnyList.bunniesList.clear();
+        initializeBunnyListTestDatabase();
         try {
-            BunnyList.addBunny("bunny i\\ some cool idea g\\ cool");
-            BunnyList.addBunny("bunny i\\ some fun idea g\\ fun");
-            BunnyList.addBunny("bunny i\\ some kind of idea g\\ awesome");
-        } catch (CommandMissingArgumentsException | BunnyIdeaMissingException e) {
+            BunnyFilter.filterBunny("filter bunny i\\ fun", bunniesList);
+        } catch (MissingFilterOptionsException e) {
+            e.printStackTrace();
+        } catch (NoFilteredItemsException e) {
             e.printStackTrace();
         }
+        assertEquals(2, BunnyFilter.filteredBunny.size());
     }
 
-    //@Test
-    //void filterBunny_filterIdeaTerm_getOneResult() {
-    //    FilterExecutor.executeFilterCommand("filter bunny i\\ fun");
-    //}
+    @Test
+    void filterBunny_filterGenreTerm_getOneResult() {
+        BunnyList.bunniesList.clear();
+        initializeBunnyListTestDatabase();
+        try {
+            BunnyFilter.filterBunny("filter bunny g\\ awesome", bunniesList);
+        } catch (MissingFilterOptionsException e) {
+            e.printStackTrace();
+        } catch (NoFilteredItemsException e) {
+            e.printStackTrace();
+        }
+        assertEquals(2, BunnyFilter.filteredBunny.size());
+    }
 }
