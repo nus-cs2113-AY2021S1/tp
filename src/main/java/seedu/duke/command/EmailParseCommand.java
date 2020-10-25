@@ -1,13 +1,16 @@
 package seedu.duke.command;
 
 import seedu.duke.data.UserData;
+import seedu.duke.event.Personal;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.TimeErrorException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +20,7 @@ import java.util.regex.Pattern;
 public class EmailParseCommand extends Command {
     private String emailSubject;
     private int dateCount;
+    private int timeCount;
 
 
     /**
@@ -28,6 +32,7 @@ public class EmailParseCommand extends Command {
         this.isExit = false;
         emailSubject = command;
     }
+
     /**
      * abstract class for commands.
      *
@@ -39,46 +44,105 @@ public class EmailParseCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         System.out.println("Please enter the email body!");
         String emailBody = ui.receiveCommand();
-        ArrayList<LocalDate> dateList = detectDates(emailBody);
+        ArrayList<LocalDate> dateList = detectDate(emailBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
+
+        if(finalDate == null) {
+            System.out.println("No date detected in the email body! The personal event will only contain the description.");
+            Personal personalEvent = new Personal(emailSubject);
+            data.addToEventList("Personal", personalEvent);
+        } else {
+            ArrayList<LocalTime> timeList = detectTime(emailBody);
+            LocalTime finalTime = chooseFinalTime(timeList, ui);
+            if (finalTime == null) {
+                System.out.println("No time detected in email body! The personal event will only have the date and description.");
+                Personal personalEvent = new Personal(emailSubject, finalDate);
+                data.addToEventList("Personal", personalEvent);
+            } else {
+                Personal personalEvent = new Personal(emailSubject, finalDate, finalTime);
+                data.addToEventList("Personal", personalEvent);
+            }
+        }
+        ui.printEventAddedMessage(data.getEventList("Personal").getNewestEvent());
+
+
     }
 
-    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
-        LocalDate finalDate = null;
-        if (dateCount > 1) {
-            System.out.println("We have detected " + dateCount + " dates in this email body!");
-            System.out.println("Please select the date you want for this event from the list below!");
-            int dateNumber = 0;
-            for (LocalDate date : dateList) {
+    private LocalTime chooseFinalTime(ArrayList<LocalTime> timeList, Ui ui) {
+        LocalTime finalTime = null;
+
+        if (timeCount > 1) {
+            System.out.println("We have detected " + timeCount + " time slots in this email body!");
+            System.out.println("Please select the time you want for this event from the list below!");
+            int timeNumber = 0;
+            for (LocalTime time : timeList) {
                 ui.printDividerLine();
-                System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                System.out.println(timeNumber + 1 + " " + time);
                 ui.printDividerLine();
             }
-            boolean dateChosen = false;
-            while (!dateChosen) {
+            boolean timeChosen = false;
+            while (!timeChosen) {
                 try {
-                    int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
-                    if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
-                        System.out.println("Invalid date number to choose! Please choose again!");
+                    int timeNumberChosen = Integer.parseInt(ui.receiveCommand());
+                    if (timeNumberChosen > timeCount || timeNumberChosen <= 0) {
+                        System.out.println("Invalid time slot number to choose! Please choose again!");
                     } else {
-                        finalDate = dateList.get(dateNumberChosen - 1);
+                        finalTime = timeList.get(timeNumberChosen - 1);
                     }
-                    dateChosen = true;
+                    timeChosen = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid date number to choose! Please choose again!");
+                    System.out.println("Invalid time slot number to choose! Please choose again!");
                 }
             }
-        } else if (dateCount == 0) {
-            System.out.println("No dates detected for this email body!");
+        } else if (timeCount == 0) {
+            System.out.println("No time slots detected for this email body!");
         } else {
-            finalDate = dateList.get(0);
-            System.out.println("One date detected: " + finalDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            finalTime = timeList.get(0);
+            System.out.println("One time slot detected and chosen: " + finalTime);
         }
 
-        return finalDate;
+        return finalTime;
+
     }
 
-    private ArrayList<LocalDate> detectDates(String emailBody) {
+
+    private ArrayList<LocalTime> detectTime(String emailBody) {
+        ArrayList<String> timeListInString = new ArrayList<>();
+        String upperCaseEmailBody = emailBody.toUpperCase();
+        Pattern timePattern = Pattern.compile("\\b(1[0-9]|0?[0-9]|2[0-3])([:.][0-5][0-9])?[\\h]?([AP][M])?\\b");
+        Matcher timeMatcher = timePattern.matcher(upperCaseEmailBody);
+
+        while(timeMatcher.find()) {
+            String time = timeMatcher.group(0);
+            if(time.contains(".")) {
+                time = time.replaceAll("\\.", ":");
+            }
+            timeListInString.add(time);
+        }
+
+        ArrayList<LocalTime> timeList = verifyTime(timeListInString);
+        timeCount = timeList.size();
+
+        return timeList;
+    }
+
+    private ArrayList<LocalTime> verifyTime(ArrayList<String> timeListInString) {
+        ArrayList<LocalTime> timeList = new ArrayList<>();
+
+        for (String timeInString : timeListInString) {
+            try {
+                LocalTime localTime = DateTimeParser.timeParser(timeInString);
+                timeList.add(localTime);
+            } catch (TimeErrorException e) {
+                // something went wrong with date parsing
+                // Log something?
+            }
+        }
+
+        return timeList;
+    }
+
+    private ArrayList<LocalDate> detectDate(String emailBody) {
         ArrayList<String> dateListInString = new ArrayList<>();
         String upperCaseEmailBody = emailBody.toUpperCase();
         Pattern dayMonthYearPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?[\\h-]" +
@@ -91,14 +155,12 @@ public class EmailParseCommand extends Command {
         Matcher monthDayYearMatcher = monthDayYearPattern.matcher(upperCaseEmailBody);
 
         while (dayMonthYearMatcher.find()) {
-            //dateCount++;
             String date = dayMonthYearMatcher.group(0);
             String day = detectDay(date);
             String month = detectMonth(date);
             String year = detectYear(date);
             String combinedDate = day + "/" + month + "/" + year;
             dateListInString.add(combinedDate);
-
         }
 
         while (monthDayYearMatcher.find()) {
@@ -110,12 +172,12 @@ public class EmailParseCommand extends Command {
             dateListInString.add(combinedDate);
         }
 
-        ArrayList<LocalDate> dateList = verifyDates(dateListInString);
+        ArrayList<LocalDate> dateList = verifyDate(dateListInString);
         dateCount = dateList.size();
         return dateList;
     }
 
-    private ArrayList<LocalDate> verifyDates(ArrayList<String> dateListInString) {
+    private ArrayList<LocalDate> verifyDate(ArrayList<String> dateListInString) {
         ArrayList<LocalDate> dateList = new ArrayList<>();
         for (String dateInString : dateListInString) {
             try {
@@ -211,6 +273,42 @@ public class EmailParseCommand extends Command {
         }
 
         return month;
+    }
+
+    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
+        LocalDate finalDate = null;
+        if (dateCount > 1) {
+            System.out.println("We have detected " + dateCount + " dates in this email body!");
+            System.out.println("Please select the date you want for this event from the list below!");
+            int dateNumber = 0;
+            for (LocalDate date : dateList) {
+                ui.printDividerLine();
+                System.out.println(dateNumber + 1 + " " + date);
+                //System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                ui.printDividerLine();
+            }
+            boolean dateChosen = false;
+            while (!dateChosen) {
+                try {
+                    int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
+                    if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
+                        System.out.println("Invalid date number to choose! Please choose again!");
+                    } else {
+                        finalDate = dateList.get(dateNumberChosen - 1);
+                    }
+                    dateChosen = true;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid date number to choose! Please choose again!");
+                }
+            }
+        } else if (dateCount == 0) {
+            System.out.println("No dates detected for this email body!");
+        } else {
+            finalDate = dateList.get(0);
+            System.out.println("One date detected and chosen: " + finalDate);
+        }
+
+        return finalDate;
     }
 
 
