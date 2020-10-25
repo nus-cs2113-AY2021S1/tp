@@ -40,15 +40,77 @@ Welcome to Quotesify v2.0!
 What would you like to do with Quotesify?
 ```
 
-## 3.0 Design & implementation
+## 3.0 Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### 3.1 Architecture
 
-### 3.1 Feature: Rating system for books
+![Sequence Diagram for Architecture](images/SeqDiagram_Architecture.png)
 
-[INSERT CLASS DIAGRAM AND EXPLANATION]
+The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief description of each component shown.
 
-#### 3.1.1 Add rating
+#### Main class: `Quotesify.java`
+* On program launch, the Main is responsible for initialising the required components in the correct sequence as well as to connect these components to start Quotesfiy.
+* On shutdown, the Main gracefully terminates the application and its running components. 
+
+The other components that make up Quotesify include:
+* UI: Text-based User Interface (UI) of the application.
+* Logic: Handles the execution of user input commands.
+* Model: Stores Quotesify’s data objects in application memory.
+* Storage: Stores and accesses program data in the hard disk.
+
+The Sequence Diagram below shows an example of how the components work together upon receiving the command `add -b Harry Potter /by J K Rowling`.
+
+![Sequence Diagram for Components](images/SeqDiagram_Components.png)
+
+### 3.2 UI Component
+
+![Class Diagram for UI Component](images/ClassDiagram_UI.png)
+
+The UI component is made up of main 2 classes:
+* `TextUi`: Responsible for the majority display of Quotesify’s messages. 
+* `UiMessages`: Holds all messages required for TextUI to print to the program console.
+
+In essence, the UI is responsible for the majority display of all successful command executions, error messages, as well as user interaction by prompting for the next command.
+
+### 3.3 Logic Component
+
+![Class Diagram for Logic Component]()
+
+The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence flow from the time a user input is read till command execution ends.
+
+1. User input is fetched from the UI and passed into the Parser for parsing.
+2. A Command object is returned and subsequently executed in the Main class.
+3. The command execution outcome may affect Quotesify’s model objects. (e.g. adding a book)
+4. Command instructs the UI component to print out relevant output messages depending on command type. Also, Command may invoke saving of data via Storage at a given point in time.
+5. Finally, Command will then inspect the exit status after command execution.
+6. Control is handed back over to the UI.
+
+### 3.4 Storage Component
+
+The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed by the command component as well as to detect and load data on program launch.
+
+On program launch:
+1. `Storage` is initialised and checks for the existence of save data.
+2. If save data exists, `Storage` will read the save data in JSON format and parses them back into their model objects. (e.g. Book)
+3. If save data does not exist, `Storage` will create an empty save file in the specified directory.
+
+On Command execution:
+1. `Storage` parses all model objects in JSON format and writes into the save file.
+
+
+## 4.0 implementation
+
+### 4.1 Feature: Rating system for books
+Given below is the class diagram for classes related to the Rating System in Quotesify:
+
+![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
+
+* A `Book` must exists before a `Rating` can be created.
+* The `XRatingCommand` class represents `AddRatingCommand`, `DeleteRatingCommand`, `ListRatingCommand`
+, `EditRatingCommand`, `FindRatingCommand` classes which all extends their respective parent `XCommand` classes.
+* All the `XCommand` classes extends the abstract `Command` class.
+
+#### 4.1.1 Add rating
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
 * The book object will store an attribute named *rating*, which will be set by this feature.
@@ -58,10 +120,11 @@ Given below is the sequence diagram for adding rating to a book:
 
 ![Sequence Diagram for Add Ratings](images/SeqDiagram_AddRating.png)
 
-* The sequence diagram shows the process of *Add Rating* from the execute() method in AddCommand class.
-The switch statement in the execute() method to decide the item that the user is adding is not shown in the diagram.
-* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
-* In the addRating() method, if the user input such as book title, author or rating score is missing
+* The sequence diagram shows the process of *Add Rating* from the `execute()` method in `AddRatingCommand` class,
+which extends the `AddCommand` class. The switch statement in the `execute()` method to decide the item that the user
+is adding is not shown in the diagram.
+* The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
+* In the `addRating()` method, if the user input such as book title, author or rating score is missing
 , a message will be printed to inform the user and the method is returned.
 * There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
 in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
@@ -77,7 +140,7 @@ This list of ratings will be used when listing or finding ratings.
 * Using both book title and author to identify a rating instead of just book title
     * Pros: Allows books with the same title but different author to be rated.
 
-#### 3.1.2 Find ratings
+#### 4.1.2 Find ratings
 The *find ratings* feature will search if the rating for a particular book exists in Quotesify
 and print details about the rating.
 
@@ -85,10 +148,11 @@ Given below is the sequence diagram for finding ratings:
 
 ![Sequence Diagram for Find Ratings](images/SeqDiagram_FindRating.png)
 
-* The sequence diagram shows the process of *Find Rating* from the execute() method in FindCommand class.
-The switch statement in the execute() method to decide the item that the user is finding is not shown in the diagram.
-* The list of ratings will be retrieved from the ListManager class which stores all the different lists in Quotesify.
-* In the findRating() method, if the user input such as the book to search for is missing, a message will be printed
+* The sequence diagram shows the process of *Find Rating* from the `execute()` method in `FindRatingCommand` class
+which extends the `FindCommand` class. The switch statement in the `execute()` method to decide the item that the
+user is finding is not shown in the diagram.
+* The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
+* In the `findRating()` method, if the user input such as the book to search for is missing, a message will be printed
 to inform the user and the method is returned.
 * The list of ratings will be looped to see if the rating exists for the particular book.
 * Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
@@ -100,9 +164,38 @@ be created in the process.
 * The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
 bookmarks named `BookmarkList`.
 
+### 4.2 Feature: Category Management
+Given below is the class diagram for classes related to Category Management in Quotesify:
 
-## 4.0 Product scope
-### 4.1 Target user profile
+![Class Diagram for Category Management]()
+
+#### 4.1.1 Add Categories
+The proposed add categories feature allows a user to add multiple categories to an existing book or quote. 
+
+The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
+
+![Sequence Diagram for Add Categories](images/SeqDiagram_AddCategories.png)
+
+* For each category that the user has specified, the process will be executed in a loop until all categories have been processed.
+* Additional checks include verifying the existence of the specified book and if the specified category already exists in the book. If either one of these checks fail, an error message will be prompted.
+* On success, 
+  * The category name will be added into the *categories* attribute of the `Book` object. 
+  * A new `Category` object will be created and stored into the category list if it does not exist. 
+The book will also be stored into the category's *bookList* attribute for record keeping.
+
+##### Design Consideration
+* Allowing users to specify multiple categories at once.
+  * Pros: Increases efficiency for users
+* Giving users an option to specify a book, quote, or both to be tagged with a category.
+  * Pros: Increases efficiency for users.
+  * Cons: Difficult to implement.
+* Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
+  * Pros: Further increases efficiency for users.
+  * Cons: Increased complexity in implementation.
+
+
+## 5.0 Product scope
+### 5.1 Target user profile
 The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
@@ -111,19 +204,18 @@ The intended user of Quotesify is someone that meets the following criterias:
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-### 4.2 Value proposition
+### 5.2 Value proposition
 
 Quotesify will help you to improve your reading experience with quick and easy features such as book management,
 quote management, progress tracker, category management and a rating system for your books.
 
-## 5.0 User Stories
+## 6.0 User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
 |v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
 |v1.0|user|categorize my listings|can view quotes from a specific category that I want|
 |v1.0|long time user|have a page to see a list of books and categories of my notes|can navigate into the relevant book/category without having to remember the titles|
-|v1.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
 |v1.0|beginner reader|add deadlines to books I am reading|can keep track of my readling deadlines|
 |v1.0|avid reader|be able to keep track of books|can filter out books I have read and those that are on my list of books to read|
@@ -131,20 +223,21 @@ quote management, progress tracker, category management and a rating system for 
 |v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
 |v1.0|user|save quotes I find meaningful|can view my favourite quotes whenever I want|
 |v2.0|forgetful reader|be reminded of quotes I saved|can remember them better in the long run|
+|v2.0|student and reader|pen my thoughts to a highlighted quote or text|can expand on certain ideas or express how I feel|
 |v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
-## 6.0 Non-Functional Requirements
+## 7.0 Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 
-## 7.0 Glossary
+## 8.0 Glossary
 
 * *glossary item* - Definition
 
-## 8.0 Instructions for manual testing
+## 9.0 Instructions for manual testing
 
-### 8.1 Launch and shutdown
+### 9.1 Launch and shutdown
 
 #### Initial launch
    1. Ensure `Java 11` and above is installed.
@@ -235,21 +328,39 @@ quote management, progress tracker, category management and a rating system for 
    * `edit -b 3 /to`: New title not specified. 
    
    Expected: Book title will not be edited. An error message will be printed. 
+   
 ### Adding a quote
 
-1. * Test case 1: `add -q Life's short, smile while you still have teeth`
-   * Test case 2: `add -q I am your father /by Darth Vader`
-   * Test case 3: `add -q That’s my spot! /from The Big Bang Theory`
-   * Test case 4: `add -q Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+1. Add a quote without author and reference to Quotesify
+
+    Test case: `add -q life's short, smile while you still have teeth`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+
+2. Add a quote with an author name to Quotesify
+
+    Test case: `add -q luke, I am your father /by darth vader`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+
+3. Add a quote with reference to Quotesify
+
+    Test case:`add -q get schwifty /from rick and morty`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+    
+4. Add a quote with an author and reference to 
+
+    Test case: `add -q so everyone’s supposed to sleep every single night now? /by rick /from rick and morty`
+    
+    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
    
-   Expected: Quote is added to Quotesify. A message will be prompted to indicate that 
-   the quote has been successfully added.
-   
-2. Other incorrect commands to try:
+5. Incorrect commands to try:
    * `add -q` : quote field left empty
-   * `add -q You can't see me /by` : author tag with missing author name
-   * `add -q My name is Inigo Montoya /from` : reference tag with missing reference title
-   * `add -q I am your father /by /from` : missing reference title and author name
+   * `add -q ` : empty space entered for quote field  
+   * `add -q you can't see me /by` : author tag with missing author name
+   * `add -q my name is inigo montoya /from` : reference tag with missing reference title
+   * `add -q i am your father /by /from` : missing reference title and author name
    
    Expected: Quote will not be added. A message with error details will be shown.
    
@@ -257,22 +368,11 @@ quote management, progress tracker, category management and a rating system for 
 
 1. Test case: `list -q`
 
-   Expected: The entire list of quotes with reference and author name (if present) will be displayed.
-   
-### Listing quotes from a specific reference
-
-1. Test case: `list -q /from The Big Bang Theory`
-
-   Expected: The list of quotes with the specified reference title will be displayed.
-   
-2. Other incorrect commands to try:
-   * `list -q /from` : reference tag with missing reference title
-   
-   Expected: No quotes are listed. A message with error details will be shown.
+   Expected: The entire list of quotes with reference and author name (if present) in Quotesify will be displayed.
    
 ### Listing quotes by a specific author
 
-1. Test case: `list -q /by Rick`
+1. Test case: `list -q /by rick`
 
    Expected: The list of quotes with the specified author name will be displayed.
    
@@ -281,39 +381,33 @@ quote management, progress tracker, category management and a rating system for 
    
    Expected: No quotes are listed. A message with error details will be shown.
    
+### Listing quotes from a specific reference
+
+1. Test case: `list -q /from rick and morty`
+
+   Expected: The list of quotes with the specified reference title will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /from` : reference tag with missing reference title
+   
+   Expected: No quotes are listed. A message with error details will be shown.
+   
 ### Listing quotes from a specific reference and by a specific author
 
-1. Test case: `list -q /from Rick and Morty /by Rick`
+1. Test case: `list -q /from rick and morty /by rick`
 
    Expected: The list of quotes with the specified reference title and author name will be displayed.
    
 2. Other incorrect commands to try:
-   * `list -q /from Rick and Morty /by` : reference and author tag with missing author name
-   * `list -q /from /by Rick` : reference and author tag with missing reference title
+   * `list -q /from rick and morty /by` : reference and author tag with missing author name
+   * `list -q /from /by rick` : reference and author tag with missing reference title
    * `list -q /from /by` : missing reference title and author name
    
    Expected: No quotes are listed. A message with error details will be shown.
    
-### Deleting a quote
-
-1. Test case: `delete -q 3`
-
-   Expected: Quote will be deleted from Quotesify. A message will be prompted to indicate that 
-   the quote has been successfully deleted.
-   
-2. Other incorrect commands to try:
-   * `delete -q`: missing quote number field
-   * `delete -q X`: non integer inout
-   * `delete -q 9999999`: non existent quote number
-   
-   Expected: No quote is deleted. A message with error details will be shown.
-   
 ### Editing a quote
 
-1. * Test case 1: `edit -q 1 /to I pretty much spend all day, every day just looking forward to go back to sleep`
-   * Test case 2: `edit -q 2 /to Don't give up on your dreams, keep sleeping! /by Stranger`
-   * Test case 3: `edit -q 2 /to That’s my spot! /from The Big Bang Theory`
-   * Test case 4: `edit -q 2 /to Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+1. Test case: `edit -q 2 /to no, i am your mummy /by darth vader`
    
    Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
    
@@ -321,9 +415,23 @@ quote management, progress tracker, category management and a rating system for 
    * `edit -q` : missing quote number and updated quote
    * `edit -q 1 /to`: missing updated quote
    * `edit -q 1 You can't see me` : missing "/to" flag
-   * `edit -q 9999999 /to You can't see me` : none existent quote number
+   * `edit -q 9999999 /to You can't see me` : non-existent quote number
    
    Expected: Quote will not be updated. A message with error details will be shown.
+   
+### Deleting a quote
+
+1. Test case: `delete -q 1`
+
+   Expected: Quote will be deleted from Quotesify. A message will be prompted to indicate that 
+   the quote has been successfully deleted.
+   
+2. Other incorrect commands to try:
+   * `delete -q`: missing quote number field
+   * `delete -q X`: non integer input
+   * `delete -q 9999999`: non existent quote number
+   
+   Expected: No quote is deleted. A message with error details will be shown.
    
 ### Finding a quote
 
@@ -335,7 +443,61 @@ quote management, progress tracker, category management and a rating system for 
    * `find -q`: missing keyword
    * `find -q `: empty space as keyword
    
-   Expected: No quotes will be found. A message with error details will be shown.
+   Expected: No quotes will be found and listed. A message with error details will be shown.
+   
+### Adding reflection to a quote
+
+1. Test case: `add -qr 1 /reflect No, that's not true. It's impossible!`
+    
+   Expected: Reflection is added to quote. A message will be prompted to indicate that the reflection has been successfully added.
+   * Quotes with reflection will have a "[R]" tag attached to differentiate.
+   
+5. Incorrect commands to try:
+   * `add -qr` : missing quote number, reflection tag and reflection
+   * `add -qr 1 /reflect` : reflection field missing
+   * `add -qr 9999 /reflect Reflection is here` : non-existent quote
+   
+   Expected: Reflection will not be added. A message with error details will be shown.
+   
+### Listing reflection of a quote
+
+1. Test case: `list -qr 1`
+
+   Expected: The reflection attached to the specified quote will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -qr` : missing quote number
+   * `list -qr 9999` : non-existent quote
+   
+   Expected: Reflection is not listed. A message with error details will be shown.
+   
+### Editing reflection of a quote
+
+1. Test case: `edit -qr 1 /to Who is Yoda’s daddy?`
+   
+   Expected: Reflection will be updated, a prompt displaying updated reflection will be shown.
+   
+2. Other incorrect commands to try:
+   * `edit -qr` : missing quote number, to tag and updated reflection
+   * `edit -qr 1 /to`: missing updated reflection
+   * `edit -qr 1 nothing to reflect` : missing to flag
+   * `edit -qr 9999999 /to updated reflection here!` : non-existent quote number
+   
+   Expected: Reflection will not be updated. A message with error details will be shown.
+   
+### Deleting reflection of a quote
+
+1. Test case: `delete -qr 1`
+
+   Expected: Reflection will be deleted from the quote. A message will be prompted to indicate that 
+   the reflection has been successfully deleted.
+   
+2. Other incorrect commands to try:
+   * `delete -qr`: missing quote number field
+   * `delete -qr X`: non integer input
+   * `delete -qr 9999999`: non existent quote number
+   
+   Expected: Quote reflection is not deleted. A message with error details will be shown.
 
 ### Adding categories
 1. Add one or more category to a book

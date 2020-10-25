@@ -4,11 +4,19 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+  * [1. Book Management](#1-book-management)
+  * [2. Quote Management](#2-quote-management)
+  * [3. Progress Tracker](#3-progress-tracker)
+  * [4. Category Management](#4-category-management)
+  * [5. Rating System for books](#5-rating-system-for-books)
 - [Usage](#usage)
   * [Book Management](#book-management)
     * [Adding a book](#adding-a-book-add--b)
+    * [Completing a book](#completing-a-book-done--b)
     * [Listing all existing book](#listing-all-existing-books-list--b)
+    * [Listing book details](#listing-book-details-list--b)
     * [Listing books by an Author](#listing-books-by-an-author-list--b)
+    * [Listing books by completion](#listing-books-by-completion-list--b)
     * [Finding books by keyword](#finding-books-by-keyword-find--b)
     * [Deleting a book](#deleting-a-book-delete--b)
   * [Quote Management](#quote-management)
@@ -62,7 +70,25 @@ Before you begin, here's what you need to do:
 
 ## Features 
 
-{Give detailed description of each feature}
+### 1. Book Management
+### 2. Quote Management
+### 3. Progress Tracker
+### 4. Category Management
+Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
+With the categories you have created, you can simply tag them to any book or quote and list all of them in a categorised fashion.
+Whenever you have second thoughts about a given category name, simply change the name or remove it whilst Quotesify helps you
+update the change across all books and quotes.
+
+If you are someone who likes being neat, organised and efficient, this feature is for you!
+
+### 5. Rating System for books
+The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
+how you feel about the books you read, and will always be ready to recommend a book to a fellow book reader.
+Ratings can be edited whenever you change your mind about the book, or be deleted when you are not interested
+in that rating anymore. Ratings can also be listed according to their ratings - with your favourites at the top - as
+well as be searched based on the book title and author.
+
+With this rating system, you will never forget how you feel about the books that you have read!
 
 ## Usage
 
@@ -80,16 +106,31 @@ Format: `add -b BOOK_TITLE /by AUTHOR`
 * You must specify both the title and the author of the book. 
 
 Example of usage:
-
 `add -b Harry Potter /by JK Rowling`
 
+Expected outcome:
+~~~
+The book [Harry Potter by JK Rowling] has been added!
+~~~
+
+#### Completing a book: `done -b`
+Finished reading a book? You can now mark your book as done.
+
+Format: `done -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+ `done -b 2`
 
 Expected outcome:
-
-`The book [Harry Potter by JK Rowling] has been added!`
+~~~
+The book [Harry Potter by JK Rowling] has been marked as done!
+~~~
 
 #### Listing all existing books: `list -b`
-You can list all books currently in your booklist. 
+Want to see what books you have in your reading list? You can list all books currently in your booklist. 
 
 Format: `list -b`
 
@@ -103,6 +144,59 @@ Here is a list of all books:
 2. The Lion, the Witch and the Wardrobe by CS Lewis
 3. Becoming by Michelle Obama
 4. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing book details: `list -b`
+Want to check a book's details? You can list the details of a book by specifying the book number.
+
+Format: `list -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+`list -b 2`
+
+Expected outcome:
+
+Case 1: When the book has not been rated and not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 2: When the book has been rated but not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
+~~~
+
+Case 3: When the book has not been rated but completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter 
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 4: When the book has been rated and completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
 ~~~
 
 #### Listing books by an Author: `list -b`
@@ -121,6 +215,35 @@ Expected outcome:
 Here is a list of books by CS Lewis:
 1. The Lion, the Witch and the Wardrobe by CS Lewis
 2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing books by completion: `list -b`
+Only want to see the books you have finished or not finished? You can do that using the command below.
+
+##### List done books
+Format: `list -b done`
+
+Example of usage:
+`list -b done`
+
+Expected outcome:
+~~~
+Here are the books you have completed:
+1. [v] Harry Potter by JK Rowling
+2. [v] Harry Potter 2 by JK Rowling
+~~~
+
+##### List done books
+Format: `list -b undone`
+
+Example of usage:
+`list -b undone`
+
+Expected outcome:
+~~~
+Here are the books you have yet to complete:
+1. [x] Harry Potter by JK Rowling
+2. [x] Harry Potter 2 by JK Rowling
 ~~~
 
 #### Finding books by keyword: `find -b`
@@ -144,7 +267,7 @@ Don't need a book anymore? You can delete the book permanently.
 Format: `delete -b BOOK_NUMBER`
 
 * `BOOK_NUMBER` refers to the index you see when you list ALL books.
-* Book number specified must be less than the total number of books.
+* The book number must be an existing number in the list when you list ALL books.
 
 Example of usage:
 `delete -b 1`
@@ -153,6 +276,23 @@ Expected outcome:
 ~~~
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
+
+#### Editing an existing book: `edit -b`
+Accidentally typed in the wrong book title? You can edit your book titles. 
+
+Format: `edit -b BOOK_NUMBER /to NEW_TITLE`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+* `/to` flag must be typed before the new title
+
+Example of usage:
+`edit -b 2 /to Harry Potter 2`
+
+Expected outcome:
+~~~
+The book has been edited from [Harry Potter] to [Harry Potter 2]!
+~~~
 
 ### Quote Management
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
@@ -170,29 +310,29 @@ Format: `add -q QUOTE {[/by AUTHOR] | [/from REFERENCE]}`
 
 Example of usage: 
 
-1. `add -q Life is short, smile while you still have teeth`
-2. `add -q Luke, I am your father /by Darth Vader`
-3. `add -q Get schwifty! /from Rick and Morty`
-4. `add -q So everyone’s supposed to sleep every single night now? /from Rick and Morty /by Rick`
+1. `add -q life is short, smile while you still have teeth`
+2. `add -q luke, i am your father /by darth vader`
+3. `add -q get schwifty! /from rick and morty`
+4. `add -q so everyone’s supposed to sleep every single night now? /from rick and morty /by rick`
 
 Expected outcome 1:
 ```
-The quote ["Life is short, smile while you still have teeth"] has been added!
+The quote ["life is short, smile while you still have teeth"] has been added!
 ```
 
 Expected outcome 2:
 ```
-The quote ["Luke, I am your father" - by Darth Vader] has been added!
+The quote ["luke, i am your father" - by darth vader] has been added!
 ```
 
 Expected outcome 3:
 ```
-The quote ["Get schwifty!" - from Rick and Morty] has been added!
+The quote ["get schwifty!" - from rick and morty] has been added!
 ```
 
 Expected outcome 4:
 ```
-The quote ["So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)] has been added!
+The quote ["so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)] has been added!
 ```
 
 #### Listing all quotes: `list -q`
@@ -205,10 +345,10 @@ Example of usage: `list -q`
 Expected outcome:
 ```
 Here are all your quotes:
-1. "Life is short, smile while you still have teeth"
-2. "Luke, I am your father" - by Darth Vadar
-3. "Get schwifty!" - from Rick and Morty
-4. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+1. "life is short, smile while you still have teeth"
+2. "luke, i am your father" - by darth vadar
+3. "get schwifty!" - from rick and morty
+4. "so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Listing quotes from a specific reference: `list -q`
@@ -221,8 +361,8 @@ Example of usage: `list -q /from Rick and Morty`
 Expected outcome:
 ```
 Here is a list of quotes from Rick and Morty:
-"Get schwifty!" - from Rick and Morty
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+"get schwifty!" - from rick and morty
+"so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Listing quotes from a specific author: `list -q`
@@ -230,12 +370,12 @@ Lists all quotes tagged under the specified author.
 
 Format: `list -q /by AUTHOR`
 
-Example of usage: `list -q /by Darth Vader`
+Example of usage: `list -q /by darth vader`
 
 Expected outcome:
 ```
-Here is a list of quotes by Darth Vader:
-"Luke, I am your father" - by Darth Vadar
+Here is a list of quotes by darth vader:
+"luke, i am your father" - by darth vadar
 ```
 
 #### Listing quotes from a specific reference and author: `list -q`
@@ -243,12 +383,12 @@ Lists all quotes tagged under the specified reference and author.
 
 Format: `list -q /by AUTHOR /from REFERENCE`
 
-Example of usage: `list -q /by Rick /from Rick and Morty`
+Example of usage: `list -q /by rick /from rick and morty`
 
 Expected outcome:
 ```
-Here is a list of quotes from Rick and Morty by Rick:
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+Here is a list of quotes from rick and morty by rick:
+"so everyone’s supposed to sleep every single night now?" - by rick, (from rick and morty)
 ```
 
 #### Editing an existing quote: `edit -q`
@@ -260,11 +400,11 @@ Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
 * The specified quote should exist in Quotesify.
 * Format of quote follows adding of quote above.
 
-Example of usage: `edit -q 1 /to No, I am your father /by Darth Vader`
+Example of usage: `edit -q 2 /to no, i am your mummy /by darth vader`
 
 Expected outcome:
 ```
-The quote has been edited from: ["Luke, I am your father" - by Darth Vadar] to ["No, I am your father" - by Darth Vadar]!
+The quote has been edited from: ["luke, i am your father" - by darth vadar] to ["no, i am your mummy" - by darth vadar]!
 ```
 
 #### Deleting a quote: `delete -q`
@@ -279,7 +419,7 @@ Example of usage: `delete -q 1`
 
 Expected outcome:
 ```
-The quote "Life is short, smile while you still have teeth" has been deleted!
+The quote "life is short, smile while you still have teeth" has been deleted!
 ```
 
 #### Finding quotes: `find -q`
@@ -294,8 +434,8 @@ Example of usage: `find -q sleep`
 Expected outcome:
 ```
 Here are the results of my search:
-"I pretty much spend all day, every day just looking forward to go back to sleep"
-"Don't give up on your dreams, keep sleeping!" - by Stranger
+"i pretty much spend all day, every day just looking forward to go back to sleep"
+"don't give up on your dreams, keep sleeping!" - by stranger
 ```
 
 #### Adding reflection to a quote: `add -qr`
@@ -311,7 +451,7 @@ Example of usage: `add -qr 1 /reflect No, that’s not true. It’s impossible!`
 
 Expected outcome:
 ```
-Reflection has been added to quote: "No, I am your father" - by Darth vader [R]
+Reflection has been added to quote: "no, i am your father" - by darth vader [R]
 Reflection: No, that’s not true. It’s impossible!
 ```
 
@@ -329,7 +469,7 @@ Example of usage: `list -qr 1`
 Expected outcome:
 ```
 Here is the reflection you are looking for!
-Quote: "No, I am your father" - by Darth vader [R]
+Quote: "no, i am your father" - by darth vader [R]
 Reflection: No, that’s not true. It’s impossible!
 ```
 
@@ -347,7 +487,7 @@ Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
 Expected outcome:
 ```
 Reflection has been updated!
-Quote: "No, I am your father" - by Darth Vader [R]
+Quote: "no, i am your father" - by darth vader [R]
 Reflection: Who is Yoda’s daddy?
 ```
 
@@ -364,7 +504,7 @@ Example of usage: `delete -qr 1`
 
 Expected outcome:
 ```
-Reflection for the quote "No, I am your father" has been deleted!
+Reflection for the quote "no, i am your father" has been deleted!
 ```
 
 ### Category Management
@@ -585,8 +725,9 @@ Mark task as done: done -t TASK_NUMBER
 4. Category Management
 Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
 Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-List categories: list -c [CATEGORY]
-Edit category: edit -c OLD_CATEGORY NEW_CATEGORY
+List categories: list -c
+List items in a category: list -c CATEGORY
+Edit category: edit -c OLD_CATEGORY /to NEW_CATEGORY
 
 5. Rating System
 Add rating: add -r RATING_SCORE BOOK_TITLE /by AUTHOR
@@ -622,27 +763,32 @@ Enter the following command | To do this
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
 `list -b [/by AUTHOR]` | List books
+`list -b BOOK_NUMBER` | List book detail
+`list -b done/undone` | List books by completion
 `list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
 `list -bm` | List bookmarks
 `list -t` | List tasks
 `list -c [CATEGORY]` | List all categories / List items in a category
 `list -r [/RATING_SCORE]` | List ratings
+`edit -b BOOK_NUMBER /to NEW_TITLE` | Edit book title
 `edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
-`delete -b BOOK_TITLE /by AUTHOR` | Delete book
+`delete -b BOOK_NUMBER` | Delete book
 `delete -q QUOTE_NUMBER` | Delete quote
 `delete -qr QUOTE_NUMBER` | Delete quote reflection
 `delete -bm BOOK_TITLE` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
 `delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
 `delete -r BOOK_TITLE /by AUTHOR` | Delete rating
+`find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
 `find -r BOOK_TITLE /by AUTHOR` | Find rating
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
+`done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
 `help` | Show help page
 `bye` | Terminate the program

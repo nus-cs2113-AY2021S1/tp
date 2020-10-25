@@ -244,7 +244,9 @@ public class Storage {
         String name = (String) json.get("name");
         String deadline = (String) json.get("deadline");
         boolean isDone = (boolean) json.get("isDone");
-        return new ToDo(name, deadline, isDone);
+        ToDo newToDo = new ToDo(name, deadline, isDone);
+        newToDo.updateDateFormat();
+        return newToDo;
     }
 
     private Author parseAuthorObject(JSONObject json) {

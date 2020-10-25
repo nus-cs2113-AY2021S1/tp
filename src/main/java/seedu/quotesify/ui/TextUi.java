@@ -357,14 +357,23 @@ public class TextUi {
 
         System.out.println("1. Book Management");
         System.out.println(UiMessage.ADD_BOOK_COMMAND);
+        System.out.println(UiMessage.DONE_BOOK_COMMAND);
         System.out.println(UiMessage.DELETE_BOOK_COMMAND);
+        System.out.println(UiMessage.EDIT_BOOK_COMMAND);
         System.out.println(UiMessage.LIST_BOOK_COMMAND);
+        System.out.println(UiMessage.LIST_BOOK_DETAILS);
+        System.out.println(UiMessage.LIST_BOOK_COMPLETE);
 
         System.out.println(System.lineSeparator() + "2. Quote Management");
         System.out.println(UiMessage.ADD_QUOTE_COMMAND);
         System.out.println(UiMessage.DELETE_QUOTE_COMMAND);
         System.out.println(UiMessage.LIST_QUOTE_COMMAND);
+        System.out.println(UiMessage.EDIT_QUOTE_COMMAND);
+        System.out.println(UiMessage.FIND_QUOTE_COMMAND);
         System.out.println(UiMessage.ADD_QUOTE_REFLECTION_COMMAND);
+        System.out.println(UiMessage.DELETE_QUOTE_REFLECTION_COMMAND);
+        System.out.println(UiMessage.EDIT_QUOTE_REFLECTION_COMMAND);
+        System.out.println(UiMessage.LIST_QUOTE_REFLECTION_COMMAND);
 
         System.out.println(System.lineSeparator() + "3a. Bookmark Tracker");
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
@@ -418,6 +427,7 @@ public class TextUi {
         System.out.println(UiMessage.DELETE_BOOK_COMMAND);
         System.out.println(UiMessage.DELETE_BOOKMARK_COMMAND);
         System.out.println(UiMessage.DELETE_QUOTE_COMMAND);
+        System.out.println(UiMessage.DELETE_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.DELETE_CATEGORY_COMMAND);
         System.out.println(UiMessage.DELETE_RATING_COMMAND);
         System.out.println(UiMessage.DELETE_TODO_COMMAND);
@@ -426,8 +436,11 @@ public class TextUi {
     public void printListOfListCommands() {
         System.out.println("Here is a list of List commands you can do:\n");
         System.out.println(UiMessage.LIST_BOOK_COMMAND);
+        System.out.println(UiMessage.LIST_BOOK_DETAILS);
+        System.out.println(UiMessage.LIST_BOOK_COMPLETE);
         System.out.println(UiMessage.LIST_BOOKMARK_COMMAND);
         System.out.println(UiMessage.LIST_QUOTE_COMMAND);
+        System.out.println(UiMessage.LIST_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.LIST_CATEGORY_COMMAND);
         System.out.println(UiMessage.LIST_RATING_COMMAND);
         System.out.println(UiMessage.LIST_TODO_COMMAND);
@@ -438,6 +451,7 @@ public class TextUi {
         System.out.println(UiMessage.EDIT_BOOK_COMMAND);
         System.out.println(UiMessage.EDIT_BOOKMARK_COMMAND);
         System.out.println(UiMessage.EDIT_QUOTE_COMMAND);
+        System.out.println(UiMessage.EDIT_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
         System.out.println(UiMessage.EDIT_RATING_COMMAND);
         System.out.println(UiMessage.EDIT_TODO_COMMAND);
@@ -454,6 +468,7 @@ public class TextUi {
     }
 
     public void printDoneCommandUsage() {
+        System.out.println(UiMessage.DONE_BOOK_COMMAND);
         System.out.println(UiMessage.DONE_COMMAND);
     }
 }

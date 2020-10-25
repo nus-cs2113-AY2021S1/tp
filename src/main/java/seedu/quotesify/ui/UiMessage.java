@@ -49,6 +49,9 @@ public class UiMessage {
     public static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
     public static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
     public static final String EMPTY_TODO_LIST_MESSAGE = "There are no task created";
+    public static final String INCORRECT_DATE_FORMAT_MESSAGE = "The format of the date you provide is incorrect! "
+            + "I will add the task with a deadline of plain task instead." + System.lineSeparator()
+            + "Note that this task may not be displayed in order of time.";
     public static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
     public static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
     public static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
@@ -88,34 +91,41 @@ public class UiMessage {
     public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_TITLE /by AUTHOR";
     public static final String ADD_TODO_COMMAND = "Add task: " + "add -t TASK /by DEADLINE";
 
-    public static final String DELETE_BOOK_COMMAND = "Delete book: " + "delete -b BOOK_TITLE /by AUTHOR";
+    public static final String DELETE_BOOK_COMMAND = "Delete book: " + "delete -b BOOK_NUMBER";
     public static final String DELETE_BOOKMARK_COMMAND = "Delete bookmark: " + "delete -bm BOOK_TITLE";
     public static final String DELETE_QUOTE_COMMAND = "Delete quote:" + "delete -q QUOTE_NUMBER";
+    public static final String DELETE_QUOTE_REFLECTION_COMMAND = "Delete quote reflection:" + "delete -qr QUOTE_NUMBER";
     public static final String DELETE_CATEGORY_COMMAND = "Delete category: "
             + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
     public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_TITLE /by AUTHOR";
     public static final String DELETE_TODO_COMMAND = "Delete task: " + "delete -t TASK_NUMBER";
 
-    public static final String EDIT_BOOK_COMMAND = "";
+    public static final String EDIT_BOOK_COMMAND = "Edit book: " + "edit -b BOOK_NUMBER /to NEW_TITLE";
     public static final String EDIT_BOOKMARK_COMMAND = "Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
-    public static final String EDIT_QUOTE_COMMAND = "";
-    public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY NEW_CATEGORY";
+    public static final String EDIT_QUOTE_COMMAND = "Edit quote: " + "edit -q QUOTE_NUMBER /to NEW_QUOTE";
+    public static final String EDIT_QUOTE_REFLECTION_COMMAND = "Edit quote reflection: "
+            + "edit -qr QUOTE_NUMBER /to NEW_REFLECTION";
+    public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY /to NEW_CATEGORY";
     public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE /by AUTHOR";
     public static final String EDIT_TODO_COMMAND = "";
 
-    public static final String FIND_BOOK_COMMAND = "";
+    public static final String FIND_BOOK_COMMAND = "Find book: " + "find -b KEYWORD";
     public static final String FIND_BOOKMARK_COMMAND = "";
-    public static final String FIND_QUOTE_COMMAND = "Find quote: \" + \"find -q QUOTE_NUMBER";
+    public static final String FIND_QUOTE_COMMAND = "Find quote: " + "find -q QUOTE_NUMBER";
     public static final String FIND_CATEGORY_COMMAND = "";
     public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE /by AUTHOR";
     public static final String FIND_TODO_COMMAND = "";
 
     public static final String LIST_BOOK_COMMAND = "List books: " + "list -b [/by AUTHOR]";
+    public static final String LIST_BOOK_COMPLETE = "List books by completion: " + "list -b done/undone";
+    public static final String LIST_BOOK_DETAILS = "List book details: " + "list -b BOOK_NUMBER";
     public static final String LIST_BOOKMARK_COMMAND = "List bookmarks: " + "list -bm";
     public static final String LIST_QUOTE_COMMAND = "List quotes: " + "list -q [/by AUTHOR] [/from BOOK_TITLE]";
+    public static final String LIST_QUOTE_REFLECTION_COMMAND = "List quote reflection: " + "list -qr QUOTE_NUMBER";
     public static final String LIST_CATEGORY_COMMAND = "List categories: " + "list -c [CATEGORY]";
     public static final String LIST_RATING_COMMAND = "List ratings: " + "list -r [RATING_SCORE]";
     public static final String LIST_TODO_COMMAND = "List tasks: " + "list -t";
 
+    public static final String DONE_BOOK_COMMAND = "Mark book as done: " + "done -b BOOK_NUMBER";
     public static final String DONE_COMMAND = "Mark task as done: " + "done -t TASK_NUMBER";
 }
