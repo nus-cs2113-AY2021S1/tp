@@ -1,14 +1,14 @@
 package seedu.duke.model.task;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.storage.JsonableObject;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class Task implements Jsonable {
+public class Task implements JsonableObject {
     private int id;
     private String title;
     private String description;
@@ -82,20 +82,12 @@ public class Task implements Jsonable {
         memberList.remove((Object) memberId);
     }
 
-    public ArrayList<String> getAllocatedMembers() {
-        return memberList;
-    }
-
     public void allocateToSprint(int sprintId) {
         sprintList.add(sprintId);
     }
 
     public void removeFromSprint(int sprintId) {
         sprintList.remove((Object) sprintId);
-    }
-
-    public ArrayList<Integer> getAllocatedSprints() {
-        return sprintList;
     }
 
     public void setId(int id) {
@@ -175,8 +167,19 @@ public class Task implements Jsonable {
         jTask.put("description", description);
         jTask.put("priority", priority.name());
         jTask.put("isDone", isDone);
-        jTask.put("membersAllocatedTo", memberList);
-        jTask.put("sprintAllocatedTo", sprintList);
+        jTask.put("memberList", memberList);
+        jTask.put("sprintList", sprintList);
         jTask.toJson(writer);
+    }
+
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        id = JsonableObject.parseInt(jsonObj, "id");
+        title = JsonableObject.parseString(jsonObj,"title");
+        description = JsonableObject.parseString(jsonObj, "description");
+        priority = Priority.valueOf(JsonableObject.parseString(jsonObj, "priority"));
+        isDone = JsonableObject.parseBoolean(jsonObj, "isDone");
+        memberList = JsonableObject.parseStringList(jsonObj, "memberList");
+        sprintList = JsonableObject.parseIntegerList(jsonObj, "sprintList");
     }
 }

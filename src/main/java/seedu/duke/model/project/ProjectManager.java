@@ -2,14 +2,14 @@ package seedu.duke.model.project;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.storage.JsonableObject;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Hashtable;
 
-public class ProjectManager implements Jsonable {
+public class ProjectManager implements JsonableObject {
     public Hashtable<Integer, Project> projectList;
     public int selectedProject;
 
@@ -64,5 +64,19 @@ public class ProjectManager implements Jsonable {
         jsonProjMgr.put("selectedProject", this.selectedProject);
         jsonProjMgr.put("projectList", new JsonArray(this.projectList.values()));
         jsonProjMgr.toJson(writer);
+    }
+
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        if (jsonObj.isEmpty()) {
+            return; //empty data
+        }
+        selectedProject = JsonableObject.parseInt(jsonObj, "selectedProject");
+        
+        for (Object o : (JsonArray) jsonObj.get("projectList")) {
+            Project project = new Project();
+            project.fromJson((JsonObject) o);
+            projectList.put(project.getProjectID(), project);
+        }
     }
 }

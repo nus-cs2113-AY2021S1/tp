@@ -1,14 +1,14 @@
 package seedu.duke.model.member;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.storage.JsonableObject;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class Member implements Jsonable {
+public class Member implements JsonableObject {
 
     private String userId;
     private ArrayList<Integer> taskList;
@@ -75,7 +75,13 @@ public class Member implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonObject jMember = new JsonObject();
         jMember.put("userId", userId);
-        jMember.put("allocatedTaskIds", taskList);
+        jMember.put("taskList", taskList);
         jMember.toJson(writer);
+    }
+
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        userId = JsonableObject.parseString(jsonObj, "userId");
+        taskList = JsonableObject.parseIntegerList(jsonObj, "taskList");
     }
 }

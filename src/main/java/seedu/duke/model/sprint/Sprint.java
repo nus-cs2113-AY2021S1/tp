@@ -1,9 +1,9 @@
 package seedu.duke.model.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.task.Task;
+import seedu.duke.storage.JsonableObject;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -11,7 +11,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Sprint implements Jsonable {
+public class Sprint implements JsonableObject {
 
     private int id;
     private String goal;
@@ -176,5 +176,19 @@ public class Sprint implements Jsonable {
         jObj.put("sprintTaskIds", taskList);
         jObj.put("owner", owner.getProjectID());
         jObj.toJson(writer);
+    }
+
+    public void fromJson(JsonObject jsonObj, Project project) {
+        owner = project;
+        id = JsonableObject.parseInt(jsonObj, "id");
+        goal = JsonableObject.parseString(jsonObj, "goal");
+        startDate = JsonableObject.parseDate(jsonObj, "startDate");
+        endDate = JsonableObject.parseDate(jsonObj, "endDate");
+        taskList = JsonableObject.parseIntegerList(jsonObj, "sprintTaskIds");
+    }
+    
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        fromJson(jsonObj, null);
     }
 }
