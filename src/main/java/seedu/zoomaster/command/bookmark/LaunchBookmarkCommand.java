@@ -56,7 +56,7 @@ public class LaunchBookmarkCommand extends Command {
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);
-                String message = "Nice! I've launched this bookmark!:\n" + bookmark.launch();
+                String message = "Nice! I've launched this bookmark!:\n" + bookmark.launch() + System.lineSeparator();
                 ui.print(message);
             } catch (IndexOutOfBoundsException e) {
                 throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""

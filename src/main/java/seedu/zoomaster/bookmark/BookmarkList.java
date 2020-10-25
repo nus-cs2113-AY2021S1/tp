@@ -173,13 +173,13 @@ public class BookmarkList {
             message = "Empty List" + lineSeparator;
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
-            if (!message.isEmpty()) {
+            if (!message.isBlank()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             } else {
                 message = "No bookmarks contain the specified keyword!" + lineSeparator;
             }
         }
-        return message + lineSeparator;
+        return message;
     }
 
     private String launchMatchingBookmarks(String description) {
@@ -189,16 +189,16 @@ public class BookmarkList {
             if (bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
                 try {
                     bookmarks.get(i).launch();
-                    message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                    message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
                 } catch (ZoomasterException e) {
-                    errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                    errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
                 }
             }
         }
         if (!errorMessage.isBlank()) {
             message += "Failed to launch these bookmarks:" + lineSeparator + errorMessage;
         }
-        return message+ lineSeparator;
+        return message + lineSeparator;
     }
 
     public String launchAllBookmarks() {
