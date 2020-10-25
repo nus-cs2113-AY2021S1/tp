@@ -39,7 +39,6 @@ public class AddCommand extends Command {
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
-    private ModuleChecker moduleChecker = new ModuleChecker();
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -84,32 +83,47 @@ public class AddCommand extends Command {
             }
             break;
         case EXAM:
-            try {
-                addExamEvent(calendarList, command);
-            } catch (Exception e) {
-                throw new DukeException("exam");
+            if (isValid(command)) {
+                try {
+                    addExamEvent(calendarList, command);
+                } catch (Exception e) {
+                    throw new DukeException("exam");
+                }
+            } else {
+                throw new DukeException("invalid module code");
             }
-
             break;
         case LECTURE:
-            try {
-                addLectureEvent(calendarList, command);
-            } catch (Exception e) {
-                throw new DukeException("lecture");
+            if (isValid(command)) {
+                try {
+                    addLectureEvent(calendarList, command);
+                } catch (Exception e) {
+                    throw new DukeException("lecture");
+                }
+            } else {
+                throw new DukeException("invalid module code");
             }
             break;
         case TUTORIAL:
-            try {
-                addTutorialEvent(calendarList, command);
-            } catch (Exception e) {
-                throw new DukeException("tutorial");
+            if (isValid(command)) {
+                try {
+                    addTutorialEvent(calendarList, command);
+                } catch (Exception e) {
+                    throw new DukeException("tutorial");
+                }
+            } else {
+                throw new DukeException("invalid module code");
             }
             break;
         case LAB:
-            try {
-                addLabEvent(calendarList, command);
-            } catch (Exception e) {
-                throw new DukeException("lab");
+            if (isValid(command)) {
+                try {
+                    addLabEvent(calendarList, command);
+                } catch (Exception e) {
+                    throw new DukeException("lab");
+                }
+            } else {
+                throw new DukeException("invalid module code");
             }
             break;
         default:
@@ -130,17 +144,12 @@ public class AddCommand extends Command {
      * @param command      the attributes of the lab event.
      * @throws Exception if the module code is empty.
      */
-    //new lab command input: lab cs1010 @nus -r 10 /101020 1330
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
-        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
         command = command[1].split("-r", 2);
-        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
-        //temp[0] = "" and temp[1] = nus
         command = command[1].split("/", 2);
-        //command[0] = 10; command[1] = 101020 1230
         int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
@@ -198,17 +207,12 @@ public class AddCommand extends Command {
      * @param command      the attributes of the lecture event.
      * @throws Exception if the module code is empty.
      */
-    //new lecture command input: lect cs1010 @nus -r 10 /101020 1330
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
-        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
         command = command[1].split("-r", 2);
-        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
-        //temp[0] = "" and temp[1] = nus
         command = command[1].split("/", 2);
-        //command[0] = 10; command[1] = 101020 1230
         int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
@@ -241,11 +245,8 @@ public class AddCommand extends Command {
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
-
+        ModuleChecker moduleChecker = new ModuleChecker();
         if (moduleCode.isEmpty()) {
-            throw new DukeException("exam");
-        } else if (!moduleChecker.isModuleValid(moduleCode)) {
-            System.out.println("invalid module code!");
             throw new DukeException("exam");
         } else {
             calendarList.addEvent(new Exam(moduleCode, date, time, venue));
@@ -319,5 +320,19 @@ public class AddCommand extends Command {
             isTask = true;
         }
         return isTask;
+    }
+
+    /**
+     * Checks if the module code in the command is valid.
+     *
+     * @param command  user input command.
+     * @return isValid true is the module code is valid, false otherwise.
+     */
+    private boolean isValid(String[] command) {
+        ModuleChecker moduleChecker = new ModuleChecker();
+        command = command[1].trim().split(" ", 2);
+        moduleCode = command[0];
+
+        return moduleChecker.isModuleValid(moduleCode);
     }
 }

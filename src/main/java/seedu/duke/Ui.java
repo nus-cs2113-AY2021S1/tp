@@ -503,7 +503,7 @@ public class Ui {
             break;
         case "invalid module code":
             System.out.println(
-                    "Error: The module code cannot be found in NUS module list.");
+                    "Error: invalid module code. The module code cannot be found in NUS module list.");
             break;
         default:
             System.out.println("Unknown Error.");
