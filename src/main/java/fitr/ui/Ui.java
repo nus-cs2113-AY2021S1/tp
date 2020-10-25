@@ -90,7 +90,7 @@ public class Ui {
     }
 
     public static void printFormatError(String command) {
-        if (command.equals(COMMAND_VIEW)) {
+        /*if (command.equals(COMMAND_VIEW)) {
             printCustomError(ERROR_INVALID_COMMAND);
             System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
             System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
@@ -98,7 +98,7 @@ public class Ui {
             System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
             System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             return;
-        }
+        }*/
 
         switch (command) {
         case COMMAND_FOOD:
@@ -116,6 +116,16 @@ public class Ui {
         case COMMAND_GOAL:
             printCustomError("Please input in the correct format!");
             printCustomMessage(FORMAT + FORMAT_GOAL);
+            break;
+        case COMMAND_VIEW:
+            printCustomError("Please input in the correct format!");
+            printCustomMessage(FORMAT + "view <ARGUMENT>");
+            System.out.printf(HELP_SPACER, "<ARGUMENT>", "<DESCRIPTION>");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_FOOD, "View food entries");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
+            System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             break;
         default:
             printInvalidCommandError();

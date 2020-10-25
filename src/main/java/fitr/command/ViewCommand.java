@@ -54,7 +54,8 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else {
-            Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
+            Ui.printFormatError("view");
+            //Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
         }
     }
 
