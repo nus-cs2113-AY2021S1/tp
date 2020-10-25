@@ -15,7 +15,7 @@ public enum ExceptionType {
     UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
     READ_FILE_FAIL("It is unfortunate that the program is unable to read the file"),
     INDEX_NOT_IN_RANGE("The number you have keyed in is out of range!"),
-    EMPTY_INDEX("Kindly input an index between 0 and " + FavList.getSize());
+    EMPTY_INDEX("Kindly input a valid index");
 
     private String message;
 
