@@ -39,7 +39,11 @@ public class ParserManager {
         String userMessage;
 
         try {
-            userMessage = userCommandAndArguments[1];
+            userMessage = userCommandAndArguments[1].trim();
+
+            if (userMessage.isBlank()) {
+                userMessage = null;
+            }
         } catch (ArrayIndexOutOfBoundsException exception) {
             userMessage = null;
         }
