@@ -273,11 +273,11 @@ public class UI {
         System.out.println("Bunny index is not in list.");
     }
 
-    public static void DividerCommandWrongFormat() {
+    public static void dividerCommandWrongFormat() {
         System.out.println("Divider command of wrong format");
     }
 
-    public static void DividerIndexOutOfBounds() {
+    public static void dividerIndexOutOfBounds() {
         System.out.println("Divider index indicated out of bounds");
     }
 }

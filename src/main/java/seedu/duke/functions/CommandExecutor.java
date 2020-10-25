@@ -43,9 +43,9 @@ public class CommandExecutor {
             try {
                 changeLineDivider(userInput);
             } catch (DividerCommandWrongFormatException e) {
-                UI.DividerCommandWrongFormat();
+                UI.dividerCommandWrongFormat();
             } catch (DividerIndexOutOfBoundsException e) {
-                UI.DividerIndexOutOfBounds();
+                UI.dividerIndexOutOfBounds();
             }
             break;
         case NOUN:
