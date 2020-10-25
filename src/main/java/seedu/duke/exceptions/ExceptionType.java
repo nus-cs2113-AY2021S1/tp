@@ -1,5 +1,7 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.favorite.FavList;
+
 public enum ExceptionType {
     INVALID_COMMAND("I do not understand!!"),
     INVALID_BUS("Sorry,there is no such bus in our database!"),
@@ -11,7 +13,9 @@ public enum ExceptionType {
     INVALID_FACULTY("Oh no! Please enter a faculty."),
     INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
     UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
-    READ_FILE_FAIL("It is unfortunate that the program is unable to read the file");
+    READ_FILE_FAIL("It is unfortunate that the program is unable to read the file"),
+    INDEX_NOT_IN_RANGE("The number you have keyed in is out of range!"),
+    EMPTY_INDEX("Kindly input an index between 0 and " + FavList.getSize());
 
     private String message;
 
