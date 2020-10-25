@@ -2,6 +2,7 @@ package seedu.duke.functions;
 
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
+import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.constants.FilterMessages;
@@ -110,6 +111,9 @@ public class CommandExecutor {
             } catch (BunnyIndexOutOfBoundsException e) {
                 UI.bunnyIndexOutOfBounds();
             }
+            break;
+        case RANDOM_BUNNY:
+            GenBunny.pickRandomBunny(bunniesList);
             break;
         case GEN_NAME:
             try {

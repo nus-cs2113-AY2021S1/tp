@@ -94,7 +94,8 @@ Format: `adj [WORD] \d[DESCRIPTION]`
 List all words stored in the program.  
 Format: list words
 
-### Adding bunny idea: `bunny`
+### Adding a bunny idea: `bunny`
+
 Add a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
@@ -171,6 +172,40 @@ Example output:
 save bunny
 --------------------------------------------------------------
 Bunny list saved!
+--------------------------------------------------------------
+```
+### Deleting a bunny idea: `delete bunny`
+Delete a selected bunny from the list of bunny ideas.
+Format: `delete bunny BUNNY_INDEX`
+* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+
+Example usages:
+- `delete bunny 2`
+
+Example output:  
+```
+delete bunny 2
+--------------------------------------------------------------
+Bunny deleted: 
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
+
+### Deleting a bunny idea: `random bunny`
+The app will pick a random bunny from your list of plot bunnies for you to work on.
+Format: `random bunny`
+
+Example usages:
+- `random bunny`
+
+Example output:  
+```
+random bunny
+--------------------------------------------------------------
+Random Bunny: 
+  idea: some very funny idea
+  genre: humor
 --------------------------------------------------------------
 ```
 
@@ -437,6 +472,7 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
+| divider      |
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
@@ -445,6 +481,8 @@ Format: `exit`
 | list bunny   | `list bunny`</br>Lists all the bunny ideas                                                            |
 | filter bunny | `filter bunny i\IDEA g\[GENRE]`</br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
 | save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
+| delete bunny | `delete bunny BUNNY_INDEX` </br>Deletes a selected bunny from the list. <\br>`BUNNY_INDEX` is the index of the bunny in the list|
+| random bunny | `random bunny` <\br>Selects a random bunny from the list.|
 | filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `</br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br>TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
 | name         | `name`</br>Generates a random name                                                                    |
 | list name    | `list name`</br>List all the stored names                                                             |
