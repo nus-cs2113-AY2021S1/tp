@@ -34,14 +34,13 @@ public class LocateCommand extends Command {
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
         int eventNum;
         try {
-            eventNum = Integer.parseInt(input);
-            Event event = events.get(eventNum-1);
+            eventNum = Integer.parseInt(input) - 1;
+            Event event = events.get(eventNum);
             Location location = event.getLocation();
             System.out.println(event.getDescription() + " is located at:");
             System.out.println(location);
         } catch (NumberFormatException e) {
-            boolean checkValidLocation = locations.checkValidLocation(input);
-            if (checkValidLocation) {
+            if (locations.checkValidLocation(input)) {
                 Location location = locations.findLocation(input);
                 System.out.println("Location Information: ");
                 System.out.println(location);
