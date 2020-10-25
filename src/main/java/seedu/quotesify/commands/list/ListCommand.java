@@ -167,27 +167,6 @@ public class ListCommand extends Command {
         }
     }
 
-    private void listCategories(CategoryList categoryList, TextUi ui) {
-        categoryList.updateListsInAllCategories();
-        if ((information.isEmpty())) {
-            listAllCategories(categoryList, ui);
-        } else {
-            listAllInCategory(categoryList, ui);
-        }
-    }
-
-    private void listAllCategories(CategoryList categoryList, TextUi ui) {
-        ui.printAllCategories(categoryList);
-    }
-
-    private void listAllInCategory(CategoryList categoryList, TextUi ui) {
-        try {
-            ui.printAllInCategory(categoryList.getCategoryByName(information));
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        }
-    }
-
     @Override
     public boolean isExit() {
         return false;
