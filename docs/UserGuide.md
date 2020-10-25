@@ -92,33 +92,36 @@ Example usages:
 - `bunny i\test idea 2 g\ fantasy`
 
 Example output:  
-`bunny i\test idea 2 g\ fantasy  `  
- `--------------------------------------------------`  
- `New bunny added!`  
-   `idea: test idea 2`  
-   `genre:  fantasy`  
- `---------------------------------------------------`
-
+```
+bunny i\test idea 2 g\ fantasy  
+ --------------------------------------------------
+ New bunny added!
+   idea: test idea 2
+   genre:  fantasy
+ ---------------------------------------------------
+```
 ### Listing bunny ideas: `list bunny`
 List all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
 Example usage: `list bunny`  
 Example output:  
-`list bunny`  
-`-----------------------------------------------------`  
-`Here are the bunnies stored in the program:`  
-`1.`  
-  `idea: test idea 1`  
-  `genre: fantasy`  
+```
+list bunny
+-----------------------------------------------------
+Here are the bunnies stored in the program:
+1.
+  idea: test idea 1
+  genre: fantasy
   
-`2.`  
-  `idea: test idea 2`  
- `genre: romance`  
+2.
+  idea: test idea 2
+  genre: romance
 
-`3.`  
-  `idea: test idea 3`  
-  `genre: none`  
-`------------------------------------------------------`
+3.
+  idea: test idea 3
+  genre: none
+------------------------------------------------------
+```
 
 ### Filter bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
@@ -128,18 +131,20 @@ Example usages:
 - filter bunny i\test idea 2 g\ fantasy
 
 Example output:
-`filter bunny g\ fantasy`  
-`------------------------------------------------------`  
-`1.`  
-  `idea: bunny idea 1`  
-  `genre: fantasy`  
+```
+filter bunny g\ fantasy
+------------------------------------------------------
+1.
+  idea: bunny idea 1
+  genre: fantasy
 
-`2.`  
-  `idea: test idea 2`  
-  `genre: fantasy`  
+2.  
+  idea: test idea 2
+  genre: fantasy
 
-`number bunny filtered: 2`  
-`-------------------------------------------------------`
+number bunny filtered: 2
+-------------------------------------------------------
+```
 
 ### Save bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
@@ -150,10 +155,12 @@ Example usages:
 - `save bunny`
 
 Example output:  
-`save bunny`  
-`--------------------------------------------------------------`  
-`Bunny list saved!`  
-`--------------------------------------------------------------`
+```
+save bunny
+--------------------------------------------------------------
+Bunny list saved!
+--------------------------------------------------------------
+```
 
 ### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
@@ -296,53 +303,57 @@ Currently, our application offers you with 2 options of “type”, which are �
 
 ### Choosing the “topic” of your writing: `topic`
 Listing the available topic in the list and pop out the relevant keywords for your writing.
-`start`  
-`--------------------------------------------------------------`  
-`Please indicate your type by typing in "type" command`  
-`type`  
-`Please let us know your type of writings, either poem or essay`  
-`poem`  
-`Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical`  
-`ghost story`  
-`Great! The words we have found for you are killing, death and terrify!`  
-`Please let us know the title of your writing`  
-`Der Erlkönig`  
-`Now you can type your content, terminate by typing "end"`  
-`Wer reitet so spät durch Nacht und Wind?`  
-`Es ist der Vater mit seinem Kind;`  
-`Er hat den Knaben wohl in dem Arm,`  
-`Er faßt ihn sicher, er hält ihn warm.`  
+```
+start
+--------------------------------------------------------------
+Please indicate your type by typing in "type" command
+type
+Please let us know your type of writings, either poem or essay
+poem
+Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical
+ghost story
+Great! The words we have found for you are killing, death and terrify!
+Please let us know the title of your writing
+Der Erlkönig
+Now you can type your content, terminate by typing "end"
+Wer reitet so spät durch Nacht und Wind?
+Es ist der Vater mit seinem Kind;
+Er hat den Knaben wohl in dem Arm,
+Er faßt ihn sicher, er hält ihn warm.
 
-`Dem Vater grauset's; er reitet geschwind,`  
-`Er hält in Armen das ächzende Kind,`  
-`Erreicht den Hof mit Mühe und Not;`  
-`In seinen Armen das Kind war tot.`  
-`end`  
-`This Poem, Der Erlkönig has been added`  
-`Done! We have added your writing to our storage! You can type "stats" for future reference!`
+Dem Vater grauset's; er reitet geschwind,
+Er hält in Armen das ächzende Kind,
+Erreicht den Hof mit Mühe und Not;
+In seinen Armen das Kind war tot.
+end
+This Poem, Der Erlkönig has been added
+Done! We have added your writing to our storage! You can type "stats" for future reference!
+```
 
 ### Tracking your past writings: `stats`
 Inform the user detailed specifications like ids, authors, contents, and other attributes of the writings stored in database. 
  
-`stats`  
-`This is a Poem`  
-`Written by Goethe`  
+```
+stats
+This is a Poem
+Written by Goethe
 
-`Id: 5`  
-`DER ERLKÖNIG`  
+Id: 5
+DER ERLKÖNIG
 
-`Wer reitet so spät durch Nacht und Wind?`  
-`Es ist der Vater mit seinem Kind;`  
-`Er hat den Knaben wohl in dem Arm,`  
-`Er faßt ihn sicher, er hält ihn warm.`  
+Wer reitet so spät durch Nacht und Wind?
+Es ist der Vater mit seinem Kind;
+Er hat den Knaben wohl in dem Arm,
+Er faßt ihn sicher, er hält ihn warm.
 
-`Dem Vater grauset's; er reitet geschwind,`  
-`Er hält in Armen das ächzende Kind,`  
-`Erreicht den Hof mit Mühe und Not;`  
-`In seinen Armen das Kind war tot.`  
+Dem Vater grauset's; er reitet geschwind,
+Er hält in Armen das ächzende Kind,
+Erreicht den Hof mit Mühe und Not;
+In seinen Armen das Kind war tot.
 
-`This writing was created on 2020-10-18`  
-`--------------------------------------------------------------`  
+This writing was created on 2020-10-18
+--------------------------------------------------------------
+```
 
 ### Clear certain object in database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
