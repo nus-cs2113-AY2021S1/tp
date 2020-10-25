@@ -3,9 +3,7 @@ package fitr.command;
 import fitr.Calorie;
 import fitr.Exercise;
 import fitr.Recommender;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -21,8 +19,7 @@ public class AddExerciseCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
             String nameOfExercise = command.split("/", 2)[0];
             if (nameOfExercise.isEmpty()) {
@@ -35,8 +32,8 @@ public class AddExerciseCommand extends Command {
                 if (amountOfCaloriesBurnt.get() < -1) {
                     throw new NumberFormatException();
                 }
-                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
-                storageManager.writeExerciseList(exerciseList);
+                listManager.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
+                storageManager.writeExerciseList(listManager.getExerciseList());
                 Ui.printCustomMessage("The following exercise has been added:\n"
                         + "Name of Exercise: " + nameOfExercise + "\n"
                         + "Burnt Cal: " + amountOfCaloriesBurnt.get());

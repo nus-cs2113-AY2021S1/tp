@@ -1,4 +1,7 @@
-package fitr;
+package fitr.storage;
+
+import fitr.StandardExercise;
+import fitr.list.StandardExerciseList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
