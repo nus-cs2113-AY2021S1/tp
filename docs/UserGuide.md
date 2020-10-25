@@ -9,12 +9,12 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
 1. Check that your computer has Java **11** installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1.Copy the file to the folder you want to use as the home folder.
-1.Type in a command prompt `java -jar duke.jar` and press Enter.
+1.Type in a command prompt ./duke.jar and press Enter.
 1.Type the `help` command and press Enter to get started.
 1.Some example commands you can try:
-    1.`list words`: List the vocabulary stored in the word list.
-    1.`filter bunny g/fantasy`: Filters bunny ideas that are of the fantasy genre.
-    1.`exit`: Exits the app.
+    1.`list words` : List the vocabulary stored in the word list.
+    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+    1.`exit` : Exits the app.
 1.Refer to the Features below for details of each command.
 
 ## Features 
@@ -37,6 +37,8 @@ Type “help COMMAND_NAME” to figure out how to use the particular command.
 - name
 - list name
 - filter name
+- add name
+- delete name
 - clear
 - exit
 
@@ -90,37 +92,33 @@ Example usages:
 - `bunny i\test idea 2 g\ fantasy`
 
 Example output:  
-```
-bunny i\test idea 2 g\ fantasy    
- --------------------------------------------------  
- New bunny added!  
-   idea: test idea 2  
-   genre:  fantasy 
- ---------------------------------------------------
- ```
+`bunny i\test idea 2 g\ fantasy  `  
+ `--------------------------------------------------`  
+ `New bunny added!`  
+   `idea: test idea 2`  
+   `genre:  fantasy`  
+ `---------------------------------------------------`
 
 ### Listing bunny ideas: `list bunny`
 List all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
 Example usage: `list bunny`  
 Example output:  
-```
-list bunny
---------------------------------------------------------------
-Here are the bunnies stored in the program:
-1.
-  idea: test idea 1
-  genre: fantasy
+`list bunny`  
+`-----------------------------------------------------`  
+`Here are the bunnies stored in the program:`  
+`1.`  
+  `idea: test idea 1`  
+  `genre: fantasy`  
+  
+`2.`  
+  `idea: test idea 2`  
+ `genre: romance`  
 
-2.
-  idea: test idea 2
-  genre: romance
-
-3.
-  idea: test idea 3
-  genre: none
---------------------------------------------------------------
-```
+`3.`  
+  `idea: test idea 3`  
+  `genre: none`  
+`------------------------------------------------------`
 
 ### Filter bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
@@ -130,22 +128,20 @@ Example usages:
 - filter bunny i\test idea 2 g\ fantasy
 
 Example output:
-```
-filter bunny g\ fantasy
---------------------------------------------------------------
-1.
-  idea: bunny idea 1
-  genre: fantasy
+`filter bunny g\ fantasy`  
+`------------------------------------------------------`  
+`1.`  
+  `idea: bunny idea 1`  
+  `genre: fantasy`  
 
-2.
-  idea: test idea 2
-  genre: fantasy
+`2.`  
+  `idea: test idea 2`  
+  `genre: fantasy`  
 
-number bunny filtered: 2
---------------------------------------------------------------
-```
+`number bunny filtered: 2`  
+`-------------------------------------------------------`
 
-### Saving bunny ideas: `save bunny`
+### Save bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
 Format: `save bunny`  
@@ -154,42 +150,100 @@ Example usages:
 - `save bunny`
 
 Example output:  
-```
-save bunny
---------------------------------------------------------------
-Bunny list saved!
---------------------------------------------------------------
-```
-
-### Deleting a bunny idea: `save bunny`
-Delete a selected bunny from the list of bunny ideas.
-Format: `delete  bunny BUNNY_INDEX`  
-* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
-
-Example usages:
-- `delete  bunny`
-
-Example output:  
-```
-delete bunny 2
---------------------------------------------------------------
-Bunny deleted: 
-  idea: test idea 2
-  genre: none
---------------------------------------------------------------
-```
+`save bunny`  
+`--------------------------------------------------------------`  
+`Bunny list saved!`  
+`--------------------------------------------------------------`
 
 ### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
 Format: `name`
 
-### Generating names from name database: `list names`
-Displays all the names currently stored in the names database.  
-Format: `list names`
+Example usages:
+`name`
 
-### Generating names from name database: `filter names`
+Example output:  
+```
+name
+--------------------------------------------------------------
+name 2
+--------------------------------------------------------------
+```
+
+### Generating names from name database: `list name`
+Displays all the names currently stored in the names database.  
+Format: `list name`
+
+Example usages:
+`list name`
+
+Example output:  
+```
+list name
+--------------------------------------------------------------
+1. name 1
+2. name 2
+3. name 3
+--------------------------------------------------------------
+```
+
+### Generating names from name database: `filter name`
 Gets the list of names after filtering from the stored list of names.  
-Format: `filter names [NAME]`
+Format: `filter name <NAME>`
+
+Example usages:
+`filter name 2`
+
+Example output:  
+```
+filter name 2`  
+--------------------------------------------------------------
+name 2
+--------------------------------------------------------------
+```
+
+Example usages:
+`filter name name`
+
+Example output:  
+```
+filter name name
+--------------------------------------------------------------
+1. name 1
+2. name 2
+3. name 3
+--------------------------------------------------------------
+```
+
+### Generating names from name database: `add name`
+Adds a name to the list of names currently stored in the names database.
+Format: `add name <NAME>`
+
+Example usages:
+`add name name 3`
+
+Example output:  
+```
+add name name 3
+--------------------------------------------------------------
+name 3 has been added to the Names list!
+--------------------------------------------------------------
+```
+
+### Generating names from name database: `delete name`
+Removes a name from the list of names currently stored in the names database.
+Format: `delete name <INDEX>`
+
+Example usages:
+`delete name 3`
+
+Example output:  
+```
+delete name 3
+--------------------------------------------------------------
+name 3 has been deleted from the Names list!
+--------------------------------------------------------------
+```
 
 ### Filtering words in word bank: `filter`
 Filter out the words you need in the list based on your own filtering mode.  
@@ -203,34 +257,33 @@ Without this tag, the previous filtered list would be cleared and the program wi
 
 Example usages and example outputs (step by step):
 - `filter by\type -noun -adjective`  
-```
-Words filtered by indicated type are: 
-house: a building for people to live in, usually for one family
-grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
-computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
-class: a group of students who are taught together
-beautiful: having beauty; giving pleasure to the senses or to the mind
-nice: pleasant or attractive
-meaningful : important and serious
 
-```
+`Words filtered by indicated type are:`    
+`house: a building for people to live in, usually for one family`  
+`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
+`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
+and control other machines`  
+`class: a group of students who are taught together`  
+`beautiful: having beauty; giving pleasure to the senses or to the mind`  
+`nice: pleasant or attractive`  
+`meaningful : important and serious`  
 
 - `filter -continue by\start -h -gr -co -ni`  
 
-```
-Words filtered by indicated type are: 
-house: a building for people to live in, usually for one family
-grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
-computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
-nice: pleasant or attractive
-```
+`Words filtered by indicated type are:`   
+`house: a building for people to live in, usually for one family`  
+`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
+`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
+and control other machines`  
+`nice: pleasant or attractive`  
 
 - `filter -continue by\include -a -pu`  
-```
-Words filtered by indicated type are: 
-grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
-computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
-```
+
+`Words filtered by indicated type are: `  
+`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
+`computer: an electronic machine that can store, organize and find information, `  
+`do processes with numbers and other data, and control other machines`
+
 ### Begin your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
@@ -243,56 +296,53 @@ Currently, our application offers you with 2 options of “type”, which are �
 
 ### Choosing the “topic” of your writing: `topic`
 Listing the available topic in the list and pop out the relevant keywords for your writing.
-```
-start
---------------------------------------------------------------
-Please indicate your type by typing in "type" command
-type
-Please let us know your type of writings, either poem or essay
-poem
-Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical
-ghost story
-Great! The words we have found for you are killing, death and terrify! 
-Please let us know the title of your writing
-Der Erlkönig
-Now you can type your content, terminate by typing "end"
-Wer reitet so spät durch Nacht und Wind?
-Es ist der Vater mit seinem Kind;
-Er hat den Knaben wohl in dem Arm,
-Er faßt ihn sicher, er hält ihn warm.
+`start`  
+`--------------------------------------------------------------`  
+`Please indicate your type by typing in "type" command`  
+`type`  
+`Please let us know your type of writings, either poem or essay`  
+`poem`  
+`Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical`  
+`ghost story`  
+`Great! The words we have found for you are killing, death and terrify!`  
+`Please let us know the title of your writing`  
+`Der Erlkönig`  
+`Now you can type your content, terminate by typing "end"`  
+`Wer reitet so spät durch Nacht und Wind?`  
+`Es ist der Vater mit seinem Kind;`  
+`Er hat den Knaben wohl in dem Arm,`  
+`Er faßt ihn sicher, er hält ihn warm.`  
 
-Dem Vater grauset's; er reitet geschwind,
-Er hält in Armen das ächzende Kind,
-Erreicht den Hof mit Mühe und Not;
-In seinen Armen das Kind war tot.
-end
-This Poem, Der Erlkönig has been added
-Done! We have added your writing to our storage! You can type "stats" for future reference!
-```
+`Dem Vater grauset's; er reitet geschwind,`  
+`Er hält in Armen das ächzende Kind,`  
+`Erreicht den Hof mit Mühe und Not;`  
+`In seinen Armen das Kind war tot.`  
+`end`  
+`This Poem, Der Erlkönig has been added`  
+`Done! We have added your writing to our storage! You can type "stats" for future reference!`
 
 ### Tracking your past writings: `stats`
 Inform the user detailed specifications like ids, authors, contents, and other attributes of the writings stored in database. 
- ```
-stats
-This is a Poem
-Written by Goethe
+ 
+`stats`  
+`This is a Poem`  
+`Written by Goethe`  
 
-Id: 5
-DER ERLKÖNIG
+`Id: 5`  
+`DER ERLKÖNIG`  
 
-Wer reitet so spät durch Nacht und Wind?
-Es ist der Vater mit seinem Kind;
-Er hat den Knaben wohl in dem Arm,
-Er faßt ihn sicher, er hält ihn warm.
+`Wer reitet so spät durch Nacht und Wind?`  
+`Es ist der Vater mit seinem Kind;`  
+`Er hat den Knaben wohl in dem Arm,`  
+`Er faßt ihn sicher, er hält ihn warm.`  
 
-Dem Vater grauset's; er reitet geschwind,
-Er hält in Armen das ächzende Kind,
-Erreicht den Hof mit Mühe und Not;
-In seinen Armen das Kind war tot.
+`Dem Vater grauset's; er reitet geschwind,`  
+`Er hält in Armen das ächzende Kind,`  
+`Erreicht den Hof mit Mühe und Not;`  
+`In seinen Armen das Kind war tot.`  
 
-This writing was created on 2020-10-18
---------------------------------------------------------------
-```
+`This writing was created on 2020-10-18`  
+`--------------------------------------------------------------`  
 
 ### Clear certain object in database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
@@ -355,11 +405,14 @@ Format: `exit`
 |              | TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
 | name         | `name`                                                                                                |
 |              | Generates a random name                                                                               |
-| list names   | `list names`                                                                                          |
+| list name    | `list name`                                                                                           |
 |              | List all the stored names                                                                             |
-| filter names | `filter names [NAME]`                                                                                 |
+| filter name  | `filter name <NAME>`                                                                                  |
 |              | Gets the list of names after filtering                                                                |
-|              |                                                                                                       |
+| add name     | `add name <NAME>`                                                                                     |
+|              | Adds a name to the list of stored names                                                               |
+| delete name  | `delete name <INDEX>`                                                                                 |
+|              | Removes a name from the list of stored names given the index                                          |
 | stats        | `stats`                                                                                               |
 |              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
 |              | This is a poem  <br>Written by Goethe                                                                 |
