@@ -2,7 +2,6 @@ package seedu.financeit.manualtracker.subroutine;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.Item;
 import seedu.financeit.common.ItemList;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -10,7 +9,6 @@ import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-
 
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -62,7 +60,7 @@ public class EntryList extends ItemList {
         throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:
-            int index = paramChecker.checkAndReturnIndex(paramType, this.items);
+            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, this.items);
             super.indexToModify = index;
             return;
         default:
@@ -75,7 +73,7 @@ public class EntryList extends ItemList {
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                    ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
             break;
         }

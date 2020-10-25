@@ -10,9 +10,17 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 
 public class InputParser {
-    protected Matcher matcher;
+    private Matcher matcher;
+    private static InputParser inputParser = null;
 
-    public InputParser() {
+    private InputParser() {
+    }
+
+    public static InputParser getInstance() {
+        if (inputParser == null) {
+            inputParser = new InputParser();
+        }
+        return inputParser;
     }
 
     /**

@@ -3,6 +3,7 @@ package seedu.financeit.manualtracker.subroutine;
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.goaltracker.GoalTracker;
@@ -17,8 +18,14 @@ import seedu.financeit.utils.FiniteStateMachine;
  */
 public class EntryTracker {
     private static Ledger currLedger;
-    private static EntryList entryList;
+    static EntryList entryList;
     private static CommandPacket packet;
+    private static boolean isUnderTest = false;
+
+    public static void setTestPacket(CommandPacket inputPacket) {
+        setCommandPacket(inputPacket);
+        isUnderTest = true;
+    }
 
     public static void setCommandPacket(CommandPacket p) {
         packet = p;
@@ -79,6 +86,8 @@ public class EntryTracker {
     }
 
     private static FiniteStateMachine.State handleMainMenu() {
+        String input;
+
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
                 String.format("[ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER %s)", currLedger));
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
@@ -87,8 +96,11 @@ public class EntryTracker {
                 "Input \"commands\" for list of commands."
         );
 
-        String input = UiManager.handleInput();
-        packet = new InputParser().parseInput(input);
+        if (!isUnderTest) {
+            input = UiManager.handleInput();
+            packet = InputParser.getInstance().parseInput(input);
+        }
+
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "entry edit":
@@ -121,7 +133,7 @@ public class EntryTracker {
         }
     }
 
-    private static FiniteStateMachine.State handleDeleteEntry() {
+    static FiniteStateMachine.State handleDeleteEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry = new Entry();
         entryList.setRequiredParams(
@@ -165,7 +177,7 @@ public class EntryTracker {
         return null;
     }
 
-    private static FiniteStateMachine.State handleCreateEntry() {
+    static FiniteStateMachine.State handleCreateEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry = new Entry();
         entry.setRequiredParams(
@@ -178,6 +190,9 @@ public class EntryTracker {
 
         try {
             entry.handlePacket(packet);
+            if (entryList.isItemDuplicate(entry)) {
+                throw new DuplicateInputException();
+            }
             entryList.addEntry(entry);
             goalTracker.targetGoalTracker(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
@@ -185,6 +200,9 @@ public class EntryTracker {
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } catch (DuplicateInputException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Duplicate item already exists in the list; not added!");
         } finally {
             if (!entry.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,

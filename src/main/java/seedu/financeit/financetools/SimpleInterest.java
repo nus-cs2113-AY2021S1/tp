@@ -19,7 +19,6 @@ public class SimpleInterest extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {
@@ -47,14 +46,14 @@ public class SimpleInterest extends ParamHandler {
             ItemNotFoundException {
         switch (paramType) {
         case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

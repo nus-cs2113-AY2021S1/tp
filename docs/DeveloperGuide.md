@@ -28,7 +28,7 @@ handling different states representing each operation on Ledger instances.
 **Helper Operation: Param Handler**
 
 ***UML Class Diagram***
-![](.DeveloperGuide_images/UmlClassManualTracker.png)
+![](uml_images/manualTracker/UmlClassManualTracker.png)
 
 ***Summary***
 * Classes which require input parameters by users require the collection of
@@ -117,7 +117,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
 **Operation: Ledger Creation**
 
 ***UML Sequence Diagram***
-![](.DeveloperGuide_images/UmlSeqHandleCreateLedger.png)
+![](uml_images/manualTracker/UmlSeqHandleCreateLedger.png)
 
 ## Product scope
 ### Target user profile

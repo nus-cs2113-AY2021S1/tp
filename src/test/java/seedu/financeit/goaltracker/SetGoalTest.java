@@ -3,14 +3,11 @@ package seedu.financeit.goaltracker;
 import org.junit.jupiter.api.Test;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetGoalTest {
-    private static InputParser inputParser = new InputParser();
-
     public static String[] handleInput(String input) {
         UiManager.printInputPrompt();
-        return inputParser.parseGoalCommand(input.toLowerCase());
+        return InputParser.getInstance().parseGoalCommand(input.toLowerCase());
     }
 
     @Test

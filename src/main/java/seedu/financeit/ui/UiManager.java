@@ -1,7 +1,6 @@
 package seedu.financeit.ui;
 
 import seedu.financeit.common.Constants;
-import seedu.financeit.parser.InputParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +8,6 @@ import java.util.Scanner;
 
 public class UiManager {
     private static Scanner scanner = new Scanner(System.in);
-    private static InputParser inputParser = new InputParser();
 
     public static String getLineWithSymbol(int width, String symbol) {
         // return new String(new char[width]).replace("\0", symbol);

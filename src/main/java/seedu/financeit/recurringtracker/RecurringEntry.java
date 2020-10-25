@@ -38,10 +38,10 @@ public class RecurringEntry extends Item {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DAY:
-            day = paramChecker.checkAndReturnInt(paramType);
+            day = ParamChecker.getInstance().checkAndReturnInt(paramType);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            amount = paramChecker.checkAndReturnDouble(paramType);
+            amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case ParamChecker.PARAM_INC:
             entryType = Constants.EntryType.INC;
@@ -60,7 +60,7 @@ public class RecurringEntry extends Item {
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
         }
     }
 

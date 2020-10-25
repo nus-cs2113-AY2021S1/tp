@@ -52,8 +52,8 @@ public class GoalTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Goals Tracker");
             displayCommandList();
             input = UiManager.handleInput();
-            cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
-            editPacket = new InputParser().parseEditCommand(input.toLowerCase());
+            cmdPacket = InputParser.getInstance().parseGoalCommand(input.toLowerCase());
+            editPacket = InputParser.getInstance().parseEditCommand(input.toLowerCase());
             switch (cmdPacket[0]) {
             case "expense":
                 setExpenseGoal(cmdPacket);
@@ -73,7 +73,7 @@ public class GoalTracker {
             default:
                 System.out.println("Invalid Command");
                 input = UiManager.handleInput();
-                cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
+                cmdPacket = InputParser.getInstance().parseGoalCommand(input.toLowerCase());
                 break;
             }
         }

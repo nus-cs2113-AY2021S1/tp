@@ -8,7 +8,7 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.ParamChecker;
+import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.RecurringTrackerSaver;
@@ -22,7 +22,7 @@ public class Financeit {
         String input = "";
         CommandPacket packet = null;
         Level mode = Level.OFF;
-        ParamChecker.logger.setLevel(mode);
+        LoggerCentre.getInstance().setLevel(mode);
         ManualTrackerSaver mt = new ManualTrackerSaver("./data/save.txt", "./data");
         GoalTrackerSaver gt = new GoalTrackerSaver("./data/save1.txt", "./data");
         RecurringTrackerSaver at = new RecurringTrackerSaver("./data/save2.txt", "./data");
@@ -32,7 +32,7 @@ public class Financeit {
             UiManager.printLogo();
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
-            packet = new InputParser().parseInput(input);
+            packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
@@ -54,7 +54,7 @@ public class Financeit {
                 MenuPrinter.prompt = (mode == Level.OFF)
                         ? "Logger is off."
                         : "Logger is on.";
-                ParamChecker.logger.setLevel(mode);
+                LoggerCentre.getInstance().setLevel(mode);
                 break;
             case "exit":
                 save(gt, mt, at);

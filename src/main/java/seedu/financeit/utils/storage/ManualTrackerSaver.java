@@ -51,7 +51,6 @@ public class ManualTrackerSaver extends SaveHandler {
         buildFile();
         File file = new File(fullPath);
         Scanner scanner = new Scanner(file);
-        InputParser in = new InputParser();
         String[] classContents;
         String inputString = "";
         int ledgerIndex = -1;
@@ -70,12 +69,12 @@ public class ManualTrackerSaver extends SaveHandler {
                 inputString = "new /time " + classContents[4] + " /cat "
                     + classContents[2] + " /desc " + classContents[5] + " /amt "
                     + classContents[3] + classContents[1];
-                EntryTracker.setCommandPacket(in.parseInput(inputString));
+                EntryTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
                 EntryTracker.createEntry();
                 break;
             case "Ledger":
                 inputString = "new /date " + classContents[1];
-                ManualTracker.setCommandPacket(in.parseInput(inputString));
+                ManualTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
                 ManualTracker.createLedger();
                 ledgerIndex++;
                 break;

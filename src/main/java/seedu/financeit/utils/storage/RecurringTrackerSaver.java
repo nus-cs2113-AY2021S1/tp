@@ -39,7 +39,6 @@ public class RecurringTrackerSaver extends SaveHandler {
         buildFile();
         File file = new File(fullPath);
         Scanner scanner = new Scanner(file);
-        InputParser in = new InputParser();
         String[] classContents;
         String inputString;
         String incomeExpense;
@@ -62,7 +61,7 @@ public class RecurringTrackerSaver extends SaveHandler {
             inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
                 + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0]
                 + " /notes " + classContents[6];
-            RecurringTracker.loadEntry(in.parseInput(inputString));
+            RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
         }
     }
 }
