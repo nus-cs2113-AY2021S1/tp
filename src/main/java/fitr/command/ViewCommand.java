@@ -60,9 +60,9 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
-            viewGoal(foodList, exerciseList, goalList, user);
+            viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
         } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
-            viewExerciseByDate(exerciseList, command.split(" ")[1]);
+            viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1]);
         }
         else {
             Ui.printFormatError("view");
