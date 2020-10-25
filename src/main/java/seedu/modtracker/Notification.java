@@ -1,6 +1,7 @@
 package seedu.modtracker;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static seedu.modtracker.ModuleList.modList;
 
@@ -9,9 +10,22 @@ public class Notification {
     public static int numOfNotification = 0;
     public static int currentWeek;
     public static final String ON_TRACK = "You are on track. Well Done!";
+    public static final String MAINTAIN = "Keep up the good work!";
+    public static final String SUCCESS = "Good time management boosts productivity!";
+    public static final String TIME_MANAGEMENT = "Good time management is the key to success!";
+
+    public static final String HARD_WORK = "The harder you work, the closer you are to success!";
+    public static final String PUSH_ON = "Never give up!";
+    public static final String STRONGER = "When we push ourselves, we come back stronger.";
+    public static final String CAPABLE = "You are capable of achieving better.";
+    public static final String TODAY = "Today is a perfect day to become better.";
+
     public static final String TOO_MUCH_TIME = "Beware! Seems like you are spending too much time on %s.";
     public static final String TOO_LITTLE_TIME = "Oh no! It appears you are spending too little time on %s.";
-    public static final String OPEN_NOTIFICATION = "Please type `open` to view the notifications.";
+    public static final String OPEN = "Please type `open` to view the notification and an encouraging message.";
+
+    public static final String[] lines = {MAINTAIN, SUCCESS, TIME_MANAGEMENT};
+    public static final String[] pushForward = {HARD_WORK, PUSH_ON, STRONGER, CAPABLE, TODAY};
 
 
     //update week number with user input
@@ -35,11 +49,12 @@ public class Notification {
         return false;
     }
 
-    public void getNumNotification(ModuleList list) {
+    public int getNumNotification(ModuleList list) {
+        numOfNotification = 0;
         ArrayList<Module> modList = list.getData();
         updateCurrentWeek();
         if (currentWeek == 0) {
-            return;
+            return 0;
         }
         for (Module mod : modList) {
             ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
@@ -56,19 +71,30 @@ public class Notification {
                 }
             }
         }
+        return numOfNotification;
+    }
+
+    public void randomise(String[] lines) {
+        String currentLine;
+        Random rand = new Random();
+        currentLine = lines[rand.nextInt(lines.length)];
+        System.out.println(currentLine + System.lineSeparator());
     }
 
     public void printNotification(ModuleList list) {
-        getNumNotification(list);
+        numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
-            System.out.println(ON_TRACK + System.lineSeparator());
+            System.out.println(ON_TRACK);
+            randomise(lines);
             return;
         }
         ArrayList<Module> modList = list.getData();
+        boolean isBehind = false;
+        boolean isFine = true;
         for (Module mod : modList) {
             ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
             Analysis analysis;
-            if (mod.doesExpectedWorkLoadExist()) {
+            if (hasExpAndAct(mod)) {
                 analysis = breakDown.computeAnalysisOfTimeSpent(mod, currentWeek);
                 switch (analysis) {
                 case tooMuchTimeSpent:
@@ -78,21 +104,24 @@ public class Notification {
                 case tooLittleTimeSpent:
                     System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode()));
                     System.out.println();
+                    isBehind = true;
                     break;
                 default:
                     break;
                 }
             }
         }
+        if (isBehind) {
+            randomise(pushForward);
+        }
     }
 
     public void start() {
         ModuleList list = new ModuleList();
-        getNumNotification(list);
+        numOfNotification = getNumNotification(list);
         if (numOfNotification > 0) {
             System.out.println("You have " + numOfNotification + " notifications.");
-            System.out.println(OPEN_NOTIFICATION);
-            System.out.println("");
+            System.out.println(OPEN + System.lineSeparator());
         }
     }
 

@@ -51,6 +51,25 @@ class ModuleListTest {
     }
 
     @Test
+    public void addModule_invalidModuleSpacing_printErrorMessage() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        String expected = "Please type module code without any spacing." + System.lineSeparator();
+        modulesTest.addMod("addmod cs 1010", true, storage);
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
+    public void addModule_invalidModuleChar_printErrorMessage() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        String expected = "Please check module code again. The module code should have 6 - 8 "
+                + "characters without any spacing." + System.lineSeparator();
+        modulesTest.addMod("addmod cs1234567", true, storage);
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
     public void deleteModule_removeModule_ModuleRemoved() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
