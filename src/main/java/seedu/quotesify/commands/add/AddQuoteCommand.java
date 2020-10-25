@@ -10,7 +10,7 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
-public class AddQuoteCommand extends AddCommand{
+public class AddQuoteCommand extends AddCommand {
 
     public AddQuoteCommand(String arguments) {
         super(arguments);

@@ -11,13 +11,13 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
-public class AddQuoteReflectionCommand extends AddCommand{
+public class AddQuoteReflectionCommand extends AddCommand {
 
     public AddQuoteReflectionCommand(String arguments) {
         super(arguments);
     }
 
-    public void execute (TextUi ui, Storage storage) {
+    public void execute(TextUi ui, Storage storage) {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         addQuoteReflection(quoteList, ui);
     }
