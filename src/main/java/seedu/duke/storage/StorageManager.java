@@ -176,6 +176,7 @@ public class StorageManager {
         while (s.hasNext()) {
             content.add(s.nextLine());
         }
+        s.close();
         return content;
     }
 
@@ -218,8 +219,7 @@ public class StorageManager {
      * @param notebook The Notebook to be loaded into.
      * @param timetable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager,
-                        StorageManager storageManager) throws SystemException {
+    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager) throws SystemException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         File f = new File(path);
         Scanner s;
@@ -231,8 +231,9 @@ public class StorageManager {
         while (s.hasNext()) {
             String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = new Parser().parseCommand(taskDetails);
-            command.setData(notebook, timetable, tagManager, storageManager);
+            command.setData(notebook, timetable, tagManager, this);
             command.execute();
         }
+        s.close();
     }
 }

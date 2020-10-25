@@ -43,7 +43,7 @@ public class Duke {
 
         try {
             storageManager.createFiles();
-            storageManager.loadAll(notebook, timetable, tagManager, storageManager);
+            storageManager.loadAll(notebook, timetable, tagManager);
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }

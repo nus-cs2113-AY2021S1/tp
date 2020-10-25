@@ -1,13 +1,13 @@
 package seedu.duke.data.notebook;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
-import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
-
+import static seedu.duke.ui.Formatter.LS;
 /**
  * Represents a Note. Contains all the information of a note.
  */
@@ -125,7 +125,7 @@ public class Note {
                     + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
                     //+ PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
                     + tagDetails
-                    + STRING_NEW_LINE;
+                    + LS;
 
         return noteDetails;
     }
