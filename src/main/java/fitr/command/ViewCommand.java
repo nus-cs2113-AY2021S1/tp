@@ -8,6 +8,7 @@ import fitr.list.GoalList;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
+
 import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
