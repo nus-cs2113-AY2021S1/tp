@@ -159,13 +159,16 @@ public class FinanceTools {
             CommandPacket packet = InputParser.getInstance().parseInput(input);
             switch (packet.getCommandString()) {
             case "simplecalc":
-                System.out.print("Total Interest Earned: $" + handleSimpleInterest(packet));
+                outputAmount = Double.toString(Math.round(handleSimpleInterest(packet) * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 break;
             case "cashbackcalc":
-                System.out.print("Total Cashback Earned: $" + handleCashback(packet));
+                outputAmount = Double.toString(Math.round(handleCashback(packet) * 100.00) / 100.00);
+                System.out.println("Total Cashback Earned: $\n\n" + outputAmount);
                 break;
             case "milescalc":
-                System.out.print("Total Miles Earned: " + handleMilesCredit(packet));
+                outputAmount = Double.toString(Math.round(handleMilesCredit(packet) * 100.00) / 100.00);
+                System.out.println("Total Miles Earned: \n\n" + outputAmount);
                 break;
             case "cyearly":
                 outputAmount = Double.toString(Math.round(handleYearlyCompoundInterest(packet) * 100.00) / 100.00);
@@ -193,6 +196,10 @@ public class FinanceTools {
                     System.out.println("====");
                     System.out.println(infoText.get(i));
                 }
+                break;
+            case "clearinfo":
+                infoText.removeAll(infoText);
+                System.out.println("All account(s) cleared in list");
                 break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");

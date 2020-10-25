@@ -40,7 +40,7 @@ public class Cashback extends ParamHandler {
         assert this.cashbackRate >= 0 : "Cashback rate should not be a negative number";
         assert this.monthlyCap >= 0 : "Monthly cap should not be a negative number";
 
-        Double cashbackEarned = this.amount * (this.cashbackRate / 100);
+        Double cashbackEarned = Math.round((this.amount * (this.cashbackRate / 100)) * 100.00) / 100.00;
         if (cashbackEarned > this.monthlyCap) {
             cashbackEarned = this.monthlyCap;
         }
