@@ -164,7 +164,7 @@ public class BookmarkAnimeCommand extends Command {
 
     private void checkBookmarkIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
-        if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
+        if (bookmarkIndex > bookmark.getBookmarkSize()) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
@@ -174,7 +174,7 @@ public class BookmarkAnimeCommand extends Command {
 
     private void checkAnimeIndex(AnimeData animeData) throws AniException {
         //Anime index is one based numbering
-        if (animeIndex > animeData.getSize() || animeIndex <= 0) {
+        if (animeIndex > animeData.getSize()) {
             String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + ANIME_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);

@@ -37,31 +37,6 @@ public class AnimeData {
         return animeDataList;
     }
 
-    public void printAll() {
-        int i = 1;
-        for (Anime anime : animeDataList) {
-            System.out.println("---------------------------------");
-            System.out.println("Index: " + i);
-            System.out.println("Name: " + anime.getAnimeName());
-            System.out.println("Episodes: " + anime.getTotalEpisodes());
-            System.out.println("Release Date: " + anime.getReleaseDateInString());
-            System.out.println("Rating: " + anime.getRating());
-            System.out.println("Genre: " + Arrays.toString(anime.getGenre()));
-            i += 1;
-        }
-    }
-
-    public void printOne(int animeIndex) {
-        Anime anime = animeDataList.get(animeIndex);
-        System.out.println("---------------------------------");
-        System.out.println("Index: " + animeIndex);
-        System.out.println("Name: " + anime.getAnimeName());
-        System.out.println("Episodes: " + anime.getTotalEpisodes());
-        System.out.println("Release Date: " + anime.getReleaseDateInString());
-        System.out.println("Rating: " + anime.getRating());
-        System.out.println("Genre: " + Arrays.toString(anime.getGenre()));
-    }
-
     public String returnAnimeInfo(int animeIndex) {
         Anime anime = animeDataList.get(animeIndex);
         StringBuilder result = new StringBuilder();
@@ -81,14 +56,4 @@ public class AnimeData {
         return result.toString();
     }
 
-    public ArrayList<Anime> findName(String description) {
-        ArrayList<Anime> findList = new ArrayList<>();
-        System.out.println("Looking for \"" + description + "\"");
-        for (Anime anime : animeDataList) {
-            if (anime.getAnimeName().contains(description)) {
-                findList.add(anime);
-            }
-        }
-        return findList;
-    }
 }

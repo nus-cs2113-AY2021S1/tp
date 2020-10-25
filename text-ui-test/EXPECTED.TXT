@@ -30,7 +30,7 @@ Default (Default) #> OOPS!!! Workspace already exist!
 
 Default (Default) #> Successfully added new workspace: WHITE CHoC MACADAMIA
 
-Default (Default) #> Workspace changed to WHITE CHoC MACADAMIA
+Default (Default) #> Workspace switched to WHITE CHoC MACADAMIA
 
 WHITE CHoC MACADAMIA (Default) #> Currently, you have 5 workspace(s):
 1. Default
@@ -45,7 +45,7 @@ WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
 
 WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
 
-WHITE CHoC MACADAMIA (Default) #> Workspace changed to COOKIES N CREME CH33SECAKE
+WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 

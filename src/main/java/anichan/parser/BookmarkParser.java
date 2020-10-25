@@ -2,7 +2,9 @@ package anichan.parser;
 
 import anichan.command.BookmarkAnimeCommand;
 import anichan.exception.AniException;
+
 import static anichan.logger.AniLogger.getAniLogger;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,16 +82,26 @@ public class BookmarkParser extends CommandParser {
             break;
         case LIST_PARAM:
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
+            listFieldCheck(paramParts);
             break;
         case ADD_NOTE_PARAM:
             paramFieldCheck(paramParts);
-            paramParts = paramGiven.split(" ",2);
+            paramParts = paramGiven.split(" ", 2);
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
             bookmarkAnimeCommand.setBookmarkNote(paramParts[1].trim());
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
             throw new AniException(invalidParameter);
+        }
+    }
+
+    private void listFieldCheck(String[] paramParts) throws AniException {
+        if (paramParts.length > 1) {
+            String invalidExtraField = PARAMETER_ERROR_HEADER + paramParts[1] + NOT_RECOGNISED
+                    + System.lineSeparator() + " Bookmark list should not have extra field.";
+            LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidExtraField);
+            throw new AniException(invalidExtraField);
         }
     }
 
@@ -108,7 +120,7 @@ public class BookmarkParser extends CommandParser {
             boolean isEmpty = paramGiven.trim().equals("");
             if (!isEmpty) {
                 String invalidFirstParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Add or Delete should not have extra param.";
+                        + System.lineSeparator() + " Add/Delete/List should not have extra first param.";
                 LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidFirstParameter);
                 throw new AniException(invalidFirstParameter);
             }

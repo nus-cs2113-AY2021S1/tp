@@ -69,7 +69,7 @@ class WorkspaceCommandTest {
         WorkspaceParser switchParse = new WorkspaceParser();
         WorkspaceCommand testSwitchWorkspace = switchParse.parse("-s Crunchy rail 12345");
 
-        String expectedString = "Workspace changed to Crunchy rail 12345";
+        String expectedString = "Workspace switched to Crunchy rail 12345";
 
         assertEquals(expectedString, testSwitchWorkspace.execute(animeData, storageManager, user));
     }
