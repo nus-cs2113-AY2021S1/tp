@@ -4,6 +4,9 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_OPTION_DOES_NOT_EXIST;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_NO_RIGHT_ANSWER;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +14,6 @@ import java.util.logging.Logger;
 public class OptionList implements DisplayableList {
     private final ArrayList<Displayable> options;
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private static final String NO_RIGHT_ANSWER_ERROR = "Error with question: No right answer specified";
 
     public OptionList(ArrayList<Displayable> options) {
         this.options = options;
@@ -29,7 +31,7 @@ public class OptionList implements DisplayableList {
                 return option;
             }
         }
-        throw new Eduke8Exception("No such option exists, did you spell it correctly?");
+        throw new Eduke8Exception(ERROR_OPTION_DOES_NOT_EXIST);
     }
 
     public int findCorrectOptionIndex() throws Eduke8Exception {
@@ -39,8 +41,8 @@ public class OptionList implements DisplayableList {
             }
         }
 
-        LOGGER.log(Level.WARNING, NO_RIGHT_ANSWER_ERROR);
-        throw new Eduke8Exception(NO_RIGHT_ANSWER_ERROR);
+        LOGGER.log(Level.WARNING, "Error with question: No right answer specified");
+        throw new Eduke8Exception(ERROR_NO_RIGHT_ANSWER);
     }
 
     @Override

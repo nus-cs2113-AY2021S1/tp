@@ -4,6 +4,8 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUESTION_DOES_NOT_EXIST;
+
 import java.util.ArrayList;
 
 public class QuestionList implements DisplayableList {
@@ -34,6 +36,6 @@ public class QuestionList implements DisplayableList {
                 return question;
             }
         }
-        throw new Eduke8Exception("No such question exists, did you spell it correctly?");
+        throw new Eduke8Exception(ERROR_QUESTION_DOES_NOT_EXIST);
     }
 }
