@@ -63,7 +63,9 @@ public class Duke {
         while (!parser.isExit()) {
             input = Ui.getUserCommand();
             Command command = parser.parser(input, projectManager);
-            command.execute();
+            if (command != null) {
+                command.execute();
+            }
         }
     }
 }

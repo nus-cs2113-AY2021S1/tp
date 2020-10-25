@@ -6,8 +6,6 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +30,7 @@ public class Parser {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
-            System.exit(0);
+            return null;
         }
 
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);

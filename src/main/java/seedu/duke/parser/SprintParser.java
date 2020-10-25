@@ -2,7 +2,6 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.EmptyCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.RemoveSprintTaskCommand;

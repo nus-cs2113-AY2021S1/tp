@@ -7,7 +7,6 @@ import seedu.duke.command.task.DeleteTaskCommand;
 import seedu.duke.command.task.DoneTaskCommand;
 import seedu.duke.command.task.ViewTaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
 import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 

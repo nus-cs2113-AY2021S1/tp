@@ -1,7 +1,6 @@
 package seedu.duke.command.task;
 
 import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
 
 import java.util.Hashtable;
 

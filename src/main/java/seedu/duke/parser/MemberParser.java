@@ -5,7 +5,6 @@ import seedu.duke.command.member.AddMemberCommand;
 import seedu.duke.command.member.DeleteMemberCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
-import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
