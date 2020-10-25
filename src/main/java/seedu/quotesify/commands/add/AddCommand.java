@@ -1,14 +1,8 @@
 package seedu.quotesify.commands.add;
 
-import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.category.Category;
-import seedu.quotesify.category.CategoryList;
-import seedu.quotesify.category.CategoryParser;
-import seedu.quotesify.commands.add.AddBookCommand;
 import seedu.quotesify.commands.Command;
-import seedu.quotesify.commands.add.AddCategoryCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
@@ -22,7 +16,6 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
