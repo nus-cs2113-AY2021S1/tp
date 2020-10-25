@@ -21,6 +21,16 @@ public class LocateCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Provides location information when user gives a number within size of EventList or name of a location
+     *
+     * @param events    the list of Events.
+     * @param locations the list of Locations.
+     * @param busStops  the list of BusStops.
+     * @param ui        do outputs.
+     * @param storage   store the data.
+     * @throws NuScheduleException
+     */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
         int event_num;
