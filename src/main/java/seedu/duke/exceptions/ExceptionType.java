@@ -9,7 +9,9 @@ public enum ExceptionType {
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),
     INVALID_BUS_STOP("Oh no! I do not understand which bus stop you are looking for"),
     INVALID_FACULTY("Oh no! Please enter a faculty."),
-    INVALID_FOODPLACE("Oh no! I cannot detect any inputs.");
+    INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
+    UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
+    READ_FILE_FAIL("It is unfortunate that the program is unable to read the file");
 
     private String message;
 
