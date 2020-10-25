@@ -8,14 +8,15 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
 
 1. Check that your computer has Java **11** installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-1.Copy the file to the folder you want to use as the home folder.
-1.Type in a command prompt ./duke.jar and press Enter.
-1.Type the `help` command and press Enter to get started.
-1.Some example commands you can try:
-    1.`list words` : List the vocabulary stored in the word list.
-    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-    1.`exit` : Exits the app.
-1.Refer to the Features below for details of each command.
+- Copy the file to the folder you want to use as the home folder.
+- Type in a command prompt ./duke.jar and press Enter.
+- Type the `help` command and press Enter to get started.
+- Some example commands you can try:
+    - `list words` : List the vocabulary stored in the word list.
+    - `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+    - `exit` : Exits the app.  
+    
+Refer to the Features below for details of each command.
 
 ## Features 
 
@@ -68,7 +69,7 @@ Examples:
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun [WORD] \d[DESCRIPTION]`
 
-### Adding a noun: `noun`
+### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb [WORD] \d[DESCRIPTION]`
 
@@ -329,13 +330,11 @@ Format: `exit`
 |              | List all the stored names                                                                             |
 | filter names | `filter names [NAME]`                                                                                 |
 |              | Gets the list of names after filtering                                                                |
-|              |                                                                                                       |
 | stats        | `stats`                                                                                               |
 |              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
 |              | This is a poem  <br>Written by Goethe                                                                 |
 |              | Id: 5 <br> DER ERLKÖNIG                                                                               |
 |              | Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.|
-|              |                                                                                                       |
 |              | This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | list         | `list`                                                                                                |
 | clear        | `clear`                                                                                               |
