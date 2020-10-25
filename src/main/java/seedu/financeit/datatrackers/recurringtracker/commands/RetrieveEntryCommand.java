@@ -20,6 +20,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
+//@@author Artemis-Hunt
 /**
  * Command class to reference an existing entry instance with specified parameter values.
  * Entry will then be referenced for the ItemList instance as currItem.

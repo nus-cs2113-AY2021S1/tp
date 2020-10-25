@@ -16,6 +16,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 
+//@@author Artemis-Hunt
 /**
  * Command class to create an entry instance, and populates it with parameter values.
  * The populated entry will be stored within the class, and can be retrieved by calling a
