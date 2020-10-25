@@ -23,17 +23,18 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class ListCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public ListCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }
-        assert details.length == 2;
         type = details[0];
         information = details[1];
     }
@@ -50,12 +51,10 @@ public class ListCommand extends Command {
             listRatings(ratingList, ui);
             break;
         case TAG_TODO:
-            ToDoList toDoList = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            listToDos(toDoList,ui);
+            new ListToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
-            BookmarkList bookmarkList = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            listBookmarks(bookmarkList, ui);
+            new ListBookmarkCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);

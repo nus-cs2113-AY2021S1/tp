@@ -64,14 +64,10 @@ public class DeleteCommand extends Command {
             deleteRating(ratings, ui);
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            int index = computeToDoIndex(information.trim());
-            deleteToDo(toDos, index, ui);
+            new DeleteToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
-            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            deleteBookmarkByIndex(bookmarks,information.trim(),ui);
+            new DeleteBookmarkCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             new DeleteQuoteCommand(arguments).execute(ui, storage);
