@@ -24,17 +24,17 @@ public class FavList {
 
     public static String changeDesc(int index, String newDesc) throws CustomException {
         String oldDesc = checkIndexAndDesc(index, newDesc);
-        favList.get(index-1).changeDesc(newDesc);
+        favList.get(index - 1).changeDesc(newDesc);
         return oldDesc;
     }
 
     private static String checkIndexAndDesc(int index, String newDesc) throws CustomException {
-        if(index ==0 || index > favList.size()) {
+        if (index == 0 || index > favList.size()) {
             throw new CustomException(ExceptionType.INVALID_INDEX);
         }
         assert index > 0 && index < FavList.getList().size() : "Index out of bounds.";
-        String oldDesc = favList.get(index -1).getDesc();
-        if(oldDesc.equals(newDesc)) {
+        String oldDesc = favList.get(index - 1).getDesc();
+        if (oldDesc.equals(newDesc)) {
             throw new CustomException(ExceptionType.SAME_DESCRIPTION);
         }
         assert !oldDesc.equals(newDesc) : "description is the same as before.";

@@ -43,7 +43,7 @@ public class DescFavParser extends Parser {
     }
 
     private void checkComponents(String[] components) throws CustomException {
-        if(components[0].trim().isEmpty() & components[1].trim().isEmpty()) {
+        if (components[0].trim().isEmpty() & components[1].trim().isEmpty()) {
             throw new CustomException(ExceptionType.NO_INPUT);
         }
     }

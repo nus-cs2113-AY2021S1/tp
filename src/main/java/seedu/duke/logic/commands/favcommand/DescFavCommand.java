@@ -23,7 +23,7 @@ public class DescFavCommand extends Command {
         int index = parser.getIndex();
         String description = parser.getDescription();
         String oldDesc = FavList.changeDesc(index, description);
-        String command = FavList.getList().get(index-1).getCommand();
+        String command = FavList.getList().get(index - 1).getCommand();
         Ui.printDescChangeMessage(command, oldDesc, description);
     }
 }
