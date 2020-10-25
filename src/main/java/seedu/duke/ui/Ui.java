@@ -153,6 +153,16 @@ public class Ui {
         System.out.println(eventUpdated);
     }
 
+    public void printEventMarkedDoneMessage(Event doneEvent) {
+        System.out.println("You have successfully marked this event as done!");
+        System.out.println(doneEvent);
+    }
+
+    public void printEventMarkedUndoneMessage(Event undoneEvent) {
+        System.out.println("You have successfully marked this event as undone!");
+        System.out.println(undoneEvent);
+    }
+
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }

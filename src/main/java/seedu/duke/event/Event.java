@@ -59,6 +59,13 @@ public abstract class Event implements Cloneable {
         this.isDone = true;
     }
 
+    /**
+     * Sets the event's done status to false.
+     */
+    public void markAsUndone() {
+        this.isDone = false;
+    }
+
 
     /**
      * Returns a string representation of event's done status.
