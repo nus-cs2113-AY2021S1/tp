@@ -98,6 +98,12 @@ public class Ui {
         printLine();
     }
 
+    public static void printDupeMessage(int index, String desc, String command) {
+        printLine();
+        System.out.println("You already saved something like this in your favourites list");
+        System.out.println(index + ". " + desc + "\nCommand stored: " + command);
+        printLine();
+    }
     public static void printResetSearchFreqMessage() {
         printLine();
         System.out.println("The search frequencies of all bus stops have been reset to 0!");

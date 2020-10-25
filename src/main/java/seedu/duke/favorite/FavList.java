@@ -24,11 +24,14 @@ public class FavList {
     }
 
     public static boolean contains(Fav item) {
+        int count = 0;
         for (Fav fav : favList) {
-            if (fav.equals(item)) {
+            count++;
+            if (fav.equals(item,count)) {
                 return true;
             }
         }
         return false;
     }
+
 }
