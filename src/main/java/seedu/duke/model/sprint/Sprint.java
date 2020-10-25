@@ -18,8 +18,8 @@ public class Sprint implements Jsonable {
     private String goal;
     private LocalDate startDate;
     private LocalDate endDate;
-    private ArrayList<Integer> sprintTaskIds;
-    private Project projAllocatedTo;
+    private ArrayList<Integer> taskList;
+    private Project owner;
 
     public Sprint() {
     }
@@ -37,25 +37,25 @@ public class Sprint implements Jsonable {
         setGoal(goal);
         setStartDate(startDate);
         setEndDate(endDate);
-        this.sprintTaskIds = new ArrayList<>();
-        this.projAllocatedTo = proj;
+        this.taskList = new ArrayList<>();
+        this.owner = proj;
     }
 
 
-    public ArrayList<Integer> getSprintTaskIds() {
-        return sprintTaskIds;
+    public ArrayList<Integer> getTaskList() {
+        return taskList;
     }
 
-    public void setSprintTaskIds(ArrayList<Integer> sprintTaskIds) {
-        this.sprintTaskIds = sprintTaskIds;
+    public void setTaskList(ArrayList<Integer> taskList) {
+        this.taskList = taskList;
     }
 
-    public Project getProjAllocatedTo() {
-        return projAllocatedTo;
+    public Project getOwner() {
+        return owner;
     }
 
-    public void setProjAllocatedTo(Project projAllocatedTo) {
-        this.projAllocatedTo = projAllocatedTo;
+    public void setOwner(Project owner) {
+        this.owner = owner;
     }
     
     public int getId() {
@@ -91,7 +91,7 @@ public class Sprint implements Jsonable {
     }
 
     public boolean checkTaskExist(int taskId) {
-        for (Integer id : sprintTaskIds) {
+        for (Integer id : taskList) {
             if (id == taskId) {
                 return true;
             }
@@ -100,15 +100,21 @@ public class Sprint implements Jsonable {
     }
 
     public void addSprintTask(int taskId) {
-        this.sprintTaskIds.add(taskId);
+        this.taskList.add(taskId);
     }
 
     public void removeSprintTask(int taskId) {
-        this.sprintTaskIds.remove((Object) taskId);
+        this.taskList.remove((Object) taskId);
     }
     
     public ArrayList<Integer> getAllSprintTaskIds() {
-        return this.sprintTaskIds;
+        return this.taskList;
+    }
+
+    public String toIdString() {
+        StringBuilder sprintInString = new StringBuilder();
+        sprintInString.append(String.format("[Sprint ID: %s]", this.id));
+        return sprintInString.toString();
     }
 
     public String toSimplifiedString() {
@@ -122,7 +128,7 @@ public class Sprint implements Jsonable {
     @Override
     public String toString() {
         boolean isCurrentSprint;
-        isCurrentSprint = ((this.id - 1) == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
+        isCurrentSprint = ((this.id - 1) == this.owner.getSprintList().getCurrentSprintIndex());
 
         StringBuilder sprintInString = new StringBuilder();
         if (isCurrentSprint) {
@@ -137,11 +143,11 @@ public class Sprint implements Jsonable {
         if (isCurrentSprint) {
             sprintInString.append(String.format("[Remaining: %s days]\n", this.endDate.compareTo(LocalDate.now())));
         }
-        if (sprintTaskIds.size() == 0) {
+        if (taskList.size() == 0) {
             sprintInString.append("[No allocated tasks]\n");
         } else {
-            for (int taskIds : sprintTaskIds) {
-                Task task = projAllocatedTo.getProjectBacklog().getTask(taskIds);
+            for (int taskIds : taskList) {
+                Task task = owner.getProjectBacklog().getTask(taskIds);
                 sprintInString.append(task.toString());
             }
         }
@@ -169,7 +175,7 @@ public class Sprint implements Jsonable {
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
         final JsonArray jsonSprintTaskIds = new JsonArray();
-        jsonSprintTaskIds.addAll(sprintTaskIds);
+        jsonSprintTaskIds.addAll(taskList);
         jObj.put("sprintTaskIds", jsonSprintTaskIds);
         jObj.toJson(writer);
     }

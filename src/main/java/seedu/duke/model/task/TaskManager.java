@@ -11,19 +11,27 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class ProjectBacklog implements Jsonable {
+public class TaskManager implements Jsonable {
 
     private Project proj;
     public ArrayList<Task> backlogTasks;
     int nextId;
 
-    public ProjectBacklog() {
+    public TaskManager() {
     }
 
-    public ProjectBacklog(Project proj) {
+    public TaskManager(Project proj) {
         this.proj = proj;
         backlogTasks = new ArrayList<>(100);
         nextId = 1;
+    }
+
+    public boolean isEmpty() {
+        return backlogTasks.isEmpty();
+    }
+
+    public int size() {
+        return backlogTasks.size();
     }
 
     public int getNextId() {
@@ -70,7 +78,7 @@ public class ProjectBacklog implements Jsonable {
             if (task.getId() == taskId) {
                 ArrayList<Integer> allocatedSprint = task.getAllocatedSprints();
                 for (Integer sprintId : allocatedSprint) {
-                    proj.getAllSprints().getSprint(sprintId).removeSprintTask(taskId);
+                    proj.getSprintList().getSprint(sprintId).removeSprintTask(taskId);
                 }
                 backlogTasks.remove(task);
                 return;
@@ -133,35 +141,4 @@ public class ProjectBacklog implements Jsonable {
         jsonBacklog.put("nextId", nextId);
         jsonBacklog.toJson(writer);
     }
-    //    public void viewTask(String id, Ui ui) {
-    //        Task task = null;
-    //        try {
-    //            int backlogId = Integer.parseInt(id) - 1;
-    //            if (backlogId < size) {
-    //                task = backlogTasks.get(backlogId);
-    //                ui.displayTask(task);
-    //            } else {
-    //                ui.displayInvalidId();
-    //            }
-    //        } catch (NumberFormatException e) {
-    //            ui.printError("Task id is not an integer.");
-    //        }
-    //    }
-    //
-    //    public void deleteTask(List<String> taskId, Ui ui) {
-    //
-    //        for (String id : taskId) {
-    //            try {
-    //                int backlogId = Integer.parseInt(id) - 1;
-    //                if (backlogId < size) {
-    //                    ui.printTaskRemoved(backlogTasks.get(backlogId));
-    //                    backlogTasks.remove(backlogId);
-    //                } else {
-    //                    ui.displayInvalidId();
-    //                }
-    //            } catch (NumberFormatException e) {
-    //                ui.printError("Task id is not an integer.");
-    //            }
-    //        }
-    //    }
 }

@@ -15,8 +15,8 @@ public class Task implements Jsonable {
     private String description;
     private Priority priority;
     private boolean isDone;
-    private ArrayList<String> membersAllocatedTo;
-    private ArrayList<Integer> sprintAllocatedTo;
+    private ArrayList<String> memberList;
+    private ArrayList<Integer> sprintList;
 
     public Task() {
     }
@@ -31,8 +31,8 @@ public class Task implements Jsonable {
         this.description = description;
         this.priority = Priority.valueOf(priority);
         this.isDone = isDone;
-        this.membersAllocatedTo = new ArrayList<>();
-        this.sprintAllocatedTo = new ArrayList<>();
+        this.memberList = new ArrayList<>();
+        this.sprintList = new ArrayList<>();
     }
 
     public void setTitle(String title) {
@@ -59,36 +59,44 @@ public class Task implements Jsonable {
         isDone = done;
     }
 
-    public ArrayList<String> getMembersAllocatedTo() {
-        return membersAllocatedTo;
+    public ArrayList<String> getMemberList() {
+        return memberList;
     }
 
-    public void setMembersAllocatedTo(ArrayList<String> membersAllocatedTo) {
-        this.membersAllocatedTo = membersAllocatedTo;
+    public void setMemberList(ArrayList<String> memberList) {
+        this.memberList = memberList;
     }
 
-    public ArrayList<Integer> getSprintAllocatedTo() {
-        return sprintAllocatedTo;
+    public ArrayList<Integer> getSprintList() {
+        return sprintList;
     }
 
-    public void setSprintAllocatedTo(ArrayList<Integer> sprintAllocatedTo) {
-        this.sprintAllocatedTo = sprintAllocatedTo;
+    public void setSprintList(ArrayList<Integer> sprintList) {
+        this.sprintList = sprintList;
     }
 
     public void allocateToMember(String memberId) {
-        membersAllocatedTo.add(memberId);
+        memberList.add(memberId);
+    }
+
+    public void removeFromMember(String memberId) {
+        memberList.remove((Object) memberId);
     }
 
     public ArrayList<String> getAllocatedMembers() {
-        return membersAllocatedTo;
+        return memberList;
     }
 
     public void allocateToSprint(int sprintId) {
-        sprintAllocatedTo.add(sprintId);
+        sprintList.add(sprintId);
+    }
+
+    public void removeFromSprint(int sprintId) {
+        sprintList.remove((Object) sprintId);
     }
 
     public ArrayList<Integer> getAllocatedSprints() {
-        return sprintAllocatedTo;
+        return sprintList;
     }
 
     public void setId(int id) {
@@ -136,9 +144,9 @@ public class Task implements Jsonable {
         taskString.append(String.format("\tDescription: %s\n", this.description));
         taskString.append(String.format("\tPriority: %s\n", this.priority));
         taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
-        if (!membersAllocatedTo.isEmpty()) {
+        if (!memberList.isEmpty()) {
             taskString.append("\tAssigned to: ");
-            for (String member : membersAllocatedTo) {
+            for (String member : memberList) {
                 taskString.append(String.format("%s ", member));
             }
             taskString.append("\n");
@@ -163,20 +171,14 @@ public class Task implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jTask = new JsonObject();
-        final JsonArray members = new JsonArray(membersAllocatedTo);
+        final JsonArray members = new JsonArray(memberList);
         jTask.put("id", id);
         jTask.put("title", title);
         jTask.put("description", description);
         jTask.put("priority", priority.name());
         jTask.put("isDone", isDone);
         jTask.put("membersAllocatedTo", members);
-        jTask.put("sprintAllocatedTo", sprintAllocatedTo);
+        jTask.put("sprintAllocatedTo", sprintList);
         jTask.toJson(writer);
     }
-
-
-    //Delete seedu.duke.model.task handled outside using ArrayList remove() function
-    //iD handled outside. (seedu.duke.model.task number)
-    //valueOf for enum explained here:https://www.baeldung.com/java-string-to-enum
-
 }

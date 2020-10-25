@@ -7,9 +7,9 @@ import seedu.duke.ui.Ui;
 import java.util.Arrays;
 import java.util.Hashtable;
 
-public class AllocateSprintTaskCommand extends SprintCommand {
+public class DeallocateSprintTaskCommand extends SprintCommand {
 
-    public AllocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
+    public DeallocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList);
     }
 
@@ -25,11 +25,11 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             int taskId = Integer.parseInt(taskIdInString);
             for (String userId : userIds) {
                 Member mem = this.projOwner.getProjectMember().getMember(userId.trim());
-                mem.allocateTask(taskId);
-                this.projOwner.getProjectBacklog().getTask(taskId).allocateToMember(mem.getUserId());
+                mem.deallocateTask(taskId);
+                this.projOwner.getProjectBacklog().getTask(taskId).removeFromMember(mem.getUserId());
             }
             Ui.showToUserLn(this.projOwner.getProjectBacklog().getTask(taskId).getTitle()
-                    + " is assigned to "
+                    + " is removed from "
                     + Arrays.toString(userIds));
         }
     }
