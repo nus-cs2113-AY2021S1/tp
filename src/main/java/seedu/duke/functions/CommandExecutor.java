@@ -32,7 +32,7 @@ public class CommandExecutor {
         switch (commandChecker) {
         case HELP:
             String[] command = userInput.split(" ", 2);
-            if(command.length > 1) {
+            if (command.length > 1) {
                 printHelpMessage(command[1]);
             } else {
                 printHelpMessage(userInput);
