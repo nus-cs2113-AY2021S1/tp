@@ -4,7 +4,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
 import seedu.revised.card.quiz.ResultList;
 import seedu.revised.card.quiz.SubjectQuiz;
-import seedu.revised.command.subject.ExportCommand;
+import seedu.revised.command.subject.ExportSubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
@@ -91,8 +91,8 @@ public class Revised {
                     Subject subject = c.execute(subjects);
                     SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
                     subjectQuiz.startQuiz(results);
-                } else if (c instanceof ExportCommand) {  // TODO: bad practice, shouldn't use instanceof here
-                    ((ExportCommand) c).execute(subjects, storage);
+                } else if (c instanceof ExportSubjectCommand) {  // TODO: bad practice, shouldn't use instanceof here
+                    ((ExportSubjectCommand) c).execute(subjects, storage);
                 } else {
                     c.execute(subjects);
                 }
