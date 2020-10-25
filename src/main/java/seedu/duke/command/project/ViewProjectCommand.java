@@ -18,7 +18,7 @@ public class ViewProjectCommand extends ProjectCommand {
     public void execute() {
         assert projectManager.size() != 0 : "No projects created \n.";
 
-        if (projectManager.isEmpty()) {
+        if (projectManager.size() == 0) {
             Ui.showError("No projects are created.");
         } else {
             Project project = projectManager.getSelectedProject();
