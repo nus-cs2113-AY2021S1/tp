@@ -15,7 +15,6 @@ public class FindBookCommand extends FindCommand {
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         findBooks(books, ui);
-        storage.save();
     }
 
     private void findBooks(BookList books, TextUi ui) {

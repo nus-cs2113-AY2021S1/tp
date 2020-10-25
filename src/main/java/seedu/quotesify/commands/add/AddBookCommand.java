@@ -20,7 +20,6 @@ public class AddBookCommand extends AddCommand {
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         addBook(books, ui);
-        storage.save();
     }
 
     private void addBook(BookList books, TextUi ui) {

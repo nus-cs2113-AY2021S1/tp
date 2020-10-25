@@ -7,8 +7,11 @@
 - [Usage](#usage)
   * [Book Management](#book-management)
     * [Adding a book](#adding-a-book-add--b)
+    * [Completing a book](#completing-a-book-done--b)
     * [Listing all existing book](#listing-all-existing-books-list--b)
+    * [Listing book details](#listing-book-details-list--b)
     * [Listing books by an Author](#listing-books-by-an-author-list--b)
+    * [Listing books by completion](#listing-books-by-completion-list--b)
     * [Finding books by keyword](#finding-books-by-keyword-find--b)
     * [Deleting a book](#deleting-a-book-delete--b)
   * [Quote Management](#quote-management)
@@ -80,16 +83,31 @@ Format: `add -b BOOK_TITLE /by AUTHOR`
 * You must specify both the title and the author of the book. 
 
 Example of usage:
-
 `add -b Harry Potter /by JK Rowling`
 
+Expected outcome:
+~~~
+The book [Harry Potter by JK Rowling] has been added!
+~~~
+
+#### Completing a book: `done -b`
+Finished reading a book? You can now mark your book as done.
+
+Format: `done -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+ `done -b 2`
 
 Expected outcome:
-
-`The book [Harry Potter by JK Rowling] has been added!`
+~~~
+The book [Harry Potter by JK Rowling] has been marked as done!
+~~~
 
 #### Listing all existing books: `list -b`
-You can list all books currently in your booklist. 
+Want to see what books you have in your reading list? You can list all books currently in your booklist. 
 
 Format: `list -b`
 
@@ -103,6 +121,59 @@ Here is a list of all books:
 2. The Lion, the Witch and the Wardrobe by CS Lewis
 3. Becoming by Michelle Obama
 4. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing book details: `list -b`
+Want to check a book's details? You can list the details of a book by specifying the book number.
+
+Format: `list -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+
+Example of usage:
+`list -b 2`
+
+Expected outcome:
+
+Case 1: When the book has not been rated and not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 2: When the book has been rated but not completed.
+~~~
+Here are the details of your book:
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
+~~~
+
+Case 3: When the book has not been rated but completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter 
+Author: JK Rowling
+Categories:
+There are no categories created!
+~~~
+
+Case 4: When the book has been rated and completed.
+~~~
+Here are the details of your book:
+[Completed]
+Title: Harry Potter
+Author: JK Rowling
+Categories:
+There are no categories created!
+Rating: 5
 ~~~
 
 #### Listing books by an Author: `list -b`
@@ -121,6 +192,35 @@ Expected outcome:
 Here is a list of books by CS Lewis:
 1. The Lion, the Witch and the Wardrobe by CS Lewis
 2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing books by completion: `list -b`
+Only want to see the books you have finished or not finished? You can do that using the command below.
+
+##### List done books
+Format: `list -b done`
+
+Example of usage:
+`list -b done`
+
+Expected outcome:
+~~~
+Here are the books you have completed:
+1. [v] Harry Potter by JK Rowling
+2. [v] Harry Potter 2 by JK Rowling
+~~~
+
+##### List done books
+Format: `list -b undone`
+
+Example of usage:
+`list -b undone`
+
+Expected outcome:
+~~~
+Here are the books you have yet to complete:
+1. [x] Harry Potter by JK Rowling
+2. [x] Harry Potter 2 by JK Rowling
 ~~~
 
 #### Finding books by keyword: `find -b`
@@ -144,7 +244,7 @@ Don't need a book anymore? You can delete the book permanently.
 Format: `delete -b BOOK_NUMBER`
 
 * `BOOK_NUMBER` refers to the index you see when you list ALL books.
-* Book number specified must be less than the total number of books.
+* The book number must be an existing number in the list when you list ALL books.
 
 Example of usage:
 `delete -b 1`
@@ -153,6 +253,23 @@ Expected outcome:
 ~~~
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
+
+#### Editing an existing book: `edit -b`
+Accidentally typed in the wrong book title? You can edit your book titles. 
+
+Format: `edit -b BOOK_NUMBER /to NEW_TITLE`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+* `/to` flag must be typed before the new title
+
+Example of usage:
+`edit -b 2 /to Harry Potter 2`
+
+Expected outcome:
+~~~
+The book has been edited from [Harry Potter] to [Harry Potter 2]!
+~~~
 
 ### Quote Management
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
@@ -623,27 +740,32 @@ Enter the following command | To do this
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
 `list -b [/by AUTHOR]` | List books
+`list -b BOOK_NUMBER` | List book detail
+`list -b done/undone` | List books by completion
 `list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
 `list -bm` | List bookmarks
 `list -t` | List tasks
 `list -c [CATEGORY]` | List all categories / List items in a category
 `list -r [/RATING_SCORE]` | List ratings
+`edit -b BOOK_NUMBER /to NEW_TITLE` | Edit book title
 `edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
-`delete -b BOOK_TITLE /by AUTHOR` | Delete book
+`delete -b BOOK_NUMBER` | Delete book
 `delete -q QUOTE_NUMBER` | Delete quote
 `delete -qr QUOTE_NUMBER` | Delete quote reflection
 `delete -bm BOOK_TITLE` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
 `delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
 `delete -r BOOK_TITLE /by AUTHOR` | Delete rating
+`find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
 `find -r BOOK_TITLE /by AUTHOR` | Find rating
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
+`done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
 `help` | Show help page
 `bye` | Terminate the program
