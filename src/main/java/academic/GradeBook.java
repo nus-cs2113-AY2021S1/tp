@@ -8,9 +8,12 @@ import java.util.ArrayList;
 public class GradeBook {
     public static void addGrade(String[] args, ArrayList<Grade> currentGrades) {
         currentGrades.add(new Grade(args[0], Integer.parseInt(args[1]), args[2]));
-        if (args.length == 4) {
+        if (args.length == 5) {
             if (args[3].equals("true")) {
                 Grade.suGrade(currentGrades.get(currentGrades.size() - 1));
+            }
+            if (args[4].equals("true")) {
+                Grade.changeStarGrade(currentGrades.get(currentGrades.size() - 1));
             }
         }
     }
@@ -37,6 +40,9 @@ public class GradeBook {
         Grade.suGrade(currentGrades.get(indexToBeSued - 1));
     }
 
+    public static void starGrade(Integer indexToBeStar, ArrayList<Grade> currentGrades) {
+        Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
+    }
 
     public static String printListOfGrades(ArrayList<Grade> currentGrades) {
         int listIndex = 0;
@@ -48,7 +54,10 @@ public class GradeBook {
                 listToPrint.append(" [" + grade.moduleCredits + "MC]");
                 listToPrint.append(" [" + grade.moduleGrade + "]");
                 if (Grade.isGradeSued(grade)) {
-                    listToPrint.append(" (This mod is SUed)");
+                    listToPrint.append(" (This mod is SU-ed)");
+                }
+                if (Grade.isGradeStar(grade)) {
+                    listToPrint.append(" (*)");
                 }
                 listIndex++;
                 if (currentGrades.size() != listIndex) {

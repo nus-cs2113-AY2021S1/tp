@@ -123,8 +123,12 @@ public class Command {
                 GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
 
             } else if (commandType == AcademicCommandType.SU_GRADE) {
-                Ui.printLine("SUing grade");
-                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command),currentGrades);
+                Ui.printLine("SU-ing grade");
+                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command), currentGrades);
+
+            } else if (commandType == AcademicCommandType.STAR_GRADE) {
+                Ui.printLine("Marking this grade as star");
+                GradeBook.starGrade(AcademicCommandParser.parseStarGrade(command), currentGrades);
 
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");

@@ -37,7 +37,6 @@ public class AcademicStorage {
             } else if (importedCommand.startsWith("[G]")) {
                 GradeBook.addGrade(AcademicCommandParser.parseImportedGrade(importedCommand),listOfGrades);
             }
-
         }
     }
 
