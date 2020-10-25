@@ -505,7 +505,7 @@ public class Ui {
                 + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
                 + "                     answer the questions of the prompted flashcards to test your knowledge\n"
                 + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
-                + "bye:                 exits the subject to return to the main screen, "
+                + "exit:                exits the subject to return to the main screen, "
                 + "where you can work with subjects"
         );
         System.out.println(LONG_DIVIDER);
