@@ -6,6 +6,7 @@ import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
+import seedu.quotesify.commands.add.AddBookCommand;
 import seedu.quotesify.commands.add.AddCategoryCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -50,8 +51,7 @@ public class AddCommand extends Command {
         switch (type) {
         case TAG_BOOK:
             addLogger.log(Level.INFO, "going to add book to booklist");
-            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            addBook(books, ui);
+            new AddBookCommand(arguments).execute(ui, storage);
             addLogger.log(Level.INFO, "added book to booklist");
             break;
         case TAG_QUOTE:
@@ -99,54 +99,6 @@ public class AddCommand extends Command {
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add reflection to quote failed");
-        }
-    }
-
-    private void addBook(BookList books, TextUi ui) {
-        try {
-            String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
-            // if user did not provide author, let titleAndAuthor[1] be empty string
-            if (titleAndAuthor.length == 1) {
-                titleAndAuthor = new String[]{titleAndAuthor[0], ""};
-            }
-
-            String title = titleAndAuthor[0].trim();
-            String authorName = titleAndAuthor[1].trim();
-
-            checkMissingInformation(title, authorName);
-            Book newBook = createNewBook(books, title, authorName);
-
-            books.add(newBook);
-            books.sort();
-            ui.printAddBook(newBook);
-
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add book to booklist failed");
-        }
-    }
-
-    private Book createNewBook(BookList books, String title, String authorName) throws QuotesifyException {
-        Book newBook;
-        Author existingAuthor = books.findExistingAuthor(authorName);
-
-        if (existingAuthor == null) {
-            // Book is definitely unique
-            newBook = new Book(new Author(authorName), title);
-        } else {
-            books.ensureNoSimilarBooks(title, existingAuthor.getName());
-            newBook = new Book(existingAuthor, title);
-        }
-
-        return newBook;
-    }
-
-    private void checkMissingInformation(String title, String authorName) throws QuotesifyException {
-        if (title.isEmpty()) {
-            throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);
-        }
-        if (authorName.isEmpty()) {
-            throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
         }
     }
 
