@@ -45,7 +45,7 @@ public class ClickerMessages {
     public static final String BUNNY_MISSING_IDEA_MSG = "Bunny command missing idea?";
 
     /** Bunny deletion message. */
-    public static final String BUNNY_DELETED_MSG = "Bunny deleted:";
+    public static final String BUNNY_DELETED_MSG = "Bunny deleted: \n";
 
 
     /** New character added messages. */
