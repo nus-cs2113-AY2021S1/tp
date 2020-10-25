@@ -63,8 +63,7 @@ public class ViewCommand extends Command {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
         } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
             viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1]);
-        }
-        else {
+        } else {
             Ui.printFormatError("view");
         }
     }
@@ -159,8 +158,8 @@ public class ViewCommand extends Command {
             Ui.printCustomError(ERROR_INVALID_DATE);
         }
         ExerciseList exercisesOnThatDate = new ExerciseList();
-        for(int i = 0; i < exerciseList.getSize(); i++) {
-            if(date.equals(exerciseList.getExercise(i).getDate())) {
+        for (int i = 0; i < exerciseList.getSize(); i++) {
+            if (date.equals(exerciseList.getExercise(i).getDate())) {
                 exercisesOnThatDate.addExercise(exerciseList.getExercise(i));
             }
         }
