@@ -1,0 +1,3 @@
+Ledger;2020-05-05
+Entry;Income;TRANSPORT;1500.0;15:00:01;adasdsadasd asdasdsadas dasdsadsa dsad sad sa
+Entry;Income;FOOD;1.2343243333333334E78;16:00:01;asdsadas

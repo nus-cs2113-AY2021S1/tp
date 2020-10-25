@@ -9,7 +9,9 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.parser.DateTimeParser;
 import seedu.financeit.ui.UiManager;
 
+import java.math.RoundingMode;
 import java.security.InvalidParameterException;
+import java.text.DecimalFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,6 +36,8 @@ public class ParamChecker {
     public static final String PARAM_INC = "-i";
     public static final String PARAM_EXP = "-e";
     public static final String PARAM_AUTO = "-auto";
+    // Maximum amount of money that can be inputed: 100 digits including floating point + 1 char for decimal point
+    private static final int MAX_INPUT_DOUBLE_LENGTH = 101;
 
     private CommandPacket packet;
     private static String errorMessage;
@@ -207,14 +211,57 @@ public class ParamChecker {
         clearErrorMessage();
 
         LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Double...");
+        input = input.replaceAll("[^\\w | .]", "");
         try {
             output = Double.parseDouble(input);
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
             LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Double not recognised... Err: %s", exception.getMessage()));
-
             errorMessage = getErrorMessageDoubleNumberFormatException();
+        } finally {
+            printErrorMessage();
+        }
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public double checkAndReturnDoubleSigned(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        double output = -1;
+
+        clearErrorMessage();
+        System.out.println(input.length());
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Double...");
+        try {
+            input = input.replaceAll("[^\\w | .]", "");
+            if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
+                throw new NumberFormatException();
+            }
+            DecimalFormat bd = new DecimalFormat("#.##");
+            bd.setRoundingMode(RoundingMode.CEILING);
+            input = bd.format(Double.parseDouble(input));
+            output = Double.parseDouble(input);
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected input out of bounds... Err: %s", exception.getMessage()));
+                errorMessage = "Amount provided is too long in length! " +
+                    "Maximum amount is of 100 digits long.\n";
+            } else if (output < 0) {
+                    LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                        String.format("Expected positive double... Err: %s", exception.getMessage()));
+                    errorMessage = "Expected Positive decimal value with at most 2 d.p!\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Double not recognised... Err: %s", exception.getMessage()));
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
         } finally {
             printErrorMessage();
         }
@@ -237,10 +284,54 @@ public class ParamChecker {
             output = Integer.parseInt(input);
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
-            LoggerCentre.loggerParamChecker.log(Level.WARNING,
-                String.format("Int not recognised... Err: %s", exception.getMessage()));
+            if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int format is too long... Err: %s", exception.getMessage()));
+                errorMessage = "\nInput value is too out of range: 9,223,372,036,854,775,807\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int not recognised... Err: %s", exception.getMessage()));
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
+        } finally {
+            printErrorMessage();
+        }
 
-            errorMessage = getErrorMessageNumberFormatException();
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        int output = -1;
+
+        clearErrorMessage();
+
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Integer...");
+        try {
+            output = Integer.parseInt(input);
+            if (output < 0) {
+                throw new NumberFormatException();
+            }
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int format is too long... Err: %s", exception.getMessage()));
+                errorMessage = "\nInput value is too out of range: 9,223,372,036,854,775,807\n";
+            } else if (output < 0) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected positive integer... Err: %s", exception.getMessage()));
+                errorMessage = "\nExpected Positive integer!\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int not recognised... Err: %s", exception.getMessage()));
+
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
         } finally {
             printErrorMessage();
         }

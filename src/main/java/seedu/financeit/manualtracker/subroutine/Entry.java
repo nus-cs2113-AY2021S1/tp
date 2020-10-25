@@ -79,7 +79,7 @@ public class Entry extends DateTimeItem {
             super.setTime(time);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            Double amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            Double amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             this.setAmount(amount);
             break;
         case ParamChecker.PARAM_INC:

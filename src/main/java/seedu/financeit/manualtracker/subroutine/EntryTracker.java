@@ -177,7 +177,10 @@ public class EntryTracker {
         return null;
     }
 
-    static FiniteStateMachine.State handleCreateEntry() {
+    static FiniteStateMachine.State handleCreateEntry(Boolean... isPrintGoalInput) {
+        boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
+            ? false
+            : true;
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry = new Entry();
         entry.setRequiredParams(
@@ -194,7 +197,9 @@ public class EntryTracker {
                 throw new DuplicateInputException();
             }
             entryList.addEntry(entry);
-            goalTracker.targetGoalTracker(entry);
+            if (isPrintGoal == true) {
+                goalTracker.targetGoalTracker(entry);
+            }
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
         } catch (InsufficientParamsException exception) {
@@ -212,7 +217,7 @@ public class EntryTracker {
         return state;
     }
 
-    private static FiniteStateMachine.State handleEditEntry() {
+    static FiniteStateMachine.State handleEditEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         entryList.setRequiredParams(

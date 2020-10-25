@@ -1,81 +1,112 @@
 package seedu.financeit.manualtracker.subroutine;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.manualtracker.TypicalLedgerEntries;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.financeit.manualtracker.TestCommands.generateCreateLedgerCorrectCommand;
-import static seedu.financeit.manualtracker.TestCommands.generateCreateLedgerErrorCommand;
-import static seedu.financeit.manualtracker.TestCommands.generateDeleteLedgerByDateCorrectCommand;
-import static seedu.financeit.manualtracker.TestCommands.generateDeleteLedgerByDateErrorCommand;
-import static seedu.financeit.manualtracker.TestCommands.generateDeleteLedgerByIdCorrectCommand;
-import static seedu.financeit.manualtracker.TestCommands.generateDeleteLedgerByIdErrorCommand;
+import static seedu.financeit.manualtracker.subroutine.TestCommands.*;
 
 public class EntryTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
     private static final int NUM_ENTRIES = 20;
 
-    //@Test
-    public void testManualTrackerByList() {
+    @BeforeEach
+    void setup() {
+        EntryTracker.setCurrLedger(TypicalLedgerEntries.generateTypicalLedgerOne());
+    }
+
+    @Test
+    public void testEntryTrackerByList() {
         CommandPacket testPacket;
+        int count = 0;
+        int numCorrectEntries = 0;
+        String[] wrongParams = {
+            "time",
+            "cat",
+            "amt"
+        };
+        String wrongParam;
         for (int i = 1; i <= NUM_ENTRIES; i++) {
             if (i % FREQUENCY_ERROR_ENTRY == 0) {
-                testPacket = generateCreateLedgerErrorCommand();
+                wrongParam = wrongParams[count % 3];
+                testPacket = generateCreateEntryErrorCommand(wrongParam);
+                count++;
             } else {
-                testPacket = generateCreateLedgerCorrectCommand(i);
+                testPacket = generateCreateEntryCorrectCommand(i);
+                numCorrectEntries++;
             }
             EntryTracker.setTestPacket(testPacket);
-            EntryTracker.handleCreateEntry();
+            EntryTracker.handleCreateEntry(false);
         }
-        int correctListNum = NUM_ENTRIES - (int)Math.floor((double)NUM_ENTRIES / FREQUENCY_ERROR_ENTRY);
-        assertEquals(correctListNum, EntryTracker.entryList.getItemsSize());
+        assertEquals(numCorrectEntries, EntryTracker.entryList.getItemsSize());
         EntryTracker.entryList.removeAllItems();
     }
 
-    //@Test
-    public void testManualTrackerByDelete() {
-        CommandPacket testPacket;
+    @Test
+    public void testEntryTrackerByDelete() {
+        CommandPacket testPacket = null;
         for (int i = 1; i <= NUM_ENTRIES; i++) {
-            if (i % FREQUENCY_ERROR_ENTRY == 0) {
-                testPacket = generateCreateLedgerErrorCommand();
-            } else {
-                testPacket = generateCreateLedgerCorrectCommand(i);
-            }
+            testPacket = generateCreateEntryCorrectCommand(i);
             EntryTracker.setTestPacket(testPacket);
-            EntryTracker.handleCreateEntry();
+            EntryTracker.handleCreateEntry(false);
         }
-        int correctListNum = NUM_ENTRIES - (int)Math.floor((double)NUM_ENTRIES / FREQUENCY_ERROR_ENTRY);
-
+        int actualListNum = EntryTracker.entryList.getItemsSize();
         for (int i = 1; i <= 4; i++) {
             switch (i) {
             case 1:
-                testPacket = generateDeleteLedgerByDateCorrectCommand();
+                //Fall through
+            case 3:
+                testPacket = generateDeleteEntryByIdCorrectCommand();
+                actualListNum -= 1;
                 break;
             case 2:
-                testPacket = generateDeleteLedgerByIdCorrectCommand();
-                break;
-            case 3:
-                testPacket = generateDeleteLedgerByIdErrorCommand();
+                //Fall through
+            case 4:
+                testPacket = generateDeleteEntryByIdErrorCommand();
                 break;
             default:
-                testPacket = generateDeleteLedgerByDateErrorCommand();
+                // Fall- through
             }
             EntryTracker.setTestPacket(testPacket);
             EntryTracker.handleDeleteEntry();
         }
-        assertEquals(correctListNum - 2, EntryTracker.entryList.getItemsSize());
+        int expectedListNum = EntryTracker.entryList.getItemsSize();
+        assertEquals(actualListNum, expectedListNum);
     }
 
-    //@Test
-    public void testManualTrackerByDuplicateLedgers() {
+    @Test
+    public void testEntryTrackerByEditEntries() {
+        int commonSeed = 3;
+        CommandPacket testPacket;
+        TypicalEntryEntries.getInstance().setSeed(commonSeed);
+        Entry expectedEntry = TypicalEntryEntries.getInstance().generateTypicalEntryFromSeed();
+
+        TypicalEntryEntries.getInstance().generateTypicalEntry1();
+        EntryTracker.setTestPacket(TypicalEntryEntries.getInstance().packet);
+        EntryTracker.handleCreateEntry(false);
+
+        testPacket = generateEditEntryCorrectCommand(commonSeed);
+        EntryTracker.setTestPacket(testPacket);
+        EntryTracker.handleEditEntry();
+
+        Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtIndex(0);
+        assertEquals(actualEntry, expectedEntry);
+        EntryTracker.entryList.removeAllItems();
+    }
+
+    @Test
+    public void testEntryTrackerByDuplicateEntries() {
         CommandPacket testPacket;
         for (int i = 0; i < NUM_ENTRIES; i++) {
             if (i % 2 == 0) {
-                testPacket = generateCreateLedgerCorrectCommand(4);
+                testPacket = generateCreateEntryCorrectCommand(4);
             } else {
-                testPacket = generateCreateLedgerCorrectCommand(3);
+                testPacket = generateCreateEntryCorrectCommand(3);
             }
             EntryTracker.setTestPacket(testPacket);
-            EntryTracker.handleCreateEntry();
+            EntryTracker.handleCreateEntry(false);
         }
         assertEquals(2, EntryTracker.entryList.getItemsSize());
         EntryTracker.entryList.removeAllItems();

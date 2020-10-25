@@ -19,6 +19,11 @@ public class Financeit {
 
     public static void main(String[] args) {
 
+        String test = "$123.45";
+        test = test.replaceAll("[^\\w | .]", "");
+        System.out.println(test);
+
+
         String input = "";
         CommandPacket packet = null;
         Level mode = Level.OFF;

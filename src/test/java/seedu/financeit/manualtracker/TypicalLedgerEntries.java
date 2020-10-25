@@ -9,11 +9,14 @@ public class TypicalLedgerEntries {
     public static ArrayList<String> commandInputs = new ArrayList<>();
     Ledger ledger = null;
 
-    public Ledger generateTypicalLedgerOne() throws InsufficientParamsException {
+    public static Ledger generateTypicalLedgerOne() {
         Ledger ledger = new Ledger();
         CommandPacket packet = TestCommands.generateCreateLedgerCorrectCommand(3);
-        ledger.handlePacket(packet);
+        try {
+            ledger.handlePacket(packet);
+        } catch (InsufficientParamsException exception) {
+            //Fall through
+        }
         return ledger;
     }
-
 }
