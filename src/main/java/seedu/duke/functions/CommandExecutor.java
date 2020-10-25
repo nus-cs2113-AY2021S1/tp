@@ -30,9 +30,7 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
-import static seedu.duke.ui.UI.printHelp;
 import static seedu.duke.ui.UI.printHelpMessage;
-import static seedu.duke.ui.UI.printHelpQuiz;
 
 public class CommandExecutor {
     public static void executeCommand(CommandChecker commandChecker, String userInput, WritingList writings) {
