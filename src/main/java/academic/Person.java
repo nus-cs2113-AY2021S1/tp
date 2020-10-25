@@ -17,6 +17,15 @@ public class Person {
     }
 
     public static String printIndividualPerson(Person person) {
-        return "[P] | " + person.nameOfPerson + " | " + person.contactNumberOfPerson + " | " + person.emailOfPerson;
+        return "[P] | " + person.nameOfPerson + " | " + person.contactNumberOfPerson
+                + " | " + person.emailOfPerson + " | " + person.star;
+    }
+
+    public static void changePersonStar(Person person) {
+        person.star = true;
+    }
+
+    public static Boolean isStar(Person person) {
+        return person.star;
     }
 }

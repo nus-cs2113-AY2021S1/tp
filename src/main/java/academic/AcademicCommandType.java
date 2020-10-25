@@ -9,5 +9,7 @@ public enum AcademicCommandType {
     DELETE_PERSON,
     DELETE_GRADE,
     SU_GRADE,
-    STAR_GRADE
+    STAR_GRADE,
+    STAR_CONTACT,
+    LIST_STAR
 }

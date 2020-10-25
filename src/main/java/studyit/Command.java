@@ -129,6 +129,9 @@ public class Command {
             } else if (commandType == AcademicCommandType.STAR_GRADE) {
                 Ui.printLine("Marking this grade as star");
                 GradeBook.starGrade(AcademicCommandParser.parseStarGrade(command), currentGrades);
+            } else if (commandType == AcademicCommandType.STAR_CONTACT) {
+                Ui.printLine("Marking this person as star");
+                PersonBook.starContact(AcademicCommandParser.parseStarContact(command), listOfPerson);
 
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");

@@ -41,7 +41,11 @@ public class GradeBook {
     }
 
     public static void starGrade(Integer indexToBeStar, ArrayList<Grade> currentGrades) {
-        Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
+        if (indexToBeStar > 0 && indexToBeStar <= currentGrades.size()) {
+            Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
+        } else {
+            System.out.println("Invalid star index! Please try again!");
+        }
     }
 
     public static String printListOfGrades(ArrayList<Grade> currentGrades) {
