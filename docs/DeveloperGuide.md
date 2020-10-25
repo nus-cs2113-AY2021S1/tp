@@ -80,7 +80,7 @@ The following sequence diagram shows how the components interact with each other
 <center><i>Figure 3: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</i></center>
    
 ## Bunny class family
-![UML Bunny class diagram]()
+![UML Bunny class diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_BunnyList.png)
 <center><i>Figure 4:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. The BunnyList class has the public ArrayList of bunnies bunniesList that is accessed by the DeleteBunny class method deleteBunny which removes a selected bunny from the bunniesList ArrayList. Similarly, bunniesList is also accessed by the BunnyFilter class which contains the filterBunny function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA`or the `GENRE` when running the command
 
