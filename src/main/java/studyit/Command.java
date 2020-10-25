@@ -44,11 +44,7 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (commandType == CommandType.HIGHLIGHT) {
-            if (StudyIt.getCurrentMode() == Mode.MENU) {
-                Ui.printHighlight(bookmarkRun, currentGrades, listOfPerson);
-            } else {
-                Ui.printHighlightLocationError();
-            }
+            Ui.printHighlight(bookmarkRun, currentGrades, listOfPerson);
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
             handleNonGeneralCommand(command, commandType, bookmarkRun, flashcardRun, timeTableRun,

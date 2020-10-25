@@ -86,13 +86,11 @@ public class Ui {
         printDivider();
     }
 
-    public static void printHighlightLocationError() {
-        printLine("This command can only be called at main menu!");
-    }
-
     public static void printHighlight(BookmarkRun bookmarkRun, ArrayList<Grade> currentGrades,
                                             ArrayList<Person> listOfPerson) {
+        System.out.println("Here are your starred items:");
         bookmarkRun.run("list star");
+        System.out.println();
         AcademicUi.printStarList(currentGrades, listOfPerson);
     }
 }

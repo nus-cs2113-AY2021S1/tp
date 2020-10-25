@@ -13,9 +13,9 @@ public class AcademicUi extends Ui {
                 System.out.println(listIndex + "." + GradeBook.combineGradeDetails(grade));
                 listIndex++;
             }
-
         }
-        System.out.println("Starred contacts:");
+
+        System.out.println("\nStarred contacts:");
         listIndex = 1;
         for (Person person : listOfPerson) {
             if (person.isStar) {
