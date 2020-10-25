@@ -26,7 +26,7 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
 ### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
-The `DIVIDER_OPTION` is an optional parameter indicating your preferable type of line divider. The list of dividers is:
+The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
 1. ----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -472,7 +472,7 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| divider      |
+| divider      | `divider DIVIDER_OPTION` <\br>Example: `divider 2` <\br> The list of dividers is: <\br>   1. -------------------------------------------------------------- <\br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= <\br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
