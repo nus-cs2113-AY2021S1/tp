@@ -53,6 +53,9 @@ If you plan to use Intellij IDEA (highly recommended):
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
 ## Architecture
+![UML Fluffle class diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Fluffle.png)
+<center><i>Figure 1: Overview of Fluffle UML diagram</i></center>
+
 Fluffle Documentation: This document contains all packages and classes that are used in developing Fluffle. 
 
 ### Project overview
@@ -66,22 +69,22 @@ Poem: Represents the Writings objects which have type is Poem.
 Essay: Represents the Writings objects which have type is Essay.
 User: Represents the Users registered to the System
 ![UML Class diagram for WritingList family](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_WritingList.png)
-<center><i>Figure 1:WritingList family UML diagram</i></center>
+<center><i>Figure 2:WritingList family UML diagram</i></center>
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() methods on that sequence respectively, the user should be able to access the process of creating and saving new writings into the database. During this process, the user has the ability of choosing their preferred type of writings(which are either poem or essay at this stage)
 
 
 ### Filter words
 ![UML Filter word class diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/Sequence_FilterWords.png)
-<center><i>Figure 2: Filter word UML Class Diagram</i></center>
+<center><i>Figure 3: Filter word UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the filter words functionality. FilterExecutor class has the static void method executeFilterCommand that will be called first when the user enters a filter command. In the executeFilterCommand method, it will make use of the enumeration FilterType to get the filter type (by WORD_TYPE, STARTING STRING or INCLUDING_STRING). After that, the method will use the FilterCommandSlicer static methods isNewFilter to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word bank. Subsequently, depending on the filter mode, getTargetedWordTypes or getTargetedStringTags will be called and the returned array of strings will be passed to WordsFilter’s static methods filterByType, filterByStartingString and filterByIncludedString.
 The following sequence diagram shows how the components interact with each other for the scenario where the user issues the command `filter -continue by\start limit\10 -cs -cg.`
 ![UML Filter word sequence diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/Sequence_FilterWords.png)
-<center><i>Figure 3: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</i></center>
+<center><i>Figure 4: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</i></center>
    
 ## Bunny class family
 ![UML Bunny class diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_BunnyList.png)
-<center><i>Figure 4:  Bunny ideas UML Class Diagram</i></center>
+<center><i>Figure 5:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. The BunnyList class has the public ArrayList of bunnies bunniesList that is accessed by the DeleteBunny class method deleteBunny which removes a selected bunny from the bunniesList ArrayList. Similarly, bunniesList is also accessed by the BunnyFilter class which contains the filterBunny function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA`or the `GENRE` when running the command
 
 The BunnySaver class accesses the bunniesList and overwrites the current bunny.txt file in the data directory, saving all Bunny objects into the file using the saveAllBunny  method. Bunny objects saved in that file can then be read by the BunnyLoader class and saved into the bunniesList ArrayList using the loadBunnyFile method.
@@ -90,14 +93,14 @@ The BunnySaver class accesses the bunniesList and overwrites the current bunny.t
 
 <p align="center">
   <img src="https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png"><br>
-  Figure 5:  Names UML Class Diagram
+  <i>Figure 6:  Names UML Class Diagram</i>
 </p>
 
-The above class diagram (Figure 5) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this delete name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
+The above class diagram (Figure 6) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this delete name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
 
 The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 5, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+As shown in Figure 6, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
 ## Design & implementation
 
