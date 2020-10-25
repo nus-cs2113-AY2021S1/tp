@@ -15,13 +15,14 @@ Hello Fluffle. Welcome to Fluffle!
 Your registration has been recorded on 2020-10-25
 Please type in "help" command for information!
 --------------------------------------------------------------
-Type 'help c\<function name here>' to view help for each command.
+Type 'help <function name here>' to view help for each command.
 Available commands:
-add
+noun
+verb
+adj
 settings
 list
 stats
-review
 start
 clear
 exit

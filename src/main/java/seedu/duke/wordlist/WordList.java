@@ -1,5 +1,6 @@
 package seedu.duke.wordlist;
 
+import seedu.duke.constants.Tags;
 import seedu.duke.words.Words;
 import seedu.duke.words.Noun;
 import seedu.duke.words.Verb;
@@ -22,7 +23,7 @@ public class WordList {
      */
     public static void addNoun(String input) {
         String[] word = input.split(" ", 2);
-        String[] splitInput = word[1].split("d\\");
+        String[] splitInput = word[1].trim().split(Tags.DESCRIPTION_TAG);
         Words toAdd = new Noun(splitInput[0],splitInput[1]);
         wordList.add(toAdd);
         UI.addNounMessage(toAdd.getDescription());
@@ -35,7 +36,7 @@ public class WordList {
      */
     public static void addVerb(String input) {
         String[] word = input.split(" ", 2);
-        String[] splitInput = word[1].split("d/");
+        String[] splitInput = word[1].split(Tags.DESCRIPTION_TAG);
         Words toAdd = new Verb(splitInput[0],splitInput[1]);
         wordList.add(toAdd);
         UI.addVerbMessage(toAdd.getDescription());
@@ -48,7 +49,7 @@ public class WordList {
      */
     public static void addAdjective(String input) {
         String[] word = input.split(" ", 2);
-        String[] splitInput = word[1].split("d/");
+        String[] splitInput = word[1].split(Tags.DESCRIPTION_TAG);
         Words toAdd = new Adjective(splitInput[0],splitInput[1]);
         wordList.add(toAdd);
         UI.addAdjectiveMessage(toAdd.getDescription());

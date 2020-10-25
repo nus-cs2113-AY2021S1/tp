@@ -9,16 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WordsFilterTest {
 
     private static void initializeTestDatabase() {
-        WordList.addNoun("noun house d/place to live");
-        WordList.addVerb("verb eat d/put sth into your mouth");
-        WordList.addAdjective("adj beautiful d/nice to look at");
-        WordList.addNoun("noun grass d/green plant");
-        WordList.addNoun("noun computer d/hitech stuff");
-        WordList.addAdjective("adj nice d/you're so nice");
-        WordList.addAdjective("adj meaningful d/something nice");
-        WordList.addVerb("verb sleep d/rest at night");
-        WordList.addNoun("noun class d/place to study");
-        WordList.addVerb("verb love d/fall for somebody");
+        WordList.addNoun("noun house d\\place to live");
+        WordList.addVerb("verb eat d\\put sth into your mouth");
+        WordList.addAdjective("adj beautiful d\\nice to look at");
+        WordList.addNoun("noun grass d\\green plant");
+        WordList.addNoun("noun computer d\\hitech stuff");
+        WordList.addAdjective("adj nice d\\you're so nice");
+        WordList.addAdjective("adj meaningful d\\something nice");
+        WordList.addVerb("verb sleep d\\rest at night");
+        WordList.addNoun("noun class d\\place to study");
+        WordList.addVerb("verb love d\\fall for somebody");
     }
 
     @Test
