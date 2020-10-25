@@ -585,8 +585,9 @@ Mark task as done: done -t TASK_NUMBER
 4. Category Management
 Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
 Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-List categories: list -c [CATEGORY]
-Edit category: edit -c OLD_CATEGORY NEW_CATEGORY
+List categories: list -c
+List items in a category: list -c CATEGORY
+Edit category: edit -c OLD_CATEGORY /to NEW_CATEGORY
 
 5. Rating System
 Add rating: add -r RATING_SCORE BOOK_TITLE /by AUTHOR
