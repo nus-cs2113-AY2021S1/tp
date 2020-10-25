@@ -10,23 +10,19 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.quote.QuoteParser;
-import seedu.quotesify.rating.Rating;
-import seedu.quotesify.rating.RatingList;
-import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class ListCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public ListCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -46,8 +42,7 @@ public class ListCommand extends Command {
             listCategories(categoryList, ui);
             break;
         case TAG_RATING:
-            RatingList ratingList = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            listRatings(ratingList, ui);
+            new ListRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_TODO:
             ToDoList toDoList = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
@@ -195,44 +190,6 @@ public class ListCommand extends Command {
 
     private void listQuotesByReference(QuoteList quoteList, String reference, TextUi ui) {
         ui.printAllQuotesByReference(quoteList, reference);
-    }
-
-    private void listRatings(RatingList ratingList, TextUi ui) {
-        ArrayList<Rating> ratings = ratingList.getList();
-        ratings.sort(Comparator.comparing(Rating::getRating));
-        Collections.reverse(ratings);
-        if (information.isEmpty()) {
-            listAllRatings(ratingList, ui);
-        } else {
-            listSpecifiedRating(ratingList, ui);
-        }
-    }
-
-    private void listAllRatings(RatingList ratingList, TextUi ui) {
-        ui.printAllRatings(ratingList);
-    }
-
-    private void listSpecifiedRating(RatingList ratings, TextUi ui) {
-        assert !information.isEmpty() : "Rating details should not be empty";
-        int ratingToPrint = RatingParser.checkValidityOfRatingScore(information);
-
-        if (ratingToPrint == 0) {
-            return;
-        }
-
-        boolean isFound = false;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getRating() == ratingToPrint) {
-                isFound = true;
-                break;
-            }
-        }
-
-        if (isFound) {
-            ui.printSpecifiedRating(ratings, ratingToPrint);
-        } else {
-            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToPrint);
-        }
     }
 
     private void listCategories(CategoryList categoryList, TextUi ui) {

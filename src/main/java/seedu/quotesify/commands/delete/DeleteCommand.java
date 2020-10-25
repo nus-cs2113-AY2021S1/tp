@@ -1,8 +1,5 @@
 package seedu.quotesify.commands.delete;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.bookmark.Bookmark;
@@ -13,29 +10,25 @@ import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
-import seedu.quotesify.lists.QuotesifyList;
-import seedu.quotesify.parser.JsonSerializer;
 import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
-import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
-import seedu.quotesify.ui.UiMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class DeleteCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public DeleteCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -58,8 +51,7 @@ public class DeleteCommand extends Command {
             deleteBook(books, ui);
             break;
         case TAG_RATING:
-            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            deleteRating(ratings, ui);
+            new DeleteRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_TODO:
             ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
@@ -110,42 +102,6 @@ public class DeleteCommand extends Command {
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
-    }
-
-    private void deleteRating(RatingList ratings, TextUi ui) {
-        if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
-            return;
-        }
-
-        String[] titleAndAuthor;
-        String title;
-        String author;
-        try {
-            titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
-            title = titleAndAuthor[0].trim();
-            author = titleAndAuthor[1].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
-            return;
-        }
-
-        Rating ratingToBeDeleted = null;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(title)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                ratingToBeDeleted = rating;
-                break;
-            }
-        }
-
-        if (ratingToBeDeleted == null) {
-            System.out.println(ERROR_RATING_NOT_FOUND);
-            return;
-        }
-        ratingToBeDeleted.getRatedBook().setRating(0);
-        ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
-        ui.printDeleteRating(title, author);
     }
 
     private void deleteBook(BookList books, TextUi ui) {
