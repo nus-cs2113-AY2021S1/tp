@@ -1,8 +1,8 @@
 package seedu.financeit.utils.storage;
 
-import seedu.financeit.common.Goal;
-import seedu.financeit.goaltracker.GoalTracker;
-import seedu.financeit.goaltracker.TotalGoalList;
+import seedu.financeit.data.Goal;
+import seedu.financeit.datatrackers.goaltracker.GoalTracker;
+import seedu.financeit.datatrackers.goaltracker.TotalGoalList;
 
 import java.io.File;
 import java.io.FileWriter;

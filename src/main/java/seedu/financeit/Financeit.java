@@ -2,10 +2,10 @@ package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.financetools.FinanceTools;
-import seedu.financeit.goaltracker.GoalTracker;
-import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.datatrackers.goaltracker.GoalTracker;
+import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.recurringtracker.RecurringTracker;
+import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
