@@ -6,34 +6,31 @@ import seedu.revised.command.flashcard.FlashcardCommand;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.flashcard.RepeatedFlashcardException;
-import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.FlashcardParser;
-import seedu.revised.card.task.TaskList;
 import seedu.revised.ui.Ui;
 
 public class ReturnTopicCommand extends TopicCommand {
     private String fullcommand;
-    private TaskList tasks;
 
     public ReturnTopicCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) throws NoSubjectException {
+    public Topic execute(Subject subject) throws NoTopicException {
         String[] message = this.fullcommand.split(" ");
-        //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         for (Topic topic : subject.getTopics().getList()) {
             if (topic.getTitle().equals(message[1])) {
                 return topic;
             }
         }
-        throw new NoSubjectException(Ui.printNoSubjectError());
+        throw new NoTopicException(Ui.printNoTopicError());
     }
 
-    public void goToTopic(Topic topic, Subject subject) {
+    public void goToTopic(Topic topic) {
         Ui.printGoToTopic(topic);
         boolean isTopicExit = false;
         while (!isTopicExit) {
