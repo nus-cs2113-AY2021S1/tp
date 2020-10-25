@@ -5,20 +5,18 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
+import seedu.eduke8.topic.TopicList;
 
 import java.util.ArrayList;
 
 
 public class UserStatsCalculator extends StatsCalculator {
 
-    public UserStatsCalculator() {
-        super();
+    public UserStatsCalculator(TopicList topicList) {
+        super(topicList);
     }
 
-    // idea is to get the list of topics from topicList, iterate each topic and access their questionList
-    // Then in each questionList, iterate through each question and see if wasAnsweredCorrectly and if
-    // hint was shown. Answered correction without hint = +2 points, else with hint shown = +1 point
-    // can use topicalStatsCalculator method to help
+
     public int calculateTotalPointsEarned() {
         int totalPointsGained = 0;
 
@@ -36,7 +34,7 @@ public class UserStatsCalculator extends StatsCalculator {
         return totalPointsGained;
     }
 
-    // just get the count of the questionList * 2
+    // Gets the count of the questionList * 2
     public int calculateTotalPointsAvailable() {
         int totalPointsAvailable = calculateTotalQuestionCount() * POINTS_PER_QUESTION;
 
@@ -48,7 +46,7 @@ public class UserStatsCalculator extends StatsCalculator {
                 calculateTotalPointsAvailable());
     }
 
-    // determines if progression is over 50%, print diff messages
+    // Determines if progression is over 50%, print diff messages for each section
     public boolean isProgressionOverHalf() {
         return calculateOverallProgressionLevelPercentage() >= 50;
     }

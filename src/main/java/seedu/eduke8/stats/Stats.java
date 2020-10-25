@@ -2,18 +2,21 @@ package seedu.eduke8.stats;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.topic.Topic;
+import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 import java.util.ArrayList;
 
+
 public class Stats {
 
     private UserStatsCalculator userStatsCalculator;
-    private TopicalStatsCalculator topicalStatsCalculator;
 
-    public Stats() {
-        userStatsCalculator = new UserStatsCalculator();
-        topicalStatsCalculator = new TopicalStatsCalculator();
+    protected ArrayList<Displayable> topics;
+
+    public Stats(TopicList topicList) {
+        topics = topicList.getInnerList();
+        userStatsCalculator = new UserStatsCalculator(topicList);
     }
 
     public void showStatsToUser(Ui ui) {
@@ -35,10 +38,6 @@ public class Stats {
     }
 
     private void showTopicalProgression(Ui ui) {
-        // need to loop through all topics and pass into the topicCalculator
-        // then loop through and print them one by one.
-
-        ArrayList<Displayable> topics = topicalStatsCalculator.getTopics();
         ui.printTopicProgressionHeader();
 
         // Loop through the different topics to get the stats from each of them individually
@@ -51,11 +50,6 @@ public class Stats {
                     specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount(),
                     specificTopicStatsCalculator.getTopicQuestionsCount());
 
-            // not using this as getting the percentage might cause a divisionByZero exception
-            /* ui.showTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
-                    specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount(),
-                    specificTopicStatsCalculator.calculateTopicAccuracyPercentage()); */
-
             ui.showTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
                     specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount());
 
@@ -64,9 +58,6 @@ public class Stats {
             ui.showTopicalPoints(specificTopicStatsCalculator.calculateTopicalPointsEarned(),
                     specificTopicStatsCalculator.calculateTopicalPointsAvailable(),
                     specificTopicStatsCalculator.calculateTopicalProgressionPercentage());
-
         }
-
     }
-
 }

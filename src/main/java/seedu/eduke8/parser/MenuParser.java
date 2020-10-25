@@ -1,15 +1,7 @@
 package seedu.eduke8.parser;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.Command;
-import seedu.eduke8.command.HelpCommand;
-import seedu.eduke8.command.IncorrectCommand;
-import seedu.eduke8.command.TextbookCommand;
-import seedu.eduke8.command.TopicsCommand;
-import seedu.eduke8.command.AboutCommand;
-import seedu.eduke8.command.QuizCommand;
-import seedu.eduke8.command.BookmarkCommand;
-import seedu.eduke8.command.ExitCommand;
+import seedu.eduke8.command.*;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
@@ -85,6 +77,9 @@ public class MenuParser implements Parser {
         case "exit":
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
             return new ExitCommand();
+        case "stats":
+            LOGGER.log(Level.INFO, "Parsing complete: stats command chosen.");
+            return new StatsCommand((TopicList) topicList);
         default:
             break;
         }

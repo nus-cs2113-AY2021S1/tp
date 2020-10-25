@@ -6,10 +6,12 @@ import seedu.eduke8.ui.Ui;
 
 public class AboutCommand extends Command {
 
+    public AboutCommand() {
+        super();
+    }
+
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
         ui.printAbout();
-
-        new Stats().showStatsToUser(ui);
     }
 }

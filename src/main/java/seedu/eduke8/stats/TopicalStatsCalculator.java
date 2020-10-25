@@ -5,23 +5,15 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
-import java.util.ArrayList;
 
-// maybe can extend from statsCalculator
 public class TopicalStatsCalculator extends StatsCalculator {
 
-    private Topic topic;
     private QuestionList topicQuestionList;
 
     public TopicalStatsCalculator(Topic topic) {
-        super();
-        this.topic = topic;
         this.topicQuestionList = topic.getQuestionList();
     }
 
-    TopicalStatsCalculator() {
-        super();
-    }
 
     // check each qn and see if they are done
     public int calculateTopicalQuestionsAttemptCount() {
@@ -38,13 +30,6 @@ public class TopicalStatsCalculator extends StatsCalculator {
         return topicQuestionList.getCount();
     }
 
-    /*
-    public int calculateTopicCompletionPercentage() {
-        return calculateProgressionLevelPercentage(calculateTopicalQuestionsAttemptCount(),
-                getTopicQuestionsCount());
-    }
-    */
-
     // check each qn and see if they are correct
     public int calculateTopicalQuestionsCorrectCount() {
         int questionCorrectCount = 0;
@@ -55,19 +40,6 @@ public class TopicalStatsCalculator extends StatsCalculator {
         }
         return questionCorrectCount;
     }
-
-    /*
-    // Division by zero for percentage is possible here
-    public int calculateTopicAccuracyPercentage() {
-        if (calculateTopicalQuestionsAttemptCount() > 0) {
-            return calculateProgressionLevelPercentage(calculateTopicalQuestionsCorrectCount(),
-                    calculateTopicalQuestionsAttemptCount());
-        } else {
-            return -1;
-        }
-    }
-    */
-
 
     // check each qn and calculate number of hints used
     public int calculateTopicalHintUsage() {
@@ -100,9 +72,5 @@ public class TopicalStatsCalculator extends StatsCalculator {
     public int calculateTopicalProgressionPercentage() {
         return calculateProgressionLevelPercentage(calculateTopicalPointsEarned(),
                 calculateTopicalPointsAvailable());
-    }
-
-    public ArrayList<Displayable> getTopics() {
-        return topics;
     }
 }

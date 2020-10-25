@@ -4,6 +4,11 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.ui.Ui;
 
 public class TextbookCommand extends Command {
+
+    public TextbookCommand() {
+        super();
+    }
+
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
         ui.printTextbook();

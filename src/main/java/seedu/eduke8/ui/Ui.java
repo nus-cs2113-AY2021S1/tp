@@ -211,7 +211,7 @@ public class Ui {
         if (progressOverHalf) {
             System.out.println("Good job! Keep it up!" + System.lineSeparator());
         } else {
-            System.out.println("Let's do some more quizzes!" + System.lineSeparator());
+            System.out.println("Let's do some quizzes!" + System.lineSeparator());
         }
     }
 
@@ -229,20 +229,10 @@ public class Ui {
                 + " questions done");
     }
 
-    /*
-    public void showTopicAccuracyLevel(int questionsAnsweredCorrectly,
-                                       int questionsAttempted, int accuracyPercentage) {
-        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + "/"
-                + questionsAttempted + "questions correctly answered [" + accuracyPercentage + "%]");
-    }
-    */
-
     public void showTopicAccuracyLevel(int questionsAnsweredCorrectly, int questionsAttempted) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + "/"
                 + questionsAttempted + " questions correctly answered");
     }
-
-
 
     public void showTopicalHintUsage(int hintUsage) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + hintUsage
@@ -253,6 +243,7 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + pointsEarned + " points earned / "
                 + pointsAvailable + " available [" + progressionPercentage + "%]");
     }
+
 
     public void printBookmarkedIndicator() {
         printMessage("Bookmarked this question!");
