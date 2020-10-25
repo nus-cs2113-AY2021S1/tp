@@ -299,9 +299,8 @@ public class Ui {
     }
 
     /**
-     * Prints the total amount of carbohydrates consumed by the user within a given time period and a list of
-     * the foods recorded into the food list during the same time period which had their nutritional
-     * information recalculated by DietBook if any.
+     * Prints the total amount of carbohydrates consumed by the user and a list of the foods which had
+     * their nutritional information recalculated by DietBook if any, given a certain time period.
      * Some food items only have partial nutritional information as users did not provide all the
      * information when the food items were added. Hence, DietBook does an internal calculation for the
      * the missing information and these calculated values are used when tabulating total carbohydrate
@@ -338,9 +337,8 @@ public class Ui {
     }
 
     /**
-     * Prints the total amount of calories consumed by the user within a given time period and a list of
-     * the foods recorded into the food list during the same time period which had their nutritional
-     * information recalculated by DietBook if any.
+     * Prints the total amount of calories consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a certain time period.
      * Some food items only have partial nutritional information as users did not provide all the
      * information when the food items were added. Hence, DietBook does an internal calculation for the
      * the missing information and these calculated values are used when tabulating total calorie
@@ -377,9 +375,8 @@ public class Ui {
     }
 
     /**
-     * Prints the total amount of proteins consumed by the user within a given time period and a list of
-     * the foods recorded into the food list during the same time period which had their nutritional
-     * information recalculated by DietBook if any.
+     * Prints the total amount of proteins consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a certain time period.
      * Some food items only have partial nutritional information as users did not provide all the
      * information when the food items were added. Hence, DietBook does an internal calculation for the
      * the missing information and these calculated values are used when tabulating total protein
@@ -416,9 +413,8 @@ public class Ui {
     }
 
     /**
-     * Prints the total amount of fats consumed by the user within a given time period and a list of
-     * the foods recorded into the food list during the same time period which had their nutritional
-     * information recalculated by DietBook if any.
+     * Prints the total amount of fats consumed by the user and a list of the foods which had their
+     * nutritional information recalculated by DietBook if any, given a certain time period.
      * Some food items only have partial nutritional information as users did not provide all the
      * information when the food items were added. Hence, DietBook does an internal calculation for the
      * the missing information and these calculated values are used when tabulating total fat
@@ -459,12 +455,12 @@ public class Ui {
     }
 
     /**
-     * Prints the total amount of total amount of calories, carbohydrates, fats and proteins consumed by
-     * the user within a given time period and a list of the foods recorded into the food list during the
-     * same time period which had their nutritional information recalculated by DietBook if any.
+     * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user and a
+     * list of the foods which had their nutritional information recalculated by DietBook if any, given a
+     * certain time period.
      * Some food items only have partial nutritional information as users did not provide all the
      * information when the food items were added. Hence, DietBook does an internal calculation for the
-     * the missing information and these calculated values are used when tabulating the individual intake
+     * the missing information and these calculated values are used when tabulating the individual intakes
      * within a given time period.
      *
      * @param calorieIntake The total amount of calories of food in the food list recorded during the
