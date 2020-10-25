@@ -27,6 +27,7 @@ click `File` > `Close Project` to close any existing project.
 8. Click `OK` to accept all default settings.
 9. To verify the set up, locate the `Quotesify.java` file, right-click it and select `Run Quotesify.main()`.
 If the setup is correct, you should see something like this as shown below:
+
 ```
 ________                __                .__  _____       
 \_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.

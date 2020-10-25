@@ -12,14 +12,18 @@
     * [Finding books by keyword](#finding-books-by-keyword-find--b)
     * [Deleting a book](#deleting-a-book-delete--b)
   * [Quote Management](#quote-management)
-    * [Add quotes](#add-quotes-add--q)
-    * [List all quotes](#list-all-quotes-list--q)
-    * [List quotes from a specific reference](#list-quotes-from-a-specific-reference-list--q)
-    * [List quotes from a specific author](#list-quotes-from-a-specific-author-list--q)
-    * [List quotes from a specific reference and author](#list-quotes-from-a-specific-reference-and-author-list--q)
-    * [Delete a quote](#delete-a-quote-delete--q)
-    * [Edit an existing quote](#edit-an-existing-quote-edit--q)
+    * [Add quotes](#adding-a-quote-add--q)
+    * [List all quotes](#listing-all-quotes-list--q)
+    * [List quotes from a specific reference](#listing-quotes-from-a-specific-reference-list--q)
+    * [List quotes from a specific author](#listing-quotes-from-a-specific-author-list--q)
+    * [List quotes from a specific reference and author](#listing-quotes-from-a-specific-reference-and-author-list--q)
+    * [Edit an existing quote](#editing-an-existing-quote-edit--q)
+    * [Delete a quote](#deleting-a-quote-delete--q)
     * [Finding quotes](#finding-quotes-find--q)
+    * [Add quote reflection](#adding-reflection-to-a-quote-add--qr)
+    * [List quote reflection](#listing-reflection-of-a-quote-list--qr)
+    * [Edit an existing quote reflection](#editing-reflection-of-a-quote-edit--qr)
+    * [Delete a quote reflection](#deleting-reflection-of-a-quote-delete--qr)
   * [Progress Tracker](#progress-tracker)
   * [Category Management](#category-management)
     * [Add categories](#add-categories-add--c)
@@ -155,22 +159,44 @@ Came across an inspiring quote while reading, or a useful productivity tip from 
 some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
 so you'll never forget them!  
 
-#### Add quotes: `add -q`
-Add a quote to your current list of quotes.
+#### Adding a quote: `add -q`
+Adds a quote to your current list of quotes.
 
-Format: `add -q QUOTE {[/from REFERENCE] | [/by AUTHOR]}`
-* You must specify a quote.
-* Reference and Author fields are optional, both or either or can be used.
+Format: `add -q QUOTE {[/by AUTHOR] | [/from REFERENCE]}`
 
-Example of usage: `add -q Life is short, smile while you still have teeth`
+* The quote field should not be empty.
+* Reference and Author fields are optional, both or either one can be used.
+* Tags should not be used without their relevant data.
 
-Expected outcome:
+Example of usage: 
+
+1. `add -q Life is short, smile while you still have teeth`
+2. `add -q Luke, I am your father /by Darth Vader`
+3. `add -q Get schwifty! /from Rick and Morty`
+4. `add -q So everyone’s supposed to sleep every single night now? /from Rick and Morty /by Rick`
+
+Expected outcome 1:
 ```
 The quote ["Life is short, smile while you still have teeth"] has been added!
 ```
 
-#### List all quotes: `list -q`
-List all existing quotes.
+Expected outcome 2:
+```
+The quote ["Luke, I am your father" - by Darth Vader] has been added!
+```
+
+Expected outcome 3:
+```
+The quote ["Get schwifty!" - from Rick and Morty] has been added!
+```
+
+Expected outcome 4:
+```
+The quote ["So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)] has been added!
+```
+
+#### Listing all quotes: `list -q`
+Lists all existing quotes.
 
 Format: `list -q`
 
@@ -180,13 +206,13 @@ Expected outcome:
 ```
 Here are all your quotes:
 1. "Life is short, smile while you still have teeth"
-2. "I am your father" - Darth Vadar
-3. "That's my spot!" - The Big Bang Theory
-4. "So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+2. "Luke, I am your father" - by Darth Vadar
+3. "Get schwifty!" - from Rick and Morty
+4. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
 ```
 
-#### List quotes from a specific reference: `list -q`
-List all quotes tagged under the specified reference title.
+#### Listing quotes from a specific reference: `list -q`
+Lists all quotes tagged under the specified reference title.
 
 Format: `list -q /from REFERENCE`
 
@@ -195,47 +221,59 @@ Example of usage: `list -q /from Rick and Morty`
 Expected outcome:
 ```
 Here is a list of quotes from Rick and Morty:
-"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
-
-"Wubba Lubba Dub Dub!" - Rick and Morty
+"Get schwifty!" - from Rick and Morty
+"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
 ```
 
-#### List quotes from a specific author: `list -q`
-List all quotes tagged under the specified author.
+#### Listing quotes from a specific author: `list -q`
+Lists all quotes tagged under the specified author.
 
 Format: `list -q /by AUTHOR`
 
-Example of usage: `list -q /by Sheldon Cooper`
+Example of usage: `list -q /by Darth Vader`
 
 Expected outcome:
 ```
-Here is a list of quotes by Sheldon Cooper:
-"That's my spot!" - Sheldon Cooper, (The Big Bang Theory)
-
-"I'm not insane, my mother had me tested!" - Sheldon Cooper, (The Big Bang Theory)
+Here is a list of quotes by Darth Vader:
+"Luke, I am your father" - by Darth Vadar
 ```
 
-#### List quotes from a specific reference and author: `list -q`
-List all quotes tagged under the specified reference and author.
+#### Listing quotes from a specific reference and author: `list -q`
+Lists all quotes tagged under the specified reference and author.
 
-Format: `list -q /from REFERENCE /by AUTHOR`
+Format: `list -q /by AUTHOR /from REFERENCE`
 
-Example of usage: `list -q /from Rick and Morty /by Rick`
+Example of usage: `list -q /by Rick /from Rick and Morty`
 
 Expected outcome:
 ```
-Here is a list of quotes from RIck and Morty by Rick:
-"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
-
-"Uncertainty is inherently unsustainable. Eventually, everything either is or isn't" - Rick, (Rick and Morty)
+Here is a list of quotes from Rick and Morty by Rick:
+"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
 ```
 
-#### Delete a quote: `delete -q`
-Remove a quote from your current list of quotes.
+#### Editing an existing quote: `edit -q`
+Edits an existing quote from your list of quotes.
+
+Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
+
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
+* Format of quote follows adding of quote above.
+
+Example of usage: `edit -q 1 /to No, I am your father /by Darth Vader`
+
+Expected outcome:
+```
+The quote has been edited from: ["Luke, I am your father" - by Darth Vadar] to ["No, I am your father" - by Darth Vadar]!
+```
+
+#### Deleting a quote: `delete -q`
+Removes a quote from your current list of quotes.
 
 Format: `delete -q QUOTE_NUMBER`
-* You must specify a quote number.
-* The specified quote number should exist in Quotesify.
+
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
 
 Example of usage: `delete -q 1`
 
@@ -244,23 +282,12 @@ Expected outcome:
 The quote "Life is short, smile while you still have teeth" has been deleted!
 ```
 
-#### Edit an existing quote: `edit -q`
-Edit an existing quote in your list of quotes.
-
-Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
-
-Example of usage: `edit -q 1 /to Do you know the muffin man?`
-
-Expected outcome:
-```
-The quote has been edited from: ["I am your father" - Darth Vadar] to [Do you know the muffin man?]!
-```
-
 #### Finding quotes: `find -q`
-Finds existing quotes related to the keyword entered.
+Finds existing quotes related to a keyword.
 
 Format: `find -q KEYWORD`
-* You must specify a keyword.
+
+* Keyword field should not be empty.
 
 Example of usage: `find -q sleep`
 
@@ -268,30 +295,33 @@ Expected outcome:
 ```
 Here are the results of my search:
 "I pretty much spend all day, every day just looking forward to go back to sleep"
-"Don't give up on your dreams, keep sleeping!" - Stranger
+"Don't give up on your dreams, keep sleeping!" - by Stranger
 ```
 
 #### Adding reflection to a quote: `add -qr`
-Adds reflection or thoughts to an existing quote.
+Adds your reflection to an existing quote.
 
 Format: `add -qr QUOTE_NUMBER /reflect REFLECTION`
-* You must specify an existing quote number.
-* You must include the /reflect tag
-* Reflection field should not be empty
 
-Example of usage: `add -qr 1 /reflect I'm stumped, can't seem to find the muffin man anywhere`
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
+* Reflect tag and reflection field should not be empty.
+
+Example of usage: `add -qr 1 /reflect No, that’s not true. It’s impossible!`
 
 Expected outcome:
 ```
-Reflection has been to quote: ["Do you know the muffin man?"]
-Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+Reflection has been added to quote: "No, I am your father" - by Darth vader [R]
+Reflection: No, that’s not true. It’s impossible!
 ```
 
 #### Listing reflection of a quote: `list -qr`
 Lists reflection of an existing quote.
 
 Format: `list -qr QUOTE_NUMBER`
-* You must specify an existing quote number.
+
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
 * Quote should have a reflection added to it
 
 Example of usage: `list -qr 1`
@@ -299,8 +329,42 @@ Example of usage: `list -qr 1`
 Expected outcome:
 ```
 Here is the reflection you are looking for!
-Quote: ["Do you know the muffin man?"]
-Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+Quote: "No, I am your father" - by Darth vader [R]
+Reflection: No, that’s not true. It’s impossible!
+```
+
+#### Editing reflection of a quote: `edit -qr`
+Edits the reflection of an existing quote.
+
+Format: `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION`
+
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
+* Quote should have a reflection added to it
+
+Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
+
+Expected outcome:
+```
+Reflection has been updated!
+Quote: "No, I am your father" - by Darth Vader [R]
+Reflection: Who is Yoda’s daddy?
+```
+
+#### Deleting reflection of a quote: `delete -qr`
+Deletes reflection of an existing quote.
+
+Format: `delete -qr QUOTE_NUMBER`
+
+* Quote number field should not be empty.
+* The specified quote should exist in Quotesify.
+* Quote should have a reflection added to it
+
+Example of usage: `delete -qr 1`
+
+Expected outcome:
+```
+Reflection for the quote "No, I am your father" has been deleted!
 ```
 
 ### Category Management
@@ -499,7 +563,12 @@ List books: list -b [/by AUTHOR]
 Add quote: add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
 Delete quote:delete -q QUOTE_NUMBER
 List quotes: list -q [/by AUTHOR] [/from BOOK_TITLE]
-Add reflection to quote: add -qr QUOTE_NUM /reflect REFLECTION
+Edit quote: edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]
+Find quotes: find -q KEYWORD
+Add quote reflection: add -qr QUOTE_NUMBER /reflect REFLECTION
+Delete quote reflection:delete -qr QUOTE_NUMBER
+List quotes reflection: list -qr QUOTE_NUMBER
+Edit quote reflection: edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
 
 3a. Bookmark Tracker
 Add bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
@@ -552,6 +621,12 @@ Enter the following command | To do this
 `add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]` | Add quote
 `delete -q QUOTE_NUMBER` | Delete quote
 `list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
+`edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
+`find -q KEYWORD` | Find quotes
+`add -qr QUOTE_NUMBER /reflect REFLECTION` | Add quote reflection
+`delete -qr QUOTE_NUMBER` | Delete quote reflection
+`list -qr QUOTE_NUMBER` | List quote reflection
+`edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
 `delete -bm BOOK_TITLE` | Delete bookmark
