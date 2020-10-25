@@ -1,0 +1,84 @@
+@startuml
+
+title __revisED's Task package Class Diagram__\n
+
+abstract class Command {
+    +isExit(): boolean
+}
+
+class TaskCommand {
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+Command <|-- TaskCommand
+
+class AddTodoCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- AddTodoCommand
+
+class AddDeadlineCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- AddDeadlineCommand
+
+class AddEventCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- AddEventCommand
+
+class DeleteTaskCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- DeleteTaskCommand
+
+class DoneTaskCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- DoneTaskCommand
+
+class ExitTaskCommand {
+    +isExit(): boolean
+}
+
+TaskCommand <|-- ExitTaskCommand
+
+class FindTaskCommand {
+    -fullCommand: String
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- FindTaskCommand
+
+class ListTaskCommand {
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- ListTaskCommand
+
+class SorryTaskCommand {
+    +execute(TaskList): void
+    +isExit(): boolean
+}
+
+TaskCommand <|-- SorryTaskCommand
+
+@enduml

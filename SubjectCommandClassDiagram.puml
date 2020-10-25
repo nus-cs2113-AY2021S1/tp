@@ -1,0 +1,99 @@
+@startuml
+
+title __revisED's Subject package Class Diagram__\n
+
+abstract class Command {
+    +isExit(): boolean
+}
+
+class SubjectCommand {
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+Command <|-- SubjectCommand
+
+class AddSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- AddSubjectCommand
+
+class DeleteSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- DeleteSubjectCommand
+
+class ExitSubjectCommand {
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- ExitSubjectCommand
+
+class ExportSubjectCommand {
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- ExportSubjectCommand
+
+class FindSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- FindSubjectCommand
+
+class HelpSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- HelpSubjectCommand
+
+class ListSubjectCommand {
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- ListSubjectCommand
+
+class QuizSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- QuizSubjectCommand
+
+class ResultSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- ResultSubjectCommand
+
+class ReturnSubjectCommand {
+    -fullCommand: String
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- ReturnSubjectCommand
+
+class SorrySubjectCommand {
+    +execute(SubjectList): Subject
+    +isExit(): boolean
+}
+
+SubjectCommand <|-- SorrySubjectCommand
+
+@enduml
