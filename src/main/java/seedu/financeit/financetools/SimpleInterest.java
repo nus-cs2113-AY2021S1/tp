@@ -38,7 +38,7 @@ public class SimpleInterest extends ParamHandler {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
 
-        return this.amount * (this.interestRate / 100);
+        return Math.round((this.amount * (this.interestRate / 100)) * 100.00) / 100.00;
     }
 
     @Override

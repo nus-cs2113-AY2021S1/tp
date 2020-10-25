@@ -38,7 +38,7 @@ public class MilesCredit extends ParamHandler {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.milesRate >= 0 : "Miles rate should not be a negative number";
 
-        return this.amount * this.milesRate;
+        return Math.round((this.amount * this.milesRate) * 100.00) / 100.00;
     }
 
     @Override

@@ -68,8 +68,7 @@ public class FileStorage {
     }
 
     /**
-     * Updates text file whenever an operation is done on the task,
-     * for e.g. todo, event, deadline and delete.
+     * Updates text file whenever an operation is done on the task.
      *
      * @param infoText array that stores all tasks in text format.
      * @param filePath file path that contains all the tasks in text format.
