@@ -1,9 +1,6 @@
 package seedu.quotesify.commands.find;
 
-import seedu.quotesify.book.BookList;
 import seedu.quotesify.commands.Command;
-import seedu.quotesify.exception.QuotesifyException;
-import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 

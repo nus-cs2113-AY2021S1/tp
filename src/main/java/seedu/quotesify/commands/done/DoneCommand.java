@@ -1,13 +1,7 @@
 package seedu.quotesify.commands.done;
 
-import seedu.quotesify.book.Book;
-import seedu.quotesify.book.BookList;
 import seedu.quotesify.commands.Command;
-import seedu.quotesify.commands.done.DoneBookCommand;
-import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
-import seedu.quotesify.todo.ToDo;
-import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
 public class DoneCommand extends Command {
