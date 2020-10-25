@@ -160,7 +160,7 @@ Example of usage:
  When you have completed all changes, input `done`.
  
 > **[NOTE]**
->
+
 >  * The `<DURATION OF EPISODE>` is in minutes.  
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
