@@ -32,9 +32,9 @@ public class EditNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Edit note successfully: ";
-    public static final String COMMAND_DOESNT_EXIST_NOTE = "This note does not exist in the notebook! ";
-    public static final String COMMAND_SAME_NOTE_NAME = "This note has the same title as the new title! ";
-    public static final String COMMAND_INVALID_LINE = "Invalid line! ";
+    public static final String COMMAND_UNSUCCESSFUL_NOTE_DOES_NOT_EXIST = "This note does not exist in the notebook! ";
+    public static final String COMMAND_UNSUCCESSFUL_SAME_NOTE_NAME = "This note has the same title as the new title! ";
+    public static final String COMMAND_UNSUCCESSFUL_INVALID_LINE = "Invalid line! ";
 
     private int index;
     private boolean isInput;
@@ -60,20 +60,21 @@ public class EditNoteCommand extends Command {
 
     @Override
     public String execute() {
-        // Retrieve note
         Note oldNote;
         ArrayList<String> content;
+
+        // Retrieve note
         try {
             oldNote = notebook.getNote(index);
             content = oldNote.getContent();
         } catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatString(COMMAND_DOESNT_EXIST_NOTE);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_NOTE_DOES_NOT_EXIST);
         }
 
         // Set title
         if (!newNote.getTitle().isBlank()) {
             if (newNote.getTitle().equals(oldNote.getTitle())) {
-                return Formatter.formatString(COMMAND_SAME_NOTE_NAME);
+                return Formatter.formatString(COMMAND_UNSUCCESSFUL_SAME_NOTE_NAME);
             }
             oldNote.setTitle(newNote.getTitle());
         }
@@ -84,7 +85,7 @@ public class EditNoteCommand extends Command {
                 if (entry.getKey() < content.size()) {
                     content.add(entry.getKey(), entry.getValue());
                 } else {
-                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_INVALID_LINE);
                 }
             }
             oldNote.setContent(content);
@@ -96,7 +97,7 @@ public class EditNoteCommand extends Command {
                 if (entry.getKey() < content.size()) {
                     content.set(entry.getKey(), entry.getValue());
                 } else {
-                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_INVALID_LINE);
                 }
             }
             oldNote.setContent(content);
@@ -108,7 +109,7 @@ public class EditNoteCommand extends Command {
                 if (key < content.size()) {
                     content.remove(key);
                 } else {
-                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_INVALID_LINE);
                 }
             }
             oldNote.setContent(content);
@@ -119,7 +120,7 @@ public class EditNoteCommand extends Command {
             tagManager.tagAndUntagNote(oldNote, newNote.getTags(), "", "");
         }
 
-        // Add more lines
+        // Add extra content
         if (isInput) {
             content.addAll(inputContent());
             oldNote.setContent(content);

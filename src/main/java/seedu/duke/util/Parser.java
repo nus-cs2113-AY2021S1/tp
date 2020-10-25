@@ -33,6 +33,7 @@ import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.WeeklyEvent;
 import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.YearlyEvent;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_ARCHIVE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -56,6 +57,7 @@ import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
 import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -229,10 +231,13 @@ public class Parser {
      */
     private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
+
         String title = "";
-        ArrayList<String> content = new ArrayList<>();
+
         boolean isPinned = false;
         boolean isArchived = false;
+
+        ArrayList<String> content = new ArrayList<>();
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -409,9 +414,12 @@ public class Parser {
             Scanner input = new Scanner(System.in);
             inputString = new ArrayList<>();
 
-            System.out.println("Enter Note:");
-            System.out.println("*/del to delete previous line*");
-            System.out.println("*/end on a new line to end note input*");
+            String[] instructions = new String[3];
+            instructions[0] = "Enter Note:";
+            instructions[1] = "*/del to delete previous line*";
+            instructions[2] = "*/end on a new line to end note input*";
+
+            System.out.println(Formatter.formatString(instructions, true));
             try {
                 // Type note
                 do {
@@ -453,8 +461,10 @@ public class Parser {
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
         int index;
+
         String title;
         String prefix;
+
         boolean isIndex = false;
 
         try {
@@ -798,16 +808,28 @@ public class Parser {
         return new DeleteEventCommand(index - 1);
     }
 
+    /**
+     * Prepare userInput into Note before editing into Notebook.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the add note command.
+     * @throws SystemException if an error occurs.
+     */
     private Command prepareEditNote(String userMessage) throws SystemException {
         int index = 0;
+
         String prefixClashMode = "";
         String title = "";
+
         boolean isArchived = false;
         boolean isInput = false;
         boolean isChangesCheck = false;
+
         Note note;
+
         ArrayList<String> content = new ArrayList<>();
         ArrayList<Tag> tags = new ArrayList<>();
+
         Map<Integer, String> addLists = new HashMap<>();
         Map<Integer, String> editLists = new HashMap<>();
         Map<Integer, String> deleteLists = new HashMap<>();
@@ -877,24 +899,42 @@ public class Parser {
                 throw new SystemException(ExceptionType.EXCEPTION_MISSING_PREFIX);
             }
 
-            // Add to note
             note = tags.isEmpty() ? new Note(title, content, null, isArchived) :
                     new Note(title, content, null, isArchived, tags);
 
             return new EditNoteCommand(index, note, addLists, editLists, deleteLists, isInput);
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
     }
 
+    /**
+     * Reverse the map integers values for an easier flow of
+     * setting map.
+     *
+     * @param map Original string user inputs.
+     * @return Result of the add note command.
+     */
     private Map<Integer, String> sortByKey(Map<Integer, String> map) {
         Map<Integer, String> reverseSortedMap = new TreeMap<>(Collections.reverseOrder());
         reverseSortedMap.putAll(map);
         return reverseSortedMap;
     }
 
-    private Map<Integer, String> addToLists(String prefix, Map<Integer,
-            String> lists, String infoDetail) throws SystemException {
+    /**
+     * Adds on to the current type of lines that is to be added
+     * edit or delete.
+     *
+     * @param prefix     type that is passed in.
+     * @param lists      of list to be returned.
+     * @param infoDetail string user input values.
+     * @return lists of list containing the key and value.
+     * @throws SystemException if integer is invalid.
+     */
+    private Map<Integer, String> addToLists(String prefix, Map<Integer, String> lists,
+                                            String infoDetail) throws SystemException {
         String line = checkBlank(infoDetail, ExceptionType.EXCEPTION_MISSING_LINE);
         String[] lineInfo;
         int index;

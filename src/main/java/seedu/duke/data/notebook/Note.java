@@ -50,14 +50,25 @@ public class Note {
         return title;
     }
 
+    /**
+     * Sets the title of note from the changes.
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets the content of note from existing data.
+     *
+     * @return content of the note.
+     */
     public ArrayList<String> getContent() {
         return content;
     }
 
+    /**
+     * Sets the content of note from the changes.
+     */
     public void setContent(ArrayList<String> content) {
         this.content = content;
     }
@@ -82,6 +93,11 @@ public class Note {
         return this.tags;
     }
 
+    /**
+     * Gets the tags of note from existing data.
+     *
+     * @return tags of the note.
+     */
     public String getTagsName() {
         String tagsName = "";
 
@@ -91,6 +107,9 @@ public class Note {
         return tagsName;
     }
 
+    /**
+     * Sets the tags of note from the changes.
+     */
     public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
     }
