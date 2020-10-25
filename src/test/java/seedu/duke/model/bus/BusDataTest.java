@@ -46,18 +46,18 @@ class BusDataTest {
         BusData.createBusList(busesInZoneA);
     }
 
-    //    @Test
-    //    void possibleBuses_noRoute_returnEmptyBusArrayList() {
-    //        ArrayList<Bus> routes = new ArrayList<>();
-    //        ArrayList<BusStops> stops = new ArrayList<>();
-    //        routes.add(new Bus("AA1", stops));
-    //        routes.add(new Bus("AA2", stops));
-    //        String startingLoc = "centrAL LibraRy";
-    //        String destination = "Pgp";
-    //        //System.out.println(BusData.listOfAllBuses());
-    //        ArrayList<Bus> busOptions = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
-    //        assertEquals(routes.toString(), busOptions.toString());
-    //    }
+    @Test
+    void possibleBuses_noRoute_returnEmptyBusArrayList() {
+        ArrayList<Bus> routes = new ArrayList<>();
+        ArrayList<BusStops> stops = new ArrayList<>();
+        routes.add(new Bus("AA1", stops));
+        routes.add(new Bus("AA2", stops));
+        String startingLoc = "centrAL LibraRy";
+        String destination = "Pgp";
+        //System.out.println(BusData.listOfAllBuses());
+        ArrayList<Bus> busOptions = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
+        assertEquals(routes.toString(), busOptions.toString());
+    }
 
     @Test
     void possibleBuses_oneRoute_returnBusArrayList() {
