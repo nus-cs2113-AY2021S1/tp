@@ -2,7 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.EmptyCommand;
-import seedu.duke.command.HelpCommand;
+import seedu.duke.command.help.HelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;

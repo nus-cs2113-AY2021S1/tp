@@ -1,6 +1,10 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.*;
+import seedu.duke.command.help.MemberHelpCommand;
+import seedu.duke.command.help.ProjectHelpCommand;
+import seedu.duke.command.help.SprintHelpCommand;
+import seedu.duke.command.help.TaskHelpCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
 
