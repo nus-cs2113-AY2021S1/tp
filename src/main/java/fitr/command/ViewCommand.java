@@ -125,6 +125,7 @@ public class ViewCommand extends Command {
         if (goalList.getSize() == 0) {
             Ui.printCustomMessage(EMPTY_GOAL_LIST);
         } else {
+            goalList = goalList.reformatGoalList(goalList, foodList, exerciseList, user);
             for (int i = 0; i < goalList.getSize(); i++) {
                 Goal goal = goalList.getGoal(i);
                 Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
