@@ -13,7 +13,7 @@ public class Logos {
     public static final String FENCE_TEXT_DIVIDER = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
     public static String custom_line_divider = "";
 
-    private static final String VERSION = "Fluffle -Version 1.0";
+    private static final String VERSION = "Fluffle -Version 2.0";
 
     private static final String INPUT_COMMENT_MARKER = "#";
 }
