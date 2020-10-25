@@ -10,6 +10,10 @@ public class PersonBook {
         listOfPerson.add(new Person(args[0],args[1],args[2]));
     }
 
+    public static void deletePerson(Integer indexToBeDeleted, ArrayList<Person> listOfPerson) {
+        listOfPerson.remove(indexToBeDeleted - 1);
+    }
+
     public static String printPersonBook(ArrayList<Person> listOfPerson) {
         int listIndex = 0;
         StringBuilder listToPrint = new StringBuilder();

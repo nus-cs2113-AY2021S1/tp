@@ -5,30 +5,31 @@ import academic.GradeBook;
 import academic.Person;
 import academic.PersonBook;
 import academic.AcademicCommandType;
+
 import academic.AcademicStorage;
 import academic.AcademicCommandParser;
 import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
+
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
 import timetable.TimeTableRun;
-import bookmark.BookmarkCategory;
-import bookmark.commands.BookmarkCommand;
 import userinterface.ErrorMessage;
 import userinterface.HelpMessage;
 import userinterface.Ui;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+import bookmark.BookmarkRun;
 
 
 public class Command {
-    public static int chosenCategory = 0;
 
     public static void executeCommand(String command, CommandType commandType,
-                                      ArrayList<BookmarkCategory> bookmarkCategories, FlashcardRun flashcardRun,
+                                      BookmarkRun bookmarkRun, FlashcardRun flashcardRun,
                                       TimeTableRun timeTableRun, ArrayList<academic.Grade> currentGrades,
                                       ArrayList<academic.Person> listOfPerson) {
         if (commandType == CommandType.EXIT_PROGRAM) {
@@ -43,7 +44,7 @@ public class Command {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
-            handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun,
+            handleNonGeneralCommand(command, commandType, bookmarkRun, flashcardRun, timeTableRun,
                     currentGrades, listOfPerson);
         } else {
             assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
@@ -53,13 +54,13 @@ public class Command {
     }
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
-                                               ArrayList<BookmarkCategory> bookmarkCategories,
+                                               BookmarkRun bookmarkRun,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun,
                                                ArrayList<academic.Grade> currentGrades,
                                                ArrayList<academic.Person> listOfPerson) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
-            executeBookmarkModeCommand(command, bookmarkCategories);
+            executeBookmarkModeCommand(command, bookmarkRun);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
@@ -72,18 +73,9 @@ public class Command {
         }
     }
 
-    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> bookmarkCategories) {
+    public static void executeBookmarkModeCommand(String command, BookmarkRun bookmarkRun) {
         StudyItLog.logger.info("Processing bookmark mode.");
-        BookmarkUi bookmarkUi = new BookmarkUi();
-        BookmarkParser bookmarkParser = new BookmarkParser();
-        try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command,chosenCategory);
-            c.executeCommand(bookmarkUi,bookmarkCategories);
-            chosenCategory = c.getCategoryNumber();
-        } catch (InvalidCommandException e) {
-            bookmarkUi.showInvalidBookmarkCommand();
-            StudyItLog.logger.info("Cannot understand bookmark command");
-        }
+        bookmarkRun.run(command);
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
@@ -100,24 +92,33 @@ public class Command {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
             if (commandType == AcademicCommandType.ADD_CONTACT) {
-                Ui.printLine("Adding Contact"); //TODO: Remove placeholder line.
+                Ui.printLine("Adding Contact");
                 PersonBook.addPerson(AcademicCommandParser.getContact(command), listOfPerson);
 
             } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
-                Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
                 Ui.printLine(PersonBook.printPersonBook(listOfPerson));
 
             } else if (commandType == AcademicCommandType.ADD_GRADE) {
-                Ui.printLine("Adding Grade"); //TODO: Remove placeholder line.
+                Ui.printLine("Adding Grade");
                 GradeBook.addGrade(AcademicCommandParser.getGrade(command), currentGrades);
 
             } else if (commandType == AcademicCommandType.CHECK_GRADE) {
-                Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printCap(currentGrades));
 
             } else if (commandType == AcademicCommandType.LIST_GRADE) {
-                Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
+
+            } else if (commandType == AcademicCommandType.DELETE_PERSON) {
+                Ui.printLine("Deleting contact");
+                PersonBook.deletePerson(AcademicCommandParser.parseDeletePerson(command),listOfPerson);
+
+            } else if (commandType == AcademicCommandType.DELETE_GRADE) {
+                Ui.printLine("Deleting grade");
+                GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
+
+            } else if (commandType == AcademicCommandType.SU_GRADE) {
+                Ui.printLine("SUing grade");
+                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command),currentGrades);
 
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");

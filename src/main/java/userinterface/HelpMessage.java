@@ -20,10 +20,12 @@ public class HelpMessage extends Ui {
     private static final String academicCommands = "Here are the academic commands available:\n"
             + "add contact c/CONTACT  m/MOBILE  e/EMAIL  - adds a contact\n"
             + "check contact                             - prints the list of contact currently stored\n"
+            + "delete contact <index number>             - deletes contact at specified index\n"
             + "add grade n/MODULE NAME  m/MC  g/GRADE    - adds a grade\n"
             + "check grade                               - prints the current CAP based on grade stored\n"
-            + "list grade                                - prints the list of grades currently stored\n";
-
+            + "list grade                                - prints the list of grades currently stored\n"
+            + "delete grade <index number>               - deletes grade at specified index\n"
+            + "su grade <index number>                   - sus grade at specified index\n";
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
             + "bm <category index>  - changes mode from bookmark main into a category \n"
