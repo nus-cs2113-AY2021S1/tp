@@ -1,10 +1,12 @@
 package seedu.duke.functions;
 
 import seedu.duke.bunnylist.BunnyList;
+import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
@@ -89,6 +91,13 @@ public class CommandExecutor {
                 UI.bunnySaved();
             } catch (IOException e) {
                 UI.failedToSaveBunny();
+            }
+            break;
+        case DELETE_BUNNY:
+            try {
+                DeleteBunny.deleteBunny(userInput, bunniesList);
+            } catch (BunnyIndexOutOfBoundsException e) {
+                UI.bunnyIndexOutOfBounds();
             }
             break;
         case GEN_NAME:
