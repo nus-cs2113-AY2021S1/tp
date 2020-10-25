@@ -69,17 +69,17 @@ public class AddSlotCommand extends Command {
 
         if (commands != null) {
             for (String command : commands) {
-                message += createSlotAndBookmark(module, command.trim());
+                message += createSlotAndBookmark(module, command.trim(), timetable);
             }
         }
         ui.print(message);
     }
 
-    protected String createSlotAndBookmark(Module module, String command) {
+    protected String createSlotAndBookmark(Module module, String command, Timetable timetable) {
         assert module != null : "module should mot be null";
         String message = "";
         try {
-            message += create(command, module);
+            message += create(command, module, timetable);
         } catch (ZoomasterException e) {
             message += e.getInfo() + "\n";
         } catch (IndexOutOfBoundsException e) {
@@ -88,7 +88,7 @@ public class AddSlotCommand extends Command {
         return message;
     }
 
-    protected String create(String command, Module module) throws ZoomasterException {
+    protected String create(String command, Module module, Timetable timetable) throws ZoomasterException {
         String message = "";
         List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
         if (isAddModuleBookmark(slotAndBookmark)) {
@@ -130,7 +130,7 @@ public class AddSlotCommand extends Command {
                 if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
                             "  Invalid time for slot. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");
-                } else if (module.isOverlapTimeSlot(day, startTime, endTime)) {
+                } else if (timetable.isOverlapTimeSlot(day, startTime, endTime)) {
                     // message +=  "  " + lesson + " overlaps with an existing timeslot\n";
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
                             "  Invalid time for slot. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");

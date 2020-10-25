@@ -129,29 +129,4 @@ public class Module {
     public String getModuleCode() {
         return moduleCode;
     }
-
-    public boolean isOverlapTimeSlot(String day, LocalTime startTime, LocalTime endTime) {
-        boolean isOverlap = false;
-        for (Slot slot : slots) {
-            if (slot.getDay().equals(day)) {
-                if ((isTimeAGreaterEqualsTimeB(startTime, slot.getEndTime())
-                        && isTimeAGreaterEqualsTimeB(endTime, slot.getEndTime()))
-                        || (isTimeAGreaterEqualsTimeB(slot.getStartTime(), startTime)
-                        && isTimeAGreaterEqualsTimeB(slot.getStartTime(), endTime))) {
-                    continue;
-                }
-                isOverlap = true;
-                break;
-            }
-        }
-        return isOverlap;
-    }
-
-    public boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
-        boolean isGreaterEquals = false;
-        if (timeA.isAfter(timeB) || timeA.equals(timeB)) {
-            isGreaterEquals = true;
-        }
-        return isGreaterEquals;
-    }
 }
