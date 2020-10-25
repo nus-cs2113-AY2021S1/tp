@@ -48,7 +48,7 @@ public class MilesCredit extends ParamHandler {
         case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/m":
+        case "/r":
             this.milesRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:

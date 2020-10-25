@@ -34,9 +34,9 @@ public class FinanceTools {
     public static double handleMonthlyCompoundInterest(CommandPacket packet) {
         MonthlyCompoundInterest tool = new MonthlyCompoundInterest();
         tool.setRequiredParams(
-                "/amount",
-                "/ir",
-                "/period"
+                "/a",
+                "/r",
+                "/p"
         );
         try {
             tool.handlePacket(packet);
@@ -54,9 +54,9 @@ public class FinanceTools {
     public static double handleYearlyCompoundInterest(CommandPacket packet) {
         YearlyCompoundInterest tool = new YearlyCompoundInterest();
         tool.setRequiredParams(
-                "/amount",
-                "/ir",
-                "/period"
+                "/a",
+                "/r",
+                "/p"
         );
         try {
             tool.handlePacket(packet);
@@ -74,8 +74,8 @@ public class FinanceTools {
     public static double handleMilesCredit(CommandPacket packet) {
         MilesCredit tool = new MilesCredit();
         tool.setRequiredParams(
-            "/amount",
-            "/miles"
+            "/a",
+            "/r"
         );
         try {
             tool.handlePacket(packet);
@@ -95,9 +95,9 @@ public class FinanceTools {
     public static double handleCashback(CommandPacket packet) {
         Cashback tool = new Cashback();
         tool.setRequiredParams(
-            "/amount",
-            "/cap",
-            "/cashback"
+            "/a",
+            "/r",
+            "/c"
         );
         try {
             tool.handlePacket(packet);
@@ -117,8 +117,8 @@ public class FinanceTools {
     public static double handleSimpleInterest(CommandPacket packet) {
         SimpleInterest tool = new SimpleInterest();
         tool.setRequiredParams(
-            "/amount",
-            "/ir"
+            "/a",
+            "/r"
         );
         try {
             tool.handlePacket(packet);
