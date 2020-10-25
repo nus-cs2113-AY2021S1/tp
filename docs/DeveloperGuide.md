@@ -89,7 +89,7 @@ The BunnySaver class accesses the bunniesList and overwrites the current bunny.t
 ## Names class family
 
 <p align="center">
-  <img src="https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png"></br>
+  <img src="https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png"><br>
   Figure 5:  Names UML Class Diagram
 </p>
 
