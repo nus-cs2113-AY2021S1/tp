@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
+import seedu.duke.command.ReminderCommand;
 import seedu.duke.data.UserData;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
@@ -48,15 +49,20 @@ public class Duke {
         ui.printWelcomeMessage();
         boolean isExit = false;
         storage.loadAll(data);
+
         while (!isExit) {
             try {
+                ui.printDividerLine();
+                Command reminder = currentParse.parse("reminder");
+                reminder.execute(data,ui,storage);
+                ui.printDividerLine();
                 String userInput = ui.receiveCommand();
                 ui.printDividerLine();
                 Command c = currentParse.parse(userInput);
                 isExit = c.isExit();
 
                 c.execute(data, ui, storage);
-                StorageParser.saveParser(storage, data, c);
+
             } catch (DukeException e) {
                 ui.printErrorMessage(e.getMessage());
             }

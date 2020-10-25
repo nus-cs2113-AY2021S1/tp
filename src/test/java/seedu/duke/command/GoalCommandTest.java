@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DukeException;
+import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GoalCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final Ui ui = new Ui();
+    private Storage store = new Storage("goalStoreTest", ui);
 
     @BeforeEach
     public void setUp() {
@@ -29,7 +32,7 @@ class GoalCommandTest {
         UserData data = new UserData();
         Ui ui = new Ui();
         Command command = new GoalCommand(inputString);
-        command.execute(data, ui, null);
+        command.execute(data, ui, store);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("Goal changed to: " + inputString);
@@ -45,7 +48,7 @@ class GoalCommandTest {
         UserData data = new UserData();
         Ui ui = new Ui();
         Command command = new GoalCommand(inputString);
-        command.execute(data, ui, null);
+        command.execute(data, ui, store);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have no goal! Why not set one now?");
@@ -61,13 +64,13 @@ class GoalCommandTest {
         Ui ui = new Ui();
         String inputString1 = "Fly like a butterfly";
         Command command = new GoalCommand(inputString1);
-        command.execute(data, ui, null);
+        command.execute(data, ui, store);
         String inputString2 = "Float like a bumblebee";
         command = new GoalCommand(inputString2);
-        command.execute(data, ui, null);
+        command.execute(data, ui, store);
         String blankString = "";
         command = new GoalCommand(blankString);
-        command.execute(data, ui, null);
+        command.execute(data, ui, store);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("Goal changed to: " + inputString1);

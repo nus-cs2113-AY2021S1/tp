@@ -8,7 +8,9 @@ File Created: Timetable
 File Created: Goal
 The file has successfully been loaded!
 _________________________________
-The file has successfully been saved!
+You have no events today!
+_________________________________
+_________________________________
 _________________________________
 Thank you for using scheduler--;!
 We hope to see you soon!

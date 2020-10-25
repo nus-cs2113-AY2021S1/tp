@@ -28,7 +28,7 @@ import static seedu.duke.parser.DateTimeParser.timeParser;
  */
 public class CheckCommand extends Command {
     /**
-     * Constructor for checking availability seedu.duke
+     * Constructor for checking availability.
      *
      * @param command from user input
      */
@@ -172,7 +172,7 @@ public class CheckCommand extends Command {
      * @param endTime the end time of the time period to be checked
      * @return an ArrayList of events found occurring during the time period
      */
-    public ArrayList<Event> checkEventsInTimeRange(EventList eventsList, LocalDate startDate, LocalDate endDate,
+    private ArrayList<Event> checkEventsInTimeRange(EventList eventsList, LocalDate startDate, LocalDate endDate,
                                                    LocalTime startTime, LocalTime endTime) {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 

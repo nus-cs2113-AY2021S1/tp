@@ -56,4 +56,9 @@ public class Personal extends Event {
             return "[P]" + super.toString();
         }
     }
+
+    @Override
+    public String toCalendarString() {
+        return "P | " + super.toCalendarString();
+    }
 }

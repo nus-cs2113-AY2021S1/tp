@@ -63,6 +63,7 @@ public class DeadlineCommand extends Command {
                 }
                 ui.printDeadlineChangedMessage(updatedEvent);
             }
+            storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
 
         } catch (InvalidIndexException e) {
             throw new InvalidIndexException("Error, no such index is available!");
