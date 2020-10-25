@@ -1,4 +1,4 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.done;
 
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;

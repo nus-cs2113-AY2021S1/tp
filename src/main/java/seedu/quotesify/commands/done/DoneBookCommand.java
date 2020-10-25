@@ -2,7 +2,6 @@ package seedu.quotesify.commands.done;
 
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.commands.DoneCommand;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
