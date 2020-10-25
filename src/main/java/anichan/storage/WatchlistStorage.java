@@ -21,8 +21,9 @@ public class WatchlistStorage extends Storage {
     private static final String NO_WATCHLIST_LOADED = "No watchlist loaded successfully (all invalid).";
     private static final String SOME_WATCHLIST_LOADED = "Not all loaded successfully (some invalid).";
     private static final String LOAD_SUCCESS = "Loaded successfully.";
-    private static final String ENCODED_WATCHLIST_CANNOT_BE_BLANK = "Encoded watchlist string should not be blank.";
 
+    private static final int MAX_ANIME_INDEX = 511;
+    private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
     private final String storageDirectory;
@@ -87,9 +88,7 @@ public class WatchlistStorage extends Storage {
             sbWatchlist.append(System.lineSeparator());
         }
 
-        String encodedWatchlistString = sbWatchlist.toString();
-        assert (!encodedWatchlistString.isBlank()) : ENCODED_WATCHLIST_CANNOT_BE_BLANK;
-        return encodedWatchlistString;
+        return sbWatchlist.toString();
     }
 
     private Watchlist decode(String line) {
@@ -108,10 +107,17 @@ public class WatchlistStorage extends Storage {
 
         String[] animes = animeListString.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
-            if (!isValidAnimeIndex(animeIndex)) {
+            String trimmedIndex = animeIndex.trim();
+            if (!isValidAnimeIndex(trimmedIndex)) {
                 return null;
             }
-            animeList.add(Integer.parseInt(animeIndex));
+
+            int parsedInteger = Integer.parseInt(trimmedIndex);
+            if (parsedInteger > MAX_ANIME_INDEX) {
+                return null;
+            }
+
+            animeList.add(parsedInteger);
         }
 
         return new Watchlist(watchlistName, animeList);
@@ -125,14 +131,26 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
+        String watchlistName = lineSplit[0];
+        if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
+            return false;
+        }
+
         return (lineSplit[1].startsWith(ENCODED_ANIME_LIST_FIRST_CHARACTER))
                 && (lineSplit[1].endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
     }
 
     private boolean isValidAnimeIndex(String animeIndex) {
         boolean isAnimeIndexBlank = animeIndex.isBlank();
-        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
+        if (isAnimeIndexBlank) {
+            return false;
+        }
 
-        return !isAnimeIndexBlank && isAnimeIndexInteger;
+        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
+        if (!isAnimeIndexInteger) {
+            return false;
+        }
+
+        return isAnimeIndexInteger;
     }
 }

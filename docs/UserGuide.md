@@ -1,5 +1,6 @@
 # AniChan User Guide
 
+![AniChan Logo](images/AniChan-Logo.png)
 
 
 ## Table of Contents
@@ -7,34 +8,33 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
-<br/>&nbsp;3.2 [Adding a user: `addws`](#32-adding-a-user-adduser)
-<br/>&nbsp;3.3 [Switching users: `switchws`](#33-switching-users-switchuser)
-<br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
-<br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
-<br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
-<br/>&nbsp;3.7 [Remove an Anime from the current watchlist: `remove`](#37-remove-an-anime-to-the-current-watchlist-remove)
-<br/>&nbsp;3.8 [View all anime in watchlist: `view`](#38-view-all-anime-in-watchlist-view)
-<br/>&nbsp;3.9 [Bookmark an Anime: `bookmark`](#39-bookmark-an-anime-bookmark)
-<br/>&nbsp;3.10 [Search: `search`](#310-search-search)
-<br/>&nbsp;3.11 [View the information of an Anime: `info`](#311-view-the-information-of-an-anime-info)
-<br/>&nbsp;3.12 [Estimate time need to translate script: `estimate`](#312-estimate-time-needed-to-translate-script-estimate)
-<br/>&nbsp;3.13 [Exit AniChan: `exit`](#313-exit-anichan-exit)
-<br/>&nbsp;3.14 [Saving and loading data](#314-saving-and-loading-data)
+<br/>&nbsp;3.2 [Workspace management: `workspace`](#32-workspace-management-workspace)
+<br/>&nbsp;3.4 [Browse through all Anime: `browse`](#33-browse-through-all-anime-browse)
+<br/>&nbsp;3.5 [Watchlist management: `watchlist`](#34-watchlist-management-watchlist)
+<br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#35-add-an-anime-to-the-current-watchlist-add)
+<br/>&nbsp;3.7 [Remove an Anime from the current watchlist: `remove`](#36-remove-an-anime-to-the-current-watchlist-remove)
+<br/>&nbsp;3.8 [View all anime in watchlist: `view`](#37-view-all-anime-in-watchlist-view)
+<br/>&nbsp;3.9 [Bookmark an Anime: `bookmark`](#38-bookmark-an-anime-bookmark)
+<br/>&nbsp;3.10 [Search: `search`](#39-search-search)
+<br/>&nbsp;3.11 [View the information of an Anime: `info`](#310-view-the-information-of-an-anime-info)
+<br/>&nbsp;3.12 [Estimate time need to translate script: `estimate`](#311-estimate-time-needed-to-translate-script-estimate)
+<br/>&nbsp;3.13 [Exit AniChan: `exit`](#312-exit-anichan-exit)
+<br/>&nbsp;3.14 [Saving and loading data](#313-saving-and-loading-data)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
 ## 1. Introduction
 
-AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
+**AniChan** is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
 
 
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
-3. Copy the file to the folder you want to use as the home folder for your AniChan.
-4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
-5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
+2. Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
+3. Copy the file to the folder you want to use as the home folder for **AniChan**.
+4. Open **Command Prompt** or **Powershell** and change directory into the folder. Run `java -jar anichan.jar`. 
+5. Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
 
 
 ## 3. Features 
@@ -64,35 +64,68 @@ Format: `help`
 
 <br/>
 
-### 3.2 Adding a user: `addws`
-Adds a new workspace to user.
+### 3.2 Workspace management: `workspace`
 
-Format: `addws -n <NAME>`
+This command handles all workspace related operations:
+* Creates new workspace
+* Switches workspace
+* Lists existing workspaces
+* Deletes workspace
 
-Example of usage: `addws -n Crispy Donuts Studio`
+Therefore, the command parameter for workspace command is dependent on the operation you wish to use. 
+For example, `-l` would signify list workspace while `-d` signifies delete.
+
+#### 3.2.1 Creating new workspace
+
+Format: `workspace -n <NAME>`
+
+Example of usage: `workspace -n Crispy Donuts Studio`
 
 The expected outcome:
 ```
 Successfully added new workspace: Crispy Donuts Studio
 ```
 
-<br/>
+#### 3.2.2 Switching workspace
 
-### 3.3 Switching users: `switchws`
-Switch the current active workspace of user.
+Format: `workspace -s <NAME>`
 
-Format: `switchws -n <NAME>`
-
-Example of usage: `switchws -n Crispy Donuts Studio`
+Example of usage: `workspace -s Crispy Donuts Studio`
 
 The expected outcome:
 ```
-Workspace changed to Crispy Donuts Studio
+Workspace switched to Crispy Donuts Studio
 ```
+
+#### 3.2.3 Listing workspaces
+
+Format: `workspace -l`
+
+Example of usage: `workspace -l`
+
+The expected outcome:
+```
+Currently, you have 2 workspace(s):
+1. Default
+2. Crispy Donuts Studio
+```
+
+#### 3.2.4 Deleting workspace
+
+Format: `workspace -d <NAME>`
+
+Example of usage: `workspace -d Default`
+
+The expected outcome:
+```
+Successfully deleted workspace: Default
+```
+
+
 
 <br/>
 
-### 3.4 Browse through all Anime: `browse`
+### 3.3 Browse through all Anime: `browse`
 Browse through all anime from the source. It can be displayed in sorted order.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISLAY_ORDER] [-p PAGE_NUMBER`]
@@ -144,7 +177,7 @@ Browsing Page: 1
 
 <br/>
 
-### 3.5 Watchlist management: `watchlist`
+### 3.4 Watchlist management: `watchlist`
 This command handles all watchlist management related operations: 
 * Create a new watchlist.
 * List all created watchlist(s).
@@ -190,7 +223,7 @@ The expected outcome:
 
 Example of usage: `watchlist -d 2`
 * For deletion to succeed, you must have at least two watchlist.
-* If the currently active (selected) watchlist is deleted, then AniChan will automatically set
+* If the currently active (selected) watchlist is deleted, then **AniChan** will automatically set
 the first watchlist in the list of watchlist to be the new active watchlist.
 
 The expected outcome: 
@@ -201,7 +234,7 @@ Changed active watchlist to: "Default".
 
 <br/>
 
-### 3.6 Add an Anime to the current watchlist: `add`
+### 3.5 Add an Anime to the current watchlist: `add`
 Add an anime to the currently selected watchlist
 
 Format: `add -a <ANIME_ID>`
@@ -216,7 +249,7 @@ Trigun added to watchlist!
 
 <br/>
 
-### 3.7 Remove an Anime from the current watchlist: `remove`
+### 3.6 Remove an Anime from the current watchlist: `remove`
 Remove an anime from the currently selected watchlist
 
 Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
@@ -235,7 +268,7 @@ Trigun successfully removed from watchlist
 
 <br/>
 
-### 3.8 View all anime in watchlist: `view`
+### 3.7 View all anime in watchlist: `view`
 View all anime that is in the specified watchlist
 
 Format: `view -v <WATCHLIST_ID>`
@@ -251,7 +284,7 @@ Here are the anime in Default watchlist:
 
 <br/>
 
-### 3.9 Bookmark an Anime: `bookmark`
+### 3.8 Bookmark an Anime: `bookmark`
 This command handles all bookmark related operations: 
 * List all anime within bookmark.
 * Add an anime into bookmark.
@@ -301,7 +334,7 @@ Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
 
 <br/>
 
-### 3.10 Search `search`
+### 3.9 Search `search`
 Searches for a specific anime or to search for a specific genre
 
 Format:
@@ -340,7 +373,7 @@ The expected outcome:
 
 <br/>
 
-### 3.11 View the information of an Anime: `info`
+### 3.10 View the information of an Anime: `info`
 View all the information regarding a specific anime
 
 Format: `info -a <ANIME_ID>`
@@ -358,12 +391,12 @@ Rating: 86
 Genre: [Action, Adventure, Drama, Sci-Fi]
 ```
 
-### 3.12 Estimate time needed to translate script: `estimate`
+### 3.11 Estimate time needed to translate script: `estimate`
 Estimates the time required to finish translating a script, users may provide
 their estimated words per hour speed or use the average translator speed as an estimate.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
-* **Only one** `.txt` file is accepted by AniChan.
+* **Only one** `.txt` file is accepted by **AniChan**.
 * You have to specify the file extension too! E.g. `script.txt`.
 * If the option `-wph` is not specified, **AniChan** will calculate the estimation timings
 using the average translator's translation speed of 400, 500, and 600 words per hour. 
@@ -387,8 +420,8 @@ The expected outcome:
 You would need 2 hour(s) 58 minute(s).
 ```
 
-### 3.13 Exit AniChan: `exit`
-Exit AniChan 
+### 3.12 Exit AniChan: `exit`
+Exit **AniChan** 
 
 Format: `exit`
 
@@ -401,27 +434,48 @@ Sayonara <NAME>!
 
 <br/>
 
-### 3.14 Saving and loading data
+### 3.13 Saving and loading data
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are 
-created or modified, and will be **loaded automatically** when AniChan is launched. 
+created or modified, and will be **loaded automatically** when **AniChan** is launched. 
 
-In the folder where AniChan is launched, there will be a `data` folder which would contain these data:
+In the folder where **AniChan** is launched, there will be a `data` folder which would contain these data:
 * User data is stored in `data/user.txt`.
 * Watchlist(s) data are stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if your workspace is named "AniTranslator",
 then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 * Bookmark(s) data are also stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
 ## 4. FAQ
-Coming soon!
 
+**Q:** What is a workspace?
+<br/>
+**A:** Workspace is a functionality in **AniChan** which provides users the flexibility to organise information. 
+As application data like watchlist and bookmarks are linked to workspace, switching workspace would provide a 
+clean slate environment to work in.
+
+<br/>
+
+**Q:** How can I save my data?
+<br/>
+**A:** **AniChan** automatically saves your data on every action you take. You can find them in `/data` folder in the same
+directory you run **AniChan** in.
+
+<br/>
+
+**Q:** Can I edit the information in `data` directory?
+<br/>
+**A:** Yes! As **AniChan** saves and loads your information from the data directory, editing the files in `data` folder
+works. However, we would strongly recommend you not to as you may cause data corruption. Use **AniChan** instead if you
+wish to edit your information!
 
 ## 5. Command Summary
 
 |Feature|Command|
 |---|---|
 | Help                                     | `help`                                                   |
-| Add workspace                            | `addws -n <NAME>>`                                       |
-| Switch workspace                         | `switchws -n <NAME>`                                     |
+| Create new workspace                     | `workspace -n <NAME>`                                    |
+| Switch workspace                         | `workspace -s <NAME>`                                    |
+| List workspace                           | `workspace -l`                                           |
+| Delete workspace                         | `workspace -d <NAME>`                                    |
 | Browse                                   | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
 | Create watchlist                         | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                       | `watchlist -l`                                           |

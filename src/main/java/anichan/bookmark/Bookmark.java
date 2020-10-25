@@ -17,16 +17,6 @@ public class Bookmark {
         this.noteList = new ArrayList<>();
     }
 
-//    public Bookmark(ArrayList<Integer> animeBookmarkList, ArrayList<Integer> animeEpisode) {
-//        this.animeBookmarkList = animeBookmarkList;
-//        this.animeEpisode = animeEpisode;
-//        //temp
-//        this.noteList = new ArrayList<>();
-//        for (int i : animeBookmarkList) {
-//            noteList.add(new Note());
-//        }
-//    }
-
     public void addAnimeBookmark(Integer animeIndex) {
         this.animeBookmarkList.add(animeIndex);
         this.animeEpisode.add(0);

@@ -1,34 +1,31 @@
 package anichan.anime;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AnimeDataTest {
-    AnimeData animeData;
+    private static AnimeData animeData;
     private static final Integer NEGATIVE_INTEGER = -1;
     private static final Integer NULL_PARAM = null;
-    private final String FIRST_INDEX_ANIMEINFO = "Index: 1" + System.lineSeparator() +
-            "Name: Cowboy Bebop" +System.lineSeparator() +
-            "Episodes: 26" +System.lineSeparator() +
-            "Release Date: 03/Apr/1998" +System.lineSeparator() +
-            "Rating: 86" +System.lineSeparator() +
-            "Genre: [Action, Adventure, Drama, Sci-Fi]";
+    private static final String FIRST_INDEX_ANIME_INFO = "Index: 1" + System.lineSeparator()
+            + "Name: Cowboy Bebop" + System.lineSeparator()
+            + "Episodes: 26" + System.lineSeparator()
+            + "Release Date: 03/Apr/1998" + System.lineSeparator()
+            + "Rating: 86" + System.lineSeparator()
+            + "Genre: [Action, Adventure, Drama, Sci-Fi]";
 
-    @BeforeEach
-    void setUp() throws AniException {
+    @BeforeAll
+    static void setUp() throws AniException {
         animeData = new AnimeData();
-        System.out.println(animeData.returnAnimeInfo(0));
     }
 
     @Test
     void returnAnimeInfo_firstInteger_expectAnimeInfo() {
-        assertEquals(  animeData.returnAnimeInfo(0), FIRST_INDEX_ANIMEINFO);
+        assertEquals(animeData.returnAnimeInfo(0), FIRST_INDEX_ANIME_INFO);
     }
 
     @Test
