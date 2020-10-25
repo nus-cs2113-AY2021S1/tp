@@ -29,6 +29,8 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.DELETE_PERSON;
         } else if (commandModified.startsWith("delete grade")) {
             return AcademicCommandType.DELETE_GRADE;
+        } else if (commandModified.startsWith("su grade")) {
+            return AcademicCommandType.SU_GRADE;
         } else {
             throw new InvalidCommandException();
         }
@@ -63,7 +65,7 @@ public class AcademicCommandParser extends CommandParser {
         return new String[]{name, mc, grade};
     }
 
-    public static String[] parseImportedStatement(String importedStatement) {
+    public static String[] parseImportedPerson(String importedStatement) {
         int positionOfFirstDivider = importedStatement.indexOf("|");
         int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
         int positionOfThirdDivider = importedStatement.lastIndexOf("|");
@@ -76,12 +78,32 @@ public class AcademicCommandParser extends CommandParser {
 
     }
 
+    public static String[] parseImportedGrade(String importedStatement) {
+        int positionOfFirstDivider = importedStatement.indexOf("|");
+        int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
+        int positionOfThirdDivider = importedStatement.indexOf("|", positionOfSecondDivider + 1);
+        int positionOfFourthDivider = importedStatement.lastIndexOf("|");
+
+
+        String var1 = importedStatement.substring(positionOfFirstDivider + 1,positionOfSecondDivider).trim();
+        String var2 = importedStatement.substring(positionOfSecondDivider + 1,positionOfThirdDivider).trim();
+        String var3 = importedStatement.substring(positionOfThirdDivider + 1,positionOfFourthDivider).trim();
+        String var4 = importedStatement.substring(positionOfFourthDivider + 1).trim();
+
+        return new String[]{var1, var2, var3, var4};
+
+    }
+
     public static Integer parseDeletePerson(String command) {
         return Integer.parseInt(command.substring(14).trim());
     }
 
     public static Integer parseDeleteGrade(String command) {
         return Integer.parseInt(command.substring(12).trim());
+    }
+
+    public static Integer parseSuGrade(String command) {
+        return Integer.parseInt(command.substring(8).trim());
     }
 
 }

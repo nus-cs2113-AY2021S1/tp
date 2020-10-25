@@ -116,6 +116,10 @@ public class Command {
                 Ui.printLine("Deleting grade");
                 GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
 
+            } else if (commandType == AcademicCommandType.SU_GRADE) {
+                Ui.printLine("SUing grade");
+                GradeBook.suGradeInGradeBook(AcademicCommandParser.parseSuGrade(command),currentGrades);
+
             } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }
