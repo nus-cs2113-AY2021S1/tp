@@ -3,7 +3,7 @@ package seedu.duke.bunnylist;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.bunnylist.BunnyListTest.initializeBunnyListTestDatabase;
 
