@@ -34,6 +34,7 @@ public class EditNoteCommand extends Command {
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Edit note successfully: ";
     public static final String COMMAND_DOESNT_EXIST_NOTE = "This note does not exist in the notebook! ";
     public static final String COMMAND_SAME_NOTE_NAME = "This note has the same title as the new title! ";
+    public static final String COMMAND_INVALID_LINE = "Invalid line! ";
 
     private int index;
     private boolean isInput;
@@ -80,7 +81,11 @@ public class EditNoteCommand extends Command {
         // Set new lines
         if (!addLists.isEmpty()) {
             for (Map.Entry<Integer, String> entry : addLists.entrySet()) {
-                content.add(entry.getKey(), entry.getValue());
+                if (entry.getKey() < content.size()) {
+                    content.add(entry.getKey(), entry.getValue());
+                } else {
+                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                }
             }
             oldNote.setContent(content);
         }
@@ -88,7 +93,11 @@ public class EditNoteCommand extends Command {
         // Edit lines
         if (!editLists.isEmpty()) {
             for (Map.Entry<Integer, String> entry : editLists.entrySet()) {
-                content.set(entry.getKey(), entry.getValue());
+                if (entry.getKey() < content.size()) {
+                    content.set(entry.getKey(), entry.getValue());
+                } else {
+                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                }
             }
             oldNote.setContent(content);
         }
@@ -96,7 +105,11 @@ public class EditNoteCommand extends Command {
         // Delete lines
         if (!deleteLists.isEmpty()) {
             for (int key : deleteLists.keySet()) {
-                content.remove(key);
+                if (key < content.size()) {
+                    content.remove(key);
+                } else {
+                    return Formatter.formatString(COMMAND_INVALID_LINE);
+                }
             }
             oldNote.setContent(content);
         }
