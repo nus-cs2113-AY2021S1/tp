@@ -172,12 +172,12 @@ The following sequence diagram shows how the `execute()` operation works when th
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
-<img src="" alt="" width="500"/><br/>
+<img src="" alt="" width="750"/><br/>
 
 ### Print suggestion feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="" alt="" width="500"/><br/>
+<img src="" alt="" width="750"/><br/>
 
 ### Printing countdown feature
 The feature is facilitated by `CountdownCommand`.
