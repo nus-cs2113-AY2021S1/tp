@@ -203,33 +203,34 @@ Without this tag, the previous filtered list would be cleared and the program wi
 
 Example usages and example outputs (step by step):
 - `filter by\type -noun -adjective`  
+```
+Words filtered by indicated type are: 
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
+class: a group of students who are taught together
+beautiful: having beauty; giving pleasure to the senses or to the mind
+nice: pleasant or attractive
+meaningful : important and serious
 
-`Words filtered by indicated type are:`    
-`house: a building for people to live in, usually for one family`  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, 
-and control other machines`  
-`class: a group of students who are taught together`  
-`beautiful: having beauty; giving pleasure to the senses or to the mind`  
-`nice: pleasant or attractive`  
-`meaningful : important and serious`  
+```
 
 - `filter -continue by\start -h -gr -co -ni`  
 
-`Words filtered by indicated type are:`   
-`house: a building for people to live in, usually for one family`  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, do processes with numbers and other data,
-and control other machines`  
-`nice: pleasant or attractive`  
+```
+Words filtered by indicated type are: 
+house: a building for people to live in, usually for one family
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
+nice: pleasant or attractive
+```
 
 - `filter -continue by\include -a -pu`  
-
-`Words filtered by indicated type are: `  
-`grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.`  
-`computer: an electronic machine that can store, organize and find information, `  
-`do processes with numbers and other data, and control other machines`
-
+```
+Words filtered by indicated type are: 
+grass: a common wild plant with narrow green leaves and stems that are eaten by cows, horses, sheep, etc.
+computer: an electronic machine that can store, organize and find information, do processes with numbers and other data, and control other machines
+```
 ### Begin your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
@@ -242,53 +243,56 @@ Currently, our application offers you with 2 options of “type”, which are �
 
 ### Choosing the “topic” of your writing: `topic`
 Listing the available topic in the list and pop out the relevant keywords for your writing.
-`start`  
-`--------------------------------------------------------------`  
-`Please indicate your type by typing in "type" command`  
-`type`  
-`Please let us know your type of writings, either poem or essay`  
-`poem`  
-`Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical`  
-`ghost story`  
-`Great! The words we have found for you are killing, death and terrify!`  
-`Please let us know the title of your writing`  
-`Der Erlkönig`  
-`Now you can type your content, terminate by typing "end"`  
-`Wer reitet so spät durch Nacht und Wind?`  
-`Es ist der Vater mit seinem Kind;`  
-`Er hat den Knaben wohl in dem Arm,`  
-`Er faßt ihn sicher, er hält ihn warm.`  
+```
+start
+--------------------------------------------------------------
+Please indicate your type by typing in "type" command
+type
+Please let us know your type of writings, either poem or essay
+poem
+Please let us know your preferred topic, the available are travelling, life story, ghost story, sci-fi, historical
+ghost story
+Great! The words we have found for you are killing, death and terrify! 
+Please let us know the title of your writing
+Der Erlkönig
+Now you can type your content, terminate by typing "end"
+Wer reitet so spät durch Nacht und Wind?
+Es ist der Vater mit seinem Kind;
+Er hat den Knaben wohl in dem Arm,
+Er faßt ihn sicher, er hält ihn warm.
 
-`Dem Vater grauset's; er reitet geschwind,`  
-`Er hält in Armen das ächzende Kind,`  
-`Erreicht den Hof mit Mühe und Not;`  
-`In seinen Armen das Kind war tot.`  
-`end`  
-`This Poem, Der Erlkönig has been added`  
-`Done! We have added your writing to our storage! You can type "stats" for future reference!`
+Dem Vater grauset's; er reitet geschwind,
+Er hält in Armen das ächzende Kind,
+Erreicht den Hof mit Mühe und Not;
+In seinen Armen das Kind war tot.
+end
+This Poem, Der Erlkönig has been added
+Done! We have added your writing to our storage! You can type "stats" for future reference!
+```
 
 ### Tracking your past writings: `stats`
 Inform the user detailed specifications like ids, authors, contents, and other attributes of the writings stored in database. 
- 
-`stats`  
-`This is a Poem`  
-`Written by Goethe`  
+ ```
+stats
+This is a Poem
+Written by Goethe
 
-`Id: 5`  
-`DER ERLKÖNIG`  
+Id: 5
+DER ERLKÖNIG
 
-`Wer reitet so spät durch Nacht und Wind?`  
-`Es ist der Vater mit seinem Kind;`  
-`Er hat den Knaben wohl in dem Arm,`  
-`Er faßt ihn sicher, er hält ihn warm.`  
+Wer reitet so spät durch Nacht und Wind?
+Es ist der Vater mit seinem Kind;
+Er hat den Knaben wohl in dem Arm,
+Er faßt ihn sicher, er hält ihn warm.
 
-`Dem Vater grauset's; er reitet geschwind,`  
-`Er hält in Armen das ächzende Kind,`  
-`Erreicht den Hof mit Mühe und Not;`  
-`In seinen Armen das Kind war tot.`  
+Dem Vater grauset's; er reitet geschwind,
+Er hält in Armen das ächzende Kind,
+Erreicht den Hof mit Mühe und Not;
+In seinen Armen das Kind war tot.
 
-`This writing was created on 2020-10-18`  
-`--------------------------------------------------------------`  
+This writing was created on 2020-10-18
+--------------------------------------------------------------
+```
 
 ### Clear certain object in database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
