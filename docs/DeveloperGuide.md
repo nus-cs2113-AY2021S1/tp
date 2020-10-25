@@ -40,9 +40,67 @@ Welcome to Quotesify v2.0!
 What would you like to do with Quotesify?
 ```
 
-## 3.0 Design & implementation
+## 3.0 Design
 
-### 3.1 Feature: Rating system for books
+### 3.1 Architecture
+
+![Sequence Diagram for Architecture](images/SeqDiagram_Architecture.png)
+
+The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief description of each component shown.
+
+#### Main class: `Quotesify.java`
+* On program launch, the Main is responsible for initialising the required components in the correct sequence as well as to connect these components to start Quotesfiy.
+* On shutdown, the Main gracefully terminates the application and its running components. 
+
+The other components that make up Quotesify include:
+* UI: Text-based User Interface (UI) of the application.
+* Logic: Handles the execution of user input commands.
+* Model: Stores Quotesify’s data objects in application memory.
+* Storage: Stores and accesses program data in the hard disk.
+
+The Sequence Diagram below shows an example of how the components work together upon receiving the command `add -b Harry Potter /by J K Rowling`.
+
+![Sequence Diagram for Components](images/SeqDiagram_Components.png)
+
+### 3.2 UI Component
+
+![Class Diagram for UI Component](images/ClassDiagram_UI.png)
+
+The UI component is made up of main 2 classes:
+* `TextUi`: Responsible for the majority display of Quotesify’s messages. 
+* `UiMessages`: Holds all messages required for TextUI to print to the program console.
+
+In essence, the UI is responsible for the majority display of all successful command executions, error messages, as well as user interaction by prompting for the next command.
+
+### 3.3 Logic Component
+
+![Class Diagram for Logic Component]()
+
+The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence flow from the time a user input is read till command execution ends.
+
+1. User input is fetched from the UI and passed into the Parser for parsing.
+2. A Command object is returned and subsequently executed in the Main class.
+3. The command execution outcome may affect Quotesify’s model objects. (e.g. adding a book)
+4. Command instructs the UI component to print out relevant output messages depending on command type. Also, Command may invoke saving of data via Storage at a given point in time.
+5. Finally, Command will then inspect the exit status after command execution.
+6. Control is handed back over to the UI.
+
+### 3.4 Storage Component
+
+The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed by the command component as well as to detect and load data on program launch.
+
+On program launch:
+1. `Storage` is initialised and checks for the existence of save data.
+2. If save data exists, `Storage` will read the save data in JSON format and parses them back into their model objects. (e.g. Book)
+3. If save data does not exist, `Storage` will create an empty save file in the specified directory.
+
+On Command execution:
+1. `Storage` parses all model objects in JSON format and writes into the save file.
+
+
+## 4.0 implementation
+
+### 4.1 Feature: Rating system for books
 Given below is the class diagram for classes related to the Rating System in Quotesify:
 
 ![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
@@ -52,7 +110,7 @@ Given below is the class diagram for classes related to the Rating System in Quo
 , `EditRatingCommand`, `FindRatingCommand` classes which all extends their respective parent `XCommand` classes.
 * All the `XCommand` classes extends the abstract `Command` class.
 
-#### 3.1.1 Add rating
+#### 4.1.1 Add rating
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
 * The book object will store an attribute named *rating*, which will be set by this feature.
@@ -82,7 +140,7 @@ This list of ratings will be used when listing or finding ratings.
 * Using both book title and author to identify a rating instead of just book title
     * Pros: Allows books with the same title but different author to be rated.
 
-#### 3.1.2 Find ratings
+#### 4.1.2 Find ratings
 The *find ratings* feature will search if the rating for a particular book exists in Quotesify
 and print details about the rating.
 
@@ -106,9 +164,38 @@ be created in the process.
 * The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
 bookmarks named `BookmarkList`.
 
+### 4.2 Feature: Category Management
+Given below is the class diagram for classes related to Category Management in Quotesify:
 
-## 4.0 Product scope
-### 4.1 Target user profile
+![Class Diagram for Category Management]()
+
+#### 4.1.1 Add Categories
+The proposed add categories feature allows a user to add multiple categories to an existing book or quote. 
+
+The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
+
+![Sequence Diagram for Add Categories](images/SeqDiagram_AddCategories.png)
+
+* For each category that the user has specified, the process will be executed in a loop until all categories have been processed.
+* Additional checks include verifying the existence of the specified book and if the specified category already exists in the book. If either one of these checks fail, an error message will be prompted.
+* On success, 
+  * The category name will be added into the *categories* attribute of the `Book` object. 
+  * A new `Category` object will be created and stored into the category list if it does not exist. 
+The book will also be stored into the category's *bookList* attribute for record keeping.
+
+##### Design Consideration
+* Allowing users to specify multiple categories at once.
+  * Pros: Increases efficiency for users
+* Giving users an option to specify a book, quote, or both to be tagged with a category.
+  * Pros: Increases efficiency for users.
+  * Cons: Difficult to implement.
+* Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
+  * Pros: Further increases efficiency for users.
+  * Cons: Increased complexity in implementation.
+
+
+## 5.0 Product scope
+### 5.1 Target user profile
 The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
@@ -117,12 +204,12 @@ The intended user of Quotesify is someone that meets the following criterias:
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-### 4.2 Value proposition
+### 5.2 Value proposition
 
 Quotesify will help you to improve your reading experience with quick and easy features such as book management,
 quote management, progress tracker, category management and a rating system for your books.
 
-## 5.0 User Stories
+## 6.0 User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
@@ -140,17 +227,17 @@ quote management, progress tracker, category management and a rating system for 
 |v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
-## 6.0 Non-Functional Requirements
+## 7.0 Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 
-## 7.0 Glossary
+## 8.0 Glossary
 
 * *glossary item* - Definition
 
-## 8.0 Instructions for manual testing
+## 9.0 Instructions for manual testing
 
-### 8.1 Launch and shutdown
+### 9.1 Launch and shutdown
 
 #### Initial launch
    1. Ensure `Java 11` and above is installed.
