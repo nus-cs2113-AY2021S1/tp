@@ -1,9 +1,7 @@
 package fitr.command;
 
 import fitr.Recommender;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 
@@ -18,8 +16,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         LOGGER.fine("Exiting the application.");
     }
 

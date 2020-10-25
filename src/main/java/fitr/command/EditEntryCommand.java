@@ -6,7 +6,7 @@ import fitr.common.Commands;
 import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -28,15 +28,14 @@ public class EditEntryCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
             switch (command) {
             case Commands.COMMAND_EXERCISE:
-                editExercise(exerciseList, arguments);
+                editExercise(listManager.getExerciseList(), arguments);
                 break;
             case Commands.COMMAND_FOOD:
-                editFood(foodList, arguments);
+                editFood(listManager.getFoodList(), arguments);
                 break;
             default:
                 Ui.printInvalidCommandError();
@@ -47,8 +46,8 @@ public class EditEntryCommand extends Command {
         }
 
         try {
-            storageManager.writeExerciseList(exerciseList);
-            storageManager.writeFoodList(foodList);
+            storageManager.writeExerciseList(listManager.getExerciseList());
+            storageManager.writeFoodList(listManager.getFoodList());
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
         }

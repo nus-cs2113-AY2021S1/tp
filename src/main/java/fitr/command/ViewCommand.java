@@ -5,11 +5,11 @@ import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
-import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
 import static fitr.common.Messages.EMPTY_GOAL_LIST;
@@ -44,20 +44,19 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         if (command.equalsIgnoreCase(COMMAND_VIEW_FOOD)) {
-            viewFood(foodList);
+            viewFood(listManager.getFoodList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
-            viewExercise(exerciseList);
+            viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(foodList, exerciseList, user);
+            viewSummary(listManager.getFoodList(), listManager.getExerciseList(), user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
-            viewGoal(foodList, exerciseList, goalList, user);
+            viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
         } else {
             Ui.printFormatError("view");
         }

@@ -5,9 +5,7 @@ import fitr.Recommender;
 import fitr.StandardExercise;
 import fitr.StandardExerciseList;
 import fitr.exception.FitrException;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -25,8 +23,7 @@ import static fitr.common.Messages.SPACE_FORMATTING;
 
 public class RecommendCommand extends Command {
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         StandardExerciseList recommendList = recommender.recommend();
         int fitnessLevel = user.getFitnessLevel();
         for (int i = 0; i < 4; i++) {
@@ -61,8 +58,8 @@ public class RecommendCommand extends Command {
                             + EXERCISE_HEADER + standardExercise.getName()
                             + SPACE_FORMATTING + BURNT_CAL_HEADER
                             + caloriesBurnt.get());
-                    exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
-                    storageManager.writeExerciseList(exerciseList);
+                    listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
+                    storageManager.writeExerciseList(listManager.getExerciseList());
                 }    
             } else if (checker.equals("n")) {
                 Ui.printCustomMessage("Next time then!");
