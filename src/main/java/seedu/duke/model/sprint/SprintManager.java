@@ -27,10 +27,6 @@ public class SprintManager implements JsonableObject {
         return sprintList;
     }
 
-    public void setSprintList(ArrayList<Sprint> sprintList) {
-        this.sprintList = sprintList;
-    }
-
     public int getCurrentSprintIndex() {
         return currentSprintIndex;
     }

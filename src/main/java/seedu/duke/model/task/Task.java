@@ -62,16 +62,8 @@ public class Task implements JsonableObject {
         return memberList;
     }
 
-    public void setMemberList(ArrayList<String> memberList) {
-        this.memberList = memberList;
-    }
-
     public ArrayList<Integer> getSprintList() {
         return sprintList;
-    }
-
-    public void setSprintList(ArrayList<Integer> sprintList) {
-        this.sprintList = sprintList;
     }
 
     public void allocateToMember(String memberId) {

@@ -40,15 +40,6 @@ public class Sprint implements JsonableObject {
         this.owner = proj;
     }
 
-
-    public ArrayList<Integer> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(ArrayList<Integer> taskList) {
-        this.taskList = taskList;
-    }
-
     public Project getOwner() {
         return owner;
     }

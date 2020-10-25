@@ -34,10 +34,6 @@ public class Member implements JsonableObject {
         return taskList;
     }
 
-    public void setTaskList(ArrayList<Integer> taskList) {
-        this.taskList = taskList;
-    }
-
     public void allocateTask(int taskid) {
         taskList.add(taskid);
     }

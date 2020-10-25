@@ -145,18 +145,6 @@ public class Project implements JsonableObject {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-    
-    public void setSprintList(SprintManager sprintList) {
-        this.sprintList = sprintList;
-    }
-
-    public void setBacklog(TaskManager backlog) {
-        this.backlog = backlog;
-    }
-
-    public void setMemberList(ProjectMembers memberList) {
-        this.memberList = memberList;
-    }
 
     public void setTitle(String title) {
         this.title = title;

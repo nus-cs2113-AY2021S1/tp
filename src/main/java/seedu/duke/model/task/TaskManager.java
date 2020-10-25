@@ -42,10 +42,6 @@ public class TaskManager implements JsonableObject {
         this.proj = proj;
     }
 
-    public void setBacklogTasks(ArrayList<Task> backlogTasks) {
-        this.backlogTasks = backlogTasks;
-    }
-
     public void setNextId(int nextId) {
         this.nextId = nextId;
     }
