@@ -120,7 +120,7 @@ public class ManualTracker {
 
     static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        CreateLedgerCommand command = new CreateLedgerCommand("/date");
+        CreateLedgerCommand command = new CreateLedgerCommand();
 
         Ledger ledger;
         try {

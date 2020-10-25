@@ -12,6 +12,7 @@ import seedu.financeit.utils.ParamChecker;
 
 import java.util.Arrays;
 
+//@@author Artemis-Hunt
 /**
  * Command class to edit an existing entry instance with specified parameter values.
  * Entry to be edited must be referenced via the constructor argument.

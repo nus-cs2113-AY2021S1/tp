@@ -1,0 +1,72 @@
+@startuml
+autoactivate on
+
+":EntryTracker" ->":EntryTracker": handleCreateEntry()
+    create "command:CreateEntryCommand"
+   ":EntryTracker"-> "command:CreateEntryCommand" : "command:CreateEntryCommand"()
+    return
+
+   ":EntryTracker"-> "command:CreateEntryCommand" : handlePacket
+
+        create "entry:Entry"
+        "command:CreateEntryCommand" -> "entry:Entry" : Entry()
+        return
+        == Handling of Params in packet ==
+        "command:CreateEntryCommand" -> "command:CreateEntryCommand" : handleParams
+            "command:CreateEntryCommand" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                "command:CreateEntryCommand" -> "command:CreateEntryCommand" : handleSingleParam
+                    alt "paramType = PARAM_TIME"
+                        "command:CreateEntryCommand" ->":ParamChecker": checkAndReturnTime(paramType)
+                        return time
+                        "command:CreateEntryCommand" -> "entry:Entry" : setTime(time)
+                        return
+                    else "paramType = PARAM_AMOUNT"
+                        "command:CreateEntryCommand" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        "command:CreateEntryCommand" -> "entry:Entry" : setAmount(amount)
+                        return
+                    else "paramType = PARAM_INC"
+                        "command:CreateEntryCommand" -> "entry:Entry" : setEntryType(EntryType.INC)
+                        return
+                    else "paramType = PARAM_EXP"
+                        "command:CreateEntryCommand" -> "entry:Entry" : setEntryType(EntryType.EXP)
+                        return
+                    else "paramType = PARAM_DESCRIPTION"
+                        "command:CreateEntryCommand" -> "entry:Entry" : setDescription(description)
+                        return
+                    else "paramType = PARAM_CATEGORY"
+                        "command:CreateEntryCommand" ->":ParamChecker": checkAndReturnCategory(paramType)
+                        return
+                        "command:CreateEntryCommand" -> "entry:Entry" : setCategory()
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Retrieval of newly created entry from the command instance ==
+   ":EntryTracker"-> "command:CreateEntryCommand" : getCurrEntry()
+   return entry
+   == Storing of entry into entryList ==
+   ":EntryTracker"-> "entryList:EntryList" : addItem(entry)
+    return
+
+return state
+
+box "Data Tracker handler" #LightYellow
+participant ":EntryTracker"
+endBox
+
+box "Logic" #LightBlue
+participant "command:CreateEntryCommand"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "entry:Entry"
+participant "entryList:EntryList"
+endBox
+@enduml

@@ -1,26 +1,52 @@
 @startuml
-title When User Set an Expense Goal
-actor User
+autoactivate on
 
-User -> ":GoalTracker" : setExpenseGoal()
-activate ":GoalTracker"
+":ManualTracker" ->":ManualTracker": handleCreateEntry()
+    create "command:CreateLedgerCommand"
+   ":ManualTracker"-> "command:CreateLedgerCommand" : "command:CreateLedgerCommand"()
+    return
 
-":GoalTracker" -> ":InputParser" : parseGoalCommand()
-activate ":InputParser"
+   ":ManualTracker"-> "command:CreateLedgerCommand" : handlePacket
 
-":InputParser" -> ":Goal" : Goal()
-activate ":Goal"
-destroy ":InputParser"
+        create ":ledger:Ledger"
+        "command:CreateLedgerCommand" -> ":ledger:Ledger" : Entry()
+        return
+        == Handling of Params in packet ==
+        "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleParams
+            "command:CreateLedgerCommand" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
+                "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleSingleParam
+                    alt "paramType = PARAM_DATE"
+                        "command:CreateLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
+                        return date
+                        "command:CreateLedgerCommand" -> ":ledger:Ledger" : setDate(date)
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Retrieval of newly created ledger from the command instance ==
+   ":ManualTracker"-> "command:CreateLedgerCommand" : getCurrLedger()
+   return ledger
+   == Storing of ledger into ledgerList ==
+   ":ManualTracker"-> "ledger:LedgerList" : addItem(ledger)
+    return
+return state
 
-":Goal" -> ":TotalGoalList" : addGoal()
-activate ":TotalGoalList"
+box "Data Tracker handler" #LightYellow
+participant ":ManualTracker"
+endBox
 
-":TotalGoalList" -> ":Goal" : Goal being set
-destroy ":TotalGoalList"
+box "Logic" #LightBlue
+participant "command:CreateLedgerCommand"
+participant ":ParamChecker"
+endBox
 
-":Goal" -> ":GoalTracker" : Goal status updated
-destroy ":Goal"
-
-":GoalTracker" -> User : Goal Status displayed to user
-deactivate ":GoalTracker"
-@endumll
+box "Data" #LightGreen
+participant ":ledger:Ledger"
+participant "ledger:LedgerList"
+endBox
+@enduml
