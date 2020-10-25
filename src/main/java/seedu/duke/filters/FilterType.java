@@ -41,4 +41,5 @@ public enum FilterType {
 
         return filterType;
     }
+
 }

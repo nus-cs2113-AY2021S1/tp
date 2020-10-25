@@ -28,6 +28,7 @@ public class Tags {
 
     /** Tags for filter type identifier. */
     public static final String TYPE_OF_FILTER_TAG = "by\\";
+    public static final String LIMIT_WORD = " limit\\";
     public static final String BLANK = "";
     public static final String TYPE_TAG = "type";
     public static final String START_TAG = "start";
