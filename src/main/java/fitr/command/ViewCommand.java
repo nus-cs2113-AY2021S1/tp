@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Calorie;
 import fitr.Goal;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
@@ -9,6 +10,9 @@ import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
@@ -50,7 +54,7 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
             viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(listManager.getFoodList(), listManager.getExerciseList(), user);
+            viewSummary(listManager.getFoodList(), listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
@@ -112,14 +116,80 @@ public class ViewCommand extends Command {
         }
     }
 
-    //View summary of total amount of calories consumed and burnt.
-    private void viewSummary(FoodList foodList, ExerciseList exerciseList, User user) {
-        Ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorieConsumed(foodList).get()));
-        Ui.printCustomMessage(CALORIE_BURNT_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorieBurnt(exerciseList).get()));
-        Ui.printCustomMessage(NET_CALORIE_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorie(foodList, exerciseList).get()));
+    private void viewSummary(FoodList foodList, ExerciseList exerciseList) {
+        int foodIndex = 0;
+        int exerciseIndex = 0;
+        int totalCalorieConsumed = 0;
+        int totalCalorieBurnt = 0;
+        int index = 0;
+        String currentDate;
+        ArrayList<String> dateList = new ArrayList<>();
+        ArrayList<Integer> calorieList = new ArrayList<>();
+        while (exerciseIndex < exerciseList.getSize() && foodIndex < foodList.getSize()) {
+            if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    < Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                exerciseIndex++;
+            } else if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    == Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                exerciseIndex++;
+                foodIndex++;
+            } else if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    > Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                foodIndex++;
+            }
+        }
+        if (exerciseIndex >= exerciseList.getSize()) {
+            while (foodIndex < foodList.getSize()) {
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                foodIndex++;
+            }
+        } else {
+            while (exerciseIndex < exerciseList.getSize()) {
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                exerciseIndex++;
+            }
+        }
+
+        while (index < dateList.size()) {
+            currentDate = dateList.get(index);
+            Ui.printMessageInYellow(DATE_HEADER + currentDate);
+            while (index < dateList.size() && dateList.get(index).equals(currentDate)) {
+                if (calorieList.get(index) <= 0) {
+                    totalCalorieBurnt += calorieList.get(index);//negative
+                } else if (calorieList.get(index) > 0) {
+                    totalCalorieConsumed += calorieList.get(index);//positive
+                }
+                index++;
+            }
+            Ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieConsumed));
+            Ui.printCustomMessage(CALORIE_BURNT_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieBurnt));
+            Ui.printCustomMessage(NET_CALORIE_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieBurnt + totalCalorieConsumed));
+            Ui.printCustomMessage(EMPTY_STRING);
+            totalCalorieBurnt = 0;
+            totalCalorieConsumed = 0;
+        }
+
+    }
+
+    private String dateFormatter(String date) {
+        //Convert date from DD/MM/YYYY to YYYYMMDD
+        String newDateFormat;
+        date = date.replace("/", "");
+        newDateFormat = date.substring(4, 8) + date.substring(2, 4) + date.substring(0, 2);
+        return newDateFormat;
     }
 
     private void viewBmi(User user) {
