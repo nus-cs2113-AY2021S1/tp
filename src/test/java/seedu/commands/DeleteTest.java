@@ -6,7 +6,7 @@ import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeleteTest {
 

@@ -8,9 +8,8 @@ import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.messages.Messages.ADD_MESSAGE;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AddTest {
 
