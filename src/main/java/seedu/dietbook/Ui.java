@@ -903,11 +903,11 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     private void performAssertionsForTimePeriod(LocalDateTime start, LocalDateTime end) {
-        LocalDateTime now = LocalDateTime.now();
         assert start != null : "Starting date time of the time period given should not be null";
         assert end != null : "Ending date time of the time period given should not be null";
         assert !start.isAfter(end) : "Starting date time should not be later than ending date time "
                 + "of the time period";
+        LocalDateTime now = LocalDateTime.now();
         assert !start.isAfter(now) : "Starting date time of the time period given should "
                 + "not be in the future" + start + LocalDateTime.now();
         assert !end.isAfter(now) : "Ending date time of the time period given should not be"
