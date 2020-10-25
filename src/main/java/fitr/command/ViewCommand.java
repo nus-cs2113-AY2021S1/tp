@@ -60,7 +60,6 @@ public class ViewCommand extends Command {
             viewGoal(foodList, exerciseList, goalList, user);
         } else {
             Ui.printFormatError("view");
-            //Ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
         }
     }
 
@@ -74,7 +73,7 @@ public class ViewCommand extends Command {
             String lastDate = EMPTY_STRING;
             Ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
-                if(!lastDate.equals(foodList.getFood(index).getDate())){
+                if (!lastDate.equals(foodList.getFood(index).getDate())) {
                     Ui.printCustomMessage(EMPTY_STRING);
                     Ui.printMessageInYellow(DATE_HEADER + foodList.getFood(index).getDate());
                     lastDate = foodList.getFood(index).getDate();
@@ -99,7 +98,7 @@ public class ViewCommand extends Command {
             String lastDate = EMPTY_STRING;
             Ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
-                if(!lastDate.equals(exerciseList.getExercise(index).getDate())){
+                if (!lastDate.equals(exerciseList.getExercise(index).getDate())) {
                     Ui.printCustomMessage(EMPTY_STRING);
                     Ui.printMessageInYellow(DATE_HEADER + exerciseList.getExercise(index).getDate());
                     lastDate = exerciseList.getExercise(index).getDate();
