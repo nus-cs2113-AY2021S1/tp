@@ -3,7 +3,6 @@ package seedu.quotesify.commands.list;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -43,8 +42,7 @@ public class ListCommand extends Command {
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_CATEGORY:
-            CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
-            listCategories(categoryList, ui);
+            new ListCategoryCommand(arguments).execute(ui, storage);
             break;
         case TAG_RATING:
             RatingList ratingList = (RatingList) ListManager.getList(ListManager.RATING_LIST);
