@@ -32,8 +32,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class DeleteCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
 
     public DeleteCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
