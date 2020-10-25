@@ -1,10 +1,5 @@
 package seedu.quotesify.commands.edit;
 
-import seedu.quotesify.book.Book;
-import seedu.quotesify.book.BookList;
-import seedu.quotesify.category.Category;
-import seedu.quotesify.category.CategoryList;
-import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -41,12 +36,10 @@ public class EditCommand extends Command {
             new EditRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOK:
-            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            editBook(books, ui);
+            new EditBookCommand(arguments).execute(ui, storage);
             break;
         case TAG_CATEGORY:
-            CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
-            editCategory(categoryList, ui);
+            new EditCategoryCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -97,87 +90,6 @@ public class EditCommand extends Command {
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
-    }
-
-    private void editBook(BookList books, TextUi ui) {
-        try {
-            String[] bookDetails = information.split(FLAG_EDIT, 2);
-            if (bookDetails.length == 1) {
-                bookDetails = new String[]{bookDetails[0], ""};
-            }
-
-            int bookIndex = Integer.parseInt(bookDetails[0].trim()) - 1;
-            String newTitle = bookDetails[1].trim();
-            if (newTitle.isEmpty()) {
-                throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);
-            }
-
-            Book book = books.getBook(bookIndex);
-            String oldTitle = book.getTitle();
-            String authorName = book.getAuthor().getName();
-
-            books.ensureNoSimilarBooks(newTitle, authorName);
-            book.setTitle(newTitle);
-            ui.printEditBook(oldTitle, newTitle);
-
-            checkRatingForOldTitle(book, oldTitle, authorName);
-
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
-        }
-    }
-
-    private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
-        // check ratings in rating list before editing the title.
-        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-        int currentRatingOfBook = 0;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(oldTitle)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                currentRatingOfBook = rating.getRating();
-                ratings.delete(ratings.getList().indexOf(rating));
-                break;
-            }
-        }
-
-        if (currentRatingOfBook != 0) {
-            ratings.add(new Rating(book, currentRatingOfBook));
-        }
-    }
-
-    private void editCategory(CategoryList categoryList, TextUi ui) {
-        try {
-            String[] oldAndNewCategories = CategoryParser.getEditParameters(information);
-            String oldCategory = oldAndNewCategories[0];
-            String newCategory = oldAndNewCategories[1];
-
-            if (categoryList.isExistingCategory(newCategory)) {
-                throw new QuotesifyException("Category [" + newCategory + "] already exists!");
-            }
-
-            Category category = categoryList.getCategoryByName(oldCategory);
-            category.setCategoryName(newCategory);
-            editCategoryInBooksAndQuotes(oldCategory, newCategory);
-            ui.printEditCategory(oldCategory, newCategory);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        }
-    }
-
-    public void editCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
-        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
-            book.getCategories().remove(oldCategory);
-            book.getCategories().add(newCategory);
-        });
-
-        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
-            quote.getCategories().remove(oldCategory);
-            quote.getCategories().add(newCategory);
-        });
     }
 
     @Override

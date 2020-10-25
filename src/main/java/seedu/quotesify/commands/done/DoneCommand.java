@@ -1,7 +1,9 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.done;
 
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
+import seedu.quotesify.commands.Command;
+import seedu.quotesify.commands.done.DoneBookCommand;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
@@ -9,10 +11,12 @@ import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
 public class DoneCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public DoneCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -32,25 +36,13 @@ public class DoneCommand extends Command {
             doneToDo(toDos,index,ui);
             break;
         case TAG_BOOK:
-            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            doneBooks(books, ui);
+            new DoneBookCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printDoneCommandUsage();
             break;
         }
         storage.save();
-    }
-
-    private void doneBooks(BookList books, TextUi ui) {
-        try {
-            int bookIndex = Integer.parseInt(information.trim()) - 1;
-            Book book = books.getBook(bookIndex);
-            book.setDone(true);
-            ui.printDoneBook(book);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
-        }
     }
 
     private void doneToDo(ToDoList toDos, int index, TextUi ui) {

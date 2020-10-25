@@ -3,7 +3,6 @@ package seedu.quotesify.commands.list;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -38,19 +37,16 @@ public class ListCommand extends Command {
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_CATEGORY:
-            CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
-            listCategories(categoryList, ui);
+            new ListCategoryCommand(arguments).execute(ui, storage);
             break;
         case TAG_RATING:
             new ListRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_TODO:
-            ToDoList toDoList = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            listToDos(toDoList,ui);
+            new ListToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
-            BookmarkList bookmarkList = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            listBookmarks(bookmarkList, ui);
+            new ListBookmarkCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -61,77 +57,12 @@ public class ListCommand extends Command {
             listQuoteReflection(quotes, ui);
             break;
         case TAG_BOOK:
-            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            listBooks(bookList, ui);
+            new ListBookCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfListCommands();
             break;
         }
-    }
-
-    private void listBooks(BookList bookList, TextUi ui) {
-        try {
-            if (information.isEmpty()) {
-                listAllBooks(bookList, ui);
-            } else if (information.contains(FLAG_AUTHOR)) {
-                listBooksByAuthor(bookList, ui);
-            } else if (information.contains(DONE_KEYWORD)) {
-                listBooksDoneOrUndone(bookList, ui);
-            } else {
-                listBookDetails(bookList, ui);
-            }
-        } catch (IndexOutOfBoundsException e) {
-            if (information.contains(FLAG_AUTHOR)) {
-                ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
-            } else {
-                ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
-            }
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.printErrorMessage(ERROR_LIST_UNKNOWN_COMMAND);
-        }
-    }
-
-    private void listBooksDoneOrUndone(BookList bookList, TextUi ui) {
-        if (information.trim().equals(DONE_KEYWORD)) {
-            listBooksDone(bookList, ui);
-        } else if (information.trim().equals("undone")) {
-            listBooksUndone(bookList, ui);
-        }
-    }
-
-    private void listBooksDone(BookList bookList, TextUi ui) {
-        BookList completedBooks = bookList.filterDone(true);
-        ui.printListDoneBook(completedBooks);
-    }
-
-    private void listBooksUndone(BookList bookList, TextUi ui) {
-        BookList undoneBooks = bookList.filterDone(false);
-        ui.printListUndoneBook(undoneBooks);
-    }
-
-    private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
-        int bookIndex = Integer.parseInt(information.trim()) - 1;
-        Book book = bookList.getBook(bookIndex);
-        ui.printBookDetails(book);
-    }
-
-    private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {
-        if (bookList.isEmpty()) {
-            throw new QuotesifyException(ERROR_NO_BOOKS_IN_LIST);
-        }
-        ui.printAllBooks(bookList);
-    }
-
-    private void listBooksByAuthor(BookList bookList, TextUi ui) throws QuotesifyException, IndexOutOfBoundsException {
-        String authorName = information.substring(4);
-        BookList filteredBooks = bookList.filterByAuthor(authorName);
-        if (filteredBooks.isEmpty()) {
-            throw new QuotesifyException(ERROR_NO_BOOKS_BY_AUTHOR);
-        }
-        ui.printBooksByAuthor(filteredBooks, authorName);
     }
 
     private void listQuoteReflection(QuoteList quotes, TextUi ui) {
@@ -190,36 +121,6 @@ public class ListCommand extends Command {
 
     private void listQuotesByReference(QuoteList quoteList, String reference, TextUi ui) {
         ui.printAllQuotesByReference(quoteList, reference);
-    }
-
-    private void listCategories(CategoryList categoryList, TextUi ui) {
-        categoryList.updateListsInAllCategories();
-        if ((information.isEmpty())) {
-            listAllCategories(categoryList, ui);
-        } else {
-            listAllInCategory(categoryList, ui);
-        }
-    }
-
-    private void listAllCategories(CategoryList categoryList, TextUi ui) {
-        ui.printAllCategories(categoryList);
-    }
-
-    private void listAllInCategory(CategoryList categoryList, TextUi ui) {
-        try {
-            ui.printAllInCategory(categoryList.getCategoryByName(information));
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        }
-    }
-
-    private void listToDos(ToDoList toDoList, TextUi ui) {
-        toDoList.sortByDate();
-        ui.printAllToDos(toDoList);
-    }
-
-    private void listBookmarks(BookmarkList bookmarkList, TextUi ui) {
-        ui.printAllBookmarks(bookmarkList);
     }
 
     @Override
