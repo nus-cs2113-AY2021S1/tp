@@ -14,7 +14,7 @@ import static seedu.duke.bunnylist.BunnyListTest.initializeBunnyListTestDatabase
 class BunnyFilterTest {
 
     @Test
-    void filterBunny_filterIdeaTerm_getOneResult() {
+    void filterBunny_filterIdeaTerm_getTwoResults() {
         BunnyList.bunniesList.clear();
         initializeBunnyListTestDatabase();
         try {
@@ -28,7 +28,7 @@ class BunnyFilterTest {
     }
 
     @Test
-    void filterBunny_filterGenreTerm_getOneResult() {
+    void filterBunny_filterGenreTerm_getTwoResults() {
         BunnyList.bunniesList.clear();
         initializeBunnyListTestDatabase();
         try {
@@ -39,5 +39,19 @@ class BunnyFilterTest {
             e.printStackTrace();
         }
         assertEquals(2, BunnyFilter.filteredBunny.size());
+    }
+
+    @Test
+    void filterBunny_filterIdeaAndGenreTerm_getOneResult() {
+        BunnyList.bunniesList.clear();
+        initializeBunnyListTestDatabase();
+        try {
+            BunnyFilter.filterBunny("filter bunny i\\ some g\\fun ", bunniesList);
+        } catch (MissingFilterOptionsException e) {
+            e.printStackTrace();
+        } catch (NoFilteredItemsException e) {
+            e.printStackTrace();
+        }
+        assertEquals(1, BunnyFilter.filteredBunny.size());
     }
 }

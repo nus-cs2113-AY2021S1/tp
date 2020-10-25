@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BunnyListTest {
     public static void initializeBunnyListTestDatabase() {
         try {
-            BunnyList.addBunny("bunny i\\ some cool idea g\\ cool");
+            BunnyList.addBunny("bunny i\\ cool idea g\\ cool");
             BunnyList.addBunny("bunny i\\ some fun idea g\\ fun");
-            BunnyList.addBunny("bunny i\\ some kind of awesome idea g\\ awesome");
+            BunnyList.addBunny("bunny i\\ kind of awesome idea g\\ awesome");
             BunnyList.addBunny("bunny i\\ some random idea g\\ awesome");
-            BunnyList.addBunny("bunny i\\ some funny idea g\\ fun");
+            BunnyList.addBunny("bunny i\\ funny idea g\\ fun");
             BunnyList.addBunny("bunny i\\ some strange idea g\\ mystery");
             BunnyList.addBunny("bunny i\\ idea example g\\ unknown");
         } catch (CommandMissingArgumentsException | BunnyIdeaMissingException e) {
