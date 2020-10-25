@@ -346,3 +346,25 @@ Oct 23, 2020 11:31:57 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add reflection to quote list
 Oct 23, 2020 11:35:35 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add reflection to quote list
+Oct 25, 2020 11:53:46 AM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 25, 2020 11:53:46 AM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 25, 2020 12:08:19 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 25, 2020 12:08:19 PM seedu.quotesify.commands.add.AddBookCommand addBook
+INFO: add book to booklist failed
+Oct 25, 2020 12:08:19 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 25, 2020 12:08:29 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 25, 2020 12:08:29 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 25, 2020 12:16:58 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 25, 2020 12:16:58 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist

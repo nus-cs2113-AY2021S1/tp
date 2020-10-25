@@ -4,7 +4,7 @@ import seedu.quotesify.commands.BookmarkCommand;
 import seedu.quotesify.commands.add.AddCommand;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.commands.delete.DeleteCommand;
-import seedu.quotesify.commands.DoneCommand;
+import seedu.quotesify.commands.done.DoneCommand;
 import seedu.quotesify.commands.edit.EditCommand;
 import seedu.quotesify.commands.ExitCommand;
 import seedu.quotesify.commands.find.FindCommand;
