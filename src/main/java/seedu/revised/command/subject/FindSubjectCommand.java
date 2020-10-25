@@ -1,7 +1,7 @@
 package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.ui.Ui;
 
 public class FindSubjectCommand extends SubjectCommand {

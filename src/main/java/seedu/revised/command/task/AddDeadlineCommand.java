@@ -4,7 +4,7 @@ import seedu.revised.exception.task.RepeatedDateTimeException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.card.task.Deadline;
 import seedu.revised.card.task.Task;
-import seedu.revised.card.task.TaskList;
+import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
 import java.time.LocalDateTime;

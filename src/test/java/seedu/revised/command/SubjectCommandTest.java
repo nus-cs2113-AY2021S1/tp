@@ -3,7 +3,7 @@ package seedu.revised.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.FindSubjectCommand;

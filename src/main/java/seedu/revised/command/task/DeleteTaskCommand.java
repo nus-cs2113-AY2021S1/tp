@@ -1,7 +1,7 @@
 package seedu.revised.command.task;
 
 import seedu.revised.card.task.Task;
-import seedu.revised.card.task.TaskList;
+import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
 public class DeleteTaskCommand extends TaskCommand {

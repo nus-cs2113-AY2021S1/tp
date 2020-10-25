@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
