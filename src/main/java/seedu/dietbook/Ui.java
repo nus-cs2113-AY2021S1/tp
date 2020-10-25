@@ -187,7 +187,7 @@ public class Ui {
         performAssertionsForStringInputs(personInfo,
                 "Updated person information");
 
-        print("Here is your updated information:" + LINE_SEPARATOR
+        print("Got it! I've updated your personal information:" + LINE_SEPARATOR
                 + personInfo);
     }
 
