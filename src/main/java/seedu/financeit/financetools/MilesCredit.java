@@ -45,10 +45,10 @@ public class MilesCredit extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/amount":
+        case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/miles":
+        case "/r":
             this.milesRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
