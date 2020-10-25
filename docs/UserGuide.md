@@ -7,8 +7,11 @@
 - [Usage](#usage)
   * [Book Management](#book-management)
     * [Adding a book](#adding-a-book-add--b)
+    * [Completing a book](#completing-a-book-done--b)
     * [Listing all existing book](#listing-all-existing-books-list--b)
+    * [Listing book details](#listing-book-details-list--b)
     * [Listing books by an Author](#listing-books-by-an-author-list--b)
+    * [Listing books by completion](#listing-books-by-completion-list--b)
     * [Finding books by keyword](#finding-books-by-keyword-find--b)
     * [Deleting a book](#deleting-a-book-delete--b)
   * [Quote Management](#quote-management)
@@ -241,7 +244,7 @@ Don't need a book anymore? You can delete the book permanently.
 Format: `delete -b BOOK_NUMBER`
 
 * `BOOK_NUMBER` refers to the index you see when you list ALL books.
-* Book number specified must be less than the total number of books.
+* The book number must be an existing number in the list when you list ALL books.
 
 Example of usage:
 `delete -b 1`
