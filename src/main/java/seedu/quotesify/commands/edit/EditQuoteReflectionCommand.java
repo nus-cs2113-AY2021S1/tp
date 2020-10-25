@@ -14,7 +14,7 @@ public class EditQuoteReflectionCommand extends  EditCommand {
         super(arguments);
     }
 
-    public void execute(TextUi ui, Storage storage){
+    public void execute(TextUi ui, Storage storage) {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         editQuoteReflection(quoteList, ui);
     }
