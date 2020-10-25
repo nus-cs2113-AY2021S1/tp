@@ -68,16 +68,16 @@ public class YearlyCompoundInterest extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/amount":
+        case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/ir":
+        case "/r":
             this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/period":
+        case "/p":
             this.calculationPeriod = ParamChecker.getInstance().checkAndReturnInt(paramType);
             break;
-        case "/deposit":
+        case "/d":
             this.yearlyDeposit = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:

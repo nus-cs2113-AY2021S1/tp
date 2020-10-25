@@ -50,13 +50,13 @@ public class Cashback extends ParamHandler {
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
-        case "/amount":
+        case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/cashback":
+        case "/r":
             this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/cap":
+        case "/c":
             this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:

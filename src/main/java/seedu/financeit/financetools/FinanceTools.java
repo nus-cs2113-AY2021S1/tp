@@ -158,15 +158,15 @@ public class FinanceTools {
             String input = UiManager.handleInput();
             CommandPacket packet = InputParser.getInstance().parseInput(input);
             switch (packet.getCommandString()) {
-            case "simplecalc":
+            case "simple":
                 outputAmount = Double.toString(Math.round(handleSimpleInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 break;
-            case "cashbackcalc":
+            case "cashb":
                 outputAmount = Double.toString(Math.round(handleCashback(packet) * 100.00) / 100.00);
                 System.out.println("Total Cashback Earned: $\n\n" + outputAmount);
                 break;
-            case "milescalc":
+            case "miles":
                 outputAmount = Double.toString(Math.round(handleMilesCredit(packet) * 100.00) / 100.00);
                 System.out.println("Total Miles Earned: \n\n" + outputAmount);
                 break;

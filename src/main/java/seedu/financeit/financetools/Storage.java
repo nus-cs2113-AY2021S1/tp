@@ -75,23 +75,23 @@ public class Storage extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/name":
+        case "/n":
             this.nameLabel = packet.getParam(paramType);
             break;
         case "/ir":
             this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/cashb":
+        case "/r":
             this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/cap":
+        case "/c":
             this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/delete":
+        case "/rm":
             this.deleteIndex = ParamChecker.getInstance().checkAndReturnInt(paramType);
             this.activateDelete = true;
             break;
-        case "/note":
+        case "/o":
             this.otherLabel = packet.getParam(paramType);
             break;
         default:

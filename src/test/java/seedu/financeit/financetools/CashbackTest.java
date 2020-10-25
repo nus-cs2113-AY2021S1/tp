@@ -15,7 +15,7 @@ public class CashbackTest {
 
     @Test
     void calculateCashback_input1000_expect5() {
-        CommandPacket packet = handleInput("cashbackcalc /amount 1000 /cashback 5 /cap 1000");
+        CommandPacket packet = handleInput("cashb /a 1000 /r 5 /c 1000");
         Double cashbackEarned = FinanceTools.handleCashback(packet);
         assertEquals(cashbackEarned, 50.0);
     }

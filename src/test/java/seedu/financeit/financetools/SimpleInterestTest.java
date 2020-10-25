@@ -15,7 +15,7 @@ public class SimpleInterestTest {
 
     @Test
     void calculateSimpleInterest_input1000_expect5() {
-        CommandPacket packet = handleInput("simplecalc /amount 1000 /ir 5");
+        CommandPacket packet = handleInput("simple /a 1000 /r 5");
         Double interestRate = FinanceTools.handleSimpleInterest(packet);
         assertEquals(interestRate, 50.0);
     }
