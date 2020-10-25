@@ -1,4 +1,4 @@
-package seedu.eduke8;
+package seedu.eduke8.stats;
 
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;

@@ -1,4 +1,4 @@
-package seedu.eduke8;
+package seedu.eduke8.stats;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
