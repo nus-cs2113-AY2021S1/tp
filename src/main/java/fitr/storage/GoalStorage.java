@@ -19,6 +19,7 @@ public class GoalStorage {
 
     public GoalStorage() throws IOException {
         File goalListFile = new File(GOAL_LIST_PATH);
+
         if (!goalListFile.exists()) {
             boolean isFileExists = goalListFile.createNewFile();
             LOGGER.fine("Goal list file created: " + GOAL_LIST_PATH);
