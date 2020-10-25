@@ -15,9 +15,9 @@ public class FindRatingCommand extends FindCommand {
     }
 
     public void execute(TextUi ui, Storage storage) {
-       RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-       findRating(ratings, ui);
-       storage.save();
+        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+        findRating(ratings, ui);
+        storage.save();
     }
 
     private void findRating(RatingList ratings, TextUi ui) {
