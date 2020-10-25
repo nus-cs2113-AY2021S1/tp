@@ -1,8 +1,7 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.util.DateTimeManager;
-
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -111,8 +110,8 @@ public class Timetable {
      * @return A HashMap that maps the name of the month to a HashMap that maps date to list of events that occurs on
      *      that day, sorted by starting time.
      */
-    public HashMap<String, HashMap<Integer, ArrayList<Event>>> getYearTimetable(int year) {
-        HashMap<String, HashMap<Integer, ArrayList<Event>>> calendar = new HashMap<>();
+    public HashMap<Month, HashMap<Integer, ArrayList<Event>>> getYearTimetable(int year) {
+        HashMap<Month, HashMap<Integer, ArrayList<Event>>> calendar = new HashMap<>();
         for (int i = 1; i <= 12; i++) {
             LocalDate startDate = LocalDate.of(year, i, 1);
             LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
@@ -129,7 +128,7 @@ public class Timetable {
      * @return A HashMap that maps the name of the month to a HashMap that maps date to list of events that occurs on
      *      that day, sorted by starting time.
      */
-    public HashMap<String, HashMap<Integer, ArrayList<Event>>> getMonthTimetable(int year, int month) {
+    public HashMap<Month, HashMap<Integer, ArrayList<Event>>> getMonthTimetable(int year, int month) {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
         return getTimetable(startDate, endDate);
@@ -143,15 +142,15 @@ public class Timetable {
      * @return A HashMap that maps the name of the month to a HashMap that maps date to list of events that occurs on
      *      that day, sorted by starting time.
      */
-    public HashMap<String, HashMap<Integer, ArrayList<Event>>> getTimetable(LocalDate startDate, LocalDate endDate) {
+    public HashMap<Month, HashMap<Integer, ArrayList<Event>>> getTimetable(LocalDate startDate, LocalDate endDate) {
         // Get an eventSet of all events occurring during the specified time period.
         ArrayList<Event> eventSet = getAllEvents(startDate, endDate);
 
-        HashMap<String, HashMap<Integer,ArrayList<Event>>> calendar = new HashMap<>();
+        HashMap<Month, HashMap<Integer,ArrayList<Event>>> calendar = new HashMap<>();
 
         // Map all events to their relevant date and month. Sort by startTime.
         for (Event event : eventSet) {
-            String month = DateTimeManager.getMonthName(event.getDate());
+            Month month = event.getDate().getMonth();
             int date = event.getDate().getDayOfMonth();
             // Get a HashMap for the specified month. If it has not been initialized, initialize one.
             HashMap<Integer, ArrayList<Event>> monthEvents = calendar.get(month);
