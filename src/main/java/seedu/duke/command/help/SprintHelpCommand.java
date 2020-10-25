@@ -14,7 +14,7 @@ public class SprintHelpCommand extends Command {
     public void execute() {
         Ui.showToUserLn("1. Create sprint");
         Ui.showToUserLn("   Format: sprint /create -goal <goal_input> -start <start_date>");
-        Ui.showToUserLn("   Example: ");
+        Ui.showToUserLn("   Example: sprint /create Shopping Cart -start 20201010");
         Ui.showToUserLn("2. View sprint");
         Ui.showToUserLn("   Format & example: sprint /view");
         Ui.showToUserLn("3. Edit sprint");
