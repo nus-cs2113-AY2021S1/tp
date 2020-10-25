@@ -22,10 +22,8 @@ public class WordList {
      *              the word and its definition
      */
     public static void addNoun(String input) {
-//        String[] word = input.split(" ", 2);
-//        String[] splitInput = word[1].trim().split(Tags.DESCRIPTION_TAG);
-        String slicedInput = input.replace("noun ", "").trim();
-        String[] splitInput = slicedInput.split(Tags.DESCRIPTION_TAG);
+        String[] word = input.split(" ", 2);
+        String[] splitInput = word[1].trim().split(Tags.DESCRIPTION_TAG);
         Words toAdd = new Noun(splitInput[0],splitInput[1]);
         wordList.add(toAdd);
         UI.addNounMessage(toAdd.getDescription());
