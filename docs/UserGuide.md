@@ -472,6 +472,7 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
+| divider      |
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
@@ -480,6 +481,8 @@ Format: `exit`
 | list bunny   | `list bunny`</br>Lists all the bunny ideas                                                            |
 | filter bunny | `filter bunny i\IDEA g\[GENRE]`</br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
 | save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
+| delete bunny | `delete bunny BUNNY_INDEX` </br>Deletes a selected bunny from the list. <\br>`BUNNY_INDEX` is the index of the bunny in the list|
+| random bunny | `random bunny` <\br>Selects a random bunny from the list.|
 | filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `</br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br>TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
 | name         | `name`</br>Generates a random name                                                                    |
 | list name    | `list name`</br>List all the stored names                                                             |
