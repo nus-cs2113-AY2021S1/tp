@@ -20,10 +20,11 @@ public class ListQuoteReflection extends ListCommand {
 
     private void listQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            int quoteNumber = Integer.parseInt(information.trim()) - 1;
-            if (information.isEmpty()) {
+            if (information.trim().isEmpty()) {
                 throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
-            } else if (quoteNumber < 0 || quoteNumber > quoteList.getSize()) {
+            }
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
+            if (quoteNumber < 0 || quoteNumber > quoteList.getSize()) {
                 throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
             } else {
                 Quote quote = quoteList.getQuote(quoteNumber);
@@ -32,7 +33,7 @@ public class ListQuoteReflection extends ListCommand {
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         } catch (NumberFormatException e) {
-            ui.printErrorMessage(e.getMessage());
+            ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         }
     }
 }
