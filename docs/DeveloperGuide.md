@@ -43,7 +43,7 @@ If you plan to use Intellij IDEA (highly recommended):
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `seedu.trippie.Trippie` and try a few commands.
+   1. Run the `java -jar duke.jar` and try a few commands.
    2. [Run the tests](Testing.md) to ensure they all pass. 
 //Note: should ask team W11-02 the permission for the above part.
 

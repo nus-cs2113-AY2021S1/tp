@@ -8,13 +8,13 @@ Fluffle is a **desktop app for creative writers**, optimized for **use via a Com
 
 1. Check that your computer has Java **11** installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-- Copy the file to the folder you want to use as the home folder.
-- Type in a command prompt ./duke.jar and press Enter.
-- Type the `help` command and press Enter to get started.
-- Some example commands you can try:
-    - `list words` : List the vocabulary stored in the word list.
-    - `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-    - `exit` : Exits the app.  
+    - Copy the file to the folder you want to use as the home folder.
+    - Type in a command prompt ./duke.jar and press Enter.
+    - Type the `help` command and press Enter to get started.
+    - Some example commands you can try:
+        - `list words` : List the vocabulary stored in the word list.
+        - `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+        - `exit` : Exits the app.  
     
 Refer to the Features below for details of each command.
 
@@ -91,33 +91,37 @@ Example usages:
 - `bunny i\test idea 2 g\ fantasy`
 
 Example output:  
-`bunny i\test idea 2 g\ fantasy  `  
- `--------------------------------------------------`  
- `New bunny added!`  
-   `idea: test idea 2`  
-   `genre:  fantasy`  
- `---------------------------------------------------`
+```
+bunny i\test idea 2 g\ fantasy    
+ --------------------------------------------------  
+ New bunny added!  
+   idea: test idea 2  
+   genre:  fantasy 
+ ---------------------------------------------------
+ ```
 
 ### Listing bunny ideas: `list bunny`
 List all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
 Example usage: `list bunny`  
 Example output:  
-`list bunny`  
-`-----------------------------------------------------`  
-`Here are the bunnies stored in the program:`  
-`1.`  
-  `idea: test idea 1`  
-  `genre: fantasy`  
-  
-`2.`  
-  `idea: test idea 2`  
- `genre: romance`  
+```
+list bunny
+--------------------------------------------------------------
+Here are the bunnies stored in the program:
+1.
+  idea: test idea 1
+  genre: fantasy
 
-`3.`  
-  `idea: test idea 3`  
-  `genre: none`  
-`------------------------------------------------------`
+2.
+  idea: test idea 2
+  genre: romance
+
+3.
+  idea: test idea 3
+  genre: none
+--------------------------------------------------------------
+```
 
 ### Filter bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
@@ -127,20 +131,22 @@ Example usages:
 - filter bunny i\test idea 2 g\ fantasy
 
 Example output:
-`filter bunny g\ fantasy`  
-`------------------------------------------------------`  
-`1.`  
-  `idea: bunny idea 1`  
-  `genre: fantasy`  
+```
+filter bunny g\ fantasy
+--------------------------------------------------------------
+1.
+  idea: bunny idea 1
+  genre: fantasy
 
-`2.`  
-  `idea: test idea 2`  
-  `genre: fantasy`  
+2.
+  idea: test idea 2
+  genre: fantasy
 
-`number bunny filtered: 2`  
-`-------------------------------------------------------`
+number bunny filtered: 2
+--------------------------------------------------------------
+```
 
-### Save bunny ideas: `save bunny`
+### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
 Format: `save bunny`  
@@ -149,10 +155,30 @@ Example usages:
 - `save bunny`
 
 Example output:  
-`save bunny`  
-`--------------------------------------------------------------`  
-`Bunny list saved!`  
-`--------------------------------------------------------------`
+```
+save bunny
+--------------------------------------------------------------
+Bunny list saved!
+--------------------------------------------------------------
+```
+
+### Deleting a bunny idea: `save bunny`
+Delete a selected bunny from the list of bunny ideas.
+Format: `delete  bunny BUNNY_INDEX`  
+* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+
+Example usages:
+- `delete  bunny`
+
+Example output:  
+```
+delete bunny 2
+--------------------------------------------------------------
+Bunny deleted: 
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
 ### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
