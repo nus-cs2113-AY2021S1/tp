@@ -8,10 +8,6 @@ import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
 
-
-/**
- * Adds an instance of the <code>Deadline</code> class into a <code>TaskList</code>.
- */
 public class AddSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(AddSubjectCommand.class.getName());
     private String fullCommand;
@@ -20,6 +16,12 @@ public class AddSubjectCommand extends SubjectCommand {
         this.fullCommand = fullCommand;
     }
 
+    /**
+     * Adds a <code>Subject</code> in a <code>SubjectList</code>.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to add to.
+     * @return null
+     */
     public Subject execute(SubjectList subjectList) throws NoSubjectException, RepeatedSubjectException {
         logger.info("Begin checking string command to get the title of the subject to be added.");
         int startOfMessage = 4;

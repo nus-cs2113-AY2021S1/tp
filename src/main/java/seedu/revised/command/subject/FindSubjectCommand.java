@@ -15,6 +15,12 @@ public class FindSubjectCommand extends SubjectCommand {
         this.fullcommand = fullcommand;
     }
 
+    /**
+     * Find subjects in a <code>SubjectList</code> that hold a keyword keyed in by the user.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to conduct the search on.
+     * @return null
+     */
     public Subject execute(SubjectList subjectList) {
         logger.info("Begin checking string command to get the keyword to search subject titles in the SubjectList.");
         String[] message = this.fullcommand.split(" ");

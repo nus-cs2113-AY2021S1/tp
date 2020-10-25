@@ -18,7 +18,7 @@ public class DeleteSubjectCommand extends SubjectCommand {
      * Deletes a Task in a <code>taskList</code>.
      *
      * @param subjectList the <code>TaskList</code> instance of the TaskList class for the user to delete from
-     * @return
+     * @return null
      */
     public Subject execute(SubjectList subjectList) throws NumberFormatException {
         logger.info("Begin checking string command to get the subject to be deleted.");
