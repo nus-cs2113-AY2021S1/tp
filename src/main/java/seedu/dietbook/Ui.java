@@ -30,12 +30,7 @@ public class Ui {
      * Prints the welcome message from DietBook when it is fist booted up.
      */
     public void printWelcomeMessage() {
-        String logo = " _______  __ ______ ________ _______   ______   ______  __    __" + LINE_SEPARATOR
-                + "|   __  \\|  |   ___|__    __|   __  \\ /  __  \\ /  __  \\|  | /  /" + LINE_SEPARATOR
-                + "|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /"  + LINE_SEPARATOR
-                + "|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /" + LINE_SEPARATOR
-                + "|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\\  \\" + LINE_SEPARATOR
-                + "|_______/|__|______|  |__|  |_______/ \\______/ \\______/|__| \\__\\" + LINE_SEPARATOR;
+        String logo = getLogo();
         print(logo + LINE_SEPARATOR
                 + "Hello! Welcome to DietBook!" + LINE_SEPARATOR
                 + "I am Diet, your guide to using DietBook. What is your name?" + LINE_SEPARATOR
@@ -483,6 +478,21 @@ public class Ui {
     }
 
     // Helper methods for system related commands or messages
+
+    /**
+     * Returns the string representation of the logo.
+     *
+     * @return The string representation of the logo.
+     */
+    private String getLogo() {
+        String logo = " _______  __ ______ ________ _______   ______   ______  __    __" + LINE_SEPARATOR
+                + "|   __  \\|  |   ___|__    __|   __  \\ /  __  \\ /  __  \\|  | /  /" + LINE_SEPARATOR
+                + "|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /"  + LINE_SEPARATOR
+                + "|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /" + LINE_SEPARATOR
+                + "|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\\  \\" + LINE_SEPARATOR
+                + "|_______/|__|______|  |__|  |_______/ \\______/ \\______/|__| \\__\\" + LINE_SEPARATOR;
+        return logo;
+    }
 
     /**
      * Returns a string representation of a list of system related commands that users can input.
