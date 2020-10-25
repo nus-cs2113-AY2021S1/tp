@@ -11,36 +11,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EditCommandParser {
-    private static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<argument>\\S+)(?<index>.*)");
-    private final String argument;
+    private static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<type>\\S+)(?<arguments>.*)");
+    private final String fullArgument;
 
     public EditCommandParser(String argument) {
-        this.argument = argument.trim().toLowerCase();
+        this.fullArgument = argument.trim();
     }
 
     public Command editCommand() {
-        Matcher matcher = ARGUMENT_FORMAT.matcher(argument);
+        Matcher matcher = ARGUMENT_FORMAT.matcher(fullArgument);
 
         if (!matcher.matches()) {
-            return new InvalidCommand(argument);
+            return new InvalidCommand(fullArgument);
         }
 
-        String editArgument = matcher.group("argument").trim();
-        String index = matcher.group("index").trim();
+        String editType = matcher.group("type").trim().toLowerCase();
+        String arguments = matcher.group("arguments").trim();
 
-        switch (editArgument) {
+        switch (editType) {
         case Messages.EDIT_NAME:
         case Messages.EDIT_AGE:
         case Messages.EDIT_GENDER:
         case Messages.EDIT_HEIGHT:
         case Messages.EDIT_WEIGHT:
         case Messages.EDIT_FITNESS:
-            return new EditProfileCommand(editArgument);
+            return new EditProfileCommand(editType);
         case Commands.COMMAND_EXERCISE:
         case Commands.COMMAND_FOOD:
-            return new EditEntryCommand(editArgument, index);
+            return new EditEntryCommand(editType, arguments);
         default:
-            return new InvalidCommand(argument);
+            return new InvalidCommand(fullArgument);
         }
     }
 }

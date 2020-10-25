@@ -2,27 +2,27 @@ package fitr.ui;
 
 import java.util.Scanner;
 
-import static fitr.common.Commands.COMMAND_FOOD;
-import static fitr.common.Commands.COMMAND_EXERCISE;
-import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
-import static fitr.common.Commands.COMMAND_VIEW_BMI;
-import static fitr.common.Commands.COMMAND_VIEW_FOOD;
-import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
-import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
-import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_BYE;
+import static fitr.common.Commands.COMMAND_DELETE;
+import static fitr.common.Commands.COMMAND_EDIT;
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Commands.COMMAND_VIEW;
-
-import static fitr.common.Messages.FORMAT_FOOD;
-import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_FOOD;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 import static fitr.common.Messages.FORMAT_DELETE;
+import static fitr.common.Messages.FORMAT_EDIT_FOOD;
+import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Messages.FORMAT_FOOD;
 import static fitr.common.Messages.FORMAT_GOAL;
-
+import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.MESSAGE_GREET;
 import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
-import static fitr.common.Messages.MESSAGE_BYE;
-import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 
 /**
  * Prints messages.
@@ -82,6 +82,11 @@ public class Ui {
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_FOOD, "View food entries");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_EXERCISE, "View exercise entries");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_SUMMARY, "View calorie summary");
+
+        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_EXERCISE, "Edit a previous exercise entry");
+        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EXERCISE);
+        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_FOOD, "Edit a previous food entry");
+        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EDIT_FOOD);
 
         System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry");
         printCustomMessage(SPACER + FORMAT + FORMAT_DELETE);

@@ -12,13 +12,19 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditEntryCommand extends Command {
-    private final String index;
+    private static final Pattern EXERCISE_FORMAT =
+            Pattern.compile("(?<index>\\d+)\\s*(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)");
+    private static final Pattern FOOD_FORMAT =
+            Pattern.compile("(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s+(?<quantity>\\d+)");
+    private final String arguments;
 
-    public EditEntryCommand(String arguments, String index) {
-        command = arguments;
-        this.index = index;
+    public EditEntryCommand(String command, String arguments) {
+        this.command = command;
+        this.arguments = arguments;
     }
 
     @Override
@@ -27,10 +33,10 @@ public class EditEntryCommand extends Command {
         try {
             switch (command) {
             case Commands.COMMAND_EXERCISE:
-                editExercise(exerciseList, Integer.parseInt(index));
+                editExercise(exerciseList, arguments);
                 break;
             case Commands.COMMAND_FOOD:
-                editFood(foodList, Integer.parseInt(index));
+                editFood(foodList, arguments);
                 break;
             default:
                 Ui.printInvalidCommandError();
@@ -53,76 +59,74 @@ public class EditEntryCommand extends Command {
         return false;
     }
 
-    private void editExercise(ExerciseList exerciseList, int index) {
+    private void editExercise(ExerciseList exerciseList, String arguments) {
+        Matcher matcher = EXERCISE_FORMAT.matcher(arguments);
+
+        if (!matcher.matches()) {
+            Ui.printFormatError(arguments);
+            return;
+        }
+
         if (exerciseList.getSize() == 0) {
             Ui.printCustomError("Error: Exercise list is empty!");
             return;
         }
 
+        int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > exerciseList.getSize()) {
             Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
 
-        Ui.printCustomMessage("Editing: " + exerciseList.getExercise(index - 1).getNameOfExercise());
-        Ui.printCustomMessage("Enter new exercise name: "
-                + "[previous: " + exerciseList.getExercise(index - 1).getNameOfExercise() + "]");
-        String newExerciseName = Ui.read();
-        exerciseList.getExercise(index - 1).setNameOfExercise(newExerciseName);
+        String exerciseName = matcher.group("exerciseName").trim();
+        exerciseList.getExercise(index - 1).setNameOfExercise(exerciseName);
 
-        Ui.printCustomMessage("Enter new calories "
-                + "[previous: " + exerciseList.getExercise(index - 1).getCalories() + "]");
-        int newCalories = Integer.parseInt(Ui.read());
-
-        if (newCalories < 0) {
+        int calories = Integer.parseInt(matcher.group("calories").trim());
+        if (calories < 0) {
             Ui.printCustomError("Error: Calories cannot be negative!");
             return;
         }
+        exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
 
-        exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(newCalories));
-
-        Ui.printCustomMessage("Successfully edited exercise!");
+        Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName);
     }
 
-    private void editFood(FoodList foodList, int index) {
+    private void editFood(FoodList foodList, String arguments) {
+        Matcher matcher = FOOD_FORMAT.matcher(arguments);
+
+        if (!matcher.matches()) {
+            Ui.printFormatError(arguments);
+            return;
+        }
+
         if (foodList.getSize() == 0) {
             Ui.printCustomError("Food list is empty!");
             return;
         }
 
+        int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > foodList.getSize()) {
             Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
 
-        Ui.printCustomMessage("Editing: " + foodList.getFood(index - 1).getFoodName());
-        Ui.printCustomMessage("Enter new food name: "
-                + "[previous: " + foodList.getFood(index - 1).getFoodName() + "]");
-        String newFoodName = Ui.read();
-        foodList.getFood(index - 1).setNameOfFood(newFoodName);
+        String foodName = matcher.group("foodName").trim();
+        foodList.getFood(index - 1).setNameOfFood(foodName);
 
-        Ui.printCustomMessage("Enter new calories "
-                + "[previous: " + foodList.getFood(index - 1).getCalories() + "]");
-        int newCalories = Integer.parseInt(Ui.read());
-
-        if (newCalories < 0) {
+        int calories = Integer.parseInt(matcher.group("calories").trim());
+        if (calories < 0) {
             Ui.printCustomError("Error: Calories cannot be negative!");
             return;
         }
 
-        foodList.getFood(index - 1).setCaloriesInFood(new Calorie(newCalories));
-
-        Ui.printCustomMessage("Enter new quantity "
-                + "[previous: " + foodList.getFood(index - 1).getAmountOfFood() + "]");
-        int newFoodQuantity = Integer.parseInt(Ui.read());
-
-        if (newFoodQuantity < 0) {
+        int quantity = Integer.parseInt(matcher.group("quantity").trim());
+        if (quantity < 0) {
             Ui.printCustomError("Error: Quantity cannot be negative!");
             return;
         }
+        foodList.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
+        foodList.getFood(index - 1).setAmountOfFood(quantity);
 
-        foodList.getFood(index - 1).setAmountOfFood(newFoodQuantity);
-
-        Ui.printCustomMessage("Successfully edited food!");
+        Ui.printCustomMessage("Successfully edited food to: " + foodName);
     }
 }
