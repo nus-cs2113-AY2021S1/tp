@@ -25,8 +25,8 @@ class PinCommandTest {
     @BeforeEach
     void setUp() {
         NOTE_CONTENT.add("This is a test note.");
-        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true);
-        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false);
+        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true, false);
+        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false, false);
 
         notebook = new Notebook();
 

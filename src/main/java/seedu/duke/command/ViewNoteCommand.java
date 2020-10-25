@@ -62,7 +62,7 @@ public class ViewNoteCommand extends Command {
 
     @Override
     public String execute() {
-        Note note = new Note("", null, false);
+        Note note = new Note("", null, false, false);
         boolean noteExists = false;
         if (isViewByIndex) {
             try {

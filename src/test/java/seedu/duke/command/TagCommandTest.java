@@ -45,8 +45,8 @@ class TagCommandTest {
         tagRedRef = new Tag("Red", Tag.COLOR_RED_STRING);
         tagBlueRef = new Tag("Blue", Tag.COLOR_BLUE_STRING);
 
-        noTagNote = new Note("Default", content, false);
-        taggedNote = new Note("TaggedNote", content, false);
+        noTagNote = new Note("Default", content, false, false);
+        taggedNote = new Note("TaggedNote", content, false, false);
 
         tags = new ArrayList<>();
 

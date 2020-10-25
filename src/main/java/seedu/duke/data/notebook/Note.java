@@ -20,10 +20,11 @@ public class Note {
      * @param content of the note.
      * @param isPinned status of the note.
      */
-    public Note(String title, ArrayList<String> content, Boolean isPinned) {
+    public Note(String title, ArrayList<String> content, Boolean isPinned, boolean isArchived) {
         this.title = title;
         this.content = content;
         this.isPinned = isPinned;
+        this.isArchived = isArchived;
         tags = new ArrayList<>();
     }
 
@@ -35,8 +36,8 @@ public class Note {
      * @param isPinned status of the note.
      * @param tags of the note.
      */
-    public Note(String title, ArrayList<String> content, Boolean isPinned, ArrayList<Tag> tags) {
-        this(title, content, isPinned);
+    public Note(String title, ArrayList<String> content, Boolean isPinned, boolean isArchived, ArrayList<Tag> tags) {
+        this(title, content, isPinned, isArchived);
         this.tags = tags;
     }
 
@@ -80,6 +81,14 @@ public class Note {
 
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
+    }
+
+    public void toggleArchived() {
+        isArchived = !isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 
     public ArrayList<Tag> getTags() {

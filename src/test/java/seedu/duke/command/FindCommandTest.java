@@ -34,10 +34,10 @@ class FindCommandTest {
 
         tag.add(tagImpt);
 
-        Note defaultNote = new Note("Default", content, false, tag);
-        Note testNote1 = new Note("TestNote1", content, true);
-        Note testNote2 = new Note("TestNote2", content, false);
-        Note testNote3 = new Note("Song Lyrics", content, true);
+        Note defaultNote = new Note("Default", content, false, false, tag);
+        Note testNote1 = new Note("TestNote1", content, true, false);
+        Note testNote2 = new Note("TestNote2", content, false, false);
+        Note testNote3 = new Note("Song Lyrics", content, true, false);
 
         notebook.addNote(defaultNote);
         notebook.addNote(testNote1);

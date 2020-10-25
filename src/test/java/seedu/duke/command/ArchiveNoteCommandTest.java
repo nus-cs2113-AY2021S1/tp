@@ -41,10 +41,10 @@ class ArchiveNoteCommandTest {
         tagSet.add(tagNus);
         tagSet.add(tagCs2113);
 
-        Note testNote1 = new Note("Default", content, true, tag);
-        Note testNote2 = new Note("TestNote1", content, false);
-        Note testNote3 = new Note("TestNote2", content, false, tagSet);
-        Note testNote4 = new Note("Random Text", content, true, tagSet);
+        Note testNote1 = new Note("Default", content, true, false, tag);
+        Note testNote2 = new Note("TestNote1", content, false, false);
+        Note testNote3 = new Note("TestNote2", content, false, false, tagSet);
+        Note testNote4 = new Note("Random Text", content, true, false, tagSet);
 
         notebook.addNote(testNote1);
         notebook.addNote(testNote2);

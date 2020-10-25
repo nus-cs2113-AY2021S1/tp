@@ -25,10 +25,12 @@ class StorageManagerTest {
         for (int i = 0; i < 10; i++) {
             String title = "testNote_" + i;
             Boolean isPinned = false;
+            Boolean isArchived = false;
+
             if (i % 2 == 0) {
                 isPinned = true;
             }
-            Note note = new Note(title, content, isPinned);
+            Note note = new Note(title, content, isPinned, isArchived);
             notes.addNote(note);
         }
         StorageManager.saveNotebook(notes);
@@ -51,7 +53,7 @@ class StorageManagerTest {
         content.add("");
         content.add("This is the end of the note");
 
-        Note note = new Note("TestNote", content, false);
+        Note note = new Note("TestNote", content, false, false);
       
         try {
             StorageManager.saveNoteContent(note);

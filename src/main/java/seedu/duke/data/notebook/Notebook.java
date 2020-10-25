@@ -280,6 +280,7 @@ public class Notebook {
         Note archivedNote = notes.get(index);
 
         archivedNotes.add(archivedNote);
+        archivedNote.toggleArchived();
         notes.remove(index);
 
         return archivedNote.getTitle();
@@ -301,6 +302,7 @@ public class Notebook {
 
         if (isDeleted) {
             archivedNotes.add(archivedNote);
+            archivedNote.toggleArchived();
         }
 
         return isDeleted;
@@ -317,6 +319,7 @@ public class Notebook {
         Note unarchivedNote = archivedNotes.get(index);
 
         notes.add(unarchivedNote);
+        unarchivedNote.toggleArchived();
         archivedNotes.remove(unarchivedNote);
 
         return unarchivedNote.getTitle();
@@ -338,6 +341,7 @@ public class Notebook {
 
         if (isDeleted) {
             notes.add(unarchivedNote);
+            unarchivedNote.toggleArchived();
         }
 
         return isDeleted;
