@@ -251,6 +251,23 @@ Expected outcome:
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
 
+#### Editing an existing book: `edit -b`
+Accidentally typed in the wrong book title? You can edit your book titles. 
+
+Format: `edit -b BOOK_NUMBER /to NEW_TITLE`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* The book number must be an existing number in the list when you list ALL books.
+* `/to` flag must be typed before the new title
+
+Example of usage:
+`edit -b 2 /to Harry Potter 2`
+
+Expected outcome:
+~~~
+The book has been edited from [Harry Potter] to [Harry Potter 2]!
+~~~
+
 ### Quote Management
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
 some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
