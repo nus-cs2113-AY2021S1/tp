@@ -30,7 +30,7 @@ public class Ui {
             + "| |  |  __/ \\ \\__/ / | | /_____  /  |  |__| |_| |\n"
             + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
     public static final String HELP_MESSAGE = "Type help for all available commands";
-    public static final String BYE_MESSAGE = " Bye. Hope to see you again soon!";
+    public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String OOPS_PREFIX = " ☹ OOPS!!!";
     public static final String OOPS_SUFFIX = ":-(";
 
