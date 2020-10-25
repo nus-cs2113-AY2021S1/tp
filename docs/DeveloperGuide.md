@@ -8,7 +8,7 @@ This document specified architecture and software design decisions for the creat
 ### Scope
 This describes the software architecture and software design decisions for the implementation of Fluffle. The intended audience of this document is the developers, designers, and software testers of Fluffle.
 
-### Desgin Goals
+### Design Goals
 Creating an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, beginner software engineers will be able to levitate their expertises and mindset in the process of developing and presenting a new product.
 
 ### Maintainability
@@ -49,7 +49,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## System Overview
 
-### Techonoligies views
+### Technological view
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
 ## Architecture
@@ -86,6 +86,15 @@ The above class diagram describes the overall architecture of the bunny list fun
 
 The BunnySaver class accesses the bunniesList and overwrites the current bunny.txt file in the data directory, saving all Bunny objects into the file using the saveAllBunny  method. Bunny objects saved in that file can then be read by the BunnyLoader class and saved into the bunniesList ArrayList using the loadBunnyFile method.
 
+## Names class family
+![UML Names class diagram](https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png)
+<p style="text-align: center;">Figure 5:  Names UML Class Diagram</p>
+
+The above class diagram (Figure 5) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this delete name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
+
+The above class diagram (Figure 5) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this delete name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
+
+As shown in Figure 5, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
 ## Design & implementation
 
