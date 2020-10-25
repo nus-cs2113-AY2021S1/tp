@@ -17,17 +17,17 @@ class ParserTest {
 
     private static ArrayList<Bus> busesInZoneA = new ArrayList<>();
     private static final BusStops[] AA1 = {
-            BusStops.PGP,
-            BusStops.KENTRIDGEMRTSTATION,
-            BusStops.OPPUNIVERSITYHEALTHCENTRE,
-            BusStops.YUSOFISHAKHOUSE,
-            BusStops.CENTRALLIBRARY,
-            BusStops.KENTRIDGE,
-            BusStops.MUSEUM,
-            BusStops.UNIVERSITYTOWN,
-            BusStops.UNIVERSITYHEALTHCENTRE,
-            BusStops.OPPKENTRIDGEMRTSTATION,
-            BusStops.PGPR
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.YUSOFISHAKHOUSE,
+        BusStops.CENTRALLIBRARY,
+        BusStops.KENTRIDGE,
+        BusStops.MUSEUM,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
     @BeforeAll
