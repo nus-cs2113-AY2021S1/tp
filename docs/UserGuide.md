@@ -191,6 +191,35 @@ Here is a list of books by CS Lewis:
 2. The Chronicles of Narnia by CS Lewis
 ~~~
 
+#### Listing books by completion: `list -b`
+Only want to see the books you have finished or not finished? You can do that using the command below.
+
+##### List done books
+Format: `list -b done`
+
+Example of usage:
+`list -b done`
+
+Expected outcome:
+~~~
+Here are the books you have completed:
+1. [v] Harry Potter by JK Rowling
+2. [v] Harry Potter 2 by JK Rowling
+~~~
+
+##### List done books
+Format: `list -b undone`
+
+Example of usage:
+`list -b undone`
+
+Expected outcome:
+~~~
+Here are the books you have yet to complete:
+1. [x] Harry Potter by JK Rowling
+2. [x] Harry Potter 2 by JK Rowling
+~~~
+
 #### Finding books by keyword: `find -b`
 Can't recall the book title you want in your long list of books? You can find the book using a keyword.
 
