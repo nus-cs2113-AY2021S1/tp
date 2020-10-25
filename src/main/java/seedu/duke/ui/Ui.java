@@ -65,22 +65,24 @@ public class Ui {
         printLine();
         int optionNo = 1;
         boolean isPossible = false;
-        int count = 0;
+        int busCount = 0;
         System.out.println("The buses you can take with their intermediate stops are: ");
         for (Bus option : options) {
             if (option.toString() != null) {
-                if (count != 0) {
-                    System.out.println();
-                    count = 0;
+                if (busCount != 0) {
+                    System.out.println("");
+                    busCount = 0;
                 }
                 System.out.println(optionNo + ". " + option.toString());
                 optionNo++;
-                count++;
+                busCount++;
                 isPossible = true;
             }
         }
         if (!isPossible) {
-            System.out.println("none.\nThere are no direct bus routes. :(");
+            System.out.println("none. There are no direct bus routes. :(");
+        } else {
+            System.out.println("To add the above command to your list of favourites simply type \"/addfav\" :)");
         }
         printLine();
     }
@@ -147,6 +149,13 @@ public class Ui {
                 System.out.println("\n" + item.toString());
             }
         }
+    }
+
+    public static void printDescChangeMessage(String command, String oldDesc, String newDesc) {
+        printLine();
+        System.out.println("Your description for command \"" + command + "\" has been successfully changed from \""
+                + oldDesc + "\" to \"" + newDesc + "\"!");
+        printLine();
     }
 
 }
