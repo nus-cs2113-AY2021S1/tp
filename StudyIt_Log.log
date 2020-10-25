@@ -1,22 +1,10 @@
-Oct 25, 2020 11:07:20 PM studyit.StudyIt run
+Oct 26, 2020 12:46:47 AM studyit.StudyIt run
 INFO: Executing program
-Oct 25, 2020 11:07:30 PM studyit.Command executeAcademicModeCommand
+Oct 26, 2020 12:47:14 AM studyit.Command executeAcademicModeCommand
 INFO: Processing academic mode.
-Oct 25, 2020 11:07:30 PM academic.AcademicRun run
-INFO: Invalid academic command. Sting Index out of bounds.
-Oct 25, 2020 11:07:34 PM studyit.Command executeAcademicModeCommand
+Oct 26, 2020 12:47:17 AM studyit.Command executeAcademicModeCommand
 INFO: Processing academic mode.
-Oct 25, 2020 11:07:37 PM studyit.Command executeAcademicModeCommand
+Oct 26, 2020 12:47:21 AM studyit.Command executeAcademicModeCommand
 INFO: Processing academic mode.
-Oct 25, 2020 11:07:44 PM studyit.Command executeAcademicModeCommand
+Oct 26, 2020 12:47:26 AM studyit.Command executeAcademicModeCommand
 INFO: Processing academic mode.
-Oct 25, 2020 11:07:47 PM studyit.Command executeAcademicModeCommand
-INFO: Processing academic mode.
-Oct 25, 2020 11:07:57 PM studyit.Command executeAcademicModeCommand
-INFO: Processing academic mode.
-Oct 25, 2020 11:08:00 PM studyit.Command executeAcademicModeCommand
-INFO: Processing academic mode.
-Oct 25, 2020 11:08:05 PM studyit.Command executeAcademicModeCommand
-INFO: Processing academic mode.
-Oct 25, 2020 11:08:05 PM academic.AcademicRun run
-INFO: Invalid academic command.

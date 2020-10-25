@@ -1,6 +1,7 @@
 package academic;
 
 import exceptions.InvalidCommandException;
+import exceptions.InvalidEmailException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import studyit.StudyItLog;
@@ -76,6 +77,9 @@ public class AcademicRun {
         } catch (InvalidMcException e) {
             ErrorMessage.printInvalidMc();
             StudyItLog.logger.info("Invalid MC.");
+        } catch (InvalidEmailException e) {
+            ErrorMessage.printInvalidEmail();
+            StudyItLog.logger.info("Invalid Email.");
         }
 
         try {

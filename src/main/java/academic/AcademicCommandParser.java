@@ -43,7 +43,6 @@ public class AcademicCommandParser extends CommandParser {
     }
 
     public static String[] getContact(String command) throws NumberFormatException {
-        //String commandModified = standardizeCommand(command);
         String name = command.substring(command.indexOf("c/") + 2,
                 command.indexOf("m/")).trim();
         String number = command.substring(command.indexOf("m/") + 2,
@@ -54,7 +53,6 @@ public class AcademicCommandParser extends CommandParser {
     }
 
     public static String[] getGrade(String command) throws InvalidGradeException, InvalidMcException {
-        //String commandModified = standardizeCommand(command);
         String name = command.substring(command.indexOf("n/") + 2,
                 command.indexOf("m/")).trim();
         String mc = command.substring(command.indexOf("m/") + 2,

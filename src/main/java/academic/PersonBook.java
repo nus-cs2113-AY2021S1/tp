@@ -1,17 +1,23 @@
 package academic;
 
+import exceptions.InvalidEmailException;
+
 import java.util.ArrayList;
 
 /**
  * Represents a grade book in study-it.
  */
 public class PersonBook {
-    public static void addPerson(String[] args, ArrayList<Person> listOfPerson) {
-        listOfPerson.add(new Person(args[0],args[1],args[2]));
-        if (args.length == 4) {
-            if (args[3].equals("true")) {
-                Person.changePersonStar(listOfPerson.get(listOfPerson.size() - 1));
+    public static void addPerson(String[] args, ArrayList<Person> listOfPerson) throws InvalidEmailException {
+        if (args[2].contains("@")) {
+            listOfPerson.add(new Person(args[0], args[1], args[2]));
+            if (args.length == 4) {
+                if (args[3].equals("true")) {
+                    Person.changePersonStar(listOfPerson.get(listOfPerson.size() - 1));
+                }
             }
+        } else {
+            throw new InvalidEmailException();
         }
     }
 

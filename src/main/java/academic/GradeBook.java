@@ -32,8 +32,11 @@ public class GradeBook {
                         * Grade.getModuleCredits(grade);
             }
         }
-        assert totalCredits != 0;
-        return "Current CAP is " + totalGradeScore / totalCredits + ".";
+        if (totalCredits != 0) {
+            return "Current CAP is " + totalGradeScore / totalCredits + ".";
+        } else {
+            return "Current CAP is not available!";
+        }
     }
 
     public static void suGradeInGradeBook(Integer indexToBeSued, ArrayList<Grade> currentGrades) {

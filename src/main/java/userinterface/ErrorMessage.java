@@ -27,6 +27,11 @@ public class ErrorMessage extends Ui {
                 + "or you can type \"help\" for more information");
     }
 
+    public static void printInvalidEmail() {
+        printLine("Please enter a valid email with the structure of abc@xyz!\n"
+                + "or you can type \"help\" for more information");
+    }
+
 }
 
 
