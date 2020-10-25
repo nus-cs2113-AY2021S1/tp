@@ -163,7 +163,7 @@ public class EntryTracker {
         return state;
     }
 
-    private static FiniteStateMachine.State handleShowEntry() {
+    static FiniteStateMachine.State handleShowEntry() {
         entryList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }

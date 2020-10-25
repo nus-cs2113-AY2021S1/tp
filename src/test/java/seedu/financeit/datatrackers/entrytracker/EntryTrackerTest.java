@@ -92,17 +92,18 @@ public class EntryTrackerTest {
     public void testEntryTrackerByEditEntries() {
         int commonSeed = 3;
         TypicalEntryEntries.getInstance().setSeed(commonSeed);
-
+        final Entry expectedEntry = TypicalEntryEntries.getInstance().generateTypicalEntryFromSeed();
+        // Create a fodder entry to overwrite using edit operation.
         TypicalEntryEntries.getInstance().generateTypicalEntry1();
         EntryTracker.setTestPacket(TypicalEntryEntries.getInstance().packet);
         EntryTracker.handleCreateEntry(false);
 
+        // Create command packet to invoke edit operation.
         CommandPacket testPacket = generateEditEntryCorrectCommand(commonSeed);
         EntryTracker.setTestPacket(testPacket);
         EntryTracker.handleEditEntry();
-
         Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtCurrIndex(0);
-        Entry expectedEntry = TypicalEntryEntries.getInstance().generateTypicalEntryFromSeed();
+
         assertEquals(actualEntry, expectedEntry);
         EntryTracker.entryList.removeAllItems();
     }

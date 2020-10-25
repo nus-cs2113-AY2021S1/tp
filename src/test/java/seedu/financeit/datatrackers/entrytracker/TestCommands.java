@@ -4,6 +4,13 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.ParamChecker;
 
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
+
 public class TestCommands {
     public static CommandPacket generateCreateEntryErrorCommand(String wrongParam) {
         String paramTime = (wrongParam == "time")
@@ -22,11 +29,11 @@ public class TestCommands {
             "new",
             new String[][] {
                 {
-                    ParamChecker.PARAM_TIME,
+                    PARAM_TIME,
                     paramTime
                 },
                 {
-                    ParamChecker.PARAM_CATEGORY,
+                    PARAM_CATEGORY,
                     paramCat
                 },
                 {
@@ -51,7 +58,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_INDEX,
+                    PARAM_INDEX,
                     "1"
                 }
             }
@@ -64,7 +71,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_INDEX,
+                    PARAM_INDEX,
                     "100000000000000"
                 }
             }
@@ -81,11 +88,11 @@ public class TestCommands {
             "edit",
             new String[][] {
                 {
-                    ParamChecker.PARAM_TIME,
+                    PARAM_TIME,
                     paramTime
                 },
                 {
-                    ParamChecker.PARAM_CATEGORY,
+                    PARAM_CATEGORY,
                     paramCat
                 },
                 {
@@ -114,27 +121,27 @@ public class TestCommands {
             "edit",
             new String[][] {
                 {
-                    ParamChecker.PARAM_INDEX,
+                    PARAM_INDEX,
                     "1"
                 },
                 {
-                    ParamChecker.PARAM_TIME,
+                    PARAM_TIME,
                     paramTime
                 },
                 {
-                    ParamChecker.PARAM_CATEGORY,
+                    PARAM_CATEGORY,
                     paramCat
                 },
                 {
-                    ParamChecker.PARAM_INC,
+                    PARAM_INC,
                     ""
                 },
                 {
-                    ParamChecker.PARAM_DESCRIPTION,
+                    PARAM_DESCRIPTION,
                     "test description"
                 },
                 {
-                    ParamChecker.PARAM_AMOUNT,
+                    PARAM_AMOUNT,
                     paramAmt
                 }
             }

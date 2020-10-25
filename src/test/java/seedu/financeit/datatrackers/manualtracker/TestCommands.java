@@ -2,7 +2,9 @@ package seedu.financeit.datatrackers.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.testutil.TestUtil;
-import seedu.financeit.utils.ParamChecker;
+
+import static seedu.financeit.utils.ParamChecker.PARAM_DATE;
+import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 public class TestCommands {
     public static CommandPacket generateCreateLedgerErrorCommand() {
@@ -10,7 +12,7 @@ public class TestCommands {
             "new",
             new String[][] {
                 {
-                    ParamChecker.PARAM_DATE,
+                    PARAM_DATE,
                     "2020-25-4"
                 }
             }
@@ -23,7 +25,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_DATE,
+                    PARAM_DATE,
                     "2020-5-4"
                 }
             }
@@ -36,7 +38,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_DATE,
+                    PARAM_DATE,
                     "2020-5-400"
                 }
             }
@@ -49,7 +51,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_INDEX,
+                    PARAM_INDEX,
                     "1"
                 }
             }
@@ -62,7 +64,7 @@ public class TestCommands {
             "delete",
             new String[][] {
                 {
-                    ParamChecker.PARAM_INDEX,
+                    PARAM_INDEX,
                     "100000000000000"
                 }
             }
@@ -75,7 +77,7 @@ public class TestCommands {
             "new",
             new String[][] {
                 {
-                    ParamChecker.PARAM_DATE,
+                    PARAM_DATE,
                     ("2020-5-".concat(String.valueOf(seed)))
                 }
             }

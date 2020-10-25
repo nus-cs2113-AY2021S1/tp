@@ -53,9 +53,10 @@ public class RetrieveEntryCommand extends ParamHandler {
                 PARAM_DESCRIPTION,
                 PARAM_CATEGORY,
                 PARAM_AMOUNT,
-                PARAM_INC + " or " + PARAM_EXP
+                PARAM_INC,
+                PARAM_EXP
             };
-            if (! Arrays.asList(ignoreParams).contains(paramType)) {
+            if (!Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }

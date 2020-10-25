@@ -13,6 +13,14 @@ import seedu.financeit.utils.ParamChecker;
 import java.time.LocalTime;
 import java.util.Arrays;
 
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
+
 /**
  * Command class to edit an existing entry instance with specified parameter values.
  * Entry to be edited must be referenced via the constructor argument.
@@ -35,30 +43,30 @@ public class EditEntryCommand extends ParamHandler {
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
-        case ParamChecker.PARAM_TIME:
+        case PARAM_TIME:
             LocalTime time = ParamChecker.getInstance().checkAndReturnTime(paramType);
             this.entry.setTime(time);
             break;
-        case ParamChecker.PARAM_AMOUNT:
+        case PARAM_AMOUNT:
             Double amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             this.entry.setAmount(amount);
             break;
-        case ParamChecker.PARAM_INC:
+        case PARAM_INC:
             this.entry.setEntryType(Constants.EntryType.INC);
             break;
-        case ParamChecker.PARAM_EXP:
+        case PARAM_EXP:
             this.entry.setEntryType(Constants.EntryType.EXP);
             break;
-        case ParamChecker.PARAM_DESCRIPTION:
+        case PARAM_DESCRIPTION:
             this.entry.setDescription(packet.getParam(paramType));
             break;
-        case ParamChecker.PARAM_CATEGORY:
+        case PARAM_CATEGORY:
             String category = ParamChecker.getInstance().checkAndReturnCategory(paramType);
             this.entry.setCategory(category);
             break;
         default:
             String[] ignoreParams = {
-                "/id"
+                PARAM_INDEX
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
