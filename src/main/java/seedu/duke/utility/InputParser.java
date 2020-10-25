@@ -1,6 +1,20 @@
 package seedu.duke.utility;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.ChangeReviewCommand;
+import seedu.duke.commands.DeleteReviewCommand;
+import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.SearchCommand;
+import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
+import seedu.duke.commands.UpdateShowSeasonCommand;
+import seedu.duke.commands.WatchCommand;
+import seedu.duke.commands.UpdateTimeLimitCommand;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -350,6 +364,7 @@ public class InputParser {
             Ui.printNotFoundException();
         }
     }
+    
     private static void parseDeleteReviewCommand(String input) {
         input = removeFirstWord(input);
         DeleteReviewCommand deletingReview = new DeleteReviewCommand(input);
