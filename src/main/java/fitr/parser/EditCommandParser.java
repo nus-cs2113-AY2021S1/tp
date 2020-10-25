@@ -15,7 +15,7 @@ public class EditCommandParser {
     private final String fullArgument;
 
     public EditCommandParser(String argument) {
-        this.fullArgument = argument.trim().toLowerCase();
+        this.fullArgument = argument.trim();
     }
 
     public Command editCommand() {
@@ -25,7 +25,7 @@ public class EditCommandParser {
             return new InvalidCommand(fullArgument);
         }
 
-        String editType = matcher.group("type").trim();
+        String editType = matcher.group("type").trim().toLowerCase();
         String arguments = matcher.group("arguments").trim();
 
         switch (editType) {
