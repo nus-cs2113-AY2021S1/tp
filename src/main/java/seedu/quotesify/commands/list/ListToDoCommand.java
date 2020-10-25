@@ -5,7 +5,7 @@ import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-public class ListToDoCommand extends ListCommand{
+public class ListToDoCommand extends ListCommand {
     public ListToDoCommand(String arguments) {
         super(arguments);
     }

@@ -8,7 +8,7 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
-public class DeleteBookmarkCommand extends DeleteCommand{
+public class DeleteBookmarkCommand extends DeleteCommand {
     public DeleteBookmarkCommand(String arguments) {
         super(arguments);
     }

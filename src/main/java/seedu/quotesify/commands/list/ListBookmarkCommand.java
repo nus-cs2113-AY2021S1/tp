@@ -5,7 +5,7 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
-public class ListBookmarkCommand extends ListCommand{
+public class ListBookmarkCommand extends ListCommand {
     public ListBookmarkCommand(String arguments) {
         super(arguments);
     }

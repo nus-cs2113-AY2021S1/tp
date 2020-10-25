@@ -6,7 +6,7 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-public class DoneToDoCommand extends DoneCommand{
+public class DoneToDoCommand extends DoneCommand {
     public DoneToDoCommand(String arguments) {
         super(arguments);
     }

@@ -6,7 +6,7 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-public class DeleteToDoCommand extends DeleteCommand{
+public class DeleteToDoCommand extends DeleteCommand {
     public DeleteToDoCommand(String arguments) {
         super(arguments);
     }
