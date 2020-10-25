@@ -47,14 +47,19 @@ public class Duke {
     public void run() {
 
         ui.printWelcomeMessage();
-        boolean isExit = false;
         storage.loadAll(data);
+        ui.printDividerLine();
+        try {
+            Command reminder = currentParse.parse("reminder");
+            reminder.execute(data, ui, storage);
+        } catch (DukeException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
 
+        boolean isExit = false;
         while (!isExit) {
             try {
-                ui.printDividerLine();
-                Command reminder = currentParse.parse("reminder");
-                reminder.execute(data,ui,storage);
+
                 ui.printDividerLine();
                 String userInput = ui.receiveCommand();
                 ui.printDividerLine();
