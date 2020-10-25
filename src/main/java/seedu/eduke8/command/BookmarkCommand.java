@@ -9,6 +9,8 @@ import seedu.eduke8.ui.Ui;
 import java.util.ArrayList;
 
 public class BookmarkCommand extends Command {
+    private static final String BOOKMARK_LIST = "listing";
+    private static final String BOOKMARK_STORE = "storing";
 
     private BookmarkList bookmarks;
     String typeOfBookmarkCommand = "";
@@ -29,9 +31,9 @@ public class BookmarkCommand extends Command {
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        if (typeOfBookmarkCommand.equals("listing")) {
+        if (typeOfBookmarkCommand.equals(BOOKMARK_LIST)) {
             ui.printListOfBookmarkedQuestions(bookmarks);
-        } else if (typeOfBookmarkCommand.equals("storing")) {
+        } else if (typeOfBookmarkCommand.equals(BOOKMARK_STORE)) {
             ui.printBookmarkedIndicator();
         }
     }
