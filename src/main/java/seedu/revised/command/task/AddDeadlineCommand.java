@@ -1,9 +1,9 @@
 package seedu.revised.command.task;
 
 import seedu.revised.exception.task.TaskDeadlineException;
-import seedu.revised.task.Deadline;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.Deadline;
+import seedu.revised.card.task.Task;
+import seedu.revised.card.task.TaskList;
 import seedu.revised.ui.Ui;
 
 import java.time.LocalDateTime;

@@ -1,13 +1,14 @@
-package seedu.revised.task;
+package seedu.revised.card.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class Deadline extends Task {
+
+
     protected LocalDateTime dateTime;
 
-
-    public Event(String description, boolean isDone, LocalDateTime dateTime) {
+    public Deadline(String description, boolean isDone, LocalDateTime dateTime) {
         super(description, isDone);
         this.dateTime = dateTime;
     }
@@ -21,7 +22,7 @@ public class Event extends Task {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
         String dateTime = this.dateTime.format(formatter);
-        return "[E]" + super.toString() + " (at: " + dateTime + ")";
+        return "[D]" + super.toString() + " (by: " + dateTime + ")";
     }
 
     public String getDateTimeDescription() {

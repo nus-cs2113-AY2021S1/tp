@@ -1,6 +1,6 @@
 package seedu.revised.command.task;
 
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.TaskList;
 import seedu.revised.ui.Ui;
 
 public class FindTaskCommand extends TaskCommand {

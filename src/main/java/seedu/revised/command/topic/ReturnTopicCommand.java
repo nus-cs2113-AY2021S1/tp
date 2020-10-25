@@ -6,10 +6,9 @@ import seedu.revised.command.flashcard.FlashcardCommand;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.flashcard.RepeatedFlashcardException;
-import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.parser.FlashcardParser;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.TaskList;
 import seedu.revised.ui.Ui;
 
 public class ReturnTopicCommand extends TopicCommand {

@@ -12,14 +12,13 @@ import seedu.revised.card.SubjectList;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.exception.task.TaskEventException;
 import seedu.revised.exception.task.TaskTodoException;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.TopicParser;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.TaskList;
 import seedu.revised.ui.Ui;
 
 import java.time.format.DateTimeParseException;

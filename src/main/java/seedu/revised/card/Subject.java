@@ -2,8 +2,8 @@ package seedu.revised.card;
 
 import seedu.revised.card.quiz.Result;
 import seedu.revised.card.quiz.ResultList;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.Task;
+import seedu.revised.card.task.TaskList;
 
 import java.util.ArrayList;
 import java.util.List;

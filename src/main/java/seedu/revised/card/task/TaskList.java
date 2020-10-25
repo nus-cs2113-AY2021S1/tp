@@ -1,7 +1,5 @@
-package seedu.revised.task;
+package seedu.revised.card.task;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 public class TaskList {

@@ -2,9 +2,9 @@ package seedu.revised.command.task;
 
 
 import seedu.revised.exception.task.TaskTodoException;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
-import seedu.revised.task.Todo;
+import seedu.revised.card.task.Task;
+import seedu.revised.card.task.TaskList;
+import seedu.revised.card.task.Todo;
 import seedu.revised.ui.Ui;
 
 public class AddTodoCommand extends TaskCommand {
