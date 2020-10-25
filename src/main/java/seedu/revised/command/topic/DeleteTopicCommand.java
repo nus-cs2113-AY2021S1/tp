@@ -18,14 +18,13 @@ public class DeleteTopicCommand extends TopicCommand {
      * @param subject the <code>Subject</code> instance of the Subject class for the user to delete from
      * @return
      */
-    public Topic execute(Subject subject) throws NumberFormatException {
+    public void execute(Subject subject) throws NumberFormatException {
         String[] message = this.fullCommand.split(" ");
         TopicList topicList = subject.getTopics();
         int number = Integer.parseInt(message[1]);
         Topic topic = topicList.getList().get(number - 1);
         topicList.getList().remove(number - 1);
         Ui.printTopicDelete(topic, topicList.getList().size());
-        return null;
     }
 
     /**

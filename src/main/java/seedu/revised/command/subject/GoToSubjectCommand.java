@@ -1,57 +1,54 @@
 package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.Topic;
-import seedu.revised.card.quiz.TopicQuiz;
 import seedu.revised.command.Command;
 import seedu.revised.command.task.TaskCommand;
-import seedu.revised.command.topic.QuizTopicCommand;
-import seedu.revised.command.topic.ReturnTopicCommand;
 import seedu.revised.command.topic.TopicCommand;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.parser.TopicParser;
 import seedu.revised.list.TaskList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class ReturnSubjectCommand extends SubjectCommand {
+public class GoToSubjectCommand extends SubjectCommand {
     private String fullcommand;
 
-    public ReturnSubjectCommand(String fullcommand) {
+    public GoToSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException {
+    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException {
+        Subject gotoSubject = null;
+
         String[] message = this.fullcommand.split(" ");
-        //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
             throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(message[1])) {
-                return subject;
+                gotoSubject = subject;
+                break;
             }
         }
-        throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+
+        if (gotoSubject == null) {
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+        }
+
+        goToSubject(gotoSubject);
     }
 
-    public void goToSubject(Subject subject) {
+    private void goToSubject(Subject subject) {
         Ui.printGoToSubject(subject);
         boolean isSubjectExit = false;
         while (!isSubjectExit) {
             try {
                 String fullCommand = Ui.readCommand();
                 Command c = TopicParser.parse(fullCommand);
-                if (c instanceof ReturnTopicCommand) {
-                    Topic topic = ((ReturnTopicCommand) c).execute(subject);
-                    ((ReturnTopicCommand) c).goToTopic(topic, subject);
-                } else if (c instanceof QuizTopicCommand) {
-                    Topic topic = ((QuizTopicCommand) c).execute(subject);
-                    TopicQuiz topicQuiz = new TopicQuiz(topic);
-                    topicQuiz.startQuiz(topic.getResults());
-                } else if (c instanceof TopicCommand) {
+                if (c instanceof TopicCommand) {
                     ((TopicCommand) c).execute(subject);
                 } else if (c instanceof TaskCommand) {
                     TaskList taskList = subject.getTasks();

@@ -2,7 +2,9 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+import seedu.revised.card.quiz.TopicQuiz;
 import seedu.revised.command.subject.QuizSubjectCommand;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.ui.Ui;
@@ -21,7 +23,7 @@ public class QuizTopicCommand extends TopicCommand {
         return this.fullcommand;
     }
 
-    public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
+    public void execute(Subject subject) throws NoTopicException, InvalidTopicException, NoFlashcardException {
         logger.info("Begin finding the topic for which the quiz has to be conducted.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
@@ -38,8 +40,13 @@ public class QuizTopicCommand extends TopicCommand {
         }
         logger.info("Finish reading the command to find the topic for the quiz feature");
         logger.fine(String.format("The subject is %s",quizTopic.getTitle()));
-        return quizTopic;
 
+        startQuiz(quizTopic);
+    }
+
+    private void startQuiz(Topic topic) throws NoFlashcardException {
+        TopicQuiz topicQuiz = new TopicQuiz(topic);
+        topicQuiz.startQuiz();
     }
 
     public boolean isExit() {

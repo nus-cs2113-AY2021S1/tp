@@ -1,12 +1,7 @@
 package seedu.revised;
 
-import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
 import seedu.revised.list.ResultList;
-import seedu.revised.card.quiz.SubjectQuiz;
-import seedu.revised.command.subject.ExportCommand;
-import seedu.revised.command.subject.QuizSubjectCommand;
-import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.exception.storage.DataLoadingException;
 import seedu.revised.parser.SubjectParser;
@@ -78,18 +73,7 @@ public class Revised {
             try {
                 String fullCommand = Ui.readCommand();
                 SubjectCommand c = SubjectParser.parse(fullCommand);
-                if (c instanceof ReturnSubjectCommand) {
-                    Subject subject = c.execute(subjects);
-                    ((ReturnSubjectCommand) c).goToSubject(subject);
-                } else if (c instanceof QuizSubjectCommand) {
-                    Subject subject = c.execute(subjects);
-                    SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
-                    subjectQuiz.startQuiz(results);
-                } else if (c instanceof ExportCommand) {  // TODO: bad practice, shouldn't use instanceof here
-                    ((ExportCommand) c).execute(subjects, storage);
-                } else {
-                    c.execute(subjects);
-                }
+                c.execute(subjects, storage);
                 isExit = c.isExit();
             } catch (IndexOutOfBoundsException e) {
                 Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);

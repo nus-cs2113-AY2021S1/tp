@@ -14,7 +14,7 @@ public class AddFlashcardCommand extends FlashcardCommand {
         this.fullCommand = fullCommand;
     }
 
-    public Flashcard execute(Topic topic) throws NoFlashcardException, RepeatedFlashcardException {
+    public void execute(Topic topic) throws NoFlashcardException, RepeatedFlashcardException {
         int startOfMessage = 4;
         int endOfQuestion = (fullCommand.indexOf(";"));
         int startOfAnswer = endOfQuestion + 2;
@@ -35,7 +35,6 @@ public class AddFlashcardCommand extends FlashcardCommand {
         Flashcard t = new Flashcard(question, answer);
         topic.addFlashcard(t);
         Ui.printFlashcard(t, topic.getFlashcards());
-        return t;
     }
 
     public boolean isExit() {

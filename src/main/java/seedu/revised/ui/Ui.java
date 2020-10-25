@@ -480,6 +480,7 @@ public class Ui {
                 + "quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc,\n"
                 + "               answer the questions of the current flashcards to test your knowledge\n"
                 + "results abc:   gives you the results of all attempted quizzes for abc subject\n"
+                + "export:        exports all the data to a JSON file\n"
                 + "bye:           exits the application"
         );
         System.out.println(LONG_DIVIDER);

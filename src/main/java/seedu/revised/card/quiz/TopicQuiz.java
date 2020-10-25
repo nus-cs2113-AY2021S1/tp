@@ -45,10 +45,9 @@ public class TopicQuiz extends Quiz {
     /**
      * Begins the quiz for the user.
      *
-     * @param results The resultsList stored in the Topic
      * @throws NoFlashcardException If the topic has no flashcards
      */
-    public void startQuiz(ResultList results) throws NoFlashcardException {
+    public void startQuiz() throws NoFlashcardException {
         logger.info("Start of the quiz");
         logger.fine(String.format("The topic being tested is  %s", this.topic));
         setUpQuiz();

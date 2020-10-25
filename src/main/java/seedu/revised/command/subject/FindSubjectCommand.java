@@ -1,7 +1,7 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 public class FindSubjectCommand extends SubjectCommand {
@@ -11,10 +11,9 @@ public class FindSubjectCommand extends SubjectCommand {
         this.fullcommand = fullcommand;
     }
 
-    public Subject execute(SubjectList subjectList) {
+    public void execute(SubjectList subjectList, Storage storage) {
         String[] message = this.fullcommand.split(" ");
         Ui.printFindSubject(subjectList,message[1]);
-        return null;
     }
 
     /**

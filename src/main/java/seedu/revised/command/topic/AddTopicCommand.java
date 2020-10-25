@@ -19,7 +19,7 @@ public class AddTopicCommand extends TopicCommand {
     }
 
     @Override
-    public Topic execute(Subject subject) throws RepeatedTopicException, InvalidTopicException {
+    public void execute(Subject subject) throws RepeatedTopicException, InvalidTopicException {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         TopicList topicList = subject.getTopics();
@@ -38,7 +38,6 @@ public class AddTopicCommand extends TopicCommand {
         Topic t = new Topic(title);
         topicList.add(t);
         Ui.printTopic(t, topicList);
-        return t;
     }
 
     /**

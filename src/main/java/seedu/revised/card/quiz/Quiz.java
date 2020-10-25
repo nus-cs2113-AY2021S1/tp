@@ -15,7 +15,7 @@ public abstract class Quiz {
     protected List<Flashcard> flashcards;
     protected List<String> incorrectAnswers = new ArrayList<>();
 
-    public abstract void startQuiz(ResultList resultList) throws NoFlashcardException, NoTopicException;
+    public abstract void startQuiz() throws NoFlashcardException, NoTopicException;
 
     public List<String> getIncorrectAnswers() {
         return incorrectAnswers;

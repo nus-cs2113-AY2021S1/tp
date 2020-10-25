@@ -4,6 +4,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ public class ResultSubjectCommand extends SubjectCommand {
 
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
+    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
@@ -38,6 +39,5 @@ public class ResultSubjectCommand extends SubjectCommand {
         logger.info("Finish reading the command to find the subject for the results feature.Now, the "
                 + "application prints the results.");
         logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
-        return null;
     }
 }
