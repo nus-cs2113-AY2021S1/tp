@@ -13,19 +13,19 @@ public class AddFavCommand extends Command {
     private final String input;
     private final String description;
     private Fav item;
-    public  AddFavCommand(String input, String description) {
+
+    public AddFavCommand(String input, String description) {
         this.input = input;
         this.description = description;
     }
     
     @Override
     public void executeCommand() throws CustomException {
-        if (input==null) {
+        if (input == null) {
             throw new CustomException(ExceptionType.INVALID_FAVOURITE);
         }
         createFav();
-        FavList.addFav(item);
-        addFavMessage(input);
+        addToFavList();
     }
 
     private void createFav() {
@@ -33,6 +33,15 @@ public class AddFavCommand extends Command {
             item = new Fav(input, input);
         } else {
             item = new Fav(input, description);
+        }
+    }
+
+    private void addToFavList() throws CustomException {
+        if (FavList.contains(item)) {
+            throw new CustomException(ExceptionType.DUPLICATE_FAVOURITE);
+        } else {
+            FavList.addFav(item);
+            addFavMessage(input);
         }
     }
 }

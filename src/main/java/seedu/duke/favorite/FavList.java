@@ -22,4 +22,13 @@ public class FavList {
     public static ArrayList<Fav> getList() {
         return favList;
     }
+
+    public static boolean contains(Fav item) {
+        for (Fav fav : favList) {
+            if (fav.equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

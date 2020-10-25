@@ -46,7 +46,6 @@ public class Parser {
 
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
-        Boolean isValidCommand = true;
         Command com;
         switch (command) {
         case "/route":
@@ -80,7 +79,6 @@ public class Parser {
             com = new ExitCommand();
             break;
         case "/addfav":
-            isValidCommand = false;
             com = new AddFavCommand(previousInput, parts[1]);
             break;
         case "/listfav":
@@ -96,16 +94,15 @@ public class Parser {
             com = new ExecFavCommand();
             break;
         default:
-            isValidCommand = false;
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
 
-        if (isValidCommand) {
+        com.executeCommand();
+
+        if (!command.equals("/addfav")) {
             previousInput = userInput;
-            System.out.println(previousInput);
         }
 
-        com.executeCommand();
         return com.isOngoing();
 
     }

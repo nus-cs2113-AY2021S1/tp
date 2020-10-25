@@ -9,6 +9,10 @@ public class Fav {
         this.desc = desc;
     }
 
+    public Boolean equals(Fav item) {
+        return this.command.equals(item.command) && this.desc.equals(item.desc);
+    }
+
     public String getCommand() {
         return command;
     }

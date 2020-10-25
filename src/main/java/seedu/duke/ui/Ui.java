@@ -56,6 +56,7 @@ public class Ui {
                 + "7./dineinfo: Search for a specific dining outlet\n"
                 + "8./exit: Exit program\n"
                 + "9./help: List all available commands");
+        System.out.println("https://ay2021s1-cs2113t-f14-3.github.io/tp/UserGuide.html#1-what-is-navnus");
         printLine();
     }
 
