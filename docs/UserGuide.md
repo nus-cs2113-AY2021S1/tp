@@ -14,16 +14,17 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. [Add expected module workload: `addexp`](#3-add-expected-module-workload-addexp) 
     1. [Add actual time spent on a module: `addtime`](#4-add-actual-time-spent-on-a-module-addtime)
     1. [List expected and actual time spent of all modules: `list`](#5-list-expected-and-actual-time-spent-of-all-modules-list)
-    1. [Delete a module: `deletemod`](#6-delete-a-module-deletemod)
-    1. [Delete expected module workload: `deleteexp`](#7-delete-expected-module-workload-deleteexp)
-    1. [Minus from actual time spent on a module: `minus`](#8-minus-from-actual-time-spent-on-a-module-minus) 
-    1. [Add tasks: `addtask`](#9-add-tasks-addtask)
-    1. [List all tasks: `listtask`](#10-list-all-tasks-listtask)
-    1. [Mark task as done: `done`](#11-mark-task-as-done-done)
-    1. [Delete a task: `deletetask`](#12-delete-a-task-deletetask)
-    1. [Exit the program : `exit`](#13-exit-the-program--exit)
-    1. [Save user data](#14-save-user-data)
-    1. [Delete user data: `reset`](#15-delete-module-and-task-data-reset)
+    1. [Analyse actual time spent on all modules: `analyse`](#6-analyse-actual-time-spent-on-all-modules-analyse)
+    1. [Delete a module: `deletemod`](#7-delete-a-module-deletemod)
+    1. [Delete expected module workload: `deleteexp`](#8-delete-expected-module-workload-deleteexp)
+    1. [Minus from actual time spent on a module: `minus`](#9-minus-from-actual-time-spent-on-a-module-minus) 
+    1. [Add tasks: `addtask`](#10-add-tasks-addtask)
+    1. [List all tasks: `listtask`](#11-list-all-tasks-listtask)
+    1. [Mark task as done: `done`](#12-mark-task-as-done-done)
+    1. [Delete a task: `deletetask`](#13-delete-a-task-deletetask)
+    1. [Exit the program : `exit`](#14-exit-the-program--exit)
+    1. [Save user data](#15-save-user-data)
+    1. [Delete user data: `reset`](#16-delete-module-and-task-data-reset)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -35,7 +36,8 @@ It helps you to prioritise your work and balance your time spent among your modu
 1. Save the jar file to a folder of your choice.
 1. Open a command prompt and navigate to the folder that contains the jar file. Command: `cd [directory/filename]`
 1. Type in the `java -jar modtracker.jar` command and press enter to run the program.
-1. A welcome screen as shown below will be displayed if program is being executed successfully.
+1. A welcome screen as shown below will be displayed if the program 
+has successfully executed.
 
    ````
    Hello from
@@ -145,7 +147,43 @@ Expected output:
 +------+---------+----------+----------+
 ````
 
-### 6. Delete a module: `deletemod`
+### 6. Analyse actual time spent on all modules: `analyse`
+Shows the breakdown and analysis for actual time spent for the specific week.
+
+Format: `analyse <week number>`
+
+* The `week number` must be between 1 and 13 inclusive.
+
+Example of usage:
+
+`analyse 1`
+
+Expected output:
+````
+Module    Week 1
+
+CS2113T
+Actual   | ███ 3.0
+Expected | ██████████ 10.0
+
+CS1231
+Actual   | ███████ 7.0
+Expected | ████████ 8.0
+
+Total time spent: 10.0 H
+30% of time is spent on CS2113T
+70% of time is spent on CS1231
+
+Analysis:
+CS2113T
+You seem to be spending too little time on the module.
+Perhaps you should spend more time on this module.
+
+CS1231
+Good Job! Great time management!
+````
+ 
+### 7. Delete a module: `deletemod`
 Deletes the specified module code from the database.
 
 Format: `deletemod <module code>`
@@ -162,7 +200,7 @@ Expected output:
 CS2113T is removed.
 ````
 
-### 7. Delete expected module workload: `deleteexp`
+### 8. Delete expected module workload: `deleteexp`
 Deletes the expected workload of specified module code from the database.
 
 Format: `deleteexp <module code>`
@@ -179,7 +217,7 @@ Expected output:
 Expected Workload of CS2113T is removed.
 ````
 
-### 8. Minus from actual time spent on a module: `minus`
+### 9. Minus from actual time spent on a module: `minus`
 Minus the actual time spent on a specified module.
 
 Format: `minus <module code> <time spent> <week number>` 
@@ -197,7 +235,7 @@ Expected output:
 3 hours are removed from CS2113T
 ````
 
-### 9. Add tasks: `addtask`
+### 10. Add tasks: `addtask`
 Adds a task under a specified module.
 
 Format: `addtask <module code> <task description>`
@@ -216,7 +254,7 @@ Got it. I've added this task under CS2113T:
 Now you have 1 task in the list.
 ````
 
-### 10. List all tasks: `listtask`
+### 11. List all tasks: `listtask`
 Lists all tasks in the database.
 
 Format: `listtask`
@@ -227,7 +265,7 @@ Here are the tasks in your list:
 1. [X] [CS2113T] finish project
 ````
 
-### 11. Mark task as done: `done`
+### 12. Mark task as done: `done`
 Marks a specified task as done.
 
 Format: `done <task number>`
@@ -245,7 +283,7 @@ Nice! I've marked this task as done:
 [/] [CS2113T] finish project
 ````
 
-### 12. Delete a task: `deletetask`
+### 13. Delete a task: `deletetask`
 Deletes a specified task from the database.
 
 Format: `deletetask <task number>`
@@ -263,7 +301,7 @@ Noted. I've removed this task:
 You currently have no task :-)
 ````
 
-### 13. Exit the program : `exit`
+### 14. Exit the program : `exit`
 Exits the program.
 
 Format: `exit`
@@ -274,7 +312,7 @@ All changes saved.
 Bye <username>. Hope to see you again soon!
 ````
 
-### 14. Save user data
+### 15. Save user data
 The program will save your data such as your name, modules, time spent and tasks
 to the hard disk automatically. There is no need to save these manually. 
 
@@ -285,7 +323,7 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 15. Delete module and task data: `reset`
+### 16. Delete module and task data: `reset`
 Deletes all module and tasks data. 
 The program will also prompt the user to confirm this action.
 
