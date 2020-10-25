@@ -2,14 +2,21 @@
 
 ## Introduction
 
-{Give a product intro}
+Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Check that your computer has Java **11** installed.
+1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
+1.Copy the file to the folder you want to use as the home folder.
+1.Type in a command prompt ./duke.jar and press Enter.
+1.Type the `help` command and press Enter to get started.
+1.Some example commands you can try:
+    1.`list words` : List the vocabulary stored in the word list.
+    1.`filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
+    1.`exit` : Exits the app.
+1.Refer to the Features below for details of each command.
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
 ## Features 
 
