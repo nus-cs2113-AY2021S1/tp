@@ -7,6 +7,7 @@ import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.commands.add.AddCategoryCommand;
+import seedu.quotesify.commands.add.AddToDoCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.Quote;
@@ -75,9 +76,8 @@ public class AddCommand extends Command {
             addLogger.log(Level.INFO, "rating of book has completed");
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            ToDo newToDo = addToDo(toDos, ui);
-            ui.printAddToDo(newToDo);
+            addLogger.log(Level.INFO, "going yo add task to ToDoList");
+            new AddToDoCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfAddCommands();
