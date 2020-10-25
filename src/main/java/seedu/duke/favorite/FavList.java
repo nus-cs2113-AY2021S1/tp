@@ -21,4 +21,9 @@ public class FavList {
     public static ArrayList<Fav> getList() {
         return favList;
     }
+
+    public static Fav getFav(int index) {
+        Fav fav = favList.get(index);
+        return fav;
+    }
 }
