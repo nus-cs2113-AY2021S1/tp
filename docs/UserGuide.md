@@ -23,7 +23,7 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. [List all tasks: `listtask`](#12-list-all-tasks-listtask)
     1. [Mark task as done: `done`](#13-mark-task-as-done-done)
     1. [Delete a task: `deletetask`](#14-delete-a-task-deletetask)
-    1. [Open notification: `open`](#15-open-notification)
+    1. [Open notification: `open`](#15-open-notification-open)
     1. [Exit the program : `exit`](#16-exit-the-program--exit)
     1. [Save user data](#17-save-user-data)
     1. [Delete user data: `reset`](#18-delete-module-and-task-data-reset)
