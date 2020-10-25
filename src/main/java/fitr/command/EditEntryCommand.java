@@ -118,13 +118,13 @@ public class EditEntryCommand extends Command {
             Ui.printCustomError("Error: Calories cannot be negative!");
             return;
         }
-        foodList.getFood(index - 1).setCaloriesInFood(new Calorie(calories));
 
         int quantity = Integer.parseInt(matcher.group("quantity").trim());
         if (quantity < 0) {
             Ui.printCustomError("Error: Quantity cannot be negative!");
             return;
         }
+        foodList.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
         foodList.getFood(index - 1).setAmountOfFood(quantity);
 
         Ui.printCustomMessage("Successfully edited food to: " + foodName);

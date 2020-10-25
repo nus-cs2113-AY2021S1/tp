@@ -9,13 +9,13 @@ public class Food {
     public Food(String nameOfFood, Calorie calories, int amount, String date) {
         this.nameOfFood = nameOfFood;
         this.amountOfFood = amount;
-        this.caloriesInFood = new Calorie(calories.get() * amount);
+        this.caloriesInFood = new Calorie(calories.get());
         this.date = date;
     }
 
-    public Food(String name, Calorie caloriesBurnt, String date) {
+    public Food(String name, Calorie caloriesInFood, String date) {
         this.nameOfFood = name;
-        this.caloriesInFood = caloriesBurnt;
+        this.caloriesInFood = caloriesInFood;
         this.date = date;
     }
 
