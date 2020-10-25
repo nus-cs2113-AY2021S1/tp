@@ -1,5 +1,6 @@
 package userinterface;
 
+import academic.AcademicRun;
 import academic.AcademicUi;
 import academic.Grade;
 import academic.Person;
@@ -86,11 +87,10 @@ public class Ui {
         printDivider();
     }
 
-    public static void printHighlight(BookmarkRun bookmarkRun, ArrayList<Grade> currentGrades,
-                                            ArrayList<Person> listOfPerson) {
+    public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
         System.out.println("Here are your starred items:");
         bookmarkRun.run("list star");
         System.out.println();
-        AcademicUi.printStarList(currentGrades, listOfPerson);
+        academicRun.run("list star");
     }
 }
