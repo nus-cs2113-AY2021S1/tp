@@ -21,8 +21,14 @@ public class UI {
     // Main Help function
     public static void printHelpMessage(String input) {
         switch (input) {
-        case "add":
-            printHelpAdd();
+        case "noun":
+            printHelpNoun();
+            break;
+        case "verb":
+            printHelpVerb();
+            break;
+        case "adj":
+            printHelpAdj();
             break;
         case "settings":
             printHelpSettings();
@@ -35,12 +41,6 @@ public class UI {
             break;
         case "stats":
             printHelpStats();
-            break;
-        case "review":
-            printHelpReview();
-            break;
-        case "quiz":
-            printHelpQuiz();
             break;
         case "clear":
             printHelpClear();
@@ -55,8 +55,8 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"add", "settings", "list", "stats", "review", "start", "clear", "exit"};
-        System.out.println("Type 'help c\\<function name here>' to view help for each command.");
+        String[] listCommands = {"noun", "verb", "adj", "settings", "list", "stats", "start", "clear", "exit"};
+        System.out.println("Type 'help <function name here>' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
             System.out.println(listCommand);
@@ -69,17 +69,29 @@ public class UI {
         System.out.println("Example: settings n\\Alice d\\3");
     }
 
-    public static void printHelpAdd() {
-        System.out.println("Use the following format for the 'help' command:");
-        System.out.println("add t\\<topic> st\\<subtopic> n\\<quiz name> mcq\\<number of MCQ questions> qna\\"
-                + "<number of QNA questions> fb\\ <number of fill in the blanks questions>");
-        System.out.println("Example: add t\\Science st\\Chemistry n\\stoichiometry quiz 1 mcq\\3 mrq\\0 qna\\4 fb\\2");
-        System.out.println("This adds a quiz of topic 'Science', subtopic 'Chemistry' and named 'stoichiometry quiz 1'"
-                + ", with 3 MCQ questions, 0 MRQ questions, 4 QNA questions, and 2 fill in the blank questions.");
+    public static void printHelpNoun() {
+        System.out.println("Type in the noun you want to save followed by its meaning.");
+        System.out.println("Use the following format for the 'noun' command:");
+        System.out.println("noun <word here> d\\<description>");
+        System.out.println("Example: noun cat d\\a feline animal");
+    }
+
+    public static void printHelpVerb() {
+        System.out.println("Type in the verb you want to save followed by its meaning.");
+        System.out.println("Use the following format for the 'verb' command:");
+        System.out.println("verb <word here> d\\<description>");
+        System.out.println("Example: verb eat d\\to consume food");
+    }
+
+    public static void printHelpAdj() {
+        System.out.println("Type in the adjective you want to save followed by its meaning.");
+        System.out.println("Use the following format for the 'adj' command:");
+        System.out.println("adj <word here> d\\<description>");
+        System.out.println("Example: adj hungry d\\the feeling due to lack of food");
     }
 
     public static void printHelpList() {
-        System.out.println("List all available quizzes by typing 'list'.");
+        System.out.println("List all available words by typing 'list'.");
     }
 
     public static void printHelpStart() {
@@ -89,16 +101,6 @@ public class UI {
     public static void printHelpStats() {
         System.out.println("Show your results and statistics of a specific quiz by typing 'quiz t\\QUIZ_INDEX'.");
         System.out.println("Example: quiz t\\3");
-    }
-
-    public static void printHelpQuiz() {
-        System.out.println("Start a quiz by typing 'quiz t\\QUIZ_INDEX");
-        System.out.println("Example: quiz t\\2 starts the quiz with QUIZ_INDEX 2.");
-    }
-
-    public static void printHelpReview() {
-        System.out.println("Show the answers for the selected quiz by typing 'review t\\QUIZ_INDEX'.");
-        System.out.println("You can find the list of quizzes by QUIZ_INDEX by using the list command.");
     }
 
     public static void printHelpClear() {

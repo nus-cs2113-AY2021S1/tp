@@ -22,7 +22,7 @@ public class WordList {
      */
     public static void addNoun(String input) {
         String[] word = input.split(" ", 2);
-        String[] splitInput = word[1].split("d/");
+        String[] splitInput = word[1].split("d\\");
         Words toAdd = new Noun(splitInput[0],splitInput[1]);
         wordList.add(toAdd);
         UI.addNounMessage(toAdd.getDescription());
