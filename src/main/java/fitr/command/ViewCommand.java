@@ -8,6 +8,28 @@ import fitr.list.GoalList;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
+import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
+import static fitr.common.Messages.EMPTY_FOOD_LIST;
+import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
+import static fitr.common.Messages.EMPTY_GOAL_LIST;
+import static fitr.common.Messages.FOOD_LIST_HEADER;
+import static fitr.common.Messages.EXERCISE_LIST_HEADER;
+import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
+import static fitr.common.Messages.CALORIE_BURNT_HEADER;
+import static fitr.common.Messages.NET_CALORIE_HEADER;
+import static fitr.common.Messages.BMI_HEADER;
+import static fitr.common.Messages.USER_PROFILE_HEADER;
+import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
+import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
+import static fitr.common.Messages.FOOD_HEADER;
+import static fitr.common.Messages.SPACE_FORMATTING;
+import static fitr.common.Messages.CAL_HEADER;
+import static fitr.common.Messages.EXERCISE_HEADER;
+import static fitr.common.Messages.BURNT_CAL_HEADER;
+import static fitr.common.Messages.DATE_HEADER;
+import static fitr.common.Messages.EMPTY_STRING;
+import static fitr.common.Messages.ERROR_INVALID_DATE;
+import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
 
 import java.text.SimpleDateFormat;
 
@@ -17,7 +39,6 @@ import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Messages.*;
 
 public class ViewCommand extends Command {
 
