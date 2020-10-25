@@ -40,8 +40,7 @@ public class FindCommand extends Command {
             findRating(ratings, ui);
             break;
         case TAG_BOOK:
-            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            findBooks(books, ui);
+            new FindBookCommand(arguments).execute(ui, storage);
             break;
         case TAG_QUOTE:
             new FindQuoteCommand(arguments).execute(ui, storage);
@@ -51,25 +50,6 @@ public class FindCommand extends Command {
             break;
         }
         storage.save();
-    }
-
-    private void findBooks(BookList books, TextUi ui) {
-        try {
-            String keyword = information.trim();
-            if (keyword.isEmpty()) {
-                throw new QuotesifyException(ERROR_MISSING_KEYWORD);
-            }
-
-            BookList filteredBooks = books.findByKeyword(keyword);
-
-            if (filteredBooks.isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_BOOKS_IN_LIST);
-            }
-
-            ui.printBooksByKeyword(filteredBooks, keyword);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        }
     }
 
     private void findRating(RatingList ratings, TextUi ui) {
