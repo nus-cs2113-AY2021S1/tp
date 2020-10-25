@@ -475,7 +475,8 @@ Format: `exit`
 | list bunny   | `list bunny`</br>Lists all the bunny ideas                                                            |
 | filter bunny | `filter bunny i\IDEA g\[GENRE]`</br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
 | save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
-| filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `</br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br>TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
+| filter       | `filter [-continue] [limit\PRINT_LIMIT] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `<br>`-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command.</br><br>`limit\PRINT_LIMIT` (OPTIONAL): indicate number of words that you want to print from your filter list</br><br>`by\TYPE_OF_FILTER`:<br>- type: arguments can be `-verb`, `-noun` and `-adjective`<br>- start: arguments can be -STRING<br>- include: arguments can be -STRING|
+| list filter  | `list filter [limit\PRINT_LIMIT]`<br>Print the filter list with a limited number of words indicated by `PRINT_LIMIT` (OPTIONAL)</br>|
 | name         | `name`</br>Generates a random name                                                                    |
 | list name    | `list name`</br>List all the stored names                                                             |
 | filter name  | `filter name <NAME>`</br>Gets the list of names after filtering                                       |
