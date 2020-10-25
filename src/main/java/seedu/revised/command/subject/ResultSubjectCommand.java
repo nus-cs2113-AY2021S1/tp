@@ -14,9 +14,14 @@ public class ResultSubjectCommand extends SubjectCommand {
 
     public ResultSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
-
     }
 
+    /**
+     * Shows results of the quiz a <code>Subject</code> in a <code>SubjectList</code>
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class to get the results from.
+     * @return null
+     */
     public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
@@ -39,5 +44,9 @@ public class ResultSubjectCommand extends SubjectCommand {
                 + "application prints the results.");
         logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
         return null;
+    }
+
+    public boolean isExit() {
+        return false;
     }
 }
