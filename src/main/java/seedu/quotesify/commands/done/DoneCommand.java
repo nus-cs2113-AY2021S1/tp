@@ -43,27 +43,6 @@ public class DoneCommand extends Command {
         storage.save();
     }
 
-    private void doneToDo(ToDoList toDos, int index, TextUi ui) {
-        ToDo targetTask = toDos.find(index);
-        if (targetTask != null) {
-            targetTask.setDone(true);
-            ui.printDoneToDo(targetTask);
-        } else {
-            System.out.println(ERROR_TODO_NOT_FOUND);
-        }
-    }
-
-    private int computeToDoIndex(String information) {
-        int index = 0;
-        try {
-            index = Integer.parseInt(information);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_TODO_NUM);
-        }
-
-        return index;
-    }
-
     @Override
     public boolean isExit() {
         return false;
