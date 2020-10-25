@@ -67,64 +67,64 @@ use of the package java.util.ArrayList. The TopicList is used to store Topics.
 
 ![TopicListSampleSequence](./images/TopicListSampleSequence.png)
 
-This task is performed by the TopicList.showTopics() method.
+This task is performed by the `TopicList.showTopics()` method.
 
-Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the 
-        TopicList.showTopics() method.
-Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicList(). The 
-        current TopicList is passed into the called method.
-Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
-        TopicList. 
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+        `TopicList.showTopics()` method.
+Step 2: The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
+        current `TopicList` is passed into the called method.
+Step 3: The `Ui.printTopicList()` method then prints out the description of each topic in the 
+        `TopicList`. 
 
 **Finding a topic in TopicList:**
 
-This task is performed by the TopicList.find() method. 
+This task is performed by the `TopicList.find()` method. 
 
-Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the TopicList.find() method. 
-        A String object derived from the user's input is passed into this method.
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the `TopicList.find()` 
+        method. A String object derived from the user's input is passed into this method.
 
-Step 2: The TopicList.find() method checks if any Topic object in the TopicList has a description that contains the 
-        String object passed into the method. Such Topic objects are stored in a new TopicList
+Step 2: The `TopicList.find()` method checks if any `Topic` object in the `TopicList` has a description that contains 
+        the `String` object passed into the method. Such `Topic` objects are stored in a new `TopicList`.
 
-Step 3: The TopicList.find() method then calls the TopicList.showTopics() method, passing in the new TopicList. The 
-        Ui.printTopicList() method is called within the TopicList.showTopics() method, printing out topic descriptions 
-        containing the user's input.
+Step 3: The `TopicList.find()` method then calls the `TopicList.showTopics()` method, passing in the new TopicList. The 
+        `Ui.printTopicList()` method is called within the `TopicList.showTopics()` method, printing out topic 
+        descriptions containing the user's input.
 
-NoteList is also an ArrayList of type Displayable, which is one of two interfaces implemented in the code for EDuke8. 
-As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
-stores Note objects. Each topic has 1 NoteList. 
+`NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
+E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
+The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`. 
 
 #### Implementation of Notes
 
 **Adding a new note:**
 
-This task is performed by the NoteList.add() method.
+This task is performed by the `NoteList.add()` method.
 
-Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.add() method. A new 
-        Note object is passed into its parameter.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
+        A new `Note` object is passed into its parameter.
 
-Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
-        object into NoteList.
+Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
+        the `Note` object into `NoteList`.
 
 **Deleting a note:**
 
-This task is performed by the NoteList.add() method.
+This task is performed by the `NoteList.add()` method.
 
-Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.delete() method. 
-        An integer that represents the index of the Note object to be deleted within the NoteList is passed into this 
-        method.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
+        An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
+        this method.
 
-Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
-        Note object in NoteList.
+Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
+        delete the `Note` object in `NoteList`.
 
 **Listing out all notes in a topic**
 
-This task is performed by the Topic.showNotes() method.
+This task is performed by the `Topic.showNotes()` method.
 
-Step 1: The parseCommand() method instantiates a TopicCommand object which then calls the Topic.showNotes() method. 
+Step 1: The `parseCommand()` method instantiates a `TopicCommand` object which then calls the `Topic.showNotes()` method. 
 
-Step 2: The Topic.showNotes() methd calls the Ui.printNoteList() method. The topic's NoteList into this method. 
-        Ui.printNoteList() prints out all the descriptions of the Note objects in the NoteList.
+Step 2: The `Topic.showNotes()` method calls the `Ui.printNoteList()` method. The topic's `NoteList` into this method. 
+        `Ui.printNoteList()` prints out all the descriptions of the `Note` objects in the `NoteList`.
 
 #### Design of Option and OptionList 
 
@@ -153,30 +153,31 @@ Below is the sequence diagram for how the Parser component of `Eduke8` works wit
 ![Parser Sample Sequence](./images/ParserSampleSequence.png)
 
 The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
-single method parseCommand that identifies what command the user is calling for and then calls the command. There are 
-two parsers in our program that implements a single Parser interface. One parser is for choosing menu options and is 
+single method `parseCommand` that identifies what command the user is calling for and then calls the command. There are 
+two parsers in our program that implements a single `Parser` interface. One parser is for choosing menu options and is 
 named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
 when the user types in input to get help in order to see what commands are available to the user.
 
-Step 1. The user launches the program for the first time. The parser will be initialised and awaiting the user’s input 
-        to proceed.
+Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+        input to proceed.
         
-Step 2. The user types in help into the command line interface and presses enter. This user input “help” is stored as 
-        a string and is put into the parseCommand() method as a parameter, together with the topic list. This topic 
-        list is not relevant to the help command for now.
+Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
+        a string and is put into the `parseCommand()` method as a parameter, together with the list of topics. This 
+        topic list is not relevant to the help command for now.
         
-Step 3. The user input string is subjected to the trim() and split() functions of a string in the Java libraries in 
-        order to remove redundant spaces around the input, and to discern the number of words in the input. The split() 
-        function uses a blank space string, “ “, as the delimiter to split the string into its individual components.
+Step 3. The user input string is subjected to the `lang.string.trim()` and `lang.string.split()` functions of a string 
+        in the Java libraries in order to remove redundant spaces around the input, and to discern the number of words 
+        in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
+        string into its individual components.
         
-Step 4. Each subsequent string separated by a space is stored in a string array named commandArr. The 0th index of the 
-        commandArr array is the first word, the 1st index is the second word, and so on. In this case there is only one 
-        word stored in the array, at the 0th index, which is “help”.
+Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
+        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+        one word stored in the array, at the 0th index, which is “help”.
         
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
         options available. As such, the contents of the case with reference “help” is run, which is a return statement 
-        containing a new HelpCommand(). This leads to the execution of the `help` command.
+        containing a new `HelpCommand()`. This leads to the execution of the `help` command.
         
 #### Design of QuizQuestionsManager
 
