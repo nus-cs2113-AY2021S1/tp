@@ -50,7 +50,7 @@ public class BunnyLoader {
             System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
         }
 
-        // load bunnies
+        // load individual bunnies
         while (bunnyFileScanner.hasNext()) {
             try {
                 String parsedString;

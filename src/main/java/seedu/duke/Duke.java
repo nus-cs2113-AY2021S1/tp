@@ -65,7 +65,7 @@ public class Duke {
             userInput = getUserInput(SCANNER);
             printDivider();
             commandChecker = extractCommandType(userInput);
-            executeCommand(commandChecker, userInput);
+            executeCommand(commandChecker, userInput, writings);
             printDivider();
         }
 

@@ -36,8 +36,8 @@ public class UI {
         case "list":
             printHelpList();
             break;
-        case "history":
-            printHelpHistory();
+        case "start":
+            printHelpStart();
             break;
         case "stats":
             printHelpStats();
@@ -94,8 +94,8 @@ public class UI {
         System.out.println("List all available words by typing 'list'.");
     }
 
-    public static void printHelpHistory() {
-        System.out.println("Show history and results of quizzes taken in this session by typing 'history'.");
+    public static void printHelpStart() {
+        System.out.println("Embark your writings session!");
     }
 
     public static void printHelpStats() {
@@ -230,10 +230,18 @@ public class UI {
 
     public static void bunnyFilterNoneFound() {
         System.out.println("No bunny matching filter options");
+    }
 
+    public static void bunnyDeleted(int bunnyNum) {
+        System.out.print(ClickerMessages.BUNNY_DELETED_MSG);
+        System.out.print(bunniesList.get(bunnyNum - 1).getDescription());
     }
 
     public static void printAskForName(String username) {
         System.out.print(ClickerMessages.ASK_FOR_NAME);
+    }
+
+    public static void bunnyIndexOutOfBounds() {
+        System.out.println("Bunny index is not in list.");
     }
 }

@@ -6,12 +6,11 @@ import seedu.duke.exceptions.NotEnoughWritingComponentException;
 import seedu.duke.writing.Essay;
 import seedu.duke.writing.Poem;
 import seedu.duke.writing.WritingList;
-import seedu.duke.writing.Writings;
-
+import seedu.duke.logs.Logging;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_MARK;
@@ -161,8 +160,14 @@ public class WritingsLoader {
         }
     }
 
+    /** Allow the main program to access the file processing.
+     *
+     * @param savedWritings list of writing called in the main function
+     */
     public static void loadWritings(WritingList savedWritings) {
+        Logging log = new Logging();
         try {
+            log.test();
             File userWritingsFile = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
             FileFunctions.checkFileExists(userWritingsFile);
             convertFromFile(userWritingsFile, savedWritings);
