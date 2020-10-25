@@ -472,7 +472,7 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| divider      | `divider DIVIDER_OPTION` <\br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
+| divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
