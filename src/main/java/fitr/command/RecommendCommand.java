@@ -3,7 +3,7 @@ package fitr.command;
 import fitr.Calorie;
 import fitr.Recommender;
 import fitr.StandardExercise;
-import fitr.StandardExerciseList;
+import fitr.list.StandardExerciseList;
 import fitr.exception.FitrException;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
