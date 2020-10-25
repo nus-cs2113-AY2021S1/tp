@@ -1,20 +1,29 @@
 package seedu.duke.storage;
 
+import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.AddNoteCommand;
 import seedu.duke.command.Command;
+
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
+import seedu.duke.data.timetable.Event;
+import seedu.duke.data.timetable.RecurringEvent;
 import seedu.duke.data.timetable.Timetable;
+
 import seedu.duke.util.Parser;
+import seedu.duke.util.PrefixSyntax;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.Scanner;
+
+
 
 /**
  * Represents a StorageManager. Manages the saving and loading of task list data.
@@ -198,7 +207,53 @@ public class StorageManager {
      *
      * @param timetable The Timetable containing all the events to be saved.
      */
-    private void saveTimetable(Timetable timetable){
+    public static void saveTimetable(Timetable timetable) throws IOException {
+        String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
+        FileWriter fwAppend = new FileWriter(path, true);
+
+        ArrayList<Event> nonRecurringEvents = timetable.getAllNonRecurringEvents();
+        String eventDetails;
+
+        for (Event event: nonRecurringEvents) {
+            eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " "
+                        + "\n";
+            //  + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND +
+            //  " " + event.getReminderPeriod() +  " ";
+
+            fwAppend.write(eventDetails);
+        }
+
+        ArrayList<RecurringEvent> recurringEvents = timetable.getAllRecurringEventsArray();
+
+        for (RecurringEvent event: recurringEvents) {
+            eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                    + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " "
+                    //   + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " " + event.getReminderPeriod() +  " "
+                    + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING + " " + event.getRecurrenceType() + " ";
+            //   + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING + " " + event.getEndRecurrenceDate() + " ";
+            fwAppend.write(eventDetails);
+        }
+        fwAppend.close();
+    }
+
+    public void loadTimetable(Notebook notebook, Timetable timetable, TagManager tagManager) throws SystemException {
+        String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
+        File f = new File(path);
+
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+        while (s.hasNext()) {
+            String eventDetails = AddEventCommand.COMMAND_WORD + " " +  s.nextLine();
+            Command command = new Parser().parseCommand(eventDetails);
+            command.setData(notebook, timetable, tagManager, this);
+            command.execute();
+        }
+        s.close();
 
     }
 
@@ -210,7 +265,11 @@ public class StorageManager {
      */
     public void saveAll(Notebook notebook, Timetable timetable)throws SystemException {
         saveNotebook(notebook);
-        saveTimetable(timetable);
+        try {
+            saveTimetable(timetable);
+        } catch (IOException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
+        }
     }
 
     /**
@@ -219,7 +278,7 @@ public class StorageManager {
      * @param notebook The Notebook to be loaded into.
      * @param timetable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager) throws SystemException {
+    public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager) throws SystemException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         File f = new File(path);
         Scanner s;

@@ -149,6 +149,10 @@ public class Event implements Comparable<Event> {
         return time;
     }
 
+    public String getDateTime() {
+        return date.toString() + " " + time.toString();
+    }
+
     public void setTime(LocalTime time) {
         this.time = time;
     }

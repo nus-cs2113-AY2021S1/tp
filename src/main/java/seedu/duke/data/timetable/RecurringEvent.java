@@ -43,6 +43,10 @@ public abstract class RecurringEvent extends Event {
         this.recurrenceType = recurrenceType;
     }
 
+    public String getRecurrenceType() {
+        return recurrenceType;
+    }
+
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
                           HashMap<String, ArrayList<Integer>> reminderPeriods) {
         this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods);
@@ -112,6 +116,10 @@ public abstract class RecurringEvent extends Event {
         String timing = (!endRecurrenceDate.equals(DEFAULT_END_RECURRENCE)) ? endRecurrenceDate.toString() : "Forever";
         endRecurrenceString = endRecurrenceString.concat(timing);
         return String.format(" (%s)", endRecurrenceString);
+    }
+
+    public String getEndRecurrenceDate() {
+        return endRecurrenceDate.toString();
     }
 
     /**

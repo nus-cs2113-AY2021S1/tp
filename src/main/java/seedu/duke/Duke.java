@@ -43,7 +43,8 @@ public class Duke {
 
         try {
             storageManager.createFiles();
-            storageManager.loadAll(notebook, timetable, tagManager);
+            storageManager.loadAllNotes(notebook, timetable, tagManager);
+            storageManager.loadTimetable(notebook, timetable, tagManager);
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }
@@ -61,6 +62,12 @@ public class Duke {
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));
+
+        try {
+            StorageManager.saveTimetable(timetable);
+        } catch (IOException exception) {
+            interfaceManager.prints("error");
+        }
     }
 
     /**
