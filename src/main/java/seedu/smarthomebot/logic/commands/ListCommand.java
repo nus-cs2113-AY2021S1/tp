@@ -39,39 +39,47 @@ public class ListCommand extends Command {
         int index = 1;
         switch (parameter) {
         case LOCATION_TYPE:
-            if (locationList.getLocations().size() == 0) {
-                return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
-            }
-            String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
-            for (String location : locationList.getLocations()) {
-                outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
-                index++;
-            }
-            return new CommandResult(outputLocationsList);
+            return listLocation(index);
         case APPLIANCE_TYPE:
-            if (filteredLocation.equals("")) {
-                if (applianceList.getAllAppliance().size() == 0) {
-                    return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
-                }
-                String header = (LINE + MESSAGE_LIST_APPLIANCES);
-                String outputApplianceList = displayOutput(header, applianceList.getAllAppliance());
-                return new CommandResult(outputApplianceList);
-            } else {
-                ArrayList<Appliance> filterApplianceList =
-                        (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(filteredLocation))
-                        .collect(toList());
-
-                if (filterApplianceList.isEmpty()) {
-                    return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
-                }
-                String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
-                String outputFilteredList = displayOutput(header, filterApplianceList);
-                return new CommandResult(outputFilteredList);
-            }
+            return listAppliance();
         default:
             return new CommandResult("Error");
         }
+    }
+
+    private CommandResult listAppliance() {
+        if (filteredLocation.equals("")) {
+            if (applianceList.getAllAppliance().size() == 0) {
+                return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+            }
+            String header = (LINE + MESSAGE_LIST_APPLIANCES);
+            String outputApplianceList = displayOutput(header, applianceList.getAllAppliance());
+            return new CommandResult(outputApplianceList);
+        } else {
+            ArrayList<Appliance> filterApplianceList =
+                    (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                    .filter((s) -> s.getLocation().equals(filteredLocation))
+                    .collect(toList());
+
+            if (filterApplianceList.isEmpty()) {
+                return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
+            }
+            String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
+            String outputFilteredList = displayOutput(header, filterApplianceList);
+            return new CommandResult(outputFilteredList);
+        }
+    }
+
+    private CommandResult listLocation(int index) {
+        if (locationList.getLocations().size() == 0) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
+        }
+        String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
+        for (String location : locationList.getLocations()) {
+            outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
+            index++;
+        }
+        return new CommandResult(outputLocationsList);
     }
 
     private String displayOutput(String header, ArrayList<Appliance> displayList) {

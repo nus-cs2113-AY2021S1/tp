@@ -21,8 +21,7 @@ public class LocationList {
     public void addLocation(String location) throws DuplicateDataException {
         // create location from Appliance
         if (!isLocationCreated(location)) {
-            String toAdd = location;
-            this.locationList.add(toAdd);
+            this.locationList.add(location);
         } else {
             throw new DuplicateDataException();
         }
@@ -38,6 +37,7 @@ public class LocationList {
             throw new InvalidRemovalLocationException();
         } else {
             int removeIndex = getRemoveLocationIndex(location);
+            assert removeIndex < 0 : "Index should be positive.";
             locationList.remove(removeIndex);
         }
     }

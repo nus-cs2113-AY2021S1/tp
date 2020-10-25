@@ -164,12 +164,21 @@ Switches ON an appliance base on its name in the list.
 Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOCATION_NAME]`
 
 1. `on [APPLIANCE_NAME]`: Switch ON the appliance by its name.
+2. `on [APPLIANCE_NAME] p/[TEMPERATURE]`: Switch ON the appliance by its name with parameter for air-conditioner.
+3. `on [APPLIANCE_NAME] p/[SPEED]`: Switch ON the appliance by its name with parameter for fan.
+4. `on [LOCATION]`: Switch ON every appliance in the location. 
+
 
 Example: `on AIRCON1`
 
 Output: 
 ```
 Switching on AIRCON1 in Bedroom 1 ......ON!
+```
+
+Output: 
+```
+All appliance in BR1 are turned on.
 ```
 
 <br/><br/> 
@@ -183,6 +192,11 @@ Example: `off AIRCON1`
 Output: 
 ```
 Switching off AIRCON1 in Bedroom 1 ......OFF!
+```
+
+Output: 
+```
+All appliance in BR1 are turned off.
 ```
    
 <br/><br/> 

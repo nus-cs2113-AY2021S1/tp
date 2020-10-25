@@ -101,7 +101,7 @@ public class OnCommand extends Command {
                 outputResults = onAppliance(toOnAppliance, outputResults, true);
             }
         }
-        outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned on ");
+        outputResults = "All appliance in \"" + this.name + "\" are turned on ";
         return outputResults;
     }
 

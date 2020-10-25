@@ -54,8 +54,10 @@ public class OffCommand extends Command {
     private CommandResult offByAppliance() {
         int toOffApplianceIndex = getApplianceToOffIndex();
         if (toOffApplianceIndex < 0) {
+            assert toOffApplianceIndex < 0 : "Index should be negative.";
             return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
         } else {
+            assert toOffApplianceIndex > 0 : "Index should be positive.";
             Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
             String outputResult = offAppliance(toOffAppliance, "", false);
             return new CommandResult(outputResult);
