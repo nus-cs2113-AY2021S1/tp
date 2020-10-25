@@ -1,4 +1,4 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.delete;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,6 +10,7 @@ import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
+import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.lists.QuotesifyList;

@@ -1,6 +1,8 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.find;
 
 import seedu.quotesify.book.BookList;
+import seedu.quotesify.commands.Command;
+import seedu.quotesify.commands.find.FindQuoteCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.QuoteList;
@@ -14,10 +16,12 @@ import java.util.logging.Level;
 
 public class FindCommand extends Command {
 
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public FindCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -40,8 +44,7 @@ public class FindCommand extends Command {
             findBooks(books, ui);
             break;
         case TAG_QUOTE:
-            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-            findQuote(quotes, ui);
+            new FindQuoteCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfFindCommands();
@@ -66,24 +69,6 @@ public class FindCommand extends Command {
             ui.printBooksByKeyword(filteredBooks, keyword);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-        }
-    }
-
-    private void findQuote(QuoteList quotes, TextUi ui) {
-        try {
-            String keyword = information.trim();
-            if (!keyword.isEmpty()) {
-                String resultList = quotes.findQuoteByKeyword(quotes, keyword);
-                if (!resultList.isEmpty()) {
-                    ui.printFindQuoteSuccess(resultList);
-                } else {
-                    ui.printFindQuoteFail();
-                }
-            } else {
-                throw new QuotesifyException(ERROR_FIND_KEYWORD_MISSING);
-            }
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(ERROR_FIND_KEYWORD_MISSING);
         }
     }
 

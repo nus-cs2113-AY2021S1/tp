@@ -1,4 +1,4 @@
-package seedu.quotesify.commands;
+package seedu.quotesify.commands.add;
 
 import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
@@ -7,6 +7,7 @@ import seedu.quotesify.category.Category;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.commands.add.AddBookCommand;
+import seedu.quotesify.commands.Command;
 import seedu.quotesify.commands.add.AddCategoryCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
