@@ -23,10 +23,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class ListCommand extends Command {
-    private String type;
-    private String information;
+    public String type;
+    public String information;
+    private String arguments;
 
     public ListCommand(String arguments) {
+        this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -66,77 +68,12 @@ public class ListCommand extends Command {
             listQuoteReflection(quotes, ui);
             break;
         case TAG_BOOK:
-            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            listBooks(bookList, ui);
+            new ListBookCommand(arguments).execute(ui, storage);
             break;
         default:
             ui.printListOfListCommands();
             break;
         }
-    }
-
-    private void listBooks(BookList bookList, TextUi ui) {
-        try {
-            if (information.isEmpty()) {
-                listAllBooks(bookList, ui);
-            } else if (information.contains(FLAG_AUTHOR)) {
-                listBooksByAuthor(bookList, ui);
-            } else if (information.contains(DONE_KEYWORD)) {
-                listBooksDoneOrUndone(bookList, ui);
-            } else {
-                listBookDetails(bookList, ui);
-            }
-        } catch (IndexOutOfBoundsException e) {
-            if (information.contains(FLAG_AUTHOR)) {
-                ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
-            } else {
-                ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
-            }
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.printErrorMessage(ERROR_LIST_UNKNOWN_COMMAND);
-        }
-    }
-
-    private void listBooksDoneOrUndone(BookList bookList, TextUi ui) {
-        if (information.trim().equals(DONE_KEYWORD)) {
-            listBooksDone(bookList, ui);
-        } else if (information.trim().equals("undone")) {
-            listBooksUndone(bookList, ui);
-        }
-    }
-
-    private void listBooksDone(BookList bookList, TextUi ui) {
-        BookList completedBooks = bookList.filterDone(true);
-        ui.printListDoneBook(completedBooks);
-    }
-
-    private void listBooksUndone(BookList bookList, TextUi ui) {
-        BookList undoneBooks = bookList.filterDone(false);
-        ui.printListUndoneBook(undoneBooks);
-    }
-
-    private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
-        int bookIndex = Integer.parseInt(information.trim()) - 1;
-        Book book = bookList.getBook(bookIndex);
-        ui.printBookDetails(book);
-    }
-
-    private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {
-        if (bookList.isEmpty()) {
-            throw new QuotesifyException(ERROR_NO_BOOKS_IN_LIST);
-        }
-        ui.printAllBooks(bookList);
-    }
-
-    private void listBooksByAuthor(BookList bookList, TextUi ui) throws QuotesifyException, IndexOutOfBoundsException {
-        String authorName = information.substring(4);
-        BookList filteredBooks = bookList.filterByAuthor(authorName);
-        if (filteredBooks.isEmpty()) {
-            throw new QuotesifyException(ERROR_NO_BOOKS_BY_AUTHOR);
-        }
-        ui.printBooksByAuthor(filteredBooks, authorName);
     }
 
     private void listQuoteReflection(QuoteList quotes, TextUi ui) {
