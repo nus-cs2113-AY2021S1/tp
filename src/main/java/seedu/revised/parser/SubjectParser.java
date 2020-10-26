@@ -33,7 +33,7 @@ public class SubjectParser {
             return new ExitSubjectCommand();
         } else if (fullCommand.equals("list")) {
             return new ListSubjectCommand();
-        } else if(fullCommand.equals("list all")) {
+        } else if (fullCommand.equals("list all")) {
             return new ListAllSubjectCommand();
         } else if (fullCommand.equals("export")) {
             return new ExportSubjectCommand();

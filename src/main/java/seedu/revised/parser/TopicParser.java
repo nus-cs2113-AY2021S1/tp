@@ -43,7 +43,7 @@ public class TopicParser {
         case "list":
             if (fullCommand.equals("list")) {
                 return new ListTopicCommand();
-            } else if (fullCommand.equals("list all")){
+            } else if (fullCommand.equals("list all")) {
                 return new ListAllTopicCommand();
             } else {
                 return new SorryTopicCommand();

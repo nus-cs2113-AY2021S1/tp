@@ -44,7 +44,7 @@ public class AccessTopicCommand extends TopicCommand {
                 String fullCommand = Ui.readCommand();
                 FlashcardCommand c = FlashcardParser.parse(fullCommand);
                 isTopicExit = c.isExit();
-                if(c instanceof ListAllFlashcardCommand) {
+                if (c instanceof ListAllFlashcardCommand) {
                     ((ListAllFlashcardCommand) c).setSubjectList(subjectList);
                 }
                 c.execute(topic);

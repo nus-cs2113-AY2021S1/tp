@@ -29,6 +29,7 @@ public class ListAllFlashcardCommand extends FlashcardCommand {
     public void setSubjectList(SubjectList subjectList) {
         this.subjectList = subjectList;
     }
+
     /**
      * Checks whether the the user exits the program.
      *
