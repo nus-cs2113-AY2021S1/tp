@@ -30,23 +30,23 @@ public class ClearCommand extends Command {
         } else {
             switch (command) {
             case Commands.COMMAND_FOOD:
-                 LOGGER.fine("Clearing food list.");
-                 listManager.clearFoodList();
-                 Ui.printCustomMessage("Food list is cleared!");
-                 break;
+                LOGGER.fine("Clearing food list.");
+                listManager.clearFoodList();
+                Ui.printCustomMessage("Food list is cleared!");
+                break;
             case Commands.COMMAND_EXERCISE:
-                 LOGGER.fine("Clearing exercise list.");
-                 listManager.clearExerciseList();
-                 Ui.printCustomMessage("Exercise list is cleared!");
-                 break;
+                LOGGER.fine("Clearing exercise list.");
+                listManager.clearExerciseList();
+                Ui.printCustomMessage("Exercise list is cleared!");
+                break;
             case Commands.COMMAND_GOAL:
-                 LOGGER.fine("Clearing goal list.");
-                 listManager.clearGoalList();
-                 Ui.printCustomMessage("Goal list is cleared!");
-                 break;
-           default:
-                 Ui.printCustomMessage("Invalid clear command entered!");
-                 break;
+                LOGGER.fine("Clearing goal list.");
+                listManager.clearGoalList();
+                Ui.printCustomMessage("Goal list is cleared!");
+                break;
+            default:
+                Ui.printCustomMessage("Invalid clear command entered!");
+                break;
             }
         }
 
