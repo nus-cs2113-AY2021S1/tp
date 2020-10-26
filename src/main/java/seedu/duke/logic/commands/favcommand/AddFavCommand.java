@@ -3,14 +3,12 @@ package seedu.duke.logic.commands.favcommand;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.commands.commons.Command;
 
-
-import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.favorite.Fav;
 import seedu.duke.favorite.FavList;
+import seedu.duke.model.favorite.Fav;
 
 import static seedu.duke.ui.Ui.addFavMessage;
-import static seedu.duke.ui.Ui.printLine;
+
 
 public class AddFavCommand extends Command {
 
