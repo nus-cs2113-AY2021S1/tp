@@ -1,8 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static seedu.duke.util.Parser.inputContent;
@@ -26,6 +29,7 @@ public class AddNoteCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
+    public static final String COMMAND_UNSUCCESSFUL_FILE_CREATION = "Unable to create and save details in a file";
 
     private Note note;
 
@@ -48,16 +52,30 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
+        try {
+            if (storageManager.noteExists(note)) {
+                content = storageManager.getNoteContent(note);
+            }
+        } catch (SystemException exception) {
+            return Formatter.formatString(exception.getMessage());
+        }
+
         if (content.isEmpty()) {
             content = inputContent();
         }
-
         // Edit the note
         note.setContent(content);
 
         // Rebind the tags if there are duplicated tags
         tagManager.rebindTags(note);
         notebook.addNote(note);
+
+        //Save the notes in storage
+        try {
+            storageManager.saveNote(note);
+        } catch (IOException exception) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
+        }
 
         return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
     }

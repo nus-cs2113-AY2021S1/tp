@@ -1,0 +1,2 @@
+/t TestNote1 /pin false 
+/t TestNote2 /pin true 

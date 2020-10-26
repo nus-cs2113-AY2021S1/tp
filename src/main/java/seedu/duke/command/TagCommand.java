@@ -2,8 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -46,6 +48,14 @@ public class TagCommand extends Command {
             ArrayList<String> executedMessage = tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE,
                     UNTAG_NOTE_MESSAGE);
             executedMessage.add(0, TAG_NOTE_HEADER);
+
+            // save the changed details
+            try {
+                storageManager.saveAllNoteDetails(notebook);
+            } catch (IOException e) {
+                return Formatter.formatString(e.getMessage());
+            }
+
             return Formatter.formatString(executedMessage, true);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
