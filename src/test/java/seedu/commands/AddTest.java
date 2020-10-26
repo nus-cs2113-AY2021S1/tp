@@ -56,7 +56,8 @@ class AddTest {
     }
 
     @Test
-    public void addCommand_executeSuccess() throws InvalidCommandException, InvalidDatetimeException, InvalidPriorityException, MaxNumTaskException {
+    public void addCommand_executeSuccess() throws InvalidCommandException, InvalidDatetimeException,
+            InvalidPriorityException, MaxNumTaskException {
         TaskMap taskMap = new TaskMap();
         Add add = new Add("add newTask");
         CommandResult result = add.execute(taskMap);
