@@ -17,13 +17,16 @@ public class FlashcardParser {
      * @return returns a command instance to execute a command
      */
     public static FlashcardCommand parse(String fullCommand) {
+        String[] tokens = fullCommand.split(" ");
+        String command = tokens[0];
+
         if (fullCommand.equals("exit")) {
             return new ExitFlashcardCommand();
         } else if (fullCommand.equals("list")) {
             return new ListFlashcardCommand();
-        } else if (fullCommand.startsWith("add")) {
+        } else if (command.equals("add")) {
             return new AddFlashcardCommand(fullCommand);
-        } else if (fullCommand.startsWith("delete ")) {
+        } else if (command.equals("delete")) {
             return new DeleteFlashcardCommand(fullCommand);
         } else if (fullCommand.equals("help")) {
             return new HelpFlashcardCommand();

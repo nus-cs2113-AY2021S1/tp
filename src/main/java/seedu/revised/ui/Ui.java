@@ -56,6 +56,7 @@ public class Ui {
             + OOPS_SUFFIX;
     public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";
     public static final String INVALID_TOPIC_EXCEPTION = "Please enter a topic!";
+    public static final String INVALID_FLASHCARD_EXCEPTION = "Please enter a valid flashcard!";
     public static final String INVALID_DATETIME_EXCEPTION = "Enter date and time in the following format: "
             + "HH:MM DD-MM-YYYY";
     public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";

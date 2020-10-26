@@ -7,7 +7,7 @@ import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 
 public class ExitFlashcardCommand extends FlashcardCommand {
     @Override
-    public void execute(Topic topic) throws FailedParseException, NoFlashcardException, RepeatedFlashcardException {
+    public void execute(Topic topic) {
 
     }
 
