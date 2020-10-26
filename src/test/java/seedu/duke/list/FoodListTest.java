@@ -67,7 +67,7 @@ class FoodListTest {
         assertEquals(list.getFoodsAfterDateTime(LocalDateTime.MIN).toString(), 
                 list.getFoods().toString());
 
-        // add new entries too:
+        // add new entries:
         if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -83,7 +83,18 @@ class FoodListTest {
     @Test
     void dateFilterRangeTest() {
         LocalDateTime timeNow = LocalDateTime.now();
+
+        if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                timeNow = LocalDateTime.now();
+            } catch (InterruptedException e) {
+                System.out.println("Unexpected Interruption");
+            }
+        }
+
         assertTrue(list.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
+
         assertEquals(list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, timeNow).toString(),
                  list.getPortionedFoods().toString());
     }
