@@ -102,7 +102,8 @@ public class ShowTimetableCommand extends Command {
         for (int i = 0; i < sortedSlots.size(); i++) {
             if (hasLessonNow(sortedSlots.get(i))) {
                 message.append(getHighlighBoxUpperMessage());
-                message.append(sortedSlots.get(i).toString()).append(" ")
+                message.append(i + 1).append(". ")
+                        .append(sortedSlots.get(i).toString()).append(" ")
                         .append(sortedModuleCodes.get(i)).append("\n");
                 message.append(getHighlighBoxLowerMessage());
                 hasIndicatorOnDay = false;
@@ -112,7 +113,8 @@ public class ShowTimetableCommand extends Command {
                     message.append(getIndicatorMessage());
                     hasIndicatorOnDay = false;
                 }
-                message.append(sortedSlots.get(i).toString()).append(" ")
+                message.append(i + 1).append(". ")
+                        .append(sortedSlots.get(i).toString()).append(" ")
                         .append(sortedModuleCodes.get(i)).append("\n");
             }
             hasSlotOnDay = true;
