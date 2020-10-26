@@ -20,7 +20,7 @@ public class LectureTheatre extends Location {
      */
     @Override
     public String toString() {
-        return "location: (Lecture Theatre): " + name + "\nNearest building: " + nearestBuilding;
+        return "(Lecture Theatre): " + name + "\nNearest building: " + nearestBuilding;
     }
 
     /**

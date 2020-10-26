@@ -3,6 +3,7 @@ package parser;
 
 import command.AddCommand;
 import command.ClearCommand;
+import command.Command;
 import command.DeleteCommand;
 import command.DoneCommand;
 import command.EditCommand;
@@ -10,11 +11,10 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.FindDateCommand;
 import command.HelpCommand;
+import command.LocateCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
-import command.Command;
 import command.SortCommand;
-
 import event.Assignment;
 import event.PersonalEvent;
 
@@ -104,6 +104,10 @@ public abstract class Parser {
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
+
+        if (words[0].equals(LOCATE_EVENT)) {
+            return new LocateCommand(words[1]);
+        }
 
         //this block deals with find command
         if (words[0].equals(EVENT_FIND)) {
