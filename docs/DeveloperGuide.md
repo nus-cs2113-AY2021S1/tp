@@ -261,6 +261,7 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 ![](EventDiagram/Step2.png)
 
 The sequence diagram for listing events is as shown below:
+
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
 **3.4.3. Searching for an event via name or date**
