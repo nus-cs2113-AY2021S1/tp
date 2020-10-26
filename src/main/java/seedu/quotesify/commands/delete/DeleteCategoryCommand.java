@@ -52,7 +52,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
 
                 deleteCategoryFromBook(category, bookTitle, ui);
                 deleteCategoryFromQuote(category, quoteNum, ui);
-                categoryList.updateListInCategory(category);
+                categoryList.updateListsInCategory(category);
 
                 if (category.getSize() == 0) {
                     categoryList.remove(category);
