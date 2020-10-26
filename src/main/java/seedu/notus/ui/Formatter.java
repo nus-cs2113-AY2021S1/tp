@@ -1,12 +1,11 @@
 package seedu.notus.ui;
 
 import seedu.notus.data.notebook.Note;
+import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.data.timetable.Reminder;
 import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.timetable.Event;
-
-import com.diogonunes.jcolor.Attribute;
 
 import java.time.Month;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import static com.diogonunes.jcolor.Ansi.POSTFIX;
 import static com.diogonunes.jcolor.Ansi.PREFIX;
 import static com.diogonunes.jcolor.Ansi.RESET;
 import static com.diogonunes.jcolor.Ansi.colorize;
+import com.diogonunes.jcolor.Attribute;
 
 /**
  * Represents a Formatter object. Handles and standardise the format of all the information.
@@ -30,7 +30,7 @@ public class Formatter {
     private static final String ROW_SPLIT = "-";
     private static final String COLUMN_START = "| ";
     private static final String COLUMN_END = " |";
-    private static final String EMPTY_STRING = " ";
+    private static final String EMPTY_SPACE = " ";
     private static final String CONTINUATION = "...";
     private static final String TITLE = "Title: ";
     private static final char EMPTY_CHAR = ' ';
@@ -51,7 +51,7 @@ public class Formatter {
      * Maximum length of a note's content to display.
      */
     private static final int CONTENT_CUTOFF = MAX_MESSAGE_LENGTH - 50;
-    private static final int CONTENT_INDENT = 3;
+    private static final int CONTENT_INDENT = 0;
 
     //@@author R-Ramana
     /**
@@ -60,10 +60,10 @@ public class Formatter {
      * @return noteString StringBuilder containing the notes ready to be printed
      */
     public static String formatNotes(String pinnedHeader, String unpinnedHeader,
-                                     ArrayList<Note> pinned, ArrayList<Note> unpinned) {
+                                     ArrayList<Note> pinned, ArrayList<Note> unpinned, Notebook notebook) {
         String formattedString = "";
-        formattedString = formatNotes(pinnedHeader, pinned);
-        formattedString = formattedString.concat(formatNotes(unpinnedHeader, unpinned));
+        formattedString = formatNotes(pinnedHeader, pinned, notebook);
+        formattedString = formattedString.concat(formatNotes(unpinnedHeader, unpinned, notebook));
         return formattedString;
     }
 
@@ -81,7 +81,7 @@ public class Formatter {
         formattedString = formattedString.concat(generatesHeader(header));
 
         for (Note note: notes) {
-            String colorText = colorize(i + ". " + TITLE + note.getTitle() + EMPTY_STRING
+            String colorText = colorize("Note Index: " + i + ". " + TITLE + note.getTitle() + EMPTY_SPACE
                     + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
             formattedString = formattedString.concat(encloseRow(colorText));
 
@@ -91,7 +91,44 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_STRING.repeat(CONTENT_INDENT)
+            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE.repeat(CONTENT_INDENT)
+                    + truncatedContent));
+            formattedString = formattedString.concat(generatesRowSplit());
+
+            i++;
+        }
+        return encloseTopAndBottom(formattedString);
+    }
+
+    //@@author R-Ramana
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     *
+     * @param notes ArrayList of notes to obtain note title/tags from
+     * @return noteString StringBuilder containing the notes ready to be printed
+     */
+    public static String formatNotes(String header, ArrayList<Note> notes, Notebook notebook) {
+        String formattedString = "";
+        int i = 1;
+        int GOLD = 94;
+        int BROWN = 95;
+
+        formattedString = formattedString.concat(generatesHeader(header));
+
+        for (Note note: notes) {
+            String colorIndex = colorize("Note Index: " + notebook.getNoteIndex(note),
+                    Attribute.TEXT_COLOR(BROWN));
+            String colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE
+                    + note.getTagsName(), Attribute.TEXT_COLOR(GOLD));
+            formattedString = formattedString.concat(encloseRow(colorIndex)).concat(encloseRow(colorTitle));
+
+            int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
+
+            String truncatedContent = note.getContent()
+                    .get(0)
+                    .substring(0, truncatedContentLength)
+                    .concat(CONTINUATION);
+            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE.repeat(CONTENT_INDENT)
                     + truncatedContent));
             formattedString = formattedString.concat(generatesRowSplit());
 
@@ -343,7 +380,7 @@ public class Formatter {
 
         // Adds empty space to the message
         if (numBlanks >= 0) {
-            return COLUMN_START + message + EMPTY_STRING.repeat(numBlanks) + COLUMN_END + LS;
+            return COLUMN_START + message + EMPTY_SPACE.repeat(numBlanks) + COLUMN_END + LS;
         } else {
             int startIndexOfNextLine = MAX_MESSAGE_LENGTH;
             boolean cutOffWordIsColored = false;
@@ -413,7 +450,7 @@ public class Formatter {
         Stack<String> stringColorStack = new Stack<>();
 
         // Count the number of colored string in the message.
-        String[] temp = message.split(EMPTY_STRING);
+        String[] temp = message.split(EMPTY_SPACE);
         int messageLength = 0;
         for (String s : temp) {
             // Check if it contains the RESET color
