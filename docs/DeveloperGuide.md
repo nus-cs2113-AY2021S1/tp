@@ -126,11 +126,11 @@ Given below is an example of usage scenario of how the add command behaves at ea
 the title of the show, the number of seasons of the show, the number of episodes in each season(seperated by the comma) and 
 the duration of each episode. 
 
-The parseInput method in InputParser class is called to parse the command.
+The InputParser class calls the parseInput method to parse the command.
 
 **[NOTE]** 
 
-Customised exceptions are thrown when the number of arguments entered by the user is mismatched
+ArrayOutOfBounds and NullPointer exceptions are thrown when the number of arguments entered by the user is incorrect.
 
 
 **Step 2**
@@ -142,44 +142,54 @@ Customised exceptions are thrown when the number of arguments entered by the use
 
 * After the AddCommand method is called,the following steps will are carried out:
 
-1.Splits the input from the user to 4 separate parameters (Title,Number of seasons,Number of episodes,Duration)
+1. Splits the input from the user to 4 separate parameters (Title,Number of seasons,Number of episodes,Duration)
 
-2.Creates a new Show instance with the 4 parameters
+2. Creates a new Show instance with the 4 parameters created in the step above.
 
-3.Adds the show into the show list
+3. Adds the show into the showlist.
 
-4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+4. Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file.
 
 
 
 ### Edit 
 
 The `edit` command allows the user to change the details of each show that they are watching after they have added the
-show. It is self-contained, including its own parser and methods which allows the user to change any parameter they 
-wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
+show. It is self-contained, it includes its own parser and methods which prompts the user to change any parameter they 
+wish, after the user enters `done`, the `edit` command replaces the old entry with the updated one.
 
-Given below is an example of usage scenario of how the edit command behaves at each step
-
-**Step 1**
-
-* The user types in `edit friends` , assuming that friends has been added by the user beforehand.
+Given below is an example of usage scenario of how the edit command behaves at each step and a sequence diagram to
+illustrate the steps in a visual form.
 
 **[NOTE]** 
 
-Customised NullPointerException will be thrown when show entered by user is not found in the show list
+NullPointerException will be thrown when show entered by user is not found in the showlist.
+
+(Figure )[Insert Figure Here]
+
+**Step 1**
+
+* The user types in `edit friends` , where the show `friends` already exists int the showlist.
 
 **Step 2**
 
-The processCommand method is then called. The system will prompt the user to edit the name,season,episodes and 
-duration (of an episode) respectively.
+* The processCommand method is called. The processCommand method will retrieve the existing show object from the showlist,
+and make a copy of it.
+* Then the system will prompt the user to edit the name,season,episodes or the 
+duration (of an episode) respectively. 
 
 **Step 3**
 
-Shikai can help here HAHAH
+* The process command parses each line of the user input and makes the corresponding changes to the copy.
+
+**Step 4**
+
+* The user inputs `done`, and the copy of the show object is inserted into the showlist, replacing the old object.
+
 
 ### Rating Command
  
-The `rating` command was implemented in such a way where it takes in 2 parameters, the show to be rated and the desired
+The `rating` command is implemented in such a way where it takes in 2 parameters, the show to be rated and the desired
 rating for the show.
 
 After having retrieved the show from the show list, the rating command sets the rating of the show and then proceeds to
@@ -321,27 +331,28 @@ The deleteRating method in DeleteRatingCommand class is called.
 
 ### Add Review Command
 
-The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. Within the AddReview class
+The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
+Within the AddReview class
 
 **Step 1**
 
-The string is tokenised into separate words
+The string is tokenised into separate words.
 
 **Step 2**
 
-The corresponding show is retrieved from the show list
+The corresponding show is retrieved from the show list.
 
 **Step 3**
 
-The rating of the show is updated
+The rating of the show is updated.
 
 **Step 4**
 
-The review of the rating is added to the show
+The review of the rating is added to the show.
 
 **Step 5**
 
-Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file.
 
 
 ### Change Review Command
@@ -352,15 +363,15 @@ The command is then invoked by the inputParser method parseChangeReview.
 
 **Step 1**
 
-The string is tokenised into separate words
+The string is tokenised into separate words.
 
 **Step 2**
 
-The corresponding show is retrieved from the show list
+The corresponding show is retrieved from the show list.
 
 **Step 3**
 
-The review of the show is updated
+The review of the show is updated.
 
 **Step 4**
 
@@ -368,7 +379,7 @@ The show is updated back into the show list.
 
 **Step 5**
 
-Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file.
 
 ### Delete Review Command
 
@@ -466,7 +477,7 @@ The processCommand method in UpdateTimeLimit class is called.
 * The processCommand method in UpdateTimeLimit class will call the WatchTIme class and update its `dailywatchtime` variable
 to the desired value, which is 120 in this case.
 
-* The change will then be reflected to the user, and be saved to the userData.txt file.
+* The change will then be reflected to the user, and saved to the userData.txt file.
 
 ### Storage  
 
@@ -530,7 +541,7 @@ Two main forms of testing was used for the development of **WatchNext**.
 
 ## 7. Dev Ops
 
-When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
+After the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
 
 
 ##  Appendix A: Product Scope
