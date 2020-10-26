@@ -391,7 +391,7 @@ public class SprintParser implements ExceptionsParser {
         for (String taskIdInString : taskIds) {
             int taskId = Integer.parseInt(taskIdInString);
             Task task = proj.getBacklog().getTask(taskId);
-            for (String mem : task.getAllocatedMembers()) {
+            for (String mem : task.getMemberList()) {
                 for (String userId : userIds) {
                     if (mem.equals(userId)) {
                         return;

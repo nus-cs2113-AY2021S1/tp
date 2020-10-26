@@ -1,6 +1,5 @@
 package seedu.duke.command.member;
 
-import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;

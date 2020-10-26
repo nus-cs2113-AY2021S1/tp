@@ -2,17 +2,18 @@ package seedu.duke.model.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.model.project.Project;
+import seedu.duke.storage.JsonableObject;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class SprintManager implements Jsonable {
+public class SprintManager implements JsonableObject {
     
     private ArrayList<Sprint> sprintList;
     private int currentSprintIndex;
@@ -24,10 +25,6 @@ public class SprintManager implements Jsonable {
     
     public ArrayList<Sprint> getSprintList() {
         return sprintList;
-    }
-
-    public void setSprintList(ArrayList<Sprint> sprintList) {
-        this.sprintList = sprintList;
     }
 
     public int getCurrentSprintIndex() {
@@ -94,9 +91,24 @@ public class SprintManager implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jSprintObj = new JsonObject();
-        final JsonArray jSprintList = new JsonArray(sprintList);
-        jSprintObj.put("sprintList", jSprintList);
+        jSprintObj.put("sprintList", sprintList);
         jSprintObj.put("currentSprintIndex", currentSprintIndex);
         jSprintObj.toJson(writer);
+    }
+
+    public void fromJson(JsonObject jsonObject, Project project) {
+        this.currentSprintIndex = ((BigDecimal) jsonObject.get("currentSprintIndex")).intValue();
+        JsonArray jsonSprints = new JsonArray((JsonArray) jsonObject.get("sprintList"));
+
+        for (Object o : jsonSprints) {
+            Sprint sprint = new Sprint();
+            sprint.fromJson((JsonObject) o, project);
+            sprintList.add(sprint);
+        }
+    }
+    
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        fromJson(jsonObj, null);
     }
 }

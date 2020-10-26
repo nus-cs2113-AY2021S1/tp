@@ -1,8 +1,9 @@
 package seedu.duke.model.project;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.model.member.ProjectMembers;
+import seedu.duke.storage.JsonableObject;
 import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.model.task.TaskManager;
 
@@ -11,7 +12,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
 
-public class Project implements Jsonable {
+public class Project implements JsonableObject {
 
     private SprintManager sprintList;
     private TaskManager backlog;
@@ -144,18 +145,6 @@ public class Project implements Jsonable {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-    
-    public void setSprintList(SprintManager sprintList) {
-        this.sprintList = sprintList;
-    }
-
-    public void setBacklog(TaskManager backlog) {
-        this.backlog = backlog;
-    }
-
-    public void setMemberList(ProjectMembers memberList) {
-        this.memberList = memberList;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -199,6 +188,7 @@ public class Project implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jObj = new JsonObject();
+        jObj.put("projectID", this.projectID);
         jObj.put("title", this.title);
         jObj.put("description", this.description);
         jObj.put("projectDuration", this.projectDuration);
@@ -209,5 +199,29 @@ public class Project implements Jsonable {
         jObj.put("members", memberList);
         jObj.put("allSprints", sprintList);
         jObj.toJson(writer);
+    }
+
+    @Override
+    public void fromJson(JsonObject jsonObj) {
+        SprintManager allSprints = new SprintManager();
+        allSprints.fromJson((JsonObject) jsonObj.get("allSprints"), this);
+        
+        TaskManager backlog = new TaskManager();
+        backlog.fromJson((JsonObject) jsonObj.get("backlog"), this);
+        
+        ProjectMembers members = new ProjectMembers();
+        members.fromJson((JsonArray) jsonObj.get("members"));
+        
+        this.projectID = JsonableObject.parseInt(jsonObj, "projectID");
+        this.title = JsonableObject.parseString(jsonObj, "title");
+        this.description = JsonableObject.parseString(jsonObj, "description");
+        this.projectDuration = JsonableObject.parseInt(jsonObj, "projectDuration");
+        this.sprintLength = JsonableObject.parseInt(jsonObj, "sprintLength");
+        this.startDate = JsonableObject.parseDate(jsonObj, "startDate");
+        this.endDate = JsonableObject.parseDate(jsonObj, "endDate");
+        this.sprintList = allSprints;
+        this.backlog = backlog;
+        this.memberList = members;
+        
     }
 }
