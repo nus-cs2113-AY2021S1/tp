@@ -51,7 +51,8 @@ public class HelpCommand extends Command {
     private boolean isValidCommand(String details) {
         if (details.compareToIgnoreCase(ClearCommand.CLEAR_KW) == 0
             || details.compareToIgnoreCase(ChangeModeCommand.MODE_KW) == 0
-            || details.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0) {
+            || details.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0
+            || details.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
             return true;
         }
         if (Parser.getProgramMode() == 1) {

@@ -4,6 +4,7 @@ import org.fusesource.jansi.AnsiConsole;
 import seedu.zoomaster.command.ChangeModeCommand;
 import seedu.zoomaster.command.ClearCommand;
 import seedu.zoomaster.command.ExitCommand;
+import seedu.zoomaster.command.LaunchNowCommand;
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
 import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
@@ -297,10 +298,12 @@ public class Ui {
     public void printHelpMessage() {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (Parser.programMode == 0) {
+            System.out.println(LINE);
             printYellowWithBorder("Available inputs in Main menu are" + NEW_LINE
                     + "1) mode {bookmark/timetable}" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "3) exit" + NEW_LINE);
+                    + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
+                    + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 1) {
             printYellowWithBorder("Available inputs in Bookmark mode are" + NEW_LINE
                     + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
@@ -328,19 +331,25 @@ public class Ui {
                     + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
                     + "4) " + EditSlotCommand.EDIT_KW + NEW_LINE);
         }
+        printYellow("You can also check what each command does using: ");
+        printCyan("help {command}" + NEW_LINE);
     }
 
     public void printHelpMessage(String input) {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 2) : "only modes of Zoomaster are 0, 1, 2";
-        if (input.equals("clear")) {
+        if (input.equals(ClearCommand.CLEAR_KW)) {
             printYellowWithBorder("Clears the command line screen" + NEW_LINE);
-        } else if (input.equals("exit")) {
+        } else if (input.equals(ExitCommand.EXIT_KW)) {
             printYellowWithBorder("Exits the application. What else did you expect ^_^" + NEW_LINE);
-        } else if (input.equals("mode")) {
+        } else if (input.equals(ChangeModeCommand.MODE_KW)) {
             System.out.println(LINE);
             printYellow("Changes the current mode. You can change to either Bookmark "
                     + "or Timetable mode" + NEW_LINE);
             printCyan("Format: mode {bookmark/timetable}" + NEW_LINE);
+            System.out.println(LINE);
+        } else if (input.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
+            printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
+            printCyan("Format: launch now" + NEW_LINE);
             System.out.println(LINE);
         } else if (Parser.programMode == 1) {
             switch (input) {
@@ -455,10 +464,6 @@ public class Ui {
                 printGreen("eg. launch CS2113 2 (Bookmarks for slot 2 of CS2113)" + NEW_LINE);
                 printGreen("eg. launch CS2113 (Bookmarks tagged directly to CS2113)" + NEW_LINE + NEW_LINE);
 
-                printYellow("You can also launch bookmarks for lessons happening at the current "
-                        + "time" + NEW_LINE);
-                printCyan("Format: launch now" + NEW_LINE);
-                System.out.println(LINE);
                 break;
             default:
                 printYellowWithBorder("something went wrong...");
