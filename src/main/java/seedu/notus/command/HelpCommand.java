@@ -59,9 +59,9 @@ public class HelpCommand extends Command {
     }
 
     public static Attribute getColor(boolean toggleColor) {
-        int GOLD = 94;
+        int colorGold = 94;
         if (toggleColor) {
-            return Attribute.TEXT_COLOR(GOLD);
+            return Attribute.TEXT_COLOR(colorGold);
         }
         return Attribute.BRIGHT_WHITE_TEXT();
     }

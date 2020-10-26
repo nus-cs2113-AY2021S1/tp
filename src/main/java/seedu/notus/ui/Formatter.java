@@ -110,16 +110,16 @@ public class Formatter {
     public static String formatNotes(String header, ArrayList<Note> notes, Notebook notebook) {
         String formattedString = "";
         int i = 1;
-        int GOLD = 94;
-        int BROWN = 95;
+        int colorGold = 94;
+        int colorBrown = 95;
 
         formattedString = formattedString.concat(generatesHeader(header));
 
         for (Note note: notes) {
             String colorIndex = colorize("Note Index: " + notebook.getNoteIndex(note),
-                    Attribute.TEXT_COLOR(BROWN));
+                    Attribute.TEXT_COLOR(colorBrown));
             String colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE
-                    + note.getTagsName(), Attribute.TEXT_COLOR(GOLD));
+                    + note.getTagsName(), Attribute.TEXT_COLOR(colorGold));
             formattedString = formattedString.concat(encloseRow(colorIndex)).concat(encloseRow(colorTitle));
 
             int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
