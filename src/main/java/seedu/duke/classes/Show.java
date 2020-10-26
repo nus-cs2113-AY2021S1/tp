@@ -6,15 +6,15 @@ import seedu.duke.utility.Ui;
 import java.time.LocalDateTime;
 
 public class Show {
-    protected String name;
-    protected int numSeasons;
-    protected int[] numEpisodesForSeasons;
-    protected int episodeDuration; //The average duration of episodes
-    protected int rating;
-    protected String review;
-    protected LocalDateTime showTime;   //The time of the show, maybe include date
-    protected int currentSeason;    //to keep track of watch progress
-    protected int currentEpisode;
+    private String name;
+    private int numSeasons;
+    private int[] numEpisodesForSeasons;
+    private int episodeDuration; //The average duration of episodes
+    private int rating;
+    private String review;
+    private LocalDateTime showTime;   //The time of the show, maybe include date
+    private int currentSeason;    //to keep track of watch progress
+    private int currentEpisode;
 
 
     /**
