@@ -50,7 +50,10 @@ public class AddCommand extends Command {
 
     private String moduleOrChapter;
     private Card card;
-    private final String accessLevel;
+    private String accessLevel;
+
+    public AddCommand() {
+    }
 
     public AddCommand(String moduleOrChapter, String accessLevel) {
         this.moduleOrChapter = moduleOrChapter;
@@ -116,7 +119,7 @@ public class AddCommand extends Command {
         return prepareResult(MODULE, module.toString(), moduleCount);
     }
 
-    private String prepareResult(String type, String content, int count) {
+    protected String prepareResult(String type, String content, int count) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_SUCCESS, type));
         result.append(content).append("\n");
