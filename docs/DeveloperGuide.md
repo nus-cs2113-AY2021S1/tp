@@ -93,7 +93,7 @@ into the database. During this process, the user has the ability of choosing the
 either poem or essay at this stage)
 
 
-### Filter words
+### Filter words class family
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <center><i>Figure 3: Filter word UML Class Diagram</i></center>
 
