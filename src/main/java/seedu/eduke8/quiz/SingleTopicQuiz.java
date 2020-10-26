@@ -96,7 +96,7 @@ public class SingleTopicQuiz implements Quiz {
                 } else if (command instanceof HintCommand) {
                     LOGGER.log(Level.INFO, "Hint shown");
                 } else {
-                    LOGGER.log(Level.INFO, "Question bookmarked"g);
+                    LOGGER.log(Level.INFO, "Question bookmarked");
                 }
             }
 
