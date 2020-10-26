@@ -7,6 +7,7 @@ import fitr.user.User;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Calendar;
 
 public class CheckGoalStatus {
 
@@ -19,24 +20,24 @@ public class CheckGoalStatus {
 
         if (goal.getDescription().contains("Burn less than ")) {
             targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieBurnt(exerciseList).get();
+            userCalorie = user.calculateCalorieBurnt(exerciseList, "DATE").get();
             calorieDifference = targetCalorie - userCalorie;
             status = String.valueOf((calorieDifference < 0) ? 0.0 : 100.0);
         } else if (goal.getDescription().contains("Burn more than ")) {
             targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieBurnt(exerciseList).get();
+            userCalorie = user.calculateCalorieBurnt(exerciseList, "DATE").get();
             calorieDifference = targetCalorie - userCalorie;
             status = String.valueOf((calorieDifference < 0) ? 100.00 :
-                    formatter.format((double)userCalorie / (double)targetCalorie * 100));
+                    formatter.format((double) userCalorie / (double) targetCalorie * 100));
         } else if (goal.getDescription().contains("Eat more than ")) {
             targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieConsumed(foodList).get();
+            userCalorie = user.calculateCalorieConsumed(foodList, "DATE").get();
             calorieDifference = targetCalorie - userCalorie;
             status = String.valueOf((calorieDifference < 0) ? 100.00 :
-                    formatter.format((double)userCalorie / (double)targetCalorie * 100));
+                    formatter.format((double) userCalorie / (double) targetCalorie * 100));
         } else if (goal.getDescription().contains("Eat less than ")) {
             targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieConsumed(foodList).get();
+            userCalorie = user.calculateCalorieConsumed(foodList, "DATE").get();
             calorieDifference = targetCalorie - userCalorie;
             status = String.valueOf((calorieDifference < 0) ? 0.00 : 100.00);
         }
