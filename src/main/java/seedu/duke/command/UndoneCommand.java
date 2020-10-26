@@ -28,13 +28,21 @@ public class UndoneCommand extends Command {
         this.command = command;
     }
 
-    public static Command parse(String input) throws WrongNumberOfArgumentsException {
-        String[] inputParameters = input.trim().split(" ", 3);
+    public static Command parse(String input) throws WrongNumberOfArgumentsException, WrongNumberFormatException {
+        String[] inputParameters = input.trim().split(" ", 2);
+
+        if (inputParameters.length < 2) {
+            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
+        }
+
         String listType = inputParameters[0];
         String eventIndex = inputParameters[1].trim();
 
-        if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event index not provided.");
+        try {
+            String[] eventIndexArray = eventIndex.split(" ",2);
+            Integer.parseInt(eventIndexArray[0]);
+        } catch (NumberFormatException e) {
+            throw new WrongNumberFormatException("Event index given is not an integer.");
         }
 
         return new UndoneCommand(listType, eventIndex);
@@ -45,26 +53,22 @@ public class UndoneCommand extends Command {
         listType = capitaliseFirstLetter(listType);
         EventList eventList = data.getEventList(listType);
         String[] eventIndexArray = command.split(" ",2);
+        
+        int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
+        Event undoneEvent = eventList.getEventByIndex(eventIndex);
 
-        try {
-            int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
-            Event undoneEvent = eventList.getEventByIndex(eventIndex);
-
-            if (eventIndexArray.length == 1 || undoneEvent.getRepeatType() == null) {
-                undoneEvent.markAsUndone();
-                ui.printEventMarkedUndoneMessage(undoneEvent);
-            } else if (eventIndexArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
-                LocalDate undoneEventDate = dateParser(eventIndexArray[1]);
-                ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
-                for (Event e: repeatEventList) {
-                    if (e.getDate().isEqual(undoneEventDate)) {
-                        e.markAsUndone();
-                        ui.printEventMarkedUndoneMessage(e);
-                    }
+        if (eventIndexArray.length == 1 || undoneEvent.getRepeatType() == null) {
+            undoneEvent.markAsUndone();
+            ui.printEventMarkedUndoneMessage(undoneEvent);
+        } else if (eventIndexArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
+            LocalDate undoneEventDate = dateParser(eventIndexArray[1]);
+            ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
+            for (Event e: repeatEventList) {
+                if (e.getDate().isEqual(undoneEventDate)) {
+                    e.markAsUndone();
+                    ui.printEventMarkedUndoneMessage(e);
                 }
             }
-        } catch (NumberFormatException e) {
-            throw new WrongNumberFormatException("Event index given is not an integer.");
         }
     }
 

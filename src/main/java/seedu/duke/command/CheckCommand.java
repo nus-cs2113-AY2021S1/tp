@@ -95,21 +95,21 @@ public class CheckCommand extends Command {
         try {
             switch (dateFields.length) {
             case 1: // only year is given
-                DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yy[yy]");
+                DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("[yyyy][yy]");
                 Year givenYear = Year.parse(stringDate, yearFormat);
                 date = currentDate.with(givenYear);
                 return date;
             case 2: // month and year is given
-                DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("M/yy[yy]");
+                DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("M/[yyyy][yy]");
                 YearMonth givenYearMonth = YearMonth.parse(stringDate, yearMonthFormat);
                 date = currentDate.with(givenYearMonth);
                 return date;
             case 3: // day, month and year given
-                DateTimeFormatter dayMonthYearFormat = DateTimeFormatter.ofPattern("d/M/yy[yy]");
+                DateTimeFormatter dayMonthYearFormat = DateTimeFormatter.ofPattern("d/M/[yyyy][yy]");
                 date = LocalDate.parse(stringDate, dayMonthYearFormat);
                 return date;
             default:
-                throw new DateErrorException("Something is wrong with the date!");
+                throw new DateErrorException("Too many fields given for the date!");
             }
         } catch (DateTimeParseException e) {
             throw new DateErrorException("Something is wrong with the date!");
