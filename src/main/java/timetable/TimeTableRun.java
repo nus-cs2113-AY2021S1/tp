@@ -1,5 +1,7 @@
 package timetable;
 
+import studyit.StudyItLog;
+
 import java.util.Scanner;
 
 public class TimeTableRun {
@@ -10,6 +12,7 @@ public class TimeTableRun {
     public TimeTableRun() {
         events = new DateList();
         storage = new TimeTableStorage("data/timetable.txt", events);
+        StudyItLog.logger.info("Academic mode initialized");
     }
 
     public void run(String command) {

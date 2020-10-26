@@ -1,6 +1,8 @@
 package bookmark;
 
 
+import studyit.StudyItLog;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -64,6 +66,7 @@ public class BookmarkStorage {
             newBookmarkCategories.add(new BookmarkCategory("Internship"));
             newBookmarkCategories.add(new BookmarkCategory("Hackathon"));
             newBookmarkCategories.add(new BookmarkCategory("Career Talk"));
+            StudyItLog.logger.info(e + "\nflashcard storage file created");
             return newBookmarkCategories;
         }
     }
@@ -77,6 +80,7 @@ public class BookmarkStorage {
             fw.close();
         } catch (IOException e) {
             System.out.println("Something went wrong" + e.getMessage());
+            StudyItLog.logger.warning("Problem writing to bookmark storage file\n" + e);
         }
     }
 
@@ -91,5 +95,4 @@ public class BookmarkStorage {
         }
         return listOfLinks;
     }
-
 }
