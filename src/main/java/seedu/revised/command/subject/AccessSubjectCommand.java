@@ -3,6 +3,8 @@ package seedu.revised.command.subject;
 import seedu.revised.card.Subject;
 import seedu.revised.command.Command;
 import seedu.revised.command.task.TaskCommand;
+import seedu.revised.command.topic.AccessTopicCommand;
+import seedu.revised.command.topic.ListAllTopicCommand;
 import seedu.revised.command.topic.TopicCommand;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.NoSubjectException;
@@ -17,6 +19,7 @@ import java.util.logging.Logger;
 public class AccessSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(AccessSubjectCommand.class.getName());
     private String fullcommand;
+    private SubjectList subjectList;
 
     public AccessSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
@@ -33,6 +36,7 @@ public class AccessSubjectCommand extends SubjectCommand {
      */
     public void execute(SubjectList subjectList, Storage storage)
             throws NoSubjectException {
+        this.subjectList = subjectList;
         Subject gotoSubject = null;
 
         String[] message = this.fullcommand.split(" ");
@@ -66,13 +70,17 @@ public class AccessSubjectCommand extends SubjectCommand {
             try {
                 String fullCommand = Ui.readCommand();
                 Command c = TopicParser.parse(fullCommand);
+                if (c instanceof ListAllTopicCommand) {
+                    ((ListAllTopicCommand) c).setSubjectList(subjectList);
+                } else if (c instanceof AccessTopicCommand) {
+                    ((AccessTopicCommand) c).setSubjectList(subjectList);
+                }
                 if (c instanceof TopicCommand) {
                     ((TopicCommand) c).execute(subject);
                 } else if (c instanceof TaskCommand) {
                     TaskList taskList = subject.getTasks();
                     ((TaskCommand) c).execute(taskList);
                 }
-
                 isSubjectExit = c.isExit();
 
             } catch (NumberFormatException e) {

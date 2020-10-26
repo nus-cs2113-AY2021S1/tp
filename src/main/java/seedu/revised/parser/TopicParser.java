@@ -7,6 +7,7 @@ import seedu.revised.command.task.AddEventCommand;
 import seedu.revised.command.task.AddTodoCommand;
 import seedu.revised.command.task.DeleteTaskCommand;
 import seedu.revised.command.task.DoneTaskCommand;
+import seedu.revised.command.topic.ListAllTopicCommand;
 import seedu.revised.command.topic.QuizTopicCommand;
 import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.ExitTopicCommand;
@@ -42,6 +43,8 @@ public class TopicParser {
         case "list":
             if (fullCommand.equals("list")) {
                 return new ListTopicCommand();
+            } else if (fullCommand.equals("list all")){
+                return new ListAllTopicCommand();
             } else {
                 return new SorryTopicCommand();
             }

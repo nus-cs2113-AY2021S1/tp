@@ -1,14 +1,13 @@
-package seedu.revised.command;
+package seedu.revised.command.subject;
 
-import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.list.SubjectList;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
 
-public class ListAllCommand extends Command {
-    private static final Logger logger = Logger.getLogger(ListAllCommand.class.getName());
+public class ListAllSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(ListAllSubjectCommand.class.getName());
 
     /**
      * List all subjects, topics, tasks, and flashcards.
@@ -20,7 +19,7 @@ public class ListAllCommand extends Command {
      */
     public void execute(SubjectList subjectList, Storage storage) {
         logger.info("Begin listing all subjects, topics, tasks, and flashcards.");
-        Ui.printAll(subjectList.getList());
+        Ui.printAll(subjectList.getList(),null,null);
         logger.info("Finished listing all subjects, topics, tasks, and flashcards.");
     }
 
