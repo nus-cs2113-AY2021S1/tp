@@ -1,6 +1,5 @@
 package seedu.dietbook;
 
-import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.command.AddCommand;
 import seedu.dietbook.command.CalculateCommand;
 import seedu.dietbook.command.ClearCommand;
