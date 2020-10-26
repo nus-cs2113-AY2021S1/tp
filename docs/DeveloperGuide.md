@@ -127,7 +127,14 @@ The application aims to provide the writer with the following services:
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
+|v1.0|As a user, I would like an to hold a word bank|
+|v1.0|As a writer, I can choose the name of the character generated from the database|
+|v1.0|As a writer, I would like to have an app that randomly generate the words that help me to brainstorm for my writings|
+|v1.0|As a writer, I would like to clear and edit the saved writings in my storage|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|As a writer, I would like to have an app that list all the statistics from my past writings|
+|v2.0|As a user, I would like to get the inspiration from the app|
+|v2.0|As a user, I would like to have a database to refer to my scripts for future references|
 
 ## Non-Functional Requirements
 
