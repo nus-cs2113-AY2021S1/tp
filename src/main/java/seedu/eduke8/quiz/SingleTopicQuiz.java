@@ -70,6 +70,7 @@ public class SingleTopicQuiz implements Quiz {
             Question question = quizQuestionsManager.getNextQuestion();
             ui.printQuestion(question, quizQuestionsManager.getCurrentQuestionNumber());
 
+            question.markAsShown();
             assert question.wasShown();
 
             OptionList optionList = question.getOptionList();

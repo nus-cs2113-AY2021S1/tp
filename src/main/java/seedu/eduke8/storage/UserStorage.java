@@ -72,13 +72,17 @@ public class UserStorage extends LocalStorage {
             QuestionList questionList = topicObject.getQuestionList();
             JSONArray questions = (JSONArray) ((JSONObject) topic).get("questions");
             for (Object question: questions) {
-                String questionDescription = (String) ((JSONObject) question).get("description"); // Also marks as shown
+                String questionDescription = (String) ((JSONObject) question).get("description");
                 Question questionObject = (Question) questionList.find(questionDescription);
+                questionObject.markAsShown();
                 if ((boolean) ((JSONObject) question).get("correct")) {
                     questionObject.markAsAnsweredCorrectly();
                 }
                 if ((boolean) ((JSONObject) question).get("bookmarked")) {
                     bookmarkList.add(questionObject);
+                }
+                if ((boolean) ((JSONObject) question).get("hint")) {
+                    questionObject.getHint().markAsShown();
                 }
             }
 
@@ -107,13 +111,22 @@ public class UserStorage extends LocalStorage {
         TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topicObject);
         ArrayList<Displayable> attemptedQuestions = topicalStatsCalculator.getTopicalAttemptedQuestions();
         for (Displayable questionObject: attemptedQuestions) {
-            JSONObject question = new JSONObject();
-            question.put("description", questionObject.getDescription());
-            question.put("correct", ((Question) questionObject).wasAnsweredCorrectly());
-            question.put("bookmarked", bookmarkList.find(questionObject.getDescription()) != null);
+            JSONObject question = parseToQuestionJson((Question) questionObject);
             questions.add(question);
         }
         return questions;
+    }
+
+    @SuppressWarnings("unchecked")
+    private JSONObject parseToQuestionJson(Question questionObject) {
+        JSONObject question = new JSONObject();
+
+        question.put("description", questionObject.getDescription());
+        question.put("correct", questionObject.wasAnsweredCorrectly());
+        question.put("bookmarked", bookmarkList.find(questionObject.getDescription()) != null);
+        question.put("hint", questionObject.wasHintShown());
+
+        return question;
     }
 
 

@@ -14,6 +14,7 @@ import seedu.eduke8.ui.Ui;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +38,7 @@ public class Eduke8 {
 
     private Eduke8(String dataPath, String logPath, String userPath) {
         ui = new Ui();
+        bookmarkList = new BookmarkList(new ArrayList<>());
         try {
             topicsStorage = new TopicsStorage(dataPath);
             logStorage = new LogStorage(logPath);
@@ -45,10 +47,10 @@ public class Eduke8 {
             topicList = new TopicList(topicsStorage.load());
 
             userStorage = new UserStorage(userPath, topicList, bookmarkList);
-            bookmarkList = new BookmarkList(userStorage.load());
+            userStorage.load();
         } catch (ParseException | IOException e) {
             ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, "Error reading or writing local files");
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
             System.exit(1);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -80,6 +82,13 @@ public class Eduke8 {
     }
 
     private void exit() {
+        try {
+            userStorage.save();
+        } catch (IOException e) {
+            ui.printError(ERROR_STORAGE_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            System.exit(1);
+        }
         ui.printExitMessage();
         System.exit(0);
     }
