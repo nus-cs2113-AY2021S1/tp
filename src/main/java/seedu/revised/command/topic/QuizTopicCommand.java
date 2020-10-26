@@ -25,14 +25,15 @@ public class QuizTopicCommand extends TopicCommand {
 
     public void execute(Subject subject) throws NoTopicException, InvalidTopicException, NoFlashcardException {
         logger.info("Begin finding the topic for which the quiz has to be conducted.");
-        String[] message = this.fullcommand.split(" ");
-        if (message.length == 1) {
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length <= 1 || message[1].isEmpty()) {
             throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         Topic quizTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
-            if (topic.toString().contains(message[1])) {
+            if (topic.toString().equals(message[1].strip())) {
                 quizTopic = topic;
+                break;
             }
         }
         if (quizTopic == null) {
