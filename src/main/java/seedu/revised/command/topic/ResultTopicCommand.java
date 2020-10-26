@@ -20,14 +20,15 @@ public class ResultTopicCommand extends TopicCommand {
     public void execute(Subject subject) throws NoTopicException, InvalidTopicException {
         logger.info("Begin finding the topic for which the results feature has to be called.");
 
-        String[] message = this.fullcommand.split(" ");
-        if (message.length == 1) {
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length == 1 || message[1].isEmpty()) {
             throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         Topic resultTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
-            if (topic.toString().contains(message[1])) {
+            if (topic.toString().equals(message[1].strip())) {
                 resultTopic = topic;
+                break;
             }
         }
         if (resultTopic == null) {
