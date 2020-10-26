@@ -41,18 +41,18 @@ public class Duke {
         try {
             sm = new StorageManager(dataFilename, projectManager);
         } catch (IOException e) {
-            Ui.showError("Unable to create data/ directory, please " +
-                    "ensure that we are allowed to create the data/ directory!");
+            Ui.showError("Unable to create data/ directory, please "
+                    + "ensure that we are allowed to create the data/ directory!");
         }
         try {
             sm.load();
         } catch (IOException e) {
-            Ui.showError("Unable to load the data file properly, " +
-                    "please fix the data file under data/ directory. Exiting...");
+            Ui.showError("Unable to load the data file properly, "
+                    + "please fix the data file under data/ directory. Exiting...");
             exit(1);
         } catch (ClassCastException e) {
-            Ui.showError("Unable to parse the data file properly, " +
-                    "please check if your data file contains the correct values. Exiting...");
+            Ui.showError("Unable to parse the data file properly, "
+                    + "please check if your data file contains the correct values. Exiting...");
         }
         Ui.showWelcomeScreen();
     }
@@ -80,7 +80,8 @@ public class Duke {
                     try {
                         sm.save();
                     } catch (IOException e) {
-                        Ui.showError("Unable to save data successfully, please check your data/ directory.");
+                        Ui.showError("Unable to save data successfully, "
+                                + "please check your data/ directory.");
                     }
                 }
             }
