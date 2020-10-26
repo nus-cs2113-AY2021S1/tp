@@ -46,7 +46,7 @@ class FoodListTest {
     void deleteItemTest() {
         Food food = new Food("Kobe Beef", 480,50,40,30);
         FoodEntry entry = new FoodEntry(3, food);
-        assertEquals(list.delete(1), entry.toString());
+        assertEquals(entry.toString(), list.delete(1));
     }
 
     @Test
@@ -56,6 +56,28 @@ class FoodListTest {
 
         assertTrue(entry.compareTo(pastEntry) > 0);
 
+    }
+
+    @Test
+    void dateFilterAfterTest() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        
+        assertTrue(list.getFoodsAfterDateTime(timeNow).size() == 0);
+        assertEquals(list.getFoodsAfterDateTime(LocalDateTime.MIN).toString(), 
+                list.getFoods().toString());
+
+        // add new entries too:
+        list.addFood(1, food);
+        assertEquals(food.toString(), list.getFoodsAfterDateTime(timeNow).get(0).toString());
+
+    }
+
+    @Test
+    void dateFilterRangeTest() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        assertTrue(list.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
+        assertEquals(list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, timeNow).toString(),
+                 list.getPortionedFoods().toString());
     }
 
 }
