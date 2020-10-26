@@ -54,7 +54,7 @@ public class AddNoteCommand extends Command {
         // Get Content
         try {
             if (storageManager.noteExists(note, note.getIsArchived())) {
-                content = storageManager.getNoteContent(note);
+                content = storageManager.getNoteContent(note, note.getIsArchived());
             }
         } catch (SystemException exception) {
             return Formatter.formatString(exception.getMessage());

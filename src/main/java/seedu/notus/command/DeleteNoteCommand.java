@@ -33,7 +33,7 @@ public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
-    public static final String FILE_WRITE_UNSEUCCESSFUL_MESSAGE = "Unable to write to file";
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
     private String title = "";
@@ -72,11 +72,11 @@ public class DeleteNoteCommand extends Command {
             }
 
             if (isDeleted &&  title.isBlank()) {
-                storageManager.deleteNoteContentFile(deletedTitle);
+                storageManager.deleteNoteContentFile(deletedTitle, false);
                 storageManager.saveAllNoteDetails(notebook, false);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else if (isDeleted) {
-                storageManager.deleteNoteContentFile(title);
+                storageManager.deleteNoteContentFile(title, false);
                 storageManager.saveAllNoteDetails(notebook, false);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
             } else {
@@ -85,7 +85,7 @@ public class DeleteNoteCommand extends Command {
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         } catch (IOException e) {
-            return Formatter.formatString(FILE_WRITE_UNSEUCCESSFUL_MESSAGE);
+            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         } catch (SystemException exception) {
             return Formatter.formatString(exception.getMessage());
         }

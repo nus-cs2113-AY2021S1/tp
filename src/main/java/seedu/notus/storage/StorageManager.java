@@ -43,14 +43,14 @@ public class StorageManager {
         //Create directories
         String dataPath = FOLDER_DIR;
         String notesPath = FOLDER_DIR + NOTES_DIR;
-        String ArchivedNotesPath = FOLDER_DIR + ARCHIVED_NOTES_DIR;
+        String archivedNotesPath = FOLDER_DIR + ARCHIVED_NOTES_DIR;
 
         String notebookFilePath = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         String archivedNotebookFilePath = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
         String tagsFilePath = FOLDER_DIR + TAG_FILE_PATH;
         String timetableFilePath = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
-        String[] paths = {dataPath, notesPath, ArchivedNotesPath};
+        String[] paths = {dataPath, notesPath, archivedNotesPath};
         String[] files = {notebookFilePath, archivedNotebookFilePath, tagsFilePath, timetableFilePath};
 
         for (String path: paths) {
@@ -109,19 +109,22 @@ public class StorageManager {
      * Replaces it with the new note content details.
      *
      * @param notebook notebook that stores all the notes to be saved
+     * @param isArchive determines whether to save archived notes or normal notes
      * @throws IOException thrown when unable to write to the file
      */
     public static void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
-        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        String path;
 
         ArrayList<Note> notes;
 
         if (isArchive) {
             notes = notebook.getArchivedNotes();
+            path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
         } else {
             notes = notebook.getNotes();
+            path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         }
-        FileWriter fw = new FileWriter(path);
+        FileWriter fw = new FileWriter(path, false);
         fw.write("");
         fw.close();
 
@@ -146,10 +149,10 @@ public class StorageManager {
     public boolean noteExists(Note note, boolean isArchive) {
         String path;
 
-        if (isArchive){
-            path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH + "/" + note.getTitle() + ".txt";
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
         } else {
-            path = FOLDER_DIR + NOTEBOOK_FILE_PATH + "/" + note.getTitle() + ".txt";
+            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
         }
 
         File file = new File(path);
@@ -167,9 +170,9 @@ public class StorageManager {
     public static void saveNoteContent(Note note, boolean isArchive) throws IOException {
         String path;
 
-        if(isArchive) {
+        if (isArchive) {
             path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
-        }else {
+        } else {
             path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
         }
 
@@ -186,7 +189,7 @@ public class StorageManager {
     public static void saveNoteDetails(Note note, boolean isArchive) throws IOException {
         String path;
 
-        if (isArchive){
+        if (isArchive) {
             path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
         } else {
             path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
@@ -197,9 +200,16 @@ public class StorageManager {
         fwAppend.close();
     }
 
-    public ArrayList<String> getNoteContent(Note note) throws SystemException {
+    public ArrayList<String> getNoteContent(Note note, boolean isArchive) throws SystemException {
         ArrayList<String> content = new ArrayList<>();
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        String path;
+
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
+        } else {
+            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        }
+
         File f = new File(path);
         Scanner s;
         try {
@@ -215,8 +225,15 @@ public class StorageManager {
         return content;
     }
 
-    public static void deleteNoteContentFile(String noteTitle) throws SystemException {
-        String path = FOLDER_DIR + NOTES_DIR + "/" + noteTitle + ".txt";
+    public static void deleteNoteContentFile(String noteTitle, boolean isArchive) throws SystemException {
+        String path;
+
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + noteTitle + ".txt";
+        } else {
+            path = FOLDER_DIR + NOTES_DIR + "/" + noteTitle + ".txt";
+        }
+
         File file = new File(path);
 
         if (file.exists()) {
@@ -249,14 +266,40 @@ public class StorageManager {
     }
 
     /**
-     * Loads the Notebook and Timetable from the storage file.
+     * Loads the Notebook details and content for unArchived Notebooks.
      *
      * @param notebook The Notebook to be loaded into.
      * @param timetable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timetable, TagManager tagManager, ParserManager parserManager)
+    public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager, ParserManager parserManager)
             throws SystemException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        File f = new File(path);
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+        while (s.hasNext()) {
+            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
+            Command command = parserManager.parseCommand(taskDetails);
+            command.setData(notebook, timetable, tagManager, this);
+            command.execute();
+        }
+        s.close();
+    }
+
+    /**
+     * Loads the Notebook details and content for Archived Notebooks.
+     *
+     * @param notebook The Notebook to be loaded into.
+     * @param timetable The Timetable to be loaded into.
+     */
+    public void loadAllArchivedNotes(Notebook notebook, Timetable timetable,
+                                     TagManager tagManager, ParserManager parserManager)
+            throws SystemException {
+        String path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
         File f = new File(path);
         Scanner s;
         try {

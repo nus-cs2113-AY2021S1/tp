@@ -84,6 +84,7 @@ public class Note extends TaggableObject {
         }
         return contentString;
     }
+
     /**
      * Sets the content of note from the changes.
      */

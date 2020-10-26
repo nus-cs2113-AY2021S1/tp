@@ -1,11 +1,13 @@
 package seedu.notus.command;
 
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 //@@author R-Ramana
@@ -24,6 +26,7 @@ public class UnarchiveNoteCommand extends Command {
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
     public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
             + "Please check and specify a valid index value.";
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
     private String title = "";
@@ -65,6 +68,21 @@ public class UnarchiveNoteCommand extends Command {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }
             }
+
+            try {
+                storageManager.saveAllNoteDetails(notebook, true);
+                storageManager.saveAllNoteDetails(notebook, false);
+
+                // delete the content file from unarchived notes and add it to archived
+                storageManager.deleteNoteContentFile(title, true);
+                storageManager.saveNoteContent(notebook.getNote(title, false), false);
+
+            } catch (IOException exception) {
+                return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+            } catch (SystemException exception) {
+                return Formatter.formatString(exception.getMessage());
+            }
+
             return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
