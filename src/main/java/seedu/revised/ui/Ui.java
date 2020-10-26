@@ -56,6 +56,7 @@ public class Ui {
             + OOPS_SUFFIX;
     public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";
     public static final String INVALID_TOPIC_EXCEPTION = "Please enter a topic!";
+    public static final String INVALID_FLASHCARD_EXCEPTION = "Please enter a valid flashcard!";
     public static final String INVALID_DATETIME_EXCEPTION = "Enter date and time in the following format: "
             + "HH:MM DD-MM-YYYY";
     public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";
@@ -96,7 +97,7 @@ public class Ui {
 
         int num = 1;
         for (Subject item : list) {
-            System.out.println(num + "." + item);
+            System.out.println(num + ". " + item);
             num++;
         }
 
@@ -110,7 +111,7 @@ public class Ui {
         TaskList taskList = subject.getTasks();
         for (Task t : taskList.getList()) {
             assert index > 0;
-            System.out.println(index + "." + t);
+            System.out.println(index + ". " + t);
             index++;
         }
 
@@ -233,7 +234,7 @@ public class Ui {
         TopicList topicList = subject.getTopics();
         for (Topic t : topicList.getList()) {
             assert index > 0;
-            System.out.println(index + "." + t);
+            System.out.println(index + ". " + t);
             index++;
         }
 
@@ -301,7 +302,7 @@ public class Ui {
         int index = 1;
         for (Flashcard t : topic.getFlashcards()) {
             assert index > 0;
-            System.out.println(index + "." + t.getQuestion() + "; " + t.getAnswer());
+            System.out.println(index + ". " + t.getQuestion() + "; " + t.getAnswer());
             index++;
         }
 
@@ -451,7 +452,7 @@ public class Ui {
                 if (index == 1) {
                     System.out.println(subject);
                 }
-                System.out.println(index + ":" + task);
+                System.out.println(index + ": " + task);
                 index = index + 1;
             }
         }

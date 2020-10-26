@@ -27,14 +27,14 @@ public class ResultSubjectCommand extends SubjectCommand {
     public void execute(SubjectList subjectList, Storage storage) throws
             NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
-        String[] message = this.fullcommand.split(" ");
-        if (message.length == 1) {
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length == 1 || message[1].isEmpty()) {
             throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
-        Subject resultSubject = null;
 
+        Subject resultSubject = null;
         for (Subject subject : subjectList.getList()) {
-            if (subject.toString().equals(message[1])) {
+            if (subject.toString().equals(message[1].strip())) {
                 resultSubject = subject;
                 break;
             }

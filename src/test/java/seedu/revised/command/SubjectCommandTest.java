@@ -54,7 +54,7 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void addSubject_validCommand_returnsSubjectTitle() throws NoSubjectException, RepeatedSubjectException {
+    public void addSubject_validCommand_returnsSubjectTitle() throws RepeatedSubjectException, InvalidSubjectException {
         addCommand = new AddSubjectCommand("add Maths");
         addCommand.execute(subjects, storage);
         assertEquals("Maths", subjects.getList().get(3).getTitle());
@@ -68,7 +68,7 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void findSubject_validCommand_executesMethod() {
+    public void findSubject_validCommand_executesMethod() throws InvalidSubjectException {
         findCommand = new FindSubjectCommand("find English");
         findCommand.execute(subjects, storage);
     }
