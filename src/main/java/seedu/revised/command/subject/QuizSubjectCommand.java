@@ -35,14 +35,15 @@ public class QuizSubjectCommand extends SubjectCommand {
     public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException,
             NoTopicException, NoFlashcardException {
         logger.info("Begin finding the subject for which the quiz has to be conducted.");
-        String[] message = this.fullcommand.split(" ");
-        Subject quizSubject = null;
-        if (message.length == 1) {
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length <= 1 || message[1].isEmpty()) {
             throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
+        Subject quizSubject = null;
         for (Subject subject : subjectList.getList()) {
-            if (subject.toString().contains(message[1])) {
+            if (subject.toString().equals(message[1].strip())) {
                 quizSubject = subject;
+                break;
             }
         }
         if (quizSubject == null) {
