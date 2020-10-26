@@ -35,8 +35,7 @@ class AddCommandTest {
 
         assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
                         + "[T][✕] Math class, Location: "
-                        + "math building on 2000-10-17, 13:00" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "math building on 2000-10-17, 13:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 

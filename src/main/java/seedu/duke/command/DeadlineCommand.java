@@ -50,14 +50,10 @@ public class DeadlineCommand extends Command {
             EventList personalList = data.getEventList("Personal");
             Event updatedEvent = personalList.getEventByIndex(index - 1);
             if (updatedEvent != null) {
-                Personal event = (Personal) updatedEvent;
+                //Personal event = (Personal) updatedEvent;
                 if (time == null) {
-                    event.setHasDate(true);
-                    event.setHasTime(false);
                     updatedEvent.setDate(date);
                 } else {
-                    event.setHasDate(true);
-                    event.setHasTime(true);
                     updatedEvent.setDate(date);
                     updatedEvent.setTime(time);
                 }

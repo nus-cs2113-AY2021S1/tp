@@ -13,7 +13,9 @@ import seedu.duke.command.ListCommand;
 import seedu.duke.command.ReminderCommand;
 import seedu.duke.command.RepeatCommand;
 import seedu.duke.command.UndoneCommand;
+import seedu.duke.command.ExtractCommand;
 import seedu.duke.exception.DukeException;
+
 
 import java.util.Arrays;
 
@@ -82,6 +84,9 @@ public class Parser {
 
         case "calendar":
             return CalendarCommand.parse(argument);
+
+        case "extract":
+            return new ExtractCommand(argument);
 
         default:
             throw new DukeException("Invalid Command.");
