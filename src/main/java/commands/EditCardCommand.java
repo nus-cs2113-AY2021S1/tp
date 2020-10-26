@@ -10,6 +10,7 @@ import ui.Ui;
 
 import java.io.IOException;
 
+import static common.Messages.CARD;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
@@ -20,7 +21,6 @@ public class EditCardCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
     private static final String ACCESS_LEVEL = "chapter";
-    private static final String CARD = "flashcard";
 
     private final int editIndex;
     private String question;

@@ -9,6 +9,7 @@ import manager.module.ChapterList;
 import storage.Storage;
 import ui.Ui;
 
+import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
@@ -20,7 +21,6 @@ public class EditChapterCommand extends EditCommand {
     public static final String MESSAGE_SAME_NAME = "%1$s has the same chapter name as what you entered: %2$s\n";
 
     private static final String ACCESS_LEVEL = "module";
-    private static final String CHAPTER = "chapter";
 
     private final int editIndex;
     private String chapter;

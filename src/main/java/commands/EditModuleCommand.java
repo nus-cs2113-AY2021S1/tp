@@ -9,6 +9,7 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import static common.Messages.MODULE;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
@@ -20,7 +21,6 @@ public class EditModuleCommand extends EditCommand {
     public static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
 
     private static final String ACCESS_LEVEL = "admin";
-    private static final String MODULE = "module";
 
     private final int editIndex;
     private String module;

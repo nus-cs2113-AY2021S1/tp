@@ -2,6 +2,7 @@ package parser;
 
 import access.Access;
 
+import commands.AddCardCommand;
 import commands.AddCommand;
 import commands.BackCommand;
 import commands.Command;
@@ -34,13 +35,18 @@ import java.time.format.DateTimeParseException;
 
 import static common.Messages.CARD;
 import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_DATE_FORMAT;
 import static common.Messages.MESSAGE_EXTRA_ARGS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static common.Messages.MESSAGE_INVALID_COMMAND_TYPE;
 import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MESSAGE_MISSING_INDEX;
 import static common.Messages.MESSAGE_NON_INTEGER;
+import static common.Messages.MESSAGE_NO_NAME;
+import static common.Messages.MESSAGE_NO_QUESTION_AND_ANSWER;
+import static common.Messages.MESSAGE_NO_QUESTION_OR_ANSWER;
 import static common.Messages.MODULE;
 
 public class Parser {
@@ -94,13 +100,13 @@ public class Parser {
         case RescheduleCommand.COMMAND_WORD:
             return prepareReschedule(commandArgs);
         default:
-            throw new InvalidInputException("There is no such command type.\n");
+            throw new InvalidInputException(MESSAGE_INVALID_COMMAND_TYPE);
         }
     }
 
     private static Command prepareShowRate(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS,
                     ShowRateCommand.COMMAND_WORD) + ShowRateCommand.MESSAGE_USAGE);
         }
         return new ShowRateCommand();
@@ -110,13 +116,12 @@ public class Parser {
             throws InvalidInputException, IncorrectAccessLevelException {
         int chapterIndex;
         if (commandArgs.isEmpty()) {
-            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RateCommand.COMMAND_WORD) + RateCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + RateCommand.MESSAGE_USAGE);
         }
         try {
             chapterIndex = Integer.parseInt(commandArgs) - 1;
         } catch (NumberFormatException e) {
-            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_NON_INTEGER, CHAPTER)
                     + RateCommand.MESSAGE_USAGE);
         }
         return new RateCommand(chapterIndex);
@@ -131,8 +136,7 @@ public class Parser {
         try {
             LocalDate date = LocalDate.parse(commandArgs);
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException("The date should be in the format of yyyy-MM-dd\n"
-                    + HistoryCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_DATE_FORMAT + HistoryCommand.MESSAGE_USAGE);
         }
 
         return new HistoryCommand(commandArgs);
@@ -140,16 +144,14 @@ public class Parser {
 
     private static Command prepareGo(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
-            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GoCommand.COMMAND_WORD) + GoCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + GoCommand.MESSAGE_USAGE);
         }
         return new GoCommand(commandArgs);
     }
 
     private static Command prepareBack(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    BackCommand.COMMAND_WORD) + BackCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + BackCommand.MESSAGE_USAGE);
         }
         return new BackCommand();
     }
@@ -164,29 +166,30 @@ public class Parser {
 
     private static Command prepareList(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ListCommand.COMMAND_WORD) + ListCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
+                    + ListCommand.MESSAGE_USAGE);
         }
         return new ListCommand();
     }
 
     private static Command prepareAdd(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (access.isChapterLevel()) {
-            if (commandArgs.isEmpty()) {
-                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CARD_MESSAGE_USAGE);
-            }
-            return prepareAddCard(commandArgs);
-        } else if (access.isModuleLevel()) {
-            if (commandArgs.isEmpty()) {
-                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CHAPTER_MESSAGE_USAGE);
-            }
-            return prepareAddChapter(commandArgs);
-        } else if (access.isAdminLevel()) {
-            if (commandArgs.isEmpty()) {
-                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.MODULE_MESSAGE_USAGE);
-            }
+        if (access.isAdminLevel() && commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.MODULE_MESSAGE_USAGE);
+        }
+        if (access.isModuleLevel() && commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CHAPTER_MESSAGE_USAGE);
+        }
+        if (access.isChapterLevel() && commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCardCommand.MESSAGE_USAGE);
+        }
+
+        if (access.isAdminLevel()) {
             return prepareAddModule(commandArgs);
+        } else if (access.isModuleLevel()) {
+            return prepareAddChapter(commandArgs);
+        } else if (access.isChapterLevel()) {
+            return prepareAddCard(commandArgs);
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
@@ -200,10 +203,10 @@ public class Parser {
             String question = parseQuestion(args[0]);
             String answer = parseAnswer(args[1]);
             if (question.isEmpty() || answer.isEmpty()) {
-                throw new InvalidInputException("The content for question / answer is empty.\n"
-                        + AddCommand.CARD_MESSAGE_USAGE);
+                throw new InvalidInputException(MESSAGE_NO_QUESTION_OR_ANSWER
+                        + AddCardCommand.MESSAGE_USAGE);
             }
-            return new AddCommand(question, answer, CHAPTER_LEVEL);
+            return new AddCardCommand(question, answer);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD)
                     + AddCommand.CARD_MESSAGE_USAGE));
@@ -292,7 +295,7 @@ public class Parser {
             }
 
             if (args[1].trim().isEmpty()) {
-                throw new InvalidInputException("The module name is missing.\n"
+                throw new InvalidInputException(String.format(MESSAGE_NO_NAME, MODULE)
                         + EditModuleCommand.MESSAGE_USAGE);
             }
 
@@ -322,7 +325,7 @@ public class Parser {
             }
 
             if (args[1].trim().isEmpty()) {
-                throw new InvalidInputException("The chapter name is missing.\n"
+                throw new InvalidInputException(String.format(MESSAGE_NO_NAME, CHAPTER)
                         + EditChapterCommand.MESSAGE_USAGE);
             }
 
@@ -357,8 +360,7 @@ public class Parser {
             String answer = parseAnswer(questionAndAnswer[1]);
 
             if (question.isEmpty() && answer.isEmpty()) {
-                throw new InvalidInputException("The content for question and answer are both empty.\n"
-                        + EditCardCommand.MESSAGE_USAGE);
+                throw new InvalidInputException(MESSAGE_NO_QUESTION_AND_ANSWER + EditCardCommand.MESSAGE_USAGE);
             }
 
             return new EditCardCommand(editIndex, question, answer);
@@ -398,16 +400,17 @@ public class Parser {
     private static Command prepareRevise(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
         if (access.isAdminLevel() || access.isChapterLevel()) {
-            throw new IncorrectAccessLevelException("Revise command can only be called at module level.\n");
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
+                    access.getLevel(), MODULE_LEVEL));
         } else if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The index for chapter to revise is missing.\n"
+            throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, CHAPTER)
                     + ReviseCommand.MESSAGE_USAGE);
         }
         int chapterIndex;
         try {
             chapterIndex = Integer.parseInt(commandArgs) - 1;
         } catch (NumberFormatException e) {
-            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_NON_INTEGER, CHAPTER)
                     + ReviseCommand.MESSAGE_USAGE);
         }
         return new ReviseCommand(chapterIndex);
@@ -506,8 +509,7 @@ public class Parser {
 
     private static Command preparePreview(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            String errorMessage = "There should not be any arguments for preview." + PreviewCommand.MESSAGE_USAGE;
-            throw new InvalidInputException(errorMessage);
+            throw new InvalidInputException(MESSAGE_EXTRA_ARGS + PreviewCommand.MESSAGE_USAGE);
         }
         return new PreviewCommand();
     }
@@ -523,7 +525,7 @@ public class Parser {
         try {
             String[] args = commandArgs.split(" ", 2);
             if (args[0].trim().isEmpty()) {
-                throw new InvalidInputException("The chapter number is missing.\n"
+                throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, CHAPTER)
                         + RescheduleCommand.MESSAGE_USAGE);
             }
 
@@ -539,14 +541,13 @@ public class Parser {
             }
             return new RescheduleCommand(index, dueDate);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException("The chapter number needs to be an integer.\n"
+            throw new InvalidInputException(String.format(MESSAGE_NON_INTEGER, CHAPTER)
                     + RescheduleCommand.MESSAGE_USAGE);
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidInputException("The format for the reschedule command is incorrect.\n"
-                    + RescheduleCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RescheduleCommand.COMMAND_WORD) + RescheduleCommand.MESSAGE_USAGE);
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException("The format for the date is incorrect.\n"
-                    + RescheduleCommand.MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_DATE_FORMAT + RescheduleCommand.MESSAGE_USAGE);
         }
     }
 }
