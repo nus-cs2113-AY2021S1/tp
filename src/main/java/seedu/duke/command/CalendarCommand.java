@@ -8,6 +8,7 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -45,7 +46,8 @@ public class CalendarCommand extends Command {
 
     private void addEventToCalendar(Event e) {
         LocalDate eventDate = e.getDate();
-        if (eventDate != null) {
+        LocalTime eventTime = e.getTime();
+        if (eventDate != null && eventTime != null) {
             ArrayList<Event> eventsOnDate;
             if (calendarMap.containsKey(eventDate)) {
                 eventsOnDate = calendarMap.get(eventDate);
