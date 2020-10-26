@@ -37,7 +37,7 @@
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
-{Insert high level architecture diagram here}
+![addmod](diagrams/Architecture.png)
 
 The ModTracker class is the main entry point for the ModTracker application. It contains the main, loadData, run, 
 startAndGetName and runCommandLoopUntilExitCommand methods. The methods are responsible for:
@@ -51,11 +51,10 @@ startAndGetName and runCommandLoopUntilExitCommand methods. The methods are resp
     * Save user data into a text file.
     * Invoke clean up methods where necessary.
     
-The rest of the app consists of 5 packages:
+The rest of the app consists of 4 packages:
 * `Ui` : The user interface of the app.
 * `Parser` : Parses the user input and calls the corresponding methods.
-* `Logic` : Contains all classes and methods that performs the logical operations.
-* `Model` : Holds the data of the app (Task & Module) in memory.
+* `Model` : Holds the data of the app in-memory.
 * `Storage` : Saves and loads data to and from the hard disk.
     
 ## Implementation
