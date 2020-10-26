@@ -29,13 +29,11 @@
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
-  - [Appendices](#appendices)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+  - [Appendix A: Product Scope](#appendix-a-product-scope)
+  - [Appendix B: User Stories](#appendix-b-user-stories)
+  - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+  - [Appendix D: Glossary](#appendix-d-glossary)
+  - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
    
 ## 1. Introduction
@@ -132,11 +130,11 @@ Given below is an example of usage scenario of how the add command behaves at ea
 of the show, the number of seasons of the show, the number of episodes in each season(separated by the comma) and 
 the duration of each episode. 
 
-The parseInput method in InputParser class is called to parse the command.
+The InputParser class calls the parseInput method to parse the command.
 
 **[NOTE]** 
 
-Customised exceptions are thrown when the number of arguments entered by the user is mismatched
+ArrayOutOfBounds and NullPointer exceptions are thrown when the number of arguments entered by the user is incorrect.
 
 **Step 2**
 
@@ -147,47 +145,65 @@ Customised exceptions are thrown when the number of arguments entered by the use
 * The user input is tokenized by the AddCommand method into 4 seperate parameters. (Title,Number of seasons,Number of
 episodes for each season respectively,Duration of an episode)
 
+
 **Step 4**
 
-A new Show instance is created with the 4 parameters
+A new Show instance is created with the 4 parameters created in step 3.
 
 **Step 5**
 
-The Show is added to the Showlist
+The Show is added to the Showlist.
+
 
 **Step 6** 
 
-The changes will be reflect to the user. At the same time, the changes will be saves into the showList.txt file
+The changes will be reflected to the user. At the same time, the changes will be saved into the showList.txt file.
 
 ### EditCommand
 
 The `edit` command allows the user to change the details of each show that they are watching after they have added the
-show. It is self-contained, including its own parser and methods which allows the user to change any parameter they 
-wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
+show. It is self-contained, it includes its own parser and methods which prompts the user to change any parameter they 
+wish, after the user enters `done`, the `edit` command replaces the old entry with the updated one.
 
-Given below is an example of usage scenario of how the edit command behaves at each step
-
-**Step 1**
-
-* The user types in `edit friends` , assuming that friends has been added by the user beforehand.
+Given below is an example of usage scenario of how the edit command behaves at each step and a sequence diagram to
+illustrate the steps in a visual form.
 
 **[NOTE]** 
 
-Customised NullPointerException will be thrown when show entered by user is not found in the show list
+NullPointerException will be thrown when show entered by user is not found in the showlist.
+
+<img src = "images/EditCommand.png" width = "700">
+ 
+ <br> 
+*Figure 1: Sequence Diagram for Edit Command*
+
+**Step 1**
+
+* The user types in `edit friends` , where the show `friends` already exists int the showlist.
 
 **Step 2**
 
-The processCommand method is then called. The system will prompt the user to edit the name,season,episodes and 
-duration (of an episode) respectively.
+* The processCommand method is called. The processCommand method will retrieve the existing show object from the showlist,
+and make a copy of it.
+* Then the system will prompt the user to edit the name,season,episodes or the 
+duration (of an episode) respectively. 
 
 **Step 3**
 
-Shikai can help here HAHAH
+* The process command parses each line of the user input.
+* The EditCommand class then calls the corresponding method, e.g. `editDuration()` to make the corresponding changes to the copy.
+
+**Step 4**
+
+* The user inputs `done`, and the copy of the show object is inserted into the showlist, replacing the old object.
+
+
 
 ### DeleteCommand
   
 The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the
 show from the Showlist. The 'delete' is invoked by the InputParser Method parseDeleteCommand.
+
 
 Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
 
@@ -307,6 +323,7 @@ The deleteRating method in DeleteRatingCommand class is called.
 
 **Step 3**
 
+
 The deleteRating method starts with retrieving the show from the ShowList
 
 **Step 4**
@@ -319,7 +336,34 @@ The show is updated back into the Showlist
 
 **Step 6**
 
-The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file
+The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
+
+
+### Add Review Command
+
+The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
+Within the AddReview class
+
+**Step 1**
+
+The string is tokenised into separate words.
+
+**Step 2**
+
+The corresponding show is retrieved from the show list.
+
+**Step 3**
+
+The rating of the show is updated.
+
+**Step 4**
+
+The review of the rating is added to the show.
+
+**Step 5**
+
+Reflect the changes back to the user. At the same time, changes are saved into the showList.txt file.
+
 
 ### ChangeReviewCommand
 
@@ -328,12 +372,13 @@ The command is then invoked by the inputParser method parseChangeReview.
 
 **Step 1**
 
+
 * The user types in `changereview friends / This show is great` , assuming that friends has been added by the user beforehand.
 The parseChangeReviewCommand method in InputParser class is called to parse the command.
 
 **[NOTE]** 
 
-Customised NullPointerException will be thrown when show entered by user is not found in the show list
+Customised NullPointerException will be thrown when show entered by user is not found in the show list.
 
 **Step 2**
 
@@ -342,19 +387,19 @@ The changeReview method in ChangeReviewCommand class is called.
 
 **Step 3**
 
-The changeReview method starts with retrieving the show from the ShowList
+The changeReview method starts with retrieving the show from the ShowList.
 
 **Step 4**
 
-The show's review is then set to "null", essentially delete it
+The show's review is then set to "null", essentially deleting it.
 
 **Step 5**
 
-The show is updated back into the Showlist
+The show is updated back into the Showlist.
 
 **Step 6**
 
-The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file
+The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file.
 
 ### DeleteReviewCommand
 
@@ -422,7 +467,18 @@ The processCommand method in WatchCommand class is called.
 
 3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
 
-### UpdateTimeLimitCommand 
+
+The following sequence diagram summarises what happens when a user executes a `WatchCommand`:
+
+ <img src = "images/WatchCommandSequence.png" width = "700">
+ 
+ <br> 
+ 
+ *Sequence diagram for Watch Command*
+
+
+
+### UpdateTimeLimitCommand
 
 The UpdateTimeLimit class extends Command by providing methods to 
 update the current time limit of the user from the WatchTime class. 
@@ -446,7 +502,7 @@ The processCommand method in UpdateTimeLimit class is called.
 * The processCommand method in UpdateTimeLimit class will call the WatchTIme class and update its `dailywatchtime` variable
 to the desired value, which is 120 in this case.
 
-* The change will then be reflected to the user, and be saved to the userData.txt file.
+* The change will then be reflected to the user, and saved to the userData.txt file.
 
 ### Storage  
 
@@ -458,6 +514,28 @@ The loadState function will read the file line by line. It will first call the l
 
 The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
 
+### Error Handling
+
+The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an exception.
+
+The following is an example execution scenario and demonstrates how the `ErrorHandling` class behaves and interacts with other relevant classes.
+
+**Step 1**
+
+* The user types in `updatetimelimit hello`.
+The `parseInput` method in `InputParser` class is called to parse the command. The `processCommand` method in `UpdateTimeLimit` class is called.
+The `processCommand` method will attempt to parse `hello` to an integer.
+
+**[NOTE]** At this instance `NumberFormatException` will be thrown as `hello` cannot be parsed to an integer.
+
+**Step 2**
+
+* The `parseUpdateTimeLimitCommand` method in `InputParser` class catches the thrown `NumberFormatException`. The printInvalidFormatException method in Ui class is called.
+
+**Step 3**
+
+* The `printInvalidFormatException` method in `Ui` class will call the `ErrorHandling` class and get the `EXCEPTION_INVALID_FORMAT` enumeration, along with its `exceptionMessage`.
+The `Ui` class prints the `exceptionMessage` into the terminal.
 
 ## 5. Documentation
 
@@ -488,10 +566,10 @@ Two main forms of testing was used for the development of **WatchNext**.
 
 ## 7. Dev Ops
 
-When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
+After the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
 
-##  Appendices
 
+##  Appendix A: Product Scope
 
 ### Target user profile
 
@@ -513,7 +591,7 @@ or missing episodes with the help of **WatchNext's** show progress tracking feat
 actual time they spend watching shows and is a feature that is not provided by most other platforms.
 
 
-## User Stories
+##  Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -527,18 +605,214 @@ actual time they spend watching shows and is a feature that is not provided by m
 |v1.0|student|I want to track which zoom lectures / or webcasts that I have watched| I can make sure I don’t miss any important lessons.|
 
 
-## Non-Functional Requirements
+##  Appendix C: Non-Functional Requirements
 
 1. WatchNext will work on any mainstream OS as long as it has Java 11 installed.
 
 2. Users who can type fast and prefer typing over other means of input should be able to use WatchNext faster using commands than using the mouse in a GUI(Graphic User Interface)-based program.
 
-## Glossary
+##  Appendix D: Glossary
 
 * *Graphic User Interface* - It is a user interface that includes graphical elements, such as windows, icons and buttons.
 
-## Instructions for manual testing
+* *Mainstream OS* - Windows, Linux, Unix, OS-X
+
+##  Appendix E: Instructions for manual testing
 
 **[NOTE]** The instructions and sample test cases only act as a guide for you to start testing on some of our application features. You are free to test our features with more test cases of your own. Refer to [Section 2.a,“Prerequisites”](#2a-prerequisites) for the instructions to set up our program on your computer.
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Managing shows
+
+#### Adding a show
+
+1. Test case: `add friends 2 9,10 60`
+
+Expected: An acknowledgement message displayed indicating that the show has been added.
+
+2. Test case: `add friends`
+
+Expected: An error message displayed due to invalid format given by the user.
+
+3. Test case: `add friends 2 9,10,11 60`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+#### Deleting a show
+
+1. Prerequisites: The show name `friends` has already been added into the list. 
+
+2. Test case: `delete Friends`
+
+Expected: An error message indicating that the show was not found. 
+
+> **[NOTE]** The show name added is case-sensitive, as mentioned in the [User Guide](https://ay2021s1-cs2113t-w12-3.github.io/tp/UserGuide.html#3-command-format)
+
+3. Test case: `delete friends`
+
+Expected: An acknowledgement message displayed indicating that the show has been deleted from the list.
+
+4. Test case: `delete 1`
+
+Expected: An error message indicating that the show was not found.
+
+#### Editing a show
+
+1. Prerequisites: The show name `friends` has already been added into the list. Reach the edit prompt by the program using the `edit friends` command. 
+
+> **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
+
+2. Test case: `season 3` followed by `episode 3,10`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+3. Test case: ``
+
+4. Test case: ``
+
+### Managing Reviews and Ratings
+
+#### Adding a review
+
+1. Prerequisites: The show name `friends` has already been added into the list. 
+
+> **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
+
+2. Test case: `season 3` followed by `episode 3,10`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+3. Test case: ``
+
+4. Test case: ``
+
+#### Changing a review
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Changing a rating
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Deleting a rating
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+### Modifying current watch progress and watch time
+
+#### Updating current episode
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Updating current season
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Watching a show
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Updating watch time limit
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+### Viewing show details
+
+#### Viewing your watch list
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Finding a show in your watch list
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
