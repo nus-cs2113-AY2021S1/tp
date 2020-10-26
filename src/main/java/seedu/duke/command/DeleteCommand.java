@@ -24,12 +24,10 @@ public class DeleteCommand extends Command {
     }
 
     public static Command parse(String input) throws WrongNumberOfArgumentsException {
-        String[] inputParameters = input.trim().split(" ", 3);
+        String[] inputParameters = input.trim().split(" ", 2);
 
         if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type not provided.");
-        } else if (inputParameters.length < 3) {
-            throw new WrongNumberOfArgumentsException("Event index not provided.");
+            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
         }
 
         String listType = inputParameters[0];
@@ -54,10 +52,12 @@ public class DeleteCommand extends Command {
             } else if (eventIndexArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
                 LocalDate deleteEventDate = dateParser(eventIndexArray[1]);
                 ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
+
                 for (Event e: repeatEventList) {
                     if (e.getDate().isEqual(deleteEventDate)) {
                         repeatEventList.remove(e);
                         ui.printEventDeletedMessage(e);
+                        break;
                     }
                 }
             }

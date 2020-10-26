@@ -29,12 +29,10 @@ public class UndoneCommand extends Command {
     }
 
     public static Command parse(String input) throws WrongNumberOfArgumentsException {
-        String[] inputParameters = input.trim().split(" ", 3);
+        String[] inputParameters = input.trim().split(" ", 2);
 
         if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type not provided.");
-        } else if (inputParameters.length < 3) {
-            throw new WrongNumberOfArgumentsException("Event index not provided.");
+            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
         }
 
         String listType = inputParameters[0];
