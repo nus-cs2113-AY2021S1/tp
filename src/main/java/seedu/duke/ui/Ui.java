@@ -84,26 +84,34 @@ public class Ui {
         printDividerLine();
     }
 
+    private void printCalendarDivider() {
+        System.out.println("---------------------------------------------------------------------------------------");
+    }
+
     public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
         System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
-        printDividerLine();
+        printCalendarDivider();
         ArrayList<Event> eventsOnDate;
         eventsOnDate = entry.getValue();
         eventsOnDate.sort(Comparator.comparing(Event::getTime));
         for (Event e : eventsOnDate) {
             System.out.println(e.toCalendarString());
         }
-        printDividerLine();
-        //print there are how many task without date
+        printCalendarDivider();
     }
 
     public void printCalendarStart(int size, int count) {
-        System.out.println("Calendar has " + size + " dates to display.");
+        System.out.println("Calendar has " + size + " dates to display");
         if (count > 1) {
-            System.out.println(count + " events not on the calendar because they have no date.");
+            System.out.println(count + " events not on the calendar because they have no date and time");
         } else if (count > 0) {
-            System.out.println(count + " event not on the calendar because it has no date.");
+            System.out.println(count + " event not on the calendar because it has no date and time");
         }
+        printCalendarDivider();
+    }
+
+    public void printCalendarEnd() {
+        System.out.println("End of calendar");
         printDividerLine();
     }
 

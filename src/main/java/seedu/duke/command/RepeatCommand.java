@@ -164,6 +164,7 @@ public class RepeatCommand extends Command {
                 throw new InvalidTimeUnitException(repeatType);
             }
             eventToRepeat.setRepeatType(repeatType);
+            eventToRepeat.setRepeatEventList(null);
             Event repeatEvent;
             try {
                 repeatEvent = eventToRepeat.clone();
