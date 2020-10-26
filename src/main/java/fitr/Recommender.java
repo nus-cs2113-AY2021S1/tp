@@ -5,6 +5,7 @@ import fitr.storage.StandardExerciseStorage;
 import fitr.ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Recommender {
     protected StandardExerciseList upperBodyList;
@@ -21,7 +22,7 @@ public class Recommender {
             this.aerobicList = storage.loadAerobicList();
             this.stretchingList = storage.loadStretchList();
             isSuccessful = true;
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             Ui.printCustomMessage("File(s) missing!");
             isSuccessful = false;
         }

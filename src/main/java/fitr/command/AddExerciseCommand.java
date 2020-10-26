@@ -10,7 +10,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 
 public class AddExerciseCommand extends Command {

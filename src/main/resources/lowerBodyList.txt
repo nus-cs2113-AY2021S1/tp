@@ -12,5 +12,3 @@ Side Lunges, 3.8, 1, 1.5, 2, 3, 4, 5
 Step ups, 4.0, 1, 1.5, 2, 3, 4, 5
 Side Lying Leg lifts, 5.0, 1, 1.5, 2, 3, 4, 5
 Calf Raises, 3.8, 1, 1.5, 2, 3, 4, 5
-
-

@@ -13,7 +13,7 @@ import fitr.Exercise;
 
 import java.io.IOException;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
 import static fitr.common.Messages.EXERCISE_HEADER;
