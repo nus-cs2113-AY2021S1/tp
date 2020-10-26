@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
+    protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
     private static final Logger LOGGER = getAniLogger(AddToWatchlistParser.class.getName());
 
@@ -23,8 +24,9 @@ public class ViewWatchlistParser extends CommandParser {
     public ViewWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
-        if (paramGiven.length <= 1) {
-            throw new AniException("-v WATCHLIST_ID is required");
+        paramIsSetCheck(paramGiven);
+        if (paramGiven.length > 2) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         } else {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, "Parameter parsed properly");
