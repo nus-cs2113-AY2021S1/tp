@@ -104,7 +104,7 @@ public class Ui {
         System.out.println(index + ". " + desc + "\nCommand stored: " + command);
         printLine();
     }
-    
+
     public static void printResetSearchFreqMessage() {
         printLine();
         System.out.println("The search frequencies of all bus stops have been reset to 0!");
