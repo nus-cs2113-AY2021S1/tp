@@ -18,14 +18,12 @@ import java.util.ArrayList;
 
 public class UserStorage extends LocalStorage {
     private BookmarkList bookmarkList;
-    private NoteList noteList;
     private TopicList topicList;
 
-    public UserStorage(String filePath, TopicList topicList, BookmarkList bookmarkList, NoteList noteList) {
+    public UserStorage(String filePath, TopicList topicList, BookmarkList bookmarkList) {
         super(filePath);
         this.topicList = topicList;
         this.bookmarkList = bookmarkList;
-        this.noteList = noteList;
     }
 
     @Override
@@ -43,21 +41,34 @@ public class UserStorage extends LocalStorage {
             JSONArray questions = getQuestionsJsonArray((Topic) topicObject);
             topic.put("questions", questions);
 
-            JSONArray notes = getNotesJsonArray();
+            JSONArray notes = getNotesJsonArray(((Topic) topicObject).getNoteList());
             topic.put("notes", notes);
 
             topics.add(topic);
         }
 
         //Write JSON file
-        FileWriter writer = new FileWriter(filePath);
+        FileWriter writer = new FileWriter(file.getAbsolutePath());
         writer.write(topics.toJSONString());
         writer.flush();
 
         return file;
     }
-    
-    private JSONArray getNotesJsonArray() {
+
+    @Override
+    public ArrayList<Displayable> load() throws IOException, ParseException {
+        if (!file.exists()) {
+            return new ArrayList<>();
+        }
+
+        JSONArray objectsAsJsonArray = getJsonArrayFromFile();
+
+
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
         for (Displayable noteObject: noteList.getInnerList()) {
             notes.add(noteObject.getDescription());
@@ -65,6 +76,7 @@ public class UserStorage extends LocalStorage {
         return notes;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONArray getQuestionsJsonArray(Topic topicObject) {
         JSONArray questions = new JSONArray();
         TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topicObject);
@@ -79,15 +91,5 @@ public class UserStorage extends LocalStorage {
         return questions;
     }
 
-    @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException {
-        if (!file.exists()) {
-            return new ArrayList<>();
-        }
 
-        JSONArray objectsAsJsonArray = getJsonArrayFromFile();
-
-
-        return null;
-    }
 }

@@ -43,7 +43,7 @@ public class Eduke8 {
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
 
-            userStorage = new UserStorage(userPath, topicList);
+            userStorage = new UserStorage(userPath, topicList, bookmarkList);
             bookmarkList = new BookmarkList(userStorage.load());
         } catch (ParseException | IOException e) {
             ui.printError(ERROR_STORAGE_FAIL);
