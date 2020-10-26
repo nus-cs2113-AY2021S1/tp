@@ -1,0 +1,41 @@
+@startuml
+
+class Command
+class Show
+class Storage
+class WatchTime
+class Duke
+class Ui
+interface SaveState
+class ErrorHandling
+class ShowList
+class InputParser
+class StringOperations
+
+Duke *--> "1" Ui
+Duke *--> "1" ShowList
+Duke *--> "1" Storage
+Duke *--> "1" WatchTime
+Duke --> "1" InputParser
+
+Storage ..|> SaveState
+Storage --> "1" WatchTime
+Show <..> Ui
+Ui ..> ShowList
+Ui ..> ErrorHandling
+InputParser --> StringOperations
+InputParser --> "0..1" Ui
+ShowList "1" *--> "*" Show
+InputParser --> Command
+
+package "Command" {
+Command <|-- AddCommand
+Command <|-- EditCommand
+Command <|-- DeleteCommand
+Command <|-- OtherCommands
+class AddCommand
+class EditCommand
+class DeleteCommand
+class OtherCommands
+}
+@enduml
