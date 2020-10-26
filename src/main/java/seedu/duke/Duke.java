@@ -62,12 +62,6 @@ public class Duke {
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));
-
-        try {
-            StorageManager.saveTimetable(timetable);
-        } catch (IOException exception) {
-            interfaceManager.prints("error");
-        }
     }
 
     /**

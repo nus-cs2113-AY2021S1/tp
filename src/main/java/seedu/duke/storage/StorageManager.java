@@ -207,8 +207,15 @@ public class StorageManager {
      *
      * @param timetable The Timetable containing all the events to be saved.
      */
-    public static void saveTimetable(Timetable timetable) throws IOException {
+    public void saveTimetable(Timetable timetable) throws IOException {
         String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
+
+        //clear file
+        FileWriter fwClear = new FileWriter(path, false);
+        fwClear.write("");
+        fwClear.close();
+
+        //rewrite information to the file
         FileWriter fwAppend = new FileWriter(path, true);
 
         ArrayList<Event> nonRecurringEvents = timetable.getAllNonRecurringEvents();
@@ -223,14 +230,17 @@ public class StorageManager {
 
         for (RecurringEvent event: recurringEvents) {
             eventDetails = getEventDetailsSaveFormat(event);
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING + " " + event.getRecurrenceType() + " "
-                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING + " " + event.getEndRecurrenceDate() + " ";
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+                        + " " + event.getRecurrenceType() + " "
+                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+                        + " " + event.getEndRecurrenceDate() + " "
+                        + LS;
             fwAppend.write(eventDetails);
         }
         fwAppend.close();
     }
 
-    private static String getEventDetailsSaveFormat (Event event) {
+    private static String getEventDetailsSaveFormat(Event event) {
         String eventDetails;
         eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
                 + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
@@ -241,7 +251,7 @@ public class StorageManager {
             eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " " + reminderPeriod + " ";
         }
 
-        if(!event.getRecurring()) {
+        if (!event.getRecurring()) {
             eventDetails += LS;
         }
 
@@ -265,7 +275,6 @@ public class StorageManager {
             command.execute();
         }
         s.close();
-
     }
 
     /**
@@ -275,8 +284,8 @@ public class StorageManager {
      * @param timetable The Timetable containing all the events to be saved.
      */
     public void saveAll(Notebook notebook, Timetable timetable)throws SystemException {
-        saveNotebook(notebook);
         try {
+            saveNotebook(notebook);
             saveTimetable(timetable);
         } catch (IOException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
