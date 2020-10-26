@@ -19,6 +19,7 @@ public class DeleteBookmarkCommand extends Command {
      * @throws ZoomasterException thrown if input command is invalid or if the bookmark number is invalid.
      */
     public DeleteBookmarkCommand(String command) throws ZoomasterException {
+        assert command.startsWith(DEL_KW) : "input should always start with \"del\"";
         String details = command.substring(DEL_KW.length());
         if (details.isBlank()) {
             throw new ZoomasterException(ZoomasterExceptionType.EMPTY_COMMAND, DEL_KW);
