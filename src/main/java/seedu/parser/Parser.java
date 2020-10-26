@@ -12,27 +12,54 @@ import seedu.commands.Search;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
+import java.util.regex.Matcher;
+
 
 public class Parser {
 
+
     public Command processRaw(String rawInput) throws
             UnknowCommandException, InvalidCommandException, InvalidTaskNumberException {
+        Matcher matcher;
         if (rawInput.startsWith(Help.COMMAND_WORD)) {
             return new Help();
-        } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
-            return new Add(rawInput);
         } else if (rawInput.startsWith(List.COMMAND_WORD)) {
             return new List(rawInput);
         } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
             return new Bye();
-        } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
-            return new Edit(rawInput);
         } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
             return new Clear();
+        } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
+            matcher = Add.COMMAND_PATTERN.matcher(rawInput);
+            if (matcher.find()) {
+                return new Add(matcher.group("description"), matcher.group("date"), matcher.group("st"),
+                        matcher.group("et"), matcher.group("priority"));
+            } else {
+                throw new InvalidCommandException();
+            }
+        } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
+            matcher = Edit.COMMAND_PATTERN.matcher(rawInput);
+            if (matcher.find()) {
+                return new Edit(matcher.group("key"), matcher.group("description"),
+                        matcher.group("date"), matcher.group("st"), matcher.group("et"),
+                        matcher.group("priority"));
+            } else {
+                throw new InvalidCommandException();
+            }
         } else if (rawInput.startsWith(Search.COMMAND_WORD)) {
-            return new Search(rawInput);
+            matcher = Search.COMMAND_PATTERN.matcher(rawInput);
+            if (matcher.find()) {
+                return new Search(matcher.group("toSearch"));
+            } else {
+                throw new InvalidCommandException();
+            }
         } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
-            return new Delete(rawInput);
+            matcher = Delete.COMMAND_PATTERN.matcher(rawInput);
+            if(matcher.find()) {
+                return new Delete(matcher.group("key"));
+            } else {
+                throw new InvalidCommandException();
+            }
         } else {
             throw new UnknowCommandException();
         }

@@ -14,7 +14,7 @@ import static seedu.messages.Messages.EDIT_MESSAGE;
 
 public class Edit extends Command {
     public static final String COMMAND_WORD = "edit";
-    private static final Pattern COMMAND_PATTERN = Pattern.compile(
+    public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^edit (?<key>\\d+)"
                     + "( des/(?<description>(\\w+\\s*)+\\w*))?"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
@@ -28,22 +28,18 @@ public class Edit extends Command {
     private final String endTime;
     private final String priority;
 
-    public Edit(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
-        Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
-        if (matcher.find()) {
-            try {
-                key = Integer.parseInt(matcher.group("key"));
-            } catch (NumberFormatException e) {
-                throw new InvalidTaskNumberException();
-            }
-            description = matcher.group("description");
-            date = matcher.group("date");
-            startTime = matcher.group("st");
-            endTime = matcher.group("et");
-            priority = matcher.group("priority");
-        } else {
-            throw new InvalidCommandException();
+    public Edit(String keyString, String description, String date, String startTime, String endTime, String priority)
+            throws InvalidTaskNumberException {
+        try {
+            key = Integer.parseInt(keyString);
+        } catch (NumberFormatException e) {
+            throw new InvalidTaskNumberException();
         }
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
     }
 
     @Override
