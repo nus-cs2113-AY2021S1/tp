@@ -472,7 +472,18 @@ to the desired value, which is 120 in this case.
 
 ### Storage  
 
-For the storage function, the file which named userData will be put in a specific file path with a fixed format.  
+The Storage class is created and facilitated by `Duke`. It has an interface class `SaveState`. It implements the following operations:
+
+ - `saveState()` ---- Save the show list and the watch time details into a file named `userData.txt`
+ - `loadWatchTimeDetail()` ---- load the watch time detail from `userdata.txt` and create a `WatchTime` instance
+ - `loadState()` ---- load the show list from userdata.txt and return a `ShowList` instance
+
+**Step 1**
+* The user open WatchNext. `Duke` creates a Storage class and specifies the file path of `userData.txt`.
+
+**Step 2**
+* 
+#### Save File
 
 The saveState function will save the watch time detail at the beginning and then follow by the show list. Everytime a command is executed by users, the file will be rewrite to update new contain. If the file or the folder does not exist in the specific path, the app will create it automatically.  
 
