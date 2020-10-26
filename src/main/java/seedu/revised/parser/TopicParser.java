@@ -15,7 +15,7 @@ import seedu.revised.command.topic.ResultTopicCommand;
 import seedu.revised.command.topic.SorryTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
-import seedu.revised.command.topic.GoToTopicCommand;
+import seedu.revised.command.topic.AccessTopicCommand;
 import seedu.revised.command.topic.HelpTopicCommand;
 
 
@@ -63,7 +63,7 @@ public class TopicParser {
         case "results":
             return new ResultTopicCommand(fullCommand);
         case "topic":
-            return new GoToTopicCommand(fullCommand);
+            return new AccessTopicCommand(fullCommand);
         case "todo":
             return new AddTodoCommand(fullCommand);
         case "deadline":

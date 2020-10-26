@@ -13,14 +13,24 @@ import seedu.revised.ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class GoToSubjectCommand extends SubjectCommand {
+public class AccessSubjectCommand extends SubjectCommand {
     private String fullcommand;
 
-    public GoToSubjectCommand(String fullcommand) {
+    public AccessSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
-    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException {
+    /**
+     * Adds an instance of the <code>Subject</code> class into a <code>SubjectList</code>.
+     *
+     * @param subjectList           An instance of the <code>SubjectList</code> class for the user
+     *                              to find subjects that matches the user input
+     * @param storage               Does nothing in this case but needed since this method was
+     *                              implemented from an abstract class
+     * @throws NoSubjectException   If the program does not detect the correct syntax for user input
+     */
+    public void execute(SubjectList subjectList, Storage storage)
+            throws NoSubjectException {
         Subject gotoSubject = null;
 
         String[] message = this.fullcommand.split(" ");
@@ -41,6 +51,11 @@ public class GoToSubjectCommand extends SubjectCommand {
         goToSubject(gotoSubject);
     }
 
+    /**
+     * Adds an instance of the <code>Subject</code> class into a <code>SubjectList</code>.
+     *
+     * @param subject An instance of the <code>Subject</code> class for the user to access
+     */
     private void goToSubject(Subject subject) {
         Ui.printGoToSubject(subject);
         boolean isSubjectExit = false;
@@ -68,9 +83,13 @@ public class GoToSubjectCommand extends SubjectCommand {
             }
         }
         Ui.printBackToSubjects();
-
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> if user exits the program
+     */
     public boolean isExit() {
         return false;
     }

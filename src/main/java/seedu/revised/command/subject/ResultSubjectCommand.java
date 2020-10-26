@@ -18,12 +18,14 @@ public class ResultSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Shows results of the quiz of a <code>Subject</code> in a <code>SubjectList</code>
+     * Shows results of the quiz of a <code>Subject</code> in a <code>SubjectList</code>.
      *
-     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class to get the results from.
-     * @return null
+     * @param subjectList An instance of the <code>SubjectList</code> class to get the results from
+     * @param storage     Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
      */
-    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException {
+    public void execute(SubjectList subjectList, Storage storage) throws
+            NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
@@ -46,6 +48,11 @@ public class ResultSubjectCommand extends SubjectCommand {
         logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> If user exits the program
+     */
     public boolean isExit() {
         return false;
     }

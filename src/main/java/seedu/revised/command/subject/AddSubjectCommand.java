@@ -18,11 +18,17 @@ public class AddSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Adds a <code>Subject</code> in a <code>SubjectList</code>.
+     * Adds an instance of the <code>Subject</code> class into a <code>SubjectList</code>.
      *
-     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to add to.
+     * @param subjectList               An instance of the <code>SubjectList</code> class for the user to append to
+     * @param storage                   Does nothing in this case but needed since this method was implemented
+     *                                  from an abstract class
+     * @throws NoSubjectException       If the program does not detect the correct syntax to adding a Subject
+     * @throws RepeatedSubjectException If the program detects the Subject the user inputs already exists
+     *                                  in the program
      */
-    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, RepeatedSubjectException {
+    public void execute(SubjectList subjectList, Storage storage)
+            throws NoSubjectException, RepeatedSubjectException {
         logger.info("Begin checking string command to get the title of the subject to be added.");
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
@@ -49,7 +55,7 @@ public class AddSubjectCommand extends SubjectCommand {
     /**
      * Checks whether the the user exits the program.
      *
-     * @return <code>true</code> if user exits the program
+     * @return <code>true</code> If user exits the program
      */
     public boolean isExit() {
         return false;

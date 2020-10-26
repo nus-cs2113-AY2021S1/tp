@@ -10,6 +10,7 @@ import seedu.revised.ui.Ui;
 public class AddFlashcardCommand extends FlashcardCommand {
     private final String fullCommand;
 
+
     public AddFlashcardCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }

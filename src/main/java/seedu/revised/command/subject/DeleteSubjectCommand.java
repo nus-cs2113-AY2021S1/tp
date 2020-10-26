@@ -16,10 +16,12 @@ public class DeleteSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Deletes a Task in a <code>taskList</code>.
+     * Deletes an instance of the <code>Subject</code> class in a <code>SubjectList</code>.
      *
-     * @param subjectList the <code>TaskList</code> instance of the TaskList class for the user to delete from
-     * @param storage
+     * @param subjectList               An instance of the <code>SubjectList</code> class for the user to append to
+     * @param storage                   Does nothing in this case but needed since this method was implemented
+     *                                  from an abstract class
+     * @throws NumberFormatException    If the program detects a wrong format for user input
      */
     public void execute(SubjectList subjectList, Storage storage) throws NumberFormatException {
         logger.info("Begin checking string command to get the subject to be deleted.");
@@ -36,7 +38,7 @@ public class DeleteSubjectCommand extends SubjectCommand {
     /**
      * Checks whether the the user exits the program.
      *
-     * @return <code>true</code> if user exits the program
+     * @return <code>true</code> If user exits the program
      */
     public boolean isExit() {
         return false;

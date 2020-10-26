@@ -13,7 +13,8 @@ public class ListSubjectCommand extends SubjectCommand {
      * List subjects in a <code>SubjectList</code>.
      *
      * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to list subjects from.
-     * @return null
+     * @param storage Does nothing in this case but needed since this method was implemented
+     *                from an abstract class
      */
     public void execute(SubjectList subjectList, Storage storage){
         logger.info("Begin listing subjects in the SubjectList.");
@@ -21,6 +22,11 @@ public class ListSubjectCommand extends SubjectCommand {
         logger.info("Finish listing the subjects in the SubjectList.");
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> if user exits the program
+     */
     public boolean isExit() {
         return false;
     }

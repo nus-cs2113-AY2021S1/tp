@@ -16,19 +16,23 @@ public class FindSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Find subjects in a <code>SubjectList</code> that hold a keyword keyed in by the user.
+     * Find subjects in an instance of the <code>SubjectList</code> that holds a keyword keyed in by the user.
      *
-     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to conduct the search on.
-     * @param storage
+     * @param subjectList   An instance of the <code>SubjectList</code> class for the user to conduct the search on
+     * @param storage       Does nothing in this case but needed since this method was implemented
+     *                      from an abstract class
      */
     public void execute(SubjectList subjectList, Storage storage) {
+        logger.info("Begin checking string command to get the keyword.");
         String[] message = this.fullcommand.split(" ");
         Ui.printFindSubject(subjectList,message[1]);
+        logger.info("Finished searching for subjects matching the keyword.");
     }
 
     /**
      * Checks whether the the user exits the program.
-     * @return <code>true</code> if user exits the program
+     *
+     * @return <code>true</code> If user exits the program
      */
     public boolean isExit() {
         return false;

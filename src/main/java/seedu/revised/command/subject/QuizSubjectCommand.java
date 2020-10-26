@@ -27,8 +27,9 @@ public class QuizSubjectCommand extends SubjectCommand {
     /**
      * Quiz subjects in a <code>SubjectList</code>.
      *
-     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to quiz on.
-     * @return Subject for the user to quiz on.
+     * @param subjectList An instance of the <code>SubjectList</code> class for the user to quiz on
+     * @param storage     Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
      */
     public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException,
             NoTopicException, NoFlashcardException {
@@ -57,6 +58,11 @@ public class QuizSubjectCommand extends SubjectCommand {
         subjectQuiz.startQuiz();
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> If user exits the program
+     */
     public boolean isExit() {
         return false;
     }
