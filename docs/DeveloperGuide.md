@@ -1,84 +1,53 @@
 # Developer Guide for E-Duke-8
 
-- Table of Contents {:toc}
+- [Developer Guide for E-Duke-8](#developer-guide-for-e-duke-8)
+  - [Introduction](#introduction)
+    - [Software Overview](#software-overview)
+    - [Setting up](#setting-up)
+  - [Design & implementation](#design--implementation)
+    - [Model Component](#model-component)
+      - [Design of TopicList](#design-of-topiclist)
+      - [Implementation of TopicList](#implementation-of-topiclist)
+      - [Implementation of Notes](#implementation-of-notes)
+      - [Design of Option and OptionList](#design-of-option-and-optionlist)
+    - [Logic Component](#logic-component)
+      - [Design of Parser](#design-of-parser)
+      - [Implementation of MenuParser](#implementation-of-menuparser)
+      - [Design of QuizQuestionsManager](#design-of-quizquestionsmanager)
+      - [Implementation of QuizQuestionsManager](#implementation-of-quizquestionsmanager)
+    - [Storage Component](#storage-component)
+      - [Design of TopicsStorage](#design-of-topicsstorage)
+      - [Implementation of TopicsStorage](#implementation-of-topicsstorage)
+    - [UI Component](#ui-component)
+      - [Implementation of Ui](#implementation-of-ui)
+  - [Product scope](#product-scope)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+  - [User Stories](#user-stories)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Introduction
 
-### Software Overview:
-Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Quiz component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+### Software Overview
+
+Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
 Purpose of the document:
 E-duke-8 is an education companion, intended for students to enhance their learning experience. 
 
 This guide will allow any interested contributors who wish to develop this learning companion further, to understand the inner workings of the program. This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
 
-### Setting up:
+### Setting up
+
 Fork the repo, and clone the fork into your own PC. You are recommended to use IntelliJ to best edit the program. Do not forget to configure the JDK, and to import the project as a Gradle project, and lastly, remember to verify that the JUnit tests pass, to ensure the program is functional.
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### Logic Component
+### Model Component
 
-##### Design
-
-![Parser Diagram](./images/ParserDiagram.png)
-
-1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
-   user command.
-2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
-3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
-to be completed as per the user input.
-   
-Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
-
-![Parser Sample Sequence](./images/ParserSampleSequence.png)
-
-#### Command parsing feature
-
-##### Implementation
-
-The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
-single method parseCommand that identifies what command the user is calling for and then calls the command. There are 
-two parsers in our program that implements a single Parser interface. One parser is for choosing menu options and is 
-named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
-called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
-when the user types in input to get help in order to see what commands are available to the user.
-
-Step 1. The user launches the program for the first time. The parser will be initialised and awaiting the user’s input 
-        to proceed.
-        
-Step 2. The user types in help into the command line interface and presses enter. This user input “help” is stored as 
-        a string and is put into the parseCommand() method as a parameter, together with the topic list. This topic 
-        list is not relevant to the help command for now.
-        
-Step 3. The user input string is subjected to the trim() and split() functions of a string in the Java libraries in 
-        order to remove redundant spaces around the input, and to discern the number of words in the input. The split() 
-        function uses a blank space string, “ “, as the delimiter to split the string into its individual components.
-        
-Step 4. Each subsequent string separated by a space is stored in a string array named commandArr. The 0th index of the 
-        commandArr array is the first word, the 1st index is the second word, and so on. In this case there is only one 
-        word stored in the array, at the 0th index, which is “help”.
-        
-Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
-        options available. As such, the contents of the case with reference “help” is run, which is a return statement 
-        containing a new HelpCommand(). This leads to the execution of the `help` command.
-        
-### Loading Data
-
-Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
-class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
-
-![TopicsStorage Class Diagram](./images/TopicsStorage.png)
-
-Given below is an example usage scenario of loading in two topics with two questions each.
-
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
-which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
-
-![TopicsStorage load](./images/TopicsStorage_load.png)
-
-###  Implementation of commands relating to TopicList, namely:
+####  Design of TopicList
 
 1. Listing topics in TopicList
 2. Finding a topic in TopicList
@@ -92,70 +61,72 @@ TopicList is an ArrayList of type Displayable, which is one of two interfaces im
 in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
 use of the package java.util.ArrayList. The TopicList is used to store Topics.
 
-#### 1) Listing topics in TopicList:
+#### Implementation of TopicList
+
+**Listing topics in TopicList:**
 
 ![TopicListSampleSequence](./images/TopicListSampleSequence.png)
 
-This task is performed by the TopicList.showTopics() method.
+This task is performed by the `TopicList.showTopics()` method.
 
-Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the 
-        TopicList.showTopics() method.
-Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicList(). The 
-        current TopicList is passed into the called method.
-Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
-        TopicList. 
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+        `TopicList.showTopics()` method.
+Step 2: The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
+        current `TopicList` is passed into the called method.
+Step 3: The `Ui.printTopicList()` method then prints out the description of each topic in the 
+        `TopicList`. 
 
-#### 2) Finding a topic in TopicList
+**Finding a topic in TopicList:**
 
-This task is performed by the TopicList.find() method. 
+This task is performed by the `TopicList.find()` method. 
 
-Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the TopicList.find() method. 
-        A String object derived from the user's input is passed into this method.
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the `TopicList.find()` 
+        method. A String object derived from the user's input is passed into this method.
 
-Step 2: The TopicList.find() method checks if any Topic object in the TopicList has a description that contains the 
-        String object passed into the method. Such Topic objects are stored in a new TopicList
+Step 2: The `TopicList.find()` method checks if any `Topic` object in the `TopicList` has a description that contains 
+        the `String` object passed into the method. Such `Topic` objects are stored in a new `TopicList`.
 
-Step 3: The TopicList.find() method then calls the TopicList.showTopics() method, passing in the new TopicList. The 
-        Ui.printTopicList() method is called within the TopicList.showTopics() method, printing out topic descriptions 
-        containing the user's input.
+Step 3: The `TopicList.find()` method then calls the `TopicList.showTopics()` method, passing in the new TopicList. The 
+        `Ui.printTopicList()` method is called within the `TopicList.showTopics()` method, printing out topic 
+        descriptions containing the user's input.
 
-NoteList is also an ArrayList of type Displayable, which is one of two interfaces implemented in the code for EDuke8. 
-As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
-stores Note objects. Each topic has 1 NoteList. 
+`NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
+E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
+The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`. 
 
-#### 1) Adding a new note:
+#### Implementation of Notes
 
-This task is performed by the NoteList.add() method.
+**Adding a new note:**
 
-Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.add() method. A new 
-        Note object is passed into its parameter.
+This task is performed by the `NoteList.add()` method.
 
-Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
-        object into NoteList.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
+        A new `Note` object is passed into its parameter.
 
-#### 2) Deleting a note:
+Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
+        the `Note` object into `NoteList`.
 
-This task is performed by the NoteList.add() method.
+**Deleting a note:**
 
-Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.delete() method. 
-        An integer that represents the index of the Note object to be deleted within the NoteList is passed into this 
-        method.
+This task is performed by the `NoteList.add()` method.
 
-Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
-        Note object in NoteList.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
+        An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
+        this method.
 
-#### 3) Listing out all notes in a topic
+Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
+        delete the `Note` object in `NoteList`.
 
-This task is performed by the Topic.showNotes() method.
+**Listing out all notes in a topic**
 
-Step 1: The parseCommand() method instantiates a TopicCommand object which then calls the Topic.showNotes() method. 
+This task is performed by the `Topic.showNotes()` method.
 
-Step 2: The Topic.showNotes() methd calls the Ui.printNoteList() method. The topic's NoteList into this method. 
-        Ui.printNoteList() prints out all the descriptions of the Note objects in the NoteList.
-=======
-### Class Component 
+Step 1: The `parseCommand()` method instantiates a `TopicCommand` object which then calls the `Topic.showNotes()` method. 
 
-#### Option and OptionList Class 
+Step 2: The `Topic.showNotes()` method calls the `Ui.printNoteList()` method. The topic's `NoteList` into this method. 
+        `Ui.printNoteList()` prints out all the descriptions of the `Note` objects in the `NoteList`.
+
+#### Design of Option and OptionList 
 
 The `Option` and `OptionList` classes implements the `Displayable` and `DisplayableList` interfaces respectively. 
 The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
@@ -163,9 +134,138 @@ question. The class diagram below illustrates the structure of both classes.
 
 ![Option_and_OptionList_Class](./images/Option.png)
 
-### User Interface 
+### Logic Component
 
-#### Implementation 
+#### Design of Parser
+
+![Parser Diagram](./images/ParserDiagram.png)
+
+1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
+   user command.
+2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
+3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
+to be completed as per the user input.
+
+#### Implementation of MenuParser
+
+Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
+
+![Parser Sample Sequence](./images/ParserSampleSequence.png)
+
+The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
+single method `parseCommand` that identifies what command the user is calling for and then calls the command. There are 
+two parsers in our program that implements a single `Parser` interface. One parser is for choosing menu options and is 
+named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
+called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
+when the user types in input to get help in order to see what commands are available to the user.
+
+Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+        input to proceed.
+        
+Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
+        a string and is put into the `parseCommand()` method as a parameter, together with the list of topics. This 
+        topic list is not relevant to the help command for now.
+        
+Step 3. The user input string is subjected to the `lang.string.trim()` and `lang.string.split()` functions of a string 
+        in the Java libraries in order to remove redundant spaces around the input, and to discern the number of words 
+        in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
+        string into its individual components.
+        
+Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
+        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+        one word stored in the array, at the 0th index, which is “help”.
+        
+Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
+        options available. As such, the contents of the case with reference “help” is run, which is a return statement 
+        containing a new `HelpCommand()`. This leads to the execution of the `help` command.
+        
+#### Design of QuizQuestionsManager
+
+To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
+
+The Class Diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
+
+![QuizQuestionsManager_Class_Diagram](./images/QuizQuestionsManager.png)
+
+An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duke-8. Its `numberOfQuestions` attribute and `Topic` object correspond to the user's specified number of questions and topic for the quiz respectively.
+
+The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
+
+Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user answers all of them on the command line interface.
+
+#### Implementation of QuizQuestionsManager
+
+As mentioned in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
+
+The Sequence Diagram below shows how `QuizQuestionsManager` achieves this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
+
+
+![QuizQuestionsManager_setQuizQuestions](./images/QuizQuestionsManager_setQuizQuestions.png)
+
+`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
+
+To ensure that no two of the same question is selected, the selected randomQuestionIndex is checked to see if it is repeated. To determine if randomQuestionIndex is not selected before, an integer ArrayList is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
+
+An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
+
+### Storage Component
+
+#### Design of TopicsStorage
+
+Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
+class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects. The class diagram below shows this relationship.
+
+![TopicsStorage Class Diagram](./images/TopicsStorage.png)
+
+The format of the JSON file is important as it is loaded in a particular way. This format was designed as an array of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
+
+```json
+[
+  {
+    "topic": "OOP",
+    "questions": [
+      {
+        "description": "What is encapsulation?",
+        "hint": "check the textbook",
+        "explanation": "because option A is the best answer",
+        "options": [
+          {
+            "description": "A",
+            "correct": true
+          },
+          {
+            "description": "B",
+            "correct": false
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+#### Implementation of TopicsStorage
+
+Given below is an example usage scenario of loading in two topics with two questions each.
+
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
+which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
+
+![TopicsStorage load](./images/TopicsStorage_load.png)
+
+As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. For example, a `Question` object requires an `OptionList` which is created with an `ArrayList<Option>` collection. Thus, `parseToOptionObject(optionAsJson)` must first be called to return the `Option` objects to be placed in the `ArrayList<Option>`. More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
+
+### UI Component
+
+#### Implementation of Ui
 
 The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
 the users. It is the point of communication between EDuke8 and the users. 
@@ -180,36 +280,8 @@ The user inputs the number of questions that he wants to answer and also the top
 The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
 Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
 
-### Design of the Quiz system
-
-To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
-
-The Class Diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
-
-![QuizQuestionsManager_Class_Diagram](./images/QuizQuestionsManager.png)
-
-An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duke-8. Its `numberOfQuestions` attribute and `Topic` object correspond to the user's specified number of questions and topic for the quiz respectively.
-
-The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
-
-Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user answers all of them on the command line interface.
-
-### Implementation of QuizQuestionsManager
-
-As mentioned in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
-
-The Sequence Diagram below shows how `QuizQuestionsManager` achieves this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
-
-
-![QuizQuestionsManager_setQuizQuestions](./images/QuizQuestionsManager_setQuizQuestions.png)
-
-`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
-
-To determine if randomQuestionIndex is not selected before, an integer ArrayList is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
-
-An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
-
 ## Product scope
+
 ### Target user profile
 
 CS2113/T Students

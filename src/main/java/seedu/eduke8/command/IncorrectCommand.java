@@ -7,6 +7,7 @@ public class IncorrectCommand extends Command {
     String errorMessage;
 
     public IncorrectCommand(String errorMessage) {
+        super();
         this.errorMessage = errorMessage;
     }
 

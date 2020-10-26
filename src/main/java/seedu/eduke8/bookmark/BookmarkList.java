@@ -33,7 +33,7 @@ public class BookmarkList implements DisplayableList {
     @Override
     public Displayable find(String description) {
         for (Displayable question : bookmarks) {
-            if (description.equals(question.getDescription())) {
+            if (description.equalsIgnoreCase(question.getDescription())) {
                 return question;
             }
         }
