@@ -116,7 +116,7 @@ public class StorageManager {
         }
     }
 
-    public static void saveNote(Note note) throws IOException {
+    public void saveNote(Note note) throws IOException {
         if (!noteExists(note)) {
             saveNoteContent(note);
             saveNoteDetails(note);
@@ -129,7 +129,7 @@ public class StorageManager {
      * @param note note whose file status needs to be checked
      * @return boolean
      */
-    public static boolean noteExists(Note note) {
+    public boolean noteExists(Note note) {
         String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
         File file = new File(path);
         if (!file.exists()) {

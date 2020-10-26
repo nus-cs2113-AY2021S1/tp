@@ -67,7 +67,7 @@ public class SystemException extends Exception {
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
         EXCEPTION_FILE_NOT_FOUND_ERROR("Unable to find a file!"),
         EXCEPTION_FILE_DELETION_ERROR("Unable to delete a file"),
-        
+
         // General exception type
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
         EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!");

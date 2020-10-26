@@ -89,7 +89,7 @@ public class PinCommand extends Command {
         LOGGER.log(Level.INFO, "Pin status of note toggled");
 
         try {
-            StorageManager.saveAllNoteDetails(notebook);
+            storageManager.saveAllNoteDetails(notebook);
         } catch (IOException e) {
             return Formatter.formatString(e.getMessage());
         }

@@ -72,7 +72,7 @@ public class AddNoteCommand extends Command {
 
         //Save the notes in storage
         try {
-            StorageManager.saveNote(note);
+            storageManager.saveNote(note);
         } catch (IOException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
         }
