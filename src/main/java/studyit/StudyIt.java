@@ -1,23 +1,20 @@
 package studyit;
 
-import academic.AcademicStorage;
-import academic.Grade;
-import academic.Person;
+import academic.AcademicRun;
 import timetable.TimeTableRun;
 import flashcard.FlashcardRun;
 import userinterface.MainMenu;
-
 import userinterface.Ui;
-
-import java.io.IOException;
-
-import java.util.ArrayList;
 import bookmark.BookmarkRun;
-import userinterface.Ui;
+
 
 
 public class StudyIt {
     private static Mode currentMode = Mode.MENU;
+    private BookmarkRun bookmarkRun;
+    private TimeTableRun timeTableRun;
+    private FlashcardRun flashcardRun;
+    private AcademicRun academicRun;
 
     public static void changeMode(Mode destinationMode) {
         currentMode = destinationMode;
@@ -27,30 +24,19 @@ public class StudyIt {
         return currentMode;
     }
 
-    public static BookmarkRun bookmarkRun = new BookmarkRun();
-    public static TimeTableRun timeTableRun = new TimeTableRun();
-    public static FlashcardRun flashcardRun = new FlashcardRun();
-    public static ArrayList<Grade> currentGrades = new ArrayList<>();//TODO change to local storage
-    public static ArrayList<Person> listOfPerson = new ArrayList<>(); //TODO change to local storage
-
-
     public StudyIt() {
         StudyItLog.setUpLogger();
+        StudyItLog.logger.info("Initializing program");
+        bookmarkRun = new BookmarkRun();
+        timeTableRun = new TimeTableRun();
+        flashcardRun = new FlashcardRun();
+        academicRun = new AcademicRun();
+        StudyItLog.logger.info("Program initialized");
     }
 
     public static void main(String[] args) {
-
-        try { //TODO Yuanbing please help me shift this
-            AcademicStorage.loadFile(listOfPerson, currentGrades);
-        } catch (IOException e) {
-            System.out.println("placeholder error message");
-        }
-
-        //assert false : "dummy assertion";
         MainMenu.printWelcome();
         new StudyIt().run();
-        StudyItLog.logger.info("Starting process");
-
     }
 
     public void run() {
@@ -61,9 +47,12 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-            Command.executeCommand(command, commandType, bookmarkRun, flashcardRun,
-                    timeTableRun, currentGrades, listOfPerson);
 
+            StudyItLog.logger.info("Command received: " + command);
+            StudyItLog.logger.info("Command type identified: " + commandType);
+
+            Command.executeCommand(command, commandType, bookmarkRun, flashcardRun,
+                    timeTableRun, academicRun);
         } while (commandType != CommandType.EXIT_PROGRAM);
 
         StudyItLog.logger.info("End of program.");
