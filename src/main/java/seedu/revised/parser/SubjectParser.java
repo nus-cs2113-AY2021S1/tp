@@ -25,25 +25,28 @@ public class SubjectParser {
      * @return returns a command instance to execute a command
      */
     public static SubjectCommand parse(String fullCommand) {
+        String[] tokens = fullCommand.split(" ");
+        String command = tokens[0];
+
         if (fullCommand.equals("bye")) {
             return new ExitSubjectCommand();
         } else if (fullCommand.equals("list")) {
             return new ListSubjectCommand();
         } else if (fullCommand.equals("export")) {
             return new ExportSubjectCommand();
-        } else if (fullCommand.startsWith("add")) {
+        } else if (command.equals("add")) {
             return new AddSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("delete ")) {
+        } else if (command.equals("delete")) {
             return new DeleteSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("find")) {
+        } else if (command.equals("find")) {
             return new FindSubjectCommand(fullCommand);
         } else if (fullCommand.equals("help")) {
             return new HelpSubjectCommand();
-        } else if (fullCommand.startsWith("subject")) {
+        } else if (command.equals("subject")) {
             return new AccessSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("quiz")) {
+        } else if (command.equals("quiz")) {
             return new QuizSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("results")) {
+        } else if (command.equals("results")) {
             return new ResultSubjectCommand(fullCommand);
         } else {
             return new SorrySubjectCommand();
