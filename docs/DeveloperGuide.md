@@ -3,7 +3,7 @@
 ## Introduction
 
 RevisED is a command line application to help students revise by creating flashcards and taking quizzes, 
-and keep track of their deadlines, tasks and any other important dates. This application allows users to add subjects, 
+and keeping track of their deadlines, tasks and any other important dates. This application allows users to add subjects, 
 their different topics and create different flashcards in form of question and answers on each topic. Students can also 
 take quizzes which asks them the questions that they added in form of flashcards and prompted to answer them. 
 The student can view results of these quizzes immediately and are stored so that students can view them later. 
