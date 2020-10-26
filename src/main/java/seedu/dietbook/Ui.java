@@ -673,7 +673,7 @@ public class Ui {
      * @return A string representation of a list of user information related commands that users can input.
      */
     private String getUserRelatedCommands() {
-        return "  To show user information: userinfo" + LINE_SEPARATOR
+        return "  To view user information: userinfo" + LINE_SEPARATOR
                 + "  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
                 + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]"
                 + LINE_SEPARATOR;
