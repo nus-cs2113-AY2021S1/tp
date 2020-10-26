@@ -1,4 +1,4 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.commons;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.ui.Ui;

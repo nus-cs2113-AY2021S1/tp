@@ -1,4 +1,4 @@
-package seedu.duke.favorite;
+package seedu.duke.model.favorite;
 
 import static seedu.duke.ui.Ui.printDupeMessage;
 
@@ -26,6 +26,10 @@ public class Fav {
 
     public String getDesc() {
         return desc;
+    }
+
+    void changeDesc(String desc) {
+        this.desc = desc;
     }
 
 }

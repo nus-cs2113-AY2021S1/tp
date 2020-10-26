@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.foodoptions;
 
 public class DiningOptions {
 

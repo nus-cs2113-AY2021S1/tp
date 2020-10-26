@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.foodoptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

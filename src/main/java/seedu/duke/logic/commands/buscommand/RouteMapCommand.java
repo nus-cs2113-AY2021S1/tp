@@ -1,9 +1,10 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.buscommand;
 
-import seedu.duke.Bus;
-import seedu.duke.BusData;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusData;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.ui.Ui;
 
 public class RouteMapCommand extends Command {

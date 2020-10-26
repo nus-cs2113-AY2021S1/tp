@@ -1,14 +1,12 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.buscommand;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Bus;
-import seedu.duke.BusData;
-import seedu.duke.BusStops;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusData;
+import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.ui.Ui;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,10 +28,14 @@ class RouteMapCommandTest {
         BusStops.PGPR
     };
 
-    @Test
-    void executeCommand_selectBus_success() {
+    @BeforeAll
+    public static void makeList() {
         busesInZoneA.add(new Bus("AA1", AA1));
         BusData.createBusList(busesInZoneA);
+    }
+
+    @Test
+    void executeCommand_selectBus_success() {
         Bus bus = BusData.selectBus("AA1");
         assertEquals("AA1", bus.getBusNumber());
     }
@@ -44,7 +46,6 @@ class RouteMapCommandTest {
                 + "PGP -> Kent Ridge MRT Station -> Opp University Health Centre -> Yusof Ishak House \n-> "
                 + "Central Library -> Kent Ridge -> Museum -> University Town -> "
                 + "University Health Centre \n-> Opp Kent Ridge MRT station -> PGPR";
-        BusData.createBusList(busesInZoneA);
         Bus bus = BusData.selectBus("AA1");
         assertEquals(fullBusRoute, bus.toString());
     }

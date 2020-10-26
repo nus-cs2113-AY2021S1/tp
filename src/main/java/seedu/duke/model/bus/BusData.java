@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.bus;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -8,6 +8,7 @@ public class BusData {
     private static ArrayList<Bus> buses = new ArrayList<>();
 
     public static void createBusList(ArrayList<Bus> busList) {
+        buses.clear();
         buses.addAll(busList);
     }
 
@@ -29,9 +30,11 @@ public class BusData {
     }
 
     public static Bus selectBus(String busCode) {
-        for (Bus bus : buses) {
-            if (bus.getBusNumber().equals(busCode.toUpperCase())) {
-                return bus;
+        if (buses.size() > 0) {
+            for (Bus bus : buses) {
+                if (bus.getBusNumber().equals(busCode.toUpperCase())) {
+                    return bus;
+                }
             }
         }
         return null;

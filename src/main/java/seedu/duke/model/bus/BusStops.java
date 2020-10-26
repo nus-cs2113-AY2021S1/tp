@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.bus;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;

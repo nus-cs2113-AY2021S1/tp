@@ -1,11 +1,12 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.buscommand;
 
-import seedu.duke.Bus;
-import seedu.duke.BusData;
-import seedu.duke.BusStops;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusData;
+import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.SimilarityCheck;
+import seedu.duke.logic.similaritycheck.SimilarityCheck;
+import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.logic.parser.RouteParser;
 import seedu.duke.ui.Ui;
 

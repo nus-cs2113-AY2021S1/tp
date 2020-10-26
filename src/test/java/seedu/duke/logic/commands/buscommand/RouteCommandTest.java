@@ -1,4 +1,4 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.buscommand;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.CustomException;

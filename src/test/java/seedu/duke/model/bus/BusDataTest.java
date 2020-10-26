@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.bus;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,9 @@ class BusDataTest {
         routes.add(new Bus("AA2", stops));
         String startingLoc = "centrAL LibraRy";
         String destination = "Pgp";
-        assertEquals(routes.toString(), BusData.possibleBuses(startingLoc, destination).toString());
+        //System.out.println(BusData.listOfAllBuses());
+        ArrayList<Bus> busOptions = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
+        assertEquals(routes.toString(), busOptions.toString());
     }
 
     @Test
@@ -66,8 +68,8 @@ class BusDataTest {
         routes.add(new Bus("AA2", stops));
         String startingLoc = "Ea";
         String destination = "Opp kent ridge MRT station";
-        ArrayList<Bus> busOptionsOne = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
-        assertEquals(routes.toString(), busOptionsOne.toString());
+        ArrayList<Bus> busOptions = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
+        assertEquals(routes.toString(), busOptions.toString());
     }
 
     @Test

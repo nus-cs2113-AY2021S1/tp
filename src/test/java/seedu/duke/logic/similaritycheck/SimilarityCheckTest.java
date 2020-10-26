@@ -1,6 +1,7 @@
-package seedu.duke.logic;
+package seedu.duke.logic.similaritycheck;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.logic.similaritycheck.SimilarityCheck;
 
 import java.util.ArrayList;
 import java.util.Arrays;

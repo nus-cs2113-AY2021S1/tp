@@ -1,10 +1,11 @@
-package seedu.duke.logic.commands;
+package seedu.duke.logic.commands.dinecommand;
 
-import seedu.duke.DiningOptions;
-import seedu.duke.FoodPlace;
-import seedu.duke.FoodPlacesData;
+import seedu.duke.model.foodoptions.DiningOptions;
+import seedu.duke.model.foodoptions.FoodPlace;
+import seedu.duke.model.foodoptions.FoodPlacesData;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.commons.Command;
 
 import java.util.ArrayList;
 

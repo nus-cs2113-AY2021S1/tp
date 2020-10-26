@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.bus;
 
 import java.util.ArrayList;
 

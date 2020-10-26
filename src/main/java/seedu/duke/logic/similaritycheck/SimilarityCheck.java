@@ -1,6 +1,6 @@
-package seedu.duke.logic;
+package seedu.duke.logic.similaritycheck;
 
-import seedu.duke.BusStops;
+import seedu.duke.model.bus.BusStops;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
