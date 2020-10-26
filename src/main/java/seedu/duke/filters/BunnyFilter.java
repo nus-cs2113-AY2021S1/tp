@@ -18,6 +18,15 @@ import static seedu.duke.ui.UI.printFilteredBunny;
 
 public class BunnyFilter {
 
+    public static HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
+
+    /**
+     * Filter specific bunny ideas from the list of bunnies.
+     * @param userInput user input command
+     * @param bunniesList ArrayList of bunnies stored
+     * @throws MissingFilterOptionsException user command for filter bunny missing arguments
+     * @throws NoFilteredItemsException filter function found no bunnies matching the search criteria
+     */
     public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList)
             throws MissingFilterOptionsException, NoFilteredItemsException {
 
@@ -51,7 +60,6 @@ public class BunnyFilter {
             hasAtLeastOneFilterOption = true;
         }
 
-
         if (!hasAtLeastOneFilterOption) {
             throw new MissingFilterOptionsException();
         }
@@ -59,7 +67,7 @@ public class BunnyFilter {
         int i;
         HashMap<Integer, Bunny> numberedBunny = new HashMap<>();
         Set<Map.Entry<Integer, Bunny>> entries = numberedBunny.entrySet();
-        HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
+        filteredBunny.clear();
 
         // add all the numbered tasks to a hashmap
         for (i = 1; i <= bunniesList.size(); i++) {

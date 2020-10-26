@@ -2,12 +2,15 @@ package seedu.duke.functions;
 
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
+import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.DividerCommandWrongFormatException;
+import seedu.duke.exceptions.DividerIndexOutOfBoundsException;
 import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
@@ -27,7 +30,7 @@ import java.io.IOException;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
-import static seedu.duke.ui.UI.printHelp;
+import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
 
 public class CommandExecutor {
@@ -41,12 +44,15 @@ public class CommandExecutor {
                 printHelpMessage(userInput);
             }
             break;
-        //case USERNAME:
-        //    // change username
-        //    break;
-        //case DIVIDER:
-        //    // choose divider type
-        //    break;
+        case DIVIDER:
+            try {
+                changeLineDivider(userInput);
+            } catch (DividerCommandWrongFormatException e) {
+                UI.dividerCommandWrongFormat();
+            } catch (DividerIndexOutOfBoundsException e) {
+                UI.dividerIndexOutOfBounds();
+            }
+            break;
         case NOUN:
             WordList.addNoun(userInput);
             break;
@@ -105,6 +111,9 @@ public class CommandExecutor {
             } catch (BunnyIndexOutOfBoundsException e) {
                 UI.bunnyIndexOutOfBounds();
             }
+            break;
+        case RANDOM_BUNNY:
+            GenBunny.pickRandomBunny(bunniesList);
             break;
         case GEN_NAME:
             try {

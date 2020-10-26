@@ -13,6 +13,13 @@ public class FilterList {
 
     public static Scanner SCANNER = new Scanner(System.in);
 
+    /**
+     * Prints the list of filtered words in the command.
+     * User can limit the number of the words printed.
+     * If no print limit is provided, the method will print all words in list.
+     *
+     * @param printLimit An integer indicated the number of words that need printing.
+     */
     public static void printFilterList(int printLimit) {
         ArrayList<Words> filteredWords = new ArrayList<>(WordsFilter.filteredWords);
         if (filteredWords.size() == 0) {

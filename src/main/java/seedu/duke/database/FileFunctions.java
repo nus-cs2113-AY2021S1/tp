@@ -8,16 +8,6 @@ import java.io.IOException;
 
 import java.util.Scanner;
 
-import static seedu.duke.constants.ClickerMessages.COULD_NOT_CREATE_DIRECTORY_MSG;
-import static seedu.duke.constants.ClickerMessages.DIRECTORY_CREATED_SUCCESSFULLY_MSG;
-import static seedu.duke.constants.ClickerMessages.FILE_ALREADY_EXISTS_MSG;
-import static seedu.duke.constants.ClickerMessages.FILE_AUTO_CREATED_MSG;
-import static seedu.duke.constants.ClickerMessages.FILE_CREATED_PATH_MSG;
-import static seedu.duke.constants.ClickerMessages.FILE_NOT_FOUND_MSG;
-import static seedu.duke.constants.ClickerMessages.FILE_PATH_TO_DIRECTORY_INVALID_MSG;
-import static seedu.duke.constants.ClickerMessages.IO_ERROR_WHEN_MAKING_FILE_MSG;
-import static seedu.duke.constants.ClickerMessages.NEW_FILE_CREATED_MSG_FORMAT;
-
 import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.Logos.NEWLINE;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;

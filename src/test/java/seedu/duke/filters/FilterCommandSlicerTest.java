@@ -15,7 +15,7 @@ class FilterCommandSlicerTest {
     public void getTargetedWordType_adjectiveFilterRecognition_arrayOfAdjectiveType()
             throws FilterCommandException {
         String[] expected = {"adjective"};
-        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter by\\type -adjective");
+        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter -continue by\\type -adjective");
         assertEquals(1, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -23,7 +23,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedWordType_nounAndVerbFilterRecognition_arrayOfNounAndVerbElements()
             throws FilterCommandException {
-        String[] expected = {"noun", "verb"};
+        String[] expected = {"verb", "noun"};
         String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter by\\type -verb -noun");
         assertEquals(2, actual.length);
         assertTrue(Arrays.equals(expected, actual));
@@ -32,7 +32,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedWordType_allTypeFilterRecognition_arrayOfAllWordType()
             throws FilterCommandException {
-        String[] expected = {"noun", "verb", "adjective"};
+        String[] expected = {"adjective", "verb", "noun"};
         String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter by\\type -adjective -verb -noun");
         assertEquals(3, actual.length);
         assertTrue(Arrays.equals(expected, actual));

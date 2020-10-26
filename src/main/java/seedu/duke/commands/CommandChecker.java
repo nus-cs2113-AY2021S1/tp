@@ -25,6 +25,7 @@ public enum CommandChecker {
     FILTER_BUNNY,
     SAVE_BUNNY,
     DELETE_BUNNY,
+    RANDOM_BUNNY,
 
     CHARACTER,
     LIST_CHARACTER,
@@ -78,6 +79,8 @@ public enum CommandChecker {
             return CommandChecker.SAVE_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("delete bunny")) {
             return CommandChecker.DELETE_BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("random bunny")) {
+            return CommandChecker.RANDOM_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else if (userInput.toLowerCase().trim().startsWith("scene")) {
