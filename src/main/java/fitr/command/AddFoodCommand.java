@@ -12,7 +12,7 @@ import fitr.user.User;
 import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {

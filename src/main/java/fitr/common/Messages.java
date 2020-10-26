@@ -76,6 +76,7 @@ public class Messages {
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
     public static final String EMPTY_STRING = "";
     public static final String ERROR_INVALID_DATE = "Sorry, please enter a correct date in the format dd/MM/yyyy";
+    public static final String NO_RECORDS_FOUND = "No records found!\n";
 
     //EditProfileCommand class messages
     public static final String EDIT_NAME = "name";

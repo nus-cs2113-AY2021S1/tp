@@ -1,6 +1,6 @@
 package fitr.user;
 
-import fitr.common.Commands;
+import fitr.command.ViewCommand;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.Calorie;
@@ -220,30 +220,32 @@ public class User {
                 + getUserFitnessLevelString();
     }
 
-    public Calorie calculateCalorieBurnt(ExerciseList exerciseList) {
+    public Calorie calculateCalorieBurnt(ExerciseList exerciseList, String date) {
+        int totalCalorieBurnt = 0;
+        ExerciseList exerciseListByDate = ViewCommand.viewExerciseByDate(exerciseList, date, false);
         int index = 0;
-        int totalBurnt = 0;
-        while (index < exerciseList.getSize()) {
-            totalBurnt += exerciseList.getExercise(index).getCalories();
+        while (index < exerciseListByDate.getSize()) {
+            totalCalorieBurnt += exerciseListByDate.getExercise(index).getCalories();
             index++;
         }
-        return new Calorie(totalBurnt);
+        return new Calorie(totalCalorieBurnt);
     }
 
-    public Calorie calculateCalorieConsumed(FoodList foodList) {
+    public Calorie calculateCalorieConsumed(FoodList foodList, String date) {
+        int totalCalorieConsumed = 0;
+        FoodList foodListByDate = ViewCommand.viewFoodByDate(foodList, date, false);
         int index = 0;
-        int totalConsumed = 0;
-        while (index < foodList.getSize()) {
-            totalConsumed += foodList.getFood(index).getCalories();
+        while (index < foodListByDate.getSize()) {
+            totalCalorieConsumed += foodListByDate.getFood(index).getCalories();
             index++;
         }
-        return new Calorie(totalConsumed);
+        return new Calorie(totalCalorieConsumed);
     }
 
-    public Calorie calculateCalorie(FoodList foodList, ExerciseList exerciseList) {
+    public Calorie calculateCalorie(FoodList foodList, ExerciseList exerciseList, String date) {
         int totalCalories;
-        Calorie totalConsumed = calculateCalorieConsumed(foodList);
-        Calorie totalBurnt = calculateCalorieBurnt(exerciseList);
+        Calorie totalConsumed = calculateCalorieConsumed(foodList, date);
+        Calorie totalBurnt = calculateCalorieBurnt(exerciseList, date);
         totalCalories = totalConsumed.get() - totalBurnt.get();
         return new Calorie(totalCalories);
     }

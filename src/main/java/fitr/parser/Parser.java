@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import fitr.command.AddFoodCommand;
 import fitr.command.ClearCommand;
 import fitr.command.Command;
+import fitr.command.CompleteGoalCommand;
 import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
@@ -15,8 +16,9 @@ import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
+import fitr.ui.Ui;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 
 /**
  * Parses the user input.
@@ -61,6 +63,8 @@ public class Parser {
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
             return new AddGoalCommand(arguments, getCurrentDate());
+        case Commands.COMMAND_COMPLETE:
+            return new CompleteGoalCommand(arguments);
         default:
             return new InvalidCommand(userCommand);
         }

@@ -7,7 +7,7 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import org.junit.jupiter.api.Test;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
@@ -42,8 +42,8 @@ public class UserTest {
         exerciseList.addExercise(new Exercise("Squats", new Calorie(100), getCurrentDate()));
         exerciseList.addExercise(new Exercise("Running", new Calorie(100), getCurrentDate()));
         User user = new User("John Doe", 22, 1.70, 80, "Male", 2);
-        assertEquals(200, user.calculateCalorieBurnt(exerciseList).get());
-        assertEquals(400, user.calculateCalorieConsumed(foodList).get());
-        assertEquals(200, user.calculateCalorie(foodList, exerciseList).get());
+        assertEquals(200, user.calculateCalorieBurnt(exerciseList, getCurrentDate()).get());
+        assertEquals(400, user.calculateCalorieConsumed(foodList, getCurrentDate()).get());
+        assertEquals(200, user.calculateCalorie(foodList, exerciseList, getCurrentDate()).get());
     }
 }

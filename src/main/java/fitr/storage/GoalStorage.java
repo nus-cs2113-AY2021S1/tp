@@ -1,7 +1,11 @@
 package fitr.storage;
 
 import fitr.Goal;
+import fitr.exception.InvalidFileFormatException;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.user.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,7 +36,8 @@ public class GoalStorage {
      * @return an ArrayList of Goal objects
      * @throws FileNotFoundException if the file is not found
      */
-    public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
+    public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException,
+            InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + GOAL_LIST_PATH);
         ArrayList<Goal> goalList = new ArrayList<>();
         String line;
@@ -43,7 +48,11 @@ public class GoalStorage {
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
-            goalList.add(new Goal(arguments[0], arguments[1], arguments[2]));
+
+            if (arguments.length != 4) {
+                throw new InvalidFileFormatException();
+            }
+            goalList.add(new Goal(arguments[0], arguments[1], arguments[2], arguments[3]));
         }
 
         LOGGER.fine("Goal list file read successfully.");
@@ -56,7 +65,8 @@ public class GoalStorage {
      * @param goalList the goal list to write to the file
      * @throws IOException if an I/O error has occurred
      */
-    public void writeGoalList(GoalList goalList) throws IOException {
+    public void writeGoalList(GoalList goalList, FoodList foodList, ExerciseList exerciseList,
+                              User user) throws IOException {
         LOGGER.fine("Attempting to write to file: " + GOAL_LIST_PATH);
         FileWriter fileWriter = new FileWriter(GOAL_LIST_PATH);
         Goal goal;
@@ -65,6 +75,7 @@ public class GoalStorage {
             goal = goalList.getGoal(i);
             fileWriter.write(goal.getCreatedDate()
                     + COMMA_SEPARATOR + goal.getGoalType()
+                    + COMMA_SEPARATOR + goal.getStatus(goal,foodList, exerciseList, user)
                     + COMMA_SEPARATOR + goal.getDescription() + System.lineSeparator());
         }
 

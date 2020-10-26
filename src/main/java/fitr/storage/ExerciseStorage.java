@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static fitr.DateManager.getCurrentDate;
 import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 /**

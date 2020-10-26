@@ -1,10 +1,8 @@
 package fitr;
 
-import fitr.Calorie;
-import fitr.Exercise;
 import org.junit.jupiter.api.Test;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExerciseTest {
