@@ -24,6 +24,12 @@ public class QuizSubjectCommand extends SubjectCommand {
         return this.fullcommand;
     }
 
+    /**
+     * Quiz subjects in a <code>SubjectList</code>.
+     *
+     * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to quiz on.
+     * @return Subject for the user to quiz on.
+     */
     public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException,
             NoTopicException, NoFlashcardException {
         logger.info("Begin finding the subject for which the quiz has to be conducted.");

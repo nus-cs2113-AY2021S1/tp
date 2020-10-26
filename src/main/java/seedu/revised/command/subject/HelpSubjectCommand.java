@@ -6,6 +6,12 @@ import seedu.revised.ui.Ui;
 
 public class HelpSubjectCommand extends SubjectCommand {
 
+    /**
+     * Prints help function.
+     *
+     * @param subjectList
+     * @param storage
+     */
     public void execute(SubjectList subjectList, Storage storage) {
         Ui.printSubjectHelp();
     }
