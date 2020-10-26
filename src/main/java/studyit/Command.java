@@ -1,29 +1,10 @@
 package studyit;
 
-import academic.Grade;
-import academic.GradeBook;
-import academic.Person;
-import academic.PersonBook;
-import academic.AcademicCommandType;
-
-import academic.AcademicStorage;
-import academic.AcademicCommandParser;
-import bookmark.BookmarkParser;
-import bookmark.BookmarkUi;
-import academic.AcademicUi;
-
-import exceptions.InvalidCommandException;
-import exceptions.InvalidGradeException;
-import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
 import timetable.TimeTableRun;
 import userinterface.ErrorMessage;
 import userinterface.HelpMessage;
 import userinterface.Ui;
-
-import java.io.IOException;
-
-import java.util.ArrayList;
 import bookmark.BookmarkRun;
 import academic.AcademicRun;
 
@@ -52,7 +33,6 @@ public class Command {
         } else {
             assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
             ErrorMessage.printUnidentifiableCommand();
-            StudyItLog.logger.info("Cannot understand command input.");
         }
     }
 
@@ -76,22 +56,22 @@ public class Command {
     }
 
     public static void executeBookmarkModeCommand(String command, BookmarkRun bookmarkRun) {
-        StudyItLog.logger.info("Processing bookmark mode.");
+        StudyItLog.logger.info("Processing bookmark command: " + command);
         bookmarkRun.run(command);
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
-        StudyItLog.logger.info("Processing timetable mode.");
+        StudyItLog.logger.info("Processing timetable command: " + command);
         timeTableRun.run(command);
     }
 
     public static void executeAcademicModeCommand(String command, AcademicRun academicRun) {
-        StudyItLog.logger.info("Processing academic mode.");
+        StudyItLog.logger.info("Processing academic command: " + command);
         academicRun.run(command);
     }
 
     public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {
-        StudyItLog.logger.info("Processing flashcard mode.");
+        StudyItLog.logger.info("Processing flashcard command: " + command);
         flashcardRun.run(command);
     }
 }
