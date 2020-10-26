@@ -17,7 +17,9 @@ public class AddMemberCommand extends MemberCommand {
     public void execute() {
         Member m;
         Project proj = projectManager.getSelectedProject();
+        // adds members provided, can add multiple members at once.
         for (int i = 0; i < parameters.size(); i++) {
+            // check if member is already added to the associated projectr
             if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
                 Ui.showToUserLn(parameters.get(Integer.toString(i))
                         + " is already associated to the project.");

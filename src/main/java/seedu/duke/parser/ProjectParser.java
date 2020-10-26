@@ -27,6 +27,7 @@ public class ProjectParser implements ExceptionsParser {
                                                    ProjectManager projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
+        //Creates a new project and adds it to the ProjectManager
         case CREATE:
             if (!parameters.containsKey(TITLE) || !parameters.containsKey(DESCRIPTION)
                     || !parameters.containsKey(DURATION) || !parameters.containsKey(SPRINT_DURATION)) {
@@ -47,12 +48,15 @@ public class ProjectParser implements ExceptionsParser {
             } else {
                 return new CreateProjectCommand(parameters, projectListManager);
             }
+            // View the current selected project, and the details of the same.
         case VIEW:
+            assert projectListManager.size() != 0 : "Invalid Input";
             if (!parameters.isEmpty()) {
                 throw new DukeException("Invalid action!");
             } else {
                 return new ViewProjectCommand(parameters, projectListManager);
             }
+            // Select the project on which all commands are executed.
         case SELECT:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
@@ -61,13 +65,16 @@ public class ProjectParser implements ExceptionsParser {
             if (!Parser.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("Please give a project number.");
             }
+            // Get index of the project to select
             int index = Integer.parseInt(parameters.get("0"));
             if (index <= projectListManager.size() && index > 0) {
                 return new SelectProjectCommand(parameters, projectListManager);
             } else {
                 throw new DukeException("Invalid index, no corresponding project exists.");
             }
+            // Show a list of all projects added, with id to select it.
         case LIST:
+            assert projectListManager.size() != 0 : "Invalid Input";
             if (projectListManager.isEmpty()) {
                 throw new DukeException("There are no projects added.");
             } else {

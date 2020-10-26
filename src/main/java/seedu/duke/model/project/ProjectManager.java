@@ -7,7 +7,6 @@ import seedu.duke.storage.JsonableObject;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class ProjectManager implements JsonableObject {
@@ -21,8 +20,8 @@ public class ProjectManager implements JsonableObject {
 
     public void addProject(String title, String description, int projectDuration, int sprintLength) {
         int newProjectID = this.size() + 1;
-        this.projectList.put(newProjectID,
-                new Project(newProjectID, title, description, projectDuration, sprintLength));
+        Project proj = new Project(newProjectID, title, description, projectDuration, sprintLength);
+        this.projectList.put(newProjectID, proj);
         this.selectedProject = newProjectID;
     }
 
