@@ -49,6 +49,11 @@ public class Module {
         return actualTime;
     }
 
+    public double getActualTimeInSpecificWeek(String week) {
+        int i = Integer.parseInt(week);
+        return actualTime[i - INDEX_OFFSET];
+    }
+
     public void deleteActualTime(String week) {
         int i = Integer.parseInt(week);
         if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {

@@ -26,6 +26,7 @@ public class ModuleList {
     private static final String HOUR_ADD = " hour has been added to ";
     private static final String HOUR_EDIT = " hour is the new actual workload for the module ";
     private static final String HOURS_EDIT = " hours is the new actual workload for the module ";
+    private static final String SUMMARY = " hours have been spent on this module in week ";
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -303,9 +304,13 @@ public class ModuleList {
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + System.lineSeparator());
+                    System.out.println(commandInfo[2] + HOURS_ADD + modCode);
+                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                            + SUMMARY + commandInfo[3] + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + System.lineSeparator());
+                    System.out.println(commandInfo[2] + HOUR_ADD + modCode);
+                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                            + SUMMARY + commandInfo[3] + System.lineSeparator());
                 }
                 storage.appendToFile(input);
             }
@@ -346,10 +351,15 @@ public class ModuleList {
                     if (toPrint) {
                         if (hours > 1) {
                             System.out.println(commandInfo[2] + HOURS_REMOVAL
-                                    + modCode + System.lineSeparator());
+                                    + modCode);
+                            System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                                    + SUMMARY + commandInfo[3] + System.lineSeparator());
+
                         } else {
                             System.out.println(commandInfo[2] + HOUR_REMOVAL
-                                    + modCode + System.lineSeparator());
+                                    + modCode);
+                            System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                                    + SUMMARY + commandInfo[3] + System.lineSeparator());
                         }
                         storage.appendToFile(input);
                     }
@@ -396,9 +406,13 @@ public class ModuleList {
             modList.get(index).editsActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode + System.lineSeparator());
+                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode);
+                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                            + SUMMARY + commandInfo[3] + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode + System.lineSeparator());
+                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode);
+                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                            + SUMMARY + commandInfo[3] + System.lineSeparator());
                 }
                 storage.appendToFile(input);
             }

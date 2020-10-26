@@ -26,7 +26,8 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.addTime("addtime CS3030 1 4", true, storage);
-        String expected = "1 hour has been added to CS3030" + System.lineSeparator();
+        String expected = "1 hour has been added to CS3030\n"
+                + "1.0 hours have been spent on this module in week 4" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -38,7 +39,8 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.addTime("addtime CS3030 4 4", true, storage);
-        String expected = "4 hours have been added to CS3030" + System.lineSeparator();
+        String expected = "4 hours have been added to CS3030\n"
+                + "5.0 hours have been spent on this module in week 4" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -49,7 +51,8 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 2 4", true, storage);
-        String expected = "2 hours have been removed from CS3030" + System.lineSeparator();
+        String expected = "2 hours have been removed from CS3030\n"
+                + "3.0 hours have been spent on this module in week 4" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -59,7 +62,8 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 1 4", true, storage);
-        String expected = "1 hour has been removed from CS3030" + System.lineSeparator();
+        String expected = "1 hour has been removed from CS3030\n"
+                + "2.0 hours have been spent on this module in week 4" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -80,7 +84,8 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.editTime("edittime CS3030 5 4", true, storage);
-        String expected = "5 hours is the new actual workload for the module CS3030" + System.lineSeparator();
+        String expected = "5 hours is the new actual workload for the module CS3030\n"
+                + "5.0 hours have been spent on this module in week 4" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
