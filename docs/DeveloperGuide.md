@@ -13,7 +13,7 @@ on your journey of being a contributor to Quotesify. This guide will also explai
 so that you will have a better understanding of the current status of Quotesify.
 
 ## 2.0 Setting up
-1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases),
+1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp),
 and clone the fork to your computer.
 2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
 click `File` > `Close Project` to close any existing project.
@@ -53,10 +53,10 @@ The architecture diagram displayed above describes the high-level design of Quot
 * On shutdown, the Main gracefully terminates the application and its running components. 
 
 The other components that make up Quotesify include:
-* UI: Text-based User Interface (UI) of the application.
-* Logic: Handles the execution of user input commands.
-* Model: Stores Quotesify’s data objects in application memory.
-* Storage: Stores and accesses program data in the hard disk.
+* **UI**: Text-based User Interface (UI) of the application.
+* **Logic**: Handles the execution of user input commands.
+* **Model**: Stores Quotesify’s data objects in application memory.
+* **Storage**: Stores and accesses program data in the hard disk.
 
 The Sequence Diagram below shows an example of how the components work together upon receiving the command `add -b Harry Potter /by J K Rowling`.
 
@@ -74,7 +74,7 @@ In essence, the UI is responsible for the majority display of all successful com
 
 ### 3.3 Logic Component
 
-![Class Diagram for Logic Component]()
+![Class Diagram for Logic Component](images/ClassDiagram_Logic.png)
 
 The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence flow from the time a user input is read till command execution ends.
 
@@ -85,7 +85,17 @@ The Logic component is made up of 2 sub-components, namely the `Parser` and `Com
 5. Finally, Command will then inspect the exit status after command execution.
 6. Control is handed back over to the UI.
 
-### 3.4 Storage Component
+* `XCommand` class represents the command type such as `AddCommand`, `FindCommand`, `DeleteCommand` etc.
+* `XYCommand` class represents the command to execute from a specific object. Such as `AddBookCommand`, `FindBookCommand`, `DeleteQuoteCommand` etc.
+
+### 3.4 Model Component
+
+![Class Diagram for Model Component](images/ClassDiagram_Model.png)
+
+The model component consists of several classes that make up the main features of Quotesify.
+Each object holds in-application data unique to each feature and is stored in a list of their own.
+
+### 3.5 Storage Component
 
 The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed by the command component as well as to detect and load data on program launch.
 
@@ -98,7 +108,7 @@ On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
 
 
-## 4.0 implementation
+## 4.0 Implementation
 
 ### 4.2 Feature: Quote Management System
 Given below is the class diagram for classes realted to the Quote Management System in Quotesify:
@@ -229,10 +239,16 @@ bookmarks named `BookmarkList`.
 ### 4.2 Feature: Category Management
 Given below is the class diagram for classes related to Category Management in Quotesify:
 
-![Class Diagram for Category Management]()
+![Class Diagram for Category Management](images/ClassDiagram_Category.png)
 
-#### 4.1.1 Add Categories
-The proposed add categories feature allows a user to add multiple categories to an existing book or quote. 
+A `Category` object holds the following attributes:
+* A `String` object that holds the category name.
+* A `BookList` object that stores a list of `Book` objects tagged with the specified category name.
+* A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
+* An `int` value that indicates the total number of books/quotes tagged under the specified category.
+
+#### 4.2.1 Add Categories
+The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
 
 The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
 
@@ -243,7 +259,7 @@ The sequence diagram below demonstrates the command execution process when addin
 * On success, 
   * The category name will be added into the *categories* attribute of the `Book` object. 
   * A new `Category` object will be created and stored into the category list if it does not exist. 
-The book will also be stored into the category's *bookList* attribute for record keeping.
+  * The book will be added into the category's *bookList* attribute for record keeping.
 
 ##### Design Consideration
 * Allowing users to specify multiple categories at once.
@@ -255,6 +271,38 @@ The book will also be stored into the category's *bookList* attribute for record
   * Pros: Further increases efficiency for users.
   * Cons: Increased complexity in implementation.
 
+### 4.3 Feature: Book Management
+Given below is the class diagram for classes related to Book Management in Quotesify:
+
+![Class Diagram for Book Management](images/ClassDiagram_Book.png)
+
+#### 4.3.1 Add Books
+The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
+
+![Sequence Diagram for Add Books]()
+
+* [Explanation of Sequence Diagram]
+
+##### Design Considerations
+* Title and author must be specified as <title,author> is used as the primary key.
+    * Pros: Allows users to specify different books with the same title but different author.
+    * Cons: Need to check for both title and author to prevent duplicates.
+
+#### 4.3.2 Find Book by Keyword
+The sequence diagram below demonstrates the command execution process when finding books by a keyword.
+
+![Sequence Diagram for Find Book by Keyword]()
+
+##### Design Considerations
+* Allows user to find books if either title or author contains the keyword.
+    * Pros: Users can find books not just based on book title alone. The search range is increased to author name as well.
+    * Cons: Need to check for both title and author for the list of results.
+* Case insensitive
+    * Pros: Users do not have to bother about the exact letter case when typing the keyword.
+    * Cons: Need to ensure all title or author are converted to the same case before searching.
+* Keyword or phrase
+    * Pros: Users can search for an exact phrase instead of just one word.
+    * Cons: The exact phrase must be typed out for the correct result to show. 
 
 ## 5.0 Product scope
 ### 5.1 Target user profile

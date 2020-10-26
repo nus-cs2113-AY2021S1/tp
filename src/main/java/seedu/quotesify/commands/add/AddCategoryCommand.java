@@ -54,7 +54,7 @@ public class AddCategoryCommand extends AddCommand {
 
                 addCategoryToBook(category, bookNum, ui);
                 addCategoryToQuote(category, quoteNum, ui);
-                categoryList.updateListInCategory(category);
+                categoryList.updateListsInCategory(category);
             }
         } catch (QuotesifyException e) {
             addLogger.log(Level.WARNING, e.getMessage());

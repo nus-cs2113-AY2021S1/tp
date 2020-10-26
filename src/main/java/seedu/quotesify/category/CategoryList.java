@@ -48,7 +48,7 @@ public class CategoryList extends QuotesifyList<Category> {
         }
     }
 
-    public void updateListInCategory(Category category) {
+    public void updateListsInCategory(Category category) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         category.setBookList(bookList.filterByCategory(category.getCategoryName()));
