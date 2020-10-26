@@ -157,28 +157,32 @@ public class FinanceTools {
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
             CommandPacket packet = InputParser.getInstance().parseInput(input);
+            commands.add(input);
             switch (packet.getCommandString()) {
             case "simple":
                 outputAmount = Double.toString(Math.round(handleSimpleInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cashb":
                 outputAmount = Double.toString(Math.round(handleCashback(packet) * 100.00) / 100.00);
                 System.out.println("Total Cashback Earned: $\n\n" + outputAmount);
+                commands.add("Total Cashback Earned: $" + outputAmount);
                 break;
             case "miles":
                 outputAmount = Double.toString(Math.round(handleMilesCredit(packet) * 100.00) / 100.00);
                 System.out.println("Total Miles Earned: \n\n" + outputAmount);
+                commands.add("Total Miles Earned: " + outputAmount);
                 break;
             case "cyearly":
                 outputAmount = Double.toString(Math.round(handleYearlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
-                //commands.add("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cmonthly":
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
-                //commands.add("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "store":
                 handleStorage(packet, filePath, infoText);
@@ -186,6 +190,12 @@ public class FinanceTools {
                 break;
             case "commands":
                 printCommandList();
+                break;
+            case "history":
+                for (int i = 0; i < commands.size(); i++) {
+                    System.out.printf("%d) ", i + 1);
+                    System.out.println(commands.get(i));
+                }
                 break;
             case "info":
                 if (infoText.size() == 0) {
