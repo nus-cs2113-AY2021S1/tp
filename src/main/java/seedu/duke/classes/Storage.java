@@ -111,7 +111,7 @@ public class Storage implements SaveState {
             String[] splitDuration = s.nextLine().split("Duration: ");
             int duration = Integer.parseInt(splitDuration[1]);
             shows.setShow(name, new Show(name, season, episodes, duration));
-            shows.getShow(name).setReview(String.join(" ", review));
+            shows.getShow(name).setReview(review);
             shows.getShow(name).setRating(rating);
 
             String[] splitCurrentSeason = s.nextLine().split("Current Season: ");
