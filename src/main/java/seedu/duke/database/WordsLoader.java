@@ -10,11 +10,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WordsLoader {
 
     private static final ArrayList<Words> wordsList = WordList.getWordList();
     private static final String FILE_PATH = "data/words.txt";
+    private static final Logger LOGGER = Logger.getLogger("Words loader");
 
     public static void loadWordsFile() {
         File directory = new File("data");
@@ -29,10 +32,11 @@ public class WordsLoader {
             try {
                 readDataFromFile(s);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error reading file.");
+                System.out.println("Error reading file due to unexpected format. Please manually check your file.");
+                LOGGER.log(Level.WARNING, "Program cannot continue reading data from file.");
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File is being created.");
+            LOGGER.log(Level.INFO, "File is created the first time.");
         }
     }
 
