@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import seedu.duke.food.Food;
 
@@ -67,6 +68,13 @@ class FoodListTest {
                 list.getFoods().toString());
 
         // add new entries too:
+        if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                System.out.println("Unexpected Interruption");
+            }
+        }
         list.addFood(1, food);
         assertEquals(food.toString(), list.getFoodsAfterDateTime(timeNow).get(0).toString());
 
