@@ -1,5 +1,22 @@
 # User Guide for E-Duke-8
 
+Table of contents:
+
+- [1. Introduction](#1-introduction)
+- [2. Quick Start](#2-quick-start)
+- [3. Features](#3-features)
+  * [3.1. Loading Data](#31-loading-data)
+  * [3.2. Welcome Page](#32-welcome-page)
+  * [3.3. Viewing E-Duke-8 information : `about`](#33-viewing-e-duke-8-information----about-)
+  * [3.4. Viewing available commands : `help`](#34-viewing-available-commands----help-)
+  * [3.5. Listing all topics : `topics`](#35-listing-all-topics----topics-)
+  * [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content---textbook-)
+  * [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz---quiz-)
+  * [3.8. Showing a hint : `hint`](#38-showing-a-hint----hint-)
+  * [3.9. Exiting the program : `exit`](#39-exiting-the-program----exit-)
+- [4. FAQ](#4-faq)
+- [5. Command summary](#5-command-summary)
+- [6. Glossary](#6-glossary)
 
 ## 1. Introduction
 
@@ -45,7 +62,7 @@ Upon successful startup, you should be greeted with a screen like this:
 
 ![welcome](./images/welcome.png)
 
-### 3.3. Viewing E-Duke-8 information : `about`
+### 3.3. Viewing E-Duke-8 information: `about`
 
 Shows a message explaining what E-Duke-8 is about and your benefits of using it.
 
@@ -59,7 +76,7 @@ What you should see:
 ![about](./images/about.png)
 
 
-### 3.4. Viewing available commands : `help`
+### 3.4. Viewing available commands: `help`
 
 Shows a list of commands that you can use.
 
@@ -73,7 +90,7 @@ What you should see:
 ![help](./images/help.png)
 
 
-### 3.5. Listing all topics : `topics`
+### 3.5. Listing all topics: `topics`
 
 Shows the entire list of CS2113/T's topics that you can choose for your quiz to be based upon. 
 
@@ -145,7 +162,7 @@ After attempting all of the questions, the quiz will automatically end:
 
 After the quiz ends, you will be prompted to enter in a new command. At this point, you can choose to start a new quiz again!
 
-### 3.8. Showing a hint : `hint`
+### 3.8. Showing a hint: `hint`
 
 Shows a hint to the current question.
 
@@ -161,7 +178,7 @@ What you should see:
 
 ![hint](./images/hint.png)
 
-### 3.9. Exiting the program : `exit`
+### 3.9. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
