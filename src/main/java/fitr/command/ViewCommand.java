@@ -63,6 +63,8 @@ public class ViewCommand extends Command {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
         } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
             viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1]);
+        } else if (command.split(" ")[0].equalsIgnoreCase((COMMAND_VIEW_FOOD))) {
+            viewFoodByDate(listManager.getFoodList(), command.split(" ")[1]);
         } else {
             Ui.printFormatError("view");
         }
@@ -170,16 +172,44 @@ public class ViewCommand extends Command {
             int printIndex = index + 1;
             Ui.printCustomMessage(EXERCISE_LIST_HEADER);
             Ui.printMessageInYellow(DATE_HEADER + date);
-            while (index < exerciseList.getSize()) {
+            while (index < exercisesOnThatDate.getSize()) {
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
-                        + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
-                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories());
+                        + EXERCISE_HEADER + exercisesOnThatDate.getExercise(index).getNameOfExercise()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exercisesOnThatDate.getExercise(index).getCalories());
                 index++;
                 printIndex++;
             }
         }
     }
 
+    private void viewFoodByDate(FoodList foodList, String date) {
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        } catch (Exception ex) {
+            Ui.printCustomError(ERROR_INVALID_DATE);
+        }
+        FoodList foodOnThatDate = new FoodList();
+        for (int i = 0; i < foodList.getSize(); i++) {
+            if (date.equals(foodList.getFood(i).getDate())) {
+                foodOnThatDate.addFood(foodList.getFood(i));
+            }
+        }
+        if (foodOnThatDate.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_EXERCISE_LIST_DATE);
+        } else {
+            int index = 0;
+            int printIndex = index + 1;
+            Ui.printCustomMessage(EXERCISE_LIST_HEADER);
+            Ui.printMessageInYellow(DATE_HEADER + date);
+            while (index < foodOnThatDate.getSize()) {
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + EXERCISE_HEADER + foodOnThatDate.getFood(index).getFoodName()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + foodOnThatDate.getFood(index).getCalories());
+                index++;
+                printIndex++;
+            }
+        }
+    }
     @Override
     public boolean isExit() {
         return false;
