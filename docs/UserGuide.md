@@ -316,7 +316,7 @@ Example of usage:
 
 Expected output:
 
-### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag`</a>
+### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
 Tags or untags an event with the given tag name.
 
 Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
