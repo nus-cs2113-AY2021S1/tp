@@ -52,7 +52,19 @@ public class WritingList {
     }
 
     public void remove(int i) {
+        assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
         this.writinglist.remove(i);
+    }
+
+    public void removeID(int i) {
+        int idExists = 0;
+        for (Writings w: writinglist) {
+            if (w.getId() == i) {
+                writinglist.remove(w);
+                idExists = 1;
+            }
+        }
+        assert (idExists == 1) : "This ID does not exists";
     }
 
     /** Get the number of writings available in the storage. */
