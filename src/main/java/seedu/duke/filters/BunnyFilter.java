@@ -20,6 +20,13 @@ public class BunnyFilter {
 
     public static HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
 
+    /**
+     * Filter specific bunny ideas from the list of bunnies.
+     * @param userInput user input command
+     * @param bunniesList ArrayList of bunnies stored
+     * @throws MissingFilterOptionsException user command for filter bunny missing arguments
+     * @throws NoFilteredItemsException filter function found no bunnies matching the search criteria
+     */
     public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList)
             throws MissingFilterOptionsException, NoFilteredItemsException {
 
@@ -52,8 +59,7 @@ public class BunnyFilter {
             genreSearchTerm = filterOptions.get(GENRE_TAG).trim();
             hasAtLeastOneFilterOption = true;
         }
-
-
+        
         if (!hasAtLeastOneFilterOption) {
             throw new MissingFilterOptionsException();
         }
@@ -82,6 +88,8 @@ public class BunnyFilter {
         if (filteredBunny.isEmpty()) {
             throw new NoFilteredItemsException();
         }
+
+        assert filteredBunny.isEmpty() : "filter function error";
 
         printFilteredBunny(bunniesList.size(),  filteredBunny);
     }
