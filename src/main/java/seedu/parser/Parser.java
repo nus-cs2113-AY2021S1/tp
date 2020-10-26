@@ -25,7 +25,16 @@ public class Parser {
         if (rawInput.startsWith(Help.COMMAND_WORD)) {
             return new Help();
         } else if (rawInput.startsWith(List.COMMAND_WORD)) {
-            return new List(rawInput);
+            matcher = List.COMMAND_PATTERN.matcher(rawInput);
+            if (matcher.find()) {
+                return new List(" -d".equals(matcher.group("dateFlag")),
+                        " -p".equals(matcher.group("priorityFlag")),
+                        " -w".equals(matcher.group("displayByWeek")),
+                        " -m".equals(matcher.group("displayByMonth")),
+                        matcher.group("date"));
+            } else {
+                throw new InvalidCommandException();
+            }
         } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
             return new Bye();
         } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
