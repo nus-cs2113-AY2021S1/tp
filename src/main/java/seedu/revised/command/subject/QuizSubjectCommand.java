@@ -3,6 +3,7 @@ package seedu.revised.command.subject;
 import seedu.revised.card.Subject;
 import seedu.revised.card.quiz.SubjectQuiz;
 import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.InvalidSubjectException;
@@ -53,6 +54,15 @@ public class QuizSubjectCommand extends SubjectCommand {
         startQuiz(quizSubject);
     }
 
+    /**
+     * Starts the quiz of the subject specified in the param.
+     *
+     * @param subject               An instance of the <code>Subject</code> class for the user to quiz on
+     * @throws NoTopicException     If there are no instances of <code>Topic</code> available for the
+     *                              program to quiz from
+     * @throws NoFlashcardException If there are no instances of <code>Flashcard</code> available for the
+     *                              program to quiz from
+     */
     private void startQuiz(Subject subject) throws NoTopicException, NoFlashcardException {
         SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
         subjectQuiz.startQuiz();

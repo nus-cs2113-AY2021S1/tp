@@ -34,8 +34,9 @@ public class ResultSubjectCommand extends SubjectCommand {
         Subject resultSubject = null;
 
         for (Subject subject : subjectList.getList()) {
-            if (subject.toString().contains(message[1])) {
+            if (subject.toString().equals(message[1])) {
                 resultSubject = subject;
+                break;
             }
         }
         if (resultSubject == null) {
