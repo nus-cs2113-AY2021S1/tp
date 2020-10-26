@@ -19,7 +19,7 @@
 </pre>
 ## 1. Introduction <a name="intro"></a>
 
-revisED aims to help students to revise their subjects through the creation of flashcards or tasks that have
+**revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
 to be completed. The user can store the flashcards under different topics, which can be created under different
 subjects. The tasks can be stored under subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
@@ -27,33 +27,37 @@ able to revise, even if they are doing it at the last minute.
 This user guide provides an in-depth documentation on the revisED installation process, the program features, and
 the program usage to get you started.
 
+Here is a guide on how to use this UserGuide effectively:<br>
+
+1. Use the hyperlinks in the table of contents to navigate about the user guide quickly.
+2. The code is always marked out like `this` to distinguish it from the rest of the text.
+3. The :warning: symbol indicates things that you should avoid doing while using this application.Else, 
+you will not get the expected outcome.
+4. The :scroll: symbol indicates notes, any informational that is optional to the section.
+
+
 
 ## 2. Quick Start <a name="start"></a>
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-
 3. Transfer the jar file to the folder that you prefer to use.
 4. Open command prompt and use the command `java -jar revised.jar` to begin the application.
-* If you see these symbols in the application `[?]`, unicode is not enable in your operating system. Do the
-following steps:
-    * Go to Properties >> Font >> Font and change the font of the command prompt to NSimsum.
 
 
 ## 3. Initialisation <a name="init"> </a>
 
-The user would see the logo of the application once it is opened.
+You will see the logo of the application, as shown below,  once u begin running it.
 <pre><code>
 Hello from
-                               __________
-                              |  __ |  _ \
- ____  ______      _____      |  |__| | | |
-|  __|/ __ \ \    / /| | ____ |   __| | | |
-| |  |  __/ \ \__/ / | | \____|  |__| |_| |
-| |   \___|  \____/  |_| ____/|_____|_____/
+                                    ___________
+                                    |  __ |  _ \
+ ____  ______      _____   ________ |  |__| | | |
+|  __|/ __ \ \    / /| |  /  _____/ |   __| | | |
+| |  |  __/ \ \__/ / | | /_____  /  |  |__| |_| |
+| |   \___|  \____/  |_|/_______/   |_____|_____/
 </code></pre> 
+Figure 1: **revisED** logo
 
 After that, the application shows any tasks that are due within a week.
 <pre><code>
@@ -68,7 +72,7 @@ science
 2:[D][✘] assignment (by: 6:00 PM 21 Oct 2020)
 </code></pre> 
 
-Subsequently, users can begin using the application.
+Subsequently,you can begin using the application.
 ## 4. Features <a name="features"></a>
 * Subjects
 * Topics
@@ -376,10 +380,12 @@ Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
 
+> :warning: Add the time using the HH:MM DD-MM-YYYY format. 
+>
+
 Example of usage: 
 
 `deadline assignment /by 23:59 21-10-2020`
-
 Expected outcome:
 
 ```
@@ -538,14 +544,18 @@ Here are the flashcard(s) under speed:
 ```
 
 ### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
-Prints the questions from the flashcards and requires the user to complete the quiz within a
-certain time limit.There are two types of quizzes :
+Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
+let you gauge how much you understand from the material. This will be beneficial if you are running out of time
+to revise your own notes.
+ 
+In this feature, the application prints the questions from the flashcards stored in the application. You need to complete the quiz within a
+certain time limit. There are two types of quizzes :
 * SubjectQuiz
 * TopicQuiz
 
 #### 4.5.1 Subject quiz
-Prints out all the questions that have been saved in all of the topics in the subjects.The user is given
-2 minutes to complete the quiz.
+This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
+You have 2 minutes to complete the quiz.
 
 Format: `quiz NAMEOFSUBJECT`<br>
 Example: `quiz Maths`
@@ -553,27 +563,32 @@ Example: `quiz Maths`
 Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
 #### 4.5.2 Topic quiz
-Prints out all the questions that have been saved in the specific topic topics .The user is given
-1 minute to complete the quiz.
+This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
+You have 1 minute to complete the quiz.
 
 Format: `quiz NAMEOFTOPIC`<br>
 Example: `quiz speed`
 
 Output: `You are about to begin the quiz for speed.You have 1 minute.`
 
-Subsequently, the application prints out the questions from the flashcards.The user has to enter
-the answer.</br>
+> :scroll: Ensure that you start a quiz for a subject/topic that has been added to the application 
+> and has a flashcard. Else, the application will not start the quiz.
+
+Once you have entered the type of quiz you want to begin, the application starts the quiz. You
+are expected to answer these questions.
 
 Format: `Question NAMEOFQUESTION`<br>
 Example: `Question: What is distance` <br>
 
-Once the quiz has been completed, the application prints out the scores obtained by the user and
-the questions that the user did not answer incorrectly. 
+Once the quiz has been completed, the application prints out the scores that you obtained.
+You will also be notified about the questions that you did not answer correctly. 
 
-The score is printed in the following formats:<br>
-* If the user gets full marks : `Result:4/4 -- Excellent`<br>
-* If the user gets enough marks to pass: `Result:2/4 -- Pass`<br>
-* If the user fails: `Result:0/4 -- Fail`<br>
+The score is printed in the following format:<br>
+* If you get full marks : `Result:4/4 -- Excellent`<br>
+* If you get enough marks to pass: `Result:2/4 -- Pass`<br>
+* If you fail: `Result:0/4 -- Fail`<br>
+
+The code below shows an example of a result that you can get after attempting a quiz.
 
 <pre><code>____________________________________________________________
 Result:2/4 -- Pass
@@ -589,7 +604,7 @@ Correct Answer: displacement / time
 Your Answer: none
 ____________________________________________________________</code></pre>
 
-The user can stop the quiz by entering `stop`. The application then prints the score for the user.<br>
+You can stop the quiz by entering `stop`. The application then prints the score.<br>
 Format: `stop`<br>
 Output:`The quiz has been stopped!`.
 <pre><code>
@@ -601,8 +616,9 @@ ____________________________________________________________
 </code></pre>
 
 ### 4.6 Viewing quiz results <a name ="result"> </a>
-Shows the results that the user has obtained in all of the quizzes so far.This can be done for the subjects or for the
-topics.
+After completing a few number of quizzes, you would want to look at the results of the previous quizzes to see if
+you have improved over the time. You can use the `results` functionality to check your results.
+This can be done for the subjects or for the topics.
 
 Format: `results NAMEOFTOPIC` or `results NAMEOFSUBJECT`
 Example:`results maths` or `results speed`
@@ -611,6 +627,7 @@ Example:`results maths` or `results speed`
 Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
+> :scroll: Ensure that at least one quiz has been attempted under the subject or topic.
 
 ### 4.7 Storing data <a name="store"> </a>
 When you exit the application, the data you have added to the program is automatically saved to the disk. Similarly, 
@@ -760,6 +777,20 @@ Each first-level entry corresponds to one subject, and the content inside it fol
 in the `data/` folder.
 
 ## 5. FAQ <a name = "faq"> </a>
+Commonly asked questions from users.
+
+Question: I moved the jar file to another location. Will my previous data be erased automatically?<br>
+Answer: Do not worry. You previous data will still be avaiable in the `data/` folder.
+
+Question: I accidentally saved a task as an event, when it is a deadline. Is there any method to change the type of the task?<br>
+Answer: Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
+add the task back using the `deadline [DESCRIPTION] /by [TIME]` command.
+
+Question: I stopped a quiz without completing it. Can I resume it?<br>
+Answer: No. You will have to start a new quiz.
+
+Question: Is there any limit to the number of topics/subjects that I can store in my application?<br>
+Answer: No. You can store unlimited number of topics/subjects.   
 
 ## 6. Command Summary <a name="summary"></a>
 Action|Examples
