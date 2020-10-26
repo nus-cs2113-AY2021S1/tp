@@ -5,6 +5,9 @@ import seedu.duke.exceptions.ExceptionType;
 
 import java.util.ArrayList;
 
+import static seedu.duke.ui.Ui.printClearFavMessage;
+import static seedu.duke.ui.Ui.printFavList;
+
 public class FavList {
     private static ArrayList<Fav> favList;
 
@@ -19,7 +22,16 @@ public class FavList {
     public static void deleteFav(int index) {
     }
 
-    public static void listFav() {
+    public static void listFav() throws CustomException {
+        if (favList.size() == 0) {
+            throw new CustomException(ExceptionType.EMPTY_FAVLIST);
+        }
+        printFavList(favList);
+    }
+
+    public static void clearFav() {
+        favList.clear();
+        printClearFavMessage();
     }
 
     public static String changeDesc(int index, String newDesc) throws CustomException {
@@ -49,10 +61,11 @@ public class FavList {
         int count = 0;
         for (Fav fav : favList) {
             count++;
-            if (fav.equals(item,count)) {
+            if (fav.equals(item, count)) {
                 return true;
             }
         }
         return false;
     }
+
 }

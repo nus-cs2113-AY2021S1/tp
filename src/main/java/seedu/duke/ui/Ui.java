@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusStops;
+import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.foodoptions.DiningOptions;
 
 import java.util.ArrayList;
@@ -161,6 +162,22 @@ public class Ui {
                 System.out.println("\n" + item.toString());
             }
         }
+    }
+
+    public static void printFavList(ArrayList<Fav> favList) {
+        printLine();
+        int index = 0;
+        for (Fav item : favList) {
+            index++;
+            System.out.println(index + ". " + item.toString());
+        }
+        printLine();
+    }
+
+    public static void printClearFavMessage() {
+        printLine();
+        System.out.println("Your favourites has been cleared.");
+        printLine();
     }
 
     public static void printDescChangeMessage(String command, String oldDesc, String newDesc) {

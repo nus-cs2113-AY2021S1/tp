@@ -32,4 +32,8 @@ public class Fav {
         this.desc = desc;
     }
 
+    public String toString() {
+        return command + ": \"" + desc + "\"";
+    }
+
 }

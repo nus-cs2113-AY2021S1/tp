@@ -13,6 +13,7 @@ public enum ExceptionType {
     INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite."),
     UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
     READ_FILE_FAIL("It is unfortunate that the program is unable to read the file"),
+    EMPTY_FAVLIST("Your favourites list is empty!"),
     NO_INPUT("Oh dear! You haven't typed in the index or changed description"),
     EMPTY_DESCRIPTION("Hmmm, I don't think you would want an empty description."),
     NOT_A_NUMBER("Yikes! That is not even a number."),

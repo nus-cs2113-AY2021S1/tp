@@ -14,6 +14,7 @@ import seedu.duke.logic.commands.buscommand.ListStopsCommand;
 import seedu.duke.logic.commands.buscommand.RouteCommand;
 import seedu.duke.logic.commands.buscommand.RouteMapCommand;
 import seedu.duke.logic.commands.favcommand.AddFavCommand;
+import seedu.duke.logic.commands.favcommand.ClearFavCommand;
 import seedu.duke.logic.commands.favcommand.DeleteFavCommand;
 import seedu.duke.logic.commands.favcommand.DescFavCommand;
 import seedu.duke.logic.commands.favcommand.ExecFavCommand;
@@ -94,6 +95,9 @@ public class Parser {
             break;
         case "/execfav":
             com = new ExecFavCommand();
+            break;
+        case "/clearfav":
+            com = new ClearFavCommand();
             break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
