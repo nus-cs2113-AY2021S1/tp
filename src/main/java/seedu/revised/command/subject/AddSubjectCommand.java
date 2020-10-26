@@ -48,7 +48,7 @@ public class AddSubjectCommand extends SubjectCommand {
         Subject temp = new Subject(title);
         subjectList.getList().add(temp);
         Ui.printSubject(temp, subjectList);
-        logger.info("Finish creating a new subject.");
+        logger.info("Finished creating a new subject.");
         logger.fine(String.format("The subject is %s", temp.getTitle()));
     }
 

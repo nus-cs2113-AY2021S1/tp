@@ -31,7 +31,7 @@ public class DeleteSubjectCommand extends SubjectCommand {
         assert !(number <= 0 && number > subjectList.getList().size());
         subjectList.getList().remove(number - 1);
         Ui.printSubjectDelete(subject, subjectList.getList().size());
-        logger.info("Finish deleting the subject to be deleted.");
+        logger.info("Finished deleting the subject to be deleted.");
         logger.fine(String.format("The subject is %s", subject.getTitle()));
     }
 

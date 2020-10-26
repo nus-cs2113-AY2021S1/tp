@@ -8,8 +8,10 @@ import seedu.revised.ui.Ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class ExportSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(ExportSubjectCommand.class.getName());
 
     /**
      * Stores an instance of the <code>SubjectList</code> into a file.
@@ -20,8 +22,10 @@ public class ExportSubjectCommand extends SubjectCommand {
      * @throws IOException If there is an error accessing the storage location
      */
     public void execute(SubjectList subjectList, Storage storage) throws IOException {
+        logger.info("Begin exporting all subjects into a file.");
         File exportFile = storage.export(subjectList.getList());
         Ui.printExportSuccessful(exportFile);
+        logger.info("Finished exporting all subjects into a file.");
     }
 
     /**
