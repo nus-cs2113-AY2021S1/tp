@@ -59,7 +59,7 @@ public class BunnyFilter {
             genreSearchTerm = filterOptions.get(GENRE_TAG).trim();
             hasAtLeastOneFilterOption = true;
         }
-        
+
         if (!hasAtLeastOneFilterOption) {
             throw new MissingFilterOptionsException();
         }

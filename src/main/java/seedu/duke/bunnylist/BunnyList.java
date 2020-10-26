@@ -60,7 +60,7 @@ public class BunnyList {
      * Prints a list of all the bunny ideas in the list.
      */
     public static void listBunny() {
-        if (bunniesList.size() == 0){
+        if (bunniesList.size() == 0) {
             UI.bunnyListEmpty();
         } else {
             UI.listBunnyMessage();
