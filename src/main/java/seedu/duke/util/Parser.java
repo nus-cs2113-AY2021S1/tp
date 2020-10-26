@@ -57,7 +57,6 @@ import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
 import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -81,6 +80,9 @@ public class Parser {
 
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
     private static final int NULL_INDEX = 0;
+    private static final String[] INSTRUCTIONS_INPUT_CONTENTS = {
+        "Enter Note:", "*/del to delete previous line*", "*/end on a new line to end note input*"
+    };
 
     /**
      * Parses userInput string into a Command to be executed.
@@ -179,7 +181,7 @@ public class Parser {
      * Checks if an input string if blank. If it is, throw the provided system exception. If it is not, return that
      * string trimmed.
      *
-     * @param input         Input to be checked.
+     * @param input Input to be checked.
      * @param exceptionType ExceptionType to be thrown.
      * @return Trimmed non-blank string.
      * @throws SystemException Occurs when input is blank.
@@ -256,6 +258,10 @@ public class Parser {
                     break;
                 case PREFIX_PIN:
                     isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
+                    break;
+                case PREFIX_ARCHIVE:
+                    isArchived = Boolean.parseBoolean(checkBlank(infoDetails[1],
+                            ExceptionType.EXCEPTION_MISSING_ARCHIVE));
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
@@ -414,12 +420,7 @@ public class Parser {
             Scanner input = new Scanner(System.in);
             inputString = new ArrayList<>();
 
-            String[] instructions = new String[3];
-            instructions[0] = "Enter Note:";
-            instructions[1] = "*/del to delete previous line*";
-            instructions[2] = "*/end on a new line to end note input*";
-
-            System.out.println(Formatter.formatString(instructions, true));
+            System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true));
             try {
                 // Type note
                 do {
@@ -927,15 +928,15 @@ public class Parser {
      * Adds on to the current type of lines that is to be added
      * edit or delete.
      *
-     * @param prefix     type that is passed in.
-     * @param lists      of list to be returned.
+     * @param prefix type that is passed in.
+     * @param lists of list to be returned.
      * @param infoDetail string user input values.
      * @return lists of list containing the key and value.
      * @throws SystemException if integer is invalid.
      */
     private Map<Integer, String> addToLists(String prefix, Map<Integer, String> lists,
                                             String infoDetail) throws SystemException {
-        String line = checkBlank(infoDetail, ExceptionType.EXCEPTION_MISSING_LINE);
+        String line = checkBlank(infoDetail, ExceptionType.EXCEPTION_MISSING_LINE_CONTENT);
         String[] lineInfo;
         int index;
 
@@ -1007,7 +1008,7 @@ public class Parser {
      * Returns a CreateTagCommand or a DeleteTagCommand based on the user message.
      *
      * @param userMessage Original string of the user message.
-     * @param isCreate    determines the type of command (CreateTagCommand or DeleteTagCommand) to return.
+     * @param isCreate determines the type of command (CreateTagCommand or DeleteTagCommand) to return.
      * @return either a new CreateTagCommand or DeleteTagCommand.
      * @throws SystemException for missing tag prefix or tag name.
      */

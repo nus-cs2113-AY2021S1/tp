@@ -24,7 +24,7 @@ public class EditNoteCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits a note in the notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_LINE + " INDEX STRING]"
+            + "[" + PREFIX_DELIMITER + PREFIX_LINE + " LINE_INDEX CONTENTS]"
             + "[" + PREFIX_DELIMITER + PREFIX_CONTENT + " CONTENT]"
             + "[" + PREFIX_DELIMITER + PREFIX_DELETE_LINE + " INDEX]"
             + "[" + PREFIX_DELIMITER + PREFIX_ADD_LINE + " INDEX STRING]"
