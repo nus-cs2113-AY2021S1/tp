@@ -40,20 +40,20 @@ public class WritingList {
     static int countWritings = 0;
 
     public WritingList() {
-        this.writinglist = new ArrayList<>();
+        writinglist = new ArrayList<>();
     }
 
     public void add(Writings w) {
-        this.writinglist.add(w);
+        writinglist.add(w);
     }
 
     public Writings get(int i) {
-        return this.writinglist.get(i);
+        return writinglist.get(i);
     }
 
     public void remove(int i) {
         assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
-        this.writinglist.remove(i);
+        writinglist.remove(i);
     }
 
     public void removeID(int i) {
@@ -178,12 +178,12 @@ public class WritingList {
      * To be associated with command "reset writing".
      */
     public static void clearAll(WritingList writings) {
-        writings.writinglist.clear();
+        writinglist.clear();
         System.out.println(CLEAR_DATA_MESSAGE);
         //Reset countWritings
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
         recordListToFile(f, writings);
-        writings.countWritings = 0;
+        countWritings = 0;
     }
 
     /** Adding a poem to the database. */

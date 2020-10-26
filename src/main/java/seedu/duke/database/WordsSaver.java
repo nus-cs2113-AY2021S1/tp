@@ -47,5 +47,4 @@ public class WordsSaver {
         fw.write(textToWrite);
         fw.close();
     }
-
 }

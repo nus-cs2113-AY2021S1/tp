@@ -4,9 +4,9 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
-
 import seedu.duke.constants.FilterMessages;
 import seedu.duke.database.ClearLoader;
+import seedu.duke.database.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
@@ -19,12 +19,10 @@ import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;
-import seedu.duke.ui.UI;
-
-import seedu.duke.wordlist.WordList;
 import seedu.duke.names.Names;
+import seedu.duke.ui.UI;
+import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
-
 
 import java.io.IOException;
 
@@ -64,6 +62,9 @@ public class CommandExecutor {
             break;
         case ADJ:
             WordList.addAdjective(userInput);
+            break;
+        case GEN_THREE_WORDS:
+            WordList.listThreeWords();
             break;
         case LIST_WORDS:
             WordList.listWords();
@@ -184,6 +185,7 @@ public class CommandExecutor {
         case DELETE:
             break;
         case EXIT:
+            WordsSaver.saveWordsToFile();
             //closes the program
             break;
         default:

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import seedu.duke.database.WritingsLoader;
 
 public class Logging {
-    private static Logger logWritingLoader = Logger.getLogger(WritingsLoader.class.getName());
+    private static final Logger logWritingLoader = Logger.getLogger(WritingsLoader.class.getName());
 
     public static void test() {
         logWritingLoader.log(Level.INFO, "Your database has been up to date!");

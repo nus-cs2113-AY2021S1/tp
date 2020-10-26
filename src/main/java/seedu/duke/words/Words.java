@@ -16,6 +16,10 @@ public abstract class Words {
      */
     public abstract String getType();
 
+    // Method to convert word to save format
+    @Override
+    public abstract String toString();
+
     public String getDefinition() {
         return this.definition;
     }

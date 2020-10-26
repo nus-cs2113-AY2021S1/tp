@@ -24,7 +24,7 @@ public class WordsLoader {
         File f = new File(FILE_PATH);
 
         if (directory.mkdir()) {
-            System.out.println("Directory is being created.");
+            LOGGER.log(Level.INFO, "Directory is being created.");
         }
 
         try {

@@ -10,27 +10,27 @@ public class WritingListTest {
     private static WritingList writings;
 
     private static void initializeTestDatabase() {
-        writings.addPoem("fantasy", 1, "thih", "sdfa", "jdkfa");
-        writings.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
-        writings.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa");
-        writings.addEssay("fantasy", 23, "thih", "sdfa", "jdkfa");
-        writings.addEssay("fantasy", 13, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 1, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 23, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 13, "thih", "sdfa", "jdkfa");
     }
 
     @Test
     public void removeAllWritings_getWritingSize() {
-        writings.clearAll(writings);
+        WritingList.clearAll(writings);
         initializeTestDatabase();
-        assertEquals(5, writings.getWritingSize());
-        writings.clearAll(writings);
-        assertEquals(0, writings.getWritingSize());
+        assertEquals(5, WritingList.getWritingSize());
+        WritingList.clearAll(writings);
+        assertEquals(0, WritingList.getWritingSize());
     }
 
     @Test
     public void testRemoveID() {
-        writings.clearAll(writings);
+        WritingList.clearAll(writings);
         initializeTestDatabase();
-        assertEquals(5, writings.getWritingSize());
+        assertEquals(5, WritingList.getWritingSize());
         //writings.removeID(12);
         //assertEquals(0, writings.getWritingSize());
     }

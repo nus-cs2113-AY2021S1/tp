@@ -134,7 +134,7 @@ public class WritingsLoader {
      */
     private static void recordFile(File f, WritingList savedWritings) throws IOException {
         FileWriter fw = new FileWriter(f);
-        for (int i = 0; i < savedWritings.getCountWritings(); i++) {
+        for (int i = 0; i < WritingList.getCountWritings(); i++) {
             fw.write("*id: " + savedWritings.get(i).getId() + "\n"
                     + "*Author: " + savedWritings.get(i).getAuthor().getName() + "\n"
                     + "*Type: " + savedWritings.get(i).getType() + "\n"
@@ -167,7 +167,7 @@ public class WritingsLoader {
     public static void loadWritings(WritingList savedWritings) {
         Logging log = new Logging();
         try {
-            log.test();
+            Logging.test();
             File userWritingsFile = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
             FileFunctions.checkFileExists(userWritingsFile);
             convertFromFile(userWritingsFile, savedWritings);

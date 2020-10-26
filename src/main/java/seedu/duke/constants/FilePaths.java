@@ -17,6 +17,11 @@ public class FilePaths {
     public static final String DEFAULT_BUNNY_FILE_PATH = "data/bunny.txt";
 
     /**
+     * Default path to file for word bank.
+     */
+    public static final String WORDS_FILE_PATH = "data/words.txt";
+
+    /**
      * Test file path to see where the files save.
      */
     public static final String TEST_FILE_PATH = "testFile.txt";
