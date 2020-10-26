@@ -152,6 +152,10 @@ public class Show {
             des.append(episode);
             des.append(" ");
         }
+        if (!review.equals("null")) {
+            des.append("| Review: ");
+            des.append(review);
+        }
         return des.toString();
     }
 

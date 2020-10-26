@@ -1,9 +1,12 @@
 # WatchNext
 
-WatchNext is a Command Line Interface (CLI) program used to track their progress in the different shows they watch and also the upcoming shows they wish to watch.. This application is catered for teenagers or young adults, and is optimized for users who prefer to work with the CLI.
+
+<img src = "images/quickstart.PNG" width = "600">
+
+#### **WatchNext** is a show tracker made for teenagers and young adults.
 
 
-Useful links:
+Useful links to learn more about WatchNext:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)

@@ -124,8 +124,10 @@ Given below is an example of usage scenario of how the add command behaves at ea
 
 **Step 1**
 
-* The user types in `add friends 10,2 30` , adding the show to the list with it's title,number of seasons, number of 
-episdoes and duration of each episode
+* The user types in `add friends 2 10,10 30` , adding the show to the showlist. The details added to the show list include
+the title of the show, the number of seasons of the show, the number of episodes in each season(seperated by the comma) and 
+the duration of each episode. 
+
 The parseInput method in InputParser class is called to parse the command.
 
 **[NOTE]** 
@@ -140,13 +142,13 @@ Customised exceptions are thrown when the number of arguments entered by the use
 
 **Step 3**
 
-* After the AddCommand method is called,it does the following things:
+* After the AddCommand method is called,the following steps will are carried out:
 
-1.Splits the input from the user to 4 seperate parameters (Title,Number of seasons,Number of episodes,Duration)
+1.Splits the input from the user to 4 separate parameters (Title,Number of seasons,Number of episodes,Duration)
 
 2.Creates a new Show instance with the 4 parameters
 
-3.Added the show into the show list
+3.Adds the show into the show list
 
 4.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
 
@@ -154,10 +156,28 @@ Customised exceptions are thrown when the number of arguments entered by the use
 
 ### Edit 
 
-The `edit` command allows the user to change the details of each show that they are waatching after they have added the
+The `edit` command allows the user to change the details of each show that they are watching after they have added the
 show. It is self-contained, including its own parser and methods which allows the user to change any parameter they 
 wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
 
+Given below is an example of usage scenario of how the edit command behaves at each step
+
+**Step 1**
+
+* The user types in `edit friends` , assuming that friends has been added by the user beforehand.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+The processCommand method is then called. The system will prompt the user to edit the name,season,episodes and 
+duration (of an episode) respectively.
+
+**Step 3**
+
+Shikai can help here HAHAH
 
 ### Rating Command
  
@@ -303,19 +323,87 @@ The deleteRating method in DeleteRatingCommand class is called.
 
 ### Add Review Command
 
-The add review command is invoked by the InputParser method parseAddReview. It takes a string as input. Within the AddReview class
+The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. Within the AddReview class
 
 **Step 1**
+
 The string is tokenised into separate words
 
 **Step 2**
-The corresponding show is retrieved from the WatchList
+
+The corresponding show is retrieved from the show list
 
 **Step 3**
+
 The rating of the show is updated
 
 **Step 4**
+
 The review of the rating is added to the show
+
+**Step 5**
+
+Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+
+### Change Review Command
+
+The `changereview` command takes in 2 parameters, the show which review is to be changed and the new updated review.
+The command is then invoked by the inputParser method parseChangeReview.
+
+
+**Step 1**
+
+The string is tokenised into separate words
+
+**Step 2**
+
+The corresponding show is retrieved from the show list
+
+**Step 3**
+
+The review of the show is updated
+
+**Step 4**
+
+The show is updated back into the show list.
+
+**Step 5**
+
+Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
+
+### Delete Review Command
+
+The `deletereview` command takes in 1 parameter, the show which review is to be deleted.
+The command is then invoked by the inputParser method parseDeleteReview.
+
+Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
+
+**Step 1**
+
+* The user types in `deletereview friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** 
+
+Customised NullPointerException will be thrown when show entered by user is not found in the show list
+
+**Step 2**
+
+* A new instance of DeleteReviewCommand class is called and the command is returned to the main program. 
+The deleteReview method in DeleteReviewCommand class is called.
+
+**Step 3**
+
+* After the deleteReview method is called, it does the following things:
+
+1.Retrieves the show to be updated from the show list
+
+2.Sets the show's rating to "null", essentially deleting it
+
+3.Updates the show back into the show list
+
+3.Reflect the changes back to the user. At the same time, saving the changes into the showList.txt file
 
 ### Watch Command feature
 
@@ -345,6 +433,16 @@ The processCommand method in WatchCommand class is called.
 2.Increment current episode  and new season if applicable. No change is done if user has finished series. 
 
 3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
+
+The following sequence diagram summarises what happens when a user executes a `WatchCommand`:
+
+ <img src = "images/WatchCommandSequence.png" width = "700">
+ 
+ <br> 
+ 
+ *Sequence diagram for Watch Command*
+
+
 
 ### UpdateTimeLimit Command feature
 
@@ -382,6 +480,28 @@ The loadState function will read the file line by line. It will first call the l
 
 The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
 
+### Error Handling
+
+The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an exception.
+
+The following is an example execution scenario and demonstrates how the `ErrorHandling` class behaves and interacts with other relevant classes.
+
+**Step 1**
+
+* The user types in `updatetimelimit hello`.
+The `parseInput` method in `InputParser` class is called to parse the command. The `processCommand` method in `UpdateTimeLimit` class is called.
+The `processCommand` method will attempt to parse `hello` to an integer.
+
+**[NOTE]** At this instance `NumberFormatException` will be thrown as `hello` cannot be parsed to an integer.
+
+**Step 2**
+
+* The `parseUpdateTimeLimitCommand` method in `InputParser` class catches the thrown `NumberFormatException`. The printInvalidFormatException method in Ui class is called.
+
+**Step 3**
+
+* The `printInvalidFormatException` method in `Ui` class will call the `ErrorHandling` class and get the `EXCEPTION_INVALID_FORMAT` enumeration, along with its `exceptionMessage`.
+The `Ui` class prints the `exceptionMessage` into the terminal.
 
 ## 5. Documentation
 

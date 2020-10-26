@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.Scanner;
 
+//@@author judowha
+
 public class Storage implements SaveState {
 
     private String filePath;
@@ -37,6 +39,7 @@ public class Storage implements SaveState {
             }
             fw.write("\t\tEpisodes: " + episodes + System.lineSeparator());
             fw.write("\t\tRating: " + entry.getValue().getRating() + System.lineSeparator());
+            fw.write("\t\tReview: " + entry.getValue().getReview() + System.lineSeparator());
             fw.write("\t\tDuration: " + entry.getValue().getEpisodeDuration() + System.lineSeparator());
             fw.write("\t\tCurrent Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
             fw.write("\t\tCurrent Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
@@ -101,9 +104,14 @@ public class Storage implements SaveState {
 
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
+
+            String[] splitReview = s.nextLine().split("Review: ");
+            String review = splitReview[1];
+
             String[] splitDuration = s.nextLine().split("Duration: ");
             int duration = Integer.parseInt(splitDuration[1]);
             shows.setShow(name, new Show(name, season, episodes, duration));
+            shows.getShow(name).setReview(review);
             shows.getShow(name).setRating(rating);
 
             String[] splitCurrentSeason = s.nextLine().split("Current Season: ");
@@ -113,6 +121,7 @@ public class Storage implements SaveState {
             String[] splitCurrentEpisode = s.nextLine().split("Current Episode: ");
             int currentEpisode = Integer.parseInt(splitCurrentEpisode[1]);
             shows.getShow(name).setEpisodeWatched(currentEpisode);
+
 
         }
         return shows;

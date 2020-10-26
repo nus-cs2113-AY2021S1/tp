@@ -67,28 +67,45 @@ public class Ui {
         System.out.println(("help") + " - Views help\n"
                 + " \n"
                 + ("add") + " - Adds a show\n"
+                + "Example: add Friends\n"
                 + " \n"
                 + ("edit") + " - Edits your show details\n"
+                + "Example: edit Friends\n"
                 + " \n"
-                + ("rating") + " - Set rating of your show\n"
-                + "\n"
-                + ("list") + " - Displays all your shows in list\n"
+                + ("list") + " - Displays all your shows in thw watchlist\n"
                 + "\n"
                 + ("delete") + " - Deletes your show\n"
+                + "Example: delete Friends\n"
                 + " \n"
+                + ("addreview") + " - Adds a review to your show\n"
+                + "Example: addreview Friends 9 / very funny\n"
+                + "\n"
+                + ("changereview") + " - Changes review of your show\n"
+                + "Example: changereview Friends / not very funny now\n"
+                + "\n"
+                + ("deletereview") + " - Deletes review of your show\n"
+                + "Example: deletereview Friends\n"
+                + "\n"
                 + ("deleterating") + " - Deletes rating of your show\n"
+                + "Example: deleterating Friends\n"
                 + "\n"
                 + ("changerating") + " - Changes rating of your show\n"
+                + "Example: changerating Friends\n"
                 + "\n"
-                + ("addreview") + " - Adds a review of your show\n"
+                + ("episode") + " - Update your current episode progress\n"
+                + "Example: episode Friends 7\n"
                 + "\n"
-                + ("episode") + " - Update your episode progress\n"
+                + ("season") + " - Update your current season progress\n"
+                + "Example: season Friends 3\n"
                 + "\n"
-                + ("season") + " - Update your season progress\n"
+                + ("search") + " - Look for your show in the watchlist\n"
+                + "Example: search Friends\n"
                 + "\n"
                 + ("updatetimelimit") + " - Update your watch time limit\n"
+                + "Example: updatetimelimit 120\n"
                 + "\n"
                 + ("watch") + " - Update your watch progress\n"
+                + "Example: watch Friends\n"
                 + "\n"
                 + ("bye") + " - Exits the program\n");
         System.out.println("Refer to our user guide for more help!");
@@ -157,6 +174,12 @@ public class Ui {
 
     }
 
+    public static void printReviewAdded(String showName) {
+        printLine();
+        System.out.println("Your review for " + (showName) + " has been added.");
+
+    }
+
     public static void printEditPrompt() {
         printLine();
         System.out.println("Input the detail of the show you want to change {name,season,episode,"
@@ -181,9 +204,19 @@ public class Ui {
         System.out.println("The rating for " + (showName) + " has been updated to " + (rating));
     }
 
+    public static void printChangeReview(String showName) {
+        printLine();
+        System.out.println("The review for " + (showName) + " has been changed.");
+    }
+
     public static void printDeleteRating(String showName) {
         printLine();
         System.out.println("The rating for " + (showName) + " has been deleted.");
+    }
+
+    public static void printDeleteReview(String showName) {
+        printLine();
+        System.out.println("The review for " + (showName) + " has been deleted.");
     }
 
     public static void printDeleteShow(String showName) {
@@ -232,6 +265,7 @@ public class Ui {
     }
 
     public static void printSearchSuccessful(String name) {
+        printLine();
         System.out.println("The show: " + name + " is found, here is the detailed information: ");
         System.out.println(ShowList.getShowList().get(name).toString());
     }
