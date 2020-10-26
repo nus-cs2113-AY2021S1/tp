@@ -7,7 +7,7 @@
     1. [Scope](#scope)
 1. [Getting Started](#getting-started)
     1. [Prerequisites](#prerequisites)
-    1. [Setting up](#setting-up)
+    1. [Setting Up](#setting-up)
     1. [Running the Program](#running-the-program)
 1. [Design](#design)
     1. [Architecture](#architecture)
@@ -28,9 +28,9 @@
     1. [Sprint](#sprint)
         1. [Create Sprint](#create-sprint)
         1. [View Sprint](#view-sprint)
-        1. [Add task to Sprint](#add-task-to-sprint)
-        1. [Remove task from Sprint](#remove-task-from-sprint)
-        1. [Allocate Sprint tasks to Members](#allocate-sprint-tasks-to-members)        
+        1. [Add Task to Sprint](#add-task-to-sprint)
+        1. [Remove Task from Sprint](#remove-task-from-sprint)
+        1. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        
     1. [Saving of Data](#saving-of-data)
 1. [Others](#target-user-profile)
 
@@ -49,7 +49,7 @@ This guide is geared towards developers who wish to enhance or create their own 
 1. JDK 11.
 1. IntelliJ IDEA.
 
-### Setting up
+### Setting Up
 1. Use a Git tool to fork this repository, or download the .zip file from GitHub and extract the contents into a new folder.
 1. Right-Click on the folder and select “Open folder as Intellij IDEA Community Edition Project”.
 1. Ensure JDK 11 is selected for Gradle, by navigating to Configure > Structure for New Projects > Project Settings > Project > Project SDK.
@@ -87,9 +87,9 @@ In contrast, the JSON is deserialised under the functions implemented in Storage
 ### Sprint
 #### Create Sprint
 #### View Sprint
-#### Add task to Sprint
-#### Remove task from Sprint
-#### Allocate Sprint tasks to Members    
+#### Add Task to Sprint
+#### Remove Task from Sprint
+#### Allocate Sprint Tasks to Members    
 ### Saving of Data
 To make the data persistent and portable, **JSON** has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium that is used to run the program. JSON is also human-readable which allows users to directly modify the data file easily which can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
