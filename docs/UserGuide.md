@@ -174,10 +174,13 @@ Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+Example of usage:
+    `done`
  
 > **[NOTE]**
 >
->  * The `<DURATION OF EPISODE>` is in minutes.  
+>  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 30` or in hours and minutes
+>such as `duration 1h25m` .
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
 
