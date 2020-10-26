@@ -95,10 +95,7 @@ The ParserManager manages the creation of specific parser objects based on the t
   <br><em>Figure #</em>
 </p>
 
-💡 Note that the alternate paths in the sequence diagram above is not exhaustive. There is an alternate path for each
- unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram is
-  used to represent a generic Command object that is created through the Parser. Refer to the next figure
-   for more details.
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
  
  <p align="center">
    <img alt="Parser" src="diagrams/out/AddNoteParser.png" />
