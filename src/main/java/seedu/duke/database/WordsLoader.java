@@ -49,29 +49,29 @@ public class WordsLoader {
             }
 
             switch (readings[0]) {
-                case "verb":
-                    try {
-                        wordsList.add(new Verb(readings[1], readings[2]));
-                    } catch (StringIndexOutOfBoundsException e) {
-                        System.out.println("No arguments about readings[1] or readings[2] is provided");
-                    }
-                    break;
-                case "noun":
-                    try {
-                        wordsList.add(new Noun(readings[1], readings[2]));
-                    } catch (StringIndexOutOfBoundsException e) {
-                        System.out.println("No arguments about readings[1] or readings[2] is provided");
-                    }
-                    break;
-                case "adjective":
-                    try {
-                        wordsList.add(new Adjective(readings[1], readings[2]));
-                    } catch (StringIndexOutOfBoundsException e) {
-                        System.out.println("No arguments about readings[1] or readings[2] is provided");
-                    }
-                    break;
-                default:
-                    throw new IndexOutOfBoundsException();
+            case "verb":
+                try {
+                    wordsList.add(new Verb(readings[1], readings[2]));
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                }
+                break;
+            case "noun":
+                try {
+                    wordsList.add(new Noun(readings[1], readings[2]));
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                }
+                break;
+            case "adjective":
+                try {
+                    wordsList.add(new Adjective(readings[1], readings[2]));
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                }
+                break;
+            default:
+                throw new IndexOutOfBoundsException();
             }
         }
     }
