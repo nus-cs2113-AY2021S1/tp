@@ -26,6 +26,7 @@ import seedu.duke.hr.CommandSearchMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
+import seedu.duke.others.CommandImportCsv;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -160,6 +161,7 @@ public class Ui {
         commandList.add(new CommandEventStatus());
         commandList.add(new CommandEventCountdown());
         commandList.add(new CommandSearchEvent());
+        commandList.add(new CommandImportCsv());
     }
 }
 

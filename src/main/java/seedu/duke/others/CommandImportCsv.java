@@ -33,7 +33,7 @@ public class CommandImportCsv extends Command {
                     FinanceList.financeLogs.add(tmp);
                 }
             } else if (category.equalsIgnoreCase("hr")) {
-                int rows = map.get("Name").size();
+                int rows = map.get(userInput.getArg("name")).size();
                 for (int i = 0; i < rows; i++) {
                     Member tmp = new Member(map.get(userInput.getArg("name")).get(i),
                             Long.parseLong(map.get(userInput.getArg("phone")).get(i)),
@@ -42,7 +42,7 @@ public class CommandImportCsv extends Command {
                     MemberList.members.add(tmp);
                 }
             } else if (category.equalsIgnoreCase("event")) {
-                int rows = map.get("Name").size();
+                int rows = map.get(userInput.getArg("name")).size();
                 for (int i = 0; i < rows; i++) {
                     Event tmp = new Event(map.get(userInput.getArg("name")).get(i),
                             map.get(userInput.getArg("date")).get(i),
@@ -56,39 +56,47 @@ public class CommandImportCsv extends Command {
             return "Unable to read file! Please check your path/filename!";
         } catch (DukeFileHeaderException e) {
             // This shouldn't happen because we do not enforce header check when invoking the function
+            assert false : "Header checking shouldn't be enabled!";
             return "Header mismatch!";
         } catch (DukeFileFormatException e) {
             return "Unable to read CSV file! Please check that the specified file is properly formatted!";
         }
-        return "";
+        return "Successfully imported file"; // TODO update this text to give more information 
     }
 
     @Override
     public String help() {
         return "Syntax: import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME \n"
-               + "OR: import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME\n"
-               + "OR: import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME\n\n"
-               + "Opens the given CSV file and imports the data in the columns specified by the HEADER_NAME. "
-               + "The mapping specifies that the HEADER_NAME will be assigned to a particular argument. "
-               + "HEADER_NAME is case sensitive";
+                + "OR: import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME\n"
+                + "OR: import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME\n\n"
+                + "Opens the given CSV file and imports the data in the columns specified by the HEADER_NAME. "
+                + "The mapping specifies that the HEADER_NAME will be assigned to a particular argument. "
+                + "HEADER_NAME is case sensitive";
     }
 
     public int validate(UserInput ui) {
         userInput = ui;
         if (ui.getCategory().equals("") && (ui.getCommand().equalsIgnoreCase("import")
                 || ui.getCommand().equalsIgnoreCase("i"))) {
-            if (ui.getArg("").equals("") || ui.getArg("") == null) {
+            if (ui.getArg("") == null || ui.getArg("").equals("")) {
+                return ARGUMENT_ERR;
+            }
+            if (ui.getArg("c") == null || ui.getArg("c").equals("")) {
                 return ARGUMENT_ERR;
             }
             // Shorthand category support
             if (ui.getArg("c").equalsIgnoreCase("h")) {
-                ui.getArgs().put("", "hr");
+                ui.getArgs().put("c", "hr");
             } else if (ui.getArg("c").equalsIgnoreCase("f")) {
-                ui.getArgs().put("", "finance");
+                ui.getArgs().put("c", "finance");
             } else if (ui.getArg("c").equalsIgnoreCase("e")) {
-                ui.getArgs().put("", "event");
+                ui.getArgs().put("c", "event");
             } else {
-                return ARGUMENT_ERR;
+                if (!ui.getArg("c").equalsIgnoreCase("hr")
+                        && ui.getArg("c").equalsIgnoreCase("finance")
+                        && ui.getArg("c").equalsIgnoreCase("event")) {
+                    return ARGUMENT_ERR;
+                }
             }
             // Shorthand argument support
             if (ui.getArg("n") != null && !ui.getArg("n").equals("")) {
@@ -114,33 +122,33 @@ public class CommandImportCsv extends Command {
             }
             // check for the correct arguments depending on the category
             if (ui.getArg("c").equalsIgnoreCase("hr")) {
-                if (ui.getArg("name").equals("") || ui.getArg("name") == null) {
+                if (ui.getArg("name") == null || ui.getArg("name").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("phone").equals("") || ui.getArg("phone") == null) {
+                if (ui.getArg("phone") == null || ui.getArg("phone").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("email").equals("") || ui.getArg("email") == null) {
+                if (ui.getArg("email") == null || ui.getArg("email").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("role").equals("") || ui.getArg("role") == null) {
+                if (ui.getArg("role") == null || ui.getArg("role").equals("")) {
                     return ARGUMENT_ERR;
                 }
             } else if (ui.getArg("c").equalsIgnoreCase("finance")) {
-                if (ui.getArg("name").equals("") || ui.getArg("name") == null) {
+                if (ui.getArg("name") == null || ui.getArg("name").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("value").equals("") || ui.getArg("value") == null) {
+                if (ui.getArg("value") == null || ui.getArg("value").equals("")) {
                     return ARGUMENT_ERR;
                 }
             } else if (ui.getArg("c").equalsIgnoreCase("event")) {
-                if (ui.getArg("name").equals("") || ui.getArg("name") == null) {
+                if (ui.getArg("name") == null || ui.getArg("name").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("date").equals("") || ui.getArg("date") == null) {
+                if (ui.getArg("date") == null || ui.getArg("date").equals("")) {
                     return ARGUMENT_ERR;
                 }
-                if (ui.getArg("time").equals("") || ui.getArg("time") == null) {
+                if (ui.getArg("time") == null || ui.getArg("time").equals("")) {
                     return ARGUMENT_ERR;
                 }
             }
