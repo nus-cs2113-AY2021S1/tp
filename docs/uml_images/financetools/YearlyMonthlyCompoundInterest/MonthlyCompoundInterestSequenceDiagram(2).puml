@@ -1,0 +1,16 @@
+@startuml
+title When User uses Monthly Compound Interest Calculator
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleMonthlyCompoundInterest(packet)
+activate ":Handler"
+
+":Handler" -> ":MonthlyCompoundInterest" : calculateCompoundInterest()
+activate ":MonthlyCompoundInterest"
+
+":MonthlyCompoundInterest" --> ":Handler" : Results
+deactivate ":MonthlyCompoundInterest"
+
+":Handler" --> ":FinanceTools" : Results
+deactivate ":Handler"
+@enduml

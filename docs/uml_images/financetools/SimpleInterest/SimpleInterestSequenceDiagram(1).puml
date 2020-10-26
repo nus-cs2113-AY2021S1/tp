@@ -1,0 +1,40 @@
+@startuml
+autoactivate on
+
+":Handler" ->":Handler": handleSimpleInterest(packet)
+    create ":SimpleInterest"
+   ":Handler"-> ":SimpleInterest" : calculateSimpleInterest()
+    return
+
+   ":Handler"-> ":SimpleInterest" : handlePacket
+
+        == Handling of Params in packet ==
+        ":SimpleInterest" -> ":SimpleInterest" : handleParams
+            ":SimpleInterest" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":SimpleInterest" -> ":SimpleInterest" : handleSingleParam
+                    alt "paramType = /a"
+                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":SimpleInterest" -> ":SimpleInterest" : getParam(paramType)
+                        return
+                    else "paramType = /r"
+                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":SimpleInterest" -> ":SimpleInterest" : getParam(paramType)
+                        return
+                    end
+                return
+            end
+        return
+
+return state
+
+
+box "Logic" #LightBlue
+participant ":SimpleInterest"
+participant ":ParamChecker"
+endBox
+@enduml

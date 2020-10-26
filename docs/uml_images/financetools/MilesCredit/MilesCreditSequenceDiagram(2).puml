@@ -1,0 +1,16 @@
+@startuml
+title When User uses Miles Credit Calculator
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleMilesCredit(packet)
+activate ":Handler"
+
+":Handler" -> ":MilesCredit" : calculateMiles()
+activate ":MilesCredit"
+
+":MilesCredit" --> ":Handler" : Results
+deactivate ":MilesCredit"
+
+":Handler" --> ":FinanceTools" : Results
+deactivate ":Handler"
+@enduml
