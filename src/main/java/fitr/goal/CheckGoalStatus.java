@@ -13,7 +13,6 @@ public class CheckGoalStatus {
 
     public static String checkGoalStatus(String status, Goal goal, FoodList foodList,
                                          ExerciseList exerciseList, User user) {
-        System.out.println("HELLLLOOO THIS IS CREATED DATE:" + goal.getCreatedDate());
         int targetCalorie;
         int userConsumedCalorie = user.calculateCalorieConsumed(foodList, goal.getCreatedDate()).get();
         int userBurntCalorie = user.calculateCalorieBurnt(exerciseList, goal.getCreatedDate()).get();
