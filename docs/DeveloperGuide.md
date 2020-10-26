@@ -101,7 +101,7 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequential diagram of how changing between modes occur.
 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/images/sequential%20diagram.png?raw=true) <br/><br/>
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
 
 Step 1. When the App gets a command from the user to change modes, a new ChangeModeCommand object is created.
 
@@ -111,7 +111,7 @@ Step 3. The App now executes the command and changes to the respective mode. If 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-{choose your own adventure diagram}
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20action%20dia.png?raw=true) 
 
 #### Design consideration:
 
