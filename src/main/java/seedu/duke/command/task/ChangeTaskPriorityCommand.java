@@ -16,7 +16,7 @@ public class ChangeTaskPriorityCommand extends Command {
     private Project proj;
 
     public ChangeTaskPriorityCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
-        super(parameters);
+        super(parameters, true);
         this.projectListManager = projectListManager;
     }
 

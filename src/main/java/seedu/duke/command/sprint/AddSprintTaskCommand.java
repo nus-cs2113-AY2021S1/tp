@@ -12,7 +12,7 @@ public class AddSprintTaskCommand extends SprintCommand {
     private static final Logger LOGGER = Logger.getLogger(AddSprintTaskCommand.class.getName());
 
     public AddSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters,projectList);
+        super(parameters, projectList, true);
         LOGGER.setLevel(Level.WARNING);
     }
 

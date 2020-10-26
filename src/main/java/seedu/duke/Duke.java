@@ -62,6 +62,9 @@ public class Duke {
             Command command = parser.parser(input, projectManager);
             if (command != null) {
                 command.execute();
+                if (command.shouldSave) {
+                    sm.save();
+                }
             }
         }
     }

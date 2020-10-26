@@ -17,7 +17,7 @@ public class CreateSprintCommand extends SprintCommand {
      * Creates a new DELETE command with arguments.
      */
     public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
     }
 
     /**

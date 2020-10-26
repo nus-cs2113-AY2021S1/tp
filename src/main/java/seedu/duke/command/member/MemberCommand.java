@@ -9,8 +9,8 @@ public abstract class MemberCommand extends Command {
 
     ProjectManager projectManager;
 
-    public MemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
-        super(parameters);
+    public MemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager, boolean shouldSave) {
+        super(parameters, shouldSave);
         this.projectManager = projectManager;
     }
 

@@ -17,7 +17,7 @@ public class AddTaskCommand extends Command {
     private Project proj;
 
     public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
-        super(parameters);
+        super(parameters, true);
         this.projectListManager = projectListManager;
     }
 

@@ -14,7 +14,7 @@ public class DoneTaskCommand extends Command {
     private Project proj;
 
     public DoneTaskCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
-        super(parameters);
+        super(parameters, true);
         this.projectListManager = projectListManager;
     }
 
