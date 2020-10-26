@@ -1,5 +1,6 @@
 package seedu.dietbook;
 
+import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.command.AddCommand;
 import seedu.dietbook.command.CalculateCommand;
 import seedu.dietbook.command.ClearCommand;
@@ -35,6 +36,7 @@ public class Manager {
     private Person person;
     private FoodList foodList;
     private String name;
+    private int commandCount = 1;
     private DataBase dataBase;
     private Calculator calculator;
     private static Scanner s = new Scanner(System.in);
