@@ -9,6 +9,11 @@ DietBook is a desktop application targeting NUS students optimized for use via a
 1. Download the latest version of `dietbook.jar` from [here](https://github.com/AY2021S1-CS2113-T14-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your DietBook.
 1. Either double-click the jar file to start the application or navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
+1. For first time users: 
+   1. A CLI similar to the one shown on the picture below should appear within a few seconds.  
+1. For existing user:
+   1. A CLI similar to the one shown on the picture below should appear within a few seconds.
+1. Refer to the Features section below for more details of each command.
 
 ## Features 
 
@@ -75,13 +80,12 @@ Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/
   * 4 = You engage in vigorous exercise or have a physically demanding job.
   * 5 = You engage in extremely vigorous exercise or have an extremely physically demanding job.
 
-Input examples:
+Example of usage: 
 
-* `editinfo n/John` edits the updated the name stored in DietBook.
-* Both `editinfo c/75 l/4` and `editinfo l/4 c/75` edits the current weight and activity level of the
- user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
+* `editinfo n/John` edits the name of the user to be `John`.
+* Both `editinfo c/75 l/4` and `editinfo l/4 c/75` edits the current weight and activity level of the user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
  
-Output example for input example 2: 
+Output example for usage example 2: 
 ```
 Got it! I've updated your personal information:
   Name: Jack
