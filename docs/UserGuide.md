@@ -141,25 +141,39 @@ Expected outcome:
  The `edit` command allows you to edit the name of the show, number of seasons, number of episodes, or the duration 
  of an episode depending on the input of the user when prompted.
   
-   Format:
+ 
+* Suppose you want to edit details for your favorite show, friends.
+  Format:
      `edit <SHOWNAME>`
      
-   Example of usage:
-    `edit Friends`
- 
- 
+* Input in the following format to use the edit feature
+  Example of usage:
+      `edit friends`
     
- You will be prompted thereafter to enter the fields you want to change such as:
+[Output](Insert picture here)
+ * You will be prompted thereafter to enter the fields you want to change such as:
  name, season, episode, duration (of an episode).
  
- Format:
+Format:
     `name <SHOWNAME>`, `season <NUMBER OF SEASONS>`, `episode <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>`, `duration <DURATION OF EPISODE>`
- 
+
+* Suppose you would like to update the name of the show
 Example of usage:
-     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 90`
+     `name F.r.i.e.n.d.s` 
      
+* A new season of F.r.i.e.n.d.s just started airing and you would like to update your show details from 1 season to 2.
+Example of usage:
+     `season 2`
      
- When you have completed all changes, input `done`.
+* Suppose the first season has 10 episodes and the new season of F.r.i.e.n.d.s has 11 episodes.
+Example of usage:
+     `episode 10,11`
+     
+* The duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes
+Example of usage:
+     `duration 30`
+     
+* When you have completed all changes, input `done`.
  
 > **[NOTE]**
 >
@@ -180,7 +194,6 @@ Example of usage:
  
  <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
 
- 
  &nbsp;
  
 ### 4.d. `addreview` - Adding a review
