@@ -19,6 +19,7 @@ public class BookmarkRun {
         bookmarkParser = new BookmarkParser();
         bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
         bookmarkCategories = bookmarkStorage.loadFile();
+        StudyItLog.logger.info("Bookmark mode initialized");
     }
 
     public void run(String command) {
@@ -28,7 +29,7 @@ public class BookmarkRun {
             mode = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
-            StudyItLog.logger.info("Cannot understand bookmark command");
+            StudyItLog.logger.warning("Invalid bookmark command: Command unidentifiable");
         }
     }
 }

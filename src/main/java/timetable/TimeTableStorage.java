@@ -1,5 +1,7 @@
 package timetable;
 
+import studyit.StudyItLog;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -34,6 +36,7 @@ public class TimeTableStorage {
             }
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
+            StudyItLog.logger.warning("Problem loading timetable storage file\n" + e);
         }
     }
 
@@ -62,6 +65,7 @@ public class TimeTableStorage {
             fw.close();
         } catch (IOException e) {
             System.out.println("Something went wrong" + e.getMessage());
+            StudyItLog.logger.warning("Problem writing to timetable storage file\n" + e);
         }
     }
 }

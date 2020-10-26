@@ -1,5 +1,7 @@
 package timetable;
 
+import studyit.StudyItLog;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -33,8 +35,10 @@ public class TimeTableParser {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(Message.printInvalidEvent);
+            StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
         } catch (InvalidDayOfTheWeekException e) {
             System.out.println("Day of the week input is invalid. Please add the class again");
+            StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
         }
     }
 
@@ -68,7 +72,6 @@ public class TimeTableParser {
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
         addClassPeriods(periods, repeat, startDay, lesson);
         return lesson;
-
     }
 
     private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,

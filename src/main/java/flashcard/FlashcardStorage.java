@@ -1,5 +1,7 @@
 package flashcard;
 
+import studyit.StudyItLog;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -36,6 +38,7 @@ public class FlashcardStorage {
             fw.close();
         } catch (IOException e) {
             System.out.println("Something went wrong!" + e.getMessage());
+            StudyItLog.logger.warning("Problem writing to flashcard storage file\n" + e);
         }
     }
 
@@ -52,6 +55,7 @@ public class FlashcardStorage {
             }
         } catch (FileNotFoundException e) {
             System.out.println("data/flashcard.txt is not found, creating a new file now!");
+            StudyItLog.logger.info(e + "\nflashcard storage file created");
         }
     }
 
