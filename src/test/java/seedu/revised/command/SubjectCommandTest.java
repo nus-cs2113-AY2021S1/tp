@@ -68,7 +68,7 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void findSubject_validCommand_executesMethod() {
+    public void findSubject_validCommand_executesMethod() throws InvalidSubjectException {
         findCommand = new FindSubjectCommand("find English");
         findCommand.execute(subjects, storage);
     }

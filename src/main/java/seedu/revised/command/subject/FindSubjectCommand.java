@@ -1,5 +1,6 @@
 package seedu.revised.command.subject;
 
+import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
@@ -22,10 +23,13 @@ public class FindSubjectCommand extends SubjectCommand {
      * @param storage       Does nothing in this case but needed since this method was implemented
      *                      from an abstract class
      */
-    public void execute(SubjectList subjectList, Storage storage) {
+    public void execute(SubjectList subjectList, Storage storage) throws InvalidSubjectException {
         logger.info("Begin checking string command to get the keyword.");
-        String[] message = this.fullcommand.split(" ");
-        Ui.printFindSubject(subjectList,message[1]);
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length <= 1 || message[1].isEmpty()) {  // empty argument
+            throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
+        }
+        Ui.printFindSubject(subjectList, message[1].strip());
         logger.info("Finished searching for subjects matching the keyword.");
     }
 
