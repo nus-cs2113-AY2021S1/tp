@@ -9,4 +9,5 @@ public class ClearFavCommand extends Command {
     public void executeCommand() {
         FavList.clearFav();
     }
+
 }

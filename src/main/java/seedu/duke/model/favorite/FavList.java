@@ -61,7 +61,7 @@ public class FavList {
         int count = 0;
         for (Fav fav : favList) {
             count++;
-            if (fav.equals(item,count)) {
+            if (fav.equals(item, count)) {
                 return true;
             }
         }

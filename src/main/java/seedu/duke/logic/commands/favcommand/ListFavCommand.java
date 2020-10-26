@@ -10,4 +10,5 @@ public class ListFavCommand extends Command {
     public void executeCommand() throws CustomException {
         FavList.listFav();
     }
+
 }
