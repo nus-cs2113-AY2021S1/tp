@@ -6,7 +6,7 @@ import seedu.zoomaster.command.Command;
 import seedu.zoomaster.slot.Timetable;
 
 public class ShowBookmarkCommand extends Command {
-    public static final String LIST_KW = "show";
+    public static final String SHOW_KW = "show";
 
     /**
      * Constructs a new ShowBookmarkCommand instance.
