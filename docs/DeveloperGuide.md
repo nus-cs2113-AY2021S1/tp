@@ -110,8 +110,41 @@ On Command execution:
 
 ## 4.0 Implementation
 
+### 4.1 Feature: Book Management
+Given below is the class diagram for classes related to Book Management in Quotesify:
+
+![Class Diagram for Book Management](images/ClassDiagram_Book.png)
+
+#### 4.1.1 Add Books
+The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
+
+![Sequence Diagram for Add Books]()
+
+* [Explanation of Sequence Diagram]
+
+##### Design Considerations
+* Title and author must be specified as <title,author> is used as the primary key.
+    * Pros: Allows users to specify different books with the same title but different author.
+    * Cons: Need to check for both title and author to prevent duplicates.
+
+#### 4.1.2 Find Book by Keyword
+The sequence diagram below demonstrates the command execution process when finding books by a keyword.
+
+![Sequence Diagram for Find Book by Keyword]()
+
+##### Design Considerations
+* Allows user to find books if either title or author contains the keyword.
+    * Pros: Users can find books not just based on book title alone. The search range is increased to author name as well.
+    * Cons: Need to check for both title and author for the list of results.
+* Case insensitive
+    * Pros: Users do not have to bother about the exact letter case when typing the keyword.
+    * Cons: Need to ensure all title or author are converted to the same case before searching.
+* Keyword or phrase
+    * Pros: Users can search for an exact phrase instead of just one word.
+    * Cons: The exact phrase must be typed out for the correct result to show.
+
 ### 4.2 Feature: Quote Management System
-Given below is the class diagram for classes realted to the Quote Management System in Quotesify:
+Given below is the class diagram for classes related to the Quote Management System in Quotesify:
 
 ![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
 
@@ -171,8 +204,49 @@ message will be displayed.
 * Include a `updateReflection` method in `QuoteList` instead of editing quote object directly
     * Pros: Better encapsulation and data hiding as attributes can be set to private
     * Cons: Additional methods and passing of data required
+    
+### 4.3 Feature: Category Management
+Given below is the class diagram for classes related to Category Management in Quotesify:
 
-### 4.1 Feature: Rating system for books
+![Class Diagram for Category Management](images/ClassDiagram_Category.png)
+
+A `Category` object holds the following attributes:
+* A `String` object that holds the category name.
+* A `BookList` object that stores a list of `Book` objects tagged with the specified category name.
+* A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
+* An `int` value that indicates the total number of books/quotes tagged under the specified category.
+
+#### 4.3.1 Add Categories
+The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
+
+The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
+
+![Sequence Diagram for Add Categories](images/SeqDiagram_AddCategories.png)
+
+* For each category that the user has specified, the process will be executed in a loop until all categories have been processed.
+* Additional checks include verifying the existence of the specified book and if the specified category already exists in the book. If either one of these checks fail, an error message will be prompted.
+* On success, 
+  * The category name will be added into the *categories* attribute of the `Book` object. 
+  * A new `Category` object will be created and stored into the category list if it does not exist. 
+  * The book will be added into the category's *bookList* attribute for record keeping.
+
+##### Design Consideration
+* Allowing users to specify multiple categories at once.
+  * Pros: Increases efficiency for users
+* Giving users an option to specify a book, quote, or both to be tagged with a category.
+  * Pros: Increases efficiency for users.
+  * Cons: Difficult to implement.
+* Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
+  * Pros: Further increases efficiency for users.
+  * Cons: Increased complexity in implementation. 
+  
+### 4.4 Feature: Add bookmark
+The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+be created in the process.
+* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
+bookmarks named `BookmarkList`.
+
+### 4.5 Feature: Rating system for books
 Given below is the class diagram for classes related to the Rating System in Quotesify:
 
 ![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
@@ -182,7 +256,7 @@ Given below is the class diagram for classes related to the Rating System in Quo
 , `EditRatingCommand`, `FindRatingCommand` classes which all extends their respective parent `XCommand` classes.
 * All the `XCommand` classes extends the abstract `Command` class.
 
-#### 4.1.1 Add rating
+#### 4.5.1 Add rating
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
 * The book object will store an attribute named *rating*, which will be set by this feature.
@@ -212,7 +286,7 @@ This list of ratings will be used when listing or finding ratings.
 * Using both book title and author to identify a rating instead of just book title
     * Pros: Allows books with the same title but different author to be rated.
 
-#### 4.1.2 Find ratings
+#### 4.5.2 Find ratings
 The *find ratings* feature will search if the rating for a particular book exists in Quotesify
 and print details about the rating.
 
@@ -229,80 +303,6 @@ to inform the user and the method is returned.
 * The list of ratings will be looped to see if the rating exists for the particular book.
 * Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
 will be printed to the user.
-
-### Feature Add bookmark
-The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
-be created in the process.
-* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
-bookmarks named `BookmarkList`.
-
-### 4.2 Feature: Category Management
-Given below is the class diagram for classes related to Category Management in Quotesify:
-
-![Class Diagram for Category Management](images/ClassDiagram_Category.png)
-
-A `Category` object holds the following attributes:
-* A `String` object that holds the category name.
-* A `BookList` object that stores a list of `Book` objects tagged with the specified category name.
-* A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
-* An `int` value that indicates the total number of books/quotes tagged under the specified category.
-
-#### 4.2.1 Add Categories
-The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
-
-The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
-
-![Sequence Diagram for Add Categories](images/SeqDiagram_AddCategories.png)
-
-* For each category that the user has specified, the process will be executed in a loop until all categories have been processed.
-* Additional checks include verifying the existence of the specified book and if the specified category already exists in the book. If either one of these checks fail, an error message will be prompted.
-* On success, 
-  * The category name will be added into the *categories* attribute of the `Book` object. 
-  * A new `Category` object will be created and stored into the category list if it does not exist. 
-  * The book will be added into the category's *bookList* attribute for record keeping.
-
-##### Design Consideration
-* Allowing users to specify multiple categories at once.
-  * Pros: Increases efficiency for users
-* Giving users an option to specify a book, quote, or both to be tagged with a category.
-  * Pros: Increases efficiency for users.
-  * Cons: Difficult to implement.
-* Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
-  * Pros: Further increases efficiency for users.
-  * Cons: Increased complexity in implementation.
-
-### 4.3 Feature: Book Management
-Given below is the class diagram for classes related to Book Management in Quotesify:
-
-![Class Diagram for Book Management](images/ClassDiagram_Book.png)
-
-#### 4.3.1 Add Books
-The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
-
-![Sequence Diagram for Add Books]()
-
-* [Explanation of Sequence Diagram]
-
-##### Design Considerations
-* Title and author must be specified as <title,author> is used as the primary key.
-    * Pros: Allows users to specify different books with the same title but different author.
-    * Cons: Need to check for both title and author to prevent duplicates.
-
-#### 4.3.2 Find Book by Keyword
-The sequence diagram below demonstrates the command execution process when finding books by a keyword.
-
-![Sequence Diagram for Find Book by Keyword]()
-
-##### Design Considerations
-* Allows user to find books if either title or author contains the keyword.
-    * Pros: Users can find books not just based on book title alone. The search range is increased to author name as well.
-    * Cons: Need to check for both title and author for the list of results.
-* Case insensitive
-    * Pros: Users do not have to bother about the exact letter case when typing the keyword.
-    * Cons: Need to ensure all title or author are converted to the same case before searching.
-* Keyword or phrase
-    * Pros: Users can search for an exact phrase instead of just one word.
-    * Cons: The exact phrase must be typed out for the correct result to show. 
 
 ## 5.0 Product scope
 ### 5.1 Target user profile
