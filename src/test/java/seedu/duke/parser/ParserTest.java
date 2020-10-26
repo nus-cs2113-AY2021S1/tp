@@ -1,5 +1,12 @@
 package seedu.duke.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.duke.model.project.Project;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class ParserTest {
 

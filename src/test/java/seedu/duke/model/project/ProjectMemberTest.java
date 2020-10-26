@@ -1,5 +1,12 @@
 package seedu.duke.model.project;
 
+import org.junit.jupiter.api.Test;
+import seedu.duke.model.member.Member;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ProjectMemberTest {
 //    Project project = new Project("SCRUM", "Deliver a cli for agile developers",
 //            60, 30);
