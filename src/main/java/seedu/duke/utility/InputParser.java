@@ -1,20 +1,18 @@
 package seedu.duke.utility;
 
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.ChangeReviewCommand;
-import seedu.duke.commands.DeleteReviewCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
-import seedu.duke.commands.ChangeRatingCommand;
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteReviewCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.SearchCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-import seedu.duke.commands.WatchCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
-
+import seedu.duke.commands.WatchCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,6 +118,7 @@ public class InputParser {
         case "changereview":
             parseChangeReviewCommand(input);
             return command;
+
         case "deletereview":
             parseDeleteReviewCommand(input);
             return command;
@@ -269,6 +268,7 @@ public class InputParser {
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the rating is invalid.
      * @throws NullPointerException      if the input is invalid or show could not be found.
+     * @throws NumberFormatException     if the input given does not have a rating.
      */
     private static void parseChangeRatingCommand(String input) {
         input = removeFirstWord(input);
@@ -283,6 +283,8 @@ public class InputParser {
             return;
         } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidRatingInput();
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
         }
     }
 
