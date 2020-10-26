@@ -16,8 +16,9 @@
     - [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
     - [view contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
   - [3.4 Event features`event`](#34-event-featuresevent)
-    - [Add events: `addEvent`<br/>](#add-events-addeventbr)
-    - [Delete events: `delEvent`](#delete-events-delevent)
+    - [Add events: `addEvent`](#add-events-addevent)
+    - [Delete an event: `delEvent`](#delete-an-event-delevent)
+    - [Clear all events: `delEvent all`](#clear-all-events-delevent-all)
     - [list events: `listEvent`](#list-events-listevent)
     - [countdown events `countdown`](#countdown-events-countdown)
     - [Mark an event as completed `done`](#mark-an-event-as-completed-done)
@@ -48,6 +49,8 @@ Format: help
 ### 3.2 Exit the program: `bye` 
 Exits the program.
 Format: `bye`
+
+![helpCommand](userGuidePic/helpCommand.PNG)
 
 ### 3.3 HR features `HR` 
 #### Add members: `addMember`
@@ -114,7 +117,7 @@ Example of usage:
 
 
 ### 3.4 Event features`event` 
-#### Add events: `addEvent`<br/>
+#### Add events: `addEvent`
 Adds an event to the list of events.<br/>
 
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
@@ -123,9 +126,9 @@ Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
  `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
  
- #### Delete events: `delEvent`
- Deletes an event from the list of events. <br/>
- Format: `event delEvent EVENT_INDEX` <br/>
+#### Delete an event: `delEvent`
+ Deletes an event from the list of events  <br/>
+ Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
  The EVENT_INDEX refers to the index number shown in the list of events.<br/>
@@ -134,6 +137,16 @@ Example of usage: <br/>
  Example of usage: 
  `event delEvent 1` <br/>
  `event delEvent 19` <br/>
+
+#### Clear all events: `delEvent all`
+Clear all events from the list of events <br/>
+Format to clear all events in the list: `event delEvent all`
+
+Example of usage:
+`event delEvent all` <br/>
+
+A confirmation message will be prompted. To clear, type `Y` in terminal.
+![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
 
 #### list events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
@@ -203,6 +216,7 @@ listMember  | `hr listMember` | -
 changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
+delEvent all | `event delEvent all` | -
 listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`

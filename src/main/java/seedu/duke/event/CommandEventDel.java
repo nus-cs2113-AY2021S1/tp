@@ -1,6 +1,7 @@
 package seedu.duke.event;
 
 import seedu.duke.Command;
+import seedu.duke.DukeNoMatchException;
 import seedu.duke.backend.UserInput;
 
 public class CommandEventDel extends Command {
@@ -8,15 +9,30 @@ public class CommandEventDel extends Command {
     int index;
 
     @Override
-    public String execute() {
-        index = Integer.parseInt(userInput.getArg(""));
-        String output = EventList.deleteEvent(index - 1);
+    public String execute() throws DukeNoMatchException {
+        boolean isInteger = true;
+        String output = "";
+        try {
+            index = Integer.parseInt(userInput.getArg(""));
+        } catch (NumberFormatException e) {
+            isInteger = false;
+        }
+
+        if (isInteger) {
+            output = output.concat(EventList.deleteEvent(index - 1));
+        } else {
+            if (userInput.getArg("").equals("all")) {
+                output = output.concat(EventList.clearEvents());
+            } else {
+                throw new DukeNoMatchException();
+            }
+        }
         return output;
     }
 
     @Override
     public String help() {
-        return "Syntax: event addEvent <Index>";
+        return "Syntax: event delEvent <Index>";
     }
 
     @Override

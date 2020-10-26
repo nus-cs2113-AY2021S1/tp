@@ -1,0 +1,30 @@
+@startuml
+
+ -> CommandEventDel: execute()
+activate CommandEventDel
+activate EventList
+activate EventList #DarkSalmon
+alt isInteger
+    CommandEventDel -> EventList : deleteEvent()
+    activate EventList
+    EventList -> Event: remove()
+    activate Event
+    return
+    EventList -> Event : printEvent()
+   activate Event
+    return
+    return
+    return
+else else
+ CommandEventDel -> EventList : clearEvents()
+ activate EventList
+ activate CommandEventDel
+ EventList -> Event: clear()
+ activate Event
+ return
+ return
+ deactivate EventList
+ return
+ deactivate CommandEventDel
+end
+@enduml
