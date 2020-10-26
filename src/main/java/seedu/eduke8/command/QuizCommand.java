@@ -20,6 +20,7 @@ public class QuizCommand extends Command {
     private BookmarkList bookmarks;
 
     public QuizCommand(TopicList topicList, int numOfQuestions, String topicName, Ui ui, BookmarkList bookmarks) {
+        super();
         assert topicList != null;
 
         this.topicList = topicList;

@@ -16,6 +16,7 @@ public class BookmarkCommand extends Command {
     String typeOfBookmarkCommand = "";
 
     public BookmarkCommand(Question question, String typeOfBookmarkCommand, BookmarkList bookmarks) {
+        super();
         assert bookmarks != null;
         bookmarks.add(question);
         this.bookmarks = bookmarks;

@@ -31,7 +31,7 @@ public class TopicList implements DisplayableList {
     @Override
     public Displayable find(String topicName) throws Eduke8Exception {
         for (Displayable topic : topics) {
-            if (topicName.equals(topic.getDescription())) {
+            if (topicName.equalsIgnoreCase(topic.getDescription())) {
                 return topic;
             }
         }

@@ -27,7 +27,7 @@ public class OptionList implements DisplayableList {
     @Override
     public Displayable find(String description) throws Eduke8Exception {
         for (Displayable option : options) {
-            if (description.equals(option.getDescription())) {
+            if (description.equalsIgnoreCase(option.getDescription())) {
                 return option;
             }
         }
