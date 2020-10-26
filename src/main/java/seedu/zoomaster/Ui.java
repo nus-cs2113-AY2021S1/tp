@@ -327,9 +327,8 @@ public class Ui {
         } else if (Parser.programMode == 3) {
             printYellowWithBorder("Available inputs in Planner mode are" + NEW_LINE
                     + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
-                    + "2) " + DeleteSlotCommand.DEL_KW + NEW_LINE
-                    + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
-                    + "4) " + EditSlotCommand.EDIT_KW + NEW_LINE);
+                    + "2) load"  + NEW_LINE
+                    + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE);
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
