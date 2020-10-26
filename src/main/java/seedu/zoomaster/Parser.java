@@ -84,8 +84,6 @@ public class Parser {
             return new LaunchBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
             return new FindBookmarkCommand(input);
-        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            return new ClearCommand();
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
@@ -102,8 +100,6 @@ public class Parser {
             command = new DeleteSlotCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
-        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            command = new ClearCommand();
         } else if (input.startsWith(LaunchModuleAndSlotBookmark.LAUNCH_KW)) {
             command = new LaunchModuleAndSlotBookmark(input);
         } else if (input.startsWith(EditSlotCommand.EDIT_KW)) {
@@ -121,8 +117,6 @@ public class Parser {
             return new AddMeetingCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
-        //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-        //    return new ClearCommand();
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
             return new LoadPlannerCommand();
         } else {
