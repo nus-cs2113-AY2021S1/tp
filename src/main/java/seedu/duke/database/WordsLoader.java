@@ -10,11 +10,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WordsLoader {
-    private static final ArrayList<Words> wordsList = WordList.wordList;
+    private static final ArrayList<Words> wordsList = WordList.getWordList();
     private static final String FILE_PATH = "data/words.txt";
     private static final Logger LOGGER = Logger.getLogger("Words loader");
 
@@ -46,7 +48,6 @@ public class WordsLoader {
             for (int i = 0; i < readings.length; i++) {
                 readings[i] = readings[i].trim();
             }
-
             switch (readings[0]) {
             case "verb":
                 try {

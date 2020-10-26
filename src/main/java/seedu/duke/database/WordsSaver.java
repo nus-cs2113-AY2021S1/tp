@@ -17,7 +17,7 @@ public class WordsSaver {
     private static final Logger LOGGER = Logger.getLogger("Words saver");
 
     public static void saveWordsToFile() {
-        ArrayList<Words> words = WordList.wordList;
+        ArrayList<Words> words = WordList.getWordList();
         String textToSave = "";
 
         for (Words w : words) {

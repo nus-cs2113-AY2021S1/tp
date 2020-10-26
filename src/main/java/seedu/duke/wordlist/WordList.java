@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class WordList {
-    public static ArrayList<Words> wordList = new ArrayList<>();
+    private static ArrayList<Words> wordList = new ArrayList<>();
+
+    public static ArrayList<Words> getWordList() {
+        return wordList;
+    }
 
     public static int getNumberOfWords() {
         return wordList.size();
