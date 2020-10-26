@@ -11,7 +11,7 @@ import java.util.Hashtable;
 
 public class ProjectManager implements JsonableObject {
     public Hashtable<Integer, Project> projectList;
-    public int selectedProject;
+    private int selectedProject;
 
     public ProjectManager() {
         this.projectList = new Hashtable<>();
@@ -20,9 +20,17 @@ public class ProjectManager implements JsonableObject {
 
     public void addProject(String title, String description, int projectDuration, int sprintLength) {
         int newProjectID = this.size() + 1;
-        this.projectList.put(newProjectID,
-                new Project(newProjectID, title, description, projectDuration, sprintLength));
+        Project proj = new Project(newProjectID, title, description, projectDuration, sprintLength);
+        this.projectList.put(newProjectID, proj);
         this.selectedProject = newProjectID;
+    }
+
+    public Hashtable<Integer, Project> getProjectList() {
+        return this.projectList;
+    }
+
+    public int getSelectedProjectIndex() {
+        return selectedProject;
     }
 
     public void selectProject(int index) {

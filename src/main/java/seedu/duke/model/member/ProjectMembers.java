@@ -17,7 +17,6 @@ public class ProjectMembers implements JsonableArray {
     public ProjectMembers() {
         memberList = new ArrayList<>(100);
     }
-    
 
     public int size() {
         return memberList.size();

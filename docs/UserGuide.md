@@ -56,7 +56,8 @@ into the command line and press `Enter` to execute it.
    ```
 
 ## Features 
-
+| :memo:         | Words in `<userInput>` are parameters.|
+|----------------|---------------------------------------|
 ### Project `project`
 #### Create Project
 Create a new project  
@@ -87,6 +88,31 @@ It displays the project backlog, and the details of the ongoing sprint.
     [Project backlog is empty]
     [There are no Sprints]
     =====================================================
+    ```
+  
+#### List Project
+Outputs a list of all projects added by the user. A summary page which shows the 
+project `id`, project `description` and project `title`.
+* Format: `project /list`
+* Example: `project /list`
+* Expected outcome:
+    ```
+    Following are the added projects: 
+  	    ID Title 		Description
+  	    2) Scrump 	CLI Software Development Project
+  	    1) MeTube 	video streaming software
+    ```
+
+#### Select Project 
+Select the project to execute all commands input by user. This is generally followed by `project \list` to
+get the `id` of all the projects added by the user.
+* Format: `project /select <id>`
+* Example: `project /view 2`
+* Constraints: 
+    * A project corresponding to `id` exists.
+* Expected outcome:
+    ```
+    Project 2 has been selected.
     ```
   
 #### Add team members into project `member`

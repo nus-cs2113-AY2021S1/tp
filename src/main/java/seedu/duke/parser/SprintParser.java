@@ -280,7 +280,7 @@ public class SprintParser implements ExceptionsParser {
                 throw new DukeException("Project not found.");
             }
         } else {
-            selectedProg = projectManager.selectedProject;
+            selectedProg = projectManager.getSelectedProjectIndex();
         }
         return projectManager.getProject(selectedProg);
     }
