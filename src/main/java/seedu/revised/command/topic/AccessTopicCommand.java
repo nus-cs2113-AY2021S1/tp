@@ -17,13 +17,13 @@ public class AccessTopicCommand extends TopicCommand {
     }
 
     public void execute(Subject subject) throws NoTopicException {
-        String[] message = this.fullcommand.split(" ");
+        String[] message = this.fullcommand.split(" ", 2);
         Topic gotoTopic = null;
         if (message[1].isEmpty()) {
             throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         for (Topic topic : subject.getTopics().getList()) {
-            if (topic.getTitle().equals(message[1])) {
+            if (topic.getTitle().equals(message[1].strip())) {
                 gotoTopic = topic;
                 break;
             }
