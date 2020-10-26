@@ -4,7 +4,7 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.commands.commons.Command;
 
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.favorite.FavList;
+import seedu.duke.model.favorite.FavList;
 import seedu.duke.model.favorite.Fav;
 
 import static seedu.duke.ui.Ui.addFavMessage;

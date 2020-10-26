@@ -44,4 +44,14 @@ public class FavList {
     public static ArrayList<Fav> getList() {
         return favList;
     }
+    public static boolean contains(Fav item) {
+        int count = 0;
+        for (Fav fav : favList) {
+            count++;
+            if (fav.equals(item,count)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

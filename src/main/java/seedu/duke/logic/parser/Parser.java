@@ -2,7 +2,7 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.ListFavCommand;
+
 import seedu.duke.logic.commands.buscommand.AllBusCommand;
 import seedu.duke.logic.commands.buscommand.BusCommand;
 import seedu.duke.logic.commands.dinecommand.DineCommand;
@@ -17,6 +17,7 @@ import seedu.duke.logic.commands.favcommand.AddFavCommand;
 import seedu.duke.logic.commands.favcommand.DeleteFavCommand;
 import seedu.duke.logic.commands.favcommand.DescFavCommand;
 import seedu.duke.logic.commands.favcommand.ExecFavCommand;
+import seedu.duke.logic.commands.favcommand.ListFavCommand;
 import seedu.duke.logic.commands.buscommand.ResetSearchFreqCommand;
 
 
