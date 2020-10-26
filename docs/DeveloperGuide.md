@@ -119,9 +119,7 @@ The class diagram below denotes the relationship between the TagManager and the 
    <br><em>Figure #</em>
  </p>
  
-Notes and Events inherit from the abstract class, TaggableObject and TagManager contains a map of individual unique
- tags to an arraylist of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and
-  untagging of tags from notes or events.
+Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
 
