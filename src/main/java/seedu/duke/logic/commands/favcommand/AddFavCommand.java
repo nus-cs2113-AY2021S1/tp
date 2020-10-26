@@ -42,7 +42,7 @@ public class AddFavCommand extends Command {
     }
 
     private void addToFavList() {
-        if(!FavList.contains(item)) {
+        if (!FavList.contains(item)) {
             FavList.addFav(item);
             addFavMessage(input);
         }
