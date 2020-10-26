@@ -1,0 +1,23 @@
+@startuml
+ -> CommandEventList: execute()
+
+activate CommandEventList
+activate EventList
+activate EventList #DarkSalmon
+CommandEventList -> EventList:printEventList()
+alt empty ArrayList
+    EventList --> CommandEventList
+else else
+    loop until end of ArrayList
+        EventList -> Event : printEvent()
+        activate Event
+        Event --> EventList
+        deactivate Event
+        EventList --> CommandEventList
+        return
+    end
+    deactivate EventList
+    deactivate EventList
+    deactivate CommandEventList
+end
+@enduml

@@ -191,28 +191,89 @@ Aspect: Repeated items
 
 
 ### 3.4. Event
-**3.4.1. Add/delete events feature**  
+**3.4.1. Add/delete events feature** 
+ 
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
 * `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
-* `CommandEventDel#execute()` - Deletes a event from `EventList` according to the index provided by `userInput`.  
+* `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
+To delete a particular event, enter the index of the event.
+To delete all the events in the list, enter `all` instead of the index of the event.
 
 Given below is an example usage scenario and how add/delete event function behaves at each step.  
 
 Step 1. The user launches the application for the first time.   
+
 ![](EventDiagram/Step1.png)
 
 Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 8pm` command to add a new event with the name "arduino course", 
 the date of the event "2020-12-30" and the time "8pm" into event list. 
 The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `iphone12`, date as `2020-12030` and time as `8pm`.  
+
 ![](EventDiagram/Step2.png)
 
 Step 3. The user executes `event delEvent 1` command to delete the 1st event in the event list. The `event delEvent`
 command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be removed from `EventList`.  
+
 ![](EventDiagram/Step3.png)
 
+The sequence diagram for adding an event is as shown below:
+
+![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
+
+The sequence diagram for deleting a particular event or all events is as shown below:
+
+![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
+
+**3.5.2. Listing Events** 
+
+3.5.2.1 Current implementation
+The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
+
+It implements the following operation:  
+* `CommandEventList#execute()` - Lists all `Event` in `EventList`.  
+
+Given below is an example usage scenario and how the program list the events.  
+
+Step 1. After some `Event addEvent` commands, the user has created a `EventList` with some `Event`. Assuming there are 2 events in the list.
+The first `Event` has the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+
+![](EventDiagram/2Step1.png)
+
+Step 2.The user executes `event listEvent` command to list the `EventList`. The `event listEvent` command calls 
+`CommandEventList#execute()`, then every `Event` in `EventList` will be printed out. Nothing will be changed in `EventList`.  
+
+![](EventDiagram/Step2.png)
+
+The sequence diagram for listing events is as shown below:
+![](EventDiagram/SequenceDiagram/CommandEventList.png)
+
+**3.4.3. Searching for an event via name or date**
+
+Current Implementation
+The `CommandSearchEvent` class in `seedu.duke.event` handles search of an event via its name or its date.
+
+It implements the following operation:  
+* `CommandSearchEvent#execute()` - Search all `Event` in `EventList` for the name or date entered by user.
+ 
+ The sequence diagram for searching for an event is as shown below:
+
+ ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
+ 
+ 
+**3.4.3: Displaying countdown to upcoming events**
+
+Current Implementation
+The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
+ 
+It implements the following operation:
+*`CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
+
+The sequence diagram for displaying countdown is as shown below:
+
+![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
 
 ### 3.5. HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
