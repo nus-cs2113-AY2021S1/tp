@@ -5,6 +5,8 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.ui.Ui;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPIC_DOES_NOT_EXIST;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -29,11 +31,11 @@ public class TopicList implements DisplayableList {
     @Override
     public Displayable find(String topicName) throws Eduke8Exception {
         for (Displayable topic : topics) {
-            if (topicName.equals(topic.getDescription())) {
+            if (topicName.equalsIgnoreCase(topic.getDescription())) {
                 return topic;
             }
         }
-        throw new Eduke8Exception("No such topic exists, did you spell it correctly?");
+        throw new Eduke8Exception(ERROR_TOPIC_DOES_NOT_EXIST);
     }
 
     public int getCount() {
