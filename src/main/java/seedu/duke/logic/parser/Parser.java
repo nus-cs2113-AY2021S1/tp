@@ -88,7 +88,7 @@ public class Parser {
             com = new ListFavCommand();
             break;
         case "/deletefav":
-            com = new DeleteFavCommand();
+            com = new DeleteFavCommand(parts[1]);
             break;
         case "/descfav":
             com = new DescFavCommand(parts[1]);
