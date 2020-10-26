@@ -23,7 +23,7 @@ public class EditQuoteCommand extends EditCommand {
     private void editQuote(QuoteList quoteList, TextUi ui) {
         try {
             if (information.contains(FLAG_EDIT)) {
-                int quoteNumToEdit = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_EDIT);
+                int quoteNumToEdit = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_EDIT);
                 Quote oldQuote = quoteList.getQuote(quoteNumToEdit);
                 Quote editedQuote = QuoteParser.getEditedQuote(information);
                 quoteList.updateQuote(editedQuote, quoteNumToEdit);

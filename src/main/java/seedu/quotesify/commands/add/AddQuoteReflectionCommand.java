@@ -24,7 +24,7 @@ public class AddQuoteReflectionCommand extends AddCommand {
 
     private void addQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            int quoteNum = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_REFLECT);
+            int quoteNum = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_REFLECT);
             String reflection = QuoteParser.getReflectionToAdd(information);
             if (!reflection.isEmpty()) {
                 Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
