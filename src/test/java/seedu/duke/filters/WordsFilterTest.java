@@ -23,7 +23,7 @@ class WordsFilterTest {
 
     @Test
     public void filterByType_filterNounAtTheEnd_getFourNouns() {
-        WordList.wordList.clear();
+        WordList.getWordList().clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {
@@ -42,7 +42,7 @@ class WordsFilterTest {
 
     @Test
     public void filterByStartingString_filterMultipleStartingStrings_getOneWord() {
-        WordList.wordList.clear();
+        WordList.getWordList().clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {
@@ -61,7 +61,7 @@ class WordsFilterTest {
 
     @Test
     public void filterByIncludedString_filterMultipleIncludedStrings_getOneWord() {
-        WordList.wordList.clear();
+        WordList.getWordList().clear();
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {

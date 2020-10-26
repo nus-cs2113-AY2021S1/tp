@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class WordsFilter {
 
     public static ArrayList<Words> filteredWords = new ArrayList<>();
-    private static final ArrayList<Words> WORD_LIST = WordList.wordList;
+    private static final ArrayList<Words> WORD_LIST = WordList.getWordList();
     private static final Logger LOGGER = Logger.getLogger("WordsFilter");
 
     /**
