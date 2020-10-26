@@ -436,8 +436,11 @@ The processCommand method in WatchCommand class is called.
 
 The following sequence diagram summarises what happens when a user executes a `WatchCommand`:
 
- <img src = "images/WatchCommandSequence.png" width = "600">
-  <sub><sup>Sequence diagram for Watch Command</sup></sub>
+ <img src = "images/WatchCommandSequence.png" width = "700">
+ 
+ <br> 
+ 
+ *Sequence diagram for Watch Command*
 
 
 
