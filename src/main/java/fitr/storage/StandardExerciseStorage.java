@@ -3,7 +3,6 @@ package fitr.storage;
 import fitr.StandardExercise;
 import fitr.common.ResourceManager;
 import fitr.list.StandardExerciseList;
-import fitr.ui.Ui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
