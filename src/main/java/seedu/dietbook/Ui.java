@@ -119,12 +119,12 @@ public class Ui {
      */
     public void printHelpCommandMessage() {
         print("Listed below are the valid commands for DietBook:" + LINE_SEPARATOR + LINE_SEPARATOR
+                + "For user information related commands" + LINE_SEPARATOR
+                + getUserRelatedCommands() + LINE_SEPARATOR
                 + "For database related commands" + LINE_SEPARATOR
                 + getDatabaseRelatedCommands() + LINE_SEPARATOR
                 + "For food list related commands" + LINE_SEPARATOR
                 + getFoodListRelatedCommands() + LINE_SEPARATOR
-                + "For user information related commands" + LINE_SEPARATOR
-                + getUserRelatedCommands() + LINE_SEPARATOR
                 + "For nutritional intake and recommendation related commands" + LINE_SEPARATOR
                 + getCalculatorRelatedCommands() + LINE_SEPARATOR
                 + "For other system related commands" + LINE_SEPARATOR
