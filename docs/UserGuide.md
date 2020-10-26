@@ -329,20 +329,20 @@ Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 
 Example of usage: 
 
-`Tag-e /i 1 /tag CS2113`
+`tag-e /i 1 /tag CS2113`
 
-`Tag-e /i 1 /tag CS2113 /tag important`
+`tag-e /i 1 /tag CS2113 /tag important`
 
 Expected output:
 
 ### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
-Deletes a tag from the list of tags and remove the tag from the related notes.
+Deletes a tag from the list of tags and remove the tag from the related notes and events.
 
 Format: `delete-t /tag TAG [/tag TAG]...`
 
 - Deletes the tag with the name TAG.
 - The user can delete multiple tags within a single line.
-- Notes with the tag, will have the tag removed.
+- Notes and events with the tag, will have the tag removed.
 
 Example of usage: 
 
