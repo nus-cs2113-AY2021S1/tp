@@ -1,6 +1,7 @@
 package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
+import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
@@ -28,16 +29,16 @@ public class AddSubjectCommand extends SubjectCommand {
      *                                  in the program
      */
     public void execute(SubjectList subjectList, Storage storage)
-            throws NoSubjectException, RepeatedSubjectException {
+            throws RepeatedSubjectException, InvalidSubjectException {
         logger.info("Begin checking string command to get the title of the subject to be added.");
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
         String title = fullCommand.substring(startOfMessage, endOfMessage).strip();
         if (title.isEmpty()) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
         assert title != null;
         for (Subject subject : subjectList.getList()) {
