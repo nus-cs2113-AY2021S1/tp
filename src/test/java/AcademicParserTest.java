@@ -2,13 +2,10 @@
 import academic.AcademicCommandParser;
 import academic.AcademicCommandType;
 import exceptions.InvalidCommandException;
-
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import exceptions.InvalidModeException;
+
 import org.junit.jupiter.api.Test;
-import studyit.CommandParser;
-import studyit.CommandType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
