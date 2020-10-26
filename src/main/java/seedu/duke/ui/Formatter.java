@@ -3,10 +3,15 @@ package seedu.duke.ui;
 import com.diogonunes.jcolor.Attribute;
 import seedu.duke.command.AddEventCommand;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.data.timetable.Reminder;
+import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.Timetable;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 import static com.diogonunes.jcolor.Ansi.POSTFIX;
@@ -94,14 +99,123 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    public static String formatTimetable(String header, Timetable timetable) {
-        String formattedString = "";
-        return formattedString;
+    /**
+     * Takes an array list of events and converts it to a formatted, non-indexed string for output.
+     *
+     * @param header Success message.
+     * @param year Year of timetable
+     * @param month Month of timetable
+     * @param timetable Events to be printed
+     * @return Formatted string of non-indexed events in timetable
+     */
+    public static String formatTimetable(String header, int year, int month,
+                                         HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
+        String formattedString;
+        if (month != 0) {
+            formattedString = generatesHeader(header + String.format(" %d-%d", year, month));
+        } else {
+            formattedString = generatesHeader(header + " " + year);
+        }
+        ArrayList<String> unformattedEvents = Event.yearCalendarToString(timetable);
+        for (String event : unformattedEvents) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+
+        return encloseTopAndBottom(formattedString);
+    }
+
+    /**
+     * Takes an array list of events and converts it to a formatted, indexed string for output.
+     *
+     * @param header Success message.
+     * @param events Events to be printed
+     * @return Formatted string of indexed events in timetable
+     */
+    public static String formatTimetable(String header, ArrayList<Event> events) {
+        String formattedString = generatesHeader(header);
+        ArrayList<String> eventStrings = Event.calendarToString(events);
+        for (String event : eventStrings) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+        return encloseTopAndBottom(formattedString);
     }
 
     public static String formatEvent(String header, Event event) {
         String formattedString = "";
         return formattedString;
+    }
+
+    /**
+     * Formats a provided event to an ArrayList format.
+     *
+     * @param event Event to be formatted
+     * @return ArrayList of Strings to represent the Event.
+     */
+    public static ArrayList<String> formatEvent(Event event) {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Event: " + event.getTitle());
+        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
+        result.add("Reminder: " + event.getToRemind());
+        String repeatingString = "Repeating: " + event.getRecurring();
+        String endRecurrenceDateString = "";
+        if (event instanceof RecurringEvent) {
+            RecurringEvent recurringEvent = (RecurringEvent) event;
+            endRecurrenceDateString = recurringEvent.getEndRecurrenceString();
+        }
+        result.add(repeatingString + endRecurrenceDateString);
+        return result;
+    }
+
+    public static String formatEventString(Event event) {
+        return formatString(formatEvent(event), false);
+    }
+
+    /**
+     * Provides a wrapper around formatEvent to add a header at the head of the ArrayList.
+     *
+     * @param event Event to be formatted
+     * @param header Header to be placed at the front.
+     * @return ArrayList of Strings to represent the Event.
+     */
+    public static String formatEventString(String header, Event event) {
+        ArrayList<String> result = formatEvent(event);
+        result.add(0, header);
+        return formatString(result, true);
+    }
+
+
+    /**
+     * Converts a header and an ArrayList of reminders into a formatted string to be printed.
+     *
+     *
+     * @param header Success message to print.
+     * @param reminders Reminders to be printed
+     * @return String representation of all reminders to be shown.
+     */
+    public static String formatReminders(String header, ArrayList<Reminder> reminders) {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(header);
+        for (Reminder reminder : reminders) {
+            result.addAll(formatReminder(reminder));
+            result.add(" ");
+        }
+        result.remove(result.size() - 1);
+
+        return formatString(result, true);
+    }
+
+    /**
+     * Formats a provided event to an ArrayList format.
+     *
+     * @param reminder Reminder to be formatted.
+     * @return ArrayList of Strings to represent the Reminder.
+     */
+    public static ArrayList<String> formatReminder(Reminder reminder) {
+        Event event = reminder.getEvent();
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Event: " + event.getTitle());
+        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
+        return result;
     }
 
     /**

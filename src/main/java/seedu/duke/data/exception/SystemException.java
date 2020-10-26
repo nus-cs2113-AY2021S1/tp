@@ -71,10 +71,14 @@ public class SystemException extends Exception {
                 + "daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
 
+        // Storage related exceptions
+        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
+        EXCEPTION_FILE_NOT_FOUND_ERROR("Unable to find a file!"),
+        EXCEPTION_FILE_DELETION_ERROR("Unable to delete a file"),
+
         // General exception type
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
-        EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
-        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!");
+        EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!");
 
         /** The exception message. */
         private final String exceptionMessage;

@@ -1,0 +1,179 @@
+@startuml
+!include Style.puml
+skinparam defaultTextAlignment center
+skinparam roundcorner 20
+
+Package PERT_CHART {
+    Rectangle Ramana_1 [
+        Ramana
+        ....
+        Project Management Tools
+        ====
+        Gantt Chart
+        PERT Chart
+        ---
+        1 MD
+    ]
+    Rectangle JunXiang_1 [
+        Jun Xiang, Nazryl
+        ....
+        Software Architecture
+        ====
+        Set up base code/classes
+        Set up test classes
+        ---
+        2 MD
+    ]
+    Rectangle Brandon_1 [
+        Brandon
+        ....
+        Event Function
+        ====
+        Add Daily/Weekly Events
+        ---
+        3 MD
+    ]
+    Rectangle Ramana_2 [
+        Ramana
+        ....
+        Help Function
+        ====
+        Help Command
+        ----
+        0.5 MD
+    ]
+    Rectangle Nazryl_1 [
+        Nazryl
+        ....
+        Note Function
+        ====
+        Add Note
+        Delete Note
+        ----
+        5 MD
+    ]
+    Rectangle Brandon_2 [
+        Brandon
+        ....
+        Event Function
+        ====
+        Daily Schedule
+        List Events
+        ----
+        2 MD
+    ]
+    Rectangle JunXiang_2 [
+        Jun Xiang
+        ....
+        Tag Function
+        ====
+        Tag Events
+        ----
+        2 MD
+    ]
+    Rectangle Ramana_3 [
+        Ramana
+        ....
+        List Function
+        Find Function
+        ====
+        List Notes
+        Find Notes
+        ----
+        3 MD
+    ]
+    Rectangle JunXiang_3 [
+        Jun Xiang
+        ....
+        Tag Function
+        ====
+        Add Color
+        Tag Notes
+        ----
+        5 MD
+    ]
+    Rectangle Prachi_1 [
+        Prachi
+        ....
+        Storage Function
+        Pin Function
+        View Function
+        ====
+        Save Notes - .txt files
+        Pin Notes
+        View Notes
+        ----
+        2 MD
+    ]
+    Rectangle Brandon_3 [
+        Brandon
+        ....
+        Event Function
+        ====
+        Edit Events
+        Alert on Clashing Events
+        ----
+        2 MD
+    ]
+    Rectangle Prachi_2 [
+        Prachi
+        ....
+        Storage Function
+        ====
+        Import Events
+        Export Events
+        ----
+        2 MD
+    ]
+    Rectangle Prachi_3 [
+        Prachi
+        ....
+        Storage Function
+        ====
+        Import Notes
+        Export Notes
+        ----
+        2 MD
+    ]
+    Rectangle Ramana_4 [
+        Ramana
+        ....
+        Archive Function
+        ====
+        Archive Notes
+        ----
+        3 MD
+    ]
+    Rectangle Nazryl_2 [
+        Nazryl
+        ....
+        Note Function
+        ====
+        Edit Notes
+        ----
+        2 MD
+    ]
+}
+
+Ramana_1 --> JunXiang_1
+
+JunXiang_1 --> Brandon_1
+JunXiang_1 --> Ramana_2
+JunXiang_1 --> Nazryl_1
+
+Brandon_1 --> Brandon_2
+Brandon_1 --> JunXiang_2
+
+Nazryl_1 --> Ramana_3
+Nazryl_1 --> JunXiang_3
+Nazryl_1 --> Prachi_1
+
+Brandon_2 --> Brandon_3
+Brandon_2 --> Prachi_2
+
+Ramana_3 --> Prachi_3
+
+Prachi_1 --> Ramana_4
+Prachi_1 --> Nazryl_2
+
+@enduml

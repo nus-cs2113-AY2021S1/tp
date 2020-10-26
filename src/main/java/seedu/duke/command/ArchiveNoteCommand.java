@@ -1,16 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.data.notebook.Note;
-import seedu.duke.data.notebook.Notebook;
 import seedu.duke.ui.Formatter;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.NoSuchElementException;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Archives a Note from the Notebook.
@@ -23,8 +19,10 @@ public class ArchiveNoteCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX]";
 
-    public static final String ARCHIVE_NOTE_MESSAGE = "The following note has been archived: ";
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "The following note has been archived: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
+    public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
+            + "Please check and specify a valid index value.";
 
     private int index;
     private String title = "";
@@ -41,7 +39,7 @@ public class ArchiveNoteCommand extends Command {
     /**
      * Constructs a ArchiveNoteCommand to archive a Note.
      *
-     * @param title of the item to be deleted.
+     * @param title of the item to be archived.
      */
     public ArchiveNoteCommand(String title) {
         this.title = title;
@@ -53,13 +51,20 @@ public class ArchiveNoteCommand extends Command {
         try {
             // If there is no title, archive note by index. Else archive by title.
             if (title.isBlank()) {
+                assert index >= 0;
+                if (index > notebook.getSize()) {
+                    return Formatter.formatString(INDEX_OUT_OF_RANGE_MESSAGE);
+                }
                 title = notebook.archiveNotes(index);
             } else {
-                if (!notebook.archiveNotes(title)) {
+                // archiveNotes(title) returns a boolean, false if no such title exists
+                try {
+                    notebook.archiveNotes(title);
+                } catch (NoSuchElementException e) {
                     return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }
             }
-            return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
+            return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }

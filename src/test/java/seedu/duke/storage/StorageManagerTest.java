@@ -8,8 +8,6 @@ import seedu.duke.data.notebook.Notebook;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 class StorageManagerTest {
 
     @Test
@@ -25,10 +23,12 @@ class StorageManagerTest {
         for (int i = 0; i < 10; i++) {
             String title = "testNote_" + i;
             Boolean isPinned = false;
+            Boolean isArchived = false;
+
             if (i % 2 == 0) {
                 isPinned = true;
             }
-            Note note = new Note(title, content, isPinned, false);
+            Note note = new Note(title, content, isPinned, isArchived);
             notes.addNote(note);
         }
         StorageManager.saveNotebook(notes);
@@ -45,6 +45,8 @@ class StorageManagerTest {
     @Test
     void saveNoteContent() {
         ArrayList<String> content = new ArrayList<>();
+        StorageManager storageManager = new StorageManager();
+
         content.add("Hello this is a test note");
         content.add("With a few lines");
         content.add("");
@@ -54,7 +56,7 @@ class StorageManagerTest {
         Note note = new Note("TestNote", content, false, false);
       
         try {
-            StorageManager.saveNoteContent(note);
+            storageManager.saveNoteContent(note);
         } catch (IOException e) {
             System.out.println("Unable to create file");
         }

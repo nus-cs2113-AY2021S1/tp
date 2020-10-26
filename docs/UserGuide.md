@@ -11,17 +11,19 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.5 Edit Note](#edit-n)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.6 Find Notes](#find-n)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.7 Pin Note](#pin-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Delete Note](#delete-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Create Tags](#create-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 List Tags](#list-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Tag/Untag Notes](#tag)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 Delete Tags](#delete-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Add Event](#add-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Exit](#exit)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Archive Note](#archive-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Unarchive Note](#unarchive-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Delete Tags](#delete-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Add Event](#add-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Exit](#exit)
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
@@ -120,8 +122,9 @@ Expected output:
 ### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
 Shows a list of all the notes in the database.
 
-Format: `list-n [/tag TAG_1] [/tag TAG_2]... [/sort DIRECTION]`
+Format: `list-n [/tag TAG_1] [/tag TAG_2]... [/sort DIRECTION] [/archive]`
 
+- Specifying [/archive] will **ONLY** show archived notes. Even if the other optional parameters are listed, archived notes nor will any other notes be filtered or sorted. The archived notes will **ONLY** be listed in chronological order. 
 - Specifying [/tag TAG] will only show the notes with the relevant tag.
 - Specifying [/sort DIRECTION] will show the sorted list in ascending or descending alphabetical order according to the title of the notes.
 
@@ -130,6 +133,8 @@ Example of usage:
 `list-n /tag CS2113`
 
 `list-n /sort up`
+
+`list-n /archive`
 
 Expected output:
 
@@ -201,10 +206,48 @@ Example of usage:
 
 `pin-n /i 1`
 
+`pin-n /t JavaDoc`
+
 Expected output:
 
 
-### <a id="delete-n"><ins>3.8 Delete note:</ins> `delete-n`</a>
+### <a id="archive-n"><ins>3.8 Archive Note:</ins> `archive-n`</a>
+Archives a note.
+
+Format: `archive-n [/i INDEX] [/t TITLE]`
+
+- The content of archived notes are unable to be viewed. To view the content, you would need to unarchive the notes first. 
+- The archived note will no longer be visible in the main notebook. To view the list of archived notes refer to [`list-n`](#list-n). 
+- The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
+- At least one of the optional fields must be provided.
+ 
+Example of usage: 
+
+`archive-n /i 1`
+
+`archive-n /t JavaDoc`
+
+Expected output:
+
+
+### <a id="unarchive-n"><ins>3.9 Unarchive Note:</ins> `unarchive-n`</a>
+Unarchives a note.
+
+Format: `unarchive-n [/i INDEX] [/t TITLE]`
+
+- The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
+- At least one of the optional fields must be provided.
+ 
+Example of usage: 
+
+`unarchive-n /i 1`
+
+`unarchive-n /t JavaDoc`
+
+Expected output:
+
+
+### <a id="delete-n"><ins>3.10 Delete note:</ins> `delete-n`</a>
 Deletes an existing note.
 
 Format: `delete-n [/i INDEX] [t/TITLE]`
@@ -223,7 +266,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="create-t"><ins>3.9 Create Tags:</ins> `create-t`</a>
+### <a id="create-t"><ins>3.11 Create Tags:</ins> `create-t`</a>
 Create tags.
 
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
@@ -245,7 +288,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="list-t"><ins>3.10 List Tags:</ins> `list-t`</a>
+### <a id="list-t"><ins>3.12 List Tags:</ins> `list-t`</a>
 Shows a list of tags that have been created.
 
 Example of usage: 
@@ -255,7 +298,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-t"><ins>3.11 Delete Tags:</ins> `delete-t`</a>
+### <a id="delete-t"><ins>3.13 Delete Tags:</ins> `delete-t`</a>
 Deletes a tag from the list of tags and remove the tag from the related notes.
 
 Format: `delete-t /tag TAG [/tag TAG]...`
@@ -271,7 +314,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="tag"><ins>3.12 Tag/Untag Notes:</ins> `tag`</a>
+### <a id="tag"><ins>3.14 Tag/Untag Notes:</ins> `tag`</a>
 Tags or untags a note with the given tag name.
 
 Format: `tag /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
@@ -290,7 +333,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="add-e"><ins>3.13 Add Event:</ins> `add-e`</a>
+### <a id="add-e"><ins>3.15 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
 Format: `add-e /t TITLE /d DATETIME [/repeat REPEAT] [/remind REMIND]`
@@ -306,7 +349,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="edit-e"><ins>3.14 Edit Event:</ins> `edit-e`</a>
+### <a id="edit-e"><ins>3.16 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
 Format: `edit-e /i INDEX [/t TITLE] [/d DATETIME] [/repeat REPEAT] [/remind REMIND]`
@@ -322,7 +365,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="list-e"><ins>3.15 Event Manager:</ins> `list-e`</a>
+### <a id="list-e"><ins>3.17 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -337,7 +380,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="remind-e"><ins>3.16 Remind:</ins> `remind-e`</a>
+### <a id="remind-e"><ins>3.18 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -351,7 +394,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-e"><ins>3.17 Delete Event:</ins> `delete-e`</a>
+### <a id="delete-e"><ins>3.19 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -365,7 +408,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="exit"><ins>3.18 Exit:</ins> `exit`</a>
+### <a id="exit"><ins>3.20 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 
@@ -380,7 +423,7 @@ Example of usage:
 
 **A**: You can export the file as a human-editable file. Once exported, you can transfer the file over to the new computer and load the data.
 
-**Q**: How do I load the data on the new computer? 
+**Q**: What if I don't remember some of the commands? 
 
 **A**: Type the command `help` for a list of useful commands.
 
@@ -392,7 +435,9 @@ Target Action | Example Code(s)
 ------------  | -------------
 View command list | `help`
 Add note | `add-n /t JavaDocs /tag CS2113 /pin true`<br>`add-n /t JavaDocs /pin true`<br>`add-n /t JavaDocs /tag CS2113`<br>`add-n /t JavaDocs`<br><br>`@param refers to param`<br>`@return refers to item to be returned`
-List notes | `list-n`<br>`list-n /tag CS2113`<br>`list-n /sort up`<br>Or any combination with `/tag` and `/sort`
+Archive note | `archive-n /t JavaDocs`<br>`archive-n /i 1`
+Unarchive note | `unarchive-n /t JavaDocs`<br>`unarchive-n /i 1`
+List notes | `list-n`<br>`list-n /archive`<br>`list-n /tag CS2113`<br>`list-n /sort up`<br>Or any combination with `/tag` and `/sort`
 View note | `view-n /i 1`<br>`view-n /t JavaDocs`<br>`view-n /i 1 /t JavaDocs`
 Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refers to parameters`<br>`edit-n /i 2 /tag Notes`<br> Or any combination with `/t`, [`/ln` + `/c`] and `/tag` 
 Find notes | `find-n Java`

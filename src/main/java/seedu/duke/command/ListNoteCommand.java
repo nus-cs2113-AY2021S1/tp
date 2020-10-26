@@ -5,9 +5,7 @@ import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static seedu.duke.ui.Formatter.formatNotes;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -25,8 +23,9 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[/sort up OR down]";
 
-    public static final String PINNED_MESSAGE = "Here are the list of pinned notes:";
-    public static final String UNPINNED_MESSAGE = "Here are the list of unpinned notes:";
+    public static final String PINNED_NOTES_MESSAGE = "Here are the list of pinned notes:";
+    public static final String UNPINNED_NOTES_MESSAGE = "Here are the list of unpinned notes:";
+    public static final String ARCHIVE_NOTES_MESSAGE = "Here are the list of archived notes:";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes:";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
@@ -95,13 +94,11 @@ public class ListNoteCommand extends Command {
     }
 
     /**
-     * Sorts the notes in alphabetical order and returns them if there is a up (A-Z) / down (Z-A) command.
-     * If tags exist, maps the tags to the HashMap and gets the corresponding notes
-     * For each tag, there will be an ArrayList of the respective notes.
-     * The method will then merge the notes in the ArrayLists into 1 large ArrayList.
-     * ArrayList is then sorted and returned for the respective up/down commands
+     * Depending on the constructor that is used, there are multiple ways to list out the notes in a notebook.
+     * Method calls other methods for sorting alphabetically, splitting pinned/unpinned notes, listing archived notes.
+     * Also gets the tags and the mapped notes if needed.
      *
-     * @return noteString String containing the (filtered) notes (un)sorted
+     * @return String value to be formatted and printed out to the CLI.
      */
     @Override
     public String execute() {
@@ -110,16 +107,20 @@ public class ListNoteCommand extends Command {
         ArrayList<Note> pinned;
         ArrayList<Note> unpinned;
 
-
+        // if user inputs /archive, regardless of other commands will only display notes that have been archived
+        // no sorting, no viewing, no filtering of notes in the archived notebook.
         if (isArchived) {
             notes = notebook.getArchivedNotes();
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+            return formatNotes(ARCHIVE_NOTES_MESSAGE, notes);
         }
 
+        // if no /archive or /tags and there is no pinned notes at all this if-else block will be executed
         if (!notebook.checkPinned() && tags == null) {
             if (!isSorted) {
+                // get notes in default order
                 notes = notebook.getNotes();
             } else if (isSorted) {
+                // get notes sorted alphabetically all from the main notebook
                 notes = notebook.getSortedList(isAscendingOrder, (Boolean) null);
             }
 
@@ -130,16 +131,19 @@ public class ListNoteCommand extends Command {
             return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
         }
 
+        // if no /archive or /tags and there are pinned notes this if-else block will be executed
         if (notebook.checkPinned() && tags == null) {
             if (!isSorted) {
+                // get notes in default order
                 pinned = notebook.getPinnedNotes();
                 unpinned = notebook.getUnpinnedNotes();
             } else {
+                // get notes sorted alphabetically from the main notebook (isPinned is a flag to get filtered notes)
                 pinned = notebook.getSortedList(isAscendingOrder, true);
                 unpinned = notebook.getSortedList(isAscendingOrder, false);
             }
 
-            return formatNotes(PINNED_MESSAGE, UNPINNED_MESSAGE, pinned, unpinned);
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -182,24 +186,31 @@ public class ListNoteCommand extends Command {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK);
         }
 
+        // if no /archive or pinned notes and there are /tags
         if (!notebook.checkPinned() && tags != null) {
+            ArrayList<Note> sortedTaggedNotes = new ArrayList<>();
+
             if (isSorted) {
                 // Sort the tagged notes
-                ArrayList<Note> sortedTaggedNotes = new ArrayList<>();
-                notes = notebook.getSortedList(isAscendingOrder, null, sortedTaggedNotes);
+                sortedTaggedNotes = notebook.getSortedList(isAscendingOrder, null, notes);
+            } else {
+                sortedTaggedNotes = notes;
             }
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes);
         }
 
+        // if no /archive and there are both pinned notes and /tags
         if (notebook.checkPinned() && tags != null) {
             if (!isSorted) {
+                // get notes in default order
                 pinned = notebook.getPinnedNotes(notes);
                 unpinned = notebook.getUnpinnedNotes(notes);
             } else {
+                // get notes sorted alphabetically from the main notebook (isPinned is a flag to get filtered notes)
                 pinned = notebook.getSortedList(isAscendingOrder, true, notes);
                 unpinned = notebook.getSortedList(isAscendingOrder, false, notes);
             }
-            return formatNotes(PINNED_MESSAGE, UNPINNED_MESSAGE, pinned, unpinned);
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
         }
 
         return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
