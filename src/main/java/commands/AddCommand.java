@@ -79,7 +79,6 @@ public class AddCommand extends Command {
         } else if (access.isModuleLevel()) {
             Chapter chapter = new Chapter(moduleOrChapter, rateChapter(), storage, access);
             result = addChapter(access, storage, chapter);
-            ui.showToUser(result);
         } else {
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
                     access.getLevel(), accessLevel));
@@ -94,8 +93,8 @@ public class AddCommand extends Command {
         chapters.addChapter(chapter);
         int chapterCount = chapters.getChapterCount();
         access.setModule(newModule);
-        String result = storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
-        return result + prepareResult(CHAPTER, chapter.toString(), chapterCount);
+        storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
+        return prepareResult(CHAPTER, chapter.toString(), chapterCount);
     }
 
     private String addCard(Access access, Storage storage) throws IOException {
@@ -113,8 +112,8 @@ public class AddCommand extends Command {
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);
-        String result = storage.createModule(module.getModuleName());
-        return result + prepareResult(MODULE, module.toString(), moduleCount);
+        storage.createModule(module.getModuleName());
+        return prepareResult(MODULE, module.toString(), moduleCount);
     }
 
     private String prepareResult(String type, String content, int count) {

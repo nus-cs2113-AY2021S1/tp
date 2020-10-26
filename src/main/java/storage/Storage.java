@@ -1,6 +1,8 @@
 package storage;
 
 import access.Access;
+import commands.RemoveCardCommand;
+import common.KajiLog;
 import exception.ExclusionFileException;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
@@ -19,8 +21,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Storage {
+    private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
     public static final String DELIMITER = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
@@ -58,7 +62,7 @@ public class Storage {
                     f.getParentFile().getName()));
         }
         if (dataDirCreated) {
-            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
+            logger.info(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
 
         boolean adminDirExists = f.exists();
@@ -69,42 +73,37 @@ public class Storage {
             ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f));
         }
         if (adminDirCreated) {
-            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f));
+            logger.info(String.format(MESSAGE_CREATED, DIR, f));
         }
         createHistoryDir();
     }
 
-    public String createModule(String moduleName) {
+    public void createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
         boolean moduleDirExists = f.exists();
         boolean moduleDirCreated = false;
-        String result = "";
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            result = String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f);
+            logger.info(String.format(MESSAGE_EXISTS, DIR, f));
         }
         if (moduleDirCreated) {
-            result = String.format(MESSAGE_CREATED, DIR, f);
+            logger.info(String.format(MESSAGE_CREATED, DIR, f));
         }
-        return result;
     }
 
-    public String createChapter(String chapterName, String moduleName) throws IOException {
-        String result = "";
-
+    public void createChapter(String chapterName, String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
         boolean chapterFileExists = f.exists();
         boolean chapterFileCreated = false;
         if (!chapterFileExists) {
             chapterFileCreated = f.createNewFile();
         } else {
-            result = String.format(MESSAGE_EXISTS, FILE.substring(0, 1).toUpperCase(), f);
+            logger.info(String.format(MESSAGE_EXISTS, FILE, f));
         }
         if (chapterFileCreated) {
-            result = String.format(MESSAGE_CREATED, FILE, f);
+            logger.info(String.format(MESSAGE_CREATED, FILE, f));
         }
-        return result;
     }
 
     public ArrayList<Module> loadModule(Ui ui) throws FileNotFoundException {
@@ -116,14 +115,15 @@ public class Storage {
 
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
-        ui.showToUser("List of files and directories in the specified directory:");
+        String result = "List of files and directories in the specified directory:";
         for (String content : contents) {
             if (content.equals("exclusions.txt")) {
                 continue;
             }
-            ui.showToUser(content);
+            result += "\n" + content;
             modules.add(new Module(content));
         }
+        logger.info(result);
         return modules;
     }
 
@@ -139,15 +139,16 @@ public class Storage {
         if (contents.length == 0) {
             return chapters;
         }
-        ui.showToUser("List of files and directories in the specified directory:");
+        String result = "List of files and directories in the specified directory:";
         for (String content : contents) {
             if (content.equals("dues")) {
                 continue;
             }
             String target = content.replace(".txt", "");
-            ui.showToUser(content);
+            result += content;
             chapters.add(new Chapter(target));
         }
+        logger.info(result);
         return chapters;
     }
 
@@ -445,12 +446,12 @@ public class Storage {
             if (!historyFileExists) {
                 historyFileCreated = f.createNewFile();
             } else {
-                ui.showToUser("the file " + date + ".txt already exists in history folder\n"
+                logger.info("the file " + date + ".txt already exists in history folder\n"
                         + "It stores the revision completed in the session/in a day");
             }
 
             if (historyFileCreated) {
-                ui.showToUser("Successfully created new file " + date + ".txt in history folder\n"
+                logger.info("Successfully created new file " + date + ".txt in history folder\n"
                         + "It stores the revision completed in the session/in a day");
             }
         } catch (IOException e) {
