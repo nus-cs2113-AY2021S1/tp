@@ -45,7 +45,7 @@ public class InputParser {
      */
     public String parseInput(String input) {
 
-        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
+        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime", "example"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
@@ -65,6 +65,10 @@ public class InputParser {
 
         case "help":
             Ui.printHelp();
+            return command;
+
+        case "example":
+            Ui.printExample();
             return command;
 
         case "episode":
