@@ -97,13 +97,16 @@ either poem or essay at this stage)
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <center><i>Figure 3: Filter word UML Class Diagram</i></center>
 
-The above class diagram describes the overall architecture of the filter words functionality. FilterExecutor class has 
-the static void method executeFilterCommand that will be called first when the user enters a filter command. 
-In the executeFilterCommand method, it will make use of the enumeration FilterType to get the filter type (by WORD_TYPE, 
-STARTING STRING or INCLUDING_STRING). After that, the method will use the FilterCommandSlicer static methods isNewFilter 
+The above class diagram describes the overall architecture of the filter words functionality. `FilterExecutor` class has 
+the static void method `executeFilterCommand` that will be called first when the user enters a filter command. 
+In the `executeFilterCommand` method, it will make use of the enumeration `FilterType` to get the filter type (by `WORD_TYPE`, 
+`STARTING STRING` or `INCLUDING_STRING`). After that, the method will use the `FilterCommandSlicer` static methods `isNewFilter` 
 to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word bank. 
-Subsequently, depending on the filter mode, getTargetedWordTypes or getTargetedStringTags will be called and the 
-returned array of strings will be passed to WordsFilter’s static methods filterByType, filterByStartingString and filterByIncludedString.
+`executeFilterCommand` will also check whether the user has entered a print limit using `FilterCommandSlicer`'s method 
+`getWordPrintLimitFromFilterCommand`. Subsequently, depending on the filter mode, `getTargetedWordTypes` or `getTargetedStringTags` will be called 
+and the returned array of strings will be passed to `WordsFilter`’s static methods `filterByType`, `filterByStartingString` and `filterByIncludedString`.
+Lastly, `filterCommandExecutor` will call the method `printFilterList`.
+
 The following sequence diagram shows how the components interact with each other for the scenario where the user issues 
 the command `filter -continue by\start limit\10 -cs -cg.`
 
