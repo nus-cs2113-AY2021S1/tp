@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.Timetable;
+import seedu.duke.storage.StorageManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ class AddEventCommandTest {
             TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
     private static final Timetable TIMETABLE = new Timetable();
+    private StorageManager storageManager = new StorageManager();
 
 
 
@@ -37,7 +39,7 @@ class AddEventCommandTest {
      */
     @Test
     void execute_singleEvent_success() {
-        command.setData(null, TIMETABLE, null, null);
+        command.setData(null, TIMETABLE, null, storageManager);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));
     }
