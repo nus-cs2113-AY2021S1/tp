@@ -51,7 +51,7 @@ public class FlashcardStorage {
                 flashcardDeck.flashcardDeck.add(flashcard);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("This file is not found, creating a new file now!");
+            System.out.println("data/flashcard.txt is not found, creating a new file now!");
         }
     }
 
