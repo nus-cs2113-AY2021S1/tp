@@ -1,10 +1,10 @@
 # User Guide
   ```
-   _       _       ____     __       __
-| |\ \  | |     / /\ \    \ \     / /
-| | \ \ | |    / /__\ \    \ \   / /
-| |  \ \| |   / /----\ \    \ \ / /
-|_|   \ \_|  / /      \ \    \_V_/    @NUS 
+ _       _      ____  __       __
+| |\ \  | |    / /\ \ \ \     / /
+| | \ \ | |   / /__\ \ \ \   / /
+| |  \ \| |  / /----\ \ \ \ / /
+|_|   \ \_| / /      \ \ \_V_/   @NUS 
 ```
 
 - [1. What is Nav@NUS?](#1-what-is-navnus)
@@ -35,11 +35,19 @@
 - [6. Glossary](#6-glossary)
 
 ## 1. What is Nav@NUS?
-Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus via the school's
-shuttle services. This application enables you to retrieve key bus information easily, skipping the hassle of
-physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in NUS
-to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of
+Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus
+via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
+hassle of physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in
+NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of
 information that you require.
+
+Nav@NUS consists of 3 main features:
+
+* *Route*: Searches for bus routes from your location to your intended destination.
+* *Dine*: Seeks dining options for you to explore culinary world of NUS.
+* *Fav*: Saves your commands for you to have a personalised user experience catered to your needs.
+
+Skip the tight squeeze near information boards and use Nav@NUS today!
 
 ## 2. Quick Start
 The following steps will guide you through the process of running Nav@NUS.
