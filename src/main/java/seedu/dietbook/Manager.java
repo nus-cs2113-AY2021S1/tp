@@ -74,7 +74,7 @@ public class Manager {
 
     public void setPerson(String name, Gender gender, int age,int height,int orgWeight, int currWeight,
                           int targWeight, ActivityLevel actLvl) {
-        this.person = new Person(name, gender, age, height, orgWeight, currWeight, targWeight, actLvl);
+        this.person.setAll(name, gender, age, height, orgWeight, currWeight, targWeight, actLvl);
     }
 
     public Calculator getCalculator() {
