@@ -101,11 +101,11 @@ public class Ui {
     }
 
     public void printCalendarStart(int size, int count) {
-        System.out.println("Calendar has " + size + " dates to display.");
+        System.out.println("Calendar has " + size + " dates to display");
         if (count > 1) {
-            System.out.println(count + " events not on the calendar because they have no date and time.");
+            System.out.println(count + " events not on the calendar because they have no date and time");
         } else if (count > 0) {
-            System.out.println(count + " event not on the calendar because it has no date and time.");
+            System.out.println(count + " event not on the calendar because it has no date and time");
         }
         printCalendarDivider();
     }
