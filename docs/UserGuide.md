@@ -315,7 +315,7 @@ The following table provides a summary of features and command formats.
 
 Command | Format | Example
 --- | --- | ---
-/route | `/route` **location1 /to location2** | `/route` **PGP /to Raffles Hall**
+/route | `/route` **location1** /to **location2** | `/route` **PGP** /to **Raffles Hall**
 /routemap | `/routemap` **bus code** | `/routemap` **AA1** 
 /bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
