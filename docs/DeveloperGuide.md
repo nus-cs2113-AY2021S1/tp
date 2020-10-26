@@ -86,7 +86,7 @@ NotUs manages the flow of the application. On launch, it will create the necessa
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action.
 
 1. Receives the user input message as a whole.
-1. Interprets the type of command and creates the respective parser.
+1. Interprets the type of command and creates the respective parser for each command.
 1. The parser then splits the message to identify all the parameters provided.
 1. Creates and returns the Command class respectively.
  
