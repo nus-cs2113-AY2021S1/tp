@@ -1,0 +1,74 @@
+@startuml
+
+!include style.puml
+box
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":WatchCommand" as WatchCommand LOGIC_COLOR
+participant ":UI" as UI LOGIC_COLOR
+participant ":WatchTime" as WatchTime LOGIC_COLOR
+participant ":ShowList" as ShowList LOGIC_COLOR
+end box
+
+[-> InputParser : watch("friends")
+activate InputParser
+
+InputParser -> WatchCommand: showWatched("friends")
+activate WatchCommand
+
+WatchCommand -> WatchCommand : processCommand()
+activate WatchCommand
+
+
+
+alt In middle of series
+WatchCommand -> ShowList : increment currentEpisode
+activate ShowList
+ShowList--> WatchCommand
+deactivate ShowList
+
+WatchCommand -> UI : printChangeEpisode()
+activate UI
+UI -> WatchCommand : printChangeEpisode()
+deactivate UI
+
+else Finished season
+WatchCommand -> ShowList : increment currentEpisode
+activate ShowList
+ShowList--> WatchCommand
+WatchCommand -> ShowList : increment currentSeason
+ShowList--> WatchCommand
+deactivate ShowList
+
+WatchCommand -> UI : printChangeEpisode()
+activate UI
+UI --> WatchCommand :
+WatchCommand -> UI : printWatchingNewSeason()
+UI --> WatchCommand :
+deactivate UI
+
+else Finished series
+
+WatchCommand -> UI : printFinishedAllSeasons()
+activate UI
+[<--UI :
+deactivate UI
+end
+
+WatchCommand -> WatchTime : watchDurationUpdate(showDuration)
+activate WatchTime
+deactivate WatchCommand
+
+deactivate ShowList
+deactivate WatchCommand
+
+
+
+WatchTime -> UI : printDailyWatchTimeLeft()
+[<--UI :
+
+deactivate UI
+
+deactivate WatchTime
+deactivate InputParser
+
+@enduml

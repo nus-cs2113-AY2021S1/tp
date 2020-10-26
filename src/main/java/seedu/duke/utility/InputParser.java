@@ -166,6 +166,7 @@ public class InputParser {
      * @param command command input by user in string format.
      * @throws IndexOutOfBoundsException if input is invalid or unable to be processed.
      * @throws NullPointerException      if the command format input by the user is invalid.
+     * @throws NumberFormatException     if the time limit input by the user is not a number.
      */
     private static void parseUpdateTimeLimitCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
@@ -176,6 +177,9 @@ public class InputParser {
             Ui.printBadInputException();
             return;
         } catch (NullPointerException e) {
+            Ui.printInvalidFormatException();
+            return;
+        } catch (NumberFormatException e) {
             Ui.printInvalidFormatException();
             return;
         }

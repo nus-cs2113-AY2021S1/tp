@@ -434,6 +434,11 @@ The processCommand method in WatchCommand class is called.
 
 3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
 
+The following sequence diagram summarises what happens when a user executes a WatchCommand:
+
+ <img src = "images/WatchCommandSequence.png" width = "500">
+
+
 ### UpdateTimeLimit Command feature
 
 The UpdateTimeLimit class extends Command by providing methods to 
@@ -470,6 +475,28 @@ The loadState function will read the file line by line. It will first call the l
 
 The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
 
+### Error Handling
+
+The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an error
+
+The following is an example execution scenario and demonstrates how the `ErrorHandling` class behaves and interacts with other relevant classes.
+
+**Step 1**
+
+* The user types in `updatetimelimit hello`.
+The `parseInput` method in `InputParser` class is called to parse the command. The `processCommand` method in `UpdateTimeLimit` class is called.
+The `processCommand` method will attempt to parse `hello` to an integer.
+
+**[NOTE]** At this instance `NumberFormatException` will be thrown as `hello` cannot be parsed to an integer.
+
+**Step 2**
+
+* The `parseUpdateTimeLimitCommand` method in `InputParser` class catches the thrown `NumberFormatException`. The printInvalidFormatException method in Ui class is called.
+
+**Step 3**
+
+* The `printInvalidFormatException` method in `Ui` class will call the `ErrorHandling` class and get the `EXCEPTION_INVALID_FORMAT` enumeration, along with its `exceptionMessage`.
+The `Ui` class prints the `exceptionMessage` into the terminal.
 
 ## 5. Documentation
 
