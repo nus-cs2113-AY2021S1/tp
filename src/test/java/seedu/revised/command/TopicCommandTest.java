@@ -54,7 +54,7 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void findTopic() {
+    public void findTopic() throws InvalidTopicException {
         findCommand = new FindTopicCommand("find Speed");
         findCommand.execute(subject);
     }
