@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class WordsSaver {
     private static final String FILE_PATH = "data/words.txt";
-    private static final Logger LOGGER = Logger.getLogger("Words Saver");
+    private static final Logger LOGGER = Logger.getLogger("Words saver");
 
     public static void saveWordsToFile() {
         ArrayList<Words> words = WordList.getWordList();
