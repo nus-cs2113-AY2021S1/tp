@@ -15,10 +15,17 @@ public class ResultSubjectCommand extends SubjectCommand {
 
     public ResultSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
-
     }
 
-    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException {
+    /**
+     * Shows results of the quiz of a <code>Subject</code> in a <code>SubjectList</code>.
+     *
+     * @param subjectList An instance of the <code>SubjectList</code> class to get the results from
+     * @param storage     Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
+     */
+    public void execute(SubjectList subjectList, Storage storage) throws
+            NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
@@ -27,8 +34,9 @@ public class ResultSubjectCommand extends SubjectCommand {
         Subject resultSubject = null;
 
         for (Subject subject : subjectList.getList()) {
-            if (subject.toString().contains(message[1])) {
+            if (subject.toString().equals(message[1])) {
                 resultSubject = subject;
+                break;
             }
         }
         if (resultSubject == null) {
@@ -36,8 +44,17 @@ public class ResultSubjectCommand extends SubjectCommand {
         }
         assert (resultSubject != null) : "No such subject exists!";
         Ui.printSubjectResults(resultSubject);
-        logger.info("Finish reading the command to find the subject for the results feature.Now, the "
+        logger.info("Finished reading the command to find the subject for the results feature.Now, the "
                 + "application prints the results.");
         logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
+    }
+
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> If user exits the program
+     */
+    public boolean isExit() {
+        return false;
     }
 }

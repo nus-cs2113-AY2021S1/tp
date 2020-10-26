@@ -12,15 +12,27 @@ import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.time.format.DateTimeParseException;
+import java.util.logging.Logger;
 
-public class GoToSubjectCommand extends SubjectCommand {
+public class AccessSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(AccessSubjectCommand.class.getName());
     private String fullcommand;
 
-    public GoToSubjectCommand(String fullcommand) {
+    public AccessSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
-    public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException {
+    /**
+     * Adds an instance of the <code>Subject</code> class into a <code>SubjectList</code>.
+     *
+     * @param subjectList           An instance of the <code>SubjectList</code> class for the user
+     *                              to find subjects that matches the user input
+     * @param storage               Does nothing in this case but needed since this method was
+     *                              implemented from an abstract class
+     * @throws NoSubjectException   If the program does not detect the correct syntax for user input
+     */
+    public void execute(SubjectList subjectList, Storage storage)
+            throws NoSubjectException {
         Subject gotoSubject = null;
 
         String[] message = this.fullcommand.split(" ");
@@ -41,7 +53,13 @@ public class GoToSubjectCommand extends SubjectCommand {
         goToSubject(gotoSubject);
     }
 
+    /**
+     * Adds an instance of the <code>Subject</code> class into a <code>SubjectList</code>.
+     *
+     * @param subject An instance of the <code>Subject</code> class for the user to access
+     */
     private void goToSubject(Subject subject) {
+        logger.info("Begin accessing a Subject to get Subject details");
         Ui.printGoToSubject(subject);
         boolean isSubjectExit = false;
         while (!isSubjectExit) {
@@ -68,9 +86,14 @@ public class GoToSubjectCommand extends SubjectCommand {
             }
         }
         Ui.printBackToSubjects();
-
+        logger.info("Finished access into a subject, going back to main.");
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> if user exits the program
+     */
     public boolean isExit() {
         return false;
     }

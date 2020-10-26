@@ -8,11 +8,11 @@ import seedu.revised.parser.FlashcardParser;
 import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
-public class GoToTopicCommand extends TopicCommand {
+public class AccessTopicCommand extends TopicCommand {
     private String fullcommand;
     private TaskList tasks;
 
-    public GoToTopicCommand(String fullcommand) {
+    public AccessTopicCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 

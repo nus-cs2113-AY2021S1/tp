@@ -10,7 +10,7 @@ import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
 import seedu.revised.command.subject.ResultSubjectCommand;
-import seedu.revised.command.subject.GoToSubjectCommand;
+import seedu.revised.command.subject.AccessSubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
@@ -29,7 +29,7 @@ public class SubjectCommandTest {
     private AddSubjectCommand addCommand;
     private DeleteSubjectCommand deleteCommand;
     private FindSubjectCommand findCommand;
-    private GoToSubjectCommand returnCommand;
+    private AccessSubjectCommand returnCommand;
     private ListSubjectCommand listCommand;
     private Storage storage;
     @TempDir

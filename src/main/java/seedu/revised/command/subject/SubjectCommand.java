@@ -1,6 +1,5 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
 import seedu.revised.command.Command;
 import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
@@ -14,6 +13,7 @@ import seedu.revised.storage.Storage;
 import java.io.IOException;
 
 public abstract class SubjectCommand extends Command {
+
     public abstract void execute(SubjectList subjectList, Storage storage) throws NoSubjectException,
             RepeatedSubjectException, InvalidSubjectException, FailedParseException, IOException, NoTopicException,
             NoFlashcardException;
