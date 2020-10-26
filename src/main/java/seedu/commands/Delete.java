@@ -13,19 +13,14 @@ import static seedu.messages.Messages.DELETE_MESSAGE;
 public class Delete extends Command {
     public static final String COMMAND_WORD = "delete";
     private final Integer key;
-    private static final Pattern COMMAND_PATTERN = Pattern.compile(
+    public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^delete (?<key>\\d+)$");
 
-    public Delete(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
-        Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
-        if (matcher.find()) {
-            try {
-                key = Integer.parseInt(matcher.group("key"));
-            } catch (NumberFormatException e) {
-                throw new InvalidTaskNumberException();
-            }
-        } else {
-            throw new InvalidCommandException();
+    public Delete(String keyString) throws InvalidTaskNumberException {
+        try{
+            key = Integer.parseInt(keyString);
+        } catch (NumberFormatException e) {
+            throw new InvalidTaskNumberException();
         }
     }
 
