@@ -7,14 +7,16 @@ import fitr.user.User;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Calendar;
 
 public class CheckGoalStatus {
 
     public static String checkGoalStatus(String status, Goal goal, FoodList foodList,
                                          ExerciseList exerciseList, User user) {
+        System.out.println("HELLLLOOO THIS IS CREATED DATE:" + goal.getCreatedDate());
         int targetCalorie;
-        int userConsumedCalorie = user.calculateCalorieConsumed(foodList).get();
-        int userBurntCalorie = user.calculateCalorieBurnt(exerciseList).get();
+        int userConsumedCalorie = user.calculateCalorieConsumed(foodList, goal.getCreatedDate()).get();
+        int userBurntCalorie = user.calculateCalorieBurnt(exerciseList, goal.getCreatedDate()).get();
         int calorieDifference;
         NumberFormat formatter = new DecimalFormat("#0.0");
 

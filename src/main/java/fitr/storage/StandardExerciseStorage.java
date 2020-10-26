@@ -1,59 +1,57 @@
 package fitr.storage;
 
 import fitr.StandardExercise;
+import fitr.common.ResourceManager;
 import fitr.list.StandardExerciseList;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class StandardExerciseStorage {
-    private static final String DEFAULT_UPPER_BODY_FILEPATH = "src/main/resources/upperBodyList.txt";
-    private static final String DEFAULT_LOWER_BODY_FILEPATH = "src/main/resources/lowerBodyList.txt";
-    private static final String DEFAULT_AEROBIC_FILEPATH = "src/main/resources/aerobicList.txt";
-    private static final String DEFAULT_STRETCH_FILEPATH = "src/main/resources/stretchList.txt";
+    private static final String DEFAULT_UPPER_BODY_FILEPATH = "upperBodyList.txt";
+    private static final String DEFAULT_LOWER_BODY_FILEPATH = "lowerBodyList.txt";
+    private static final String DEFAULT_AEROBIC_FILEPATH = "aerobicList.txt";
+    private static final String DEFAULT_STRETCH_FILEPATH = "stretchList.txt";
     private static final String COMMA_SEPARATOR = ", ";
 
     public StandardExerciseStorage() {
     }
 
-    public StandardExerciseList loadUpperBodyList() throws FileNotFoundException {
+    public StandardExerciseList loadUpperBodyList() throws IOException {
         StandardExerciseList upperBodyList = new StandardExerciseList();
         upperBodyList = readToList(DEFAULT_UPPER_BODY_FILEPATH, upperBodyList);
         return upperBodyList;
     }
 
-    public StandardExerciseList loadLowerBodyList() throws FileNotFoundException {
+    public StandardExerciseList loadLowerBodyList() throws IOException {
         StandardExerciseList lowerBodyList = new StandardExerciseList();
         lowerBodyList = readToList(DEFAULT_LOWER_BODY_FILEPATH, lowerBodyList);
         return lowerBodyList;
     }
 
-    public StandardExerciseList loadAerobicList() throws FileNotFoundException {
+    public StandardExerciseList loadAerobicList() throws IOException {
         StandardExerciseList aerobicList = new StandardExerciseList();
         aerobicList = readToList(DEFAULT_AEROBIC_FILEPATH, aerobicList);
         return aerobicList;
     }
 
-    public StandardExerciseList loadStretchList() throws FileNotFoundException {
+    public StandardExerciseList loadStretchList() throws IOException {
         StandardExerciseList stretchList = new StandardExerciseList();
         stretchList = readToList(DEFAULT_STRETCH_FILEPATH, stretchList);
         return stretchList;
     }
 
-    private StandardExerciseList readToList(String filePath, StandardExerciseList exerciseList)
-            throws FileNotFoundException {
-        File exerciseFile = new File(filePath);
-        Scanner readExerciseFile = new Scanner(exerciseFile);
+    private StandardExerciseList readToList(String filePath, StandardExerciseList exerciseList) throws IOException {
+        BufferedReader br = new BufferedReader(ResourceManager.loadResource(filePath));
         String line;
         String[] arguments;
         String name;
         double metValue;
         ArrayList<Double> duration;
         ArrayList<Integer> sets;
-        while (readExerciseFile.hasNext()) {
-            line = readExerciseFile.nextLine().trim();
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
             arguments = line.split(COMMA_SEPARATOR);
             name = arguments[0];
             metValue = Double.parseDouble(arguments[1]);
