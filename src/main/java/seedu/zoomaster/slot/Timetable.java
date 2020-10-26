@@ -119,6 +119,7 @@ public class Timetable {
         }
     }
 
+    //@@author fchensan
     /**
      * Move a slot to another module given a user input module code.
      *
