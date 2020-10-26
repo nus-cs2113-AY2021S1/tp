@@ -38,16 +38,7 @@ public class UserStorage extends LocalStorage {
         JSONArray topics = new JSONArray();
 
         for (Displayable topicObject: topicList.getInnerList()) {
-            JSONObject topic = new JSONObject();
-            topic.put("topic", topicObject.getDescription());
-
-            JSONArray questions = getQuestionsJsonArray((Topic) topicObject);
-            topic.put("questions", questions);
-
-            JSONArray notes = getNotesJsonArray(((Topic) topicObject).getNoteList());
-            topic.put("notes", notes);
-
-            topics.add(topic);
+            topics.add(parseToTopicJson(topicObject));
         }
 
         //Write JSON file
@@ -65,35 +56,65 @@ public class UserStorage extends LocalStorage {
         }
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
+
         for (Object topic: topicsAsJsonArray) {
-            String topicDescription = (String) ((JSONObject) topic).get("topic");
-            Topic topicObject = (Topic) topicList.find(topicDescription);
-
-            QuestionList questionList = topicObject.getQuestionList();
-            JSONArray questions = (JSONArray) ((JSONObject) topic).get("questions");
-            for (Object question: questions) {
-                String questionDescription = (String) ((JSONObject) question).get("description");
-                Question questionObject = (Question) questionList.find(questionDescription);
-                questionObject.markAsShown();
-                if ((boolean) ((JSONObject) question).get("correct")) {
-                    questionObject.markAsAnsweredCorrectly();
-                }
-                if ((boolean) ((JSONObject) question).get("bookmarked")) {
-                    bookmarkList.add(questionObject);
-                }
-                if ((boolean) ((JSONObject) question).get("hint")) {
-                    questionObject.getHint().markAsShown();
-                }
-            }
-
-            NoteList noteList = topicObject.getNoteList();
-            JSONArray notes = (JSONArray) ((JSONObject) topic).get("notes");
-            for (Object note: notes) {
-                noteList.add((Note) note);
-            }
+            parseFromTopicJson((JSONObject) topic);
         }
 
         return topicList.getInnerList();
+    }
+
+    private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
+        String topicDescription = (String) topic.get("topic");
+        Topic topicObject = (Topic) topicList.find(topicDescription);
+
+        JSONArray questions = (JSONArray) topic.get("questions");
+        loadQuestionAttributes(questions, topicObject);
+
+        JSONArray notes = (JSONArray) topic.get("notes");
+        loadNotes(notes, topicObject);
+    }
+
+    private void loadNotes(JSONArray notes, Topic topicObject) {
+        NoteList noteList = topicObject.getNoteList();
+        for (Object note: notes) {
+            noteList.add((Note) note);
+        }
+    }
+
+    private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
+        QuestionList questionList = topicObject.getQuestionList();
+        for (Object question: questions) {
+            parseFromQuestionJson(questionList, (JSONObject) question);
+        }
+    }
+
+    private void parseFromQuestionJson(QuestionList questionList, JSONObject question) throws Eduke8Exception {
+        String questionDescription = (String) question.get("description");
+        Question questionObject = (Question) questionList.find(questionDescription);
+        questionObject.markAsShown();
+        if ((boolean) question.get("correct")) {
+            questionObject.markAsAnsweredCorrectly();
+        }
+        if ((boolean) question.get("bookmarked")) {
+            bookmarkList.add(questionObject);
+        }
+        if ((boolean) question.get("hint")) {
+            questionObject.getHint().markAsShown();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private JSONObject parseToTopicJson(Displayable topicObject) {
+        JSONObject topic = new JSONObject();
+        topic.put("topic", topicObject.getDescription());
+
+        JSONArray questions = getQuestionsJsonArray((Topic) topicObject);
+        topic.put("questions", questions);
+
+        JSONArray notes = getNotesJsonArray(((Topic) topicObject).getNoteList());
+        topic.put("notes", notes);
+        return topic;
     }
 
     @SuppressWarnings("unchecked")
