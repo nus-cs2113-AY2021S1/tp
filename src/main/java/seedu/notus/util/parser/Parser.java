@@ -114,7 +114,7 @@ public abstract class Parser {
         return new Tag(tagName, tagColor);
     }
 
-    //@@author Narzyl
+    //@@author Nazryl
     /**
      * Used for input of note content and processing the input into a readable data.
      *
@@ -160,19 +160,6 @@ public abstract class Parser {
         } while (!isInputSuccess);
 
         return inputString;
-    }
-
-    //@@author Narzyl
-    /**
-     * Delete the last line for mistakes made in inputContent().
-     *
-     * @param commandInput Original string of the note content.
-     * @param characters String of character to be removed.
-     * @param charCount Number of character. 0 to remove new line, 1 to resume typing on the same line.
-     */
-    public static void deleteLine(StringBuilder commandInput, String characters, int charCount) {
-        int lastChar = commandInput.lastIndexOf(characters) + charCount;
-        commandInput.delete(lastChar, commandInput.length());
     }
 
     /**

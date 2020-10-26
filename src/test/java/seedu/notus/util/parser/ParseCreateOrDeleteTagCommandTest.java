@@ -7,11 +7,12 @@ import seedu.notus.command.Command;
 import seedu.notus.command.CreateTagCommand;
 import seedu.notus.command.DeleteTagCommand;
 import seedu.notus.data.exception.SystemException;
+import seedu.notus.data.exception.SystemException.ExceptionType;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ParseCreateTagOrDeleteCommandTest {
+class ParseCreateOrDeleteTagCommandTest {
 
     private ParseCreateTagOrDeleteCommand parser;
     private SystemException exception;
@@ -63,13 +64,13 @@ class ParseCreateTagOrDeleteCommandTest {
     void parseCommand_missingContent_throwException() {
         parser = new ParseCreateTagOrDeleteCommand(null, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        String expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
+        String expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseCreateTagOrDeleteCommand(null, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -80,13 +81,13 @@ class ParseCreateTagOrDeleteCommandTest {
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -94,13 +95,13 @@ class ParseCreateTagOrDeleteCommandTest {
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -111,13 +112,13 @@ class ParseCreateTagOrDeleteCommandTest {
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -125,13 +126,13 @@ class ParseCreateTagOrDeleteCommandTest {
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseCreateTagOrDeleteCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }

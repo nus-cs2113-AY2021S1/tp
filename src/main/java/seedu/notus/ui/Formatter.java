@@ -3,7 +3,6 @@ package seedu.notus.ui;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.data.timetable.Reminder;
-import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.timetable.Event;
 
 import com.diogonunes.jcolor.Attribute;
@@ -61,7 +60,7 @@ public class Formatter {
      */
     public static String formatNotes(String pinnedHeader, String unpinnedHeader,
                                      ArrayList<Note> pinned, ArrayList<Note> unpinned) {
-        String formattedString = "";
+        String formattedString;
         formattedString = formatNotes(pinnedHeader, pinned);
         formattedString = formattedString.concat(formatNotes(unpinnedHeader, unpinned));
         return formattedString;

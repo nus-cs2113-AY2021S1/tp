@@ -5,19 +5,12 @@ package seedu.notus.command;
 import seedu.notus.ui.Formatter;
 
 import seedu.notus.data.exception.SystemException;
-import seedu.notus.data.notebook.Note;
-import seedu.notus.storage.StorageManager;
-import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static java.util.stream.Collectors.toList;
-
 
 //@@author Nazryl
 /**
@@ -33,7 +26,7 @@ public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
-    public static final String FILE_WRITE_UNSEUCCESSFUL_MESSAGE = "Unable to write to file";
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
     private String title = "";
@@ -85,7 +78,7 @@ public class DeleteNoteCommand extends Command {
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         } catch (IOException e) {
-            return Formatter.formatString(FILE_WRITE_UNSEUCCESSFUL_MESSAGE);
+            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         } catch (SystemException exception) {
             return Formatter.formatString(exception.getMessage());
         }
