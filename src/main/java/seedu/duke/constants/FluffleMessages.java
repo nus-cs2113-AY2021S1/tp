@@ -40,9 +40,9 @@ public class FluffleMessages {
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
     public static final String EMPTY_INPUT_MSG = "Please enter a word and its description to save!";
     public static final String EMPTY_DESC_MSG = "Please enter the word's description after typing 'd\\'!";
-    public static final String INCORRECT_NOUN_MSG = "Please use the correct command format! Type 'help noun' for more info.";
-    public static final String INCORRECT_VERB_MSG = "Please use the correct command format! Type 'help verb' for more info.";
-    public static final String INCORRECT_ADJ_MSG = "Please use the correct command format! Type 'help adj' for more info.";
+    public static final String INVALID_NOUN_MSG = "Please use correct command format! Type 'help noun' for more info.";
+    public static final String INVALID_VERB_MSG = "Please use correct command format! Type 'help verb' for more info.";
+    public static final String INVALID_ADJ_MSG = "Please use correct command format! Type 'help adj' for more info.";
 
     /** Three Words Generator messages. */
     public static final String THREE_WORDS_MSG = "Here are three words selected randomly from the word bank:";

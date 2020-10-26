@@ -24,18 +24,22 @@ public class WordList {
      *              the word and its definition
      */
     public static void addNoun(String input) {
-        if(input.equals("noun")) {
+        if (input.equals("noun")) {
             System.out.println(FluffleMessages.EMPTY_INPUT_MSG);
         } else {
             // Remove the command word
             String[] word = input.split(" ", 2);
-            if (word[1].equals("") || word[1].equals("d\\") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
-                System.out.println(FluffleMessages.INCORRECT_NOUN_MSG);
+            if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
+                System.out.println(FluffleMessages.INVALID_NOUN_MSG);
             } else {
-                String[] splitInput = word[1].trim().split(Tags.DESCRIPTION_TAG);
-                Words toAdd = new Noun(splitInput[0], splitInput[1]);
-                wordList.add(toAdd);
-                UI.addNounMessage(toAdd.getDescription());
+                String[] splitInput = word[1].split("d\\\\");
+                if (splitInput.length == 1) {
+                    System.out.println(FluffleMessages.INVALID_NOUN_MSG);
+                } else {
+                    Words toAdd = new Noun(splitInput[0], splitInput[1]);
+                    wordList.add(toAdd);
+                    UI.addNounMessage(toAdd.getDescription());
+                }
             }
         }
     }
@@ -46,18 +50,22 @@ public class WordList {
      *              the word and its definition
      */
     public static void addVerb(String input) {
-        if(input.equals("verb")) {
+        if (input.equals("verb")) {
             System.out.println(FluffleMessages.EMPTY_INPUT_MSG);
         } else {
             // Remove the command word
             String[] word = input.split(" ", 2);
-            if (word[1].equals("") || word[1].equals("d\\") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
-                System.out.println(FluffleMessages.INCORRECT_VERB_MSG);
+            if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
+                System.out.println(FluffleMessages.INVALID_VERB_MSG);
             } else {
-                String[] splitInput = word[1].split(Tags.DESCRIPTION_TAG);
-                Words toAdd = new Verb(splitInput[0], splitInput[1]);
-                wordList.add(toAdd);
-                UI.addVerbMessage(toAdd.getDescription());
+                String[] splitInput = word[1].split("d\\\\");
+                if (splitInput.length == 1) {
+                    System.out.println(FluffleMessages.INVALID_VERB_MSG);
+                } else {
+                    Words toAdd = new Verb(splitInput[0], splitInput[1]);
+                    wordList.add(toAdd);
+                    UI.addVerbMessage(toAdd.getDescription());
+                }
             }
         }
     }
@@ -68,18 +76,22 @@ public class WordList {
      *              the word and its definition
      */
     public static void addAdjective(String input) {
-        if(input.equals("adj")) {
+        if (input.equals("adj")) {
             System.out.println(FluffleMessages.EMPTY_INPUT_MSG);
         } else {
             // Remove the command word
             String[] word = input.split(" ", 2);
-            if (word[1].equals("") || word[1].equals("d\\") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
-                System.out.println(FluffleMessages.INCORRECT_ADJ_MSG);
+            if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
+                System.out.println(FluffleMessages.INVALID_ADJ_MSG);
             } else {
-                String[] splitInput = word[1].split(Tags.DESCRIPTION_TAG);
-                Words toAdd = new Adjective(splitInput[0], splitInput[1]);
-                wordList.add(toAdd);
-                UI.addAdjectiveMessage(toAdd.getDescription());
+                String[] splitInput = word[1].split("d\\\\");
+                if (splitInput.length == 1) {
+                    System.out.println(FluffleMessages.INVALID_ADJ_MSG);
+                } else {
+                    Words toAdd = new Adjective(splitInput[0], splitInput[1]);
+                    wordList.add(toAdd);
+                    UI.addAdjectiveMessage(toAdd.getDescription());
+                }
             }
         }
     }
@@ -92,8 +104,8 @@ public class WordList {
     }
 
     public static ArrayList<Words> generateThreeWords() {
-        ArrayList<Words> shuffledWords = new ArrayList<Words>(wordList);
-        ArrayList<Words> threeWords = new ArrayList<Words>();
+        ArrayList<Words> shuffledWords = new ArrayList<>(wordList);
+        ArrayList<Words> threeWords = new ArrayList<>();
         Collections.shuffle(shuffledWords);
         int count = 0;
         while (count < 3) {

@@ -41,5 +41,5 @@ public class Tags {
     public static final String ADJECTIVE = "adjective";
 
     /** Tags for word list. */
-    public static final String DESCRIPTION_TAG = "d\\\\";
+    public static final String DESCRIPTION_TAG = " d\\";
 }

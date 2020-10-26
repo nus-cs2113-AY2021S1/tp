@@ -185,7 +185,7 @@ public class CommandExecutor {
         case DELETE:
             break;
         case EXIT:
-            WordsSaver.saveWordList();
+            WordsSaver.saveWordsToFile();
             //closes the program
             break;
         default:

@@ -18,7 +18,10 @@ import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 import static seedu.duke.database.WritingsLoader.loadWritings;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
-import static seedu.duke.ui.UI.*;
+import static seedu.duke.ui.UI.printAskForName;
+import static seedu.duke.ui.UI.printDivider;
+import static seedu.duke.ui.UI.printFarewellMessage;
+import static seedu.duke.ui.UI.printHelloMessage;
 
 public class Duke {
     private static final WritingsLoader loader = new WritingsLoader();
@@ -39,7 +42,7 @@ public class Duke {
     public static void main(String[] args) {
         setUserSettingsArrayList(savedSettings, username);
         loadUserSettings(savedSettings);
-        WordsLoader.loadWordList();
+        WordsLoader.loadWordsFile();
         loadBunnyFile(bunniesList);
         loadWritings(writings);
         printDivider();
