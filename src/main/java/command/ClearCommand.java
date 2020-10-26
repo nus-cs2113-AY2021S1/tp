@@ -6,24 +6,18 @@ import ui.Printer;
 
 public class ClearCommand extends Command {
     protected DataFileDestroyer fileDestroyer;
+    public static final String invoker = "/clear";
 
-    public ClearCommand(Printer printer, DataFileDestroyer fileDestroyer) {
+    public ClearCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer) {
         super(printer);
+        this.cheatSheetList = cheatSheetList;
         this.fileDestroyer = fileDestroyer;
-
-        //initCommandDetails(null);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return true;
-    }
-    */
 
     @Override
     public void execute() {
-        printer.printClearCheatSheetMessage(CheatSheetList.getSize());
-        CheatSheetList.clear();
+        cheatSheetList.clear();
         fileDestroyer.executeFunction();
+        printer.printClearCheatSheetMessage(cheatSheetList.getSize());
     }
 }

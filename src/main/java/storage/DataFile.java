@@ -23,10 +23,25 @@ public abstract class DataFile {
 
     protected static final String MAIN_ELEMENT = "main";
     protected static final String FAVOURITE_ELEMENT = "favourite";
+    protected static final String SUBJECT_ELEMENT = "subject";
     protected static final String CONTENTS_ELEMENT = "contents";
-    protected static final String FAVOURITE_FILE = "Yes";
-    protected static final String NOT_FAVOURITE_FILE = "No";
+
+
+    protected static final String YES = "Yes";
+    protected static final String NO = "No";
     protected static final String EMPTY = "";
+
+    protected static final String LESS_THAN = "<";
+    protected static final String LESS_THAN_XML = "&#60;";
+    protected static final String MORE_THAN = ">";
+    protected static final String MORE_THAN_XML = "&#62;";
+    protected static final String AMPERSAND = "&";
+    protected static final String AMPERSAND_XML = "&#38;";
+
+    protected static final String SINGLE_QUOTE = "'";
+    protected static final String SINGLE_QUOTE_XML = "&#39;";
+    protected static final String DOUBLE_QUOTE = "\"";
+    protected static final String DOUBLE_QUOTE_XML = "&#34;";
 
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
 
@@ -60,8 +75,8 @@ public abstract class DataFile {
      *                                        configuration error has been caught.
      */
     protected DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
-        DocumentBuilderFactory documentBuilderFactoryInstance =
-                DocumentBuilderFactory.newInstance();
-        return documentBuilderFactoryInstance.newDocumentBuilder();
+        return DocumentBuilderFactory
+                .newInstance()
+                .newDocumentBuilder();
     }
 }

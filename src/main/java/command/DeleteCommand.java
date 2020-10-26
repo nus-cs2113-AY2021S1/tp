@@ -3,42 +3,31 @@ package command;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
+    public static final String invoker = "/delete";
 
-    public DeleteCommand(Printer printer, DataFileDestroyer fileDestroyer) {
-        super(printer);
+    public DeleteCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer) {
+        super(printer, cheatSheetList);
         this.fileDestroyer = fileDestroyer;
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.INDEX,
-        });*/
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
-        requiredArguments.add(ArgumentFlagEnum.INDEX);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
+        alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.INDEX);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null
-            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
         try {
-            CheatSheet cheatSheetToBeDeleted = getCheatSheetFromNameOrIndex();
-
-            CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
-            fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
-            printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
+            CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
+            cheatSheetList.remove(cheatSheetToDelete.getName());
+            fileDestroyer.executeFunction(cheatSheetToDelete.getName());
+            printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid name or index");
         } catch (NumberFormatException n) {

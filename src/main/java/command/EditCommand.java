@@ -3,35 +3,33 @@ package command;
 import cheatsheet.CheatSheet;
 import editor.Editor;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import ui.Printer;
 
 public class EditCommand extends FinderCommand {
-    public EditCommand(Printer printer) {
-        super(printer);
+    private final Editor editor;
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
+    public static final String invoker = "/edit";
+
+    public EditCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
+        super(printer, cheatSheetList);
+        this.editor = editor;
+
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
     }
 
     @Override
-    public boolean hasAllRequiredArguments() {
-        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
-                || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean hasAlternativeArgument() {
+        return flagsToDescriptions.get(CommandFlag.NAME) != null
+                || flagsToDescriptions.get(CommandFlag.INDEX) != null;
     }
 
     @Override
     public void execute() throws CommandException {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
-
-            // This line calls the
             callContentEditor(desiredCheatSheet);
-
             printer.printViewCheatSheetMessage(desiredCheatSheet);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
@@ -39,13 +37,10 @@ public class EditCommand extends FinderCommand {
     }
 
     private void callContentEditor(CheatSheet desiredCheatSheet) {
-        String cheatSheetContent = desiredCheatSheet.getCheatSheetDetails();
-        Editor contentEditor = new Editor(cheatSheetContent);
-        contentEditor.showWindow();
-        while (contentEditor.isEditing()) {
-            printer.print("Waiting for user input...");
-        }
+        editor.open();
+        editor.setContent(desiredCheatSheet.getDetails());
+        editor.waitForClose();
 
-        desiredCheatSheet.setCheatSheetDetails(contentEditor.getContent());
+        desiredCheatSheet.setDetails(editor.getContent());
     }
 }

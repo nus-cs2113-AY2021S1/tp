@@ -3,38 +3,61 @@ package storage;
 import cheatsheet.CheatSheetList;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataFileReaderTest extends DataFileTest {
 
-    @Test
-    void parseDataName_textFile1_success() {
-        assertTrue(true);
-    }
+    String fileInput = "<main>"
+            + System.lineSeparator()
+            + "<favourite>Yes</favourite>"
+            + System.lineSeparator()
+            + "<subject>Test</subject>"
+            + System.lineSeparator()
+            + "<contents>Test Success!</contents>"
+            + System.lineSeparator()
+            + "</main>";
+
     /*
     @Test
-    void readDataFiles_missingFolder_exceptionThrown() {
-        assertThrows(FileNotFoundException.class, testReader::insertStoredCheatSheets);
+    void readFile_name_success() {
+        CheatSheetList.clear();
+        createSampleFile(sampleTest, fileInput);
+
+        testReader.executeFunction();
+        eraseFile(sampleTest);
+
+        String testName = CheatSheetList.getList().get(0).getName();
+        CheatSheetList.clear();
+
+        assertEquals(sample, testName);
     }
 
     @Test
-    void readDataFiles_nonEmptyFolder_success() {
-        createDataDir();
+    void readFile_subject_success() {
         CheatSheetList.clear();
+        createSampleFile(sampleTest, fileInput);
 
-        createSampleFile(sampleFile, sampleFileContent);
         testReader.executeFunction();
+        eraseFile(sampleTest);
 
-        final int listSize = CheatSheetList.getSize();
-
+        String testSubject = CheatSheetList.getList().get(0).getSubject();
         CheatSheetList.clear();
-        eraseFile(sampleFile);
-        eraseFile(dataDir);
 
-        assertEquals(1, listSize);
+        assertEquals("Test", testSubject);
     }
 
+    @Test
+    void readFile_details_success() {
+        CheatSheetList.clear();
+        createSampleFile(sampleTest, fileInput);
+
+        testReader.executeFunction();
+        eraseFile(sampleTest);
+
+        String testSubject = CheatSheetList.getList().get(0).getDetails();
+        CheatSheetList.clear();
+
+        assertEquals("Test Success!", testSubject);
+    }
     */
 }

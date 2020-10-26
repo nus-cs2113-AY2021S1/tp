@@ -3,110 +3,109 @@ package command;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
-import sort.SortByLanguage;
+import parser.CommandFlag;
+import sort.SortBySubject;
+import sort.SortBySubjectRev;
 import sort.SortByName;
+import sort.SortByNameRev;
+import ui.ConsoleColorsEnum;
 import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FindCommand extends FinderCommand {
-    public FindCommand(Printer printer) {
-        super(printer);
+    public static final String invoker = "/find";
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
-            ArgumentFlagEnum.SECTIONKEYWORD,
-        });*/
-        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
-        descriptionMap.put(ArgumentFlagEnum.SECTIONKEYWORD, null);
-        requiredArguments.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        requiredArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
+    public FindCommand(Printer printer, CheatSheetList cheatSheetList) {
+        super(printer, cheatSheetList);
+
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
+        flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
+        alternativeArguments.add(CommandFlag.SUBJECT);
+        alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
-            || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
-        String programmingLanguage = "";
+        String subject = "";
         String keyword = "";
-        ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
+        ArrayList<CheatSheet> filteredCheatSheetList = new ArrayList<>();
 
-        if (descriptionMap.containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
-            programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        if (flagsToDescriptions.containsKey(CommandFlag.SUBJECT)) {
+            subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         }
-        if (descriptionMap.containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
-            keyword = descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD);
+        if (flagsToDescriptions.containsKey(CommandFlag.SECTIONKEYWORD)) {
+            keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
         }
 
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            if (!programmingLanguage.isEmpty() && keyword.isEmpty()) {
-                if (cs.getCheatSheetProgrammingLanguage().contains(programmingLanguage)) {
-                    cheatSheetArrayList.add(cs);
+        for (CheatSheet cs : cheatSheetList.getList()) {
+            if (!subject.isEmpty() && keyword.isEmpty()) {
+                if (cs.getSubject().contains(subject)) {
+                    filteredCheatSheetList.add(cs);
                 }
-            } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
-                if (cs.getCheatSheetDetails().contains(keyword)) {
-                    cheatSheetArrayList.add(cs);
+            } else if (!keyword.isEmpty() && subject.isEmpty()) {
+                if (cs.getDetails().contains(keyword)) {
+                    filteredCheatSheetList.add(cs);
                 }
-            } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
-                if (cs.getCheatSheetProgrammingLanguage().contains(programmingLanguage)
-                        && cs.getCheatSheetDetails().contains(keyword)) {
-                    cheatSheetArrayList.add(cs);
+            } else if (!subject.isEmpty() && !keyword.isEmpty()) {
+                if (cs.getSubject().contains(subject)
+                        && cs.getDetails().contains(keyword)) {
+                    filteredCheatSheetList.add(cs);
                 }
             } else {
                 throw new CommandException("Please enter at least an argument");
             }
         }
 
-        if (cheatSheetArrayList.isEmpty()) {
+        if (filteredCheatSheetList.isEmpty()) {
             throw new CommandException("No matching content found");
         }
 
-        printer.print("Showing all matches: ");
-        for (CheatSheet cs : cheatSheetArrayList) {
-            printer.printCheatSheet(cs);
-            printer.printWhiteSpace();
-        }
-        askForSortingConfigAndPrint(cheatSheetArrayList);
+        printMatches(filteredCheatSheetList);
+        askForSortingConfigAndPrint(filteredCheatSheetList);
     }
 
-    protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> cheatSheetArrayList) {
-        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-            + ", ld: language descending or <enter> to skip)");
+    protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> filteredCheatSheetList) {
+        final String promptSortConfig = ConsoleColorsEnum.RED_TEXT
+                + "Sort filter (na: name ascending, sa: subject ascending, nd: name descending" + ", sd: "
+                + "subject descending or <<enter>> to skip)" + ConsoleColorsEnum.RESET_TEXT;
 
+        printer.print(promptSortConfig);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.isEmpty()) {
             switch (input) {
             case "na":
-                cheatSheetArrayList.sort(new SortByName());
+                filteredCheatSheetList.sort(new SortByName());
+                printer.print("Sorted name in ascending order");
                 break;
-            case "la":
-                cheatSheetArrayList.sort(new SortByLanguage());
+            case "sa":
+                filteredCheatSheetList.sort(new SortBySubject());
+                printer.print("Sorted subject in ascending order");
                 break;
             case "nd":
-                cheatSheetArrayList.sort(new SortByName().reversed());
+                filteredCheatSheetList.sort(new SortByNameRev());
+                printer.print("Sorted name in descending order");
                 break;
-            case "ld":
-                cheatSheetArrayList.sort(new SortByLanguage().reversed());
+            case "sd":
+                filteredCheatSheetList.sort(new SortBySubjectRev());
+                printer.print("Sorted subject in descending order");
                 break;
             default:
-                cheatSheetArrayList.sort(new SortByName());
+                filteredCheatSheetList.sort(new SortByName());
             }
-
-            printer.print("Showing all matches: ");
-            for (CheatSheet cs : cheatSheetArrayList) {
-                printer.printCheatSheet(cs);
-                printer.printWhiteSpace();
-            }
+            printer.printCheatSheetList(cheatSheetList);
+            printer.print(promptSortConfig);
             input = scanner.nextLine();
         }
-        askForSortingConfigAndPrint(cheatSheetArrayList);
+    }
+
+    private void printMatches(ArrayList<CheatSheet> cheatSheetArrayList) {
+        printer.print("Showing all matches: ");
+        for (CheatSheet cs : cheatSheetArrayList) {
+            printer.printCheatSheet(cs);
+            printer.printWhiteSpace();
+        }
     }
 }

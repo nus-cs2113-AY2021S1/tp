@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class AddCommandTest {
     //    @Test
     //    void addOneCheatSheet_completeInput_success() {
-    //        final String userInput = "/add /n name /l language /d details";
+    //        final String userInput = "/add /n name /slanguage /d details";
     //        CheatSheetList.clear();
     //        try {
     //            Parser parser = new Parser(null, new Printer(), null);
@@ -31,14 +31,14 @@ class AddCommandTest {
     //
     //    @Test
     //    void addOneCheatSheet_SpacedInput_success() {
-    //        final String userInput = "/add /n Did someone say /l Python v2";
+    //        final String userInput = "/add /n Did someone say /sPython v2";
     //        CheatSheetList.clear();
     //        try {
     //            Parser parser = new Parser(null, new Printer(), null);
     //            Command addCommand = parser.parse(userInput);
     //            addCommand.execute();
     //            assertEquals(1, CheatSheetList.getSize());
-    //            assertEquals("PythonV2", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage());
+    //            assertEquals("PythonV2", CheatSheetList.getCheatSheet(1).getSubject());
     //        } catch (CommandException e) {
     //            fail();
     //        }
@@ -48,28 +48,28 @@ class AddCommandTest {
     //    @Test
     //    void addOneCheatSheet_allFieldsFilled_success() throws CommandException {
     //        CheatSheetList.clear();
-    //        String userInput = "/add /n FirstTest /l Java /d Content1";
+    //        String userInput = "/add /n FirstTest /sJava /d Content1";
     //        Parser parser = new Parser(null, new Printer(), null);
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
     //    @Test
     //    void addOneCheatSheet_nameAndLanguageFilled_success() throws CommandException {
     //        CheatSheetList.clear();
-    //        String userInput = "/add /n FirstTest /l Java";
+    //        String userInput = "/add /n FirstTest /sJava";
     //        Parser parser = new Parser(null, new Printer(), null);
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> bassertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
@@ -81,16 +81,16 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
     //    //    @Test
     //    //    void addOneCheatSheet_languageAndDescriptionFilled_CommandExceptionThrown() throws CommandException {
     //    //        CheatSheetList.clear();
-    //    //        String userInput = "/add /l Java /d Content1";
+    //    //        String userInput = "/add /sJava /d Content1";
     //    //        Parser parser = new Parser(null, new Printer(), null);
     //    //        Command addCommand = parser.parse(userInput);
     //    //        try {
@@ -108,16 +108,16 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
 
     //    @Test
     //    void addOneCheatSheet_LanguageFilled_CommandExceptionThrown() throws CommandException {
     //        CheatSheetList.clear();
-    //        String userInput = "/add /l Java";
+    //        String userInput = "/add /sJava";
     //        Parser parser = new Parser(null, new Printer(), new Ui());
     //        Command addCommand = parser.parse(userInput);
     //        try {

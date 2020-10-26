@@ -1,79 +1,61 @@
 package cheatsheet;
 
-import java.time.LocalDateTime;
-
 public class CheatSheet {
-    private String cheatSheetName;
-    private String cheatSheetProgrammingLanguage;
-    private String cheatSheetDetails;
+    private String name;
+    private String subject;
+    private String details;
     private boolean isFavourite;
     private boolean isModifiable;
-    private LocalDateTime dateCreated;
-    private LocalDateTime dateModified;
 
-    public CheatSheet(String cheatSheetName, String cheatSheetProgrammingLanguage, String cheatSheetDetails) {
-        this.cheatSheetName = cheatSheetName;
-        this.cheatSheetProgrammingLanguage = cheatSheetProgrammingLanguage;
-        this.cheatSheetDetails = cheatSheetDetails;
+    public CheatSheet(String name, String subject, String details) {
+        this.name = name;
+        this.subject = subject;
+        this.details = details;
         this.isFavourite = false;
-        this.dateCreated = LocalDateTime.now();
     }
 
-    public String getCheatSheetName() {
-        return cheatSheetName;
+    public String getName() {
+        return name;
     }
 
-    public String getCheatSheetProgrammingLanguage() {
-        return cheatSheetProgrammingLanguage;
+    public String getSubject() {
+        return subject;
     }
 
     public boolean getIsFavourite() {
         return isFavourite;
     }
 
-    public String getCheatSheetDetails() {
-        return cheatSheetDetails;
+    public String getDetails() {
+        return details;
     }
 
-    public LocalDateTime getDateCreated() {
-        return dateCreated;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setCheatSheetName(String cheatSheetName) {
-        this.cheatSheetName = cheatSheetName;
-        updateCheatSheet();
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public void setCheatSheetProgrammingLanguage(String cheatSheetProgrammingLanguage) {
-        this.cheatSheetProgrammingLanguage = cheatSheetProgrammingLanguage;
-        updateCheatSheet();
-    }
-
-    public void setCheatSheetDetails(String cheatSheetDetails) {
-        this.cheatSheetDetails = cheatSheetDetails;
-        updateCheatSheet();
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public void setFavorite() {
         isFavourite = true;
-        updateCheatSheet();
     }
 
     public void setFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
-
-    }
-
-    private void updateCheatSheet() {
-        this.dateModified = LocalDateTime.now();
     }
 
     @Override
     public String toString() {
         return "CheatSheet{"
-                + "cheatSheetName='" + cheatSheetName + '\''
-                + ", cheatSheetProgrammingLanguage='" + cheatSheetProgrammingLanguage + '\''
-                + ", cheatSheetDetails='" + cheatSheetDetails + '\''
+                + "Name='" + name + '\''
+                + ", Subject ='" + subject + '\''
+                + ", Details='" + details + '\''
                 + '}';
     }
 }

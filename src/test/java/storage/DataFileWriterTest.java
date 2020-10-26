@@ -4,7 +4,6 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
@@ -13,57 +12,61 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DataFileWriterTest extends DataFileTest {
 
-    final String dummyFileContent = "Programming Language: C++"
+    String fileInput = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
             + System.lineSeparator()
-            + "Contents: Use case statements.";
+            + "<main>"
+            + System.lineSeparator()
+            + "    <favourite>No</favourite>"
+            + System.lineSeparator()
+            + "    <subject>Test</subject>"
+            + System.lineSeparator()
+            + "    <contents>Test Success!</contents>"
+            + System.lineSeparator()
+            + "</main>"
+            + System.lineSeparator();
 
-    @Test
-    void parseDataName_textFile1_success() {
-        assertTrue(true);
-    }
     /*
     @Test
-    public void writeDataFiles_newCheatSheet_success() {
-        createDataDir();
+    void writeFileExists_sampleCheatsheet_success() {
         CheatSheetList.clear();
-        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
-                fileDetails));
+
+        CheatSheet testCheatSheet = new CheatSheet(sample,
+                "Test",
+                "Test Success!");
+        CheatSheetList.add(testCheatSheet);
 
         testWriter.executeFunction();
-        File createdFile = sampleFile.toFile();
-
-        try {
-            String actualFileContent = Files.readString(sampleFile);
-            assertEquals(sampleFileContent, actualFileContent);
-        } catch (IOException e) {
-            printer.print(e.getMessage());
-        } finally {
-            createdFile.delete();
-            CheatSheetList.clear();
-            eraseFile(dataDir);
+        boolean isSampleAdded = sampleTest.toFile().exists();
+        if (isSampleAdded) {
+            eraseFile(sampleTest);
         }
+
+        CheatSheetList.clear();
+        assertTrue(isSampleAdded);
     }
 
     @Test
-    public void writeDataFiles_existingCheatSheet_success() {
-        createDataDir();
+    void writeFileContents_sampleCheatsheet_success() {
         CheatSheetList.clear();
-        createSampleFile(sampleFile, dummyFileContent);
-        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
-                fileDetails));
+
+        CheatSheet testCheatSheet = new CheatSheet(sample,
+                "Test",
+                "Test Success!");
+        CheatSheetList.add(testCheatSheet);
 
         testWriter.executeFunction();
-        File createdFile = sampleFile.toFile();
 
+        String writtenFile = empty;
         try {
-            String actualFileContent = Files.readString(sampleFile);
-            assertEquals(sampleFileContent, actualFileContent);
+            writtenFile = Files.readString(sampleTest);
         } catch (IOException e) {
-            printer.print(e.getMessage());
+            e.printStackTrace();
         } finally {
+            if (sampleTest.toFile().exists()) {
+                eraseFile(sampleTest);
+            }
             CheatSheetList.clear();
-            createdFile.delete();
-            eraseFile(dataDir);
+            assertEquals(fileInput, writtenFile);
         }
     }
 
@@ -79,7 +82,5 @@ public class DataFileWriterTest extends DataFileTest {
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
         assertEquals(0, directoryFiles);
     }
-
-
     */
 }

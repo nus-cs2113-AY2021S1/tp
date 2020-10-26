@@ -9,26 +9,16 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
-    JTextArea textArea;
-    JFrame editorFrame;
-
-    static String typedText;
-    boolean isEditing;
+    private JTextArea textArea;
 
     public Editor() {
         generateEditorUI();
     }
 
-    public Editor(String content) {
-        generateEditorUI();
-        textArea.setText(content);
-    }
-
     private void generateEditorUI() {
-        isEditing = true;
-        editorFrame = new JFrame("editor");
         textArea = new JTextArea();
 
         final JMenuBar menuBar = new JMenuBar();
@@ -50,49 +40,54 @@ public class Editor extends JFrame implements ActionListener {
 
         menuBar.add(menu1);
 
-        editorFrame.setJMenuBar(menuBar);
-        editorFrame.setTitle("CheatLogs Text Editor");
-        editorFrame.add(textArea);
-        editorFrame.setSize(600,800);
-        editorFrame.setVisible(true);
+        setJMenuBar(menuBar);
+        add(textArea);
+        setSize(600, 800);
+        setVisible(false);
     }
 
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            setEditingFinish();
-            typedText = textArea.getText();
-            editorFrame.dispose();
+            close();
             break;
         case "Clear All":
-            textArea.setText(" ");
+            textArea.setText("");
             break;
         case "Cancel":
-            setEditingFinish();
-            textArea.setText(" ");
-            editorFrame.dispose();
+            textArea.setText("");
+            close();
             break;
         default:
             break;
         }
     }
 
-    private void setEditingFinish() {
-        isEditing = false;
+    public void setContent(String content) {
+        textArea.setText(content);
     }
 
     public String getContent() {
-        return typedText;
+        return textArea.getText();
     }
 
-    public boolean isEditing() {
-        return isEditing;
+    public void open() {
+        textArea.setText("");
+        setVisible(true);
     }
 
-    public void showWindow(){
-        editorFrame.setVisible(true);
-        editorFrame.setAlwaysOnTop(true);
+    public void waitForClose() {
+        while (isVisible()) {
+            try {
+                TimeUnit.MICROSECONDS.sleep(1000);
+            } catch (Exception e) {
+                assert false;
+            }
+        }
     }
-
+    
+    public void close() {
+        setVisible(false);
+    }
 }

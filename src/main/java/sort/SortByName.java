@@ -6,12 +6,12 @@ import java.util.Comparator;
 
 public class SortByName implements Comparator<CheatSheet> {
     public int compare(CheatSheet a, CheatSheet b) {
-        Boolean cheatSheet1 = a.getIsFavourite();
-        Boolean cheatSheet2 = b.getIsFavourite();
-        int favComparator = cheatSheet2.compareTo(cheatSheet1);
+        Boolean isAFavourited = a.getIsFavourite();
+        Boolean isBFavourited = b.getIsFavourite();
+        int favComparator = isBFavourited.compareTo(isAFavourited);
         if (favComparator != 0) {
             return favComparator;
         }
-        return a.getCheatSheetName().compareTo(b.getCheatSheetName());
+        return a.getName().compareTo(b.getName());
     }
 }

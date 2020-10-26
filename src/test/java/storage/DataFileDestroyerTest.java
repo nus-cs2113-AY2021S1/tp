@@ -2,63 +2,49 @@ package storage;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DataFileDestroyerTest extends DataFileTest {
-    Path sampleFile2 = Paths.get(userDir, data, "Sample2");
 
-    String secondFileContent = "Programming Language: C++"
-            + System.lineSeparator()
-            + "Contents: Use case statements.";
+
+    Path sampleTest2 = Paths.get(userDir, data, "sample2.xml");
 
     @Test
-    void parseDataName_textFile1_success() {
-        assertTrue(true);
-    }
-    /*
-    @Test
-    public void clearDirectory_notExistentFile_exceptionThrown() {
-        assertThrows(IOException.class, () -> {
-            testDestroyer.deleteFile(fileName);
-        });
-    }
+    void clearSingleFile_singleSampleTest_success() {
 
-    @Test
-    public void clearDirectory_notExistentDirectory_exceptionThrown() {
-        assertThrows(IOException.class, () -> {
-            testDestroyer.clearDirectory();
-        });
+        createSampleFile(sampleTest, empty);
+        File sampleFile = sampleTest.toFile();
+        testDestroyer.executeFunction(sample);
+
+        boolean isSampleRemoved = !sampleFile.exists();
+        if (!isSampleRemoved) {
+            eraseFile(sampleTest);
+        }
+
+        assertTrue(isSampleRemoved);
     }
 
     @Test
-    public void clearDirectory_singleFile_success() {
-        createDataDir();
-        createSampleFile(sampleFile, sampleFileContent);
-        testDestroyer.executeFunction(fileName);
+    void clearDirectory_multipleSampleTest_success() {
 
-        String[] userDirectoryFiles = dataDir.toFile().list();
-        eraseFile(dataDir);
+        createSampleFile(sampleTest, empty);
+        createSampleFile(sampleTest2, empty);
 
-        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
-        assertEquals(0, directoryFiles);
-    }
-
-    @Test
-    public void clearDirectory_multipleFiles_success() {
-        createDataDir();
-        createSampleFile(sampleFile, sampleFileContent);
-        createSampleFile(sampleFile2, secondFileContent);
+        File sampleFile = sampleTest.toFile();
+        File sampleFile2 = sampleTest2.toFile();
         testDestroyer.executeFunction();
 
-        String[] userDirectoryFiles = dataDir.toFile().list();
-        eraseFile(dataDir);
+        boolean isSampleRemoved = !(sampleFile.exists() || sampleFile2.exists());
+        if (!isSampleRemoved) {
+            eraseFile(sampleTest);
+            eraseFile(sampleTest2);
+        }
 
-        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
-        assertEquals(0, directoryFiles);
+        assertTrue(isSampleRemoved);
     }
-    */
+
 }

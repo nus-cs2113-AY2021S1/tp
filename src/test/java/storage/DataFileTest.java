@@ -1,5 +1,6 @@
 package storage;
 
+import cheatsheet.CheatSheetList;
 import ui.Printer;
 
 import java.io.IOException;
@@ -11,21 +12,16 @@ public class DataFileTest {
 
     String userDir = System.getProperty("user.dir");
     String data = "data";
+    String empty = "";
+    String sample = "sample";
 
-    String fileName = "Sample1";
-    String fileProgrammingLanguage = "C++";
-    String fileDetails = "Use case statements to check multiple conditions.";
-
-    String sampleFileContent = "Programming Language: C++"
-            + System.lineSeparator()
-            + "Contents: Use case statements to check multiple conditions.";
-
+    Path sampleTest = Paths.get(userDir, data, "sample.xml");
     Path dataDir = Paths.get(userDir, data);
-    Path sampleFile = Paths.get(userDir, data, fileName);
 
     Printer printer = new Printer();
-    DataFileWriter testWriter = new DataFileWriter(printer);
-    DataFileReader testReader = new DataFileReader(printer);
+    CheatSheetList cheatSheetList = new CheatSheetList();
+    DataFileWriter testWriter = new DataFileWriter(printer, cheatSheetList);
+    DataFileReader testReader = new DataFileReader(printer, cheatSheetList);
     DataFileDestroyer testDestroyer = new DataFileDestroyer(printer);
 
     void createDataDir() {
@@ -39,7 +35,7 @@ public class DataFileTest {
 
     void createSampleFile(Path fileName, String fileContent) {
         try {
-            //Files.createFile(fileName);
+            Files.createFile(fileName);
             Files.writeString(fileName, fileContent);
         } catch (IOException e) {
             printer.print(e.getMessage());

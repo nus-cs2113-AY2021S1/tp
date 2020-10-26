@@ -5,6 +5,7 @@ import command.Command;
 import exception.CommandException;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,28 +16,28 @@ class ParserTest {
 
     @Test
     void parser_completeInput_success() {
-        final String userInput = "/add /n name /l language /d details";
+        final String userInput = "/add /n name /s subject /d details";
 
-        ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
-        argEnumList.add(ArgumentFlagEnum.NAME);
-        argEnumList.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        argEnumList.add(ArgumentFlagEnum.DESCRIPTION);
+        ArrayList<CommandFlag> argEnumList = new ArrayList<>();
+        argEnumList.add(CommandFlag.NAME);
+        argEnumList.add(CommandFlag.SUBJECT);
+        argEnumList.add(CommandFlag.DESCRIPTION);
 
         ArrayList<String> detailsList = new ArrayList<>();
         detailsList.add("name");
-        detailsList.add("language");
+        detailsList.add("subject");
         detailsList.add("details");
 
-        HashMap<ArgumentFlagEnum, String> descriptionMap = new HashMap<>();
+        HashMap<CommandFlag, String> flagstodescriptions = new HashMap<>();
         for (int i = 1; i <= 3; i++) {
-            descriptionMap.put(argEnumList.get(i - 1), detailsList.get(i - 1));
+            flagstodescriptions.put(argEnumList.get(i - 1), detailsList.get(i - 1));
         }
 
         try {
             Parser parser = new Parser();
             Command command = parser.parse(userInput);
             assertEquals(AddCommand.class, command.getClass());
-            assertEquals(descriptionMap, command.getDescriptionMap());
+            assertEquals(flagstodescriptions, command.getFlagstodescriptionsMap());
         } catch (CommandException e) {
             fail();
         }

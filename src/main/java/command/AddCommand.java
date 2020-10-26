@@ -4,81 +4,54 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
-
+import parser.CommandFlag;
 import ui.Printer;
 
 public class AddCommand extends Command {
-    public AddCommand(Printer printer) {
-        super(printer);
+    private final Editor editor;
+    public static final String invoker = "/add";
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
-            ArgumentFlagEnum.DESCRIPTION
-        });*/
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
-        descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
+    public AddCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
+        super(printer);
+        this.cheatSheetList = cheatSheetList;
+        this.editor = editor;
+
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
+        alternativeArguments.add(CommandFlag.NAME);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
-        String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-        String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        String description = callContentEditor();
-
-        if (checkIfNameAlreadyExist(name)) {
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
+        if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
-        if (programmingLanguage != null) {
-            programmingLanguage = convertToPascalCaseNoSpace(programmingLanguage);
+        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
+        if (subject != null) {
+            subject = convertToPascalCaseNoSpace(subject);
         }
 
-        CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
-        CheatSheetList.add(cheatSheet);
+        callContentEditor();
+        String description = editor.getContent();
 
-        printer.printAddNewCheatSheetMessage(cheatSheet);
+        CheatSheet cheatSheet = new CheatSheet(name, subject, description);
+        cheatSheetList.add(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
     }
 
-    private String callContentEditor() {
-        String content = null;
-        Editor contentEditor = new Editor();
-        contentEditor.showWindow();
-        while(contentEditor.isEditing()){
-            System.out.println("Waiting for user input...");
-            content = contentEditor.getContent();
-        }
-        return content;
+    private void callContentEditor() {
+        editor.open();
+        editor.waitForClose();
     }
 
-    private boolean checkIfNameAlreadyExist(String name) {
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            if (cs.getCheatSheetName().equals(name)) {
-                return true;
-            }
+    private String convertToPascalCaseNoSpace(String input) {
+        String[] splitInput = input.split("\\p{IsWhite_Space}+");
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
-        return false;
-    }
 
-    private String convertToPascalCaseNoSpace(String input) throws CommandException {
-        try {
-            String[] splitInput = input.split(" ");
-            for (int i = 0; i < splitInput.length; i++) {
-                splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
-            }
-
-            return String.join("", splitInput);
-        } catch (StringIndexOutOfBoundsException s) {
-            throw new CommandException(" why extra space?");
-        }
+        return String.join("", splitInput);
     }
 }

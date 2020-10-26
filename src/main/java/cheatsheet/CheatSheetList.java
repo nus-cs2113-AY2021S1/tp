@@ -1,12 +1,11 @@
 package cheatsheet;
 
 import exception.CommandException;
-import ui.Printer;
 
 import java.util.ArrayList;
 
 public class CheatSheetList {
-    private static ArrayList<CheatSheet> cheatSheets = new ArrayList<>();
+    private ArrayList<CheatSheet> cheatSheets = new ArrayList<>();
 
     public CheatSheetList() {
     }
@@ -16,7 +15,7 @@ public class CheatSheetList {
      *
      * @return size of cheatSheets
      */
-    public static int getSize() {
+    public int getSize() {
         return cheatSheets.size();
     }
 
@@ -25,14 +24,14 @@ public class CheatSheetList {
      *
      * @return cheatSheets The current list of cheat sheets
      */
-    public static ArrayList<CheatSheet> getCheatSheetList() {
+    public ArrayList<CheatSheet> getList() {
         return cheatSheets;
     }
 
     /**
      * Adds a new cheat sheet to the list.
      */
-    public static void add(CheatSheet cheatSheet) {
+    public void add(CheatSheet cheatSheet) {
         cheatSheets.add(cheatSheet);
     }
 
@@ -43,10 +42,10 @@ public class CheatSheetList {
      * @param name The name attribute of the desired cheat sheet
      * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static void remove(String name) throws CommandException {
+    public void remove(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
-            if (cs.getCheatSheetName().equals(name)) {
+            if (cs.getName().equals(name)) {
                 break;
             }
             index++;
@@ -65,7 +64,7 @@ public class CheatSheetList {
      * @param index The index of the desired cheat sheet
      * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static void remove(int index) throws CommandException {
+    public void remove(int index) throws CommandException {
         try {
             cheatSheets.remove(index);
         } catch (IndexOutOfBoundsException e) {
@@ -76,7 +75,7 @@ public class CheatSheetList {
     /**
      * Removes all cheat sheet in the list.
      */
-    public static void clear() {
+    public void clear() {
         cheatSheets.clear();
     }
 
@@ -87,7 +86,7 @@ public class CheatSheetList {
      * @return size of cheatSheets
      * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static CheatSheet getCheatSheet(int index) throws CommandException {
+    public CheatSheet get(int index) throws CommandException {
         CheatSheet cheatSheet;
         try {
             cheatSheet = cheatSheets.get(index - 1);
@@ -104,20 +103,35 @@ public class CheatSheetList {
      * @return size of cheatSheets
      * @throws CommandException when name cannot be found inside the list
      */
-    public static CheatSheet getCheatSheet(String name) throws CommandException {
+    public CheatSheet get(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
-            if (cs.getCheatSheetName().equals(name)) {
+            if (cs.getName().equals(name)) {
                 break;
             }
             index++;
         }
         CheatSheet cheatSheet;
         try {
-            cheatSheet = getCheatSheet(index + 1);
+            cheatSheet = get(index + 1);
         } catch (CommandException e) {
             throw new CommandException("Please enter a valid name");
         }
         return cheatSheet;
+    }
+
+    /**
+     * Checks if a cheat sheet exists or not.
+     *
+     * @param name The name attribute of desired cheat sheet
+     * @return true if the cheat sheet exists, false otherwise
+     */
+    public boolean exists(String name) {
+        for (CheatSheet cs : cheatSheets) {
+            if (cs.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
