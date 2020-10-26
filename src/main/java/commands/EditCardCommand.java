@@ -15,7 +15,6 @@ import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class EditCardCommand extends EditCommand {
-    public static final String CARD_PARAMETERS = " FLASHCARD_INDEX q:QUESTION | a:ANSWER";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the flashcard content.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
