@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.WatchTime;
+import seedu.duke.utility.TimeParser;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class UpdateTimeLimitCommand extends Command {
 
     //INPUT : updatetimelimit <new time>
     public void processCommand() {
-        Integer newTimeLimit = Integer.parseInt((inputs.get(1)));
+        int newTimeLimit = TimeParser.parseTime(inputs.get(1));
         try {
             WatchTime.watchLimitUpdate(newTimeLimit);
         } catch (NullPointerException e) {

@@ -14,10 +14,10 @@ public class TimeParser {
 
     /**
      * Converts time from string format to int.
-     * @param input user's input
+     * @param input user's input 'xhym' or 'y', where x is the hours and y is the minutes
      * @return time in minutes as an integer if input is valid or -1 if input is invalid.
      */
-    public int parseTime(String input) {
+    public static int parseTime(String input) {
         try {
             String[] splitHours = input.split("h");
             String[] splitMinutes = splitHours[1].split("m");
