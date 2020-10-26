@@ -30,7 +30,7 @@ public class HelpCommand extends Command {
         StringBuilder result = new StringBuilder();
         LOGGER.log(Level.INFO, "Start of build help output");
         
-        result.append("Estimate time needed to translate a script");
+        result.append("Estimate time needed to translate a script:");
         result.append(System.lineSeparator());
         result.append("estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]");
 
@@ -85,9 +85,9 @@ public class HelpCommand extends Command {
         result.append(System.lineSeparator());
         result.append("    - List all watchlist:        watchlist -l");
         result.append(System.lineSeparator());
-        result.append("    - Select a watchlist to use: watchlist -s <WATCHLIST_INDEX>");
+        result.append("    - Select a watchlist to use: watchlist -s <WATCHLIST_ID>");
         result.append(System.lineSeparator());
-        result.append("    - Delete a watchlist:        watchlist -d <WATCHLIST_INDEX>");
+        result.append("    - Delete a watchlist:        watchlist -d <WATCHLIST_ID>");
         
         result.append(System.lineSeparator());
         result.append(System.lineSeparator());
@@ -99,14 +99,14 @@ public class HelpCommand extends Command {
         result.append(System.lineSeparator());
         result.append(System.lineSeparator());
         
-        result.append("Remove anime from active watchlist");
+        result.append("Remove anime from active watchlist:");
         result.append(System.lineSeparator());
         result.append("remove -d <ANIME_ID_IN_WATCHLIST>");
 
         result.append(System.lineSeparator());
         result.append(System.lineSeparator());
         
-        result.append("View all anime in watchlist");
+        result.append("View all anime in watchlist:");
         result.append(System.lineSeparator());
         result.append("view -v <WATCHLIST_ID>");
         
