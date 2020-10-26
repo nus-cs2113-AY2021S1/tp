@@ -130,8 +130,17 @@ public class Ui {
         out.println(e);
     }
 
-    public void showCommandResult(CommandResult result) {
+    public boolean interpretCommandResult(CommandResult result) {
         assert result.getMessage() != null : "null message";
+        showCommandResult(result);
+        return result.isExit();
+    }
+
+    public void displayTasksForTesting(TaskMap taskMap) {
+        displayAll(taskMap);
+    }
+
+    private void showCommandResult(CommandResult result) {
         showMessage(result.getMessage());
         if (result.getTasks() != null) {
             if (result.getDisplayMode() == DisplayMode.ALL) {

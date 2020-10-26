@@ -1,20 +1,20 @@
 package seedu.commands;
 
+import seedu.data.DataStack;
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.ADD_MESSAGE;
 
-public class Add extends Command {
+public class Add extends ModificationCommand {
     public static final String COMMAND_WORD = "add";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 2)
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
@@ -42,9 +42,9 @@ public class Add extends Command {
         }
     }
 
-    @Override
-    public CommandResult execute(TaskMap tasks)
+    public CommandResult execute(Model model)
         throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException {
+        TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.
         Task task = new Task(description, date, startTime, endTime, priority);
@@ -59,6 +59,8 @@ public class Add extends Command {
         }
         task.setTaskID(taskID);
         tasks.addTask(task);
+        // update stack
+        model.pushAndUpdate(tasks);
         return new CommandResult(ADD_MESSAGE);
     }
 }

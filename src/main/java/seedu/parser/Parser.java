@@ -9,6 +9,7 @@ import seedu.commands.Edit;
 import seedu.commands.Help;
 import seedu.commands.List;
 import seedu.commands.Search;
+import seedu.commands.Undo;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
@@ -33,6 +34,8 @@ public class Parser {
             return new Search(rawInput);
         } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
             return new Delete(rawInput);
+        } else if (rawInput.startsWith(Undo.COMMAND_WORD)) {
+            return new Undo();
         } else {
             throw new UnknowCommandException();
         }
