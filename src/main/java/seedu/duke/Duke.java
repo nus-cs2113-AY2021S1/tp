@@ -28,6 +28,7 @@ public class Duke {
 
     /**
      * Main entry-point for the java.duke.Duke application.
+     public static final String DUMMY_PARAM = "lol";
      */
     public static void main(String[] args) throws IOException {
         new Duke();
