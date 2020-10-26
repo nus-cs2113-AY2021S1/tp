@@ -1,16 +1,20 @@
 package seedu.duke.utility;
 
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.ChangeReviewCommand;
+import seedu.duke.commands.DeleteReviewCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.SearchCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-import seedu.duke.commands.UpdateTimeLimitCommand;
 import seedu.duke.commands.WatchCommand;
-import seedu.duke.commands.AddReviewCommand;
-import seedu.duke.commands.SearchCommand;
+import seedu.duke.commands.UpdateTimeLimitCommand;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,6 +115,13 @@ public class InputParser {
 
         case "addreview":
             parseAddReviewCommand(input);
+            return command;
+
+        case "changereview":
+            parseChangeReviewCommand(input);
+            return command;
+        case "deletereview":
+            parseDeleteReviewCommand(input);
             return command;
 
         case "search":
@@ -337,6 +348,32 @@ public class InputParser {
             Ui.printNotFoundException();
         } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidRatingInput();
+        }
+    }
+
+    private static void parseChangeReviewCommand(String input) {
+        input = removeFirstWord(input);
+        try {
+            String[] tokenizedInput = input.split(" ");
+            String showName = tokenizedInput[0];
+            int indexOfSlash = input.indexOf("/");
+            String review = input.substring(indexOfSlash + 1);
+            ChangeReviewCommand changingReview = new ChangeReviewCommand(showName);
+            changingReview.changeReview(showName,review);
+            Ui.printChangeReview(showName);
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
+        }
+    }
+    
+    private static void parseDeleteReviewCommand(String input) {
+        input = removeFirstWord(input);
+        DeleteReviewCommand deletingReview = new DeleteReviewCommand(input);
+        try {
+            deletingReview.deleteReview(input);
+            Ui.printDeleteReview(input);
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
         }
     }
 }
