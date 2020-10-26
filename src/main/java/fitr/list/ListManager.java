@@ -77,5 +77,4 @@ public class ListManager {
     public void clearGoalList() {
         goalList.clearList();
     }
-
 }
