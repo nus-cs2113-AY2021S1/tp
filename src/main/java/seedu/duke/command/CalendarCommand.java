@@ -31,7 +31,11 @@ public class CalendarCommand extends Command {
         ui.printCalendarStart(calendarMap.size(), eventsWithoutDateCount);
         for (Map.Entry<LocalDate, ArrayList<Event>> entry : calendarMap.entrySet()) {
             ui.printCalendar(entry);
+            if (ui.receiveCommand().toLowerCase().equals("q")) {
+                break;
+            }
         }
+        ui.printCalendarEnd();
     }
 
     private void addEventsToCalendar(ArrayList<Event> events) {
