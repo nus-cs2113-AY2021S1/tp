@@ -88,7 +88,7 @@ public class Ui {
 
 
     public void showWelcome() {
-        out.println("Welcome to Kaji!\n");
+        out.println("Welcome to Kaji!");
     }
 
     public void showLevel(Access access) {
