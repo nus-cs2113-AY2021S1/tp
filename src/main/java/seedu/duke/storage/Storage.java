@@ -145,30 +145,61 @@ public class Storage {
             ArrayList<String> toBeWritten = new ArrayList<>();
 
             if (fileType.equals("Goal")) { //special case for goal
-                Goal entry = data.getGoal();
-                if (entry == null) { //nothing to write
-                    return;
-                }
-                toBeWritten.add(entry.toString());
-                Files.write(fileName, toBeWritten);
-                return;
+                goalSave(fileName, data, toBeWritten);
+            } else { //special case for event
+                eventSave(fileName, data, fileType, toBeWritten);
             }
 
-            //next, read out event by event and process it into a storable string
-            EventList listOfEvents = data.getEventList(fileType);
-            ArrayList<Event> events = listOfEvents.getEvents();
 
-            for (Event event:events) {
-                String entry = StorageParser.eventToString(event, fileType);
-                toBeWritten.add(entry);
-            }
-
-            Files.write(fileName, toBeWritten);
 
         } catch (InvalidListException e) {
             System.out.println("Error! List invalid type. Should not happen");
         } catch (IOException e) {
             ui.printErrorMessage("Error! File cannot be written to");
+        }
+
+    }
+
+    /**
+     * Helper function for saving event information.
+     *
+     * @param fileName location on the computer where the event data is to be saved at
+     * @param data UserData object containing all user information currently stored in the program
+     * @param fileType String indicating what type of event we are storing
+     * @param toBeWritten String ArrayList object which stores all test to be written to computer fileName
+     *
+     * @throws InvalidListException if there is no such event type stored in the program
+     * @throws IOException if there are problems encountered while writing to the file
+     */
+    private void eventSave(Path fileName, UserData data, String fileType, ArrayList<String> toBeWritten)
+            throws InvalidListException, IOException {
+        //next, read out event by event and process it into a storable string
+        EventList listOfEvents = data.getEventList(fileType);
+        ArrayList<Event> events = listOfEvents.getEvents();
+
+        for (Event event:events) {
+            String entry = StorageParser.eventToString(event, fileType);
+            toBeWritten.add(entry);
+        }
+
+        Files.write(fileName, toBeWritten);
+    }
+
+    /**
+     * Helper function for saving goal information.
+     *
+     * @param fileName path of the goal.txt file to save goal information
+     * @param data UserData object containing all user information currently stored in the program
+     * @param toBeWritten String ArrayList object which stores all test to be written to computer fileName
+     * @throws IOException if there are problems encountered while writing to the file
+     */
+    private void goalSave(Path fileName, UserData data, ArrayList<String> toBeWritten) throws IOException {
+        Goal entry = data.getGoal();
+        if (entry != null) {
+            toBeWritten.add(entry.toString());
+            Files.write(fileName, toBeWritten);
+        } else { //nothing to modify in toBeWritten, so write a blank file
+            Files.write(fileName, toBeWritten);
         }
 
     }
@@ -204,7 +235,7 @@ public class Storage {
 
             //Next, line by line reform the event
 
-            //special case for goal
+            //Extraction of goal
             if (fileType.equals("Goal")) {
                 if (fileLines.size() != 0) {
                     Goal prevGoal = new Goal(fileLines.get(0));
@@ -212,6 +243,8 @@ public class Storage {
                 }
                 return;
             }
+
+            //extraction of all other events
             for (int i = 0; i < fileLines.size(); i++) {
                 String line = fileLines.get(i);
                 Event activity = StorageParser.stringToEvent(line,fileType);

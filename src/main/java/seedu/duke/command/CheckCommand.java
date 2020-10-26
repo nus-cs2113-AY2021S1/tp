@@ -177,15 +177,27 @@ public class CheckCommand extends Command {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 
         for (Event event : eventsList.getEvents()) {
-            boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
+            if (event.getDate() == null) {
+                continue;
+            }
 
+            boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
             boolean eventIsBetweenTime;
+
             if (eventIsBetweenDate) {
                 eventIsBetweenTime = true;
             } else if (event.getDate().isEqual(startDate)) {
-                eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+                if (event.getTime() == null) {
+                    eventIsBetweenTime = true;
+                } else {
+                    eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+                }
             } else if (event.getDate().isEqual(endDate)) {
-                eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+                if (event.getTime() == null) {
+                    eventIsBetweenTime = true;
+                } else {
+                    eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+                }
             } else {
                 eventIsBetweenTime = false;
             }

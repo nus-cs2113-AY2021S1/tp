@@ -30,12 +30,15 @@ public class DoneCommand extends Command {
 
     public static Command parse(String input) throws WrongNumberOfArgumentsException {
         String[] inputParameters = input.trim().split(" ", 3);
-        String listType = inputParameters[0];
-        String eventIndex = inputParameters[1].trim();
 
         if (inputParameters.length < 2) {
+            throw new WrongNumberOfArgumentsException("Event type not provided.");
+        } else if (inputParameters.length < 3) {
             throw new WrongNumberOfArgumentsException("Event index not provided.");
         }
+
+        String listType = inputParameters[0];
+        String eventIndex = inputParameters[1].trim();
 
         return new DoneCommand(listType, eventIndex);
     }
