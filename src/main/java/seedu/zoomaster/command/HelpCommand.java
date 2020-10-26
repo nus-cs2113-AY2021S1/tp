@@ -3,11 +3,17 @@ package seedu.zoomaster.command;
 import seedu.zoomaster.Parser;
 import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
-import seedu.zoomaster.command.bookmark.*;
+import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
+import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
+import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
+import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
+import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
-import seedu.zoomaster.command.timetable.EditSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
+import seedu.zoomaster.command.timetable.EditSlotCommand;
+import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
+import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
@@ -23,7 +29,7 @@ public class HelpCommand extends Command {
         assert command.startsWith(HELP_KW) : "input should always start with \"help\"";
         details = command.substring(HELP_KW.length()).trim();
         if (!details.isEmpty()) {
-            if(!isValidCommand(details)) {
+            if (!isValidCommand(details)) {
                 throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_HELP_COMMAND, details);
             }
         }
@@ -60,7 +66,16 @@ public class HelpCommand extends Command {
             if (details.compareToIgnoreCase(AddSlotCommand.ADD_KW) == 0
                     || details.compareToIgnoreCase(DeleteSlotCommand.DEL_KW) == 0
                     || details.compareToIgnoreCase(ShowTimetableCommand.SHOW_KW) == 0
-                    || details.compareToIgnoreCase(EditSlotCommand.EDIT_KW) == 0) {
+                    || details.compareToIgnoreCase(EditSlotCommand.EDIT_KW) == 0
+                    || details.compareToIgnoreCase(LaunchModuleAndSlotBookmark.LAUNCH_KW) == 0) {
+                return true;
+            }
+        } else if (Parser.getProgramMode() == 3) {
+            if (details.compareToIgnoreCase(AddMeetingCommand.ADD_KW) == 0
+                    || details.compareToIgnoreCase(DeleteSlotCommand.DEL_KW) == 0
+                    || details.compareToIgnoreCase(ShowTimetableCommand.SHOW_KW) == 0
+                    || details.compareToIgnoreCase(EditSlotCommand.EDIT_KW) == 0
+                    || details.compareToIgnoreCase(LaunchModuleAndSlotBookmark.LAUNCH_KW) == 0) {
                 return true;
             }
         }

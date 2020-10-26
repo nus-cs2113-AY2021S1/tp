@@ -105,7 +105,7 @@ public class Module {
             message += System.lineSeparator();
         }
         if (bookmarkList.isEmpty()) {
-            message += "no bookmarks found in module" + System.lineSeparator() + System.lineSeparator();
+            message += "no bookmarks found in module itself" + System.lineSeparator() + System.lineSeparator();
         }
         for (int i = 0; i < slots.size(); i++) {
             Slot slot = slots.get(i);
