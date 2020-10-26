@@ -306,7 +306,7 @@ Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 - Tags a note with a given TAG. If the note already contains the TAG, the tag will be removed from the note.The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - The user can create tag or untag multiple tags to a note within a single line.
 
-💡 If the user tries to tag a non existing tag to a note, the application will automatically create the tag for it.
+💡 If the user tries to tag a non-existing tag to a note, the application will automatically create a new tag, and add the tag to the note.
 
 Example of usage: 
 
