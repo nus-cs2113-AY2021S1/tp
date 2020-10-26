@@ -23,12 +23,12 @@ public class Ui {
     public static final String LONG_DIVIDER = "_______________________________________________________________________"
             + "_________________________________________________";
     public static final String LOGO =
-                "                                    ___________\n"
-            +   "                                    |  __ |  _ \\\n"
-            +   " ____  ______      _____   ________ |  |__| | | |\n"
-            + "|  __|/ __ \\ \\    / /| |  /  _____/ |   __| | | |\n"
-            + "| |  |  __/ \\ \\__/ / | | /_____  /  |  |__| |_| |\n"
-            + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
+            "                                    ___________\n"
+                    + "                                    |  __ |  _ \\\n"
+                    + " ____  ______      _____   ________ |  |__| | | |\n"
+                    + "|  __|/ __ \\ \\    / /| |  /  _____/ |   __| | | |\n"
+                    + "| |  |  __/ \\ \\__/ / | | /_____  /  |  |__| |_| |\n"
+                    + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
     public static final String HELP_MESSAGE = "Type help for all available commands";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String OOPS_PREFIX = " ☹ OOPS!!!";
@@ -62,7 +62,7 @@ public class Ui {
     public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";
     public static final String WRITING_EXCEPTION = "Writing to file failed.";
 
-    private static Scanner scan = new Scanner(System.in);
+    private static final Scanner scan = new Scanner(System.in);
 
     public static String readCommand() {
         return scan.nextLine();
@@ -459,7 +459,7 @@ public class Ui {
     }
 
     public static String repeatedDateTimeException(Task task) {
-        return  "There is another task at that date and time:\n" + task;
+        return "There is another task at that date and time:\n" + task;
     }
 
     public static void printExportSuccessful(File exportFile) {
@@ -471,18 +471,19 @@ public class Ui {
     public static void printSubjectHelp() {
         System.out.println(LONG_DIVIDER);
         System.out.println(
-                  "help:          shows the list of commands available at the main level\n"
-                + "add abc:       adds a subject called 'abc'\n"
-                + "find abc:      finds all subjects containing the letters abc\n"
-                + "list:          shows the list of all subjects\n"
-                + "delete 1:      deletes the 1st subject in the list.\n"
-                + "subject abc:   enters the subject called abc, now you can create, find, list, delete and enter the "
-                + "topics of subject abc\n"
-                + "quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc,\n"
-                + "               answer the questions of the current flashcards to test your knowledge\n"
-                + "results abc:   gives you the results of all attempted quizzes for abc subject\n"
-                + "export:        exports all the data to a JSON file\n"
-                + "bye:           exits the application"
+                "help:          shows the list of commands available at the main level\n"
+                        + "add abc:       adds a subject called 'abc'\n"
+                        + "find abc:      finds all subjects containing the letters abc\n"
+                        + "list:          shows the list of all subjects\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete 1:      deletes the 1st subject in the list.\n"
+                        + "subject abc:   enters the subject called abc, now you can create, find, list, delete "
+                        + "and enter the topics of subject abc\n"
+                        + "quiz abc:      starts a quiz for all the flashcards present in all topics of subject abc\n"
+                        + "               answer the questions of the current flashcards to test your knowledge\n"
+                        + "results abc:   gives you the results of all attempted quizzes for abc subject\n"
+                        + "export:        exports all the data to a JSON file\n"
+                        + "bye:           exits the application"
         );
         System.out.println(LONG_DIVIDER);
 
@@ -491,24 +492,27 @@ public class Ui {
     public static void printTopicHelp() {
         System.out.println(LONG_DIVIDER);
         System.out.println(
-                  "help:                shows the list of commands available at the subject level\n"
-                + "add abc:             adds a topic called 'abc' in the current subject\n"
-                + "todo abc:            adds a todo type task with the description 'abc'\n"
-                + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
-                + "date/time of deadline as 1\n"
-                + "event abc /at 1:     adds an event type task with description 'abc' and date/time of event as 1\n"
-                + "find abc:            finds all topics and tasks containing the letters abc in the current subject\n"
-                + "list:                shows the list of all topics and tasks in the current subject\n"
-                + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
-                + "delete task 1:       deletes the 1st task in the list of tasks.\n"
-                + "done 1:              marks the 1st task in the list of tasks as done\n"
-                + "topic abc:           enters the topic called abc, now you can create, find, list and delete the "
-                + "flashcards of topic abc\n"
-                + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
-                + "                     answer the questions of the prompted flashcards to test your knowledge\n"
-                + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
-                + "exit:                exits the subject to return to the main screen, "
-                + "where you can work with subjects"
+                "help:                shows the list of commands available at the subject level\n"
+                        + "add abc:             adds a topic called 'abc' in the current subject\n"
+                        + "todo abc:            adds a todo type task with the description 'abc'\n"
+                        + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
+                        + "date/time of deadline as 1\n"
+                        + "event abc /at 1:     adds an event type task with description 'abc' "
+                        + "and date/time of event as 1\n"
+                        + "find abc:            finds all topics and tasks containing 'abc' in the current subject\n"
+                        + "list:                shows the list of all topics and tasks in the current subject\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
+                        + "delete task 1:       deletes the 1st task in the list of tasks.\n"
+                        + "done 1:              marks the 1st task in the list of tasks as done\n"
+                        + "topic abc:           enters the topic called abc, now you can create, find, list "
+                        + "and delete the flashcards of topic abc\n"
+                        + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
+                        + "                     answer the questions of the prompted flashcards "
+                        + "to test your knowledge\n"
+                        + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
+                        + "exit:                exits the subject to return to the main screen, "
+                        + "where you can work with subjects"
         );
         System.out.println(LONG_DIVIDER);
     }
@@ -516,16 +520,80 @@ public class Ui {
     public static void printFlashcardHelp() {
         System.out.println(LONG_DIVIDER);
         System.out.println(
-                  "help:              shows the list of commands available at the topic level\n"
-                + "add abc; def:      adds a flashcard with question 'abc' and answer 'def' in the current topic\n"
-                + "list:              shows the list of all flashcards in the current topic\n"
-                + "delete 1:          deletes the 1st flashcard in the list\n"
-                + "exit:              exits the topic to return to the subject level, "
-                + "where you can work with tasks and topics"
+                "help:              shows the list of commands available at the topic level\n"
+                        + "add abc; def:      adds a flashcard with question 'abc' and answer 'def' "
+                        + "in the current topic\n"
+                        + "list:              shows the list of all flashcards in the current topic\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete 1:          deletes the 1st flashcard in the list\n"
+                        + "exit:              exits the topic to return to the subject level, "
+                        + "where you can work with tasks and topics"
         );
         System.out.println(LONG_DIVIDER);
     }
 
+    /**
+     * Prints a tree of all subjects, topics, tasks, and flashcards.
+     * Tells user which subject you are currently looking at.
+     *
+     * @param subjects      the list of all subjects to be printed
+     * @param activeSubject Subject that the user is currently looking at. null if user is not looking at a subject
+     * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
+     */
+    public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
+        System.out.println("Here's a list of all subjects, topics, tasks, and flashcards:");
+        if (activeSubject == null && activeTopic == null) {
+            System.out.println("(You are currently here)");
+        }
+
+        int i = 1;
+        for (Subject s : subjects) {
+            boolean isLast = (i == subjects.size()
+                    && s.getTasks().getList().size() == 0
+                    && s.getTopics().getList().size() == 0);
+            System.out.println((isLast ? "└─ " : "├─ ")
+                    + (i++) + ". " + s.toString()
+                    + ((activeSubject != null && s == activeSubject) ? " (You are currently here)" : ""));
+            printAllTopics(s, activeTopic);
+        }
+    }
+
+    /**
+     * Prints a subtree of all topics under a subject.
+     * If the user is lookking at a topic, tells which topic the user is currently looking at.
+     *
+     * @param subject     the subject containing all the topics to be printed
+     * @param activeTopic Topic that the user is currently looking at. null if user is not looking at a topic
+     */
+    public static void printAllTopics(Subject subject, Topic activeTopic) {
+        int i = 1;
+        TopicList topicList = subject.getTopics();
+        List<Topic> topics = topicList.getList();
+
+        System.out.println("│  Topics");
+        for (Topic topic : topics) {
+            boolean isLastTopic = i == topics.size();
+            System.out.println("│  " + (isLastTopic ? "└─ " : "├─ ")
+                    + (i++) + ". " + topic.toString()
+                    + (activeTopic != null && topic == activeTopic ? " (You are currently here)" : ""));
+            int numberOfFlashcards = topic.getFlashcards().size();
+            if (numberOfFlashcards != 0) {
+                System.out.println("│  "
+                        + (isLastTopic ? " " : "│")
+                        + "  └─ " + numberOfFlashcards
+                        + (numberOfFlashcards == 1 ? " Flashcard" : " Flashcards"));
+            }
+        }
+        i = 1;
+        TaskList taskList = subject.getTasks();
+        List<Task> tasks = taskList.getList();
+
+        System.out.println("│  Tasks");
+        for (Task task : tasks) {
+            System.out.println("│  " + ((i == tasks.size()) ? "└─ " : "├─ ")
+                    + (i++) + ". " + task.toString());
+        }
+    }
 }
 
 

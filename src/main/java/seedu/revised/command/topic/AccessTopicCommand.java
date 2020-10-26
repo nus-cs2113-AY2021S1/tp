@@ -3,14 +3,15 @@ package seedu.revised.command.topic;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.command.flashcard.FlashcardCommand;
+import seedu.revised.command.flashcard.ListAllFlashcardCommand;
 import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.list.SubjectList;
 import seedu.revised.parser.FlashcardParser;
-import seedu.revised.list.TaskList;
 import seedu.revised.ui.Ui;
 
 public class AccessTopicCommand extends TopicCommand {
     private String fullcommand;
-    private TaskList tasks;
+    private SubjectList subjectList;
 
     public AccessTopicCommand(String fullcommand) {
         this.fullcommand = fullcommand;
@@ -43,6 +44,9 @@ public class AccessTopicCommand extends TopicCommand {
                 String fullCommand = Ui.readCommand();
                 FlashcardCommand c = FlashcardParser.parse(fullCommand);
                 isTopicExit = c.isExit();
+                if (c instanceof ListAllFlashcardCommand) {
+                    ((ListAllFlashcardCommand) c).setSubjectList(subjectList);
+                }
                 c.execute(topic);
             } catch (NumberFormatException e) {
                 Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
@@ -53,6 +57,10 @@ public class AccessTopicCommand extends TopicCommand {
             }
         }
         Ui.printBackToTopicsAndTasks();
+    }
+
+    public void setSubjectList(SubjectList subjectList) {
+        this.subjectList = subjectList;
     }
 
     public boolean isExit() {

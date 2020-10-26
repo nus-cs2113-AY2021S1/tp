@@ -1,5 +1,6 @@
 package seedu.revised.parser;
 
+import seedu.revised.command.subject.ListAllSubjectCommand;
 import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.ExitSubjectCommand;
@@ -32,6 +33,8 @@ public class SubjectParser {
             return new ExitSubjectCommand();
         } else if (fullCommand.equals("list")) {
             return new ListSubjectCommand();
+        } else if (fullCommand.equals("list all")) {
+            return new ListAllSubjectCommand();
         } else if (fullCommand.equals("export")) {
             return new ExportSubjectCommand();
         } else if (command.equals("add")) {
