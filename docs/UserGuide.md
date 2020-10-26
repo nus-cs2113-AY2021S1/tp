@@ -114,8 +114,9 @@ get the `id` of all the projects added by the user.
     ```
     Project 2 has been selected.
     ```
-  
-#### Add team members into project `member`
+
+### Project Member `member`
+#### Add team members into project 
 Add team member(s) into the project.  
 * Format: `member /add <username> [<username> ...]`
 * Constraints:
