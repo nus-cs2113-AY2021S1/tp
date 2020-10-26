@@ -1,5 +1,7 @@
 # Developer Guide
 
+## Introduction
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
@@ -56,13 +58,59 @@ The diagram above shows how the flashcard commands extend the abstract command c
 The Package Diagram above shows how the Revised class interacts with all of these packages.
 
 ### Storage package
-There are two classes inside this package, both of which are inside `Storage.java`.
+There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
+relationship between the two classes.
 
-![Storage Class Diagram](https://user-images.githubusercontent.com/15065550/96747993-8e4c0d80-13fb-11eb-8b28-9171daf23098.png)
+![Storage uml s](https://user-images.githubusercontent.com/15065550/97129522-0eff6680-177a-11eb-85f5-41f4917bf8c3.png)
 
-`StorageBuilder` class is a static inner class of `Storage` class. It follows the builder pattern and its sole purpose
-is to create `Storage` instances. The builder pattern is used to deal with the decrease in clarity due to the increase 
-of the number parameters.
+#### StorageBuilder
+
+`StorageBuilder` class is a static inner class of the `Storage` class. It follows the builder pattern and its sole purpose
+is to create `Storage` instances. The [builder pattern](https://en.wikipedia.org/wiki/Builder_pattern) is used to deal 
+with the decrease in clarity due to the increase of the number parameters. Every instance of the `Storage` class should 
+be created through `StorageBuilder`, and this is enforced by disabling the public constructor of the `Storage` class.
+
+#### Storage
+
+`Storage` class handles every operation that involves data storage, including saving, loading, and exporting of 
+application data. As such, it depends on classes whose data should be saved, which is shown in the diagram below.
+
+![card dependency](https://user-images.githubusercontent.com/15065550/97129797-c09e9780-177a-11eb-8b65-b81fdc869810.png)
+
+##### Storing data
+
+`Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
+make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
+`Flashcard` and `Result` data are stored in [JSON](https://en.wikipedia.org/wiki/JSON) format so that they are readable 
+to the users and allows them to change the saved data manually. `Task` data are stored differently as text files due to 
+legacy reason, but they are also readable and can be changed manually as well. An example of the structure mentioned is 
+shown in the figure below.
+
+```
+Maths
+├── Algebra
+│   ├── results.json
+│   └── flashcards.json
+├── results.json
+└── tasks.txt
+```
+
+This class also stores the data in a cascading manner, meaning that when a call to save topics is made, all the data 
+under the topics will be saved. Similarly, when a call to save subjects is made, all the data under the subjects
+including topics will be saved. The behavior mentioned is shown in the diagram below.
+
+![subject sq](https://user-images.githubusercontent.com/15065550/97132939-43c3eb80-1783-11eb-91c2-09b79eb2e2f5.png)
+![topic save sq](https://user-images.githubusercontent.com/15065550/97132990-74a42080-1783-11eb-91f8-f6143c0e38c4.png)
+
+##### Loading data
+
+The loading of data follows a similar cascading manner as saving, as can be seen in the diagram below.
+
+![subject load sq](https://user-images.githubusercontent.com/15065550/97138326-e59f0480-1792-11eb-8161-7653625d71c4.png)
+![topic load sq](https://user-images.githubusercontent.com/15065550/97138329-e6d03180-1792-11eb-8853-77c3d9e80f6d.png)
+
+Before returning topics and subjects, the methods sort them in alphabetical order to let the users locate their 
+subjects or topics more easily. 
 
 ## Product scope
 

@@ -78,8 +78,8 @@ Subsequently, users can begin using the application.
 * Results
 * Storing data
 
-### 4.1. Subjects <a name="subjects"></a>
-#### 4.11. `help` - Display all commands 
+### 4.1 Subjects <a name="subjects"></a>
+#### 4.1.1 `help` - Display all commands 
 
 Displays all the available commands.
 
@@ -101,11 +101,12 @@ subject abc:   enters the subject called abc, now you can create, find, list, de
 quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc,
                answer the questions of the current flashcards to test your knowledge
 results abc:   gives you the results of all attempted quizzes for abc subject
+export:        exports all the data to a JSON file
 bye:           exits the application
 ________________________________________________________________________________________________________________________
 ```
 
-#### 4.12. `add` - Add subject
+#### 4.1.2 `add` - Add subject
 
 Add a subject.
 
@@ -124,7 +125,7 @@ Now you have 5 subjects in the list.
 ____________________________________________________________
 ```
 
-#### 4.13. `list` - List all subjects
+#### 4.1.3 `list` - List all subjects
 
 Prints a list of all subjects stored
 
@@ -146,7 +147,7 @@ Here are the subject(s) in your list:
 ____________________________________________________________
 ```
 
-#### 4.14. `delete` - Delete a subject
+#### 4.1.4 `delete` - Delete a subject
 
 Deletes the specified subject.
 
@@ -165,7 +166,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.15. `find` Find subjects
+#### 4.1.5 `find` Find subjects
 
 Searches the list of subjects for all subjects that contains the query
 
@@ -186,7 +187,7 @@ ____________________________________________________________
 
 ```
 
-####  4.16. `subject` - Enter a subject
+####  4.1.6 `subject` - Enter a subject
 
 Enters a pre-existing subject
 
@@ -203,9 +204,9 @@ You are currently looking at the subject: CS2113T
 ____________________________________________________________
 ```
 
-### 4.2. Topics <a name = "topics"> </a>
+### 4.2 Topics <a name = "topics"> </a>
 Topic commands can only be used when looking at a subject.
-#### 4.21. `help` - Display all commands
+#### 4.2.1 `help` - Display all commands
 
 Displays all the available commands.
 
@@ -232,10 +233,10 @@ topic abc:           enters the topic called abc, now you can create, find, list
 quiz abc:            starts a quiz for all the flashcards of the topic abc,
                      answer the questions of the prompted flashcards to test your knowledge
 results abc:         gives you the results of all attempted quizzes for abc topic
-bye:                 exits the subject to return to the main screen, where you can work with subjects
+exit:                 exits the subject to return to the main screen, where you can work with subjects
 ________________________________________________________________________________________________________________________
 ```
-#### 4.22. `add` - Add topic
+#### 4.2.2 `add` - Add topic
 
 Add a topic.
 
@@ -257,7 +258,7 @@ Now you have 1 topic in the list.
 ____________________________________________________________
 ```
 
-#### 4.23. `delete topic` - Delete a topic
+#### 4.2.3 `delete topic` - Delete a topic
 
 Deletes the specified topic.
 
@@ -279,7 +280,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.24. `list` - List all topics and tasks
+#### 4.2.4 `list` - List all topics and tasks
 
 Prints a list of all topics and tasks of the subject you are currently viewing.
   
@@ -302,7 +303,7 @@ ____________________________________________________________
 
 ```
 
-#### 4.25. `find` - Find topics and tasks
+#### 4.2.5 `find` - Find topics and tasks
 
 Searches the current subject for all the topics and tasks that contains the query.
 
@@ -325,7 +326,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.26. `topic` - Enter a topic
+#### 4.2.6 `topic` - Enter a topic
 
 Enters a pre-existing topic.
 
@@ -342,10 +343,10 @@ You are currently looking at the topic: speed
 ____________________________________________________________
 ```
 
-### 4.3. Tasks <a name="tasks"> </a>
+### 4.3 Tasks <a name="tasks"> </a>
 Task commands can only be used when looking at a subject.
 
-#### 4.31. `todo` - Add todo
+#### 4.3.1 `todo` - Add todo
 
 Add a todo task.
 
@@ -367,7 +368,7 @@ Now you have 4 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.32. `deadline` - Add deadline
+#### 4.3.2 `deadline` - Add deadline
 
 Add a deadline task.
 
@@ -389,7 +390,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.33. `event` - Add event
+#### 4.3.3 `event` - Add event
 
 Add an event task.
 
@@ -411,7 +412,7 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.34. `delete` - Delete Task
+#### 4.3.4 `delete` - Delete Task
 
 Deletes the specified task.
 
@@ -433,7 +434,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.35. `done` - Mark task as completed
+#### 4.3.5 `done` - Mark task as completed
 
 Marks the specified task as done.
 
@@ -454,9 +455,9 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-### 4.4. Flashcards <a name ="flashcards> </a>
+### 4.4 Flashcards <a name ="flashcards"> </a>
 Flashcard commands can only be used when looking at a topic.
-#### 4.41. `help` - Display all commands
+#### 4.4.1 `help` - Display all commands
 
 Displays all the available commands.
 
@@ -475,7 +476,7 @@ delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-#### 4.42. `add` - Add flashcard
+#### 4.4.2 `add` - Add flashcard
 
 Add a topic.
 
@@ -498,7 +499,7 @@ Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
 
-#### 4.43. `delete` - Delete a flashcard
+#### 4.4.3 `delete` - Delete a flashcard
 
 Deletes the specified flashcard.
 
@@ -519,7 +520,7 @@ ____________________________________________________________
  Now you have 2 flashcards in the list.
 ____________________________________________________________```
 ```
-#### 4.44. `list` - List all flashcards
+#### 4.4.4 `list` - List all flashcards
 
 Prints a list of all flashcards of the topic you are currently viewing.
   
@@ -536,13 +537,13 @@ Here are the flashcard(s) under speed:
 2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
 ```
 
-### 4.5. Taking quizzes <a name = "takeQuiz"> </a>
+### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
 Prints the questions from the flashcards and requires the user to complete the quiz within a
 certain time limit.There are two types of quizzes :
 * SubjectQuiz
 * TopicQuiz
 
-#### 4.51. Subject quiz
+#### 4.5.1 Subject quiz
 Prints out all the questions that have been saved in all of the topics in the subjects.The user is given
 2 minutes to complete the quiz.
 
@@ -551,7 +552,7 @@ Example: `quiz Maths`
 
 Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
-#### 4.52. Topic quiz
+#### 4.5.2 Topic quiz
 Prints out all the questions that have been saved in the specific topic topics .The user is given
 1 minute to complete the quiz.
 
@@ -599,7 +600,7 @@ Result:1/2 -- Pass
 ____________________________________________________________
 </code></pre>
 
-### 4.6. Viewing quiz results <a name ="result"> </a>
+### 4.6 Viewing quiz results <a name ="result"> </a>
 Shows the results that the user has obtained in all of the quizzes so far.This can be done for the subjects or for the
 topics.
 
@@ -611,12 +612,12 @@ Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
 
-### 4.7. Storing data <a name="store"> </a>
-The data added to the program is automatically saved to the disk when the application exits. Similarly, the application
-loads the saved data from the disk automatically when it launches. The data is stored under the `data/` folder in the 
-same folder where the application runs.
+### 4.7 Storing data <a name="store"> </a>
+When you exit the application, the data you have added to the program is automatically saved to the disk. Similarly, 
+when you launch the application, the saved data is automatically loaded from the disk. The data is stored under the 
+`data/` folder in the same folder where you run the application.
 
-Instead of storing all data in one file, revisED creates a folder hierarchy under `data/` following the logical structure of the
+Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
 `Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
 folder, as shown in the figure below.
@@ -637,7 +638,7 @@ The details of the files that are created under each subject and topic folder wi
 > **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
 > the next time you launch the application.
 
-#### 4.71. tasks.txt
+#### 4.7.1 tasks.txt
 One `tasks.txt` file will be created under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
 have added to a specific subject. An example of the file content is shown below.
 
@@ -656,8 +657,8 @@ deadline or event task.
 > next time you launch the application, you are not advised to do so because a mismatch in format will corrupt the data. 
 > Make a copy of the file before making changes if you have to do so manually.
 
-#### 4.72. results.json
-This file can be found under each subject and topic folder. It stores the quiz results you have obtained from attempting
+#### 4.7.2 results.json
+You can find this file under each subject and topic folder. It stores the quiz results you have obtained from attempting
 the quiz under a specific subject or topic. An example of the file content is shown below.
 
 ```
@@ -673,7 +674,7 @@ the quiz under a specific subject or topic. An example of the file content is sh
 
 Each entry enclosed with the curly braces ({}) corresponds to one quiz result.
 
-#### 4.73. flashcards.json
+#### 4.7.3 flashcards.json
 One `flashcards.json` file will be created under each topic folder. This file stores all the flashcard data you 
 have added under a specific subject and topic. An example of the file content is shown below.
 
@@ -693,15 +694,16 @@ Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 > next time you launch the application, a mismatch in format will corrupt the data. Therefore, make a copy of the file 
 > before making changes if you have to do so.
 
-### 4.8. Exporting data <a name= "export"> </a>
+### 4.8 Exporting data <a name= "export"> </a>
 You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
-other applications that understand the data. To export the data, run the command:
+other applications that understand the data. To export the data, run this command when you are in the subject level of 
+the application:
 
 ```
 export
 ```
 
-when you are in the subject level of the application. After running the command, the data will be exported to 
+After running the command, the data will be exported to 
 `export/data.json` under the same folder where the application resides. An example of the file content is shown below.
 
 ```
