@@ -56,6 +56,9 @@ public class ProjectParser implements ExceptionsParser {
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
             }
+            if (!Parser.isStringContainsNumber(parameters.get("0"))) {
+                throw new DukeException("Please give a project number.");
+            }
             int index = Integer.parseInt(parameters.get("0"));
             if (index <= projectListManager.size() && index > 0) {
                 return new SelectProjectCommand(parameters, projectListManager);
