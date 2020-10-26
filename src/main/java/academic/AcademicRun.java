@@ -22,8 +22,10 @@ public class AcademicRun {
         try {
             AcademicStorage.loadFile(listOfPerson, currentGrades);
         } catch (IOException e) {
-            System.out.println("placeholder error message");
+            System.out.println("Problem loading academic storage file");
+            StudyItLog.logger.warning("Problem loading academic storage file\n" + e);
         }
+        StudyItLog.logger.info("Academic mode initialized");
     }
 
     public void run(String command) {
@@ -59,33 +61,32 @@ public class AcademicRun {
                 Ui.printLine("Marking this person as star");
             } else if (commandType == AcademicCommandType.LIST_STAR) {
                 AcademicUi.printStarList(currentGrades, listOfPerson);
-            } else {
-                StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();
-            StudyItLog.logger.info("Invalid academic command.");
+            StudyItLog.logger.warning("Invalid academic command: Command unidentifiable");
         } catch (StringIndexOutOfBoundsException e) {
             ErrorMessage.printUnidentifiableInput();
-            StudyItLog.logger.info("Invalid academic command. Sting Index out of bounds.");
+            StudyItLog.logger.warning("Invalid academic command: String Index out of bounds.");
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ErrorMessage.printInvalidNumber();
-            StudyItLog.logger.info("Invalid Number.");
+            StudyItLog.logger.warning("Invalid academic command: Invalid Number");
         } catch (InvalidGradeException e) {
             ErrorMessage.printInvalidGrade();
-            StudyItLog.logger.info("Invalid Grade.");
+            StudyItLog.logger.warning("Invalid academic command: Invalid Grade");
         } catch (InvalidMcException e) {
             ErrorMessage.printInvalidMc();
-            StudyItLog.logger.info("Invalid MC.");
+            StudyItLog.logger.warning("Invalid academic command: Invalid MC");
         } catch (InvalidEmailException e) {
             ErrorMessage.printInvalidEmail();
-            StudyItLog.logger.info("Invalid Email.");
+            StudyItLog.logger.warning("Invalid academic command: Invalid Email");
         }
 
         try {
             AcademicStorage.writeFile(listOfPerson, currentGrades);
         } catch (IOException e) {
-            System.out.println("placeholder error message");
+            System.out.println("Problem writing to academic storage file");
+            StudyItLog.logger.warning("Problem writing to academic storage file\n" + e);
         }
     }
 }
