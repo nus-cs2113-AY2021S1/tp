@@ -6,6 +6,7 @@ import java.util.Scanner;
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
 import seedu.duke.user.User;
+import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
 import seedu.duke.database.WritingsLoader;
 import seedu.duke.writing.Writings;
@@ -13,6 +14,8 @@ import seedu.duke.writing.Writings;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnyLoader.loadBunnyFile;
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
+import static seedu.duke.database.WordsLoader.loadWordsFile;
+import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.database.WritingsLoader.loadWritings;
 
 
@@ -47,6 +50,7 @@ public class Duke {
         loadUserSettings(savedSettings);
         loadBunnyFile(bunniesList);
         loadWritings(writings);
+        loadWordsFile();
         printDivider();
         username = savedSettings.get(0);
 
@@ -69,7 +73,9 @@ public class Duke {
             printDivider();
         }
 
+        saveWordsToFile();
         printFarewellMessage(username);
+
     }
 
 
@@ -81,6 +87,5 @@ public class Duke {
      */
     private static void setUserSettingsArrayList(ArrayList<String> savedSettings, String username) {
         savedSettings.add(username);
-
     }
 }
