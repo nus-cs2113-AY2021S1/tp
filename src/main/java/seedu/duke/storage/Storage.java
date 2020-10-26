@@ -7,8 +7,8 @@ import seedu.duke.event.Goal;
 import seedu.duke.exception.InvalidListException;
 import seedu.duke.ui.Ui;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -287,5 +287,19 @@ public class Storage {
         return fileDirectoryPath.toString();
     }
 
+    public void loadSystemResources(String fileName, ArrayList<String> resource) {
+        try {
+            InputStream is = getClass().getResourceAsStream(fileName);
+            InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(streamReader);
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                resource.add(line);
+            }
+        } catch (IOException e) {
+            ui.printErrorMessage("Resource file could not be loaded!");
+        }
+    }
 
 }
