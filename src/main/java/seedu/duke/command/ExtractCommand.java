@@ -52,11 +52,12 @@ public class ExtractCommand extends Command {
         ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
-        if(finalDate == null) {
+        if (finalDate == null) {
             if (textSubject.equals("")) {
                 System.out.println("Empty text subject and no date/time fields, event won't be created!");
             } else {
-                System.out.println("Since no date was detected in the text body, the personal event will only contain the description.");
+                System.out.println("Since no date was detected in the text body, "
+                        + "the personal event will only contain the description.");
                 Personal personalEvent = new Personal(textSubject);
                 data.addToEventList("Personal", personalEvent);
             }
@@ -64,7 +65,8 @@ public class ExtractCommand extends Command {
             ArrayList<LocalTime> timeList = detectTime(textBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
             if (finalTime == null) {
-                System.out.println("No time detected in text body! The personal event will only have the date and description.");
+                System.out.println("No time detected in text body!"
+                        + " The personal event will only have the date and description.");
                 Personal personalEvent = new Personal(textSubject, finalDate);
                 data.addToEventList("Personal", personalEvent);
             } else {
@@ -117,9 +119,9 @@ public class ExtractCommand extends Command {
 
     private ArrayList<LocalTime> detectTime(String textBody) {
         ArrayList<String> timeListInString = new ArrayList<>();
-        String UpperCaseTextBody = textBody.toUpperCase();
+        String upperCaseTextBody = textBody.toUpperCase();
         Pattern timePattern = Pattern.compile("\\b(1[0-9]|0?[0-9]|2[0-3])([:.][0-5][0-9])?[\\h]?([AP][M])?\\b");
-        Matcher timeMatcher = timePattern.matcher(UpperCaseTextBody);
+        Matcher timeMatcher = timePattern.matcher(upperCaseTextBody);
 
         while (timeMatcher.find()) {
             String time = timeMatcher.group(0);
@@ -163,12 +165,12 @@ public class ExtractCommand extends Command {
     private ArrayList<LocalDate> detectDate(String textBody) {
         ArrayList<String> dateListInString = new ArrayList<>();
         String upperCaseTextBody = textBody.toUpperCase();
-        Pattern dayMonthYearPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?[\\h-]" +
-                "(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|JUL|JULY|AUG|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|" +
-                "NOVEMBER|DEC|DECEMBER),?([\\h-]\\d{4})?\\b");
-        Pattern monthDayYearPattern = Pattern.compile("\\b(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|" +
-                "JUL|JULY|AUG|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|NOVEMBER|DEC|DECEMBER)[\\h-]" +
-                "(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?,?([\\h-]\\d{4})?\\b");
+        Pattern dayMonthYearPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?[\\h-]"
+                + "(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|JUL|JULY|AUG"
+                + "|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|NOVEMBER|DEC|DECEMBER),?([\\h-]\\d{4})?\\b");
+        Pattern monthDayYearPattern = Pattern.compile("\\b(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|"
+                + "JUL|JULY|AUG|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|NOVEMBER|DEC|DECEMBER)[\\h-]"
+                + "(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?,?([\\h-]\\d{4})?\\b");
         Matcher dayMonthYearMatcher = dayMonthYearPattern.matcher(upperCaseTextBody);
         Matcher monthDayYearMatcher = monthDayYearPattern.matcher(upperCaseTextBody);
 
