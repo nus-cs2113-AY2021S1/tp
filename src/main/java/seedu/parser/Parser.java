@@ -56,7 +56,7 @@ public class Parser {
             }
         } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
             matcher = Delete.COMMAND_PATTERN.matcher(rawInput);
-            if(matcher.find()) {
+            if (matcher.find()) {
                 return new Delete(matcher.group("key"));
             } else {
                 throw new InvalidCommandException();

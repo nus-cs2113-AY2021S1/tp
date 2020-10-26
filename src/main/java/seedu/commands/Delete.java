@@ -18,7 +18,7 @@ public class Delete extends ModificationCommand {
             "^delete (?<key>\\d+)$");
 
     public Delete(String keyString) throws InvalidTaskNumberException {
-        try{
+        try {
             key = Integer.parseInt(keyString);
         } catch (NumberFormatException e) {
             throw new InvalidTaskNumberException();

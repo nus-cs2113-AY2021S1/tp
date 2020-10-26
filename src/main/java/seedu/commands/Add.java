@@ -28,7 +28,7 @@ public class Add extends ModificationCommand {
     private final String priority;
 
 
-    public Add(String description, String date, String startTime, String endTime, String priority){
+    public Add(String description, String date, String startTime, String endTime, String priority) {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
