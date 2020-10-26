@@ -47,7 +47,6 @@ public class TimeTableStorage {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        System.out.println(dateList.dateList.size());
     }
 
     public void writeFile(Event event) {

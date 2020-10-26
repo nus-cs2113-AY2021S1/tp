@@ -11,10 +11,10 @@ import bookmark.BookmarkRun;
 
 public class StudyIt {
     private static Mode currentMode = Mode.MENU;
-    private BookmarkRun bookmarkRun = new BookmarkRun();
-    private TimeTableRun timeTableRun = new TimeTableRun();
-    private FlashcardRun flashcardRun = new FlashcardRun();
-    private AcademicRun academicRun = new AcademicRun();
+    private BookmarkRun bookmarkRun;
+    private TimeTableRun timeTableRun;
+    private FlashcardRun flashcardRun;
+    private AcademicRun academicRun;
 
     public static void changeMode(Mode destinationMode) {
         currentMode = destinationMode;
@@ -26,6 +26,10 @@ public class StudyIt {
 
     public StudyIt() {
         StudyItLog.setUpLogger();
+        bookmarkRun = new BookmarkRun();
+        timeTableRun = new TimeTableRun();
+        flashcardRun = new FlashcardRun();
+        academicRun = new AcademicRun();
     }
 
     public static void main(String[] args) {
