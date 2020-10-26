@@ -1,0 +1,16 @@
+@startuml
+title When User uses Yearly Compound Interest Calculator
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleYearlyCompoundInterest(packet)
+activate ":Handler"
+
+":Handler" -> ":YearlyCompoundInterest" : calculateCompoundInterest()
+activate ":YearlyCompoundInterest"
+
+":YearlyCompoundInterest" --> ":Handler" : Results
+deactivate ":YearlyCompoundInterest"
+
+":Handler" --> ":FinanceTools" : Results
+deactivate ":Handler"
+@enduml

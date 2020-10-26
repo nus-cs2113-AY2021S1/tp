@@ -1,12 +1,10 @@
 # Developer Guide
 
-## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Overview of architecture
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
 
+## Design & implementation
 ### Main Menu
 - Loading up user data
 - Access to various features
@@ -118,6 +116,207 @@ and ```param``` indicates the parameter that is associated with the ```param typ
 
 ***UML Sequence Diagram***
 ![](uml_images/manualTracker/UmlSeqHandleCreateLedger.png)
+### FinanceTools
+FinanceTools consists of the following features
+1. Simple Interest Calculator
+2. Yearly/Monthly Compound Interest Calculator
+3. Cashback Calculator
+4. Miles Credit Calculator
+6. Account Storage
+7. Command and Calculation History
+
+### Simple Interest Calculator
+Simple Interest Calculator is facilitated by ```SimpleIntest``` class. It allows user to calculate interest earned.
+When user inputs ```simple``` as a command, ```handleSimpleInterest``` from ```Handler``` class will handle user
+inputted parameters. The calculation is done by ```SimpleInterest``` class. The result is outputted in
+```FinanceTools.main()```.
+<br />
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+
+The following class diagram shows how the Simple Interest Calculator feature works:
+<br />
+![ClassDiagram](uml_images/financetools/SimpleInterest/SimpleInterestClassDiagram.png)
+
+The following sequence diagram shows how the params are handled before the implementation is carried out:
+<br />
+![SequenceDiagram1](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(1).png)
+<br />
+<br />
+The following sequence diagram shows how the Simple Interest Calculator feature works:
+<br />
+![SequenceDiagram2](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(2).png)
+
+### Yearly/Monthly Compound Interest Calculator
+Yearly/Monthly Compound Interest Calculator is facilitated by ```YearlyCompoundInterest``` /
+```MonthlyCompoundInterest``` class. It allows user to calculate interest earned.
+When user inputs ```cyearly``` / ```cmonthly``` as a command, ```handleYearlyCompoundInterest``` /
+```handleMonthlyCompoundInterest``` from ```Handler``` class will handle user inputted parameters. The calculation 
+is done by ```YearlyCompoundInterest``` / ```MonthlyCompoundInterest``` class. The result is outputted in
+```FinanceTools.main()```.
+<br />
+### Parameters (Yearly Compound Interest Calculator)
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+* ```/p``` - Number of Years (Mandatory)
+* ```/d``` - Yearly Deposit (Optional)
+
+### Parameters (Monthly Compound Interest Calculator)
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+* ```/p``` - Number of Months (Mandatory)
+* ```/d``` - Monthly Deposit (Optional)
+
+The following class diagram shows how the Yearly/Monthly Compound Interest Calculator feature works:
+<br />
+![ClassDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/YearlyCompoundInterestClassDiagram.png)
+![ClassDiagram2](uml_images/financetools/YearlyMonthlyCompoundInterest/MonthlyCompoundInterestClassDiagram.png)
+<br />
+The following sequence diagram shows how the params are handled before the implementation is carried out:
+<br />
+![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/YearlyCompoundInterestSequenceDiagram(1).png)
+<br />
+<br />
+![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/MonthlyCompoundInterestSequenceDiagram(1).png)
+<br />
+<br />
+The following sequence diagram shows how the Yearly/Monthly Compound Interest Calculator feature works:
+<br />
+![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/YearlyCompoundInterestSequenceDiagram(2).png)
+<br />
+<br />
+![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/MonthlyCompoundInterestSequenceDiagram(2).png)
+
+### Cashback Calculator
+Cashback Calculator is facilitated by ```Cashback``` class. It allows user to calculate cashback earned.
+When user inputs ```cashb``` as a command, ```handleCashback``` from ```Handler``` class will handle user
+inputted parameters. The calculation is done by ```Cashback``` class. The result is outputted in
+```FinanceTools.main()```.
+<br />
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Cashback Rate (Mandatory)
+* ```/c``` - Cashback Cap (Mandatory)
+
+The following class diagram shows how the Cashback Calculator feature works:
+<br />
+![ClassDiagram](uml_images/financetools/Cashback/CashbackClassDiagram.png)
+
+The following sequence diagram shows how the params are handled before the implementation is carried out:
+<br />
+![SequenceDiagram1](uml_images/financetools/Cashback/CashbackSequenceDiagram(1).png)
+<br />
+<br />
+The following sequence diagram shows how the Cashback Calculator feature works:
+<br />
+![SequenceDiagram2](uml_images/financetools/Cashback/CashbackSequenceDiagram(2).png)
+
+### Miles Credit Calculator
+Miles Credit Calculator is facilitated by ```MilesCredit``` class. It allows user to calculate miles credit earned.
+When user inputs ```miles``` as a command, ```handleMilesCredit``` from ```Handler``` class will handle user
+inputted parameters. The calculation is done by ```MilesCredit``` class. The result is outputted in
+```FinanceTools.main()```.
+<br />
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Miles Rate (Mandatory)
+
+The following class diagram shows how the Miles Credit Calculator feature works:
+<br />
+![ClassDiagram](uml_images/financetools/MilesCredit/MilesCreditClassDiagram.png)
+
+The following sequence diagram shows how the params are handled before the implementation is carried out:
+<br />
+![SequenceDiagram1](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(1).png)
+<br />
+<br />
+The following sequence diagram shows how the Miles Creidt Calculator feature works:
+<br />
+![SequenceDiagram2](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(2).png)
+
+### Account Storage 
+Account Storage feature is facilitated by ```AccountStorage``` class. It allows user to store account
+information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
+```handleAccountStorage``` from ```Handler``` class will handle user inputted parameters and store information 
+accordingly. The implementation is done by ```handleInfoStorage``` from ```AccountStorage``` class. Afterwards, this 
+information is stored into a txt file which is done by ```updateFile``` from ```AccountSaver``` class.
+<br />
+
+Additionally, it implements the following operations:
+* ```info``` - list account(s) information
+* ```clearinfo``` - clear all information
+* ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
+
+### Parameters
+* ```/n``` - Account Name (Optional)
+* ```/ir``` - Interest Rate (Optional)
+* ```/r``` - Cashback Rate (Optional)
+* ```/c``` - Cashback Cap (Optional)
+* ```/o``` - Other Notes (Optional)
+* ```/rm``` - Account Number (Optional)
+
+#### Details
+```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
+```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
+program again, the information is retained, and the user does not have to re-enter the account information(s) again.
+<br />
+ 
+When user first enters FinanceTools in the program, ```readFileContents``` reads 5 lines in the txt file consecutively
+in a ```while``` loop because these 5 lines consists of information that belong to a particular account. These
+categories include: Name, Interest Rate, Cashback Rate, Cashback Cap and Notes". Doing so helps to facilitate
+the ```delete``` option where instead of deleting single lines, we can delete the entire account information
+which correspond to a particular account because the information is stored in one index of the ArrayList.
+<br />
+ 
+The following class diagram shows how the Account Storage feature works:
+<br />
+![ClassDiagram](uml_images/financetools/AccountStorage/AccountStorageClassDiagram.png)
+
+The following sequence diagram shows how the params are handled before the implementation is carried out:
+<br />
+![SequenceDiagram1](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(1).png)
+<br />
+<br />
+The following sequence diagram shows how the Account Storage feature works:
+<br />
+![SequenceDiagram2](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(2).png)
+<br />
+<br />
+![SequenceDiagram3](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(3).png)
+ 
+### Command and Calculation History
+To store the commands inputted by user and results from calculations in FinanceTools, an ArrayList is used.
+The commands are stored before the params are handled and implementation is executed. The results from calculation
+is stored when the implementation has finished executed.
+
+### Goal Tracker
+### Set Expense Goal Feature
+The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
+the respective month to ensure that the user does not overspent his budget. 
+When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
+With the String[], it will be sent to a class called ```Goal```, and it will store the individual information.
+Afterwards, it will be added to a ArrayList in a class called ```TotalGoalList```. 
+ 
+Not only that, ```GoalTracker``` also implemented a feature called ```set income goal``` that works almost the same as 
+set expense goal feature with just slight command difference.
+ 
+ `Format:`
+* setExpenseGoal: expense 5000 for 08
+* setIncomeGoal: income 5000 for 08
+ 
+### How it works?
+Firstly, user will input the command based on the `Format`.
+Secondly, the input command will be sent to InputParser to parse.
+Thirdly, the parsed information will be sent to class `Goal` to store the individual information
+Next, it will be added to a ArrayList in class `TotalGoalList`.
+Lastly, the goal status will be displayed to the user.  
+ 
+This class diagram will show how the setting of expense goal works:
+![ExpenseClassDiagram](uml_images/goaltracker/SetExpenseGoalClassDiagram.png)
+ 
+This sequence diagram will show the flow of setting of expense goal:
+![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
 ## Product scope
 ### Target user profile
@@ -173,64 +372,3 @@ bill payments
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
-## Design & Implementation
-### Account Storage feature
-The account information storage feature is facilitated by ```FinanceTools```. It allows user to store account
-information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
-```handleInfoStorage``` will handle user inputted parameters and store information accordingly. Afterwards, this
-information is stored into a txt file which is done by ```updateFile```.
-<br />
-
- Additionally, it implements the following operations:
- * ```info``` - list account(s) information
- * ```clearinfo``` - clear all information
- * ```store /delete <ACCOUNT_NO>``` - delete corresponding account number in list
- 
- #### Details
- ```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
- ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
- program again, the information is retained, and the user does not have to re-enter the account information(s) again.
- <br />
- 
- When user first enters FinanceTools in the program, ```readFileContents``` reads 5 lines in the txt file consecutively
- in a ```while``` loop because these 5 lines consists of information that belong to a particular account. These
- categories include: Name, Interest Rate, Cashback Rate, Cashback Cap and Notes". Doing so helps to facilitate
- the ```delete``` option where instead of deleting single lines, we can delete the entire account information
- which correspond to a particular account because the information is stored in one index of the ArrayList.
- <br />
- 
- The following class diagram shows how the account information storage feature works:
- ![ClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageClassDiagram.png)
-
- The following sequence diagram shows how the account information storage feature works:
- ![SequenceDiagram1](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(1).png)
- <br />
- ![SequenceDiagram2](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(2).png)
- 
- ### Set Expense Goal Feature
- The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
- the respective month to ensure that the user does not overspent his budget. 
- When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
- With the String[], it will be sent to a class called ```Goal```, and it will store the individual information.
- Afterwards, it will be added to a ArrayList in a class called ```TotalGoalList```. 
- 
- Not only that, ```GoalTracker``` also implemented a feature called ```set income goal``` that works almost the same as 
- set expense goal feature with just slight command difference.
- 
- `Format:`
- * setExpenseGoal: expense 5000 for 08
- * setIncomeGoal: income 5000 for 08
- 
- ### How it works?
- Firstly, user will input the command based on the `Format`.
- Secondly, the input command will be sent to InputParser to parse.
- Thirdly, the parsed information will be sent to class `Goal` to store the individual information
- Next, it will be added to a ArrayList in class `TotalGoalList`.
- Lastly, the goal status will be displayed to the user.  
- 
- This class diagram will show how the setting of expense goal works:
- ![ExpenseClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalClassDiagram.png)
- 
- This sequence diagram will show the flow of setting of expense goal:
- ![ExpenseSequenceDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalSequenceDiagram.png)
