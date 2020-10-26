@@ -2,27 +2,29 @@
 
 - [**WatchNext** User Guide](#watchnext-user-guide)
   - [1. Introduction](#1-introduction)
-    - [1.a. What does **WatchNext** do?](#1a-what-does-watchnext-do)
+    - [1.a. What is **WatchNext**?](#1a-what-is-watchnext)
     - [1.b. Why use **WatchNext**?](#1b-why-use-watchnext)
     - [1.c. What will this guide do?](#1c-what-will-this-guide-do)
   - [2. Quick Start](#2-quick-start)
   - [3. Command Format](#3-command-format)
-  - [4. Features](#4-features)
+  - [4. Features](#4-features-br)
       - [4.a. `help` - Views help](#4a-help---views-help)
       - [4.b. `add` - Adds a show](#4b-add---adds-a-show)
       - [4.c. `edit` - Edits your show details](#4c-edit---edits-your-show-details)
     - [4.d. `addreview` - Adding a review](#4d-addreview---adding-a-review)
-    - [4.e. `list` - Displays all your shows in the list](#4e-list---displays-all-your-shows-in-the-list)
-    - [4.f. `delete` - Deletes your show](#4f-delete---deletes-your-show)
-    - [4.g. `deleterating` - Deletes rating of your show](#4g-deleterating---deletes-rating-of-your-show)
-    - [4.h. `changerating` - Changes rating of your show](#4h-changerating---changes-rating-of-your-show)
-    - [4.i. `episode` - Changes the episode of the show you are currently watching](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
-    - [4.j. `season` - Changes the season of the show you are currently watching](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    - [4.k Managing your watch time limit](#4k-managing-your-watch-time-limit)
-    - [4.k.a. `watch` - Watch a show in your watchlist](#4ka-watch---watch-a-show-in-your-watchlist)
-    - [4.k.b. `updatetimelimit` - update your watch time limit](#4kb-updatetimelimit---update-your-watch-time-limit)
-    - [4.l. `search` - search a show in the watchlist](#4l-search---search-a-show-in-the-watchlist)
-    - [4.m. `bye` - Exits the program](#4m-bye---exits-the-program)
+    - [4.e. `changereview` - Changing a review](#4d-addreview---adding-a-review)
+    - [4.f. `deletereview` - Deletes a review](#4f-deletereview---deletes-a-review)
+    - [4.g. `list` - Displays all your shows in the list](#4g-list---displays-all-your-shows-in-the-list)
+    - [4.h. `delete` - Deletes your show](#4h-delete---deletes-your-show)
+    - [4.i. `deleterating` - Deletes rating of your show](#4i-deleterating---deletes-rating-of-your-show)
+    - [4.j. `changerating` - Changes rating of your show](#4j-changerating---changes-rating-of-your-show)
+    - [4.k. `episode` - Changes the episode of the show you are currently watching](#4k-episode---changes-the-episode-of-the-show-you-are-currently-watching)
+    - [4.l. `season` - Changes the season of the show you are currently watching](#4l-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.m. Managing your watch time limit](#4m-managing-your-watch-time-limit)
+    - [4.m.a. `watch` - Watch a show in your watchlist](#4ma-watch---watch-a-show-in-your-watchlist)
+    - [4.m.b. `updatetimelimit` - update your watch time limit](#4mb-updatetimelimit---update-your-watch-time-limit)
+    - [4.n. `search` - search a show in the watchlist](#4n-search---search-a-show-in-the-watchlist)
+    - [4.o. `bye` - Exits the program](#4o-bye---exits-the-program)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 
@@ -59,7 +61,7 @@ but also foster a community where everyone will be able to share their favourite
 ### 1.c. What will this guide do?
 
 This guide aims to equip you with the knowledge on how to use our application by providing you with detailed examples for all of **WatchNext's** features. 
-The features can be found in [Section 4: “Features”](#4-features).
+The features can be found in [Section 4: “Features”](#4-features-br).
 
 Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
 <br><br>
@@ -89,11 +91,11 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 * The maximum length for a Show `SHOWNAME` is 100 characters.
 
-* The `<SHOWNAME>` to be entered is case-sensitive.
+* The `<SHOWNAME>` to be entered is case-sensitive.<br><br>
 
-<br><br><br> 
-## 4. Features
-<br> 
+
+## 4. Features <br>
+
 #### 4.a. `help` - Views help
  The help list contains information about all the possible accepted commands.
  
@@ -115,13 +117,13 @@ Expected outcome:
   Format:
    `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS> <DURATION OF EPISODE>`
    
-   **[NOTE]**
-   
-   * The `<DURATION OF EPISODE>` is in minutes.
-   
-   * If a show has 2 seasons, you will need to input the number of episodes for both seasons (see example of usage below) for the `<NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>` field. The program will not add the show into the watchlist otherwise.
-   
-   * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (example of usage below for `<RunningMan>` or you may use `_` to represent a space.)
+ >  **[NOTE]**
+ >
+ >  * The `<DURATION OF EPISODE>` is in minutes.
+ >
+ >  * If a show has 2 seasons, you will need to input the number of episodes for both seasons (see example of usage below) for the `<NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>` field. The program will not add the show into the watchlist otherwise.
+ >  
+ >  * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (example of usage below for `<RunningMan>` or you may use `_` to represent a space.)
    
   Example of usage:
   
@@ -159,11 +161,11 @@ Example of usage:
      
  When you have completed all changes, input `done`.
  
-**[NOTE]**
-
-* The `<DURATION OF EPISODE>` is in minutes.  
-
-* The program will wait for your command to edit the show details until you input `done`.
+> **[NOTE]**
+>
+>  * The `<DURATION OF EPISODE>` is in minutes.  
+>
+>  * The program will wait for your command to edit the show details until you input `done`.
 
  
  Expected outcome:
@@ -186,20 +188,56 @@ Example of usage:
 The `addreview` command allows you to add a review for a show, including adding a rating.
 
  Format:
-  `addreview <SHOWNAME> <RATING> <REVIEW>`
+  `addreview <SHOWNAME> <RATING> / <REVIEW>`
   
-  * The `<RATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
-  
+  > **[NOTE]**
+  >
+  > * The `<RATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
+
+
  Example of usage:
- `addreview Friends 9 very funny `
+ `addreview Friends 9 / very funny `
  
    Expected outcome:
  
   <img src = "images/addreview.PNG" width = "450">
 
    &nbsp;
+   
+### 4.e. `changereview` - Changing a review
+
+The `changereview` command allows you to change a review for a show that is already in the show list.
+
+ Format:
+  `changereview <SHOWNAME> / <REVIEW>`
+  
+   > **[NOTE]**
+   >
+   > * You can change the rating of your show with the [changerating](#4j-changerating---changes-rating-of-your-show) command.
+
+  
+ Example of usage:
+ `changereview friends / very unfunny `
  
-### 4.e. `list` - Displays all your shows in the list
+   Expected outcome:
+   
+  <img src = "images/changereview.PNG" width = "450">
+     
+### 4.f. `deletereview` - Deletes a review
+
+The `deletereview` command allows you to delete a review for a show that is already in the show list.
+
+ Format:
+  `deletereview <SHOWNAME>`
+  
+ Example of usage:
+ `deletereview Friends `
+ 
+   Expected outcome: 
+   
+  <img src = "images/deletereview.PNG" width = "450">
+ 
+### 4.g. `list` - Displays all your shows in the list
 
 The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
 season that you are currently at.
@@ -218,7 +256,7 @@ The rating of your show will also be shown if you have added it using the [addre
     
    &nbsp;
 
-### 4.f. `delete` - Deletes your show
+### 4.h. `delete` - Deletes your show
 
  The `delete` command removes a specified show from the watchlist.
  
@@ -235,7 +273,7 @@ The rating of your show will also be shown if you have added it using the [addre
  &nbsp;
   
  
-### 4.g. `deleterating` - Deletes rating of your show
+### 4.i. `deleterating` - Deletes rating of your show
 
 The `deleterating` command deletes the rating for an existing show in the watchlist.
 
@@ -251,16 +289,16 @@ The `deleterating` command deletes the rating for an existing show in the watchl
 
  &nbsp;
 
-### 4.h. `changerating` - Changes rating of your show
+### 4.j. `changerating` - Changes rating of your show
 
 The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
  Format:
-  `changerating <SHOWNAME> <NEWRATING>`
+  `changerating <SHOWNAME> / <NEWRATING>`
   
-  **[NOTE]**
-  
-  * The `<NEWRATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
+  > **[NOTE]**
+  >
+  > * The `<NEWRATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
   
  Example of usage:
  `changerating Friends 10`
@@ -271,13 +309,13 @@ The `changerating` command changes the rating for an existing show which already
   
  &nbsp;
 
-### 4.i. `episode` - Changes the episode of the show you are currently watching
+### 4.k. `episode` - Changes the episode of the show you are currently watching
 
 The `episode` command updates the current episode of an existing show in your watchlist.
 
-**[NOTE]**
-
-* This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
+> **[NOTE]**
+> 
+> * This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
 
 
  Format:
@@ -292,13 +330,13 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
-### 4.j. `season` - Changes the season of the show you are currently watching
+### 4.l. `season` - Changes the season of the show you are currently watching
 
 The `season` command updates the current season of an existing show in your watchlist.
 
-**[NOTE]**
-
-* This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
+> **[NOTE]**
+>
+> * This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
 
 
  Format:
@@ -314,11 +352,11 @@ The `season` command updates the current season of an existing show in your watc
  &nbsp;
 
 
-### 4.k. Managing your watch time limit
+### 4.m. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.k.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your watchlist
 
 The `watch` command increments the current episode that you are on, and automatically updates your watch time limit.
 
@@ -334,18 +372,18 @@ The `watch` command increments the current episode that you are on, and automati
   
  &nbsp;
 
-### 4.k.b. `updatetimelimit` - update your watch time limit
+### 4.m.b. `updatetimelimit` - update your watch time limit
 
 The `updatetimelimit` command updates your current watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
   
-  **[NOTE]**
-  
- * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
- 
- * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+ > **[NOTE]**
+ >
+ > * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
+ >
+ > * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
  
  Example of usage:
  `updatetimelimit 120 `
@@ -356,7 +394,7 @@ The `updatetimelimit` command updates your current watch time limit.
   
  &nbsp;
 
-### 4.l. `search` - search a show in the watchlist  
+### 4.n. `search` - search a show in the watchlist  
 
 The `search` command helps you search for a specific show in the watchlist and prints out the show information.  
 
@@ -366,9 +404,9 @@ The `search` command helps you search for a specific show in the watchlist and p
  Example of usage:
  `search Friends`  
  
- **[NOTE]**
- 
- * The `<SHOWNAME>` is case-sensitive.
+ > **[NOTE]**
+ >
+ > * The `<SHOWNAME>` is case-sensitive.
   
  Expected output:
  
@@ -376,7 +414,7 @@ The `search` command helps you search for a specific show in the watchlist and p
  
  &nbsp;
   
-### 4.m. `bye` - Exits the program
+### 4.o. `bye` - Exits the program
 
 The `bye` command exits the program.
 
@@ -392,7 +430,8 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ <br>
+### 5. FAQ 
+<br>
 
 **Q**: Is my watchlist saved after I exit the program?  
 
@@ -423,8 +462,8 @@ This section showcases the list of available features and usage examples for you
 
 |Action|Format|Example|
 |--------|----------|---------------|
-|Display help | `help`| `help`|
-|Add show  |`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
+|Display help| `help`| `help`|
+|Add show|`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
 |Edit show |`edit <SHOWNAME>`| `edit Friends`|
 |Add review |`addreview <SHOWNAME> <RATING> <REVIEW>`| `rating Friends 9 very funny`|
 |Show watchlist |`list`|  `list`|

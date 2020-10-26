@@ -9,7 +9,9 @@ public class AddReviewCommand extends Command {
     public AddReviewCommand(String input) throws ArrayIndexOutOfBoundsException,NullPointerException,
             IndexOutOfBoundsException {
         String[] tokenizedInput = input.split(" ");
+        int indexOfSlash = input.indexOf("/");
         int rating = Integer.parseInt(tokenizedInput[2]);
+        String review = input.substring(indexOfSlash + 1);
 
         if (tokenizedInput.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
@@ -20,7 +22,7 @@ public class AddReviewCommand extends Command {
         String showName = tokenizedInput[1];
         Show s = ShowList.getShow(showName);
         s.setRating(rating);
-        s.setReview(String.join(" ", tokenizedInput[3]));
+        s.setReview(review);
         ShowList.setShow(showName,s);
         Ui.printReviewAdded(showName);
     }
