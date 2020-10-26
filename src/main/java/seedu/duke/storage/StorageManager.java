@@ -9,6 +9,7 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.util.Parser;
 
+import javax.swing.plaf.metal.MetalIconFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -23,9 +24,11 @@ public class StorageManager {
     /** Default folders directory. */
     public static final String FOLDER_DIR = "data";
     private static final String NOTES_DIR = "/notes";
+    private static final String ARCHIVED_NOTES_DIR = "/archived";
 
     /** Default file path. */
     private static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
+    private static final String ARCHIVED_NOTEBOOK_FILE_PATH = "/archived_notebook.txt";
     private static final String TAG_FILE_PATH = "/tags.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
 
@@ -39,13 +42,15 @@ public class StorageManager {
         //Create directories
         String dataPath = FOLDER_DIR;
         String notesPath = FOLDER_DIR + NOTES_DIR;
+        String ArchivedNotesPath = FOLDER_DIR + ARCHIVED_NOTES_DIR;
 
         String notebookFilePath = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        String archivedNotebookFilePath = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
         String tagsFilePath = FOLDER_DIR + TAG_FILE_PATH;
         String timetableFilePath = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
-        String[] paths = {dataPath, notesPath};
-        String[] files = {notebookFilePath, tagsFilePath, timetableFilePath};
+        String[] paths = {dataPath, notesPath, ArchivedNotesPath};
+        String[] files = {notebookFilePath, archivedNotebookFilePath, tagsFilePath, timetableFilePath};
 
         for (String path: paths) {
             createDirectory(path);
@@ -105,13 +110,21 @@ public class StorageManager {
      * @param notebook notebook that stores all the notes to be saved
      * @throws IOException thrown when unable to write to the file
      */
-    public static void saveAllNoteDetails(Notebook notebook) throws IOException {
+    public static void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
         FileWriter fw = new FileWriter(path);
         fw.write("");
         fw.close();
 
-        for (Note note: notebook.getNotes()) {
+        ArrayList<Note> notes = new ArrayList<>();
+
+        if (isArchive) {
+            notes = notebook.getArchivedNotes();
+        } else {
+            notes = notebook.getNotes();
+        }
+
+        for (Note note: notes) {
             saveNoteDetails(note);
         }
     }
