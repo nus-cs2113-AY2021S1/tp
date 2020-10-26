@@ -145,7 +145,7 @@ public class QuoteParser {
         }
     }
 
-    public static int parseQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
+    public static int getQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
         try {
             int quoteNumberToEdit = Integer.parseInt(userInput.split(command, 2)[0].trim());
             if (quoteNumberToEdit <= 0 || quoteNumberToEdit > quotes.getSize()) {

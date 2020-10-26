@@ -110,6 +110,68 @@ On Command execution:
 
 ## 4.0 Implementation
 
+### 4.2 Feature: Quote Management System
+Given below is the class diagram for classes realted to the Quote Management System in Quotesify:
+
+![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
+
+* The `XRatingCommand` class represents `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, `DeleteQuoteCommand`,
+`FindQuoteCommand`, `AddQuoteReflectionCommand`, `ListQuoteReflectionCommand`, `EditQuoteReflectionCommand`,
+`DeleteQuoteReflectionCommand`.
+
+#### 4.2.1 Add quote
+The add quote feature allows users to add quotes of multiple formats to Quotesify.
+Quotes added can be of the following format:
+* Quote with author name and reference title
+* Quote with author name
+* Quote with reference title
+* Quote with no author name and reference title
+
+The sequence diagram below reflects the command execution when a user adds a quote to Quotesify.
+
+![Sequence Diagram for Add Quotes](images/SeqDiagram_AddQuote.png)
+
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+`AddCommand` object which subsequently creates the `AddQuoteCommand` as seen in the diagram, and then calling it's 
+`execute()` method.
+* The `parseAddParameters()` method from `QuoteParser` will be called to identify the format desired by the user and 
+creates the appropriate `Quote` object to be added into the `QuoteList`. 
+* Appropriate validation checks will be conducted to identify if the quote field is empty. Similarly, if author and
+reference tags are used, their respective fields will also be checked. If any missing field is found, the quote will
+not be added and an error message will be displayed.
+* Upon successful addition of a quote, the user will now be able to list, edit, delete, find and add a reflection to it.
+
+#### Design Considerations
+* Ability to add author name and reference title to quotes
+    * Pros: Provides categorization and allows for the implementation of other useful features such as search and list
+    * Cons: Increased memory overhead for each quote and implementation complexity
+* Allowing users to add quotes of different formats with single command
+    * Pros: Users will not be restricted to a single format or be required to use a different commands for each format.
+    * Cons: Increased implementation complexity due to parsing different formats.
+    
+#### 4.2.2 Edit Quote Reflection
+The edit quote reflection feature updates current reflection of a quote into a new one, keeping the remainding 
+information such as quote, author name and reference the same.
+
+The sequence diagram below reflects the command execution when a user edits the reflection of a quote.
+
+![Sequence Diagram for Edit Quotes Reflection](images/SeqDiagram_EditQuoteReflection.png)
+
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+`EditCommand` object which subsequently creates the `EditQuoteReflectionCommand` as seen in the diagram, and then 
+calling it's `execute()` method.
+* Appropriate validation checks will be conducted to determine if the edit tag `/to` is present, and the updated 
+reflection is not empty. If the following conditions are not met, the reflection will not be updated and an error 
+message will be displayed.
+
+#### Design Considerations
+* Use of `/to` flag
+    * Pros: Clear demarcation between quote number and start of updated reflection.
+    * Cons: Additional parsing required and users are required to type more.
+* Include a `updateReflection` method in `QuoteList` instead of editing quote object directly
+    * Pros: Better encapsulation and data hiding as attributes can be set to private
+    * Cons: Additional methods and passing of data required
+
 ### 4.1 Feature: Rating system for books
 Given below is the class diagram for classes related to the Rating System in Quotesify:
 
