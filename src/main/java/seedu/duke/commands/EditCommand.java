@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.TimeParser;
 import seedu.duke.utility.Ui;
 
 import java.util.Scanner;
@@ -42,11 +43,30 @@ public class EditCommand {
     public static void editDuration(String input) {
         String[] tokenizedInput = input.split(" ");
         try {
-            int duration = Integer.parseInt(tokenizedInput[1]);
+            int duration = TimeParser.parseTime(tokenizedInput[1]);
             show.setEpisodeDuration(duration);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printBadInputException();
         }
+    }
+
+    public static void editEpisode(String input) throws NullPointerException {
+        String[] numOfEpisodes = input.split(",");
+        int i = 0;
+        int[] intNumOfEpisodes = new int[show.getNumSeasons()];
+        for (String s : numOfEpisodes) {
+            try {
+                intNumOfEpisodes[i] = Integer.parseInt(s);
+            } catch (Exception e) {
+                throw new NullPointerException();
+            }
+            i++;
+        }
+        //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
+        if (i == 0 || numOfEpisodes.length != show.getNumSeasons()) {
+            throw new NullPointerException();
+        }
+        show.setNumEpisodesForSeasons(intNumOfEpisodes);
     }
 
     public static void processCommand() throws NullPointerException {
@@ -63,22 +83,7 @@ public class EditCommand {
             if (editCommand.startsWith("name")) {
                 show.setName(editCommand.substring(5));
             } else if (editCommand.startsWith("episode")) {
-                String[] numOfEpisodes = editCommand.substring(8).split(",");
-                int i = 0;
-                int[] intNumOfEpisodes = new int[show.getNumSeasons()];
-                for (String s : numOfEpisodes) {
-                    try {
-                        intNumOfEpisodes[i] = Integer.parseInt(s);
-                    } catch (Exception e) {
-                        throw new NullPointerException();
-                    }
-                    i++;
-                }
-                //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
-                if (i == 0 || numOfEpisodes.length != show.getNumSeasons()) {
-                    throw new NullPointerException();
-                }
-                show.setNumEpisodesForSeasons(intNumOfEpisodes);
+                editEpisode(editCommand.substring(8));
             } else if (editCommand.startsWith("season")) {
                 editSeasons(editCommand);
             } else if (editCommand.startsWith("duration")) {
