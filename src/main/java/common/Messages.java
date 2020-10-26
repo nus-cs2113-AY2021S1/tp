@@ -14,8 +14,9 @@ public class Messages {
     public static final String MESSAGE_INCORRECT_ACCESS = "%s command can only be called at admin, "
             + "module and chapter level.";
     public static final String MESSAGE_EXTRA_ARGS = "There should not be any arguments for %s.";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Sorry, %s command format is wrong"
-            + ", please read following instruction: \n";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "%s command format is wrong.\n";
     public static final String MESSAGE_MISSING_INDEX = "The index for %s is missing.\n";
     public static final String MESSAGE_NON_INTEGER = "The index for %s should be an integer.\n";
+    public static final String MESSAGE_INVALID_INDEX_RANGE = "The %s index needs to be within the range "
+            + "of the total number of %ss\n";
 }
