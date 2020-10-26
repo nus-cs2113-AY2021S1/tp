@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.favorite.Fav;
-import seedu.duke.favorite.FavList;
+import seedu.duke.model.favorite.Fav;
+import seedu.duke.model.favorite.FavList;
 
 import java.io.File;
 import java.io.FileNotFoundException;

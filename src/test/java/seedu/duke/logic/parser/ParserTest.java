@@ -1,13 +1,40 @@
 package seedu.duke.logic.parser;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.CustomException;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusData;
+import seedu.duke.model.bus.BusStops;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ParserTest {
+
+    private static ArrayList<Bus> busesInZoneA = new ArrayList<>();
+    private static final BusStops[] AA1 = {
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.YUSOFISHAKHOUSE,
+        BusStops.CENTRALLIBRARY,
+        BusStops.KENTRIDGE,
+        BusStops.MUSEUM,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
+    };
+
+    @BeforeAll
+    public static void makeList() {
+        busesInZoneA.add(new Bus("AA1", AA1));
+        BusData.createBusList(busesInZoneA);
+    }
 
     @Test
     void extractType_unknownCommand_expectException() {

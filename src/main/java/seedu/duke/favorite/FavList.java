@@ -1,5 +1,7 @@
 package seedu.duke.favorite;
 
+import seedu.duke.model.favorite.Fav;
+
 import java.util.ArrayList;
 
 public class FavList {

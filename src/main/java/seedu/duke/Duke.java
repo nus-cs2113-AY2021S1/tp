@@ -1,19 +1,20 @@
 package seedu.duke;
 
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.favorite.FavList;
+import seedu.duke.model.favorite.FavList;
+import seedu.duke.logic.parser.DescFavParser;
 import seedu.duke.logic.parser.Parser;
 import seedu.duke.logic.parser.RouteParser;
+import seedu.duke.model.bus.BusInfo;
 import seedu.duke.storage.FavStorage;
 import seedu.duke.storage.FreqStorage;
 import seedu.duke.ui.Ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Duke {
 
+    private static final String DUMMY_PARAM = "Dummy";
     private static Parser parser;
     public static FavStorage favFile = new FavStorage("data/FavList.txt");
     public static FreqStorage freqFile = new FreqStorage("data/freqList.txt");
@@ -23,6 +24,7 @@ public class Duke {
 
     public Duke() {
         RouteParser.initLogger();
+        DescFavParser.initLogger();
     }
 
     /**
@@ -30,18 +32,20 @@ public class Duke {
      */
     public static void main(String[] args) throws IOException {
         new Duke();
-        boolean isOngoing = true;
         try {
             favFile.readFile();
             freqFile.readFile();
         } catch (CustomException e) {
             Ui.showError(e);
         }
+
         Ui.printWelcomeMessage();
+        parser = new Parser(DUMMY_PARAM);
+        boolean isOngoing = true;
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();
-                parser = new Parser(fullCommand);
+                parser.setUserInput(fullCommand);
                 isOngoing = parser.extractType();
                 freqFile.updateFile();
             } catch (CustomException error) {
