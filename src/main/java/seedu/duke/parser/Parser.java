@@ -17,6 +17,7 @@ import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
 import static seedu.duke.command.CommandSummary.SPRINT;
 import static seedu.duke.command.CommandSummary.HELP;
+import static seedu.duke.command.CommandSummary.STORAGE;
 
 
 public class Parser {
@@ -73,6 +74,8 @@ public class Parser {
                     return new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case SPRINT:
                     return new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
+                case STORAGE:
+                    return new StorageParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 default:
                     return new InvalidCommand(parameters);
                 }

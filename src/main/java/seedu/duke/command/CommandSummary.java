@@ -8,6 +8,7 @@ public class CommandSummary {
     public static final String MEMBER = "member";
     public static final String TASK = "task";
     public static final String SPRINT = "sprint";
+    public static final String STORAGE = "storage";
 
     /*
     Action Commands
@@ -39,6 +40,11 @@ public class CommandSummary {
      */
     public static final String HELP = "help";
 
+    /*
+    Storage
+     */
+    public static final String CLEAR = "clear";
+    
     /*
     Bye
      */
