@@ -22,6 +22,7 @@ public class Messages {
     public static final String INVALID_TASK_NUMBER = "Invalid task number!" + LS;
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
     public static final String MAX_NUM_TASK = "Max number of tasks reached!" + LS;
+    public static final String EMPTY_DATA_STACK = "Empty data stack!" + LS;
 
     public static final String WELCOME_MESSAGE = WELCOME_BORDER + LS
             + WELCOME_BORDER_SPACE + LS
@@ -75,6 +76,8 @@ public class Messages {
     public static final String SEARCH_NOT_FOUND_MESSAGE = "No matched item found." + LS;
     public static final String SEARCH_FOUND_MESSAGE = "Here is your list of tasks"
             + " which contain the word/letters:";
+    public static final String NO_PREV_MODIFICATION = "There's nothing to undo.";
+    public static final String UNDO_MESSAGE = "Previous modification has been undone.";
 
     private static String padString(char letter, int length) {
         return Util.generatePadStringWithCharAndLength(letter, length);

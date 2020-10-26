@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 public class TaskMap {
     public static final int MAX_NUM_TASKS = 10000;
-    private final LinkedHashMap<Integer, Task> tasksMap;
+    private LinkedHashMap<Integer, Task> tasksMap;
 
     public TaskMap() {
         tasksMap = new LinkedHashMap<>(MAX_NUM_TASKS);
     }
 
-    public TaskMap(List<Task> tasks) {
+    public TaskMap(Collection<Task> tasks) {
         tasksMap = new LinkedHashMap<>(MAX_NUM_TASKS);
         for (Task task : tasks) {
             tasksMap.put(task.getTaskID(), task);
@@ -81,4 +81,5 @@ public class TaskMap {
     public void delete(Integer key) {
         tasksMap.remove(key);
     }
+
 }

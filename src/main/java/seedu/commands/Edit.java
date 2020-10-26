@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.EDIT_MESSAGE;
 
-public class Edit extends Command {
+public class Edit extends ModificationCommand {
     public static final String COMMAND_WORD = "edit";
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^edit (?<key>\\d+)"
@@ -42,29 +43,36 @@ public class Edit extends Command {
         this.priority = priority;
     }
 
-    @Override
-    public CommandResult execute(TaskMap tasks)
+    public CommandResult execute(Model model)
         throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
+        TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
+
+        Task editedTask = new Task(key, task.getDescription(), task.getDate(), task.getStartTime(),
+            task.getEndTime(), task.getPriority());
+
         // Set field
         if (description != null) {
-            task.setDescription(description);
+            editedTask.setDescription(description);
         }
         if (date != null) {
-            task.setDate(date);
+            editedTask.setDate(date);
         }
         if (startTime != null) {
-            task.setStartTime(startTime);
+            editedTask.setStartTime(startTime);
         }
         if (endTime != null) {
-            task.setEndTime(endTime);
+            editedTask.setEndTime(endTime);
         }
         if (priority != null) {
-            task.setPriority(priority);
+            editedTask.setPriority(priority);
         }
+        tasks.delete(key);
+        tasks.addTask(editedTask);
+        model.pushAndUpdate(tasks);
         return new CommandResult(EDIT_MESSAGE);
     }
 }

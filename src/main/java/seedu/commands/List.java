@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import static seedu.messages.Messages.LIST_MESSAGE;
 import static seedu.messages.Messages.LS;
 
-public class List extends Command {
+public class List extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "list";
 
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
@@ -44,7 +44,6 @@ public class List extends Command {
         }
     }
 
-    @Override
     public CommandResult execute(TaskMap tasks) {
         assert !(dateFlag && priorityFlag);
 

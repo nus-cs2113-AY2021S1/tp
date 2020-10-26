@@ -7,6 +7,7 @@ public class CommandResult {
     private final String message;
     private TaskMap tasks = null;
     private DisplayMode displayMode = DisplayMode.ALL;
+    private boolean isExit = false;
 
     public CommandResult(String message) {
         this.message = message;
@@ -33,5 +34,13 @@ public class CommandResult {
 
     public DisplayMode getDisplayMode() {
         return displayMode;
+    }
+
+    public boolean isExit() {
+        return isExit;
+    }
+
+    public void setExit(boolean exit) {
+        isExit = exit;
     }
 }
