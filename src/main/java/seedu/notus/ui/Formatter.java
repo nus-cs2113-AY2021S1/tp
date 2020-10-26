@@ -477,7 +477,8 @@ public class Formatter {
 
                     // If there is a color string that is not closed
                     if (stringBeforeReset.contains(PREFIX)) {
-                        numAsciiCode += ANSI_PREFIX_LENGTH;
+                        int offsetSet = s.indexOf(POSTFIX);
+                        numAsciiCode += offsetSet + 1;
                         // Directly add to the list
                         coloredStringStartIndexList.add(messageLength);
                         stringColorList.add(checkString.substring(0, checkString.indexOf(POSTFIX) + 1));
@@ -491,7 +492,8 @@ public class Formatter {
                     checkString = stringWithReset.substring(RESET.length());
                 }
             } else if (s.contains(PREFIX) && !s.contains(RESET)) { // is an ansi defined color
-                numAsciiCode += ANSI_PREFIX_LENGTH;
+                int offsetSet = s.indexOf(POSTFIX);
+                numAsciiCode += offsetSet + 1;
                 // Add them into the stack first
                 coloredStringStartIndexStack.push(messageLength);
                 stringColorStack.push(s.substring(0, s.indexOf(POSTFIX) + 1));
