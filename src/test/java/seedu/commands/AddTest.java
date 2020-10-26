@@ -1,6 +1,7 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
@@ -8,6 +9,7 @@ import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.messages.Messages.ADD_MESSAGE;
 
@@ -52,6 +54,16 @@ class AddTest {
             int finalI = i;
             assertThrows(InvalidCommandException.class, () -> new Add("add task1 p/" + invalidInputs[finalI]));
         }
+    }
+
+    @Test
+    public void addCommand_executeSuccess() throws InvalidCommandException, InvalidDatetimeException,
+            InvalidPriorityException, MaxNumTaskException {
+        TaskMap taskMap = new TaskMap();
+        Model model = new Model(taskMap);
+        Add add = new Add("add newTask");
+        CommandResult result = add.execute(model);
+        assertEquals(1, model.getTaskMap().size());
     }
 
 }
