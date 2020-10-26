@@ -91,8 +91,7 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE.repeat(CONTENT_INDENT)
-                    + truncatedContent));
+            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;
