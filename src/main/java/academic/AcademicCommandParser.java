@@ -63,7 +63,7 @@ public class AcademicCommandParser extends CommandParser {
 
         if (!list.contains(grade.toLowerCase())) {
             throw new InvalidGradeException();
-        } else if (mc.equals("0")) {
+        } else if (Integer.parseInt(mc) <= 0) {
             throw new InvalidMcException();
         }
         return new String[]{name, mc, grade};
@@ -103,15 +103,15 @@ public class AcademicCommandParser extends CommandParser {
     }
 
     public static Integer parseDeletePerson(String command) {
-        return Integer.parseInt(command.substring(14).trim());
+        return Integer.parseInt(command.substring("delete person".length()).trim());
     }
 
     public static Integer parseDeleteGrade(String command) {
-        return Integer.parseInt(command.substring(12).trim());
+        return Integer.parseInt(command.substring("delete grade".length()).trim());
     }
 
     public static Integer parseSuGrade(String command) {
-        return Integer.parseInt(command.substring(8).trim());
+        return Integer.parseInt(command.substring("su grade".length()).trim());
     }
 
     public static Integer parseStarGrade(String command) {
