@@ -5,12 +5,12 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.project.ProjectManager;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.PosixFilePermissions;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -68,11 +68,12 @@ class StorageManagerTest {
     @Test
     void save_noPerm_exceptionThrown() {
         assertThrows(IOException.class, () -> {
-            if (Files.exists(TEST_FILEPATH)) {
-                Files.delete(TEST_FILEPATH);
+            File testFile = TEST_FILEPATH.toFile();
+            if (testFile.exists()) {
+                testFile.delete();
             }
-            Files.createFile(TEST_FILEPATH);
-            Files.setPosixFilePermissions(TEST_FILEPATH, PosixFilePermissions.fromString("r--------"));
+            testFile.createNewFile();
+            testFile.setReadOnly();
             ProjectManager projMgr = new ProjectManager();
             StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
             String expectedStr = Files.readString(Paths.get("test-data/SAVE_1.json"));
