@@ -20,10 +20,10 @@ Table of contents:
 
 ## 1. Introduction
 
-E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [OOP](#Command-Line-Interface-(CLI)) principles** through a gamified
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [OOP](#2-object-oriented-programming-oop) principles** through a gamified
 platform and enhances their learning experience. 
 
-It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [**Command Line Interface (CLI)**](#Command-Line-Interface-(CLI)), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [**Command Line Interface (CLI)**](#1-command-line-interface-cli), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 
 ## 2. Quick Start
