@@ -14,21 +14,16 @@ import java.util.ArrayList;
 
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
-public class DoneCommand extends Command {
+public class DeleteCommand extends Command {
     private String listType;
 
-    /**
-     * Constructor for setting event to done.
-     *
-     * @param command from user input
-     */
-    public DoneCommand(String listType, String command) {
+    public DeleteCommand(String listType, String command) {
         this.isExit = false;
         this.listType = listType;
         this.command = command;
     }
 
-    public static Command parse(String input) throws WrongNumberOfArgumentsException {
+    public static Command parse(String input) throws WrongNumberOfArgumentsException, WrongNumberFormatException {
         String[] inputParameters = input.trim().split(" ", 2);
 
         if (inputParameters.length < 2) {
@@ -38,7 +33,14 @@ public class DoneCommand extends Command {
         String listType = inputParameters[0];
         String eventIndex = inputParameters[1].trim();
 
-        return new DoneCommand(listType, eventIndex);
+        try {
+            String[] eventIndexArray = eventIndex.split(" ",2);
+            Integer.parseInt(eventIndexArray[0]);
+        } catch (NumberFormatException e) {
+            throw new WrongNumberFormatException("Event index given is not an integer.");
+        }
+
+        return new DeleteCommand(listType, eventIndex);
     }
 
     @Override
@@ -47,25 +49,23 @@ public class DoneCommand extends Command {
         EventList eventList = data.getEventList(listType);
         String[] eventIndexArray = command.split(" ",2);
 
-        try {
-            int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
-            Event doneEvent = eventList.getEventByIndex(eventIndex);
+        int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
+        Event deleteEvent = eventList.getEventByIndex(eventIndex);
 
-            if (eventIndexArray.length == 1 || doneEvent.getRepeatType() == null) {
-                doneEvent.markAsDone();
-                ui.printEventMarkedDoneMessage(doneEvent);
-            } else if (eventIndexArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
-                LocalDate doneEventDate = dateParser(eventIndexArray[1]);
-                ArrayList<Event> repeatEventList = doneEvent.getRepeatEventList();
-                for (Event e: repeatEventList) {
-                    if (e.getDate().isEqual(doneEventDate)) {
-                        e.markAsDone();
-                        ui.printEventMarkedDoneMessage(e);
-                    }
+        if (eventIndexArray.length == 1 || deleteEvent.getRepeatType() == null) {
+            eventList.getEvents().remove(deleteEvent);
+            ui.printEventDeletedMessage(deleteEvent);
+        } else if (eventIndexArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
+            LocalDate deleteEventDate = dateParser(eventIndexArray[1]);
+            ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
+
+            for (Event e: repeatEventList) {
+                if (e.getDate().isEqual(deleteEventDate)) {
+                    repeatEventList.remove(e);
+                    ui.printEventDeletedMessage(e);
+                    break;
                 }
             }
-        } catch (NumberFormatException e) {
-            throw new WrongNumberFormatException("Event index given is not an integer.");
         }
     }
 

@@ -188,6 +188,11 @@ public class Ui {
         System.out.println(undoneEvent);
     }
 
+    public void printEventDeletedMessage(Event deleteEvent) {
+        System.out.println("You have successfully deleted this event!");
+        System.out.println(deleteEvent);
+    }
+
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }
