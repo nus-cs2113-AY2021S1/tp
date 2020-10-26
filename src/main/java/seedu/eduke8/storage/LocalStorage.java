@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.io.File;
 import java.io.FileReader;
@@ -30,7 +31,7 @@ public abstract class LocalStorage implements Storage {
     }
 
     @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException {
+    public ArrayList<Displayable> load() throws IOException, ParseException, Eduke8Exception {
         return null;
     }
 

@@ -5,8 +5,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
+import seedu.eduke8.note.Note;
 import seedu.eduke8.note.NoteList;
 import seedu.eduke8.question.Question;
+import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.stats.TopicalStatsCalculator;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
@@ -56,15 +59,37 @@ public class UserStorage extends LocalStorage {
     }
 
     @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException {
+    public ArrayList<Displayable> load() throws IOException, ParseException, Eduke8Exception {
         if (!file.exists()) {
             return new ArrayList<>();
         }
 
-        JSONArray objectsAsJsonArray = getJsonArrayFromFile();
+        JSONArray topicsAsJsonArray = getJsonArrayFromFile();
+        for (Object topic: topicsAsJsonArray) {
+            String topicDescription = (String) ((JSONObject) topic).get("topic");
+            Topic topicObject = (Topic) topicList.find(topicDescription);
 
+            QuestionList questionList = topicObject.getQuestionList();
+            JSONArray questions = (JSONArray) ((JSONObject) topic).get("questions");
+            for (Object question: questions) {
+                String questionDescription = (String) ((JSONObject) question).get("description"); // Also marks as shown
+                Question questionObject = (Question) questionList.find(questionDescription);
+                if ((boolean) ((JSONObject) question).get("correct")) {
+                    questionObject.markAsAnsweredCorrectly();
+                }
+                if ((boolean) ((JSONObject) question).get("bookmarked")) {
+                    bookmarkList.add(questionObject);
+                }
+            }
 
-        return null;
+            NoteList noteList = topicObject.getNoteList();
+            JSONArray notes = (JSONArray) ((JSONObject) topic).get("notes");
+            for (Object note: notes) {
+                noteList.add((Note) note);
+            }
+        }
+
+        return topicList.getInnerList();
     }
 
     @SuppressWarnings("unchecked")
