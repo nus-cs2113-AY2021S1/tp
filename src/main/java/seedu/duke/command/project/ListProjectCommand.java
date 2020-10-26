@@ -19,10 +19,11 @@ public class ListProjectCommand extends ProjectCommand {
 
     public void execute() {
         Ui.showToUserLn("Following are the added projects: ");
+        Ui.showToUserLn("\tID Title \t\tDescription");
         for (Map.Entry<Integer, Project> entry: projectManager.getProjectList().entrySet()) {
             Project proj = entry.getValue();
             Integer id = entry.getKey();
-            String output = String.format("%d title: %s description: %s", id, proj.getTitle(), proj.getDescription());
+            String output = String.format("%d) %s \t\t%s", id, proj.getTitle(), proj.getDescription());
             Ui.showToUserLn("\t" + output);
         }
     }
