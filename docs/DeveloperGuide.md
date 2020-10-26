@@ -217,7 +217,7 @@ Deletes the show from the ShowList
 
 The changes are reflected to the user. At the same time, the changes will be saved to the showList.txt file
 
-### AddReview Command
+### AddReviewCommand
 
 The `addreview` command takes in 2 parameters, the show which review is to be updated and the review to be updated
 to the show. The `addreview` command is invoked by the InputParser method parseAddReviewCommand.
@@ -356,7 +356,7 @@ The show is updated back into the Showlist
 
 The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file
 
-### DeleteReview Command
+### DeleteReviewCommand
 
 The `deletereview` command takes in 1 parameter, the show which review is to be deleted.
 The command is then invoked by the inputParser method parseDeleteReview.
@@ -393,7 +393,7 @@ The show is updated back into the Showlist
 
 The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file
 
-### Watch Command feature
+### WatchCommand
 
 The WatchCommand class extends Command by providing methods to 
 increment the current episode in the persistent watch history of the user. It also updates the watch time limit as indicated previously by the user.
@@ -422,7 +422,7 @@ The processCommand method in WatchCommand class is called.
 
 3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
 
-### UpdateTimeLimit Command feature
+### UpdateTimeLimitCommand 
 
 The UpdateTimeLimit class extends Command by providing methods to 
 update the current time limit of the user from the WatchTime class. 
