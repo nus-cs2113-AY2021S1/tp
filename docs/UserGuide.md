@@ -310,9 +310,9 @@ Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 
 Example of usage: 
 
-`Tag-n /i 1 /tag CS2113`
+`tag-n /i 1 /tag CS2113`
 
-`Tag-n /i 1 /tag CS2113 /tag important`
+`tag-n /i 1 /tag CS2113 /tag important`
 
 Expected output:
 
