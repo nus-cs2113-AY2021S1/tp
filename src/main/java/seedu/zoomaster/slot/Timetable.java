@@ -97,15 +97,29 @@ public class Timetable {
     }
 
     public Slot getSlotByIndexInDay(String day, int index) throws ZoomasterException {
-        // TODO: Implement this method. This is a dummy implementation.
+        ArrayList<Slot> slots = new ArrayList<>();
+        ArrayList<String> moduleCodeList = new ArrayList<>();
+
         for (Module module: modules) {
-            if (!module.getSlotList().isEmpty()) {
-                return module.getSlotList().get(0);
+            for (Slot s: module.getSlotList()) {
+                if (s.getDay().equals(day)) {
+                    slots.add(s);
+                    moduleCodeList.add(module.getModuleCode());
+                }
             }
         }
-        return null;
+
+        SlotContainer slotContainer = new SlotContainer(slots, moduleCodeList);
+        slotContainer = SlotContainer.sortSlotsByTime(slotContainer);
+
+        try {
+            return slotContainer.getSlotList().get(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SLOT_NUMBER);
+        }
     }
 
+    //@@author fchensan
     /**
      * Move a slot to another module given a user input module code.
      *
