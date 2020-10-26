@@ -53,7 +53,7 @@ public class AddNoteCommand extends Command {
 
         // Get Content
         try {
-            if (storageManager.noteExists(note)) {
+            if (storageManager.noteExists(note, note.getIsArchived())) {
                 content = storageManager.getNoteContent(note);
             }
         } catch (SystemException exception) {
@@ -72,7 +72,7 @@ public class AddNoteCommand extends Command {
 
         //Save the notes in storage
         try {
-            storageManager.saveNote(note);
+            storageManager.saveNote(note, note.getIsArchived());
         } catch (IOException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
         }

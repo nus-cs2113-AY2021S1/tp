@@ -60,7 +60,7 @@ class StorageManagerTest {
         Note note = new Note("TestNote", content, false, false);
       
         try {
-            storageManager.saveNoteContent(note);
+            storageManager.saveNoteContent(note, note.getIsArchived());
         } catch (IOException e) {
             System.out.println("Unable to create file");
         }

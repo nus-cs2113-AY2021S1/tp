@@ -76,6 +76,14 @@ public class Note extends TaggableObject {
         return content;
     }
 
+    public String getContentString() {
+        String contentString = "";
+
+        for (String information: content) {
+            contentString += information + LS;
+        }
+        return contentString;
+    }
     /**
      * Sets the content of note from the changes.
      */

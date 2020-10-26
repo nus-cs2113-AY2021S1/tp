@@ -96,8 +96,8 @@ public class StorageManager {
     public static void saveNotebook(Notebook notebook) throws SystemException {
         for (int i = 0; i < notebook.getSize();i++) {
             try {
-                saveNoteContent(notebook.getNote(i));
-                saveNoteDetails(notebook.getNote(i));
+                saveNoteContent(notebook.getNote(i), true);
+                saveNoteDetails(notebook.getNote(i), true);
             } catch (IOException e) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
             }
@@ -113,27 +113,27 @@ public class StorageManager {
      */
     public static void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
         String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
-        FileWriter fw = new FileWriter(path);
-        fw.write("");
-        fw.close();
 
-        ArrayList<Note> notes = new ArrayList<>();
+        ArrayList<Note> notes;
 
         if (isArchive) {
             notes = notebook.getArchivedNotes();
         } else {
             notes = notebook.getNotes();
         }
+        FileWriter fw = new FileWriter(path);
+        fw.write("");
+        fw.close();
 
         for (Note note: notes) {
-            saveNoteDetails(note);
+            saveNoteDetails(note, isArchive);
         }
     }
 
-    public void saveNote(Note note) throws IOException {
-        if (!noteExists(note)) {
-            saveNoteContent(note);
-            saveNoteDetails(note);
+    public void saveNote(Note note, boolean isArchive) throws IOException {
+        if (!noteExists(note, isArchive)) {
+            saveNoteContent(note, isArchive);
+            saveNoteDetails(note, isArchive);
         }
     }
 
@@ -143,8 +143,15 @@ public class StorageManager {
      * @param note note whose file status needs to be checked
      * @return boolean
      */
-    public boolean noteExists(Note note) {
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+    public boolean noteExists(Note note, boolean isArchive) {
+        String path;
+
+        if (isArchive){
+            path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH + "/" + note.getTitle() + ".txt";
+        } else {
+            path = FOLDER_DIR + NOTEBOOK_FILE_PATH + "/" + note.getTitle() + ".txt";
+        }
+
         File file = new File(path);
         if (!file.exists()) {
             return false;
@@ -157,11 +164,18 @@ public class StorageManager {
      *
      * @param note The note to be saved
      */
-    public static void saveNoteContent(Note note) throws IOException {
-        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+    public static void saveNoteContent(Note note, boolean isArchive) throws IOException {
+        String path;
+
+        if(isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
+        }else {
+            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        }
+
         createFile(path);
         FileWriter fw = new FileWriter(path);
-        fw.write(note.getContent().toString());
+        fw.write(note.getContentString());
         fw.close();
     }
 
@@ -169,8 +183,15 @@ public class StorageManager {
      * Saves the details of notes such as title, tags and pinned status to the notebook text file.
      * @param note Note of which details are to be saved to the file
      */
-    public static void saveNoteDetails(Note note) throws IOException {
-        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+    public static void saveNoteDetails(Note note, boolean isArchive) throws IOException {
+        String path;
+
+        if (isArchive){
+            path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
+        } else {
+            path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        }
+
         FileWriter fwAppend = new FileWriter(path, true);
         fwAppend.write(note.toSaveString());
         fwAppend.close();
