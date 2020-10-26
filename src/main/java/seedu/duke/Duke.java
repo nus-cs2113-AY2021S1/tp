@@ -40,7 +40,7 @@ public class Duke {
         }
 
         Ui.printWelcomeMessage();
-        parser = new Parser("lol");
+        parser = new Parser(DUMMY_PARAM);
         boolean isOngoing = true;
         while (isOngoing) {
             try {
