@@ -8,4 +8,9 @@ public class Adjective extends Words {
     public String getType() {
         return "adjective";
     }
+
+    @Override
+    public String toString() {
+        return "a" + " > " + this.description + " > " + this.definition;
+    }
 }

@@ -31,12 +31,22 @@ public class FluffleMessages {
     public static final String FILE_PATH_TO_DIRECTORY_INVALID_MSG = "File path to directory invalid!";
     public static final String FILE_NOT_FOUND_MSG = "File does not exist.";
     public static final String FILE_AUTO_CREATED_MSG = "Auto creating new file";
+    public static final String FILE_SAVE_ERROR_MSG = "Error saving file!";
 
     /** New word added messages. */
     public static final String ADD_NOUN_MSG = "Added the following noun:";
     public static final String ADD_VERB_MSG = "Added the following verb:";
     public static final String ADD_ADJECTIVE_MSG = "Added the following adjective:";
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
+    public static final String EMPTY_INPUT_MSG = "Please enter a word and its description to save!";
+    public static final String EMPTY_DESC_MSG = "Please enter the word's description after typing 'd\\'!";
+    public static final String INCORRECT_NOUN_MSG = "Please use the correct command format! Type 'help noun' for more info.";
+    public static final String INCORRECT_VERB_MSG = "Please use the correct command format! Type 'help verb' for more info.";
+    public static final String INCORRECT_ADJ_MSG = "Please use the correct command format! Type 'help adj' for more info.";
+
+    /** Three Words Generator messages. */
+    public static final String THREE_WORDS_MSG = "Here are three words selected randomly from the word bank:";
+    public static final String THREE_WORDS_ERROR_MSG = "Word bank has less than three words, please add more words!";
 
     /** New bunny added messages. */
     public static final String ADD_BUNNY_MSG = "New bunny added!";

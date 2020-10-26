@@ -8,4 +8,9 @@ public class Verb extends Words {
     public String getType() {
         return "verb";
     }
+
+    @Override
+    public String toString() {
+        return "v" + " > " + this.description + " > " + this.definition;
+    }
 }
