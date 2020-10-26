@@ -199,11 +199,11 @@ public class ViewCommand extends Command {
         } else {
             int index = 0;
             int printIndex = index + 1;
-            Ui.printCustomMessage(EXERCISE_LIST_HEADER);
+            Ui.printCustomMessage(FOOD_LIST_HEADER);
             Ui.printMessageInYellow(DATE_HEADER + date);
             while (index < foodOnThatDate.getSize()) {
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
-                        + EXERCISE_HEADER + foodOnThatDate.getFood(index).getFoodName()
+                        + FOOD_HEADER + foodOnThatDate.getFood(index).getFoodName()
                         + SPACE_FORMATTING + BURNT_CAL_HEADER + foodOnThatDate.getFood(index).getCalories());
                 index++;
                 printIndex++;
