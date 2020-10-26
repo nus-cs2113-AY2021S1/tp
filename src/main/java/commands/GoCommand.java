@@ -34,9 +34,15 @@ public class GoCommand extends Command {
     public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
         if (access.isAdminLevel()) {
             String result = goModule(access, storage, ui);
+            if (result.equals("")) {
+                return;
+            }
             ui.showToUser(result);
         } else if (access.isModuleLevel()) {
             String result = goChapter(access, storage);
+            if (result.equals("")) {
+                return;
+            }
             ui.showToUser(result);
         } else {
             throw new IncorrectAccessLevelException("Go command can only be called "
