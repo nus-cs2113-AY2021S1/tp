@@ -524,7 +524,58 @@ NUS students
 |v2.0|user|(to be updated)|(to be updated)|
 
 ### Use Cases
-{Insert some use cases examples}
+(For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
+
+####Use case: UC1 - Add module
+
+#####MSS: 
+1. User requests to add a module
+1. System prompts user to enter a module code
+1. User enters a module code
+1. System adds module to the database<br>
+Use case ends 
+
+#####Extensions:
+* 3a. Module code is invalid
+  * 3a1. System shows an error message<br>
+Use case ends
+* 3b. Module code already exists in database
+  * 3b1. System shows an error message<br>
+Use case ends
+
+####Use case: UC2 - View analysis of time spent
+
+#####MSS: 
+1. User requests to view analysis of time spent
+1. System prompts user to enter a week number
+1. User enters a week number
+1. System displays analysis of time spent to user<br>
+Use case ends 
+
+#####Extensions:
+* 3a. Week number is invalid<br>
+  * 3a1. System shows an error message<br> 
+Use case ends
+* 3b. Module list is empty<br>
+  * 3b1. System shows an error message<br>
+Use case ends
+* 4a. No time is spent in the specified week
+  * 4a1. System shows only time spent and no analysis<br>
+Use case ends
+
+####Use case: UC3 - Open notifications
+
+#####MSS: 
+1. User requests to open notifications
+1. System displays notifications<br>
+Use case ends 
+
+#####Extensions: 
+* 2a. No notifications
+  * 2a1. System displays an encouraging message<br>
+Use case ends
+
+
 
 ### Non-Functional Requirements
 
