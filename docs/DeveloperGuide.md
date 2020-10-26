@@ -70,9 +70,23 @@ This program can be run once it is compiled. If you have built its artifacts (.j
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
   
 API: [StorageManager.java](/src/main/java/seedu/duke/storage/StorageManager.java)  
-The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is json.simple 3.1.1 by Clifton Labs.  
-Apart from the StorageManager class, each of the model classes is also part of the Storage component as they inherit the interface Jsonable. Therefore, the model classes need to implement the method toJson() which will contain the logic for serialising an object into a JSON string. This allows the object to be serialised by passing the object into Jsoner.serialize() directly.  
-In contrast, the JSON is deserialised under the functions implemented in StorageManager class manually due to the limitations of the library.  
+The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
+As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
+- ProjectManager  
+- Project  
+- SprintManager  
+- TaskManager  
+- ProjectMembers  
+- Sprint  
+- Task  
+- Member  
+
+This requires the model classes to implement two methods required for JSON serialisation and deserialisation:  
+- `toJson()`: Contains logic required to convert the model object into JSON string.  
+- `fromJson()`: Contains logic required to convert JSON object into its respective model class.  
+  - Due to the limitations of the library, parsing of the JSON string only converts it into either `JsonObject` or `JsonArray` objects which requires additional operations to map the data back to the respective model classes.  
+  - `fromJson()` will take in either one of the `JsonObject` or `JsonArray` object, and map the properties to the respective properties of the model classes.  
+
 
 ## Implementation
 ### Project
