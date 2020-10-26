@@ -49,7 +49,7 @@ public class DeleteBookmarkCommand extends Command {
             ui.print(message);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
-                    + bookmarks.getBookmarkList().size());
+                    + bookmarks.getBookmarks().size());
         }
     }
 }

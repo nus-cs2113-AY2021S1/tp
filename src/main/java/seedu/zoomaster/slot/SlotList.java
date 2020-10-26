@@ -1,14 +1,12 @@
 package seedu.zoomaster.slot;
 
-import seedu.zoomaster.ItemList;
-
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
  * This class represents the timetable used to store and organize the schedule slots.
  */
-public class SlotList extends ItemList {
+public class SlotList {
     private ArrayList<Slot> slots;
     //private ArrayList<Bookmark> bookmarks;
     private ArrayList<Module> modules;

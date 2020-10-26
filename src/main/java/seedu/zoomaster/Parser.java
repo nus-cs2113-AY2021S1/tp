@@ -5,6 +5,7 @@ import seedu.zoomaster.command.ExitCommand;
 import seedu.zoomaster.command.ChangeModeCommand;
 import seedu.zoomaster.command.ClearCommand;
 import seedu.zoomaster.command.HelpCommand;
+import seedu.zoomaster.command.LaunchNowCommand;
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
@@ -13,6 +14,8 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
+import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
+import seedu.zoomaster.command.timetable.EditSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
 import seedu.zoomaster.exception.ZoomasterException;
@@ -47,6 +50,8 @@ public class Parser {
 
         if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
             command = new ExitCommand();
+        } else if (input.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
+            command = new LaunchNowCommand();
         } else if (input.startsWith(ChangeModeCommand.MODE_KW)) {
             command = new ChangeModeCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
@@ -68,7 +73,6 @@ public class Parser {
 
     //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws ZoomasterException {
-        Command command;
 
         if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
             return new ShowBookmarkCommand();
@@ -100,6 +104,10 @@ public class Parser {
             return new ShowTimetableCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
             command = new ClearCommand();
+        } else if (input.startsWith(LaunchModuleAndSlotBookmark.LAUNCH_KW)) {
+            command = new LaunchModuleAndSlotBookmark(input);
+        } else if (input.startsWith(EditSlotCommand.EDIT_KW)) {
+            command = new EditSlotCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
@@ -108,7 +116,6 @@ public class Parser {
     }
 
     private static Command createPlannerCommand(String input) throws ZoomasterException {
-        Command command;
 
         if (input.startsWith(AddMeetingCommand.ADD_KW)) {
             return new AddMeetingCommand(input);

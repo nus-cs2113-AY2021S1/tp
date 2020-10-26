@@ -40,7 +40,7 @@ class BookmarkTest {
         String description = "desc";
         String url = "www.google.com";
         Bookmark bookmark = new Bookmark(description, url);
-        String expectedOutput = "  [" + description + "] " + url + "\n";
+        String expectedOutput = "  [" + description + "] " + url;
         assertEquals(expectedOutput, bookmark.launch());
     }
 

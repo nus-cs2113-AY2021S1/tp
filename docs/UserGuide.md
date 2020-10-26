@@ -21,8 +21,9 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
     * [Launch bookmark:](#launchbookmark)  **launch**
   * [Timetable mode](#timetablemode)
     * [Show timetable:](#showtimetable) **show**
-    * [Add slot:](#addtimeslot) **add**
-    * [Delete slot:](#deletetimeslot)  **delete**
+    * [Show module details:](#showmoduledetails) **show**
+    * [Add module, time slot and bookmark:](#addtimeslot) **add**
+    * [Delete module, time slot and bookmarks:](#deletetimeslot)  **delete**
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
   
@@ -37,15 +38,19 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 
 >[i] Notes on command format:
 >* Word contained in {currly brackets} are parameters to be supplied by the user. <br>
->eg. in delete {bookmark_number}, bookmark_number is a parameter which can be used as delete 1.
+>eg. in delete {BOOKMARK_NUMBER}, BOOKMARK_NUMBER is a parameter which can be used as `delete 1`.
+> * Parameters with `/` inside are parameters which accept different types of inputs. <br>
+> eg. show launch {INDEX/DESCRIPTION} shows that either INDEX or DESCRIPTION can be used.
 >* Items in with (optional) are optional inputs. <br>
->eg. show {DAY(optional)} can be used as show or as show [mon].
+>eg. show {DAY(optional)} can be used as `show` or as `show mon`.
+>
 
 <a name="global"></a> 
 ### Global
 
-The commands below can be used in both modes of the app.   
- 
+The commands below can be used in both modes of the app.  
+<br>
+
 <a name="mode"></a>  
 #### Switch mode: `mode`
 You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select, 
@@ -61,6 +66,16 @@ Example of usage:
 * `mode timetable` 
 
 <br/><br/> 
+<a name="launchnow"></a>  
+#### Launch the bookmarks of the current lesson: `launch now`  
+Launches the bookmarks of a current lesson slot on your timetable. 
+The time depends on the system time of your machine.
+  
+```
+Format: launch now    
+```
+
+<br/><br/> 
 <a name="exit"></a>  
 #### Exit the app: `exit`  
 Exits the application 
@@ -68,8 +83,12 @@ Exits the application
 ```
 Format: exit    
 ```
+
+<br/>
 ---
-<br/><br/> 
+<br/> 
+
+
 <a name="bookmarkmode"></a>  
 ### Bookmark Mode  
 
@@ -82,23 +101,24 @@ Format: show
 <br/><br/> 
 <a name="addbookmark"></a>  
 #### Add bookmark: `add`  
-Add a URL bookmark under a certain topic and description.  
+Adds a URL bookmark with a description.  
 ```
-Format: add {MODULE(optional)} {DESCRIPTON} {URL}
+Format: add {DESCRIPTON} {URL}
 ``` 
-* The `MODULE` is optional.  
-* The `TOPIC` and `DESCRIPTION` can only contain one word each.  
+* The `DESCRIPTION` can only contain one word (no whitespace inside).  
 * The `URL` has to start with `www.` or `https://`.  
-* There should be strictly one space between the `TOPIC`, `DESCRIPTION` and `URL`.    
+* There should be strictly one space between the `DESCRIPTION` and `URL`.    
   
 Example of usage:
-* `add CS2113T tutorial www.cs2113t.nus.edu.sg/`  
-* `add website https://cs2113t.nus.edu.sg/`  
+* `add cs2113t-website www.cs2113t.nus.edu.sg/`  
+* `add cs2113t-website https://cs2113t.nus.edu.sg/`  
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
 #### Delete bookmarks: `delete`  
-Deletes a bookmark with the specified index.  The index will correspond to the index of that bookmark in the list. You can do a `show` command to check the bookmark indexes.  
+Deletes a bookmark with the specified index.  
+The index will correspond to the index of that bookmark in the list. 
+You can do a `show` command to check the bookmark indexes.  
 
 ```
 Format: delete {INDEX}
@@ -111,18 +131,16 @@ Example of usage:
 <br/><br/> 
 <a name="findbookmark"></a>  
 #### Find bookmarks: `find`  
-Finds bookmarks with matching module and description and prints them
+Finds bookmarks with matching description and prints them.
 ```
-Format: find {MODULE} {DESCRIPTION(optional)}
+Format: find {DESCRIPTION}
 ```
-
-* The `DESCRIPTION` is optional.  
-* The `TOPIC` and `DESCRIPTION` can only contain one word each.  
-* There should be strictly one space between the `TOPIC`, `DESCRIPTION`.
+  
+* The `DESCRIPTION` can only contain one word.  
 
 Example of usage: 
-* `find CS2113 tutorial`
-* `find CS2113`  
+* `find cs2113t-website`
+* `find notes`  
 
 
 <br/><br/> 
@@ -130,66 +148,130 @@ Example of usage:
 #### Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
 * Index
-* Matching module or description
+* Matching description
 
-The index will correspond to the index of that bookmark in the list. You can do a `show` command to check the bookmark indexes.  
+The index will correspond to the index of that bookmark in the list. 
+You can do a `show` command to check the bookmark indexes.  
 ```
-Format: launch {INDEX}
-Format: launch {MODULE} {DESCRIPTION(optional)}
+Format: launch {INDEX/DESCRIPTION}
 ```
 
-* The `DESCRIPTION` is optional.  
-* The `TOPIC` and `DESCRIPTION` can only contain one word each.  
-* There should be strictly one space between the `TOPIC`, `DESCRIPTION`.   
+* The `DESCRIPTION` can only contain one word.   
 
-Example of usage:   
-* `launch CS2113 tutorial`  
-* `launch CS2113`  
+Example of usage:  
+* `launch 1`
+* `launch cs2113t-website`  
   
+<br/>
 ---
+<br/> 
 
-<br/><br/> 
 <a name="timetablemode"></a>  
 ### Timetable mode    
 
 <a name="showtimetable"></a>
 #### Show timetable: `show`
-Show the timetable for a certain day or the whole week. <br>
-Day inputs are in three letter abbreviations eg mon, tue, wed. <br>
-Today can also be a day input to show the timetable for today.
+Shows the timetable for a certain day or the whole week.  
+Day inputs are in three letter abbreviations eg `mon`, `tue`, `wed`.  
+`today` can also be a day input to show the timetable for the current day based on system time.  
+You can also view the information of module or its bookmarks.
 ```
 Format: show {DAY(optional)}
 ```
+
 Example of usage:   
 * `show`
 * `show mon`
 * `show today`
 
+<br/><br/>
+<a name="showmoduledetails"></a>
+#### Show module details: `show`
+Shows the details of a module that has been added.  
+You can see the respective indexes of each of the slots from the module 
+and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
+```
+Format: show {MODULE} bookmarks(optional)
+```
+
+Example of usage:   
+* `show cs2113t`
+* `show cs2113t bookmarks`
+
 <br/><br/> 
 <a name="addtimeslot"></a>
-#### Add time slot: `add`  
-Add a time slot with start and end time, day of week, and title.  
+#### Add module, time slot and bookmark: `add`  
+Adds module, time slot and bookmark.
+You can chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
+  
 ```
-Format: add {START TIME} {END TIME} {DAY} {TITLE}
+Format (adding a module): 
+* add {MODULE}
+
+Format (adding a slot to a module): 
+* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} 
+
+Format (adding a bookmark to a module): 
+* add {MODULE} {DESCRIPTION} {URL}
+
+Format (adding a bookmark to a slot): 
+* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}
+* add {MODULE} {DESCRIPTION} {INDEX} {URL}
+
+Format (chaining commands): 
+* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}, {DESCRIPTION} {URL}, ...
 ```
+
 * The `START TIME` and `END TIME` is the format `HH:mm`.  
 * The `DAY` can be one of `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`.  
-* There should be strictly one space between each parameter.    
+* There should be strictly one space between each parameter.
+* Multiple bookmarks can be added to a module and a slot.
+  * To add another bookmark to an existing module, you have to enter the module code of the 
+    existing module in the timetable.
+  * To add another bookmark to an existing slot, you can enter the command with the matching details 
+    of the existing slot or use the index number of the slot in the module to access the slot. 
+    Index number of the slot can be found by using the command `show {MODULE}`. 
+* Each command works by checking if each of the components (module, slot, bookmark) 
+  exists or is valid from left to right of the input before adding them.
+  * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
+    then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
+    which is valid and not a duplicate will then be added to the existing `cs2113t` module.
+* The chaining of commands only performs on one module which is {MODULE}.    
   
 Example of usage:   
-* `add 10:00 12:00 mon CS1231 Lecture`  
-* `add 14:00 16:00 tue CG1111 Tutorial`
+* `add cs2113t`  
+* `add cs2113t lecture fri 16:00 18:00`
+* `add cs2113t notes www.google.com`
+* `add cs2113t lecture fri 16:00 18:00 www.google.com`
+* `add cs2113t 1 www.yahoo.com`
+* `add cs2113t lecture fri 16:00 18:00 www.google.com, notes www.google.com, tutorial fri 10:00 12:00`
+
 
 <br/><br/> 
 <a name="deletetimeslot"></a>
-#### Delete time slot: `delete`  
-Delete a time slot with the specified index.
+#### Delete module, time slot and bookmarks: `delete`  
+Delete module, time slot or bookmarks.
 ```
-Format: delete {INDEX}
+Format (deleting a module): 
+* delete {MODULE}
+
+Format (deleting a slot of a module): 
+* delete {MODULE} {INDEX} 
+
+Format (deleting bookmarks of a module): 
+* delete {MODULE} bookmarks 
+
+Format (deleting bookmarks of a slot of a module): 
+* delete {MODULE} {INDEX} bookmarks 
 ```
+
+* Deleting bookmarks will delete all bookmarks associated with the module or slot.
+
 Example of usage:   
-* `delete 1`  
-* `delete 2`
+* `delete cs2113t`  
+* `delete cs2113t 1`
+* `delete cs2113t bookmarks`
+* `delete cs2113t 1 bookmarks`
 
 ## FAQ  
   
