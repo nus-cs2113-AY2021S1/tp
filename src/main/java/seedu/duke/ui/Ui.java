@@ -32,6 +32,12 @@ public class Ui {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+    public static void addFavMessage(String input) {
+        printLine();
+        System.out.println("You have successfully added: \n\"" + input + "\"\ninto your favourites");
+        printLine();
+    }
+
     public static void showError(Exception error) {
         printLine();
         System.out.println(error);
@@ -50,6 +56,7 @@ public class Ui {
                 + "7./dineinfo: Search for a specific dining outlet\n"
                 + "8./exit: Exit program\n"
                 + "9./help: List all available commands");
+        System.out.println("https://ay2021s1-cs2113t-f14-3.github.io/tp/UserGuide.html#1-what-is-navnus");
         printLine();
     }
 
@@ -90,6 +97,13 @@ public class Ui {
             printLine();
         }
         System.out.println("Here is the " + busCode.getBusNumber() + " route that you have requested:\n" + busCode);
+        printLine();
+    }
+
+    public static void printDupeMessage(int index, String desc, String command) {
+        printLine();
+        System.out.println("You already saved something like this in your favourites list");
+        System.out.println(index + ". " + desc + "\nCommand stored: " + command);
         printLine();
     }
 

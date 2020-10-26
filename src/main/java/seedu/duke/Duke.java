@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Duke {
 
+    private static final String DUMMY_PARAM = "Dummy";
     private static Parser parser;
     public static FavStorage favFile = new FavStorage("data/FavList.txt");
     public static FreqStorage freqFile = new FreqStorage("data/freqList.txt");
@@ -31,18 +32,21 @@ public class Duke {
      */
     public static void main(String[] args) throws IOException {
         new Duke();
+
         favFile.readFile();
-        boolean isOngoing = true;
         try {
             freqFile.readFile();
         } catch (CustomException e) {
             Ui.showError(e);
         }
+
         Ui.printWelcomeMessage();
+        parser = new Parser(DUMMY_PARAM);
+        boolean isOngoing = true;
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();
-                parser = new Parser(fullCommand);
+                parser.setUserInput(fullCommand);
                 isOngoing = parser.extractType();
                 freqFile.updateFile();
             } catch (CustomException error) {

@@ -2,6 +2,7 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+
 import seedu.duke.logic.commands.buscommand.AllBusCommand;
 import seedu.duke.logic.commands.buscommand.BusCommand;
 import seedu.duke.logic.commands.dinecommand.DineCommand;
@@ -19,11 +20,17 @@ import seedu.duke.logic.commands.favcommand.ExecFavCommand;
 import seedu.duke.logic.commands.favcommand.ListFavCommand;
 import seedu.duke.logic.commands.buscommand.ResetSearchFreqCommand;
 
+
 public class Parser {
 
     private String userInput;
+    private String previousInput;
 
     public Parser(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
 
@@ -41,7 +48,6 @@ public class Parser {
 
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
-
         Command com;
         switch (command) {
         case "/route":
@@ -75,7 +81,7 @@ public class Parser {
             com = new ExitCommand();
             break;
         case "/addfav":
-            com = new AddFavCommand();
+            com = new AddFavCommand(previousInput, parts[1]);
             break;
         case "/listfav":
             com = new ListFavCommand();
@@ -92,7 +98,13 @@ public class Parser {
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
+
         com.executeCommand();
+
+        if (!command.equals("/addfav")) {
+            previousInput = userInput;
+        }
+
         return com.isOngoing();
 
     }
