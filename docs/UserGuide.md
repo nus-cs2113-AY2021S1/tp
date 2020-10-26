@@ -1,29 +1,32 @@
 # User Guide for E-Duke-8
 
-- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
-  - [Introduction](#introduction)
-  - [Quick Start](#quick-start)
-  - [Features](#features)
-    - [Welcome Page](#welcome-page)
-    - [Viewing E-Duke-8 information : `about`](#viewing-e-duke-8-information--about)
-    - [Viewing available commands : `help`](#viewing-available-commands--help)
-    - [Listing all topics : `topics`](#listing-all-topics--topics)
-    - [Accessing the CS2113T textbook content: `textbook`](#accessing-the-cs2113t-textbook-content-textbook)
-    - [Starting a quiz: `quiz`](#starting-a-quiz-quiz)
-    - [Showing a hint : `hint`](#showing-a-hint--hint)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-  - [FAQ](#faq)
-  - [Command summary](#command-summary)
+Table of contents:
 
-## Introduction
+- [1. Introduction](#1-introduction)
+- [2. Quick Start](#2-quick-start)
+- [3. Features](#3-features)
+  * [3.1. Loading Data](#31-loading-data)
+  * [3.2. Welcome Page](#32-welcome-page)
+  * [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
+  * [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
+  * [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
+  * [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
+  * [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
+  * [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
+  * [3.9. Exiting the program: `exit`](#39-exiting-the-program-exit)
+- [4. FAQ](#4-faq)
+- [5. Command summary](#5-command-summary)
+- [6. Glossary](#6-glossary)
 
-E-Duke-8 helps CS2113/T students **learn and understand software engineering and OOP principles** through a gamified
+## 1. Introduction
+
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [OOP](#2-object-oriented-programming-oop) principles** through a gamified
 platform and enhances their learning experience. 
 
-It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the **Command Line Interface (CLI)**, to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [**Command Line Interface (CLI)**](#1-command-line-interface-cli), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 
-## Quick Start
+## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
@@ -41,23 +44,25 @@ It is a desktop application where CS2113/T students can attempt bite-sized quizz
 
 8. Refer to the section on **Features** below for details of each command.
 
-## Features 
+## 3. Features 
 
 ℹ️ Notes about the command format:
 - Words in UPPER_CASE are the parameters that you can specify for your usage.
-- e.g. in `quiz t/TOPIC n/QUESTIONS`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, and 'QUESTIONS' specifies the number of questions you want to have in your quiz. 
+- e.g. in `quiz t/TOPIC n/NUM_QUESTIONS`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, and 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz. 
 
-### Welcome Page
+### 3.1. Loading Data 
 
 Data is automatically loaded from the files in the **data** folder for use in quizzes and notes.
 
 To ensure that data could be loaded successfully, ensure that the data folder that comes along with the eduke8.jar file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
 
+### 3.2. Welcome Page
+
 Upon successful startup, you should be greeted with a screen like this:
 
 ![welcome](./images/welcome.png)
 
-### Viewing E-Duke-8 information : `about`
+### 3.3. Viewing E-Duke-8 information: `about`
 
 Shows a message explaining what E-Duke-8 is about and your benefits of using it.
 
@@ -71,7 +76,7 @@ What you should see:
 ![about](./images/about.png)
 
 
-### Viewing available commands : `help`
+### 3.4. Viewing available commands: `help`
 
 Shows a list of commands that you can use.
 
@@ -85,7 +90,7 @@ What you should see:
 ![help](./images/help.png)
 
 
-### Listing all topics : `topics`
+### 3.5. Listing all topics: `topics`
 
 Shows the entire list of CS2113/T's topics that you can choose for your quiz to be based upon. 
 
@@ -101,7 +106,7 @@ What you should see:
 ![topics](./images/topics.png)
 
 
-### Accessing the CS2113T textbook content: `textbook`
+### 3.6. Accessing the CS2113T textbook content: `textbook`
 
 You can find a link to the module's textbook using this command. 
 
@@ -115,32 +120,36 @@ What you should see:
 ![textbook](./images/textbook.png)
 
 
-### Starting a quiz: `quiz`
+### 3.7. Starting a quiz: `quiz`
 
 Starts a quiz with the number of questions and topic as specified by you.
 
-Regardless of right or wrong answer, an explanation about the question will be displayed after you gave an answer.
+Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
 
 Note:
 - Each of the questions in the quiz will be related to the topic you have chosen.
+- You can choose any topic from the topic list.
+- Refer to [topics](#3.5.-Listing-all-topics-:-`topics`) to see the number of questions you can choose from.
 - The first question will be immediately displayed to you once the quiz starts.
 - The quiz will only end when you have attempted all of the questions in the it.
 
-Input format: `quiz t/TOPIC n/QUESTIONS`
+Input format: `quiz t/TOPIC n/NUM_QUESTIONS`
 
 Example of usage:
 ```
 quiz t/OOP n/5
 ```
-- This will start a quiz that contains 5 questions from the topic on OOP.
+- This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP.
 
 What you should see:
 
 ![quiz](./images/quiz.png)
 
 From here on you can either:
+
 1) Enter in your answer by typing '1', '2', '3' or '4' and pressing enter.
-2) Request for a hint by typing 'hint' and pressing enter. Refer to the next section on **Hint** for more information.
+
+2) If you do not know the answer, you can request for a hint by typing 'hint' and pressing enter. Refer to [**the Hint section**](#3.8.-Showing-a-hint-:-`hint`) for more information.
 
 If you have entered the correct answer, this is what you will see:
 ![quiz](./images/quiz_correct.png)
@@ -150,12 +159,15 @@ If you have entered the wrong answer, this is what you will see:
 
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
+
 After the quiz ends, you will be prompted to enter in a new command. At this point, you can choose to start a new quiz again!
 
-### Showing a hint : `hint`
+### 3.8. Showing a hint: `hint`
 
 Shows a hint to the current question.
-- Do note that each question only contain exactly one hint.
+
+Note: 
+- Each question only contains exactly one hint.
 
 Example of usage:
 ```
@@ -166,10 +178,11 @@ What you should see:
 
 ![hint](./images/hint.png)
 
-### Exiting the program : `exit`
+### 3.9. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
+- If you are in the middle of a quiz and really want to exit, you can give random answers for the questions.
 
 Example of usage:
 ```
@@ -179,11 +192,13 @@ exit
 ![exit](./images/exit.png)
 
 
-## FAQ
-**Q**: How do I change the questions in the quizzes?
-**A**: Open topics.json in any text editor to edit the questions, make sure to follow the format of the questions already provided.
+## 4. FAQ
 
-## Command summary
+**Q**: How do I change the questions in the quizzes?
+
+**A**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions already provided.
+
+## 5. Command summary
 
 | Action | Format, Examples |
 | ------ | ---------------- |
@@ -192,6 +207,13 @@ exit
 | Listing all topics        | `topics`  |
 | Accessing the CS2113T textbook content        | `textbook`                                                 |
 | Starting a quiz |  `quiz t/TOPIC n/QUESTIONS` <br/> e.g. `quiz t/OOP n/5`                                              |
-| Showing a hint        |           'hint;                                      |
+| Showing a hint        |           `hint`                                      |
 | Exit        | `exit`                                                 |
 
+## 6. Glossary
+
+##### 1. Command Line Interface (CLI)
+CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
+
+##### 2. Object-oriented Programming (OOP)
+OOP is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way. (From [CS2113/T textbook](https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/chapters/oop.html))
