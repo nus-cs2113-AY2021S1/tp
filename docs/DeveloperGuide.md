@@ -169,7 +169,7 @@ Given below is the class diagram for classes related to Category Management in Q
 
 ![Class Diagram for Category Management]()
 
-#### 4.1.1 Add Categories
+#### 4.2.1 Add Categories
 The proposed add categories feature allows a user to add multiple categories to an existing book or quote. 
 
 The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
@@ -193,6 +193,38 @@ The book will also be stored into the category's *bookList* attribute for record
   * Pros: Further increases efficiency for users.
   * Cons: Increased complexity in implementation.
 
+### 4.3 Feature: Book Management
+Given below is the class diagram for classes related to Book Management in Quotesify:
+
+![Class Diagram for Book Management](images/ClassDiagram_Book.png)
+
+#### 4.3.1 Add Books
+The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
+
+![Sequence Diagram for Add Books]()
+
+* [Explanation of Sequence Diagram]
+
+##### Design Considerations
+* Title and author must be specified as <title,author> is used as the primary key.
+    * Pros: Allows users to specify different books with the same title but different author.
+    * Cons: Need to check for both title and author to prevent duplicates.
+
+#### 4.3.2 Find Book by Keyword
+The sequence diagram below demonstrates the command execution process when finding books by a keyword.
+
+![Sequence Diagram for Find Book by Keyword]()
+
+##### Design Considerations
+* Allows user to find books if either title or author contains the keyword.
+    * Pros: Users can find books not just based on book title alone. The search range is increased to author name as well.
+    * Cons: Need to check for both title and author for the list of results.
+* Case insensitive
+    * Pros: Users do not have to bother about the exact letter case when typing the keyword.
+    * Cons: Need to ensure all title or author are converted to the same case before searching.
+* Keyword or phrase
+    * Pros: Users can search for an exact phrase instead of just one word.
+    * Cons: The exact phrase must be typed out for the correct result to show. 
 
 ## 5.0 Product scope
 ### 5.1 Target user profile
