@@ -58,8 +58,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 The architecture design is given in the diagram above. The main components of NotUS are:
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
-1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The parser then
- makes sense of the information to the respective commands.
+1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
 1. `Command`: Executes the necessary tasks, depending on the respective command calls .
 1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
