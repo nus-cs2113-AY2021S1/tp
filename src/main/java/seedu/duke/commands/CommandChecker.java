@@ -40,6 +40,7 @@ public enum CommandChecker {
     ESSAY,
     COUNT_WRITINGS,
     RESET_WRITINGS,
+    CLEAR,
 
     STATS,
     DELETE,
@@ -121,6 +122,8 @@ public enum CommandChecker {
             return CommandChecker.COUNT_WRITINGS;
         } else if (userInput.toLowerCase().trim().startsWith("reset writings")) {
             return CommandChecker.RESET_WRITINGS;
+        } else if (userInput.toLowerCase().trim().startsWith("clear")) {
+            return CommandChecker.CLEAR;
         } else {
             return CommandChecker.UNRECOGNISED;
         }
