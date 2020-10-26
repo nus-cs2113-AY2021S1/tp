@@ -37,7 +37,7 @@
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
-![addmod](diagrams/Architecture.png)
+![Architecture](diagrams/Architecture.png)
 
 The ModTracker class is the main entry point for the ModTracker application. It contains the main, loadData, run, 
 startAndGetName and runCommandLoopUntilExitCommand methods. The methods are responsible for:
@@ -56,7 +56,13 @@ The rest of the app consists of 4 packages:
 * `Parser` : Parses the user input and calls the corresponding methods.
 * `Model` : Holds the data of the app in-memory.
 * `Storage` : Saves and loads data to and from the hard disk.
-    
+
+#####How the architecture components interact with each other
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user types 
+the command `addmod CS2113T`.
+![highlevelsequencediagram](diagrams/highlevelsequencediagram.png)
+
 ## Implementation
 {Insert your own respective implementations here}
 This section describes some noteworthy details on how certain features are being implemented.
