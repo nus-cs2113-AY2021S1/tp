@@ -6,13 +6,19 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
+<br>
+
+This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 ### Table of contents
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Global](#global)
-    * [Switch mode:](#mode) **mode**
+    *  [Show help information:](#help) **help**
+    *  [Switch mode:](#mode) **mode**
     *  [Exit:](#exit)  **exit**
+    *  [Clear:](#clear)  **clear**
+    *  [Launch current lesson:](#clear)  **clear**
   * [Bookmark mode](#bookmarkmode)
     * [Show bookmarks:](#showbookmark) **show**
     * [Add bookmark:](#addbookmark)  **add**
@@ -24,6 +30,8 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
     * [Show module details:](#showmoduledetails) **show**
     * [Add module, time slot and bookmark:](#addtimeslot) **add**
     * [Delete module, time slot and bookmarks:](#deletetimeslot)  **delete**
+    * [Edit slot's module, title, time:](#edittimeslot)  **edit**
+    * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
   
@@ -31,18 +39,30 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
   
 1. Ensure that you have Java 11 or above installed.  
 2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
-3. Copy the `.jar` file to the folder that you want to use as the home folder.
-4. Launch the file using the `java` command: `java -jar zoomaster.jar`.  
+3. Move the **zoomaster.jar** file into your desired home folder for Zoomaster. <br/><br/> 
+4. Copy the absolute path of the **zoomaster.jar** file by first highlighting the file, then while
+holding the <kbd>Shift</kbd> key, right click the file and select "Copy as path". <br/><br/> 
+5. Start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> ,  keying in "cmd"
+then pressing <kbd>Enter</kbd>. <br/><br/> 
+6. In the Command Prompt, type in "java -jar", then paste in the copied absolute path. It should look something like the picture below:  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png)<br/><br/> 
+7. Press <kbd>Enter</kbd>. You should see this Zoomaster logo.  <br/><br/> 
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/startscreen.png)
+
+8. The app is now ready to go! Go ahead and test it out with a **help** command. The app should print out a list of different commands. <br/><br/> 
+9. Refer to the section below for the different features of the Zoomaster app.
   
 ## Features   
 
 >[i] Notes on command format:
->* Word contained in {currly brackets} are parameters to be supplied by the user. <br>
->eg. in delete {BOOKMARK_NUMBER}, BOOKMARK_NUMBER is a parameter which can be used as `delete 1`.
-> * Parameters with `/` inside are parameters which accept different types of inputs. <br>
-> eg. show launch {INDEX/DESCRIPTION} shows that either INDEX or DESCRIPTION can be used.
->* Items in with (optional) are optional inputs. <br>
->eg. show {DAY(optional)} can be used as `show` or as `show mon`.
+>* Word contained in `{currly brackets}` are parameters to be supplied by the user. 
+>eg. in `delete {BOOKMARK_NUMBER}`, `BOOKMARK_NUMBER` is a parameter which can be used as `delete 1`.
+> * Parameters with `/` inside are parameters which accept different types of inputs. 
+> eg. `launch {INDEX/DESCRIPTION}` shows that either `INDEX` or `DESCRIPTION` can be used.
+>* Parameters with `(optional)` are optional inputs. 
+>eg. `show {DAY(optional)}` can be used as `show` or as `show mon`.
+>* Parameter `DAY` takes three letter abbreviations of days in a week or **today**.
+>The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun, today**
+>eg. `show {DAY(optional)}` can be used as `show mon`, `show tue` etc.
 >
 
 <a name="global"></a> 
@@ -51,10 +71,41 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 The commands below can be used in both modes of the app.  
 <br>
 
+<a name="help"></a>  
+#### Show help information: `help`
+You can see the list of commands available in mode you are currently in.
+```
+Format: help
+```
+>Help commands you see in the main menu mode
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
+
+>Help commands you see in the bookmark mode
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
+
+>Help commands you see in the timetable mode
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
+
+>Help commands you see in the planner mode
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplanner.PNG)
+
+<br/><br/> 
+
+You can also get information about each command.
+```
+Format: help {COMMAND}
+```
+Example of usage:   
+* `help add`
+* `help delete`
+>Information about the "add" command in Timetable Mode
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpspecify.PNG)
+
+<br/><br/> 
 <a name="mode"></a>  
 #### Switch mode: `mode`
-You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select, 
-the behaviour of the commands below changes. <br>
+You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
+
 There are two modes for Zoomaster, Bookmark and Timetable.
 
 ```
@@ -64,12 +115,26 @@ Format: mode {bookmark/timetable}
 Example of usage:   
 * `mode bookmark`
 * `mode timetable` 
+* `mode planner`
+
+>What you will see on successful switch to bookmark, timetable or planner mode
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/><br/> 
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/><br/> 
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
+
+<br/><br/> 
+<a name="clear"></a>  
+#### Switch mode: `clear`
+Clears the screen in the command prompt. Useful if the screen gets too messy.
+```
+Format: clear
+```
 
 <br/><br/> 
 <a name="launchnow"></a>  
 #### Launch the bookmarks of the current lesson: `launch now`  
 Launches the bookmarks of a current lesson slot on your timetable. 
-The time depends on the system time of your machine.
+The time depends on the system time of your machine + 5 minutes, allowing you to launch your zoom session ahead of time.
   
 ```
 Format: launch now    
@@ -78,11 +143,13 @@ Format: launch now
 <br/><br/> 
 <a name="exit"></a>  
 #### Exit the app: `exit`  
-Exits the application 
+You exit the application by using the exit command.
   
 ```
 Format: exit    
 ```
+>You should see this message on exit
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
 ---
@@ -171,18 +238,35 @@ Example of usage:
 
 <a name="showtimetable"></a>
 #### Show timetable: `show`
-Shows the timetable for a certain day or the whole week.  
-Day inputs are in three letter abbreviations eg `mon`, `tue`, `wed`.  
-`today` can also be a day input to show the timetable for the current day based on system time.  
-You can also view the information of module or its bookmarks.
+You will be able to see the timetable for a certain day or the whole week.  
+**today** can also be a day input to show the timetable for the current day based on system time.  
+If your selected timetable is the current day, you should be able to see a
+"current time" indicator with your system local time. 
+Else if you have a lesson ongoing currently, it will instead show a "lesson now" indicator.
+around your current lesson.
 ```
 Format: show {DAY(optional)}
 ```
 
 Example of usage:   
 * `show`
-* `show mon`
+* `show wed`
 * `show today`
+
+>You will see an empty list message if your timetable is empty
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true)
+>You will see your entire timetable if you use `show` input
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20all%20list.png?raw=true)
+>You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)
+>You will see the timetable for today if you use `show today` input.
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)
+>Example of "current time" indicator
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)
+>Example of "lesson now" indicator
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)
+
+
 
 <br/><br/>
 <a name="showmoduledetails"></a>
@@ -284,16 +368,20 @@ Start the application and all the data should be loaded.
 ## Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
+**help**|`help`
 **mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
+**clear**|`clear`
 **exit**|`exit`
 **Bookmark Mode**|
 **show**|`show`
 **add**|`add {MODULE(optional)} {DESCRIPTON} {URL}` <br>example: `add CS2113T tutorial www.yahoo.com`
 **delete**|`delete {INDEX}`<br>example: `delete 2`
+**edit**|
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
 **Timetable Mode**|
-**slotadd**|`before  <yyyyMMdd HHmm>`<br>example: `before 20210909 1159`
-**slotdel**|`after <yyyyMMdd HHmm>`<br>example: `after 19990101 0100`
-**show**|`today`
-
+**show (lessons)**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
+**show (bookmarks<br>attatched)**|
+**add**|
+**delete**|
+**edit**|
