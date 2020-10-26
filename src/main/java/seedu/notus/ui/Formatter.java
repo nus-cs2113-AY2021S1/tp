@@ -477,7 +477,7 @@ public class Formatter {
 
                     // If there is a color string that is not closed
                     if (stringBeforeReset.contains(PREFIX)) {
-                        int offsetSet = s.indexOf(POSTFIX);
+                        int offsetSet = stringBeforeReset.indexOf(POSTFIX);
                         numAsciiCode += offsetSet + 1;
                         // Directly add to the list
                         coloredStringStartIndexList.add(messageLength);
