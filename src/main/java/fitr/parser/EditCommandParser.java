@@ -38,6 +38,7 @@ public class EditCommandParser {
             return new EditProfileCommand(editType);
         case Commands.COMMAND_EXERCISE:
         case Commands.COMMAND_FOOD:
+        case Commands.COMMAND_GOAL:
             return new EditEntryCommand(editType, arguments);
         default:
             return new InvalidCommand(fullArgument);

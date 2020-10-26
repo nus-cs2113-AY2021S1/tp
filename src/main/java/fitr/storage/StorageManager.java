@@ -70,11 +70,17 @@ public class StorageManager {
     }
 
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
-        return goalStorage.loadGoalList();
+        try {
+            return goalStorage.loadGoalList();
+        } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException e) {
+            Ui.printCustomError("Error: Invalid goal file - new goal list created!");
+            return new ArrayList<>();
+        }
     }
 
-    public void writeGoalList(GoalList goalList) throws IOException {
-        goalStorage.writeGoalList(goalList);
+    public void writeGoalList(GoalList goalList, FoodList foodList, ExerciseList exerciseList,
+                              User user) throws IOException {
+        goalStorage.writeGoalList(goalList, foodList, exerciseList, user);
     }
 
     public ArrayList<String> loadTipList() throws IOException {

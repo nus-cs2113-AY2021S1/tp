@@ -188,7 +188,6 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(String.valueOf(totalCalorieBurnt));
             Ui.printCustomMessage(NET_CALORIE_HEADER);
             Ui.printCustomMessage(String.valueOf(totalCalorieBurnt + totalCalorieConsumed));
-            Ui.printCustomMessage(EMPTY_STRING);
             totalCalorieBurnt = 0;
             totalCalorieConsumed = 0;
         }
@@ -230,6 +229,7 @@ public class ViewCommand extends Command {
         if (goalList.getSize() == 0) {
             Ui.printCustomMessage(EMPTY_GOAL_LIST);
         } else {
+            goalList = goalList.reformatGoalList(goalList, foodList, exerciseList, user);
             for (int i = 0; i < goalList.getSize(); i++) {
                 Goal goal = goalList.getGoal(i);
                 Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["

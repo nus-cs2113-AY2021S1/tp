@@ -2,6 +2,7 @@ package fitr.command;
 
 import fitr.Recommender;
 import fitr.exception.FitrException;
+
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.ListManager;
@@ -23,6 +24,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
+
             String type = command.split(" ")[0];
             if (command.split(" ").length != 3 && !type.equals(COMMAND_GOAL)) {
                 throw new FitrException();
@@ -31,11 +33,11 @@ public class DeleteCommand extends Command {
             case COMMAND_EXERCISE: {
                 String deletionDate = command.split(" ")[1];
                 ExerciseList exerciseList = listManager.getExerciseList();
-                boolean dateChecker = false;
+                boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
                 for (int i = 0; i < exerciseList.getSize(); i++) {
                     if (exerciseList.getExercise(i).getDate().equals(deletionDate)) {
-                        dateChecker = true;
+                        isValidDate = true;
                         deletionIndex += i - 1;
                         if (!exerciseList.getExercise(deletionIndex).getDate().equals(deletionDate)) {
                             throw new IndexOutOfBoundsException();
@@ -43,7 +45,7 @@ public class DeleteCommand extends Command {
                         break;
                     }
                 }
-                if (!dateChecker) {
+                if (!isValidDate) {
                     throw new FitrException();
                 }
                 Ui.printCustomMessage("The following exercise has been deleted"
@@ -56,11 +58,11 @@ public class DeleteCommand extends Command {
             case COMMAND_FOOD: {
                 String deletionDate = command.split(" ")[1];
                 FoodList foodList = listManager.getFoodList();
-                boolean dateChecker = false;
+                boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
                 for (int i = 0; i < foodList.getSize(); i++) {
                     if (foodList.getFood(i).getDate().equals(deletionDate)) {
-                        dateChecker = true;
+                        isValidDate = true;
                         deletionIndex += i - 1;
                         if (!foodList.getFood(deletionIndex).getDate().equals(deletionDate)) {
                             throw new IndexOutOfBoundsException();
@@ -68,7 +70,7 @@ public class DeleteCommand extends Command {
                         break;
                     }
                 }
-                if (!dateChecker) {
+                if (!isValidDate) {
                     throw new FitrException();
                 }
                 Ui.printCustomMessage("The following exercise has been deleted"
@@ -80,10 +82,11 @@ public class DeleteCommand extends Command {
             }
             case COMMAND_GOAL: {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
-                Ui.printCustomMessage("The following has been deleted from the list of goals:\n\t"
+                Ui.printCustomMessage("The following has been deleted from the list of goals: "
                         + listManager.getGoal(deletionIndex - 1).getDescription());
                 listManager.deleteGoal(deletionIndex - 1);
-                storageManager.writeGoalList(listManager.getGoalList());
+                storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
+                        listManager.getExerciseList(), user);
                 break;
             }
             default:

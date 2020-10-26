@@ -11,35 +11,37 @@ import java.util.Calendar;
 
 public class CheckGoalStatus {
 
-    public static String checkGoalStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
+    public static String checkGoalStatus(String status, Goal goal, FoodList foodList,
+                                         ExerciseList exerciseList, User user) {
+        System.out.println("HELLLLOOO THIS IS CREATED DATE:" + goal.getCreatedDate());
         int targetCalorie;
-        int userCalorie;
+        int userConsumedCalorie = user.calculateCalorieConsumed(foodList, goal.getCreatedDate()).get();
+        int userBurntCalorie = user.calculateCalorieBurnt(exerciseList, goal.getCreatedDate()).get();
         int calorieDifference;
-        String status = "unknown!";
         NumberFormat formatter = new DecimalFormat("#0.0");
 
-        if (goal.getDescription().contains("Burn less than ")) {
-            targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieBurnt(exerciseList, "DATE").get();
-            calorieDifference = targetCalorie - userCalorie;
-            status = String.valueOf((calorieDifference < 0) ? 0.0 : 100.0);
-        } else if (goal.getDescription().contains("Burn more than ")) {
-            targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieBurnt(exerciseList, "DATE").get();
-            calorieDifference = targetCalorie - userCalorie;
-            status = String.valueOf((calorieDifference < 0) ? 100.00 :
-                    formatter.format((double) userCalorie / (double) targetCalorie * 100));
-        } else if (goal.getDescription().contains("Eat more than ")) {
-            targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieConsumed(foodList, "DATE").get();
-            calorieDifference = targetCalorie - userCalorie;
-            status = String.valueOf((calorieDifference < 0) ? 100.00 :
-                    formatter.format((double) userCalorie / (double) targetCalorie * 100));
-        } else if (goal.getDescription().contains("Eat less than ")) {
-            targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
-            userCalorie = user.calculateCalorieConsumed(foodList, "DATE").get();
-            calorieDifference = targetCalorie - userCalorie;
-            status = String.valueOf((calorieDifference < 0) ? 0.00 : 100.00);
+        try {
+            if (goal.getDescription().contains("Burn less than ")) {
+                targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
+                calorieDifference = targetCalorie - userBurntCalorie;
+                status = String.valueOf((calorieDifference < 0) ? 0.0 : 100.0);
+            } else if (goal.getDescription().contains("Burn more than ")) {
+                targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
+                calorieDifference = targetCalorie - userBurntCalorie;
+                status = String.valueOf((calorieDifference < 0) ? 100.0 :
+                        formatter.format((double) userBurntCalorie / (double) targetCalorie * 100));
+            } else if (goal.getDescription().contains("Eat more than ")) {
+                targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
+                calorieDifference = targetCalorie - userConsumedCalorie;
+                status = String.valueOf((calorieDifference < 0) ? 100.0 :
+                        formatter.format((double) userConsumedCalorie / (double) targetCalorie * 100));
+            } else if (goal.getDescription().contains("Eat less than ")) {
+                targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
+                calorieDifference = targetCalorie - userConsumedCalorie;
+                status = String.valueOf((calorieDifference < 0) ? 0.0 : 100.0);
+            }
+        } catch (NumberFormatException e) {
+            return status;
         }
 
         return status;
