@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.project.CreateProjectCommand;
+import seedu.duke.command.project.ListProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
@@ -17,6 +18,7 @@ import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.SELECT;
+import static seedu.duke.command.CommandSummary.LIST;
 
 public class ProjectParser implements ExceptionsParser {
 
@@ -64,6 +66,12 @@ public class ProjectParser implements ExceptionsParser {
                 return new SelectProjectCommand(parameters, projectListManager);
             } else {
                 throw new DukeException("Invalid index, no corresponding project exists.");
+            }
+        case LIST:
+            if (projectListManager.isEmpty()) {
+                throw new DukeException("There are no projects added.");
+            } else {
+                return new ListProjectCommand(parameters, projectListManager);
             }
         default:
             throw new DukeException("Invalid action!");
