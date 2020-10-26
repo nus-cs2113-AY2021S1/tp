@@ -45,7 +45,6 @@ public class Ui {
     public void printEventAddedMessage(Event event) {
         System.out.println("You have successfully added this event to your list!");
         System.out.println(event);
-        printDividerLine();
     }
 
     public void printRepeatAdd(Event event) {
@@ -208,6 +207,5 @@ public class Ui {
      */
     public void printErrorMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
-        printDividerLine();
     }
 }

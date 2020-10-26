@@ -4,6 +4,7 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Personal;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidExtractCommandException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
@@ -18,8 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ExtractCommand extends Command {
-    private String textSubject;
-    private String textBody;
     private int dateCount;
     private int timeCount;
 
@@ -31,11 +30,7 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        String[] arguments = command.split(";", 2);
-        textSubject = arguments[0];
-        System.out.println(textSubject);
-        textBody = arguments[1].trim();
-        System.out.println(textBody);
+        this.command = command;
     }
 
     /**
@@ -47,6 +42,13 @@ public class ExtractCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
+        String[] arguments = command.split(";", 2);
+        if (arguments.length != 2) {
+            throw new InvalidExtractCommandException("The format for extract command is wrong!");
+        }
+        String textSubject = arguments[0];
+        String textBody = arguments[1].trim();
+
         ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
@@ -83,7 +85,8 @@ public class ExtractCommand extends Command {
             int timeNumber = 0;
             ui.printDividerLine();
             for (LocalTime time : timeList) {
-                System.out.println(timeNumber + 1 + " " + time);
+                System.out.println(timeNumber + 1 + ". " + time);
+                timeNumber++;
             }
             ui.printDividerLine();
             boolean timeChosen = false;
@@ -94,10 +97,10 @@ public class ExtractCommand extends Command {
                         System.out.println("Invalid time slot number to choose! Please choose again!");
                     } else {
                         finalTime = timeList.get(timeNumberChosen - 1);
+                        timeChosen = true;
                     }
-                    timeChosen = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid time slot number to choose! Please choose again!");
+                    System.out.println("We couldn't detect a number! Please choose again!");
                 }
             }
         } else if (timeCount == 0) {
@@ -214,10 +217,10 @@ public class ExtractCommand extends Command {
                         System.out.println("Invalid date number to choose! Please choose again!");
                     } else {
                         finalDate = dateList.get(dateNumberChosen - 1);
+                        dateChosen = true;
                     }
-                    dateChosen = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid date number to choose! Please choose again!");
+                    System.out.println("We couldn't detect a number! Please choose again!");
                 }
             }
         } else if (dateCount == 0) {
