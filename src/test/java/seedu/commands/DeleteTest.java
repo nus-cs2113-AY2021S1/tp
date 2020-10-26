@@ -1,10 +1,13 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -53,12 +56,12 @@ class DeleteTest {
         taskMap.addTask(t3);
         taskMap.addTask(t4);
         taskMap.addTask(t5);
-
+        Model model = new Model(taskMap);
         int id1 = t1.getTaskID();
 
         Delete delete = new Delete("delete " + Integer.toString(id1));
-        CommandResult result = delete.execute(taskMap);
-        assertEquals(4, taskMap.size());
+        CommandResult result = delete.execute(model);
+        assertEquals(4, model.getTaskMap().size());
 
     }
 
@@ -67,10 +70,16 @@ class DeleteTest {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t3);
-        int wrongId3 = t3.getTaskID() + 1;
+
+        Random random = new Random();
+        int wrongId3 = 3217;
+        while (taskMap.get(wrongId3) != null) {
+            wrongId3 = random.nextInt(10000);
+        }
+        Model model = new Model(taskMap);
 
         Delete delete = new Delete("delete " + Integer.toString(wrongId3));
-        assertThrows(InvalidTaskNumberException.class, () -> delete.execute(taskMap));
+        assertThrows(InvalidTaskNumberException.class, () -> delete.execute(model));
 
     }
 
