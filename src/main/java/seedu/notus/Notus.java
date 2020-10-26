@@ -2,6 +2,7 @@ package seedu.notus;
 
 import seedu.notus.command.Command;
 import seedu.notus.command.ExitCommand;
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.Timetable;
@@ -10,6 +11,8 @@ import seedu.notus.ui.AsciiArt;
 import seedu.notus.ui.InterfaceManager;
 import seedu.notus.ui.Formatter;
 import seedu.notus.util.parser.ParserManager;
+
+import java.io.IOException;
 
 /**
  * Entry point of the NotUS application.
@@ -38,6 +41,12 @@ public class Notus {
         this.tagManager = new TagManager();
         this.parserManager = new ParserManager();
 
+        try {
+            storageManager.createFiles();
+            storageManager.loadAll(notebook, timetable, tagManager, parserManager);
+        } catch (SystemException exception) {
+            interfaceManager.prints(exception.getMessage());
+        }
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
 

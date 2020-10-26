@@ -35,6 +35,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),
         EXCEPTION_MISSING_INDEX("Missing index!"),
 
+        EXCEPTION_MISSING_LINE_CONTENT("Missing line contents!"),
+
         EXCEPTION_MISSING_PIN("Missing pin!"),
         EXCEPTION_MISSING_ARCHIVE("Missing archive!"),
 
@@ -42,9 +44,13 @@ public class SystemException extends Exception {
 
         EXCEPTION_CONTENT_MISSING("Content cannot be blank!"),
 
+        EXCEPTION_MISSING_PREFIX("Missing /add, /ln, /del, /tag or /c prefix!"),
+
         // Note specific exception type
         EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),
+        EXCEPTION_INVALID_DEL_INPUT("There is no previous line to delete!"),
         EXCEPTION_INVALID_INPUT_FORMAT("Format of input is not valid!"),
+        EXCEPTION_CLASH_FORMAT("Only /add, /ln or /del must be used at a time!"),
 
         // Event related exception type
         EXCEPTION_MISSING_RECURRING_END_TIME("Please specify until when do you want "
@@ -64,10 +70,14 @@ public class SystemException extends Exception {
                 + "daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
 
+        // Storage related exceptions
+        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
+        EXCEPTION_FILE_NOT_FOUND_ERROR("Unable to find a file!"),
+        EXCEPTION_FILE_DELETION_ERROR("Unable to delete a file"),
+
         // General exception type
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
-        EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
-        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!");
+        EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!");
 
         /** The exception message. */
         private final String exceptionMessage;

@@ -14,7 +14,10 @@ import static seedu.notus.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -170,6 +173,55 @@ public abstract class Parser {
     public static void deleteLine(StringBuilder commandInput, String characters, int charCount) {
         int lastChar = commandInput.lastIndexOf(characters) + charCount;
         commandInput.delete(lastChar, commandInput.length());
+    }
+
+    /**
+     * Reverse the map integers values for an easier flow of
+     * setting map.
+     *
+     * @param map Original string user inputs.
+     * @return Result of the add note command.
+     */
+    public static Map<Integer, String> sortByKey(Map<Integer, String> map) {
+        Map<Integer, String> reverseSortedMap = new TreeMap<>(Collections.reverseOrder());
+        reverseSortedMap.putAll(map);
+        return reverseSortedMap;
+    }
+
+    /**
+     * Adds on to the current type of lines that is to be added
+     * edit or delete.
+     *
+     * @param prefix type that is passed in.
+     * @param lists of list to be returned.
+     * @param infoDetail string user input values.
+     * @return lists of list containing the key and value.
+     * @throws SystemException if integer is invalid.
+     */
+    public static Map<Integer, String> addToLists(String prefix, Map<Integer, String> lists,
+                                            String infoDetail) throws SystemException {
+        String line = checkBlank(infoDetail, ExceptionType.EXCEPTION_MISSING_LINE_CONTENT);
+        String[] lineInfo;
+        int index;
+
+        if (prefix.equals(PREFIX_DELETE_LINE)) {
+            lineInfo = line.split(STRING_SPLIT_DELIMITER, 1);
+        } else {
+            lineInfo = line.split(STRING_SPLIT_DELIMITER, 2);
+        }
+
+        index = Integer.parseInt(checkBlank(lineInfo[0], ExceptionType.EXCEPTION_MISSING_INDEX));
+        if (index <= NULL_INDEX) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        }
+
+        if (prefix.equals(PREFIX_DELETE_LINE)) {
+            lists.put(index - 1, "");
+        } else {
+            lists.put(index - 1, lineInfo[1]);
+        }
+
+        return lists;
     }
 
     //@@author R-Ramana

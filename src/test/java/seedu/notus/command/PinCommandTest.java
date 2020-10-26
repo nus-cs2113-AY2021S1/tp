@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.notus.command.PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.ui.Formatter;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 
 //@@author prachi2023
@@ -26,6 +26,8 @@ class PinCommandTest {
 
     private static final String NOTE1_TITLE = "TestNote1";
     private static final String NOTE2_TITLE = "TestNote2";
+
+    private static final String UNSUCCESFUL_MESSAGE = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
 
     @BeforeEach
     void setUp() {
@@ -45,11 +47,11 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_PinsAndUnpinsNotes() {
-        String expected1 = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
-        String expected2 = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
+        String note1Expected = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
+        String note2Expected = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
 
-        assertEquals(expected1, getExecutionStringInputIndex(notebook, 0));
-        assertEquals(expected2, getExecutionStringInputIndex(notebook, 1));
+        assertEquals(note1Expected, getExecutionStringInputIndex(notebook, 0));
+        assertEquals(note2Expected, getExecutionStringInputIndex(notebook, 1));
 
         assertFalse(notePinned.getPinned());
         assertTrue(noteNotPinned.getPinned());
@@ -57,11 +59,11 @@ class PinCommandTest {
 
     @Test
     void execute_inputTitle_NoteExists_PinsAndUnpinsNotes() {
-        String expected1 = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
-        String expected2 = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
+        String note1Expected = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
+        String note2Expected = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
 
-        assertEquals(expected1, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
-        assertEquals(expected2, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
+        assertEquals(note1Expected, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
+        assertEquals(note2Expected, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
 
         assertFalse(notePinned.getPinned());
         assertTrue(noteNotPinned.getPinned());

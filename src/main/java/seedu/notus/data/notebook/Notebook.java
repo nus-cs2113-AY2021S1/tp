@@ -270,8 +270,11 @@ public class Notebook {
         return notes.removeIf(note -> note.getTitle().equalsIgnoreCase(title));
     }
 
-    public void setNotes(ArrayList<Note> notes) {
-        this.notes = notes;
+    /**
+     * Replace a note from the notebook.
+     */
+    public void setNotes(int index, Note note) {
+        notes.set(index, note);
     }
 
     /**

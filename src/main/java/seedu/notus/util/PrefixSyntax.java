@@ -34,7 +34,7 @@ public class PrefixSyntax {
     public static final String TIMING_SPLIT_DELIMITER = "-";
 
     /** Note content related prefix. */
-    public static final String STRING_NEW_LINE = "\n";
     public static final String PREFIX_END = "end";
     public static final String PREFIX_DELETE_LINE = "del";
+    public static final String PREFIX_ADD_LINE = "add";
 }

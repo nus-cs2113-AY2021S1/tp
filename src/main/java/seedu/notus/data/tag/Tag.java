@@ -101,19 +101,19 @@ public class Tag {
     public String toSaveString() {
         String colorString = "";
 
-        if (tagAttribute.equals(Attribute.BRIGHT_RED_TEXT())) {
+        if (tagAttribute.toString().equals(Attribute.BRIGHT_RED_TEXT().toString())) {
             colorString = COLOR_RED_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_GREEN_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_GREEN_TEXT().toString())) {
             colorString = COLOR_GREEN_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_BLUE_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_BLUE_TEXT().toString())) {
             colorString = COLOR_BLUE_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_YELLOW_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_YELLOW_TEXT().toString())) {
             colorString = COLOR_YELLOW_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_CYAN_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_CYAN_TEXT().toString())) {
             colorString = COLOR_CYAN_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_MAGENTA_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_MAGENTA_TEXT().toString())) {
             colorString = COLOR_MAGENTA_STRING;
-        } else if (tagAttribute.equals(Attribute.BRIGHT_WHITE_TEXT())) {
+        } else if (tagAttribute.toString().equals(Attribute.BRIGHT_WHITE_TEXT().toString())) {
             colorString = COLOR_WHITE_STRING;
         }
         return tagName + " " + colorString;

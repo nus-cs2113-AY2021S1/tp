@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.fail;
 
 //@@author prachi2023
+
 class StorageManagerTest {
 
     @Test
@@ -48,6 +49,8 @@ class StorageManagerTest {
     @Test
     void saveNoteContent() {
         ArrayList<String> content = new ArrayList<>();
+        StorageManager storageManager = new StorageManager();
+
         content.add("Hello this is a test note");
         content.add("With a few lines");
         content.add("");
@@ -57,7 +60,7 @@ class StorageManagerTest {
         Note note = new Note("TestNote", content, false, false);
       
         try {
-            StorageManager.saveNoteContent(note);
+            storageManager.saveNoteContent(note);
         } catch (IOException e) {
             System.out.println("Unable to create file");
         }

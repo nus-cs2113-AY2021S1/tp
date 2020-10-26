@@ -2,6 +2,7 @@ package seedu.notus.command;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
+import seedu.notus.storage.StorageManager;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -86,8 +87,14 @@ public class PinCommand extends Command {
         }
 
         note.togglePinned();
-
         LOGGER.log(Level.INFO, "Pin status of note toggled");
+
+        try {
+            storageManager.saveAllNoteDetails(notebook);
+        } catch (IOException e) {
+            return Formatter.formatString(e.getMessage());
+        }
+
         return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
     }
 

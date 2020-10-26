@@ -1,6 +1,7 @@
 package seedu.notus.command;
 
 import seedu.notus.data.notebook.Note;
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.parser.Parser.inputContent;
@@ -8,6 +9,8 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 //@@author Nazryl
@@ -26,6 +29,7 @@ public class AddNoteCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
+    public static final String COMMAND_UNSUCCESSFUL_FILE_CREATION = "Unable to create and save details in a file";
 
     private Note note;
 
@@ -48,10 +52,17 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
+        try {
+            if (storageManager.noteExists(note)) {
+                content = storageManager.getNoteContent(note);
+            }
+        } catch (SystemException exception) {
+            return Formatter.formatString(exception.getMessage());
+        }
+
         if (content.isEmpty()) {
             content = inputContent();
         }
-
         // Edit the note
         note.setContent(content);
 
@@ -59,6 +70,13 @@ public class AddNoteCommand extends Command {
         tagManager.rebindTags(note);
         notebook.addNote(note);
 
-        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
+        //Save the notes in storage
+        try {
+            storageManager.saveNote(note);
+        } catch (IOException exception) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
+        }
+
+        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, note);
     }
 }

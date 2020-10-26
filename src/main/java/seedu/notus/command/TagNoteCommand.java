@@ -4,6 +4,7 @@ import seedu.notus.data.notebook.Note;
 import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -47,6 +48,14 @@ public class TagNoteCommand extends Command {
             ArrayList<String> executedMessage = tagManager.tagAndUntag(note, tags, TAG_NOTE_MESSAGE,
                     UNTAG_NOTE_MESSAGE);
             executedMessage.add(0, TAG_NOTE_HEADER);
+
+            // save the changed details
+            try {
+                storageManager.saveAllNoteDetails(notebook);
+            } catch (IOException e) {
+                return Formatter.formatString(e.getMessage());
+            }
+
             return Formatter.formatString(executedMessage, true);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
