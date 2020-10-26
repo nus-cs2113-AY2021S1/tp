@@ -10,12 +10,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WordsLoader {
+
     private static final ArrayList<Words> wordsList = WordList.getWordList();
     private static final String FILE_PATH = "data/words.txt";
     private static final Logger LOGGER = Logger.getLogger("Words loader");
@@ -25,7 +24,7 @@ public class WordsLoader {
         File f = new File(FILE_PATH);
 
         if (directory.mkdir()) {
-            System.out.println("Directory is being created.");
+            LOGGER.log(Level.INFO, "Directory is being created.");
         }
 
         try {
@@ -48,30 +47,31 @@ public class WordsLoader {
             for (int i = 0; i < readings.length; i++) {
                 readings[i] = readings[i].trim();
             }
+
             switch (readings[0]) {
-            case "verb":
-                try {
-                    wordsList.add(new Verb(readings[1], readings[2]));
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
-                }
-                break;
-            case "noun":
-                try {
-                    wordsList.add(new Noun(readings[1], readings[2]));
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
-                }
-                break;
-            case "adjective":
-                try {
-                    wordsList.add(new Adjective(readings[1], readings[2]));
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
-                }
-                break;
-            default:
-                throw new IndexOutOfBoundsException();
+                case "verb":
+                    try {
+                        wordsList.add(new Verb(readings[1], readings[2]));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    }
+                    break;
+                case "noun":
+                    try {
+                        wordsList.add(new Noun(readings[1], readings[2]));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    }
+                    break;
+                case "adjective":
+                    try {
+                        wordsList.add(new Adjective(readings[1], readings[2]));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    }
+                    break;
+                default:
+                    throw new IndexOutOfBoundsException();
             }
         }
     }
