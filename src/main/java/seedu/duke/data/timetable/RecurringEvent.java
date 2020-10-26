@@ -4,14 +4,17 @@ import seedu.duke.ui.Formatter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class RecurringEvent extends Event {
     private LocalDate endRecurrenceDate;
+    private LocalTime endRecurrenceTime;
     private String recurrenceType;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
+    public static final LocalTime DEFAULT_END_RECURRENCE_TIME = LocalTime.of(23, 59);
     public static final String DAILY_RECURRENCE_TYPE = "daily";
     public static final String WEEKLY_RECURRENCE_TYPE = "weekly";
     public static final String MONTHLY_RECURRENCE_TYPE = "monthly";
@@ -24,6 +27,7 @@ public abstract class RecurringEvent extends Event {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
         this.endRecurrenceDate = endRecurrenceDate;
+        this.endRecurrenceTime = DEFAULT_END_RECURRENCE_TIME;
         this.recurrenceType = recurrenceType;
     }
 
@@ -40,6 +44,7 @@ public abstract class RecurringEvent extends Event {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
         this.endRecurrenceDate = endRecurrenceDate;
+        this.endRecurrenceTime = DEFAULT_END_RECURRENCE_TIME;
         this.recurrenceType = recurrenceType;
     }
 
@@ -119,7 +124,7 @@ public abstract class RecurringEvent extends Event {
     }
 
     public String getEndRecurrenceDate() {
-        return endRecurrenceDate.toString();
+        return endRecurrenceDate.toString() + " " + endRecurrenceTime.toString();
     }
 
     /**

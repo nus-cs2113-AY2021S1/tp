@@ -20,9 +20,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.Scanner;
 
+import static seedu.duke.ui.Formatter.LS;
 
 
 /**
@@ -215,26 +215,37 @@ public class StorageManager {
         String eventDetails;
 
         for (Event event: nonRecurringEvents) {
-            eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " "
-                        + "\n";
-            //  + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND +
-            //  " " + event.getReminderPeriod() +  " ";
-
+            eventDetails = getEventDetailsSaveFormat(event);
             fwAppend.write(eventDetails);
         }
 
         ArrayList<RecurringEvent> recurringEvents = timetable.getAllRecurringEventsArray();
 
         for (RecurringEvent event: recurringEvents) {
-            eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                    + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " "
-                    //   + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " " + event.getReminderPeriod() +  " "
-                    + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING + " " + event.getRecurrenceType() + " ";
-            //   + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING + " " + event.getEndRecurrenceDate() + " ";
+            eventDetails = getEventDetailsSaveFormat(event);
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING + " " + event.getRecurrenceType() + " "
+                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING + " " + event.getEndRecurrenceDate() + " ";
             fwAppend.write(eventDetails);
         }
         fwAppend.close();
+    }
+
+    private static String getEventDetailsSaveFormat (Event event) {
+        String eventDetails;
+        eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
+
+        ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
+
+        for (String reminderPeriod : reminderPeriods) {
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " " + reminderPeriod + " ";
+        }
+
+        if(!event.getRecurring()) {
+            eventDetails += LS;
+        }
+
+        return eventDetails;
     }
 
     public void loadTimetable(Notebook notebook, Timetable timetable, TagManager tagManager) throws SystemException {
