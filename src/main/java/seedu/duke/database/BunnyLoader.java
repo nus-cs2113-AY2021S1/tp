@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import static seedu.duke.constants.FluffleMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
 import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
@@ -19,8 +23,16 @@ import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
 import static seedu.duke.parsers.Parsers.getIntFromString;
 
 public class BunnyLoader {
-    public static void loadBunnyFile(ArrayList<Bunny> bunniesList) {
+    private static Logger logger = Logger.getLogger("BunnyLoader");
 
+    public static void loadBunnyFile(ArrayList<Bunny> bunniesList) {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.SEVERE);
+        logger.addHandler(ch);
+
+        logger.log(Level.FINEST, "Start loading bunny.txt");
         try {
             File bunnyFile = FileFunctions.getFileFromFilePath(DEFAULT_BUNNY_FILE_PATH);
             FileFunctions.checkFileExists(bunnyFile);
@@ -36,7 +48,7 @@ public class BunnyLoader {
         int numBunnies = 0;
         int numBunniesLoaded = 0;
 
-        // read in expected number of bunnies
+        logger.log(Level.FINER, "read in expected number of bunnies");
         try {
             String parsedString;
 
@@ -46,6 +58,7 @@ public class BunnyLoader {
                 numBunnies = getIntFromString(parsedString.trim());
             }
         } catch (SettingObjectWrongFormatException e) {
+            logger.log(Level.INFO, "bunny.txt format error detected");
             System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
         }
 
@@ -54,7 +67,7 @@ public class BunnyLoader {
             try {
                 String parsedString;
 
-                // read idea
+                logger.log(Level.FINE, "read idea");
                 String idea = "";
                 fileLine = readFileUntilLineContainsString(BUNNY_IDEA_TAG, bunnyFileScanner);
                 parsedString = Parsers.parseFileObject(fileLine, BUNNY_IDEA_TAG);
@@ -62,7 +75,7 @@ public class BunnyLoader {
                     idea = parsedString.trim();
                 }
 
-                // read genre
+                logger.log(Level.FINE, "read genre");
                 String genre = "";
                 fileLine = readFileUntilLineContainsString(BUNNY_GENRE_TAG, bunnyFileScanner);
                 parsedString = Parsers.parseFileObject(fileLine, BUNNY_GENRE_TAG);
@@ -88,7 +101,7 @@ public class BunnyLoader {
                 numBunniesLoaded++;
 
             } catch (SettingObjectWrongFormatException e) {
-                //System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
+                System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
             }
         }
 
