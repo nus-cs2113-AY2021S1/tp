@@ -1,7 +1,7 @@
 package seedu.duke.logic.commands.favcommand;
 
-import seedu.duke.favorite.FavList;
-import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.commons.Command;
+import seedu.duke.model.favorite.FavList;
 
 public class ClearFavCommand extends Command {
 
