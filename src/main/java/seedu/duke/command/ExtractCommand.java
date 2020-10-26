@@ -17,20 +17,25 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailParseCommand extends Command {
-    private String emailSubject;
+public class ExtractCommand extends Command {
+    private String textSubject;
+    private String textBody;
     private int dateCount;
     private int timeCount;
 
 
     /**
-     * Constructor for parsing emails seedu.duke.
+     * Constructor for parsing email/texts seedu.duke.
      *
      * @param command from user input
      */
-    public EmailParseCommand(String command) {
+    public ExtractCommand(String command) {
         this.isExit = false;
-        emailSubject = command;
+        String[] arguments = command.split(";", 2);
+        textSubject = arguments[0];
+        System.out.println(textSubject);
+        textBody = arguments[1].trim();
+        System.out.println(textBody);
     }
 
     /**
@@ -42,42 +47,38 @@ public class EmailParseCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        System.out.println("Please enter the email body!");
-        ui.printDividerLine();
-        String emailBody = ui.receiveCommand();
-        ArrayList<LocalDate> dateList = detectDate(emailBody);
+        ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
         if(finalDate == null) {
-            if (emailSubject.equals("")) {
-                System.out.println("Empty email subject and no date/time fields, event won't be created!");
+            if (textSubject.equals("")) {
+                System.out.println("Empty text subject and no date/time fields, event won't be created!");
             } else {
-                System.out.println("Since no date was detected in the email body, the personal event will only contain the description.");
-                Personal personalEvent = new Personal(emailSubject);
+                System.out.println("Since no date was detected in the text body, the personal event will only contain the description.");
+                Personal personalEvent = new Personal(textSubject);
                 data.addToEventList("Personal", personalEvent);
             }
         } else {
-            ArrayList<LocalTime> timeList = detectTime(emailBody);
+            ArrayList<LocalTime> timeList = detectTime(textBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
             if (finalTime == null) {
-                System.out.println("No time detected in email body! The personal event will only have the date and description.");
-                Personal personalEvent = new Personal(emailSubject, finalDate);
+                System.out.println("No time detected in text body! The personal event will only have the date and description.");
+                Personal personalEvent = new Personal(textSubject, finalDate);
                 data.addToEventList("Personal", personalEvent);
             } else {
-                Personal personalEvent = new Personal(emailSubject, finalDate, finalTime);
+                Personal personalEvent = new Personal(textSubject, finalDate, finalTime);
                 data.addToEventList("Personal", personalEvent);
             }
         }
         ui.printEventAddedMessage(data.getEventList("Personal").getNewestEvent());
-
-
+        storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
     }
 
     private LocalTime chooseFinalTime(ArrayList<LocalTime> timeList, Ui ui) {
         LocalTime finalTime = null;
 
         if (timeCount > 1) {
-            System.out.println("We have detected " + timeCount + " time slots in this email body!");
+            System.out.println("We have detected " + timeCount + " time slots in this text body!");
             System.out.println("Please select the time you want for this event from the list below!");
             int timeNumber = 0;
             ui.printDividerLine();
@@ -100,7 +101,7 @@ public class EmailParseCommand extends Command {
                 }
             }
         } else if (timeCount == 0) {
-            System.out.println("No time slots detected for this email body!");
+            System.out.println("No time slots detected for this text body!");
         } else {
             finalTime = timeList.get(0);
             System.out.println("One time slot detected and chosen: " + finalTime);
@@ -111,11 +112,11 @@ public class EmailParseCommand extends Command {
     }
 
 
-    private ArrayList<LocalTime> detectTime(String emailBody) {
+    private ArrayList<LocalTime> detectTime(String textBody) {
         ArrayList<String> timeListInString = new ArrayList<>();
-        String upperCaseEmailBody = emailBody.toUpperCase();
+        String UpperCaseTextBody = textBody.toUpperCase();
         Pattern timePattern = Pattern.compile("\\b(1[0-9]|0?[0-9]|2[0-3])([:.][0-5][0-9])?[\\h]?([AP][M])?\\b");
-        Matcher timeMatcher = timePattern.matcher(upperCaseEmailBody);
+        Matcher timeMatcher = timePattern.matcher(UpperCaseTextBody);
 
         while (timeMatcher.find()) {
             String time = timeMatcher.group(0);
@@ -156,17 +157,17 @@ public class EmailParseCommand extends Command {
         return timeList;
     }
 
-    private ArrayList<LocalDate> detectDate(String emailBody) {
+    private ArrayList<LocalDate> detectDate(String textBody) {
         ArrayList<String> dateListInString = new ArrayList<>();
-        String upperCaseEmailBody = emailBody.toUpperCase();
+        String upperCaseTextBody = textBody.toUpperCase();
         Pattern dayMonthYearPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?[\\h-]" +
                 "(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|JUL|JULY|AUG|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|" +
                 "NOVEMBER|DEC|DECEMBER),?([\\h-]\\d{4})?\\b");
         Pattern monthDayYearPattern = Pattern.compile("\\b(JAN|JANUARY|FEB|FEBRUARY|MAR|MARCH|APR|APRIL|MAY|JUN|JUNE|" +
                 "JUL|JULY|AUG|AUGUST|SEP|SEPTEMBER|OCT|OCTOBER|NOV|NOVEMBER|DEC|DECEMBER)[\\h-]" +
                 "(([0]?[0-9])|([0-2][0-9])|([3][0-1]))(ST|ND|RD|TH)?,?([\\h-]\\d{4})?\\b");
-        Matcher dayMonthYearMatcher = dayMonthYearPattern.matcher(upperCaseEmailBody);
-        Matcher monthDayYearMatcher = monthDayYearPattern.matcher(upperCaseEmailBody);
+        Matcher dayMonthYearMatcher = dayMonthYearPattern.matcher(upperCaseTextBody);
+        Matcher monthDayYearMatcher = monthDayYearPattern.matcher(upperCaseTextBody);
 
         while (dayMonthYearMatcher.find()) {
             String date = dayMonthYearMatcher.group(0);
@@ -195,7 +196,7 @@ public class EmailParseCommand extends Command {
     private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
         LocalDate finalDate = null;
         if (dateCount > 1) {
-            System.out.println("We have detected " + dateCount + " dates in this email body!");
+            System.out.println("We have detected " + dateCount + " dates in this text body!");
             System.out.println("Please select the date you want for this event from the list below!");
             int dateNumber = 0;
             ui.printDividerLine();
@@ -220,7 +221,7 @@ public class EmailParseCommand extends Command {
                 }
             }
         } else if (dateCount == 0) {
-            System.out.println("No date detected in the email!");
+            System.out.println("No date detected in the text!");
         } else {
             finalDate = dateList.get(0);
             System.out.println("One date detected and chosen: " + finalDate);
@@ -246,16 +247,18 @@ public class EmailParseCommand extends Command {
 
     private String detectDay(String date) {
         String day = null;
-        if (date.contains("ST") || date.contains("ND") || date.contains("RD") || date.contains("TH")) {
-            date = date.substring(0, date.length() - 2);
-        }
-        Pattern dayPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1])){2}\\b");
+        Pattern dayPattern = Pattern.compile("\\b(([0]?[0-9])|([0-2][0-9])|([3][0-1])){1,2}(ST|ND|RD|TH)?\\b");
         Matcher dayMatcher = dayPattern.matcher(date);
         if (dayMatcher.find()) {
-            if (dayMatcher.group(0).startsWith("0")) {
-                day = dayMatcher.group(0).substring(1);
+            String dayMatch = dayMatcher.group(0);
+            if (dayMatch.contains("ST") || dayMatch.contains("ND")
+                    || dayMatch.contains("RD") || dayMatch.contains("TH")) {
+                dayMatch = dayMatch.substring(0, dayMatch.length() - 2);
+            }
+            if (dayMatch.startsWith("0")) {
+                day = dayMatch.substring(1);
             } else {
-                day = dayMatcher.group(0);
+                day = dayMatch;
             }
         }
         return day;

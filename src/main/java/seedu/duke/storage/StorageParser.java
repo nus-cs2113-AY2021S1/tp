@@ -246,15 +246,12 @@ public class StorageParser {
                 LocalDate date = DateTimeParser.dateParser(info[1]);
                 LocalTime time = null;
                 p.setDate(date);
-                p.setHasDate(true);
             } else {
                 //has both date and time
                 LocalDate date = DateTimeParser.dateParser(info[1]);
                 LocalTime time = DateTimeParser.timeParser(info[2]);
                 p.setDate(date);
-                p.setHasDate(true);
                 p.setTime(time);
-                p.setHasTime(true);
             }
             setDone(p, statuses[0]);
             repeatSetter(p, statuses, info[3], info[4]);

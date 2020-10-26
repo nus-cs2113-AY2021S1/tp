@@ -12,7 +12,7 @@ import seedu.duke.command.RepeatCommand;
 import seedu.duke.command.DoneCommand;
 import seedu.duke.command.UndoneCommand;
 import seedu.duke.command.CalendarCommand;
-import seedu.duke.command.EmailParseCommand;
+import seedu.duke.command.ExtractCommand;
 import seedu.duke.exception.DukeException;
 
 
@@ -81,8 +81,8 @@ public class Parser {
         case "calendar":
             return CalendarCommand.parse(argument);
 
-        case "email":
-            return new EmailParseCommand(argument);
+        case "extract":
+            return new ExtractCommand(argument);
 
         default:
             throw new DukeException("Invalid Command.");
