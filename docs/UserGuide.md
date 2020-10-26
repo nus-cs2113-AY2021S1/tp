@@ -8,6 +8,9 @@
     1. [Project `project`](#project-project)
         1. [Create a new project](#create-project)
         1. [View project information](#view-project-information)
+        1. [List all projects](#list-project)
+        1. [Select project](#select-project)
+    1. [Project Member `member`](#project-member-member)
         1. [Add team members](#add-team-members-into-project-member)
         1. [Remove team members](#remove-team-members-from-project)
     1. [Project Backlog `task`](#project-backlog-task)
@@ -306,6 +309,8 @@ Assign a task to a team member(s)
 | --- | --- | --- |
 | Create Project | `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>` | `project /create -title MeTube -desc video streaming software -dur 90 -sd 10` |
 | View project information | `project /view` | `project /view` |
+| Select project | `project /select <id>` | `project /select 2`|
+| List projects | `project /list` | `project /list`|
 | Add members | `member /add <username> [<username> ...]` | `member /add john mary` |
 | Remove members | `member /del <username> [<username> ...]` | `member /del john mary` |
 | Add tasks | `task /add -title <title> -desc <description> -priority <category>` | `task /add -title Add UI -desc add an interactive UI -priority HIGH` |
@@ -320,5 +325,3 @@ Assign a task to a team member(s)
 | Allocate tasks to team members | `sprint /assign -task <task_id> -user <user_id> [<user_id> ...]` | `sprint /assign -task 1 -user johntan mary jane` |
 | Exit program | `bye` | `bye` |
 
-
-      
