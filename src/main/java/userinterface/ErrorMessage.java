@@ -23,7 +23,7 @@ public class ErrorMessage extends Ui {
     }
     
     public static void printInvalidMc() {
-        printLine("MC cannot be zero!\n"
+        printLine("MC must be a positive integer!\n"
                 + "or you can type \"help\" for more information");
     }
 
