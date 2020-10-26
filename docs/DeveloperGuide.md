@@ -84,8 +84,7 @@ NotUs manages the flow of the application. On launch, it will create the necessa
 
 #### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
 
-The ParserManager manages the creation of specific parser objects based on the type of the command. The parser then
- makes sense of the user input and calls the respective commands into action.
+The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action.
 
 1. Receives the user input message as a whole.
 1. Interprets the type of command and creates the respective parser.
@@ -252,4 +251,3 @@ A all-in-one solution for note-taking and managing your schedule.
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
-
