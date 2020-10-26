@@ -10,10 +10,17 @@ public class CommandEventAdd extends Command {
 
     @Override
     public String execute() {
+        String output;
         if (cachedEvent == null) {
             return "Unable to create event! Please check your inputs again!";
         }
-        String output = EventList.addEvent(cachedEvent);
+        String eventName = userInput.getArg("n");
+        String eventDate = userInput.getArg("d");
+        if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
+            output = "This event already exists!";
+        } else {
+            output = EventList.addEvent(cachedEvent);
+        }
         return output;
     }
 

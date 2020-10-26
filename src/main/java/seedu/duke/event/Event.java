@@ -142,8 +142,13 @@ public class Event {
     * @param keyword The keyword to be matched with the description.
     * @return true if list contains the keyword
     */
-    public boolean containsKeyword(String keyword) {
+    public boolean containsNameKeyword(String keyword) {
         boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
+        return containsKeyword;
+    }
+
+    public boolean containsDateKeyword(LocalDate localDate) {
+        boolean containsKeyword = date.equals(localDate);
         return containsKeyword;
     }
 }

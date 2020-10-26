@@ -1,0 +1,28 @@
+@startuml
+ -> CommandEventCountdown: execute()
+
+activate  CommandEventCountdown
+activate EventList
+activate EventList #DarkSalmon
+ CommandEventCountdown -> EventList:countdownView()
+alt empty ArrayList
+    EventList -->  CommandEventCountdown
+else else
+    loop until end of ArrayList
+        EventList -> Event : printEvent()
+        activate Event
+        Event --> EventList
+        deactivate Event
+        EventList -> Event: numberOfDaysLeft()
+        activate Event
+        Event --> EventList
+        deactivate Event
+        EventList -->  CommandEventCountdown
+        deactivate EventList
+        return
+    end
+    deactivate EventList
+    deactivate EventList
+    deactivate  CommandEventCountdown
+end
+@enduml

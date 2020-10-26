@@ -1,27 +1,32 @@
+# User Guide
+
+# Table of contents
+
 - [1.Introduction](#1introduction)
 - [2.Quick Start](#2quick-start)
 - [3.Features](#3features)
-  * [3.1 Help `help`](#31-help--help-)
-  * [3.2 Exit the program: `bye`](#32-exit-the-program---bye-)
-  * [3.3 HR features `HR` <br/>](#33-hr-features--hr---br--)
-    + [Add members: `addMember`<br/>](#add-members---addmember--br--)
-    + [Delete members: `delMember`<br/>](#delete-members---delmember--br--)
-    + [list members: `listMember`<br/>](#list-members---listmember--br--)
-    + [change member information: `changeInfo`<br/>](#change-member-information---changeinfo--br--)
-    + [search members: `search`](#search-members---search-)
-    + [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-prof-admin---list-prof-admin-)
-    + [view contacts of connections: `list connections`](#view-contacts-of-connections---list-connections-)
-  * [3.4 Event features`event` <br/>](#34-event-features-event---br--)
-    + [Add events: `addEvent`<br/>](#add-events---addevent--br--)
-    + [Delete events: `delEvent`<br/>](#delete-events---delevent--br--)
-    + [list events: `listEvent`<br/>](#list-events---listevent--br--)
-    + [countdown events `countdown`<br/>](#countdown-events--countdown--br--)
-    + [Mark an event as completed `done`<br/>](#mark-an-event-as-completed--done--br--)
-    + [Search for an Event `search`<br/>](#search-for-an-event--search--br--)
-  * [3.5 Finance features `finance`](#35-finance-features--finance-)
-    + [Add finance log entry: `addLog`](#add-finance-log-entry---addlog-)
-    + [Delete finance log entry: `delLog`](#delete-finance-log-entry---dellog-)
-    + [View financial summary: `summary`](#view-financial-summary---summary-)
+  - [3.1 Help `help`](#31-help-help)
+  - [3.2 Exit the program: `bye`](#32-exit-the-program-bye)
+  - [3.3 HR features `HR`](#33-hr-features-hr)
+    - [Add members: `addMember`](#add-members-addmember)
+    - [Delete members: `delMember`](#delete-members-delmember)
+    - [list members: `listMember`](#list-members-listmember)
+    - [change member information: `changeInfo`](#change-member-information-changeinfo)
+    - [search members: `search`](#search-members-search)
+    - [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
+    - [view contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
+  - [3.4 Event features`event`](#34-event-featuresevent)
+    - [Add events: `addEvent`](#add-events-addevent)
+    - [Delete an event: `delEvent`](#delete-an-event-delevent)
+    - [Clear all events: `delEvent all`](#clear-all-events-delevent-all)
+    - [list events: `listEvent`](#list-events-listevent)
+    - [countdown events `countdown`](#countdown-events-countdown)
+    - [Mark an event as completed `done`](#mark-an-event-as-completed-done)
+    - [Search for an Event `search`](#search-for-an-event-search)
+  - [3.5 Finance features `finance`](#35-finance-features-finance)
+    - [Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
+    - [Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
+    - [View financial summary: `summary`](#view-financial-summary-summary)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
@@ -45,8 +50,10 @@ Format: help
 Exits the program.
 Format: `bye`
 
-### 3.3 HR features `HR` <br/>
-#### Add members: `addMember`<br/>
+![helpCommand](userGuidePic/helpCommand.PNG)
+
+### 3.3 HR features `HR` 
+#### Add members: `addMember`
 Adds a member to the list of members.<br/>
 
 Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
@@ -55,7 +62,7 @@ Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
  `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  
- #### Delete members: `delMember`<br/>
+ #### Delete members: `delMember`
  Deletes a member from the list of members. <br/>
  Format: `hr delMember MEMBER_INDEX` <br/>
  Deletes the member at the specified MEMBER_INDEX.<br/>
@@ -67,14 +74,14 @@ Example of usage: <br/>
  `hr delMember 1` <br/>
  `hr delMember 19` <br/>
 
-#### list members: `listMember`<br/>
+#### list members: `listMember`
 Prints the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
 
 Example of usage:
 `hr listMember`  
 
-#### change member information: `changeInfo`<br/>
+#### change member information: `changeInfo`
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
 
@@ -109,8 +116,8 @@ Example of usage:
 `hr list connections`  
 
 
-### 3.4 Event features`event` <br/>
-#### Add events: `addEvent`<br/>
+### 3.4 Event features`event` 
+#### Add events: `addEvent`
 Adds an event to the list of events.<br/>
 
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
@@ -119,9 +126,9 @@ Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
  `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
  
- #### Delete events: `delEvent`<br/>
- Deletes an event from the list of events. <br/>
- Format: `event delEvent EVENT_INDEX` <br/>
+#### Delete an event: `delEvent`
+ Deletes an event from the list of events  <br/>
+ Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
  The EVENT_INDEX refers to the index number shown in the list of events.<br/>
@@ -131,21 +138,31 @@ Example of usage: <br/>
  `event delEvent 1` <br/>
  `event delEvent 19` <br/>
 
-#### list events: `listEvent`<br/>
+#### Clear all events: `delEvent all`
+Clear all events from the list of events <br/>
+Format to clear all events in the list: `event delEvent all`
+
+Example of usage:
+`event delEvent all` <br/>
+
+A confirmation message will be prompted. To clear, type `Y` in terminal.
+![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
+
+#### list events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
 
 Example of usage: 
 `event listEvent`
 
-#### countdown events `countdown`<br/>
+#### countdown events `countdown`
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
 Example of usage: 
 `event countdown`
 
-#### Mark an event as completed `done`<br/>
+#### Mark an event as completed `done`
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
@@ -155,7 +172,7 @@ The EVENT_INDEX must be an integer greater than 0. <br/>
 Example of usage:
 `event done 1`
 
-#### Search for an Event `search`<br/>
+#### Search for an Event `search`
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
@@ -199,6 +216,7 @@ listMember  | `hr listMember` | -
 changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
+delEvent all | `event delEvent all` | -
 listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`

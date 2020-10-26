@@ -1,0 +1,19 @@
+@startuml
+participant ":CommandFinanceSummary" as CommandFinanceSummary
+participant ":FinanceList" as FinanceList
+participant ":FinanceLog" as FinanceLog
+->CommandFinanceSummary:execute()
+activate CommandFinanceSummary
+CommandFinanceSummary -> FinanceList : summary()
+activate FinanceList
+loop finSize
+FinanceList -> FinanceLog: getLog()
+activate FinanceLog
+return finLog
+FinanceList -> FinanceLog:getLogVal()
+activate FinanceLog
+return finLogVal
+end
+return output
+return output
+@enduml

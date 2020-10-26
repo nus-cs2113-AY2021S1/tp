@@ -1,14 +1,13 @@
 package seedu.duke.event;
 
 import seedu.duke.Command;
-import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.backend.UserInput;
 
 public class CommandSearchEvent extends Command {
     private UserInput userInput;
     
     @Override
-    public String execute() {
+    public String execute()  {
         String input = userInput.getArg("s");
         String output = EventList.searchEvents(input);
         return output;
