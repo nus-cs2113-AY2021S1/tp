@@ -44,7 +44,6 @@ class DeadlineCommandTest {
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][✕] sleep");
-        printWriter.println("_________________________________");
         printWriter.println("You have successfully updated the deadline for this event!");
         printWriter.println("[P][✕] sleep on 2020-10-07");
         printWriter.close();
@@ -65,7 +64,6 @@ class DeadlineCommandTest {
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][✕] sleep");
-        printWriter.println("_________________________________");
         printWriter.println("You have successfully updated the deadline for this event!");
         printWriter.println("[P][✕] sleep on 2020-10-07, 23:20");
         printWriter.close();
