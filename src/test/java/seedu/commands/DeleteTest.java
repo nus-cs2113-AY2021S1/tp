@@ -36,7 +36,7 @@ class DeleteTest {
 
     @Test
     public void constructor_noRawInput_throws_InvalidCommandException() {
-        assertThrows(InvalidCommandException.class, () -> parser.processRaw(""));
+        assertThrows(InvalidCommandException.class, () -> parser.processRaw("delete" + ""));
     }
 
     @Test
