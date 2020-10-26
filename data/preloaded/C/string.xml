@@ -1,5 +1,7 @@
-Programming Language: C
-Contents:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>No</favourite>
+    <content>
 Strings are actually one-dimensional array of characters terminated by a null character '\0'. Thus a null-terminated string contains the characters that comprise the string followed by a null.
 
 The following declaration and initialization create a string consisting of the word "Hello". To hold the null character at the end of the array, the size of the character array containing the string is one more than the number of characters in the word "Hello."
@@ -79,3 +81,4 @@ When the above code is compiled and executed, it produces the following result â
     strcat( str1, str2):   HelloWorld
     strlen(str1) :  10
 Adapted from https://www.tutorialspoint.com/cprogramming/c_strings.htm
+</content></main>

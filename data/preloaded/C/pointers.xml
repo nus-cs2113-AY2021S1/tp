@@ -1,5 +1,7 @@
-Programming Language: C
-Contents:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+   <favourite>No</favourite>
+   <content>
 Pointers in C are easy and fun to learn. Some C programming tasks are performed more easily with pointers, and other tasks, such as dynamic memory allocation, cannot be performed without using pointers. So it becomes necessary to learn pointers to become a perfect C programmer. Let's start learning them in simple and easy steps.
 
 As you know, every variable is a memory location and every memory location has its address defined which can be accessed using ampersand (&) operator, which denotes an address in memory. Consider the following example, which prints the address of the variables defined −
@@ -105,3 +107,4 @@ Passing an argument by reference or by address enable the passed argument to be 
 5	Return pointer from functions in C
 C allows a function to return a pointer to the local variable, static variable, and dynamically allocated memory as well.
 Adapted from https://www.tutorialspoint.com/cprogramming/c_pointers.htm
+   </content></main>

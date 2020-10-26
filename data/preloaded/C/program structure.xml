@@ -1,5 +1,7 @@
-Programming Language: C
-Contents:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>No</favourite>
+    <content>
 This is an example of a C program. The main specifies the main entrance and exit point of the program.
 ```
 #include<stdlib.h> // preprocessor directives
@@ -13,3 +15,4 @@ int main(void){
     return 0;
 }
 ```
+    </content></main>

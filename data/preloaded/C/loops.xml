@@ -1,5 +1,7 @@
-Programming Language: C
-Contents:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>No</favourite>
+    <content>
 Programming languages provide various control structures that allow for more complicated execution paths.
 
 A loop statement allows us to execute a statement or group of statements multiple times. Given below is the general form of a loop statement in most of the programming languages −
@@ -36,3 +38,4 @@ Sr.No.	Control Statement & Description
     Transfers control to the labeled statement.
 
 Adapted from https://www.tutorialspoint.com/cprogramming/c_loops.htm
+    </content></main>

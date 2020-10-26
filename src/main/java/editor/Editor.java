@@ -5,6 +5,7 @@ import javax.swing.JTextArea;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 public class Editor extends JFrame implements ActionListener {
     JTextArea textArea;
     JFrame editorFrame;
+
     static String typedText;
     boolean isEditing;
 
@@ -37,6 +39,7 @@ public class Editor extends JFrame implements ActionListener {
         final JMenuItem menuItem2 = new JMenuItem("Clear All");
         final JMenuItem menuItem3 = new JMenuItem("Cancel");
 
+
         menuItem1.addActionListener(this);
         menuItem2.addActionListener(this);
         menuItem3.addActionListener(this);
@@ -48,6 +51,7 @@ public class Editor extends JFrame implements ActionListener {
         menuBar.add(menu1);
 
         editorFrame.setJMenuBar(menuBar);
+        editorFrame.setTitle("CheatLogs Text Editor");
         editorFrame.add(textArea);
         editorFrame.setSize(600,800);
         editorFrame.setVisible(true);
@@ -73,7 +77,6 @@ public class Editor extends JFrame implements ActionListener {
             break;
         }
     }
-
 
     private void setEditingFinish() {
         isEditing = false;

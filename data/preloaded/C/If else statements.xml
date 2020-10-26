@@ -1,5 +1,7 @@
-Programming Language: C
-Contents:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>No</favourite>
+    <content>
 C programming language assumes any non-zero and non-null values as true, and if it is either zero or null, then it is assumed as false value.
 
 C programming language provides the following types of decision making statements.
@@ -33,3 +35,4 @@ The ? : Operator
     If Exp1 is false, then Exp3 is evaluated and its value becomes the value of the expression.
 
 Adapted from https://www.tutorialspoint.com/cprogramming/c_decision_making.htm
+    </content></main>
