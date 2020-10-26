@@ -16,7 +16,7 @@ import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
 
-import static fitr.DateManager.getCurrentDate;
+import static fitr.common.DateManager.getCurrentDate;
 
 /**
  * Parses the user input.
