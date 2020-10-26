@@ -21,11 +21,11 @@
     - [ChangeReviewCommand](#changereviewcommand)
     - [DeleteReviewCommand](#deletereviewcommand)
     - [WatchCommand](#watchcommand)
-    - [UpdateShowEpisodeProgressCommand](#updateshowepisodesprogresscommand)
+    - [UpdateShowEpisodeProgressCommand](#updateshowepisodeprogresscommand)
     - [UpdateShowSeasonCommand](#updateshowseasoncommand)
     - [UpdateTimeLimitCommand](#updatetimelimitcommand)
     - [Storage](#storage)
-    - [Errorhandling](#errorhandling)
+    - [Errorhandling](#error-handling)
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
@@ -476,7 +476,9 @@ The following sequence diagram summarises what happens when a user executes a `W
  
  *Sequence diagram for Watch Command*
 
+### UpdateShowEpisodeProgressCommand
 
+### UpdateShowSeasonCommand
 
 ### UpdateTimeLimitCommand
 
