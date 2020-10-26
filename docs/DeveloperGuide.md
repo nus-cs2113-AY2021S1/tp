@@ -84,7 +84,7 @@ Poem: Represents the Writings objects which have type is Poem.
 Essay: Represents the Writings objects which have type is Essay.
 User: Represents the Users registered to the System
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
-<center><i>Figure 2:WritingList family UML diagram</i></center>
+<center><i>Figure 2: WritingList family UML diagram</i></center>
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within 
 the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() 
@@ -96,6 +96,7 @@ either poem or essay at this stage)
 ### Filter words
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <center><i>Figure 3: Filter word UML Class Diagram</i></center>
+
 The above class diagram describes the overall architecture of the filter words functionality. FilterExecutor class has 
 the static void method executeFilterCommand that will be called first when the user enters a filter command. 
 In the executeFilterCommand method, it will make use of the enumeration FilterType to get the filter type (by WORD_TYPE, 
@@ -128,7 +129,7 @@ be read by the BunnyLoader class and saved into the bunniesList ArrayList using 
 
 <p align="center">
   <img src="https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png"><br>
-  <i>Figure 6:  Names UML Class Diagram</i>
+  <i>Figure 6: Names UML Class Diagram</i>
 </p>
 
 The above class diagram (Figure 6) describes the overall architecture of the name list functionalities. The Names class 
