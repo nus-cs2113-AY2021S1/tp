@@ -6,6 +6,7 @@ import seedu.notus.data.tag.TaggableObject;
 import java.util.ArrayList;
 import java.util.Formatter;
 
+import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
@@ -150,7 +151,7 @@ public class Note extends TaggableObject {
         }
         noteDetails += PREFIX_DELIMITER + PREFIX_TITLE + " " + this.title + " "
                     + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
-                    //+ PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
+                    + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
                     + tagDetails
                     + LS;
 
