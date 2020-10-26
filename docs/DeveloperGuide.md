@@ -32,101 +32,162 @@ The table below shows the information and contact details of developers.
 
 ## Setting Up
 
+Before diving into the project development and testing, here are some essential tools required in this project:
+
+1. **JAVA 11.0.8**
+    * sd
+1. **Intellij IDEA**
+
 ## Design
 This section describes the design overview of the application.
 
 ### Architecture
 
+The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
-The Figure given above shows the overall design of the application. Given below is a sequence diagram when adding a Todo task. 
+
+UI: The user interface of the application.
+Parser: Interprets the user's input.
+Command: The command executor.
+Model: Holds the data of the application in memory.
+Storage: Reads data from, and writes data to, the hard disk. 
 
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="750"/>
 
 The quick overview of components and the workflow is given below.
 
 ### Ui
-
-The Ui class receives the input from the keyboard and passes to the Parser class to handle it. After executing commands, 
-most of the output will be done by the Ui class.
+The `Ui` class receives the input from the keyboard and passes to the `Parser` class to handle it. After executing commands, 
+most of the output will be done by the `Ui` class.
 
 ### Parser
 
-The Parser class receives commands from Ui class and converts the format to distinguish different commands. 
-Then it passes the formatted commands to the Command class. 
+The `Parser` class receives the user's input from the `Ui` class. It interprets the user's input and returns the resepective command. 
 
 ### Command
 
-The command class receives formatted commands from Parser class and execute corresponding commands on Module items. 
-The changes will be passed to and saved in the Storage class.
+The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
+The figure belows shows the class diagram of the command class: <br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/command.JPG" alt="" width="200"/><br/>
+All the different Command classes inherit from the `Command` class.
 
 ### Storage
 
-The Storage class will create a local file when the user launches the application for the first time to save the data. 
-After the first launch, every time the user reopens the application, it will load the information to the Module class from the local file. 
-Every time before exiting the application, all information will be automatically saved to the same local file.
+The `Storage` class will create a local file when the user launches the application for the first time to save the data. 
+After the first launch, every time the user reopens the application, it will load the information to the Model from the local file. 
+Whenever the calendarList is updated, all information will be automatically saved to the same local file.
 
-### Module
+### Model
 
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
-The figure given above shows the structure of main items in this application. When executing commands, 
-the CalendarItem class updates the information or provides the information of different types of items if needed. 
-It is split into two subclasses: Task and Event class. All the items in the two classes are managed separately and can be accessed by the main CalendarItem class.
-The CalendarList class keeps track of the number of total items, total tasks, and total events in CalendarItem class.
+The figure given above shows the structure of the Model in this application. When executing commands, 
+the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
+It is split into two subclasses: `Task` and `Event` class.
+The `CalendarList` class holds the array of `CalendarItem` and keeps track of the number of total items, total tasks, and total events.
 Given below is the simple overview of Task and Event classes.
 
 #### Task
 
-The Task class stores the information of all task items, including description and status, such as isDone and isImportant. 
-It has two subclasses: Todo and Deadline. Deadline items also have the date information and countdown for the deadline date, which are not included in Todo tasks. 
-All Task items update the information or provide needed information about task items when executing commands related to tasks or saving the information to Storage. 
+The `Task` class stores the information of all task items, including description and status, such as isDone and isImportant. 
+It has two subclasses: `Todo` and `Deadline`. `Deadline` items also have the date information and countdown for the deadline date, which are not included in `Todo` tasks. 
 
 #### Event
 
-The event class stores the information of all event items, including date, time, venue, status whether it is overdue, and any other information if added. 
-It has two subclasses: SchoolEvent and Activity. Activity items can have other details. All SchoolEvent items must have a module code.  
-Furthermore, the SchoolEvent class has three subclasses which are Lecture, Tutorial, Lab, and Exam. Among them only Exam items have a countdown for the exam date. 
-All Event items update the information or provide needed information about event items when executing commands related to events or saving the information to Storage.
+The `Event` class stores the information of all `Event` items, including date, time, venue, status whether it is overdue, and any other information if added. 
+It has two subclasses: SchoolEvent and Activity. `Activity` items can have other details.
+All `SchoolEvent` items must have a module code.  
+Furthermore, the `SchoolEvent` class has four subclasses which are `Lecture`, `Tutorial`, `Lab`, and `Exam`. Among them only `Exam` items have a countdown for the exam date. 
+All `Event` items update the information or provide needed information about `Event` items when executing commands related to events or saving the information to `Storage`.
+
+Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
 
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add an event item feature
+This feature is facilitated by `AddCommand`.
+The following sequence diagram shows how the `execute()` operation works:
+
+It checks the type of the new event first, 
+then it analyses the attached information and saves the event with the information in the event list.  
+
+Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
+there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+
+Note: Multiple `Lecture`, `Lab`, and `Tutorial`events can be added by one command since they are recurring,
+while only one `Exam` or `Activity` event can be added at a time.   
+
 ### Mark a task as done feature
-This feature is facilitated by `DoneCommand`. It extends the `Command` class and overrides the `execute()` function.
+This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="450"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
 Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
 
 ### Additional information of an event feature
-This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`. Both extends the `Command` class and overrides the `execute()` function.
+This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="450"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="450"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
-This feature is facilitated by `DeleteCommand`. It extends the `Command` class and overrides the `execute()` function.
+This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="450"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
+
 Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
 
 ### Find a calendar item feature
-This feature is facilitated by `FindCommand`. It extends the `Command` class and overrides the `execute()` function.
+This feature is facilitated by `FindCommand`.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="450"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
 ### Print personal calendar feature
-This feature is facilitated by `PrintTimelineCommand`. It extends the `Command` class and overrides the `execute()` function.
+This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
+
+### Prioritize a task feature 
+This feature is facilitated by `PrioritizeCommand`. 
+The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+
+Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
+There will be a check in the function markTaskAsImportant(calendarNumber) to ensure that the calendar item being marked as important is a task.
+
+### Print prioritized tasks feature
+This feature is facilitated by `PrintPriorityCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+
+### Print progress feature
+This feature is facilitated by `PrintProgressCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
+<img src="" alt="" width="750"/><br/>
+
+### Print suggestion feature
+This feature is facilitated by `PrintSuggestionCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
+<img src="" alt="" width="750"/><br/>
+
+### Printing countdown feature
+The feature is facilitated by `CountdownCommand`.
+
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+
+Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
+exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
+
 
 ## Documentation
 

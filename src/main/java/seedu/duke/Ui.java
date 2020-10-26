@@ -36,9 +36,9 @@ public class Ui {
                 + "2. deadline <task description> /ddMMyy\n"
                 + "3. act <activity description> @<venue> /ddMMyy HHmm\n"
                 + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
-                + "5. lect <module code> @<venue> /ddMMyy HHmm\n"
-                + "6. tut <module code> @<venue> /ddMMyy HHmm\n"
-                + "7. lab <module code> @<venue> /ddMMyy HHmm\n"
+                + "5. lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm\n"
+                + "6. tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm\n"
+                + "7. lab <module code> @<venue> -r <number of lab> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
@@ -73,41 +73,24 @@ public class Ui {
     }
 
     /**
-     * Prints the Duke welcome message.
+     * Prints the welcome message.
      */
     public static void printWelcomeMessage() {
-        System.out.println("Printing of 25/7 logo!!!!");
-        System.out.println("===========================================================================\n"
-                + "Welcome to 25/7 Task Manager!\n"
+
+        String hi = " #####  #######   #     # ####### #     # ######   #####       #      ######     #   #     #\n"
+                + "#     # #         #     # #     # #     # #     # #     #     # #     #     #   # #   #   #\n"
+                + "      # #         #     # #     # #     # #     # #          #   #    #     #  #   #   # #\n"
+                + " #####  ######    ####### #     # #     # ######   #####    #     #   #     # #     #   #\n"
+                + "#             #   #     # #     # #     # #   #         #   #######   #     # #######   #\n"
+                + "#       #     #   #     # #     # #     # #    #  #     #   #     #   #     # #     #   #\n"
+                + "#######  #####    #     # #######  #####  #     #  #####    #     #   ######  #     #   #";
+
+        System.out.println(hi);
+        System.out.println("=========================================================================================\n"
+                + "Welcome to 25 Hours A Day Task Manager!\n"
                 + "What can I do for you?\n"
                 + "Enter 'help' for the list of commands.\n"
-                + "===========================================================================");
-
-        /**
-         //        String[]  HELLO_MESSAGE = {
-         //
-         "=================================================================================================",
-         //                "   .-----------------.     .-----------------.              //    .-------------------.",
-         //                "   |______________.  |     |  _______________|             //     |______________.   |",
-         //                "                  |  |     |  |                           //                    /   /",
-         //                "                  |  |     |  |                          //                    /   /",
-         //                "   .---------------  |     |  |---------------.         //                    /   /",
-         //                "   | ________________|     |________________  |        //                    /   /",
-         //                "   | |                                     |  |       //                    /   /",
-         //                "   | |                                     |  |      //                    /   /",
-         //                "   | ----------------.     .---------------|  |     //                    /   /",
-         //                "   |_________________|     |__________________|    //                    /___/",
-         //                " ",
-         //
-         "=================================================================================================",
-         //                " Welcome to 25/7 Task Manager!",
-         //                " What can I do for you?",
-         //                " Enter 'help' for the list of commands.",
-         //
-         "================================================================================================="
-         //        };
-         //        System.out.println(String.join("\n", HELLO_MESSAGE));
-         */
+                + "=========================================================================================");
 
     }
 
@@ -125,9 +108,11 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............................. DUKE CHAT BOX ^^ ............................");
+            System.out.println("................................. "
+                    + "25HoursADay CHAT BOX ^^ ...............................");
         } else {
-            System.out.println("...........................................................................");
+            System.out.println("...................................................."
+                    + ".....................................");
         }
     }
 
@@ -179,6 +164,7 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printTaskListView(CalendarList calendarList) {
+        assert calendarList != null;
         int taskCounts = 0;
         System.out.println("This is your list of task(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
@@ -199,6 +185,7 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printEventsListView(CalendarList calendarList) {
+        assert calendarList != null;
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
@@ -231,6 +218,7 @@ public class Ui {
      * @param calendarList the calendar list that the task was added to.
      */
     public static void printAddMessage(CalendarList calendarList, boolean isTask) {
+        assert calendarList != null;
         String calendarItem;
         if (isTask) {
             calendarItem = "task";
@@ -260,6 +248,7 @@ public class Ui {
      * @param item the item to print the countdown.
      */
     public static void printCountDownItem(int days, CalendarItem item) {
+        assert item != null;
         if (days < 0) {
             System.out.println(item.getDescription() + " You have already missed it!");
         } else if (days == 0) {
@@ -335,24 +324,10 @@ public class Ui {
     /**
      * Shows the user's progress on deadlines and todos.
      *
-     * @param calendarList the list of user tasks.
+     * @param numTotal integer of number of total user tasks.
+     * @param numFinished integer of number of finished tasks.
      */
-    public static void printProgress(CalendarList calendarList) {
-        int numFinished = 0;
-        int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task)) {
-                continue;
-            }
-            if (((Task) item).getTaskType().equals("D") || ((Task) item).getTaskType().equals("T")) {
-                numTotal++;
-                if (((Task) item).getIsDone()) {
-                    numFinished++;
-                }
-            }
-        }
-
+    public static void printProgress(int numTotal, int numFinished) {
         if (numTotal == 0) {
             System.out.println("You have no deadlines or todos now!");
         } else {
@@ -457,20 +432,20 @@ public class Ui {
             System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lect <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the lecture in this format: \n"
+                    + "lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tut <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the tutorial in this format: \n"
+                    + "tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> @<venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the lab in this format: \n"
+                    + "lab <module code> @<venue> /ddMMyy HHmm");
             break;
         case "exam":
-            System.out.println("Error: Please key in the exam in this format: exam <module code> @<exam venue> /"
-                    + "ddMMyy HHmm");
+            System.out.println("Error: Please key in the exam in this format: \n"
+                    + "exam <module code> @<exam venue> /ddMMyy HHmm");
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
@@ -511,6 +486,10 @@ public class Ui {
         case "invalid view info":
             System.out.println(
                     "Error: To view the additional information of the event: /v <event number>");
+            break;
+        case "invalid module code":
+            System.out.println(
+                    "Error: invalid module code. The module code cannot be found in NUS module list.");
             break;
         default:
             System.out.println("Unknown Error.");
