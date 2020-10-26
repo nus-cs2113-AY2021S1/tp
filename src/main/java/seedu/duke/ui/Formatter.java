@@ -90,7 +90,7 @@ public class Formatter {
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
-        header = header.concat(" " + note.getTagsName());
+        header = header.concat(note.getTitle() + " " + note.getTagsName());
 
         formattedString = formattedString.concat(generatesHeader(header));
         for (String line : note.getContent()) {

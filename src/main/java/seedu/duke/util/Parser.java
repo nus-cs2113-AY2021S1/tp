@@ -33,21 +33,24 @@ import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.WeeklyEvent;
 import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.YearlyEvent;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_ARCHIVE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
+import static seedu.duke.util.PrefixSyntax.PREFIX_ADD_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_STOP_RECURRING;
-import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_SORT;
+import static seedu.duke.util.PrefixSyntax.PREFIX_LINE;
+import static seedu.duke.util.PrefixSyntax.PREFIX_CONTENT;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.STRING_SORT_ASCENDING;
 import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
@@ -58,6 +61,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -73,6 +80,9 @@ public class Parser {
 
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
     private static final int NULL_INDEX = 0;
+    private static final String[] INSTRUCTIONS_INPUT_CONTENTS = {
+        "Enter Note:", "*/del to delete previous line*", "*/end on a new line to end note input*"
+    };
 
     /**
      * Parses userInput string into a Command to be executed.
@@ -95,7 +105,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException exception) {
             userMessage = null;
         }
-        
+
         try {
             switch (commandString.toLowerCase()) {
             case AddNoteCommand.COMMAND_WORD:
@@ -112,9 +122,8 @@ public class Parser {
                 return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
                 return prepareViewNote(userMessage);
-                // return prepareViewNote(userMessage);
             case EditNoteCommand.COMMAND_WORD:
-                // return prepareEditNote(userMessage);
+                return prepareEditNote(userMessage);
             case EditEventCommand.COMMAND_WORD:
                 // return prepareEditEvent(userMessage);
             case DeleteNoteCommand.COMMAND_WORD:
@@ -228,10 +237,13 @@ public class Parser {
      */
     private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
+
         String title = "";
-        ArrayList<String> content = new ArrayList<>();
+
         boolean isPinned = false;
         boolean isArchived = false;
+
+        ArrayList<String> content = new ArrayList<>();
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -250,6 +262,10 @@ public class Parser {
                     break;
                 case PREFIX_PIN:
                     isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
+                    break;
+                case PREFIX_ARCHIVE:
+                    isArchived = Boolean.parseBoolean(checkBlank(infoDetails[1],
+                            ExceptionType.EXCEPTION_MISSING_ARCHIVE));
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
@@ -408,9 +424,7 @@ public class Parser {
             Scanner input = new Scanner(System.in);
             inputString = new ArrayList<>();
 
-            System.out.println("Enter Note:");
-            System.out.println("Type /del to delete your previous line");
-            System.out.println("Type /end on a new line to end your note input");
+            System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true));
             try {
                 // Type note
                 do {
@@ -425,7 +439,7 @@ public class Parser {
                 } while (!inputString.get(inputString.size() - 1)
                         .equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
-                // Delete "/end" command when user ends the edit
+                // Delete "/end" command when user ends the input
                 inputString.remove(inputString.size() - 1);
 
                 if (inputString.size() != 0) {
@@ -435,22 +449,12 @@ public class Parser {
                 }
             } catch (StringIndexOutOfBoundsException exception) {
                 System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
+            } catch (IndexOutOfBoundsException exception) {
+                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_DEL_INPUT);
             }
         } while (!isInputSuccess);
 
         return inputString;
-    }
-
-    /**
-     * Delete the last line for mistakes made in inputContent().
-     *
-     * @param commandInput Original string of the note content.
-     * @param characters String of character to be removed.
-     * @param charCount Number of character. 0 to remove new line, 1 to resume typing on the same line.
-     */
-    public static void deleteLine(StringBuilder commandInput, String characters, int charCount) {
-        int lastChar = commandInput.lastIndexOf(characters) + charCount;
-        commandInput.delete(lastChar, commandInput.length());
     }
 
     /**
@@ -462,8 +466,10 @@ public class Parser {
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
         int index;
+
         String title;
         String prefix;
+
         boolean isIndex = false;
 
         try {
@@ -597,7 +603,6 @@ public class Parser {
     }
 
 
-
     /**
      * Ensures that the user does not leave input blank after entering the find command word.
      *
@@ -689,7 +694,7 @@ public class Parser {
         if (isArchive) {
             return new ListNoteCommand(isArchive);
         }
-        
+
         // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
         if (tagsName.isEmpty() && isAscending == null) {
@@ -764,7 +769,7 @@ public class Parser {
                 case PREFIX_TITLE:
                     isTitle = true;
                     exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1],exception);
+                    title = checkBlank(infoDetails[1], exception);
                     return new ViewNoteCommand(title);
                 case PREFIX_INDEX:
                     isTitle = false;
@@ -789,6 +794,7 @@ public class Parser {
 
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
+     *
      * @param userMessage User Input without the action word.
      * @return Returns a DeleteEventCommand to be executed by Duke.
      * @throws SystemException When the index is not numeric (e.g. index = 1%s).
@@ -809,11 +815,158 @@ public class Parser {
         return new DeleteEventCommand(index - 1);
     }
 
-    /*
-    private Command prepareEditNote(String userMessage) {
-       return new EditCommand(index, note);
+    /**
+     * Prepare userInput into Note before editing into Notebook.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the add note command.
+     * @throws SystemException if an error occurs.
+     */
+    private Command prepareEditNote(String userMessage) throws SystemException {
+        int index = 0;
+
+        String prefixClashMode = "";
+        String title = "";
+
+        boolean isArchived = false;
+        boolean isInput = false;
+        boolean isChangesCheck = false;
+
+        Note note;
+
+        ArrayList<String> content = new ArrayList<>();
+        ArrayList<Tag> tags = new ArrayList<>();
+
+        Map<Integer, String> addLists = new HashMap<>();
+        Map<Integer, String> editLists = new HashMap<>();
+        Map<Integer, String> deleteLists = new HashMap<>();
+
+        try {
+            // Get prefix
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0].toLowerCase();
+                switch (prefix) {
+                case PREFIX_INDEX:
+                    index = Integer.parseInt(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_INDEX));
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
+                    index--;
+                    break;
+                case PREFIX_TITLE:
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
+                    isChangesCheck = true;
+                    break;
+                case PREFIX_ADD_LINE:
+                    if (prefixClashMode.isBlank() || prefixClashMode.equals(PREFIX_ADD_LINE)) {
+                        addLists = addToLists(PREFIX_ADD_LINE, addLists, infoDetails[1]);
+                        addLists = sortByKey(addLists);
+                        prefixClashMode = PREFIX_ADD_LINE;
+                        isChangesCheck = true;
+                    } else {
+                        throw new SystemException(ExceptionType.EXCEPTION_CLASH_FORMAT);
+                    }
+                    break;
+                case PREFIX_LINE:
+                    if (prefixClashMode.isBlank() || prefixClashMode.equals(PREFIX_LINE)) {
+                        editLists = addToLists(PREFIX_LINE, editLists, infoDetails[1]);
+                        prefixClashMode = PREFIX_LINE;
+                        isChangesCheck = true;
+                    } else {
+                        throw new SystemException(ExceptionType.EXCEPTION_CLASH_FORMAT);
+                    }
+                    break;
+                case PREFIX_DELETE_LINE:
+                    if (prefixClashMode.isBlank() || prefixClashMode.equals(PREFIX_DELETE_LINE)) {
+                        deleteLists = addToLists(PREFIX_DELETE_LINE, deleteLists, infoDetails[1]);
+                        deleteLists = sortByKey(deleteLists);
+                        prefixClashMode = PREFIX_DELETE_LINE;
+                        isChangesCheck = true;
+                    } else {
+                        throw new SystemException(ExceptionType.EXCEPTION_CLASH_FORMAT);
+                    }
+                    break;
+                case PREFIX_CONTENT:
+                    isInput = true;
+                    isChangesCheck = true;
+                    break;
+                case PREFIX_TAG:
+                    Tag tag = handleTagPrefix(infoDetails);
+                    tags.add(tag);
+                    isChangesCheck = true;
+                    break;
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
+                }
+            }
+
+            if (!isChangesCheck) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_PREFIX);
+            }
+
+            note = tags.isEmpty() ? new Note(title, content, null, isArchived) :
+                    new Note(title, content, null, isArchived, tags);
+
+            return new EditNoteCommand(index, note, addLists, editLists, deleteLists, isInput);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
     }
 
+    /**
+     * Reverse the map integers values for an easier flow of
+     * setting map.
+     *
+     * @param map Original string user inputs.
+     * @return Result of the add note command.
+     */
+    private Map<Integer, String> sortByKey(Map<Integer, String> map) {
+        Map<Integer, String> reverseSortedMap = new TreeMap<>(Collections.reverseOrder());
+        reverseSortedMap.putAll(map);
+        return reverseSortedMap;
+    }
+
+    /**
+     * Adds on to the current type of lines that is to be added
+     * edit or delete.
+     *
+     * @param prefix type that is passed in.
+     * @param lists of list to be returned.
+     * @param infoDetail string user input values.
+     * @return lists of list containing the key and value.
+     * @throws SystemException if integer is invalid.
+     */
+    private Map<Integer, String> addToLists(String prefix, Map<Integer, String> lists,
+                                            String infoDetail) throws SystemException {
+        String line = checkBlank(infoDetail, ExceptionType.EXCEPTION_MISSING_LINE_CONTENT);
+        String[] lineInfo;
+        int index;
+
+        if (prefix.equals(PREFIX_DELETE_LINE)) {
+            lineInfo = line.split(STRING_SPLIT_DELIMITER, 1);
+        } else {
+            lineInfo = line.split(STRING_SPLIT_DELIMITER, 2);
+        }
+
+        index = Integer.parseInt(checkBlank(lineInfo[0], ExceptionType.EXCEPTION_MISSING_INDEX));
+        if (index <= NULL_INDEX) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        }
+
+        if (prefix.equals(PREFIX_DELETE_LINE)) {
+            lists.put(index - 1, "");
+        } else {
+            lists.put(index - 1, lineInfo[1]);
+        }
+
+        return lists;
+    }
+
+    /*
     private Command prepareEditEvent(String userMessage) {
        return new EditCommand(index, event);
     }
@@ -947,7 +1100,7 @@ public class Parser {
      * Sets up what to be printed to the console (only logs that are severe)
      * Sets up what to be printed to the file (logs that are of Level.INFO and above)
      *
-     * @param logger A Logger variable to be used
+     * @param logger      A Logger variable to be used
      * @param logFileName Name to be given for .log file.
      */
     public void setupLogger(Logger logger, String logFileName) {

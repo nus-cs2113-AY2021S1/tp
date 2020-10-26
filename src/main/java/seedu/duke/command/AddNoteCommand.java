@@ -77,6 +77,6 @@ public class AddNoteCommand extends Command {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
         }
 
-        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
+        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, note);
     }
 }
