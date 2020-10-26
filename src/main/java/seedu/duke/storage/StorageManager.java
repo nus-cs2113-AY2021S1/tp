@@ -20,9 +20,9 @@ public class StorageManager {
 
     public StorageManager(String filename, ProjectManager projectManager) {
         if (filename == null || filename.isBlank()) {
-            filepath = Paths.get("./data", filename);
-        } else {
             filepath = Paths.get(DEFAULT_FILEPATH);
+        } else {
+            filepath = Paths.get("./data", filename);
         }
         this.projectManager = projectManager;
         init();
