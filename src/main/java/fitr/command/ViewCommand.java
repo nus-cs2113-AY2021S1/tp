@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Calorie;
 import fitr.Goal;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
@@ -9,6 +10,9 @@ import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
@@ -29,6 +33,10 @@ import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.DATE_HEADER;
 import static fitr.common.Messages.EMPTY_STRING;
+import static fitr.common.Messages.ERROR_INVALID_DATE;
+import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
+
+import java.text.SimpleDateFormat;
 
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
@@ -50,13 +58,17 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
             viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(listManager.getFoodList(), listManager.getExerciseList(), user);
+            viewSummary(listManager.getFoodList(), listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
+            viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1]);
+        } else if (command.split(" ")[0].equalsIgnoreCase((COMMAND_VIEW_FOOD))) {
+            viewFoodByDate(listManager.getFoodList(), command.split(" ")[1]);
         } else {
             Ui.printFormatError("view");
         }
@@ -112,14 +124,80 @@ public class ViewCommand extends Command {
         }
     }
 
-    //View summary of total amount of calories consumed and burnt.
-    private void viewSummary(FoodList foodList, ExerciseList exerciseList, User user) {
-        Ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorieConsumed(foodList).get()));
-        Ui.printCustomMessage(CALORIE_BURNT_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorieBurnt(exerciseList).get()));
-        Ui.printCustomMessage(NET_CALORIE_HEADER);
-        Ui.printCustomMessage(String.valueOf(user.calculateCalorie(foodList, exerciseList).get()));
+    private void viewSummary(FoodList foodList, ExerciseList exerciseList) {
+        int foodIndex = 0;
+        int exerciseIndex = 0;
+        int totalCalorieConsumed = 0;
+        int totalCalorieBurnt = 0;
+        int index = 0;
+        String currentDate;
+        ArrayList<String> dateList = new ArrayList<>();
+        ArrayList<Integer> calorieList = new ArrayList<>();
+        while (exerciseIndex < exerciseList.getSize() && foodIndex < foodList.getSize()) {
+            if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    < Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                exerciseIndex++;
+            } else if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    == Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                exerciseIndex++;
+                foodIndex++;
+            } else if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
+                    > Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                foodIndex++;
+            }
+        }
+        if (exerciseIndex >= exerciseList.getSize()) {
+            while (foodIndex < foodList.getSize()) {
+                calorieList.add(foodList.getFood(foodIndex).getCalories());
+                dateList.add(foodList.getFood(foodIndex).getDate());
+                foodIndex++;
+            }
+        } else {
+            while (exerciseIndex < exerciseList.getSize()) {
+                calorieList.add(-exerciseList.getExercise(exerciseIndex).getCalories());
+                dateList.add(exerciseList.getExercise(exerciseIndex).getDate());
+                exerciseIndex++;
+            }
+        }
+
+        while (index < dateList.size()) {
+            currentDate = dateList.get(index);
+            Ui.printMessageInYellow(DATE_HEADER + currentDate);
+            while (index < dateList.size() && dateList.get(index).equals(currentDate)) {
+                if (calorieList.get(index) <= 0) {
+                    totalCalorieBurnt += calorieList.get(index);//negative
+                } else if (calorieList.get(index) > 0) {
+                    totalCalorieConsumed += calorieList.get(index);//positive
+                }
+                index++;
+            }
+            Ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieConsumed));
+            Ui.printCustomMessage(CALORIE_BURNT_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieBurnt));
+            Ui.printCustomMessage(NET_CALORIE_HEADER);
+            Ui.printCustomMessage(String.valueOf(totalCalorieBurnt + totalCalorieConsumed));
+            Ui.printCustomMessage(EMPTY_STRING);
+            totalCalorieBurnt = 0;
+            totalCalorieConsumed = 0;
+        }
+
+    }
+
+    private String dateFormatter(String date) {
+        //Convert date from DD/MM/YYYY to YYYYMMDD
+        String newDateFormat;
+        date = date.replace("/", "");
+        newDateFormat = date.substring(4, 8) + date.substring(2, 4) + date.substring(0, 2);
+        return newDateFormat;
     }
 
     private void viewBmi(User user) {
@@ -142,6 +220,64 @@ public class ViewCommand extends Command {
                 Goal goal = goalList.getGoal(i);
                 Ui.printCustomMessage((i + 1) + ". [" + goal.getGoalType() + "]["
                         + goal.getStatus(goal, foodList, exerciseList, user) + "] " + goal.getDescription());
+            }
+        }
+    }
+
+    private void viewExerciseByDate(ExerciseList exerciseList, String date) {
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        } catch (Exception ex) {
+            Ui.printCustomError(ERROR_INVALID_DATE);
+        }
+        ExerciseList exercisesOnThatDate = new ExerciseList();
+        for (int i = 0; i < exerciseList.getSize(); i++) {
+            if (date.equals(exerciseList.getExercise(i).getDate())) {
+                exercisesOnThatDate.addExercise(exerciseList.getExercise(i));
+            }
+        }
+        if (exercisesOnThatDate.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_EXERCISE_LIST_DATE);
+        } else {
+            int index = 0;
+            int printIndex = index + 1;
+            Ui.printCustomMessage(EXERCISE_LIST_HEADER);
+            Ui.printMessageInYellow(DATE_HEADER + date);
+            while (index < exercisesOnThatDate.getSize()) {
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + EXERCISE_HEADER + exercisesOnThatDate.getExercise(index).getNameOfExercise()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + exercisesOnThatDate.getExercise(index).getCalories());
+                index++;
+                printIndex++;
+            }
+        }
+    }
+
+    private void viewFoodByDate(FoodList foodList, String date) {
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        } catch (Exception ex) {
+            Ui.printCustomError(ERROR_INVALID_DATE);
+        }
+        FoodList foodOnThatDate = new FoodList();
+        for (int i = 0; i < foodList.getSize(); i++) {
+            if (date.equals(foodList.getFood(i).getDate())) {
+                foodOnThatDate.addFood(foodList.getFood(i));
+            }
+        }
+        if (foodOnThatDate.getSize() == 0) {
+            Ui.printCustomMessage(EMPTY_EXERCISE_LIST_DATE);
+        } else {
+            int index = 0;
+            int printIndex = index + 1;
+            Ui.printCustomMessage(FOOD_LIST_HEADER);
+            Ui.printMessageInYellow(DATE_HEADER + date);
+            while (index < foodOnThatDate.getSize()) {
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + FOOD_HEADER + foodOnThatDate.getFood(index).getFoodName()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER + foodOnThatDate.getFood(index).getCalories());
+                index++;
+                printIndex++;
             }
         }
     }
