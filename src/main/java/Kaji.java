@@ -14,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import static common.Messages.MESSAGE_HELP;
+
 public class Kaji {
     private Ui ui;
     private Access access;
@@ -35,7 +37,7 @@ public class Kaji {
     public void run() {
         logger.info("Starting up Kaji...");
         ui.showWelcome();
-        ui.showHelpList();
+        ui.showToUser(MESSAGE_HELP);
         ui.printLine();
         boolean isExit = false;
         while (!isExit) {
