@@ -191,7 +191,8 @@ Aspect: Repeated items
 
 
 ### 3.4. Event
-**3.4.1. Add/delete events feature**  
+**3.4.1. Add/delete events feature** 
+ 
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
@@ -227,6 +228,7 @@ The sequence diagram for deleting a particular event or all events is as shown b
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
 **3.5.2. Listing Events** 
+
 3.5.2.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
@@ -249,6 +251,7 @@ The sequence diagram for listing events is as shown below:
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
 **3.4.3. Searching for an event via name or date**
+
 Current Implementation
 The `CommandSearchEvent` class in `seedu.duke.event` handles search of an event via its name or its date.
 
@@ -261,6 +264,7 @@ It implements the following operation:
  
  
 **3.4.3: Displaying countdown to upcoming events**
+
 Current Implementation
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
  
