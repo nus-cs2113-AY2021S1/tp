@@ -75,6 +75,12 @@ public class Module {
         }
     }
 
+    public void editsActualTime(String time, String week) {
+        double d = Double.parseDouble(time);
+        int i = Integer.parseInt(week);
+            this.actualTime[i - INDEX_OFFSET] = d;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

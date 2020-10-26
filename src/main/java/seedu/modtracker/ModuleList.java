@@ -24,6 +24,8 @@ public class ModuleList {
     private static final String HOUR_REMOVAL = " hour has been removed from ";
     private static final String HOURS_ADD = " hours have been added to ";
     private static final String HOUR_ADD = " hour has been added to ";
+    private static final String HOUR_EDIT = " hour is the new actual workload for the module ";
+    private static final String HOURS_EDIT = " hours is the new actual workload for the module ";
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -310,6 +312,8 @@ public class ModuleList {
         }
     }
 
+
+
     /**
      * Minus time from actual workload to an existing module.
      *
@@ -361,6 +365,43 @@ public class ModuleList {
                     System.out.println(NO_WORKLOAD_ERROR
                             + System.lineSeparator());
                 }
+            }
+        }
+    }
+
+    /**
+     * Edits time to actual workload to an existing module.
+     *
+     * @param input   module code, edited time spent and week input by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
+     */
+    public void editTime(String input, boolean toPrint, Storage storage) {
+        String[] commandInfo = input.trim().split(" ", 4);
+        String modCode;
+        double hours;
+        modCode = commandInfo[1].toUpperCase();
+        hours = Double.parseDouble(commandInfo[2]);
+        if (!checkIfModuleValid(modCode, toPrint)) {
+            return;
+        }
+        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+        if (!checkIfModuleExist(modCode)) {
+            if (toPrint) {
+                ui.printNotExist(modCode);
+            }
+        } else {
+            Module currentModule = new Module(modCode);
+            int index = modList.indexOf(currentModule);
+            modList.get(index).editsActualTime(commandInfo[2], commandInfo[3]);
+            if (toPrint) {
+                if (hours > 1) {
+                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode + System.lineSeparator());
+                } else {
+                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode + System.lineSeparator());
+                }
+                storage.appendToFile(input);
             }
         }
     }

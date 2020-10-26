@@ -6,12 +6,14 @@ package seedu.modtracker;
 public class Parser {
     protected static boolean exit = false;
     public static final String COMMAND_ADDMOD = "addmod";
-    public static final String COMMAND_ADDTIME = "addtime";
     public static final String COMMAND_ADDEXP = "addexp";
     public static final String COMMAND_DELETEMOD = "deletemod";
     public static final String COMMAND_DELETEEXP = "deleteexp";
     public static final String COMMAND_OPEN_NOTIFICATION = "open";
-    public static final String COMMAND_MINUS = "minus";
+    public static final String COMMAND_MINUS = "minustime";
+    public static final String COMMAND_EDITTIME = "edittime";
+    public static final String COMMAND_DELETETIME = "deletetime";
+    public static final String COMMAND_ADDTIME = "addtime";
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
@@ -21,7 +23,7 @@ public class Parser {
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_LISTTASK = "listtask";
     public static final String COMMAND_RESET = "reset";
-    public static final String COMMAND_DELETETIME = "deletetime";
+
 
     /**
      * Parses user inputs.
@@ -49,6 +51,9 @@ public class Parser {
             break;
         case COMMAND_DELETEMOD:
             modList.deleteMod(input, toPrint, storage);
+            break;
+        case COMMAND_EDITTIME:
+            modList.editTime(input, toPrint, storage);
             break;
         case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);

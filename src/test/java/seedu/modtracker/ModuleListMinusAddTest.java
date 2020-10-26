@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ModuleListMinusAddTest {
+    private final ModView view = new ModView();
     private static final String TEST_FILEPATH = "test/data/modlist.txt";
     Storage storage = new Storage(TEST_FILEPATH);
     ModuleList modulesTest = new ModuleList();
@@ -73,8 +74,29 @@ class ModuleListMinusAddTest {
     }
 
 
+    @Test
+    @Order(6)
+    public void editTime_ModuleWithActualWorkload() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.editTime("edittime CS3030 5 4", true, storage);
+        String expected = "5 hours is the new actual workload for the module CS3030" + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
 
-
+    @Test
+    @Order(7)
+    public void viewModule_checkIfTimeIsEditedCorrectly() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        view.printAllModuleInformation(modulesTest, 4);
+        String expected = ModView.FIRST_PART_OF_BORDER + ModView.SECOND_PART_OF_BORDER
+                + ModView.FIRST_PART_OF_HEADER + ModView.SECOND_PART_OF_HEADER
+                + ModView.FIRST_PART_OF_BORDER + ModView.SECOND_PART_OF_BORDER
+                + "|  04  | CS3030 | No Input |    5.0   |\n"
+                + ModView.FIRST_PART_OF_BORDER + ModView.SECOND_PART_OF_BORDER;
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
 
 
 }
