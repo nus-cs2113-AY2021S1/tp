@@ -3,6 +3,7 @@ package seedu.revised.card.quiz;
 import seedu.revised.card.Flashcard;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.list.ResultList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public abstract class Quiz {
     protected List<Flashcard> flashcards;
     protected List<String> incorrectAnswers = new ArrayList<>();
 
-    public abstract void startQuiz(ResultList resultList) throws NoFlashcardException, NoTopicException;
+    public abstract void startQuiz() throws NoFlashcardException, NoTopicException;
 
     public List<String> getIncorrectAnswers() {
         return incorrectAnswers;

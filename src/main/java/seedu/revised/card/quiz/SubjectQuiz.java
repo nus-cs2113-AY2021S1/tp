@@ -5,7 +5,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.NoTopicException;
-import seedu.revised.storage.Storage;
+import seedu.revised.list.ResultList;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -33,7 +33,7 @@ public class SubjectQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start setting up the quiz");
         if (subject.getTopics().getList().size() == 0) {
-            throw new NoTopicException(Ui.printNoTopicsError());
+            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
         }
         int maxScore = 0;
         for (Topic topic : subject.getTopics().getList()) {
@@ -44,7 +44,7 @@ public class SubjectQuiz extends Quiz {
         this.result.setMaxScore(maxScore);
 
         if (this.flashcards.size() == 0) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         logger.info("Finished setting up the quiz");
         logger.fine(String.format("Max Score of quiz: %d", maxScore));
@@ -53,11 +53,10 @@ public class SubjectQuiz extends Quiz {
     /**
      * Begins the quiz for the user.
      *
-     * @param results The results of the subject
      * @throws NoFlashcardException If the topic has no flashcards
      * @throws NoTopicException     If the subject has no topic
      */
-    public void startQuiz(ResultList results) throws NoFlashcardException, NoTopicException {
+    public void startQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start of the quiz");
         logger.fine(String.format("The subject being tested is  %s", this.subject));
         setUpQuiz();

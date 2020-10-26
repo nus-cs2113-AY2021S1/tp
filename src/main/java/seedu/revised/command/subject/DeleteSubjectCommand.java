@@ -1,7 +1,8 @@
 package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
@@ -18,9 +19,9 @@ public class DeleteSubjectCommand extends SubjectCommand {
      * Deletes a Task in a <code>taskList</code>.
      *
      * @param subjectList the <code>TaskList</code> instance of the TaskList class for the user to delete from
-     * @return null
+     * @param storage
      */
-    public Subject execute(SubjectList subjectList) throws NumberFormatException {
+    public void execute(SubjectList subjectList, Storage storage) throws NumberFormatException {
         logger.info("Begin checking string command to get the subject to be deleted.");
         String[] message = this.fullCommand.split(" ");
         int number = Integer.valueOf(message[1]);
@@ -30,7 +31,6 @@ public class DeleteSubjectCommand extends SubjectCommand {
         Ui.printSubjectDelete(subject, subjectList.getList().size());
         logger.info("Finish deleting the subject to be deleted.");
         logger.fine(String.format("The subject is %s", subject.getTitle()));
-        return null;
     }
 
     /**

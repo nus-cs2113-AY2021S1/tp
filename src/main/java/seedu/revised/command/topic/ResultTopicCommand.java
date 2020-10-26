@@ -17,12 +17,12 @@ public class ResultTopicCommand extends TopicCommand {
 
     }
 
-    public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
+    public void execute(Subject subject) throws NoTopicException, InvalidTopicException {
         logger.info("Begin finding the topic for which the results feature has to be called.");
 
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicException(Ui.printInvalidTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         Topic resultTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
@@ -31,13 +31,11 @@ public class ResultTopicCommand extends TopicCommand {
             }
         }
         if (resultTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicError());
+            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         logger.info("Finish reading the command to find the topic for the result feature.Now, the "
                 + "application prints" + "the results.");
         logger.fine(String.format("The subject is %s", resultTopic.getTitle()));
         Ui.printTopicResults(resultTopic);
-
-        return null;
     }
 }

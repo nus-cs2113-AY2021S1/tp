@@ -2,7 +2,7 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 import seedu.revised.command.task.FindTaskCommand;
 import seedu.revised.ui.Ui;
 
@@ -13,13 +13,12 @@ public class FindTopicCommand extends TopicCommand {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) {
+    public void execute(Subject subject) {
         TopicList topicList = subject.getTopics();
         String[] message = this.fullcommand.split(" ");
         Ui.printFindTopic(topicList,message[1]);
         FindTaskCommand findTaskCommand = new FindTaskCommand(this.fullcommand);
         findTaskCommand.execute(subject.getTasks());
-        return null;
     }
 
     /**

@@ -3,6 +3,7 @@ package seedu.revised.card.quiz;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.list.ResultList;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -34,7 +35,7 @@ public class TopicQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException {
         logger.info("Start setting up the quiz for the topic");
         if (this.flashcards.size() == 0) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         this.result.setMaxScore(this.flashcards.size());
         logger.info("Finished setting up the quiz");
@@ -44,10 +45,9 @@ public class TopicQuiz extends Quiz {
     /**
      * Begins the quiz for the user.
      *
-     * @param results The resultsList stored in the Topic
      * @throws NoFlashcardException If the topic has no flashcards
      */
-    public void startQuiz(ResultList results) throws NoFlashcardException {
+    public void startQuiz() throws NoFlashcardException {
         logger.info("Start of the quiz");
         logger.fine(String.format("The topic being tested is  %s", this.topic));
         setUpQuiz();

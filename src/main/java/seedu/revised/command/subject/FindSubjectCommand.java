@@ -1,7 +1,7 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
@@ -19,14 +19,11 @@ public class FindSubjectCommand extends SubjectCommand {
      * Find subjects in a <code>SubjectList</code> that hold a keyword keyed in by the user.
      *
      * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code> class for the user to conduct the search on.
-     * @return null
+     * @param storage
      */
-    public Subject execute(SubjectList subjectList) {
-        logger.info("Begin checking string command to get the keyword to search subject titles in the SubjectList.");
+    public void execute(SubjectList subjectList, Storage storage) {
         String[] message = this.fullcommand.split(" ");
         Ui.printFindSubject(subjectList,message[1]);
-        logger.info("Finish finding the subjects that match the keyword.");
-        return null;
     }
 
     /**
