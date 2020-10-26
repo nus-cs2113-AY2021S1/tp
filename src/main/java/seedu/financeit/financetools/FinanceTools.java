@@ -157,28 +157,32 @@ public class FinanceTools {
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
             CommandPacket packet = InputParser.getInstance().parseInput(input);
+            commands.add(input);
             switch (packet.getCommandString()) {
             case "simple":
                 outputAmount = Double.toString(Math.round(handleSimpleInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cashb":
                 outputAmount = Double.toString(Math.round(handleCashback(packet) * 100.00) / 100.00);
                 System.out.println("Total Cashback Earned: $\n\n" + outputAmount);
+                commands.add("Total Cashback Earned: $" + outputAmount);
                 break;
             case "miles":
                 outputAmount = Double.toString(Math.round(handleMilesCredit(packet) * 100.00) / 100.00);
                 System.out.println("Total Miles Earned: \n\n" + outputAmount);
+                commands.add("Total Miles Earned: " + outputAmount);
                 break;
             case "cyearly":
                 outputAmount = Double.toString(Math.round(handleYearlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
-                //commands.add("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cmonthly":
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
-                //commands.add("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "store":
                 handleStorage(packet, filePath, infoText);
@@ -186,6 +190,12 @@ public class FinanceTools {
                 break;
             case "commands":
                 printCommandList();
+                break;
+            case "history":
+                for (int i = 0; i < commands.size(); i++) {
+                    System.out.printf("%d) ", i + 1);
+                    System.out.println(commands.get(i));
+                }
                 break;
             case "info":
                 if (infoText.size() == 0) {
@@ -214,13 +224,22 @@ public class FinanceTools {
 
     public static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
-        TablePrinter.addRow("No; Finance Tool             ;Input Format                                          ");
-        TablePrinter.addRow("1; Simple Interest Calculator; simplecalc /amount {AMOUNT} /ir {INTEREST_RATE} ");
-        TablePrinter.addRow("2; Compound Interest Calculator; compoundcalc /amount {AMOUNT} /ir {INTEREST_RATE} "
-                + "/period {YEARS}");
-        TablePrinter.addRow("3; Cashback Calculator; milescalc /amount {AMOUNT} /miles {MILES RATE}");
-        TablePrinter.addRow("4; Miles Credit Calculator; cashbackcalc /amount {AMOUNT} /cashback {CASHBACK_RATE} "
-                + "/cap {CASHBACK_CAP}");
+        TablePrinter.addRow("No;Finance Tool             ;Input Format                                         ");
+        TablePrinter.addRow("1;Simple Interest Calculator;simple /a {AMOUNT} /r {INTEREST_RATE} ");
+        TablePrinter.addRow("2;Yearly Compound Interest Calculator;cyearly /a {AMOUNT} /r {INTEREST_RATE}"
+                + " /p {YEARS} /d {YEARLY_DEPOSIT} ");
+        TablePrinter.addRow("3;Yearly Compound Interest Calculator;cmonthly /a {AMOUNT} /r {INTEREST_RATE}"
+                + " /p {MONTHS} /d {MONTHLY_DEPOSIT} ");
+        TablePrinter.addRow("4;Cashback Calculator;cashb /a {AMOUNT} /r {CASHBACK_RATE}");
+        TablePrinter.addRow("5;Miles Credit Calculator;miles /a {AMOUNT} /r {MILES_RATE} /c {CASHBACK_CAP}");
+        TablePrinter.addRow("6;Account Storage;store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE}"
+                + " /c {CASHBACK_CAP} /o {OTHER_NOTES} ");
+        TablePrinter.addRow("7;Delete Account;store /rm {ACCOUNT_NO}");
+        TablePrinter.addRow("8;Delete All Account Information;clearinfo");
+        TablePrinter.addRow("9;Show Account Information;info");
+        TablePrinter.addRow("10;Show Command and Calculation History;history");
+        TablePrinter.addRow("11;Exit FinanceTools;exit");
+
         TablePrinter.printList();
     }
 }
