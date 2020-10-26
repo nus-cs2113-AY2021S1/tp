@@ -525,6 +525,8 @@ public class Ui {
         System.out.println(LONG_DIVIDER);
     }
 
+    public static void printAll(List<Subject> list) {
+    }
 }
 
 
