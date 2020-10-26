@@ -56,7 +56,7 @@ For students, there is also a need for to manually track lecture videos and webc
 
 This motivated our team to create an application that would not only help track all your shows and lectures, 
 but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends. <br>
-<!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet -->
+<!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet and also clarify that sharing show does not mean sharing the physical video file -->
 
 ### 1.c. What will this guide do?
 
@@ -174,10 +174,13 @@ Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+Example of usage:
+    `done`
  
 > **[NOTE]**
 >
->  * The `<DURATION OF EPISODE>` is in minutes.  
+>  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 30` or in hours and minutes
+> such as `duration 1h25m` .
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
 

@@ -165,7 +165,10 @@ illustrate the steps in a visual form.
 
 NullPointerException will be thrown when show entered by user is not found in the showlist.
 
-(Figure )[Insert Figure Here]
+<img src = "images/EditCommand.png" width = "700">
+ 
+ <br> 
+*Figure 1: Sequence Diagram for Edit Command*
 
 **Step 1**
 
@@ -180,7 +183,8 @@ duration (of an episode) respectively.
 
 **Step 3**
 
-* The process command parses each line of the user input and makes the corresponding changes to the copy.
+* The process command parses each line of the user input.
+* The EditCommand class then calls the corresponding method, e.g. `editDuration()` to make the corresponding changes to the copy.
 
 **Step 4**
 
