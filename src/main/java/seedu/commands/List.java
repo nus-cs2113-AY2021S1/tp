@@ -1,14 +1,12 @@
 package seedu.commands;
 
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidCommandException;
 import seedu.ui.DisplayMode;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.LIST_MESSAGE;
@@ -32,11 +30,11 @@ public class List extends ReadOnlyCommand {
 
 
     public List(boolean dateFlag, boolean priorityFlag, boolean displayByWeek, boolean displayByMonth, String date) {
-            this.dateFlag = dateFlag;
-            this.priorityFlag = priorityFlag;
-            this.displayByWeek = displayByWeek;
-            this.displayByMonth = displayByMonth;
-            this.date = date;
+        this.dateFlag = dateFlag;
+        this.priorityFlag = priorityFlag;
+        this.displayByWeek = displayByWeek;
+        this.displayByMonth = displayByMonth;
+        this.date = date;
     }
 
     public CommandResult execute(TaskMap tasks) {
