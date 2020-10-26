@@ -2,15 +2,14 @@ package seedu.duke;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.favorite.FavList;
+import seedu.duke.logic.parser.DescFavParser;
 import seedu.duke.logic.parser.Parser;
 import seedu.duke.logic.parser.RouteParser;
 import seedu.duke.storage.FavStorage;
 import seedu.duke.storage.FreqStorage;
 import seedu.duke.ui.Ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Duke {
 
@@ -23,6 +22,7 @@ public class Duke {
 
     public Duke() {
         RouteParser.initLogger();
+        DescFavParser.initLogger();
     }
 
     /**

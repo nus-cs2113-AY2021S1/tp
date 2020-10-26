@@ -17,4 +17,8 @@ public class Fav {
         return desc;
     }
 
+    void changeDesc(String desc) {
+        this.desc = desc;
+    }
+
 }
