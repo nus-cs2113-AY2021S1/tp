@@ -2,22 +2,22 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.AllBusCommand;
-import seedu.duke.logic.commands.BusCommand;
-import seedu.duke.logic.commands.DineCommand;
-import seedu.duke.logic.commands.DineInfoCommand;
-import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.ExitCommand;
-import seedu.duke.logic.commands.HelpCommand;
-import seedu.duke.logic.commands.ListStopsCommand;
-import seedu.duke.logic.commands.RouteCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.buscommand.AllBusCommand;
+import seedu.duke.logic.commands.buscommand.BusCommand;
+import seedu.duke.logic.commands.dinecommand.DineCommand;
+import seedu.duke.logic.commands.dinecommand.DineInfoCommand;
+import seedu.duke.logic.commands.commons.Command;
+import seedu.duke.logic.commands.commons.ExitCommand;
+import seedu.duke.logic.commands.commons.HelpCommand;
+import seedu.duke.logic.commands.buscommand.ListStopsCommand;
+import seedu.duke.logic.commands.buscommand.RouteCommand;
+import seedu.duke.logic.commands.buscommand.RouteMapCommand;
 import seedu.duke.logic.commands.favcommand.AddFavCommand;
 import seedu.duke.logic.commands.favcommand.DeleteFavCommand;
 import seedu.duke.logic.commands.favcommand.DescFavCommand;
 import seedu.duke.logic.commands.favcommand.ExecFavCommand;
 import seedu.duke.logic.commands.favcommand.ListFavCommand;
-import seedu.duke.logic.commands.ResetSearchFreqCommand;
+import seedu.duke.logic.commands.buscommand.ResetSearchFreqCommand;
 
 public class Parser {
 

@@ -1,10 +1,8 @@
 package seedu.duke.ui;
 
-import seedu.duke.Bus;
-import seedu.duke.BusStops;
-import seedu.duke.DiningOptions;
-import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusStops;
+import seedu.duke.model.foodoptions.DiningOptions;
 
 import java.util.ArrayList;
 import java.util.Scanner;
