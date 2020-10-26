@@ -25,13 +25,11 @@
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
-  - [Appendices](#appendices)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+  - [Appendix A: Product Scope](#appendix-a-product-scope)
+  - [Appendix B: User Stories](#appendix-b-user-stories)
+  - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+  - [Appendix D: Glossary](#appendix-d-glossary)
+  - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
    
 ## 1. Introduction
@@ -534,8 +532,8 @@ Two main forms of testing was used for the development of **WatchNext**.
 
 When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
 
-##  Appendices
 
+##  Appendix A: Product Scope
 
 ### Target user profile
 
@@ -557,7 +555,7 @@ or missing episodes with the help of **WatchNext's** show progress tracking feat
 actual time they spend watching shows and is a feature that is not provided by most other platforms.
 
 
-## User Stories
+##  Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -571,18 +569,214 @@ actual time they spend watching shows and is a feature that is not provided by m
 |v1.0|student|I want to track which zoom lectures / or webcasts that I have watched| I can make sure I don’t miss any important lessons.|
 
 
-## Non-Functional Requirements
+##  Appendix C: Non-Functional Requirements
 
 1. WatchNext will work on any mainstream OS as long as it has Java 11 installed.
 
 2. Users who can type fast and prefer typing over other means of input should be able to use WatchNext faster using commands than using the mouse in a GUI(Graphic User Interface)-based program.
 
-## Glossary
+##  Appendix D: Glossary
 
 * *Graphic User Interface* - It is a user interface that includes graphical elements, such as windows, icons and buttons.
 
-## Instructions for manual testing
+* *Mainstream OS* - Windows, Linux, Unix, OS-X
+
+##  Appendix E: Instructions for manual testing
 
 **[NOTE]** The instructions and sample test cases only act as a guide for you to start testing on some of our application features. You are free to test our features with more test cases of your own. Refer to [Section 2.a,“Prerequisites”](#2a-prerequisites) for the instructions to set up our program on your computer.
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Managing shows
+
+#### Adding a show
+
+1. Test case: `add friends 2 9,10 60`
+
+Expected: An acknowledgement message displayed indicating that the show has been added.
+
+2. Test case: `add friends`
+
+Expected: An error message displayed due to invalid format given by the user.
+
+3. Test case: `add friends 2 9,10,11 60`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+#### Deleting a show
+
+1. Prerequisites: The show name `friends` has already been added into the list. 
+
+2. Test case: `delete Friends`
+
+Expected: An error message indicating that the show was not found. 
+
+> **[NOTE]** The show name added is case-sensitive, as mentioned in the [User Guide](https://ay2021s1-cs2113t-w12-3.github.io/tp/UserGuide.html#3-command-format)
+
+3. Test case: `delete friends`
+
+Expected: An acknowledgement message displayed indicating that the show has been deleted from the list.
+
+4. Test case: `delete 1`
+
+Expected: An error message indicating that the show was not found.
+
+#### Editing a show
+
+1. Prerequisites: The show name `friends` has already been added into the list. Reach the edit prompt by the program using the `edit friends` command. 
+
+> **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
+
+2. Test case: `season 3` followed by `episode 3,10`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+3. Test case: ``
+
+4. Test case: ``
+
+### Managing Reviews and Ratings
+
+#### Adding a review
+
+1. Prerequisites: The show name `friends` has already been added into the list. 
+
+> **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
+
+2. Test case: `season 3` followed by `episode 3,10`
+
+Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+
+3. Test case: ``
+
+4. Test case: ``
+
+#### Changing a review
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Changing a rating
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Deleting a rating
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+### Modifying current watch progress and watch time
+
+#### Updating current episode
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected: 
+
+#### Updating current season
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Watching a show
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Updating watch time limit
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+### Viewing show details
+
+#### Viewing your watch list
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
+
+#### Finding a show in your watch list
+
+1.
+
+2. 
+
+3. Test case: ``
+
+Expected: 
+
+4. Test case: ``
+
+Expected:
