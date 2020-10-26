@@ -287,4 +287,8 @@ public class UI {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
         System.out.print(bunniesList.get(bunnySelected - 1).getDescription());
     }
+
+    public static void bunnyListEmpty() {
+        System.out.println("List of bunnies is empty.");
+    }
 }

@@ -6,13 +6,18 @@ import seedu.duke.ui.UI;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static seedu.duke.bunnylist.BunnyList.bunniesList;
-
 public class GenBunny {
 
+    /**
+     * Generate a random bunny from the list of bunnies in the list.
+     * @param bunniesList ArrayList of bunnies
+     */
     public static void pickRandomBunny(ArrayList<Bunny> bunniesList) {
         Random rand = new Random();
         int bunnySelected = rand.nextInt(bunniesList.size());
+
+        assert !(bunnySelected < 0 || bunnySelected > bunniesList.size()) : "bunny generated cannot be out of bounds";
+
         // print response
         UI.bunnyRandomlySelected(bunnySelected);
     }
