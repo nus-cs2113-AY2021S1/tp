@@ -1,5 +1,9 @@
 # User Guide
+PlaNUS is a desktop application for NUS students to manage their tasks and schedule,
+optimized for use via Command Line Interface (CLI).
 
+This user guide is a document aiming to help users in understanding the features
+provided by PlaNUS and the instructions required for each step.
 
 - [Quick start](#quick-start)
 - [Features](#features)
@@ -34,7 +38,7 @@
 
     `java -jar planus.jar`
     
-    Following content is display if there's no exsisting data file:
+    Following content is display if there's no existing data file:
     
     ![initial display](images/init.PNG)
     
@@ -55,6 +59,7 @@
 
 
 ### Notes about command format:
+```
 - Words in UPPER_CASE are the parameters to be supplied by the user. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
     DESCRIPTION is a parameter which can be used as "add user guide".
@@ -65,7 +70,7 @@
     
 - Within square bracket, optional flags could be enabled, flags are separated by '|'.
     - e.g. in "list [-d|-p|-w|-m]",
-    The flag parameter is an optional parameter. When it is used, any **one** of the flags
+    The flag parameter is an optional parameter. When it is used, any one of the flags
     like -d or -p or -w or -m could be enabled. 
     
 - Input date format is dd-MM-yyyy.
@@ -79,7 +84,7 @@
 
 - Index of a task is the number displayed after "#" and before description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
-    
+```    
     
 ### <span style="color:red">Showing all commands</span> : `help`
 
@@ -136,7 +141,7 @@ Default display mode: display **all** tasks by **adding sequence**.
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.  
 `-w`: display **only tasks in current week** by **adding sequence**.   
 `-m`: display **only tasks in current month** by **adding sequence**.  
-`d/DATE`: display **all tasks of a date provided** by adding sequence**.  
+`d/DATE`: display **all tasks of a date provided** by adding sequence.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
