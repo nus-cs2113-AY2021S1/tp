@@ -89,7 +89,7 @@ public class BunnyFilter {
             throw new NoFilteredItemsException();
         }
 
-        assert filteredBunny.isEmpty() : "filter function error";
+        assert !(filteredBunny.isEmpty()) : "filter function error";
 
         printFilteredBunny(bunniesList.size(),  filteredBunny);
     }

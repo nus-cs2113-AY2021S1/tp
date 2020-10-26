@@ -42,7 +42,7 @@ public class BunnyList {
             throw new BunnyIdeaMissingException();
         }
 
-        assert !commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
+        assert commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
 
         if (commandArguments.containsKey(GENRE_TAG)) {
             genre = commandArguments.get(GENRE_TAG);
@@ -71,7 +71,7 @@ public class BunnyList {
             return;
         }
 
-        assert bunniesList.size() == 0 : "Bunny list cannot be empty at this point";
+        assert !(bunniesList.size() == 0) : "Bunny list cannot be empty at this point";
     }
 
     /**
@@ -79,7 +79,7 @@ public class BunnyList {
      * @return number of bunnies in list
      */
     public static int numBunny() {
-        assert bunniesList.size() < 0 : "Bunny list cannot have negative size";
+        assert !(bunniesList.size() < 0) : "Bunny list cannot have negative size";
 
         return bunniesList.size();
     }

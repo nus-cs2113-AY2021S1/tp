@@ -16,7 +16,7 @@ public class GenBunny {
         Random rand = new Random();
         int bunnySelected = rand.nextInt(bunniesList.size());
 
-        assert (bunnySelected < 0 || bunnySelected > bunniesList.size()) : "bunny generated cannot be out of bounds";
+        assert !(bunnySelected < 0 || bunnySelected > bunniesList.size()) : "bunny generated cannot be out of bounds";
 
         // print response
         UI.bunnyRandomlySelected(bunnySelected);
