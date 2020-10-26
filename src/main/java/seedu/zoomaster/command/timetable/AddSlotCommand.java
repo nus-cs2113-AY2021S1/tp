@@ -31,7 +31,7 @@ public class AddSlotCommand extends Command {
      * @throws ZoomasterException if input command is invalid.
      */
     public AddSlotCommand(String command) throws ZoomasterException {
-        assert command.startsWith("knwe");
+        assert command.startsWith(ADD_KW);
         String details = command.substring(ADD_KW.length());
         if (details.isBlank()) {
             throw new ZoomasterException(ZoomasterExceptionType.EMPTY_COMMAND, ADD_KW);

@@ -92,6 +92,7 @@ class ParserTest {
         assertEquals(ZoomasterExceptionType.UNKNOWN_INPUT, h.getError());
         ZoomasterException i = assertThrows(ZoomasterException.class, () -> Parser.parse("launch"));
         assertEquals(ZoomasterExceptionType.UNKNOWN_INPUT, i.getError());
+        Parser.programMode = 0;
     }
 
 
