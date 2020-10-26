@@ -58,8 +58,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 The architecture design is given in the diagram above. The main components of NotUS are:
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
-1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The parser then
- makes sense of the information to the respective commands.
+1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
 1. `Command`: Executes the necessary tasks, depending on the respective command calls .
 1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
@@ -84,11 +83,10 @@ NotUs manages the flow of the application. On launch, it will create the necessa
 
 #### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
 
-The ParserManager manages the creation of specific parser objects based on the type of the command. The parser then
- makes sense of the user input and calls the respective commands into action.
+The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action.
 
 1. Receives the user input message as a whole.
-1. Interprets the type of command and creates the respective parser.
+1. Interprets the type of command and creates the respective parser for each command.
 1. The parser then splits the message to identify all the parameters provided.
 1. Creates and returns the Command class respectively.
  
@@ -97,10 +95,7 @@ The ParserManager manages the creation of specific parser objects based on the t
   <br><em>Figure #</em>
 </p>
 
-💡 Note that the alternate paths in the sequence diagram above is not exhaustive. There is an alternate path for each
- unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram is
-  used to represent a generic Command object that is created through the Parser. Refer to the next figure
-   for more details.
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
  
  <p align="center">
    <img alt="Parser" src="diagrams/out/AddNoteParser.png" />
@@ -124,9 +119,7 @@ The class diagram below denotes the relationship between the TagManager and the 
    <br><em>Figure #</em>
  </p>
  
-Notes and Events inherit from the abstract class, TaggableObject and TagManager contains a map of individual unique
- tags to an arraylist of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and
-  untagging of tags from notes or events.
+Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
 
@@ -252,4 +245,3 @@ A all-in-one solution for note-taking and managing your schedule.
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
-

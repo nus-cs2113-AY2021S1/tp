@@ -298,7 +298,7 @@ Example of usage:
 
 Expected output:
 
-### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag`</a>
+### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
 Tags or untags a note with the given tag name.
 
 Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
@@ -306,17 +306,17 @@ Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 - Tags a note with a given TAG. If the note already contains the TAG, the tag will be removed from the note.The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - The user can create tag or untag multiple tags to a note within a single line.
 
-💡 If the user tries to tag a non existing tag to a note, the application will automatically create the tag for it.
+💡 If the user tries to tag a non-existing tag to a note, the application will automatically create a new tag, and add the tag to the note.
 
 Example of usage: 
 
-`Tag-n /i 1 /tag CS2113`
+`tag-n /i 1 /tag CS2113`
 
-`Tag-n /i 1 /tag CS2113 /tag important`
+`tag-n /i 1 /tag CS2113 /tag important`
 
 Expected output:
 
-### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag`</a>
+### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
 Tags or untags an event with the given tag name.
 
 Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
