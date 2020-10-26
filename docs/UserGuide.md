@@ -298,7 +298,7 @@ Example of usage:
 
 Expected output:
 
-### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag`</a>
+### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
 Tags or untags a note with the given tag name.
 
 Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
