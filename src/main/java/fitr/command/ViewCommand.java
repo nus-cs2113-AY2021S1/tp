@@ -1,6 +1,5 @@
 package fitr.command;
 
-import fitr.Calorie;
 import fitr.Goal;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
@@ -12,7 +11,6 @@ import fitr.user.User;
 import fitr.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
@@ -35,6 +33,7 @@ import static fitr.common.Messages.DATE_HEADER;
 import static fitr.common.Messages.EMPTY_STRING;
 import static fitr.common.Messages.ERROR_INVALID_DATE;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
+import static fitr.common.Messages.NO_RECORDS_FOUND;
 
 import java.text.SimpleDateFormat;
 
@@ -131,9 +130,8 @@ public class ViewCommand extends Command {
         int exerciseIndex = 0;
         int totalCalorieConsumed = 0;
         int totalCalorieBurnt = 0;
-        int index = 0;
         if (foodList.getSize() == 0 && exerciseList.getSize() == 0) {
-            Ui.printCustomMessage("No records found!\n");
+            Ui.printCustomMessage(NO_RECORDS_FOUND);
         }
         String currentDate;
         ArrayList<String> dateList = new ArrayList<>();
@@ -172,7 +170,7 @@ public class ViewCommand extends Command {
                 exerciseIndex++;
             }
         }
-
+        int index = 0;
         while (index < dateList.size()) {
             currentDate = dateList.get(index);
             Ui.printMessageInYellow(DATE_HEADER + currentDate);
@@ -265,7 +263,8 @@ public class ViewCommand extends Command {
                 while (index < exercisesOnThatDate.getSize()) {
                     Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                             + EXERCISE_HEADER + exercisesOnThatDate.getExercise(index).getNameOfExercise()
-                            + SPACE_FORMATTING + BURNT_CAL_HEADER + exercisesOnThatDate.getExercise(index).getCalories());
+                            + SPACE_FORMATTING + BURNT_CAL_HEADER
+                            + exercisesOnThatDate.getExercise(index).getCalories());
                     index++;
                     printIndex++;
                 }
