@@ -22,27 +22,23 @@ public class Storage {
      *
      * @param tasks latest TaskList object after modification.
      */
-    public void writeTasksToFile(TaskMap tasks) {
-        try (FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME)) {
-            for (Task task : tasks.getValues()) {
-                file.write(gson.toJson(task) + System.lineSeparator());
-            }
-        } catch (IOException e) {
-            System.out.println("IO EXCEPTION");
+    public void writeTasksToFile(TaskMap tasks) throws IOException {
+        FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME);
+        for (Task task : tasks.getValues()) {
+            file.write(gson.toJson(task) + System.lineSeparator());
         }
+        file.close();
     }
 
     /**
      * Load data from file and add tasks to TaskList.
      */
-    public void loadTasks(TaskMap tasks) {
+    public TaskMap loadTasks() throws IOException {
+        // If both dir and file are newly created, return empty taskMap.
         if (!createDirectory()) {
-            try {
-                readTasksFromFile(tasks);
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found!");
-            }
+            return readTasksFromFile();
         }
+        return new TaskMap();
     }
 
     /**
@@ -50,30 +46,30 @@ public class Storage {
      *
      * @return true if directory is created at the point of execution.
      */
-    private boolean createDirectory() {
+    private boolean createDirectory() throws IOException {
         File directory = new File(DIRECTORY_NAME);
-        boolean directoryCreated = false;
-        boolean fileCreated = false;
-        try {
-            if (!directory.exists()) {
-                directoryCreated = directory.mkdir();
-                fileCreated = new File(DIRECTORY_NAME + "/" + FILE_NAME).createNewFile();
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
+
+        if (!directory.exists()) {
+            boolean directoryCreated = directory.mkdir();
+            assert directoryCreated;
+            boolean fileCreated = new File(DIRECTORY_NAME + "/" + FILE_NAME).createNewFile();
+            assert fileCreated;
+            return true;
         }
-        return directoryCreated && fileCreated;
+        return false;
     }
 
     /**
      * Read lines from file and process each line.
      */
-    private void readTasksFromFile(TaskMap tasks) throws FileNotFoundException {
+    private TaskMap readTasksFromFile() throws FileNotFoundException {
+        TaskMap tasks = new TaskMap();
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
         Type type = new TypeToken<Task>(){}.getType();
         while (scanner.hasNextLine()) {
             tasks.addTask(gson.fromJson(scanner.nextLine(), type));
         }
+        return tasks;
     }
 }

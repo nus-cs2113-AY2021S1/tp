@@ -31,6 +31,16 @@ public class Task {
         taskID = generateHashValue();
     }
 
+    public Task(Integer taskID, String description, LocalDate date,
+                LocalTime startTime, LocalTime endTime, Priority priority) {
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
+        this.taskID = taskID;
+    }
+
     public Task(String taskID, String description, String dateString,
                 String startTime, String endTime, String priorityString)
         throws InvalidPriorityException, InvalidDatetimeException {

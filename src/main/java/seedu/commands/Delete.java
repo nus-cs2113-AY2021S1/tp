@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.DELETE_MESSAGE;
 
-public class Delete extends Command {
+public class Delete extends ModificationCommand {
     public static final String COMMAND_WORD = "delete";
     private final Integer key;
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
@@ -29,13 +30,14 @@ public class Delete extends Command {
         }
     }
 
-    @Override
-    public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
+    public CommandResult execute(Model model) throws InvalidTaskNumberException {
+        TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
         tasks.delete(key);
+        model.pushAndUpdate(tasks);
         return new CommandResult(DELETE_MESSAGE);
     }
 }
