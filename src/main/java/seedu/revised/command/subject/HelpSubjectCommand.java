@@ -1,16 +1,28 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
+import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 public class HelpSubjectCommand extends SubjectCommand {
 
-    public Subject execute(SubjectList subjectList) {
+    /**
+     * Prints help function.
+     *
+     * @param subjectList Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
+     * @param storage     Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
+     */
+    public void execute(SubjectList subjectList, Storage storage) {
         Ui.printSubjectHelp();
-        return null;
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> if user exits the program
+     */
     public boolean isExit() {
         return false;
     }

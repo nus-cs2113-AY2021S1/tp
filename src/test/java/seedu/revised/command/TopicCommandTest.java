@@ -4,12 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
 import seedu.revised.command.topic.ListTopicCommand;
-import seedu.revised.command.topic.ReturnTopicCommand;
+import seedu.revised.command.topic.AccessTopicCommand;
+import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.exception.topic.RepeatedTopicException;
 
@@ -24,7 +25,7 @@ public class TopicCommandTest {
     private AddTopicCommand addCommand;
     private DeleteTopicCommand deleteCommand;
     private FindTopicCommand findCommand;
-    private ReturnTopicCommand returnCommand;
+    private AccessTopicCommand returnCommand;
     private ListTopicCommand listCommand;
 
     @BeforeEach
@@ -39,7 +40,7 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void addTopic() throws NoTopicException, RepeatedTopicException {
+    public void addTopic() throws NoTopicException, RepeatedTopicException, InvalidTopicException {
         addCommand = new AddTopicCommand("add Geometry");
         addCommand.execute(subject);
         assertEquals("Geometry", topics.getList().get(3).getTitle());
@@ -53,7 +54,7 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void findTopic() {
+    public void findTopic() throws InvalidTopicException {
         findCommand = new FindTopicCommand("find Speed");
         findCommand.execute(subject);
     }

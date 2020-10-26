@@ -1,6 +1,6 @@
 package seedu.revised.command.task;
 
-import seedu.revised.task.TaskList;
+import seedu.revised.list.TaskList;
 
 public class ExitTaskCommand extends TaskCommand {
 

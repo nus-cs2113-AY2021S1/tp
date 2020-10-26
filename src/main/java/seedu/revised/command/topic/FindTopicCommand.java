@@ -2,7 +2,8 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.exception.topic.InvalidTopicException;
+import seedu.revised.list.TopicList;
 import seedu.revised.command.task.FindTaskCommand;
 import seedu.revised.ui.Ui;
 
@@ -13,13 +14,16 @@ public class FindTopicCommand extends TopicCommand {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) {
+    public void execute(Subject subject) throws InvalidTopicException {
         TopicList topicList = subject.getTopics();
-        String[] message = this.fullcommand.split(" ");
-        Ui.printFindTopic(topicList,message[1]);
+        String[] message = this.fullcommand.split("\\s+", 2);
+        if (message.length <= 1 || message[1].isEmpty()) {  // empty argument
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
+        }
+
+        Ui.printFindTopic(topicList, message[1].strip());
         FindTaskCommand findTaskCommand = new FindTaskCommand(this.fullcommand);
         findTaskCommand.execute(subject.getTasks());
-        return null;
     }
 
     /**

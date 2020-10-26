@@ -1,20 +1,9 @@
 package seedu.revised;
 
-import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
-import seedu.revised.card.quiz.ResultList;
-import seedu.revised.card.quiz.SubjectQuiz;
-import seedu.revised.command.subject.ExportCommand;
-import seedu.revised.command.subject.QuizSubjectCommand;
-import seedu.revised.command.subject.ReturnSubjectCommand;
+import seedu.revised.list.SubjectList;
+import seedu.revised.list.ResultList;
 import seedu.revised.command.subject.SubjectCommand;
-import seedu.revised.exception.FailedParseException;
-import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.storage.DataLoadingException;
-import seedu.revised.exception.subject.InvalidSubjectException;
-import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
-import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.SubjectParser;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
@@ -84,44 +73,21 @@ public class Revised {
             try {
                 String fullCommand = Ui.readCommand();
                 SubjectCommand c = SubjectParser.parse(fullCommand);
-                if (c instanceof ReturnSubjectCommand) {
-                    Subject subject = c.execute(subjects);
-                    ((ReturnSubjectCommand) c).goToSubject(subject);
-                } else if (c instanceof QuizSubjectCommand) {
-                    Subject subject = c.execute(subjects);
-                    SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
-                    subjectQuiz.startQuiz(results);
-                } else if (c instanceof ExportCommand) {  // TODO: bad practice, shouldn't use instanceof here
-                    ((ExportCommand) c).execute(subjects, storage);
-                } else {
-                    c.execute(subjects);
-                }
+                c.execute(subjects, storage);
                 isExit = c.isExit();
-            }  catch (NoSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (RepeatedSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (NoFlashcardException e) {
-                System.out.println(e.getMessage());
-            } catch (NoTopicException e) {
-                System.out.println(e.getMessage());
-            } catch (InvalidSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (FailedParseException e) {
-                System.out.println(e.getMessage());
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.printOutOfBoundsError());
+                Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (NumberFormatException e) {
-                System.out.println(Ui.printIndexError());
+                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
             } catch (Exception e) {
-                System.out.println(Ui.printError(e));
+                Ui.printError(e);
             }
         }
 
         try {
             storage.saveSubjects(subjects.getList());
         } catch (IOException e) {
-            System.out.println(Ui.printWritingError());
+            Ui.printErrorMsg(Ui.WRITING_EXCEPTION);
         }
 
         Ui.printBye();
@@ -133,7 +99,7 @@ public class Revised {
             new Revised(BASE_DIR, EXPORT_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME, EXPORT_FILENAME)
                     .run();
         } catch (DataLoadingException e) {
-            System.out.println(e.getMessage());
+            Ui.printError(e);
         } finally {
             logger.info("Application exits.");
         }

@@ -1,6 +1,6 @@
-# Duke
+# Revised
 
-{Give product intro here}
+This application aims to help students to revise effectively.
 
 Useful links:
 * [User Guide](UserGuide.md)

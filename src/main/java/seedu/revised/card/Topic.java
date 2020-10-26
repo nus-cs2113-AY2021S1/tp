@@ -1,7 +1,7 @@
 package seedu.revised.card;
 
 import seedu.revised.card.quiz.Result;
-import seedu.revised.card.quiz.ResultList;
+import seedu.revised.list.ResultList;
 
 import java.util.ArrayList;
 import java.util.List;

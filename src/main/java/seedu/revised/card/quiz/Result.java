@@ -1,6 +1,9 @@
 package seedu.revised.card.quiz;
 
+import java.util.logging.Logger;
+
 public class Result {
+    private static final Logger logger = Logger.getLogger(Result.class.getName());
     private double score = 0;
     private double maxScore;
     private String description;
@@ -40,6 +43,7 @@ public class Result {
      * @param score The <code>score</code> to replace the current score
      */
     public void updateResult(double score) {
+        logger.info("Update the result and description of the result");
         this.score = score;
         if (this.score >= this.maxScore / 2) {
             this.description = "Pass";
@@ -47,6 +51,8 @@ public class Result {
         if (this.score == this.maxScore) {
             this.description = "Excellent";
         }
+        logger.info("Finish updating the result of the quiz");
+        logger.fine(String.format("The description of the quiz is %s",this.description));
     }
 
     public String toString() {

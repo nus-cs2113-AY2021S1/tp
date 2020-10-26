@@ -1,18 +1,16 @@
 package seedu.revised.ui;
 
 import seedu.revised.card.Subject;
-import seedu.revised.card.SubjectList;
+import seedu.revised.list.SubjectList;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
+import seedu.revised.list.TopicList;
 
 import seedu.revised.card.Flashcard;
 
 import seedu.revised.card.quiz.Result;
 
-import seedu.revised.task.Deadline;
-import seedu.revised.task.Event;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
+import seedu.revised.card.task.Task;
+import seedu.revised.list.TaskList;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -21,147 +19,144 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
-    private static Scanner scan = new Scanner(System.in);
+    public static final String DIVIDER = "____________________________________________________________";
+    public static final String LONG_DIVIDER = "_______________________________________________________________________"
+            + "_________________________________________________";
+    public static final String LOGO =
+            "                                    ___________\n"
+                    + "                                    |  __ |  _ \\\n"
+                    + " ____  ______      _____   ________ |  |__| | | |\n"
+                    + "|  __|/ __ \\ \\    / /| |  /  _____/ |   __| | | |\n"
+                    + "| |  |  __/ \\ \\__/ / | | /_____  /  |  |__| |_| |\n"
+                    + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
+    public static final String HELP_MESSAGE = "Type help for all available commands";
+    public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
+    public static final String OOPS_PREFIX = " ☹ OOPS!!!";
+    public static final String OOPS_SUFFIX = ":-(";
+
+    public static final String FAILED_PARSE_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I don't know what that means "
+            + OOPS_SUFFIX;
+    public static final String NO_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that subject "
+            + OOPS_SUFFIX;
+    public static final String REPEATED_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but subject is already "
+            + "in the list " + OOPS_SUFFIX;
+    public static final String REPEATED_TOPIC_EXCEPTION = OOPS_PREFIX + " I'm sorry, but topic is already in the list "
+            + OOPS_SUFFIX;
+    public static final String REPEATED_FLASHCARD_EXCEPTION = OOPS_PREFIX + " I'm sorry, but flashcard is already "
+            + "in the list " + OOPS_SUFFIX;
+    public static final String TODO_EXCEPTION = OOPS_PREFIX + " The format should be: todo <taskname>";
+    public static final String DEADLINE_EXCEPTION = OOPS_PREFIX + " The format should be: deadline <taskname> /by "
+            + "<datetime>";
+    public static final String EVENT_EXCEPTION = OOPS_PREFIX + " The format should be: event <taskname> /at <datetime>";
+    public static final String INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " Invalid index format entered.";
+    public static final String INDEX_OUT_OF_BOUND_EXCEPTION = OOPS_PREFIX + " The index you entered does not exist.";
+    public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
+    public static final String NO_TOPIC_EXCEPTION = "There are no topics present yet!";
+    public static final String TOPIC_NOT_FOUND_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that topic "
+            + OOPS_SUFFIX;
+    public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";
+    public static final String INVALID_TOPIC_EXCEPTION = "Please enter a topic!";
+    public static final String INVALID_FLASHCARD_EXCEPTION = "Please enter a valid flashcard!";
+    public static final String INVALID_DATETIME_EXCEPTION = "Enter date and time in the following format: "
+            + "HH:MM DD-MM-YYYY";
+    public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";
+    public static final String WRITING_EXCEPTION = "Writing to file failed.";
+
+    private static final Scanner scan = new Scanner(System.in);
 
     public static String readCommand() {
         return scan.nextLine();
     }
 
     public static void printStart(SubjectList subjects) {
-        String logo = "                               __________\n"
-                + "                              |  __ |  _ \\\n"
-                + " ____  ______      _____      |  |__| | | |\n"
-                + "|  __|/ __ \\ \\    / /| | ____ |   __| | | |\n"
-                + "| |  |  __/ \\ \\__/ / | | \\____|  |__| |_| |\n"
-                + "| |   \\___|  \\____/  |_| ____/|_____|_____/\n";
+        System.out.println("Hello from");
+        System.out.println(LOGO);
+        System.out.println(DIVIDER);
+        System.out.println("Hello! I'm revisED");
+        System.out.println(DIVIDER);
 
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n"
-                + " Hello! I'm revisED\n"
-                + "____________________________________________________________\n");
         if (subjects.getList().size() != 0) {
             printUpcomingTasks(subjects);
         }
 
-        System.out.println("____________________________________________________________\n"
-                + "Alright, What can I do for you?\n"
-                + "____________________________________________________________\n"
-                + "____________________________________________________________\n"
-                + "Type help for all available commands\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("Alright, What can I do for you?");
+        System.out.println(DIVIDER);
+        printHelpMessage();
+    }
+
+    private static void printHelpMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(HELP_MESSAGE);
+        System.out.println(DIVIDER);
     }
 
     public static void printSubjectList(List<Subject> list) {
+        System.out.println(DIVIDER);
+        System.out.println("Here are the subject(s) in your list:");
+
         int num = 1;
-        System.out.println("____________________________________________________________\n"
-                + "Here are the subject(s) in your list:");
         for (Subject item : list) {
-            System.out.println(num + "." + item);
+            System.out.println(num + ". " + item);
             num++;
         }
-        System.out.println("____________________________________________________________");
+
+        System.out.println(DIVIDER);
     }
 
-
     public static void printTaskList(Subject subject) {
+        System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
+
         int index = 1;
         TaskList taskList = subject.getTasks();
-        System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
         for (Task t : taskList.getList()) {
             assert index > 0;
-            System.out.println(index + "." + t);
+            System.out.println(index + ". " + t);
             index++;
         }
-        System.out.println("____________________________________________________________");
+
+        System.out.println(DIVIDER);
     }
 
     public static void printDone(Task task) {
-        System.out.println("____________________________________________________________\n"
-                +
-                " Nice! I've marked this task as done:\n   " + task + "\n"
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(" Nice! I've marked this task as done:");
+        System.out.println("   " + task);
+        System.out.println(DIVIDER);
     }
 
     public static void printDelete(Task task, int total) {
-        System.out.println("____________________________________________________________\n"
-                + " Noted. I've removed this task:\n   "
-                + task + "\n"
-                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(" Noted. I've removed this task:");
+        System.out.println("   " + task);
+        System.out.println(" Now you have " + total + (total == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printSubjectDelete(Subject subject, int total) {
-        System.out.println("____________________________________________________________\n"
-                + " Noted. I've removed this subject:\n   "
-                + subject + "\n"
-                + " Now you have " + total + (total == 1 ? " subject in the list.\n" : " subjects in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(" Noted. I've removed this subject:");
+        System.out.println("   " + subject);
+        System.out.println(" Now you have " + total + (total == 1 ? " subject " : " subjects ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printBye() {
-        System.out.println("____________________________________________________________\n"
-                + " Bye. Hope to see you again soon!\n"
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(BYE_MESSAGE);
+        System.out.println(DIVIDER);
     }
 
-    public static String printFailedParseError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                + "____________________________________________________________");
+    public static void printError(Exception err) {
+        System.out.println(DIVIDER);
+        System.out.println(err.getMessage());
+        System.out.println(DIVIDER);
     }
 
-    public static String printError(Exception err) {
-        return ("____________________________________________________________\n"
-                + err.getMessage() + "\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printNoSubjectError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but I can't find that subject :-(\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printRepeatedSubjectError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but subject is already in the list :-(\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printRepeatedFlashcardError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but flashcard is already in the list :-(\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printTodoError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! The description of a todo cannot be empty.\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printDeadlineError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! The description of a deadline cannot be empty.\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printEventError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! The description of a event cannot be empty.\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printIndexError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! Invalid index format entered.\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printOutOfBoundsError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! The index you entered does not exist.\n"
-                + "____________________________________________________________");
+    public static void printErrorMsg(String msg) {
+        System.out.println(DIVIDER);
+        System.out.println(msg);
+        System.out.println(DIVIDER);
     }
 
     public static void printFindTask(TaskList taskList, String find) {
@@ -169,7 +164,7 @@ public class Ui {
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
                 if (taskPresent == 0) {
-                    System.out.println("____________________________________________________________");
+                    System.out.println(DIVIDER);
                 }
                 Ui.printTaskMatch(taskPresent);
                 System.out.println(task);
@@ -180,7 +175,7 @@ public class Ui {
         if (taskPresent == 0) {
             System.out.println(" Sorry! I could not find any task with " + find + " in the list.");
         }
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public static void printFindSubject(SubjectList subjectList, String find) {
@@ -188,7 +183,7 @@ public class Ui {
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
                 if (subjectPresent == 0) {
-                    System.out.println("____________________________________________________________");
+                    System.out.println(DIVIDER);
                 }
                 Ui.printSubjectMatch(subjectPresent);
                 System.out.println(subject);
@@ -197,10 +192,11 @@ public class Ui {
         }
         assert (subjectPresent == 1 || subjectPresent == 0);
         if (subjectPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any subject with " + find + " in the list.");
+            System.out.println(DIVIDER);
+            System.out.println(" Sorry! I could not find any subject with " + find + " in the list.");
         }
-        System.out.println("____________________________________________________________");
+
+        System.out.println(DIVIDER);
     }
 
     public static void printSubjectMatch(int subjectPresent) {
@@ -215,58 +211,40 @@ public class Ui {
         }
     }
 
-    public static void fileNotFoundError() {
-        System.out.println("File not found. Creating file...");
-    }
-
-    public static void createFileError() {
-        System.out.println("Creating file failed.");
-    }
-
-    public static String printDataLoadingError() {
-        return ("____________________________________________________________\n"
-                + "Error loading saved data from the disk." + "\n"
-                + "____________________________________________________________\n");
-    }
-
-    public static String printWritingError() {
-        return ("____________________________________________________________\n"
-                + "Writing to file failed." + "\n"
-                + "____________________________________________________________\n");
-    }
-
     public static void printGoToSubject(Subject subject) {
-        System.out.println("____________________________________________________________\n"
-                + "You are currently looking at the subject: " + subject.toString() + "\n"
-                + "____________________________________________________________\n"
-                + "____________________________________________________________\n"
-                + "Type help for all available commands\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("You are currently looking at the subject: " + subject.toString());
+        System.out.println(DIVIDER);
+
+        printHelpMessage();
     }
 
     public static void printBackToSubjects() {
-        System.out.println("____________________________________________________________\n"
-                + "Going back to the subjects list.\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("Going back to the subjects list.");
+        System.out.println(DIVIDER);
+
     }
 
     public static void printTopicList(Subject subject) {
+        System.out.println(DIVIDER);
+        System.out.println("Here are the topic(s) under " + subject.getTitle() + ": ");
+
         int index = 1;
         TopicList topicList = subject.getTopics();
-        System.out.println("____________________________________________________________\n"
-                + "Here are the topic(s) under " + subject.getTitle() + ": ");
         for (Topic t : topicList.getList()) {
             assert index > 0;
-            System.out.println(index + "." + t);
+            System.out.println(index + ". " + t);
             index++;
         }
-        System.out.println("____________________________________________________________");
+
+        System.out.println(DIVIDER);
     }
 
     public static void printTopicMatch(int topicPresent) {
         if (topicPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Here are the matching topic(s) in your list:");
+            System.out.println(DIVIDER);
+            System.out.println(" Here are the matching topic(s) in your list:");
         }
     }
 
@@ -276,7 +254,7 @@ public class Ui {
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
                 if (topicPresent == 0) {
-                    System.out.println("____________________________________________________________");
+                    System.out.println(DIVIDER);
                 }
                 Ui.printTopicMatch(topicPresent);
                 System.out.println(topic);
@@ -285,105 +263,96 @@ public class Ui {
         }
         assert (topicPresent == 1 || topicPresent == 0);
         if (topicPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any topics with " + query + " in the list.");
+            System.out.println(DIVIDER);
+            System.out.println(" Sorry! I could not find any topics with " + query + " in the list.");
         }
         System.out.println();
     }
 
     public static void printGoToTopic(Topic topic) {
-        System.out.println("____________________________________________________________\n"
-                + "You are currently looking at the topic: " + topic.getTitle() + "\n"
-                + "____________________________________________________________\n"
-                + "____________________________________________________________\n"
-                + "Type help for all available commands\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("You are currently looking at the topic: " + topic.getTitle());
+        System.out.println(DIVIDER);
+
+        printHelpMessage();
     }
 
-    public static String printNoTopicError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but I can't find that topic :-(\n"
-                + "____________________________________________________________");
-    }
-
-    public static String printRepeatedTopicError() {
-        return ("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but that topic is already in the list :-(\n"
-                + "____________________________________________________________");
-    }
 
     public static void printTopicDelete(Topic topic, int total) {
-        System.out.println("____________________________________________________________\n"
-                + " Noted. I've removed this topic:\n   "
-                + topic + "\n"
-                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(" Noted. I've removed this topic:");
+        System.out.println("   " + topic);
+        System.out.println(" Now you have " + total + (total == 1 ? " topic " : " topics " + "in the list."));
+        System.out.println(DIVIDER);
     }
 
 
     public static void printFlashcardDelete(Flashcard flashcard, int total) {
-        System.out.println("____________________________________________________________\n"
-                + " Noted. I've removed this flashcard:\n   "
-                + flashcard.getQuestion() + "; " + flashcard.getAnswer() + "\n"
-                + " Now you have " + total + (total == 1 ? " flashcard in the list.\n" : " flashcards in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println(" Noted. I've removed this flashcard:");
+        System.out.println("   " + flashcard.getQuestion() + "; " + flashcard.getAnswer());
+        System.out.println(" Now you have " + total + (total == 1 ? " flashcard " : " flashcards " + "in the list."));
+        System.out.println(DIVIDER);
     }
 
     public static void printFlashcardList(Topic topic) {
+        System.out.println(DIVIDER);
+        System.out.println("Here are the flashcard(s) under " + topic.getTitle() + ": ");
+
         int index = 1;
-        System.out.println("____________________________________________________________\n"
-                + "Here are the flashcard(s) under " + topic.getTitle() + ": ");
         for (Flashcard t : topic.getFlashcards()) {
             assert index > 0;
-            System.out.println(index + "." + t.getQuestion() + "; " + t.getAnswer());
+            System.out.println(index + ". " + t.getQuestion() + "; " + t.getAnswer());
             index++;
         }
-        System.out.println("____________________________________________________________");
+
+        System.out.println(DIVIDER);
     }
 
     public static void printScore(Result result) {
-        System.out.println("____________________________________________________________\n"
-                + "Result:" + result + "\n"
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println("Result:" + result);
+        System.out.println(DIVIDER);
     }
 
     public static void printIncorrectAnswers(List<String> incorrectAnswers) {
-        System.out.println("Here are the questions which you got wrong.\n"
-                + "____________________________________________________________");
+        System.out.println("Here are the questions which you got wrong.");
+        System.out.println(DIVIDER);
 
         for (int i = 0; i < incorrectAnswers.size(); i += 3) {
             System.out.println("Question:" + incorrectAnswers.get(i));
             System.out.println("Correct Answer: " + incorrectAnswers.get(i + 1));
             System.out.println("Your Answer: " + incorrectAnswers.get(i + 2));
-            System.out.println("____________________________________________________________");
+            System.out.println(DIVIDER);
         }
 
     }
 
     public static void printStartSubjectQuiz(Subject subject) {
-        System.out.println("____________________________________________________________\n"
-                + "You are about to begin the quiz for " + subject + ".You have 2 minutes.\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("You are about to begin the quiz for \" + subject + \".You have 2 minutes.");
+        System.out.println(DIVIDER);
     }
 
     public static void printStartTopicQuiz(Topic topic) {
-        System.out.println("____________________________________________________________\n"
-                + "You are about to begin the quiz for " + topic + ".You have 1 minute.\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("You are about to begin the quiz for " + topic + ".You have 1 minute.");
+        System.out.println(DIVIDER);
     }
 
     public static void printStopQuiz() {
-        System.out.println("____________________________________________________________\n"
-                + "The quiz has been stopped!");
+        System.out.println(DIVIDER);
+        System.out.println("The quiz has been stopped!");
     }
 
     public static void printEndQuiz() {
-        System.out.println("____________________________________________________________\n"
-                + "The quiz has ended!");
+        System.out.println(DIVIDER);
+        System.out.println("The quiz has ended");
     }
 
     public static void printSubjectResults(Subject subject) {
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
+
         int index = 1;
         if (subject.getResults().getList().size() == 0) {
             System.out.println("You do not have any results!");
@@ -395,36 +364,39 @@ public class Ui {
             }
         }
 
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public static void printSubject(Subject subject, SubjectList subjectList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this subject:\n  " + subject + "\n"
-                + "Now you have " + subjectList.getList().size() + (subjectList.getList().size() == 1
-                ? " subject in the list.\n" : " subjects in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println("Got it. I've added this subject:");
+        System.out.println("  " + subject);
+        System.out.println("Now you have " + subjectList.getList().size() + (subjectList.getList().size() == 1
+                ? " subject " : " subjects ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printTopic(Topic topic, TopicList topicList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this topic:\n  " + topic + "\n"
-                + "Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
-                ? " topic in the list.\n" : " topics in the list.\n")
-                + "____________________________________________________________");
+        System.out.println(DIVIDER);
+        System.out.println("Got it. I've added this topic:");
+        System.out.println("  " + topic);
+        System.out.println("Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
+                ? " topic " : " topics ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
-    public static void printFlashcard(Flashcard flashcard, List flashcards) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this flashcard:\n  " + flashcard.getQuestion() + "; "
-                + flashcard.getAnswer() + "\n"
-                + "Now you have " + flashcards.size() + (flashcards.size() == 1
-                ? " flashcard in the list.\n" : " flashcards in the list.\n")
-                + "____________________________________________________________");
+    public static void printFlashcard(Flashcard flashcard, List<Flashcard> flashcards) {
+        System.out.println(DIVIDER);
+        System.out.println("Got it. I've added this flashcard:");
+        System.out.println(flashcard.getQuestion() + "; " + flashcard.getAnswer());
+        System.out.println("Now you have " + flashcards.size() + (flashcards.size() == 1
+                ? " flashcard " : " flashcards ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printTopicResults(Topic topic) {
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
+
         int index = 1;
         if (topic.getResults().getList().size() == 0) {
             System.out.println("You do not have any results!");
@@ -437,144 +409,190 @@ public class Ui {
             }
         }
 
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public static void printQuestion(String question) {
         System.out.println("Question: " + question);
-
-
     }
 
     public static void printBackToTopicsAndTasks() {
-        System.out.println("____________________________________________________________\n"
-                + "Going back to the topics and tasks list.\n"
-                + "____________________________________________________________\n");
-    }
-
-    public static String printNoFlashcardsError() {
-        return ("____________________________________________________________\n"
-                + "There are no flashcards present yet!\n"
-                + "____________________________________________________________\n");
-    }
-
-    public static String printNoTopicsError() {
-        return ("____________________________________________________________\n"
-                + "There are no topics present yet!\n"
-                + "____________________________________________________________\n");
-    }
-
-    public static String printInvalidSubjectError() {
-        return ("____________________________________________________________\n"
-                + "Please enter a subject!\n"
-                + "____________________________________________________________\n");
-    }
-
-    public static String printInvalidTopicError() {
-        return ("____________________________________________________________\n"
-                + "Please enter a topic!\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("Going back to the topics and tasks list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printTask(Task task, TaskList taskList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this task:\n  " + task + "\n"
-                + "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
-                ? " task in the list.\n" : " tasks in the list.\n")
-                + "____________________________________________________________");
-    }
-
-
-    public static String printInvalidFormatError() {
-        return ("____________________________________________________________\n"
-                + "Enter date and time in the following format: HH:MM DD-MM-YYY\n"
-                + "____________________________________________________________\n");
+        System.out.println(DIVIDER);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
+                ? " task " : " tasks ") + "in the list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printUpcomingTasks(SubjectList subjects) {
-        int index = 1;
-        System.out.println("Here are the tasks that are due by next week\n"
-                + "____________________________________________________________");
         LocalDateTime nextWeek = LocalDateTime.now().plusDays(7);
         for (Subject subject : subjects.getList()) {
-            System.out.println(subject);
-            if (subject.getTasks().getList().size() == 0) {
-                System.out.println("You do not have any tasks due by next week!");
+            List<Task> taskList = new ArrayList<>();
+            int index = 1;
 
-            } else {
-                for (Task task : subject.getTasks().getList()) {
-                    if (task.getDateTime() != null) {
-                        if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
-                            System.out.println(index + ":" + task);
-                            index = index + 1;
-                        }
+            for (Task task : subject.getTasks().getList()) {
+                if (task.getDateTime() != null) {
+                    if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
+                        taskList.add(task);
                     }
                 }
             }
 
+            for (Task task : taskList) {
+                if (subjects.getList().get(0).equals(subject) & taskList.get(0).equals(task)) {
+                    System.out.println("Here are the tasks that are due by next week\n");
+                }
+                if (index == 1) {
+                    System.out.println(subject);
+                }
+                System.out.println(index + ": " + task);
+                index = index + 1;
+            }
         }
     }
 
+    public static String repeatedDateTimeException(Task task) {
+        return "There is another task at that date and time:\n" + task;
+    }
+
     public static void printExportSuccessful(File exportFile) {
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
         System.out.println("Your data has been successfully exported to " + exportFile.getAbsolutePath() + ".");
-        System.out.println("____________________________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public static void printSubjectHelp() {
-        System.out.println("________________________________________________________________________________________"
-                + "________________________________\n"
-                + "help:          shows the list of commands available at the main level\n"
-                + "add abc:       adds a subject called 'abc'\n"
-                + "find abc:      finds all subjects containing the letters abc\n"
-                + "list:          shows the list of all subjects\n"
-                + "delete 1:      deletes the 1st subject in the list.\n"
-                + "subject abc:   enters the subject called abc, now you can create, find, list, delete and enter the "
-                + "topics of subject abc\n"
-                + "quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc,\n"
-                + "               answer the questions of the current flashcards to test your knowledge\n"
-                + "results abc:   gives you the results of all attempted quizzes for abc subject\n"
-                + "bye:           exits the application\n"
-                + "___________________________________________________________________________________________________"
-                + "_____________________\n");
+        System.out.println(LONG_DIVIDER);
+        System.out.println(
+                "help:          shows the list of commands available at the main level\n"
+                        + "add abc:       adds a subject called 'abc'\n"
+                        + "find abc:      finds all subjects containing the letters abc\n"
+                        + "list:          shows the list of all subjects\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete 1:      deletes the 1st subject in the list.\n"
+                        + "subject abc:   enters the subject called abc, now you can create, find, list, delete "
+                        + "and enter the topics of subject abc\n"
+                        + "quiz abc:      starts a quiz for all the flashcards present in all topics of subject abc\n"
+                        + "               answer the questions of the current flashcards to test your knowledge\n"
+                        + "results abc:   gives you the results of all attempted quizzes for abc subject\n"
+                        + "export:        exports all the data to a JSON file\n"
+                        + "bye:           exits the application"
+        );
+        System.out.println(LONG_DIVIDER);
+
     }
 
     public static void printTopicHelp() {
-        System.out.println("________________________________________________________________________________________"
-                + "________________________________\n"
-                + "help:                shows the list of commands available at the subject level\n"
-                + "add abc:             adds a topic called 'abc' in the current subject\n"
-                + "todo abc:            adds a todo type task with the description 'abc'\n"
-                + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
-                + "date/time of deadline as 1\n"
-                + "event abc /at 1:     adds an event type task with description 'abc' and date/time of event as 1\n"
-                + "find abc:            finds all topics and tasks containing the letters abc in the current subject\n"
-                + "list:                shows the list of all topics and tasks in the current subject\n"
-                + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
-                + "delete task 1:       deletes the 1st task in the list of tasks.\n"
-                + "done 1:              marks the 1st task in the list of tasks as done\n"
-                + "topic abc:           enters the topic called abc, now you can create, find, list and delete the "
-                + "flashcards of topic abc\n"
-                + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
-                + "                     answer the questions of the prompted flashcards to test your knowledge\n"
-                + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
-                + "bye:                 exits the subject to return to the main screen, "
-                + "where you can work with subjects\n"
-                + "___________________________________________________________________________________________________"
-                + "_____________________\n");
+        System.out.println(LONG_DIVIDER);
+        System.out.println(
+                "help:                shows the list of commands available at the subject level\n"
+                        + "add abc:             adds a topic called 'abc' in the current subject\n"
+                        + "todo abc:            adds a todo type task with the description 'abc'\n"
+                        + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
+                        + "date/time of deadline as 1\n"
+                        + "event abc /at 1:     adds an event type task with description 'abc' "
+                        + "and date/time of event as 1\n"
+                        + "find abc:            finds all topics and tasks containing 'abc' in the current subject\n"
+                        + "list:                shows the list of all topics and tasks in the current subject\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
+                        + "delete task 1:       deletes the 1st task in the list of tasks.\n"
+                        + "done 1:              marks the 1st task in the list of tasks as done\n"
+                        + "topic abc:           enters the topic called abc, now you can create, find, list "
+                        + "and delete the flashcards of topic abc\n"
+                        + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
+                        + "                     answer the questions of the prompted flashcards "
+                        + "to test your knowledge\n"
+                        + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
+                        + "exit:                exits the subject to return to the main screen, "
+                        + "where you can work with subjects"
+        );
+        System.out.println(LONG_DIVIDER);
     }
 
     public static void printFlashcardHelp() {
-        System.out.println("________________________________________________________________________________________"
-                + "________________________________\n"
-                + "help:              shows the list of commands available at the topic level\n"
-                + "add abc; def:      adds a flashcard with question 'abc' and answer 'def' in the current topic\n"
-                + "list:              shows the list of all flashcards in the current topic\n"
-                + "delete 1:          deletes the 1st flashcard in the list\n"
-                + "exit:              exits the topic to return to the subject level, "
-                + "where you can work with tasks and topics\n"
-                + "___________________________________________________________________________________________________"
-                + "_____________________\n");
+        System.out.println(LONG_DIVIDER);
+        System.out.println(
+                "help:              shows the list of commands available at the topic level\n"
+                        + "add abc; def:      adds a flashcard with question 'abc' and answer 'def' "
+                        + "in the current topic\n"
+                        + "list:              shows the list of all flashcards in the current topic\n"
+                        + "list all:      shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete 1:          deletes the 1st flashcard in the list\n"
+                        + "exit:              exits the topic to return to the subject level, "
+                        + "where you can work with tasks and topics"
+        );
+        System.out.println(LONG_DIVIDER);
+    }
+
+    /**
+     * Prints a tree of all subjects, topics, tasks, and flashcards.
+     * Tells user which subject you are currently looking at.
+     *
+     * @param subjects      the list of all subjects to be printed
+     * @param activeSubject Subject that the user is currently looking at. null if user is not looking at a subject
+     * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
+     */
+    public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
+        System.out.println("Here's a list of all subjects, topics, tasks, and flashcards:");
+        if (activeSubject == null && activeTopic == null) {
+            System.out.println("(You are currently here)");
+        }
+
+        int i = 1;
+        for (Subject s : subjects) {
+            boolean isLast = (i == subjects.size()
+                    && s.getTasks().getList().size() == 0
+                    && s.getTopics().getList().size() == 0);
+            System.out.println((isLast ? "└─ " : "├─ ")
+                    + (i++) + ". " + s.toString()
+                    + ((activeSubject != null && s == activeSubject) ? " (You are currently here)" : ""));
+            printAllTopics(s, activeTopic);
+        }
+    }
+
+    /**
+     * Prints a subtree of all topics under a subject.
+     * If the user is lookking at a topic, tells which topic the user is currently looking at.
+     *
+     * @param subject     the subject containing all the topics to be printed
+     * @param activeTopic Topic that the user is currently looking at. null if user is not looking at a topic
+     */
+    public static void printAllTopics(Subject subject, Topic activeTopic) {
+        int i = 1;
+        TopicList topicList = subject.getTopics();
+        List<Topic> topics = topicList.getList();
+
+        System.out.println("│  Topics");
+        for (Topic topic : topics) {
+            boolean isLastTopic = i == topics.size();
+            System.out.println("│  " + (isLastTopic ? "└─ " : "├─ ")
+                    + (i++) + ". " + topic.toString()
+                    + (activeTopic != null && topic == activeTopic ? " (You are currently here)" : ""));
+            int numberOfFlashcards = topic.getFlashcards().size();
+            if (numberOfFlashcards != 0) {
+                System.out.println("│  "
+                        + (isLastTopic ? " " : "│")
+                        + "  └─ " + numberOfFlashcards
+                        + (numberOfFlashcards == 1 ? " Flashcard" : " Flashcards"));
+            }
+        }
+        i = 1;
+        TaskList taskList = subject.getTasks();
+        List<Task> tasks = taskList.getList();
+
+        System.out.println("│  Tasks");
+        for (Task task : tasks) {
+            System.out.println("│  " + ((i == tasks.size()) ? "└─ " : "├─ ")
+                    + (i++) + ". " + task.toString());
+        }
     }
 }
 

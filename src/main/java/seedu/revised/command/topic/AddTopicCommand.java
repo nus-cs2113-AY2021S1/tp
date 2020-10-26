@@ -2,10 +2,8 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.card.TopicList;
-import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
-import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.list.TopicList;
+import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.RepeatedTopicException;
 import seedu.revised.ui.Ui;
 
@@ -21,26 +19,25 @@ public class AddTopicCommand extends TopicCommand {
     }
 
     @Override
-    public Topic execute(Subject subject) throws NoTopicException, RepeatedTopicException {
+    public void execute(Subject subject) throws RepeatedTopicException, InvalidTopicException {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         TopicList topicList = subject.getTopics();
         if (endOfMessage <= startOfMessage) {
-            throw new NoTopicException(Ui.printNoTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
-        String title = fullCommand.substring(startOfMessage, endOfMessage);
+        String title = fullCommand.substring(startOfMessage, endOfMessage).strip();
         if (title.isEmpty()) {
-            throw new NoTopicException(Ui.printNoTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         for (Topic topic : topicList.getList()) {
             if (topic.getTitle().equals(title)) {
-                throw new RepeatedTopicException(Ui.printRepeatedTopicError());
+                throw new RepeatedTopicException(Ui.REPEATED_TOPIC_EXCEPTION);
             }
         }
         Topic t = new Topic(title);
         topicList.add(t);
         Ui.printTopic(t, topicList);
-        return t;
     }
 
     /**

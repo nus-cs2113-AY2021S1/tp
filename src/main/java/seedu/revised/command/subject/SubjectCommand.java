@@ -1,18 +1,22 @@
 package seedu.revised.command.subject;
 
-import seedu.revised.card.Subject;
 import seedu.revised.command.Command;
 import seedu.revised.exception.FailedParseException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.card.SubjectList;
+import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.storage.Storage;
 
-public class SubjectCommand extends Command {
-    public Subject execute(SubjectList subjectList) throws NoSubjectException,
-            RepeatedSubjectException, InvalidSubjectException, FailedParseException {
-        return null;
-    }
+import java.io.IOException;
+
+public abstract class SubjectCommand extends Command {
+
+    public abstract void execute(SubjectList subjectList, Storage storage) throws NoSubjectException,
+            RepeatedSubjectException, InvalidSubjectException, FailedParseException, IOException, NoTopicException,
+            NoFlashcardException;
 
     @Override
     public boolean isExit() {

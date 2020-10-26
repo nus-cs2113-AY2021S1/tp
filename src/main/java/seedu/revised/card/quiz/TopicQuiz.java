@@ -3,12 +3,14 @@ package seedu.revised.card.quiz;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.list.ResultList;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
+import java.util.logging.Logger;
 
 public class TopicQuiz extends Quiz {
-
+    private static final Logger logger = Logger.getLogger(TopicQuiz.class.getName());
     private Topic topic;
 
     public TopicQuiz(Topic topic) {
@@ -31,20 +33,23 @@ public class TopicQuiz extends Quiz {
      * @throws NoFlashcardException If there are no flashcards in this topic
      */
     public void setUpQuiz() throws NoFlashcardException {
+        logger.info("Start setting up the quiz for the topic");
         if (this.flashcards.size() == 0) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         this.result.setMaxScore(this.flashcards.size());
-
+        logger.info("Finished setting up the quiz");
+        logger.fine(String.format("Max Score of quiz: %d", this.flashcards.size()));
     }
 
     /**
      * Begins the quiz for the user.
      *
-     * @param results The resultsList stored in the Topic
      * @throws NoFlashcardException If the topic has no flashcards
      */
-    public void startQuiz(ResultList results) throws NoFlashcardException {
+    public void startQuiz() throws NoFlashcardException {
+        logger.info("Start of the quiz");
+        logger.fine(String.format("The topic being tested is  %s", this.topic));
         setUpQuiz();
         this.result.setScore(0);
 
@@ -52,9 +57,10 @@ public class TopicQuiz extends Quiz {
 
         Instant end = Instant.now().plusSeconds(60);
         String answer = null;
-
+        logger.info("Start printing the questions");
         for (Flashcard flashcard : this.flashcards) {
             if (Instant.now().isAfter(end)) {
+                logger.info("If the timer ends before the user could finish the quiz.");
                 break;
             }
             Ui.printQuestion(flashcard.getQuestion());
@@ -69,7 +75,7 @@ public class TopicQuiz extends Quiz {
 
         }
         assert answer != null;
-
+        logger.fine(String.format("The last answer is : %s", answer));
 
         if (!answer.equals("stop")) {
             Ui.printEndQuiz();
@@ -81,7 +87,8 @@ public class TopicQuiz extends Quiz {
         }
 
         this.topic.getResults().add(this.result);
-
+        logger.info("End of quiz for this topic");
+        logger.fine(String.format("The result for the quiz is %f", this.result.getScore()));
 
     }
 

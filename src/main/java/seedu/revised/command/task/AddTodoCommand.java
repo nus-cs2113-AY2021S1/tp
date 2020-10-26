@@ -2,9 +2,9 @@ package seedu.revised.command.task;
 
 
 import seedu.revised.exception.task.TaskTodoException;
-import seedu.revised.task.Task;
-import seedu.revised.task.TaskList;
-import seedu.revised.task.Todo;
+import seedu.revised.card.task.Task;
+import seedu.revised.list.TaskList;
+import seedu.revised.card.task.Todo;
 import seedu.revised.ui.Ui;
 
 public class AddTodoCommand extends TaskCommand {
@@ -25,11 +25,11 @@ public class AddTodoCommand extends TaskCommand {
         int startOfMessage = 5;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskTodoException(Ui.printTodoError());
+            throw new TaskTodoException(Ui.TODO_EXCEPTION);
         }
-        String message = fullCommand.substring(startOfMessage, endOfMessage);
+        String message = fullCommand.substring(startOfMessage, endOfMessage).strip();
         if (message.isEmpty()) {
-            throw new TaskTodoException(Ui.printTodoError());
+            throw new TaskTodoException(Ui.TODO_EXCEPTION);
         } else {
             Task temp = new Todo(message, false);
             taskList.getList().add(temp);

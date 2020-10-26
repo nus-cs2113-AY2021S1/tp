@@ -6,11 +6,11 @@ import seedu.revised.ui.Ui;
 
 import java.util.logging.Logger;
 
-public class ListSubjectCommand extends SubjectCommand {
-    private static final Logger logger = Logger.getLogger(ListSubjectCommand.class.getName());
+public class ListAllSubjectCommand extends SubjectCommand {
+    private static final Logger logger = Logger.getLogger(ListAllSubjectCommand.class.getName());
 
     /**
-     * List subjects in a <code>SubjectList</code>.
+     * List all subjects, topics, tasks, and flashcards.
      *
      * @param subjectList the <code>SubjectList</code> instance of the <code>SubjectList</code>
      *                    class for the user to list subjects from
@@ -18,9 +18,9 @@ public class ListSubjectCommand extends SubjectCommand {
      *                    from an abstract class
      */
     public void execute(SubjectList subjectList, Storage storage) {
-        logger.info("Begin listing subjects in the SubjectList.");
-        Ui.printSubjectList(subjectList.getList());
-        logger.info("Finished listing the subjects in the SubjectList.");
+        logger.info("Begin listing all subjects, topics, tasks, and flashcards.");
+        Ui.printAll(subjectList.getList(),null,null);
+        logger.info("Finished listing all subjects, topics, tasks, and flashcards.");
     }
 
     /**

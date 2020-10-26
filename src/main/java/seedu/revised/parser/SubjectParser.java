@@ -1,12 +1,13 @@
 package seedu.revised.parser;
 
+import seedu.revised.command.subject.ListAllSubjectCommand;
 import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.ExitSubjectCommand;
-import seedu.revised.command.subject.ExportCommand;
+import seedu.revised.command.subject.ExportSubjectCommand;
 import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
-import seedu.revised.command.subject.ReturnSubjectCommand;
+import seedu.revised.command.subject.AccessSubjectCommand;
 import seedu.revised.command.subject.SorrySubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
@@ -25,25 +26,30 @@ public class SubjectParser {
      * @return returns a command instance to execute a command
      */
     public static SubjectCommand parse(String fullCommand) {
+        String[] tokens = fullCommand.split(" ");
+        String command = tokens[0];
+
         if (fullCommand.equals("bye")) {
             return new ExitSubjectCommand();
         } else if (fullCommand.equals("list")) {
             return new ListSubjectCommand();
+        } else if (fullCommand.equals("list all")) {
+            return new ListAllSubjectCommand();
         } else if (fullCommand.equals("export")) {
-            return new ExportCommand();
-        } else if (fullCommand.startsWith("add")) {
+            return new ExportSubjectCommand();
+        } else if (command.equals("add")) {
             return new AddSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("delete ")) {
+        } else if (command.equals("delete")) {
             return new DeleteSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("find")) {
+        } else if (command.equals("find")) {
             return new FindSubjectCommand(fullCommand);
         } else if (fullCommand.equals("help")) {
             return new HelpSubjectCommand();
-        } else if (fullCommand.startsWith("subject")) {
-            return new ReturnSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("quiz")) {
+        } else if (command.equals("subject")) {
+            return new AccessSubjectCommand(fullCommand);
+        } else if (command.equals("quiz")) {
             return new QuizSubjectCommand(fullCommand);
-        } else if (fullCommand.startsWith("results")) {
+        } else if (command.equals("results")) {
             return new ResultSubjectCommand(fullCommand);
         } else {
             return new SorrySubjectCommand();

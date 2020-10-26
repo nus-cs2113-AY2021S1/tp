@@ -7,14 +7,16 @@ import seedu.revised.command.task.AddEventCommand;
 import seedu.revised.command.task.AddTodoCommand;
 import seedu.revised.command.task.DeleteTaskCommand;
 import seedu.revised.command.task.DoneTaskCommand;
+import seedu.revised.command.topic.ListAllTopicCommand;
 import seedu.revised.command.topic.QuizTopicCommand;
 import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.ExitTopicCommand;
 import seedu.revised.command.topic.ListTopicCommand;
+import seedu.revised.command.topic.ResultTopicCommand;
 import seedu.revised.command.topic.SorryTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
-import seedu.revised.command.topic.ReturnTopicCommand;
+import seedu.revised.command.topic.AccessTopicCommand;
 import seedu.revised.command.topic.HelpTopicCommand;
 
 
@@ -32,8 +34,8 @@ public class TopicParser {
     public static Command parse(String fullCommand) {
         String[] message = fullCommand.split(" ");
         switch (message[0]) {
-        case "bye":
-            if (fullCommand.equals("bye")) {
+        case "exit":
+            if (fullCommand.equals("exit")) {
                 return new ExitTopicCommand();
             } else {
                 return new SorryTopicCommand();
@@ -41,6 +43,8 @@ public class TopicParser {
         case "list":
             if (fullCommand.equals("list")) {
                 return new ListTopicCommand();
+            } else if (fullCommand.equals("list all")) {
+                return new ListAllTopicCommand();
             } else {
                 return new SorryTopicCommand();
             }
@@ -57,8 +61,12 @@ public class TopicParser {
             }
         case "find":
             return new FindTopicCommand(fullCommand);
+        case "quiz":
+            return new QuizTopicCommand(fullCommand);
+        case "results":
+            return new ResultTopicCommand(fullCommand);
         case "topic":
-            return new ReturnTopicCommand(fullCommand);
+            return new AccessTopicCommand(fullCommand);
         case "todo":
             return new AddTodoCommand(fullCommand);
         case "deadline":

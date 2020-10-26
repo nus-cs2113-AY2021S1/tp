@@ -9,10 +9,10 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.storage.DataLoadingException;
 import seedu.revised.card.quiz.Result;
-import seedu.revised.task.Deadline;
-import seedu.revised.task.Event;
-import seedu.revised.task.Task;
-import seedu.revised.task.Todo;
+import seedu.revised.card.task.Deadline;
+import seedu.revised.card.task.Event;
+import seedu.revised.card.task.Task;
+import seedu.revised.card.task.Todo;
 import seedu.revised.ui.Ui;
 
 import java.io.File;
@@ -68,7 +68,7 @@ public class Storage {
         } else {
             File[] subjectDirs = baseDir.listFiles(File::isDirectory);
             if (subjectDirs == null) {  // error in getting the directories even if they may exist
-                throw new DataLoadingException(Ui.printDataLoadingError());
+                throw new DataLoadingException(Ui.DATA_LOADING_EXCEPTION);
             }
             subjects = loadSubjects(subjectDirs);
         }
@@ -92,7 +92,7 @@ public class Storage {
         for (File subjectDir : subjectDirs) {
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             if (topicDirs == null) {
-                throw new DataLoadingException(Ui.printDataLoadingError());
+                throw new DataLoadingException(Ui.DATA_LOADING_EXCEPTION);
             }
 
             List<Topic> topics = loadTopics(topicDirs);
