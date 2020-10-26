@@ -5,11 +5,16 @@ import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * Functions to delete a bunny from the list of bunnies.
  */
 public class DeleteBunny {
+    private static Logger logger = Logger.getLogger("DeleteBunny");
 
     /**
      * Delete a bunny from the list of bunnies.
@@ -19,15 +24,22 @@ public class DeleteBunny {
      */
     public static void deleteBunny(String userInput, ArrayList<Bunny> bunniesList)
             throws BunnyIndexOutOfBoundsException {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.SEVERE);
+        logger.addHandler(ch);
 
         int bunnyNum;
 
         // try to parse Bunny index and check if it exists
         bunnyNum = getNumFromInput(userInput, BunnyList.numBunny());
 
+
         // print response
         UI.bunnyDeleted(bunnyNum);
         bunniesList.remove(bunnyNum - 1);
+        logger.log(Level.FINEST, "1 bunny was deleted from bunniesList");
     }
 
     /**
