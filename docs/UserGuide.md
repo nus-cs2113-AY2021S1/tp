@@ -634,6 +634,8 @@ When you exit the application, the data you have added to the program is automat
 when you launch the application, the saved data is automatically loaded from the disk. The data is stored under the 
 `data/` folder in the same folder where you run the application.
 
+> **_WARNING:_** The data is not saved if the application is closed abnormally.
+
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
 `Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
