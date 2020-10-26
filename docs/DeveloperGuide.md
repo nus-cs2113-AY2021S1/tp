@@ -434,10 +434,11 @@ The processCommand method in WatchCommand class is called.
 
 3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
 
-The following sequence diagram summarises what happens when a user executes a WatchCommand:
+The following sequence diagram summarises what happens when a user executes a `WatchCommand`:
 
- <img src = "images/WatchCommandSequence.png" width = "500">
-
+ <img src = "images/WatchCommandSequence.png" width = "600">
+ 
+#### Sequence diagram for Watch Command
 
 ### UpdateTimeLimit Command feature
 
@@ -477,7 +478,7 @@ The rest contain of the file will be all shows details. A hash map called shows 
 
 ### Error Handling
 
-The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an error
+The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an exception.
 
 The following is an example execution scenario and demonstrates how the `ErrorHandling` class behaves and interacts with other relevant classes.
 
