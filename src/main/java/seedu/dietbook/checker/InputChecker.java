@@ -45,7 +45,7 @@ public class InputChecker {
      */
     public static void checkEmptyOption(String[] input) throws DietException {
         try {
-            if (input[1].charAt(0) == ' ') {
+            if (input[1].trim().charAt(1) == '/') {
                 throw new DietException("Error! Option specified with empty field!");
             }
         } catch (IndexOutOfBoundsException e) {
