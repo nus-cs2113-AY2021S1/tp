@@ -28,11 +28,11 @@ public class DeleteBookmarkCommand extends DeleteCommand {
         }
     }
 
-    private void deleteBookmarkByIndex(BookmarkList bookmarks, String index, TextUi ui) {
-        int indexNum = convertBookmarkIndexToInt(index, ui);
-        if (indexNum <= bookmarks.getSize()) {
-            Bookmark targetBookmark = bookmarks.findByIndex(indexNum - 1);
-            bookmarks.delete(indexNum);
+    private void deleteBookmarkByIndex(BookmarkList bookmarks, String bookmarkNumber, TextUi ui) {
+        int bookmarkNum = convertBookmarkNumberToInt(bookmarkNumber, ui);
+        if (bookmarkNum <= bookmarks.getSize() && bookmarkNum > 0) {
+            Bookmark targetBookmark = bookmarks.findByIndex(bookmarkNum - 1);
+            bookmarks.delete(bookmarkNum - 1);
             ui.printDeleteBookmark(targetBookmark);
         } else {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
@@ -65,14 +65,14 @@ public class DeleteBookmarkCommand extends DeleteCommand {
         }
     }
 
-    private int convertBookmarkIndexToInt(String indexString, TextUi ui) {
-        int index = -1;
+    private int convertBookmarkNumberToInt(String numberString, TextUi ui) {
+        int numInt = -1;
         try {
-            index = Integer.parseInt(information) - 1;
+            numInt = Integer.parseInt(numberString);
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_BOOKMARK_NUM);
         }
 
-        return index;
+        return numInt;
     }
 }
