@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Duke {
 
+    private static final String DUMMY_PARAM = "Dummy";
     private static Parser parser;
     public static FavStorage favFile = new FavStorage("data/FavList.txt");
     public static FreqStorage freqFile = new FreqStorage("data/freqList.txt");
@@ -40,7 +41,7 @@ public class Duke {
         }
 
         Ui.printWelcomeMessage();
-        parser = new Parser("lol");
+        parser = new Parser(DUMMY_PARAM);
         boolean isOngoing = true;
         while (isOngoing) {
             try {
