@@ -9,9 +9,12 @@ import seedu.duke.words.Words;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WordsSaver {
     private static final String FILE_PATH = "data/words.txt";
+    private static final Logger LOGGER = Logger.getLogger("Words Saver");
 
     public static void saveWordsToFile() {
         ArrayList<Words> words = WordList.getWordList();
@@ -19,11 +22,14 @@ public class WordsSaver {
 
         for (Words w : words) {
             if (w instanceof Noun) {
-                textToSave = textToSave.concat("noun | " + w.getDescription() + " | " + w.getDefinition() + System.lineSeparator());
+                textToSave = textToSave.concat("noun | " + w.getDescription() + " | "
+                        + w.getDefinition() + System.lineSeparator());
             } else if (w instanceof Verb) {
-                textToSave = textToSave.concat("verb | " + w.getDescription() + " | " + w.getDefinition() + System.lineSeparator());
+                textToSave = textToSave.concat("verb | " + w.getDescription() + " | "
+                        + w.getDefinition() + System.lineSeparator());
             } else if (w instanceof Adjective) {
-                textToSave = textToSave.concat("adjective | " + w.getDescription() + " | " + w.getDefinition() + System.lineSeparator());
+                textToSave = textToSave.concat("adjective | " + w.getDescription() + " | "
+                        + w.getDefinition() + System.lineSeparator());
             } else {
                 System.out.println("Word type error.");
             }
@@ -32,11 +38,11 @@ public class WordsSaver {
         try {
             writeToFile(textToSave);
         } catch (IOException e) {
-            System.out.println("Cannot write to file.");
+            LOGGER.log(Level.WARNING, "Program can not write to file");
         }
     }
 
-    private static void writeToFile (String textToWrite) throws IOException {
+    private static void writeToFile(String textToWrite) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH);
         fw.write(textToWrite);
         fw.close();

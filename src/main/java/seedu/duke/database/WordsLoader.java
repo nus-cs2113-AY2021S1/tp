@@ -22,8 +22,6 @@ public class WordsLoader {
 
         if (directory.mkdir()) {
             System.out.println("Directory is being created.");
-        } else {
-            System.out.println("Your saving directory is: " + FILE_PATH);
         }
 
         try {
@@ -38,7 +36,7 @@ public class WordsLoader {
         }
     }
 
-    private static void readDataFromFile (Scanner s) throws IndexOutOfBoundsException {
+    private static void readDataFromFile(Scanner s) throws IndexOutOfBoundsException {
         while (s.hasNext()) {
             String[] readings = s.nextLine().split("\\|");
 
@@ -46,7 +44,7 @@ public class WordsLoader {
                 readings[i] = readings[i].trim();
             }
 
-            switch(readings[0]) {
+            switch (readings[0]) {
             case "verb":
                 try {
                     wordsList.add(new Verb(readings[1], readings[2]));
@@ -62,7 +60,7 @@ public class WordsLoader {
                 }
                 break;
             case "adjective":
-                try{
+                try {
                     wordsList.add(new Adjective(readings[1], readings[2]));
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("No arguments about readings[1] or readings[2] is provided");
