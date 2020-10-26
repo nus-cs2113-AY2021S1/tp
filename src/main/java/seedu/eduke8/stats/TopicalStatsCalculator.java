@@ -5,6 +5,10 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
+import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toList;
+
 
 public class TopicalStatsCalculator extends StatsCalculator {
 
@@ -17,13 +21,13 @@ public class TopicalStatsCalculator extends StatsCalculator {
 
     // check each qn and see if they are done
     public int calculateTopicalQuestionsAttemptCount() {
-        int questionAttemptCount = 0;
-        for (Displayable question : topicQuestionList.getInnerList()) {
-            if (question.wasShown()) {
-                questionAttemptCount++;
-            }
-        }
-        return questionAttemptCount;
+        return getTopicalAttemptedQuestions().size();
+    }
+
+    public ArrayList<Displayable> getTopicalAttemptedQuestions() {
+        return (ArrayList<Displayable>) topicQuestionList.getInnerList().stream()
+                .filter(Displayable::wasShown)
+                .collect(toList());
     }
 
     public int getTopicQuestionsCount() {
@@ -32,8 +36,9 @@ public class TopicalStatsCalculator extends StatsCalculator {
 
     // check each qn and see if they are correct
     public int calculateTopicalQuestionsCorrectCount() {
+        ArrayList<Displayable> attemptedQuestions = getTopicalAttemptedQuestions();
         int questionCorrectCount = 0;
-        for (Displayable question : topicQuestionList.getInnerList()) {
+        for (Displayable question : attemptedQuestions) {
             if (((Question) question).wasAnsweredCorrectly()) {
                 questionCorrectCount++;
             }
@@ -41,10 +46,13 @@ public class TopicalStatsCalculator extends StatsCalculator {
         return questionCorrectCount;
     }
 
+
+
     // check each qn and calculate number of hints used
     public int calculateTopicalHintUsage() {
+        ArrayList<Displayable> attemptedQuestions = getTopicalAttemptedQuestions();
         int hintUsageCount = 0;
-        for (Displayable question : topicQuestionList.getInnerList()) {
+        for (Displayable question : attemptedQuestions) {
             if (((Question) question).wasHintShown()) {
                 hintUsageCount++;
             }
@@ -55,8 +63,9 @@ public class TopicalStatsCalculator extends StatsCalculator {
 
     // The 2 methods below maybe could just extend from StatsCalulator
     public int calculateTopicalPointsEarned() {
+        ArrayList<Displayable> attemptedQuestions = getTopicalAttemptedQuestions();
         int pointsEarned = 0;
-        for (Displayable question : topicQuestionList.getInnerList()) {
+        for (Displayable question : attemptedQuestions) {
             pointsEarned += calculatePointsEarnedForQuestion((Question) question);
         }
         return pointsEarned;
