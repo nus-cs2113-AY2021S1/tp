@@ -394,15 +394,15 @@ output:
 input:  
 ![](./images/addbookmarktomoduleinput.PNG)  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)
+![](./images/addbookmarktomoduleoutput.PNG)  
 
 * Adding a bookmark to a slot  
 input:  
 ![](./images/addbookmarktoslotinput.PNG)  
-output:
+output:  
 ![](./images/addbookmarktoslotoutput.PNG)  
 
-* Chaining commands
+* Chaining commands  
 input:  
 ![](./images/addchaincommandinputnew.PNG)  
 output:  
