@@ -46,8 +46,7 @@ rectangle Logic {
     }
 
     ParamChecker -[hidden] p1
-    p1 -[hidden] p2
-    p2 -[hidden] p3
+
     p3 -[hidden] ParamHandler
 }
 
