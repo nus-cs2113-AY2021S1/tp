@@ -3,7 +3,7 @@
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
 enhancements.
 
-##Table of Contents
+## Table of Contents
 
 - [1. Setting up, getting started](#1-setting-up-getting-started)
 - [2. Design & Implementation](#2-design--implementation)
@@ -82,8 +82,8 @@ This section provides details of how the main features of Nav@NUS have been impl
 
 #### 2.2.1 Direct Route Finder (`/route` Feature)
 
-The `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
-available from *location1* to *location2*.
+`/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
+available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
 are linked to each other. 
@@ -91,7 +91,7 @@ are linked to each other.
 ![RouteCommandClass](DG_Diagrams/RouteCommandClass.png)
 
 The `RouteCommand#executeCommand()` method of RouteCommand Class executes the command in the following steps:
-1. Call `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
+1. Calls `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
 destination.
     - The `RouteParser#getLocations()` method throws an exception if the locations or the delimiter `/to` is missing.
 2. Calls `RouteCommand#checkLocations()` to make sure location strings are not empty or the same.
@@ -116,6 +116,43 @@ The following sequence diagrams explain the interactions omitted in the main dia
 ![executing command](DG_Diagrams/RouteCommandInternal.png)
 
 ![bus data](DG_Diagrams/BusData.png)
+
+#### 2.2.2. Favourite command description modifier (`/descfav` Feature)
+
+`/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
+at location **index** in the list to **newDescription**.
+
+>Note: **index** is the index of the item in the list when the first number is indexed as 1. As a result, 
+>we access this element in the ArrayList using **index** - 1.
+
+The class diagram in the figure below shows how different classes used for implementation of the `/descfav` command 
+are linked to each other. 
+
+![DescFav class diagram](DG_Diagrams/descFavClass.png)
+
+The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
+1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
+    - Throws an exception if 
+        + the input is empty.
+        + the delimiter `/to` is missing.
+    - Calls `Parser#splitCommands()` to separate the **index** and **description**.
+    - Checks the validity of each parameter and throws an exception if 
+        + both or either of the parameters have only spaces.
+        + the given index is not a number.
+    - If both inputs are valid, it assigns the input values to index and description variables.
+2. Calls `DescFavParser#getIndex()` and `DescFavParser#getDescription()` to get the appropriate values input by the user.
+3. Calls static `FavList#changeDesc()` to change the description of favourite at **index**.
+    - Calls static `FavList#checkIndexAndDesc()` which throws an exception if **index** is out of bounds or if 
+    **description** is the same as the previous description of this favourite.
+    - Calls `Fav#changeDesc()` to update the old description to **description**.
+    
+The following sequence diagram explains the above steps when the user enters `/descfav 1 /to hello`.
+
+![Overview](DG_Diagrams/descFav.png)
+
+The following sequence diagram explains the interactions omitted in the main diagram.
+
+![executing command](DG_Diagrams/descFavInternal.png)
 
 ## 3. Appendix I: Requirements
 
@@ -148,17 +185,18 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
+|v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
 ### 3.3. Non-Functional Requirements
 
-1. Nav@NUS should be able to work on any OS which has Java 11 or a higher version of Java installed.
+1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
 
 ### 3.4. Glossary
 
-* *glossary item* - Definition
+* **Mainstream OS** - Windows, Linux, Unix, OS-X
 
 ## 4. Appendix II: Instructions for manual testing
 
