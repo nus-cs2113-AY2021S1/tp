@@ -39,7 +39,6 @@
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
-
 ## 1. Introduction
 
 **AniChan** is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
@@ -260,8 +259,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | View bookmark                                | `bookmark <BOOKMARK_ID>`                                 |
 | Exit                                         | `exit`                                                   |
 
-
-# TODO: Move all content below this line.
+## TODO: Move all content below this line
 <br/>
 <br/>
 <br/>
@@ -508,7 +506,9 @@ their estimated words per hour speed or use the average translator speed as an e
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   **Only one** `.txt` file is accepted by **AniChan**.
+
 *   You have to specify the file extension too! E.g. `script.txt`.
+
 *   If the option `-wph` is not specified, **AniChan** will calculate the estimation timings
 using the average translator's translation speed of 400, 500, and 600 words per hour. 
 This will produce three estimation timings for you to consider.
@@ -551,6 +551,8 @@ created or modified, and will be **loaded automatically** when **AniChan** is la
 
 In the folder where **AniChan** is launched, there will be a `data` folder which would contain these data:
 *   User data is stored in `data/user.txt`.
+
 *   Watchlist(s) data are stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if your workspace is named "AniTranslator",
 then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
+
 *   Bookmark(s) data are also stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
