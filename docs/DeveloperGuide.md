@@ -7,12 +7,12 @@
 
 **Fitr** is a command line application, helping university students keep track of your food intake and exercises.
 
-This developer guide documents the design and implementation of Fitr.
-This guide is targeted towards current and future developers, who wish to understand and work on this application.
+This developer guide documents the architecture, software design decisions and implementation of Fitr.
+This guide is targeted towards current and future developers, who wish to understand and work on this application, as well as designers and software testers.
 
-## 2. Design & implementation
+## 2. Design
 
-This section provides an overview of the design and implementation of the Fitr application.
+This section provides an overview of the design of the Fitr application.
 
 ### 2.1 Architecture
 
@@ -87,7 +87,20 @@ running session.
 
 Classes used by multiple components are in the `fitr.common` package.
 
-## Appendix A: Product scope
+## 3. Implementation
+
+This section describes how some of the features in Fitr are implemented.
+
+### 3.1 Edit command
+
+When the user enters an edit command, it first passes through `Parser`. Once the input is parsed as an edit command, it is then passed to `EditCommandParser`, where it further parses the user's input. As the user is able to edit either the individual profile characteristics, food or exercise entries, the `EditCommandParser` is able parse what the user intends to edit. For example, if the user intends to edit a food entry, the input is then passed to `EditEntryCommand`, which parses the remaining arguments, and performs the required edit.
+Figure 4 below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
+
+![Sequence diagram for editing exercise](images/EditExerciseSequenceDiagram.png)
+
+_Figure 4: Sequence diagram for edit command_
+
+## Appendix A: Product Scope
 ### Target user profile
 
 Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed and the tracking of calories in one application. 
@@ -98,9 +111,10 @@ It is also aimed at those who prefer typing over mouse interactions and are reas
 Our application helps users to keep fit without needing them to do any research on healthy living or workout options. 
 We will be collecting user information such as age, weight, fitness level, and the application will recommend users preset exercises.
 
-## Appendix B: User stories
+## Appendix B: User Stories
 
 _Table 1: User stories_
+
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|student|enter my food intake|log my calories|
@@ -118,7 +132,7 @@ _Table 1: User stories_
 |v2.0|student|be recommended a set of workout|save time finding exercises to do|
 |v2.0|student|unlock achievements|be motivated to workout|
 
-## Appendix C: Non-functional requirements
+## Appendix C: Non-functional Requirements
 
 1. This application should work on any mainstream operating system, such as Windows or macOS, as long as Java 11 or above is installed.
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
