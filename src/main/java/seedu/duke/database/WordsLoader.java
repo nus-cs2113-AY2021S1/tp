@@ -29,6 +29,7 @@ public class WordsLoader {
 
         try {
             Scanner s = new Scanner(f);
+            wordsList.clear();
             try {
                 readDataFromFile(s);
             } catch (IndexOutOfBoundsException e) {

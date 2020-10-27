@@ -20,6 +20,7 @@ import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;
 import seedu.duke.names.Names;
+import seedu.duke.reminder.WritingReminder;
 import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
@@ -118,6 +119,9 @@ public class CommandExecutor {
             break;
         case RANDOM_BUNNY:
             GenBunny.pickRandomBunny(bunniesList);
+            break;
+        case REMIND:
+            WritingReminder.printReminderOnADay(userInput);
             break;
         case GEN_NAME:
             try {

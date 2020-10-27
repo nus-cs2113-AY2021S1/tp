@@ -2,6 +2,7 @@ package seedu.duke.writing;
 
 import seedu.duke.user.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,6 +14,7 @@ public abstract class Writings {
     protected int id;
     protected String topic;
     protected String date;
+    protected LocalDate reminderDate;
     protected String content;
     protected User author;
     protected String type;
@@ -28,6 +30,18 @@ public abstract class Writings {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public LocalDate getReminderDate() {
+        return reminderDate;
+    }
+
+    public String getReminderDateString() {
+        return getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public void setReminderDate(LocalDate reminderDate) {
+        this.reminderDate = reminderDate;
     }
 
     public int getId() {
@@ -51,9 +65,9 @@ public abstract class Writings {
     }
 
     public void setDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter outputDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
-        this.date = now.toString().substring(0, LENGTH_OF_DATE);
+        this.date = now.format(outputDateFormat);
     }
 
     public String getContent() {
@@ -93,6 +107,8 @@ public abstract class Writings {
         System.out.println(getTitle().toUpperCase() + "\n");
         System.out.println(getContent());
         System.out.println("This writing was created on " + date);
+        System.out.println("You want to continue on this writing on " +
+                getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println(PLAIN_TEXT_DIVIDER);
     }
 }
