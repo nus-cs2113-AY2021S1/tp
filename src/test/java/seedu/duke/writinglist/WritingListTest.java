@@ -1,6 +1,7 @@
 package seedu.duke.writinglist;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.database.ClearLoader;
 import seedu.duke.writing.WritingList;
 
 import java.time.LocalDate;
@@ -22,21 +23,12 @@ public class WritingListTest {
     }
 
     @Test
-    public void removeAllWritings_getWritingSize() {
+    public void clearAll_getTheNumberOfItemsAfterDeleted() {
         WritingList.clearAll(writings);
         initializeTestDatabase();
         assertEquals(5, WritingList.getWritingSize());
         WritingList.clearAll(writings);
         assertEquals(0, WritingList.getWritingSize());
-    }
-
-    @Test
-    public void testRemoveID() {
-        WritingList.clearAll(writings);
-        initializeTestDatabase();
-        assertEquals(5, WritingList.getWritingSize());
-        //writings.removeID(12);
-        //assertEquals(0, writings.getWritingSize());
     }
 }
 

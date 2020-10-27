@@ -48,23 +48,29 @@ public class WritingList {
 
     public void add(Writings w) {
         writinglist.add(w);
+        countWritings++;
     }
 
     public Writings get(int i) {
         return writinglist.get(i);
     }
 
-    public void remove(int i) {
+    public static void removeWriting(int i) {
         assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
         writinglist.remove(i);
+        countWritings--;
     }
 
-    public void removeID(int i) {
+    public static void removeID(int id) {
         int idExists = 0;
-        for (Writings w: writinglist) {
-            if (w.getId() == i) {
-                writinglist.remove(w);
+        for (int i = 0; i < writinglist.size(); i++) {
+            //Use "while" loop to clean out the same IDs
+            while (i < writinglist.size() && writinglist.get(i).getId() == id) {
+                System.out.println("This writing: " + writinglist.get(i).getTitle() + " has been deleted");
+                writinglist.remove(i);
                 idExists = 1;
+                System.out.println("You have " + writinglist.size() + "items remain");
+                countWritings--;
             }
         }
         assert (idExists == 1) : "This ID does not exists";
@@ -161,9 +167,10 @@ public class WritingList {
             String title = newUserInput;
             System.out.println(INSTRUCTION_FOR_ADDING_NEW_WRITINGS);
             String content = "";
-            while (!newUserInput.equals("end")) {
-                newUserInput = getUserInput(scanner);
+            String contentUserInput = getUserInput(scanner);
+            while (!contentUserInput.equals("end")) {
                 content = content.concat(newUserInput + "\n");
+                contentUserInput = getUserInput(scanner);
             }
             WritingList.printAskForReminderDate();
             newUserInput = getUserInput(scanner);
@@ -177,7 +184,6 @@ public class WritingList {
             }
             System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
             recordListToFile(f, writings);
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -201,8 +207,8 @@ public class WritingList {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Poem toBeAdded = new Poem(title, id, topic, content, author, reminder);
         writinglist.add(toBeAdded);
-        countWritings++;
         System.out.println("This Poem, " + title +  " has been added");
+        countWritings++;
     }
 
     /** Adding an essay to the database. */
@@ -210,7 +216,7 @@ public class WritingList {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Essay toBeAdded = new Essay(title, id, topic, content, author, reminder);
         writinglist.add(toBeAdded);
-        countWritings++;
         System.out.println("This Essay, " + title +  " has been added");
+        countWritings++;
     }
 }
