@@ -4,14 +4,13 @@ import anichan.anime.Anime;
 import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 public class BrowseCommand extends Command {
     protected static final String ID_HEADER = " [Id: ";
@@ -44,7 +43,7 @@ public class BrowseCommand extends Command {
     private static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
     private static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
 
-    private static final Logger LOGGER = getAniLogger(BrowseCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(BrowseCommand.class.getName());
 
     public BrowseCommand() {
         this.sortType = ID_SORT;

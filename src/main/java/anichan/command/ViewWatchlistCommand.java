@@ -5,6 +5,7 @@ import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
 
@@ -12,14 +13,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 public class ViewWatchlistCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
     protected static final String EMPTY_WATCHLIST_ERROR = "There are no watchlists in your workspace!";
     
     private Integer watchlistIndex;
-    private static final Logger LOGGER = getAniLogger(ViewWatchlistCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());
     
     public ViewWatchlistCommand() {
         // LOGGER.setLevel(Level.WARNING);

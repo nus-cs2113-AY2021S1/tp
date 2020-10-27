@@ -25,6 +25,7 @@ class RemoveCommandTest {
 
     protected static final String ZERO_WATCHLIST_INDEX = "-d 0";
     protected static final String LARGE_WATCHLIST_INDEX = "-d 3";
+    protected static final String EMPTY_WATCHLIST_INDEX = "-d 1";
 
     @BeforeEach
     void setUp() throws AniException {
@@ -62,6 +63,19 @@ class RemoveCommandTest {
     void execute_indexLargerThanWatchlistSize_throwsAniException() throws AniException {
         RemoveCommandParser testParser = new RemoveCommandParser();
         RemoveCommand testRemove = testParser.parse(LARGE_WATCHLIST_INDEX);
+        assertThrows(AniException.class, () -> {
+            testRemove.execute(animeData, storageManager, user);
+        });
+    }
+    
+    @Test
+    void execute_emptyWatchlist_throwsAniException() throws AniException {
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        activeWatchlist.removeAnimeFromList(0);
+
+        RemoveCommandParser testParser = new RemoveCommandParser();
+        RemoveCommand testRemove = testParser.parse(EMPTY_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {
             testRemove.execute(animeData, storageManager, user);
         });
