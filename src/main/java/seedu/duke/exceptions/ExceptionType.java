@@ -1,7 +1,5 @@
 package seedu.duke.exceptions;
 
-import seedu.duke.favorite.FavList;
-
 public enum ExceptionType {
     INVALID_COMMAND("I do not understand!!"),
     INVALID_BUS("Sorry,there is no such bus in our database!"),

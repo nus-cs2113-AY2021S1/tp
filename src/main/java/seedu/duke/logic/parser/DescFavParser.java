@@ -43,14 +43,16 @@ public class DescFavParser extends Parser {
 
     private void checkComponents(String[] components) throws CustomException {
         if (components[0].trim().isEmpty() & components[1].trim().isEmpty()) {
+            logger.warning("All parameters are missing.");
             throw new CustomException(ExceptionType.NO_INPUT);
         }
-        assert !(components[0].trim().isEmpty() && components[1].trim().isEmpty()) : "Component 1 is empty.";
+        assert !(components[0].trim().isEmpty() && components[1].trim().isEmpty()) : "Component 1 and 2 are empty.";
 
     }
 
     private String checkDescription(String description) throws CustomException {
         if (description.trim().isBlank() | description.trim().isEmpty()) {
+            logger.warning("Description is missing.");
             throw new CustomException(ExceptionType.EMPTY_DESCRIPTION);
         }
         assert !description.trim().isBlank() : "Description has only spaces.";
@@ -63,6 +65,7 @@ public class DescFavParser extends Parser {
             int rawIndex = Integer.parseInt(index.trim());
             return rawIndex;
         } catch (NumberFormatException error) {
+            logger.warning("Given index is not a number.");
             throw new CustomException(ExceptionType.NOT_A_NUMBER);
         }
     }

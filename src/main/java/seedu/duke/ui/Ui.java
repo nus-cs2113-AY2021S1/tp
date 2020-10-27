@@ -182,8 +182,8 @@ public class Ui {
 
     public static void printDescChangeMessage(String command, String oldDesc, String newDesc) {
         printLine();
-        System.out.println("Your description for command \"" + command + "\" has been successfully changed from \""
-                + oldDesc + "\" to \"" + newDesc + "\"!");
+        System.out.println("Your description for command \"" + command + "\"\nhas been successfully changed from \""
+                + oldDesc + "\"\nto \"" + newDesc + "\"");
         printLine();
     }
 
