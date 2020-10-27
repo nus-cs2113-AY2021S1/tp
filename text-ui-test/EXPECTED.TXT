@@ -30,7 +30,7 @@ These are the available topics and the number of available questions in each:
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Start of quiz:
 You have chosen to complete 1 question.
-The chosen topics is: OOP
+The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 1. What is encapsulation?
 
@@ -55,7 +55,7 @@ Hope you have learnt something new!
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Start of quiz:
 You have chosen to complete 1 question.
-The chosen topics is: OOP
+The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 1. What is encapsulation?
 
@@ -83,7 +83,7 @@ There is not enough questions in the topic for the quiz!
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Start of quiz:
 You have chosen to complete 1 question.
-The chosen topics is: OOP
+The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 1. What is encapsulation?
 
@@ -136,7 +136,7 @@ No such topic exists, did you spell it correctly?
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Start of quiz:
 You have chosen to complete 1 question.
-The chosen topics is: OOP
+The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 1. What is encapsulation?
 
@@ -156,5 +156,3 @@ This is the end of the quiz!
 Hope you have learnt something new!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Bye bye. Hope you had a fruitful revision and see you soon!
-------------------------------------------------------------------------------------------------------------------------
