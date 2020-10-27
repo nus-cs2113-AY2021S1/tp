@@ -29,8 +29,12 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_EXECUTE_ADD = "Executing Add Anime to Bookmark.";
     private static final String BOOKMARK_EXECUTE_DELETE = "Executing Delete Anime from Bookmark.";
     private static final String BOOKMARK_EXECUTE_LIST = "Executing List all anime in Bookmark.";
+    private static final String BOOKMARK_EXECUTE_INFO = "Executing anime info for bookmark.";
+    private static final String BOOKMARK_EXECUTE_ADD_NOTE = "Executing bookmark add note.";
+    private static final String BOOKMARK_EXECUTE_REMOVE_NOTE = "Executing bookmark remove note.";
     private static final String BOOKMARK_EXECUTE_SUCCESS = "Execute Bookmark command successful.";
     private static final String BOOKMARK_LIST_HEADER = "Listing all anime in bookmark:";
+    private static final String BOOKMARK_INFO_HEADER = "Here is the information for that anime.";
     private int bookmarkIndex;
     private int animeIndex;
 
@@ -76,17 +80,17 @@ public class BookmarkCommand extends Command {
             result += bookmarkList;
             break;
         case BookmarkParser.INFO_PARAM:
-            LOGGER.log(Level.INFO, "Executing anime info for bookmark");
-            result = "Here is the information for that anime." + System.lineSeparator();
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_INFO);
+            result = BOOKMARK_INFO_HEADER + System.lineSeparator();
             result += getBookmarkInfo(animeData, bookmark);
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
-            LOGGER.log(Level.INFO, "Executing bookmark add note");
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD_NOTE);
             result = addNoteToBookmark(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser.REMOVE_NOTE_PARAM:
-            LOGGER.log(Level.INFO, "Executing bookmark add note");
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_REMOVE_NOTE);
             result = removeNoteFromBookmark(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
@@ -127,7 +131,7 @@ public class BookmarkCommand extends Command {
         String result = "Deleting note: ";
         result += bookmark.removeNote(bookmarkIndex - 1, noteIndex - 1);
         Anime animeToRemoveNote = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result += System.lineSeparator() + "From " + animeToRemoveNote.getAnimeName() + ".";
+        result += System.lineSeparator() + "From: " + animeToRemoveNote.getAnimeName() + ".";
         return result;
     }
 
@@ -136,7 +140,8 @@ public class BookmarkCommand extends Command {
         checkBookmarkIndex(bookmark);
         bookmark.addNote(bookmarkIndex - 1, bookmarkNote);
         Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result = "Adding note:\"" + bookmarkNote + "\" to " + animeToDelete.getAnimeName() + "!";
+        result = "Adding note:\"" + bookmarkNote + "\""
+                + " to " + animeToDelete.getAnimeName() + "!";
         return result;
     }
 
@@ -180,7 +185,7 @@ public class BookmarkCommand extends Command {
         String result;
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
+        result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode(s).";
         return result;
     }
 

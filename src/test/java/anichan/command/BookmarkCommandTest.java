@@ -36,14 +36,20 @@ class BookmarkCommandTest {
     private static final String VALID_DELETE_TEST = "-d 2";
     private static final String VALID_EDIT_TEST = "1 -e 1";
     private static final String VALID_NOTE_TEST = "1 -n test";
+    private static final String VALID_NOTE_TEST2 = "1 -n test2";
+    private static final String VALID_NOTE_TEST3 = "1 -n test3";
     private static final String VALID_SINGLE_INPUT_TEST = "1";
     private static final String VALID_SINGLE_INPUT_TEST2 = "2";
     private static final String VALID_SINGLE_INPUT_TEST3 = "3";
+    private static final String VALID_REMOVE_NOTE_TEST = "1 -r 2";
     private static final String INVALID_ADD_ANIME_INDEX_TEST = "-a 600";
     private static final String INVALID_DELETE_BOOKMARK_INDEX_TEST = "-d 5";
     private static final String INVALID_ADD_DUPLICATE_ANIME_INDEX_TEST = "-a 1";
     private static final String INVALID_EDIT_BOOKMARK_INDEX_TEST = "5 -e 5";
     private static final String INVALID_INFO_BOOKMARK_INDEX_TEST = "5";
+    private static final String INVALID_NOTE_BOOKMARK_INDEX_TEST = "5 -n test";
+    private static final String INVALID_REMOVE_NOTE_BOOKMARK_INDEX_TEST = "5 -r 5";
+    private static final String INVALID_REMOVE_NOTE_INDEX_TEST = "1 -r 5";
 
     private static final String OUTPUT_ADD_TEST = "Saving 1. Cowboy Bebop to bookmark.";
     private static final String OUTPUT_ADD_TEST2 = "Saving 2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door"
@@ -57,8 +63,10 @@ class BookmarkCommandTest {
             + "\t3. Trigun" + System.lineSeparator()
             + "\t4. Witch Hunter Robin" + System.lineSeparator();
     private static final String OUTPUT_DELETE_TEST = "Removing Cowboy Bebop: The Movie - Knockin' on Heaven's Door! :(";
-    private static final String OUTPUT_EDIT_TEST = "Editing Cowboy Bebop to have 1 episode";
+    private static final String OUTPUT_EDIT_TEST = "Editing Cowboy Bebop to have 1 episode(s).";
     private static final String OUTPUT_NOTE_TEST = "Adding note:\"test\" to Cowboy Bebop!";
+    private static final String OUTPUT_NOTE_TEST2 = "Adding note:\"test2\" to Cowboy Bebop!";
+    private static final String OUTPUT_NOTE_TEST3 = "Adding note:\"test3\" to Cowboy Bebop!";
     private static final String OUTPUT_SINGLE_INPUT_TEST = "Here is the information for that anime."
             + System.lineSeparator()
             + "Index: 1" + System.lineSeparator()
@@ -71,7 +79,9 @@ class BookmarkCommandTest {
             + "Current Episode: 1" + System.lineSeparator()
             + System.lineSeparator()
             + "Notes for anime:" + System.lineSeparator()
-            + "1. test" + System.lineSeparator();
+            + "1. test" + System.lineSeparator()
+            + "2. test2" + System.lineSeparator()
+            + "3. test3" + System.lineSeparator();
     private static final String OUTPUT_SINGLE_INPUT_TEST2 = "Here is the information for that anime."
             + System.lineSeparator()
             + "Index: 3" + System.lineSeparator()
@@ -94,6 +104,23 @@ class BookmarkCommandTest {
             + System.lineSeparator()
             + "Notes for anime:" + System.lineSeparator()
             + "\tNotes is empty.. :(" + System.lineSeparator();
+    private static final String OUTPUT_REMOVE_NOTE_TEST = "Deleting note: test2" + System.lineSeparator()
+            + "From: Cowboy Bebop.";
+    private static final String OUTPUT_SINGLE_INPUT_TEST_AFTER_REMOVE = "Here is the information for that anime."
+            + System.lineSeparator()
+            + "Index: 1" + System.lineSeparator()
+            + "Name: Cowboy Bebop" + System.lineSeparator()
+            + "Episodes: 26" + System.lineSeparator()
+            + "Release Date: 03/Apr/1998" + System.lineSeparator()
+            + "Rating: 86" + System.lineSeparator()
+            + "Genre: [Action, Adventure, Drama, Sci-Fi]" + System.lineSeparator()
+            + System.lineSeparator()
+            + "Current Episode: 1" + System.lineSeparator()
+            + System.lineSeparator()
+            + "Notes for anime:" + System.lineSeparator()
+            + "1. test" + System.lineSeparator()
+            + "2. test3" + System.lineSeparator();
+
 
     @BeforeAll
     static void setUp() throws AniException {
@@ -124,7 +151,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_ADD_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_ADD_TEST);
+        assertEquals(OUTPUT_ADD_TEST, result);
     }
 
     @Test
@@ -133,19 +160,19 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_ADD_TEST2);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_ADD_TEST2);
+        assertEquals(OUTPUT_ADD_TEST2, result);
 
 
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_ADD_TEST3);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals(result2, OUTPUT_ADD_TEST3);
+        assertEquals(OUTPUT_ADD_TEST3, result2);
 
 
         BookmarkParser testParse3 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_ADD_TEST4);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
-        assertEquals(result3, OUTPUT_ADD_TEST4);
+        assertEquals(OUTPUT_ADD_TEST4, result3);
     }
 
     @Test
@@ -154,7 +181,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_LIST_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_LIST_TEST);
+        assertEquals(OUTPUT_LIST_TEST, result);
     }
 
     @Test
@@ -163,7 +190,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_DELETE_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_DELETE_TEST);
+        assertEquals(OUTPUT_DELETE_TEST, result);
         System.out.println(result);
     }
 
@@ -173,7 +200,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_EDIT_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_EDIT_TEST);
+        assertEquals(OUTPUT_EDIT_TEST, result);
         System.out.println(result);
     }
 
@@ -183,8 +210,21 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_NOTE_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_NOTE_TEST);
+        assertEquals(OUTPUT_NOTE_TEST, result);
         System.out.println(result);
+
+        BookmarkParser testParse2 = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_NOTE_TEST2);
+        String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
+        assertEquals(OUTPUT_NOTE_TEST2, result2);
+        System.out.println(result2);
+
+        BookmarkParser testParse3 = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_NOTE_TEST3);
+        String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
+        assertEquals(OUTPUT_NOTE_TEST3, result3);
+        System.out.println(result);
+
     }
 
     @Test
@@ -193,22 +233,38 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_SINGLE_INPUT_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals(result, OUTPUT_SINGLE_INPUT_TEST);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST, result);
 
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_SINGLE_INPUT_TEST2);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals(result2, OUTPUT_SINGLE_INPUT_TEST2);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST2, result2);
 
         BookmarkParser testParse3 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_SINGLE_INPUT_TEST3);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
-        assertEquals(result3, OUTPUT_SINGLE_INPUT_TEST3);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST3, result3);
     }
 
     @Test
     @Order(8)
-    void execute_invalidAnimeIndexAdd_Successful() throws AniException {
+    void execute_validRemoveNote_Successful() throws AniException {
+        BookmarkParser testParse = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand = testParse.parse(VALID_REMOVE_NOTE_TEST);
+        String result = testBookmarkCommand.execute(animeData, storageManager, user);
+        assertEquals(OUTPUT_REMOVE_NOTE_TEST, result);
+        System.out.println(result);
+
+        BookmarkParser testParse2 = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_SINGLE_INPUT_TEST);
+        String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST_AFTER_REMOVE, result2);
+    }
+
+
+    @Test
+    @Order(9)
+    void execute_invalidAnimeIndexAdd_ThrowsAniException() throws AniException {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_ADD_ANIME_INDEX_TEST);
 
@@ -218,8 +274,8 @@ class BookmarkCommandTest {
     }
 
     @Test
-    @Order(9)
-    void execute_invalidBookmarkIndexDelete_Successful() throws AniException {
+    @Order(10)
+    void execute_invalidBookmarkIndexDelete_ThrowsAniException() throws AniException {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_DELETE_BOOKMARK_INDEX_TEST);
 
@@ -229,8 +285,8 @@ class BookmarkCommandTest {
     }
 
     @Test
-    @Order(10)
-    void execute_invalidDuplicateAnimeIndexAdd_Successful() throws AniException {
+    @Order(11)
+    void execute_invalidDuplicateAnimeIndexAdd_ThrowsAniException() throws AniException {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_ADD_DUPLICATE_ANIME_INDEX_TEST);
 
@@ -240,8 +296,8 @@ class BookmarkCommandTest {
     }
 
     @Test
-    @Order(11)
-    void execute_invalidBookmarkIndexEdit_Successful() throws AniException {
+    @Order(12)
+    void execute_invalidBookmarkIndexEdit_ThrowsAniException() throws AniException {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_EDIT_BOOKMARK_INDEX_TEST);
 
@@ -251,10 +307,43 @@ class BookmarkCommandTest {
     }
 
     @Test
-    @Order(11)
-    void execute_invalidBookmarkIndexInfo_Successful() throws AniException {
+    @Order(13)
+    void execute_invalidBookmarkIndexInfo_ThrowsAniException() throws AniException {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_INFO_BOOKMARK_INDEX_TEST);
+
+        assertThrows(AniException.class, () -> {
+            testBookmarkCommand.execute(animeData, storageManager, user);
+        });
+    }
+
+    @Test
+    @Order(14)
+    void execute_invalidBookmarkIndexNote_ThrowsAniException() throws AniException {
+        BookmarkParser testParse = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_NOTE_BOOKMARK_INDEX_TEST);
+
+        assertThrows(AniException.class, () -> {
+            testBookmarkCommand.execute(animeData, storageManager, user);
+        });
+    }
+
+    @Test
+    @Order(15)
+    void execute_invalidBookmarkIndexNoteRemove_ThrowsAniException() throws AniException {
+        BookmarkParser testParse = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_REMOVE_NOTE_BOOKMARK_INDEX_TEST);
+
+        assertThrows(AniException.class, () -> {
+            testBookmarkCommand.execute(animeData, storageManager, user);
+        });
+    }
+
+    @Test
+    @Order(16)
+    void execute_invalidNoteIndexRemoveNote_AniException() throws AniException {
+        BookmarkParser testParse = new BookmarkParser();
+        BookmarkCommand testBookmarkCommand = testParse.parse(INVALID_REMOVE_NOTE_INDEX_TEST);
 
         assertThrows(AniException.class, () -> {
             testBookmarkCommand.execute(animeData, storageManager, user);
