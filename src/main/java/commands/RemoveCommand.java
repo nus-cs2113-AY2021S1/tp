@@ -12,7 +12,7 @@ public abstract class RemoveCommand extends Command {
 
     public static final String MODULE_PARAMETER = "MODULE_INDEX";
     public static final String CHAPTER_PARAMETER = "CHAPTER_INDEX";
-    public static final String CARD_PARAMETER = "CARD_INDEX";
+    public static final String CARD_PARAMETER = "FLASHCARD_INDEX";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes module / chapter / flashcard based on the index in the list. \n"
             + "Parameters: " + MODULE_PARAMETER + "\n"
