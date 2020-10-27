@@ -8,6 +8,8 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+import seedu.zoomaster.command.planner.LoadPlannerCommand;
+import seedu.zoomaster.command.planner.SavePlannerCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
@@ -73,14 +75,12 @@ public class HelpCommand extends Command {
             }
         } else if (Parser.getProgramMode() == 3) {
             if (details.compareToIgnoreCase(AddMeetingCommand.ADD_KW) == 0
-                    || details.compareToIgnoreCase(DeleteSlotCommand.DEL_KW) == 0
+                    || details.compareToIgnoreCase(LoadPlannerCommand.LOAD_KW) == 0
                     || details.compareToIgnoreCase(ShowTimetableCommand.SHOW_KW) == 0
-                    || details.compareToIgnoreCase(EditSlotCommand.EDIT_KW) == 0
-                    || details.compareToIgnoreCase(LaunchModuleAndSlotBookmark.LAUNCH_KW) == 0) {
+                    || details.compareToIgnoreCase(SavePlannerCommand.SAVE_KW) == 0) {
                 return true;
             }
         }
-
         return false;
     }
 }

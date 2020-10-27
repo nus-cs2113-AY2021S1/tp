@@ -10,6 +10,9 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+import seedu.zoomaster.command.planner.AddMeetingCommand;
+import seedu.zoomaster.command.planner.LoadPlannerCommand;
+import seedu.zoomaster.command.planner.SavePlannerCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
@@ -312,7 +315,7 @@ public class Ui {
                     + "4) " + FindBookmarkCommand.FIND_KW + NEW_LINE
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + NEW_LINE
                     + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "7) " + ChangeModeCommand.MODE_KW + " timetable" + NEW_LINE
+                    + "7) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
                     + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
@@ -321,21 +324,25 @@ public class Ui {
                     + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
                     + "4) " + EditSlotCommand.EDIT_KW + NEW_LINE
                     + "5) " + LaunchModuleAndSlotBookmark.LAUNCH_KW + NEW_LINE
-                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark" + NEW_LINE
+                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark/planner" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
-        } else if (Parser.programMode == 3) {
+        } else {
             printYellowWithBorder("Available inputs in Planner mode are" + NEW_LINE
-                    + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
-                    + "2) load"  + NEW_LINE
-                    + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE);
+                    + "1) " + LoadPlannerCommand.LOAD_KW + NEW_LINE
+                    + "2) " + AddMeetingCommand.ADD_KW + NEW_LINE
+                    + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
+                    + "4) " + SavePlannerCommand.SAVE_KW + NEW_LINE
+                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark/timetable" + NEW_LINE
+                    + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
     }
 
     public void printHelpMessage(String input) {
-        assert (Parser.programMode >= 0) && (Parser.programMode <= 2) : "only modes of Zoomaster are 0, 1, 2";
+        assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2";
         if (input.equals(ClearCommand.CLEAR_KW)) {
             printYellowWithBorder("Clears the command line screen" + NEW_LINE);
         } else if (input.equals(ExitCommand.EXIT_KW)) {
@@ -462,17 +469,66 @@ public class Ui {
                 printCyan("Format: launch {module} {index}" + NEW_LINE);
                 printGreen("eg. launch CS2113 2 (Bookmarks for slot 2 of CS2113)" + NEW_LINE);
                 printGreen("eg. launch CS2113 (Bookmarks tagged directly to CS2113)" + NEW_LINE + NEW_LINE);
+                break;
+            default:
+                printYellowWithBorder("something went wrong...");
+                break;
+            }
 
+        } else if (Parser.programMode == 3) {
+            switch (input) {
+            case AddMeetingCommand.ADD_KW:
+                System.out.println(LINE);
+                printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
+                printCyan("Format: add {module} {slot description} {day of the week} "
+                        + "{time interval} {URL}" + NEW_LINE);
+                printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+                printYellow("You can also add the module first then add the slot afterwards, "
+                        + "then add the bookmark to that slot. " + NEW_LINE);
+                printGreen("eg. add CS2113" + NEW_LINE
+                        + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
+                        + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+
+                printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
+                printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
+                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case LoadPlannerCommand.LOAD_KW:
+                System.out.println(LINE);
+                printYellow("Loads the common empty slots from a few individual timetables " + NEW_LINE);
+                printCyan("Format: load" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case ShowTimetableCommand.SHOW_KW:
+                System.out.println(LINE);
+                printYellow("Shows the common empty slots along with the newly added slots (if any)" + NEW_LINE);
+                printCyan("Format: show '{day}'" + NEW_LINE);
+                printGreen("eg. show" + NEW_LINE);
+                printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
+
+                printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
+                printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
+                printGreen("eg. show CS2113" + NEW_LINE);
+                printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case SavePlannerCommand.SAVE_KW:
+                System.out.println(LINE);
+                printYellow("Saves the newly added slot(s) to each individual timetables" + NEW_LINE);
+                printCyan("Format: save" + NEW_LINE);
+                System.out.println(LINE);
                 break;
             default:
                 printYellowWithBorder("something went wrong...");
                 break;
             }
         }
+
     }
 
     private void printUnknownModeMessage() {
-        printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable" + NEW_LINE);
+        printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable, planner" + NEW_LINE);
     }
 
     private void printUnknownDayMessage() {
@@ -491,4 +547,5 @@ public class Ui {
     private void printInvalidTimeFormat() {
         printRedWithBorder("Invalid time format" + NEW_LINE);
     }
+
 }
