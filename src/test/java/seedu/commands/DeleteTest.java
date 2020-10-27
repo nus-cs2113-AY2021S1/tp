@@ -4,8 +4,14 @@ import org.junit.jupiter.api.Test;
 import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.UnknowCommandException;
+import seedu.exceptions.EmptyDataStackException;
 import seedu.task.Task;
+import seedu.parser.Parser;
 
 import java.util.Random;
 
@@ -19,6 +25,7 @@ class DeleteTest {
     private Task t3;
     private Task t4;
     private Task t5;
+    Parser parser = new Parser();
 
     void setup() {
         try {
@@ -35,7 +42,7 @@ class DeleteTest {
 
     @Test
     public void constructor_noRawInput_throws_InvalidCommandException() {
-        assertThrows(InvalidCommandException.class, () -> new Delete(""));
+        assertThrows(InvalidCommandException.class, () -> parser.processRaw("delete" + ""));
     }
 
     @Test
@@ -43,12 +50,14 @@ class DeleteTest {
         final String[] invalidInputs = {"", " ", "&*^%*&^", "abc"};
         for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
-            assertThrows(InvalidCommandException.class, () -> new Add("delete " + invalidInputs[finalI]));
+            assertThrows(InvalidCommandException.class, () -> parser.processRaw("delete " + invalidInputs[finalI]));
         }
     }
 
     @Test
-    public void deleteCommand_executeTest() throws InvalidTaskNumberException, InvalidCommandException {
+    public void deleteCommand_executeTest() throws InvalidTaskNumberException, InvalidCommandException,
+            MaxNumTaskException, InvalidDatetimeException, InvalidPriorityException, EmptyDataStackException,
+            UnknowCommandException {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t1);
@@ -59,14 +68,15 @@ class DeleteTest {
         Model model = new Model(taskMap);
         int id1 = t1.getTaskID();
 
-        Delete delete = new Delete("delete " + Integer.toString(id1));
+        Command delete = parser.processRaw("delete " + id1);
         CommandResult result = delete.execute(model);
         assertEquals(4, model.getTaskMap().size());
 
     }
 
     @Test
-    public void deleteCommand_invalidTaskNumber() throws InvalidTaskNumberException, InvalidCommandException {
+    public void deleteCommand_invalidTaskNumber() throws
+            InvalidTaskNumberException, InvalidCommandException, UnknowCommandException {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t3);
@@ -78,7 +88,7 @@ class DeleteTest {
         }
         Model model = new Model(taskMap);
 
-        Delete delete = new Delete("delete " + Integer.toString(wrongId3));
+        Command delete = parser.processRaw("delete " + wrongId3);
         assertThrows(InvalidTaskNumberException.class, () -> delete.execute(model));
 
     }
