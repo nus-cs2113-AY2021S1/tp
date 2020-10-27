@@ -2,39 +2,82 @@
 
 ## Table of Contents
 
-* [Setting Up, Getting Started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Parser component](#parser-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-* [Implementation](#implementation)
-    * [Store Data](#store-data)
-    * [Add Module](#add-module) 
-    * [Add Time](#add-time)
-    * [Minus Time](#minus-time)
-    * [View modules](#view-modules)
-    * [Breakdown and analysis](#breakdown-and-analysis)
-    * [Add Task](#add-task)
-    * [Mark Task as Done](#mark-task-as-done)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product Scope](#product-scope)
-    * [User Stories](#user-stories)
-    * [Use Cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-* [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+1. [Introduction](#1)
+1. [Setting Up, Getting Started](#2)
+    <br/>&nbsp;2.1 [Setting up the project in your local machine](#2.1)
+    <br/>&nbsp;2.2 [Before writing the code](#2.2)
+1. [Design](#3)
+    <br/>&nbsp;3.1 [Architecture](#3.1)
+    <br/>&nbsp;3.2 [UI component](#3.2)
+    <br/>&nbsp;3.3 [Parser component](#3.3)
+    <br/>&nbsp;3.4 [Model component](#3.4)
+    <br/>&nbsp;3.5 [Storage component](#3.5)
+1. [Implementation](#4)
+    <br/>&nbsp;4.1 [Store Data](#4.1)
+    <br/>&nbsp;4.2 [Add Module](#4.2) 
+    <br/>&nbsp;4.3 [Add Time](#4.3)
+    <br/>&nbsp;4.4 [Minus Time](#4.4)
+    <br/>&nbsp;4.5 [View modules](#4.5)
+    <br/>&nbsp;4.6 [Breakdown and analysis](#4.6)
+    <br/>&nbsp;4.7 [Add Task](#4.7)
+    <br/>&nbsp;4.8 [Mark Task as Done](#4.8)
+1. [Documentation, logging, testing, configuration, dev-ops](#5)
+1. [Appendix: Requirements](#6)
+    <br/>&nbsp;6.1 [Product Scope](#6.1)
+    <br/>&nbsp;6.2 [User Stories](#6.2)
+    <br/>&nbsp;6.3 [Use Cases](#6.3)
+    <br/>&nbsp;6.4 [Non-Functional Requirements](#6.4)
+    <br/>&nbsp;6.5 [Glossary](#6.5)
+1. [Appendix: Instructions for Manual Testing](#7)
 
-## Setting Up, Getting Started
-{Start up guide}
+## 1. Introduction <a name="1"></a>
+_ModTracker_ is a desktop app for NUS students to track the time spent 
+as well as tasks to do for each of their modules.
+It helps students prioritise their work and 
+balance their time spent amongst their modules. 
+This app uses a Command Line Interface (CLI) and is written in Java 11.
 
-## Design
+## 2. Setting Up, Getting Started <a name="2"></a>
+
+### 2.1 Setting up the project in your local machine <a name="2.1"></a>
+Ensure that you have JDK 11 or above installed on your computer. 
+
+First, **fork** this [repo](https://github.com/AY2021S1-CS2113T-F12-4/tp), and **clone** a copy to your computer by using any Git client.
+
+If you plan to use IntelliJ IDEA (highly recommended):
+1. Ensure IntelliJ is configured to use JDK 11.
+    * Start up IntelliJ into the welcome page.
+    * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
+    * Under the `Project SDK:` section, ensure that the correct SDK (**java version "11.0.8"** or higher) is selected.
+1. Import the project as a Gradle project.
+    * At the same welcome page, click on `Open or Import`.
+    * Navigate to the folder where you cloned the repo, locate the `build.gradle` file within the folder and select it.
+    * Choose the `Open as Project` option when asked.
+    * The project may take a couple of minutes to import depending on your actual computer hardware setup.
+1. Verify the setup.
+    * Under the `seedu.modtracker` package, locate the `ModTracker` class and run it.
+    * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html).
+    * Run the [tests]() to ensure they all pass.
+
+### 2.2 Before writing the code <a name="2.2"></a>
+1. Configure the coding style
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style yo match ours.
+    
+1. Set up CI
+    * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+    it will run the CI for the project automatically at each push to the `master` branch or to any PR.
+    No setup is required for this.
+    
+1. Learn the design
+    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#architecture) to get some 
+    sense of the overall design.
+
+
+## 3. Design <a name="3"></a>
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### Architecture
+### 3.1 Architecture <a name="3.1"></a>
 ![Architecture](diagrams/Architecture.png)
 
 `Main` has a `ModTracker` class. It is the main entry point for the ModTracker application. It contains the main, loadData, run, 
@@ -62,7 +105,7 @@ the command `addmod CS2113T`.
 
 ![highlevelsequencediagram](diagrams/highlevelsequencediagram.png)
 
-### UI component
+### 3.2 UI component <a name="3.2"></a>
 
 `UI` consists of a UI class that is responsible for dealing with user interaction. 
 
@@ -70,7 +113,7 @@ The `UI` component,
 * Reads in the user input and passes the user input to the `Parser` component.
 * Displays the message to the user based on the commands inputted by the user. 
 
-### Parser component
+### 3.3 Parser component <a name="3.3"></a>
 
 The `Parser` component,
 * Determines whether the user input is valid.
@@ -78,7 +121,7 @@ The `Parser` component,
 * Passes the required information and calls the respective function
 to execute the command.
 
-### Model component
+### 3.4 Model component <a name="3.4"></a>
 
 ![modelcomponent](diagrams/modelcomponent.png)
 
@@ -90,21 +133,21 @@ The `Model`,
   such as addtask, deletetask etc.
 * Consists of Task class that represents the task.
 
-### Storage component
+### 3.5 Storage component <a name="3.5"></a>
 The `Storage` component,
 * Loads data from an external file at the start of the program.
 * Saves valid data to the file after any changes. 
 * Locks the file to read-only mode before the program ends.
 
-## Implementation
+## 4. Implementation <a name="4"></a>
 {Insert your own respective implementations here}
 This section describes some noteworthy details on how certain features are being implemented.
 
-### Store Data
+### 4.1 Store Data <a name="4.1"></a>
 The storage feature saves the data of the user so that 
 the ModTracker application continues from where the user left off the previous time. 
 
-#### Proposed Implementation
+#### Proposed Implementation 
 The `Storage` class facilitates the data saving and loading mechanism. 
 The constructor `Storage(filePath)` accepts a String which is the file path to an external file.
 This external file stores the user's data locally.
@@ -191,7 +234,7 @@ storing the different modules, time expected, time spent and tasks
     storage format
 
 
-### Add Module
+### 4.2 Add Module <a name="4.2"></a>
 
 #### Current Implementation
 
@@ -257,7 +300,7 @@ Alternative 2: Always add a new module
 -	Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
           already in the list of modules.  
           
-### Add Time
+### 4.3 Add Time <a name="4.3"></a>
 The add time feature edits the actual workload for a specific module as indicated by the user. 
 This is done by adding time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks.
@@ -307,7 +350,7 @@ The following sequence diagram illustrates what happens when a user executes `ad
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
 
 
-### Minus Time
+### 4.4 Minus Time <a name="4.4"></a>
 The minus time feature edits the actual workload for a specific module as indicated by the user. 
 This is done by removing time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks. This feature is the opposite of the add time feature. 
@@ -377,7 +420,7 @@ The following sequence diagram illustrates what happens when a user executes `mi
     * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
 
-### View modules
+### 4.5 View modules <a name="4.5"></a>
 
 #### Current Implementation
 
@@ -414,7 +457,7 @@ The following sequence diagram shows how the view module command works.
 ![view-module](diagrams/ModViewSequence.png)
 
 
-### Breakdown and Analysis
+### 4.6 Breakdown and Analysis <a name="4.6"></a>
 
 #### Current Implementation
 
@@ -461,7 +504,7 @@ The following sequence diagram shows how the analysis command works.
     * Cons: Difficult to implement as it requires external libraries.
     * Cons: Difficult to test due to additional dependencies on external libraries. 
 
-### Add Task
+### 4.7 Add Task <a name="4.7"></a>
 The add task feature allows user to add a task under an existing module. 
 
 #### Current Implementation
@@ -495,7 +538,7 @@ user input into 4 sections, with `Section 4` as the expected time required to co
 used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#mark-task-as-done)
 section.
 
-### Mark Task as Done
+### 4.8 Mark Task as Done <a name="4.8"></a>
 The mark task as done feature allows user to mark an existing task as done.
 
 #### Current Implementation
@@ -527,11 +570,11 @@ to add the expected time required to complete the task to the actual time spent 
     implementation of the `addTask` method to be passed as a parameter to the `setDone` method and then to the 
     `addTime` method.
 
-## Documentation, Logging, Testing, Configuration, Dev-Ops
+## 5. Documentation, Logging, Testing, Configuration, Dev-Ops <a name="5"></a>
 {Insert guides here for doc, testing etc}
 
-## Appendix: Requirements
-### Product Scope
+## 6. Appendix: Requirements <a name="6"></a>
+### 6.1 Product Scope <a name="6.1"></a>
 #### Target User Profile
 
 NUS students
@@ -547,7 +590,7 @@ NUS students
 * better prioritize their work for each module 
 * relieves the stress of NUS students by achieving a work-life balance
 
-### User Stories
+### 6.2 User Stories <a name="6.2"></a>
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -561,19 +604,19 @@ NUS students
 |v2.0|user of ModTracker|add tasks related to a module|know what are the outstanding tasks for each module
 |v2.0|user|(to be updated)|(to be updated)|
 
-### Use Cases
+### 6.3 Use Cases <a name="6.3"></a>
 (For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
 
-####Use case: UC1 - Add module
+#### Use case: UC1 - Add module
 
-#####MSS: 
+##### MSS: 
 1. User requests to add a module
 1. System prompts user to enter a module code
 1. User enters a module code
 1. System adds module to the database<br>
 Use case ends 
 
-#####Extensions:
+##### Extensions:
 * 3a. Module code is invalid
   * 3a1. System shows an error message<br>
 Use case ends
@@ -581,16 +624,16 @@ Use case ends
   * 3b1. System shows an error message<br>
 Use case ends
 
-####Use case: UC2 - View analysis of time spent
+#### Use case: UC2 - View analysis of time spent
 
-#####MSS: 
+##### MSS: 
 1. User requests to view analysis of time spent
 1. System prompts user to enter a week number
 1. User enters a week number
 1. System displays analysis of time spent to user<br>
 Use case ends 
 
-#####Extensions:
+##### Extensions:
 * 3a. Week number is invalid<br>
   * 3a1. System shows an error message<br> 
 Use case ends
@@ -601,34 +644,34 @@ Use case ends
   * 4a1. System shows only time spent and no analysis<br>
 Use case ends
 
-####Use case: UC3 - Open notifications
+#### Use case: UC3 - Open notifications
 
-#####MSS: 
+##### MSS: 
 1. User requests to open notifications
 1. System displays notifications<br>
 Use case ends 
 
-#####Extensions: 
+##### Extensions: 
 * 2a. No notifications
   * 2a1. System displays an encouraging message<br>
 Use case ends
 
 
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements <a name="6.4"></a>
 
 1. Should work on any _mainstream OS_ as long as they have Java 11 or above installed.
 1. The commands should be short and succinct such that a user with average typing speed should be
 able to accomplish the tasks faster than using a regular _GUI app_.
 
 
-### Glossary
+### 6.5 Glossary <a name="6.5"></a>
 
 * *mainstream OS* - Windows, Linux, macOS
 * *GUI app* - An app that utilises GUI (graphical user interface). It allows users to interact with electronic devices 
 through graphical icons and audio indicator. Most apps like the mobile apps that we are familiar with utilises the GUI.
 
-## Appendix: Instructions for Manual Testing
+## 7. Appendix: Instructions for Manual Testing <a name="7"></a>
 
 Given below are the instructions to test the app manually.
 
@@ -799,3 +842,4 @@ Given below are the instructions to test the app manually.
       Expected: Similar to previous.
       
    
+[Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
