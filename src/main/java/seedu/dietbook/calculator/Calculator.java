@@ -207,7 +207,7 @@ public class Calculator {
     public int calculateFat(LocalDateTime startTime, LocalDateTime endTime) {
         int fat = 0;
         for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            fat += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFats();
+            fat += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFat();
         }
         return fat;
     }
