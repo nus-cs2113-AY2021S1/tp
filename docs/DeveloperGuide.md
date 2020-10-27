@@ -49,6 +49,21 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
 
+**Timetable Component**
+
+This section will describe in detail how some features inside the timetable section have been 
+implemented.
+
+![Timetable Class Diagram](Images/TimeTable%20class%20diagram.png)
+
+The timetable component consists of 7 major classes as shown. The above figure illustrates the
+ association and the multiplicity of the classes. As shown in figure x, `TimetableRun` is the 
+ main class to be accessed when the timetable function is called. It is associated with the 
+ `TimeTableStorage` class which is used to save data into a text file and DateList class 
+ that contains a number of `EventList`. `EventList` contains a number of events. Event class 
+ is the abstract parent class for `Lesson` and `Activity`. `Event` class also contains a number 
+ of `Duration` and it has a dependency on the `EvenType` enum.
+
 
 **Flashcard Component**
 
