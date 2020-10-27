@@ -311,8 +311,8 @@ The expected outcome:
 Successfully deleted workspace: Default
 ```
 
-<!-- @@author -->
 <br/>
+<!-- @@author -->
 
 ### 3.7 Watchlist management
 
