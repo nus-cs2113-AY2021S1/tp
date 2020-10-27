@@ -115,7 +115,7 @@ public class Ui {
     public static void printDukeBorder(boolean top) {
         if (top) {
             System.out.println("................................. "
-                    + "25HoursADay CHAT BOX ^^ ...............................");
+                    + "25HoursADay Chat Box ^^ ...............................");
         } else {
             System.out.println("...................................................."
                     + ".....................................");
@@ -508,7 +508,7 @@ public class Ui {
             break;
         case "invalid delete info":
             System.out.println(
-                    "Error: To delete an additional information of the event: /- <event number> a <information number>");
+                    "Error: To delete an additional information of an event: /- <event number> a <information number>");
             break;
         case "invalid info action":
             System.out.println("Please enter a valid additional information index number.");

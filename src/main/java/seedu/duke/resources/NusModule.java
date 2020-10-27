@@ -4,14 +4,14 @@ package seedu.duke.resources;
 /**
  * This class is created to be used in ModuleChecker class only.
  * Here is a sample JSON data from NUSMod API:
- *   {
- *     "moduleCode": "ACC1002",
- *     "title": "Financial Accounting",
- *     "semesters": [
- *       1,
- *       2
- *     ]
- *   }
+ * {
+ * "moduleCode": "ACC1002",
+ * "title": "Financial Accounting",
+ * "semesters": [
+ * 1,
+ * 2
+ * ]
+ * }
  * We are only interested in the moduleCode and nothing else.
  * If need to retrieve more information from NUSMod API,
  * Amend the class methods accordingly.

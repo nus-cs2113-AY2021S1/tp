@@ -6,3 +6,4 @@ EXAM|true|cx1010|2020-10-10|12:30|nus|0
 EXAM|true|cs2113|2020-10-10|12:30|nus|0
 EXAM|true|cx|2020-10-10|12:30|nus|0
 EXAM|true|cs2113|2020-10-10|12:30|nus|0
+ACT|true|CCA|2020-09-20|16:00|NUS UTOWN|1| add info 1
