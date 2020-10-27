@@ -42,11 +42,11 @@ public class RecommendCommand extends Command {
         }
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
-                + "type y for yes!");
+                + "type y for yes or n for no!");
 
         String checker = Ui.read();
         try {
-            if (checker.equals("y")) {
+            if (checker.toLowerCase().equals("y")) {
                 Ui.printCustomMessage("The following Exercises has been added:");
                 for (int i = 0; i < 4; i++) {
                     StandardExercise standardExercise = recommendList.getExercise(i);
@@ -62,6 +62,8 @@ public class RecommendCommand extends Command {
                     listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
                     storageManager.writeExerciseList(listManager.getExerciseList());
                 }
+            } else if (checker.toLowerCase().equals("n")) {
+                Ui.printCustomError("Okay! Next time then.");
             } else {
                 throw new FitrException();
             }
