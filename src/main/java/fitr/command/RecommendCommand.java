@@ -65,10 +65,8 @@ public class RecommendCommand extends Command {
             } else if (checker.toLowerCase().equals("n")) {
                 Ui.printCustomError("Okay! Next time then.");
             } else {
-                throw new FitrException();
+                Ui.printCustomMessage("Next time then!");
             }
-        } catch (FitrException e) {
-            Ui.printCustomError("Sorry, that is an invalid command");
         } catch (IOException e) {
             Ui.printCustomError("Sorry there is an error with the file");
         }
