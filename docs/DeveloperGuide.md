@@ -20,7 +20,7 @@ This section illustrates the high-level architecture of Fitr, as well as an illu
 
 ![Main class diagram](images/MainClassDiagram.png)
 
-Figure 1: Architecture diagram of Fitr
+_Figure 1: Architecture diagram of Fitr_
 
 Figure 1 above explains the high-level design of Fitr. Given below is a quick overview of each component.
 
@@ -39,7 +39,7 @@ Figure 2 below shows how the components work with one another, when a user enter
 
 ![Add food sequence diagram](images/AddFoodSequenceDiagram.png)
 
-Figure 2: Sequence diagram when adding a food into Fitr
+_Figure 2: Sequence diagram when adding a food into Fitr_
  
 ### 2.2 Ui component
 
@@ -53,7 +53,7 @@ Under the storage component, the `StorageManager` class handles the read and wri
 
 ![StorageManager class diagram](images/StorageClassDiagram.png)
 
-Figure 3: `StorageManager` class diagram
+_Figure 3: `StorageManager` class diagram_
 
 Figure 3 above shows the associations and dependencies present with the `StorageManager` class.
 
@@ -100,6 +100,7 @@ We will be collecting user information such as age, weight, fitness level, and t
 
 ## Appendix B: User stories
 
+_Table 1: User stories_
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|student|enter my food intake|log my calories|
@@ -124,7 +125,6 @@ We will be collecting user information such as age, weight, fitness level, and t
 
 ## Appendix D: Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 1. Initial launch
     1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
     1. Open Command Prompt / Terminal
