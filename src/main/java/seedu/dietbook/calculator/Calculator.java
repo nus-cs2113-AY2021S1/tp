@@ -22,8 +22,11 @@ public class Calculator {
      * @param foodList foodList containing food items to calculate.
      */
     public Calculator(ArrayList<Food> foodList) {
-        assert foodList != null : "the foodList should not be null.";
+        assert foodList != null : "The foodList should not be null.";
+
         for (int i = 0; i < foodList.size(); i++) {
+            assert foodList.get(i).getName().trim().length() != 0 : "Food names should not be empty.";
+
             totalCalorie += foodList.get(i).getCalorie();
             totalCarbohydrate += foodList.get(i).getCarbohydrate();
             totalProtein += foodList.get(i).getProtein();
@@ -86,23 +89,29 @@ public class Calculator {
         case LOW:
             if (person.getGender() == Gender.MALE) {
                 activityScore = 1.11;
-            } else {
+            } else if (person.getGender() == Gender.FEMALE) {
                 activityScore = 1.12;
+            } else {
+                activityScore = 1.115;
             }
             break;
         case MEDIUM:
             if (person.getGender() == Gender.MALE) {
                 activityScore = 1.26;
-            } else {
+            } else if (person.getGender() == Gender.FEMALE) {
                 activityScore = 1.27;
+            } else {
+                activityScore = 1.265;
             }
             break;
         case HIGH:
         default:
             if (person.getGender() == Gender.MALE) {
                 activityScore = 1.48;
-            } else {
+            } else if (person.getGender() == Gender.FEMALE) {
                 activityScore = 1.45;
+            } else {
+                activityScore = 1.465;
             }
             break;
         }
@@ -117,6 +126,8 @@ public class Calculator {
                     + 726 * person.getHeight() / 100;
             break;
         default:
+            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
+                    + 632.8 * person.getHeight() / 100;
         }
 
         if (person.getOriginalWeight() > person.getTargetWeight()) {
