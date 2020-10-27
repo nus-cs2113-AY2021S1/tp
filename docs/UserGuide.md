@@ -239,7 +239,7 @@ Format: `reminder INDEX [t/TIME]`
 
 Example of usage: 
 
-`reminder 5349 t/2315`
+`reminder 5349 t/2305`
 
 Expected outcome:
 
