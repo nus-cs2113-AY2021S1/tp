@@ -1,6 +1,8 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
+import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
@@ -43,21 +45,31 @@ public abstract class SprintCommand extends Command {
 
     /**
      * Choose the sprint to execute command.
-     * Validation completed at SprintParser
+     * Validate the sprint parameter if specified:
+     * - If Exist in Sprint Manager
+     * - If there is ongoing spring if "sprint" params is not specified
      */
-    protected void chooseSprint() {
+    protected void chooseSprint() throws DukeException {
         int selectedSprint;
-        //select specified sprint
-        if (parameters.containsKey("sprint")) {
-            selectedSprint = Integer.parseInt(parameters.get("sprint"));
-        } else if (parameters.containsKey("0")) {
-            selectedSprint = Integer.parseInt(parameters.get("0"));
-            //select ongoing sprint
+        if (this.parameters.containsKey("sprint")) {
+            selectedSprint = Integer.parseInt(this.parameters.get("sprint"));
+            if (selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found.");
+            }
+        } else if (this.parameters.containsKey("0")) {
+            selectedSprint = Integer.parseInt(this.parameters.get("0"));
+            if (selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found.");
+            }
         } else {
-            sprintList.updateCurrentSprint();
-            selectedSprint = sprintList.getCurrentSprintIndex();
+            if (this.projOwner.getSprintList().updateCurrentSprint()) {
+                selectedSprint = this.projOwner.getSprintList().getCurrentSprintIndex();
+            } else {
+                throw new DukeException("No ongoing sprint. Maybe you can specify using -sprint tag");
+            }
         }
-        this.sprintOwner = projOwner.getSprintList().getSprint(selectedSprint);
+        this.sprintOwner = this.projOwner.getSprintList().getSprint(selectedSprint);
+
     }
 
     /**
@@ -65,8 +77,91 @@ public abstract class SprintCommand extends Command {
      * Validation completed at SprintParser
      */
     protected void selectCurrentSprint() {
-        sprintList.updateCurrentSprint();
-        int selectedSprint = sprintList.getCurrentSprintIndex();
-        this.sprintOwner = projOwner.getSprintList().getSprint(selectedSprint);
+        this.sprintList.updateCurrentSprint();
+        int selectedSprint = this.sprintList.getCurrentSprintIndex();
+        this.sprintOwner = this.projOwner.getSprintList().getSprint(selectedSprint);
+    }
+
+    /**
+     * Check if Project Manager contain any project.
+     */
+    protected void checkProjectExist() throws DukeException {
+        if (this.projectList.size() == 0) {
+            throw new DukeException("Please create a project first.");
+        }
+    }
+
+    /**
+     * Check if Sprint Manager contain any sprints.
+     */
+    protected void checkSprintExist() throws DukeException {
+        if (this.projOwner.getSprintList().size() == 0) {
+            throw new DukeException("Please create a sprint for Project " + this.projOwner.getProjectID() + " first.");
+        }
+    }
+
+
+    /**
+     * Check if the "task" params is specified and validate the params.
+     * Checks:
+     * - parsable into an Integer
+     * - Exist in backlog (Task Manager)
+     */
+    protected void checkTasksExist(boolean isAdd)
+            throws DukeException {
+
+        if (this.parameters.containsKey("task")) {
+            checkTasks("task", isAdd);
+        } else if (this.parameters.containsKey("0")) {
+            checkTasks("0", isAdd);
+        } else {
+            throw new DukeException("Missing parameter(s): Task ID");
+        }
+    }
+
+    protected void checkTasks(String tag, boolean isAdd)
+            throws DukeException {
+        String[] taskIds;
+        if (tag.equals("task")) {
+            taskIds = this.parameters.get(tag).split(" ");
+        } else {
+            taskIds = this.parameters.values().toArray(new String[0]);
+        }
+        for (String id : taskIds) {
+            int taskId = Integer.parseInt(id);
+
+            if (!this.projOwner.getBacklog().checkTaskExist(taskId)) {
+                throw new DukeException("Task not found in backlog: " + taskId);
+            }
+
+            if (isAdd == this.sprintOwner.checkTaskExist(taskId)) {
+                throw new DukeException(isAdd
+                        ? "Task(s) already exist" + taskId
+                        : "Task not found in sprint: " + taskId);
+            }
+
+        }
+    }
+
+    /**
+     * Check if the tag is specified.
+     */
+    protected boolean checkTagSpecified(String tag) {
+        return parameters.containsKey(tag);
+    }
+
+    /**
+     * Check if the "user" params is specified and validate the params.
+     * Checks:
+     * - Exist in MemberManager
+     */
+    protected void checkUserExist() throws DukeException {
+        String[] userIds = this.parameters.get("user").split(" ");
+        for (String id : userIds) {
+            Member mem = this.projOwner.getProjectMember().getMember(id.trim());
+            if (mem == null) {
+                throw new DukeException("User not found: " + id.trim());
+            }
+        }
     }
 }

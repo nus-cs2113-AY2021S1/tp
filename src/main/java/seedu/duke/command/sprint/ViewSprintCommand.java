@@ -1,5 +1,6 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
@@ -12,13 +13,17 @@ public class ViewSprintCommand extends SprintCommand {
     }
 
     public void execute() {
-        chooseProject();
-        chooseSprint();
+        try {
+            checkProjectExist();
+            chooseProject();
+            checkSprintExist();
+            chooseSprint();
 
-
-        //Output to user
-        Ui.showToUserLn(this.projOwner.toIdString());
-        Ui.showToUser(this.sprintOwner.toString());
-
+            //Valid Command
+            Ui.showToUserLn(this.projOwner.toIdString());
+            Ui.showToUser(this.sprintOwner.toString());
+        } catch (DukeException e) {
+            e.printExceptionMessage();
+        }
     }
 }
