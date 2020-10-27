@@ -3,7 +3,6 @@ package anichan.commands;
 import anichan.human.User;
 import anichan.human.Workspace;
 import anichan.watchlist.Watchlist;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import anichan.anime.AnimeData;
@@ -157,7 +156,7 @@ class WatchlistCommandTest {
         activeWorkspace.setActiveWatchlist(activeWorkspace.getWatchlistList().get(2));
         WatchlistCommand deleteActiveWatchlist = new WatchlistCommand("d", "", 3);
         deleteActiveWatchlist.execute(animeData, storageManager, user);
-        Assertions.assertEquals(activeWorkspace.getWatchlistList().get(0), activeWorkspace.getActiveWatchlist());
+        assertEquals(activeWorkspace.getWatchlistList().get(0), activeWorkspace.getActiveWatchlist());
 
         // Delete non-active watchlist
         WatchlistCommand deleteWatchlist = new WatchlistCommand("d", "", 2);
