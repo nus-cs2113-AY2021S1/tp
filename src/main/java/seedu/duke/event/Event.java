@@ -14,6 +14,7 @@ public abstract class Event implements Cloneable {
     protected boolean isDone;
     protected ArrayList<Event> repeatEventList;
     protected String repeatType;
+    protected ArrayList<String> notes;
 
     /**
      * Creates a new event with the given description and default its done status to false.
@@ -25,6 +26,7 @@ public abstract class Event implements Cloneable {
         isDone = false;
         repeatType = null;
         repeatEventList = null;
+        notes = new ArrayList<String>();
     }
 
     /**
@@ -66,7 +68,9 @@ public abstract class Event implements Cloneable {
         this.isDone = false;
     }
 
-
+    public void setNotes(ArrayList<String>  notes) {
+        this.notes = notes;
+    }
     /**
      * Returns a string representation of event's done status.
      *
@@ -118,6 +122,9 @@ public abstract class Event implements Cloneable {
         return repeatEventList.size();
     }
 
+    public ArrayList<String>  getNotes() {
+        return notes;
+    }
     @Override
     public Event clone() throws CloneNotSupportedException {
         return (Event) super.clone();

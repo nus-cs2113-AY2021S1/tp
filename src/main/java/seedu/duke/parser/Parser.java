@@ -1,21 +1,7 @@
 package seedu.duke.parser;
 
 
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.ByeCommand;
-import seedu.duke.command.CalendarCommand;
-import seedu.duke.command.CheckCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeadlineCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.DoneCommand;
-import seedu.duke.command.ExtractCommand;
-import seedu.duke.command.GoalCommand;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.ReminderCommand;
-import seedu.duke.command.RepeatCommand;
-import seedu.duke.command.UndoneCommand;
+import seedu.duke.command.*;
 import seedu.duke.exception.DukeException;
 
 
@@ -92,6 +78,9 @@ public class Parser {
 
         case "extract":
             return new ExtractCommand(argument);
+
+        case "note":
+            return new NoteCommand(argument);
 
         default:
             throw new DukeException("Invalid Command.");

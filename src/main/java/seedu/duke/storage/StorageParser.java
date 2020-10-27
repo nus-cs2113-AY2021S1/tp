@@ -19,9 +19,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class StorageParser {
-
 
 
     public static String eventToString(Event activity, String type) {
@@ -30,18 +30,18 @@ public class StorageParser {
 
         switch (type) {
 
-        case "Personal":
-            personalToArguments((Personal)activity, words);
-            break;
-        case "Zoom":
-            zoomToArguments((Zoom)activity, words);
-            break;
-        case "Timetable":
-            timetableToArguments((Timetable)activity, words);
-            break;
-        default:
-            System.out.println("Error, wrong data type provided");
-            break;
+            case "Personal":
+                personalToArguments((Personal) activity, words);
+                break;
+            case "Zoom":
+                zoomToArguments((Zoom) activity, words);
+                break;
+            case "Timetable":
+                timetableToArguments((Timetable) activity, words);
+                break;
+            default:
+                System.out.println("Error, wrong data type provided");
+                break;
         }
 
         return String.join(" | ", words);
@@ -59,7 +59,6 @@ public class StorageParser {
     public static void personalToArguments(Personal activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
-
 
 
         //obtain the dates and time of the event
@@ -102,13 +101,13 @@ public class StorageParser {
                 words.add("F");
             }
         }
-
+        String noteString= notesListToString(activity.getNotes());
+        words.add(noteString);
     }
 
     public static void zoomToArguments(Zoom activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
-
 
 
         //obtain the dates and time of the event
@@ -153,13 +152,13 @@ public class StorageParser {
                 words.add("F");
             }
         }
-
+        String noteString= notesListToString(activity.getNotes());
+        words.add(noteString);
     }
 
     public static void timetableToArguments(Timetable activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
-
 
 
         //obtain the dates and time of the event
@@ -204,42 +203,48 @@ public class StorageParser {
                 words.add("F");
             }
         }
-
+        String noteString= notesListToString(activity.getNotes());
+        words.add(noteString);
     }
 
     public static Event stringToEvent(String line, String type) {
         String[] words = line.split("\\|");
         String[] statuses;
         String[] info;
+        String[] notes;
 
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].trim();
         }
         switch (type) {
-        case "Personal":
-            info = Arrays.copyOfRange(words, 0, 5);
-            statuses = Arrays.copyOfRange(words, 5, words.length);
-            return makePersonal(info, statuses);
-        case "Zoom":
-            info = Arrays.copyOfRange(words, 0, 6);
-            statuses = Arrays.copyOfRange(words, 6, words.length);
-            return makeZoom(info, statuses);
-        case "Timetable":
-            info = Arrays.copyOfRange(words, 0, 6);
-            statuses = Arrays.copyOfRange(words, 6, words.length);
-            return makeTimetable(info, statuses);
-        default:
-            return null;
+            case "Personal":
+                info = Arrays.copyOfRange(words, 0, 5);
+                statuses = Arrays.copyOfRange(words, 5, 6);
+                notes = Arrays.copyOfRange(words, 6, words.length);
+                return makePersonal(info, statuses, notes);
+            case "Zoom":
+                info = Arrays.copyOfRange(words, 0, 6);
+                statuses = Arrays.copyOfRange(words, 6, 7);
+                notes = Arrays.copyOfRange(words, 7, words.length);
+                return makeZoom(info, statuses, notes);
+            case "Timetable":
+                info = Arrays.copyOfRange(words, 0, 6);
+                statuses = Arrays.copyOfRange(words, 6, 7);
+                notes = Arrays.copyOfRange(words, 7, words.length);
+                return makeTimetable(info, statuses, notes);
+            default:
+                return null;
         }
     }
 
-    private static Personal makePersonal(String[] info, String[] statuses) {
+    private static Personal makePersonal(String[] info, String[] statuses, String[] notes) {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number
         try {
             Personal p = new Personal(info[0]);
             if (info[1].equals("0")) {
                 //no date, event can be returned as is
                 setDone(p, statuses[0]);
+                notesSetter(p,notes[0]);
                 return p;
             } else if (info[2].equals("0")) {
                 //no time, but got date
@@ -255,6 +260,7 @@ public class StorageParser {
             }
             setDone(p, statuses[0]);
             repeatSetter(p, statuses, info[3], info[4]);
+            notesSetter(p,notes[0]);
             return p;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -262,13 +268,14 @@ public class StorageParser {
         return null;
     }
 
-    private static Zoom makeZoom(String[] info, String[] statuses) {
+    private static Zoom makeZoom(String[] info, String[] statuses, String[] notes) {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is zoom link
         try {
             Zoom z = new Zoom(info[0], info[5]);
             if (info[1].equals("0")) {
                 //no date, event can be returned as is
                 setDone(z, statuses[0]);
+                notesSetter(z,notes[0]);
                 return z;
             } else if (info[2].equals("0")) {
                 //no time, but got date
@@ -284,6 +291,7 @@ public class StorageParser {
             }
             setDone(z, statuses[0]);
             repeatSetter(z, statuses, info[3], info[4]);
+            notesSetter(z,notes[0]);
             return z;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -291,7 +299,7 @@ public class StorageParser {
         return null;
     }
 
-    private static Timetable makeTimetable(String[] info, String[] statuses) {
+    private static Timetable makeTimetable(String[] info, String[] statuses, String[] notes) {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is location
         try {
             LocalDate date = DateTimeParser.dateParser(info[1]);
@@ -302,6 +310,7 @@ public class StorageParser {
             }
             setDone(t, statuses[0]);
             repeatSetter(t, statuses, info[3], info[4]);
+            notesSetter(t,notes[0]);
             return t;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -330,17 +339,17 @@ public class StorageParser {
             for (int i = 1; i <= count; i++) {
                 LocalDate repeatDate;
                 switch (timeUnit) {
-                case "MONTHLY":
-                    repeatDate = startDate.plusMonths(i);
-                    break;
-                case "WEEKLY":
-                    repeatDate = startDate.plusWeeks(i);
-                    break;
-                case "DAILY":
-                    repeatDate = startDate.plusDays(i);
-                    break;
-                default:
-                    throw new InvalidTimeUnitException(timeUnit);
+                    case "MONTHLY":
+                        repeatDate = startDate.plusMonths(i);
+                        break;
+                    case "WEEKLY":
+                        repeatDate = startDate.plusWeeks(i);
+                        break;
+                    case "DAILY":
+                        repeatDate = startDate.plusDays(i);
+                        break;
+                    default:
+                        throw new InvalidTimeUnitException(timeUnit);
                 }
                 activity.setRepeatType(timeUnit);
                 Event repeatEvent;
@@ -357,5 +366,24 @@ public class StorageParser {
             //throw new DukeException("Cant clone");
         }
 
+    }
+
+    private static void notesSetter(Event e, String notes){
+        String noteString = notes;
+        noteString = noteString.trim();
+        String [] noteArr = noteString.split(";");
+        ArrayList<String> noteList = new ArrayList<>();
+        Collections.addAll(noteList, noteArr);
+        e.setNotes(noteList);
+    }
+
+    private static String notesListToString(ArrayList<String> notes){
+        StringBuffer notesBuffer = new StringBuffer();
+        for (String s : notes) {
+            notesBuffer.append(s);
+            notesBuffer.append(";");
+        }
+        String noteString = notesBuffer.toString();
+        return noteString;
     }
 }
