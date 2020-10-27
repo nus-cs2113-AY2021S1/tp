@@ -2,6 +2,7 @@ package seedu.zoomaster;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
@@ -9,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import seedu.zoomaster.slot.Timetable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -79,18 +81,20 @@ public class Storage<T> {
         }
     }
 
+    //@@author jusufnathanael
     public ArrayList<File> getFiles() {
         File folder = new File(filePath);
         return new ArrayList<>(Arrays.asList(folder.listFiles()));
     }
 
+    //@@author jusufnathanael
     public T loadPlanner() throws ZoomasterException {
 
         File folder = new File(filePath);
         try {
             createDirectory();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ZoomasterException(ZoomasterExceptionType.ERROR_LOADING_FILE);
         }
         if (folder.listFiles() == null) {
             return createNewInstance();
@@ -104,9 +108,13 @@ public class Storage<T> {
             for (File f : listOfFiles) {
                 try {
                     StringBuilder line = new StringBuilder(Files.readString(Paths.get(f.getPath())));
-                    fileAsString.append(line.delete(0, 16));
-                    fileAsString.delete(fileAsString.length() - 6, fileAsString.length());
-                    fileAsString.append(",");
+                    Gson gson = new Gson();
+                    Timetable temp = (Timetable) gson.fromJson(line.toString(), storageClass);
+                    if (!temp.isEmpty()) {
+                        fileAsString.append(line.delete(0, 16));
+                        fileAsString.delete(fileAsString.length() - 6, fileAsString.length());
+                        fileAsString.append(",");
+                    }
                 } catch (IOException e) {
                     return createNewInstance();
                 }
@@ -123,11 +131,22 @@ public class Storage<T> {
             }
 
         } catch (Exception e) {
-            System.out.println("No timetable in planner folder.");
-            return createNewInstance();
+            throw new ZoomasterException(ZoomasterExceptionType.EMPTY_FOLDER);
         }
     }
 
+    //@@author jusufnathanael
+    public void writePlanner(Object t, File f) throws ZoomasterException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(t);
+        try {
+            writeToFile(jsonString);
+        } catch (IOException e) {
+            throw new ZoomasterException(ZoomasterExceptionType.WRITE_FILE_ERROR);
+        }
+    }
+
+    //@@author
     private ArrayList<String> getData(File f) throws FileNotFoundException {
         ArrayList<String> items = new ArrayList<>();
         Scanner s = new Scanner(f);
@@ -258,6 +277,8 @@ public class Storage<T> {
      */
     public ArrayList<String> loadModuleList() throws IOException, ZoomasterException {
         String moduleListPath = filePath;
+        assert filePath.contains("data") : "filepath to be loaded is from wrong directory";
+        assert filePath.contains("timetable") : "filepath to be loaded has errors";
         moduleListPath = moduleListPath.replace("timetable", "modulelist");
         File f = new File(moduleListPath);
         ArrayList<String> moduleList = new ArrayList<>();

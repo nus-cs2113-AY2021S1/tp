@@ -5,6 +5,7 @@ package seedu.zoomaster.exception;
  */
 public enum ZoomasterExceptionType {
     UNKNOWN_INPUT,
+    UNKNOWN_HELP_COMMAND,
     INVALID_MODE,
     WRITE_FILE_ERROR,
     ERROR_LOADING_FILE,
@@ -24,6 +25,5 @@ public enum ZoomasterExceptionType {
     EMPTY_TIMETABLE,
     CONNECTION_ERROR,
     JSON_PARSE_ERROR,
-
-
+    EMPTY_FOLDER
 }

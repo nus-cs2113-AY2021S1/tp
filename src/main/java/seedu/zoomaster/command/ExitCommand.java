@@ -8,7 +8,7 @@ import seedu.zoomaster.slot.Timetable;
  * Represents the user command exit the Duke program.
  */
 public class ExitCommand extends Command {
-    public static final String BYE_KW = "exit";
+    public static final String EXIT_KW = "exit";
 
     /**
      * Constructs a new ExitCommand instance and sets isExitCommand to true.

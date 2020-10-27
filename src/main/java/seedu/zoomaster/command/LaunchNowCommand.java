@@ -19,7 +19,7 @@ public class LaunchNowCommand extends Command {
 
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
-        LocalTime currentTime = LocalTime.now();
+        LocalTime currentTime = LocalTime.now().plusMinutes(5);
         String message = "";
 
         List<Slot> slots = timetable.getFullSlotList();

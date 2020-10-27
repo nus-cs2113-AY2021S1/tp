@@ -9,6 +9,7 @@ import seedu.zoomaster.command.LaunchNowCommand;
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
+import seedu.zoomaster.command.planner.SavePlannerCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
@@ -48,7 +49,7 @@ public class Parser {
     private static Command createCommand(String input) throws ZoomasterException {
         Command command;
 
-        if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
+        if (input.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0) {
             command = new ExitCommand();
         } else if (input.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
             command = new LaunchNowCommand();
@@ -56,8 +57,8 @@ public class Parser {
             command = new ChangeModeCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
             command = new ClearCommand();
-        } else if (input.toLowerCase().equals(HelpCommand.HELP_KW)) {
-            command = new HelpCommand();
+        } else if (input.startsWith(HelpCommand.HELP_KW)) {
+            command = new HelpCommand(input);
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
@@ -74,7 +75,7 @@ public class Parser {
     //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws ZoomasterException {
 
-        if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
+        if (input.compareToIgnoreCase(ShowBookmarkCommand.SHOW_KW) == 0) {
             return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
             return new DeleteBookmarkCommand(input);
@@ -84,8 +85,6 @@ public class Parser {
             return new LaunchBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
             return new FindBookmarkCommand(input);
-        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            return new ClearCommand();
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
@@ -102,8 +101,6 @@ public class Parser {
             command = new DeleteSlotCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
-        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            command = new ClearCommand();
         } else if (input.startsWith(LaunchModuleAndSlotBookmark.LAUNCH_KW)) {
             command = new LaunchModuleAndSlotBookmark(input);
         } else if (input.startsWith(EditSlotCommand.EDIT_KW)) {
@@ -115,20 +112,19 @@ public class Parser {
         return command;
     }
 
+    //@@author jusufnathanael
     private static Command createPlannerCommand(String input) throws ZoomasterException {
-
         if (input.startsWith(AddMeetingCommand.ADD_KW)) {
             return new AddMeetingCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
-        //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-        //    return new ClearCommand();
+        } else if (input.startsWith(SavePlannerCommand.SAVE_KW)) {
+            return new SavePlannerCommand();
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
             return new LoadPlannerCommand();
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-
     }
 
     public static int getProgramMode() {

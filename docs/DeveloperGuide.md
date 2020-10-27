@@ -21,11 +21,8 @@ Zoomaster can also intelligently determine the current lesson you are having, al
   * [Storage component](#architecture)
   * [Common classes](#architecture)
 * [Implementation](#implementation)
-  * [Proposed] Undo/redo feature
-  * [Proposed] Implementation
-    * Design consideration:
-      * Aspect: How undo & redo executes
-  * [Proposed] Data archiving
+  * Bookmark and Timetable modes feature
+  * Add Module and Slot feature
 * [Documentation, logging, testing, configuration, dev-ops](#architecture)
 * [Appendix: Requirements](#architecture)
   * [Product Scope](#architecture)
@@ -78,11 +75,8 @@ The `UI` component,
 ### Model component
 
 ### Storage component
-**API:** [`Storage.java`](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/src/main/java/seedu/duke/Storage.java)
 
-The Storage class is responsible for encoding and saving objects into .txt files, as well as reading and decoding files. 
-
-It uses the Gson library to encode and decode objects to and from JSON.
+Storage class
 
 ### Common classes
 slots class
@@ -90,11 +84,14 @@ bookmark class
 command class
 
 ## **Implementation**
-{describe how you implement the features}
+
+This section explains the implementations of Zoomaster features. It goes through the step-by-step proccess, expected outcomes of each feature and the design considerations.
 
 ### Bookmark and Timetable modes feature (TYS)
 
-#### Implementaion
+Zoomaster stores two lists of information from users. One the list of bookmarks with link to online resources and second the list of timetable slots. To simplify input commands for users, both lists has the same keywords for adding, deleting, editing? and showing items in the lists. Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+
+#### Implementation
 
 This feature extends Command class with a way to toggle between different modes of Zoomaster. The integer variable used to control the modes is stored in the Parser class called "programMode". Additionally, it implements the following operation:
 * getModeFromCommand() - Decodes the command sent by the users to figure out which mode the user wants to move to.
@@ -131,7 +128,7 @@ Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
 Given below is a sequence diagram of how the feature works.
-![](./diagrams/addSlotSequenceDiagram.png)
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
 <br>
 <br>
 Step 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
@@ -172,13 +169,15 @@ The App was developed during the coronavirus pandemic whereby many NUS classes h
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|studious NUS student| bookmark important websites from different modules|launch them easily when needed|
-|v1.0|NUS student|label my bookmarks|I can know quickly the topics of each link|
-|v1.0|busy NUS student|create a timetable within the app which syncs up with the system time|I will not miss my lessons|
-|v1.0|NUS student|take a look at my modules for the day, or the entire week|I can plan out my day/week|
+|v1.0|NUS student|label my bookmarks|know quickly the topics of each link|
+|v1.0|busy NUS student|create a timetable within the app which syncs up with the system time|avoid missing my lessons|
+|v1.0|NUS student|take a look at my modules for the day, or the entire week|plan out my day/week|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-|v2.0|first time user of the App|be able to see the list commands available|easily naviagate through the App|
+|v2.0|first time user of the App|be able to see the list commands available|easily navigate through the App|
 |v2.0|advanced user|be able to launch multiple links at the same time if the links are grouped together|save time by not doing multiple launching commands|
+|v2.0|advanced user|edit my bookmarks and timetable lists according to changes in my module and timetable|quickly make changes to my lessons|
+|v2.0|busy user|have an indicator telling me the current time|easily check on the time in a hurry|
 
 ## **Non-Functional Requirements**
 
@@ -186,7 +185,20 @@ The App was developed during the coronavirus pandemic whereby many NUS classes h
 
 ## **Glossary**
 
-* *glossary item* - Definition
+### Zoom
+> A popular video communication program by a company of the same name
+
+### UML 
+> Unified Modeling Language, a standard to visualize the design of a system
+
+### UI
+> User Interface
+    
+### ANSI 
+> American National Standards Institute, ANSI characters is a popular character set used by programmers
+    
+### NUS
+> National University of Singapore
 
 ## **Instructions for manual testing**
 
