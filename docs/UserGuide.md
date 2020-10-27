@@ -72,6 +72,28 @@ Example of usage:
 
 `wallet`
 
+### Bookmark stocks to keep on watchlist: `mark /STOCK_TICKER`, `unmark /STOCK_TICKER`, `bookmarks`
+Allows you to bookmark stocks for easy access of stocks that you are actively watching
+* The `STOCK_TICKER` is the stock's short form
+
+#### Marking Stocks: 
+
+Format: `mark /STOCK_TICKER`
+
+Example of usage: mark /tsla
+
+#### Unmarking Stocks: 
+
+Format: `unmark /STOCK_TICKER`
+
+Example of usage: unmark /tsla
+
+#### Viewing info of all bookmarked stocks: 
+
+Format: `bookmarks`
+
+Example of usage: bookmarks
+
 ### Exit: `bye`
 Exits the program. Duke will save your info for the next time you come back!
 
