@@ -8,6 +8,7 @@ import seedu.quotesify.lists.QuotesifyList;
 import seedu.quotesify.quote.QuoteList;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CategoryList extends QuotesifyList<Category> {
     private ArrayList<Category> categories = super.getList();
@@ -53,6 +54,13 @@ public class CategoryList extends QuotesifyList<Category> {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         category.setBookList(bookList.filterByCategory(category.getCategoryName()));
         category.setQuoteList(quoteList.filterByCategory(category.getCategoryName()));
+    }
+
+    public CategoryList findByKeyword(String keyword) {
+        ArrayList<Category> list = (ArrayList<Category>) categories.stream()
+                .filter(category -> category.getCategoryName().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList());
+        return new CategoryList(list);
     }
 
     public void remove(Category category) {

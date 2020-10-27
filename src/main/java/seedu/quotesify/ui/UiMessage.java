@@ -35,6 +35,7 @@ public class UiMessage {
     public static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
     public static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
     public static final String EDIT_CATEGORY_MESSAGE = "The category has been changed from [%s] to [%s]!";
+    public static final String FIND_CATEGORIES_MESSAGE = "Here is a list of categories with the keyword \"%s\":";
     public static final String ADD_RATING_MESSAGE = "You have just rated [%s by %s] %d star!";
     public static final String DELETE_RATING_MESSAGE = "Rating for [%s by %s] has been deleted!";
     public static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
@@ -112,6 +113,7 @@ public class UiMessage {
     public static final String FIND_BOOK_COMMAND = "Find book: " + "find -b KEYWORD";
     public static final String FIND_QUOTE_COMMAND = "Find quote: " + "find -q QUOTE_NUMBER";
     public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE /by AUTHOR";
+    public static final String FIND_CATEGORY_COMMAND = "Find category: " + "find -c KEYWORD";
 
     public static final String LIST_BOOK_COMMAND = "List books: " + "list -b [/by AUTHOR]";
     public static final String LIST_BOOK_DETAILS = "List book details: " + "list -b BOOK_NUMBER";

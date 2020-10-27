@@ -222,6 +222,11 @@ public class TextUi {
         System.out.println(categoryList.toString());
     }
 
+    public void printMatchingCategories(CategoryList categoryList, String keyword) {
+        System.out.printf(UiMessage.FIND_CATEGORIES_MESSAGE + "\n", keyword);
+        System.out.println(categoryList.toString());
+    }
+
     public void printAllInCategory(Category category) {
         String categoryName = category.getCategoryName();
         if (category.getSize() == 0) {
@@ -367,6 +372,7 @@ public class TextUi {
         System.out.println(UiMessage.LIST_BOOK_COMMAND);
         System.out.println(UiMessage.LIST_BOOK_DETAILS);
         System.out.println(UiMessage.LIST_BOOK_COMPLETE);
+        System.out.println(UiMessage.FIND_BOOK_COMMAND);
 
         System.out.println(System.lineSeparator() + "2. Quote Management");
         System.out.println(UiMessage.ADD_QUOTE_COMMAND);
@@ -396,6 +402,7 @@ public class TextUi {
         System.out.println(UiMessage.DELETE_CATEGORY_COMMAND);
         System.out.println(UiMessage.LIST_CATEGORY_COMMAND);
         System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
+        System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
 
         System.out.println(System.lineSeparator() + "5. Rating System");
         System.out.println(UiMessage.ADD_RATING_COMMAND);
@@ -465,6 +472,7 @@ public class TextUi {
         System.out.println(UiMessage.FIND_BOOK_COMMAND);
         System.out.println(UiMessage.FIND_QUOTE_COMMAND);
         System.out.println(UiMessage.FIND_RATING_COMMAND);
+        System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
     }
 
     public void printDoneCommandUsage() {
