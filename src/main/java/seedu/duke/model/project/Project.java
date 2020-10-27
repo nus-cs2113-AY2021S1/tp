@@ -201,14 +201,6 @@ public class Project implements JsonableObject {
 
     @Override
     public void fromJson(JsonObject jsonObj) {
-        SprintManager allSprints = new SprintManager();
-        allSprints.fromJson((JsonObject) jsonObj.get("allSprints"), this);
-        
-        TaskManager backlog = new TaskManager();
-        backlog.fromJson((JsonObject) jsonObj.get("backlog"), this);
-        
-        ProjectMembers members = new ProjectMembers();
-        members.fromJson((JsonArray) jsonObj.get("members"));
         
         this.projectID = JsonableObject.parseInt(jsonObj, "projectID");
         this.title = JsonableObject.parseString(jsonObj, "title");
@@ -217,9 +209,13 @@ public class Project implements JsonableObject {
         this.sprintLength = JsonableObject.parseInt(jsonObj, "sprintLength");
         this.startDate = JsonableObject.parseDate(jsonObj, "startDate");
         this.endDate = JsonableObject.parseDate(jsonObj, "endDate");
-        this.sprintList = allSprints;
-        this.backlog = backlog;
-        this.memberList = members;
+        this.sprintList = new SprintManager();
+        this.backlog = new TaskManager();
+        this.memberList = new ProjectMembers();
+
+        sprintList.fromJson((JsonObject) jsonObj.get("allSprints"), this);
+        backlog.fromJson((JsonObject) jsonObj.get("backlog"), this);
+        memberList.fromJson((JsonArray) jsonObj.get("members"));
         
     }
 }
