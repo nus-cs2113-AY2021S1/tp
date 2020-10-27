@@ -167,7 +167,7 @@ Expected Outcome:
 
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
  Deletes an event from the list of events  <br/>
@@ -185,7 +185,7 @@ Expected Outcome:
  
  ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
  
- [Return to features section](#4features)
+ [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
 Clear all events from the list of events <br/>
@@ -200,7 +200,7 @@ Expected Outcome:
 
 ![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
 
 #### List events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
@@ -213,7 +213,7 @@ Expected Outcome:
 
 ![EventListEvent](userGuidePic/eventListEvent.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
 
 #### Countdown events `countdown`
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
@@ -226,7 +226,7 @@ Expected Outcome:
 
 ![eventCountdown](userGuidePic/eventCountdown.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
 
 #### Mark an event as completed `done`
 Mark an event as done. 
@@ -243,7 +243,7 @@ Before and the after marking event as done
 
 ![EventBefore](userGuidePic/eventMarkAsDone1.PNG)  ->  ![EventAfter](userGuidePic/eventMarkAsDone.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
 
 #### Search for an Event `search`
 Search for a particular event by name or date.
@@ -259,7 +259,7 @@ Expected Outcome:
 
 ![EventSearchByDate](userGuidePic/eventSearchBydate.PNG)
 
-[Return to features section](#4features)
+[Return to the top](#user-guide)
 
 ### 4.5 Finance features `finance`  
 #### Add finance log entry: `addLog`  
