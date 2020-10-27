@@ -93,11 +93,11 @@ public class SaveManager {
             menu = false;
             SaveHandler.buildFile(dirPath, fullPath);
             File file = new File(fullPath);
-            Scanner scanner = new Scanner(file);
             UiManager.refreshPage();
             helpMsg();
             TablePrinter.setTitle("List Saves");
             TablePrinter.addRow("No.; Names                                           ");
+            Scanner scanner = new Scanner(file);
             for (int i = 1; scanner.hasNext(); ) {
                 String name = scanner.nextLine();
                 if (!name.equals("")) {
@@ -143,24 +143,24 @@ public class SaveManager {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
-            String des_auto = AutoTrackerSaver.getInstance().fullPath;
-            String des_goal = GoalTrackerSaver.getInstance().fullPath;
-            String des_manual = ManualTrackerSaver.getInstance().fullPath;
+            String desAuto = AutoTrackerSaver.getInstance().fullPath;
+            String desGoal = GoalTrackerSaver.getInstance().fullPath;
+            String desManual = ManualTrackerSaver.getInstance().fullPath;
             File file = new File(fullPath);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 String saveString = scanner.nextLine();
                 if (saveString.equals(name)) {
                     FileChannel sourceChannel = new FileInputStream(path + "_gt.txt").getChannel();
-                    FileChannel destChannel = new FileOutputStream(des_goal).getChannel();
+                    FileChannel destChannel = new FileOutputStream(desGoal).getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
                     sourceChannel = new FileInputStream(path + "_mt.txt").getChannel();
-                    destChannel = new FileOutputStream(des_manual).getChannel();
+                    destChannel = new FileOutputStream(desManual).getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
                     sourceChannel = new FileInputStream(path + "_at.txt").getChannel();
-                    destChannel = new FileOutputStream(des_auto).getChannel();
+                    destChannel = new FileOutputStream(desAuto).getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
                     sourceChannel.close();

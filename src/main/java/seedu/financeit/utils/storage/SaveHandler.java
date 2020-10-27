@@ -22,6 +22,15 @@ public abstract class SaveHandler {
         dirPath = directory;
     }
 
+    protected void buildFile() throws IOException {
+        if (!Files.exists(Paths.get(dirPath))) {
+            Files.createDirectory(Paths.get(dirPath));
+        }
+        if (!Files.exists(Paths.get(fullPath))) {
+            Files.createFile(Paths.get(fullPath));
+        }
+    }
+
     public static void buildFile(String dirPath, String fullPath) throws IOException {
         if (!Files.exists(Paths.get(dirPath))) {
             Files.createDirectory(Paths.get(dirPath));
@@ -61,12 +70,4 @@ public abstract class SaveHandler {
 
     }
 
-    protected void buildFile() throws IOException {
-        if (!Files.exists(Paths.get(dirPath))) {
-            Files.createDirectory(Paths.get(dirPath));
-        }
-        if (!Files.exists(Paths.get(fullPath))) {
-            Files.createFile(Paths.get(fullPath));
-        }
-    }
 }
