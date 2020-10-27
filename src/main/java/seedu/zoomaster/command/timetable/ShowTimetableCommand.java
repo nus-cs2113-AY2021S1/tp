@@ -100,7 +100,7 @@ public class ShowTimetableCommand extends Command {
         ArrayList<String> sortedModuleCodes = sortedSlotContainer.getModuleCodesList();
 
         for (int i = 0; i < sortedSlots.size(); i++) {
-            if (hasLessonNow(sortedSlots.get(i))) {
+            if (hasLessonNow(sortedSlots.get(i)) && !sortedSlots.get(i).getTitle().equals("<empty slot>")) {
                 message.append(getHighlighBoxUpperMessage());
                 message.append(i + 1).append(". ")
                         .append(sortedSlots.get(i).toString()).append(" ")
