@@ -57,10 +57,11 @@ public class InputChecker {
     }
 
     /**
-     * Takes in processed user input to check for options specified with an empty field.
+     * Takes in user input to check for repeated options.
      *
+     * @param command command part of user input.
      * @param options option part of user input command.
-     * @throws DietException when an option is specified but its field is empty.
+     * @throws DietException when there are options repeatedly specified.
      */
     public static void checkRepeatedOption(String command, String options) throws DietException {
         String[] paramList = FULL_PARAM_ADD;
