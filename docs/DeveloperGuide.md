@@ -150,8 +150,18 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a task item feature
+This feature is being facilitated by `AddCommand`.
+The following sequence diagram shows how the `execute()` operation works:
+
+It first checks the type of the new task,
+then it analyses the attached information, if the format is desired, the program saves the event with the information in the task list.
+
+Note: A todo task has only task description while a deadline task has both the task description and a due date. 
+The due date must be in the pattern of ddMMyy as it is the pattern set by the `TimeParser` class.
+
 ### Add an event item feature
-This feature is facilitated by `AddCommand`.
+This feature is being facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
 
 It checks the type of the new event first, 
@@ -195,6 +205,16 @@ The following sequence diagram show how the `execute()` operation works when the
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
+
+### Print tasks feature
+This feature is facilitated by `PrintTasksCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
+![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+
+### Print events feature
+This feature is facilitated by `PrintEventsCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
+![print_events_command_sd](images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
