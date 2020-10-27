@@ -15,9 +15,10 @@ public class AddInfoCommand extends Command {
 
     /**
      * Adds additional information to an event. Multiple additional information can be added to an event.
+     * Saves the updated calendar list in the storage after the additional information is added.
      *
      * @param calendarList the calendar list containing the event.
-     * @param storage      not required.
+     * @param storage      the storage to be saved to.
      * @throws DukeException if the additional info command is invalid.
      */
     @Override
@@ -29,7 +30,7 @@ public class AddInfoCommand extends Command {
 
         try {
             command = userInput.split("-", 2);
-            additionalInformation = command[1];
+            additionalInformation = command[1].trim();
             eventNumber = Integer.parseInt(command[0].replace("/a", "").trim());
 
         } catch (Exception e) {
@@ -45,5 +46,6 @@ public class AddInfoCommand extends Command {
 
         event.setAdditionalInformation(additionalInformation);
         Ui.printLastAdditionalInformation(event);
+        storage.writeToFile(calendarList);
     }
 }
