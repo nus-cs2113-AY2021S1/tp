@@ -86,7 +86,7 @@ Shows a list of commands you can use and what the commands do. Print the instruc
 Output:  
 Type “help COMMAND_NAME” to figure out how to use the particular command.  
 - help
-- settings
+- divider
 - bunny
 - list bunny
 - filter bunny
