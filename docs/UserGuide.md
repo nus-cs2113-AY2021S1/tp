@@ -768,9 +768,31 @@ Hope this helps!
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q: How do I transfer my data to another computer?** 
 
-**A**: {your answer here}
+**A**: Launch Quotesify on your other computer and exit the program. Copy the save file located in data/quotesify.json 
+on your current computer and replace it with the save file on your other computer. Launch Quotesify on your other 
+computer again and the saved data should load.
+
+
+**Q: What is a JAR file? Why do I need it?** 
+
+**A**: A JAR (Java ARchive) file is a container file that holds other smaller files,  similar to a Zip file. JAR files 
+are practical as it groups everything a Java program requires to run allowing others to run the program with a single 
+file.
+
+
+**Q: What if I run into bugs while using Quotesify?**
+
+**A**: Please head over to (https://github.com/AY2021S1-CS2113T-T09-3/tp/issues) and create a new issue tracker with a 
+description of the bug. Our dedicated team of developers are always on the clock squashing any bugs found! 
+Alternatively, you can also reach us at contact@quotesify.com!
+
+
+**Q: I have a suggestion for Quotesify, what should I do?** 
+
+**A**: The team at Quotesify is constantly seeking to improve and better the experience for our users! If you have a 
+suggestion for Quotesify, please do not hesitate to reach us at contact@quotesify.com!
 
 ## Command Summary
 
