@@ -20,9 +20,8 @@ This section explains the prerequisites, and the steps to setting up Fitr on you
 
 ### 2.2 Setting up Fitr in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
-</div>
+:exclamation: | **Caution:** Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
+|--------|------------------------------------------------------------|
 
 This section provides a step-by-step procedure to set up Fitr in your computer.
 
@@ -35,7 +34,10 @@ This section provides a step-by-step procedure to set up Fitr in your computer.
         1. Click `Configure` > `Project Defaults` > `Project Structure`
         1. Click `New...` and set it to the directory of the JDK.
 1. When prompted, **import** the project as a **Gradle project** (this can take a few minutes to complete). You can follow the following steps to import the project as a **Gradle Project**:
-    :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+
+    :exclamation: | **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
+    |--------|------------------------------------------------------------|
+
     1. IntelliJ IDEA by default has the Gradle plugin installed. If you have disabled it, click `File` > `Settings` > `Plugins` to enable them.
     1. Click `Import Project` (or `Open or Import` in newer version of IntelliJ).
     1. Locate the `build.gradle` file (not the root folder as you would do in normal importing) and select it. Click `OK`. If asked, choose to `Open as Project`, not `Open as File`.
