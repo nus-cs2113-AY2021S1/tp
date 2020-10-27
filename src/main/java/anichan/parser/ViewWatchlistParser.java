@@ -2,8 +2,7 @@ package anichan.parser;
 
 import anichan.command.ViewWatchlistCommand;
 import anichan.exception.AniException;
-
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +11,7 @@ public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
     protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
-    private static final Logger LOGGER = getAniLogger(AddToWatchlistParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
 
     private ViewWatchlistCommand viewWatchlistCommand;
 

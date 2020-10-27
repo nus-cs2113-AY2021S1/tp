@@ -2,7 +2,7 @@ package anichan.parser;
 
 import anichan.command.RemoveCommand;
 import anichan.exception.AniException;
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +11,7 @@ public class RemoveCommandParser extends CommandParser {
     protected static final String REMOVE_PARAM = "d";
     protected static final String TOO_MUCH_ARGUMENTS = "Remove command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    private static final Logger LOGGER = getAniLogger(RemoveCommandParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
 
     private RemoveCommand removeCommand;
 

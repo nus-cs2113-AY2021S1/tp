@@ -3,7 +3,7 @@ package anichan.parser;
 import anichan.command.BookmarkCommand;
 import anichan.exception.AniException;
 
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class BookmarkParser extends CommandParser {
     private static final String BOOKMARK_ADD = "add";
     private static final String BOOKMARK_REMOVE_NOTE = "remove note";
     private static final String BOOKMARK_INDEX = "index";
-    private static final Logger LOGGER = getAniLogger(BookmarkParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
 
     private BookmarkCommand bookmarkCommand;
 

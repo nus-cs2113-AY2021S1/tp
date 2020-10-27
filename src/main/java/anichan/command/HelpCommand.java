@@ -2,15 +2,14 @@ package anichan.command;
 
 import anichan.human.User;
 import anichan.anime.AnimeData;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
-import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class HelpCommand extends Command {
-    private static final Logger LOGGER = getAniLogger(HelpCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(HelpCommand.class.getName());
     private static String output;
     
     public HelpCommand() {
