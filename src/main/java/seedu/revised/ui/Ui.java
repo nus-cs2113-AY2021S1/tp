@@ -433,7 +433,7 @@ public class Ui {
     }
 
     /**
-     * Prints all the upcoming tasks that are due within a week
+     * Prints all the upcoming tasks that are due within a week.
      *
      * @param subjects The list of subjects present in the application
      */
