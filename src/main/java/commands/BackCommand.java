@@ -12,16 +12,7 @@ public abstract class BackCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
-        if (access.isChapterLevel()) {
-            access.setChapterLevel("");
-        } else if (access.isModuleLevel()) {
-            access.setModuleLevel("");
-        } else {
-            throw new IncorrectAccessLevelException("Back command can only be called "
-                    + "at module and chapter level.");
-        }
-    }
+    public abstract void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException;
 
     @Override
     public boolean isExit() {
