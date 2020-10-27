@@ -330,7 +330,7 @@ The sequence diagram below demonstrates the command execution process when addin
 * Giving users an option to specify a book, quote, or both to be tagged with a category.
   * Pros: Increases efficiency for users.
   * Cons: Difficult to implement.
-* Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
+* Giving users an option to specify *multiple* books, quotes, or both to be tagged with a category:
   * Pros: Further increases efficiency for users.
   * Cons: Increased complexity in implementation. 
 
@@ -410,6 +410,7 @@ Quotesify will help you to improve your reading experience with quick and easy f
 quote management, progress tracker, category management and a rating system for your books.
 
 #### User Stories
+
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
 |v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
