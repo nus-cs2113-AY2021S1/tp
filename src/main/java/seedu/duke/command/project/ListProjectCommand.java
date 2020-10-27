@@ -13,7 +13,7 @@ public class ListProjectCommand extends ProjectCommand {
     private final ProjectManager projectManager;
 
     public ListProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
-        super(parameters);
+        super(parameters, false);
         this.projectManager = projectManager;
     }
 

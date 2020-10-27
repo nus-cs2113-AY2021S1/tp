@@ -8,7 +8,7 @@ import java.util.Hashtable;
 public class HelpCommand extends Command {
 
     public HelpCommand(Hashtable<String, String> parameters) {
-        super(parameters);
+        super(parameters, false);
     }
 
     @Override
@@ -19,5 +19,6 @@ public class HelpCommand extends Command {
         Ui.showToUserLn("2. Member");
         Ui.showToUserLn("3. Task");
         Ui.showToUserLn("4. Sprint");
+        Ui.showToUserLn("5. Storage");
     }
 }

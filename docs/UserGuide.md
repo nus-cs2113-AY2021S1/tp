@@ -309,6 +309,8 @@ Assign a task to a team member(s)
 | --- | --- | --- |
 | Create Project | `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>` | `project /create -title MeTube -desc video streaming software -dur 90 -sd 10` |
 | View project information | `project /view` | `project /view` |
+| Select project | `project /select <id>` | `project /select 2`|
+| List projects | `project /list` | `project /list`|
 | Add members | `member /add <username> [<username> ...]` | `member /add john mary` |
 | Remove members | `member /del <username> [<username> ...]` | `member /del john mary` |
 | Add tasks | `task /add -title <title> -desc <description> -priority <category>` | `task /add -title Add UI -desc add an interactive UI -priority HIGH` |
@@ -323,5 +325,3 @@ Assign a task to a team member(s)
 | Allocate tasks to team members | `sprint /assign -task <task_id> -user <user_id> [<user_id> ...]` | `sprint /assign -task 1 -user johntan mary jane` |
 | Exit program | `bye` | `bye` |
 
-
-      

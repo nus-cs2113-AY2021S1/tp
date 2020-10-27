@@ -53,6 +53,10 @@ public class ProjectManager implements JsonableObject {
         return projectList.get(index);
     }
 
+    public void clearProjects() {
+        projectList.clear();
+        selectedProject = -1;
+    }
 
     @Override
     public String toJson() {
