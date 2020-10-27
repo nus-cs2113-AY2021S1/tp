@@ -83,7 +83,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         for (int taskId : this.taskIds) {
             Task task = this.projOwner.getBacklog().getTask(taskId);
             for (String member : this.userIds) {
-                if (task.getAllocatedMembers().contains(member)) {
+                if (task.getMemberList().contains(member)) {
                     throw new DukeException(member + " is already allocated with Task " + taskId);
                 }
             }

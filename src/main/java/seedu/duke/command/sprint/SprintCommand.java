@@ -107,19 +107,19 @@ public abstract class SprintCommand extends Command {
      * - parsable into an Integer
      * - Exist in backlog (Task Manager)
      */
-    protected boolean checkTasksExist(boolean isAdd)
+    protected void checkTasksExist(boolean isAdd)
             throws DukeException {
 
         if (this.parameters.containsKey("task")) {
-            return checkTasks("task", isAdd);
+            checkTasks("task", isAdd);
         } else if (this.parameters.containsKey("0")) {
-            return checkTasks("0", isAdd);
+            checkTasks("0", isAdd);
         } else {
             throw new DukeException("Missing parameter(s): Task ID");
         }
     }
 
-    protected boolean checkTasks(String tag, boolean isAdd)
+    protected void checkTasks(String tag, boolean isAdd)
             throws DukeException {
         String[] taskIds;
         if (tag.equals("task")) {
@@ -141,7 +141,6 @@ public abstract class SprintCommand extends Command {
             }
 
         }
-        return true;
     }
 
     /**

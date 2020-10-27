@@ -1,7 +1,6 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.EmptyCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.RemoveSprintTaskCommand;
@@ -32,102 +31,78 @@ public class SprintParser implements ExceptionsParser {
 
         switch (action.toLowerCase()) {
         case CREATE:
-            if (checkCreateSprintParams(parameters)) {
-                return new CreateSprintCommand(parameters, projectListManager);
-            }
-            break;
+            checkCreateSprintParams(parameters);
+            return new CreateSprintCommand(parameters, projectListManager);
         case EDIT:
-            if (checkEditSprintParams(parameters)) {
-                return new EditSprintCommand(parameters, projectListManager);
-            }
-            break;
+            checkEditSprintParams(parameters);
+            return new EditSprintCommand(parameters, projectListManager);
         case ADDTASK:
-            if (checkAddRemoveTaskParams(parameters)) {
-                return new AddSprintTaskCommand(parameters, projectListManager);
-            }
-            break;
+            checkAddRemoveTaskParams(parameters);
+            return new AddSprintTaskCommand(parameters, projectListManager);
         case REMOVETASK:
-            if (checkAddRemoveTaskParams(parameters)) {
-                return new RemoveSprintTaskCommand(parameters, projectListManager);
-            }
-            break;
+            checkAddRemoveTaskParams(parameters);
+            return new RemoveSprintTaskCommand(parameters, projectListManager);
         case VIEW:
-            if (checkViewSprintParams(parameters)) {
-                return new ViewSprintCommand(parameters, projectListManager);
-            }
-            break;
+            checkViewSprintParams(parameters);
+            return new ViewSprintCommand(parameters, projectListManager);
         case ALLOCATE:
-            if (checkAllocateDeallocateTaskParams(parameters)) {
-                return new AllocateSprintTaskCommand(parameters, projectListManager);
-            }
-            break;
+            checkAllocateDeallocateTaskParams(parameters);
+            return new AllocateSprintTaskCommand(parameters, projectListManager);
         case DEALLOCATE:
-            if (checkAllocateDeallocateTaskParams(parameters)) {
-                return new DeallocateSprintTaskCommand(parameters, projectListManager);
-            }
-            break;
+            checkAllocateDeallocateTaskParams(parameters);
+            return new DeallocateSprintTaskCommand(parameters, projectListManager);
         default:
             throw new DukeException("Invalid action!");
         }
-        return new EmptyCommand(parameters);
     }
 
 
     /**
      * Validate parameters for CreateSprintCommand.
      */
-    private boolean checkCreateSprintParams(Hashtable<String, String> parameters)
-            throws DukeException {
+    private void checkCreateSprintParams(Hashtable<String, String> parameters) throws DukeException {
         //Mandatory fields
         checkParamExist(parameters, "goal");
         //Optional fields.
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkStartParam(parameters);
-        return true;
     }
 
     /**
      * Validate parameters for EditSprintCommand.
      */
-    private boolean checkEditSprintParams(Hashtable<String, String> parameters)
-            throws DukeException {
+    private void checkEditSprintParams(Hashtable<String, String> parameters) throws DukeException {
         //Mandatory fields
         checkParamExist(parameters, "goal");
         //Optional fields
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkParamIntegerParsable(parameters, "sprint", "Sprint ID");
-        return true;
     }
 
     /**
      * Validate parameters for AddSprintTaskCommand and RemoveSprintTaskCommand.
      */
-    private boolean checkAddRemoveTaskParams(Hashtable<String, String> parameters)
-            throws DukeException {
+    private void checkAddRemoveTaskParams(Hashtable<String, String> parameters) throws DukeException {
         //Mandatory fields
         checkTaskParam(parameters);
         //Optional fields
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkParamIntegerParsable(parameters, "sprint", "Sprint ID");
-        return true;
     }
 
     /**
      * Validate parameters for ViewSprintCommand.
      */
-    private boolean checkViewSprintParams(Hashtable<String, String> parameters)
-            throws DukeException {
+    private void checkViewSprintParams(Hashtable<String, String> parameters) throws DukeException {
         //Optional fields
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkParamIntegerParsable(parameters, "sprint", "Sprint ID");
-        return true;
     }
 
     /**
      * Validate parameters for AllocateSprintTaskCommand and DeallocateSprintTaskCommand.
      */
-    private boolean checkAllocateDeallocateTaskParams(Hashtable<String, String> parameters)
-            throws DukeException {
+    private void checkAllocateDeallocateTaskParams(Hashtable<String, String> parameters) throws DukeException {
         //Mandatory fields
         checkParamExist(parameters, "user");
         checkParamExist(parameters, "task");
@@ -135,21 +110,19 @@ public class SprintParser implements ExceptionsParser {
         //Optional fields
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkParamIntegerParsable(parameters, "sprint", "Sprint ID");
-        return true;
     }
 
 
     /**
      * Validate if parameter is Integer parsable and throws custom exception accordingly.
      */
-    private boolean checkParamIntegerParsable(Hashtable<String, String> parameters, String paramName, String paramDesc)
+    private void checkParamIntegerParsable(Hashtable<String, String> parameters, String paramName, String paramDesc)
             throws DukeException {
         if (parameters.containsKey(paramName)) {
             checkIntegerParsable(paramDesc, parameters.get(paramName));
         } else if (parameters.containsKey("0")) {
             checkIntegerParsable(paramDesc, parameters.get("0"));
         }
-        return true;
     }
 
     /**
