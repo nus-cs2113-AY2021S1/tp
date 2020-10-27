@@ -20,7 +20,7 @@ public class ExecFavParser extends Parser {
 
     private void checkInput() throws CustomException {
         if (super.getUserInput().isBlank()) {
-            throw new CustomException(ExceptionType.NO_INPUT);
+            throw new CustomException(ExceptionType.EMPTY_INDEX);
         }
         try {
             int index = Integer.parseInt(super.getUserInput()) - 1;
