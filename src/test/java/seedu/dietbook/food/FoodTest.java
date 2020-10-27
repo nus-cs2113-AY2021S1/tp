@@ -1,5 +1,6 @@
 package seedu.dietbook.food;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
