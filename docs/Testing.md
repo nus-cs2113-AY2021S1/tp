@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 1. Running tests
+### 1. Running tests <a name="1"></a>
 
 There are two ways to run tests.
 
@@ -23,7 +23,7 @@ There are two ways to run tests.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2. Types of tests
+### 2. Types of tests <a name="2"></a>
 
 This project has three types of tests:
 
