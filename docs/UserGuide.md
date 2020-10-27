@@ -484,10 +484,12 @@ This section showcases the list of available features and usage examples for you
 |Display help| `help`| `help`|
 |Add show|`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
 |Edit show |`edit <SHOWNAME>`| `edit Friends`|
-|Add review |`addreview <SHOWNAME> <RATING> <REVIEW>`| `rating Friends 9 very funny`|
+|Add review |`addreview <SHOWNAME> <RATING> / <REVIEW>`| `addreview Friends 9 / very funny`|
+|Change review |`changereview <SHOWNAME> / <REVIEW>`| `changereview Friends / very unfunny`|
+|Delete review |`deletereview <SHOWNAME>`| `deletereview Friends`|
 |Show watchlist |`list`|  `list`|
-|Delete show |`delete <SHOWNAME>`|   `delete Friends`|
-|Change rating |`changerating <SHOWNAME> <NEWSCORE>`|   `changerating Friends 10`|
+|Delete show |`delete <SHOWNAME>`| `delete Friends`|
+|Change rating |`changerating <SHOWNAME> <NEWSCORE>`| `changerating Friends 10`|
 |Delete rating |`deleterating <SHOWNAME>`|  `deleterating Friends`|
 |Update episode |`episode <SHOWNAME> <EPISODE>`|  `episode Friends 10`|
 |Update season |`season <SHOWNAME> <SEASON>`|   `season Friends 3`|

@@ -26,6 +26,8 @@ public class EditCommand {
         int initialNumSeasons = show.getNumSeasons();
         show.setNumSeasons(numSeasons);
         int[] episodes;
+        //when the updated number of seasons exceed current number of season, initialise the number of episodes of the
+        // new season to 1, otherwise remove the episodes for the extra seasons
         if (numSeasons > initialNumSeasons) {
             episodes = new int[numSeasons];
             for (int i = 0; i < initialNumSeasons; i++) {
@@ -66,6 +68,7 @@ public class EditCommand {
     public static void editEpisode(String input) throws NullPointerException {
         String[] numOfEpisodes = input.split(",");
         int i = 0;
+        assert numOfEpisodes.length == show.getNumSeasons();
         int[] intNumOfEpisodes = new int[show.getNumSeasons()];
         for (String s : numOfEpisodes) {
             try {
