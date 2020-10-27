@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
+import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
@@ -57,12 +58,15 @@ public class CommandExecutor {
             break;
         case NOUN:
             WordList.addNoun(userInput);
+            saveWordsToFile();
             break;
         case VERB:
             WordList.addVerb(userInput);
+            saveWordsToFile();
             break;
         case ADJ:
             WordList.addAdjective(userInput);
+            saveWordsToFile();
             break;
         case GEN_THREE_WORDS:
             WordList.listThreeWords();
