@@ -475,13 +475,17 @@ The `UpdateShowSeasonCommand` class extends `Command` by providing methods to ch
 *  `processCommand()` is called.
 
 **Step 3**
-1. If only `currentSeason` is to be updated:
-1.1 `updateSeasonOnly()` method is called.
-1.2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command.
+* If only `currentSeason` is to be updated:
 
-2. If both `currentSeason` and `currentEpisode` are to be updated:
-2.1 `updateSeasonAndEpisode()` method is called.
-2.2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command, 
+    1 `updateSeasonOnly()` method is called.
+
+    2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command.
+
+* If both `currentSeason` and `currentEpisode` are to be updated:
+
+    1 `updateSeasonAndEpisode()` method is called.
+
+    2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command, 
 and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
 
 ### UpdateTimeLimitCommand
