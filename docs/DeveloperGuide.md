@@ -476,20 +476,32 @@ The Storage class is created and facilitated by `Duke`. It has an interface clas
 
  - `saveState()` ---- Save the show list and the watch time details into a file named `userData.txt`
  - `loadWatchTimeDetail()` ---- load the watch time detail from `userdata.txt` and create a `WatchTime` instance
- - `loadState()` ---- load the show list from userdata.txt and return a `ShowList` instance
+ - `loadState()` ---- load the show list and watch time detail from userdata.txt and return a `ShowList` instance
 
 **Step 1**
 * The user open WatchNext. `Duke` creates a Storage class and specifies the file path of `userData.txt`.
 
 **Step 2**
-* 
-#### Save File
+* `Duke` calls `loadState()` to load contains into WatchNext. `loadState()` first calls `loadWatchTimeDetail()` to load watch time details and then load show list.
 
-The saveState function will save the watch time detail at the beginning and then follow by the show list. Everytime a command is executed by users, the file will be rewrite to update new contain. If the file or the folder does not exist in the specific path, the app will create it automatically.  
+**[NOTE]** 
+* If the `data` folder and `userData.txt` do not exist, `loadState()` will create them under the same file path as the WatchNext.jar.
 
-The loadState function will read the file line by line. It will first call the loadWatchTimeDetail function to read the watch time detail, which is always the first three lines of the file, and then return a WatchTime instance.
+* If `Duke` catch any exception, an empty `ShowList` and `WatchTime` will be created.  
 
-The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
+**Step 3**
+* every time the user input a command, `Duke` calls `saveState()` to save the current show list and watch time details into `userData.txt`. 
+
+**[NOTE]** 
+* The whole `userData.txt` will be rewrite to ensure that all changes are recorded.
+
+**Step 4**
+* The user input `bye`. Exist WatchNext, `userData.txt` is saved.
+
+The following sequence diagram shows the working flow of Storage class  
+
+<img src = "images/StorageSequence.png" width = "550">  
+
 
 ### Error Handling
 

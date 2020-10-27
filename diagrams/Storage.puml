@@ -1,9 +1,9 @@
 @startuml
 
 !include style.puml
-
-participant ":Duke" as Duke LOGIC_COLOR
 box
+participant ":Duke" as Duke LOGIC_COLOR
+
 
 create ":Storage" as Storage LOGIC_COLOR
 Duke -> Storage
@@ -35,10 +35,12 @@ Storage -> ShowList : setCurrentEpisode
 deactivate ShowList
 Storage --> Duke : shows
 
+loop !isByTime
+[-> Duke: user input command
+
 Duke -> Storage : saveState()
 participant "__showList: ShowList__" as showList LOGIC_COLOR
 activate showList
-
 Storage -> showList : getName()
 showList --> Storage : showName
 Storage -> showList : getSeason()
@@ -59,6 +61,8 @@ showList --> Storage : currentEpisode
 deactivate showList
 [<-- Storage : userData.txt
 deactivate Storage
+
+end
 end box
 
 
