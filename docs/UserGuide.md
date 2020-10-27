@@ -2,10 +2,10 @@
 
 ## Table of Contents
 <pre>
-<a href =#intro>1 Introduction </a>
-<a href =#start>2 Quick Start </a>
-<a href =#init>3 Initialisation </a>
-<a href =#features>4 Features </a>      
+<a href =#intro>1. Introduction </a>
+<a href =#start>2. Quick Start </a>
+<a href =#init>3. Initialisation </a>
+<a href =#features>4. Features </a>      
    <a href =#subjects>4.1 Subjects </a>
    <a href =#topics>4.2 Topics </a>
    <a href =#tasks>4.3 Tasks </a>
@@ -14,10 +14,10 @@
    <a href =#result>4.6 Viewing quiz results </a>
    <a href =#store>4.7 Storing data </a>
    <a href =#export>4.8 Exporting data </a>
-<a href =#faq>5 FAQ </a>
-<a href =#summary>6 Command Summary </a>
+<a href =#faq>5. FAQ </a>
+<a href =#summary>6. Command Summary </a>
 </pre>
-## 1 Introduction <a name="intro"></a>
+## 1. Introduction <a name="intro"></a>
 
 **revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
 to be completed. The user can store the flashcards under different topics, which can be created under different
@@ -37,7 +37,7 @@ you will not get the expected outcome.
 
 
 
-## 2 Quick Start <a name="start"></a>
+## 2. Quick Start <a name="start"></a>
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
@@ -45,7 +45,7 @@ you will not get the expected outcome.
 4. Open command prompt and use the command `java -jar revised.jar` to begin the application.
 
 
-## 3 Initialisation <a name="init"> </a>
+## 3. Initialisation <a name="init"> </a>
 
 You will see the logo of the application, as shown below,  once u begin running it.
 <pre><code>
@@ -73,7 +73,7 @@ science
 </code></pre> 
 
 Subsequently,you can begin using the application.
-## 4 Features <a name="features"></a>
+## 4. Features <a name="features"></a>
 * Subjects
 * Topics
 * Flashcards
@@ -494,7 +494,7 @@ delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-WARNING: Do not add extra spaces after or before help.
+NOTE: Do not add extra spaces after or before help.
 
 #### 4.4.2 `add` - Adding a flashcard
 
@@ -520,7 +520,7 @@ Got it. I've added this flashcard:
 Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
-WARNING: Do not forget the semicolon, as it separates the question and the answer.
+NOTE: Do not forget the semicolon, as it separates the question and the answer.
 
 #### 4.4.3 `delete` - Deleting a flashcard
 
@@ -563,7 +563,7 @@ Here are the flashcard(s) under speed:
 1.What is the formula for time?; Time = Distance/Speed.
 2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
 ```
-WARNING: Do not add extra spaces after or before list.
+NOTE: Do not add extra spaces after or before list.
 
 ### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
 Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
@@ -800,7 +800,7 @@ After running the command, the data will be exported to
 Each first-level entry corresponds to one subject, and the content inside it follows the same logical structure as that
 in the `data/` folder.
 
-## 5 FAQ <a name = "faq"> </a>
+## 5. FAQ <a name = "faq"> </a>
 Commonly asked questions from users.
 
 Question: I moved the jar file to another location. Will my previous data be erased automatically?<br>
@@ -816,7 +816,7 @@ Answer: No. You will have to start a new quiz.
 Question: Is there any limit to the number of topics/subjects that I can store in my application?<br>
 Answer: No. You can store unlimited number of topics/subjects.   
 
-## 6 Command Summary <a name="summary"></a>
+## 6. Command Summary <a name="summary"></a>
 Action|Examples
 ------|------
 Add subject|`add math` (while in main menu)
