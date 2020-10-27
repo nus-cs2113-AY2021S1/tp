@@ -13,6 +13,7 @@ public class Messages {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
 
     //Format messages
+
     public static final String FORMAT_FOOD = "food <Name of food> /<Number of Calories> <Quantity (Optional)>";
     public static final String FORMAT_EDIT_FOOD = "food <Name of food> /<Number of Calories> <Quantity>";
     public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
@@ -76,7 +77,7 @@ public class Messages {
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
     public static final String EMPTY_STRING = "";
     public static final String ERROR_INVALID_DATE = "Sorry, please enter a correct date in the format dd/MM/yyyy";
-    public static final String NO_RECORDS_FOUND = "No records found!\n";
+    public static final String NO_RECORDS_FOUND = "No records found!";
 
     //EditProfileCommand class messages
     public static final String EDIT_NAME = "name";

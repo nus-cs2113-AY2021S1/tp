@@ -43,6 +43,7 @@ public class RecommendCommand extends Command {
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
                 + "type y for yes!");
+
         String checker = Ui.read();
         try {
             if (checker.equals("y")) {

@@ -15,12 +15,44 @@ import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+
 import static fitr.common.Messages.ERROR_INVALID_COMMAND;
-import static fitr.common.Messages.FORMAT_DELETE;
+
+import static fitr.common.Messages.FORMAT_BYE;
+import static fitr.common.Messages.FORMAT_CLEAR;
+import static fitr.common.Messages.FORMAT_CLEAR_EXERCISE;
+import static fitr.common.Messages.FORMAT_CLEAR_FOOD;
+import static fitr.common.Messages.FORMAT_CLEAR_GOAL;
+import static fitr.common.Messages.FORMAT_DELETE_EXERCISE;
+import static fitr.common.Messages.FORMAT_DELETE_FOOD;
+import static fitr.common.Messages.FORMAT_DELETE_GOAL;
+import static fitr.common.Messages.FORMAT_EDIT_AGE;
+import static fitr.common.Messages.FORMAT_EDIT_EXERCISE;
+import static fitr.common.Messages.FORMAT_EDIT_FITNESS;
 import static fitr.common.Messages.FORMAT_EDIT_FOOD;
+import static fitr.common.Messages.FORMAT_EDIT_GENDER;
+import static fitr.common.Messages.FORMAT_EDIT_GOAL;
+import static fitr.common.Messages.FORMAT_EDIT_HEIGHT;
+import static fitr.common.Messages.FORMAT_EDIT_NAME;
+import static fitr.common.Messages.FORMAT_EDIT_WEIGHT;
 import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Messages.FORMAT_EXERCISE_GOAL;
 import static fitr.common.Messages.FORMAT_FOOD;
-import static fitr.common.Messages.FORMAT_GOAL;
+import static fitr.common.Messages.FORMAT_FOOD_GOAL;
+import static fitr.common.Messages.FORMAT_HELP;
+import static fitr.common.Messages.FORMAT_MARK_GOAL_AS_COMPLETE;
+import static fitr.common.Messages.FORMAT_RECOMMEND;
+import static fitr.common.Messages.FORMAT_SMART_EXERCISE_GOAL;
+import static fitr.common.Messages.FORMAT_SMART_FOOD_GOAL;
+import static fitr.common.Messages.FORMAT_VIEW_BMI;
+import static fitr.common.Messages.FORMAT_VIEW_EXERCISE;
+import static fitr.common.Messages.FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE;
+import static fitr.common.Messages.FORMAT_VIEW_FOOD;
+import static fitr.common.Messages.FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE;
+import static fitr.common.Messages.FORMAT_VIEW_GOAL;
+import static fitr.common.Messages.FORMAT_VIEW_PROFILE;
+import static fitr.common.Messages.FORMAT_VIEW_SUMMARY;
+import static fitr.common.Messages.FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE;
 import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.MESSAGE_GREET;
 import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
@@ -29,12 +61,11 @@ import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
  * Prints messages.
  */
 public class Ui {
-    private static final String HELP_SPACER = "%-18s%s%n";
+    private static final String HELP_SPACER = "%-70s%s%n";
     private static final String GREEN_COLOUR = "\033[0;32m";
     private static final String RED_COLOUR = "\033[0;31m";
     private static final String RESET_COLOUR = "\033[0m";
     public static final String YELLOW_COLOUR = "\033[0;93m";
-    private static final String SPACER = " ".repeat(18);
     private static final String FORMAT = GREEN_COLOUR + "Format: " + RESET_COLOUR;
 
     public static String read() {
@@ -107,13 +138,9 @@ public class Ui {
             printCustomError("Please input in the correct format!");
             printCustomMessage(FORMAT + FORMAT_EXERCISE);
             break;
-        case COMMAND_DELETE:
-            printCustomError("Please input in the correct format!");
-            printCustomMessage(FORMAT + FORMAT_DELETE);
-            break;
         case COMMAND_GOAL:
             printCustomError("Please input in the correct format!");
-            printCustomMessage(FORMAT + FORMAT_GOAL);
+            printCustomMessage(FORMAT + FORMAT_FOOD_GOAL + " or " + FORMAT_EXERCISE_GOAL);
             break;
         case COMMAND_VIEW:
             printCustomError("Please input in the correct format!");
