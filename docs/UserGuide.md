@@ -11,31 +11,37 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 ### Table of contents
-* [Quick Start](#quick-start)
-* [Features](#features)
-  * [Global](#global)
-    *  [Show help information:](#help) **help**
-    *  [Switch mode:](#mode) **mode**
-    *  [Exit:](#exit)  **exit**
-    *  [Clear:](#clear)  **clear**
-    *  [Launch current lesson:](#clear)  **launch now**
-  * [Bookmark mode](#bookmarkmode)
-    * [Show bookmarks:](#showbookmark) **show**
-    * [Add bookmark:](#addbookmark)  **add**
-    * [Delete bookmark:](#deletebookmark)  **delete**
-    * [Find bookmark:](#findbookmark)  **find**
-    * [Launch bookmark:](#launchbookmark)  **launch**
-  * [Timetable mode](#timetablemode)
-    * [Show timetable:](#showtimetable) **show**
-    * [Show module details:](#showmoduledetails) **show**
-    * [Add module, time slot and bookmark:](#addtimeslot) **add**
-    * [Delete module, time slot and bookmarks:](#deletetimeslot)  **delete**
-    * [Edit slot's module, title, time:](#edittimeslot)  **edit**
-    * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+* [1. Quick Start](#quickstart)
+* [2. Features](#features)
+  * [2.1. Global](#global)
+    * [2.1.1. Show help information:](#help) **help**
+    * [2.1.2. Switch mode:](#mode) **mode**
+    * [2.1.3. Launch current lesson:](#clear)  **launch now**
+    * [2.1.4. Clear:](#clear)  **clear**
+    * [2.1.5. Exit:](#exit)  **exit**
+  * [2.2. Bookmark mode](#bookmarkmode)
+    * [2.2.1. Show bookmarks:](#showbookmark) **show**
+    * [2.2.2. Add bookmark:](#addbookmark)  **add**
+    * [2.2.3. Delete bookmark:](#deletebookmark)  **delete**
+    * [2.2.4. Find bookmark:](#findbookmark)  **find**
+    * [2.2.5. Launch bookmark:](#launchbookmark)  **launch**
+  * [2.3. Timetable mode](#timetablemode)
+    * [2.3.1. Show timetable:](#showtimetable) **show**
+    * [2.3.2. Show module details:](#showmoduledetails) **show**
+    * [2.3.3. Add module, time slot and bookmark:](#addtimeslot) **add**
+    * [2.3.4. Delete module, time slot and bookmarks:](#deletetimeslot)  **delete**
+    * [2.3.5. Edit slot's module, title, time:](#edittimeslot)  **edit**
+    * [2.3.6. Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
+  * [2.4. Planner mode](#plannermode)
+    * [2.4.1. Load planner:](#loadplanner) **load**
+    * [2.4.2. Show planner:](#showplanner) **show**
+    * [2.4.3. Add meeting:](#addmeeting) **add**
+    * [2.4.4. Save planner:](#saveplanner) **save**
+* [3. FAQ](#faq)
+* [4. Command Summary](#command-summary)
   
-## Quick Start  
+<a name="quickstart"></a>  
+## 1. Quick Start  
   
 1. Ensure that you have Java 11 or above installed.  
 2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
@@ -51,7 +57,8 @@ then pressing <kbd>Enter</kbd>. <br/><br/>
 8. The app is now ready to go! Go ahead and test it out with a `help` command. The app should print out a list of different commands. <br/><br/> 
 9. Refer to the section below for the different features of the Zoomaster app.
   
-## Features   
+<a name="features"></a> 
+## 2. Features   
 
 >[i] Notes on command format:
 >* Word contained in `{currly brackets}` are parameters to be supplied by the user. 
@@ -69,13 +76,13 @@ then pressing <kbd>Enter</kbd>. <br/><br/>
 >eg. `12:00`, `14:00`, `00:00`
 
 <a name="global"></a> 
-### Global
+### 2.1. Global
 
 The commands below can be used in both modes of the app.  
 <br>
 
 <a name="help"></a>  
-#### Show help information: `help` (Yu Shing + Zhan Hao)
+#### 2.1.1. Show help information: `help` (Yu Shing + Zhan Hao)
 You can see the list of commands available in mode you are currently in.
 ```
 Format: help
@@ -92,7 +99,7 @@ Format: help
 >Help commands you see in the planner mode <br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplanner.PNG)
 
-<br/><br/> 
+<br/>
 
 You can also get information about each command.
 ```
@@ -106,7 +113,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="mode"></a>  
-#### Switch mode: `mode` (Yu Shing)
+#### 2.1.2. Switch mode: `mode` (Yu Shing)
 You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
 
 There are two modes for Zoomaster, Bookmark and Timetable.
@@ -126,16 +133,8 @@ Example of usage:
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
-<a name="clear"></a>  
-#### Switch mode: `clear`
-This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
-```
-Format: clear
-```
-
-<br/><br/> 
 <a name="launchnow"></a>  
-#### Launch the bookmarks of the current lesson: `launch now`  
+#### 2.1.3. Launch the bookmarks of the current lesson: `launch now`  
 You can launches the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, allowing you to launch your zoom session ahead of time.
   
@@ -144,8 +143,16 @@ Format: launch now
 ```
 
 <br/><br/> 
+<a name="clear"></a>  
+#### 2.1.4. Clear screen: `clear`
+This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
+```
+Format: clear
+```
+
+<br/><br/> 
 <a name="exit"></a>  
-#### Exit the app: `exit`  
+#### 2.1.5. Exit the app: `exit`  
 You exit the application by using the exit command.
   
 ```
@@ -155,22 +162,22 @@ Format: exit
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
+
 ---
 <br/> 
 
-
 <a name="bookmarkmode"></a>  
-### Bookmark Mode  
+### 2.2. Bookmark Mode  
 
 <a name="showbookmark"></a>  
-#### Show bookmarks: `show`  
+#### 2.2.1. Show bookmarks: `show`  
 It prints all bookmark in your bookmark list  
 ```
 Format: show
 ```
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### Add bookmark: `add`  
+#### 2.2.2. Add bookmark: `add`  
 Adds a URL bookmark with a description.  
 ```
 Format: add {DESCRIPTON} {URL}
@@ -185,7 +192,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### Delete bookmarks: `delete`  
+#### 2.2.3. Delete bookmarks: `delete`  
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -200,7 +207,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="findbookmark"></a>  
-#### Find bookmarks: `find`  
+#### 2.2.4. Find bookmarks: `find`  
 Finds bookmarks with matching description and prints them.
 ```
 Format: find {DESCRIPTION}
@@ -215,7 +222,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### Launch bookmarks: `launch`  
+#### 2.2.5. Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
 * Index
 * Matching description
@@ -233,14 +240,15 @@ Example of usage:
 * `launch cs2113t-website`  
   
 <br/>
+
 ---
 <br/> 
 
 <a name="timetablemode"></a>  
-### Timetable mode    
+### 2.3. Timetable mode    
 
 <a name="showtimetable"></a>
-#### Show timetable: `show` (Yu Shing)
+#### 2.3.1. Show timetable: `show` (Yu Shing)
 You will be able to see the timetable for a certain day or the whole week.  
 **today** can also be a `DAY` input to show the timetable for the current day based on system time.  
 If your selected timetable is the current day, you should be able to see a
@@ -257,23 +265,33 @@ Example of usage:
 * `show today`
 
 >You will see an empty list message if your timetable is empty
+>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true)
->You will see your entire timetable if you use `show` input
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)
->You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)
->You will see the timetable for today if you use `show today` input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)
->Example of "current time" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)
->Example of "lesson now" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)
 
+>You will see your entire timetable if you use `show` input
+>
+>![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)
+
+>You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)
+
+>You will see the timetable for today if you use `show today` input.
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)
+
+>Example of "current time" indicator
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)
+
+>Example of "lesson now" indicator
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)
 
 
 <br/><br/>
 <a name="showmoduledetails"></a>
-#### Show module details: `show`
+#### 2.3.2. Show module details: `show`
 Shows the details of a module that has been added.  
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
@@ -287,7 +305,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="addtimeslot"></a>
-#### Add module, time slot and bookmark: `add`  
+#### 2.3.4. Add module, time slot and bookmark: `add`  
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
   
@@ -351,7 +369,7 @@ More examples:
 
 <br/><br/> 
 <a name="deletetimeslot"></a>
-#### Delete module, time slot and bookmarks: `delete`  
+#### 2.3.5. Delete module, time slot and bookmarks: `delete`  
 Deletes module, time slot or bookmarks.
 ```
 Format (deleting a module): 
@@ -377,7 +395,7 @@ Example of usage:
 <br/><br/> 
 
 <a name="edittimeslot"></a>
-#### Edit slot's module, title, time: `edit`  (Francisco) 
+#### 2.3.6. Edit slot's module, title, time: `edit`  (Francisco) 
 Edits the module, title or time for a specific slot.
 ```
 Format (editing the module of a slot): 
@@ -399,8 +417,8 @@ Example of usage:
 <br/><br/> 
 
 <a name="launchtimeslot"></a>
-#### Launch bookmarks from module, slot: `launch`  
-Launches the bookmarks of slots or the bookmarks of the module
+#### 2.3.7. Launch bookmarks from module, slot: `launch`  
+Launches the bookmarks of slots or the bookmarks of the module.
 ```
 Format: (launch module bookmarks) 
 * launch {MODULE}
@@ -417,12 +435,72 @@ Format: (launch slot bookmarks)
 Example of usage:   
 * `launch CS2113`  
 * `launch CS2113 2`
+<br/>
+
+---
+<br/> 
+
+<a name="plannermode"></a>  
+### 2.4. Planner Mode  
+
+<a name="loadplanner"></a>  
+#### 2.4.1. Load planner: `load`  
+Loads all the timetables from the `planner` folder and helps you find some common empty slots.
+> [i] Notes:
+> - You need to copy the different .txt files manually to the planner folder.
+> - This command only displays the common empty time slots.
+```
+Format: load
+```
+<br/> 
+
+<a name="addmeeting"></a>  
+#### 2.4.2. Add meeting: `add`  
+You can add modules, time slots and bookmarks using this feature.
+You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
+
+> [i] Notes:
+> - You can only add a new meeting to empty time slots.
+> - Note that this command does not automatically store the newly added meeting to the .txt files.
+> You will need to type `save` to save it.
+
+Format: same as [add time slots](#addtimeslot) command.
+<br/>
 
 
+<a name="showplanner"></a>  
+#### 2.4.3. Show planner: `show`
+You will be able to see the empty time slots for a certain day or the whole week.  
+**today** can also be a `DAY` input to show the timetable for the current day based on system time.  
+If your selected timetable is the current day, you should be able to see a
+"current time" indicator with your system local time. 
+Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
+around your current lesson.  
+
+```
+Format: show {DAY(optional)}
+```
+Example of usage:   
+* `show`
+* `show wed`
+* `show today`
 
 <br/><br/> 
 
-## FAQ  
+<a name="saveplanner"></a>  
+#### 2.4.4. Save planner: `save`  
+Saves the newly added slot(s) to each individual timetables.
+```
+Format: save
+```
+
+<br/>
+
+---
+<br/> 
+
+
+## 3. FAQ  
   
 **Q**: How do I transfer my data to another computer?   
   
@@ -439,25 +517,30 @@ and save the txt file. You can now add the module in Zoomaster.
 
 
 
-## Command Summary
+## 4. Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
-**Global**|
+***Global***|
 **help**|`help`<br> `help {COMMAND}`<br>example: `help add`
 **mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
 **clear**|`launch now`
 **launch now**|`clear`
 **exit**|`exit`
-**Bookmark Mode**|
+***Bookmark Mode***|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
-**Timetable Mode**|
+***Timetable Mode***|
 **show (lessons)**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
 **show (bookmarks<br>attatched)**| `show {MODULE} bookmarks(optional)`<br>example: `show CS2113`, `show CS2113 bookmarks`
 **add**|`add {MODULE}` <br>example: `add CS2113T` <br/><br/> `add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME}` <br>example: `add CS2113T tutorial wed 11:00 12:00` <br/><br/>`add {MODULE} {DESCRIPTION} {URL}` <br>example: `add CS2113T tutorial www.yahoo.com` <br/><br/>`add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}` <br>example: `add CS2113T tutorial wed 11:00 12:00 www.yahoo.com` <br/><br/>`add {MODULE} {DESCRIPTION} {INDEX} {URL}` <br>example: `add CS2113T tutorial 2 www.yahoo.com`
 **delete**| `delete {MODULE}` <br>example: `delete CS2113`<br/><br/>`delete {MODULE} {INDEX}` <br>example: `delete CS2113 2`<br/><br/>`delete {MODULE} bookmarks` <br>example: `delete CS2113 bookmarks`<br/><br/>`delete {MODULE} {INDEX} bookmarks` <br>example: `delete CS2113 2 bookmarks`<br/><br/>
 **edit**| `edit module {DAY} {INDEX} {new MODULE}` <br> example: `edit module fri 2 CS1010` <br/><br/> `edit title {DAY} {INDEX} {new TITLE}`<br> example: `edit title fri 2 tutorial` <br/><br/>`edit time {DAY} {INDEX} {new START_TIME} {new END_TIME}` <br> example: `edit time fri 2 16:00 18:00`
 **launch**|`launch {MODULE}` <br> example: `launch CS2113` <br/><br/> `launch {MODULE} {INDEX}` <br> example: `launch CS2113` 
+***Planner Mode***|
+**load**|`load`
+**show**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
+**add**|see add in timetable mode above
+**save**|`save`
