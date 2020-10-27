@@ -38,27 +38,34 @@ public class Ui {
         displayTasks(tasks);
     }
 
-    private void displayByWeek(TaskMap tasks) {
-        // Weekly view
-        displayDateStructure = new WeekStructure();
-        displayDateStructure.generateScreen(tasks);
-        printScreen();
-    }
-
-    private void displayByMonth(TaskMap tasks) {
-        // Monthly view
-        displayDateStructure = new MonthStructure();
-        displayDateStructure.generateScreen(tasks);
-        printScreen();
-    }
-
-    private void printScreen() {
-        for (char[] arr : displayDateStructure.getScreen()) {
-            out.println(arr);
+    private void displayByDateStructure(TaskMap tasks) {
+        displayDateStructure.generateContent(tasks);
+        out.println(displayDateStructure.getContent());
+        out.println("q:Quit, w:previous, e:next");
+        while (in.hasNext()) {
+            String input = in.next();
+            if (input.length() != 1 && !"qwe".contains(input.toLowerCase())) {
+                out.println("Invalid input.");
+            }
+            char charIn = input.toLowerCase().charAt(0);
+            if (charIn == 'q') {
+                out.println("You've exited the display mode.");
+                in.nextLine();
+                break;
+            } else if (charIn == 'w') {
+                displayDateStructure.decrement();
+            } else if (charIn == 'e') {
+                displayDateStructure.increment();
+            } else {
+                assert false;
+            }
+            displayDateStructure.generateContent(tasks);
+            out.println(displayDateStructure.getContent());
+            out.println("q:Quit, w:previous, e:next");
         }
     }
 
-    private void displayTasks(TaskMap tasks) {
+    public void displayTasks(TaskMap tasks) {
         // Header
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
         String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
@@ -146,12 +153,17 @@ public class Ui {
         if (result.getTasks() != null) {
             if (result.getDisplayMode() == DisplayMode.ALL) {
                 displayAll(result.getTasks());
-            } else if (result.getDisplayMode() == DisplayMode.WEEK) {
-                // Weekly view
-                displayByWeek(result.getTasks());
-            } else if (result.getDisplayMode() == DisplayMode.MONTH) {
-                // Monthly view
-                displayByMonth(result.getTasks());
+            } else {
+                if (result.getDisplayMode() == DisplayMode.DAY) {
+                    displayDateStructure = new DayStructure(result.getDate());
+                } else if (result.getDisplayMode() == DisplayMode.WEEK) {
+                    // Weekly view
+                    displayDateStructure = new WeekStructure();
+                } else if (result.getDisplayMode() == DisplayMode.MONTH) {
+                    // Monthly view
+                    displayDateStructure = new MonthStructure();
+                }
+                displayByDateStructure(result.getTasks());
             }
         }
     }

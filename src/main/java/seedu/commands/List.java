@@ -5,12 +5,10 @@ import seedu.ui.DisplayMode;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
-import java.util.Locale;
 import java.util.regex.Pattern;
+import java.util.zip.CheckedOutputStream;
 
 import static seedu.messages.Messages.LIST_MESSAGE;
-import static seedu.messages.Messages.LS;
 
 public class List extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "list";
@@ -41,26 +39,25 @@ public class List extends ReadOnlyCommand {
         assert !(dateFlag && priorityFlag);
 
         // TODO Check flag condition
+
         if (dateFlag) {
             return new CommandResult(LIST_MESSAGE, tasks.sortListByDate());
         } else if (priorityFlag) {
             return new CommandResult(LIST_MESSAGE, tasks.sortListByPriority());
         }
-        if (displayByWeek || displayByMonth) {
-            DisplayMode displayMode;
-            if (displayByWeek) {
-                displayMode = DisplayMode.WEEK;
-            } else {
-                displayMode = DisplayMode.MONTH;
-            }
-            return new CommandResult(LIST_MESSAGE, tasks, displayMode);
-        }
+
+        CommandResult result = new CommandResult(LIST_MESSAGE, tasks);
+
         if (date != null) {
             LocalDate tempDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String dateString = LS + tempDate.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
-                + " " + tempDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + ":" + LS;
-            return new CommandResult(LIST_MESSAGE + dateString, tasks.searchByDate(tempDate));
+            result.setDate(tempDate);
+            result.setDisplayMode(DisplayMode.DAY);
+        } else if (displayByWeek) {
+            result.setDisplayMode(DisplayMode.WEEK);
+        } else if (displayByMonth) {
+            result.setDisplayMode(DisplayMode.MONTH);
         }
-        return new CommandResult(LIST_MESSAGE, tasks);
+
+        return result;
     }
 }
