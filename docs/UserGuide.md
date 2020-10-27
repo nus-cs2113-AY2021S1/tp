@@ -530,3 +530,5 @@ Format: `exit`
 | clear        | `clear`</br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  
 | reset        | `reset <NAME_OF_CATEGORY>`</br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |
 | exit         | `exit`</br>Exits the program.                                                                                    |    
+
+[Jump to top](#user-guide)
