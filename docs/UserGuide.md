@@ -21,10 +21,7 @@
 - [Command Summary](#command-summary)
 
 ## Introduction
-
-![Welcome screen](images/WelcomeScreen.png)
-
-Fitr is a command-line application, helping you keep track of your food intake and exercises.
+**Fitr** is a command-line application, helping you keep track of your food intake and exercises, and also provide exercise recommendations, in one application. This application is aimed at university students at all fitness levels.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
@@ -321,6 +318,10 @@ There is no need to save manually.
 **A**: Install `Fitr` on another computer, and overwrite the empty data files that it creates with the files with your data files.
 
 ## Command Summary
+
+In this section, you can view a summary of the commands supported in Fitr.
+
+Table 1: Commands supported in Fitr
 
 Action | Format | Examples
 ------ | ------ | --------

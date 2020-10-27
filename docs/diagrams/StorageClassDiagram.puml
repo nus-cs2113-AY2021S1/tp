@@ -3,7 +3,7 @@
 skinparam classAttributeIconSize 0
 skinparam Shadowing false
 skinparam MinClassWidth 75
-skinparam packageStyle Rectangle
+skinparam packageStyle Folder
 
 hide circle
 hide empty members
@@ -13,20 +13,45 @@ skinparam Class {
     BorderColor #000000
 }
 
-class Fitr
-class User
+class StorageManager
+class ExerciseStorage
+class FoodStorage
+class GoalStorage
+class TipStorage
+class UserStorage
+
 class FoodList
 class ExerciseList
-class Storage
+class GoalList
+
+class Fitr
+class User
+
 class Food
 class Exercise
+class Goal
 
 FoodList --o "*" Food
 ExerciseList --o "*" Exercise
+GoalList --o "*" Goal
 
-Fitr --> "1" Storage
-Storage ..> User
-Storage ..> FoodList
-Storage ..> ExerciseList
+Fitr --> "1" StorageManager
+
+StorageManager --> "1" ExerciseStorage
+ExerciseStorage ..> ExerciseList
+
+StorageManager --> "1" FoodStorage
+FoodStorage ..> FoodList
+
+StorageManager --> "1" GoalStorage
+GoalStorage ..> GoalList
+GoalStorage ..> ExerciseList
+GoalStorage ..> FoodList
+GoalStorage ..> User
+
+StorageManager --> "1" UserStorage
+UserStorage ..> User
+
+StorageManager --> "1" TipStorage
 
 @enduml
