@@ -3,6 +3,7 @@ package flashcard;
 import userinterface.Ui;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 

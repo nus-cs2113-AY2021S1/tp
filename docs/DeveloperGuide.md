@@ -49,8 +49,27 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
 
+**Flashcard Component**
 
+This section will describe in detail how the flashcard feature is implemented.
 
+![Flashcard Component Class Diagram](Images/Flashcard_Class.png)
+
+The above diagram looks at the overall structure of how the flashcard component is being implemented. 
+This component is split into 4 different classes, their associations and multiplicity as explained in 
+the above Figure 7. As shown in Figure 7, the main class `FlashcardRun` will be accessed when the 
+flashcard mode is called in `StudyIt` Class. `FlashcardRun` class is associated with `FlashcardStorage` 
+class that is used to store data in .txt file and `FlashcardDeck` class which contains any number of `Flashcards`.
+
+**Flashcard Implementation**
+
+![Sequence Diagram when user input “add card” command](Images/addCard_sequenceDiagram.png)
+
+With reference to Figure 8, when `FlashcardRun` is first initialised by `StudyIt`, it will construct 
+the `FlashcardDeck` class. As an add card command is given by the user, `FlashcardRun` will take in the 
+command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
+it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
+answer of the flashcard that have been created.
 
 ## Product scope
 ### Target user profile
