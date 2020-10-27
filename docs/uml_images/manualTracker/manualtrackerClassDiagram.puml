@@ -1,6 +1,17 @@
 @startuml
 skinparam classAttributeIconSize 0
-skinparam BoxPadding 80
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
 rectangle Data {
     class DateTimeItem {
         + setDate() : void
@@ -10,8 +21,6 @@ rectangle Data {
     }
 
     abstract class Item {
-        # index : int
-        + {abstract} getName() : String
     }
 
     abstract class ItemList {
@@ -25,11 +34,29 @@ rectangle Data {
         + getItemAtIndex(index : int) : Item
         + {abstract} printList()
     }
-    together {
+    rectangle DataList {
         class LedgerList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
         }
 
         class EntryList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
         }
     }
 
@@ -40,6 +67,8 @@ rectangle Data {
         + handlePacket(packet : CommandPacket) : void
         + getName() : String
         + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setDate() : void
+        + getDate() : LocalDate
     }
 
     class Entry {
@@ -48,19 +77,22 @@ rectangle Data {
         + handlePacket(packet : CommandPacket) : void
         + getName() : String
         + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setTime() : void
+        + getTime() : LocalTime
     }
+
+
+    DateTimeItem --|> Item
+    Ledger --|> DateTimeItem
+    Entry --|> DateTimeItem
+    LedgerList --|> ItemList
+    EntryList --|> ItemList
+    Ledger "1" -- "1" EntryList
+    LedgerList --> "*" Ledger : contains >
+    EntryList --> "*" Entry : contains >
+    EntryList -[hidden]- Entry
+
 }
-
-
-
-DateTimeItem --|> Item
-Ledger --|> DateTimeItem
-Entry --|> DateTimeItem
-LedgerList --|> ItemList
-EntryList --|> ItemList
-Ledger "1" -- "1" EntryList
-LedgerList --> "*" Ledger
-EntryList --> "*" Entry
 
 rectangle Handler {
     class ManualTracker {
@@ -74,49 +106,55 @@ rectangle Handler {
         ~ {static} handleEditEntry() : State
         ~ {static} handleDeleteEntry() : State
     }
-    EntryTracker --> EntryList
-    ManualTracker --> LedgerList
+
+    EntryTracker --> EntryList : stores entries with >
+    ManualTracker --> LedgerList : stores ledgers with >
 }
 
-rectangle LedgerCommands {
-    class createLedgerCommand {
-        + handlePacket() : void
-        + handleSingleParams(paramType : String) : void
-        + handleParams(packet : CommandPacket) : void
+
+
+rectangle Commands {
+    rectangle LedgerCommands {
+        class createLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        ManualTracker --> createLedgerCommand
+        ManualTracker --> retrieveLedgerCommand
     }
-    class retrieveLedgerCommand {
-        + handlePacket() : void
-        + handleSingleParams(paramType : String) : void
-        + handleParams(packet : CommandPacket) : void
+
+    rectangle EntryCommands {
+        class createEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class editEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        EntryTracker --> createEntryCommand
+        EntryTracker --> retrieveEntryCommand
+        EntryTracker --> editEntryCommand
+
     }
-    ManualTracker <-- createLedgerCommand
-    ManualTracker <-- retrieveLedgerCommand
 }
 
-rectangle EntryCommands {
-    class createEntryCommand {
-        + handlePacket() : void
-        + handleSingleParams(paramType : String) : void
-        + handleParams(packet : CommandPacket) : void
-    }
-    class editEntryCommand {
-        + handlePacket() : void
-        + handleSingleParams(paramType : String) : void
-        + handleParams(packet : CommandPacket) : void
-    }
-    class retrieveEntryCommand {
-        + handlePacket() : void
-        + handleSingleParams(paramType : String) : void
-        + handleParams(packet : CommandPacket) : void
-    }
-    EntryTracker <-- createEntryCommand
-    EntryTracker <-- retrieveEntryCommand
-    EntryTracker <-- editEntryCommand
-
-}
 
 rectangle Logic {
-    abstract class ParamHandler {
+    abstract class ParamHandler <<Singleton>> {
         # requiredParams : HashSet<String>
         # paramsSuccessfullyParsed : HashSet<String>
         # missingRequiredParams : HashSet<String>
@@ -131,7 +169,14 @@ rectangle Logic {
         + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
     }
 
-    class ParamChecker {
+    package p1 <<Layout>> {
+    }
+
+    package p2 <<Layout>> {
+    }
+
+
+    class ParamChecker <<Singleton>>{
         + checkAndReturnDate(paramType : String) : LocalDate
         + checkAndReturnTime(paramType : String) : LocalTime
         + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
@@ -140,20 +185,38 @@ rectangle Logic {
         + checkAndReturnCategory(paramType : String) : String
     }
 
-    ParamChecker <-[#blue]- createLedgerCommand #line:blue;line.bold;text:red
-    ParamChecker <-[#blue]- retrieveLedgerCommand #line:blue;line.bold;text:red
-    ParamChecker <-[#blue]- createEntryCommand #line:blue;line.bold;text:red
-    ParamChecker <-[#blue]- editEntryCommand #line:blue;line.bold;text:red
-    ParamChecker <-[#blue]- retrieveEntryCommand #line:blue;line.bold;text:red
+    ParamChecker -[hidden] p1
+    p1 -[hidden] p2
+    p2 -[hidden] ParamHandler
+}
 
-    ParamHandler <|-- createLedgerCommand #line:purple;line.bold;text:red
-    ParamHandler <|-- retrieveLedgerCommand #line:purple;line.bold;text:red
-    ParamHandler <|-- createEntryCommand #line:purple;line.bold;text:red
-    ParamHandler <|-- retrieveEntryCommand #line:purple;line.bold;text:red
-    ParamHandler <|-- editEntryCommand #line:purple;line.bold;text:red
+rectangle Parser{
+    class InputParser {
+    }
 
-    ManualTracker -[#red]-> "1" InputParser #line:red;line.bold;text:red
+    class ParamParser {
+    }
+    InputParser *-> ParamParser
+    InputParser "1" <-[#red]- ManualTracker #line:red;line.bold;text:red
 
-    EntryTracker -[#red]-> "1" InputParser #line:red;line.bold;text:red
+    InputParser "1" <-[#red]- EntryTracker  #line:red;line.bold;text:red
+}
+
+Data -[hidden] Handler
+Commands -[hidden]down- Logic
+
+
+ParamChecker <-[norank]- createLedgerCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- createEntryCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- editEntryCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:red
+
+ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
+
 
 @enduml

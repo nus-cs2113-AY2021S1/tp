@@ -3,30 +3,19 @@
 ### Overview of architecture
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
-
+***Architecture***
+![](.DeveloperGuide_images/Overall%20Architecture.png)
 ## Design & implementation
 ### Main Menu
 - Loading up user data
 - Access to various features
 - Saving outstanding user data to respective save files
 
-### Manual Tracker
-**Overview**
-<br>
-ManualTracker.java manages various states of operation via a finite state machine class, 
-handling different states representing each operation on Ledger instances.
+### Logic
 
-|States| Operations | 
-|--------|----------|
-|```MAIN_MENU```|Go to main menu for users to choose the available operations
-|```CREATE_LEDGER```|Create a ledger specified by date, and append it to ```ledgerList```.
-|```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
-|```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
-
-**Helper Operation: Param Handler**
+#### Param Handling
 
 ***UML Class Diagram***
-![](uml_images/manualTracker/UmlClassManualTracker.png)
 
 ***Summary***
 * Classes which require input parameters by users require the collection of
@@ -53,7 +42,7 @@ attribute.
 ```currLedger``` in ```ledgerList```.
 
 
-***Parsing***
+***Input Parsing***
 
 ****Input Conventions****
 * The user input is composed of the following format:
@@ -93,7 +82,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
 ****ParamParser****
 * A helper class. Parses the subsequence of the input string that corresponds with sequence of 
 ```param type``` - ```param``` pairs.
-    * ```parseParams()```:
+    * Parsing of input for params via ```parseParams()```:
         * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
         pattern specified in "Input conventions":
         ```
@@ -111,12 +100,182 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
+***Param Handling***
 
-**Operation: Ledger Creation**
+****ParamHandler****
+* An abstract class that defines all param handling behavior. 
+    * Handling of params via```handleParams(packet)```:
+        * Initialize the state of the handler 
+            * Children class of ```ParamHandler``` call ```setRequiredParams()``` to set required Params that need to be parsed successfully to constitute an overall successful parse.
+            * Resetting String arrays in the following ```param``` arrays:
+                * ```missingRequiredParams```
+                * ```paramsSuccessfullyParsed```
+            * Set the ```CommandPacket``` instance in ```ParamChecker``` by calling ```ParamChecker.setPacket(packet)```.
+        * For every```paramType``` in the ```CommandPacket``` instance, execute ```handleSingleParam(packet)``` method. 
+            1. ```handleSingleParam(packet)``` is an abstract method, and it is implemented by children classes of ```ParamHandler``` depending on the needs and requirements of that particular class.
+        1. Check if the parse was successful. The condition below that define a successful parse is:
+            1. All ```param``` in ```createLedgerCommand.requiredParams``` string array are parsed with no exceptions thrown.
+        1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
 
-***UML Sequence Diagram***
+### Feature 1: Manual Tracker & Entry Tracker
+**Overview**
 
-![](uml_images/manualTracker/UmlSeqHandleCreateLedger.png)
+***Ledgers and Entries***
+
+In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
+Instances of ```Entry``` class are categorised by the date of origin, which is represented by
+```Ledger``` instances.
+
+```Entry``` instances are characterized by the following: 
+* Time of transaction
+* Type of transaction: Income/ Expense 
+* Amount in transaction
+* Category of spending/ expenditure
+* Description
+
+```Ledger``` instances are characterized by the following: 
+* Time of transaction
+* Collection of ```Entry```instances
+
+***Manual Tracker***
+
+The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
+and open operations. Ledgers is a class that maintains a list of transactions that are 
+recorded for a given date. 
+
+The Entry Tracker is fundamentally similar to the Manual Tracker, except it manages ```Entry``` instances
+instead of ```Ledger```. Entry Tracker is initialized when a ```Ledger``` instance is "opened", whereby 
+the Entry Tracker facilitate the manipulation of the collection of ```Entry``` instances that are associated with
+that particular ```Ledger``` instance.
+
+For the sake of brevity, this section will focus on the discussion of the Manual Tracker.
+
+The Manual Tracker is capable of executing the following states of operation:
+
+|States| Operations | 
+|--------|----------|
+|```MAIN_MENU```|Go to main menu for users to choose the available operations
+|```CREATE_LEDGER```|Create a ledger specified by date, and append it to ```ledgerList```.
+|```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
+|```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
+**Architecture**
+
+***Architecture Overview***
+
+![](uml_images/manualTracker/images/Architecture_ManualTracker.png)
+
+
+|Module| Function | 
+|--------|----------|
+| ```Parser```|Parse inputs from user and return ```CommandPacket``` instance with organised ```commandString``` and ```paramMap``` 
+| ```Tracker/ Handler```|Manages the overall workflow of the Manual Tracker; identifies operation required from input and executes the corresponding ```command```.
+| ```Data``` |Refers to ```Ledger``` instances, stores relevant data of the day's transactions.
+| ```Data List``` |Refers to ```LedgerList``` instances, maintains Ledger instances within the program. 
+| ```Commands``` |Processes information from ```CommandPacket``` and executes the appropriate process from recognised params.
+| ```Logic``` |Outlines the abstract behavior of commands, as well as handle verification of params with appropriate error handling.
+
+
+***Handler and Command***
+***Command and Logic***
+
+![](uml_images/manualTracker/images/Commands_Logic_edited.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
+|```createLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
+|```retrieveEntryCommand```| Omitted and left as exercise for reader. : ^ )
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryCommand```| Omitted for brevity.
+|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
+|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
+![](uml_images/manualTracker/images/Handler_Commands.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| Refer to section above.
+|```createLedgerCommand```| Refer to section above.
+|```retrieveEntryCommand```| Omitted for brevity.
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryCommand```| Omitted for brevity.
+|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
+|```EntryTracker```| Omitted for brevity.
+
+***Handler and Parser***
+
+![](uml_images/manualTracker/images/Handler_Parser.png)
+
+|Class| Function |
+|--------|----------|
+|```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.
+|```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.
+|```ManualTracker```| Refer to section above.
+|```EntryTracker```| Omitted for brevity.
+
+***Handler and Data***
+
+![](uml_images/manualTracker/images/Handler_Data.png)
+
+|Class| Function |
+|--------|--------|
+|```ManualTracker```| Refer to section above.
+|```EntryTracker```| Omitted for brevity.
+|```EntryList```| Omitted for brevity.
+|```Entry```| Omitted for brevity.
+|```LedgerList```| Extends ItemList. Refer to Ledgers and Entries section for class behavior.
+|```Ledger```| Extends DateTimeItem. Refer to Ledgers and Entries section for class behavior.
+|```ItemList```| Class with defined list behavior specified with helper methods such as retrieval, checking of Duplicates and deletion.
+|```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
+|```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
+
+***Functions with Sequence Diagrams***
+
+***Creation of Ledger***
+1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
+1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
+1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
+In this case, ```handleCreateLedger()``` will be called.
+1. At ```handleCreateLedger()```, the following processes will be executed:
+    1. A new instance of ```createLedgerCommand``` is created. The input String array will be passed into 
+    ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
+    1. A new instance of ```Ledger``` will be instantiated and set to ```createLedgerCommand.currLedger```.
+    1. ```createLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
+        1. Refer to the section on Param Parsing for more details pertaining to general param handling. 
+        1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+        
+            |ParamType|ParamType String| Expected Param | Operation | Verification method |
+            |---------|----------------|----------------|-----------|---------------------|
+            |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
+1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createLedgerCommand``` instance
+and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
+  
+
+![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
+
+***Deletion of Ledger***
+1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
+1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
+1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
+In this case, ```handleCreateLedger()``` will be called.
+1. At ```handleCreateLedger()```, the following processes will be executed:
+    1. A new instance of ```createLedgerCommand``` is created. The input String array will be passed into 
+    ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
+    1. A new instance of ```Ledger``` will be instantiated and set to ```createLedgerCommand.currLedger```.
+    1. ```createLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
+        1. Refer to the section on Param Parsing for more details pertaining to general param handling. 
+        1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+        
+            |ParamType|ParamType String| Expected Param | Operation | Verification method |
+            |---------|----------------|----------------|-----------|---------------------|
+            |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
+1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createLedgerCommand``` instance
+and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
+
+
+![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
+
+
 ### FinanceTools
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -319,13 +478,13 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-![](.DeveloperGuide_images/manualTrackerCreateLedgerSeqDiagram.png)
+![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
 
 **Operation: Ledger Deletion**
 
 ***UML Sequence Diagram***
 
-![](.DeveloperGuide_images/manualtrackerDeleteLedgerSeqDiagram.png)
+![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
 
 
 ### EntryTracker
@@ -333,13 +492,13 @@ This sequence diagram will show the flow of setting of expense goal:
 
 ***UML Sequence Diagram***
 
-![](.DeveloperGuide_images/entryTrackerCreateEntrySeqDiagram.png)
+![](uml_images/manualTracker/images/entryTrackerCreateEntrySeqDiagram.png)
 
 **Operation: Entry Edit**
 
 ***UML Sequence Diagram***
 
-![](.DeveloperGuide_images/entryTrackerEditEntrySeqDiagram.png)
+![](uml_images/manualTracker/images/entryTrackerEditEntrySeqDiagram.png)
 ## Product scope
 ### Target user profile
 
