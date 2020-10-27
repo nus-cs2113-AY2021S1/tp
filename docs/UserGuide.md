@@ -372,7 +372,6 @@ Here are the anime in Default watchlist:
 ```
 <br/>
 
-
 ### 3.8 Bookmark
 
 `Bookmark` is the feature to use when you need your own customised list of anime. It provides you with greater personalisation such as tracking each episode and writing useful notes for each series. These features further enhance the manageability of translation jobs and allow you to easily access important information. 
@@ -388,7 +387,7 @@ Format: `bookmark -l`
 
 <br/>
 
->:bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
+> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
 
 <br/>
 
@@ -411,8 +410,7 @@ Format: `bookmark -a <ANIME_ID>`
 
 <br/>
 
->:memo: Add `Bookmark` `<ANIME_ID>` is identified using `[Id: 1]` from `1. Cowboy Bebop [Id: 1]` which can be found in 
-both outputs of `search` and `browse` command
+> :memo: Add Bookmark `<ANIME_ID>` is identified using `[Id: 1]` from `1. Cowboy Bebop [Id: 1]` which can be found in both outputs of `search` and `browse` command
 
 <br/>
 
@@ -653,84 +651,3 @@ Successfully deleted workspace: Default
 ```
 
 <br/>
-
-### 3.5 Add an Anime to the current watchlist: `add`
-Add an anime to the currently selected watchlist
-
-Format: `add -a <ANIME_ID>`
-
-Example of usage: `add -a 3`
-
-The expected outcome: 
-
-```
-Trigun added to watchlist!
-```
-
-<br/>
-
-### 3.6 Remove an Anime from the current watchlist: `remove`
-Remove an anime from the currently selected watchlist
-
-Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
-
-Note:
-
-The index used has to be the Anime ID in the watchlist, and not the general Anime ID
-
-Example of usage: 'remove -d 1'
-
-The expected outcome:
-
-```
-Trigun successfully removed from watchlist
-```
-
-<br/>
-
-### 3.7 View all anime in watchlist: `view`
-View all anime that is in the specified watchlist
-
-Format: `view -v <WATCHLIST_ID>`
-
-Example of usage: 'view -v 1'
-
-The expected outcome:
-```
-Here are the anime in Default watchlist:
-	1. Cowboy Bebop
-	2. Witch Hunter Robin
-```
-
-<br/>
-
-
-### 3.10 View the information of an Anime: `info`
-View all the information regarding a specific anime
-
-Format: `info -a <ANIME_ID>`
-
-Example of usage: `info -a 1`
-
-The expected outcome:
-```
-Here is the information for the anime:
-Index: 1
-Name: Cowboy Bebop
-Episodes: 26
-Release Date: 03/Apr/1998
-Rating: 86
-Genre: [Action, Adventure, Drama, Sci-Fi]
-```
-
-### 3.12 Exit AniChan: `exit`
-Exit **AniChan** 
-
-Format: `exit`
-
-Example of usage: `exit`
-
-The expected outcome:
-```
-Sayonara <NAME>!
-```
