@@ -287,7 +287,7 @@ public class Calculator {
                     + "ont of the three given cases.";
         }
 
-        if (person.getOriginalWeight() > person.getTargetWeight()) {
+        if (person.getCurrentWeight() > person.getTargetWeight()) {
             recomendation = (int) requirement - 300;
         } else {
             recomendation = (int) requirement + 100;
