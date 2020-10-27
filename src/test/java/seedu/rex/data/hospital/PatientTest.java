@@ -50,6 +50,6 @@ class PatientTest {
     @Test
     void testToString_zbTodayDate_zbTodayDate() {
         Patient patient = new Patient("z", "b", LocalDate.now());
-        assertEquals("z, b, " + LocalDate.now(), patient.toString());
+        assertEquals("z | b | " + LocalDate.now(), patient.toString());
     }
 }
