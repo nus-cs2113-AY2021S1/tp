@@ -697,9 +697,10 @@ Expected: An error message displayed due to the different number of seasons and 
 
 Expected: A message acknowledging the change. `Updated show details.`
 
-4. Test case: `season 3` followed by `episode 10,10,10`
+4. Test case: `season 3` followed by `episode 10,10,10` and then followed by `done`
 
 Expected: A message acknowledging the change. `Updated show details.`
+
 
 ### Managing Reviews and Ratings
 
