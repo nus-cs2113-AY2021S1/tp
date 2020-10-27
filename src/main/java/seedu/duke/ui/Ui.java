@@ -1,10 +1,9 @@
 package seedu.duke.ui;
 
-import seedu.duke.Bus;
-import seedu.duke.BusStops;
-import seedu.duke.DiningOptions;
-import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.model.bus.Bus;
+import seedu.duke.model.bus.BusStops;
+import seedu.duke.model.favorite.Fav;
+import seedu.duke.model.foodoptions.DiningOptions;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,6 +33,12 @@ public class Ui {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+    public static void addFavMessage(String input) {
+        printLine();
+        System.out.println("You have successfully added: \n\"" + input + "\"\ninto your favourites");
+        printLine();
+    }
+
     public static void showError(Exception error) {
         printLine();
         System.out.println(error);
@@ -52,6 +57,7 @@ public class Ui {
                 + "7./dineinfo: Search for a specific dining outlet\n"
                 + "8./exit: Exit program\n"
                 + "9./help: List all available commands");
+        System.out.println("https://ay2021s1-cs2113t-f14-3.github.io/tp/UserGuide.html#1-what-is-navnus");
         printLine();
     }
 
@@ -65,22 +71,24 @@ public class Ui {
         printLine();
         int optionNo = 1;
         boolean isPossible = false;
-        int count = 0;
+        int busCount = 0;
         System.out.println("The buses you can take with their intermediate stops are: ");
         for (Bus option : options) {
             if (option.toString() != null) {
-                if (count != 0) {
-                    System.out.println();
-                    count = 0;
+                if (busCount != 0) {
+                    System.out.println("");
+                    busCount = 0;
                 }
                 System.out.println(optionNo + ". " + option.toString());
                 optionNo++;
-                count++;
+                busCount++;
                 isPossible = true;
             }
         }
         if (!isPossible) {
-            System.out.println("none.\nThere are no direct bus routes. :(");
+            System.out.println("none. There are no direct bus routes. :(");
+        } else {
+            System.out.println("To add the above command to your list of favourites simply type \"/addfav\" :)");
         }
         printLine();
     }
@@ -93,8 +101,17 @@ public class Ui {
         printLine();
     }
 
+    public static void printDupeMessage(int index, String desc, String command) {
+        printLine();
+        System.out.println("You already saved something like this in your favourites list");
+        System.out.println(index + ". " + desc + "\nCommand stored: " + command);
+        printLine();
+    }
+
     public static void printResetSearchFreqMessage() {
-        System.out.println("The search frequencies of all bus stops have been resetted to 0!");
+        printLine();
+        System.out.println("The search frequencies of all bus stops have been reset to 0!");
+        printLine();
     }
 
     private static void printMostSearchedBusStop() {
@@ -145,6 +162,29 @@ public class Ui {
                 System.out.println("\n" + item.toString());
             }
         }
+    }
+
+    public static void printFavList(ArrayList<Fav> favList) {
+        printLine();
+        int index = 0;
+        for (Fav item : favList) {
+            index++;
+            System.out.println(index + ". " + item.toString());
+        }
+        printLine();
+    }
+
+    public static void printClearFavMessage() {
+        printLine();
+        System.out.println("Your favourites has been cleared.");
+        printLine();
+    }
+
+    public static void printDescChangeMessage(String command, String oldDesc, String newDesc) {
+        printLine();
+        System.out.println("Your description for command \"" + command + "\"\nhas been successfully changed from \""
+                + oldDesc + "\"\nto \"" + newDesc + "\"");
+        printLine();
     }
 
 }

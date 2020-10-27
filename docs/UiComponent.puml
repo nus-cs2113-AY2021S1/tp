@@ -1,0 +1,13 @@
+@startuml
+
+Rectangle ui {
+class Ui {
+{static} printLine()
+{static} printWelcomeMessage()
+{static} printHelp()
+{static} showError()
+{static} printRouteMessage()
+{static} printFullRouteMessage()
+}
+
+@enduml
