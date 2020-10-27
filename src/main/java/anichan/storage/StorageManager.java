@@ -46,16 +46,6 @@ public class StorageManager {
         return workspaceList;
     }
 
-    // ========================== User Saving and Loading ==========================
-
-    public void saveUser(User user) throws AniException {
-        userStorage.save(user);
-    }
-
-    public User loadUser() throws AniException {
-        return userStorage.load();
-    }
-
     // ========================== Workspace Saving ==========================
 
     public void saveWorkspace(Workspace workspace) throws AniException {
@@ -77,6 +67,16 @@ public class StorageManager {
         } catch (IOException e) {
             throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
         }
+    }
+
+    // ========================== User Saving and Loading ==========================
+
+    public void saveUser(User user) throws AniException {
+        userStorage.save(user);
+    }
+
+    public User loadUser() throws AniException {
+        return userStorage.load();
     }
 
     // ========================== Watchlist Saving and Loading ==========================
