@@ -43,8 +43,6 @@ Figure 2: Sequence diagram when adding a food into Fitr
  
 ### 2.2 Ui component
 
-**API**: `Ui.java`
-
 The `Ui` class handles all user inputs and system output.
 
 This component also listens to other components and outputs the desired messages in specified formats.
@@ -53,9 +51,9 @@ This component also listens to other components and outputs the desired messages
 
 Under the storage component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
 
-![Storage class diagram](images/StorageClassDiagram.png)
+![StorageManager class diagram](images/StorageClassDiagram.png)
 
-Figure 3:  StorageManager class diagram
+Figure 3: `StorageManager` class diagram
 
 Figure 3 above shows the associations and dependencies present with the `StorageManager` class.
 
