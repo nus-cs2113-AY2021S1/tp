@@ -8,6 +8,7 @@ import static fitr.common.Commands.COMMAND_EDIT;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_RECOMMEND;
 import static fitr.common.Commands.COMMAND_VIEW;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
@@ -76,7 +77,9 @@ public class Ui {
 
         System.out.printf(HELP_SPACER, COMMAND_EXERCISE, "Adds exercise entry to Fitr program");
         printCustomMessage(SPACER + FORMAT + FORMAT_EXERCISE);
-
+        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND,
+                "Recommends a specific set of exercises based on your fitness level");
+        printCustomMessage(SPACER + FORMAT + "recommend");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_PROFILE, "View your profile information");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_BMI, "View your BMI");
         System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_FOOD, "View food entries");
@@ -88,7 +91,7 @@ public class Ui {
         System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_FOOD, "Edit a previous food entry");
         printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EDIT_FOOD);
 
-        System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry");
+        System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry based on date and index");
         printCustomMessage(SPACER + FORMAT + FORMAT_DELETE);
 
         System.out.printf(HELP_SPACER, COMMAND_BYE, "Exits the program");

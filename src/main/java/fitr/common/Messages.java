@@ -17,8 +17,8 @@ public class Messages {
     public static final String FORMAT_EDIT_FOOD = "food <Name of food> /<Number of Calories> <Quantity>";
     public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
             + "<Number of Calories>";
-    public static final String FORMAT_DELETE = "delete food <Index from Food List> "
-            + "or delete exercise <Index from Exercise List>";
+    public static final String FORMAT_DELETE = "delete food <Date of entry> <Index from Food List> "
+            + "or delete exercise <Date of entry> <Index from Exercise List>";
     public static final String FORMAT_GOAL = "goal food <goal description> or goal exercise <goal description>";
 
     //User class messages
