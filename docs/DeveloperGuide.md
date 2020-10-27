@@ -150,6 +150,19 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a task item feature
+This feature is being facilitated by `AddCommand`.
+The following sequence diagram shows how the `execute()` operation works:
+
+It first checks the type of the new task,
+then it analyses the attached information, if the format is desired, the program saves the event with the information in the task list.
+
+Note: A todo task has only task description while a deadline task has both the task description and a due date. 
+The due date must be in the pattern of ddMMyy as it is the pattern set by the `TimeParser` class.
+
+### Add an event item feature
+This feature is being facilitated by `AddCommand`.
+
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
@@ -196,6 +209,16 @@ The following sequence diagram show how the `execute()` operation works when the
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
+
+### Print tasks feature
+This feature is facilitated by `PrintTasksCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
+![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+
+### Print events feature
+This feature is facilitated by `PrintEventsCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
+![print_events_command_sd](images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
@@ -299,13 +322,22 @@ There are two ways to run tests.
 
 
 ## Product scope
+
 ### Target user profile
 
+* has the need to manage a significant number of day-to-day matters
+* prefer desktop command line apps over other types
+* prefer typing to using mouse interactions
+* comfortable with using command line apps
+* forgetful person who needs reminders
+* a fast typer
 {Describe the target user profile}
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+By using 25HoursADay, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information. 25HoursADay can manage one's day-to-day matters faster than a 
+typical mouse/GUI driven app.
 
 ## User Stories
 
@@ -313,9 +345,12 @@ There are two ways to run tests.
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|user|set my tasks as done|track my tasks better|
+|v1.0|user|add different tasks and events|better manage my day-to-day matters|
+|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 
 ## Non-Functional Requirements
 
@@ -324,8 +359,8 @@ There are two ways to run tests.
 ## Glossary
 
 * *Task* - a todo item or a deadline item.
-* *School event* - a lecture, tutorial or lab session.
-* *Event* - an activity, lecture, tutorial or lab session.
+* *School event* - a lecture, tutorial, lab session or an examination.
+* *Event* - an activity, examination, lecture, tutorial or lab session.
 * *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
 * *Task list* - a list that stores all the tasks added to the app.
 * *Event list* - a list that stores all the events added to the app.
