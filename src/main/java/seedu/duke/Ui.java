@@ -344,6 +344,8 @@ public class Ui {
      * @param calendarIndex the index of the task in the list.
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
+        assert calendarList != null;
+        assert calendarIndex >= 0;
         System.out.println(
                 "I've marked this task as important:\n"
                         + calendarList.getCalendarList().get(calendarIndex));

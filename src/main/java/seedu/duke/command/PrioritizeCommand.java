@@ -47,6 +47,9 @@ public class PrioritizeCommand extends Command {
             throw new DukeException("invalid task action");
         }
         int calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(indexOfTask, calendarList);
+
+        assert calendarNumber >= 0;
+
         calendarList.markTaskAsImportant(calendarNumber);
         Ui.printPrioritizeMessage(calendarList, calendarNumber);
     }

@@ -180,29 +180,39 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
 
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
 The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_DG.png" alt="" width="750"/><br/>
 
 Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
-There will be a check in the function markTaskAsImportant(calendarNumber) to ensure that the calendar item being marked as important is a task.
+There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
 
 ### Print prioritized tasks feature
 This feature is facilitated by `PrintPriorityCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
 
+Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
+
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
-<img src="" alt="" width="750"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
 
-### Print suggestion feature
+Note: It uses `calculateNumTotal()` and `calculateNumFinshed()` to calculate the numbers of only tasks and finished tasks in the list, not including events. 
+Then it uses these numbers to calculate the progress. 
+
+### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="" alt="" width="750"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
+
+Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
+Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
+If no corresponding items, the functions will return null.
 
 ### Printing countdown feature
 The feature is facilitated by `CountdownCommand`.
