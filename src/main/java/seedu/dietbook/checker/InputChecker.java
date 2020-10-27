@@ -13,10 +13,10 @@ public class InputChecker {
     /**
      * The value limits are based on current limits observed in th world.
      */
-    public static final int AGE_CAP = 125;
+    public static final int AGE_CAP = 150;
     public static final int FOOD_CAP = 100000;
-    public static final int HEIGHT_CAP = 273;
-    public static final int WEIGHT_CAP = 443;
+    public static final int HEIGHT_CAP = 300;
+    public static final int WEIGHT_CAP = 500;
     public static final String[] PARAM_ACTIVITY = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};

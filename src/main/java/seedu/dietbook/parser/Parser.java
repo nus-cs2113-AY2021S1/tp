@@ -19,7 +19,7 @@ public class Parser {
     public static final String COMMAND_INFO = "info";
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
-    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
+    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/","c/"};
 
 
 
@@ -131,6 +131,7 @@ public class Parser {
         int age = 0;
         int height = 0;
         int orgWeight = 0;
+        int currWeight = 0;
         int tarWeight = 0;
         String trimmedParam;
         String[] processedParam;
@@ -144,7 +145,7 @@ public class Parser {
             switch (param) {
             case "g/":
                 String processGender = trimmedParam;
-                InputChecker.checkGender(processGender);
+                InputChecker.checkGender(processGender);              
                 if (processGender.equals("F")) {
                     gender = Gender.FEMALE;
                 } else {
@@ -162,6 +163,10 @@ public class Parser {
             case "o/":
                 orgWeight = Integer.parseInt(trimmedParam);
                 InputChecker.checkWeightLimit(orgWeight);
+                break;
+            case "c/":
+                currWeight = Integer.parseInt(trimmedParam);
+                InputChecker.checkWeightLimit(currWeight);
                 break;
             case "t/":
                 tarWeight = Integer.parseInt(trimmedParam);
@@ -184,7 +189,7 @@ public class Parser {
                 break;
             }
         }
-        manager.setPerson(manager.getName(), gender, age, height, orgWeight, tarWeight, actLvl);
+        manager.setPerson(manager.getName(), gender, age, height, orgWeight, currWeight, tarWeight, actLvl);
     }
 
     /**
