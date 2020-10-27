@@ -13,31 +13,33 @@ Duke is a command line trading simulator that lets you try your hand at trading 
 
 ## Features 
 
-### Buying a stock: `buy /aapl`
+### Buying a stock: `buy /aapl quantity`
 Buys the specified stock at market price
 
-Format: `buy /STOCK_TICKER`
+Format: `buy /STOCK_TICKER quantity`
 
 * The `STOCK_TICKER` is the stock's short form
+* `quantity` refers to the quantity of stocks user wants to buy; is an integer
 
 Example of usage: 
 
-`buy /fb`
+`buy /fb 1`
 
-`buy /tsla`
+`buy /tsla 2`
 
-### Selling a stock: `sell /aapl`
+### Selling a stock: `sell /aapl quantity`
 Sells the specified stock at market price
 
-Format: `sell /STOCK_TICKER`
+Format: `sell /STOCK_TICKER quantity`
 
 * The `STOCK_TICKER` is the stock's short form
+* `quantity` refers to the quantity of stocks user wants to sell; is an integer
 
 Example of usage: 
 
-`sell /goog`
+`sell /goog 1`
 
-`sell /amzn`
+`sell /amzn 2`
 
 ### Searching for info about a stock: `search /aapl`
 Shows information about a stock like price and volume
@@ -89,8 +91,8 @@ Example of usage:
 
 {Give a 'cheat sheet' of commands here}
 
-* Buy a stock `buy /aapl`
-* Sell a stock `sell /aapl`
+* Buy a stock `buy /aapl quantity`
+* Sell a stock `sell /aapl quantity`
 * Search for a stock's info `search /aapl`
 * View portfolio `view`
 * Check your wallet `wallet`
