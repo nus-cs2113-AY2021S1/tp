@@ -12,10 +12,10 @@ DietBook is a desktop application targeting NUS students living on campus, optim
 1. Copy the file to the folder you want to use as the home folder for your DietBook.
 1. Either double-click the jar file to start the application or navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
 1. For first time users: 
-   1. A CLI similar to the one shown on the picture below should appear within a few seconds.  
-1. For existing user:
-   1. A CLI similar to the one shown on the picture below should appear within a few seconds.
-1. Refer to the Features section below for more details of each command.
+   1. A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](#Entering username: `name`) and [info](#Entering user information: `info`) for more detailed explanations.<br/>
+   ![DietBook Welcome Message](/images/DietBookWelcomeMessage.PNG)  
+1. Start using DietBook by typing any valid command and pressing Enter to execute it.
+1. Refer to the [Features](#Features) section below for more details of each command.
 
 ## Features 
 
