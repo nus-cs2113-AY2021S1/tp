@@ -1,10 +1,11 @@
 package seedu.financeit.datatrackers.recurringtracker;
-//@@author Artemis-Hunt
+
 import seedu.financeit.common.Constants;
 import seedu.financeit.data.Item;
 
 import java.time.Month;
 
+//@@author Artemis-Hunt
 public class RecurringEntry extends Item {
     int day;
     String description = "";

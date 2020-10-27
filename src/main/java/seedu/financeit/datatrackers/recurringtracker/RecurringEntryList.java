@@ -1,10 +1,11 @@
 package seedu.financeit.datatrackers.recurringtracker;
-//@@author Artemis-Hunt
+
 import seedu.financeit.data.Item;
 import seedu.financeit.data.ItemList;
 import seedu.financeit.datatrackers.recurringtracker.comparators.SortByDay;
 import seedu.financeit.ui.TablePrinter;
 
+//@@author Artemis-Hunt
 public class RecurringEntryList extends ItemList {
 
     @Override
