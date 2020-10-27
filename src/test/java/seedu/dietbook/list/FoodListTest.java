@@ -99,4 +99,11 @@ class FoodListTest {
                  list.getPortionedFoods().toString());
     }
 
+    @Test
+    void getFoodEntryProperties_standardList_FoodEntryProperties() {
+        assertTrue(list.getDateTimes().get(0) instanceof LocalDateTime);
+        assertEquals(list.getPortionSizes().get(0), 3);
+        assertEquals(list.getFoods().get(0), food);
+    }
+
 }

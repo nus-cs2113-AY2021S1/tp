@@ -52,7 +52,7 @@ public class FoodListManager {
     /**
      * Extracts the list of foods from the foodentries list.
      * @param list list of foodEntries
-     * @return arraylist of Food objects.
+     * @return list of Food objects.
      */
     protected static List<Food> listToFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> x.getFood();
@@ -63,7 +63,7 @@ public class FoodListManager {
      * Creates a list of foods that have their nutritional values scaled by portion size.
      * This is based on the FoodEntries in the list provided.
      * @param list list of FoodEntries
-     * @return arraylist of Food objects
+     * @return list of Food objects
      */
     protected static List<Food> listToPortionedFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> {
@@ -82,7 +82,28 @@ public class FoodListManager {
     }
 
     /**
+     * Obtain the LocalDateTime objects associated with each entry.
+     */
+    protected static List<LocalDateTime> listToLocalDateTimes(List<FoodEntry> list) {
+        Function<FoodEntry, LocalDateTime> function = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return datedEntry.getDateTime();
+        };
+        return ListFunction.applyFunctionToList(list, function);
+    }
+
+    /**
+     * Obtain the portion sizes associated with each food entry.
+     */
+    protected static List<Integer> listToPortionSizes(List<FoodEntry> list) {
+        Function<FoodEntry, Integer> function = x -> x.getPortionSize();
+        return ListFunction.applyFunctionToList(list, function);
+    }
+
+    /**
      * Obtain only food entries after a specified dateTime.
+     * @param dateTime the start/"before" datetime for filtering.
      */
     protected static List<FoodEntry> filterListByDate(List<FoodEntry> list, LocalDateTime dateTime) {
         Predicate<FoodEntry> predicate = x -> {
