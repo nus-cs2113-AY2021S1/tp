@@ -118,19 +118,37 @@ Given below is the class diagram for classes related to Book Management in Quote
 #### 4.1.1 Add Books
 The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
 
-![Sequence Diagram for Add Books]()
+![Sequence Diagram for Add Books](images/SeqDiagram_AddBook.png)
 
-* [Explanation of Sequence Diagram]
+* To reduce complexity and increase readability, the sequence diagram excludes error handling.
+* Parsing of user input is done in the Parser and AddCommand classes, which is also not shown in the diagram.
+* `checkMissingInformation()` method is also not included in the sequence diagram as it merely checks for possible
+missing information given in the user input and throws exceptions.
+* Upon ensuring there are no mistakes in the user input, `createNewBook()` will be called, which essentially creates a 
+new book after ensuring there are no identical books already in the BookList.
+* `sort()` method is called after adding the book to the BookList in order to sort the books in 
+alphabetical order.
 
 ##### Design Considerations
 * Title and author must be specified as <title,author> is used as the primary key.
     * Pros: Allows users to specify different books with the same title but different author.
     * Cons: Need to check for both title and author to prevent duplicates.
+* BookList is always sorted in alphabetical order 
+    * Alternative 1: Sort after adding the book
+        * Pros: Only need to sort after every addition, listing is as per normal
+        * Cons: Adding books may take longer if size of BookList is too large
+    * Alternative 2: Sort before listing the books
+        * Pros: Adding books will not take as long
+        * Cons: Since there are multiple listing methods, may not be the best method to keep sorting before listing.
 
 #### 4.1.2 Find Book by Keyword
 The sequence diagram below demonstrates the command execution process when finding books by a keyword.
 
-![Sequence Diagram for Find Book by Keyword]()
+![Sequence Diagram for Find Book by Keyword](images/SeqDiagram_FindBook.png)
+
+* Opt-frames ensure that the user input is correct and that the keyword results in a non-empty list of books.
+* Parsing of user input is done in the Parser and FindCommand classes, which is not shown in the diagram.
+* `findByKeyword()` method filters books regardless of case. 
 
 ##### Design Considerations
 * Allows user to find books if either title or author contains the keyword.
@@ -140,8 +158,12 @@ The sequence diagram below demonstrates the command execution process when findi
     * Pros: Users do not have to bother about the exact letter case when typing the keyword.
     * Cons: Need to ensure all title or author are converted to the same case before searching.
 * Keyword or phrase
-    * Pros: Users can search for an exact phrase instead of just one word.
-    * Cons: The exact phrase must be typed out for the correct result to show.
+    * Alternative 1: Let users find by multiple space-separated keywords
+        * Pros: Users can find books if they can only remember part of the book title.
+        * Cons: Search list may not be narrowed as much. 
+    * Alternative 2: Let users find by exact phrase
+        * Pros: Users can narrow down the search using an exact phrase instead of just one word.
+        * Cons: The exact phrase must be typed out for the correct result to show.
 
 ### 4.2 Feature: Quote Management System
 Given below is the class diagram for classes related to the Quote Management System in Quotesify:
