@@ -121,9 +121,12 @@ Aspect: `Command` resolution and validation
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
 
 
-### 3.3. Finance
+### 3.3. Finance  
+The diagram below shows the architecture of Finance feature:  
+![Architecture of Finance](financeDiagramPic/Architecture.png)  
+
 **3.3.1. Add/delete finance log entry feature**  
-3.3.1.1. Current Implementation  
+**3.3.1.1. Current Implementation**  
 The `CommandFinanceAdd` class in `seedu.duke.finance` handles adding finance log entry. It adds a new `FinanceLog` instance according to `userInput` into `FinanceList`.  
 The `CommandFinanceDel` in the same package handles deleting finance log entry. It deletes a certain `FinanceLog` instance according to the index provided by `userInput` from `FinanceList`.  
 They implement the following operations:  
@@ -167,7 +170,7 @@ Aspect: User input format for adding a finance log entry
     
 
 **3.3.2. List the summary of finance log entries**  
-3.3.2.1. Current Implementation  
+**3.3.2.1. Current Implementation**  
 The `CommandFinanceSummary` class in `seedu.duke.finance` handles listing all the finance log entries in `FinanceList` and 
 showing the total budget of all the `FinanceLog`.  
 It implements the following operation:  
