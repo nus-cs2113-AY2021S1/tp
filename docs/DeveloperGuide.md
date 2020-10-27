@@ -112,7 +112,6 @@ The following sequence diagram shows how the `goal save money` command is parsed
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
-
 ![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
 #### Add Feature
@@ -160,6 +159,32 @@ Step 5. The Zoom event is then added to the user's `UserData` for further use.
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+
+#### List feature
+
+The list feature allows the user to print a list of events added by type.
+The list of events is print according to the order it was added in.
+
+User calls the list command by executing `list [argument]`.
+
+Executing `list` without specifying any argument prints a list of event types available.  
+Specifying an event type as the argument prints a list of events of that type.  
+Specifying `all` as the argument prints a list of all events in the order: Personal, Timetable, Zoom.
+
+Given below is an example usage scenario of the list feature.
+
+Step 1. The user executes `list zoom` command to print a list of Zoom events.
+The `list` command is passed through a parser to return the ListCommand with arguments initialised.
+
+Step 2. `ListCommand#execute()` is called, retrieving the list of Zoom events in `UserData`.
+
+Step 3. `ListCommand#execute()` calls `Ui#printList()` and passes the list of Zoom events to print.
+
+Step 4. `Ui#printList()` loops through every event in the Zoom event arraylist and prints it.
+
+The following sequence diagram shows how the `list zoom` command is parsed:
+
+![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
 #### Repeat Feature
 
