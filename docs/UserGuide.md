@@ -46,11 +46,10 @@
     * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
     * [Finding an existing book rating](#finding-an-existing-book-rating-find--r)
 - [Getting Help in Quotesify](#getting-help-in-quotesify)
-- [FAQ](#faq)
+- [FAQs](#faqs)
 - [Command Summary](#command-summary)
   
 ## Introduction
-
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add 
 books and the related quotes that you wish to remember. You can categorize your books and quotes by author,
 customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
@@ -59,7 +58,6 @@ your reading experience.
 Quotesify is available for download on all major operating systems such as Windows and Mac.
 
 ## Quick Start
-
 Before you begin, here's what you need to do:
 1. Ensure you have at least `Java 11` installed on your system.
 2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
@@ -83,17 +81,16 @@ If you are someone who likes being neat, organised and efficient, this feature i
 
 ### 5. Rating System for books
 The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
-how you feel about the books you read, and will always be ready to recommend a book to a fellow book reader.
+how you feel about the books you read, and will always be ready to recommend a book to your fellow book readers.
 Ratings can be edited whenever you change your mind about the book, or be deleted when you are not interested
-in that rating anymore. Ratings can also be listed according to their ratings - with your favourites at the top - as
-well as be searched based on the book title and author.
+in that rating anymore. Ratings can also be listed according to their rating score - with your favourites at the top -
+as well as be searched based on the book title and author.
 
-With this rating system, you will never forget how you feel about the books that you have read!
+With Quotesify's rating system, remembering the books you love will never be an issue for you!
 
 ## Usage
 
 ### Book Management
-
 Do you have books you are currently reading and want to keep track of them? 
 Or do you have a list of books you wish to read in the future but could never remember them? 
 You can add books to your booklist so that you can refer to it at any time. 
@@ -525,8 +522,6 @@ Expected outcome:
 The bookmark ["Harry Potter" at page: 109] has been added!
 ```
 
-
-
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
 
@@ -613,7 +608,6 @@ The category has been changed from [fantasy] to [romance]!
 ```
 
 ### Rating System
-
 Are you having your own opinions about the books you read? You might want to record down your favorites,
 so that you can recommend the best books to your friends and fellow book readers.
 
@@ -716,25 +710,29 @@ Feeling stuck? Well here are the things you can do with Quotesify v2.0:
 
 1. Book Management
 Add book: add -b BOOK_TITLE /by AUTHOR
-Delete book: delete -b BOOK_TITLE /by AUTHOR
+Mark book as complete: done -b BOOK_NUMBER
+Delete book: delete -b BOOK_NUMBER
+Edit book: edit -b BOOK_NUMBER /to NEW_TITLE
 List books: list -b [/by AUTHOR]
+List book details: list -b BOOK_NUMBER
+List books by completion: list -b done/undone
 
 2. Quote Management
 Add quote: add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
 Delete quote:delete -q QUOTE_NUMBER
 List quotes: list -q [/by AUTHOR] [/from BOOK_TITLE]
-Edit quote: edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]
-Find quotes: find -q KEYWORD
+Edit quote: edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
+Find quote: find -q QUOTE_NUMBER
 Add quote reflection: add -qr QUOTE_NUMBER /reflect REFLECTION
 Delete quote reflection:delete -qr QUOTE_NUMBER
-List quotes reflection: list -qr QUOTE_NUMBER
 Edit quote reflection: edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
+List quote reflection: list -qr QUOTE_NUMBER
 
 3a. Bookmark Tracker
 Add bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
-Delete bookmark: delete -bm BOOK_TITLE
+Delete bookmark: delete -bm BOOK_NUMBER
 List bookmarks: list -bm
-Update bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Update bookmark: bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
 
 3b. Task Tracker
 Add task: add -t TASK /by DEADLINE
@@ -745,8 +743,7 @@ Mark task as done: done -t TASK_NUMBER
 4. Category Management
 Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
 Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-List categories: list -c
-List items in a category: list -c CATEGORY
+List categories: list -c [CATEGORY]
 Edit category: edit -c OLD_CATEGORY /to NEW_CATEGORY
 
 5. Rating System
@@ -766,7 +763,7 @@ Hope this helps!
 ~ Your friends from Quotesify
 ```
 
-## FAQ
+## FAQs
 
 **Q: How do I transfer my data to another computer?** 
 
@@ -784,15 +781,15 @@ file.
 
 **Q: What if I run into bugs while using Quotesify?**
 
-**A**: Please head over to (https://github.com/AY2021S1-CS2113T-T09-3/tp/issues) and create a new issue tracker with a 
+**A**: Please head over [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/issues) and create a new issue tracker with a 
 description of the bug. Our dedicated team of developers are always on the clock squashing any bugs found! 
-Alternatively, you can also reach us at contact@quotesify.com!
+Alternatively, you can also reach us at *contact@quotesify.com*!
 
 
 **Q: I have a suggestion for Quotesify, what should I do?** 
 
 **A**: The team at Quotesify is constantly seeking to improve and better the experience for our users! If you have a 
-suggestion for Quotesify, please do not hesitate to reach us at contact@quotesify.com!
+suggestion for Quotesify, please do not hesitate to reach us at *contact@quotesify.com*!
 
 ## Command Summary
 
@@ -804,35 +801,37 @@ Enter the following command | To do this
 `add -t TASK /by DEADLINE` | Add task
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
+`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `list -b [/by AUTHOR]` | List books
-`list -b BOOK_NUMBER` | List book detail
+`list -b BOOK_NUMBER` | List book details
 `list -b done/undone` | List books by completion
 `list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
 `list -bm` | List bookmarks
 `list -t` | List tasks
 `list -c [CATEGORY]` | List all categories / List items in a category
-`list -r [/RATING_SCORE]` | List ratings
+`list -r [RATING_SCORE]` | List ratings
 `edit -b BOOK_NUMBER /to NEW_TITLE` | Edit book title
-`edit -q QUOTE_NUMBER /to QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
+`edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
+`bookmark -b BOOK_NUMBER /pg PAGE_NUMBER` | Update bookmark
 `delete -b BOOK_NUMBER` | Delete book
 `delete -q QUOTE_NUMBER` | Delete quote
 `delete -qr QUOTE_NUMBER` | Delete quote reflection
-`delete -bm BOOK_TITLE` | Delete bookmark
+`delete -bm BOOK_NUMBER` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
 `delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
 `delete -r BOOK_TITLE /by AUTHOR` | Delete rating
 `find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
 `find -r BOOK_TITLE /by AUTHOR` | Find rating
-`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
-`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Update bookmark
 `done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
 `help` | Show help page
 `bye` | Terminate the program
 
-* Words in [] are **OPTIONAL**, and words in **CAPS** are your own input
+* Words in [] are **OPTIONAL**
+* Words in **CAPS** are your own input
+* Words are seperated by a single whitespace
