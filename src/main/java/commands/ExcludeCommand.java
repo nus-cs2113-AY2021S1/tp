@@ -67,11 +67,11 @@ public class ExcludeCommand extends Command {
     }
 
     public void addingToExclusion(Ui ui, Storage storage) throws InvalidInputException, ExclusionFileException {
-        String type = ui.chooseModuleOrChapterExclusion(EXCLUDE_COMMAND_OPTION_MORE);
-        if (type.equals(EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
-            addModuleToExclusion(storage, ui, type);
+        String secondaryType = ui.chooseModuleOrChapterExclusion(EXCLUDE_COMMAND_OPTION_MORE);
+        if (secondaryType.equals(EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+            addModuleToExclusion(storage, ui, secondaryType);
         } else {
-            addChapterToExclusion(storage, ui, type);
+            addChapterToExclusion(storage, ui, secondaryType);
         }
     }
 
@@ -99,11 +99,11 @@ public class ExcludeCommand extends Command {
     }
 
     public void removingFromExclusion(Ui ui, Storage storage) throws ExclusionFileException, InvalidInputException {
-        String type = ui.chooseModuleOrChapterExclusion(EXCLUDE_COMMAND_OPTION_LESS);
-        if (type.equals(EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
-            removeModuleFromExclusion(storage, ui, type);
+        String secondaryType = ui.chooseModuleOrChapterExclusion(EXCLUDE_COMMAND_OPTION_LESS);
+        if (secondaryType.equals(EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+            removeModuleFromExclusion(storage, ui, secondaryType);
         } else {
-            removeChapterFromExclusion(storage, ui, type);
+            removeChapterFromExclusion(storage, ui, secondaryType);
         }
     }
 
