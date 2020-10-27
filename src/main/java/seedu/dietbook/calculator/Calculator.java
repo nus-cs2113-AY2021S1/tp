@@ -223,7 +223,7 @@ public class Calculator {
     public int calculateRecomendation(Person person) {
         double requirement = 0;
         int recomendation;
-        double activityScore;
+        double activityScore = 0;
         switch (person.getActivityLevel()) {
         case NONE:
             activityScore = 1;
@@ -247,7 +247,15 @@ public class Calculator {
             }
             break;
         case HIGH:
-        default:
+            if (person.getGender() == Gender.MALE) {
+                activityScore = 1.37;
+            } else if (person.getGender() == Gender.FEMALE) {
+                activityScore = 1.36;
+            } else {
+                activityScore = 1.365;
+            }
+            break;
+        case EXTREME:
             if (person.getGender() == Gender.MALE) {
                 activityScore = 1.48;
             } else if (person.getGender() == Gender.FEMALE) {
@@ -256,6 +264,9 @@ public class Calculator {
                 activityScore = 1.465;
             }
             break;
+        default:
+            assert activityScore != 0 : "The activityScore should not be 0 if"
+                    + "the activityLevel are one of five given cases.";
         }
 
         switch (person.getGender()) {
@@ -267,9 +278,13 @@ public class Calculator {
             requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getOriginalWeight()
                     + 726 * person.getHeight() / 100;
             break;
-        default:
+        case OTHERS:
             requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
                     + 632.8 * person.getHeight() / 100;
+            break;
+        default:
+            assert requirement != 0 : "The requirement should not be 0 if the gender is "
+                    + "ont of the three given cases.";
         }
 
         if (person.getOriginalWeight() > person.getTargetWeight()) {
