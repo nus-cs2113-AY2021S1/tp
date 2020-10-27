@@ -11,7 +11,7 @@ public class EditSprintCommand extends SprintCommand {
      * Creates a new DELETE command with arguments.
      */
     public EditSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
     }
 
     /**

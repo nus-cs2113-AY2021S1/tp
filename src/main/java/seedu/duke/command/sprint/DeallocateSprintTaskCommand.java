@@ -10,7 +10,7 @@ import java.util.Hashtable;
 public class DeallocateSprintTaskCommand extends SprintCommand {
 
     public DeallocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
     }
 
     public void execute() {

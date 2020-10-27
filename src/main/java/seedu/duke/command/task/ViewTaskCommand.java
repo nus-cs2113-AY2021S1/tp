@@ -13,7 +13,7 @@ public class ViewTaskCommand extends TaskCommand {
     private Project proj;
 
     public ViewTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
-        super(parameters);
+        super(parameters, false);
         this.projectListManager = projectListManager;
     }
 
