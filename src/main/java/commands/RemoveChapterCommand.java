@@ -2,10 +2,6 @@ package commands;
 
 import access.Access;
 import common.KajiLog;
-import exception.ExclusionFileException;
-import exception.IncorrectAccessLevelException;
-import exception.InvalidFileFormatException;
-import exception.InvalidInputException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import storage.Storage;
@@ -16,12 +12,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
+
 public class RemoveChapterCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveChapterCommand.class.getName());
 
-    public static final String MESSAGE_SUCCESS_CHAPTER = "The chapter <%1$s> has been removed.\n";
-    public static final String MESSAGE_REMAINING_CHAPTER = "You currently have %1$d chapter(s) in this module.";
-    public static final String MESSAGE_INVALID_INDEX_CHAPTER = "The chapter is not found, please try again.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes chapter based on the index in the list. \n"
+            + "Parameters: " + CHAPTER_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     private final int removeIndex;
 
@@ -37,7 +36,6 @@ public class RemoveChapterCommand extends RemoveCommand {
 
     private String removeChapter(Access access, Storage storage) throws IOException {
         assert access.isModuleLevel() : "Not module level";
-        StringBuilder result = new StringBuilder();
         try {
             ChapterList chapters = access.getModule().getChapters();
             ArrayList<Chapter> allChapters = chapters.getAllChapters();
@@ -51,18 +49,13 @@ public class RemoveChapterCommand extends RemoveCommand {
             if (!isRemoved && !isRemovedFromDue) {
                 throw new IOException("There was a problem deleting chapter in directory.");
             }
-            result.append(String.format(MESSAGE_SUCCESS_CHAPTER, chapter.toString()));
             allChapters.remove(removeIndex);
-            result.append(String.format(MESSAGE_REMAINING_CHAPTER, allChapters.size()));
             logger.info("Chapter: " + chapter.toString() + " successfully deleted.");
+            return prepareResult(CHAPTER, chapter.toString(), allChapters.size());
         } catch (IndexOutOfBoundsException e) {
-            result.append(MESSAGE_INVALID_INDEX_CHAPTER);
+            String result = String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER);
+            logger.info(result);
+            return result;
         }
-        return result.toString();
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
