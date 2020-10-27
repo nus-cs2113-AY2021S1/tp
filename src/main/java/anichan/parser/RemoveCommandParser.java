@@ -2,15 +2,16 @@ package anichan.parser;
 
 import anichan.command.RemoveCommand;
 import anichan.exception.AniException;
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RemoveCommandParser extends CommandParser {
     protected static final String REMOVE_PARAM = "d";
+    protected static final String TOO_MUCH_ARGUMENTS = "Remove command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    private static final Logger LOGGER = getAniLogger(RemoveCommandParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
 
     private RemoveCommand removeCommand;
 
@@ -22,8 +23,9 @@ public class RemoveCommandParser extends CommandParser {
     public RemoveCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
-        if (paramGiven.length <= 1) {
-            throw new AniException("-d ANIME_ID_IN_WATCHLIST is required");
+        paramIsSetCheck(paramGiven);
+        if (paramGiven.length > 2) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         } else {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, "Parameter parsed properly");
