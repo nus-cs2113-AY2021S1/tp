@@ -42,6 +42,18 @@ The 'Ui' component is in charge of handling input from users and system output.
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
 
+### Parser
+![Parser diagram](./diagrams/Parser_diagram.jpg)
+
+The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
+
+### UserData
+![UserData diagram](./diagrams/UserData_diagram.jpg)
+
+The `UserData`
+- stores `EventList` objects that store events of different categories (i.e. Personal, Timetable, Zoom).
+- stores a `Goal` object that represents the current user goal.
+- does not depend on the other components.
 
 ## Implementation
 
