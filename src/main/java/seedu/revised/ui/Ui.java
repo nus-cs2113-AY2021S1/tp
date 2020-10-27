@@ -69,6 +69,7 @@ public class Ui {
     }
 
     public static void printStart(SubjectList subjects) {
+
         System.out.println("Hello from");
         System.out.println(LOGO);
         System.out.println(DIVIDER);
@@ -431,30 +432,40 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints all the upcoming tasks that are due within a week
+     *
+     * @param subjects The list of subjects present in the application
+     */
     public static void printUpcomingTasks(SubjectList subjects) {
         LocalDateTime nextWeek = LocalDateTime.now().plusDays(7);
+        List<Task> taskList = new ArrayList<>();
+        int firstTask = 0;
         for (Subject subject : subjects.getList()) {
-            List<Task> taskList = new ArrayList<>();
+
             int index = 1;
 
             for (Task task : subject.getTasks().getList()) {
+
                 if (task.getDateTime() != null) {
                     if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
                         taskList.add(task);
+                        if (firstTask == 0) {
+                            System.out.println("Here are the upcoming tasks for next week!");
+                            firstTask = 1;
+                        }
+
+                        if (index == 1) {
+                            System.out.println(subject);
+                        }
+                        System.out.println(index + ":" + task);
+                        index = index + 1;
                     }
+
                 }
             }
 
-            for (Task task : taskList) {
-                if (subjects.getList().get(0).equals(subject) & taskList.get(0).equals(task)) {
-                    System.out.println("Here are the tasks that are due by next week\n");
-                }
-                if (index == 1) {
-                    System.out.println(subject);
-                }
-                System.out.println(index + ": " + task);
-                index = index + 1;
-            }
+            taskList.clear();
         }
     }
 
