@@ -1,0 +1,29 @@
+@startuml
+-> ":RemoveChapterCommand" : execute(ui, access, storage)
+activate ":RemoveChapterCommand"
+":RemoveChapterCommand" -> ":RemoveChapterCommand" : removeChapter(access, storage)
+activate ":RemoveChapterCommand"
+":RemoveChapterCommand" -> ":Admin" : getModules()
+":RemoveChapterCommand" <-- ":Admin"
+destroy ":Admin"
+":RemoveChapterCommand" -> ":Module" : getChapters()
+":RemoveChapterCommand" <-- ":Module" : chapters
+destroy ":Module"
+":RemoveChapterCommand" -> ":Storage" : deleteDirectory(directory)
+":RemoveChapterCommand" <-- ":Storage" : isRemoved
+":RemoveChapterCommand" -> ":Storage" : removeChapterFromDue(module, chapter)
+":RemoveChapterCommand" <-- ":Storage" : isRemovedFromDue
+destroy ":Storage"
+opt not removed && not removed from due
+    <-- ":RemoveChapterCommand" : IOException
+end
+":RemoveChapterCommand" -> ":RemoveCommand" : prepareResult(type, module, count)
+":RemoveChapterCommand" <-- ":RemoveCommand" : result
+destroy ":RemoveCommand"
+":RemoveChapterCommand" --> ":RemoveChapterCommand" : result
+deactivate ":RemoveChapterCommand"
+":RemoveChapterCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":RemoveChapterCommand"
+deactivate ":RemoveChapterCommand"
+@enduml
