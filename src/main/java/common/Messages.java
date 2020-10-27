@@ -8,7 +8,7 @@ public class Messages {
     public static final String CHAPTER = "chapter";
     public static final String CARD = "flashcard";
 
-    public static final String MESSAGE_HELP = "[Type help to view a list of commands available.]";
+    public static final String MESSAGE_HELP = "[Type help to view a list of commands available]";
     public static final String MESSAGE_INVALID_ACCESS = "Sorry, you are currently at %1$s"
             + ", please go to %2$s level first.";
     public static final String MESSAGE_MISSING_ARGS = "The arguments are missing.\n";
@@ -24,5 +24,5 @@ public class Messages {
     public static final String MESSAGE_NO_QUESTION_AND_ANSWER = "The content for question and answer are both empty.\n";
     public static final String MESSAGE_NO_NAME = "The %s name is missing.\n";
     public static final String MESSAGE_DATE_FORMAT = "The date should be in the format of yyyy-MM-dd.\n";
-    public static final String MESSAGE_INVALID_COMMAND_TYPE = "There is no such command type.\n";
+    public static final String MESSAGE_INVALID_COMMAND_TYPE = "There is no such command type.";
 }
