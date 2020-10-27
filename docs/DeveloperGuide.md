@@ -117,6 +117,15 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
+#### 2.2.x Dining options finder (`/dine` Feature)
+[Work in Progress]<br>
+`/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
+specified faculty.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
+![bus data](DG_Diagrams/DineSequence.png)
+
+
 ## 3. Appendix I: Requirements
 
 ### 3.1 Product scope
