@@ -1,5 +1,7 @@
 import access.Access;
 import commands.Command;
+import common.KajiLog;
+import exception.ExclusionFileException;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import exception.InvalidFileFormatException;
@@ -10,13 +12,15 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.logging.Logger;
+
+import static common.Messages.MESSAGE_HELP;
 
 public class Kaji {
     private Ui ui;
     private Access access;
     private Storage storage;
-
+    private static final Logger logger = KajiLog.getLogger("Kaji");
 
     public Kaji(String filePath) {
         ui = new Ui();
@@ -31,8 +35,9 @@ public class Kaji {
     }
 
     public void run() {
+        logger.info("Starting up Kaji...");
         ui.showWelcome();
-        ui.showHelpList();
+        ui.showToUser(MESSAGE_HELP);
         ui.printLine();
         boolean isExit = false;
         while (!isExit) {
@@ -44,11 +49,13 @@ public class Kaji {
                 ui.printLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
-                     | IndexOutOfBoundsException | InvalidFileFormatException e) {
+                     | IndexOutOfBoundsException | InvalidFileFormatException | ExclusionFileException e) {
+                logger.warning("An error occured: " + e.getMessage());
                 ui.showError(e.getMessage());
                 ui.printLine();
             }
         }
+        logger.info("Exiting Kaji...");
     }
 
     public static void main(String[] args) {

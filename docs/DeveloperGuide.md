@@ -1,32 +1,66 @@
 # Developer Guide
 
 ## Table of content
-1. [Introduction](#1-introduction)<br>
+1. [<b>Introduction</b>](#1-introduction)<br>
 1.1. [Overview](#11-overview)<br>
 1.2. [Purpose](#12-purpose)<br>
 1.3. [Scope](#13-scope)<br>
-2. [Setting Up](#2-setting-up)<br>
+2. [<b>Setting Up</b>](#2-setting-up)<br>
 2.1. [Prerequisites](#21-prerequisites)<br>
-2.2. [Setting up the project in your computer](#22-setting-up-the-project-in-your-computer)<br>
-3. [Design](#3-design)<br>
-3.1. [Architecture](#31-architecture)<br>
-4. [Implementation](#4-implementation)<br>
-4.1. [Print prompt feature](#41-print-prompt-feature)<br>
-4.2. [Remove feature](#42-remove-feature)<br>
-4.3. [Revise feature](#43-revise-feature)<br>
-4.4. [List feature](#44-list-feature)<br>
-4.5. [Add flashcard feature](#45-add-flashcard-feature)<br>
-4.6. [Scheduler feature](#46-scheduler-feature)<br>
-4.7. [History feature](#47-history-feature)<br>
-5. [Appendix: Requirements](#5-appendix-requirements)<br>
-5.1. [Product scope](#51-product-scope)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target user profile](#511-target-user-profile)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2. [Value proposition](#512-value-proposition)<br>
+2.2. [Setting Up the Project in your Computer](#22-setting-up-the-project-in-your-computer)<br>
+3. [<b>Design (Architecture)</b>](#3-design-architecture)<br>
+3.1. [Ui Component](#31-ui-component)<br>
+3.2. [Logic Component](#32-logic-component)<br>
+3.3. [Model Component](#33-model-component)<br>
+3.4. [Storage Component](#34-storage-component)<br>
+3.5. [Common Classes](#35-common-classes)<br>
+4. [<b>Implementation</b>](#4-implementation)<br>
+4.1. [Admin Features](#41-admin-features)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Add Module Feature](#411-add-module-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [List Modules Feature](#412-list-modules-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.3. [Edit Module Name Feature](#413-edit-module-name-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.4. [Remove Module Feature](#414-remove-module-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.5. [Access Module Level Feature](#415-access-module-level-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.6. [Example of the Admin Feature](#416-example-of-the-admin-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.7. [Conclusion](#417-conclusion)<br>
+4.2. [Module Features](#42-module-features)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Chapter Feature](#421-add-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [List Chapters Feature](#422-list-chapters-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Edit Chapter Name Feature](#423-edit-chapter-name-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Remove Chapter Feature](#424-remove-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Access Chapter Level Feature](#425-access-chapter-level-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.6. [Return to Admin Level Feature](#426-return-to-admin-level-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.7. [Rate Chapter Feature](#427-rate-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.8. [Example of the Module Feature](#428-example-of-the-module-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.9. [Conclusion](#429-conclusion)<br>
+4.3. [Chapter Features](#43-chapter-features)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Add Flashcard Feature](#431-add-flashcard-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [List Flashcards Feature](#432-list-flashcards-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Edit Flashcard Content Feature](#433-edit-flashcard-content-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Flashcard Feature](#434-remove-flashcard-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Return to Module Level Feature](#435-return-to-module-level-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.6. [Check Overall Performance for a Chapter Feature](#436-check-overall-performance-for-a-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.7. [Example of the Chapter Feature](#437-example-of-the-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
+4.4. [Revision Features](#44-revision-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Revision Feature](#441-revision-feature)<br>
+4.5. [Scheduler feature](#45-scheduler-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.3. [Exclusion Feature](#453-exclusion-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.4. [Reschedule Chapter Feature](#454-reschedule-chapter-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.5. [View Revision History Feature](#455-view-revision-history-feature)<br>
+5. [<b>Appendix: Requirements</b>](#5-appendix-requirements)<br>
+5.1. [Product Scope](#51-product-scope)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target User Profile](#511-target-user-profile)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2. [Value Proposition](#512-value-proposition)<br>
 5.2. [User Stories](#52-user-stories)<br>
 5.3. [Use Cases](#53-use-cases)<br>
 5.4. [Non-Functional Requirements](#54-non-functional-requirements)<br>
 5.5. [Glossary](#55-glossary)<br>
-6. [Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)<br>
+6. [<b>Appendix: Instructions for Manual Testing</b>](#6-appendix-instructions-for-manual-testing)<br>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
 
@@ -36,6 +70,8 @@
 
 ### 1.3. Scope
 This documentation describes the software architecture and software design decisions for the implementation of Kaji. The intended audience of this document is the developers, designers, and software testers of Kaji.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 2. Setting Up
 
@@ -53,9 +89,10 @@ This documentation describes the software architecture and software design decis
 If asked, choose to `Open as Project` (not `Open as File`).
 7. Click `OK` to accept the default settings
 
-## 3. Design
+--------------------------------------------------------------------------------------------------------------------
 
-### 3.1. Architecture
+## 3. Design (Architecture)
+(Zeyu)
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -74,72 +111,136 @@ The rest of the App consists of 8 components:
 * `Scheduler`: Schedules the revision schedule.
 * `Storage`: Reads data from, and writes data to, the hard disk.
 
+### 3.1. Ui Component 
+(Jia Ern)
+
+### 3.2. Logic Component 
+(Jane)
+
+### 3.3. Model Component
+(Jiayi)
+
+### 3.4. Storage Component 
+(Lucas)
+
+### 3.5. Common Classes
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 4. Implementation
 
-### 4.2. Remove feature
+### 4.1. Admin Features
+[summary + scenario]
 
-#### 4.2.1. Implementation
+#### 4.1.1. Add Module Feature
+(Jiayi)
 
-The remove mechanism is executed by `RemoveCommand`. It extends from the abstract class `Command`. 
-In addition, it implements the following operations:
-* `RemoveCommand#execute()` — checks the `Access` level of user and calls the respective remove methods.
-* `RemoveCommand#removeModule()` — removes module from list of modules based on the index provided and the chapters 
-and flashcards under it.
-* `RemoveCommand#removeChapter()` — removes chapter from list of chapter based on the index provided and 
-the flashcards under it.
-* `RemoveCommand#removeCard()` — removes flashcard from list of flashcards based on the index provided.
+#### 4.1.2. List Modules Feature
+(Zeyu)
 
-Given below is an example usage scenario and how the remove mechanism behaves at each step:
+#### 4.1.3. Edit Module Name Feature
+(Jane)
 
-Step 1: The user launches the application and is currently in the module level. 
+#### 4.1.4. Remove Module Feature
+(Jia Ern)
 
-Step 2: The user executes `remove 1` command to delete the first module in the list of modules. 
-The `remove` command creates `RemoveCommand` which will then be executed. 
+#### 4.1.5. Access Module Level Feature
+(Jiayi)
 
-Step 3: `RemoveCommand#execute` gets the module object based on the index provided and calls 
-`Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
+#### 4.1.6. Example of the Admin Feature
+
+#### 4.1.7. Conclusion
+
+### 4.2. Module Features
+[summary + scenario]
+
+#### 4.2.1. Add Chapter Feature
+(Jiayi)
+
+#### 4.2.2. List Chapters Feature
+(Zeyu)
+
+#### 4.2.3. Edit Chapter Name Feature
+(Jane)
+
+#### 4.2.4. Remove Chapter Feature
+(Jia Ern)
+
+#### 4.2.5. Access Chapter Level Feature
+(Lucas)
+
+#### 4.2.6. Return to Admin Level Feature
+(Lucas)
+
+#### 4.2.7. Rate Chapter Feature
+(Jiayi) 
+
+#### 4.2.8. Example of the Module Feature
+
+#### 4.2.9. Conclusion
+
+### 4.3. Chapter Features
+[summary + scenario]
+
+#### 4.3.1. Add Flashcard Feature
+(Jane)
+
+#### 4.3.2. List Flashcards Feature
+(Zeyu)
+
+#### 4.3.3. Edit Flashcard Content Feature
+(Jane)
+
+#### 4.3.4. Remove Flashcard Feature
+(Jia Ern)
+
+#### 4.3.5. Return to Module Level Feature
+(Jia Ern)
+
+#### 4.3.6. Check Overall Performance for a Chapter Feature
+(Jiayi)
+
+#### 4.3.7. Example of the Chapter Feature
+
+#### 4.3.8. Conclusion
+
+### 4.4. Revision Feature
+[summary + scenario]
+
+#### 4.4.1. Revision Feature
+(Jia Ern)
+
+### 4.5. Scheduler Feature
+[summary + scenario]
+
+#### 4.5.1. View Due Chapters Feature
+(Lucas)
+
+#### 4.5.2. Preview Upcoming Dues Feature
+(Lucas)
+
+#### 4.5.3. Exclusion Feature
+(Lucas)
+
+#### 4.5.4. Reschedule Chapter Feature
+(Jane)
+
+#### 4.5.5. View Revision History Feature
+(Zeyu)
 
 
-### 4.3. Revise feature
-
-#### 4.3.1. Implementation
-
-The revise mechanism is executed by `ReviseCommand`. It extends from the abstract class `Command`. 
-In addition, it implements the following operations:
-* ReviseCommand#execute() — oversees the entire revise process and calls the respective methods when necessary.
-* ReviseCommand#getChapter() — gets Chapter 
-* RemoveCommand#getCards() — removes chapter from list of chapter based on the index provided and 
-the flashcards under it.
-* ReviseCommand#reviseCard() — removes flashcard from list of flashcards based on the index provided.
-* ReviseCommand#addHistory() — adds the revision history to a storage to track past revisions.
-* ReviseCommand#rateCard() — gets user input on difficulty of a flashcard.
-* ReviseCommand#repeatRevision() — repeats revision for cards which user could not answer. 
-
-Given below is an example usage scenario and how the revise mechanism behaves at each step:
-
-Step 1: The user launches the application and is currently in the module level.
-
-Step 2: The user executes `revise 1` command to revise the first chapter in the module. The `revise` command creates `ReviseCommand` which will then be executed.
-
-Step 3: `ReviseCommand#execute` gets the chapter object based on the index provided as well as the flashcards under the particular chapter.
-
-Step 4: Each flashcard will be shown to the user one by one and the `Ui#getInput` is called each time to get user input to rate the difficulty of the questions. 
-
-Step 5: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
-
-Step 6: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
-
+--------------------------------------------------------------------------------------------------------------------
 
 ## 5. Appendix: Requirements
-### 5.1. Product scope
-#### 5.1.1. Target user profile
+### 5.1. Product Scope
+#### 5.1.1. Target User Profile
 
 * needs to have an effective study schedule
 * prefers typing to mouse interactions
 * is comfortable with the usage of CLI applications
 
-#### 5.1.2. Value proposition
+#### 5.1.2. Value Proposition
 
 * implements Spaced Repetition for the user 
 
@@ -163,7 +264,9 @@ Step 6: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storag
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface
 
-## 6. Appendix: Instructions for manual testing
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Appendix: Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 

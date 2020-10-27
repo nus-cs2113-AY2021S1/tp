@@ -5,9 +5,11 @@ import access.Access;
 import commands.AddCommand;
 import commands.BackCommand;
 import commands.EditCommand;
+import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
+import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RateCommand;
@@ -15,8 +17,10 @@ import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
+
 import manager.card.Card;
 import manager.chapter.DueChapter;
+
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -27,8 +31,6 @@ import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
-    public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
-            + "yet. Please try this command again once you have added some flashcards!";
     private final Scanner in;
     private final PrintStream out;
 
@@ -83,8 +85,10 @@ public class Ui {
         return userCommand;
     }
 
+
+
     public void showWelcome() {
-        out.println("Welcome to Kaji!\n");
+        out.println("Welcome to Kaji!");
     }
 
     public void showLevel(Access access) {
@@ -97,6 +101,10 @@ public class Ui {
 
     public void showToUser(String message) {
         out.println(message);
+    }
+
+    public void showToUserInline(String message) {
+        out.print(message);
     }
 
     public void showCardRevision(Card c) {
@@ -125,19 +133,20 @@ public class Ui {
 
     public void showHelpList() {
         out.println("Here is a list of commands available:" + "\n");
-        out.println("1. " + ListCommand.MESSAGE_USAGE);
-        out.println("2. " + ReviseCommand.MESSAGE_USAGE);
-        out.println("3. " + HelpCommand.MESSAGE_USAGE);
-        out.println("4. " + AddCommand.MESSAGE_USAGE);
-        out.println("5. " + ExitCommand.MESSAGE_USAGE);
-        out.println("6. " + EditCommand.MESSAGE_USAGE);
-        out.println("7. " + RemoveCommand.MESSAGE_USAGE);
-        out.println("8. " + GoCommand.MESSAGE_USAGE);
-        out.println("9. " + BackCommand.MESSAGE_USAGE);
+        out.println("1.  " + ListCommand.MESSAGE_USAGE);
+        out.println("2.  " + ReviseCommand.MESSAGE_USAGE);
+        out.println("3.  " + HelpCommand.MESSAGE_USAGE);
+        out.println("4.  " + AddCommand.MESSAGE_USAGE);
+        out.println("5.  " + ExitCommand.MESSAGE_USAGE);
+        out.println("6.  " + EditCommand.MESSAGE_USAGE);
+        out.println("7.  " + RemoveCommand.MESSAGE_USAGE);
+        out.println("8.  " + GoCommand.MESSAGE_USAGE);
+        out.println("9.  " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
-        out.println("11. " + RateCommand.MESSAGE_USAGE);
-        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
-        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("11. " + HistoryCommand.MESSAGE_USAGE);
+        out.println("12. " + RateCommand.MESSAGE_USAGE);
+        out.println("13. " + ShowRateCommand.MESSAGE_USAGE);
+        out.println("14. " + RescheduleCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
@@ -186,5 +195,60 @@ public class Ui {
             showToUser("is:");
         }
 
+    }
+
+    public boolean isValidExclusionChoice(String choice) {
+        switch (choice.toLowerCase()) {
+        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE:
+        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER:
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    public String chooseModuleOrChapterExclusion(String type) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MORE)) {
+            showToUser("Would you like to exclude a module or chapter from your schedule?");
+        } else {
+            showToUser("Would you like to include a module or chapter back into your schedule?");
+        }
+        String choice = readCommand();
+        while (!isValidExclusionChoice(choice)) {
+            String message = "That was not a valid choice. Please enter \""
+                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE + "\" or \""
+                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER + "\".";
+            showToUser(message);
+            choice = readCommand();
+        }
+        return choice.toLowerCase();
+    }
+
+    public String getExcludedModuleName(String type) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+            showToUser("Which module will you like to be excluded from your schedule?");
+        } else {
+            showToUser("Which module does the chapter you would like to be excluded belong to?");
+        }
+        return readCommand().toLowerCase();
+    }
+
+    public String getExcludedChapterName(String moduleName) {
+        showToUser("Which chapter in the Module: " + moduleName + " would you like to exclude?");
+        return readCommand().toLowerCase();
+    }
+
+    public String getIncludedModuleName(String type) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+            showToUser("Which module will you like to include back into your schedule?");
+        } else {
+            showToUser("Which module does the chapter you would like to be included belong to?");
+        }
+        return readCommand().toLowerCase();
+    }
+
+    public String getIncludedChapterName(String moduleName) {
+        showToUser("Which chapter in the Module: " + moduleName + " would you like to include?");
+        return readCommand().toLowerCase();
     }
 }

@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import common.KajiLog;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.history.History;
@@ -12,12 +13,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 /**
  * Starts revision for a particular chapter.
  */
 public class ReviseCommand extends Command {
+    private static Logger logger = KajiLog.getLogger(ReviseCommand.class.getName());
+
     public static final String COMMAND_WORD = "revise";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts revision based on a particular chapter. \n"
@@ -113,6 +117,7 @@ public class ReviseCommand extends Command {
         }
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
+        logger.info("Revision has completed for chapter: " + toRevise);
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
 
         addHistory(ui, access, storage);

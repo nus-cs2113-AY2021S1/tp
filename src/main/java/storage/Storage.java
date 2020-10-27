@@ -1,6 +1,9 @@
 package storage;
 
 import access.Access;
+import commands.RemoveCardCommand;
+import common.KajiLog;
+import exception.ExclusionFileException;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.history.History;
@@ -18,8 +21,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Storage {
+    private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
     public static final String DELIMITER = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
@@ -57,7 +62,7 @@ public class Storage {
                     f.getParentFile().getName()));
         }
         if (dataDirCreated) {
-            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
+            logger.info(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
 
         boolean adminDirExists = f.exists();
@@ -68,42 +73,37 @@ public class Storage {
             ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f));
         }
         if (adminDirCreated) {
-            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f));
+            logger.info(String.format(MESSAGE_CREATED, DIR, f));
         }
         createHistoryDir();
     }
 
-    public String createModule(String moduleName) {
+    public void createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
         boolean moduleDirExists = f.exists();
         boolean moduleDirCreated = false;
-        String result = "";
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            result = String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f);
+            logger.info(String.format(MESSAGE_EXISTS, DIR, f));
         }
         if (moduleDirCreated) {
-            result = String.format(MESSAGE_CREATED, DIR, f);
+            logger.info(String.format(MESSAGE_CREATED, DIR, f));
         }
-        return result;
     }
 
-    public String createChapter(String chapterName, String moduleName) throws IOException {
-        String result = "";
-
+    public void createChapter(String chapterName, String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
         boolean chapterFileExists = f.exists();
         boolean chapterFileCreated = false;
         if (!chapterFileExists) {
             chapterFileCreated = f.createNewFile();
         } else {
-            result = String.format(MESSAGE_EXISTS, FILE.substring(0, 1).toUpperCase(), f);
+            logger.info(String.format(MESSAGE_EXISTS, FILE, f));
         }
         if (chapterFileCreated) {
-            result = String.format(MESSAGE_CREATED, FILE, f);
+            logger.info(String.format(MESSAGE_CREATED, FILE, f));
         }
-        return result;
     }
 
     public ArrayList<Module> loadModule(Ui ui) throws FileNotFoundException {
@@ -115,11 +115,15 @@ public class Storage {
 
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
-        ui.showToUser("List of files and directories in the specified directory:");
+        String result = "List of files and directories in the specified directory:";
         for (String content : contents) {
-            ui.showToUser(content);
+            if (content.equals("exclusions.txt")) {
+                continue;
+            }
+            result += "\n" + content;
             modules.add(new Module(content));
         }
+        logger.info(result);
         return modules;
     }
 
@@ -135,16 +139,26 @@ public class Storage {
         if (contents.length == 0) {
             return chapters;
         }
-        ui.showToUser("List of files and directories in the specified directory:");
+        String result = "List of files and directories in the specified directory:";
         for (String content : contents) {
             if (content.equals("dues")) {
                 continue;
             }
             String target = content.replace(".txt", "");
-            ui.showToUser(content);
+            result += content;
             chapters.add(new Chapter(target));
         }
+        logger.info(result);
         return chapters;
+    }
+
+    public String[] loadChaptersFrom(String moduleName) throws FileNotFoundException {
+        File file = new File(filePath + "/" + moduleName);
+        boolean moduleExists = file.exists();
+        if (!moduleExists) {
+            throw new FileNotFoundException();
+        }
+        return file.list();
     }
 
     private String retrieveChapterDeadline(String moduleName, String chapterName) {
@@ -169,18 +183,45 @@ public class Storage {
         return f.exists();
     }
 
-    public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException {
+    private ArrayList<String> loadExcludedFile() throws ExclusionFileException {
+        File f = new File(getFilePath() + "/exclusions.txt");
+        ArrayList<String> excludedChapters = new ArrayList<>();
+        try {
+            if (!f.exists()) {
+                if (!f.createNewFile()) {
+                    throw new ExclusionFileException();
+                } else {
+                    return new ArrayList<String>();
+                }
+            }
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                //to read the card
+                String entry = s.nextLine();
+                excludedChapters.add(entry);
+            }
+            s.close();
+            return excludedChapters;
+        } catch (IOException e) {
+            throw new ExclusionFileException();
+        }
+    }
+
+    public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException, ExclusionFileException {
+        //Loading in Excluded Chapters
+        ArrayList<String> excludedChapters = loadExcludedFile();
         //Loading in Modules
         File f = new File(filePath);
         boolean moduleExists = f.exists();
         if (!moduleExists) {
             throw new FileNotFoundException();
         }
-
         String[] modules = f.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
         for (String module : modules) {
-
+            if (module.equals("exclusions.txt")) {
+                continue;
+            }
             //Loading in Chapters for each module
             File f2 = new File(filePath + "/" + module);
             boolean chapterExists = f2.exists();
@@ -193,6 +234,10 @@ public class Storage {
             }
             for (String chapter : chapters) {
                 String target = chapter.replace(".txt", "");
+                String entry = "Module: " + module + "; Chapter: " + target;
+                if (excludedChapters.contains(entry)) {
+                    continue;
+                }
                 String deadline = retrieveChapterDeadline(module, target);
                 assert !deadline.equals(null) : "Invalid deadline retrieved";
                 if (deadline.equals("Invalid Date")) {
@@ -214,6 +259,72 @@ public class Storage {
             }
         }
         return dueChapters;
+    }
+
+    public void chapterExists(String moduleName, String chapterName) throws FileNotFoundException {
+        File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        }
+    }
+
+    public void updateExclusionFile(ArrayList<String> excludedChapters) throws ExclusionFileException {
+        try {
+            FileWriter fw = new FileWriter(getFilePath() + "/exclusions.txt");
+            for (String excluded : excludedChapters) {
+                fw.write(excluded + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new ExclusionFileException("Sorry, there was an error in accessing the Exclusion File");
+        }
+    }
+
+    public void appendModuleToExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        String[] chapters = loadChaptersFrom(moduleName);
+        for (String chapter : chapters) {
+            if (chapter.equals("dues")) {
+                continue;
+            }
+            chapter = chapter.replace(".txt", "");
+            String entry = "Module: " + moduleName + "; Chapter: " + chapter;
+            if (!excludedChapters.contains(entry)) {
+                excludedChapters.add(entry);
+            }
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void appendChapterToExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
+            ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        chapterExists(moduleName, chapterName);
+        String entry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        if (!excludedChapters.contains(entry)) {
+            excludedChapters.add(entry);
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void removeModuleFromExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        String[] chapters = loadChaptersFrom(moduleName);
+        for (String chapter : chapters) {
+            chapter = chapter.replace(".txt", "");
+            String entry = "Module: " + moduleName + "; Chapter: " + chapter;
+            excludedChapters.remove(entry);
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
+            ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        chapterExists(moduleName, chapterName);
+        String entry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        excludedChapters.remove(entry);
+        updateExclusionFile(excludedChapters);
     }
 
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
@@ -335,13 +446,13 @@ public class Storage {
             if (!historyFileExists) {
                 historyFileCreated = f.createNewFile();
             } else {
-                ui.showToUser("the file " + date + ".txt already exists in history folder\n"
-                        + "It stores the revision completed in the session/in a day\n");
+                logger.info("the file " + date + ".txt already exists in history folder\n"
+                        + "It stores the revision completed in the session/in a day");
             }
 
             if (historyFileCreated) {
-                ui.showToUser("Successfully created new file " + date + ".txt in history folder\n"
-                        + "It stores the revision completed in the session/in a day\n");
+                logger.info("Successfully created new file " + date + ".txt in history folder\n"
+                        + "It stores the revision completed in the session/in a day");
             }
         } catch (IOException e) {
             ui.showError("Error creating the file.");
@@ -384,5 +495,11 @@ public class Storage {
         }
         s.close();
         return histories;
+    }
+
+    public boolean removeChapterFromDue(String module, String chapter) {
+        File fileToDelete = new File(getFilePath() + "/" + module
+                + "/dues/" + chapter + "due.txt");
+        return deleteDirectory(fileToDelete);
     }
 }
