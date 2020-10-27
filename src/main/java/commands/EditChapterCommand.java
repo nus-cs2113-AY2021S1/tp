@@ -2,7 +2,6 @@ package commands;
 
 import access.Access;
 import exception.DuplicateDataException;
-import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
@@ -28,8 +27,7 @@ public class EditChapterCommand extends EditCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, DuplicateDataException {
+    public void execute(Ui ui, Access access, Storage storage) throws InvalidInputException, DuplicateDataException {
         String result = editChapter(access, storage);
         ui.showToUser(result);
     }

@@ -1,17 +1,8 @@
 package commands;
 
-import exception.IncorrectAccessLevelException;
-import manager.admin.ModuleList;
-import manager.card.Card;
 import access.Access;
-import manager.chapter.Chapter;
-import manager.module.ChapterList;
-import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public abstract class GoCommand extends Command {
     public static final String COMMAND_WORD = "go";
@@ -25,7 +16,7 @@ public abstract class GoCommand extends Command {
             + "         " + COMMAND_WORD + " Chapter 1\n";
 
     @Override
-    public abstract void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException;
+    public abstract void execute(Ui ui, Access access, Storage storage);
 
     @Override
     public boolean isExit() {

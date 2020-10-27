@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import storage.Storage;
 import ui.Ui;
 
@@ -12,7 +11,7 @@ public abstract class BackCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public abstract void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException;
+    public abstract void execute(Ui ui, Access access, Storage storage);
 
     @Override
     public boolean isExit() {

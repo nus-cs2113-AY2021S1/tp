@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.admin.Admin;
 import manager.admin.ModuleList;
 import manager.module.Module;
@@ -23,7 +22,7 @@ public class AddModuleCommand extends AddCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
+    public void execute(Ui ui, Access access, Storage storage) {
         Module module = new Module(this.module);
         String result = addModule(access, storage, module);
         ui.showToUser(result);

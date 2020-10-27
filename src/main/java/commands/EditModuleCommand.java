@@ -2,7 +2,6 @@ package commands;
 
 import access.Access;
 import exception.DuplicateDataException;
-import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import manager.admin.ModuleList;
 import manager.module.Module;
@@ -28,8 +27,7 @@ public class EditModuleCommand extends EditCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, DuplicateDataException {
+    public void execute(Ui ui, Access access, Storage storage) throws InvalidInputException, DuplicateDataException {
         String result = editModule(access, storage);
         ui.showToUser(result);
     }

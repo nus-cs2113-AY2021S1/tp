@@ -2,7 +2,6 @@ package commands;
 
 import access.Access;
 import exception.DuplicateDataException;
-import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import storage.Storage;
 import ui.Ui;
@@ -32,7 +31,7 @@ public abstract class EditCommand extends Command {
 
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, IOException, DuplicateDataException;
+            throws InvalidInputException, IOException, DuplicateDataException;
 
     protected String prepareBeforeEdit(String type, String content) {
         StringBuilder result = new StringBuilder();

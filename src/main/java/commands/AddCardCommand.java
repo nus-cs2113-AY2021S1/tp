@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import storage.Storage;
@@ -23,8 +22,7 @@ public class AddCardCommand extends AddCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-            throws IncorrectAccessLevelException, IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
         String result = addCard(access, storage);
         ui.showToUser(result);
     }

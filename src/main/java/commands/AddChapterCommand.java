@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import manager.module.Module;
@@ -24,7 +23,7 @@ public class AddChapterCommand extends AddCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException, IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter chapter = new Chapter(this.chapter, rateChapter(), storage, access);
         String result = addChapter(access, storage, chapter);
         ui.showToUser(result);

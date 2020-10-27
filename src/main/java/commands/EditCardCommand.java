@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import manager.card.Card;
 import manager.chapter.CardList;
@@ -29,8 +28,7 @@ public class EditCardCommand extends EditCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
         String result = editCard(access, storage);
         ui.showToUser(result);
     }

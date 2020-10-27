@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.admin.ModuleList;
 import manager.card.Card;
 import manager.chapter.CardList;
@@ -28,12 +27,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_DOES_NOT_EXIST = "There are no %s(s) in your list.";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
-        if (!access.isAdminLevel() && !access.isModuleLevel() && !access.isChapterLevel()) {
-            throw new IncorrectAccessLevelException("List command can only be called at admin, "
-                    + "module and chapter level.\n");
-        }
-
+    public void execute(Ui ui, Access access, Storage storage) {
         String result = "";
 
         if (access.isChapterLevel()) {

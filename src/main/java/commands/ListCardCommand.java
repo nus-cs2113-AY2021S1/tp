@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import storage.Storage;
@@ -16,12 +15,7 @@ public class ListCardCommand extends ListCommand {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
-        if (!access.isAdminLevel() && !access.isModuleLevel() && !access.isChapterLevel()) {
-            throw new IncorrectAccessLevelException("List command can only be called at admin, "
-                    + "module and chapter level.\n");
-        }
-
+    public void execute(Ui ui, Access access, Storage storage) {
         String result = listCards(access);
         ui.showToUser(result);
     }
@@ -42,10 +36,5 @@ public class ListCardCommand extends ListCommand {
             result.append("\n").append(allCards.indexOf(c) + 1).append(".").append(c);
         }
         return result.toString();
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
