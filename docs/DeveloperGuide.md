@@ -155,6 +155,7 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
 
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
