@@ -1,15 +1,16 @@
 @startuml
 autoactivate on
+scale 2048 width
 
-":ManualTracker" ->":ManualTracker": handleCreateEntry()
+":ManualTracker" ->":ManualTracker": handleDeleteLedger()
    note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
    create "retrieveLedgerCommand:RetrieveLedgerCommand"
-   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : "retrieveLedgerCommand:RetrieveLedgerCommand"()
+   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : RetrieveLedgerCommand()
    return
 
-   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : handlePacket
+   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : handlePacket(packet)
         == Handling of Params in packet for retrieval ==
-        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleParams
+        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleParams(packet)
             "retrieveLedgerCommand:RetrieveLedgerCommand" -> ":ParamChecker" : setPacket(packet)
             return
             loop For all paramType in the command packet

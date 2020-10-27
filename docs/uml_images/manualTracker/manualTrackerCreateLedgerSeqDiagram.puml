@@ -1,23 +1,23 @@
 @startuml
 autoactivate on
 
-":ManualTracker" ->":ManualTracker": handleCreateEntry()
+":ManualTracker" ->":ManualTracker": handleCreateLedger()
     create "command:CreateLedgerCommand"
-   ":ManualTracker"-> "command:CreateLedgerCommand" : "command:CreateLedgerCommand"()
+   ":ManualTracker"-> "command:CreateLedgerCommand" : CreateLedgerCommand()
     return
 
-   ":ManualTracker"-> "command:CreateLedgerCommand" : handlePacket
+   ":ManualTracker"-> "command:CreateLedgerCommand" : handlePacket(packet)
 
         create ":ledger:Ledger"
         "command:CreateLedgerCommand" -> ":ledger:Ledger" : Entry()
         return
         == Handling of Params in packet ==
-        "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleParams
+        "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleParams(packet)
             "command:CreateLedgerCommand" -> ":ParamChecker" : setPacket(packet)
             return
             loop For all paramType in the command packet
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
-                "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleSingleParam
+                "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleSingleParam(packet)
                     alt "paramType = PARAM_DATE"
                         "command:CreateLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
                         return date

@@ -1,0 +1,110 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Logic {
+    abstract class ParamHandler <<Singleton>> {
+        # requiredParams : HashSet<String>
+        # paramsSuccessfullyParsed : HashSet<String>
+        # missingRequiredParams : HashSet<String>
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        + resetAllParamCollections() : void
+        # checkParseFailedParams() : boolean
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    package p1 <<Layout>> {
+    }
+
+    package p2 <<Layout>> {
+    }
+
+    package p3 <<Layout>> {
+    }
+
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+
+    p1 -[hidden] p2
+    p2 -[hidden] p3
+    p2 -[hidden] ParamChecker
+    p3 -[hidden] ParamHandler
+}
+
+rectangle Commands {
+    rectangle LedgerCommands {
+        class createLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+    }
+
+    package p4 <<Layout>> {
+    }
+
+    rectangle EntryCommands {
+        class createEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class editEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+    }
+
+    EntryCommands -[hidden]- p4
+    ParamChecker -[hidden]- ParamHandler
+}
+
+Commands -[hidden]down- Logic
+
+ParamChecker "1" <-[norank]- createLedgerCommand #line:blue;line.bold;text:black :'
+ParamChecker "1" <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- createEntryCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- editEntryCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:black
+ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
+
+
+
+@enduml
