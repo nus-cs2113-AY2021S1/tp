@@ -7,8 +7,12 @@ import seedu.duke.event.Goal;
 import seedu.duke.exception.InvalidListException;
 import seedu.duke.ui.Ui;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -287,5 +291,25 @@ public class Storage {
         return fileDirectoryPath.toString();
     }
 
+    /**
+     * Function loads files that are meant to be system resources such as images or text files.
+     *
+     * @param fileName location of the file in string form. Start from the root using the slash symbol
+     * @param resource String ArrayList to store the information
+     */
+    public void loadSystemResources(String fileName, ArrayList<String> resource) {
+        try {
+            InputStream is = getClass().getResourceAsStream(fileName);
+            InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(streamReader);
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                resource.add(line);
+            }
+        } catch (IOException e) {
+            ui.printErrorMessage("Resource file could not be loaded!");
+        }
+    }
 
 }
