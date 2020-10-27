@@ -21,7 +21,7 @@ public class Reminder extends ReadOnlyCommand {
 
     public Reminder(String keyString, String timeString) throws InvalidTaskNumberException {
         timer = new Timer();
-        if(timeString!=null) {
+        if (timeString != null) {
             this.time = Integer.parseInt(timeString);
         } else {
             this.time = null;
@@ -39,11 +39,11 @@ public class Reminder extends ReadOnlyCommand {
         TaskMap taskReminder = new TaskMap();
         taskReminder.addTask(task);
         if (time != null) {
-            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue()-1,
+            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue() - 1,
                     task.getDate().getDayOfMonth(), (time / 100), (time % 100),0);
         } else {
-            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue()-1,
-                    task.getDate().getDayOfMonth(), task.getStartTime().getHour()-1,
+            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue() - 1,
+                    task.getDate().getDayOfMonth(), task.getStartTime().getHour() - 1,
                     task.getStartTime().getMinute(),0);
         }
         Date date = calendar.getTime();

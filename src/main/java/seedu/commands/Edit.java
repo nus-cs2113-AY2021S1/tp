@@ -46,7 +46,6 @@ public class Edit extends ModificationCommand {
     public CommandResult execute(Model model)
         throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
         TaskMap tasks = model.getTaskMap();
-        TaskMap taskChanged = new TaskMap();
         Task task = tasks.get(key);
         if (task == null) {
             throw new InvalidTaskNumberException();
@@ -73,6 +72,7 @@ public class Edit extends ModificationCommand {
         }
         tasks.delete(key);
         tasks.addTask(editedTask);
+        TaskMap taskChanged = new TaskMap();
         taskChanged.addTask(editedTask);
         model.pushAndUpdate(tasks);
         return new CommandResult(EDIT_MESSAGE,taskChanged);
