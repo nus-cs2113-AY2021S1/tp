@@ -36,7 +36,11 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
+### Ui
+The 'Ui' component is in charge of handling input from users and system output.
 
+It listens for commands made in the Duke Class and sends the input to the parser class.
+It is also responsible for printing messages from commands and exception messages. 
 
 
 ## Implementation
