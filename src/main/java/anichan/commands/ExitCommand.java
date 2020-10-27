@@ -1,4 +1,4 @@
-package anichan.command;
+package anichan.commands;
 
 import anichan.human.User;
 import anichan.anime.AnimeData;

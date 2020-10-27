@@ -1,4 +1,4 @@
-package anichan.command;
+package anichan.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

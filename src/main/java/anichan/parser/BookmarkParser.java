@@ -1,6 +1,6 @@
 package anichan.parser;
 
-import anichan.command.BookmarkCommand;
+import anichan.commands.BookmarkCommand;
 import anichan.exception.AniException;
 
 import anichan.logger.AniLogger;

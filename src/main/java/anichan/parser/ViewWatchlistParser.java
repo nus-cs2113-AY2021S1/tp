@@ -1,6 +1,6 @@
 package anichan.parser;
 
-import anichan.command.ViewWatchlistCommand;
+import anichan.commands.ViewWatchlistCommand;
 import anichan.exception.AniException;
 import anichan.logger.AniLogger;
 
