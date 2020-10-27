@@ -127,7 +127,7 @@ public class TimeTableParser {
                 if ((period.timeSlot.contains(now) || period.timeSlot.contains(now + 100)
                         || period.timeSlot.contains(now + 200))
                         && period.startDateTime.toLocalDate().equals(todayDate)) {
-                    System.out.println(event.linkOrVenue);
+                    System.out.print(event.linkOrVenue + "\n");
                 }
             }
         }

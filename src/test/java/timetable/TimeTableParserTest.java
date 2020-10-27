@@ -1,14 +1,11 @@
 package timetable;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +45,7 @@ class TimeTableParserTest {
     }
 
     @Test
-    void addClassTest_throwInvalidDayOfWeekException() throws InvalidDayOfTheWeekException {
+    void addClassTest_throwInvalidDayOfWeekException() {
         String input = "CS1234\n" + "yes\n" + "www.zoom.com/asdf\n"
                 + "Wednfesday 2-4pm\n" + "1\n" + "20/10/2020\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -76,5 +73,6 @@ class TimeTableParserTest {
         System.setOut(new PrintStream(outContent));
         TimeTableParser.showLink(dateList);
         String expected = "www.zoom.com/asdf\nwww.zoom.com/qwer\n";
+        assertEquals(expected, outContent.toString());
     }
 }
