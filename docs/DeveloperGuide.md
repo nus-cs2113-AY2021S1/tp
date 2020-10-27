@@ -8,8 +8,11 @@
   * [Architecture](#architecture) 
   * [UI Component](#ui-component)
   * [Logic Component](#logic-component)
+* [Implementation](#implementation)
   * [Model Component](#model-component)
+  * [Command Component](#command-component)
   * [Storage Component](#storage-component)
+  * [Parser Component](#parser-component)
 * [Implementation](#implementation) 
 
 ## **Introduction**
@@ -59,14 +62,12 @@ The rest of the App consists of four components.
 * `Storage` Reads and writes data from and to a text file.
 
 
-### Model Component Model Component
-
-### Storage Component
+### Model Component
 
 
-### 
+ 
 ## Implementation
-=======
+
 ### Model Component
 ![Summarised Model Component](images/diagrams/SummarisedClassDiagram.png)
 
@@ -77,6 +78,13 @@ The *Model Component* shown above explains the summarised model of SmartHomeBot.
 The *Detailed Model Component* shown above explains the full detailed model of SmartHomeBot; which includes all of their variables and methods. 
 
 ### Command Component
+
+#### Create Command
+![Sequence of Create Command](images/diagrams/Sequence_CreateCommand.png) <br>
+The *Create Command* shown above explains the Sequence Diagram of the Create Command.
+#### Remove Command 
+![Sequence of Remove Command](images/diagrams/Sequence_RemoveCommand.png) <br>
+The *Remove Command* shown above explains the Sequence Diagram of the Remove Command.
 #### Add Command
 ![Sequence of Add Command](images/diagrams/Sequence_AddCommand.png) <br>
 The *Add Command* shown above explains the Sequence Diagram of the Add Command.
@@ -147,6 +155,69 @@ The sequence diagram for SaveStorageFile is shown below:
 
 ![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
+### Parser Component
 
-## Implementation
+This section will describe how the Parser feature is implemented as well as the design consideration and rational. 
 
+The main purpose of the Parser Class is to interpret the user inputs so that the correct command can be executed.  
+
+Sequence Diagram when `parseCommand(userCommandText)` is initially called. <br>
+![Parser Model Component](images/diagrams/Sequence_MainParser.png)
+
+The `userCommandText` is first capture by TextUi and then passed into parseCommand(userCommandText) method in Parser.
+As shown in the Sequence Diagram above, different userCommandText will result in different paths being taken. 
+
+Below is the list of commands available. 
+* Help: `help`
+* Create a location: `create`
+* Remove a location: `remove`
+* Add an appliance: `add`
+* Delete an appliance: `delete`
+* Switch ON an appliance: `on`
+* Switch OFF an appliance: `off`
+* Listing appliance/location: `list`
+* Displaying usage of appliance: `usage`
+* Resetting usage of appliance: `p_reset`
+* Exiting the application: `exit`
+ 	
+Sequence Diagram for `create`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Create.png)
+
+Sequence Diagram for `remove`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Remove.png)
+
+Sequence Diagram for `add`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Add.png)
+
+Sequence Diagram for `delete`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Delete.png)
+
+Sequence Diagram for `on`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_On.png)
+
+Sequence Diagram for `off`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Off.png) 
+
+Sequence Diagram for `list`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_List.png)
+
+Sequence Diagram for `commandword`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Commandword.png)
+
+`commandword` refers to the following commands `help`, `usage`, `p_reset`, `exit`.
+As these 4 commands does not require any additional parsing. The sequence diagram referred above will return their
+respective CommandObject to execute the command. 
+
+
+
+Sequence Diagram for `default`
+
+![Parser Model Component](images/diagrams/Sequence_Parser_Default.png)
