@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 public class AddToWatchlistParser extends CommandParser {
     protected static final String ADD_PARAM = "a";
-//    protected static final String 
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command " + TOO_MUCH_FIELDS;
     private static final Logger LOGGER = getAniLogger(AddToWatchlistParser.class.getName());
