@@ -3,34 +3,40 @@
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
 enhancements.
 
-- [1. Design & Implementation](#1-design--implementation)
-  * [1.1. Architecture](#11-architecture)
-    + [1.1.1 Ui Component](#111-ui-component)
-    + [1.1.2 Logic Component](#112-logic-component)
-    + [1.1.3 Model Component](#113-model-component)
-    + [1.1.4 Storage Component](#114-storage-component) 
-  * [1.2. Implementation](#12-implementation)
-    + [1.2.1 Direct Route Finder](#121-direct-route-finder)
-        * [1.2.1.1. Implementation](#1211-implementation)
-        * [1.2.1.2. Design Considerations](#1212-design-considerations)
-- [2. Product scope](#2-product-scope)
-  * [2.1. Target user profile](#21-target-user-profile)
-  * [2.2. Value proposition](#22-value-proposition)
-- [3. User Stories](#3-user-stories)
-- [4. Non-Functional Requirements](#4-non-functional-requirements)
-- [5. Glossary](#5-glossary)
-- [6. Instructions for manual testing](#6-instructions-for-manual-testing)
+##Table of Contents
 
-## 1. Design & Implementation
+- [1. Setting up, getting started](#1-setting-up-getting-started)
+- [2. Design & Implementation](#2-design--implementation)
+  * [2.1. Architecture](#21-architecture)
+    + [2.1.1 Ui Component](#211-ui-component)
+    + [2.1.2. Logic Component](#212-logic-component)
+    + [2.1.3. Model Component](#213-model-component)
+    + [2.1.4. Storage Component](#214-storage-component)
+  * [2.2. Implementation](#22-implementation)
+    + [2.2.1 Direct Route Finder (`/route` Feature)](#221-direct-route-finder-route-feature)
+- [3. Appendix I: Requirements](#3-appendix-i-requirements)
+  * [3.1 Product scope](#31-product-scope)
+    + [3.1.1 Target user profile](#311-target-user-profile)
+    + [3.1.2 Value](#312-value)
+  * [3.2. User Stories](#32-user-stories)
+  * [3.3. Non-Functional Requirements](#33-non-functional-requirements)
+  * [3.4. Glossary](#34-glossary)
+- [6. Appendix II: Instructions for manual testing](#6-appendix-ii-instructions-for-manual-testing)
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## 1. Setting up, getting started
 
-### 1.1. Architecture
+Refer to the guide Setting up and getting started.
 
-The architecture diagram given in figure 1 explains the high-level design of the App. 
+## 2. Design & Implementation
 
-![Architecture Diagram](Architecture.png)<br>
-_Figure 1: Architecture diagram_
+This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
+and Implementation. 
+
+### 2.1. Architecture
+
+The architecture diagram given in the figure below explains the high-level design of the App. 
+
+![Architecture Diagram](DG_Diagrams/Architecture.png)
 
 Given below is a quick overview of each component.
 
@@ -43,33 +49,35 @@ The rest of the App consists of 4 main components:
 - `Ui` : The Ui component handles all interactions with the user.
 - `Logic` : The Logic component makes sense of the command and executes it.
 - `Model` : The Model component is responsible for all data held in the memory.
-- `Storage` : The storage component handles data by reading from and writing to files in the hard disk. 
+- `Storage` : The Storage component handles data by reading from and writing to files in the hard disk. 
 
-#### 1.1.1 Ui Component
-The ui component is responsible for getting the user input and for displaying appropriate messages as response 
-to commands executed by the logic component.
+The sections below give more details of each component.
 
-![uicomponent](UiComponent.png)<br>
-_Figure 2: Class diagram for ui component_
+#### 2.1.1 Ui Component
+The Ui component is responsible for getting the user input and for displaying appropriate messages as response 
+to commands executed by the logic component. The following class diagram gives a brief overview of the Ui component 
+and it's interaction with other components.
 
-#### 1.1.2 Logic Component
+![uicomponent](DG_Diagrams/UiComponent.png)
+
+#### 2.1.2. Logic Component
 The logic component is responsible for the following tasks:
 - Make sense of the command entered by the user by splitting it into the command type and the parameters and/or 
 delimiters if any.
 -  Executes a command based on its type and provides an appropriate result to the user via the Ui component.
 
-The following class diagram briefly explains how different classes in the logic component interact with each other.
+The following class diagram briefly explains how different classes in the logic component interact with each other
+and with other components.
 
-![logiccomponent](LogicComponent.png)<br>
-_Figure 3: Class diagram for logic component_
+![logiccomponent](DG_Diagrams/LogicComponent.png)
 
-#### 1.1.3 Model Component
+#### 2.1.3. Model Component
 [Work in Progress]
 
-#### 1.1.4 Storage Component
+#### 2.1.4. Storage Component
 [Work in Progress]
 
-### 1.2. Implementation
+### 2.2. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
 #### 2.2.1 Direct Route Finder (`/route` Feature)
@@ -109,9 +117,12 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
-## 2. Product scope
+## 3. Appendix I: Requirements
 
-### 2.1. Target user profile
+### 3.1 Product scope
+
+#### 3.1.1 Target user profile
+
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
 These are people who:
@@ -119,12 +130,13 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-### 2.2. Value proposition
+#### 3.1.2 Value 
+
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
 
-## 3. User Stories
+### 3.2. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -137,14 +149,14 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 
-## 4. Non-Functional Requirements
+### 3.3. Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## 5. Glossary
+### 3.4. Glossary
 
 * *glossary item* - Definition
 
-## 6. Instructions for manual testing
+## 6. Appendix II: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
