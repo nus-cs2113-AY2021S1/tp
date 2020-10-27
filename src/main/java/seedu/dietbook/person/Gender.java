@@ -6,7 +6,8 @@ package seedu.dietbook.person;
  */
 public enum Gender {
     FEMALE("female"),
-    MALE("male");
+    MALE("male"),
+    OTHERS("others");
 
     private final String description;
 

@@ -1,7 +1,10 @@
-package seedu.calculator;
+package seedu.dietbook.calculator;
 
 import org.junit.jupiter.api.Test;
 import seedu.dietbook.food.Food;
+import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.Gender;
+import seedu.dietbook.person.Person;
 
 import java.util.ArrayList;
 
@@ -49,5 +52,14 @@ class CalculatorTest {
         foodList.add(new Food("bao", 290, 0, 16, 0));
         Calculator calculator = new Calculator(foodList);
         assertEquals(0, calculator.calculateFat());
+    }
+
+    @Test
+    void calculateRecomendedCalorieIntake_aPerson_recomendationOfCalorieIntake() {
+        Person Harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, ActivityLevel.LOW);
+        Person Erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, ActivityLevel.MEDIUM);
+        Calculator calculator = new Calculator(new ArrayList<Food>());
+        assertEquals(2728, calculator.calculateRecomendation(Harry));
+        assertEquals(1752, calculator.calculateRecomendation(Erica));
     }
 }
