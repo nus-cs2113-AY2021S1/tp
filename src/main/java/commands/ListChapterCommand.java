@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import static common.Messages.CHAPTER;
 
 public class ListChapterCommand extends ListCommand {
-    public static final String COMMAND_WORD = "list";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a list of chapters available. \n"
+            + ": Shows a list of %ss available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override

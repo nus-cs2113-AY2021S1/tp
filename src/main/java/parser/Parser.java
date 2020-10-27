@@ -12,6 +12,9 @@ import commands.GoCommand;
 import commands.HelpCommand;
 import commands.HistoryCommand;
 import commands.ListCommand;
+import commands.ListModuleCommand;
+import commands.ListChapterCommand;
+import commands.ListCardCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
 import commands.RateCommand;
@@ -60,7 +63,7 @@ public class Parser {
 
         switch (commandType) {
         case ListCommand.COMMAND_WORD:
-            return prepareList(commandArgs);
+            return prepareList(commandArgs, access);
         case AddCommand.COMMAND_WORD:
             return prepareAdd(commandArgs, access);
         case RemoveCommand.COMMAND_WORD:
@@ -160,12 +163,24 @@ public class Parser {
         return commandTypeAndParams;
     }
 
-    private static Command prepareList(String commandArgs) throws InvalidInputException {
+    private static Command prepareList(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListCommand.COMMAND_WORD) + ListCommand.MESSAGE_USAGE);
         }
-        return new ListCommand();
+
+        if (access.isAdminLevel()) {
+            return new ListModuleCommand();
+        } else if (access.isModuleLevel()) {
+            return new ListChapterCommand();
+        } else if (access.isChapterLevel()) {
+            return new ListCardCommand();
+        } else {
+            assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    AddCommand.COMMAND_WORD));
+        }
     }
 
     private static Command prepareAdd(String commandArgs, Access access)
