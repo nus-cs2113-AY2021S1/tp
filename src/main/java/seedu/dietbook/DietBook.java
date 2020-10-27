@@ -40,7 +40,7 @@ public class DietBook {
 
         while (!isExit) {
             try {
-                String userInput = dietBook.manager.readCommand();
+                String userInput = dietBook.ui.readCommand();
                 Command c = dietBook.manager.manage(userInput);
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
