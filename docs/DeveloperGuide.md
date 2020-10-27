@@ -31,7 +31,14 @@
         1. [Add Task to Sprint](#add-task-to-sprint)
         1. [Remove Task from Sprint](#remove-task-from-sprint)
         1. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        
-    1. [Saving of Data](#saving-of-data)
+    1. [Storage](#storage)
+        1. [Location](#location)
+        1. [Loading Data](#loading-data)
+            1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)
+        1. [Saving Data](#saving-data)
+            1. [When the Program Exits](#when-the-program-exits)
+            1. [Changes Made to the Data](#changes-made-to-the-data)
+            1. [Serialising Objects to JSON](#serialising-objects-to-json)
 1. [Appendix: Requirements]()
 1. [Others](#target-user-profile)
 
@@ -167,10 +174,7 @@ As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfac
 
 This requires the model classes to implement two methods required for JSON serialisation and deserialisation:  
 - `toJson()`: Contains logic required to convert the model object into JSON string.  
-- `fromJson()`: Contains logic required to convert JSON object into its respective model class.  
-  - Due to the limitations of the library, parsing of the JSON string only converts it into either `JsonObject` or `JsonArray` objects which requires additional operations to map the data back to the respective model classes.  
-  - `fromJson()` will take in either one of the `JsonObject` or `JsonArray` object, and map the properties to the respective properties of the model classes.  
-
+- `fromJson()`: Contains logic required to convert JSON object into its respective model class.    
 
 ## Implementation
 ### Project
@@ -196,17 +200,72 @@ is passed, the following operations are implemented:
 #### Add Task to Sprint
 #### Remove Task from Sprint
 #### Allocate Sprint Tasks to Members    
-### Saving of Data
-To make the data persistent and portable, **JSON** has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium that is used to run the program. JSON is also human-readable which allows users to directly modify the data file easily which can be useful in certain scenarios such as fixing the data file in the event of data corruption.
+### Storage
+To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
+#### Location
 ![Figure X: Running the Jar](image/developerguide/savingdata1.png "Running the Jar")  
 _Figure X: Running the Jar_  
-![Figure X: Running the Jar](image/developerguide/savingdata2.png "Running in IDE")  
+![Figure X: Running in IDE](image/developerguide/savingdata2.png "Running in IDE")  
 _Figure X: Running in IDE_  
 
-As shown in the above diagram, the program will save the data as “data.json”. The data file is saved in the “data/” folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the “data/” folder will be in the root of the project folder. 
+As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
+When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
+
+#### Loading Data
+![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
+
+The program will only load the data file in the persistent storage during the initialisation process of the program. With reference to the sequence diagram above, the flow of the logic is as follows:  
+1. When the user starts the program, it will first call `init()` to initialise the program. 
+2. A `StorageManager` object will be instantiated with the reference to a `ProjectManager` object that is used during load and save operations.
+3. `load()` will read the data file from the persistent storage, deserialise it into a `JsonObject` object and attempt to convert the object into its respective types.  
   
-When you start the program, the program will load the data file from its respective location and deserialise it into its respective object instances. Data will be saved when the program exits or whenever the user makes changes to the program.  
+The program will exit immediately with an **exit code 1** if any of the conditions are met:
+- Error trying to read the file.
+- Conversion error due to missing properties.
+- Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
+
+##### Converting and Mapping of JSON to Objects
+Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
+  
+As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
+  
+1. After loading the raw JSON string, `StorageManager` will call `Jsoner.deserialize()` to convert it into an object of `JsonObject`.
+2. At this point, `JsonObject` contains all the properties of `ProjectManager` and needs to be mapped back to a `ProjectManager` object.
+3. `StorageManager` will call `ProjectManager.fromJson()`, passing the `JSONObject` object from _Step 2_ as the parameter. 
+4. In `fromJson()`, there are two type of actions depending on the property it is mapping:  
+   1. **Type Casting**: Properties that are primitive or standard can be mapped directly through type casting (e.g. `int`, `boolean`, `String` etc.)
+   2. **\*Calling `fromJson()` of the Actual Type**: Any property that is originally a type of the **Scrumptious model classes** will be mapped with the following steps:
+      1. Create an empty object of the respective type (e.g. `Sprint`).
+      2. Type cast the property as `JsonObject` or `JsonArray` depending on the actual type of the property (e.g. `(JsonArray) object`).
+      3. Call `fromJson()` of the newly created object, passing the property as the parameter (e.g. `Sprint.fromJson()`).
+      4. New object's `fromJson()` will **repeat the same process again under Step 4** for its own properties.  
+      
+*`Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
+
+#### Saving Data
+![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
+
+Data will be saved under two scenarios: 1. When the program exits. 2. Changes made to the data. 
+
+##### When the Program Exits
+`Scrumptious` will call `destroy()` which calls `save()` before it returns.
+
+##### Changes Made to the Data
+Changes made to the data during the runtime of the program can only be made by executing a command.
+   
+As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
+
+After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
+
+##### Serialising Objects to JSON
+As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
+When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
+ 1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
+ 2. **\*Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
+    
+*`Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String` representation.
+    
 
 ### Target user profile
 
