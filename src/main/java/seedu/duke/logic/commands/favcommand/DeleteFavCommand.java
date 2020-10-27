@@ -2,7 +2,7 @@ package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.favorite.FavList;
+import seedu.duke.model.favorite.FavList;
 import seedu.duke.logic.commands.commons.Command;
 
 public class DeleteFavCommand extends Command {
