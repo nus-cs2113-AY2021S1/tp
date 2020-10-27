@@ -7,6 +7,7 @@ import seedu.notus.command.Command;
 import seedu.notus.command.TagEventCommand;
 import seedu.notus.command.TagNoteCommand;
 import seedu.notus.data.exception.SystemException;
+import seedu.notus.data.exception.SystemException.ExceptionType;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -63,13 +64,13 @@ class ParseTagCommandTest {
     void parseCommand_missingContent_throwException() {
         parser = new ParseTagCommand(null, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        String expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
+        String expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(null, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -80,13 +81,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -94,13 +95,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -111,13 +112,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -125,13 +126,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_TAG.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -142,13 +143,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -159,13 +160,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -173,13 +174,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_MISSING_INDEX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_MISSING_INDEX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -190,13 +191,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -204,13 +205,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_VALUE.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -218,13 +219,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -235,13 +236,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
@@ -249,13 +250,13 @@ class ParseTagCommandTest {
 
         parser = new ParseTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
         parser = new ParseTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
-        expectedMessage = SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
+        expectedMessage = ExceptionType.EXCEPTION_INVALID_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }

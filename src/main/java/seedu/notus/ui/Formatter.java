@@ -4,7 +4,6 @@ import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.data.timetable.Reminder;
-import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.timetable.Event;
 
 import java.time.Month;
@@ -51,7 +50,6 @@ public class Formatter {
      * Maximum length of a note's content to display.
      */
     private static final int CONTENT_CUTOFF = MAX_MESSAGE_LENGTH - 50;
-    private static final int CONTENT_INDENT = 0;
 
     //@@author R-Ramana
     /**
@@ -61,9 +59,11 @@ public class Formatter {
      */
     public static String formatNotes(String pinnedHeader, String unpinnedHeader,
                                      ArrayList<Note> pinned, ArrayList<Note> unpinned, Notebook notebook) {
-        String formattedString = "";
+        String formattedString;
+        
         formattedString = formatNotes(pinnedHeader, pinned, notebook);
         formattedString = formattedString.concat(formatNotes(unpinnedHeader, unpinned, notebook));
+
         return formattedString;
     }
 
@@ -127,8 +127,7 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE.repeat(CONTENT_INDENT)
-                    + truncatedContent));
+            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;
