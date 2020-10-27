@@ -11,7 +11,7 @@ public class ViewProjectCommand extends ProjectCommand {
     private final ProjectManager projectManager;
 
     public ViewProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
-        super(parameters);
+        super(parameters, false);
         this.projectManager = projectManager;
     }
 

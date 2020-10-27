@@ -1,93 +1,111 @@
 package seedu.duke.storage;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import org.junit.jupiter.api.Test;
-import seedu.duke.model.project.Project;
-import seedu.duke.model.task.TaskManager;
-import seedu.duke.model.member.ProjectMembers;
-import seedu.duke.model.member.Member;
-import seedu.duke.model.sprint.SprintManager;
+import seedu.duke.model.project.ProjectManager;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StorageManagerTest {
-//    private static final String TEST_FILENAME = "test-data.json";
-//    private static final String TEST_FILEPATH_STR = String.format("./data/%s", TEST_FILENAME);
-//    private static final Path TEST_FILEPATH = Paths.get(TEST_FILEPATH_STR);
-//
-//    @Test
-//    void load() {
-//        ArrayList<Project> projList = new ArrayList<>();
-//        StorageManager sm = new StorageManager(TEST_FILENAME, projList);
-//        // JSON file should be loaded successfully if data file is valid
-//        assertDoesNotThrow(() -> {
-//            String expectedStr = Files.readString(Paths.get("test-data/LOAD_EXPECTED_1.json"));
-//            JsonArray expected = Jsoner.deserialize(expectedStr, new JsonArray());
-//            initTestFile(expected);
-//            sm.load();
-//        });
-//    }
-//
-//    @Test
-//    void save() {
-//        try {
-//            ArrayList<Project> projList = new ArrayList<>();
-//            StorageManager sm = new StorageManager(TEST_FILENAME, projList);
-//            projList.add(generateProject()); //2nd assertion
-//            sm.save();
-//            String expectedStr = Files.readString(Paths.get("test-data/SAVE_EXPECTED_1.json"));
-//            JsonArray expected = Jsoner.deserialize(expectedStr, new JsonArray());
-//            String fileData = Files.readString(sm.getFilepath());
-//            assertEquals(expected.toJson(), fileData);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private Project generateProject() {
-//        Project project = new Project("Game", "Among Us", 100, 10);
-//        project.setSprintList(generateSprintList(project));
-//        project.setBacklog(generateProjectBacklog(project));
-//        project.setMemberList(generateProjectMembers());
-//        project.setStartDate(LocalDate.parse("2020-10-10"));
-//        project.setEndDate(LocalDate.parse("2021-01-10"));
-//        return project;
-//    }
-//
-//    private SprintManager generateSprintList(Project project) {
-//        SprintManager sprintManager = new SprintManager();
-//        sprintManager.addSprint(project, "Goal", LocalDate.parse("2020-10-10"), LocalDate.parse("2020-10-19"));
-//        sprintManager.addSprint(project, "Goal1", LocalDate.parse("2020-10-20"), LocalDate.parse("2020-10-29"));
-//        return sprintManager;
-//    }
-//
-//    private TaskManager generateProjectBacklog(Project project) {
-//        TaskManager backlog = new TaskManager(project);
-//        backlog.addTask("Task1", "Task1 desc", "LOW");
-//        return backlog;
-//    }
-//
-//    private ProjectMembers generateProjectMembers() {
-//        ProjectMembers members = new ProjectMembers();
-//        members.addMember(new Member("Lily"));
-//        members.addMember(new Member("Bob"));
-//        return members;
-//    }
-//
-//    private void initTestFile(Object data) throws IOException {
-//        FileWriter fw = new FileWriter(TEST_FILEPATH_STR);
-//        Jsoner.serialize(data, fw);
-//        fw.close();
-//    }
+    private static final String TEST_FILENAME = "test-data.json";
+    private static final String TEST_FILEPATH_STR = String.format("./data/%s", TEST_FILENAME);
+    private static final Path TEST_FILEPATH = Paths.get(TEST_FILEPATH_STR);
+
+    @Test
+    void load() {
+        assertDoesNotThrow(() -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/LOAD_1.json"));
+            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
+            initTestFile(expected);
+            sm.load();
+        });
+    }
+
+    @Test
+    void load_emptyFile_noExceptions() {
+        assertDoesNotThrow(() -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager("randomFile", projMgr);
+            sm.load();
+        });
+    }
+    
+    @Test
+    void load_incorrectData_exceptionThrown() {
+        // JSON file should be loaded successfully if data file is valid
+        assertThrows(ClassCastException.class, () -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/LOAD_2.json"));
+            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
+            initTestFile(expected);
+            sm.load();
+        });
+    }
+
+    @Test
+    void save() {
+        assertDoesNotThrow(() -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/SAVE_1.json"));
+            projMgr.fromJson((JsonObject) Jsoner.deserialize(expectedStr));
+            sm.save();
+        });
+    }
+
+    @Test
+    void save_noPerm_exceptionThrown() {
+        assertThrows(IOException.class, () -> {
+            File testFile = TEST_FILEPATH.toFile();
+            if (testFile.exists()) {
+                testFile.delete();
+            }
+            testFile.createNewFile();
+            testFile.setReadOnly();
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/SAVE_1.json"));
+            projMgr.fromJson((JsonObject) Jsoner.deserialize(expectedStr));
+            sm.save();
+        });
+    }
+
+    /*@Test
+    void init_IOException() {
+        assertThrows(IOException.class, () -> {
+            Path dataDir = Path.of("data/");
+            Path backUpDir = Path.of("data_bak/");
+            if (Files.exists(dataDir)) {
+                Files.move(dataDir, backUpDir);
+            }
+            Files.createDirectory(dataDir);
+            Files.setPosixFilePermissions(dataDir, PosixFilePermissions.fromString("---------"));
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            Files.deleteIfExists(dataDir);
+            Files.move(backUpDir, dataDir);
+        });
+    }*/
+
+
+    private void initTestFile(Object data) throws IOException {
+        if (Files.exists(TEST_FILEPATH)) {
+            Files.delete(TEST_FILEPATH);
+        }
+        FileWriter fw = new FileWriter(TEST_FILEPATH_STR);
+        Jsoner.serialize(data, fw);
+        fw.close();
+    }
 }

@@ -14,7 +14,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
     private Project proj;
 
     public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
     }
 
     public void execute() {

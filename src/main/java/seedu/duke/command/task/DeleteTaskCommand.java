@@ -15,7 +15,7 @@ public class DeleteTaskCommand extends Command {
     private final ProjectManager projectListManager;
 
     public DeleteTaskCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
-        super(parameters);
+        super(parameters, true);
         this.projectListManager = projectListManager;
     }
 
