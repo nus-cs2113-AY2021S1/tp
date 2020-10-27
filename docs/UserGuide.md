@@ -115,7 +115,8 @@ Example of usage:
 
 Expected outcome:
 
-    Task added.
+![add_with_start_time](images/add_with_st.png)
+![add_without_optional_parameters](images/add_normal.png)
 
 
 ### <span style="color:red">Editing a task</span> : `edit`
