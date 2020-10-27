@@ -612,6 +612,7 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 
 ## 4. FAQ
 
+<!-- @@author ChanJianHao -->
 **Q:** What is a workspace?
 <br/>
 **A:** Workspace is a functionality in **AniChan** which provides users the flexibility to organise information. 
@@ -630,6 +631,7 @@ directory you run **AniChan** in.
 **A:** Yes! As **AniChan** saves and loads your information from the data directory, editing the files in `data` folder
 works. However, we would strongly recommend you not to as you may cause data corruption. Use **AniChan** instead if you wish to edit your information!
 <br/>
+<!-- @@author -->
 
 ## 5. Command Summary
 
