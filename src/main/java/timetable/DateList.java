@@ -5,9 +5,11 @@ import java.util.List;
 
 public class DateList {
     public List<EventList> dateList;
+    public List<Event> events;
 
     public DateList() {
         dateList = new ArrayList<>();
+        events = new ArrayList<>();
     }
 
     public void addLesson(Event lesson) {
@@ -25,6 +27,7 @@ public class DateList {
                 dateList.add(newList);
             }
         }
+        events.add(lesson);
     }
 
 }
