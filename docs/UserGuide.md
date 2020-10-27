@@ -27,12 +27,13 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.6 [Remove an anime from the current watchlist](#376-remove-an-anime-from-the-current-watchlist)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.7 [View all anime in watchlist](#377-view-all-anime-in-watchlist)
 <br/>&nbsp;3.8 [Bookmark](#38-bookmark)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.1 [List bookmark entries](#381-list-bookmark-entries)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.2 [Add bookmark Entries](#382-add-bookmark-entry)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.3 [Delete bookmark Entries](#383-delete-bookmark-entry)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.4 [Edit bookmark entry episode](#384-edit-bookmark-entry-episode)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.5 [Add note to bookmark entry](#385-add-note-to-bookmark-entry)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.6 [View information of bookmark entry](#386-view-information-of-bookmark-entry)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.1 [List all bookmark entries](#381-list-all-bookmark-entries)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.2 [Add a bookmark entry](#382-add-a-bookmark-entry)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.3 [Delete a bookmark entry](#383-delete-a-bookmark-entry)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.4 [Edit a bookmark entry episode](#384-edit-a-bookmark-entry-episode)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.5 [Add a note to bookmark entry](#385-add-a-note-to-bookmark-entry)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.6 [Remove a note from bookmark entry](#386-remove-a-note-from-bookmark-entry)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.7 [View information of a bookmark entry](#387-view-information-of-a-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
 
@@ -371,7 +372,143 @@ Here are the anime in Default watchlist:
 ```
 <br/>
 
-### 3.8
+### 3.8 Bookmark
+
+`Bookmark` is the feature to use when you need your own customised list of anime. It provides you with greater personalisation such as tracking each episode and writing useful notes for each series. These features further enhance the manageability of translation jobs and allow you to easily access important information. 
+
+<br/>
+
+Listed below are the `bookmark` operations and their usage:
+#### 3.8.1 List all bookmark entries
+
+List all anime within the bookmark.
+
+Format: `bookmark -l`
+
+<br/>
+
+> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
+
+<br/>
+
+Example of usage: `bookmark -l`
+
+The expected outcome:
+```
+Listing all anime in bookmark:
+  1. InuYasha the Movie 3: Swords of an Honorable Ruler
+  2. To Heart 2
+```
+
+<br/>
+
+#### 3.8.2 Add a bookmark entry
+
+Add an anime to the bookmark.
+
+Format: `bookmark -a <ANIME_ID>`
+
+<br/>
+
+> :memo: Add Bookmark `<ANIME_ID>` is identified using `[Id: 1]` from `1. Cowboy Bebop [Id: 1]` which can be found in both outputs of `search` and `browse` command
+
+<br/>
+
+Example of usage: `bookmark -a 3`
+
+The expected outcome:
+```
+Saving 3. Trigun to bookmark.
+```
+
+<br/>
+
+#### 3.8.3 Delete a bookmark entry
+
+Delete an anime from the bookmark.
+
+Format: `bookmark -d <BOOKMARK_ID>`
+
+Example of usage: `bookmark -d 2`
+
+The expected outcome:
+```
+Removing To Heart 2! :(
+```
+
+<br/>
+
+#### 3.8.4 Edit a bookmark entry episode 
+
+Edit the current episode for an anime within a bookmark.
+
+Format: `bookmark <BOOKMARK_ID> -e <EPISODE>`
+
+Example of usage: `bookmark 2 -e 5`
+
+The expected outcome:
+```
+Editing Trigun to have 5 episode(s).
+```
+
+<br/>
+
+#### 3.8.5 Add a note to bookmark entry
+
+Add a note for an anime within the bookmark.
+
+Format: `bookmark <BOOKMARK_ID> -n <NOTE>`
+
+Example of usage: `bookmark 2 -n Episode 5: Schedule push back`
+
+The expected outcome:
+```
+Adding note:"Episode 5: Schedule push back" to Trigun!
+```
+
+<br/>
+
+#### 3.8.6 Remove a note from bookmark entry
+
+Remove a note from an anime within the bookmark.
+
+Format: `bookmark <BOOKMARK_ID> -r <NOTE_ID>`
+
+Example of usage: `bookmark 2 -r 1`
+
+The expected outcome:
+```
+Deleting note: Episode 5: Schedule push back
+From: Trigun.
+```
+
+<br/>
+
+#### 3.8.7 View information of a bookmark entry
+
+View the detailed information for an anime, the current episode you are working on and the important notes you might have.
+
+Format: `bookmark <BOOKMARK_ID>`
+
+Example of usage: `bookmark 2`
+
+The expected outcome:
+```
+Here is the information for that anime.
+Index: 3
+Name: Trigun
+Episodes: 26
+Release Date: 01/Apr/1998
+Rating: 79
+Genre: [Action, Adventure, Comedy, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. Episode 5: Schedule push back
+
+```
+
 <br/>
 
 ### 3.9 Exit AniChan
@@ -445,6 +582,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |
 | Edit bookmark episode                        | `bookmark <BOOKMARK_ID> -e <EPISODE>`                    |
 | Add note to bookmark                         | `bookmark <BOOKMARK_ID> -n <NOTE>`                       |
+| Remove note from bookmark                    | `bookmark <BOOKMARK_ID> -r <NOTE_ID>`                    |
 | View bookmark                                | `bookmark <BOOKMARK_ID>`                                 |
 | Exit                                         | `exit`                                                   |
 
@@ -510,56 +648,6 @@ Example of usage: `workspace -d Default`
 The expected outcome:
 ```
 Successfully deleted workspace: Default
-```
-
-<br/>
-
-### 3.8 Bookmark an Anime: `bookmark`
-This command handles all bookmark related operations: 
-*   List all anime within bookmark.
-*   Add an anime into bookmark.
-*   Delete an anime from bookmark. 
-*   Edit episode for an anime within bookmark
-*   View details of an anime within bookmark [v2.0]
-
-Format: 
-
-`bookmark -l` will list bookmark
-
-`bookmark -a <ANIME_ID>` will add the Anime into bookmark
-
-`bookmark -d <BOOKMARK_ID>` will delete the Anime with bookmark id from bookmark
-
-`bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for Anime with bookmark id
-
-Example of usage: `bookmark -l`
-
-The expected outcome: 
-```
- Listing all anime in bookmark: 
-	1. InuYasha the Movie 3: Swords of an Honorable Ruler Ep: 5
-	2. To Heart
-```
-
-Example of usage: `bookmark -a 410`
-
-The expected outcome: 
-```
-Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
-```
-
-Example of usage: `bookmark -d 1`
-
-The expected outcome: 
-```
-Removing InuYasha the Movie 3: Swords of an Honorable Ruler! :(
-```
-
-Example of usage: `bookmark 1 -e 5`
-
-The expected outcome: 
-```
-Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
 ```
 
 <br/>
