@@ -315,7 +315,7 @@ public class Ui {
                     + "4) " + FindBookmarkCommand.FIND_KW + NEW_LINE
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + NEW_LINE
                     + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "7) " + ChangeModeCommand.MODE_KW + " timetable" + NEW_LINE
+                    + "7) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
                     + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
@@ -324,7 +324,7 @@ public class Ui {
                     + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
                     + "4) " + EditSlotCommand.EDIT_KW + NEW_LINE
                     + "5) " + LaunchModuleAndSlotBookmark.LAUNCH_KW + NEW_LINE
-                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark" + NEW_LINE
+                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark/planner" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else {
@@ -332,7 +332,10 @@ public class Ui {
                     + "1) " + LoadPlannerCommand.LOAD_KW + NEW_LINE
                     + "2) " + AddMeetingCommand.ADD_KW + NEW_LINE
                     + "3) " + ShowTimetableCommand.SHOW_KW + NEW_LINE
-                    + "4) " + SavePlannerCommand.SAVE_KW + NEW_LINE);
+                    + "4) " + SavePlannerCommand.SAVE_KW + NEW_LINE
+                    + "6) " + ChangeModeCommand.MODE_KW + " bookmark/timetable" + NEW_LINE
+                    + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
