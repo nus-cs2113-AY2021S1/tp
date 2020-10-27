@@ -1,37 +1,45 @@
 package seedu.duke.command.sprint;
 
-import seedu.duke.model.project.Project;
+import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
-import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class RemoveSprintTaskCommand extends SprintCommand {
-    private SprintManager allSprint;
-    private ProjectManager projectManager;
-    private Project proj;
+    /**
+     * Parameters for the command.
+     */
+    private final ArrayList<Integer> taskIds;
 
     public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList);
+        this.taskIds = new ArrayList<>();
     }
 
     public void execute() {
-        chooseProject();
-        Ui.showToUserLn(this.projOwner.toIdString());
-        String[] taskIds = new String[0];
-        if (parameters.containsKey("task")) {
-            chooseSprint();
-            taskIds = parameters.get("task").split(" ");
-        } else if (parameters.containsKey("0")) {
-            selectCurrentSprint();
-            taskIds = parameters.values().toArray(new String[0]);
-        }
-        for (String id : taskIds) {
-            int taskId = Integer.parseInt(id);
+        try {
+            checkProjectExist();
+            chooseProject();
+            checkSprintExist();
+            prepareParameters();
+            checkTasksExist(false);
 
-            //Add task to sprint
+            //Valid Command
+            Ui.showToUser(this.projOwner.toIdString());
+            removeTasks();
+        } catch (DukeException e) {
+            e.printExceptionMessage();
+        }
+    }
+
+    /**
+     * Prepare the parameters.
+     */
+    private void removeTasks() {
+        for (int taskId : taskIds) {
             this.sprintOwner.removeSprintTask(taskId);
 
             //Update Task
@@ -39,9 +47,32 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             removedTask.removeFromSprint(this.sprintOwner.getId());
 
             //Output to user
-            Ui.showToUser(projOwner.getProjectBacklog().getTask(taskId).getTitle() + " removed from sprint "
+            Ui.showToUser(projOwner.getProjectBacklog().getTask(taskId).getTitle()
+                    + " removed from sprint "
                     + this.sprintOwner.getId()
                     + ".\n");
+        }
+    }
+
+    /**
+     * Prepare the parameters.
+     */
+    private void prepareParameters() throws DukeException {
+        if (checkTagSpecified("task")) {
+            chooseSprint();
+            parseParamsToInt(parameters.get("task").split(" "));
+        } else {
+            selectCurrentSprint();
+            parseParamsToInt(parameters.values().toArray(new String[0]));
+        }
+    }
+
+    /**
+     * Parse parameters into Integers.
+     */
+    private void parseParamsToInt(String[] taskIds) {
+        for (String id : taskIds) {
+            this.taskIds.add(Integer.parseInt(id));
         }
     }
 }

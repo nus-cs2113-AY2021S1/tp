@@ -44,7 +44,7 @@ public class Project implements Jsonable {
 
     public String toIdString() {
         StringBuilder projectInString = new StringBuilder();
-        projectInString.append(String.format("[Project ID: %s]", this.projectID));
+        projectInString.append(String.format("[Project ID: %s]\n", this.projectID));
         return projectInString.toString();
     }
 
