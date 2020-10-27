@@ -1,10 +1,10 @@
 package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * Represents a lecture event.

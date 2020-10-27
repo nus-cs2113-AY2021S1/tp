@@ -59,9 +59,15 @@ public class Ui {
         );
     }
 
+    /**
+     * Prints the number of tasks in the calendar list.
+     *
+     * @param calendarList containing the tasks.
+     */
     public static void printTotalTaskNumber(CalendarList calendarList) {
         System.out.println("Your total task(s): " + calendarList.getTotalTasks());
     }
+
 
     /**
      * Returns the input of the user.
@@ -109,7 +115,7 @@ public class Ui {
     public static void printDukeBorder(boolean top) {
         if (top) {
             System.out.println("................................. "
-                    + "25HoursADay CHAT BOX ^^ ...............................");
+                    + "25HoursADay Chat Box ^^ ...............................");
         } else {
             System.out.println("...................................................."
                     + ".....................................");
@@ -142,15 +148,28 @@ public class Ui {
     }
 
     /**
+     * Prints the additional information based on the index.
+     *
+     * @param event     containing the additional information.
+     * @param indexInfo index of the additional information in the array list.
+     */
+    public static void printAdditionalInformation(Event event, int indexInfo) {
+        System.out.println("Event: " + event);
+        System.out.println("Additional info deleted: "
+                + event.getAdditionalInformationElement(indexInfo));
+    }
+
+    /**
      * Prints the list of additional information of a particular event.
      *
      * @param additionalInformation array list of the additional information.
      * @param event                 event that contains the additional information.
      */
-    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+    public static void printAllAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
         assert event != null;
         int i = 0;
         System.out.println("Event:" + event);
+
         for (String s : additionalInformation) {
             i++;
             System.out.println(i + ". " + s);
@@ -324,7 +343,7 @@ public class Ui {
     /**
      * Shows the user's progress on deadlines and todos.
      *
-     * @param numTotal integer of number of total user tasks.
+     * @param numTotal    integer of number of total user tasks.
      * @param numFinished integer of number of finished tasks.
      */
     public static void printProgress(int numTotal, int numFinished) {
@@ -476,7 +495,7 @@ public class Ui {
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
             break;
         case "file not found":
-            System.out.println("The file can not be found");
+            System.out.println("The file can not be found.");
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
@@ -489,9 +508,18 @@ public class Ui {
             System.out.println(
                     "Error: To view the additional information of the event: /v <event number>");
             break;
+        case "invalid delete info":
+            System.out.println(
+                    "Error: To delete an additional information of an event: /- <event number> a <information number>");
+            break;
+        case "invalid info action":
+            System.out.println("Please enter a valid additional information index number.");
+            break;
         case "invalid module code":
             System.out.println(
-                    "Error: invalid module code. The module code cannot be found in NUS module list.");
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the exam in this format: \n"
+                            + "exam <module code> @<exam venue> /ddMMyy HHmm");
             break;
         default:
             System.out.println("Unknown Error.");

@@ -41,10 +41,10 @@ public class PrintSuggestionCommand extends Command {
 
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task) || ((Task) item).getIsDone()) {
+            if (!(item instanceof Task)) {
                 continue;
             }
-            if (item instanceof Deadline && !((Task) item).getIsImportant()) {
+            if (item instanceof Deadline && !((Task) item).getIsImportant() && !((Deadline) item).getIsDone()) {
                 deadlineCount++;
                 if (deadlineCount == 1) {
                     earliestDeadline = (Deadline) item;
@@ -71,11 +71,11 @@ public class PrintSuggestionCommand extends Command {
 
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task) || ((Task) item).getIsDone()) {
+            if (!(item instanceof Task)) {
                 continue;
             }
 
-            if (item instanceof Deadline && ((Deadline) item).getIsImportant()) {
+            if (item instanceof Deadline && ((Deadline) item).getIsImportant() && !((Deadline) item).getIsDone()) {
                 count++;
                 if (count == 1) {
                     earImportantDeadline = (Deadline) item;
@@ -102,11 +102,11 @@ public class PrintSuggestionCommand extends Command {
 
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task) || ((Task) item).getIsDone()) {
+            if (!(item instanceof Task)) {
                 continue;
             }
 
-            if (item instanceof Todo && !((Todo) item).getIsImportant()) {
+            if (item instanceof Todo && !((Todo) item).getIsImportant() && !((Todo) item).getIsDone()) {
                 count++;
                 firstTodo = (Todo) item;
                 break;
@@ -130,11 +130,11 @@ public class PrintSuggestionCommand extends Command {
 
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task) || ((Task) item).getIsDone()) {
+            if (!(item instanceof Task)) {
                 continue;
             }
 
-            if (item instanceof Todo && ((Todo) item).getIsImportant()) {
+            if (item instanceof Todo && ((Todo) item).getIsImportant() && !((Todo) item).getIsDone()) {
                 count++;
                 firstTodo = (Todo) item;
                 break;

@@ -30,13 +30,57 @@ The table below shows the information and contact details of developers.
 |Ng Hong Ming|E0426149@u.nus.edu|
 |Zhang Yilin|E0377000@u.nus.edu|
 
-## Setting Up
+## Setting Up & Getting started
+
+### Setting up
 
 Before diving into the project development and testing, here are some essential tools required in this project:
 
 1. **JAVA 11.0.8**
-    * sd
+    * Launch your terminal and type "java -version" to ensure you have the correct version number
+    * If you have no Java installed or different version number, please proceed to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+    to download the **Java 11.0.9** installer.
 1. **Intellij IDEA**
+    * If you are new to IntelliJ, please proceed to this [website](https://www.jetbrains.com/help/idea/installation-guide.html)
+    to download and install the IDE.
+    
+After installing the required tools, proceed to [Github Page](https://github.com/AY2021S1-CS2113T-T12-2/tp) and 
+fork the project to your own repository, and clone your fork into your working computer.    
+
+Now, Open Intellij 
+1. If you are not in the welcome screen, click `File` → `Close Project` to navigate to the starting project dialog)
+1. Set up the correct JDK version for Gradle.
+        1. Click `Configure` → `Project Structure for New Project`
+        1. Click `New...` and set it to the directory of the JDK
+1. Upon the successful configuration, you should be able to see the following screenshot:
+![JDK Config](images/JDK_Config_Screenshot.png)
+1. Lastly, **Import the project as a Gradle Project.**
+    * Intellij IDEA by default has the Gradle plugin installed. If you have disabled it, go to 
+    `File` → `Settings` → `Plugins` to re-enable them.
+    * Click Import Project (or Open or Import in newer version of Intellij).
+    * Locate the **build.gradle file** (not the root folder as you would do in a normal importing) and select it. Click `OK`.
+    * If asked, choose to `Open as Project` (not Open as File).
+    * Click `OK` to accept the default settings but do ensure that the selected version of Gradle JVM matches the 
+    JDK being used for the project.
+    * Wait for the importing process to finish (may take a few minutes, so get some :coffee: :relaxed:)
+1. **Verify the set up**:
+    * Run the `..main/java/seedu.duke/Duke`
+    * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
+    ![verify_set_up](images/Verify_setup.PNG)
+    * Run some tests to ensure it is working properly.
+
+### Getting started
+
+1. **Configure the coding style**
+If using IDEA, follow the guide If using IDEA, follow the guide [se-edu/guides IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
+to set up IDEA’s coding style to match ours.
+    :bulb: Tips: Optionally, you can follow the guide  [se-edu/guides Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) 
+    to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
+1. **Set up CI**
+This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
+1. **Learn the design**
+When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [25HoursADay’s architecture](#architecture).
 
 ## Design
 This section describes the design overview of the application.
@@ -44,7 +88,7 @@ This section describes the design overview of the application.
 ### Architecture
 
 The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
 
 UI: The user interface of the application.
@@ -53,7 +97,7 @@ Command: The command executor.
 Model: Holds the data of the application in memory.
 Storage: Reads data from, and writes data to, the hard disk. 
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="750"/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
 
 The quick overview of components and the workflow is given below.
 
@@ -69,7 +113,7 @@ The `Parser` class receives the user's input from the `Ui` class. It interprets 
 
 The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
 The figure belows shows the class diagram of the command class: <br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/command.JPG" alt="" width="200"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/command.JPG" alt="" width="200"/><br/>
 All the different Command classes inherit from the `Command` class.
 
 ### Storage
@@ -80,7 +124,7 @@ Whenever the calendarList is updated, all information will be automatically save
 
 ### Model
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
 The figure given above shows the structure of the Model in this application. When executing commands, 
 the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
@@ -106,12 +150,13 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add an event item feature
+### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
 
 It checks the type of the new event first, 
 then it analyses the attached information and saves the event with the information in the event list.  
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
 
 Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
 there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
@@ -122,7 +167,7 @@ while only one `Exam` or `Activity` event can be added at a time.
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
 Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
@@ -130,16 +175,16 @@ There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure
 ### Additional information of an event feature
 This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
@@ -147,7 +192,7 @@ Note: It first extracts the task/event number from the user input prior to `conv
 ### Find a calendar item feature
 This feature is facilitated by `FindCommand`.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
@@ -155,36 +200,45 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
 
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
 The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
 
 Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
-There will be a check in the function markTaskAsImportant(calendarNumber) to ensure that the calendar item being marked as important is a task.
+There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
 
 ### Print prioritized tasks feature
 This feature is facilitated by `PrintPriorityCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+
+Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
 
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
 
-### Print suggestion feature
+Note: It uses `calculateNumTotal()` and `calculateNumFinshed()` to calculate the numbers of only tasks and finished tasks in the list, not including events. 
+Then it uses these numbers to calculate the progress. 
+
+### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
+
+Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
+Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
+If no corresponding items, the functions will return null.
 
 ### Printing countdown feature
 The feature is facilitated by `CountdownCommand`.
 
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
 
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`

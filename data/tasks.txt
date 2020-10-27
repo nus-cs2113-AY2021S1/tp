@@ -1,8 +1,11 @@
-EXAM|true|s2113t|2020-10-10|12:30|nus|0
-EXAM|true|CS1010|2020-10-10|12:30|nus|0
-EXAM|true|cs1010|2020-10-10|12:30|nus|0
-EXAM|true|cs2113t|2020-10-10|12:30|nus|0
-EXAM|true|cx1010|2020-10-10|12:30|nus|0
-EXAM|true|cs2113|2020-10-10|12:30|nus|0
-EXAM|true|cx|2020-10-10|12:30|nus|0
-EXAM|true|cs2113|2020-10-10|12:30|nus|0
+D|true|project submission|false|2020-10-30
+ACT|true|CCA|2020-09-20|16:00|NUS UTOWN|0
+T|false|everyday reading|false
+T|false|prepare birthday gift for BF|false
+D|false|project draft version 1.2|false|2020-10-28
+D|false|drafting cover letter for interview|false|2020-11-11
+EXAM|false|cs2101|2020-11-11|14:00|nus|0
+LEC|false|cs2113|2020-10-27|16:00|zoom|0
+LEC|false|cs2113|2020-11-03|16:00|zoom|0
+LEC|false|cs2113|2020-11-10|16:00|zoom|0
+

@@ -2,7 +2,6 @@ package seedu.duke.command;
 
 import seedu.duke.DateTimeParser;
 import seedu.duke.DukeException;
-import seedu.duke.resources.ModuleChecker;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -13,6 +12,7 @@ import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Todo;
+import seedu.duke.resources.ModuleChecker;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -234,7 +234,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the exam to.
      * @param command      the attributes of the exam.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -258,7 +258,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the activity to.
      * @param command      the attributes of the activity.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
         String eventDescription;
@@ -284,7 +284,7 @@ public class AddCommand extends Command {
      * @param calendarList the calendar list to add the deadline task to.
      * @param command      the attributes of deadline task.
      * @return isTask      true if it is a task.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private boolean addDeadlineTask(CalendarList calendarList, String[] command) throws Exception {
         String taskDescription;
@@ -325,7 +325,7 @@ public class AddCommand extends Command {
     /**
      * Checks if the module code in the command is valid.
      *
-     * @param command  user input command.
+     * @param command user input command.
      * @return isValid true is the module code is valid, false otherwise.
      */
     private boolean isValid(String[] command) {
