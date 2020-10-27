@@ -114,6 +114,13 @@ The rest of the App consists of 8 components:
 ### 3.1. Ui Component 
 (Jia Ern)
 
+The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
+
+The UI component is responsible for:
+* Taking in user input.
+* Printing result of execution for the different commands. 
+* Printing error messages when certain exceptions occur. 
+
 ### 3.2. Logic Component 
 (Jane)
 
