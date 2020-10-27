@@ -14,21 +14,17 @@ public class Chapter {
     protected String chapterName;
     protected CardList cards;
     protected LocalDate dueBy;
-    protected int rating;
-    public static final int NO_RATING = 0;
-    public static final int EASY = 1;
-    public static final int MEDIUM = 2;
-    public static final int HARD = 3;
+    public static final String EASY = "E";
+    public static final String MEDIUM = "M";
+    public static final String HARD = "H";
 
     public Chapter(String chapterName) {
         this.chapterName = chapterName;
-        setRating(NO_RATING);
         this.cards = new CardList();
     }
 
     public Chapter(String chapterName, LocalDate dueBy) {
         this.chapterName = chapterName;
-        setRating(NO_RATING);
         this.cards = new CardList();
         this.dueBy = dueBy;
     }
@@ -41,20 +37,16 @@ public class Chapter {
 
     public void setNewDeckRating(String rating, Storage storage, Access access) {
         switch (rating) {
-        case "E":
-            setRating(EASY);
+        case EASY:
             setDueBy(Scheduler.getCurrentDate().plusDays(1), storage, access);
             break;
-        case "M":
-            setRating(MEDIUM);
+        case MEDIUM:
             setDueBy(Scheduler.getCurrentDate().plusDays(2), storage, access);
             break;
-        case "H":
-            setRating(HARD);
+        case HARD:
             setDueBy(Scheduler.getCurrentDate().plusDays(4), storage, access);
             break;
         default:
-            setRating(NO_RATING);
             setDueBy(Scheduler.getCurrentDate(), storage, access);
         }
     }
@@ -89,31 +81,5 @@ public class Chapter {
     @Override
     public String toString() {
         return chapterName;
-    }
-
-    public String translateRating() {
-        String ratingInString;
-        switch (rating) {
-        case EASY:
-            ratingInString = "Easy";
-            break;
-        case MEDIUM:
-            ratingInString = "Medium";
-            break;
-        case HARD:
-            ratingInString = "Hard";
-            break;
-        default:
-            ratingInString = "N/A";
-        }
-        return ratingInString;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public int getRating() {
-        return rating;
     }
 }
