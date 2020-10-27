@@ -35,6 +35,7 @@ public class Manager {
     private Person person;
     private FoodList foodList;
     private String name;
+    private int commandCount = 1;
     private DataBase dataBase;
     private Calculator calculator;
     private static Scanner s = new Scanner(System.in);
