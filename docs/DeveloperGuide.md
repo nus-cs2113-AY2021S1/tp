@@ -114,7 +114,6 @@ the amount left in the wallet. `StockPriceFetcher`, `Ui` and `PortfolioManager` 
 The following sequence diagram summarizes what happens when the user executes an `BuyCommand` :
 
 ![](./diagrams/BuyStockSequence.png)
-(Sequence Diagram to be added)
 
 #### Design consideration
 
