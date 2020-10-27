@@ -443,25 +443,25 @@ quote management, progress tracker, category management and a rating system for 
 
 1. Add a quote without author and reference to Quotesify
 
-    Test case: `add -q life's short, smile while you still have teeth`
+    Test case: `add -q Life's short, smile while you still have teeth`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
 
 2. Add a quote with an author name to Quotesify
 
-    Test case: `add -q luke, I am your father /by darth vader`
+    Test case: `add -q Luke, I am your father /by Darth Vader`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
 
 3. Add a quote with reference to Quotesify
 
-    Test case:`add -q get schwifty /from rick and morty`
+    Test case:`add -q Get schwifty /from Rick and Morty`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
     
 4. Add a quote with an author and reference to 
 
-    Test case: `add -q so everyone’s supposed to sleep every single night now? /by rick /from rick and morty`
+    Test case: `add -q So everyone’s supposed to sleep every single night now? /by Rick /from Rick and Morty`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
    
@@ -517,7 +517,7 @@ quote management, progress tracker, category management and a rating system for 
    
 ### Editing a quote
 
-1. Test case: `edit -q 2 /to no, i am your mummy /by darth vader`
+1. Test case: `edit -q 2 /to No, I am your mummy /by Darth Vader`
    
    Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
    
