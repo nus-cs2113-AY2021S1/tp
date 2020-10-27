@@ -106,6 +106,9 @@ This will generate all the resources required by the application and tests.
  When you are ready to start coding, we recommend that you get some sense of the overall design by reading about WatchNext’s architecture [here](#3-design).
 
 ## 3. Design
+
+<img src = "images/designArchitecture.png" width = "700">
+ <br> 
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
 <br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
 <br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
@@ -340,7 +343,7 @@ The show is updated back into the Showlist
 The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
 
 
-### Add Review Command
+### AddReview Command
 
 The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
 Within the AddReview class
@@ -748,81 +751,81 @@ Expected: A message acknowledging the change. `Updated show details.`
 
 Expected: An acknowledgement message `Your review for friends has been added.`
 
-3. Test case: ``
+3. Test case: `add review friends 8  Chandler is so funny!`
 
-4. Test case: ``
+Expected: An error message indicating that the format of the command is invalid.
 
 #### Changing a review
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `changereview friends / Chandler is so funny!`
 
-3. Test case: ``
+Expected: An acknowledgement message `Your review for friends has been changed.` is displayed.
 
-Expected: 
+3. Test case: `changereview friends  I have rewatched friends 5 times`
 
-4. Test case: ``
+Expected: An error message indicating that the format of the command is invalid.
 
-Expected: 
 
 #### Changing a rating
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `changerating friends 9`
 
-3. Test case: ``
+Expected: An acknowledgement message `Your rating for friends has been added.` is displayed.
 
-Expected: 
+3. Test case: `changerating friends abc`
 
-4. Test case: ``
+Expected: An error message indicating that the rating input is invalid.
 
-Expected: 
+4. Test case: `changerating`
+
+Expected: An error message indicating that the format of the command is invalid.
 
 #### Deleting a rating
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `deleterating friends`
 
-3. Test case: ``
+Expected: An acknowledgement message `The rating for friends has been deleted.` is displayed.
 
-Expected: 
+3. Test case: `deleterating friends abc`
 
-4. Test case: ``
+Expected: An error message indicating that the format of the command is invalid.
 
-Expected: 
+4. Test case: `deleterating`
+
+Expected: An error message indicating that the format of the command is invalid.
 
 ### Modifying current watch progress and watch time
 
 #### Updating current episode
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `episode friends 3`
 
-3. Test case: ``
+Expected: An acknowledgement message that indicates that the current episode has been updated, and watch progress for `friends` is displayed.
 
-Expected: 
+3. Test case: `episode friends`
 
-4. Test case: ``
+Expected: An error message indicating that the format of the command is invalid.
 
-Expected: 
 
 #### Updating current season
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `season friends 3`
 
-3. Test case: ``
+Expected: An acknowledgement message that indicates that the current episode has been updated, and watch progress for `friends` is displayed.
 
-Expected: 
+3. Test case: `season friends`
 
-4. Test case: ``
-
-Expected:
+Expected: An error message indicating that the format of the command is invalid.
 
 #### Watching a show
 
@@ -867,18 +870,20 @@ Expected: A list of the shows you have added will be displayed into the terminal
 
 Expected: An error message indicating that the input supplied was in a wrong format.
 
-> **[NOTE]** The command to be input is case-sensitive.
+> **[NOTE]** The command input is case-sensitive.
 
 #### Finding a show in your watch list
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `search friends`
 
-3. Test case: ``
+Expected: An acknowledgement message that `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
-Expected: 
+3. Test case: `search`
 
-4. Test case: ``
+Expected: An error message indicating that the input supplied was in a wrong format.
 
-Expected:
+4. Test case: `search a`
+
+Expected: An error message indicating that the show input was not found in the watch list.
