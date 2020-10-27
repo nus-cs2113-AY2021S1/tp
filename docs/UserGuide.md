@@ -7,23 +7,23 @@
 - [3.Features](#3features)
   - [3.1 Help `help`](#31-help-help)
   - [3.2 Exit the program: `bye`](#32-exit-the-program-bye)
-  - [3.3 HR features `HR`](#33-hr-features-hr)
+  - [3.3 HR Features `HR`](#33-hr-features-hr)
     - [Add members: `addMember`](#add-members-addmember)
     - [Delete members: `delMember`](#delete-members-delmember)
-    - [list members: `listMember`](#list-members-listmember)
-    - [change member information: `changeInfo`](#change-member-information-changeinfo)
-    - [search members: `search`](#search-members-search)
-    - [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
-    - [view contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
-  - [3.4 Event features`event`](#34-event-featuresevent)
+    - [List members: `listMember`](#list-members-listmember)
+    - [Change member's information: `changeInfo`](#change-member-information-changeinfo)
+    - [Search members: `search`](#search-members-search)
+    - [View contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
+    - [View contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
+  - [3.4 Event Features`event`](#34-event-featuresevent)
     - [Add events: `addEvent`](#add-events-addevent)
     - [Delete an event: `delEvent`](#delete-an-event-delevent)
     - [Clear all events: `delEvent all`](#clear-all-events-delevent-all)
-    - [list events: `listEvent`](#list-events-listevent)
-    - [countdown events `countdown`](#countdown-events-countdown)
+    - [List events: `listEvent`](#list-events-listevent)
+    - [Countdown events `countdown`](#countdown-events-countdown)
     - [Mark an event as completed `done`](#mark-an-event-as-completed-done)
     - [Search for an Event `search`](#search-for-an-event-search)
-  - [3.5 Finance features `finance`](#35-finance-features-finance)
+  - [3.5 Finance Features `finance`](#35-finance-features-finance)
     - [Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
     - [Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
     - [View financial summary: `summary`](#view-financial-summary-summary)
@@ -38,11 +38,13 @@ CCA Manager is a revolutionary tool that changes the way you can manage interest
 ## 2.Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of CCA manager from here
+2. Download the latest version of CCA manager from  ![here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases)
 3. Run the program by entering java -jar cca.java in a terminal.
 
 ## 3.Features 
 
+###Command Format
+Words in `UPPER CASE` are the parameters to be supplies by user 
 ### 3.1 Help `help`
 Shows a list of available commands<br/>
 Format: help
