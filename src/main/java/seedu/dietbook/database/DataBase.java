@@ -3,6 +3,7 @@ package seedu.dietbook.database;
 
 import seedu.dietbook.food.Food;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.io.InputStream;
 
 public class DataBase {
     private static final String START_SYMBOL = "&%START";
@@ -19,23 +21,25 @@ public class DataBase {
 
     private static final String DATA_FILE_SEPERATOR = "\\|";
 
-    private static final String rootDirectory = System.getProperty("user.dir");
-    private static final String dataFileFolder = "src" + File.separator + "main" + File.separator
-            + "java" + File.separator + "seedu" + File.separator + "duke" + File.separator + "database";
-
     private final List<Canteen> canteenList;
 
+    /**
+     * Instantiate an empty Database object.
+     */
     public DataBase() {
         this.canteenList = new ArrayList<>();
     }
 
     /**
-     * Reads a file from the data base and puts it into the DataBase object.
+     * Loads and parses the resource main/resource/data.txt
+     * This data is used to build the internal canteenList.
      */
-    public void init() throws FileNotFoundException {
-        String fileFolder = rootDirectory + File.separator + dataFileFolder;
-        File dataFile = new File(fileFolder + File.separator + "data.txt");
-        Scanner fileReader = new Scanner(dataFile);
+    public void init() {
+
+        InputStream dataStream = DataBase.class.getResourceAsStream("/data.txt");
+        assert (dataStream != null) : "Could not load resource";
+
+        Scanner fileReader = new Scanner(dataStream);
         String fileLine;
         boolean start = false;
         while (fileReader.hasNext()) {
@@ -91,8 +95,8 @@ public class DataBase {
         String fileLine = fileSegment.nextLine();
         String[] fileData = fileLine.split(DATA_FILE_SEPERATOR);
         while (!(fileLine.equals(UP_SYMBOL))) {
-            food = new Food(fileData[0], Integer.parseInt(fileData[1]),Integer.parseInt(fileData[2]),
-            Integer.parseInt(fileData[3]),Integer.parseInt(fileData[4]));
+            food = new Food(fileData[0], Integer.parseInt(fileData[1]), Integer.parseInt(fileData[2]),
+            Integer.parseInt(fileData[3]), Integer.parseInt(fileData[4]));
             store.addFood(food);
             fileLine = fileSegment.nextLine();
             fileData = fileLine.split(DATA_FILE_SEPERATOR);
@@ -235,7 +239,7 @@ public class DataBase {
      * Returns all food within the calorie range.
      *
      * @param minCalorie minimum calories
-     * @param maxCalorie maxinum calories
+     * @param maxCalorie maximum calories
      * @return food stream
      */
     public Stream<Food> searchAllFoodInCalorieRange(int minCalorie, int maxCalorie) {
@@ -253,6 +257,9 @@ public class DataBase {
                 .flatMap(x -> x.getFoodList().stream());
     }
 
+    /**
+     * Provide a list of all food in the data base.
+     */
     public List<Food> getFoodList() {
         return foodStream().collect(Collectors.toList());
     }
