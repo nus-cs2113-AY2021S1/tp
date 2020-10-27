@@ -398,7 +398,7 @@ public class ModuleList {
 
                         } else {
                             System.out.println(commandInfo[2] + HOUR_REMOVAL
-                                    + modCode+ FULL_STOP);
+                                    + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                                     + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                         }
