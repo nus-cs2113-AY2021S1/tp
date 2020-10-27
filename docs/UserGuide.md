@@ -1,5 +1,5 @@
-# User Guide
-
+# Kaji - User Guide
+By: `Team F11-3` Since: `August 2020`
 ## Table of content
 1. [Overview](#1-overview)<br>
 1.1. [About Kaji](#11-about-kaji)<br>
@@ -50,13 +50,27 @@
 
 ## 1. Overview
 
-KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
+In the past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
+
+Don't worry! <strong>Kaji</strong> will help you solve all these problems!
+
 
 ### 1.1. About Kaji
+KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
+This User GUide is divided into four sections, Overview, Quik Start, Features, and Command Summary.
+
+<b>Overview section</b> will briefly introduce Kaji and its User Guide, also the Command Line Interface to you.
+
+<b>Quik Start section</b> will guide you to make some preparations in advance and teach you how to run Kaji.
+
+<b>Features section</b> will introduce all features of Kaji according to different levels, you can learn features in details in this section.
+
+<b>Command summary section</b> will sum up different command type in a table.
 
 ### 1.3. Understanding the Command Line Interface (CLI)
+A <b>command line interface (CLI)</b> is a text-based user interface (UI) used to view and manage computer files. Command line interfaces are also called command-line user interfaces, console user interfaces and character user interfaces.
 
 ### 1.4. Understanding Kaji
 
@@ -154,6 +168,7 @@ To get started on this application, please perform the following steps:
 
 #### 3.4.1. Showing a list of commands available: `help`
 (by Zeyu)
+
 
 #### 3.4.2. Listing the chapters due for today: `due`
 (by Yan An)

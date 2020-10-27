@@ -24,7 +24,6 @@ public class ListModuleCommand extends ListCommand {
     }
 
     private String listModules(Access access) {
-        assert access.isAdminLevel() : "Not admin level";
         ModuleList modules = access.getAdmin().getModules();
         ArrayList<Module> allModules = modules.getAllModules();
         int moduleCount = modules.getModuleCount();

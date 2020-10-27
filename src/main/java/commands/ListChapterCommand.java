@@ -24,7 +24,6 @@ public class ListChapterCommand extends ListCommand {
     }
 
     private String listChapters(Access access) {
-        assert access.isModuleLevel() : "Not module level";
         ChapterList chapters = access.getModule().getChapters();
         ArrayList<Chapter> allChapters = chapters.getAllChapters();
         int chapterCount = chapters.getChapterCount();
