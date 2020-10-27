@@ -101,8 +101,8 @@ public class UiMessage {
     public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_TITLE /by AUTHOR";
 
     public static final String EDIT_BOOK_COMMAND = "Edit book: " + "edit -b BOOK_NUMBER /to NEW_TITLE";
-    public static final String EDIT_QUOTE_COMMAND = "Edit quote: " + "edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR]" +
-            " [/from BOOK_TITLE]";
+    public static final String EDIT_QUOTE_COMMAND = "Edit quote: " + "edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR]"
+            + " [/from BOOK_TITLE]";
     public static final String EDIT_QUOTE_REFLECTION_COMMAND = "Edit quote reflection: "
             + "edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION";
     public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY /to NEW_CATEGORY";
