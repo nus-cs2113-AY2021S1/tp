@@ -1,5 +1,16 @@
 @startuml
 box Logic
+participant ":Parser"
+participant ":ExecFavCommand"
+participant ":ExecFavParser"
+participant "p:Parser"
+end box
+
+box Model
+participant ":FavList" <<(C,#ADD1B2) Class>>
+participant ":Fav"
+end box
+
 [-> ":Parser": setUserInput("/execfav index")
 activate ":Parser"
 [-> ":Parser": extractType()
@@ -28,10 +39,9 @@ activate ":ExecFavCommand"
 activate ":ExecFavParser"
 ":ExecFavParser"-->":ExecFavCommand"
 deactivate ":ExecFavParser"
-end box
 
-box model
-participant ":FavList" <<(C,#ADD1B2) Class>>
+
+
 ":ExecFavCommand" -> ":FavList": getFav(Index)
 activate ":FavList"
 ":FavList" --> ":ExecFavCommand"
@@ -42,7 +52,6 @@ deactivate ":ExecFavCommand"
 activate ":Fav"
 ":Fav"-->":ExecFavCommand"
 deactivate ":Fav"
-end box
 
 create "p:Parser"
 ":ExecFavCommand" -> "p:Parser": Parser(Command)
