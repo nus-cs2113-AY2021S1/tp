@@ -2,7 +2,7 @@
 
 @startuml
 
-Package " "<<Rectangle>>{
+Package " "<<Square>>{
     Class Command
     Class CommandHelp
     Class CommandBye
