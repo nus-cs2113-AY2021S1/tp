@@ -66,6 +66,7 @@ public class ListCommand extends Command {
     }
 
     private String listModules(Access access) {
+        assert access.isAdminLevel() : "Not admin level";
         ModuleList modules = access.getAdmin().getModules();
         ArrayList<Module> allModules = modules.getAllModules();
         int moduleCount = modules.getModuleCount();
@@ -83,6 +84,7 @@ public class ListCommand extends Command {
     }
 
     private String listChapters(Access access) {
+        assert access.isModuleLevel() : "Not module level";
         ChapterList chapters = access.getModule().getChapters();
         ArrayList<Chapter> allChapters = chapters.getAllChapters();
         int chapterCount = chapters.getChapterCount();
