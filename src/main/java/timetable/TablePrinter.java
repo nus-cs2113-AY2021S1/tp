@@ -3,19 +3,19 @@ package timetable;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class TablePrinter {
     private static final String space = " ";
 
     public static void printTable(List<EventList> dateList) {
-        System.out.printf("%10s", space);
+        String[][] table = new String[8][25];
+        table[0][0] = space;
         for (int i = 0; i < 2400; i += 100) {
-            String time = String.format("%04d", i);
-            System.out.printf("|%-10s", time);
+            table[0][i / 100 + 1] = String.format("%04d", i);
         }
-        System.out.println("|");
 
         for (int i = 0; i < 7; i++) {
-            System.out.printf("%-10s", LocalDate.now().plusDays(i).getDayOfWeek().name());
+            table[i + 1][0] = LocalDate.now().plusDays(i).getDayOfWeek().name();
             boolean skip = false;
             for (int dateListIndex = 0; dateListIndex < dateList.size() && !skip; dateListIndex++) {
                 if (dateList.get(dateListIndex).dateTag.equals(LocalDate.now().plusDays(i))) {
@@ -27,22 +27,28 @@ public class TablePrinter {
                             for (Duration period: current.periods) {
                                 if (period.containTimeSlot(j * 100) && period.startDateTime
                                         .toLocalDate().equals(dateList.get(dateListIndex).dateTag)) {
-                                    System.out.printf("|%-10s", current.name);
+                                    table[i + 1][j + 1] = current.name;
                                     isFree = false;
                                 }
                             }
                         }
                         if (isFree) {
-                            System.out.printf("|%-10s", space);
+                            table[i + 1][j + 1] = space;
                         }
                     }
                     skip = true;
                 }
             }
             for (int j = 0; j < 24 && !skip; j++) {
-                System.out.printf("|%-10s", space);
+                table[i + 1][j + 1] = space;
             }
-            System.out.println("|");
+        }
+
+        for (int i = 0; i < 25; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.printf("%-10s|", table[j][i]);
+            }
+            System.out.println("");
         }
     }
 
