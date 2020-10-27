@@ -344,6 +344,8 @@ public class Ui {
      * @param calendarIndex the index of the task in the list.
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
+        assert calendarList != null;
+        assert calendarIndex >= 0;
         System.out.println(
                 "I've marked this task as important:\n"
                         + calendarList.getCalendarList().get(calendarIndex));
@@ -489,7 +491,9 @@ public class Ui {
             break;
         case "invalid module code":
             System.out.println(
-                    "Error: invalid module code. The module code cannot be found in NUS module list.");
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the exam in this format: \n"
+                            + "exam <module code> @<exam venue> /ddMMyy HHmm");
             break;
         default:
             System.out.println("Unknown Error.");
