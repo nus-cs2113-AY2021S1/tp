@@ -83,7 +83,7 @@ public class CommandImportCsv extends Command {
             return "Header mismatch!";
         } catch (DukeFileFormatException e) {
             return "Unable to read CSV file! Please check that the specified file is properly formatted!";
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return "Unable to find column header name in your file! Please check the spelling and capitalization.";
         }
         final String s = "Successfully imported " + (rowsAfter - rowsBefore) + " entries."
