@@ -1,8 +1,6 @@
 # **Developer Guide**
 
 
-
-
 ## **Introduction**
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
 ### **Welcome to Zoomaster!**
@@ -15,11 +13,11 @@ Zoomaster can also intelligently determine the current lesson you are having, al
 * [Getting Started](#getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
-  * [UI component](#architecture)
-  * [Logic component](#architecture)
-  * [Model component](#architecture)
-  * [Storage component](#architecture)
-  * [Common classes](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
 * [Implementation](#implementation)
   * [Bookmark and Timetable modes feature](#bookmark-and-timetable-modes-feature-tys)
   * [Add Module and Slot feature](#add-module-and-slot-feature-xing-rong)
