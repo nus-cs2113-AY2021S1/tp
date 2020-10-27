@@ -29,8 +29,8 @@ public class Ui {
             + "   example: edittime CS2113T 8 1\n"
             + "9. deletetime <module code> <week number>\n"
             + "   example: deletetime CS2113T 1\n"
-            + "10.analysis <week number>\n"
-            + "   example: analysis 1\n"
+            + "10.analyse <week number>\n"
+            + "   example: analyse 1\n"
             + "11.addtask <module code> <task description>\n"
             + "   example: addtask CS2113T revise for exam\n"
             + "12.deletetask <task number>\n"
@@ -281,7 +281,7 @@ public class Ui {
             break;
         case Parser.COMMAND_ANALYSIS:
             System.out.println(WRONG_FORMAT);
-            System.out.println("Format: analysis <week number>" + System.lineSeparator());
+            System.out.println("Format: analyse <week number>" + System.lineSeparator());
             break;
         case Parser.COMMAND_DONE:
             System.out.println(WRONG_FORMAT);
