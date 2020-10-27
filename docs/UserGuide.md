@@ -239,7 +239,173 @@ Exit to Manual tracker where users can choose another ledger.
 
     example
     
+# Features : FinanceTools
+FinanceTools contains tools related to financial calculations.
 
+## FinanceTools 1: Simple Interest Calculator
+Calculate simple interest earned.
+
+## Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+
+>Syntax:
+    
+    simple /a {AMOUNT} /r {INTEREST_RATE}
+   
+> Example: 
+
+    simple /a 1000 /r 5
+![Example](screenshots/financetools/SimpleInterest(1).PNG)
+## FinanceTools 2: Yearly Compound Interest Calculator
+Calculate yearly compound interest earned with optional yearly deposit.
+
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+* ```/p``` - Number of Years (Mandatory)
+* ```/d``` - Yearly Deposit (Optional)
+
+>Syntax:
+    
+    cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {YEARS} /d {YEARLY_DEPOSIT}
+   
+> Example: 
+
+    cyearly /a 1000 /r 3 /p 2
+    cyearly /a 1000 /r 3 /p 2 /d 1200
+![Example](screenshots/financetools/YearlyCompoundInterest(1).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/YearlyCompoundInterest(2).PNG)
+## FinanceTools 3: Monthly Compound Interest Calculator
+Calculate monthly compound interest earned with optional monthly deposit.
+
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+* ```/p``` - Number of Months (Mandatory)
+* ```/d``` - Monthly Deposit (Optional)
+
+>Syntax:
+    
+    cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}
+   
+> Example: 
+
+    cmonthly /a 1000 /r 3 /p 2
+    cmonthly /a 1000 /r 3 /p 2 /d 100
+![Example](screenshots/financetools/MonthlyCompoundInterest(1).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/MonthlyCompoundInterest(2).PNG)
+## FinanceTools 4: Cashback Calculator
+Calculate cashback earned.
+
+### Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Cashback Rate (Mandatory)
+* ```/c``` - Cashback Cap (Mandatory)
+
+>Syntax:
+    
+    cashb /a {AMOUNT} /r {CASHBACK_RATE} /c {CASHBACK_CAP}
+   
+> Example: 
+
+    cashb /a 1000 /r 5 /c 1000
+    cashb /a 1000 /r 5 /c 10
+![Example](screenshots/financetools/Cashback(1).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/Cashback(2).PNG)
+## FinanceTools 5: Miles Credit Calculator
+Calculate cashback earned.
+
+## Parameters
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Miles Rate (Mandatory)
+
+>Syntax:
+    
+    miles /a {AMOUNT} /r {MILES_RATE}
+   
+> Example: 
+
+    miles /a 1000 /r 5
+![Example](screenshots/financetools/Miles(1).PNG)
+## FinanceTools 6: Account Storage
+Store account information.
+<br />
+
+Additionally, it implements the following operations:
+* ```info``` - list account(s) information
+* ```clearinfo``` - clear all information
+* ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
+
+### Parameters
+* ```/n``` - Account Name (Optional)
+* ```/ir``` - Interest Rate (Optional)
+* ```/r``` - Cashback Rate (Optional)
+* ```/c``` - Cashback Cap (Optional)
+* ```/o``` - Other Notes (Optional)
+* ```/rm``` - Account Number (Optional)
+
+>Syntax:
+    
+    store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE} /c {CASHBACK_CAP} /o {OTHER_NOTES}
+   
+> Example: 
+
+    store
+    store /n myaccount
+    store /n myaccount /ir 2
+    store /n myaccount /ir 2 /r 2
+    store /n myaccount /ir 2 /r 2 /c 100
+    store /n myaccount /ir 2 /r 2 /c 100 /o main account
+    store /rm 1
+![Example](screenshots/financetools/AccountStorage(1).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(2).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(3).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(4).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(5).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(6).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(7).PNG)
+
+## FinanceTools 7: Command and Calculation History
+Store the commands inputted and results from calculations in FinanceTools.
+
+>Syntax:
+    
+    history
+   
+> Example: 
+
+    history
+![Example](screenshots/financetools/History(1).PNG)
+## FinanceTools 8: Exit FinanceTools
+Exit FinanceTools to Main Menu.
+
+>Syntax:
+    
+    exit
+   
+> Example: 
+
+    exit
+![Example](screenshots/financetools/Exit(1).PNG)
 ## 2. List
 Shows full list of appended tasks. You may modify the output format for each task with the appropriate arguements. 
 
