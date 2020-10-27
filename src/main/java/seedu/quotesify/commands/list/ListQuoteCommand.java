@@ -28,14 +28,14 @@ public class ListQuoteCommand extends ListCommand {
             } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
                 information = information.substring(1);
                 HashMap<String, String> referenceAndAuthorName = QuoteParser.parseReferenceAndAuthor(information);
-                String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD);
-                String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD);
+                String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD).toLowerCase();
+                String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD).toLowerCase();
                 listQuotesByReferenceAndAuthor(quoteList, reference, authorName, ui);
             } else if (information.contains(Command.FLAG_AUTHOR)) {
-                String authorName = QuoteParser.parseListWithAuthor(information);
+                String authorName = QuoteParser.parseListWithAuthor(information).toLowerCase();
                 listQuotesByAuthor(quoteList, authorName, ui);
             } else if (information.contains(Command.FLAG_REFERENCE)) {
-                String reference = QuoteParser.parseListWithReference(information);
+                String reference = QuoteParser.parseListWithReference(information).toLowerCase();
                 listQuotesByReference(quoteList, reference, ui);
             } else {
                 throw new QuotesifyException(ERROR_LIST_UNKNOWN_COMMAND);

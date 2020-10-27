@@ -20,7 +20,7 @@ public class FindQuoteCommand extends FindCommand {
 
     private void findQuote(QuoteList quoteList, TextUi ui) {
         try {
-            String keyword = information.trim();
+            String keyword = information.trim().toLowerCase();
             if (!keyword.isEmpty()) {
                 String resultList = quoteList.findQuoteByKeyword(quoteList, keyword);
                 if (!resultList.isEmpty()) {

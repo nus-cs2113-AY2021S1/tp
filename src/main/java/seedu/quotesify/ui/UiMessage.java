@@ -76,7 +76,7 @@ public class UiMessage {
     public static final String LIST_QUOTE_REFLECTION = "Here is the reflection you are looking for!"
             + System.lineSeparator() + "Quote: %s" + System.lineSeparator() + "Reflection: %s";
     public static final String LIST_QUOTE_NO_REFLECTION = "That quote does not have any reflection attached!";
-    public static final String DELETE_QUOTE_REFLECTION_MESSAGE = "Reflection for the quote \"%s\" has been deleted!";
+    public static final String DELETE_QUOTE_REFLECTION_MESSAGE = "Reflection for the quote [%s] has been deleted!";
     public static final String EDIT_QUOTE_REFLECTION = "Reflection has been updated!"
             + System.lineSeparator() + "Quote: %s" + System.lineSeparator() + "Reflection: %s";
 

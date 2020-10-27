@@ -20,7 +20,7 @@ public class DeleteQuoteReflectionCommand extends DeleteCommand {
         try {
             int quoteNumber = Integer.parseInt(information.trim()) - 1;
             quoteList.deleteReflection(quoteNumber);
-            ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).getQuote());
+            ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).toString());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
         }
