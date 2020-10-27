@@ -1,5 +1,7 @@
 package seedu.quotesify.commands.delete;
 
+import seedu.quotesify.book.Book;
+import seedu.quotesify.book.BookList;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
@@ -50,7 +52,15 @@ public class DeleteRatingCommand extends DeleteCommand {
             System.out.println(ERROR_RATING_NOT_FOUND);
             return;
         }
-        ratingToBeDeleted.getRatedBook().setRating(0);
+
+        BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        for (Book book : books.getList()) {
+            if (book.getTitle().equals(title) && book.getAuthor().getName().equals(author)) {
+                book.setRating(0);
+                break;
+            }
+        }
+
         ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
         ui.printDeleteRating(title, author);
     }
