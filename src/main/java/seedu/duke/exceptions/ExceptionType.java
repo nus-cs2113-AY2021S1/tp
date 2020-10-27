@@ -18,7 +18,8 @@ public enum ExceptionType {
     EMPTY_DESCRIPTION("Hmmm, I don't think you would want an empty description."),
     NOT_A_NUMBER("Yikes! That is not even a number."),
     INVALID_INDEX("Sorry, that isn't the index of any command in the list."),
-    SAME_DESCRIPTION("No change needed! You already have that description for your favourite command.");
+    SAME_DESCRIPTION("No change needed! You already have that description for your favourite command."),
+    EMPTY_INDEX("Oh no! I cannot detect the input index");
 
     private String message;
 
