@@ -14,7 +14,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClearStorageCommandTest {
-    private final InputStream systemIn = System.in;
+    /*private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
     private ByteArrayInputStream testIn;
@@ -43,7 +43,7 @@ class ClearStorageCommandTest {
         assertEquals(expected, getOutput());
     }
     
-    /*@Test
+    *//*@Test
     void execute_emptyInput() {
         String input = "N"+System.lineSeparator();
         String expected = "[!WARNING!] Are you sure? This command is irreversible! (y/N) Data clear aborted." 
@@ -57,13 +57,13 @@ class ClearStorageCommandTest {
 
         csc.execute();
         assertEquals(expected, getOutput());
-    }*/
+    }*//*
     
     @AfterEach
     public void restoreSystemInputOutput() throws IOException {
         testIn.close();
-        /*System.out.flush();
-        testOut.close();*/
+        *//*System.out.flush();
+        testOut.close();*//*
         System.in.reset();
         System.setIn(systemIn);
         System.setOut(systemOut);
@@ -83,5 +83,5 @@ class ClearStorageCommandTest {
         projectManager.addProject("Test", "test", 50, 10);
         projectManager.addProject("Test2", "test2", 50, 10);
         return projectManager;
-    }
+    }*/
 }
