@@ -3,6 +3,7 @@ package storage;
 import access.Access;
 import commands.RemoveCardCommand;
 import common.KajiLog;
+import exception.DuplicateDataException;
 import exception.ExclusionFileException;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
@@ -413,20 +414,24 @@ public class Storage {
         return directoryToBeDeleted.delete();
     }
 
-    public boolean renameChapter(String newChapterName, Access access, Chapter chapter) {
+    public void renameChapter(String newChapterName, Module module, Chapter chapter) throws DuplicateDataException {
         File file = new File(getFilePath()
-                + "/" + access.getModule()
-                + "/" + chapter.toString() + ".txt");
+                + "/" + module.getModuleName()
+                + "/" + chapter.getChapterName() + ".txt");
         boolean success = file.renameTo(new File(getFilePath()
-                + "/" + access.getModule()
+                + "/" + module.getModuleName()
                 + "/" + newChapterName + ".txt"));
-        return success;
+        if (!success) {
+            throw new DuplicateDataException("A chapter with this name already exists.");
+        }
     }
 
-    public boolean renameModule(String newModuleName, Module module) {
-        File file = new File(getFilePath() + "/" + module.toString());
+    public void renameModule(String newModuleName, Module module) throws DuplicateDataException {
+        File file = new File(getFilePath() + "/" + module.getModuleName());
         boolean success = file.renameTo(new File(getFilePath() + "/" + newModuleName));
-        return success;
+        if (!success) {
+            throw new DuplicateDataException("A module with this name already exists.");
+        }
     }
 
     public void createHistoryDir() {

@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.admin.Admin;
 import manager.admin.ModuleList;
 import manager.module.Module;
@@ -11,8 +10,7 @@ import ui.Ui;
 import static common.Messages.MODULE;
 
 public class AddModuleCommand extends AddCommand {
-    public static final String MODULE_PARAMETERS = " MODULE_NAME";
-    public static final String MODULE_MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " CS2113T\n";
 
@@ -24,10 +22,9 @@ public class AddModuleCommand extends AddCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
-        String result = "";
+    public void execute(Ui ui, Access access, Storage storage) {
         Module module = new Module(this.module);
-        result = addModule(access, storage, module);
+        String result = addModule(access, storage, module);
         ui.showToUser(result);
     }
 
@@ -40,5 +37,4 @@ public class AddModuleCommand extends AddCommand {
         storage.createModule(module.getModuleName());
         return prepareResult(MODULE, module.toString(), moduleCount);
     }
-
 }

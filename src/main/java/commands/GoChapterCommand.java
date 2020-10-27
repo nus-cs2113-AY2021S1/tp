@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
@@ -20,7 +19,7 @@ public class GoChapterCommand extends GoCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
+    public void execute(Ui ui, Access access, Storage storage) {
         String result = goChapter(access, storage);
         if (result.equals("")) {
             return;
@@ -28,7 +27,7 @@ public class GoChapterCommand extends GoCommand {
         ui.showToUser(result);
     }
 
-    private String goChapter(Access access, Storage storage) throws IncorrectAccessLevelException {
+    private String goChapter(Access access, Storage storage) {
         boolean isLevelExist = false;
         String result = "";
         String currentChapter = this.chapter;
