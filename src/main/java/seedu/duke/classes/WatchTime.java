@@ -36,7 +36,7 @@ public class WatchTime {
     }
 
     public static int getTimeLeftToday() {
-        return dailyWatchLimit - dailyWatchLimit;
+        return dailyWatchLimit - durationWatchedToday;
     }
 
     public static boolean isNewDay() {
@@ -63,6 +63,11 @@ public class WatchTime {
             durationWatchedToday = showMinutes;
         } else {
             durationWatchedToday += showMinutes;
+        }
+        if (dailyWatchLimit < durationWatchedToday) {
+            Ui.printExceededWatchTimeLimit();
+        } else if (dailyWatchLimit == durationWatchedToday) {
+            Ui.printUsedUpWatchTimeLimit();
         }
         Ui.printDailyWatchTimeLeft();
     }
