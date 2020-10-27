@@ -16,6 +16,7 @@ public class Portfolio implements Serializable {
     public Portfolio() {
         stocks = new HashMap<>();
         wallet = new Wallet(100000);
+        assert getWalletInitialAmount() <= 100000;
     }
 
     public void buyStock(String symbol, int quantity, double buyPrice) throws InsufficientFundException {
