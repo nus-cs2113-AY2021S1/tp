@@ -20,15 +20,16 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.7 [Delete a module: `deletemod`](#deletemod)
     <br/>&nbsp;2.8 [Delete expected module workload: `deleteexp`](#deleteexp)
     <br/>&nbsp;2.9 [Minus from actual time spent on a module: `minustime`](#minus) 
-    <br/>&nbsp;2.10 [Delete actual time spent on a module: `deletetime`](#deletetime)
-    <br/>&nbsp;2.11 [Add tasks: `addtask`](#addtask)
-    <br/>&nbsp;2.12 [List all tasks: `listtask`](#listtask)
-    <br/>&nbsp;2.13 [Mark task as done: `done`](#done)
-    <br/>&nbsp;2.14 [Delete a task: `deletetask`](#deletetask)
-    <br/>&nbsp;2.15 [Open notification: `open`](#open)
-    <br/>&nbsp;2.16 [Exit the program : `exit`](#exit)
-    <br/>&nbsp;2.17 [Save user data](#save)
-    <br/>&nbsp;2.18 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.10 [Edit actual time spent on a module: `deletetime`](#edit)
+    <br/>&nbsp;2.11 [Delete actual time spent on a module: `deletetime`](#deletetime)
+    <br/>&nbsp;2.12 [Add tasks: `addtask`](#addtask)
+    <br/>&nbsp;2.13 [List all tasks: `listtask`](#listtask)
+    <br/>&nbsp;2.14 [Mark task as done: `done`](#done)
+    <br/>&nbsp;2.15 [Delete a task: `deletetask`](#deletetask)
+    <br/>&nbsp;2.16 [Open notification: `open`](#open)
+    <br/>&nbsp;2.17 [Exit the program : `exit`](#exit)
+    <br/>&nbsp;2.18 [Save user data](#save)
+    <br/>&nbsp;2.19 [Delete user data: `reset`](#reset)
 1. [FAQ](#faq)
 1. [Command Summary](#summary)
 
@@ -114,7 +115,7 @@ CS2113T, Expected Workload: 10h is added.
 ````
 
 ### 2.4 Add actual time spent on a module: `addtime` <a name="addtime"></a>
-Adds the time spent on the indicated module.
+Adds the time spent on the indicated module. At the end there is also a summary for the total hours spent in that week.
 
 Format: `addtime <module code> <time spent> <week number>`
 
@@ -128,7 +129,8 @@ Example of usage:
 
 Expected output:
 ````
-3 hours are added to CS2113T.
+3 hours have been added to CS2113T.
+3.0 hours have been spent on this module in week 1.
 ````
 
 ### 2.5 List expected and actual time spent of all modules: `list` <a name="list"></a>
@@ -222,7 +224,8 @@ Expected Workload of CS2113T is removed.
 ````
 
 ### 2.9 Minus from actual time spent on a module: `minustime` <a name="minus"></a>
-Minus the actual time spent on a specified module.
+Minus the actual time spent on a specified module. At the end there is also a summary for the total hours spent in that 
+week.
 
 Format: `minustime <module code> <time spent> <week number>` 
 
@@ -236,10 +239,30 @@ Example of usage:
 
 Expected output:
 ````
-3 hours are removed from CS2113T
+3 hours have been removed from CS2113T.
+2.0 hours have been spent on this module in week 1.
 ````
 
-### 2.10 Delete actual time spent on a module: `deletetime` <a name="deletetime"></a>
+### 2.10 Edit actual time spent on a module: `edittime` <a name="edit"></a>
+Edits the actual time spent on a specified module.
+
+Format: `edittime <module code> <time spent> <week number>` 
+
+* The `module code` is valid.
+* The `time spent` is in hours.
+* The `week number` must be between 1 and 13 inclusive.
+
+Example of usage:
+
+`edittime CS2113T 3 1`
+
+Expected output:
+````
+3 hours is the new actual workload for the module CS2113T.
+3.0 hours have been spent on this module in week 1.
+````
+
+### 2.11 Delete actual time spent on a module: `deletetime` <a name="deletetime"></a>
 Deletes the actual time spent on a specified module.
 
 Format: `deletetime <module code> <week number>` 
@@ -256,7 +279,7 @@ Expected output:
 Actual time of CS2113T of week 3 is removed.
 ````
 
-### 2.11 Add tasks: `addtask` <a name="addtask"></a>
+### 2.12 Add tasks: `addtask` <a name="addtask"></a>
 Adds a task under a specified module.
 
 Format: `addtask <module code> <task description>`
@@ -275,7 +298,7 @@ Got it. I've added this task under CS2113T:
 Now you have 1 task in the list.
 ````
 
-### 2.12 List all tasks: `listtask` <a name="listtask"></a>
+### 2.13 List all tasks: `listtask` <a name="listtask"></a>
 Lists all tasks in the database.
 
 Format: `listtask`
@@ -286,7 +309,7 @@ Here are the tasks in your list:
 1. [X] [CS2113T] finish project
 ````
 
-### 2.13 Mark task as done: `done` <a name="done"></a>
+### 2.14 Mark task as done: `done` <a name="done"></a>
 Marks a specified task as done.
 
 Format: `done <task number>`
@@ -304,7 +327,7 @@ Nice! I've marked this task as done:
 [/] [CS2113T] finish project
 ````
 
-### 2.14 Delete a task: `deletetask` <a name="deletetask"></a>
+### 2.15 Delete a task: `deletetask` <a name="deletetask"></a>
 Deletes a specified task from the database.
 
 Format: `deletetask <task number>`
@@ -323,7 +346,7 @@ You currently have no task :-)
 ````
 
 
-### 2.15 Open notification: `open` <a name="open"></a>
+### 2.16 Open notification: `open` <a name="open"></a>
 Opens the notification with a randomised encouraging message.
 
 Format: `open`
@@ -342,7 +365,7 @@ The harder you work, the closer you are to success!
 
 Note: The actual output may differ as the encouraging message is randomised.
 
-### 2.16 Exit the program : `exit` <a name="exit"></a>
+### 2.17 Exit the program : `exit` <a name="exit"></a>
 Exits the program.
 
 Format: `exit`
@@ -353,7 +376,7 @@ All changes saved.
 Bye <username>. Hope to see you again soon!
 ````
 
-### 2.17 Save user data <a name="save"></a>
+### 2.18 Save user data <a name="save"></a>
 The program will save your data such as your name, modules, time spent and tasks
 to the hard disk automatically. There is no need to save these manually. 
 
@@ -364,7 +387,7 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 2.18 Delete module and task data: `reset` <a name="reset"></a>
+### 2.19 Delete module and task data: `reset` <a name="reset"></a>
 Deletes all module and tasks data. 
 The program will also prompt the user to confirm this action.
 
