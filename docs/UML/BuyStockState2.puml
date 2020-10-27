@@ -11,16 +11,18 @@ title State after Step:5
 
 package States {
     class State1 as "__:PortfolioManager__"
-    class State2 as "__:Wallet__"
+    class State2 as "__:Ui__"
     class State3 as "__buyCommand:BuyCommand__"
     class State4 as "__portfolio:Portfolio__"
     class State5 as "__stockPriceFetcher:StockPriceFetcher__"
-    class State6 as "__transaction:Transaction__"
-    class State7 as "__stock:Stock__"
+    class State6 as "__wallet:Wallet__"
+    class State7 as "__transaction:Transaction__"
+    class State8 as "__stock:Stock__"
 }
 State1 -down-> State4
 State4 -down-> State6
 State4 -down-> State7
+State4 -down-> State8
 
 class Pointer as "Controller" #FFFFF
 Pointer -down-> State1
