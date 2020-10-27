@@ -443,25 +443,25 @@ quote management, progress tracker, category management and a rating system for 
 
 1. Add a quote without author and reference to Quotesify
 
-    Test case: `add -q life's short, smile while you still have teeth`
+    Test case: `add -q Life's short, smile while you still have teeth`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
 
 2. Add a quote with an author name to Quotesify
 
-    Test case: `add -q luke, I am your father /by darth vader`
+    Test case: `add -q Luke, I am your father /by Darth Vader`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
 
 3. Add a quote with reference to Quotesify
 
-    Test case:`add -q get schwifty /from rick and morty`
+    Test case:`add -q Get schwifty /from Rick and Morty`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
     
 4. Add a quote with an author and reference to 
 
-    Test case: `add -q so everyone’s supposed to sleep every single night now? /by rick /from rick and morty`
+    Test case: `add -q So everyone’s supposed to sleep every single night now? /by Rick /from Rick and Morty`
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
    
@@ -517,7 +517,7 @@ quote management, progress tracker, category management and a rating system for 
    
 ### Editing a quote
 
-1. Test case: `edit -q 2 /to no, i am your mummy /by darth vader`
+1. Test case: `edit -q 2 /to No, I am your mummy /by Darth Vader`
    
    Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
    
@@ -608,84 +608,6 @@ quote management, progress tracker, category management and a rating system for 
    * `delete -qr 9999999`: non existent quote number
    
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
-
-### Adding a bookmark to book
-1. Test case: `bookmark -b 1 /pg 123`
-
-   Expected: a page number will be marked at the book. A message will be prompted to indicate that 
-   the bookmark has been tagged to the book successfully.
-
-2. Other incorrect commands to try:
-   * `bookmark -b 1 /pg`: missing page number field
-   * `bookmark -b 0 /pg 123`: incorrect book number input
-   
-   Expected: Bookmark will not be added to any book. A message will error details will be shown.
-
-### List all existing bookmarks
-1. Test case: `list -bm`
-
-   Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
-    its book’s information, and a page number marked by the bookmark. 
-
-### Deleting an existing bookmark
-1. Test case: `delete -bm 1`
-
-   Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
-   the bookmark has been removed from the book successfully.
-
-2. Other incorrect commands to try:
-   * `delete -bm 999` : bookmark number with given index does not exist
-   * `delete -bm abc` : invalid bookmark number provided
-   
-   Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
-
-### Edit an existing bookmark
-1. Test case: `bookmark -b 1 /pg 123`
-
-   Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
-   the bookmark has been updated successfully.
-
-2. Other incorrect commands to try:
-   * `bookmark -b 1 /pg`: missing page number field
-   * `bookmark -b 0 /pg 123`: incorrect book number input
-   
-   Expected: Bookmark will not be updated to any book. A message will error details will be shown.
-
-### Adding a task to todo list
-1. Adding a task without deadline
-   - Test case: `add -t return Harry Potter`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully,
-    and the deadline is ‘not specified’.
-    
-2. Adding a task with unformatted deadline
-   - Test case: `add -t return Harry Potter /by tmr`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
-   and the deadline is the same as stated in the command line.
-   
-3. Adding a task with formatted deadline
-   - Test case: `add -t return Harry Potter /by 2020-10-24`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
-     and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
-
-### Listing all existing tasks
-1. Test case: `list -t`
-
-   Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
-   and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
-
-### Marking an existing task as done
-1. Test case: `done -t 1`
-   
-   Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
-
-### Deleting an existing task
-1. Test case: `delete -t 1`
-
-   Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
-
 
 ### Adding categories
 1. Add one or more category to a book
@@ -800,6 +722,83 @@ quote management, progress tracker, category management and a rating system for 
    - `edit -c love` missing new category name
    
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
+   
+### Adding a bookmark to book
+1. Test case: `bookmark -b 1 /pg 123`
+
+   Expected: a page number will be marked at the book. A message will be prompted to indicate that 
+   the bookmark has been tagged to the book successfully.
+
+2. Other incorrect commands to try:
+   * `bookmark -b 1 /pg`: missing page number field
+   * `bookmark -b 0 /pg 123`: incorrect book number input
+   
+   Expected: Bookmark will not be added to any book. A message will error details will be shown.
+
+### List all existing bookmarks
+1. Test case: `list -bm`
+
+   Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
+    its book’s information, and a page number marked by the bookmark. 
+
+### Deleting an existing bookmark
+1. Test case: `delete -bm 1`
+
+   Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
+   the bookmark has been removed from the book successfully.
+
+2. Other incorrect commands to try:
+   * `delete -bm 999` : bookmark number with given index does not exist
+   * `delete -bm abc` : invalid bookmark number provided
+   
+   Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
+
+### Edit an existing bookmark
+1. Test case: `bookmark -b 1 /pg 123`
+
+   Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
+   the bookmark has been updated successfully.
+
+2. Other incorrect commands to try:
+   * `bookmark -b 1 /pg`: missing page number field
+   * `bookmark -b 0 /pg 123`: incorrect book number input
+   
+   Expected: Bookmark will not be updated to any book. A message will error details will be shown.
+
+### Adding a task to todo list
+1. Adding a task without deadline
+   - Test case: `add -t return Harry Potter`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully,
+    and the deadline is ‘not specified’.
+    
+2. Adding a task with unformatted deadline
+   - Test case: `add -t return Harry Potter /by tmr`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
+   and the deadline is the same as stated in the command line.
+   
+3. Adding a task with formatted deadline
+   - Test case: `add -t return Harry Potter /by 2020-10-24`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
+     and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
+
+### Listing all existing tasks
+1. Test case: `list -t`
+
+   Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
+   and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
+
+### Marking an existing task as done
+1. Test case: `done -t 1`
+   
+   Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
+
+### Deleting an existing task
+1. Test case: `delete -t 1`
+
+   Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
    
 ### Adding a book rating
 

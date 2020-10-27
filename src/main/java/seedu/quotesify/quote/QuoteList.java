@@ -95,7 +95,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String getAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         String listToReturn = "";
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
+            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             }
         }
@@ -105,7 +105,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String getAllQuotesByReference(QuoteList quoteList, String reference) {
         String listToReturn = "";
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().equals(reference)) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             }
         }
@@ -115,8 +115,8 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String getAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
         String listToReturn = "";
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().equals(reference)) {
-                if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
                     listToReturn += quote.toString() + System.lineSeparator();
                 }
             }
@@ -127,11 +127,11 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
         String listToReturn = "";
         for (Quote quote : quoteList.getList()) {
-            if (quote.getQuote().contains(keyword)) {
+            if (quote.getQuote().toLowerCase().contains(keyword)) {
                 listToReturn += quote.toString() + System.lineSeparator();
-            } else if (quote.hasReference() && quote.getReference().contains(keyword)) {
+            } else if (quote.hasReference() && quote.getReference().toLowerCase().contains(keyword)) {
                 listToReturn += quote.toString() + System.lineSeparator();
-            } else if (quote.hasAuthor() && quote.getAuthorName().contains(keyword)) {
+            } else if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().contains(keyword)) {
                 listToReturn += quote.toString() + System.lineSeparator();
             }
         }
