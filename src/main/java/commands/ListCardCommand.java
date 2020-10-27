@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import static common.Messages.CARD;
 
 public class ListCardCommand extends ListCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a list of %ss available. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of flashcards available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
@@ -22,6 +21,7 @@ public class ListCardCommand extends ListCommand {
     }
 
     private String listCards(Access access) {
+        assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         ArrayList<Card> allCards = cards.getAllCards();
         int cardCount = cards.getCardCount();
@@ -36,10 +36,5 @@ public class ListCardCommand extends ListCommand {
             result.append("\n").append(allCards.indexOf(c) + 1).append(".").append(c);
         }
         return result.toString();
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

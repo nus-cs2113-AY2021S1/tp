@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import static common.Messages.MODULE;
 
 public class ListModuleCommand extends ListCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a list of %ss available. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of modules available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
@@ -22,6 +21,7 @@ public class ListModuleCommand extends ListCommand {
     }
 
     private String listModules(Access access) {
+        assert access.isAdminLevel() : "Not admin level";
         ModuleList modules = access.getAdmin().getModules();
         ArrayList<Module> allModules = modules.getAllModules();
         int moduleCount = modules.getModuleCount();
@@ -36,10 +36,5 @@ public class ListModuleCommand extends ListCommand {
             result.append("\n").append(allModules.indexOf(m) + 1).append(".").append(m);
         }
         return result.toString();
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
