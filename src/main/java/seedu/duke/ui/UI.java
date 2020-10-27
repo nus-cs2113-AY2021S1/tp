@@ -291,4 +291,8 @@ public class UI {
     public static void bunnyListEmpty() {
         System.out.println("List of bunnies is empty.");
     }
+
+    public static void printBunnyInList(String bunny) {
+        System.out.println(bunny);
+    }
 }

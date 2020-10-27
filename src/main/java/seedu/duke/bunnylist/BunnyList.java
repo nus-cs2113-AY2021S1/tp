@@ -65,7 +65,7 @@ public class BunnyList {
         } else {
             UI.listBunnyMessage();
             for (int i = 0; i < bunniesList.size(); i++) {
-                System.out.println((i + 1) + ".\n" + bunniesList.get(i).getDescription());
+                UI.printBunnyInList((i + 1) + ".\n" + bunniesList.get(i).getDescription());
             }
 
             return;
