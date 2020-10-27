@@ -37,8 +37,10 @@ public class Messages {
     public static final String FORMAT_EDIT_HEIGHT = "edit height";
     public static final String FORMAT_EDIT_WEIGHT = "edit weight";
     public static final String FORMAT_EDIT_FITNESS = "edit fitness";
-    public static final String FORMAT_EDIT_FOOD = "edit food INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
-    public static final String FORMAT_EDIT_EXERCISE = "edit exercise INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
+    public static final String FORMAT_EDIT_FOOD =
+            "edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
+    public static final String FORMAT_EDIT_EXERCISE =
+            "edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
     public static final String FORMAT_EDIT_GOAL = "edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION";
     public static final String FORMAT_DELETE_FOOD = "delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
     public static final String FORMAT_DELETE_EXERCISE = "delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
