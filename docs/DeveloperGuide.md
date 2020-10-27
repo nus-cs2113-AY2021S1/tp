@@ -891,7 +891,7 @@ quote management, progress tracker, category management and a rating system for 
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
 ### Finding an existing category
-1. Find an existing category name
+1. Find existing categories related to a keyword.
    - Test case: `find -c man`
    
      Expected: Quotesify will list all categories containing the keyword "man".

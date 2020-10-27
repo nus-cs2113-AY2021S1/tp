@@ -624,7 +624,7 @@ The category has been changed from [fantasy] to [romance]!
 ```
 
 #### Find an existing category: `find -c`
-Find an existing category name.
+Find existing categories related to a keyword.
 
 Format: `find -c KEYWORD`
 
@@ -856,6 +856,7 @@ Enter the following command | To do this
 `find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
 `find -r BOOK_TITLE /by AUTHOR` | Find rating
+`find -c KEYWORD` | Find categories
 `done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
 `help` | Show help page
