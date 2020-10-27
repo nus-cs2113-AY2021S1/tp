@@ -65,11 +65,13 @@ public class Controller {
         while (true) {
             String userInput = ui.getUserInput();
             Command command = Parser.parseCommand(userInput);
-            executeCommand(command);
+            if (!executeCommand(command)) {
+                break;
+            }
         }
     }
 
-    private void executeCommand(Command command) {
+    private boolean executeCommand(Command command) {
         if (command instanceof SearchCommand) {
             SearchCommand searchCommand = (SearchCommand) command;
             searchSymbol(searchCommand.getSearchKey());
@@ -78,6 +80,7 @@ public class Controller {
             ui.printWithDivider(invalidCommand.getErrorMessage());
         } else if (command instanceof ByeCommand) {
             ui.printWithDivider("Goodbye! Hope to see you again.");
+            return false;
         } else if (command instanceof BuyCommand) {
             BuyCommand buyCommand = (BuyCommand) command;
             buyStock(buyCommand.getSymbol(), buyCommand.getQuantity());
@@ -89,6 +92,8 @@ public class Controller {
         } else if (command instanceof WalletCommand) {
             viewWallet();
         }
+
+        return true;
     }
 
     public void viewPortfolio() {

@@ -1,8 +1,9 @@
 package seedu.duke.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private TransactionType transactionType;
     private int quantity;
     private double unitPrice;
