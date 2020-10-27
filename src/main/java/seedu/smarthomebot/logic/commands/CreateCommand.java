@@ -8,17 +8,17 @@ public class CreateCommand extends Command {
     public static final String MESSAGE_USAGE = "Create location: " + COMMAND_WORD
             + " [LOCATION_NAME]";
     private static final String MESSAGE_LOCATION_EXIST = "Location already exist";
-    private final String usersEnteredLocation;
+    private final String userEnteredLocation;
 
     public CreateCommand(String location) {
-        this.usersEnteredLocation = location;
+        this.userEnteredLocation = location;
     }
 
     @Override
     public CommandResult execute() {
         try {
-            locationList.addLocation(usersEnteredLocation);
-            return new CommandResult("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
+            locationList.addLocation(userEnteredLocation);
+            return new CommandResult("Creating Location \"" + userEnteredLocation + "\".....CREATED!");
         } catch (DuplicateDataException e) {
             return new CommandResult(MESSAGE_LOCATION_EXIST);
         }
