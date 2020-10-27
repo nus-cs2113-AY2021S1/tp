@@ -250,8 +250,8 @@ In this case, ```handleCreateLedger()``` will be called.
 1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createLedgerCommand``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
   
-
 ![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
+
 
 ***Deletion of Ledger***
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
