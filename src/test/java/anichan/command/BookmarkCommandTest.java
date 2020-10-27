@@ -57,7 +57,7 @@ class BookmarkCommandTest {
             + "\t3. Trigun" + System.lineSeparator()
             + "\t4. Witch Hunter Robin" + System.lineSeparator();
     private static final String OUTPUT_DELETE_TEST = "Removing Cowboy Bebop: The Movie - Knockin' on Heaven's Door! :(";
-    private static final String OUTPUT_EDIT_TEST = "Editing Cowboy Bebop to have 1 episode";
+    private static final String OUTPUT_EDIT_TEST = "Editing Cowboy Bebop to have 1 episode(s).";
     private static final String OUTPUT_NOTE_TEST = "Adding note:\"test\" to Cowboy Bebop!";
     private static final String OUTPUT_SINGLE_INPUT_TEST = "Here is the information for that anime."
             + System.lineSeparator()
