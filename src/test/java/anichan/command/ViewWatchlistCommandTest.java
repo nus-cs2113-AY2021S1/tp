@@ -93,14 +93,14 @@ class ViewWatchlistCommandTest {
     
     @Test
     void execute_validIndex_returnAnimeInWatchlist() throws AniException {
-        ViewWatchlistParser testParser = new ViewWatchlistParser();
-        ViewWatchlistCommand testView = testParser.parse(VALID_WATCHLIST_INDEX);
-        
         StringBuilder expectedOutputBuild = new StringBuilder();
         expectedOutputBuild.append("Here are the anime in TestWatchlist watchlist:");
         expectedOutputBuild.append(System.lineSeparator());
         expectedOutputBuild.append("\t").append("1. testAnime1");
         String expectedOutput = expectedOutputBuild.toString();
+
+        ViewWatchlistParser testParser = new ViewWatchlistParser();
+        ViewWatchlistCommand testView = testParser.parse(VALID_WATCHLIST_INDEX);
         
         String actualOutput = testView.execute(animeData, storageManager, user);
         

@@ -62,9 +62,6 @@ class InfoCommandTest {
 
     @Test
     void execute_correctAnimeIndex_returnAnimeInfo() throws AniException {
-        InfoParser testParser = new InfoParser();
-        InfoCommand testInfo = testParser.parse(VALID_ANIME_INDEX);
-        
         StringBuilder expectedOutputBuild = new StringBuilder();
         expectedOutputBuild.append("Here is the information for the anime:").append(System.lineSeparator());
         expectedOutputBuild.append("Index: 1").append(System.lineSeparator());
@@ -74,6 +71,9 @@ class InfoCommandTest {
         expectedOutputBuild.append("Rating: 80").append(System.lineSeparator());
         expectedOutputBuild.append("Genre: [Action, Drama]");
         String expectedOutput = expectedOutputBuild.toString();
+
+        InfoParser testParser = new InfoParser();
+        InfoCommand testInfo = testParser.parse(VALID_ANIME_INDEX);
         
         String actualOutput = testInfo.execute(animeData, storageManager, user);
         assertEquals(expectedOutput, actualOutput);
