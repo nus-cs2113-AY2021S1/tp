@@ -3,7 +3,7 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.notus.command.PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.storage.StorageManager.FOLDER_DIR;
 import static seedu.notus.storage.StorageManager.NOTES_DIR;

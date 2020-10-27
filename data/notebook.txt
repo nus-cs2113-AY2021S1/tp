@@ -1,2 +1,4 @@
 /t test1 /pin true /archive false /tag CS2113 BLUE 
 /t test 2 /pin false /archive false 
+/t Java OOP /pin true /archive false 
+/t C++ Standard Libraries /pin false /archive false 
