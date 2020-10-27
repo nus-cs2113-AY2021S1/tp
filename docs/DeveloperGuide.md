@@ -6,6 +6,29 @@
 
 ## Design
 
+### Architecture
+
+![Architecture Diagram](./diagrams/Architecture.jpg)
+
+The ***Architecture Diagram*** given above explains the high-level design of App. Given below is a quick overview of
+each component.
+
+`Duke` class contains the main method. It is responsible for,
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
+- At shut down: Stores the user data from memory into the hard disk.
+
+The rest of the App consists of five components.
+
+- `Ui`: The Ui of the App.
+- `Parser`: Parses the input to determine which command to execute.
+- `Command`: The command executer.
+- `UserData`: Holds the data of the App in the memory.
+- `Storage`: Reads data from, and writes data to, the hard disk.
+
+
+
+
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
