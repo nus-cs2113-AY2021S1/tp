@@ -75,6 +75,7 @@ public class Revised {
                 SubjectCommand c = SubjectParser.parse(fullCommand);
                 c.execute(subjects, storage);
                 isExit = c.isExit();
+
             } catch (IndexOutOfBoundsException e) {
                 Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (NumberFormatException e) {

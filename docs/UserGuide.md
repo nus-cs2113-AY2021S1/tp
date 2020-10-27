@@ -31,9 +31,10 @@ Here is a guide on how to use this UserGuide effectively:<br>
 
 1. Use the hyperlinks in the table of contents to navigate about the user guide quickly.
 2. The code is always marked out like `this` to distinguish it from the rest of the text.
-3. The :warning: symbol indicates things that you should avoid doing while using this application.Else, 
-you will not get the expected outcome.
-4. The :scroll: symbol indicates notes, any informational that is optional to the section.
+3. The **_NOTE:_** sections point out additional information that you can refer to for
+additional information regarding the application.
+4. The **_WARNING:_** sections point out to major errors that you should avoid while using 
+the application.
 
 
 
@@ -382,7 +383,7 @@ Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
 
-> :warning: Add the time using the HH:MM DD-MM-YYYY format. 
+> **_WARNING:_** Add the time using the HH:MM DD-MM-YYYY format. 
 >
 
 Example of usage: 
@@ -593,7 +594,7 @@ Example: `quiz speed`
 
 Output: `You are about to begin the quiz for speed.You have 1 minute.`
 
-> :scroll: Ensure that you start a quiz for a subject/topic that has been added to the application 
+> **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
 > and has a flashcard. Else, the application will not start the quiz.
 
 Once you have entered the type of quiz you want to begin, the application starts the quiz. You
@@ -649,7 +650,7 @@ Example:`results maths` or `results speed`
 Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
-> :scroll: Ensure that at least one quiz has been attempted under the subject or topic.
+> **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
 
 ### 4.7 Storing data <a name="store"> </a>
 When you exit the application, the data you have added to the program is automatically saved to the disk. Similarly, 

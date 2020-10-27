@@ -15,8 +15,6 @@ testing and development sections to help developers better understand the applic
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 The application has been broken down into different segments so that users would find it easy to navigate from one
 segment to the next one. There are three segments within the application:
 * Subjects: This segment edits the list of all the subjects present within the application and takes care of relevant
@@ -49,10 +47,6 @@ the following packages.
     - Topic
     - Task
     
-![Flashcard Commands](https://user-images.githubusercontent.com/46095141/96748916-c9027580-13fc-11eb-8c5b-4266d750aa6f.png) 
-**Flashcard Commands**
-
-The diagram above shows how the flashcard commands extend the abstract command class.  
 * Exceptions: Deals with the various exceptions which are thrown in the application.
     -flashcard
     - storage
@@ -64,9 +58,45 @@ The diagram above shows how the flashcard commands extend the abstract command c
 * Task: Contains the classes for the different types of tasks.
 * Ui: In charge of interaction with the user.
 
-![Package Diagram](https://user-images.githubusercontent.com/46095141/96674190-c7a06100-139a-11eb-95e6-64bc2721e216.png)
-**Package Diagram**
-The Package Diagram above shows how the Revised class interacts with all of these packages.
+### Quiz package
+The `Storage` package holds the necessary classes for the quiz functionality of this application. The following are
+the classes in the package:an abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
+
+#### Quiz class
+`Quiz` class is an abstract class in the `Quiz` package. It is holds the result of a quiz class and the list of flashcards
+from any subject or topic classes which the user calls the quiz for. Furthermore, it contains a checkAnswer() method the
+checks the answer that the user had given with the correct answer of the quiz. If the user enters the correct answer, the 
+existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
+the user is transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
+questions that the users did not answer correctly, along the the answer that was provided by the user. 
+
+#### SubjectQuiz
+`SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz. The `startQuiz` method calls for the  `setupQuiz` method checks for the presence
+of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
+`NoFlashcardException` for the latter. If the topics have flashcards, then these are transferred to the 
+`SubjectQuiz` class, while the maximum score of the quiz is set to be the total number of flashcards in the list of flashcards
+present in the `SubjectQuiz` class . 
+
+The application now returns to the `startQuiz` method and the current score of the quiz is set to zero. Subsequently, the
+application begins printing the questions from the flashcards and checks the answer that you provide. If you want to stop the 
+quiz, use the `stop` command. The application will then print out the score that you obtain. If you complete the quiz
+then the application not only prints the score, but it also prints the incorrect answers from the quiz.
+
+The following diagram shows how you can initiate the quiz for a subject.
+![first](https://user-images.githubusercontent.com/46095141/97313097-3866e200-18a1-11eb-9525-73e38ceb7cbe.png)
+
+
+#### TopicQuiz
+`TopicQuiz` class is similar to the `SubjectQuiz` class, except for the fact that it initiates the quiz
+only for the specific topic. Furthermore, this class only throws the `NoFlashcardException` for when the topic does not 
+have any flashcards, which is detected by the `setupQuiz` method. The implementation of the `startQuiz` method is similar
+to that of the SubjectQuiz class.
+
+#### Result
+`Result` class stores the stores the result of a quiz . It has three instance variables, namely the `score` variable
+which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
+quiz, while the  `description` variable will be a grade given to you depending on your performance.
+The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
 ### Storage package
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
