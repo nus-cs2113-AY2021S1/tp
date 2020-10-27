@@ -38,14 +38,20 @@ public class DeleteInfoCommand extends Command {
         assert calendarNumber >= 0;
 
         Event event = (Event) calendarList.getItem(calendarNumber);
-        if (infoNumber > event.getAdditionalInformationCount() || infoNumber <= 0) {
-            throw new DukeException("invalid info action");
-        }
+
+        checkInfoNumberValidity(infoNumber, event);
+
         int indexInfo = infoNumber - 1; // to account for arraylist index starting from 0.
 
         Ui.printAdditionalInformation(event, indexInfo);
         event.deleteAdditionalInformation(indexInfo);
         storage.writeToFile(calendarList);
 
+    }
+
+    private void checkInfoNumberValidity(int infoNumber, Event event) throws DukeException {
+        if (infoNumber > event.getAdditionalInformationCount() || infoNumber <= 0) {
+            throw new DukeException("invalid info action");
+        }
     }
 }
