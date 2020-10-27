@@ -4,13 +4,12 @@ import anichan.anime.Anime;
 import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 public class SearchCommand extends Command {
     private static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
@@ -25,7 +24,7 @@ public class SearchCommand extends Command {
     private static final int SEARCH_BY_GENRE = 1;
     private static final int NO_SEARCH_SELECTED = -1;
 
-    private static final Logger LOGGER = getAniLogger(SearchCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(SearchCommand.class.getName());
 
     private String searchTerm;
     private String result;

@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 public class InfoParser extends CommandParser {
     protected static final String ANIME_ID_PARAM = "a";
+    protected static final String TOO_MUCH_ARGUMENTS = "Info command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
     
@@ -22,8 +23,9 @@ public class InfoParser extends CommandParser {
     public InfoCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
-        if (paramGiven.length <= 1) {
-            throw new AniException("-a ANIME_ID is required");
+        paramIsSetCheck(paramGiven);
+        if (paramGiven.length > 2) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         } else {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, "Parameter parsed properly");

@@ -6,10 +6,9 @@ import anichan.anime.AnimeData;
 import anichan.bookmark.Bookmark;
 import anichan.exception.AniException;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.parser.BookmarkParser;
 import anichan.storage.StorageManager;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +42,7 @@ public class BookmarkCommand extends Command {
     private int bookmarkEpisode;
     private String bookmarkAction;
     private String bookmarkNote;
-    private static final Logger LOGGER = getAniLogger(BookmarkCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
     public BookmarkCommand() {
         // Set log levels

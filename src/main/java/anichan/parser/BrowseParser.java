@@ -2,11 +2,10 @@ package anichan.parser;
 
 import anichan.exception.AniException;
 import anichan.command.BrowseCommand;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 public class BrowseParser extends CommandParser {
     private static final String SORT_PARAM = "s";
@@ -21,7 +20,7 @@ public class BrowseParser extends CommandParser {
     private static final String NOT_RECOGNISED = " is not recognised!";
     private static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
     private static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
-    private static final Logger LOGGER = getAniLogger(BrowseParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(BrowseParser.class.getName());
 
     private BrowseCommand browseCommand;
 

@@ -45,17 +45,14 @@
 **Welcome to AniChan!**
 
 AniChan is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, AniChan comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
-
 <br/>
 
 AniChan can also be used on all major operating systems such as Windows and Linux. You can refer to the [Quick Start](#2-quick-start) guide located below for more information on getting your journey started with AniChan!
-
 <br/>
 
 ### 1.1 Purpose
 
 This guide provides you with in-depth information on setting up AniChan and how to use the various features offered. 
-
 <br/>
 
 ## 2. Quick Start
@@ -65,7 +62,6 @@ This guide provides you with in-depth information on setting up AniChan and how 
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **Command Prompt** and change directory into the folder. Run `java -jar anichan.jar`. 
 5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
-
 <br/>
 
 ## 3. Features 
@@ -84,7 +80,6 @@ E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s na
 E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` are both acceptable and will give you the same result.
 
 > :bulb: Notice that you have an input prompt, this is what it means: WORKSPACE-NAME (WATCHLIST-NAME) #>
-
 <br/>
 
 ### 3.1 View the help
@@ -92,22 +87,18 @@ This command will provide the details of all available commands and their usage.
 This is done by displaying the ‘Command Summary’ as listed below to the user. 
 
 Format: `help`
-
 <br/>
 
 ### 3.2 Estimate time needed to translate the script
 
 This command allows you to figure out the amount of time needed to finish translating a script. It allows you to estimate based on the amount of words you can translate in an hour, or by using the average translators’ speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time and also to not promise your clients with inaccurate timings.
-
 <br/>
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   If the option `-wph` is not specified, the average translator's translation speed will be used to produce three estimation timings for you to consider.
-
 <br/>
 
 > :bulb: You have to specify the file extension too! E.g. `script.txt`.
-
 <br/>
 
 Example of usage: `estimate script.txt`
@@ -118,7 +109,6 @@ Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).
 Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).
 Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
 ```
-
 <br/>
 
 Example of usage: `estimate script.txt -wph 777`
@@ -127,7 +117,6 @@ The expected outcome:
 ```
 You would need 2 hour(s) 58 minute(s).
 ```
-
 <br/>
 
 ### 3.3 Browse through anime
@@ -135,7 +124,6 @@ You would need 2 hour(s) 58 minute(s).
 This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
 
 `browse` will also has various options to customise each browsing session by being able to sort the anime list. This can be done through the use of its optional parameters.
-
 <br/>
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
@@ -148,7 +136,6 @@ Here are some commonly used `browse` commands to get you started. Feel free to e
 
 *   `browse -s name -o dsc`: browse alphabetically from A - Z
 *   `browse -s rating -o dsc`: browse starting from the most highly rated anime
-
 <br/>
 
 Example of usage: `browse -s name -o dsc`
@@ -177,13 +164,11 @@ The expected outcome:
 20. Air Master
 Browsing Page: 1
 ```
-
 <br/>
 
 ### 3.4 Search for anime
 
 Search is a versatile tool that will allow you to search through all available anime for a specific anime, anime belonging to a certain genre, or all anime that has a keyword.
-
 <br/>
 
 ### 3.4.1 Search by anime title
@@ -227,9 +212,27 @@ The expected outcome:
 [ID:475] Marmalade Boy Movie
 [ID:488] Teacher's Time
 ```
+<br/>
 
-### 3.5
+### 3.5 View the information of an anime
 
+View all the information regarding a specific anime.
+
+Format: `info -a <ANIME_ID>`
+<br/>
+
+Example of usage: `info -a 1`
+
+The expected outcome:
+```
+Here is the information for the anime:
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+```
 <br/>
 
 ### 3.6
@@ -239,11 +242,9 @@ The expected outcome:
 ### 3.7 Watchlist management
 
 The watchlist management feature provides translators with a simple way to keep track of animes of different genres, allowing them to stay organized and focus on their work.
-
 <br/>
 
 > :bulb: **Active watchlist** refers to the watchlist that you are using for adding anime into or removing anime from.
-
 <br/>
 
 #### 3.7.1 Create new watchlist
@@ -251,11 +252,9 @@ The watchlist management feature provides translators with a simple way to keep 
 Creates a new watchlist to keep track of anime(s).
 
 Format: `watchlist -n <WATCHLIST_NAME>`
-
 <br/>
 
 > :warning: Watchlist name has to be unique in your workspace.
-
 <br/>
 
 Example of usage: `watchlist -n Adventure Anime`
@@ -264,7 +263,6 @@ The expected outcome:
 ```
 Watchlist "Adventure Anime" has been created successfully!
 ```
-
 <br/>
 
 #### 3.7.2 List all created watchlist(s)
@@ -281,19 +279,16 @@ Currently, you have 2 watchlist(s):
     1. Default
     2. Adventure Anime
 ```
-
 <br/>
 
 #### 3.7.3 Select a watchlist to use
 
 If you have created multiple watchlists, you can select another watchlist to be the active watchlist, which you can use for adding anime into or removing anime from.
 
-Format: `watchlist -s <WATCHLIST_INDEX>`
-
+Format: `watchlist -s <WATCHLIST_ID>`
 <br/>
 
 > :bulb: Notice how the name of the watchlist in your prompt has changed.
-
 <br/>
 
 Example of usage: `watchlist -s 2`
@@ -302,21 +297,18 @@ The expected outcome:
 ```
 "Adventure Anime" is now your active watchlist!
 ```
-
 <br/>
 
 #### 3.7.4 Delete a watchlist
 
 Delete a watchlist that is no longer needed or was created by mistake.
 
-Format: `watchlist -d <WATCHLIST_INDEX>`
-
+Format: `watchlist -d <WATCHLIST_ID>`
 <br/>
 
 > :bulb: Deletion only works when you have at least two watchlist.
 
 > :warning: If you delete the active watchlist, then the watchlist whose index is 1 in the list (after the deletion) will become the new active watchlist.
-
 <br/>
 
 Example of usage: `watchlist -d 2`
@@ -326,10 +318,60 @@ The expected outcome:
 Watchlist "Adventure Anime" has been deleted successfully!
 Changed active watchlist to: "Default".
 ```
-
 <br/>
 
-### 3.8
+### 3.7.5 Add an anime to the current watchlist
+
+Add an anime to the currently selected watchlist
+
+Format: `add -a <ANIME_ID>`
+
+> :warning: You cannot add duplicate anime into the same watchlist.
+<br/>
+
+Example of usage: `add -a 3`
+
+The expected outcome: 
+
+```
+Trigun added to watchlist!
+```
+<br/>
+
+### 3.7.6 Remove an anime from the current watchlist
+
+Remove an anime from the currently selected watchlist
+
+Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
+> :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID
+<br/>
+
+Example of usage: 'remove -d 1'
+
+The expected outcome:
+
+```
+Trigun successfully removed from watchlist
+```
+<br/>
+
+### 3.7.7 View all anime in watchlist
+
+View all the anime that you have stored in a specific watchlist
+
+Format: `view -v <WATCHLIST_ID>`
+<br/>
+
+Example of usage: 'view -v 1'
+
+The expected outcome:
+```
+Here are the anime in Default watchlist:
+	1. Cowboy Bebop
+	2. Witch Hunter Robin
+```
+<br/>
+
 
 ### 3.8 Bookmark
 
@@ -471,8 +513,18 @@ Notes for anime:
 
 <br/>
 
-### 3.9
+### 3.9 Exit AniChan
 
+Exit **AniChan**.
+
+Format: `exit`
+
+Example of usage: `exit`
+
+The expected outcome:
+```
+Sayonara <NAME>!
+```
 <br/>
 
 ### 3.10 Saving and loading data
@@ -483,7 +535,6 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   User data will be stored in `data/user.txt`.
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
-
 <br/>
 
 ## 4. FAQ
@@ -493,21 +544,18 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 **A:** Workspace is a functionality in **AniChan** which provides users the flexibility to organise information. 
 As application data like watchlist and bookmarks are linked to workspace, switching workspace would provide a 
 clean slate environment to work in.
-
 <br/>
 
 **Q:** How can I save my data?
 <br/>
 **A:** **AniChan** automatically saves your data on every action you take. You can find them in `/data` folder in the same
 directory you run **AniChan** in.
-
 <br/>
 
 **Q:** Can I edit the information in `data` directory?
 <br/>
 **A:** Yes! As **AniChan** saves and loads your information from the data directory, editing the files in `data` folder
 works. However, we would strongly recommend you not to as you may cause data corruption. Use **AniChan** instead if you wish to edit your information!
-
 <br/>
 
 ## 5. Command Summary
@@ -526,8 +574,8 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete workspace                             | `workspace -d <NAME>`                                    |
 | Create watchlist                             | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                           | `watchlist -l`                                           |
-| Select watchlist                             | `watchlist -s <WATCHLIST_INDEX>`                         |
-| Delete watchlist                             | `watchlist -d <WATCHLIST_INDEX>`                         |
+| Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                            |
+| Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
 | Add to watchlist                             | `add -a <ANIME_ID>`                                      |
 | Remove from watchlist                        | `remove -d <ANIME_ID_IN_WATCHLIST>`                      |
 | View anime in watchlist                      | `view -v <WATCHLIST_ID>`                                 |
@@ -536,7 +584,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |
 | Edit bookmark episode                        | `bookmark <BOOKMARK_ID> -e <EPISODE>`                    |
 | Add note to bookmark                         | `bookmark <BOOKMARK_ID> -n <NOTE>`                       |
-| Remove note from bookmark                    | `bookmark <BOOKMARK_ID> -r <NOTE_ID>`                       |
+| Remove note from bookmark                    | `bookmark <BOOKMARK_ID> -r <NOTE_ID>`                    |
 | View bookmark                                | `bookmark <BOOKMARK_ID>`                                 |
 | Exit                                         | `exit`                                                   |
 
