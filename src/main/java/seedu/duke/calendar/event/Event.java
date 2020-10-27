@@ -106,4 +106,13 @@ public abstract class Event extends CalendarItem {
         return isOver;
     }
 
+    /**
+     * Removes the additional information from the array list based on the index.
+     *
+     * @param indexInfo the additional information's index number.
+     */
+    public void deleteAdditionalInformation(int indexInfo) {
+        additionalInformation.remove(indexInfo);
+        additionalInformationCount--;
+    }
 }

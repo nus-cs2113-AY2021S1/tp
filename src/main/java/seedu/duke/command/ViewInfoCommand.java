@@ -35,6 +35,6 @@ public class ViewInfoCommand extends Command {
         assert calendarNumber >= 0;
         Event event = (Event) calendarList.getItem(calendarNumber);
         ArrayList<String> additionalInformation = event.getAdditionalInformation();
-        Ui.printAdditionalInformation(additionalInformation, event);
+        Ui.printAllAdditionalInformation(additionalInformation, event);
     }
 }

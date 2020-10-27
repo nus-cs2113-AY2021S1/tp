@@ -5,6 +5,7 @@ import seedu.duke.command.AddInfoCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.CountdownCommand;
 import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.DeleteInfoCommand;
 import seedu.duke.command.DoneCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
@@ -35,6 +36,7 @@ public class Parser {
     public static final String COMMAND_SHOW_COUNTDOWN = "countdown";
     public static final String COMMAND_ADD_INFO = "/a";
     public static final String COMMAND_VIEW_INFO = "/v";
+    public static final String COMMAND_DELETE_INFO = "/-";
     public static final String COMMAND_PRIORITIZE = "*";
     public static final String COMMAND_PRINT_PRIORITY = "print *";
     public static final String COMMAND_PRINT_SUGGESTION = "suggestion";
@@ -61,6 +63,8 @@ public class Parser {
             return new AddInfoCommand(userInput);
         } else if (userInput.startsWith(COMMAND_VIEW_INFO)) {
             return new ViewInfoCommand(userInput);
+        } else if (userInput.startsWith(COMMAND_DELETE_INFO)) {
+            return new DeleteInfoCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_PROGRESS)) {
             return new PrintProgressCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_COUNTDOWN)) {
