@@ -1,5 +1,5 @@
 summary | help | add | deadline | repeat | goal | done | delete | note | reminder | extract | save | bye
-begin
+begin summary
 Here is a summary of all the commands that the program can run
 help - Provides more information on how to use the commands available in the program
 add - Records a personal, timetable or zoom event into the program
@@ -15,7 +15,7 @@ save - save current changes made to the program
 bye - exits the program 
 
 To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
-end
+end summary
 
 begin help
 help - Provides more information on how to use the commands available in the program
@@ -27,6 +27,18 @@ text in lowercase indicates that you should type it exactly like this when you t
 text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
 text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
 end help
+
+begin add
+add - Records a personal, timetable or zoom event into the program
+Format: add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
+EVENT_DESCRIPTION is the name of the event
+[LINK/LOCATION] is an optional argument. provide a zoom link if your event is a zoom conference and provide a location if your event is a timetable event
+DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
+[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format.
+
+end add
 
 begin deadline
 deadline - Sets or change a deadline for a personal event

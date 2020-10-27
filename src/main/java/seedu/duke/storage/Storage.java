@@ -287,10 +287,16 @@ public class Storage {
         return fileDirectoryPath.toString();
     }
 
+    /**
+     * Function loads files that are meant to be system resources such as images or text files.
+     *
+     * @param fileName location of the file in string form. Start from the root using the slash symbol
+     * @param resource String ArrayList to store the information
+     */
     public void loadSystemResources(String fileName, ArrayList<String> resource) {
         try {
-            InputStream is = getClass().getResourceAsStream(fileName);
-            InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
+            InputStream iS = getClass().getResourceAsStream(fileName);
+            InputStreamReader streamReader = new InputStreamReader(iS, StandardCharsets.UTF_8);
             BufferedReader reader = new BufferedReader(streamReader);
             String line;
 

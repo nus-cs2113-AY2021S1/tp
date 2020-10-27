@@ -88,7 +88,7 @@ public class Parser {
             return CalendarCommand.parse(argument);
 
         case "help":
-            return new HelpCommand();
+            return new HelpCommand(argument);
 
         case "extract":
             return new ExtractCommand(argument);
