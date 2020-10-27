@@ -169,7 +169,7 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 4. `on [LOCATION]`: Switch ON every appliance in the location. 
 
 
-Example: `on AIRCON1`
+Example: `on AIRCON1` or `off BR1`
 
 Output: 
 ```
@@ -185,9 +185,9 @@ All appliance in BR1 are turned on.
 ### Switching off an appliance: `off`
 Switches OFF an appliance base on its name in the list. 
 
-Format: `off [APPLIANCE_NAME]`
+Format: `off [APPLIANCE_NAME]` or `off [LOCATION]`
 
-Example: `off AIRCON1`
+Example: `off AIRCON1` or `off BR1`
 
 Output: 
 ```

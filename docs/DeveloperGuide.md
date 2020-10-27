@@ -58,8 +58,22 @@ The rest of the App consists of four components.
 
 * `Storage` Reads and writes data from and to a text file.
 
-### Model ComponentModel Component
+### Model Component
+![Summarised Model Component](images/diagrams/SummarisedClassDiagram.png)
 
+The *Model Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended from the abstract appliance class. 
+
+### Detailed Model Component 
+![Detailed Model Component](images/diagrams/FullDataClassDiagram.png)
+The *Detailed Model Component* shown above explains the full detailed model of SmartHomeBot; which includes all of their variables and methods. 
+
+### Command Component
+#### On Command
+![Sequence of On Command](images/diagrams/Sequence_OnCommand.png)
+The *On Command* shown above explains the Sequence Diagram of the On Command.
+#### Off Command
+![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png)
+The *Off Command* shown above explains the Sequence Diagram of the Off Command
 ### Storage Component
 
 ## Implementation

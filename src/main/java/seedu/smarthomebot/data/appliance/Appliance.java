@@ -63,20 +63,6 @@ public abstract class Appliance {
     }
 
     /**
-     * Converts String value into integer.
-     *
-     * @return the parameter in integer.
-     */
-    private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
-        try {
-            return Integer.parseInt(parameter);
-        } catch (NumberFormatException e) {
-            throw new InvalidNumericalValueException();
-        }
-
-    }
-
-    /**
      * Sets the status of Appliance to on.
      *
      * @return the outcome of the operation.
@@ -211,4 +197,17 @@ public abstract class Appliance {
         return false;
     }
 
+    /**
+     * Converts String value into integer.
+     *
+     * @return the parameter in integer.
+     */
+    private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
+        try {
+            return Integer.parseInt(parameter);
+        } catch (NumberFormatException e) {
+            throw new InvalidNumericalValueException();
+        }
+
+    }
 }
