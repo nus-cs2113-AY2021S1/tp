@@ -108,7 +108,7 @@ Step 3. The App now executes the command and changes to the respective mode. If 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20action%20dia.png?raw=true) 
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
 
 #### Design consideration:
 
