@@ -1,7 +1,72 @@
 @startuml
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+participant ":Controller" as Controller
+participant ":StockPriceFetcher" as StockPriceFetcher
+participant ":PortfolioManager" as PortfolioManager
+participant ":Portfolio" as Portfolio
+participant ":Wallet" as Wallet
+participant ":Transaction" as Transaction
+participant ":Stock" as Stock
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+
+[-> Controller : buyStock(symbol, quantity)
+activate Controller
+
+
+Controller -> StockPriceFetcher : fetchLatestPrice(symbol)
+activate StockPriceFetcher
+
+StockPriceFetcher --> Controller : price
+deactivate StockPriceFetcher
+
+
+Controller -> PortfolioManager : buyStock(symbol, quantity, price)
+activate PortfolioManager
+
+PortfolioManager -> Portfolio : buyStock(symbol, quantity, price)
+activate Portfolio
+
+Portfolio -> Wallet : buyStock(quantity, price)
+activate Wallet
+
+Wallet --> Portfolio :
+deactivate Wallet
+
+create Transaction
+Portfolio -> Transaction : new Transaction(quantity, price, time)
+activate Transaction
+
+Transaction --> Portfolio : transaction
+deactivate Transaction
+
+
+alt stock not in portfolio
+    create Stock
+    Portfolio -> Stock : new Stock(symbol)
+    activate Stock
+    Stock --> Portfolio
+    deactivate Stock
+    Portfolio -> Stock : addTransaction(transaction)
+    activate Stock
+    Stock --> Portfolio :
+    deactivate Stock
+
+else stock already exist in portfolio
+    Portfolio -> Stock : addTransaction(transaction)
+    activate Stock
+    Stock --> Portfolio :
+    deactivate Stock
+
+end
+
+Portfolio --> PortfolioManager :
+deactivate Portfolio
+
+PortfolioManager -> PortfolioManager : save()
+
+PortfolioManager --> Controller :
+deactivate PortfolioManager
+
+[<--Controller
+deactivate Controller
+
 @enduml
