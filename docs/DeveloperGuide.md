@@ -673,36 +673,30 @@ Expected: An error message displayed due to the different number of seasons and 
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `delete Friends`
-
+2. Test case: `delete Friends`<br>
 Expected: An error message indicating that the show was not found. 
 
 > **[NOTE]** The show name added is case-sensitive, as mentioned in the [User Guide](https://ay2021s1-cs2113t-w12-3.github.io/tp/UserGuide.html#3-command-format)
 
-3. Test case: `delete friends`
-
+3. Test case: `delete friends`<br>
 Expected: An acknowledgement message displayed indicating that the show has been deleted from the list.
 
-4. Test case: `delete 1`
-
+4. Test case: `delete 1`<br>
 Expected: An error message indicating that the show was not found.
 
 #### Editing a show
 
 1. Prerequisites: The show name `friends` has already been added into the list. Reach the edit prompt by the program using the `edit friends` command. 
-
+<br>
 > **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
 
-2. Test case: `season 3` followed by `episode 3,10`
-
+2. Test case: `season 3` followed by `episode 3,10`<br>
 Expected: An error message displayed due to the different number of seasons and episodes for each season given.
 
-3. Test case: `duration 1h0m` followed by `done`
-
+3. Test case: `duration 1h0m` followed by `done`<br>
 Expected: A message acknowledging the change. `Updated show details.`
 
-4. Test case: `season 3` followed by `episode 10,10,10` and then followed by `done`
-
+4. Test case: `season 3` followed by `episode 10,10,10` followed by `done`<br>
 Expected: A message acknowledging the change. `Updated show details.`
 
 
@@ -711,27 +705,23 @@ Expected: A message acknowledging the change. `Updated show details.`
 #### Adding a review
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
-
+<br>
 > **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
 
-2. Test case: `add review friends 8 / Joey is my favourite character`
-
+2. Test case: `add review friends 8 / Joey is my favourite character`<br>
 Expected: An acknowledgement message `Your review for friends has been added.`
 
-3. Test case: `add review friends 8  Chandler is so funny!`
-
+3. Test case: `add review friends 8  Chandler is so funny!`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 #### Changing a review
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `changereview friends / Chandler is so funny!`
-
+2. Test case: `changereview friends / Chandler is so funny!`<br>
 Expected: An acknowledgement message `Your review for friends has been changed.` is displayed.
 
-3. Test case: `changereview friends  I have rewatched friends 5 times`
-
+3. Test case: `changereview friends  I have rewatched friends 5 times`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 
@@ -739,32 +729,26 @@ Expected: An error message indicating that the format of the command is invalid.
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `changerating friends 9`
-
+2. Test case: `changerating friends 9`<br>
 Expected: An acknowledgement message `Your rating for friends has been added.` is displayed.
 
-3. Test case: `changerating friends abc`
-
+3. Test case: `changerating friends abc`<br>
 Expected: An error message indicating that the rating input is invalid.
 
-4. Test case: `changerating`
-
+4. Test case: `changerating`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 #### Deleting a rating
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `deleterating friends`
-
+2. Test case: `deleterating friends`<br>
 Expected: An acknowledgement message `The rating for friends has been deleted.` is displayed.
 
-3. Test case: `deleterating friends abc`
-
+3. Test case: `deleterating friends abc`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
-4. Test case: `deleterating`
-
+4. Test case: `deleterating`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 ### Modifying current watch progress and watch time
@@ -773,12 +757,10 @@ Expected: An error message indicating that the format of the command is invalid.
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `episode friends 3`
-
+2. Test case: `episode friends 3`<br>
 Expected: An acknowledgement message that indicates that the current episode has been updated, and watch progress for `friends` is displayed.
 
-3. Test case: `episode friends`
-
+3. Test case: `episode friends`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 
@@ -786,42 +768,34 @@ Expected: An error message indicating that the format of the command is invalid.
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `season friends 3`
-
+2. Test case: `season friends 3`<br>
 Expected: An acknowledgement message that indicates that the current episode has been updated, and watch progress for `friends` is displayed.
 
-3. Test case: `season friends`
-
+3. Test case: `season friends`<br>
 Expected: An error message indicating that the format of the command is invalid.
 
 #### Watching a show
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `watch friends`
-
+2. Test case: `watch friends`<br>
 Expected: An acknowledgement message that displays the current show progress for `friends` and the updated watch time progress.
 
-3. Test case: `watch friends 123`
-
+3. Test case: `watch friends 123`<br>
 Expected: An error message indicating that the program was unable to find the show that you requested.
 
 4. Other incorrect select commands to try: `watch -1`, `watch <any show not in the list>`
-
 Expected: Similar to previous.
 
 #### Updating watch time limit
 
-1. Test case: `updatetimelimit 100`
-
+1. Test case: `updatetimelimit 100`<br>
 Expected: An acknowledgement message that displays the current daily watch time limit now set to 100 minutes.
 
-2. Test case: `updatetimelimit -100`
-
+2. Test case: `updatetimelimit -100`<br>
 Expected: An acknowledgement message that displays the current daily watch time limit, decremented by 100 minutes.
 
-3. Test case: `updatetimelimit test`
-
+3. Test case: `updatetimelimit test`<br>
 Expected: An error message indicating that the input supplied was in a wrong format.
 
 
@@ -829,12 +803,10 @@ Expected: An error message indicating that the input supplied was in a wrong for
 
 #### Viewing your watch list
 
-1. Test case: `list`
-
+1. Test case: `list`<br>
 Expected: A list of the shows you have added will be displayed into the terminal. If no shows have been added, the list wil be empty.
 
-2. Test case: `List`
-
+2. Test case: `List`<br>
 Expected: An error message indicating that the input supplied was in a wrong format.
 
 > **[NOTE]** The command input is case-sensitive.
@@ -843,14 +815,13 @@ Expected: An error message indicating that the input supplied was in a wrong for
 
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. Test case: `search friends`
-
+2. Test case: `search friends`<br>
 Expected: An acknowledgement message that `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
-3. Test case: `search`
+3. Test case: `search`<br>
 
 Expected: An error message indicating that the input supplied was in a wrong format.
 
-4. Test case: `search a`
-
+4. Test case: `search a`<br>
 Expected: An error message indicating that the show input was not found in the watch list.
+
