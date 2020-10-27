@@ -40,11 +40,7 @@ This section introduces the features available in Fitr, explaining how you can u
 
 ## 2.3 Editing Commands
 
-## 2.4 Deleting Commands
-
-## 2.8 Tip of the Day
-
-### Adding an exercise: `exercise`
+Adding an exercise: `exercise`
 Adds a new exercise to the list of exercises you have done.
 
 Format: `exercise NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
@@ -60,7 +56,7 @@ Expected outcome:
 - `The following exercise has been added: Pushups`
 - `The following exercise has been added: 5km run`
 
-### Adding a food item: `food`
+Adding a food item: `food`
 Adds a new food to the list of foods you have eaten.
 
 Format: `food NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED`
@@ -76,7 +72,7 @@ Expected outcome:
 - `The following food has been added: chicken rice`
 - `The following food has been added: Mcspicy`
 
-### Deleting an item: `delete`
+Deleting an item: `delete`
 Deletes a particular item at a specified index in a specified list.
 
 Format: `delete LIST INDEX`
@@ -88,7 +84,7 @@ Example of usage:
 - `delete food 1`
 - `delete exercise 2`
 
-### Viewing the exercise list: `view exercise`
+Viewing the exercise list: `view exercise`
 Displays the user's exercise entries from the exercise list.
 
 Format: `view exercise`
@@ -116,7 +112,7 @@ Date: 24/10/2020
     Burnt Cal: 6
 ```
 
-### Viewing the food list: `view food`
+Viewing the food list: `view food`
 Displays the user's food entries from the food list.
 
 Format: `view food`
@@ -138,7 +134,7 @@ Date: 23/10/2020
     Cal: 10
 ```
 
-### Viewing the user profile: `view profile`
+Viewing the user profile: `view profile`
 Displays the user's profile: name, age, gender, height (in m), weight (in kg).
 
 Format: `view profile`
@@ -154,7 +150,7 @@ Weight (in kg): 80.0
 Your fitness level: Fit
 ```
 
-### Viewing the user's BMI: `view bmi`
+Viewing the user's BMI: `view bmi`
 Displays the user's BMI (body mass index) based on the user's height and weight in the user profile.
 
 Format: `view bmi`
@@ -165,7 +161,7 @@ Your BMI is:
 24.69
 ```
 
-### Viewing the user's caloric summary: `view summary`
+Viewing the user's caloric summary: `view summary`
 Displays a summary of the calories consumed, calories burnt, and net calories based on the entries in the exercise and food list.
 
 Format: `view summary`
@@ -190,7 +186,7 @@ Net calorie:
 
 ```
 
-### Editing the user's profile: `edit`
+Editing the user's profile: `edit`
 Changes the user's name, age, gender, height (in m), or weight (in kg).
 
 Format: `edit TYPE`
@@ -249,7 +245,7 @@ Please indicate your fitness level to be used for determining intensity of exerc
 2
 Fitness level changed to: Fit
 ```
-### Editing previous exercise entry: `edit exercise`
+Editing previous exercise entry: `edit exercise`
 Edits a previous exercise entry in the exercise list.
 
 Format: `edit exercise INDEX NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
@@ -262,7 +258,7 @@ Expected outcome:
 Successfully edited exercise to: Push ups
 ```
 
-### Editing previous food entry: `edit food`
+Editing previous food entry: `edit food`
 Edits a previous food entry in the food list.
 
 Format: `edit food INDEX NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED QUANTITY`
@@ -275,7 +271,7 @@ Expected outcome:
 Successfully edited food to: rice
 ```
 
-### Viewing help: `help`
+Viewing help: `help`
 Show help messages with all the valid commands supported by Fitr.
 
 Format: `help`
@@ -300,7 +296,7 @@ bye               Exits the program
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
 
-> 💡 **Warning:** The delete action is irreversible.
+> ⚠️ **Warning:** The delete action is irreversible.
 
 ### 2.4.1 Deleting a food entry
 
@@ -311,7 +307,7 @@ If you would like to delete a particular entry, you can utilise the various dele
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
 
-> 💡 **Warning:** The clear action is irreversible.
+> ⚠️ **Warning:** The clear action is irreversible.
 
 ### 2.5.1 Clearing all food entries
 
@@ -333,6 +329,8 @@ Other than the commands mentioned above, Fitr is also able to give you a workout
 ## 2.7 Saving your Data
 Your profile, food consumed and exercises done are saved automatically after any command that changes the data.
 There is no need to save manually. All your data will be saved in the same location as `fitr.jar`.
+
+## 2.8 Tip of the Day
 
 # 3. FAQ
 In this section, you can find answers to some of the frequently asked questions (FAQs).
