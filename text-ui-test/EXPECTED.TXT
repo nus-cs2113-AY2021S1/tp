@@ -30,7 +30,7 @@ Default (Default) #> OOPS!!! Workspace already exist!
 
 Default (Default) #> Successfully added new workspace: WHITE CHoC MACADAMIA
 
-Default (Default) #> Workspace changed to WHITE CHoC MACADAMIA
+Default (Default) #> Workspace switched to WHITE CHoC MACADAMIA
 
 WHITE CHoC MACADAMIA (Default) #> Currently, you have 5 workspace(s):
 1. Default
@@ -45,7 +45,7 @@ WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
 
 WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
 
-WHITE CHoC MACADAMIA (Default) #> Workspace changed to COOKIES N CREME CH33SECAKE
+WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 
@@ -88,13 +88,13 @@ COOKIES N CREME CH33SECAKE (Default) #> Saving 3. Trigun to bookmark.
 
 COOKIES N CREME CH33SECAKE (Default) #> Saving 430. To Heart 2 to bookmark.
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode(s).
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 4 episode
+COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 4 episode(s).
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 6 episode
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 6 episode(s).
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing Wind: A Breath of Heart (2004) to have 8 episode
+COOKIES N CREME CH33SECAKE (Default) #> Editing Wind: A Breath of Heart (2004) to have 8 episode(s).
 
 COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test" to Cowboy Bebop!
 
@@ -103,6 +103,40 @@ COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test 2 withspace" to Cowboy
 COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing 123" to Cowboy Bebop!
 
 COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing on 2" to InuYasha the Movie 2: The Castle Beyond the Looking Glass!
+
+COOKIES N CREME CH33SECAKE (Default) #> Here is the information for that anime.
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. test
+2. test 2 withspace
+3. testing 123
+
+
+COOKIES N CREME CH33SECAKE (Default) #> Deleting note: test 2 withspace
+From: Cowboy Bebop.
+
+COOKIES N CREME CH33SECAKE (Default) #> Here is the information for that anime.
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. test
+2. testing 123
+
 
 COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
 	1. Cowboy Bebop

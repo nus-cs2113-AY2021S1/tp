@@ -62,8 +62,8 @@ public class WorkspaceCommand extends Command {
         String trimmedName = commandDescription;
         user.switchActiveWorkspace(trimmedName);
 
-        LOGGER.log(Level.INFO, "Successfully added new workspace: " + trimmedName);
-        return "Workspace changed to " + trimmedName;
+        LOGGER.log(Level.INFO, "Successfully switched to workspace: " + trimmedName);
+        return "Workspace switched to " + trimmedName;
     }
 
     public String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
