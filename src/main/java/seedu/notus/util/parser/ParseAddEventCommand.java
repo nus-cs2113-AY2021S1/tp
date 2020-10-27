@@ -51,6 +51,7 @@ public class ParseAddEventCommand extends Parser {
         // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
         String title = "";
         LocalDateTime dateTime = null;
+        // Not set yet. Has no prefix for this.
         LocalDateTime recurringEndTime = null;
         boolean toRemind = false;
         boolean isRecurring = false;

@@ -1,10 +1,15 @@
 package seedu.notus.command;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_DATETIME;
+import seedu.notus.data.tag.Tag;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
+import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
 //@@author brandonywl
@@ -18,7 +23,7 @@ public class EditEventCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits an event in the timetable. "
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_DATETIME + " DATE_TIME] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TIMING + " DATE_TIME] "
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " REMIND]";
 
@@ -29,7 +34,8 @@ public class EditEventCommand extends Command {
      *
      * @param index of the Event to be edited.
      */
-    public EditEventCommand(int index) {
+    public EditEventCommand(int index, String new_title, LocalDateTime newStartDate, String reminderTodo,
+                            ArrayList<Integer> timePeriods, ArrayList<String> timeUnits, ArrayList<Tag> tags) {
         this.index = index;
     }
 
