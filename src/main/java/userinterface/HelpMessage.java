@@ -29,11 +29,14 @@ public class HelpMessage extends Ui {
             + "su grade <index number>                   - sus grade at specified index\n";
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
-            + "bm <category index>  - changes mode from bookmark main into a category \n"
-            + "add <link>           - add bookmark link into a specific category\n"
-            + "rm <index number>    - remove a bookmark link into a specific category\n"
-            + "list                 - prints the list of categories and respective list of links\n"
-            + "back                 - go back to bookmark main\n";
+            + "bm <category index>          - changes mode from bookmark main into a category \n"
+            + "back                         - go back to bookmark main\n"
+            + "add <link>                   - add bookmark link into a specific category\n"
+            + "cat <category name>          - add category to bookmark list\n"
+            + "rm <link number>             - remove a bookmark link into a specific category\n"
+            + "delete <category number>     - remove a bookmark category\n"
+            + "list                         - prints the list of categories and respective list of links\n"
+            + "star <link number>           - mark the bookmark link as star\n";
 
     private static final String timetableCommand =  "Here are the timetable commands available:\n"
             + "add class /MODULE CODE /ONLINE or OFFLINE\n"
