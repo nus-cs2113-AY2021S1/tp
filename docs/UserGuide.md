@@ -70,9 +70,11 @@ Refer to the Features below for details of each command.
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
 The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
-1. ----------------------------------------------------------------
+
+1. \----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
 Example usages:
 * `divider 1` changes divider option to 2
 
