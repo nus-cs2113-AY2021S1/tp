@@ -1,5 +1,7 @@
 package seedu.duke.writing;
 
+import java.time.LocalDate;
+
 import static seedu.duke.constants.DataFileConvention.POEM;
 
 
@@ -8,20 +10,22 @@ public class Poem extends Writings {
     private int numberOfWords;
     private int countPoems;
 
-    public Poem(String title, int id, String topic, String content, String author) {
+    public Poem(String title, int id, String topic, String content, String author, LocalDate reminderDate) {
         setDate();
         setType();
         setTitle(title);
         setId(id);
         setTopic(topic);
         setContent(content);
+        setReminderDate(reminderDate);
         setAuthor(author);
         setNumberOfLines();
         setNumberOfWords();
         countPoems++;
     }
 
-    public Poem(String title, String date, String topic, String content, String author, int id) {
+    public Poem(String title, String date, String topic, String content,
+                String author, int id, LocalDate reminderDate) {
         setDate();
         setType();
         setTitle(title);
@@ -29,6 +33,7 @@ public class Poem extends Writings {
         setTopic(topic);
         setContent(content);
         setAuthor(author);
+        setReminderDate(reminderDate);
         this.date = date;
         countPoems++;
         setNumberOfLines();

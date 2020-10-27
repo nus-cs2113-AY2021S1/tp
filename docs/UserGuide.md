@@ -5,6 +5,7 @@
 [Introduction](#introduction) <br>
 [Quick start](#quick-start) <br>
 [Features](#features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Adding a noun: `noun`](#adding-a-noun-noun) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Adding a verb: `verb`](#adding-a-verb-verb) <br>
@@ -41,18 +42,6 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
 ## Quick start
 
 1. Check that your computer has Java **11** installed.
-<<<<<<< HEAD
-1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-    - Copy the file to the folder you want to use as the home folder.
-    - Type in a command prompt ./duke.jar and press Enter.
-    - Type the `help` command and press Enter to get started.
-    - Some example commands you can try:
-        - `list words` : List the vocabulary stored in the word list.
-        - `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-        - `exit` : Exits the app.  
-    
-Refer to the Features below for details of each command.
-=======
 1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
 1. Type in a command prompt ./duke.jar and press Enter.
@@ -62,7 +51,7 @@ Refer to the Features below for details of each command.
     1. `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
     1. `exit` : Exits the app.
 1. Refer to the Features below for details of each command.
->>>>>>> 34943e3d63a9c42aaae54c77d5cfa199263e4f9b
+
 
 ## Features 
 
@@ -70,9 +59,11 @@ Refer to the Features below for details of each command.
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
 The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
-1. ----------------------------------------------------------------
+
+1. \----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
 Example usages:
 * `divider 1` changes divider option to 2
 
@@ -95,7 +86,7 @@ Shows a list of commands you can use and what the commands do. Print the instruc
 Output:  
 Type “help COMMAND_NAME” to figure out how to use the particular command.  
 - help
-- settings
+- divider
 - bunny
 - list bunny
 - filter bunny
@@ -515,46 +506,8 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| settings     | `settings n\[NAME]`                                                                                   |
-|              | e.g., settings n\Jane Doe d\2                                                                         |
-|              | The list of dividers is                                                                               |
-|              | 1. ‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵                                                             |
-|              | 2. •❅──────✧❅✦❅✧──────❅•                                                                           |
-|              | 3. ______________________________________                                                             |
-|              | 4. =^..^=                                                                                             |
-|              | 5. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                                                      |
-| noun         | `noun [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: noun bus d\vehicle                                                                           |
-| verb         | `verb [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: verb eat d\to consume                                                                        |
-| adjective    | `adj [WORD] d\[DESCRIPTION]`                                                                          |
-|              | Example: adj hungry d\having the desire to eat food                                                   |
-| list words   | `list words`                                                                                          |
-|              | Lists all the words stored in the program.                                                            |
-| bunny        | `bunny i\IDEA g\[GENRE]`                                                                              |
-|              | Adds a bunny idea to the list of bunnies in the current run.                                          |
-| list bunny   | `list bunny`                                                                                          |
-|              | Lists all the bunny ideas                                                                             |
-| filter bunny | `filter bunny i\IDEA g\[GENRE]`                                                                       |
-|              | Filters bunny by terms in idea or genre (must have at least 1 filter parameter)                       |
-| save bunny   | `save bunny`                                                                                          |
-|              | Saves all the bunny ideas into a text file                                                            |
-| filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `                                           |
-|              | `-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command. |
-|              | TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
-| name         | `name`                                                                                                |
-|              | Generates a random name                                                                               |
-| list names   | `list names`                                                                                          |
-|              | List all the stored names                                                                             |
-| filter names | `filter names [NAME]`                                                                                 |
-|              | Gets the list of names after filtering                                                                |
-| stats        | `stats`                                                                                               |
-|              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
-|              | This is a poem  <br>Written by Goethe                                                                 |
-|              | Id: 5 <br> DER ERLKÖNIG                                                                               |
-|              | Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.|
-|              | This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
+| help         | `help` </br> Look through help guide                                                                  |
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
@@ -577,3 +530,5 @@ Format: `exit`
 | clear        | `clear`</br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  
 | reset        | `reset <NAME_OF_CATEGORY>`</br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |
 | exit         | `exit`</br>Exits the program.                                                                                    |    
+
+[Jump to top](#user-guide)

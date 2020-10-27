@@ -34,9 +34,9 @@ public class FluffleMessages {
     public static final String FILE_SAVE_ERROR_MSG = "Error saving file!";
 
     /** New word added messages. */
-    public static final String ADD_NOUN_MSG = "Added the following noun:";
-    public static final String ADD_VERB_MSG = "Added the following verb:";
-    public static final String ADD_ADJECTIVE_MSG = "Added the following adjective:";
+    public static final String ADD_NOUN_MSG = "Added the following noun: ";
+    public static final String ADD_VERB_MSG = "Added the following verb: ";
+    public static final String ADD_ADJECTIVE_MSG = "Added the following adjective: ";
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
     public static final String EMPTY_INPUT_MSG = "Please enter a word and its description to save!";
     public static final String EMPTY_DESC_MSG = "Please enter the word's description after typing 'd\\'!";
@@ -79,6 +79,8 @@ public class FluffleMessages {
     public static final String ASKING_FOR_TITLE = "Please let us know the title of your writing";
     public static final String ASKING_FOR_TYPE = "Please let us know your type of writings, either poem or essay";
     public static final String ASKING_FOR_TOPIC = "Please indicate your topic by typing in \"topic\" command";
+    public static final String ASKING_FOR_REMINDER = "Please indicate the date you want to continue with this writing "
+            + "by keying the date in the format \"dd/MM/yyyy\"";
     public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
             + "\"start\" command to add";
     public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";

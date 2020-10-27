@@ -9,21 +9,24 @@ import seedu.duke.writing.WritingList;
 import seedu.duke.logs.Logging;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 //import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_MARK;
-import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_DIVIDER;
+import static seedu.duke.constants.DataFileConvention.ESSAY;
+import static seedu.duke.constants.DataFileConvention.NUMBER_OF_WRITING_COMPONENT;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_AUTHOR;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_DATE;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_ID;
+import static seedu.duke.constants.DataFileConvention.POEM;
+import static seedu.duke.constants.DataFileConvention.POSITION_OF_REMINDER_DATE;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_TITLE;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_TOPIC;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_TYPE;
-import static seedu.duke.constants.DataFileConvention.POEM;
-import static seedu.duke.constants.DataFileConvention.ESSAY;
-import static seedu.duke.constants.DataFileConvention.NUMBER_OF_WRITING_COMPONENT;
+import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_DIVIDER;
+import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_MARK;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
 import static seedu.duke.database.FileFunctions.autoCreateNewFile;
 
@@ -50,8 +53,9 @@ public class WritingsLoader {
         String title = "";
         String topic = "";
         String date = "";
+        LocalDate reminderDate = null;
         //Initializing the content
-        String content = "";
+        String content;
 
         try {
             while (s.hasNext()) {
@@ -74,6 +78,9 @@ public class WritingsLoader {
                         } else if (countContent == 6) {
                             date = currentLine.substring(POSITION_OF_DATE).trim();
                         } else if (countContent == 7) {
+                            reminderDate = LocalDate.parse(currentLine.substring(POSITION_OF_REMINDER_DATE).trim(),
+                                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        } else if (countContent == 8) {
                             break;
                         }
                         currentLine = s.nextLine();
@@ -88,9 +95,9 @@ public class WritingsLoader {
                 }
                 countWritings++;
                 if (type.equals(POEM)) {
-                    savedWritings.add(new Poem(title, date, topic, content, author, id));
+                    savedWritings.add(new Poem(title, date, topic, content, author, id, reminderDate));
                 } else if (type.equals(ESSAY)) {
-                    savedWritings.add(new Essay(title, date, topic, content, author, id));
+                    savedWritings.add(new Essay(title, date, topic, content, author, id, reminderDate));
                 }
                 if (countContent != NUMBER_OF_WRITING_COMPONENT) {
                     throw new NotEnoughWritingComponentException();
@@ -141,6 +148,7 @@ public class WritingsLoader {
                     + "*Title: " + savedWritings.get(i).getTitle() + "\n"
                     + "*Topic: " + savedWritings.get(i).getTopic() + "\n"
                     + "*Date: " + savedWritings.get(i).getDate() + "\n"
+                    + "*Reminder: " + savedWritings.get(i).getReminderDateString() + "\n"
                     + "*Content: \n" + savedWritings.get(i).getContent()
                     + WRITING_COMPONENT_DIVIDER + "\n");
         }

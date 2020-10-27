@@ -3,6 +3,8 @@ package seedu.duke.writing;
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.database.FileFunctions;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -18,19 +20,20 @@ import static seedu.duke.commands.CommandChecker.ESSAY;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_REMINDER;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TITLE;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TOPIC;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TYPE;
+import static seedu.duke.constants.FluffleMessages.ASSERTION_ID_ERROR;
+import static seedu.duke.constants.FluffleMessages.INSTRUCTION_FOR_ADDING_NEW_WRITINGS;
+import static seedu.duke.constants.FluffleMessages.CLEAR_DATA_MESSAGE;
+import static seedu.duke.constants.FluffleMessages.EMPTY_WRITING_MESSAGE;
+import static seedu.duke.constants.FluffleMessages.SUCCESSFUL_ADD_WRITING_TO_DATABASE;
+import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
 import static seedu.duke.database.WritingsLoader.recordListToFile;
-import static seedu.duke.constants.FluffleMessages.ASSERTION_ID_ERROR;
-import static seedu.duke.constants.FluffleMessages.SUCCESSFUL_ADD_WRITING_TO_DATABASE;
-import static seedu.duke.constants.FluffleMessages.INSTRUCTION_FOR_ADDING_NEW_WRITINGS;
-import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
-import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TYPE;
-import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TITLE;
-import static seedu.duke.constants.FluffleMessages.EMPTY_WRITING_MESSAGE;
-import static seedu.duke.constants.FluffleMessages.CLEAR_DATA_MESSAGE;
-import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TOPIC;
 
 
 public class WritingList {
@@ -111,6 +114,10 @@ public class WritingList {
         System.out.println(ASKING_FOR_TOPIC);
     }
 
+    public static void printAskForReminderDate() {
+        System.out.println(ASKING_FOR_REMINDER);
+    }
+
     public static int getWritingSize() {
         return writinglist.size();
     }
@@ -165,12 +172,15 @@ public class WritingList {
                 content = content.concat(newUserInput + "\n");
                 contentUserInput = getUserInput(scanner);
             }
+            WritingList.printAskForReminderDate();
+            newUserInput = getUserInput(scanner);
+            LocalDate reminderDate = LocalDate.parse(newUserInput, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             Random rand = new Random();
             int newId = rand.nextInt(MAX_NUM_WRITINGS);
             if (commandStartChecker == POEM) {
-                addPoem(title, newId, topic, content, user.getName());
+                addPoem(title, newId, topic, content, user.getName(), reminderDate);
             } else if (commandStartChecker == ESSAY) {
-                addEssay(title, newId, topic, content, user.getName());
+                addEssay(title, newId, topic, content, user.getName(), reminderDate);
             }
             System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
             recordListToFile(f, writings);
@@ -193,18 +203,18 @@ public class WritingList {
     }
 
     /** Adding a poem to the database. */
-    public static void addPoem(String title, int id, String topic, String content, String author) {
+    public static void addPoem(String title, int id, String topic, String content, String author, LocalDate reminder) {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
-        Poem toBeAdded = new Poem(title, id, topic, content, author);
+        Poem toBeAdded = new Poem(title, id, topic, content, author, reminder);
         writinglist.add(toBeAdded);
         System.out.println("This Poem, " + title +  " has been added");
         countWritings++;
     }
 
     /** Adding an essay to the database. */
-    public static void addEssay(String title, int id, String topic, String content, String author) {
+    public static void addEssay(String title, int id, String topic, String content, String author, LocalDate reminder) {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
-        Essay toBeAdded = new Essay(title, id, topic, content, author);
+        Essay toBeAdded = new Essay(title, id, topic, content, author, reminder);
         writinglist.add(toBeAdded);
         System.out.println("This Essay, " + title +  " has been added");
         countWritings++;

@@ -1,5 +1,7 @@
 package seedu.duke.writing;
 
+import java.time.LocalDate;
+
 import static seedu.duke.constants.DataFileConvention.ESSAY;
 
 public class Essay extends Writings {
@@ -7,18 +9,20 @@ public class Essay extends Writings {
     private int numberOfWords;
     private int countEssays;
 
-    public Essay(String title, int id, String topic, String content, String author) {
+    public Essay(String title, int id, String topic, String content, String author, LocalDate reminderDate) {
         setDate();
         setType();
         setTitle(title);
         setId(id);
         setTopic(topic);
+        setReminderDate(reminderDate);
         setContent(content);
         setAuthor(author);
         countEssays++;
     }
 
-    public Essay(String title, String date, String topic, String content, String author, int id) {
+    public Essay(String title, String date, String topic, String content,
+                 String author, int id, LocalDate reminderDate) {
         setDate();
         setType();
         setTitle(title);
@@ -26,6 +30,7 @@ public class Essay extends Writings {
         setTopic(topic);
         setContent(content);
         setAuthor(author);
+        setReminderDate(reminderDate);
         this.date = date;
         countEssays++;
     }

@@ -3,6 +3,10 @@ package seedu.duke.database;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.writing.WritingList;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -10,11 +14,12 @@ public class ClearLoaderTest {
     private static WritingList writings;
 
     private static void initializeTestDatabase() {
-        WritingList.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa");
-        WritingList.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa");
-        WritingList.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa");
-        WritingList.addEssay("fantasy", 20, "thih", "sdfa", "jdkfa");
-        WritingList.addEssay("fantasy", 20, "thih", "sdfa", "jdkfa");
+        LocalDate date = LocalDate.parse("28/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa", date);
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa", date);
     }
 
     @Test
@@ -31,7 +36,7 @@ public class ClearLoaderTest {
         WritingList.clearAll(writings);
         initializeTestDatabase();
         assertEquals(5, WritingList.getWritingSize());
-        writings.removeID(20);
+        writings.removeID(12);
         assertEquals(0, writings.getWritingSize());
     }
 
