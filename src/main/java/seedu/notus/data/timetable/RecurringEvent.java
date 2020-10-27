@@ -74,7 +74,7 @@ public abstract class RecurringEvent extends Event {
                 return eventSet;
             }
             if (toReoccur(startDate)) {
-                LocalDateTime dateTime = LocalDateTime.of(startDate, getTime());
+                LocalDateTime dateTime = LocalDateTime.of(startDate, getStartTime());
                 Event event = new Event(getTitle(), dateTime, getToRemind(), false, getReminderPeriod());
                 eventSet.add(event);
             }
@@ -90,7 +90,7 @@ public abstract class RecurringEvent extends Event {
      * @return Whether it will reoccur
      */
     public boolean toReoccur(LocalDate date) {
-        LocalDate eventDate = getDate();
+        LocalDate eventDate = getStartDate();
         while (eventDate.compareTo(date) < 0) {
             eventDate = timeStep(eventDate);
         }

@@ -151,8 +151,8 @@ public class Timetable {
 
         // Map all events to their relevant date and month. Sort by startTime.
         for (Event event : eventSet) {
-            Month month = event.getDate().getMonth();
-            int date = event.getDate().getDayOfMonth();
+            Month month = event.getStartDate().getMonth();
+            int date = event.getStartDate().getDayOfMonth();
             // Get a HashMap for the specified month. If it has not been initialized, initialize one.
             HashMap<Integer, ArrayList<Event>> monthEvents = calendar.get(month);
             if (monthEvents == null) {
@@ -201,7 +201,7 @@ public class Timetable {
                                                    ArrayList<Event> nonRecurringSet) {
         ArrayList<Event> eventSet = new ArrayList<>();
         for (Event event : nonRecurringSet) {
-            LocalDate eventDate = event.getDate();
+            LocalDate eventDate = event.getStartDate();
             if (eventDate.compareTo(startDate) >= 0 && eventDate.compareTo(endDate) <= 0) {
                 eventSet.add(event);
             }
