@@ -275,16 +275,27 @@ public class Storage {
         logger.info(String.format("Saving tasks to %s", taskFile.getAbsolutePath()));
         try (FileWriter fileWriter = new FileWriter(taskFile)) {
             for (Task task : tasks) {
+                String type = null;
+                String done = task.getIsDone() ? "1" : "0";
+                String datetime = null;
+
                 if (task instanceof Todo) {
-                    fileWriter.write("T | " + (task.getIsDone() ? "1" : "0") + " | "
-                            + task.getDescription() + "\n");
+                    type = "T";
                 } else if (task instanceof Deadline) {
-                    fileWriter.write("D | " + (task.getIsDone() ? "1" : "0") + " | "
-                            + task.getDescription() + " | " + ((Deadline) task).getDateTimeDescription() + "\n");
+                    type = "D";
+                    datetime = ((Deadline) task).getDateTimeDescription();
                 } else if (task instanceof Event) {
-                    fileWriter.write("E | " + (task.getIsDone() ? "1" : "0") + " | "
-                            + task.getDescription() + " | " + ((Event) task).getDateTimeDescription() + "\n");
+                    type = "E";
+                    datetime = ((Event) task).getDateTimeDescription();
+                } else {
+                    assert false : "Unknown tasks have not been accounted for.";
                 }
+
+                fileWriter.write(type + " | " + done + " | " + task.getDescription());
+                if (datetime != null) {
+                    fileWriter.write(" | " + datetime);
+                }
+                fileWriter.write("\n");
             }
         }
         logger.info("Finish saving tasks.");
@@ -306,31 +317,31 @@ public class Storage {
             while (scan.hasNextLine()) {
                 String content = scan.nextLine();
                 String[] contents = content.split("\\s\\|\\s");
-                String legend = contents[0].trim();
+                String type = contents[0].trim();
                 boolean done = Integer.parseInt(contents[1].trim()) == 1;
-                String action = contents[2].trim();
-                String action2;
+                String description = contents[2].trim();
+                String datetimeStr;
+
                 LocalDateTime dateTime = null;
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
 
-                if (legend.equals("D") || legend.equals("E")) {
-                    action2 = contents[3].trim();
-                    dateTime = LocalDateTime.parse(action2, format);
-
+                if (type.equals("D") || type.equals("E")) {
+                    datetimeStr = contents[3].trim();
+                    dateTime = LocalDateTime.parse(datetimeStr, format);
                 }
 
-                switch (legend) {
+                switch (type) {
                 case "T":
-                    tasks.add(new Todo(action, done));
+                    tasks.add(new Todo(description, done));
                     break;
                 case "D":
-                    tasks.add(new Deadline(action, done, dateTime));
+                    tasks.add(new Deadline(description, done, dateTime));
                     break;
                 case "E":
-                    tasks.add(new Event(action, done, dateTime));
+                    tasks.add(new Event(description, done, dateTime));
                     break;
                 default:
-                    assert false : legend;
+                    assert false : type;
                 }
             }
         }
