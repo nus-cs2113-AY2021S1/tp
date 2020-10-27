@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class AddBookmarkCommand extends Command {
     public static final String ADD_KW = "add";
-    public String description;
-    public String url;
+    private final String description;
+    private final String url;
 
     /**
      * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
