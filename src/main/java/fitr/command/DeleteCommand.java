@@ -75,7 +75,7 @@ public class DeleteCommand extends Command {
                     Ui.printCustomError("No records found for the specified date!");
                     return;
                 }
-                Ui.printCustomMessage("The following exercise has been deleted"
+                Ui.printCustomMessage("The following food has been deleted"
                         + " for the " + deletionDate + ": "
                         + listManager.getFood(deletionIndex).getFoodName());
                 listManager.deleteFood(deletionIndex);
