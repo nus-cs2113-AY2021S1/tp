@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class BookmarkList {
     private ArrayList<Bookmark> bookmarks;
-    private final String LINESEPARATOR = System.lineSeparator();
+    private final String lineSeperator = System.lineSeparator();
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
 
 
@@ -120,11 +120,11 @@ public class BookmarkList {
      * @return The string message containing the matching bookmarks
      */
     public String showBookmarks() {
-        String message = "Here are the bookmarks in your list:" + LINESEPARATOR;
+        String message = "Here are the bookmarks in your list:" + lineSeperator;
         for (int i = 0; i < bookmarks.size(); i++) {
             message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
         }
-        return message + LINESEPARATOR;
+        return message + lineSeperator;
     }
 
     /**
@@ -137,13 +137,13 @@ public class BookmarkList {
         assert !description.equals("") : "Description should not be empty!";
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + LINESEPARATOR;
+            message = "Empty List" + lineSeperator;
         } else {
             message = getMatchingBookmarks(description.toUpperCase());
             if (!message.isEmpty()) {
-                message = "Here are your matching bookmarks" + LINESEPARATOR + message;
+                message = "Here are your matching bookmarks" + lineSeperator + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + LINESEPARATOR;
+                message = "No bookmarks contain the specified keyword!" + lineSeperator;
             }
         }
         return message;
@@ -153,7 +153,7 @@ public class BookmarkList {
         String message = "";
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + LINESEPARATOR;
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeperator;
             }
         }
         return message;
@@ -170,13 +170,13 @@ public class BookmarkList {
         assert !description.equals("") : "Description should not be empty!";
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + LINESEPARATOR;
+            message = "Empty List" + lineSeperator;
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
             if (!message.isBlank()) {
-                message = "Launched these bookmarks:" + LINESEPARATOR + message;
+                message = "Launched these bookmarks:" + lineSeperator + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + LINESEPARATOR;
+                message = "No bookmarks contain the specified keyword!" + lineSeperator;
             }
         }
         return message;
@@ -196,19 +196,19 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + LINESEPARATOR + errorMessage;
+            message += "Failed to launch these bookmarks:" + lineSeperator + errorMessage;
         }
-        return message + LINESEPARATOR;
+        return message + lineSeperator;
     }
 
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + LINESEPARATOR;
+            message = "Empty List" + lineSeperator;
         } else {
             message = launchBookmarksFromList();
             if (!message.isEmpty()) {
-                message = "Launched these bookmarks:" + LINESEPARATOR + message;
+                message = "Launched these bookmarks:" + lineSeperator + message;
             }
         }
         return message;
@@ -226,7 +226,7 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + LINESEPARATOR + errorMessage;
+            message += "Failed to launch these bookmarks:" + lineSeperator + errorMessage;
         }
         return message;
     }
