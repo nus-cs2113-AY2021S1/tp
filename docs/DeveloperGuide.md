@@ -840,3 +840,4 @@ Given below are the instructions to test the app manually.
       Expected: Similar to previous.
       
    
+[Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
