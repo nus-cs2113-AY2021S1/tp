@@ -267,7 +267,7 @@ name 2
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `list name`
+### Listing names from name database: `list name`
 Displays all the names currently stored in the names database.  
 Format: `list name`
 
@@ -284,7 +284,7 @@ list name
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `filter name`
+### Finding names from name database: `filter name`
 Gets the list of names after filtering from the stored list of names.  
 Format: `filter name <NAME>`
 
@@ -312,7 +312,7 @@ filter name name
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `add name`
+### Adding name to the name database: `add name`
 Adds a name to the list of names currently stored in the names database.
 Format: `add name <NAME>`
 
@@ -327,7 +327,7 @@ name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `delete name`
+### Removing a name from the name database: `delete name`
 Removes a name from the list of names currently stored in the names database.
 Format: `delete name <INDEX>`
 
