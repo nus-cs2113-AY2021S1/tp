@@ -16,6 +16,7 @@ import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;
@@ -180,7 +181,12 @@ public class CommandExecutor {
             WritingList.clearAll(writings);
             break;
         case CLEAR:
-            ClearLoader.clearItems(userInput, writings);
+            try {
+                ClearLoader.clearItems(userInput, writings);
+            } catch (WrongClearCommandFormat e) {
+                System.out.println("The appropriate format is:\n"
+                    + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
+            }
             break;
         case DELETE:
             break;
