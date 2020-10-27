@@ -27,7 +27,6 @@ public class Notification {
     public static final String[] lines = {MAINTAIN, SUCCESS, TIME_MANAGEMENT};
     public static final String[] pushForward = {HARD_WORK, PUSH_ON, STRONGER, CAPABLE, TODAY};
 
-
     //update week number with user input
     public void updateCurrentWeek() {
         currentWeek = 13;

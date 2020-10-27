@@ -6,9 +6,9 @@
 * [Design](#design)
     * [Architecture](#architecture)
     * [UI component](#ui-component)
-    * [Parser component]()
+    * [Parser component](#parser-component)
     * [Model component](#model-component)
-    * [Storage component]()
+    * [Storage component](#storage-component)
 * [Implementation](#implementation)
     * [Store Data](#store-data)
     * [Add Module](#add-module) 
@@ -62,27 +62,39 @@ the command `addmod CS2113T`.
 
 ![highlevelsequencediagram](diagrams/highlevelsequencediagram.png)
 
-
 ### UI component
 
 `UI` consists of a UI class that is responsible for dealing with user interaction. 
 
 The `UI` component,
-
 * Reads in the user input and passes the user input to the `Parser` component.
 * Displays the message to the user based on the commands inputted by the user. 
+
+### Parser component
+
+The `Parser` component,
+* Determines whether the user input is valid.
+* Identifies the command to be executed.
+* Passes the required information and calls the respective function
+to execute the command.
 
 ### Model component
 
 ![modelcomponent](diagrams/modelcomponent.png)
-The Model,
-* consists of ModuleList class that supports functions to execute module-related commands, 
-  such as addmod, deletemod etc.
-* consists of Module class that represents the module
-* consists of TaskList class that supports functions to execute task-related commands, 
-  such as addtask, deletetask etc.
-* consists of Task class that represents the task
 
+The `Model`,
+* Consists of ModuleList class that supports functions to execute module-related commands, 
+  such as addmod, deletemod etc.
+* Consists of Module class that represents the module.
+* Consists of TaskList class that supports functions to execute task-related commands, 
+  such as addtask, deletetask etc.
+* Consists of Task class that represents the task.
+
+### Storage component
+The `Storage` component,
+* Loads data from an external file at the start of the program.
+* Saves valid data to the file after any changes. 
+* Locks the file to read-only mode before the program ends.
 
 ## Implementation
 {Insert your own respective implementations here}
