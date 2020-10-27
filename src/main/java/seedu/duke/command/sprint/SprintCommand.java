@@ -35,7 +35,7 @@ public abstract class SprintCommand extends Command {
             selectedProg = Integer.parseInt(parameters.get("project"));
         } else {
             //select default project
-            selectedProg = projectList.selectedProject;
+            selectedProg = projectList.getSelectedProjectIndex();
         }
         this.projOwner = projectList.getProject(selectedProg);
         this.sprintList = projOwner.getSprintList();
@@ -52,7 +52,7 @@ public abstract class SprintCommand extends Command {
             selectedSprint = Integer.parseInt(parameters.get("sprint"));
         } else if (parameters.containsKey("0")) {
             selectedSprint = Integer.parseInt(parameters.get("0"));
-        //select ongoing sprint
+            //select ongoing sprint
         } else {
             sprintList.updateCurrentSprint();
             selectedSprint = sprintList.getCurrentSprintIndex();
