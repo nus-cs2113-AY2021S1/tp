@@ -32,6 +32,12 @@ The table below shows the information and contact details of developers.
 
 ## Setting Up
 
+Before diving into the project development and testing, here are some essential tools required in this project:
+
+1. **JAVA 11.0.8**
+    * sd
+1. **Intellij IDEA**
+
 ## Design
 This section describes the design overview of the application.
 
@@ -52,7 +58,6 @@ Storage: Reads data from, and writes data to, the hard disk.
 The quick overview of components and the workflow is given below.
 
 ### Ui
-
 The `Ui` class receives the input from the keyboard and passes to the `Parser` class to handle it. After executing commands, 
 most of the output will be done by the `Ui` class.
 
@@ -93,12 +98,26 @@ It has two subclasses: `Todo` and `Deadline`. `Deadline` items also have the dat
 The `Event` class stores the information of all `Event` items, including date, time, venue, status whether it is overdue, and any other information if added. 
 It has two subclasses: SchoolEvent and Activity. `Activity` items can have other details.
 All `SchoolEvent` items must have a module code.  
-Furthermore, the `SchoolEvent` class has three subclasses which are Lecture, Tutorial, Lab, and Exam. Among them only `Exam` items have a countdown for the exam date. 
+Furthermore, the `SchoolEvent` class has four subclasses which are `Lecture`, `Tutorial`, `Lab`, and `Exam`. Among them only `Exam` items have a countdown for the exam date. 
 All `Event` items update the information or provide needed information about `Event` items when executing commands related to events or saving the information to `Storage`.
 
 Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
+
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add an event item feature
+This feature is facilitated by `AddCommand`.
+The following sequence diagram shows how the `execute()` operation works:
+
+It checks the type of the new event first, 
+then it analyses the attached information and saves the event with the information in the event list.  
+
+Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
+there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+
+Note: Multiple `Lecture`, `Lab`, and `Tutorial`events can be added by one command since they are recurring,
+while only one `Exam` or `Activity` event can be added at a time.   
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
@@ -136,6 +155,39 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
+
+### Prioritize a task feature 
+This feature is facilitated by `PrioritizeCommand`. 
+The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+
+Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
+There will be a check in the function markTaskAsImportant(calendarNumber) to ensure that the calendar item being marked as important is a task.
+
+### Print prioritized tasks feature
+This feature is facilitated by `PrintPriorityCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+
+### Print progress feature
+This feature is facilitated by `PrintProgressCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
+<img src="" alt="" width="750"/><br/>
+
+### Print suggestion feature
+This feature is facilitated by `PrintSuggestionCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
+<img src="" alt="" width="750"/><br/>
+
+### Printing countdown feature
+The feature is facilitated by `CountdownCommand`.
+
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+
+Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
+exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
+
 
 ## Documentation
 

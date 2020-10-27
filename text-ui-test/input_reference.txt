@@ -1,0 +1,19 @@
+hi
+todo hi
+deadline project /101020
+tut cs1010 @nus -r 4 /101020 1230
+lect cs1010 @nus -r 3 /131020 1340
+lab cs1010 @nus -r2 /141020 1440
+/a3 - hello
+/a3 - zoom link
+/v3
+print events
+print tasks
+print timeline
+print timeline week
+*t1
+*t 2
+suggestion
+lab cs1010 @nus -r 1 /211020 1440
+print events
+bye

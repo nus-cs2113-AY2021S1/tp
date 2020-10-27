@@ -1,12 +1,8 @@
-T|false|hi|true
-D|false|project|true|2020-10-10
-TUT|true|cs1010|2020-10-10|12:30|nus|0
-TUT|true|cs1010|2020-10-17|12:30|nus|0
-TUT|false|cs1010|2020-10-24|12:30|nus|2| hello| zoom link
-TUT|false|cs1010|2020-10-31|12:30|nus|0
-LEC|true|cs1010|2020-10-13|13:40|nus|0
-LEC|true|cs1010|2020-10-20|13:40|nus|0
-LEC|false|cs1010|2020-10-27|13:40|nus|0
-LAB|true|cs1010|2020-10-14|14:40|nus|0
-LAB|true|cs1010|2020-10-21|14:40|nus|0
-LAB|true|cs1010|2020-10-21|14:40|nus|0
+EXAM|true|s2113t|2020-10-10|12:30|nus|0
+EXAM|true|CS1010|2020-10-10|12:30|nus|0
+EXAM|true|cs1010|2020-10-10|12:30|nus|0
+EXAM|true|cs2113t|2020-10-10|12:30|nus|0
+EXAM|true|cx1010|2020-10-10|12:30|nus|0
+EXAM|true|cs2113|2020-10-10|12:30|nus|0
+EXAM|true|cx|2020-10-10|12:30|nus|0
+EXAM|true|cs2113|2020-10-10|12:30|nus|0
