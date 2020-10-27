@@ -491,7 +491,9 @@ public class Ui {
             break;
         case "invalid module code":
             System.out.println(
-                    "Error: invalid module code. The module code cannot be found in NUS module list.");
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the exam in this format: \n"
+                            + "exam <module code> @<exam venue> /ddMMyy HHmm");
             break;
         default:
             System.out.println("Unknown Error.");
