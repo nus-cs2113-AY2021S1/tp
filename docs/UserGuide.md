@@ -325,7 +325,7 @@ Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
  refers to the index number shown in the displayed event list. The index must be a **positive integer** (1, 2, 3, …).
 - The user can create tag or untag multiple tags to an event within a single line.
 
-💡 If the user tries to tag a non existing tag to an event, the application will automatically create the tag for it.
+💡 If the user tries to tag a non-existing tag to an event, the application will automatically create a new tag, and add the tag to the event.
 
 Example of usage: 
 
