@@ -256,6 +256,21 @@ We use the following log levels:
 
 ### 8.3 Testing
 
+Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
+
+<br/>
+
+#### 8.3.1 Running tests
+
+There are primarily 2 ways to run the tests.
+
+**Method 1: Using IntelliJ**
+*   To run all tests, right-click on the `src/test/java` folder in the project panel and choose `Run Tests`.
+<br/>
+
+**Method 2: Using Gradle**
+*   Open a terminal and navigate to project directory, run command `./gradlew clean checkstyleMain checkstyleTest test`.
+
 <br/>
 
 ### 8.4 Dev-ops
