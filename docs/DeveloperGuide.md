@@ -160,7 +160,7 @@ The following sequence diagram show how the `execute()` operation works when the
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
 The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_DG.png" alt="" width="750"/><br/>
 
 Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
 There will be a check in the function markTaskAsImportant(calendarNumber) to ensure that the calendar item being marked as important is a task.
@@ -175,10 +175,10 @@ This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
 
-### Print suggestion feature
+### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="" alt="" width="750"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
 
 ### Printing countdown feature
 The feature is facilitated by `CountdownCommand`.
