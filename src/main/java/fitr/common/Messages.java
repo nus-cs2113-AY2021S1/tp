@@ -13,14 +13,43 @@ public class Messages {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
 
     //Format messages
-
-    public static final String FORMAT_FOOD = "food <Name of food> /<Number of Calories> <Quantity (Optional)>";
-    public static final String FORMAT_EDIT_FOOD = "food <Name of food> /<Number of Calories> <Quantity>";
-    public static final String FORMAT_EXERCISE = "exercise <Name of exercise> /"
-            + "<Number of Calories>";
-    public static final String FORMAT_DELETE = "delete food <Date of entry> <Index from Food List> "
-            + "or delete exercise <Date of entry> <Index from Exercise List>";
-    public static final String FORMAT_GOAL = "goal food <goal description> or goal exercise <goal description>";
+    public static final String FORMAT_FOOD = "food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]";
+    public static final String FORMAT_EXERCISE = "exercise NAME_OF_EXERCISE /CALORIES_BURNT";
+    public static final String FORMAT_FOOD_GOAL = "goal food GOAL_DESCRIPTION";
+    public static final String FORMAT_SMART_FOOD_GOAL = "goal food < NUMBER_OF_CALORIES or goal food > "
+            + "NUMBER_OF_CALORIES";
+    public static final String FORMAT_EXERCISE_GOAL = "goal exercise GOAL_DESCRIPTION";
+    public static final String FORMAT_SMART_EXERCISE_GOAL = "goal exercise < CALORIES_BURNT or goal exercise "
+            + "> CALORIES_BURNT";
+    public static final String FORMAT_HELP = "help";
+    public static final String FORMAT_VIEW_PROFILE = "view profile";
+    public static final String FORMAT_VIEW_BMI = "view bmi";
+    public static final String FORMAT_VIEW_FOOD = "view food";
+    public static final String FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE = "view food DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_VIEW_EXERCISE = "view exercise";
+    public static final String FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE = "view exercise DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_VIEW_GOAL = "view goal";
+    public static final String FORMAT_VIEW_SUMMARY = "view summary";
+    public static final String FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE = "view summary DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_EDIT_NAME = "edit name";
+    public static final String FORMAT_EDIT_AGE = "edit age";
+    public static final String FORMAT_EDIT_GENDER = "edit gender";
+    public static final String FORMAT_EDIT_HEIGHT = "edit height";
+    public static final String FORMAT_EDIT_WEIGHT = "edit weight";
+    public static final String FORMAT_EDIT_FITNESS = "edit fitness";
+    public static final String FORMAT_EDIT_FOOD = "edit food INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
+    public static final String FORMAT_EDIT_EXERCISE = "edit exercise INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
+    public static final String FORMAT_EDIT_GOAL = "edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION";
+    public static final String FORMAT_DELETE_FOOD = "delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
+    public static final String FORMAT_DELETE_EXERCISE = "delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
+    public static final String FORMAT_DELETE_GOAL = "delete goal INDEX";
+    public static final String FORMAT_CLEAR_FOOD = "clear food";
+    public static final String FORMAT_CLEAR_EXERCISE = "clear exercise";
+    public static final String FORMAT_CLEAR_GOAL = "clear goal";
+    public static final String FORMAT_CLEAR = "clear";
+    public static final String FORMAT_RECOMMEND = "recommend";
+    public static final String FORMAT_MARK_GOAL_AS_COMPLETE = "complete goal INDEX";
+    public static final String FORMAT_BYE = "bye";
 
     //User class messages
     public static final String USER_SETUP_GREET = "Before we begin, let me get to know you :)";
