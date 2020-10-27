@@ -43,7 +43,7 @@ public class WordsSaver {
     }
 
     private static void writeToFile(String textToWrite) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+        FileWriter fw = new FileWriter(FILE_PATH, false);
         fw.write(textToWrite);
         fw.close();
     }
