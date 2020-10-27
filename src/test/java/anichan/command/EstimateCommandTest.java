@@ -55,7 +55,7 @@ class EstimateCommandTest {
     }
 
     @Test
-    void execute_validScriptFile_success() throws AniException {
+    void execute_validParameters_success() throws AniException {
         // Words per hour (wph) not specified.
         String expectedNoWphResult = "Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).";
         expectedNoWphResult += System.lineSeparator();
