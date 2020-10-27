@@ -72,41 +72,42 @@ _Figure 3: Class diagram for logic component_
 ### 1.2. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
-#### 1.2.1 Direct Route Finder
+#### 2.2.1 Direct Route Finder (`/route` Feature)
 
 The `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from *location1* to *location2*.
 
-##### 1.2.1.1. Implementation
+The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
+are linked to each other. 
 
-The class diagram in figure 2 shows how different classes used for implementation of the `/route` command are linked to
-each other. 
+![RouteCommandClass](DG_Diagrams/RouteCommandClass.png)
 
-![RouteCommandClass](RouteCommandClass.png)<br>
-_Figure 4: Class diagram showing the implementation of the route feature._
+The `RouteCommand#executeCommand()` method of RouteCommand Class executes the command in the following steps:
+1. Call `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
+destination.
+    - The `RouteParser#getLocations()` method throws an exception if the locations or the delimiter `/to` is missing.
+2. Calls `RouteCommand#checkLocations()` to make sure location strings are not empty or the same.
+    - The `RouteCommand#checkLocation()` method throws an exception if locations are empty or the same.
+3. Calls `RouteCommand#similarityCheck()` to check if the locations are not in the list of bus stops but 
+are similar.
+    - The `RouteCommand#similarityCheck()` method calls the static `SimilarityCheck#similarLoc()` method and returns 
+    a list of similar locations, if any.
+    - If the list of similar locations is empty, `RouteCommand#executeCommand()` performs step 4 given below, 
+    else it calls the static method, `Ui#printPossibleLocsMessage()`, to print the list of similar locations. 
+4. Calls static `BusData#possibleBuses()` to get a list of buses with their routes from the starting location to 
+the destination.
+   - `BusData#possibleBuses()` calls `Bus#getPossibleRoute()` to check for a possible route for the given bus number.
+   - `BusData#possibleBuses()` repeats this call for all bus numbers.
 
-The RouteCommand Class executes the command in the following steps:
-1. Uses RouteParser to get the locations entered by the user in the order of starting location and destination.
-    - The RouteParser throws an exception if the locations or the delimiter `/to` is missing.
-3. Uses a method to check if the locations are not in the list of bus stops but are similar.
-    - The similarityCheck() method calls the static similarLoc() method of SimilarityCheck class and returns a list of 
-    similar locations, if any.
-    - If the list of similar locations is not empty, the appropriate Ui function is called, else the steps below are 
-    performed.
-2. Uses its method to make sure that location strings are not empty or same.
-    - The checkLocation() method throws an exception if locations are empty or the same.
-3. Calls a method from BusData to get a list of buses with their routes from the starting location to the destination.
-   - This method uses another method from class Bus to check for a possible route for the given bus number.
-   - Repeats for all bus numbers.
+The following sequence diagram explains the above steps when the user enters `/route loc1 /to loc2`.
 
-The sequence diagram in figure 3 explains the above steps when the user enters `/route loc1 /to loc2`.
+![Overview](DG_Diagrams/RouteCommand.png)
 
-[Work in Progress]<br>
-_Figure 5: Sequence diagram showing how the operation works_
+The following sequence diagrams explain the interactions omitted in the main diagram.
 
-##### 1.2.1.2. Design Considerations
+![executing command](DG_Diagrams/RouteCommandInternal.png)
 
-[Work in Progress]
+![bus data](DG_Diagrams/BusData.png)
 
 ## 2. Product scope
 
