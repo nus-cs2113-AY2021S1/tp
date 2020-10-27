@@ -24,13 +24,57 @@ public class DisplayDateStructure {
     protected DayOfWeek currentDateDayOfWeek = currentDate.getDayOfWeek();
 
     protected char[][] screen;
+    protected String content = null;
 
-    public char[][] getScreen() {
-        return screen;
+
+    public DisplayDateStructure() {
+        this(LocalDate.now());
     }
 
-    protected void generateScreen(TaskMap tasks){
-
+    public DisplayDateStructure(LocalDate date) {
+        init(date);
     }
-    
+
+    private void init(LocalDate date) {
+        currentDate = date;
+        currentMonth = currentDate.getMonth();
+        currentDateDayOfMonth = currentDate.getDayOfMonth();
+        currentDateDayOfWeek = currentDate.getDayOfWeek();
+    }
+
+    public String getContent() {
+        if (screen != null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (char[] arr : screen) {
+                stringBuilder.append(arr);
+                stringBuilder.append(System.lineSeparator());
+            }
+            content = stringBuilder.toString();
+        }
+        return content;
+    }
+
+    protected void generateContent(TaskMap tasks) {
+    }
+
+    public void setCurrentDate(LocalDate currentDate) {
+        this.currentDate = currentDate;
+        updateFields();
+    }
+
+    public void setCurrentMonth(Month currentMonth) {
+        this.currentMonth = currentMonth;
+    }
+
+    public void increment() {
+    }
+
+    public void decrement() {
+    }
+
+    public void updateFields() {
+        currentMonth = currentDate.getMonth();
+        currentDateDayOfMonth = currentDate.getDayOfMonth();
+        currentDateDayOfWeek = currentDate.getDayOfWeek();
+    }
 }

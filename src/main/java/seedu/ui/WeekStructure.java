@@ -10,8 +10,8 @@ public class WeekStructure extends DisplayDateStructure {
     private static final int DISPLAY_HEIGHT = 11;
 
     @Override
-    protected void generateScreen(TaskMap tasks) {
-
+    protected void generateContent(TaskMap tasks) {
+        currentMonth = currentDate.getMonth();
         String monthString = currentMonth.getDisplayName(MONTH_TEXT_STYLE, LOCALE);
 
         // Set screen with border
@@ -65,6 +65,14 @@ public class WeekStructure extends DisplayDateStructure {
                 screen[i][j] = (i % WEEK_ROW_WIDTH == 0 || j % DAY_COLUMN_WIDTH == 0) ? '*' : ' ';
             }
         }
+    }
+
+    public void increment() {
+        setCurrentDate(currentDate.plusDays(DAYS_PER_WEEK));
+    }
+
+    public void decrement() {
+        setCurrentDate(currentDate.minusDays(DAYS_PER_WEEK));
     }
 
 }
