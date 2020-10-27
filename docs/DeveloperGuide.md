@@ -252,8 +252,8 @@ command and call `addCard()` method in `FlashcardDeck` which constructs a new Fl
 it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
 answer of the flashcard that have been created.
 
-##Documentation, logging, testing, configuration, dev-ops
-###Testing guide
+## Documentation, logging, testing, configuration, dev-ops
+### Testing guide
 Running tests:  
 The main way that was used to run the test for Study It is:   
 Using IntelliJ JUnit test runner.   
@@ -264,7 +264,7 @@ test class or a test and choose Run ‘ABC’.
 Type of Tests  
 This project has 5 types of tests. 4 tests to test each feature and 1 test to test the main integration of the whole application.
 
-###Logging guide
+### Logging guide
 We are using java.util.logging package for logging 
 The StudyItLog class is used to manage the logging levels and logging destinations.
 Log messages are output through the console and to a  .log file.
@@ -276,14 +276,14 @@ When choosing a level for a log message, follow the following conventions:
 4. FINE:  Details that are not usually noteworthy but may be useful in debugging.
 
 
-###DevOps Guide 
+### DevOps Guide 
 Build automation  
 This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
 This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
 
-##Appendix: Requirement 
+## Appendix: Requirement 
 ### Product scope
 **Target user profile:**
 * studies in NUS
