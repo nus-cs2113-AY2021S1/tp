@@ -138,7 +138,7 @@ ArrayOutOfBounds and NullPointer exceptions are thrown when the number of argume
 
 **Step 2**
 
-* The AddCommand class calls the AddCommand method which then creates a new instance of the Show class.
+* The AddCommand class calls the `AddCommand()` method which then creates a new instance of the Show class.
 
 
 **Step 3**
@@ -148,7 +148,7 @@ episodes for each season respectively,Duration of an episode)
 
 **Step 4**
 
-A new Show instance is created with the 4 parameters created in step 3.
+A new Show instance is created with the 4 parameters created in step 3 using the default constructor for show.
 
 **Step 5**
 
@@ -234,25 +234,26 @@ Deletes the show from the ShowList
 The changes are reflected to the user. At the same time, the changes will be saved to the showList.txt file
 
 ### AddReviewCommand
-
+The `addreview` command allows users to add a rating and a review for the show for future reference.
 The `addreview` command takes in 2 parameters, the show which review is to be updated and the review to be updated
-to the show. The `addreview` command is invoked by the InputParser method parseAddReviewCommand.
+to the show. The `addreview` command is invoked by the InputParser method `parseAddReviewCommand()`.
 
 **Step 1**
 
-The string is tokenised into separate words
+The string is tokenised into 3 separate parts, the show name, rating and review.
 
 **Step 2**
 
-The corresponding show is retrieved from the show list
+The corresponding show is retrieved from the show list.
 
 **Step 3**
 
-The rating of the show is updated
+The rating of the show is updated.
 
 **Step 4**
 
-The review of the rating is added to the show
+The review of the rating is added to the show. If there is an existing review, the new review will overwrite the
+ existing review.
 
 **Step 5**
 
@@ -260,7 +261,7 @@ Reflect the changes back to the user. At the same time, saving the changes into 
 
 ### ChangeRatingCommand
   
-The `changerating` command takes in 2 parameters, the show which rating is to be changed and the new rating to be
+The `changerating` command takes in 2 parameters, the show for which the rating is to be changed and the new rating to be
 updated to.
 
 The command changes the rating of a desired show
@@ -297,7 +298,7 @@ The show is updated back into the Showlist
 
 **Step 6**
 
-The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file
+The changes are reflected back to the user. At the same time, saving the changes into the showList.txt file.
 
 ### DeleteRatingCommand 
 
@@ -478,7 +479,41 @@ The following sequence diagram summarises what happens when a user executes a `W
 
 ### UpdateShowEpisodeProgressCommand
 
+The UpdateShowEpisodeProgressCommand class extends Command by providing methods to change
+ the current episode in the persistent watch history of the user. 
+
+**Step 1**
+
+* User types in `updatesshowepisodeprogress friends 5`
+* When the InputParser identifies the command, a new instance of the UpdateShowEpisodeProgressCommand will be created.
+
+**Step 2**
+
+*  `processCommand()` is called and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command
+
 ### UpdateShowSeasonCommand
+
+The UpdateShowSeasonCommand class extends Command by providing methods to change
+ the current season in the persistent watch history of the user. 
+
+**Step 1**
+
+* User types in `updatesshowseason friends 2`
+* When the InputParser identifies the command, a new instance of the UpdateShowSeasonCommand will be created.
+
+**Step 2**
+
+*  `processCommand()` is called
+
+**Step 3**
+1 If only currentSeason is to be updated
+1.1 `updateSeasonOnly()` method is called.
+1.2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command.
+
+2 If both currentSeason and currentEpisode are to be updated
+2.1  `updateSeasonAndEpisode()` method is called.
+2.2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command, 
+and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
 
 ### UpdateTimeLimitCommand
 
@@ -692,9 +727,14 @@ Expected: An error message indicating that the show was not found.
 
 Expected: An error message displayed due to the different number of seasons and episodes for each season given.
 
-3. Test case: ``
+3. Test case: `duration 1h0m` followed by `done`
 
-4. Test case: ``
+Expected: A message acknowledging the change. `Updated show details.`
+
+4. Test case: `season 3` followed by `episode 10,10,10` and then followed by `done`
+
+Expected: A message acknowledging the change. `Updated show details.`
+
 
 ### Managing Reviews and Ratings
 
@@ -704,9 +744,9 @@ Expected: An error message displayed due to the different number of seasons and 
 
 > **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
 
-2. Test case: `season 3` followed by `episode 3,10`
+2. Test case: `add review friends 8 / Joey is my favourite character`
 
-Expected: An error message displayed due to the different number of seasons and episodes for each season given.
+Expected: An acknowledgement message `Your review for friends has been added.`
 
 3. Test case: ``
 
@@ -714,7 +754,7 @@ Expected: An error message displayed due to the different number of seasons and 
 
 #### Changing a review
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. 
 
@@ -728,7 +768,7 @@ Expected:
 
 #### Changing a rating
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. 
 
@@ -742,7 +782,7 @@ Expected:
 
 #### Deleting a rating
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. 
 
