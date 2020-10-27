@@ -37,7 +37,7 @@
 ### Architecture
 ![Architecture](diagrams/Architecture.png)
 
-The ModTracker class is the main entry point for the ModTracker application. It contains the main, loadData, run, 
+`Main` has a `ModTracker` class. It is the main entry point for the ModTracker application. It contains the main, loadData, run, 
 startAndGetName and runCommandLoopUntilExitCommand methods. The methods are responsible for:
 * At app launch:
     * Creation of a ModTracker object.
@@ -45,7 +45,7 @@ startAndGetName and runCommandLoopUntilExitCommand methods. The methods are resp
     * Run the ModTracker app.
 * At runtime:
     * Continuously prompt the user for input until app termination.
-* At shutdown:
+* At shut down:
     * Save user data into a text file.
     * Invoke clean up methods where necessary.
     
@@ -75,7 +75,6 @@ The `UI` component,
 ### Model component
 
 ![modelcomponent](diagrams/modelcomponent.png)
-
 The Model,
 * consists of ModuleList class that supports functions to execute module-related commands, 
   such as addmod, deletemod etc.
