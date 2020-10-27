@@ -42,8 +42,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.6. [Check Overall Performance for a Chapter Feature](#436-check-overall-performance-for-a-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.7. [Example of the Chapter Feature](#437-example-of-the-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
-4.4. [Revision Features](#44-revision-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Revision Feature](#441-revision-feature)<br>
+4.4. [Revise Feature](#44-revise-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Implementation](#441-implementation)<br>
 4.5. [Scheduler feature](#45-scheduler-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
@@ -113,6 +113,8 @@ The rest of the App consists of 8 components:
 
 ### 3.1. Ui Component 
 (Jia Ern)
+
+![Class Diagram of Ui Component](UML/ui_component.PNG)
 
 The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
 
@@ -212,11 +214,42 @@ The UI component is responsible for:
 
 #### 4.3.8. Conclusion
 
-### 4.4. Revision Feature
-[summary + scenario]
-
-#### 4.4.1. Revision Feature
+### 4.4. Revise Feature
 (Jia Ern)
+
+The Revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
+
+#### 4.4.1. Implementation
+The Revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
+
+In addition, it implements the following operations:
+* `ReviseCommand#execute()` — oversees the entire revise process and calls the respective methods when necessary.
+* `ReviseCommand#getChapter()` — gets `chapter` based on the index the user provided.
+* `ReviseCommand#getCards()` — gets a list of `card` in `chapter`.
+* `ReviseCommand#promptNotDue()` — prompts user if he still wants to revise a `chapter` that is not due.
+* `ReviseCommand#reviseCard()` — makes use of `ui` to show the contents of each card to the user and gets rating input for the particular card.
+* `ReviseCommand#addHistory()` — adds the `chapter` to storage to track past revisions.
+* `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
+* `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
+
+For instance, a user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `CS2113T` at the module level.
+
+Step 2: The user executes `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
+
+Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
+
+Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
+
+Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
+
+Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
+
+Step 7: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
+
+The following sequence diagram shows how the revise feature works:
+![Sequence Diagram of Revise](UML/revise_seq_diagram.puml)
 
 ### 4.5. Scheduler Feature
 [summary + scenario]
