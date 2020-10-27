@@ -1,6 +1,6 @@
 package anichan.parser;
 
-import anichan.command.BookmarkAnimeCommand;
+import anichan.command.BookmarkCommand;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 
@@ -30,6 +30,7 @@ class BookmarkParserTest {
     private static final String INVALID_FIELD_LIST = "-l test";
     private static final String INVALID_SINGLE_INPUT_TEST = "a";
     private static final String UNKNOWN_PARAMETER = "-h";
+    private static final String EMPTY_PARAMETER = " - ";
 
     private static final String VALID_SINGLE_INPUT_TEST = "1";
     private static final String VALID_SINGLE_INPUT_TEST2 = "10";
@@ -44,9 +45,9 @@ class BookmarkParserTest {
     @Test
     void execute_validSingleParameter_Successful() throws AniException {
         BookmarkParser testInfo1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = testInfo1.parse(VALID_SINGLE_INPUT_TEST);
+        BookmarkCommand testCommand = testInfo1.parse(VALID_SINGLE_INPUT_TEST);
         BookmarkParser testInfo2 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand2 = testInfo2.parse(VALID_SINGLE_INPUT_TEST2);
+        BookmarkCommand testCommand2 = testInfo2.parse(VALID_SINGLE_INPUT_TEST2);
         assertEquals(testCommand.getBookmarkAction(), "i");
         assertEquals(testCommand2.getBookmarkAction(), "i");
     }
@@ -54,35 +55,35 @@ class BookmarkParserTest {
     @Test
     void execute_validFieldForNote_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = test1.parse(VALID_NOTE_TEST);
+        BookmarkCommand testCommand = test1.parse(VALID_NOTE_TEST);
         assertEquals(testCommand.getBookmarkAction(), "n");
     }
 
     @Test
     void execute_validList_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = test1.parse(VALID_LIST_TEST);
+        BookmarkCommand testCommand = test1.parse(VALID_LIST_TEST);
         assertEquals(testCommand.getBookmarkAction(), "l");
     }
 
     @Test
     void execute_validEdit_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = test1.parse(VALID_EDIT_TEST);
+        BookmarkCommand testCommand = test1.parse(VALID_EDIT_TEST);
         assertEquals(testCommand.getBookmarkAction(), "e");
     }
 
     @Test
     void execute_validAdd_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = test1.parse(VALID_ADD_TEST);
+        BookmarkCommand testCommand = test1.parse(VALID_ADD_TEST);
         assertEquals(testCommand.getBookmarkAction(), "a");
     }
 
     @Test
     void execute_validDelete_Successful() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
-        BookmarkAnimeCommand testCommand = test1.parse(VALID_DELETE_TEST);
+        BookmarkCommand testCommand = test1.parse(VALID_DELETE_TEST);
         assertEquals(testCommand.getBookmarkAction(), "d");
     }
 
@@ -234,4 +235,13 @@ class BookmarkParserTest {
             test1.parse(NEGATIVE_ANIMEID_ADD_TEST);
         });
     }
+
+    @Test
+    void execute_emptyParameter_ThrowsAniException() throws AniException {
+        BookmarkParser test1 = new BookmarkParser();
+        assertThrows(AniException.class, () -> {
+            test1.parse(EMPTY_PARAMETER);
+        });
+    }
+
 }
