@@ -95,7 +95,7 @@ public class ListCommand extends Command {
         result.append(String.format(MESSAGE_EXIST, CHAPTER));
         for (Chapter c : allChapters) {
             result.append("\n").append(allChapters.indexOf(c) + 1).append(".")
-                    .append(c).append(" ").append(c.translateRating());
+                    .append(c);
             if (c.getDueBy() == null) {
                 result.append(" (No due date)");
             } else {

@@ -3,6 +3,7 @@ package commands;
 import access.Access;
 import common.KajiLog;
 import manager.card.Card;
+import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.history.History;
 import scheduler.Scheduler;
@@ -119,7 +120,8 @@ public class ReviseCommand extends Command {
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         logger.info("Revision has completed for chapter: " + toRevise);
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
-
+        CardList newCards = new CardList(allCards);
+        storage.saveCards(newCards, access.getModuleLevel(), toRevise.getChapterName());
         addHistory(ui, access, storage);
     }
 
@@ -140,23 +142,23 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
-                c.setRating(Card.EASY);
                 c.setPreviousInterval(Scheduler.computeEasyInterval(c.getPreviousInterval()));
+                c.setRating(Card.EASY);
                 isInvalid = false;
                 break;
             case MEDIUM:
-                c.setRating(Card.MEDIUM);
                 c.setPreviousInterval(Scheduler.computeMediumInterval(c.getPreviousInterval()));
+                c.setRating(Card.MEDIUM);
                 isInvalid = false;
                 break;
             case HARD:
-                c.setRating(Card.HARD);
                 c.setPreviousInterval(Scheduler.computeHardInterval(c.getPreviousInterval()));
+                c.setRating(Card.HARD);
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
-                c.setRating(Card.CANNOT_ANSWER);
                 repeatCards.add(c);
+                c.setRating(Card.CANNOT_ANSWER);
                 isInvalid = false;
                 break;
             default:
