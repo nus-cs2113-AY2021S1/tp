@@ -1,0 +1,16 @@
+@startuml
+-> ":BackModuleCommand" : execute(ui, access, storage)
+activate ":BackModuleCommand"
+":BackModuleCommand" -> ":Access" : setChapterLevel(chapterLevel)
+activate ":Access"
+":Access" -> ":Access" : setBackModuleLevel(chapterLevel)
+activate ":Access"
+":Access" -> ":Access" : setIsModuleLevel()
+activate ":Access"
+deactivate ":Access"
+deactivate ":Access"
+deactivate ":Access"
+destroy ":Access"
+<-- ":BackModuleCommand"
+deactivate ":BackModuleCommand"
+@enduml

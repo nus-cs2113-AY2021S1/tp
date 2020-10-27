@@ -1,0 +1,58 @@
+@startuml
+-> ":ReviseCommand" : execute(ui, access, storage)
+activate ":ReviseCommand"
+":ReviseCommand" -> ":ReviseCommand" : getChapter(reviseIndex, access)
+activate ":ReviseCommand"
+":ReviseCommand" --> ":ReviseCommand" : toRevise
+deactivate ":ReviseCommand"
+opt chapter not due
+    ":ReviseCommand" -> ":ReviseCommand" : promptNotDue(ui, toRevise)
+    activate ":ReviseCommand"
+    ":ReviseCommand" -> ":Ui" : getInput()
+    ":ReviseCommand" <-- ":Ui" : input
+    loop input is invalid
+        alt user enters Y
+        else user enters N
+        else invalid input
+            ":ReviseCommand" -> ":Ui" : getInput()
+            ":ReviseCommand" <-- ":Ui" : input
+        end
+    end
+    ":ReviseCommand" --> ":ReviseCommand" : notRevising
+    deactivate ":ReviseCommand"
+    opt notRevising
+        <--  ":ReviseCommand"
+    end
+end
+":ReviseCommand" -> ":ReviseCommand" : getCards(ui, access, storage)
+activate ":ReviseCommand"
+":ReviseCommand" -> ":Storage" : loadCard(module, chapter)
+":ReviseCommand" <-- ":Storage" : allCards
+":ReviseCommand" -> ":Chapter" : setCards(allCards)
+":ReviseCommand" --> ":ReviseCommand" : allCards
+deactivate ":ReviseCommand"
+":ReviseCommand" -> ":Ui" : showToUser(cardCount)
+opt no cards
+    ":ReviseCommand" -> ":Ui" : showToUser(message)
+    ":ReviseCommand" <-- ":Ui"
+    <-- ":ReviseCommand"
+end
+":ReviseCommand" -> ":Ui" : showToUser(message)
+loop all cards
+    ":ReviseCommand" -> ":ReviseCommand" : reviseCard(count, c, ui, repeatCards)
+    activate ":ReviseCommand"
+    ":ReviseCommand" -> ":ReviseCommand" : rateCard(ui, repeatCards, c, input)
+    activate ":ReviseCommand"
+    deactivate ":ReviseCommand"
+    ":ReviseCommand" --> ":ReviseCommand" : count
+    deactivate ":ReviseCommand"
+end
+":ReviseCommand" -> ":ReviseCommand" : repeatRevision(ui, repeatCards, count)
+activate ":ReviseCommand"
+deactivate ":ReviseCommand"
+":ReviseCommand" -> ":Chapter" : setDueBy(dueBy, storage, access)
+":ReviseCommand" -> ":Storage" : saveCards(cards, module, chapter)
+":ReviseCommand" -> ":ReviseCommand" : addHistory(ui, access, storage)
+<-- ":ReviseCommand"
+deactivate ":ReviseCommand"
+@enduml
