@@ -72,9 +72,7 @@ public class Edit extends ModificationCommand {
         }
         tasks.delete(key);
         tasks.addTask(editedTask);
-        TaskMap taskChanged = new TaskMap();
-        taskChanged.addTask(editedTask);
         model.pushAndUpdate(tasks);
-        return new CommandResult(EDIT_MESSAGE,taskChanged);
+        return new CommandResult(EDIT_MESSAGE,task);
     }
 }

@@ -53,10 +53,8 @@ public class Add extends ModificationCommand {
         }
         task.setTaskID(taskID);
         tasks.addTask(task);
-        TaskMap taskChanged = new TaskMap();
-        taskChanged.addTask(task);
         // update stack
         model.pushAndUpdate(tasks);
-        return new CommandResult(ADD_MESSAGE,taskChanged);
+        return new CommandResult(ADD_MESSAGE,task);
     }
 }

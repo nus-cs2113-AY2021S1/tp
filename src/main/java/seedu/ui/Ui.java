@@ -65,6 +65,22 @@ public class Ui {
         }
     }
 
+    public void displayTask(Task task) {
+        // Header
+        String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
+        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
+        out.println("   " + Util.generatePadStringWithCharAndLength('_', 93));
+        out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+
+        out.format(contentFormat,"#" + task.getTaskID(),
+                Util.limitStringWithDots(task.getDescription(), 20),
+                task.getDate(),
+                task.getStartTime() == null ? "" : task.getStartTime(),
+                task.getEndTime() == null ? "" : task.getEndTime(),
+                task.getPriority());
+    }
+
     public void displayTasks(TaskMap tasks) {
         // Header
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
@@ -165,6 +181,20 @@ public class Ui {
                 }
                 displayByDateStructure(result.getTasks());
             }
+        } else if(result.getTask() != null) {
+            if (result.getDisplayMode() == DisplayMode.ALL) {
+                displayTask(result.getTask());
+            } else {
+                if (result.getDisplayMode() == DisplayMode.DAY) {
+                    displayDateStructure = new DayStructure(result.getDate());
+                } else if (result.getDisplayMode() == DisplayMode.WEEK) {
+                    // Weekly view
+                    displayDateStructure = new WeekStructure();
+                } else if (result.getDisplayMode() == DisplayMode.MONTH) {
+                    // Monthly view
+                    displayDateStructure = new MonthStructure();
+                }
+                displayByDateStructure(result.getTasks());
         }
     }
 }

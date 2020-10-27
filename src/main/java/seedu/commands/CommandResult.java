@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.data.TaskMap;
 import seedu.ui.DisplayMode;
+import seedu.task.Task;
 
 import java.time.LocalDate;
 
@@ -9,6 +10,7 @@ public class CommandResult {
     private final String message;
 
     private TaskMap tasks = null;
+    private Task task = null;
     private DisplayMode displayMode = DisplayMode.ALL;
     private boolean isExit = false;
     private LocalDate date;
@@ -22,12 +24,21 @@ public class CommandResult {
         this.tasks = tasks;
     }
 
+    public CommandResult(String message,Task task) {
+        this.message = message;
+        this.task = task;
+    }
+
     public String getMessage() {
         return message;
     }
 
     public TaskMap getTasks() {
         return tasks;
+    }
+
+    public Task getTask() {
+        return task;
     }
 
     public DisplayMode getDisplayMode() {
