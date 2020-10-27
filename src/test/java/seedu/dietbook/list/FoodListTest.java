@@ -1,10 +1,10 @@
-package seedu.duke.list;
+package seedu.dietbook.list;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 
 class FoodListTest {
