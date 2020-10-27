@@ -369,6 +369,10 @@ public class Notebook {
         return notes.size();
     }
 
+    public int getNoteIndex(Note note) {
+        return notes.indexOf(note) + 1;
+    }
+
     public int getArchivedNoteSize() {
         return archivedNotes.size();
     }
