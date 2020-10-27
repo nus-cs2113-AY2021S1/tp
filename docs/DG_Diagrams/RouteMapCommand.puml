@@ -1,0 +1,41 @@
+@startuml
+
+abstract class Command
+Class RouteMapCommand
+Class Parser{
+{static} getCommand(): String
+}
+
+Class BusData {
+{static} selectBus (:String) : Bus
+}
+Class Bus {
+}
+
+enum BusStops {
+PGP
+KENTRIDGEMRTSTATION
+...
+COLLEGEGREEN
+OEITIONGHAM
+}
+
+enum ExceptionType {
+NO_ROUTE_DELIMITER
+NO_LOCATIONS
+SAME_LOCATIONS
+...
+}
+
+Command <|- RouteMapCommand
+Parser "1"<--down RouteMapCommand
+RouteMapCommand .> BusData
+BusData --> "0..*" Bus
+Bus ..> BusStops
+RouteMapCommand ..> CustomException
+Parser ..> CustomException
+Bus ..> CustomException
+CustomException -> ExceptionType
+
+
+@enduml

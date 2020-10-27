@@ -1,0 +1,61 @@
+@startuml
+actor user
+participant ":Duke"
+box logic #LightBlue
+participant ":Parser"
+participant ":RouteMapCommand"
+end box
+box model #A9DFDF
+participant ":BusData"
+participant ":Bus"
+end box
+box Ui #A9D1D0
+participant ":Ui"
+end box
+
+user ->":Duke"
+":Duke" -> ":Ui" : getUserInput()
+activate ":Ui"
+":Ui" --> ":Parser": String userInput
+deactivate ":Ui"
+
+activate ":Parser"
+create ":RouteMapCommand"
+":Parser" -> ":RouteMapCommand" :extractType()
+activate ":RouteMapCommand"
+":RouteMapCommand" --> ":Parser"
+deactivate ":RouteMapCommand"
+":Parser" -> ":RouteMapCommand" : executeCommand()
+activate ":RouteMapCommand"
+opt empty command
+    ":RouteMapCommand" --> ":Parser" : MISSING_BUS_CODE
+    ":Parser" --> ":Duke"
+end
+
+":RouteMapCommand" -> ":BusData" : selectBus();
+loop number of bus routes
+    ":BusData" -> ":Bus" : equals()
+     activate ":Bus"
+    ":Bus" --> ":BusData" : Bus object
+    deactivate ":Bus"
+end
+
+alt Bus object found
+activate ":BusData"
+":BusData" --> ":RouteMapCommand" : Bus object
+else Bus object not found
+":BusData" --> ":RouteMapCommand" : null
+deactivate ":BusData"
+end
+":RouteMapCommand" -> ":Ui" : printFullRoute()
+activate ":Ui"
+":Ui" --> ":RouteMapCommand"
+deactivate ":Ui"
+
+":RouteMapCommand" --> ":Parser"
+deactivate ":RouteMapCommand"
+":Parser" --> ":Duke":Boolean isOngoing
+deactivate ":Parser"
+
+
+@enduml
