@@ -40,13 +40,13 @@ own class declarations.
 * The initialisation of ```Ledger``` and ```Entry``` instances can be
 performed with reference to input parameters supplied from the user input.
 * For ledger creation operations, the input from the user is parsed and passed into an initialized ledger instance
-to handle. That is, the handling of input parameters is abstracted out from the handler classes. 
+to handle. That is, the handling of input parameters is abstracted out from the tracker classes. 
 <br> The handle operation will set the various attributes within the ledger in accordance to specifications inferred
 from the user input. 
 <br> If the ledger is successfully specified in full, it will be added to a ```ledgerList``` instance within the handler 
 class ```ManualTracker```.
 * For ledger deletion/open, a ledger will need to be selected from the ledger list maintained by the handler class.
-<br>Hence, the input from the user is parsed and passed into the ledger list instance to handle. If the input
+<br>Hence, the input from the user is parsed and passed into a command instance to handle. If the input
 is valid, the ledger list instance will assign a reference to the ledger selected to a public ```currLedger``` 
 attribute. 
 <br>After which, an operation of edit/open would be performed upon the ledger referenced from 
@@ -115,6 +115,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
 **Operation: Ledger Creation**
 
 ***UML Sequence Diagram***
+
 ![](uml_images/manualTracker/UmlSeqHandleCreateLedger.png)
 ### FinanceTools
 FinanceTools consists of the following features
@@ -318,6 +319,27 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
+![](.DeveloperGuide_images/manualTrackerCreateLedgerSeqDiagram.png)
+
+**Operation: Ledger Deletion**
+
+***UML Sequence Diagram***
+
+![](.DeveloperGuide_images/manualtrackerDeleteLedgerSeqDiagram.png)
+
+
+### EntryTracker
+**Operation: Entry Creation**
+
+***UML Sequence Diagram***
+
+![](.DeveloperGuide_images/entryTrackerCreateEntrySeqDiagram.png)
+
+**Operation: Entry Edit**
+
+***UML Sequence Diagram***
+
+![](.DeveloperGuide_images/entryTrackerEditEntrySeqDiagram.png)
 ## Product scope
 ### Target user profile
 
