@@ -25,7 +25,7 @@ enhancements.
 
 ## 1. Setting up, getting started
 
-Refer to the guide Setting up and getting started.
+Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
 ## 2. Design & Implementation
 
