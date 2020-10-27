@@ -26,6 +26,7 @@ public abstract class Command {
     public static final String ERROR_CATEGORY_EXISTS_IN_QUOTE = "Category [%s] already exists in quote [\"%s\"]!";
     public static final String ERROR_CATEGORY_NOT_IN_BOOK = "Category [%s] not found in book [%s]!";
     public static final String ERROR_CATEGORY_NOT_IN_QUOTE = "Category [%s] not found in quote [\"%s\"]!";
+    public static final String ERROR_NO_MATCHING_CATEGORY = "There are no matching categories!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_QUOTE_NUMBER = "Quote number is missing";
     public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";

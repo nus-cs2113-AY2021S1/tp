@@ -34,6 +34,9 @@ public class FindCommand extends Command {
         case TAG_QUOTE:
             new FindQuoteCommand(arguments).execute(ui, storage);
             break;
+        case TAG_CATEGORY:
+            new FindCategoryCommand(arguments).execute(ui, storage);
+            break;
         default:
             ui.printListOfFindCommands();
             break;
