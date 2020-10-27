@@ -45,8 +45,7 @@ public class TaskList {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             assert toPrint : "toPrint should be true";
-            ui.printErrorMessage(e.getMessage());
-            System.out.println("");
+            ui.printErrorMessage(Parser.COMMAND_DONE);
         }
     }
 
@@ -80,8 +79,7 @@ public class TaskList {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             assert toPrint : "toPrint should be true";
-            ui.printErrorMessage(e.getMessage());
-            System.out.println("");
+            ui.printErrorMessage(Parser.COMMAND_DELETETASK);
         }
     }
 
@@ -114,8 +112,7 @@ public class TaskList {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             assert toPrint : "toPrint should be true";
-            ui.printErrorMessage(e.getMessage());
-            System.out.println("");
+            ui.printErrorMessage(Parser.COMMAND_ADDTASK);
         }
     }
 

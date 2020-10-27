@@ -10,7 +10,7 @@ public class Parser {
     public static final String COMMAND_DELETEMOD = "deletemod";
     public static final String COMMAND_DELETEEXP = "deleteexp";
     public static final String COMMAND_OPEN_NOTIFICATION = "open";
-    public static final String COMMAND_MINUS = "minustime";
+    public static final String COMMAND_MINUSTIME = "minustime";
     public static final String COMMAND_EDITTIME = "edittime";
     public static final String COMMAND_DELETETIME = "deletetime";
     public static final String COMMAND_ADDTIME = "addtime";
@@ -53,7 +53,11 @@ public class Parser {
             modList.deleteMod(input, toPrint, storage);
             break;
         case COMMAND_EDITTIME:
-            modList.editTime(input, toPrint, storage);
+            try {
+                modList.editTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(COMMAND_EDITTIME);
+            }
             break;
         case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);
@@ -70,24 +74,21 @@ public class Parser {
             try {
                 modList.addTime(input, toPrint, storage);
             } catch (Exception e) {
-                ui.printErrorMessage(e.getMessage());
-                System.out.println("");
+                ui.printErrorMessage(COMMAND_ADDTIME);
             }
             break;
-        case COMMAND_MINUS:
+        case COMMAND_MINUSTIME:
             try {
                 modList.minusTime(input, toPrint, storage);
             } catch (Exception e) {
-                ui.printErrorMessage(e.getMessage());
-                System.out.println("");
+                ui.printErrorMessage(COMMAND_MINUSTIME);
             }
             break;
         case COMMAND_DELETETIME:
             try {
                 modList.deleteTime(input, toPrint, storage);
             } catch (Exception e) {
-                ui.printErrorMessage(e.getMessage());
-                System.out.println("");
+                ui.printErrorMessage(COMMAND_DELETETIME);
             }
             break;
         case COMMAND_LIST:
@@ -95,13 +96,16 @@ public class Parser {
             try {
                 ui.printTable(modList, Integer.parseInt(command[1]));
             } catch (Exception e) {
-                ui.printErrorMessage(e.getMessage());
-                System.out.println("");
+                ui.printErrorMessage(COMMAND_LIST);
             }
             break;
         case COMMAND_ANALYSIS:
-            assert toPrint : "toPrint should be true";
-            ui.printBreakDownAnalysis(modList, Integer.parseInt(command[1]));
+            try {
+                assert toPrint : "toPrint should be true";
+                ui.printBreakDownAnalysis(modList, Integer.parseInt(command[1]));
+            } catch (Exception e) {
+                ui.printErrorMessage(COMMAND_ANALYSIS);
+            }
             break;
         case COMMAND_ADDTASK:
             taskList.addTask(input, toPrint, storage);
