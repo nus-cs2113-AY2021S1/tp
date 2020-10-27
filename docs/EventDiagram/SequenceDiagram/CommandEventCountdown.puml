@@ -1,28 +1,28 @@
 @startuml
- -> CommandEventCountdown: execute()
+ -> ":CommandEventCountdown" : execute()
 
-activate  CommandEventCountdown
-activate EventList
-activate EventList #DarkSalmon
- CommandEventCountdown -> EventList:countdownView()
+activate  ":CommandEventCountdown"
+activate ":EventList"
+activate ":EventList" #DarkSalmon
+ ":CommandEventCountdown" -> ":EventList":countdownView()
 alt empty ArrayList
-    EventList -->  CommandEventCountdown
+    ":EventList" -->  ":CommandEventCountdown"
 else else
     loop until end of ArrayList
-        EventList -> Event : printEvent()
-        activate Event
-        Event --> EventList
-        deactivate Event
-        EventList -> Event: numberOfDaysLeft()
-        activate Event
-        Event --> EventList
-        deactivate Event
-        EventList -->  CommandEventCountdown
-        deactivate EventList
-        return
+        ":EventList" -> ":Event": printEvent()
+        activate ":Event"
+        ":Event" -->":EventList"
+        deactivate ":Event"
+        ":EventList" -> ":Event": numberOfDaysLeft()
+        activate ":Event"
+        ":Event" --> ":EventList"
+        deactivate ":Event"
+        ":EventList" -->  ":CommandEventCountdown" : output
+        deactivate ":EventList"
+        return output
     end
-    deactivate EventList
-    deactivate EventList
-    deactivate  CommandEventCountdown
+    deactivate ":EventList"
+    deactivate ":EventList"
+    deactivate ":CommandEventCountdown"
 end
 @enduml

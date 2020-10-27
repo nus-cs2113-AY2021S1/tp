@@ -146,6 +146,14 @@ command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1
 
 ![](financeDiagramPic/1-1S3.png)
 
+The sequence diagram for adding a finance log entry is shown below:  
+
+![](financeDiagramPic/CommandFinanceAdd.png)  
+
+The sequence diagram for deleting a finance log entry is shown below:  
+
+![](financeDiagramPic/CommandFinanceDel.png)  
+
 **3.3.1.2. Design Considerations**  
 Aspect: User input format for adding a finance log entry
 *Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
@@ -175,7 +183,12 @@ Step 1. After some `finance addLog` commands, the user created a `FinanceList` w
 Step 2. The user executes `finance summary` command to list the summary of `FinanceList`. The `finance summary` command calls 
 `CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom. Nothing will be changed in `FinanceList`.  
 
-![](financeDiagramPic/1-2S2.png)
+![](financeDiagramPic/1-2S2.png)  
+
+The sequence diagram of listing summary of finance log entries is shown below:  
+
+![](financeDiagramPic/CommandFinanceSummary.png)  
+
 
 **3.3.2.2. Design Considerations**  
 Aspect: Repeated items  
@@ -248,6 +261,7 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 ![](EventDiagram/Step2.png)
 
 The sequence diagram for listing events is as shown below:
+
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
 **3.4.3. Searching for an event via name or date**

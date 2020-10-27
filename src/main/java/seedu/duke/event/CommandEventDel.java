@@ -39,6 +39,7 @@ public class CommandEventDel extends Command {
     public int validate(UserInput ui) {
         userInput = ui;
         if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("delEvent")
+                || ui.getCommand().equalsIgnoreCase("delete")
                 || ui.getCommand().equalsIgnoreCase("del")
                 || ui.getCommand().equalsIgnoreCase("d"))) {
             if (ui.getNumArgs() == 1) {

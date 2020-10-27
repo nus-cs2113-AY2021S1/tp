@@ -1,25 +1,25 @@
 @startuml
- -> CommandSearchEvent: execute()
+ -> ":CommandSearchEvent" : execute()
 
-activate CommandSearchEvent
-activate EventList
-activate EventList
-CommandSearchEvent -> EventList:searchEvents()
+activate ":CommandSearchEvent"
+activate ":EventList"
+activate ":EventList"
+":CommandSearchEvent" -> ":EventList":searchEvents()
 
-EventList -> EventList : checkIfEventNameMatch() | checkIfEventDateMatch
-activate EventList
-EventList -> EventList : printFilteredEvents()
-activate EventList
-EventList -> Event : printEvent()
-activate Event
-EventList <-- Event
-deactivate Event
+":EventList" -> ":EventList" : checkIfEventNameMatch() | checkIfEventDateMatch
+activate ":EventList"
+":EventList" -> ":EventList" : printFilteredEvents()
+activate ":EventList"
+":EventList" -> ":Event" : printEvent()
+activate ":Event"
+":EventList" <-- ":Event"
+deactivate ":Event"
 return
 return
-CommandSearchEvent <-- EventList
-deactivate EventList
-return
-deactivate CommandSearchEvent
+":CommandSearchEvent" <-- ":EventList" : output
+deactivate ":EventList"
+return output
+deactivate ":CommandSearchEvent"
 
 
 

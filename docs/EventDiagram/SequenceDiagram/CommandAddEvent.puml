@@ -1,19 +1,19 @@
 @startuml
- -> CommandEventAdd: execute()
+ -> ":CommandEventAdd": execute()
 
 
-activate CommandEventAdd
-CommandEventAdd -> EventList: addEvent()
-activate EventList
-EventList -> Event: add()
-activate Event
+activate ":CommandEventAdd"
+":CommandEventAdd" -> ":EventList" : addEvent()
+activate ":EventList"
+":EventList" -> ":Event": add()
+activate ":Event"
 return
-EventList -> Event : printEvent()
-activate Event
+":EventList" -> ":Event" : printEvent()
+activate ":Event"
 return
-return
-return
-deactivate CommandEventAdd
+return output
+return output
+deactivate ":CommandEventAdd"
 
 
 

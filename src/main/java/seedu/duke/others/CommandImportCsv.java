@@ -23,35 +23,58 @@ public class CommandImportCsv extends Command {
     public String execute() {
         String filename = userInput.getArg("");
         String category = userInput.getArg("c");
+        int rowsBefore = 0;
+        int rowsAfter = 0;
+        String failed = "";
         try {
             HashMap<String, ArrayList<String>> map = FileManager.readFile(filename);
+
             if (category.equalsIgnoreCase("finance")) {
                 int rows = map.get(userInput.getArg("name")).size();
+                rowsBefore = FinanceList.financeLogs.size();
                 for (int i = 0; i < rows; i++) {
-                    FinanceLog tmp = new FinanceLog(map.get(userInput.getArg("name")).get(i),
-                            Double.parseDouble(map.get(userInput.getArg("value")).get(i)));
-                    FinanceList.financeLogs.add(tmp);
+                    try {
+                        FinanceLog tmp = new FinanceLog(map.get(userInput.getArg("name")).get(i),
+                                Double.parseDouble(map.get(userInput.getArg("value")).get(i)));
+                        FinanceList.financeLogs.add(tmp);
+                    } catch (Exception e) {
+                        failed += (failed.equals("")) ? "" + i : "," + i;
+                    }
                 }
+                rowsAfter = FinanceList.financeLogs.size();
             } else if (category.equalsIgnoreCase("hr")) {
                 int rows = map.get(userInput.getArg("name")).size();
+                rowsBefore = MemberList.members.size();
                 for (int i = 0; i < rows; i++) {
-                    Member tmp = new Member(map.get(userInput.getArg("name")).get(i),
-                            Long.parseLong(map.get(userInput.getArg("phone")).get(i)),
-                            map.get(userInput.getArg("email")).get(i),
-                            map.get(userInput.getArg("role")).get(i));
-                    MemberList.members.add(tmp);
+                    try {
+                        Member tmp = new Member(map.get(userInput.getArg("name")).get(i),
+                                Long.parseLong(map.get(userInput.getArg("phone")).get(i)),
+                                map.get(userInput.getArg("email")).get(i),
+                                map.get(userInput.getArg("role")).get(i));
+                        MemberList.members.add(tmp);
+                    } catch (Exception e) {
+                        failed += (failed.equals("")) ? "" + i : "," + i;
+                    }
                 }
+                rowsAfter = MemberList.members.size();
             } else if (category.equalsIgnoreCase("event")) {
                 int rows = map.get(userInput.getArg("name")).size();
+                rowsBefore = EventList.events.size();
                 for (int i = 0; i < rows; i++) {
-                    Event tmp = new Event(map.get(userInput.getArg("name")).get(i),
-                            map.get(userInput.getArg("date")).get(i),
-                            map.get(userInput.getArg("time")).get(i));
-                    EventList.events.add(tmp);
+                    try {
+                        Event tmp = new Event(map.get(userInput.getArg("name")).get(i),
+                                map.get(userInput.getArg("date")).get(i),
+                                map.get(userInput.getArg("time")).get(i));
+                        EventList.events.add(tmp);
+                    } catch (Exception e) {
+                        failed += (failed.equals("")) ? "" + i : "," + i;
+                    }
                 }
+                rowsAfter = EventList.events.size();
             } else {
                 return "Please specify a valid category.";
             }
+            assert (rowsAfter < rowsBefore) : "Less rows than before after importing!";
         } catch (IOException e) {
             return "Unable to read file! Please check your path/filename!";
         } catch (DukeFileHeaderException e) {
@@ -60,18 +83,22 @@ public class CommandImportCsv extends Command {
             return "Header mismatch!";
         } catch (DukeFileFormatException e) {
             return "Unable to read CSV file! Please check that the specified file is properly formatted!";
+        } catch (NullPointerException e){
+            return "Unable to find column header name in your file! Please check the spelling and capitalization.";
         }
-        return "Successfully imported file"; // TODO update this text to give more information 
+        final String s = "Successfully imported " + (rowsAfter - rowsBefore) + " entries."
+                + ((failed.equals("")) ? "" : "\nFailed to import index: " + failed);
+        return s;
     }
 
     @Override
     public String help() {
         return "Syntax: import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME \n"
-                + "OR: import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME\n"
-                + "OR: import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME\n\n"
-                + "Opens the given CSV file and imports the data in the columns specified by the HEADER_NAME. "
-                + "The mapping specifies that the HEADER_NAME will be assigned to a particular argument. "
-                + "HEADER_NAME is case sensitive";
+               + "OR: import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME\n"
+               + "OR: import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME\n\n"
+               + "Opens the given CSV file and imports the data in the columns specified by the HEADER_NAME. "
+               + "The mapping specifies that the HEADER_NAME will be assigned to a particular argument. "
+               + "HEADER_NAME is case sensitive";
     }
 
     public int validate(UserInput ui) {

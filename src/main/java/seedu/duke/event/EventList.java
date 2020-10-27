@@ -203,6 +203,7 @@ public class EventList {
      * @return returns true if at least one event contains the event date
      */
     public static boolean checkIfEventDateMatch(String keyword) {
+        assert keyword != null;
         LocalDate date = LocalDate.parse(keyword);
         boolean hasMatchedTask = false;
         for (Event event : events) {
@@ -220,6 +221,7 @@ public class EventList {
      * @param keyword The word used for search.
      */
     private static String printFilteredEventsByName(String keyword) {
+        assert keyword != null;
         int taskNumber = 1;
         String output = "";
         for (Event event : events) {
@@ -232,6 +234,7 @@ public class EventList {
     }
 
     private static String printFilteredEventsByDate(String keyword) {
+        assert keyword != null;
         int taskNumber = 1;
         String output = "";
         for (Event event : events) {
