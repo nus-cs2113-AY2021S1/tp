@@ -5,6 +5,7 @@ import seedu.notus.command.Command;
 import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.exception.SystemException.ExceptionType;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_END;
@@ -32,6 +33,9 @@ public abstract class Parser {
     protected static final int CONTAINS_TAG_COLOR_INFO = 2;
     protected static final int NULL_INDEX = 0;
     protected String userMessage;
+    protected static final String[] INSTRUCTIONS_INPUT_CONTENTS = {
+            "Enter Note:", "*/del to delete previous line*", "*/end on a new line to end note input*"
+    };
 
     //@@author Chongjx
     public Parser(String userMessage) {
@@ -129,9 +133,7 @@ public abstract class Parser {
             Scanner input = new Scanner(System.in);
             inputString = new ArrayList<>();
 
-            System.out.println("Enter Note:");
-            System.out.println("Type /del to delete your previous line");
-            System.out.println("Type /end on a new line to end your note input");
+            System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true));
             try {
                 // Type note
                 do {
@@ -146,7 +148,7 @@ public abstract class Parser {
                 } while (!inputString.get(inputString.size() - 1)
                         .equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
-                // Delete "/end" command when user ends the edit
+                // Delete "/end" command when user ends the input
                 inputString.remove(inputString.size() - 1);
 
                 if (inputString.size() != 0) {
@@ -156,6 +158,8 @@ public abstract class Parser {
                 }
             } catch (StringIndexOutOfBoundsException exception) {
                 System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
+            } catch (IndexOutOfBoundsException exception) {
+                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_DEL_INPUT);
             }
         } while (!isInputSuccess);
 
