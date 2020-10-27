@@ -5,6 +5,16 @@
 ## Setting up, getting started
 
 ## Design
+#### Command Component
+
+![Diagram for commmand](./diagrams/Command.jpg)
+
+API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
+1. `Parser` class to parse the user command 
+1.  This results in a `Command` object executed by the `Parser`
+1.  The command execution can affect the `Model`
+
+
 
 ## Implementation
 
@@ -227,8 +237,19 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|office worker (working from home)|organise large amount of online Zoom meetings to manage|keep track of his schedule for the day|
+|v1.0|university student|consolidate my schedule for both my online zoom lectures and my ordinary timetable|better manage my time|
+|v1.0|university student having projects|be informed of the goals of my project|keep track of the project details|
+|v1.0|university student|customise repeated task|set events like tutorials to weekly|
+|v1.0|teacher|organise all my zoom links for my classes|it can be easily accessible.|
+|v1.0|user|see the events that I have created|refer to them when I forget|
+|v1.0|user|check when I am available on that day|avoid manually searching through my entire calendar to find out if I have time|
+|v2.0|user|be able to keep track the status of completion of the events I created|focus more on the tasks that I need to complete|
+|v2.0|user|view which events are upcoming in a convenient readable format|locate the events easily by date|
+|v2.0|user|the application to alert me when my deadlines are coming up|be given enough time to work on them and not rush last minute|
+|v2.0|user|create deadlines from the email text body|avoid looking through the email to create one by one|
+|v2.0|new user (new to text-based application)|detailed directions on commands I can use|easily navigate through the application|
+|v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
 
 ### Use Cases
 
