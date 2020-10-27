@@ -1,16 +1,9 @@
 package seedu.duke.storage;
 
-import seedu.duke.command.ByeCommand;
-import seedu.duke.command.CheckCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.GoalCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Timetable;
 import seedu.duke.event.Zoom;
-import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.parser.DateTimeParser;
 
@@ -30,18 +23,18 @@ public class StorageParser {
 
         switch (type) {
 
-            case "Personal":
-                personalToArguments((Personal) activity, words);
-                break;
-            case "Zoom":
-                zoomToArguments((Zoom) activity, words);
-                break;
-            case "Timetable":
-                timetableToArguments((Timetable) activity, words);
-                break;
-            default:
-                System.out.println("Error, wrong data type provided");
-                break;
+        case "Personal":
+            personalToArguments((Personal) activity, words);
+            break;
+        case "Zoom":
+            zoomToArguments((Zoom) activity, words);
+            break;
+        case "Timetable":
+            timetableToArguments((Timetable) activity, words);
+            break;
+        default:
+            System.out.println("Error, wrong data type provided");
+            break;
         }
 
         return String.join(" | ", words);
@@ -101,7 +94,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString= notesListToString(activity.getNotes());
+        String noteString = notesListToString(activity.getNotes());
         words.add(noteString);
     }
 
@@ -152,7 +145,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString= notesListToString(activity.getNotes());
+        String noteString = notesListToString(activity.getNotes());
         words.add(noteString);
     }
 
@@ -203,7 +196,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString= notesListToString(activity.getNotes());
+        String noteString = notesListToString(activity.getNotes());
         words.add(noteString);
     }
 
@@ -217,23 +210,23 @@ public class StorageParser {
             words[i] = words[i].trim();
         }
         switch (type) {
-            case "Personal":
-                info = Arrays.copyOfRange(words, 0, 5);
-                statuses = Arrays.copyOfRange(words, 5, 6);
-                notes = Arrays.copyOfRange(words, 6, words.length);
-                return makePersonal(info, statuses, notes);
-            case "Zoom":
-                info = Arrays.copyOfRange(words, 0, 6);
-                statuses = Arrays.copyOfRange(words, 6, 7);
-                notes = Arrays.copyOfRange(words, 7, words.length);
-                return makeZoom(info, statuses, notes);
-            case "Timetable":
-                info = Arrays.copyOfRange(words, 0, 6);
-                statuses = Arrays.copyOfRange(words, 6, 7);
-                notes = Arrays.copyOfRange(words, 7, words.length);
-                return makeTimetable(info, statuses, notes);
-            default:
-                return null;
+        case "Personal":
+            info = Arrays.copyOfRange(words, 0, 5);
+            statuses = Arrays.copyOfRange(words, 5, 6);
+            notes = Arrays.copyOfRange(words, 6, words.length);
+            return makePersonal(info, statuses, notes);
+        case "Zoom":
+            info = Arrays.copyOfRange(words, 0, 6);
+            statuses = Arrays.copyOfRange(words, 6, 7);
+            notes = Arrays.copyOfRange(words, 7, words.length);
+            return makeZoom(info, statuses, notes);
+        case "Timetable":
+            info = Arrays.copyOfRange(words, 0, 6);
+            statuses = Arrays.copyOfRange(words, 6, 7);
+            notes = Arrays.copyOfRange(words, 7, words.length);
+            return makeTimetable(info, statuses, notes);
+        default:
+            return null;
         }
     }
 
@@ -244,7 +237,7 @@ public class StorageParser {
             if (info[1].equals("0")) {
                 //no date, event can be returned as is
                 setDone(p, statuses[0]);
-                notesSetter(p,notes[0]);
+                notesSetter(p, notes[0]);
                 return p;
             } else if (info[2].equals("0")) {
                 //no time, but got date
@@ -260,7 +253,7 @@ public class StorageParser {
             }
             setDone(p, statuses[0]);
             repeatSetter(p, statuses, info[3], info[4]);
-            notesSetter(p,notes[0]);
+            notesSetter(p, notes[0]);
             return p;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -275,7 +268,7 @@ public class StorageParser {
             if (info[1].equals("0")) {
                 //no date, event can be returned as is
                 setDone(z, statuses[0]);
-                notesSetter(z,notes[0]);
+                notesSetter(z, notes[0]);
                 return z;
             } else if (info[2].equals("0")) {
                 //no time, but got date
@@ -291,7 +284,7 @@ public class StorageParser {
             }
             setDone(z, statuses[0]);
             repeatSetter(z, statuses, info[3], info[4]);
-            notesSetter(z,notes[0]);
+            notesSetter(z, notes[0]);
             return z;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -310,7 +303,7 @@ public class StorageParser {
             }
             setDone(t, statuses[0]);
             repeatSetter(t, statuses, info[3], info[4]);
-            notesSetter(t,notes[0]);
+            notesSetter(t, notes[0]);
             return t;
         } catch (Exception e) {
             System.out.println("file corruption detected");
@@ -339,17 +332,17 @@ public class StorageParser {
             for (int i = 1; i <= count; i++) {
                 LocalDate repeatDate;
                 switch (timeUnit) {
-                    case "MONTHLY":
-                        repeatDate = startDate.plusMonths(i);
-                        break;
-                    case "WEEKLY":
-                        repeatDate = startDate.plusWeeks(i);
-                        break;
-                    case "DAILY":
-                        repeatDate = startDate.plusDays(i);
-                        break;
-                    default:
-                        throw new InvalidTimeUnitException(timeUnit);
+                case "MONTHLY":
+                    repeatDate = startDate.plusMonths(i);
+                    break;
+                case "WEEKLY":
+                    repeatDate = startDate.plusWeeks(i);
+                    break;
+                case "DAILY":
+                    repeatDate = startDate.plusDays(i);
+                    break;
+                default:
+                    throw new InvalidTimeUnitException(timeUnit);
                 }
                 activity.setRepeatType(timeUnit);
                 Event repeatEvent;
@@ -368,16 +361,26 @@ public class StorageParser {
 
     }
 
-    private static void notesSetter(Event e, String notes){
+    /**
+     * Set the notes for event.
+     * @param e event.
+     * @param notes notes for event.
+     */
+    private static void notesSetter(Event e, String notes) {
         String noteString = notes;
         noteString = noteString.trim();
-        String [] noteArr = noteString.split(";");
+        String[] noteArr = noteString.split(";");
         ArrayList<String> noteList = new ArrayList<>();
         Collections.addAll(noteList, noteArr);
         e.setNotes(noteList);
     }
 
-    private static String notesListToString(ArrayList<String> notes){
+    /**
+     * Convert ArrayList to String for notes.
+     * @param notes list of notes.
+     * @return notes in string format.
+     */
+    private static String notesListToString(ArrayList<String> notes) {
         StringBuffer notesBuffer = new StringBuffer();
         for (String s : notes) {
             notesBuffer.append(s);

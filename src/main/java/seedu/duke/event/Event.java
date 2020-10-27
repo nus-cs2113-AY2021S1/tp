@@ -68,9 +68,14 @@ public abstract class Event implements Cloneable {
         this.isDone = false;
     }
 
-    public void setNotes(ArrayList<String>  notes) {
+    /**
+     * Set notes for event.
+     * @param notes for event.
+     */
+    public void setNotes(ArrayList<String> notes) {
         this.notes = notes;
     }
+
     /**
      * Returns a string representation of event's done status.
      *
@@ -122,9 +127,14 @@ public abstract class Event implements Cloneable {
         return repeatEventList.size();
     }
 
-    public ArrayList<String>  getNotes() {
+    /**
+     * Get notes for event.
+     * @return list of notes.
+     */
+    public ArrayList<String> getNotes() {
         return notes;
     }
+
     @Override
     public Event clone() throws CloneNotSupportedException {
         return (Event) super.clone();

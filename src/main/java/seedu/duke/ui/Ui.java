@@ -192,14 +192,21 @@ public class Ui {
         System.out.println("You have successfully deleted this event!");
         System.out.println(deleteEvent);
     }
-    public void printNoteMessage(Event eventUpdated, ArrayList<String>  notes) {
+
+    /**
+     * Print note created along with existing notes.
+     * @param eventUpdated event attached to notes.
+     * @param notes list of notes.
+     */
+    public void printNoteMessage(Event eventUpdated, ArrayList<String> notes) {
         System.out.println("You have successfully written the note for this event!");
         System.out.println(eventUpdated);
-        for (int i = 0; i < notes.size(); i++){
+        for (int i = 0; i < notes.size(); i++) {
             System.out.println(notes.get(i));
         }
 
     }
+
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }
