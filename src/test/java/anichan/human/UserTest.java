@@ -1,9 +1,13 @@
 package anichan.human;
 
 import anichan.exception.AniException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -77,5 +81,67 @@ class UserTest {
 
         assertEquals(2, user.getTotalWorkspaces());
     }
+
+    @Test
+    void setWorkspace_emptyWorkspaceList_setEmpty() throws AniException {
+        User user = new User("new User", "femaLe");
+
+        ArrayList<Workspace> workspaceList = new ArrayList<>();
+
+        assertDoesNotThrow(() -> user.setWorkspaceList(workspaceList));
+    }
+
+    @Test
+    void setWorkspace_filledWorkspaceList_useFirst() throws AniException {
+        User user = new User("new User", "femaLe");
+
+        ArrayList<Workspace> workspaceList = new ArrayList<>();
+        Workspace newWorkspace = user.addWorkspace("Default");
+
+        workspaceList.add(newWorkspace);
+        assertDoesNotThrow(() -> user.setWorkspaceList(workspaceList));
+    }
+
+    @Test
+    void setActiveWorkspace_empty_useFirst() throws AniException {
+        User user = new User("new User", "femaLe");
+        Workspace newWorkspace = user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> {
+            user.setActiveWorkspace(newWorkspace);
+        });
+    }
+
+    @Test
+    void switchActiveWorkspace_emptyWorkspaceList_throwAniException() throws AniException {
+        User user = new User("new User", "femaLe");
+        Workspace newWorkspace = user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> {
+            user.switchActiveWorkspace("I want to switch!");
+        });
+    }
+
+    @Test
+    void addWorkspace_nameExist_throwAniException() throws AniException {
+        User user = new User("new User", "femaLe");
+        Workspace newWorkspace = user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> {
+            user.addWorkspace("Default");
+        });
+    }
+
+    @Test
+    void deleteWorkspace_invalidNames_throwAniException() throws AniException {
+        User user = new User("new User", "femaLe");
+        Workspace newWorkspace = user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> {
+            user.deleteWorkspace("");
+            user.deleteWorkspace("abc");
+        });
+    }
+
 
 }

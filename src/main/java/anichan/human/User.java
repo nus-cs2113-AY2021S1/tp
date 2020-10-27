@@ -78,13 +78,15 @@ public class User extends Human {
         return workspaceList;
     }
 
-    public void setActiveWorkspace(Workspace inputWorkspace) {
+    public void setActiveWorkspace(Workspace inputWorkspace) throws AniException {
         activeWorkspace = inputWorkspace;
 
-        if (activeWorkspace != null) {
+        try {
             //Set the first watchlist to be the active watchlist
             inputWorkspace.setActiveWatchlist(inputWorkspace.getWatchlistList().get(0));
             LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
+        } catch (Exception e) {
+            throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
         }
     }
 
