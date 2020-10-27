@@ -42,6 +42,10 @@ public class Timetable {
         return slotList;
     }
 
+    public void clearAllModule() {
+        modules.removeAll(modules);
+    }
+
     public List<Module> getFullModuleList() {
         return modules;
     }
@@ -140,6 +144,10 @@ public class Timetable {
         }
 
         newModule.addSlot(slot);
+    }
+
+    public boolean isEmpty() {
+        return modules.isEmpty();
     }
 
 }
