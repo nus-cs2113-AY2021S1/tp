@@ -62,7 +62,7 @@ public class EditEntryCommand extends Command {
             storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                     listManager.getExerciseList(), user);
         } catch (IOException e) {
-            Ui.printCustomMessage(Messages.MISSING_FILE);
+            Ui.printCustomError(Messages.MISSING_FILE);
         }
     }
 
