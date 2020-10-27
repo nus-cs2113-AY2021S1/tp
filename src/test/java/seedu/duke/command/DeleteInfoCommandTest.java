@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeleteInfoCommandTest {
 
     @Test
-    void DeleteInfoCommand_missingCommand_exceptionThrown() {
+    void deleteInfoCommand_missingCommand_exceptionThrown() {
         DeleteInfoCommand deleteInfoCommand = new DeleteInfoCommand("/-");
         CalendarList calendarList = new CalendarList();
         Storage storage = null;
@@ -21,7 +21,7 @@ class DeleteInfoCommandTest {
     }
 
     @Test
-    void DeleteInfoCommand_eventNumberIsNotANumber_exceptionThrown() {
+    void deleteInfoCommand_eventNumberIsNotANumber_exceptionThrown() {
         DeleteInfoCommand deleteInfoCommand = new DeleteInfoCommand("/-a2");
         CalendarList calendarList = new CalendarList();
         Storage storage = null;
@@ -33,7 +33,7 @@ class DeleteInfoCommandTest {
     }
 
     @Test
-    void DeleteInfoCommand_eventNumberIsNotValid_exceptionThrown() {
+    void deleteInfoCommand_eventNumberIsNotValid_exceptionThrown() {
         DeleteInfoCommand deleteInfoCommand = new DeleteInfoCommand("/-999a2");
         CalendarList calendarList = new CalendarList();
         Storage storage = null;
