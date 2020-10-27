@@ -1,10 +1,12 @@
 package seedu.dietbook.calculator;
 
 import seedu.dietbook.food.Food;
+import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.Person;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Represents a calculator of food items in foodList.
@@ -21,7 +23,7 @@ public class Calculator {
      *
      * @param foodList foodList containing food items to calculate.
      */
-    public Calculator(ArrayList<Food> foodList) {
+    public Calculator(List<Food> foodList) {
         assert foodList != null : "The foodList should not be null.";
 
         for (int i = 0; i < foodList.size(); i++) {
@@ -44,12 +46,82 @@ public class Calculator {
     }
 
     /**
+     * Returns an int type variable containing the value of total calorie
+     * of the foods with time after a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateCalorie(LocalDateTime startTime) {
+        int calorie = 0;
+        for (int i = 0; i < FoodList.getFoodsAfterDateTime(startTime).size(); i++) {
+            calorie += FoodList.getFoodsAfterDateTime(startTime).get(i).getCalorie();
+        }
+        return calorie;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total calories
+     * of the foods with time after a specific time and before a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     * @param endTime the end time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateCalorie(LocalDateTime startTime, LocalDateTime endTime) {
+        int calorie = 0;
+        for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
+            calorie += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getCalorie();
+        }
+        return calorie;
+    }
+
+    /**
      * Returns an int type variable containing the value of total carbs.
      *
      * @return the value of total carbs of food items in foodList.
      */
     public int calculateCarb() {
         return totalCarbohydrate;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total carbs
+     * of the foods with time after a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateCarb(LocalDateTime startTime) {
+        int carb = 0;
+        for (int i = 0; i < FoodList.getFoodsAfterDateTime(startTime).size(); i++) {
+            carb += FoodList.getFoodsAfterDateTime(startTime).get(i).getCarbohydrate();
+        }
+        return carb;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total carbs
+     * of the foods with time after a specific time and before a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     * @param endTime the end time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateCarb(LocalDateTime startTime, LocalDateTime endTime) {
+        int carb = 0;
+        for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
+            carb += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getCarbohydrate();
+        }
+        return carb;
     }
 
     /**
@@ -62,12 +134,82 @@ public class Calculator {
     }
 
     /**
+     * Returns an int type variable containing the value of total protein
+     * of the foods with time after a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateProtein(LocalDateTime startTime) {
+        int protein = 0;
+        for (int i = 0; i < FoodList.getFoodsAfterDateTime(startTime).size(); i++) {
+            protein += FoodList.getFoodsAfterDateTime(startTime).get(i).getProtein();
+        }
+        return protein;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total protein
+     * of the foods with time after a specific time and before a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     * @param endTime the end time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateProtein(LocalDateTime startTime, LocalDateTime endTime) {
+        int protein = 0;
+        for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
+            protein += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getProtein();
+        }
+        return protein;
+    }
+
+    /**
      * Returns an int type variable containing the value of total fats.
      *
      * @return the value of total fats of food items in foodList.
      */
     public int calculateFat() {
         return totalFat;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total fats
+     * of the foods with time after a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateFat(LocalDateTime startTime) {
+        int fat = 0;
+        for (int i = 0; i < FoodList.getFoodsAfterDateTime(startTime).size(); i++) {
+            fat += FoodList.getFoodsAfterDateTime(startTime).get(i).getFats();
+        }
+        return fat;
+    }
+
+    /**
+     * Returns an int type variable containing the value of total fats
+     * of the foods with time after a specific time and before a specific time.
+     *
+     * @param startTime the start time for food items to be included.
+     * @param endTime the end time for food items to be included.
+     *
+     * @return the value of total calorie of food items with time after
+     *         startTime in foodList.
+     */
+    public int calculateFat(LocalDateTime startTime, LocalDateTime endTime) {
+        int fat = 0;
+        for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
+            fat += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFats();
+        }
+        return fat;
     }
 
     /**
