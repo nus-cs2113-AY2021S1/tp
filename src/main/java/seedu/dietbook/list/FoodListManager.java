@@ -1,10 +1,10 @@
 package seedu.dietbook.list;
 
 import seedu.dietbook.food.Food;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.time.LocalDateTime;
 
 /**
  * Class with static methods to execute "complex commands" on FoodList.
@@ -18,7 +18,7 @@ public class FoodListManager {
      * Internal helper method to convert the items in the arraylist into enumed strings.
      * Primarily used to obtain String representations of the entire list.
      */
-    protected static String listToString(ArrayList<FoodEntry> list) {
+    protected static String listToString(List<FoodEntry> list) {
         String listString = "";
 
         for (int i = 1; i <= list.size(); i++) {
@@ -46,7 +46,7 @@ public class FoodListManager {
      */
     protected static List<String> listToStrings(List<FoodEntry> list) {
         Function<FoodEntry, String> function = x -> x.toString();
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
@@ -54,9 +54,9 @@ public class FoodListManager {
      * @param list list of foodEntries
      * @return arraylist of Food objects.
      */
-    protected static ArrayList<Food> listToFoods(List<FoodEntry> list) {
+    protected static List<Food> listToFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> x.getFood();
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
@@ -65,7 +65,7 @@ public class FoodListManager {
      * @param list list of FoodEntries
      * @return arraylist of Food objects
      */
-    protected static ArrayList<Food> listToPortionedFoods(List<FoodEntry> list) {
+    protected static List<Food> listToPortionedFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> {
             Food baseFood = x.getFood();
             /**  Explicitly getting return type of getPortionSize() is avoided.
@@ -78,21 +78,33 @@ public class FoodListManager {
                     baseFood.getProtein() * x.getPortionSize(),
                     baseFood.getFat() * x.getPortionSize());
         };
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
-     * Generic method to map a function across a list.
-     * @param list list to operate on
-     * @param function function to be mapped across list
-     * @return list of mapped items under provided function
+     * Obtain only food entries after a specified dateTime.
      */
-    protected static <T, E> ArrayList<E> applyFunctionToList(List<T> list, Function<T, E> function) {
-        ArrayList<E> appliedList = new ArrayList<>();
-        Consumer<T> addResultToAppliedList = x -> appliedList.add(function.apply(x));
-        list.forEach(addResultToAppliedList);
-        return appliedList;
+    protected static List<FoodEntry> filterListByDate(List<FoodEntry> list, LocalDateTime dateTime) {
+        Predicate<FoodEntry> predicate = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return dateTime.isBefore(datedEntry.getDateTime());
+        };
+        return ListFunction.filterList(list, predicate);
     }
+
+    /**
+     * Obtain only food entries within a specified range of dateTimes.
+     */
+    protected static List<FoodEntry> filterListByDate(List<FoodEntry> list, LocalDateTime start, LocalDateTime end) {
+        Predicate<FoodEntry> predicate = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return start.isBefore(datedEntry.getDateTime()) && end.isAfter(datedEntry.getDateTime());
+        };
+        return ListFunction.filterList(list, predicate);
+    }
+
 
 }
 

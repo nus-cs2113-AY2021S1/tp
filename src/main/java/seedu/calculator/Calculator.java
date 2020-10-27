@@ -3,6 +3,7 @@ package seedu.calculator;
 import seedu.dietbook.food.Food;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a calculator of food items in foodList.
@@ -19,7 +20,7 @@ public class Calculator {
      *
      * @param foodList foodList containing food items to calculate.
      */
-    public Calculator(ArrayList<Food> foodList) {
+    public Calculator(List<Food> foodList) {
         assert foodList != null : "the foodList should not be null.";
         for (int i = 0; i < foodList.size(); i++) {
             totalCalorie += foodList.get(i).getCalorie();
@@ -28,6 +29,7 @@ public class Calculator {
             totalFat += foodList.get(i).getFat();
         }
     }
+
 
     /**
      * Returns an int type variable containing the value of total calorie.
