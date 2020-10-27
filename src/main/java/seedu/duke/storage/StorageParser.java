@@ -384,9 +384,9 @@ public class StorageParser {
     private static String notesListToString(ArrayList<String> notes) {
         StringBuffer notesBuffer = new StringBuffer();
         String noteString = "";
-        if (!notes.isEmpty() && !(notes.size() == 1 && notes.get(0).equals(""))){
+        if (!notes.isEmpty() && !(notes.size() == 1 && notes.get(0).equals(""))) {
             for (String s : notes) {
-                if (s != ""){
+                if (s != "") {
                     notesBuffer.append(s);
                     notesBuffer.append(";");
                 }
