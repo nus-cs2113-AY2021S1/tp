@@ -7,7 +7,7 @@ import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
 
     ArrayList<String> helpStuff;
     String helpTopic;
@@ -16,7 +16,7 @@ public class HelpCommand extends Command{
         this.isExit = false;
         this.command = null;
         argument = argument.trim();
-        if (argument.equals("")){ //blank argument set to be summary
+        if (argument.equals("")) { //blank argument set to be summary
             argument = "summary";
         }
         this.helpTopic = argument;
