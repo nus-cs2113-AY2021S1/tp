@@ -21,9 +21,7 @@ class UserTest {
 
     @Test
     void testCreateUser_emptyName_throwsAniException() {
-        assertThrows(AniException.class, () -> {
-            User user = new User("", "Male");
-        });
+        assertThrows(AniException.class, () -> new User("", "Male"));
     }
 
     @Test
@@ -117,7 +115,7 @@ class UserTest {
     @Test
     void addWorkspace_nameExist_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
-        Workspace newWorkspace = user.addWorkspace("Default");
+        user.addWorkspace("Default");
 
         assertThrows(AniException.class, () -> user.addWorkspace("Default"));
     }
@@ -125,7 +123,7 @@ class UserTest {
     @Test
     void deleteWorkspace_invalidNames_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
-        Workspace newWorkspace = user.addWorkspace("Default");
+        user.addWorkspace("Default");
 
         assertThrows(AniException.class, () -> {
             user.deleteWorkspace("");
