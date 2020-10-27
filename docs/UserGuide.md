@@ -7,7 +7,7 @@ Hospitalsaurus ReX is a program to help administrative staff to keep track of pa
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Hospitalsaurus ReX` from [here](https://github.com/AY2021S1-CS2113-T16-4/tp).
+1. Download the latest version of `Hospitalsaurus ReX` from [here](https://github.com/AY2021S1-CS2113-T16-4/tp).
 
 ## Features
 
@@ -145,15 +145,15 @@ Example of usage:
 ### Edit patient's appointment: `editappt`
 Edit patient's appointment
 
-Format: `editapp NRIC`
+Format: `editappt NRIC`
 
 * The patient with `NRIC` should already exist.
-* The program will prompt for appointment date and 
+* The program will prompt user to select the booked appointment to be replaced, the new appointment to be booked, and the doctor to be in charge.
 
 Example of usage:
 
-`editapp S9900999D`
-`editapp S9900299D`
+`editappt S9900999D`
+`editappt S9900299D`
 
 ## FAQ
 
