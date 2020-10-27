@@ -1,17 +1,17 @@
 package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.financetools.FinanceTools;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
-import seedu.financeit.parser.InputParser;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
+import seedu.financeit.financetools.FinanceTools;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
+import seedu.financeit.utils.storage.AutoTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
-import seedu.financeit.utils.storage.RecurringTrackerSaver;
 import seedu.financeit.utils.storage.SaveManager;
 
 import java.util.logging.Level;
@@ -24,14 +24,14 @@ public class Financeit {
         test = test.replaceAll("[^\\w | .]", "");
         System.out.println(test);
 
-
         String input = "";
+        Boolean load = false;
         CommandPacket packet = null;
         Level mode = Level.OFF;
         LoggerCentre.getInstance().setLevel(mode);
-        ManualTrackerSaver mt = new ManualTrackerSaver("./data/save.txt", "./data");
-        GoalTrackerSaver gt = new GoalTrackerSaver("./data/save1.txt", "./data");
-        RecurringTrackerSaver at = new RecurringTrackerSaver("./data/save2.txt", "./data");
+        ManualTrackerSaver mt = ManualTrackerSaver.getInstance("./data", "./data/save.txt");
+        GoalTrackerSaver gt = GoalTrackerSaver.getInstance("./data", "./data/save1.txt");
+        AutoTrackerSaver at = AutoTrackerSaver.getInstance("./data", "./data/save2.txt");
         load(gt, mt, at);
         while (true) {
             UiManager.refreshPage();
@@ -56,7 +56,7 @@ public class Financeit {
                 FinanceTools.main();
                 break;
             case "saver":
-                SaveManager.main();
+                load = SaveManager.main();
                 break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
@@ -66,7 +66,9 @@ public class Financeit {
                 LoggerCentre.getInstance().setLevel(mode);
                 break;
             case "exit":
-                save(gt, mt, at);
+                if (load == false) {
+                    save(gt, mt, at);
+                }
                 return;
             default:
                 MenuPrinter.prompt = "Invalid Command";
@@ -75,7 +77,7 @@ public class Financeit {
         }
     }
 
-    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
+    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
 
         try {
             gt.load();
@@ -96,7 +98,7 @@ public class Financeit {
         }
     }
 
-    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
+    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
 
         try {
             gt.save();

@@ -13,28 +13,11 @@ public abstract class SaveHandler {
     protected String fullPath;
     protected String dirPath;
 
-    public SaveHandler(){
+    protected SaveHandler() {
 
     }
 
-    public SaveHandler(String filepath, String directory) {
-        fullPath = filepath;
-        dirPath = directory;
-    }
-
-    public void save() throws IOException {
-
-    }
-
-    public void load() throws IOException {
-
-    }
-
-    public String getSaveString(Object object) {
-        return object.getClass().getSimpleName() + ";" + object + System.lineSeparator();
-    }
-
-    public void setPath(String filepath, String directory) {
+    protected SaveHandler(String directory, String filepath) {
         fullPath = filepath;
         dirPath = directory;
     }
@@ -48,7 +31,7 @@ public abstract class SaveHandler {
         }
     }
 
-    protected void buildFile(String dirPath, String fullPath) throws IOException {
+    public static void buildFile(String dirPath, String fullPath) throws IOException {
         if (!Files.exists(Paths.get(dirPath))) {
             Files.createDirectory(Paths.get(dirPath));
         }
@@ -57,21 +40,34 @@ public abstract class SaveHandler {
         }
     }
 
-    public void putString(String input) throws IOException {
-        buildFile("./data","./data/saveString.txt");
+    public static void putString(String input) throws IOException {
+        buildFile("./data", "./data/saveString.txt");
         FileWriter fileWriter = new FileWriter("./data/saveString.txt");
         fileWriter.write(input);
         fileWriter.close();
     }
 
-    public String takeString() throws IOException {
-        buildFile("./data","./data/saveString.txt");
+    public static String takeString() throws IOException {
+        buildFile("./data", "./data/saveString.txt");
         File file = new File("./data/saveString.txt");
         Scanner scanner = new Scanner(file);
         return scanner.nextLine();
     }
 
-    String charRemoveAt(String str, int p) {
+    public static String getSaveString(Object object) {
+        return object.getClass().getSimpleName() + ";" + object + System.lineSeparator();
+    }
+
+    public static String charRemoveAt(String str, int p) {
         return str.substring(0, p) + str.substring(p + 1);
     }
+
+    public void save(String... paths) throws IOException {
+
+    }
+
+    public void load(String... paths) throws IOException {
+
+    }
+
 }

@@ -12,16 +12,33 @@ import java.util.Scanner;
 //@@author Feudalord
 public class GoalTrackerSaver extends SaveHandler {
 
-    public GoalTrackerSaver() {
+    private static GoalTrackerSaver saver;
+
+    private GoalTrackerSaver() {
         super();
     }
 
-    public GoalTrackerSaver(String filepath, String directory) {
-        super(filepath, directory);
+    private GoalTrackerSaver(String directory, String filepath) {
+        super(directory, filepath);
     }
 
-    public void save() throws IOException {
-        buildFile();
+    public static GoalTrackerSaver getInstance(String... paths) {
+        if (saver == null) {
+            if (paths.length == 2) {
+                saver = new GoalTrackerSaver(paths[0], paths[1]);
+            } else {
+                saver = new GoalTrackerSaver();
+            }
+        }
+        return saver;
+    }
+
+    public void save(String... paths) throws IOException {
+        if (paths.length == 2) {
+            buildFile(paths[0], paths[1]);
+        } else {
+            buildFile();
+        }
         StringBuilder saveString = new StringBuilder();
         TotalGoalList goalList = GoalTracker.getTotalGoalList();
         String cat;
@@ -35,14 +52,18 @@ public class GoalTrackerSaver extends SaveHandler {
                 saveString.append(cat + ";" + go.getIncomeGoal() + ";" + go.getIncomeMonth() + "\n");
             }
         }
-        FileWriter fileWriter = new FileWriter(fullPath);
+        FileWriter fileWriter = new FileWriter(paths.length == 2 ? paths[1] : fullPath);
         fileWriter.write(String.valueOf(saveString));
         fileWriter.close();
     }
 
-    public void load() throws IOException {
-        buildFile();
-        File file = new File(fullPath);
+    public void load(String... paths) throws IOException {
+        if (paths.length == 2) {
+            buildFile(paths[0], paths[1]);
+        } else {
+            buildFile();
+        }
+        File file = new File(paths.length == 2 ? paths[1] : fullPath);
         Scanner scanner = new Scanner(file);
         String[] classContents;
         while (scanner.hasNext()) {
