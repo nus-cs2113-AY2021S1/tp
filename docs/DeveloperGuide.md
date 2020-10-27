@@ -7,7 +7,7 @@
     1. [Scope](#scope)
 1. [Getting Started](#getting-started)
     1. [Prerequisites](#prerequisites)
-    1. [Setting up](#setting-up)
+    1. [Setting Up](#setting-up)
     1. [Running the Program](#running-the-program)
 1. [Design](#design)
     1. [Architecture](#architecture)
@@ -28,9 +28,9 @@
     1. [Sprint](#sprint)
         1. [Create Sprint](#create-sprint)
         1. [View Sprint](#view-sprint)
-        1. [Add task to Sprint](#add-task-to-sprint)
-        1. [Remove task from Sprint](#remove-task-from-sprint)
-        1. [Allocate Sprint tasks to Members](#allocate-sprint-tasks-to-members)        
+        1. [Add Task to Sprint](#add-task-to-sprint)
+        1. [Remove Task from Sprint](#remove-task-from-sprint)
+        1. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        
     1. [Saving of Data](#saving-of-data)
 1. [Others](#target-user-profile)
 
@@ -49,7 +49,7 @@ This guide is geared towards developers who wish to enhance or create their own 
 1. JDK 11.
 1. IntelliJ IDEA.
 
-### Setting up
+### Setting Up
 1. Use a Git tool to fork this repository, or download the .zip file from GitHub and extract the contents into a new folder.
 1. Right-Click on the folder and select “Open folder as Intellij IDEA Community Edition Project”.
 1. Ensure JDK 11 is selected for Gradle, by navigating to Configure > Structure for New Projects > Project Settings > Project > Project SDK.
@@ -70,9 +70,23 @@ This program can be run once it is compiled. If you have built its artifacts (.j
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
   
 API: [StorageManager.java](/src/main/java/seedu/duke/storage/StorageManager.java)  
-The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is json.simple 3.1.1 by Clifton Labs.  
-Apart from the StorageManager class, each of the model classes is also part of the Storage component as they inherit the interface Jsonable. Therefore, the model classes need to implement the method toJson() which will contain the logic for serialising an object into a JSON string. This allows the object to be serialised by passing the object into Jsoner.serialize() directly.  
-In contrast, the JSON is deserialised under the functions implemented in StorageManager class manually due to the limitations of the library.  
+The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
+As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
+- ProjectManager  
+- Project  
+- SprintManager  
+- TaskManager  
+- ProjectMembers  
+- Sprint  
+- Task  
+- Member  
+
+This requires the model classes to implement two methods required for JSON serialisation and deserialisation:  
+- `toJson()`: Contains logic required to convert the model object into JSON string.  
+- `fromJson()`: Contains logic required to convert JSON object into its respective model class.  
+  - Due to the limitations of the library, parsing of the JSON string only converts it into either `JsonObject` or `JsonArray` objects which requires additional operations to map the data back to the respective model classes.  
+  - `fromJson()` will take in either one of the `JsonObject` or `JsonArray` object, and map the properties to the respective properties of the model classes.  
+
 
 ## Implementation
 ### Project
@@ -87,9 +101,9 @@ In contrast, the JSON is deserialised under the functions implemented in Storage
 ### Sprint
 #### Create Sprint
 #### View Sprint
-#### Add task to Sprint
-#### Remove task from Sprint
-#### Allocate Sprint tasks to Members    
+#### Add Task to Sprint
+#### Remove Task from Sprint
+#### Allocate Sprint Tasks to Members    
 ### Saving of Data
 To make the data persistent and portable, **JSON** has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium that is used to run the program. JSON is also human-readable which allows users to directly modify the data file easily which can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 

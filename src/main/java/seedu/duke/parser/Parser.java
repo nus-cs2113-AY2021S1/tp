@@ -1,10 +1,12 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
+import seedu.duke.command.EmptyCommand;
+import seedu.duke.command.help.HelpCommand;
+import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.ProjectManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +16,7 @@ import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
 import static seedu.duke.command.CommandSummary.SPRINT;
+import static seedu.duke.command.CommandSummary.HELP;
 
 
 public class Parser {
@@ -22,16 +25,17 @@ public class Parser {
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> parameters = new Hashtable<>();
-    private ArrayList<String> params = new ArrayList<>();
-
     private boolean exit = false;
 
 
-    public String parser(String userInput, ProjectManager projectListManager) {
+    public Command parser(String userInput, ProjectManager projectListManager) {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
             return null;
+        }
+        if (userInput.equals(HELP)) {
+            return new HelpCommand(parameters);
         }
 
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
@@ -42,11 +46,9 @@ public class Parser {
             Matcher parameterMatcher = ARGS_PATTERN.matcher(rawArgs); //match the option
 
             if (!rawArgs.contains("-")) {
-                params.clear();
                 parameters.clear();
                 if (!rawArgs.isBlank()) {
                     String[] arguments = rawArgs.split(" ");
-                    params.addAll(Arrays.asList(arguments));
                     for (int i = 0; i < arguments.length; i++) {
                         parameters.put("" + i, arguments[i]);
                     }
@@ -61,28 +63,26 @@ public class Parser {
 
             try {
                 switch (command.toLowerCase()) {
+                case HELP:
+                    return new HelpParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case PROJECT:
-                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
-                    break;
+                    return new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case MEMBER:
-                    new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
-                    break;
+                    return new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case TASK:
-                    new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
-                    break;
+                    return new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case SPRINT:
-                    new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
-                    break;
+                    return new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 default:
-                    return "Invalid command!";
+                    return new InvalidCommand(parameters);
                 }
             } catch (DukeException e) {
                 e.printExceptionMessage();
             }
         } else {
-            return "Invalid command!";
+            return new InvalidCommand(parameters);
         }
-        return null;
+        return new EmptyCommand(parameters);
     }
 
     public static boolean isStringContainsNumber(String s) {

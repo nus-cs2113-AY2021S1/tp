@@ -43,13 +43,23 @@ public class Ui {
         }
     }
 
+    /**
+     * Print messages to user in new line.
+     *
+     * @param messages Specify messages to print
+     */
+
     public static void showToUserLn(String... messages) {
         for (String message : messages) {
             out.println(message);
         }
     }
 
-
+    /**
+     * Print error messages to the user.
+     *
+     * @param messages Specify error to be printed
+     */
 
     public static void showError(String... messages) {
         for (String message : messages) {

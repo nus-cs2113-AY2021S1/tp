@@ -1,7 +1,8 @@
 package seedu.duke.model.member;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
-import com.github.cliftonlabs.json_simple.Jsonable;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import seedu.duke.storage.JsonableArray;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -9,17 +10,12 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectMembers implements Jsonable {
+public class ProjectMembers implements JsonableArray {
 
     private ArrayList<Member> memberList;
 
     public ProjectMembers() {
         memberList = new ArrayList<>(100);
-    }
-
-
-    public void setMemberList(ArrayList<Member> memberList) {
-        this.memberList = memberList;
     }
 
     public int size() {
@@ -102,5 +98,14 @@ public class ProjectMembers implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonArray jMemberList = new JsonArray(memberList);
         jMemberList.toJson(writer);
+    }
+
+    @Override
+    public void fromJson(JsonArray jsonArr) {
+        for (Object o : jsonArr) {
+            Member member = new Member();
+            member.fromJson((JsonObject) o);
+            memberList.add(member);
+        }
     }
 }

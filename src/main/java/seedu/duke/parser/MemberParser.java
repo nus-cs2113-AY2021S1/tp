@@ -1,9 +1,9 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.member.AddMemberCommand;
 import seedu.duke.command.member.DeleteMemberCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -14,29 +14,23 @@ import static seedu.duke.command.CommandSummary.DELETE;
 public class MemberParser implements ExceptionsParser {
 
     @Override
-    public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectManager projectListManager)
+    public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
+                                                   ProjectManager projectListManager)
             throws DukeException {
-        assert parameters.get("0") != null : "Invalid Input";
-        if (parameters.get("0") == null) {
-            Ui.showError("Please do not enter dashes.");
-            return;
-        }
         if (!parameters.containsKey("0")) {
-            throw new DukeException("Missing name!");
-        }
-        if (projectListManager.isEmpty()) {
-            throw new DukeException("You currently have no projects created");
+            throw new DukeException("Missing name.");
+        } else if (projectListManager.size() == 0) {
+            throw new DukeException("You currently have no projects created.");
         }
         switch (action.toLowerCase()) {
         case ADD:
-            new AddMemberCommand(parameters, projectListManager).execute();
-            break;
+            assert parameters.get("0") != null : "Invalid Input";
+            return new AddMemberCommand(parameters, projectListManager);
         case DELETE:
-            new DeleteMemberCommand(parameters, projectListManager).execute();
-            break;
+            assert parameters.get("0") != null : "Invalid Input";
+            return new DeleteMemberCommand(parameters, projectListManager);
         default:
-            throw new DukeException("Invalid action");
+            throw new DukeException("Invalid action!");
         }
     }
 }

@@ -25,6 +25,8 @@ public class CommandSummary {
     public static final String DEALLOCATE = "deallocate";
     public static final String DURATION = "dur";
     public static final String SELECT = "select";
+    public static final String LIST = "list";
+
     /*
     Parameters
      */
@@ -32,6 +34,11 @@ public class CommandSummary {
     public static final String DESCRIPTION = "desc";
     public static final String SPRINT_DURATION = "sd";
     public static final String TASK_ID = "id";
+
+    /*
+    Help
+     */
+    public static final String HELP = "help";
 
     /*
     Bye

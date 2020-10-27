@@ -1,7 +1,6 @@
 package seedu.duke.command.project;
 
 import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
 
 import java.util.Hashtable;
 
@@ -15,6 +14,6 @@ public abstract class ProjectCommand extends Command {
         super(parameters);
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract void execute();
 
 }

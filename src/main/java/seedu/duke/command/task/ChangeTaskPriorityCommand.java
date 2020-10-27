@@ -1,7 +1,6 @@
 package seedu.duke.command.task;
 
 import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
@@ -21,7 +20,7 @@ public class ChangeTaskPriorityCommand extends Command {
         this.projectListManager = projectListManager;
     }
 
-    public void execute() throws DukeException {
+    public void execute() {
 
         assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
@@ -40,15 +39,16 @@ public class ChangeTaskPriorityCommand extends Command {
         try {
             task = proj.getProjectBacklog().getTask(id);
             if (!proj.getProjectBacklog().checkValidPriority(priority)) {
-                throw new DukeException("Invalid priority!");
+                Ui.showError("Invalid priority!");
+                return;
             }
             task.setPriority(priority);
             Ui.showToUserLn("The task " + task.getTitle() + " has its priority changed to:");
             Ui.showToUserLn("\t" + task.getPriority());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Task ID entered is out of bounds!");
+            Ui.showError("Task ID entered is out of bounds!");
         } catch (IllegalArgumentException e) {
-            throw new DukeException("Priority entered is invalid!");
+            Ui.showError("Priority entered is invalid!");
         } catch (NullPointerException e) {
             Ui.showError("The task does not exist or has been deleted.");
         }

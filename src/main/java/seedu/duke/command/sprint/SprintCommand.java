@@ -24,30 +24,23 @@ public abstract class SprintCommand extends Command {
         this.projectList = projectList;
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract void execute();
 
     /**
      * Choose the project to execute command.
-     * Validate the project parameter if specified:
-     * - Exist in Project Manager
-     * - Contains sprints in selected Project (Also check when project is not specified)
+     * Validation completed at SprintParser
      */
-    protected boolean chooseProject() throws DukeException {
+    protected void chooseProject() {
         int selectedProg;
-        if (this.parameters.containsKey("project")) {
+        if (parameters.containsKey("project")) {
             //select specified project
-            selectedProg = Integer.parseInt(this.parameters.get("project"));
-            //if project exist
-            if (!this.projectList.projectList.containsKey(selectedProg)) {
-                throw new DukeException("Project not found.");
-            }
+            selectedProg = Integer.parseInt(parameters.get("project"));
         } else {
             //select default project
-            selectedProg = this.projectList.selectedProject;
+            selectedProg = projectList.getSelectedProjectIndex();
         }
-        this.projOwner = this.projectList.getProject(selectedProg);
-        this.sprintList = this.projOwner.getSprintList();
-        return true;
+        this.projOwner = projectList.getProject(selectedProg);
+        this.sprintList = projOwner.getSprintList();
     }
 
     /**

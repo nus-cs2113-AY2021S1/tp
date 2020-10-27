@@ -1,7 +1,6 @@
 package seedu.duke.command.task;
 
 import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
 
 import java.util.Hashtable;
 
@@ -10,5 +9,5 @@ public abstract class TaskCommand extends Command {
         super(parameters);
     }
 
-    public abstract void execute() throws DukeException;
+    public abstract void execute();
 }
