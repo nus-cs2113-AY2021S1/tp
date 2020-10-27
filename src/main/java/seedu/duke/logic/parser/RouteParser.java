@@ -29,7 +29,7 @@ public class RouteParser extends Parser {
                 return new String[]{components[0], components[1]};
             } else {
                 logger.warning("Delimiter /to is missing.");
-                throw new CustomException(ExceptionType.NO_ROUTE_DELIMITER);
+                throw new CustomException(ExceptionType.NO_DELIMITER);
             }
         } catch (StringIndexOutOfBoundsException error) {
             logger.warning("Either of the locations is missing");

@@ -1,0 +1,33 @@
+@startuml
+box Logic
+[-> ":Parser": setUserInput("/route loc1 /to loc2")
+activate ":Parser"
+[-> ":Parser": extractType()
+
+create ":RouteCommand"
+":Parser" -> ":RouteCommand":new RouteCommand("loc1 /to loc2")
+activate ":RouteCommand"
+
+create ":RouteParser"
+":RouteCommand" -> ":RouteParser": new RouteParser("loc1 /to loc2")
+activate ":RouteParser"
+":RouteCommand" <-- ":RouteParser"
+deactivate ":RouteParser"
+
+":Parser" <-- ":RouteCommand"
+deactivate ":RouteCommand"
+
+":Parser" -> ":RouteCommand":executeCommand()
+activate ":RouteCommand"
+
+ref over ":RouteCommand"
+execute route finder
+end
+
+":Parser" <-- ":RouteCommand"
+deactivate ":RouteCommand"
+[<-- ":Parser": boolean isOngoing
+deactivate ":Parser"
+
+
+@enduml

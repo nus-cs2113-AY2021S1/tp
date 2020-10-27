@@ -1,0 +1,30 @@
+@startuml
+
+allowmixing
+Rectangle Logic {
+Rectangle commands {
+abstract class Command
+Command <|--up AllBusCommand
+Command <|-left BusCommand
+Command <|-left DineCommand
+Command <|--up DineInfoCommand
+Command <|-left ExitCommand
+Command <|- HelpCommand
+Command <|-- ListStopsCommand
+Command <|-- ResetSearchFreqCommand
+Command <|-- RouteCommand
+Command <|--up RouteMapCommand
+}
+Rectangle parser {
+Parser <|-- RouteParser
+RouteParser <-- RouteCommand
+}
+class SimilarityCheck
+
+SimilarityCheck <..down RouteCommand
+SimilarityCheck <..down BusCommand
+}
+
+Parser --left> commands
+
+@enduml

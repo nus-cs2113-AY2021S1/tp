@@ -1,0 +1,45 @@
+@startuml
+mainframe **sd** execute route finder
+skinparam BoxPadding 10
+box Logic
+":RouteCommand" -> ":RouteParser": getLocations()
+activate ":RouteParser"
+":RouteCommand" <-- ":RouteParser": {loc1, loc2}
+deactivate ":RouteParser"
+
+":RouteCommand" -> ":RouteCommand":checkLocations({loc1, loc2})
+activate ":RouteCommand"
+":RouteCommand" <-- ":RouteCommand"
+deactivate ":RouteCommand"
+
+":RouteCommand" -> ":RouteCommand":similarLocations({loc1, loc2})
+activate ":RouteCommand"
+
+alt loc1 not a bus stop
+":RouteCommand"->"<<class>>\n:SimilarityCheck": similarLoc(loc1)
+activate "<<class>>\n:SimilarityCheck"
+":RouteCommand"<--"<<class>>\n:SimilarityCheck": ArrayList<String> possibleLocs
+deactivate "<<class>>\n:SimilarityCheck"
+else loc2 not a bus stop
+":RouteCommand"->"<<class>>\n:SimilarityCheck": similarLoc(loc2)
+activate "<<class>>\n:SimilarityCheck"
+":RouteCommand"<--"<<class>>\n:SimilarityCheck": ArrayList<String> possibleLocs
+deactivate "<<class>>\n:SimilarityCheck"
+end
+
+":RouteCommand" <-- ":RouteCommand": ArrayList<String> possibleLocs
+deactivate ":RouteCommand"
+opt possibleLocs is empty
+end box
+
+box Model #lightPink
+":RouteCommand" -> "<<class>>\n:BusData":possibleBuses(loc1,loc2)
+activate "<<class>>\n:BusData"
+ref over "<<class>>\n:BusData"
+get possible bus routes
+end ref
+":RouteCommand" <-- "<<class>>\n:BusData": ArrayList of possible routes
+deactivate "<<class>>\n:BusData"
+end
+end box
+@enduml

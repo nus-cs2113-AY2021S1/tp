@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.BusData;
-import seedu.duke.BusStops;
+import seedu.duke.model.bus.BusData;
+import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 

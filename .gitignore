@@ -33,4 +33,5 @@ logger.log.1.lck
 logger.log.2.lck
 data/freqList.txt
 data/FavList.txt
+META-INF/MANIFEST.MF
 src/main/java/META-INF/MANIFEST.MF
