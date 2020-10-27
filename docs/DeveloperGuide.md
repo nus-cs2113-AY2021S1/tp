@@ -429,8 +429,46 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 The following sequence diagram shows how the revise feature works:
 ![Sequence Diagram of Revise](UML/revise_seq_diagram.png)
 
-### 4.5. Scheduler Feature
-[summary + scenario]
+#### 4.4.2. Scheduling The Chapters Feature
+(Lucas)
+In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
+At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute to `deckInterval` days after the day of revision.
+
+`Scheduler` implements the following operations:
+* `Scheduler#computeEasyInterval()`
+* `Scheduler#computeMediumInterval()`
+* `Scheduler#computeHardInterval()`
+* `Scheduler#computeDeckInterval()`
+* `Scheduler#computeDeckDeadline()`
+
+`Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` and `Scheduler#computeHardInterval()` are exposed in the `ReviseCommand` class as `ReviseCommand#rateCard()` while `Scheduler#computeDeckDeadline()` is exposed as `ReviseCommand#execute()`.
+
+***Example***
+Given below is an example usage scenario and how the Scheduler mechanism behaves at each step when: 
+`revise 1` is called in a `Module` that contains only one `Chapter` with three `Card`s in its `CardList` attribute and confirmation is given to proceed with revision.
+
+Step 1:
+* The user enters `revise 1` within the `Module` and `ReviseCommand` is instantiated. 
+* Upon confirmation and check that `CardList` of the designated `Chapter` is not empty, `ReviseCommand` proceeds to create an `ArrayList<Card>` named `allCards` comprising of all `Card`s within in the `CardList`.
+
+Step 2:
+* For each `Card` in `allCards`, `ReviseCommand#reviseCard()` is called upon completion of either `ReviseCommand#execute()` or `ReviseCommand#repeateRevision()`.
+* This operation then calls `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` or `Scheduler#computeHardInterval()` depending on the user input to compute and update the new value of `previousInteral` for each card.
+
+Step 3:
+* Upon completion of all revision, `ReviseCommand#execute()` will call `Scheduler#computeDeckDeadline()`, which in turn calls `Scheduler#computeDeckInterval()`. `Scheduler#computeDeckInterval()` computes `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of each `Card` in `allCards,` and returns it to `Scheduler#computeDeckDeadline()`.
+
+Step 4:
+* Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
+
+
+### 4.5. Viewing and Customising the Schedule Feature
+KAJI schedules the user's database automatically for them based on their [revision sessions](#), chapter by chapter, using Spaced Repetition. Users should be able to view their schedule for the current day to know which tasks they need to complete on the day itself and to view their schedule for the upcoming week so that they can plan ahead. However, to effectively use the scheduling feature, users should also be able to customise their scheduling system to include or exclude chapters from their schedule with ease.
+
+To utilise this feature, the following commands and their corresponding sub-features are introduced:
+* [`due`](#451-View-Due-Chapters-Feature) - Viewing their schedule for the current day
+* [`preview`](#452-Preview-Upcoming-Dues-Feature) - Viewing their schedule for the upcoming week
+* [`exclude`](#453-Exclusion-Feature) - Customising which of their Chapters will be in the Scheduler
 
 #### 4.5.1. View Due Chapters Feature
 (Lucas)
@@ -440,6 +478,51 @@ The following sequence diagram shows how the revise feature works:
 
 #### 4.5.3. Exclusion Feature
 (Lucas)
+
+***Implementation***
+KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of Chapters that KAJI will ignore as it parses for Chapters that are due in the `due` and `preview` commands. This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
+
+To support this feature, the following command was added to KAJI:
+* `exclude` - A command that excludes more or less `Chapters` from the Exclusion List.
+A corresponding Class `ExecuteCommand` was also created to carry out the functions related to the command.
+
+The `exclude` command can be called with either `exclude more` or `exclude less`, which adds to or removes from the Exclusion List respectively. Furthermore, both modes can be used to edit the Exclusion List a single `Chapter` at a time or every `Chapter` belonging to a `Module` at a time as a secondary option.
+
+To load and store the Exclusion List, a Exclusion File is created and maintained using these two methods from the `Storage` Class:
+* `Storage#loadExclusionFile` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
+* `Storage#updateExclusionFile` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
+
+The `ArrayList<String>` Exclusion List is modified using four pairs of commands in both `ExcludeCommand` and `Storage`:
+
+* Excluding a Chapter from Scheduling
+    * `ExcludeCommand#addChapterToExclusion`
+    * `Storage#appendChapterToExclusionFile`
+* Excluding a Module from Scheduling
+    * `ExcludeCommand#addModuleToExclusion`
+    * `Storage#appendModuleToExclusionFile`
+* Including a Chapter from Scheduling
+    * `ExcludeCommand#removeChapterFromExclusion`
+    * `Storage#aremoveChapterFromExclusionFile`
+* Including a Module from Scheduling
+    * `ExcludeCommand#removeModuleFromExclusion`
+    * `Storage#removeModuleFromExclusionFile`
+
+The following sequence Diagrams illustrates how the Exclusion Process is executed:
+
+![](images/ExcludeCommand.png)
+<br>
+
+![](images/addModuleToExclusion.png)
+<br>
+
+![](images/addChapterToExclusion.png)
+<br>
+
+![](images/removeModuleFromExclusion.png)
+<br>
+
+![](images/removeChapterFromExclusion.png)
+<br>
 
 #### 4.5.4. Reschedule Chapter Feature
 (Jane)
