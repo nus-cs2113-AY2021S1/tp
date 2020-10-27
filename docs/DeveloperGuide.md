@@ -5,6 +5,39 @@
 ## Setting up, getting started
 
 ## Design
+#### Command Component
+
+![Diagram for commmand](./diagrams/Command.jpg)
+
+API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
+1. `Parser` class to parse the user command 
+1.  This results in a `Command` object executed by the `Parser`
+1.  The command execution can affect the `Model`
+
+
+
+### Architecture
+
+![Architecture Diagram](./diagrams/Architecture.jpg)
+
+The ***Architecture Diagram*** given above explains the high-level design of App. Given below is a quick overview of
+each component.
+
+`Duke` class contains the main method. It is responsible for,
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
+- At shut down: Stores the user data from memory into the hard disk.
+
+The rest of the App consists of five components.
+
+- `Ui`: The Ui of the App.
+- `Parser`: Parses the input to determine which command to execute.
+- `Command`: The command executer.
+- `UserData`: Holds the data of the App in the memory.
+- `Storage`: Reads data from, and writes data to, the hard disk.
+
+
+
 
 ## Implementation
 
@@ -89,7 +122,6 @@ The following sequence diagram shows how the `goal save money` command is parsed
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
-
 ![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
 #### Add Feature
@@ -137,6 +169,32 @@ Step 5. The Zoom event is then added to the user's `UserData` for further use.
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+
+#### List feature
+
+The list feature allows the user to print a list of events added by type.
+The list of events is print according to the order it was added in.
+
+User calls the list command by executing `list [argument]`.
+
+Executing `list` without specifying any argument prints a list of event types available.  
+Specifying an event type as the argument prints a list of events of that type.  
+Specifying `all` as the argument prints a list of all events in the order: Personal, Timetable, Zoom.
+
+Given below is an example usage scenario of the list feature.
+
+Step 1. The user executes `list zoom` command to print a list of Zoom events.
+The `list` command is passed through a parser to return the ListCommand with arguments initialised.
+
+Step 2. `ListCommand#execute()` is called, retrieving the list of Zoom events in `UserData`.
+
+Step 3. `ListCommand#execute()` calls `Ui#printList()` and passes the list of Zoom events to print.
+
+Step 4. `Ui#printList()` loops through every event in the Zoom event arraylist and prints it.
+
+The following sequence diagram shows how the `list zoom` command is parsed:
+
+![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
 #### Repeat Feature
 
@@ -227,8 +285,19 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|office worker (working from home)|organise large amount of online Zoom meetings to manage|keep track of his schedule for the day|
+|v1.0|university student|consolidate my schedule for both my online zoom lectures and my ordinary timetable|better manage my time|
+|v1.0|university student having projects|be informed of the goals of my project|keep track of the project details|
+|v1.0|university student|customise repeated task|set events like tutorials to weekly|
+|v1.0|teacher|organise all my zoom links for my classes|it can be easily accessible.|
+|v1.0|user|see the events that I have created|refer to them when I forget|
+|v1.0|user|check when I am available on that day|avoid manually searching through my entire calendar to find out if I have time|
+|v2.0|user|be able to keep track the status of completion of the events I created|focus more on the tasks that I need to complete|
+|v2.0|user|view which events are upcoming in a convenient readable format|locate the events easily by date|
+|v2.0|user|the application to alert me when my deadlines are coming up|be given enough time to work on them and not rush last minute|
+|v2.0|user|create deadlines from the email text body|avoid looking through the email to create one by one|
+|v2.0|new user (new to text-based application)|detailed directions on commands I can use|easily navigate through the application|
+|v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
 
 ### Use Cases
 
