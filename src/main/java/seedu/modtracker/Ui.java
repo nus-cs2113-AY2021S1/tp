@@ -77,7 +77,7 @@ public class Ui {
      */
     public void printWelcomeScreen() {
         System.out.println("Hello from" + System.lineSeparator() + LOGO);
-        System.out.println("Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/");
+        System.out.println("Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html");
         System.out.println(ENTER_HELP + System.lineSeparator());
     }
 
