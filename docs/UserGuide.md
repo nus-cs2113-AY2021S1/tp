@@ -127,12 +127,19 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 
 Example of usage: 
 
-`edit 5546 des/reading`  
-`edit 7019 st/1400 et/1600 p/3`
+`edit 8833 des/reading`  
+`edit 4893 st/1400 et/1600 p/3`
 
 Expected outcome:
 
-    Task edited.
+Initial list:
+
+![edit_before](images/edit_before.png)
+
+After edits:
+
+![edit_after_description](images/edit_after_des.png)
+![edit_after_start_end_priority](images/edit_after_st_et_p.png)
 
 
 ### <span style="color:red">Displaying tasks</span> : `list` 
