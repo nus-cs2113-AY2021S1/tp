@@ -21,8 +21,6 @@ public class RemoveCardCommand extends RemoveCommand {
             + ": Removes card based on the index in the list. \n"
             + "Parameters: " + CARD_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_INVALID_INDEX_FLASHCARD = "The flashcard is not found, please try again.";
-
     private final int removeIndex;
 
     public RemoveCardCommand(int removeIndex) {

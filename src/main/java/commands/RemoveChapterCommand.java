@@ -22,8 +22,6 @@ public class RemoveChapterCommand extends RemoveCommand {
             + ": Removes chapter based on the index in the list. \n"
             + "Parameters: " + CHAPTER_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_INVALID_INDEX_CHAPTER = "The chapter is not found, please try again.";
-
     private final int removeIndex;
 
     public RemoveChapterCommand(int removeIndex) {
