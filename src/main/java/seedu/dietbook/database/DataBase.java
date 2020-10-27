@@ -259,14 +259,14 @@ public class DataBase {
     }
 
     /**
-     * Provide a list o all food in the data base in numbered String form
+     * Provide a list o all food in the data base in numbered String form.
      * @return String
      */
-    public String getFoodListString(){
+    public String getFoodListString() {
         List<Food> foodlist = foodStream().collect(Collectors.toList());
         StringBuilder foodListString = new StringBuilder();
         int foodnum = 0;
-        for (Food food : foodlist){
+        for (Food food : foodlist) {
             foodnum++;
             foodListString.append("  ").append(foodnum).append(". ").append(food.toString());
         }
