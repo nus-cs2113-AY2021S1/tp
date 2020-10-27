@@ -3,8 +3,12 @@ package seedu.dietbook.database;
 
 import seedu.dietbook.food.Food;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,7 +20,6 @@ public class DataBase {
     private static final String UP_SYMBOL = "&%UP";
 
     private static final String DATA_FILE_SEPERATOR = "\\|";
-
 
     private final List<Canteen> canteenList;
 
@@ -37,7 +40,6 @@ public class DataBase {
         assert (dataStream != null) : "Could not load resource";
 
         Scanner fileReader = new Scanner(dataStream);
-
         String fileLine;
         boolean start = false;
         while (fileReader.hasNext()) {
@@ -254,7 +256,7 @@ public class DataBase {
                 .flatMap(x -> x.getStoreList().stream())
                 .flatMap(x -> x.getFoodList().stream());
     }
-    
+
     /**
      * Provide a list of all food in the data base.
      */
