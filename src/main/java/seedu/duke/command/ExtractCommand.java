@@ -12,7 +12,6 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -54,10 +53,9 @@ public class ExtractCommand extends Command {
 
         if (finalDate == null) {
             if (textSubject.equals("")) {
-                System.out.println("Empty text subject and no date/time fields, event won't be created!");
+                ui.printExtractEmptyTextMessage();
             } else {
-                System.out.println("Since no date was detected in the text body, "
-                        + "the personal event will only contain the description.");
+                ui.printExtractNoDateEventMessage();
                 Personal personalEvent = new Personal(textSubject);
                 data.addToEventList("Personal", personalEvent);
             }
@@ -65,8 +63,7 @@ public class ExtractCommand extends Command {
             ArrayList<LocalTime> timeList = detectTime(textBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
             if (finalTime == null) {
-                System.out.println("No time detected in text body!"
-                        + " The personal event will only have the date and description.");
+                ui.printExtractNoTimeEventMessage();
                 Personal personalEvent = new Personal(textSubject, finalDate);
                 data.addToEventList("Personal", personalEvent);
             } else {
@@ -145,34 +142,26 @@ public class ExtractCommand extends Command {
     private LocalTime chooseFinalTime(ArrayList<LocalTime> timeList, Ui ui) {
         LocalTime finalTime = null;
         if (timeCount > 1) {
-            System.out.println("We have detected " + timeCount + " time slots in this text body!");
-            System.out.println("Please select the time you want for this event from the list below!");
-            int timeNumber = 0;
-            ui.printDividerLine();
-            for (LocalTime time : timeList) {
-                System.out.println(timeNumber + 1 + ". " + time);
-                timeNumber++;
-            }
-            ui.printDividerLine();
+            ui.printExtractChooseTimeMessage(timeCount, timeList);
             boolean timeChosen = false;
             while (!timeChosen) {
                 try {
                     int timeNumberChosen = Integer.parseInt(ui.receiveCommand());
                     if (timeNumberChosen > timeCount || timeNumberChosen <= 0) {
-                        System.out.println("Invalid time slot number to choose! Please choose again!");
+                        ui.printExtractInvalidTimeChosenMessage();
                     } else {
                         finalTime = timeList.get(timeNumberChosen - 1);
                         timeChosen = true;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("We couldn't detect a number! Please choose again!");
+                    ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
         } else if (timeCount == 0) {
-            System.out.println("No time slots detected for this text body!");
+            ui.printExtractNoTimeMessage();
         } else {
             finalTime = timeList.get(0);
-            System.out.println("One time slot detected and chosen: " + finalTime);
+            ui.printExtractSingleTimeDetectedMessage(finalTime);
         }
 
         return finalTime;
@@ -251,35 +240,26 @@ public class ExtractCommand extends Command {
     private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
         LocalDate finalDate = null;
         if (dateCount > 1) {
-            System.out.println("We have detected " + dateCount + " dates in this text body!");
-            System.out.println("Please select the date you want for this event from the list below!");
-            int dateNumber = 0;
-            ui.printDividerLine();
-            for (LocalDate date : dateList) {
-                System.out.println(dateNumber + 1 + ". " + date);
-                //System.out.println(dateNumber + 1 + " " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                dateNumber++;
-            }
-            ui.printDividerLine();
+            ui.printExtractChooseDateMessage(dateCount, dateList);
             boolean dateChosen = false;
             while (!dateChosen) {
                 try {
                     int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
                     if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
-                        System.out.println("Invalid date number to choose! Please choose again!");
+                        ui.printExtractInvalidDateChosenMessage();
                     } else {
                         finalDate = dateList.get(dateNumberChosen - 1);
                         dateChosen = true;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("We couldn't detect a number! Please choose again!");
+                    ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
         } else if (dateCount == 0) {
-            System.out.println("No date detected in the text!");
+            ui.printExtractNoDateMessage();
         } else {
             finalDate = dateList.get(0);
-            System.out.println("One date detected and chosen: " + finalDate);
+            ui.printExtractSingleDateDetectedMessage(finalDate);
         }
 
         return finalDate;

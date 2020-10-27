@@ -5,6 +5,7 @@ import seedu.duke.event.EventList;
 import seedu.duke.event.Goal;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -203,6 +204,68 @@ public class Ui {
 
     public void printStorageLoadingErrorMessage() {
         System.out.println("The file does not exist or has been corrupted!");
+    }
+
+    public void printExtractEmptyTextMessage() {
+        System.out.println("Empty text subject and no date/time fields, event won't be created!");
+    }
+
+    public void printExtractNoDateEventMessage() {
+        System.out.println("Since no date was detected in the text body, " +
+                "the personal event will only contain the description.");
+    }
+
+    public void printExtractNoTimeEventMessage() {
+        System.out.println("Since no time detected in text body, "
+                + " the personal event will only have the date and description.");
+    }
+
+    public void printExtractChooseTimeMessage(int timeCount, ArrayList<LocalTime> timeList) {
+        System.out.println("We have detected " + timeCount + " time slots in this text body!");
+        System.out.println("Please select the time you want for this event from the list below!");
+        int timeNumber = 0;
+        printDividerLine();
+        for (LocalTime time : timeList) {
+            System.out.println(timeNumber + 1 + ". " + time);
+            timeNumber++;
+        }
+        printDividerLine();
+    }
+
+    public void printExtractInvalidTimeChosenMessage() {
+        System.out.println("Invalid time slot number to choose! Please choose again!");
+    }
+
+    public void printExtractNoTimeMessage() {
+        System.out.println("No time slots detected for this text body!");
+    }
+
+    public void printExtractSingleTimeDetectedMessage(LocalTime finalTime) {
+        System.out.println("One time slot detected and chosen: " + finalTime);
+    }
+
+    public void printExtractChooseDateMessage(int dateCount, ArrayList<LocalDate> dateList) {
+        System.out.println("We have detected " + dateCount + " dates in this text body!");
+        System.out.println("Please select the date you want for this event from the list below!");
+        int dateNumber = 0;
+        printDividerLine();
+        for (LocalDate date : dateList) {
+            System.out.println(dateNumber + 1 + ". " + date);
+            dateNumber++;
+        }
+        printDividerLine();
+    }
+
+    public void printExtractInvalidDateChosenMessage() {
+        System.out.println("Invalid date number to choose! Please choose again!");
+    }
+
+    public void printExtractNoDateMessage() {
+        System.out.println("No dates detected for this text body!");
+    }
+
+    public void printExtractSingleDateDetectedMessage(LocalDate finalDate) {
+        System.out.println("One time slot detected and chosen: " + finalDate);
     }
 
     /**
