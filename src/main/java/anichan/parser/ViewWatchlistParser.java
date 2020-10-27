@@ -17,7 +17,6 @@ public class ViewWatchlistParser extends CommandParser {
 
     public ViewWatchlistParser() {
         viewWatchlistCommand = new ViewWatchlistCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     public ViewWatchlistCommand parse(String description) throws AniException {
