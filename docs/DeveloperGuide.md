@@ -209,3 +209,50 @@ their respective storage class, `UserStorage`, `WatchlistStorage`, and `Bookmark
 **AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
 
 <br/>
+
+## 8. Documentation, logging, testing, dev-ops
+
+<br/>
+
+### 8.1 Documentation
+
+We use **Jekyll** to manage documentation. We recommend that you document your features implementation and code changes so that other developers are aware of its architecture.
+
+The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website at with [this guide](https://se-education.org/guides/tutorials/jekyll.html).
+
+
+<br/>
+
+### 8.2 Logging
+
+We encourage the use of logger in this project as they provide deeper insights than error messages which can greatly help developers identify bugs and simplify their logging process.
+
+We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
+
+`AniLogger` is used to manage the logging levels and logging destinations. Based on the default setting, logs will be written to both console and file `data/AniChan.log`.
+
+The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
+
+We use the following log levels:
+*   `Level.SEVERE` : A critical failure, which prevents normal execution of the program.
+*   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
+*   `Level.INFO`: General noteworthy information of the program.
+
+<br/>
+
+
+### 8.3 Testing
+
+<br/>
+
+### 8.4 Dev-ops
+
+<br/>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<br/>
