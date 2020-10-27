@@ -15,7 +15,6 @@ import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.HELP;
 import static seedu.duke.command.CommandSummary.MEMBER;
 import static seedu.duke.command.CommandSummary.PROJECT;
-import static seedu.duke.command.CommandSummary.RETROSPECTIVE;
 import static seedu.duke.command.CommandSummary.SPRINT;
 import static seedu.duke.command.CommandSummary.STORAGE;
 import static seedu.duke.command.CommandSummary.TASK;
@@ -77,8 +76,6 @@ public class ParserManager {
                     return new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 case STORAGE:
                     return new StorageParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
-                case RETROSPECTIVE:
-                    return new RetrospectiveParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                 default:
                     return new InvalidCommand(parameters);
                 }
