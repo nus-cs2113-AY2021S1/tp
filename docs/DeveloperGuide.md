@@ -24,8 +24,9 @@ The complete class diagram is shown below.
 ![image info](./pictures/classDiagram.PNG)
 
 ### Implementation
-Retrieve Command
-The flow is for retrieve command is as follows {Replace with sequence diagram}
+#### Retrieve Command
+The flow is for retrieve command is as follows:
+![image info](./pictures/retrieveCommandSD.png)
 1. User calls retrieve command with NRIC
 2. Ui receives the command, returns it to Main and Main calls parser to parse
 3. Parser returns with retrieve command, and Main executes retrieve command

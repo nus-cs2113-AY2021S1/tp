@@ -153,6 +153,7 @@ Format: `editappt NRIC`
 Example of usage:
 
 `editappt S9900999D`
+
 `editappt S9900299D`
 
 ## FAQ
@@ -160,6 +161,14 @@ Example of usage:
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Clone the program to the other computer, and copy the data folder over.
+
+**Q**: Why is the name Hospitalsaurus Rex?
+
+**A**: Because we are nerds.
+
+**Q**: How do I request for more features?
+
+**A**: Contact us.
 
 ## Command Summary
 
