@@ -221,11 +221,11 @@ Example of usage:
 
 Expected outcome:
 
-![reminder_set](images/reminder_set)
+![reminder_set](images/reminder_set.png)
 
 Once the specified time is reached:
 
-![reminder_popup](images/reminder_popup)
+![reminder_popup](images/reminder_popup.png)
 
 
 ### <span style="color:red">Exiting program</span> : `bye`
