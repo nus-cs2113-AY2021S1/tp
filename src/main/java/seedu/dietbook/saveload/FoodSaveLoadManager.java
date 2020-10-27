@@ -71,7 +71,7 @@ public class FoodSaveLoadManager {
             saver.add(Integer.toString(foodlist.get(j - 1).getCalorie()), 2, j);
             saver.add(Integer.toString(foodlist.get(j - 1).getCarbohydrate()), 3, j);
             saver.add(Integer.toString(foodlist.get(j - 1).getProtein()), 4, j);
-            saver.add(Integer.toString(foodlist.get(j - 1).getFats()), 5, j);
+            saver.add(Integer.toString(foodlist.get(j - 1).getFat()), 5, j);
         }
         saver.save(FOOD_FOLDER_NAME, fileName);
     }

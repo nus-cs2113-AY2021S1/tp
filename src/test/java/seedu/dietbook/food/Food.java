@@ -16,7 +16,7 @@ public class Food {
         this.fats = fats;
     }
 
-    public int getFats() {
+    public int getFat() {
         return fats;
     }
 
