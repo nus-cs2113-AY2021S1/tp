@@ -5,6 +5,7 @@
 [Introduction](#introduction) <br>
 [Quick start](#quick-start) <br>
 [Features](#features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Adding a noun: `noun`](#adding-a-noun-noun) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Adding a verb: `verb`](#adding-a-verb-verb) <br>
@@ -51,15 +52,18 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
     1. `exit` : Exits the app.
 1. Refer to the Features below for details of each command.
 
+
 ## Features 
 
 ### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
 The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
-1. ----------------------------------------------------------------
+
+1. \----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
 Example usages:
 * `divider 1` changes divider option to 2
 
@@ -82,7 +86,7 @@ Shows a list of commands you can use and what the commands do. Print the instruc
 Output:  
 Type “help COMMAND_NAME” to figure out how to use the particular command.  
 - help
-- settings
+- divider
 - bunny
 - list bunny
 - filter bunny
@@ -503,6 +507,7 @@ Format: `exit`
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
 | divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
+| help         | `help` </br> Look through help guide                                                                  |
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
@@ -525,3 +530,5 @@ Format: `exit`
 | clear        | `clear`</br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  
 | reset        | `reset <NAME_OF_CATEGORY>`</br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |
 | exit         | `exit`</br>Exits the program.                                                                                    |    
+
+[Jump to top](#user-guide)

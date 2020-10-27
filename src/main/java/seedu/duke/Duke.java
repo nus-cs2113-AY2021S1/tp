@@ -1,33 +1,29 @@
 package seedu.duke;
 
+import seedu.duke.commands.CommandChecker;
+import seedu.duke.constants.Logos;
+import seedu.duke.database.WordsLoader;
+import seedu.duke.database.WritingsLoader;
+import seedu.duke.user.User;
+import seedu.duke.writing.WritingList;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.Logos;
-import seedu.duke.user.User;
-import seedu.duke.wordlist.WordList;
-import seedu.duke.writing.WritingList;
-import seedu.duke.database.WritingsLoader;
-import seedu.duke.writing.Writings;
-
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
+import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
+import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.database.BunnyLoader.loadBunnyFile;
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 import static seedu.duke.database.WordsLoader.loadWordsFile;
 import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.database.WritingsLoader.loadWritings;
-
-
-import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
-import static seedu.duke.commands.CommandChecker.extractCommandType;
-
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.ui.UI.printAskForName;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
 import static seedu.duke.ui.UI.printHelloMessage;
-import static seedu.duke.ui.UI.printAskForName;
 
 public class Duke {
     private static final WritingsLoader loader = new WritingsLoader();
@@ -48,6 +44,7 @@ public class Duke {
     public static void main(String[] args) {
         setUserSettingsArrayList(savedSettings, username);
         loadUserSettings(savedSettings);
+        WordsLoader.loadWordsFile();
         loadBunnyFile(bunniesList);
         loadWritings(writings);
         loadWordsFile();

@@ -1,7 +1,5 @@
 package seedu.duke.commands;
 
-import java.util.Scanner;
-
 public enum CommandChecker {
     HELP,
     USERNAME,
@@ -13,6 +11,7 @@ public enum CommandChecker {
     LIST_WORDS,
     FILTER_WORDS,
     LIST_FILTER,
+    GEN_THREE_WORDS,
 
     GEN_NAME,
     ADD_NAME,
@@ -70,6 +69,8 @@ public enum CommandChecker {
             return CommandChecker.ADJ;
         } else if (userInput.toLowerCase().trim().startsWith("list words")) {
             return CommandChecker.LIST_WORDS;
+        } else if (userInput.toLowerCase().trim().startsWith("three words")) {
+            return CommandChecker.GEN_THREE_WORDS;
         } else if (userInput.toLowerCase().trim().startsWith("bunny")) {
             return CommandChecker.BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("list bunny")) {

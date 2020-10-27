@@ -8,4 +8,9 @@ public class Noun extends Words {
     public String getType() {
         return "noun";
     }
+
+    @Override
+    public String toString() {
+        return "n" + " > " + this.description + " > " + this.definition;
+    }
 }

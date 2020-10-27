@@ -63,6 +63,7 @@ public class Names {
         NamesDB.loadDB(nameList);
         String nameToAdd = name.replaceAll("(?i)add name", "").trim();
         if (nameToAdd.length() > 0) {
+            assert nameToAdd.length() > 0;
             nameList.add(nameToAdd);
             NamesDB.updateDB(nameList);
             System.out.println(nameToAdd + " has been added to the Names list!");
@@ -77,6 +78,7 @@ public class Names {
     public static void deleteName(String index) throws NameException {
         NamesDB.loadDB(nameList);
         if (nameList.size() > 0) {
+            assert nameList.size() > 0;
             try {
                 int indexToDelete = Integer.parseInt(index.replaceAll("(?i)delete name", "").trim()) - 1;
                 String nameToDelete = nameList.get(indexToDelete);

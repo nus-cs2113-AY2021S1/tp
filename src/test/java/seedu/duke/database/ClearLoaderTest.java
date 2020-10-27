@@ -9,11 +9,11 @@ public class ClearLoaderTest {
     private static WritingList writing;
 
     private static void initializeTestDatabase() {
-        writing.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
-        writing.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
-        writing.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
-        writing.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
-        writing.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
     }
 
     @Test
