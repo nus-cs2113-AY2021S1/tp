@@ -47,7 +47,7 @@ public class Task {
     }
 
     public LocalDateTime getDateTime() {
-        return null;
+        return LocalDateTime.MAX;
     }
 }
 
