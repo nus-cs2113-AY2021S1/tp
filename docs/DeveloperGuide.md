@@ -150,14 +150,14 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add an event item feature
+### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
 
-It checks the type of the new event first, 
-then it analyses the attached information and saves the event with the information in the event list.  
+It checks the type of the new calendar item first, then it analyses the attached information, 
+and finally uses the corresponding adding function to add the new item into the calendar list.  
 
-Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
+Note: If the item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
 there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
 
 Note: Multiple `Lecture`, `Lab`, and `Tutorial`events can be added by one command since they are recurring,
