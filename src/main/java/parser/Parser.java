@@ -148,7 +148,7 @@ public class Parser {
 
     private static Command prepareGo(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        String level = getLevel(access);
+        String level = getLevel(access, GoCommand.COMMAND_WORD);
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + GoCommand.MESSAGE_USAGE);
         }
@@ -166,7 +166,7 @@ public class Parser {
 
     private static Command prepareBack(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        String level = getLevel(access);
+        String level = getLevel(access, BackCommand.COMMAND_WORD);
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + BackCommand.MESSAGE_USAGE);
         }
@@ -212,7 +212,7 @@ public class Parser {
 
     private static Command prepareAdd(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        String level = getLevel(access);
+        String level = getLevel(access, AddCommand.COMMAND_WORD);
         switch (level) {
         case ADMIN:
             if (commandArgs.isEmpty()) {
@@ -256,7 +256,7 @@ public class Parser {
         return new AddModuleCommand(commandArgs);
     }
 
-    private static String getLevel(Access access) throws IncorrectAccessLevelException {
+    private static String getLevel(Access access, String commandWord) throws IncorrectAccessLevelException {
         String level;
         if (access.isAdminLevel()) {
             level = ADMIN;
@@ -267,7 +267,7 @@ public class Parser {
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
-                    AddCommand.COMMAND_WORD));
+                    commandWord));
         }
         return level;
     }
@@ -313,23 +313,24 @@ public class Parser {
 
     private static Command prepareEdit(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (access.isAdminLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditModuleCommand.MESSAGE_USAGE);
-        }
-        if (access.isModuleLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditChapterCommand.MESSAGE_USAGE);
-        }
-        if (access.isChapterLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditCardCommand.MESSAGE_USAGE);
-        }
-
-        if (access.isAdminLevel()) {
+        String level = getLevel(access, EditCommand.COMMAND_WORD);
+        switch (level) {
+        case ADMIN:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditModuleCommand.MESSAGE_USAGE);
+            }
             return prepareEditModule(commandArgs);
-        } else if (access.isModuleLevel()) {
+        case MODULE:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditChapterCommand.MESSAGE_USAGE);
+            }
             return prepareEditChapter(commandArgs);
-        } else if (access.isChapterLevel()) {
+        case CHAPTER:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditCardCommand.MESSAGE_USAGE);
+            }
             return prepareEditCard(commandArgs);
-        } else {
+        default:
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
                     EditCommand.COMMAND_WORD));
