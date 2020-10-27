@@ -28,7 +28,7 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAN
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String TOPICS_INDICATOR = "t/";
-    private static final String QN_INDICATOR = "n/";
+    private static final String NUMBER_OF_QUESTIONS_INDICATOR = "n/";
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";
@@ -77,11 +77,13 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             try {
-                if (commandArr[2].contains(QN_INDICATOR)) {
-                    numOfQuestions = Integer.parseInt(commandArr[2].substring(commandArr[2].indexOf(QN_INDICATOR) + 2));
+                if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
+                    numOfQuestions = Integer.parseInt(
+                            commandArr[2].substring(commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + 2));
                     topicName = commandArr[1].substring(commandArr[1].indexOf(TOPICS_INDICATOR) + 2);
                 } else if (commandArr[2].contains(TOPICS_INDICATOR)) {
-                    numOfQuestions = Integer.parseInt(commandArr[1].substring(commandArr[1].indexOf(QN_INDICATOR) + 2));
+                    numOfQuestions = Integer.parseInt(
+                            commandArr[1].substring(commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + 2));
                     topicName = commandArr[2].substring(commandArr[2].indexOf(TOPICS_INDICATOR) + 2);
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
