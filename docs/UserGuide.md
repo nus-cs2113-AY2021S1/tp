@@ -144,12 +144,12 @@ After edits:
 
 ### <span style="color:red">Displaying tasks</span> : `list` 
 
-Default display mode: display **all** tasks by **adding sequence**.  
-`-d`: display **all** tasks by **date**, from past to future.  
+Default display mode: display **all** tasks in the **order of their addition** to the list.  
+`-d`: display **all** tasks by **date**, from oldest to newest.  
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.  
-`-w`: display **only tasks in current week** by **adding sequence**.   
-`-m`: display **only tasks in current month** by **adding sequence**.  
-`d/DATE`: display **all tasks of a date provided** by adding sequence.  
+`-w`: display **only tasks in current week** in the **order of their addition** to the list.    
+`-m`: display **only tasks in current month** in the **order of their addition** to the list.   
+`d/DATE`: display **all tasks of a date provided** in **order of their addition** to the list.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
@@ -162,10 +162,24 @@ Example of usage:
 
 Expected outcome:
 
+list:
+
 ![list](images/list.PNG)
+
+list -d:
+
 ![sort_by_date](images/list_sort_by_date.PNG)
+
+list -p:
+
 ![sort_by_priority](images/list_sort_by_priority.PNG)
+
+list -w:
+
 ![weekly_view](images/list_week.PNG)
+
+list -m:
+
 ![monthly_view](images/list_month.PNG)
 
 
@@ -193,11 +207,11 @@ Format: `delete INDEX`
 
 Example of usage: 
 
-`delete 5546`
+`delete 8833`
 
 Expected outcome:
 
-    Task deleted.
+![delete](images/delete.png)
     
 
 ### <span style="color:red">Clearing tasks</span> : `clear`
