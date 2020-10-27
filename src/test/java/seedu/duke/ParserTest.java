@@ -65,7 +65,7 @@ public class ParserTest {
         arg5.put("arg", "precedence test");
         UserInput expected5 = new UserInput("testCase\350", arg5);
         expected5.setCategory("finance");
-        String test5 = "  f testCase\350  \350"
+        String test5 = "  f testCase\350  \350 "
                 + "/  arg  some  arg / arg /arg                                     precedence test";
         assertEquals(p.parse(test5).getArgs(), expected5.getArgs());
         assertEquals(p.parse(test5).getCategory(), expected5.getCategory());
