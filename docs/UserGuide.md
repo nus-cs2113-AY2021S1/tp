@@ -1,9 +1,11 @@
 # DietBook User Guide
 
 ## Introduction
+DietBook is a desktop application targeting NUS students living on campus, optimized for use via a **Command Line Interface**. Not only can DietBook track and show the user's food and nutritional intake, it also provides users with a list of commonly eaten food items around and outside NUS. 
 
-DietBook is a desktop application targeting NUS students optimized for use via a **Command Line Interface**. Not only can DietBook track and show the user's food and nutritional intake, it also provides users with a list of commonly eaten food items around and outside NUS. 
- 
+* Table of Contents
+{:toc} 
+
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `dietbook.jar` from [here](https://github.com/AY2021S1-CS2113-T14-4/tp/releases).
