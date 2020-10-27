@@ -145,7 +145,7 @@ public class ListNoteCommand extends Command {
                 unpinned = notebook.getSortedList(isAscendingOrder, false);
             }
 
-            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned, notebook);
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -219,7 +219,8 @@ public class ListNoteCommand extends Command {
                 pinned = notebook.getSortedList(isAscendingOrder, true, notes);
                 unpinned = notebook.getSortedList(isAscendingOrder, false, notes);
             }
-            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned);
+
+            return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned, notebook);
         }
 
         return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
