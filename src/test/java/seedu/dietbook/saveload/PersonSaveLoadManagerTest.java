@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersonSaveLoadManagerTest {
-    private static PersonSaveLoadManager pslTest;
 
     @BeforeEach
-    private void setUp(){
-        pslTest = new PersonSaveLoadManager();
+    private void setUp() {
+        PersonSaveLoadManager pslTest = new PersonSaveLoadManager();
         pslTest.setName("Victor Chng");
         pslTest.setActivityLevel(0);
         pslTest.setGender("UnKnown");
@@ -24,13 +24,13 @@ class PersonSaveLoadManagerTest {
     }
 
     @Test
-    private void Load_NoSuchFile_ExpectFileNotFoundException() {
+    private void load_noSuchFile_expectFileNotFoundException() {
         PersonSaveLoadManager localpslTest = new PersonSaveLoadManager();
         assertThrows(FileNotFoundException.class, () -> localpslTest.load("pie die pie"));
     }
 
     @Test
-    private void Load_CorrectFile_AllContentsCorrect() throws Exception {
+    private void load_correctFile_allContentsCorrect() throws Exception {
         PersonSaveLoadManager localpslTest = new PersonSaveLoadManager();
         localpslTest.load("pslTest");
         assertEquals("Victor Chng", localpslTest.getName());
