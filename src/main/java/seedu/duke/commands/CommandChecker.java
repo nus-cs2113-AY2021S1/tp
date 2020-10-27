@@ -26,6 +26,8 @@ public enum CommandChecker {
     DELETE_BUNNY,
     RANDOM_BUNNY,
 
+    REMIND,
+
     CHARACTER,
     LIST_CHARACTER,
     FILTER_CHARACTER,
@@ -67,6 +69,8 @@ public enum CommandChecker {
             return CommandChecker.VERB;
         } else if (userInput.toLowerCase().trim().startsWith("adj")) {
             return CommandChecker.ADJ;
+        } else if (userInput.toLowerCase().trim().startsWith("remind ")) {
+            return CommandChecker.REMIND;
         } else if (userInput.toLowerCase().trim().startsWith("list words")) {
             return CommandChecker.LIST_WORDS;
         } else if (userInput.toLowerCase().trim().startsWith("three words")) {
