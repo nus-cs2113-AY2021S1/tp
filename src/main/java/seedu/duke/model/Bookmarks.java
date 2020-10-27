@@ -13,6 +13,10 @@ public class Bookmarks implements Serializable {
         bookmarkedStocks = new ArrayList<>();
     }
 
+    public Bookmarks(ArrayList<String> bookmarkedStocks) {
+        this.bookmarkedStocks = bookmarkedStocks;
+    }
+
     public ArrayList<String> getBookmarkedStocks() {
         return bookmarkedStocks;
     }
