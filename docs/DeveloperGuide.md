@@ -35,8 +35,33 @@ The table below shows the information and contact details of developers.
 Before diving into the project development and testing, here are some essential tools required in this project:
 
 1. **JAVA 11.0.8**
-    * sd
+    * Launch your terminal and type "java -version" to ensure you have the correct version number
+    * If you have no Java installed or different version number, please proceed to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+    to download the **Java 11.0.9** installer.
 1. **Intellij IDEA**
+    * If you are new to IntelliJ, please proceed to this [website](https://www.jetbrains.com/help/idea/installation-guide.html)
+    to download and install the IDE.
+    
+After installing the required tools, proceed to [Github Page](https://github.com/AY2021S1-CS2113T-T12-2/tp) and 
+fork the project to your own repository, and clone your fork into your working computer.    
+
+Now, Open Intellij 
+1. If you are not in the welcome screen, click `File` → `Close Project` to navigate to the starting project dialog)
+1. Set up the correct JDK version for Gradle.
+        1. Click `Configure` → `Project Structure for New Project`
+        1. Click `New...` and set it to the directory of the JDK
+1. Upon the successful configuration, you should be able to see the following screenshot:
+![JDK Config](images/JDK_Config_Screenshot.png)
+1. Lastly, **Import the project as a Gradle Project.**
+    * Intellij IDEA by default has the Gradle plugin installed. If you have disabled it, go to 
+    `File` → `Settings` → `Plugins` to re-enable them.
+    * Click Import Project (or Open or Import in newer version of Intellij).
+    * Locate the **build.gradle file** (not the root folder as you would do in a normal importing) and select it. Click `OK`.
+    * If asked, choose to `Open as Project` (not Open as File).
+    * Click `OK` to accept the default settings but do ensure that the selected version of Gradle JVM matches the 
+    JDK being used for the project.
+    * Wait for the importing process to finish (may take a few minutes, so get some :coffee: :relaxed:)
+
 
 ## Design
 This section describes the design overview of the application.
