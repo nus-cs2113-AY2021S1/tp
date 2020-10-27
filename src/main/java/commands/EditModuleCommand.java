@@ -9,9 +9,8 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
-import static common.Messages.MODULE;
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
+import static common.Messages.MODULE;
 
 public class EditModuleCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module name.\n"
@@ -19,8 +18,6 @@ public class EditModuleCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 1 CS2113T\n";
 
     public static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
-
-    private static final String ACCESS_LEVEL = "admin";
 
     private final int editIndex;
     private String module;
@@ -33,11 +30,6 @@ public class EditModuleCommand extends EditCommand {
     @Override
     public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, DuplicateDataException {
-        if (!access.isAdminLevel()) {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), ACCESS_LEVEL));
-        }
-
         String result = editModule(access, storage);
         ui.showToUser(result);
     }
@@ -62,10 +54,5 @@ public class EditModuleCommand extends EditCommand {
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_INDEX_RANGE, MODULE));
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

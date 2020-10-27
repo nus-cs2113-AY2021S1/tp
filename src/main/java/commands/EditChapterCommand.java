@@ -10,7 +10,6 @@ import storage.Storage;
 import ui.Ui;
 
 import static common.Messages.CHAPTER;
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class EditChapterCommand extends EditCommand {
@@ -19,8 +18,6 @@ public class EditChapterCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 2 Chapter 2\n";
 
     public static final String MESSAGE_SAME_NAME = "%1$s has the same chapter name as what you entered: %2$s\n";
-
-    private static final String ACCESS_LEVEL = "module";
 
     private final int editIndex;
     private String chapter;
@@ -33,11 +30,6 @@ public class EditChapterCommand extends EditCommand {
     @Override
     public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, DuplicateDataException {
-        if (!access.isModuleLevel()) {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), ACCESS_LEVEL));
-        }
-
         String result = editChapter(access, storage);
         ui.showToUser(result);
     }
@@ -62,10 +54,5 @@ public class EditChapterCommand extends EditCommand {
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER));
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

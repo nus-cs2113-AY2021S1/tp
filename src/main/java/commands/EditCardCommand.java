@@ -11,15 +11,12 @@ import ui.Ui;
 import java.io.IOException;
 
 import static common.Messages.CARD;
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class EditCardCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the flashcard content.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
-
-    private static final String ACCESS_LEVEL = "chapter";
 
     private final int editIndex;
     private String question;
@@ -34,11 +31,6 @@ public class EditCardCommand extends EditCommand {
     @Override
     public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, IOException {
-        if (!access.isChapterLevel()) {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), ACCESS_LEVEL));
-        }
-
         String result = editCard(access, storage);
         ui.showToUser(result);
     }
@@ -63,10 +55,5 @@ public class EditCardCommand extends EditCommand {
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_INDEX_RANGE, CARD));
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

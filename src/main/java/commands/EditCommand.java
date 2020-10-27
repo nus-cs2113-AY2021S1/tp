@@ -11,8 +11,11 @@ import java.io.IOException;
 
 public abstract class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
+
     public static final String MODULE_PARAMETERS = " MODULE_INDEX MODULE_NAME";
+
     public static final String CHAPTER_PARAMETERS = " CHAPTER_INDEX CHAPTER_NAME";
+
     public static final String CARD_PARAMETERS = " FLASHCARD_INDEX q:QUESTION | a:ANSWER";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -31,9 +34,6 @@ public abstract class EditCommand extends Command {
     public abstract void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, IOException, DuplicateDataException;
 
-    @Override
-    public abstract boolean isExit();
-
     protected String prepareBeforeEdit(String type, String content) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_BEFORE_EDIT, type));
@@ -46,5 +46,10 @@ public abstract class EditCommand extends Command {
         result.append(String.format(MESSAGE_AFTER_EDIT, type));
         result.append(content);
         return result.toString();
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }
