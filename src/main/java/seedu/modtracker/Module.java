@@ -54,11 +54,11 @@ public class Module {
         return actualTime[i - INDEX_OFFSET];
     }
 
-    public void deleteActualTime(String week) {
-        int i = Integer.parseInt(week);
-        if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] = NO_INPUT;
+    public void deleteActualTime(int week) {
+        if (this.actualTime[week - INDEX_OFFSET] != NO_INPUT) {
+            this.actualTime[week - INDEX_OFFSET] = NO_INPUT;
         }
+
     }
 
     public void addActualTime(String time, String week) {

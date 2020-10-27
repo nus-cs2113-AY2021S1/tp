@@ -1,6 +1,8 @@
 package seedu.modtracker;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a module list. A <code>ModuleList</code> object corresponds to
@@ -10,10 +12,9 @@ public class ModuleList {
 
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
-    private static final String MODULECODE_SPACING = "Please type module code without any spacing.";
-    private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
-    private static final String INVALID_MODULECODE = "Please check module code again.";
-    private static final String INVALID_HOURS = "Please input a valid number of hours.";
+    private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
+    private static final String INVALID_HOURS = "Please input a whole number between 1 and 84 for the "
+        + "expected workload.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
@@ -27,6 +28,7 @@ public class ModuleList {
     private static final String HOUR_EDIT = " hour is the new actual workload for the module ";
     private static final String HOURS_EDIT = " hours is the new actual workload for the module ";
     private static final String SUMMARY = " hours have been spent on this module in week ";
+    private static final int MAX_HOURS = 84;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -55,20 +57,52 @@ public class ModuleList {
      * @return true if module code is valid, false otherwise.
      */
     public boolean checkIfModuleValid(String module, boolean toPrint) {
+        String regexType1 = "[A-Z]{2}\\d{4}";               //example: CS2113
+        String regexType2 = "[A-Z]{2}\\d{4}[A-Z]";          //example: CS2113T
+        String regexType3 = "[A-Z]{3}\\d{4}";               //example: GER1000
+        String regexType4 = "[A-Z]{3}\\d{4}[A-Z]";          //example: GES1000T
+
+        Pattern pattern;
+        Matcher matcher;
+        Pattern secondPattern;
+        Matcher secondMatcher;
+        boolean matchFound;
         String trimmedMod = module.trim();
         if (trimmedMod.contains(" ")) {
-            if (toPrint) {
-                System.out.println(MODULECODE_SPACING + System.lineSeparator());
-            }
-            return false;
+            ui.printInvalidModuleSpacing(toPrint);
         } else if (trimmedMod.length() < MIN_MOD_LENGTH || trimmedMod.length() > MAX_MOD_LENGTH) {
-            if (toPrint) {
-                System.out.println(INVALID_MODULECODE + " " + MODULECODE_LENGTH + System.lineSeparator());
+            ui.printInvalidModuleLength(toPrint);
+        } else if (trimmedMod.length() == MIN_MOD_LENGTH) {
+            pattern = Pattern.compile(regexType1);
+            matcher = pattern.matcher(trimmedMod);
+            matchFound = matcher.find();
+            if (matchFound) {
+                return true;
+            } else {
+                ui.printInvalidModuleType(toPrint);
             }
-            return false;
+        } else if (trimmedMod.length() == (MIN_MOD_LENGTH + 1)) {
+            pattern = Pattern.compile(regexType2);
+            matcher = pattern.matcher(trimmedMod);
+            secondPattern = Pattern.compile(regexType3);
+            secondMatcher = secondPattern.matcher(trimmedMod);
+            matchFound = (matcher.find() || secondMatcher.find());
+            if (matchFound) {
+                return true;
+            } else {
+                ui.printInvalidModuleType(toPrint);
+            }
         } else {
-            return true;
+            pattern = Pattern.compile(regexType4);
+            matcher = pattern.matcher(trimmedMod);
+            matchFound = matcher.find();
+            if (matchFound) {
+                return true;
+            } else {
+                ui.printInvalidModuleType(toPrint);
+            }
         }
+        return false;
     }
 
     /**
@@ -79,7 +113,7 @@ public class ModuleList {
      * @return true if number of hours is valid, false otherwise.
      */
     public boolean checkIfTimeValid(double hours, boolean toPrint) {
-        if (hours < 0) {
+        if (hours < 1 || hours > MAX_HOURS) {
             if (toPrint) {
                 System.out.println(INVALID_HOURS + System.lineSeparator());
             }
@@ -167,7 +201,8 @@ public class ModuleList {
             }
         } catch (NumberFormatException nfe) {
             if (toPrint) {
-                System.out.println("NumberFormatException: " + nfe.getMessage() + System.lineSeparator());
+                System.out.println(ERROR_ADDEXP);
+                System.out.println(INVALID_HOURS + System.lineSeparator());
             }
         }
     }
@@ -267,7 +302,12 @@ public class ModuleList {
         } else {
             Module currentModule = new Module(modCode);
             int index = modList.indexOf(currentModule);
-            modList.get(index).deleteActualTime(commandInfo[2]);
+            int week = Integer.parseInt(commandInfo[2]);
+            if (week < 1 || week > 13) {
+                System.out.println("The week number should be between 1 and 13." + System.lineSeparator());
+                return;
+            }
+            modList.get(index).deleteActualTime(week);
             if (toPrint) {
                 System.out.println("Actual time of " + modCode + " of week " + commandInfo[2] + " is removed.");
                 System.out.println();
