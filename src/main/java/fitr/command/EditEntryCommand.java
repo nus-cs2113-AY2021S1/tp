@@ -21,7 +21,7 @@ import static fitr.goal.FormatGoal.formatGoal;
 
 public class EditEntryCommand extends Command {
     private static final Pattern EXERCISE_FORMAT =
-            Pattern.compile("(?<index>\\d+)\\s*(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)");
+            Pattern.compile("(?<date>\\S+)\\s+(?<index>\\d+)\\s+(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)");
     private static final Pattern FOOD_FORMAT =
             Pattern.compile("(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s+(?<quantity>\\d+)");
     private static final Pattern GOAL_FORMAT =
@@ -82,8 +82,11 @@ public class EditEntryCommand extends Command {
             return;
         }
 
+        String date = matcher.group("date").trim();
+        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(date));
+
         int index = Integer.parseInt(matcher.group("index").trim());
-        if (index <= 0 || index > exerciseList.getSize()) {
+        if (index <= 0 || index > filteredExercises.getSize()) {
             Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
@@ -96,8 +99,8 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        exerciseList.getExercise(index - 1).setNameOfExercise(exerciseName);
-        exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
+        filteredExercises.getExercise(index - 1).setNameOfExercise(exerciseName);
+        filteredExercises.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
 
         Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName);
     }
