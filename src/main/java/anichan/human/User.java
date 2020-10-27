@@ -16,10 +16,15 @@ public class User extends Human {
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
     public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
+    public static final String HONORIFIC_FEMALE = "-chan";
+    public static final String HONORIFIC_NEUTRAL = "-san";
+    public static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
 
     protected Gender gender;
     protected Workspace activeWorkspace;
     protected ArrayList<Workspace> workspaceList = new ArrayList<>();
+
+    // ========================== User related methods ==========================
 
     public User(String name, String gender) throws AniException {
         super(name);
@@ -29,6 +34,7 @@ public class User extends Human {
     }
 
     public void setGender(String genderString) throws AniException {
+        assert (genderString != null) : ASSERTION_INVALID_MESSAGE;
         genderString = genderString.toLowerCase();
 
         switch (genderString) {
@@ -57,15 +63,18 @@ public class User extends Human {
      */
     public String getHonorificName() {
         if (gender == Gender.Female) {
-            return name + "-chan";
+            return name + HONORIFIC_FEMALE;
         } else {
-            return name + "-san";
+            return name + HONORIFIC_NEUTRAL;
         }
     }
 
-    public Workspace getActiveWorkspace() {
-        return activeWorkspace;
+    @Override
+    public String toString() {
+        return " Name: " + getHonorificName() + " | Gender: " + getGender();
     }
+
+    // ========================== User's workspace related methods ==========================
 
     public void setWorkspaceList(ArrayList<Workspace> workspaceList) {
         this.workspaceList = workspaceList;
@@ -79,6 +88,7 @@ public class User extends Human {
     }
 
     public void setActiveWorkspace(Workspace inputWorkspace) throws AniException {
+        assert (inputWorkspace != null) : ASSERTION_INVALID_MESSAGE;
         activeWorkspace = inputWorkspace;
 
         try {
@@ -90,6 +100,10 @@ public class User extends Human {
         }
     }
 
+    public Workspace getActiveWorkspace() {
+        return activeWorkspace;
+    }
+
     /**
      * Finds the workplace that matches the string parameter to switch to.
      *
@@ -97,6 +111,8 @@ public class User extends Human {
      * @throws AniException if the workplace is not found
      */
     public void switchActiveWorkspace(String switchToThisWorkspace) throws AniException {
+        assert (switchToThisWorkspace != null) : ASSERTION_INVALID_MESSAGE;
+
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(switchToThisWorkspace)) {
                 setActiveWorkspace(existingWorkspace);
@@ -114,7 +130,7 @@ public class User extends Human {
     }
 
     public Workspace addWorkspace(String name) throws AniException {
-        assert (name != null) : "Workspace details should not have any null.";
+        assert (name != null) : ASSERTION_INVALID_MESSAGE;
 
         if (doesWorkplaceExist(name)) {
             throw new AniException("Workspace already exist!");
@@ -142,6 +158,8 @@ public class User extends Human {
     }
 
     public Workspace findWorkspace(String findString) {
+        assert (findString != null) : ASSERTION_INVALID_MESSAGE;
+
         for (Workspace tempWorkspace : workspaceList) {
             if (tempWorkspace.getName().equals(findString)) {
                 return tempWorkspace;
@@ -152,6 +170,8 @@ public class User extends Human {
     }
 
     public boolean doesWorkplaceExist(String checkWorkspace) {
+        assert (checkWorkspace != null) : ASSERTION_INVALID_MESSAGE;
+
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(checkWorkspace)) {
                 return true;
@@ -161,8 +181,4 @@ public class User extends Human {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return " Name: " + getHonorificName() + " | Gender: " + getGender();
-    }
 }
