@@ -33,8 +33,7 @@ public class ListChapterCommand extends ListCommand {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_EXIST, CHAPTER));
         for (Chapter c : allChapters) {
-            result.append("\n").append(allChapters.indexOf(c) + 1).append(".")
-                    .append(c)/*.append(" ").append(c.translateRating())*/;
+            result.append("\n").append(allChapters.indexOf(c) + 1).append(".").append(c);
             if (c.getDueBy() == null) {
                 result.append(" (No due date)");
             } else {
