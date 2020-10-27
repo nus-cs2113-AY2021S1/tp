@@ -13,10 +13,10 @@ public class InputChecker {
     /**
      * The value limits are based on current limits observed in th world.
      */
-    public static final int AGE_CAP = 125;
+    public static final int AGE_CAP = 150;
     public static final int FOOD_CAP = 100000;
-    public static final int HEIGHT_CAP = 273;
-    public static final int WEIGHT_CAP = 443;
+    public static final int HEIGHT_CAP = 300;
+    public static final int WEIGHT_CAP = 500;
     public static final String[] PARAM_ACTIVITY = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
@@ -44,11 +44,13 @@ public class InputChecker {
      * @throws DietException when an option is specified but its field is empty.
      */
     public static void checkEmptyOption(String[] input) throws DietException {
-        try {
-            if (input[1].trim().charAt(1) == '/') {
-                throw new DietException("Error! Option specified with empty field!");
+        if (input.length > 1) {
+            if (input[1].length() > 1) {
+                if (input[1].trim().charAt(1) == '/') {
+                    throw new DietException("Error! Option specified with empty field!");
+                }
             }
-        } catch (IndexOutOfBoundsException e) {
+        } else {
             throw new DietException("Error! Option specified with empty field!");
         }
     }
@@ -122,7 +124,7 @@ public class InputChecker {
     public static void checkActivity(String userInput) throws DietException {
         boolean checkContain = false;
         for (String param: PARAM_ACTIVITY) {
-            if (userInput.contains(param)) {
+            if (userInput.equals(param)) {
                 checkContain = true;
             }
         }
