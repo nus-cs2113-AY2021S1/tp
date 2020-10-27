@@ -56,12 +56,12 @@ public class FoodStorage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
 
-            if (arguments.length != 3) {
+            if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
 
             foodList.add(new Food(arguments[0],
-                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
+                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2]), arguments[3]));
         }
 
         LOGGER.fine("Food list file read successfully.");
@@ -83,7 +83,8 @@ public class FoodStorage {
             food = foodList.getFood(i);
             file.write(food.getFoodName()
                     + COMMA_SEPARATOR + food.getCalories()
-                    + COMMA_SEPARATOR + food.getAmountOfFood() + System.lineSeparator());
+                    + COMMA_SEPARATOR + food.getAmountOfFood()
+                    + COMMA_SEPARATOR + food.getDate() + System.lineSeparator());
         }
 
         LOGGER.fine("Food list file written successfully.");

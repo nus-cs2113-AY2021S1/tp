@@ -1,0 +1,49 @@
+@startuml
+
+participant ":Fitr"
+participant "<<class>>\n:Ui"
+participant "<<class>>\n:Parser"
+
+-> ":Fitr" : "food chicken rice /600 1"
+
+":Fitr" -> "<<class>>\n:Ui" : read()
+activate "<<class>>\n:Ui"
+return userInput
+
+":Fitr" -> "<<class>>\n:Parser" : parse(userInput)
+activate "<<class>>\n:Parser"
+create ":AddFoodCommand"
+"<<class>>\n:Parser" -> ":AddFoodCommand"
+activate ":AddFoodCommand"
+return
+|||
+return command
+deactivate "<<class>>\n:Parser"
+
+participant ":Food"
+participant ":FoodList"
+participant ":Storage"
+
+":Fitr" -> ":AddFoodCommand" : execute()
+activate ":AddFoodCommand"
+
+create ":Food"
+":AddFoodCommand" -> ":Food"
+activate ":Food"
+return food
+
+":AddFoodCommand" -> ":FoodList" : addFood(food)
+activate ":FoodList"
+|||
+return
+
+":AddFoodCommand" -> ":Storage" : writeFoodList()
+activate ":Storage"
+|||
+return
+|||
+return
+destroy ":AddFoodCommand"
+
+hide footbox
+@enduml

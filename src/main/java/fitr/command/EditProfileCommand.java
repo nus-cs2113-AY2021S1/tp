@@ -2,9 +2,7 @@ package fitr.command;
 
 import fitr.Recommender;
 import fitr.common.Messages;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
+import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -18,8 +16,7 @@ public class EditProfileCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
-                        User user, GoalList goalList, Recommender recommender) {
+    public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         if (command.equalsIgnoreCase(Messages.EDIT_NAME)) {
             editName(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_HEIGHT)) {
@@ -30,6 +27,8 @@ public class EditProfileCommand extends Command {
             editAge(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_GENDER)) {
             editGender(user);
+        } else if (command.equalsIgnoreCase(Messages.EDIT_FITNESS)) {
+            editFitness(user);
         } else {
             Ui.printInvalidCommandError();
         }
@@ -74,5 +73,11 @@ public class EditProfileCommand extends Command {
         Ui.printCustomMessage(Messages.EDIT_GENDER_HEADER);
         user.setupGender();
         Ui.printCustomMessage(Messages.GENDER_ECHO_HEADER + user.getGender());
+    }
+
+    private void editFitness(User user) {
+        Ui.printCustomMessage(Messages.INPUT_FITNESS_LEVEL);
+        user.setupFitnessLevel();
+        Ui.printCustomMessage(Messages.FITNESS_ECHO_HEADER + user.getUserFitnessLevelString());
     }
 }

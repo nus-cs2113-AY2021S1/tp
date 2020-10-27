@@ -1,5 +1,6 @@
 package fitr.user;
 
+import fitr.command.ViewCommand;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.Calorie;
@@ -22,11 +23,16 @@ import static fitr.common.Messages.AGE_OUTPUT_HEADER;
 import static fitr.common.Messages.GENDER_OUTPUT_HEADER;
 import static fitr.common.Messages.HEIGHT_OUTPUT_HEADER;
 import static fitr.common.Messages.WEIGHT_OUTPUT_HEADER;
+import static fitr.common.Messages.FITNESS_OUTPUT_HEADER;
 import static fitr.common.Messages.LINE_BREAK;
 import static fitr.common.Messages.MALE_SYMBOL;
 import static fitr.common.Messages.FEMALE_SYMBOL;
 import static fitr.common.Messages.MALE_STRING;
 import static fitr.common.Messages.FEMALE_STRING;
+import static fitr.common.Messages.FIT_STRING;
+import static fitr.common.Messages.UNFIT_STRING;
+import static fitr.common.Messages.NORMAL_STRING;
+import static fitr.common.Messages.NULL_STRING;
 import static fitr.common.Messages.INPUT_FITNESS_LEVEL;
 
 /**
@@ -44,12 +50,13 @@ public class User {
         setup();
     }
 
-    public User(String name, int age, double height, double weight, String gender) {
+    public User(String name, int age, double height, double weight, String gender, int userFitnessLevel) {
         this.name = name;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.gender = gender;
+        this.userFitnessLevel = userFitnessLevel;
     }
 
     /**
@@ -196,7 +203,8 @@ public class User {
                     Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 }
             } catch (NumberFormatException e) {
-                Ui.printCustomMessage(ERROR_INVALID_FITNESS_INPUT + INPUT_FITNESS_LEVEL);
+                Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
+                Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 fitnessLevelInput = -1;
             }
         }
@@ -208,33 +216,36 @@ public class User {
     public String toString() {
         return NAME_OUTPUT_HEADER + getName() + LINE_BREAK + AGE_OUTPUT_HEADER + getAge() + LINE_BREAK
                 + GENDER_OUTPUT_HEADER + getGender() + LINE_BREAK + HEIGHT_OUTPUT_HEADER + getHeight()
-                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight();
+                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight() + LINE_BREAK + FITNESS_OUTPUT_HEADER
+                + getUserFitnessLevelString();
     }
 
-    public Calorie calculateCalorieBurnt(ExerciseList exerciseList) {
+    public Calorie calculateCalorieBurnt(ExerciseList exerciseList, String date) {
+        int totalCalorieBurnt = 0;
+        ExerciseList exerciseListByDate = ViewCommand.viewExerciseByDate(exerciseList, date, false);
         int index = 0;
-        int totalBurnt = 0;
-        while (index < exerciseList.getSize()) {
-            totalBurnt += exerciseList.getExercise(index).getCalories();
+        while (index < exerciseListByDate.getSize()) {
+            totalCalorieBurnt += exerciseListByDate.getExercise(index).getCalories();
             index++;
         }
-        return new Calorie(totalBurnt);
+        return new Calorie(totalCalorieBurnt);
     }
 
-    public Calorie calculateCalorieConsumed(FoodList foodList) {
+    public Calorie calculateCalorieConsumed(FoodList foodList, String date) {
+        int totalCalorieConsumed = 0;
+        FoodList foodListByDate = ViewCommand.viewFoodByDate(foodList, date, false);
         int index = 0;
-        int totalConsumed = 0;
-        while (index < foodList.getSize()) {
-            totalConsumed += foodList.getFood(index).getCalories();
+        while (index < foodListByDate.getSize()) {
+            totalCalorieConsumed += foodListByDate.getFood(index).getCalories();
             index++;
         }
-        return new Calorie(totalConsumed);
+        return new Calorie(totalCalorieConsumed);
     }
 
-    public Calorie calculateCalorie(FoodList foodList, ExerciseList exerciseList) {
+    public Calorie calculateCalorie(FoodList foodList, ExerciseList exerciseList, String date) {
         int totalCalories;
-        Calorie totalConsumed = calculateCalorieConsumed(foodList);
-        Calorie totalBurnt = calculateCalorieBurnt(exerciseList);
+        Calorie totalConsumed = calculateCalorieConsumed(foodList, date);
+        Calorie totalBurnt = calculateCalorieBurnt(exerciseList, date);
         totalCalories = totalConsumed.get() - totalBurnt.get();
         return new Calorie(totalCalories);
     }
@@ -245,5 +256,17 @@ public class User {
 
     public int getFitnessLevel() {
         return userFitnessLevel;
+    }
+
+    public String getUserFitnessLevelString() {
+        if (userFitnessLevel == 0) {
+            return UNFIT_STRING;
+        } else if (userFitnessLevel == 1) {
+            return NORMAL_STRING;
+        } else if (userFitnessLevel == 2) {
+            return FIT_STRING;
+        } else {
+            return NULL_STRING;
+        }
     }
 }

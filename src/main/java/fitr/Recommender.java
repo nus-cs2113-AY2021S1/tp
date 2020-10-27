@@ -1,8 +1,11 @@
 package fitr;
 
+import fitr.list.StandardExerciseList;
+import fitr.storage.StandardExerciseStorage;
 import fitr.ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Recommender {
     protected StandardExerciseList upperBodyList;
@@ -19,7 +22,7 @@ public class Recommender {
             this.aerobicList = storage.loadAerobicList();
             this.stretchingList = storage.loadStretchList();
             isSuccessful = true;
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             Ui.printCustomMessage("File(s) missing!");
             isSuccessful = false;
         }
@@ -28,10 +31,10 @@ public class Recommender {
 
     public StandardExerciseList recommend() {
         StandardExerciseList finalList = new StandardExerciseList();
-        int firstIndex = (int) Math.round(Math.random() * (upperBodyList.getSize() - 0 + 1) + 0);
-        int secondIndex = (int) Math.round(Math.random() * (lowerBodyList.getSize() - 0 + 1) + 0);
-        int thirdIndex = (int) Math.round(Math.random() * (aerobicList.getSize() - 0 + 1) + 0);
-        int fourthIndex = (int) Math.round(Math.random() * (stretchingList.getSize() - 0 + 1) + 0);
+        int firstIndex = (int) (Math.random() * (upperBodyList.getSize() - 1));
+        int secondIndex = (int) (Math.random() * (lowerBodyList.getSize() - 1));
+        int thirdIndex = (int) (Math.random() * (aerobicList.getSize() - 1));
+        int fourthIndex = (int) (Math.random() * (stretchingList.getSize() - 1));
         finalList.addExercise(upperBodyList.getExercise(firstIndex));
         finalList.addExercise(lowerBodyList.getExercise(secondIndex));
         finalList.addExercise(aerobicList.getExercise(thirdIndex));

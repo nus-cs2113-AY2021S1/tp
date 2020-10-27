@@ -1,9 +1,9 @@
-Standard Pushups, 3.8, 10, 20, 30, 3, 4, 5
-Inclined Pullups, 3.8, 10, 15, 20, 3, 4, 5
-Pullups, 3.8, 2, 5, 5, 4, 4, 8
-Triceps dips, 3.8, 10, 20, 30, 3, 4, 5
-Diamond pushups, 3.8, 10, 20, 30, 3, 4, 5
-Knee Pushups, 3.8, 10, 20, 30, 3, 4, 5
-Buddha Claps, 3.5, 20, 30, 40, 3, 4, 5
-Planks to Pushup, 5.0, 10, 12, 15, 3, 4, 5
-Plank Rotations, 3.7, 10, 12, 15, 3, 4, 5
+Standard Pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
+Inclined Pullups, 3.8, 0.5, 1, 1.5, 3, 4, 5
+Pullups, 3.8, 0.5, 1, 1, 4, 4, 8
+Triceps dips, 3.8, 0.5, 1, 1.5, 3, 4, 5
+Diamond pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
+Knee Pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
+Buddha Claps, 3.5, 2, 3, 5, 3, 4, 5
+Planks to Pushup, 5.0, 0.5, 1, 1.5, 3, 4, 5
+Plank Rotations, 3.7, 0.5, 1, 1.5, 3, 4, 5

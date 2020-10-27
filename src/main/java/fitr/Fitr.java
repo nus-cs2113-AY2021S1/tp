@@ -1,12 +1,10 @@
 package fitr;
 
 import fitr.command.Command;
+import fitr.list.ListManager;
+import fitr.list.TipList;
 import fitr.storage.StorageManager;
 import fitr.tip.TipManager;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
-import fitr.list.TipList;
 import fitr.ui.Ui;
 import fitr.user.User;
 import fitr.parser.Parser;
@@ -15,10 +13,8 @@ import java.io.IOException;
 
 public class Fitr {
     private StorageManager storageManager;
-    private ExerciseList exerciseList;
-    private FoodList foodList;
+    private ListManager listManager;
     private User user;
-    private GoalList goalList;
     private Recommender recommender;
 
     public Fitr() {
@@ -26,13 +22,10 @@ public class Fitr {
             Ui.printGreetingMessage();
 
             storageManager = new StorageManager();
+            listManager = new ListManager(storageManager);
 
             user = storageManager.loadUserProfile();
             storageManager.writeUserProfile(user);
-
-            foodList = new FoodList(storageManager.loadFoodList());
-            exerciseList = new ExerciseList(storageManager.loadExerciseList());
-            goalList = new GoalList(storageManager.loadGoalList());
 
             TipList tipList = new TipList(storageManager.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
@@ -50,7 +43,7 @@ public class Fitr {
         while (!isExit) {
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
-            c.execute(foodList, exerciseList, storageManager, user, goalList, recommender);
+            c.execute(listManager, storageManager, user, recommender);
             isExit = c.isExit();
         }
         Ui.printExitMessage();

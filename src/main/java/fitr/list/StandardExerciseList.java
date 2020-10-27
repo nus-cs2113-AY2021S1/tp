@@ -1,4 +1,6 @@
-package fitr;
+package fitr.list;
+
+import fitr.StandardExercise;
 
 import java.util.ArrayList;
 
@@ -21,15 +23,7 @@ public class StandardExerciseList {
         return standardExerciseList.get(index);
     }
 
-    public StandardExercise deleteExercise(int index) {
-        return standardExerciseList.remove(index);
-    }
-
     public int getSize() {
         return standardExerciseList.size();
-    }
-
-    public void clearList() {
-        standardExerciseList.clear();
     }
 }

@@ -1,8 +1,8 @@
-Head rotation, 2.4, 5, 5, 5, 4, 4, 4
-Cobra stretch, 2.4, 5, 5, 5, 4, 4, 4
-Mountain stretch, 2.4, 5, 5, 5, 4, 4, 4
-Calf stretch, 2.4, 5, 5, 5, 4, 4, 4
-Thigh stretch, 2.4, 5, 5, 5, 4, 4, 4
-Spinal rotations, 2.4, 5, 5, 5, 4, 4, 4
-Quad stretch, 2.4, 5, 5, 5, 4, 4, 4
-Arm circles, 2.4, 5, 5, 5, 4, 4, 4
+Head rotation, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Cobra stretch, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Mountain stretch, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Calf stretch, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Thigh stretch, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Spinal rotations, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Quad stretch, 2.4, 0.5, 0.5, 0.5, 4, 4, 4
+Arm circles, 2.4, 0.5, 0.5, 0.5, 4, 4, 4

@@ -1,0 +1,51 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 75
+skinparam packageStyle Rectangle
+
+hide circle
+hide empty members
+
+skinparam Class {
+    BorderThickness 1
+    BorderColor #000000
+}
+
+class Fitr
+class Food
+class Exercise
+class Calorie
+class Parser
+class Ui
+class Storage
+
+package "list" {
+    class ExerciseList
+    class FoodList
+}
+
+package "command" {
+    abstract class "{abstract}\nCommand" as Command
+    class XYZCommand
+}
+
+Command <|-d- XYZCommand
+note right of XYZCommand: AddExerciseCommand,\nDeleteCommand, etc.
+
+Command -u-> Fitr
+
+ExerciseList -> Fitr
+FoodList -> Fitr
+Parser -d-> Fitr
+Ui -d-> Fitr
+Storage -> Fitr
+
+Food o-- FoodList
+Exercise o-- ExerciseList
+
+Food - Calorie
+Exercise - Calorie
+
+@enduml

@@ -1,5 +1,6 @@
 package fitr.storage;
 
+import fitr.exception.InvalidFileFormatException;
 import fitr.user.User;
 
 import java.io.File;
@@ -24,13 +25,15 @@ public class UserStorage {
         }
     }
 
+
     /**
      * Reads the user's data from the text file.
      *
-     * @return True if the file is read successfully, False if not
+     * @return an User object with data from the text file
      * @throws FileNotFoundException if the file is not found
+     * @throws InvalidFileFormatException if the file format is invalid
      */
-    public User loadUserProfile() throws FileNotFoundException {
+    public User loadUserProfile() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + USER_PROFILE_PATH);
 
         File file = new File(USER_PROFILE_PATH);
@@ -45,14 +48,20 @@ public class UserStorage {
         }
 
         String[] arguments = line.split(COMMA_SEPARATOR);
+
+        if (arguments.length != 6) {
+            throw new InvalidFileFormatException();
+        }
+
         String name = arguments[0];
         String gender = arguments[1];
         int age = Integer.parseInt(arguments[2]);
         double height = Double.parseDouble(arguments[3]);
         double weight = Double.parseDouble(arguments[4]);
+        int userFitnessLevel = Integer.parseInt(arguments[5]);
 
         LOGGER.fine("User profile file read successfully.");
-        return new User(name, age, height, weight, gender);
+        return new User(name, age, height, weight, gender, userFitnessLevel);
     }
 
     /**
@@ -71,7 +80,8 @@ public class UserStorage {
                 + COMMA_SEPARATOR + user.getGender()
                 + COMMA_SEPARATOR + user.getAge()
                 + COMMA_SEPARATOR + user.getHeight()
-                + COMMA_SEPARATOR + user.getWeight() + System.lineSeparator());
+                + COMMA_SEPARATOR + user.getWeight()
+                + COMMA_SEPARATOR + user.getFitnessLevel() + System.lineSeparator());
 
         LOGGER.fine("User profile file written successfully.");
         file.close();

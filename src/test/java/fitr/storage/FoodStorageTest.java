@@ -20,10 +20,12 @@ class FoodStorageTest {
         assertEquals(expectedFoodList.get(0).getFoodName(), actualFoodList.get(0).getFoodName());
         assertEquals(expectedFoodList.get(0).getCalories(), actualFoodList.get(0).getCalories());
         assertEquals(expectedFoodList.get(0).getAmountOfFood(), actualFoodList.get(0).getAmountOfFood());
+        assertEquals(expectedFoodList.get(0).getDate(), actualFoodList.get(0).getDate());
 
         assertEquals(expectedFoodList.get(1).getFoodName(), actualFoodList.get(1).getFoodName());
         assertEquals(expectedFoodList.get(1).getCalories(), actualFoodList.get(1).getCalories());
         assertEquals(expectedFoodList.get(1).getAmountOfFood(), actualFoodList.get(1).getAmountOfFood());
+        assertEquals(expectedFoodList.get(1).getDate(), actualFoodList.get(1).getDate());
     }
 
     @Test
@@ -34,8 +36,8 @@ class FoodStorageTest {
 
     private ArrayList<Food> getValidFoodList() {
         ArrayList<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Test Food 1", new Calorie(100), 1));
-        foodList.add(new Food("Test Food 2", new Calorie(50), 5));
+        foodList.add(new Food("Test Food 1", new Calorie(100), 1, "23/10/2020"));
+        foodList.add(new Food("Test Food 2", new Calorie(50), 5, "22/10/2020"));
         return foodList;
     }
 }
