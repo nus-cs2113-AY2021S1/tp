@@ -151,7 +151,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_ADD_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_ADD_TEST, result);
+        assertEquals(OUTPUT_ADD_TEST, result);
     }
 
     @Test
@@ -160,19 +160,19 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_ADD_TEST2);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_ADD_TEST2, result);
+        assertEquals(OUTPUT_ADD_TEST2, result);
 
 
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_ADD_TEST3);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_ADD_TEST3, result2);
+        assertEquals(OUTPUT_ADD_TEST3, result2);
 
 
         BookmarkParser testParse3 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_ADD_TEST4);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_ADD_TEST4, result3);
+        assertEquals(OUTPUT_ADD_TEST4, result3);
     }
 
     @Test
@@ -181,7 +181,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_LIST_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_LIST_TEST, result);
+        assertEquals(OUTPUT_LIST_TEST, result);
     }
 
     @Test
@@ -190,7 +190,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_DELETE_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_DELETE_TEST, result);
+        assertEquals(OUTPUT_DELETE_TEST, result);
         System.out.println(result);
     }
 
@@ -200,7 +200,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_EDIT_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_EDIT_TEST,result);
+        assertEquals(OUTPUT_EDIT_TEST, result);
         System.out.println(result);
     }
 
@@ -210,19 +210,19 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_NOTE_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_NOTE_TEST, result);
+        assertEquals(OUTPUT_NOTE_TEST, result);
         System.out.println(result);
 
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_NOTE_TEST2);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_NOTE_TEST2,result2);
+        assertEquals(OUTPUT_NOTE_TEST2, result2);
         System.out.println(result2);
 
         BookmarkParser testParse3 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand3 = testParse.parse(VALID_NOTE_TEST3);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_NOTE_TEST3, result3);
+        assertEquals(OUTPUT_NOTE_TEST3, result3);
         System.out.println(result);
 
     }
@@ -233,17 +233,17 @@ class BookmarkCommandTest {
         BookmarkParser testParse = new BookmarkParser();
         BookmarkCommand testBookmarkCommand = testParse.parse(VALID_SINGLE_INPUT_TEST);
         String result = testBookmarkCommand.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_SINGLE_INPUT_TEST , result);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST, result);
 
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_SINGLE_INPUT_TEST2);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_SINGLE_INPUT_TEST2, result2);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST2, result2);
 
         BookmarkParser testParse3 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_SINGLE_INPUT_TEST3);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_SINGLE_INPUT_TEST3, result3 );
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST3, result3);
     }
 
     @Test
@@ -258,7 +258,7 @@ class BookmarkCommandTest {
         BookmarkParser testParse2 = new BookmarkParser();
         BookmarkCommand testBookmarkCommand2 = testParse2.parse(VALID_SINGLE_INPUT_TEST);
         String result2 = testBookmarkCommand2.execute(animeData, storageManager, user);
-        assertEquals( OUTPUT_SINGLE_INPUT_TEST_AFTER_REMOVE , result2);
+        assertEquals(OUTPUT_SINGLE_INPUT_TEST_AFTER_REMOVE, result2);
     }
 
 

@@ -21,7 +21,7 @@ public class BookmarkParser extends CommandParser {
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
     private static final String DESCRIPTION_ERROR_HEADER = "Description :";
     private static final String BOOKMARK_LOAD_ERROR_HEADER = "Could not load bookmark command :";
-    private static final String BOOKMARK_EPISODE= "edit episode";
+    private static final String BOOKMARK_EPISODE = "edit episode";
     private static final String BOOKMARK_DELETE = "delete";
     private static final String BOOKMARK_ADD = "add";
     private static final String BOOKMARK_REMOVE_NOTE = "remove note";
@@ -98,7 +98,7 @@ public class BookmarkParser extends CommandParser {
     private void checkIsInteger(String paramGiven, String paramParts, String bookmarkType) throws AniException {
         if (!isInt(paramParts.trim())) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                    + System.lineSeparator() + " Bookmark " + bookmarkType +" param requires integer.";
+                    + System.lineSeparator() + " Bookmark " + bookmarkType + " param requires integer.";
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
             throw new AniException(invalidParameter);
         }
