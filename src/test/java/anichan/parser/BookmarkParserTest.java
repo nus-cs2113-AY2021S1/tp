@@ -30,6 +30,7 @@ class BookmarkParserTest {
     private static final String INVALID_FIELD_LIST = "-l test";
     private static final String INVALID_SINGLE_INPUT_TEST = "a";
     private static final String UNKNOWN_PARAMETER = "-h";
+    private static final String EMPTY_PARAMETER = " - ";
 
     private static final String VALID_SINGLE_INPUT_TEST = "1";
     private static final String VALID_SINGLE_INPUT_TEST2 = "10";
@@ -234,4 +235,13 @@ class BookmarkParserTest {
             test1.parse(NEGATIVE_ANIMEID_ADD_TEST);
         });
     }
+
+    @Test
+    void execute_emptyParameter_ThrowsAniException() throws AniException {
+        BookmarkParser test1 = new BookmarkParser();
+        assertThrows(AniException.class, () -> {
+            test1.parse(EMPTY_PARAMETER);
+        });
+    }
+
 }

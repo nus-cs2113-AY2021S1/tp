@@ -39,6 +39,9 @@ bookmark 1 -n test
 bookmark 1 -n test 2 withspace
 bookmark 1 -n testing 123
 bookmark 2 -n testing on 2
+bookmark 1
+bookmark 1 -r 2
+bookmark 1
 bookmark -l
 add -a 1
 search -n cowboy
