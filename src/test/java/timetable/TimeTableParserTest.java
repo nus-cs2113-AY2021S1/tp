@@ -15,18 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TimeTableParserTest {
 
-    @Test
-    void commandParser() {
-    }
-
-    @Test
-    void fileParser() {
-    }
-
-    @Test
-    void getDateTimeTest() {
-
-    }
 
     @Test
     void addClassTest() throws InvalidDayOfTheWeekException {

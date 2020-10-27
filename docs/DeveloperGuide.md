@@ -49,7 +49,10 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
 
+**Bookmark Component**
 
+This section will describe in detail how some features inside the timetable section have been
+ implemented.
 
 
 ## Product scope
