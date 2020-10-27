@@ -325,6 +325,8 @@ You currently have no task :-)
 
 ### 2.15 Open notification: `open` <a name="open"></a>
 Opens the notification with a randomised encouraging message.
+The user is notified on the progress of the current week.
+The current week is defined by the latest week that has at least one actual time input.
 
 Format: `open`
 
