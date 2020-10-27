@@ -63,7 +63,7 @@ public class Portfolio implements Serializable {
 
     public ArrayList<Stock> getAllStocks() {
         ArrayList<Stock> stocksArrayList = new ArrayList<>();
-        for (Stock stock: stocks.values()) {
+        for (Stock stock : stocks.values()) {
             stocksArrayList.add(stock);
         }
 

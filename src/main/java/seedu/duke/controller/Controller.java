@@ -2,12 +2,11 @@ package seedu.duke.controller;
 
 import org.patriques.output.timeseries.data.StockData;
 import seedu.duke.api.StockPriceFetcher;
-
+import seedu.duke.command.BuyCommand;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.SearchCommand;
-import seedu.duke.command.BuyCommand;
 import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
@@ -102,7 +101,7 @@ public class Controller {
 
     public void viewWallet() {
         double amount = 0.00;
-        for (Stock stock: portfolioManager.getAllStocks()) {
+        for (Stock stock : portfolioManager.getAllStocks()) {
             try {
                 amount += (stockPriceFetcher.fetchLatestPrice(stock.getSymbol())) * stock.getTotalQuantity();
             } catch (DukeException e) {
