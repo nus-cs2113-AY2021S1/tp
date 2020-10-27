@@ -46,7 +46,8 @@ public class DeleteCommand extends Command {
                     }
                 }
                 if (!isValidDate) {
-                    throw new FitrException();
+                    Ui.printCustomError("No records found for the specified date!");
+                    return;
                 }
                 Ui.printCustomMessage("The following exercise has been deleted"
                         + " for the " + deletionDate + ": "
@@ -71,7 +72,8 @@ public class DeleteCommand extends Command {
                     }
                 }
                 if (!isValidDate) {
-                    throw new FitrException();
+                    Ui.printCustomError("No records found for the specified date!");
+                    return;
                 }
                 Ui.printCustomMessage("The following exercise has been deleted"
                         + " for the " + deletionDate + ": "
@@ -93,13 +95,13 @@ public class DeleteCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError("Sorry,that index does not exist in the list");
+            Ui.printCustomError("Sorry, that index does not exist in the list");
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry, index deletion must be a positive number");
         } catch (IOException e) {
             Ui.printCustomError("Sorry, there is an error in the file");
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, you have keyed in an invalid format or date");
+            Ui.printCustomError("Sorry, you have keyed in an invalid format");
         }
     }
 

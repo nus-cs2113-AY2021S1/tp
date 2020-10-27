@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Goal;
 import fitr.Recommender;
 import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
@@ -29,11 +30,17 @@ public class CompleteGoalCommand extends Command {
             if (command.split(" ", 2)[0].equals(COMMAND_GOAL)) {
                 command = command.split(" ", 2)[1];
                 int completedGoalIndex = Integer.parseInt(command) - 1;
-                listManager.getGoal(completedGoalIndex).markAsCompleted();
+                Goal completedGoal = listManager.getGoal(completedGoalIndex);
+                if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
+                        listManager.getExerciseList(), user) == "✓") {
+                    Ui.printCustomError("This goal has already been completed.");
+                    return;
+                }
+                completedGoal.markAsCompleted();
                 storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                         listManager.getExerciseList(), user);
                 Ui.printCustomMessage("Yay! You completed:\n\t"
-                        + listManager.getGoalList().getGoal(completedGoalIndex).getDescription());
+                        + completedGoal.getDescription());
             } else {
                 throw new FitrException();
             }
