@@ -1,13 +1,13 @@
 # DevOps Guide
 
 ## Table of contents
-[Build automation](#1)
-[Making a release](#2)
+1. [Build automation](#1)
+2. [Making a release](#2)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Build automation
 
-This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
+This project uses Gradle for **build automation and dependency management**.
 
 
 Given below are how to use Gradle for some important project tasks.
@@ -39,6 +39,6 @@ Here are the steps to create a new release.
 2. Generate a fat JAR file using Gradle (i.e., `gradlew shadow`).
 3. Tag the repo with the version number. e.g. `v0.1`
 4. [Create a new release using GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR file you created.
-5. We have created 3 releases. V1.0, V2.0 and V2.1
+5. We have created 3 releases.**V1.0, V2.0 and V2.1**
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)

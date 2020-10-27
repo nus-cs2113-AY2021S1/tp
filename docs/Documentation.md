@@ -1,10 +1,10 @@
 # Documentation Guide
 
 ##Table of contents
-[Setting up and maintaining the project website](#1)
-[Style guidance](#2)
-[Diagrams](#3)
-[Converting a document to the PDF format](#4)
+1. [Setting up and maintaining the project website](#1)
+2. [Style guidance](#2)
+3. [Diagrams](#3)
+4. [Converting a document to the PDF format](#4)
 
 
 #### Setting up and maintaining the project website
