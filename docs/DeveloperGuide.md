@@ -477,15 +477,15 @@ The `UpdateShowSeasonCommand` class extends `Command` by providing methods to ch
 **Step 3**
 * If only `currentSeason` is to be updated:
 
-    1 `updateSeasonOnly()` method is called.
+    * `updateSeasonOnly()` method is called.
 
-    2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command.
+    * `currentSeason` field of the specified show is updated via the `setCurentSeason()` command.
 
 * If both `currentSeason` and `currentEpisode` are to be updated:
 
-    1 `updateSeasonAndEpisode()` method is called.
+    * `updateSeasonAndEpisode()` method is called.
 
-    2 `currentSeason` field of the specified show is updated via the `setCurentSeason()` command, 
+    * `currentSeason` field of the specified show is updated via the `setCurentSeason()` command, 
 and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
 
 ### UpdateTimeLimitCommand
@@ -660,16 +660,13 @@ actual time they spend watching shows and is a feature that is not provided by m
 
 #### Adding a show
 
-1. Test case: `add friends 2 9,10 60`
-
+1. Test case: `add friends 2 9,10 60`<br>
 Expected: An acknowledgement message displayed indicating that the show has been added.
 
-2. Test case: `add friends`
-
+2. Test case: `add friends`<br>
 Expected: An error message displayed due to invalid format given by the user.
 
-3. Test case: `add friends 2 9,10,11 60`
-
+3. Test case: `add friends 2 9,10,11 60`<br>
 Expected: An error message displayed due to the different number of seasons and episodes for each season given.
 
 #### Deleting a show
