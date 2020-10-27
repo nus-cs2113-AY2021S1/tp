@@ -1,5 +1,66 @@
 # Developer Guide
 
+## Table of Contents
+- [Introduction](#10-introduction)
+- [Setting up](#20-setting-up)
+- [Design](#30-design)
+  * [Architecture](#31-architecture)
+  * [UI component](#32-ui-component)
+  * [Logic component](#33-logic-component)
+  * [Model component](#34-model-component)
+  * [Storage component](#35-storage-component)
+- [Implementation](#40-implementation)
+  * [Book Management](#41-feature-book-management)
+  * [Quote Management](#42-feature-quote-management)
+  * [Progress Tracker](#43-progress-tracker)
+  * [Category Management](#44-feature-category-management)
+  * [Rating System for books](#45-feature-rating-system-for-books)
+- [Appendix: Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirments](#non-functional-requirements)
+  * [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Adding a book](#adding-a-book)
+  * [List all existing books](#list-all-existing-books)
+  * [List book details](#list-book-details)
+  * [List books by author](#list-books-by-author)
+  * [Find books by keyword](#find-books-by-keyword)
+  * [Delete books](#delete-books)
+  * [Edit book](#edit-book)
+  * [Adding a quote](#adding-a-quote)
+  * [Listing all quotes](#listing-all-quotes)
+  * [Listing quotes by a specific author](#listing-quotes-by-a-specific-author)
+  * [Listing quotes from a specific reference](#listing-quotes-from-a-specific-reference)
+  * [Listing quotes from a specific reference and by a specific author](#listing-quotes-from-a-specific-reference-and-by-a-specific-author)
+  * [Editing a quote](#editing-a-quote)
+  * [Deleting a quote](#deleting-a-quote)
+  * [Finding a quote](#finding-a-quote)
+  * [Adding reflection to quote](#adding-reflection-to-a-quote)
+  * [Listing reflection of a quote](#listing-reflection-of-a-quote)
+  * [Editing reflection of a quote](#editing-reflection-of-a-quote)
+  * [Deleting reflection of a quote](#deleting-reflection-of-a-quote)
+  * [Adding a bookmark to book](#adding-a-bookmark-to-book)
+  * [List all existing bookmarks](#list-all-existing-bookmarks)
+  * [Deleting an existing bookmark](#deleting-an-existing-bookmark)
+  * [Editing an existing bookmark](#edit-an-existing-bookmark)
+  * [Adding a task to todo list](#adding-a-task-to-todo-list)
+  * [Listing all existing tasks](#listing-all-existing-tasks)
+  * [Marking an existing task as done](#marking-an-existing-task-as-done)
+  * [Deleting an existing task](#deleting-an-existing-task)
+  * [Adding categories](#adding-categories)
+  * [Listing all categories](#listing-all-categories)
+  * [Listing a specific category](#listing-a-specific-category)
+  * [Deleting existing categories](#deleting-existing-categories)
+  * [Editing an existing category](#editing-an-existing-category)
+  * [Adding a book rating](#adding-a-book-rating)
+  * [Listing all existing book ratings](#listing-all-existing-book-ratings)
+  * [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
+  * [Deleting a book rating](#deleting-a-book-rating)
+  * [Editing a book rating](#editing-a-book-rating)
+  * [Finding a book rating](#finding-a-book-rating)
+
 ## 1.0 Introduction
 **Welcome to Quotesify!**
 
@@ -43,14 +104,15 @@ What would you like to do with Quotesify?
 ## 3.0 Design
 
 ### 3.1 Architecture
-
 ![Sequence Diagram for Architecture](images/SeqDiagram_Architecture.png)
 
-The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief description of each component shown.
+The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief
+description of each component shown.
 
 #### Main class: `Quotesify.java`
-* On program launch, the Main is responsible for initialising the required components in the correct sequence as well as to connect these components to start Quotesfiy.
-* On shutdown, the Main gracefully terminates the application and its running components. 
+* On program launch, the Main is responsible for initialising the required components in the correct sequence as well
+as to connect these components to start Quotesify.
+* On shutdown, the Main gracefully terminates the application and its running components.
 
 The other components that make up Quotesify include:
 * **UI**: Text-based User Interface (UI) of the application.
@@ -58,55 +120,57 @@ The other components that make up Quotesify include:
 * **Model**: Stores Quotesify’s data objects in application memory.
 * **Storage**: Stores and accesses program data in the hard disk.
 
-The Sequence Diagram below shows an example of how the components work together upon receiving the command `add -b Harry Potter /by J K Rowling`.
+The Sequence Diagram below shows an example of how the components work together upon receiving the command
+`add -b Harry Potter /by JK Rowling`.
 
 ![Sequence Diagram for Components](images/SeqDiagram_Components.png)
 
 ### 3.2 UI Component
-
 ![Class Diagram for UI Component](images/ClassDiagram_UI.png)
 
 The UI component is made up of main 2 classes:
 * `TextUi`: Responsible for the majority display of Quotesify’s messages. 
-* `UiMessages`: Holds all messages required for TextUI to print to the program console.
+* `UiMessage`: Holds all messages required for TextUI to print to the program console.
 
-In essence, the UI is responsible for the majority display of all successful command executions, error messages, as well as user interaction by prompting for the next command.
+In essence, the UI is responsible for the majority display of all successful command executions, error messages
+, as well as user interaction by prompting for the next command.
 
 ### 3.3 Logic Component
-
 ![Class Diagram for Logic Component](images/ClassDiagram_Logic.png)
 
-The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence flow from the time a user input is read till command execution ends.
+The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence
+flow from the time a user input is read till command execution ends.
 
 1. User input is fetched from the UI and passed into the Parser for parsing.
 2. A Command object is returned and subsequently executed in the Main class.
 3. The command execution outcome may affect Quotesify’s model objects. (e.g. adding a book)
-4. Command instructs the UI component to print out relevant output messages depending on command type. Also, Command may invoke saving of data via Storage at a given point in time.
+4. Command instructs the UI component to print out relevant output messages depending on command type.
+Also, Command may invoke saving of data via Storage at a given point in time.
 5. Finally, Command will then inspect the exit status after command execution.
 6. Control is handed back over to the UI.
 
-* `XCommand` class represents the command type such as `AddCommand`, `FindCommand`, `DeleteCommand` etc.
-* `XYCommand` class represents the command to execute from a specific object. Such as `AddBookCommand`, `FindBookCommand`, `DeleteQuoteCommand` etc.
+* `XCommand` class represents the command type such as `AddCommand`, `FindCommand`, `DeleteCommand`, etc.
+* `XYCommand` class represents the command to execute from a specific object. Such as `AddBookCommand`
+, `FindBookCommand`, `DeleteQuoteCommand`, etc.
 
 ### 3.4 Model Component
-
 ![Class Diagram for Model Component](images/ClassDiagram_Model.png)
 
 The model component consists of several classes that make up the main features of Quotesify.
 Each object holds in-application data unique to each feature and is stored in a list of their own.
 
 ### 3.5 Storage Component
-
-The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed by the command component as well as to detect and load data on program launch.
+The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed
+by the command component as well as to detect and load data on program launch.
 
 On program launch:
 1. `Storage` is initialised and checks for the existence of save data.
-2. If save data exists, `Storage` will read the save data in JSON format and parses them back into their model objects. (e.g. Book)
+2. If save data exists, `Storage` will read the save data in JSON format and parses them back into their
+model objects (e.g. Book).
 3. If save data does not exist, `Storage` will create an empty save file in the specified directory.
 
 On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
-
 
 ## 4.0 Implementation
 
@@ -165,7 +229,7 @@ The sequence diagram below demonstrates the command execution process when findi
         * Pros: Users can narrow down the search using an exact phrase instead of just one word.
         * Cons: The exact phrase must be typed out for the correct result to show.
 
-### 4.2 Feature: Quote Management System
+### 4.2 Feature: Quote Management
 Given below is the class diagram for classes related to the Quote Management System in Quotesify:
 
 ![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
@@ -227,7 +291,15 @@ message will be displayed.
     * Pros: Better encapsulation and data hiding as attributes can be set to private
     * Cons: Additional methods and passing of data required
     
-### 4.3 Feature: Category Management
+### 4.3 Progress Tracker
+
+#### 4.3.1 Feature: Add bookmark
+The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+be created in the process.
+* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
+bookmarks named `BookmarkList`.
+    
+### 4.4 Feature: Category Management
 Given below is the class diagram for classes related to Category Management in Quotesify:
 
 ![Class Diagram for Category Management](images/ClassDiagram_Category.png)
@@ -238,7 +310,7 @@ A `Category` object holds the following attributes:
 * A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
 * An `int` value that indicates the total number of books/quotes tagged under the specified category.
 
-#### 4.3.1 Add Categories
+#### 4.4.1 Add Categories
 The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
 
 The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
@@ -261,12 +333,6 @@ The sequence diagram below demonstrates the command execution process when addin
 * Giving users an option to specify multiple books, quotes, or both to be tagged with a category:
   * Pros: Further increases efficiency for users.
   * Cons: Increased complexity in implementation. 
-  
-### 4.4 Feature: Add bookmark
-The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
-be created in the process.
-* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
-bookmarks named `BookmarkList`.
 
 ### 4.5 Feature: Rating system for books
 Given below is the class diagram for classes related to the Rating System in Quotesify:
@@ -326,8 +392,11 @@ to inform the user and the method is returned.
 * Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
 will be printed to the user.
 
-## 5.0 Product scope
-### 5.1 Target user profile
+## Appendix: Requirements
+
+### Product scope
+
+#### Target user profile
 The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
@@ -336,13 +405,11 @@ The intended user of Quotesify is someone that meets the following criterias:
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-### 5.2 Value proposition
-
+#### Value proposition
 Quotesify will help you to improve your reading experience with quick and easy features such as book management,
 quote management, progress tracker, category management and a rating system for your books.
 
-## 6.0 User Stories
-
+#### User Stories
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
 |v1.0|reader|enter good quotes and phrases from a book I read|can quickly refer back to it at any time|
@@ -359,17 +426,16 @@ quote management, progress tracker, category management and a rating system for 
 |v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
-## 7.0 Non-Functional Requirements
+#### Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 
-## 8.0 Glossary
-
+#### Glossary
 * *glossary item* - Definition
 
-## 9.0 Instructions for manual testing
+## Appendix: Instructions for manual testing
 
-### 9.1 Launch and shutdown
+### Launch and shutdown
 
 #### Initial launch
    1. Ensure `Java 11` and above is installed.
@@ -630,7 +696,84 @@ quote management, progress tracker, category management and a rating system for 
    * `delete -qr 9999999`: non existent quote number
    
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
+   
+### Adding a bookmark to book
+1. Test case: `bookmark -b 1 /pg 123`
 
+   Expected: a page number will be marked at the book. A message will be prompted to indicate that 
+   the bookmark has been tagged to the book successfully.
+
+2. Other incorrect commands to try:
+   * `bookmark -b 1 /pg`: missing page number field
+   * `bookmark -b 0 /pg 123`: incorrect book number input
+   
+   Expected: Bookmark will not be added to any book. A message will error details will be shown.
+
+### List all existing bookmarks
+1. Test case: `list -bm`
+
+   Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
+    its book’s information, and a page number marked by the bookmark. 
+
+### Deleting an existing bookmark
+1. Test case: `delete -bm 1`
+
+   Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
+   the bookmark has been removed from the book successfully.
+
+2. Other incorrect commands to try:
+   * `delete -bm 999` : bookmark number with given index does not exist
+   * `delete -bm abc` : invalid bookmark number provided
+   
+   Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
+
+### Edit an existing bookmark
+1. Test case: `bookmark -b 1 /pg 123`
+
+   Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
+   the bookmark has been updated successfully.
+
+2. Other incorrect commands to try:
+   * `bookmark -b 1 /pg`: missing page number field
+   * `bookmark -b 0 /pg 123`: incorrect book number input
+   
+   Expected: Bookmark will not be updated to any book. A message will error details will be shown.
+
+### Adding a task to todo list
+1. Adding a task without deadline
+   - Test case: `add -t return Harry Potter`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully,
+    and the deadline is ‘not specified’.
+    
+2. Adding a task with unformatted deadline
+   - Test case: `add -t return Harry Potter /by tmr`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
+   and the deadline is the same as stated in the command line.
+   
+3. Adding a task with formatted deadline
+   - Test case: `add -t return Harry Potter /by 2020-10-24`
+   
+     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
+     and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
+
+### Listing all existing tasks
+1. Test case: `list -t`
+
+   Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
+   and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
+
+### Marking an existing task as done
+1. Test case: `done -t 1`
+   
+   Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
+
+### Deleting an existing task
+1. Test case: `delete -t 1`
+
+   Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
+   
 ### Adding categories
 1. Add one or more category to a book
    - Prerequisites: A book should exist in Quotesify.
@@ -744,83 +887,6 @@ quote management, progress tracker, category management and a rating system for 
    - `edit -c love` missing new category name
    
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
-   
-### Adding a bookmark to book
-1. Test case: `bookmark -b 1 /pg 123`
-
-   Expected: a page number will be marked at the book. A message will be prompted to indicate that 
-   the bookmark has been tagged to the book successfully.
-
-2. Other incorrect commands to try:
-   * `bookmark -b 1 /pg`: missing page number field
-   * `bookmark -b 0 /pg 123`: incorrect book number input
-   
-   Expected: Bookmark will not be added to any book. A message will error details will be shown.
-
-### List all existing bookmarks
-1. Test case: `list -bm`
-
-   Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
-    its book’s information, and a page number marked by the bookmark. 
-
-### Deleting an existing bookmark
-1. Test case: `delete -bm 1`
-
-   Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
-   the bookmark has been removed from the book successfully.
-
-2. Other incorrect commands to try:
-   * `delete -bm 999` : bookmark number with given index does not exist
-   * `delete -bm abc` : invalid bookmark number provided
-   
-   Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
-
-### Edit an existing bookmark
-1. Test case: `bookmark -b 1 /pg 123`
-
-   Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
-   the bookmark has been updated successfully.
-
-2. Other incorrect commands to try:
-   * `bookmark -b 1 /pg`: missing page number field
-   * `bookmark -b 0 /pg 123`: incorrect book number input
-   
-   Expected: Bookmark will not be updated to any book. A message will error details will be shown.
-
-### Adding a task to todo list
-1. Adding a task without deadline
-   - Test case: `add -t return Harry Potter`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully,
-    and the deadline is ‘not specified’.
-    
-2. Adding a task with unformatted deadline
-   - Test case: `add -t return Harry Potter /by tmr`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
-   and the deadline is the same as stated in the command line.
-   
-3. Adding a task with formatted deadline
-   - Test case: `add -t return Harry Potter /by 2020-10-24`
-   
-     Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
-     and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
-
-### Listing all existing tasks
-1. Test case: `list -t`
-
-   Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
-   and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
-
-### Marking an existing task as done
-1. Test case: `done -t 1`
-   
-   Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
-
-### Deleting an existing task
-1. Test case: `delete -t 1`
-
-   Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
    
 ### Adding a book rating
 
