@@ -505,39 +505,6 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| divider      | `divider DIVIDER_OPTION` <\br> Example: divider 1 <\br>The list of dividers is:                                                                                                            <\br> 1. \---------------------------------------------------------------- <\br> 2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
-<\br> 3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                             |                                                    |
-| noun         | `noun [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: noun bus d\vehicle                                                                           |
-| verb         | `verb [WORD] d\[DESCRIPTION]`                                                                         |
-|              | Example: verb eat d\to consume                                                                        |
-| adjective    | `adj [WORD] d\[DESCRIPTION]`                                                                          |
-|              | Example: adj hungry d\having the desire to eat food                                                   |
-| list words   | `list words`                                                                                          |
-|              | Lists all the words stored in the program.                                                            |
-| bunny        | `bunny i\IDEA g\[GENRE]`                                                                              |
-|              | Adds a bunny idea to the list of bunnies in the current run.                                          |
-| list bunny   | `list bunny`                                                                                          |
-|              | Lists all the bunny ideas                                                                             |
-| filter bunny | `filter bunny i\IDEA g\[GENRE]`                                                                       |
-|              | Filters bunny by terms in idea or genre (must have at least 1 filter parameter)                       |
-| save bunny   | `save bunny`                                                                                          |
-|              | Saves all the bunny ideas into a text file                                                            |
-| filter       | `filter [-continue] by\[TYPE_OF_FILTER] -ARGUMENTS[1..*]  `                                           |
-|              | `-continue` (optional): If you want to continue with your last filtered list, provide this argument in your command. |
-|              | TYPE_OF_FILTER:<br>type: arguments can be -verb -noun -adjective<br>start: arguments can be -STRING<br>include: arguments can be -STRING|
-| name         | `name`                                                                                                |
-|              | Generates a random name                                                                               |
-| list names   | `list names`                                                                                          |
-|              | List all the stored names                                                                             |
-| filter names | `filter names [NAME]`                                                                                 |
-|              | Gets the list of names after filtering                                                                |
-| stats        | `stats`                                                                                               |
-|              | Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..|
-|              | This is a poem  <br>Written by Goethe                                                                 |
-|              | Id: 5 <br> DER ERLKÖNIG                                                                               |
-|              | Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.|
-|              | This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
 | noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
