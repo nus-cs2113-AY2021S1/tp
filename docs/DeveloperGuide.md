@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+* [Introduction](#introduction)
 * [Setting Up, Getting Started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
@@ -27,8 +28,48 @@
     * [Glossary](#glossary)
 * [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
+## Introduction
+_ModTracker_ is a desktop app for NUS students to track the time spent 
+as well as tasks to do for each of their modules.
+It helps students prioritise their work and 
+balance their time spent amongst their modules. 
+This app uses a Command Line Interface (CLI) and is written in Java 11.
+
 ## Setting Up, Getting Started
-{Start up guide}
+
+### Setting up the project in your local machine
+Ensure that you have JDK 11 or above installed on your computer. 
+
+First, **fork** this [repo](https://github.com/AY2021S1-CS2113T-F12-4/tp), and **clone** a copy to your computer by using any Git client.
+
+If you plan to use IntelliJ IDEA (highly recommended):
+1. Ensure IntelliJ is configured to use JDK 11.
+    * Start up IntelliJ into the welcome page.
+    * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
+    * Under the `Project SDK:` section, ensure that the correct SDK (**java version "11.0.8"** or higher) is selected.
+1. Import the project as a Gradle project.
+    * At the same welcome page, click on `Open or Import`.
+    * Navigate to the folder where you cloned the repo, locate the `build.gradle` file within the folder and select it.
+    * Choose the `Open as Project` option when asked.
+    * The project may take a couple of minutes to import depending on your actual computer hardware setup.
+1. Verify the setup.
+    * Under the `seedu.modtracker` package, locate the `ModTracker` class and run it.
+    * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html).
+    * Run the [tests]() to ensure they all pass.
+
+### Before writing the code
+1. Configure the coding style
+    * If using IntelliJ IDEA, follow this guide to set up IDEA's coding style yo match ours.
+    
+1. Set up CI
+    * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+    it will run the CI for the project automatically at each push to the `master` branch or to any PR.
+    No setup is required for this.
+    
+1. Learn the design
+    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#architecture) to get some 
+    sense of the overall design.
+
 
 ## Design
 
@@ -564,16 +605,16 @@ NUS students
 ### Use Cases
 (For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
 
-####Use case: UC1 - Add module
+#### Use case: UC1 - Add module
 
-#####MSS: 
+##### MSS: 
 1. User requests to add a module
 1. System prompts user to enter a module code
 1. User enters a module code
 1. System adds module to the database<br>
 Use case ends 
 
-#####Extensions:
+##### Extensions:
 * 3a. Module code is invalid
   * 3a1. System shows an error message<br>
 Use case ends
@@ -581,16 +622,16 @@ Use case ends
   * 3b1. System shows an error message<br>
 Use case ends
 
-####Use case: UC2 - View analysis of time spent
+#### Use case: UC2 - View analysis of time spent
 
-#####MSS: 
+##### MSS: 
 1. User requests to view analysis of time spent
 1. System prompts user to enter a week number
 1. User enters a week number
 1. System displays analysis of time spent to user<br>
 Use case ends 
 
-#####Extensions:
+##### Extensions:
 * 3a. Week number is invalid<br>
   * 3a1. System shows an error message<br> 
 Use case ends
@@ -601,14 +642,14 @@ Use case ends
   * 4a1. System shows only time spent and no analysis<br>
 Use case ends
 
-####Use case: UC3 - Open notifications
+#### Use case: UC3 - Open notifications
 
-#####MSS: 
+##### MSS: 
 1. User requests to open notifications
 1. System displays notifications<br>
 Use case ends 
 
-#####Extensions: 
+##### Extensions: 
 * 2a. No notifications
   * 2a1. System displays an encouraging message<br>
 Use case ends
