@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class RemoveChapterCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveChapterCommand.class.getName());
@@ -54,7 +55,9 @@ public class RemoveChapterCommand extends RemoveCommand {
             logger.info("Chapter: " + chapter.toString() + " successfully deleted.");
             return prepareResult(CHAPTER, chapter.toString(), allChapters.size());
         } catch (IndexOutOfBoundsException e) {
-            return MESSAGE_INVALID_INDEX_CHAPTER;
+            String result = String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER);
+            logger.info(result);
+            return result;
         }
     }
 }

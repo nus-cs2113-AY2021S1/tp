@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
+
 
 /**
  * Starts revision for a particular chapter.
@@ -53,7 +56,7 @@ public class ReviseCommand extends Command {
             chapter = access.getModule().getChapters().getChapter(reviseIndex);
             return chapter;
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("The chapter is not found.\n");
+            throw new IndexOutOfBoundsException(String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER));
         }
     }
 
