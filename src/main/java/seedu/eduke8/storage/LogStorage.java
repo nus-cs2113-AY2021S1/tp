@@ -1,11 +1,7 @@
 package seedu.eduke8.storage;
 
-import org.json.simple.parser.ParseException;
-import seedu.eduke8.common.Displayable;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -17,7 +13,13 @@ public class LogStorage extends LocalStorage {
         super(filePath);
     }
 
-    // Set up save to file inside of print to console
+    /**
+     * Sets up saving logs to file instead of default print to console.
+     * Returns file where the logs are saved.
+     *
+     * @return Log file.
+     * @throws IOException  If the file is not found or cannot be written.
+     */
     @Override
     public File save() throws IOException {
         LogManager.getLogManager().reset();
@@ -29,20 +31,15 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(ch);
 
         // Log all to the file
-        File logFile = createFileIfNotExists();
+        file = super.save();
 
-        FileHandler fh = new FileHandler(logFile.getAbsolutePath());
+        FileHandler fh = new FileHandler(file.getAbsolutePath());
         fh.setFormatter(new SimpleFormatter());
         fh.setLevel(Level.ALL);
         LOGGER.addHandler(fh);
 
         LOGGER.log(Level.INFO, "Logging to file started");
 
-        return logFile;
-    }
-
-    @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException {
-        return null;
+        return file;
     }
 }

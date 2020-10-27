@@ -13,8 +13,13 @@ public class Explanation implements Displayable {
 
     @Override
     public String getDescription() {
-        wasShown = true;
+        markAsShown();
         return description;
+    }
+
+    @Override
+    public void markAsShown() {
+        wasShown = true;
     }
 
     @Override

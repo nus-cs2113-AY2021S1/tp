@@ -31,17 +31,21 @@ public class Ui {
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
             + System.lineSeparator() + "understand software engineering and OOP principles through a"
             + System.lineSeparator() + "gamified platform and enhances their " + "learning experience."
-            + System.lineSeparator() + System.lineSeparator() + "You can attempt bite-sized quizzes based "
-            + "on your choice of topic" + System.lineSeparator()
-            + "and access key concepts for easy revision!";
+            + System.lineSeparator()
+            + System.lineSeparator() + "You can attempt bite-sized quizzes based on your choice of topic"
+            + System.lineSeparator() + "and access key concepts for easy revision!";
     private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8!" + System.lineSeparator()
             + "What would you like to learn today?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you had a fruitful revision and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can use:"
-            + System.lineSeparator() + "1) about" + System.lineSeparator() + "2) help" + System.lineSeparator()
-            + "3) topics" + System.lineSeparator() + "4) textbook" + System.lineSeparator()
-            + "5) quiz t/<topic> n/<number of questions>" + System.lineSeparator() + "6) bookmark"
-            + System.lineSeparator() + "7) exit";
+            + System.lineSeparator() + "1) about"
+            + System.lineSeparator() + "2) help"
+            + System.lineSeparator() + "3) topics"
+            + System.lineSeparator() + "4) textbook"
+            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions>"
+            + System.lineSeparator() + "6) bookmark"
+            + System.lineSeparator() + "7) stats"
+            + System.lineSeparator() + "8) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!";
@@ -52,8 +56,8 @@ public class Ui {
             + System.lineSeparator() + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
     private static final String POINT_SYSTEM_RULE = "Point system in E-Duke-8: For correct answers, "
-            + "you earn 2 points if you did not request for hint, " + System.lineSeparator()
-            + "and 1 point if you did. No point is awarded for wrong answers.";
+            + "you earn 2 points if you did not request for hint, "
+            + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
     private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "

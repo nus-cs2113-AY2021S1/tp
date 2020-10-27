@@ -29,7 +29,7 @@ class QuestionTest extends Eduke8Test {
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         // When question is being shown to user, it is marked as shown automatically.
-        String questionDescriptionShownToUser = question.getDescription();
+        question.markAsShown();
         assertTrue(question.wasShown());
     }
 

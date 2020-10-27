@@ -2,7 +2,6 @@ package seedu.eduke8.storage;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.explanation.Explanation;
@@ -13,8 +12,6 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,26 +20,31 @@ import static java.util.stream.Collectors.toList;
 
 public class TopicsStorage extends LocalStorage {
 
+    private static final String KEY_TOPIC = "topic";
+    private static final String KEY_QUESTIONS = "questions";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_OPTIONS = "options";
+    private static final String KEY_HINT = "hint";
+    private static final String KEY_EXPLANATION = "explanation";
+    private static final String KEY_CORRECT_OPTION = "correct";
+
     public TopicsStorage(String filePath) {
         super(filePath);
     }
 
+    /**
+     * Returns topics loaded from a local file in JSON format.
+     *
+     * @return Topics loaded into an ArrayList.
+     * @throws IOException  If the file is not found or cannot be read.
+     * @throws ParseException  If the file contents cannot be parsed as a JSON.
+     */
     @Override
-    public File save() throws IOException {
-        return createFileIfNotExists();
-    }
-
-    @Override
+    @SuppressWarnings("unchecked")
     public ArrayList<Displayable> load() throws IOException, ParseException {
-        //JSON parser object to parse read file
-        JSONParser jsonParser = new JSONParser();
+        JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
-        FileReader reader = new FileReader(filePath);
-
-        //Read JSON file
-        JSONArray topicsAsJsonArray = (JSONArray) jsonParser.parse(reader);
-
-        //Iterate over employee array
+        //Iterate over topics array
         ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsAsJsonArray.stream()
                 .map(topic -> parseToTopicObject((JSONObject) topic))
                 .collect(toList());
@@ -54,10 +56,11 @@ public class TopicsStorage extends LocalStorage {
         return topicsAsObjects;
     }
 
+    @SuppressWarnings("unchecked")
     private Topic parseToTopicObject(JSONObject topic) {
-        String topicTitle = (String) topic.get("topic");
+        String topicTitle = (String) topic.get(KEY_TOPIC);
 
-        JSONArray questionsAsJsonArray = (JSONArray) topic.get("questions");
+        JSONArray questionsAsJsonArray = (JSONArray) topic.get(KEY_QUESTIONS);
         ArrayList<Displayable> questionsAsObjects = (ArrayList<Displayable>) questionsAsJsonArray.stream()
                 .map(question -> parseToQuestionObject((JSONObject) question))
                 .collect(toList());
@@ -69,9 +72,10 @@ public class TopicsStorage extends LocalStorage {
         return new Topic(topicTitle, questionList);
     }
 
+    @SuppressWarnings("unchecked")
     private Question parseToQuestionObject(JSONObject question) {
-        String questionDescription = (String) question.get("description");
-        JSONArray optionsAsJsonArray = (JSONArray) question.get("options");
+        String questionDescription = (String) question.get(KEY_DESCRIPTION);
+        JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
         ArrayList<Displayable> optionsAsObjects = (ArrayList<Displayable>) optionsAsJsonArray.stream()
                 .map(option -> parseToOptionObject((JSONObject) option))
                 .collect(toList());
@@ -80,11 +84,11 @@ public class TopicsStorage extends LocalStorage {
 
         OptionList optionList = new OptionList(optionsAsObjects);
 
-        String hintDescription = (String) question.get("hint");
+        String hintDescription = (String) question.get(KEY_HINT);
 
         Hint hint = new Hint(hintDescription);
 
-        String explanationDescription = (String) question.get("explanation");
+        String explanationDescription = (String) question.get(KEY_EXPLANATION);
 
         Explanation explanation = new Explanation(explanationDescription);
 
@@ -92,8 +96,8 @@ public class TopicsStorage extends LocalStorage {
     }
 
     private Option parseToOptionObject(JSONObject option) {
-        String optionDescription = (String) option.get("description");
-        boolean isCorrectAnswer = (boolean) option.get("correct");
+        String optionDescription = (String) option.get(KEY_DESCRIPTION);
+        boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT_OPTION);
 
         Option optionAsObject = new Option(optionDescription);
 

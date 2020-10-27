@@ -17,20 +17,25 @@ public class Option implements Displayable {
 
     @Override
     public String getDescription() {
-        wasShown = true;
+        markAsShown();
         return description;
     }
 
     @Override
+    public void markAsShown() {
+        wasShown = true;
+    }
+
+    @Override
     public boolean wasShown() {
-        return wasShown;
+        return this.wasShown;
     }
 
     public boolean isCorrectAnswer() {
-        return isCorrectAnswer;
+        return this.isCorrectAnswer;
     }
 
     public void markAsCorrectAnswer() {
-        this.isCorrectAnswer = true;
+        isCorrectAnswer = true;
     }
 }

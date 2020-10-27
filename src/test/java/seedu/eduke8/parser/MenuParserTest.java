@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class MenuParserTest extends Eduke8Test {
     @Test
     public void menuParser_wrongStringInput_expectIncorrectCommand() {
-        BookmarkList bookmarks = new BookmarkList();
+        BookmarkList bookmarks = createTestBookmarkList();
         TopicList topicList = createTestTopicList();
         MenuParser menuParser = new MenuParser(bookmarks);
 

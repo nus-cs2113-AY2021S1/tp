@@ -3,15 +3,18 @@ package seedu.eduke8;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.parser.MenuParser;
 import seedu.eduke8.storage.LogStorage;
 import seedu.eduke8.storage.TopicsStorage;
+import seedu.eduke8.storage.UserStorage;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,26 +26,37 @@ public class Eduke8 {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
     private static final String LOG_PATH = "data/logs/" + DATE_TIME_NOW.format(DATE_TIME_FORMATTER) + ".log";
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final String USER_PATH = "data/main/user.json";
 
-    public BookmarkList bookmarks = new BookmarkList();
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;
     private LogStorage logStorage;
+    private UserStorage userStorage;
     private TopicList topicList;
+    private BookmarkList bookmarkList;
     private Ui ui;
 
-    private Eduke8(String dataPath, String logPath) {
-        menuParser = new MenuParser(bookmarks);
-        topicsStorage = new TopicsStorage(dataPath);
-        logStorage = new LogStorage(logPath);
+    private Eduke8(String dataPath, String logPath, String userPath) {
         ui = new Ui();
+        bookmarkList = new BookmarkList(new ArrayList<>());
         try {
+            topicsStorage = new TopicsStorage(dataPath);
+            logStorage = new LogStorage(logPath);
+
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
+
+            userStorage = new UserStorage(userPath, topicList, bookmarkList);
+            userStorage.load();
         } catch (ParseException | IOException e) {
             ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, "Error reading or writing local files.");
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            System.exit(1);
+        } catch (Eduke8Exception e) {
+            ui.printError(e.getMessage());
+            LOGGER.log(Level.INFO, e.getMessage());
         }
+        menuParser = new MenuParser(bookmarkList);
     }
 
     private void run() {
@@ -68,11 +82,18 @@ public class Eduke8 {
     }
 
     private void exit() {
+        try {
+            userStorage.save();
+        } catch (IOException e) {
+            ui.printError(ERROR_STORAGE_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            System.exit(1);
+        }
         ui.printExitMessage();
         System.exit(0);
     }
 
     public static void main(String[] args) {
-        new Eduke8(DATA_PATH, LOG_PATH).run();
+        new Eduke8(DATA_PATH, LOG_PATH, USER_PATH).run();
     }
 }
