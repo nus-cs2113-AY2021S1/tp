@@ -185,7 +185,8 @@ storing the different modules, time expected, time spent and tasks
 
 The add module feature will implement the checks of the module code input by the user through the following operations:
 
-`checkIfModuleValid()` – Checks if the module code is of 6 – 8 characters without any spacing
+`checkIfModuleValid()` – Checks if the module code starts with 2 - 3 characters, followed by 4 digits, followed by an 
+                         optional character.
 
 `checkIfModuleExist()` – Checks if the module already exists in the list of modules
 
@@ -221,8 +222,9 @@ Step 6. The newly created module is added to the list of modules.
 Step 7. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
 
 Step 8. The newly created module is saved to storage.  
+  
 
-The following sequence diagram shows how the addmod CS2113T command works.
+The following sequence diagram shows how the `addmod CS2113T` command works.
 
 ![Addmodseq](diagrams/Addmodseq.png)  
 

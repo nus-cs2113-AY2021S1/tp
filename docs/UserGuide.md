@@ -63,7 +63,7 @@ has successfully executed.
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
-1. The module code is valid if it contains 2 - 3 characters, followed by 4 digits, followed by an optional character.
+1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits, followed by an optional character.
 
 ### 2.1 View help: `help` <a name="help"></a>
 Shows a list of the commands available.
