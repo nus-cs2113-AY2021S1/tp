@@ -1,6 +1,6 @@
 Standard Pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
 Inclined Pullups, 3.8, 0.5, 1, 1.5, 3, 4, 5
-Pullups, 3.8, 0.5, 1, 1, 4, 4, 8
+Pullups, 3.8, 0.5, 0.5, 1, 2, 4, 5
 Triceps dips, 3.8, 0.5, 1, 1.5, 3, 4, 5
 Diamond pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
 Knee Pushups, 3.8, 0.5, 1, 1.5, 3, 4, 5
