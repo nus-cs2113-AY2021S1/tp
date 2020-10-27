@@ -49,6 +49,6 @@ public class Patient {
      */
     @Override
     public String toString() {
-        return name + ", " + nric + ", " + dateOfBirth.format(DateTimeFormatter.ISO_DATE);
+        return name + " | " + nric + " | " + dateOfBirth.format(DateTimeFormatter.ISO_DATE);
     }
 }

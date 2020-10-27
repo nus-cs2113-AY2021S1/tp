@@ -28,7 +28,7 @@ import java.time.LocalDate;
 public class Parser {
 
     /**
-     * Reads inputted patient details and return the patient.
+     * Reads inputted patient details and returns the patient.
      *
      * @param line Input line to parse to patient details.
      * @return Patient object with patient details.
@@ -36,14 +36,10 @@ public class Parser {
     public static Patient readPatient(String line) {
         assert line != null && !line.equals("") : "No patients to read!";
 
-        StringBuilder record = new StringBuilder(line);
-        String name = record.substring(0, record.indexOf(", "));
-        // Deletes first comma separator.
-        record.delete(0, record.indexOf(", ") + 2);
-        String nric = record.substring(0, record.indexOf(", "));
-        // Deletes second comma separator.
-        record.delete(0, record.indexOf(", ") + 2);
-        LocalDate dateOfBirth = LocalDate.parse(record.toString());
+        String[] patientDetails = line.split(" \\| ");
+        String name = patientDetails[0];
+        String nric = patientDetails[1];
+        LocalDate dateOfBirth = LocalDate.parse(patientDetails[2]);
         return new Patient(name, nric, dateOfBirth);
     }
 
@@ -54,7 +50,7 @@ public class Parser {
      * @return Appointment object.
      */
     public static Appointment readAppointment(String line) {
-        String[] appointmentComponents = line.split(", ");
+        String[] appointmentComponents = line.split(" \\| ");
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
         String nric;

@@ -34,6 +34,7 @@ public class Ui {
                     .replaceAll("\n", System.lineSeparator());
     private static final String DOTTED_LINE = "____________________________________________________________";
     private static final String DATE_ERROR = "Error in date format.";
+    private static final String BLANK_INPUT_ERROR = "Input cannot be blank!";
     private final Scanner in = new Scanner(System.in);
 
     /**
@@ -126,10 +127,14 @@ public class Ui {
      * Reads command from user.
      *
      * @return String command from user.
+     * @throws RexException If user input is blank.
      */
-    public String readCommand() {
+    public String readCommand() throws RexException {
+        String userInput;
         printWithIndent("Enter command: ");
-        return in.nextLine();
+        userInput = in.nextLine();
+        checkInputNotBlank(userInput);
+        return userInput;
     }
 
     /**
@@ -138,8 +143,20 @@ public class Ui {
      * @return The name of the patient to be added.
      */
     public String getPatientName() {
-        printWithIndent("Enter patient name: ");
-        return in.nextLine().trim();
+        String patientName = "";
+        while (true) {
+            try {
+                printWithIndent("Enter patient name: ");
+                patientName = in.nextLine().trim();
+                checkInputNotBlank(patientName);
+                break;
+            } catch (RexException e) {
+                showLine();
+                showError(e.getMessage());
+                showLine();
+            }
+        }
+        return patientName;
     }
 
     /**
@@ -389,5 +406,16 @@ public class Ui {
      */
     public void showDeleteAppointmentMessage() {
         printWithIndent("Choose appointment to delete: ");
+    }
+
+    /**
+     * Checks if a user's input is blank.
+     * @param userInput The user's input.
+     * @throws RexException If a user's input is blank.
+     */
+    public void checkInputNotBlank(String userInput) throws RexException {
+        if (userInput.isBlank()) {
+            throw new RexException(BLANK_INPUT_ERROR);
+        }
     }
 }
