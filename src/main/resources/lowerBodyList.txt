@@ -1,14 +1,14 @@
-Air Squats, 5.0, 1, 1.5, 2, 3, 3, 3
+Air Squats, 5.0, 1, 1.5, 2, 3, 4, 5
 Lunges, 3.8, 1, 1.5, 2, 3, 4, 5
-Squat Jumps, 8.0, 1, 1.5, 2, 3, 3, 3
-Sumo Squats, 5.0, 1, 1.5, 2, 3, 3, 3
-Cossack Squat, 5.0, 1, 1.5, 2, 3, 3, 3
-Static Chair Pose, 3.8, 1, 1.5, 2, 3, 3, 3
-Tuck Jump, 8.0, 1, 1, 1.5, 3, 4, 4
-Jumping Squat, 8.0, 1, 1.5, 2, 3, 3, 3
-Reverse lunge, 3.8, 1, 1.5, 2, 3, 4, 5
-Donkey Kick, 5.0, 1, 1.5, 2, 3, 3, 4
+Squat Jumps, 8.0, 1, 1, 1, 3, 4, 5
+Sumo Squats, 5.0, 1, 1.5, 2, 3, 4, 5
+Cossack Squat, 5.0, 1, 1.5, 2, 3, 4, 5
+Static Chair Pose, 3.8, 1, 1.5, 2, 3, 4, 5
+Tuck Jump, 8.0, 1, 1, 1, 3, 4, 5
+Jumping Squat, 8.0, 1, 1, 1, 3, 4, 5
+Reverse lunge, 3.8, 1, 1, 1, 3, 4, 5
+Donkey Kick, 5.0, 1, 1.5, 2, 3, 4, 5
 Side Lunges, 3.8, 1, 1.5, 2, 3, 4, 5
 Step ups, 4.0, 1, 1.5, 2, 3, 4, 5
-Side Lying Leg lifts, 5.0, 1, 1.5, 2, 3, 4, 5
-Calf Raises, 3.8, 1, 1.5, 2, 3, 4, 5
+Side Lying Leg lifts, 5.0, 1, 1, 1, 3, 4, 5
+Calf Raises, 3.8, 1, 1, 1, 3, 4, 5

@@ -8,6 +8,7 @@ import static fitr.common.Commands.COMMAND_EDIT;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_RECOMMEND;
 import static fitr.common.Commands.COMMAND_VIEW;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
