@@ -6,7 +6,7 @@ Hello from
 ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
 *****************************************************|
 
-Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html
 Enter <help> for a quick view of available commands.
 
 What is your name?
@@ -66,6 +66,16 @@ No input for CS3200
 Analysis:
 CS1000
 Good Job! Great time management!
+
+Got it. I've added this task under CS1000:
+[X] [CS1000] study
+Now you have 1 task in the list.
+
+Nice! I've marked this task as done:
+[/] [CS1000] study
+
+OOPS!!! I'm sorry, but I don't know what that means :-(
+Enter <help> for a quick view of available commands.
 
 CS1000 is removed.
 All tasks under CS1000 are deleted.

@@ -6,7 +6,10 @@ addexp CS3200 8
 addexp CS1000 8
 addtime CS1000 7 1
 list 2
-analysis 1
+analyse 1
+addtask cs1000 study
+done 1
+delete 1
 deletemod CS1000
 deletemod cs2113t
 deletemod CS3200
