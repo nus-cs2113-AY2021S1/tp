@@ -217,7 +217,11 @@ This section describes some details on some of the noteworthy features in **AniC
 
 ### 4.1 Workspace Feature
 
-To be written soon.
+Similar to a desktop, AniChan has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+
+#### 4.1.1 Add new workspace 
+
+WIP.
 
 <br/>
 
