@@ -5,6 +5,9 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
+<br>
+
+This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 
 <br/><br/> 
@@ -178,6 +181,14 @@ Format: launch now
 ```
 
 <br/><br/> 
+<a name="clear"></a>  
+#### 2.1.4. Clear screen: `clear`
+This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
+```
+Format: clear
+```
+
+<br/><br/> 
 <a name="exit"></a>  
 #### Exit the app: `exit`  
 You can exit the application by using the exit command.
@@ -189,9 +200,9 @@ Format: exit
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
+
 ---
 <br/> 
-
 
 <a name="bookmarkmode"></a>  
 ### 5.2 Bookmark Mode  
@@ -204,7 +215,7 @@ Format: show
 ```
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### Add bookmark: `add`  
+#### 2.2.2. Add bookmark: `add`  
 Adds a URL bookmark with a description.  
 ```
 Format: add {DESCRIPTON} {URL}
@@ -219,7 +230,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### Delete bookmarks: `delete`  
+#### 2.2.3. Delete bookmarks: `delete`  
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -234,7 +245,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="findbookmark"></a>  
-#### Find bookmarks: `find`  
+#### 2.2.4. Find bookmarks: `find`  
 Finds bookmarks with matching description and prints them.
 ```
 Format: find {DESCRIPTION}
@@ -249,7 +260,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### Launch bookmarks: `launch`  
+#### 2.2.5. Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
 * Index
 * Matching description
@@ -267,6 +278,7 @@ Example of usage:
 * `launch cs2113t-website`  
   
 <br/>
+
 ---
 <br/> 
 
@@ -496,7 +508,7 @@ and save the txt file. You can now add the module in Zoomaster.
 **clear**|`launch now`
 **launch now**|`clear`
 **exit**|`exit`
-**Bookmark Mode**|
+***Bookmark Mode***|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
