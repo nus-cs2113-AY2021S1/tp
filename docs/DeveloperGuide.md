@@ -1,8 +1,6 @@
 # **Developer Guide**
 
 
-
-
 ## **Introduction**
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
 ### **Welcome to Zoomaster!**
@@ -15,11 +13,11 @@ Zoomaster can also intelligently determine the current lesson you are having, al
 * [Getting Started](#getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
-  * [UI component](#architecture)
-  * [Logic component](#architecture)
-  * [Model component](#architecture)
-  * [Storage component](#architecture)
-  * [Common classes](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
 * [Implementation](#implementation)
   * [Proposed] Undo/redo feature
   * [Proposed] Implementation
@@ -90,11 +88,11 @@ bookmark class
 command class
 
 ## **Implementation**
-{describe how you implement the features}
+
 
 ### Bookmark and Timetable modes feature (TYS)
 
-#### Implementaion
+#### Implementation
 
 This feature extends Command class with a way to toggle between different modes of Zoomaster. The integer variable used to control the modes is stored in the Parser class called "programMode". Additionally, it implements the following operation:
 * getModeFromCommand() - Decodes the command sent by the users to figure out which mode the user wants to move to.
@@ -103,11 +101,11 @@ Given below is a sequential diagram of how changing between modes occur.
 
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
 
-Step 1. When the App gets a command from the user to change modes, a new ChangeModeCommand object is created.
+1. When the App gets a command from the user to change modes, a new ChangeModeCommand object is created.
 
-Step 2. The ChangeModeCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to change to.
+2. The ChangeModeCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to change to.
 
-Step 3. The App now executes the command and changes to the respective mode. If an invalid mode was given by the user or if the input field was empty, the execute function throws an exception and tells the user valid modes for the App.
+3. The App now executes the command and changes to the respective mode. If an invalid mode was given by the user or if the input field was empty, the execute function throws an exception and tells the user valid modes for the App.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -134,17 +132,17 @@ Given below is a sequence diagram of how the feature works.
 ![](./diagrams/addSlotSequenceDiagram.png)
 <br>
 <br>
-Step 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
+1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
 entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
-Step 2. There will then be a check for additional commands pertaining to the module entered by the user.
+2. There will then be a check for additional commands pertaining to the module entered by the user.
 
-Step 3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
+3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
 
-Step 4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. If there 
+4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. If there 
 is one, then the bookmark will be added to the lesson slot.
 
-Step 5. Loop to step 3 if there are additional commands which have not been executed.
+5. Loop to step 3 if there are additional commands which have not been executed.
 
 #### Design consideration:
 
@@ -182,7 +180,8 @@ The App was developed during the coronavirus pandemic whereby many NUS classes h
 
 ## **Non-Functional Requirements**
 
-{Give non-functional requirements}
+1. The App should work on any mainstream OS as long as it has Java `11` installed.
+2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## **Glossary**
 
