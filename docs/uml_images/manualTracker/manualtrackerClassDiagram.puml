@@ -1,0 +1,159 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 80
+rectangle Data {
+    class DateTimeItem {
+        + setDate() : void
+        + getDate() : LocalDate
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+
+    abstract class Item {
+        # index : int
+        + {abstract} getName() : String
+    }
+
+    abstract class ItemList {
+        # currItem : Item
+        # items : ArrayList<Item>
+        # indexToModify : int
+
+        + addItemAndSort(item : Item, comparator : Comparator)
+        + getItemSize() : int
+        + getItemAtIndex() : Item
+        + getItemAtIndex(index : int) : Item
+        + {abstract} printList()
+    }
+    together {
+        class LedgerList {
+        }
+
+        class EntryList {
+        }
+    }
+
+    class Ledger {
+        # date : LocalDate = null
+        + entryList : EntryList
+        + Ledger()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    class Entry {
+        # date : LocalDate = null
+        + Entry()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+}
+
+
+
+DateTimeItem --|> Item
+Ledger --|> DateTimeItem
+Entry --|> DateTimeItem
+LedgerList --|> ItemList
+EntryList --|> ItemList
+Ledger "1" -- "1" EntryList
+LedgerList --> "*" Ledger
+EntryList --> "*" Entry
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+    EntryTracker --> EntryList
+    ManualTracker --> LedgerList
+}
+
+rectangle LedgerCommands {
+    class createLedgerCommand {
+        + handlePacket() : void
+        + handleSingleParams(paramType : String) : void
+        + handleParams(packet : CommandPacket) : void
+    }
+    class retrieveLedgerCommand {
+        + handlePacket() : void
+        + handleSingleParams(paramType : String) : void
+        + handleParams(packet : CommandPacket) : void
+    }
+    ManualTracker <-- createLedgerCommand
+    ManualTracker <-- retrieveLedgerCommand
+}
+
+rectangle EntryCommands {
+    class createEntryCommand {
+        + handlePacket() : void
+        + handleSingleParams(paramType : String) : void
+        + handleParams(packet : CommandPacket) : void
+    }
+    class editEntryCommand {
+        + handlePacket() : void
+        + handleSingleParams(paramType : String) : void
+        + handleParams(packet : CommandPacket) : void
+    }
+    class retrieveEntryCommand {
+        + handlePacket() : void
+        + handleSingleParams(paramType : String) : void
+        + handleParams(packet : CommandPacket) : void
+    }
+    EntryTracker <-- createEntryCommand
+    EntryTracker <-- retrieveEntryCommand
+    EntryTracker <-- editEntryCommand
+
+}
+
+rectangle Logic {
+    abstract class ParamHandler {
+        # requiredParams : HashSet<String>
+        # paramsSuccessfullyParsed : HashSet<String>
+        # missingRequiredParams : HashSet<String>
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        + resetAllParamCollections() : void
+        # checkParseFailedParams() : boolean
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    class ParamChecker {
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+    ParamChecker <-[#blue]- createLedgerCommand #line:blue;line.bold;text:red
+    ParamChecker <-[#blue]- retrieveLedgerCommand #line:blue;line.bold;text:red
+    ParamChecker <-[#blue]- createEntryCommand #line:blue;line.bold;text:red
+    ParamChecker <-[#blue]- editEntryCommand #line:blue;line.bold;text:red
+    ParamChecker <-[#blue]- retrieveEntryCommand #line:blue;line.bold;text:red
+
+    ParamHandler <|-- createLedgerCommand #line:purple;line.bold;text:red
+    ParamHandler <|-- retrieveLedgerCommand #line:purple;line.bold;text:red
+    ParamHandler <|-- createEntryCommand #line:purple;line.bold;text:red
+    ParamHandler <|-- retrieveEntryCommand #line:purple;line.bold;text:red
+    ParamHandler <|-- editEntryCommand #line:purple;line.bold;text:red
+
+    ManualTracker -[#red]-> "1" InputParser #line:red;line.bold;text:red
+
+    EntryTracker -[#red]-> "1" InputParser #line:red;line.bold;text:red
+
+@enduml
