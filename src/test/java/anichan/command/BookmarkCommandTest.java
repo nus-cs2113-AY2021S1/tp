@@ -220,7 +220,7 @@ class BookmarkCommandTest {
         System.out.println(result2);
 
         BookmarkParser testParse3 = new BookmarkParser();
-        BookmarkCommand testBookmarkCommand3 = testParse.parse(VALID_NOTE_TEST3);
+        BookmarkCommand testBookmarkCommand3 = testParse3.parse(VALID_NOTE_TEST3);
         String result3 = testBookmarkCommand3.execute(animeData, storageManager, user);
         assertEquals(OUTPUT_NOTE_TEST3, result3);
         System.out.println(result);
