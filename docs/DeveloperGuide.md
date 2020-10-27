@@ -154,8 +154,8 @@ The UI component is responsible for:
 #### 4.1.4. Remove Module Feature
 (Jia Ern)
 
-The Remove Module feature allows the user to remove a module by specifying the index of the module in the list. 
-The Remove Module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
+The remove module feature allows the user to remove a module by specifying the index of the module in the list. 
+The remove module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
 
 In addition, it implements the following operations:
 * `RemoveModuleCommand#execute()` — oversees entire execution for removing a module.
@@ -170,7 +170,7 @@ For instance, the user wants to start a remove the module `CS2113T`, a detailed 
 
 * Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
-The following sequence diagram shows how the Remove Module feature works:
+The following sequence diagram shows how the remove module feature works:
 ![Sequence Diagram of Remove Module](UML/removemod_seq_diagram.png)
 
 #### 4.1.5. Access Module Level Feature
@@ -195,8 +195,8 @@ The following sequence diagram shows how the Remove Module feature works:
 #### 4.2.4. Remove Chapter Feature
 (Jia Ern)
 
-The Remove Chapter feature allows the user to remove a chapter by specifying the index of the chapter in the list. 
-The Remove Chapter mechanism is facilitated by `RemoveChapterCommand`. It extends from the abstract class `RemoveCommand`. 
+The remove chapter feature allows the user to remove a chapter by specifying the index of the chapter in the list. 
+The remove chapter mechanism is facilitated by `RemoveChapterCommand`. It extends from the abstract class `RemoveCommand`. 
 
 In addition, it implements the following operations:
 * `RemoveChapterCommand#execute()` — oversees entire execution for removing a chapter.
@@ -211,7 +211,7 @@ For instance, the user wants to start a remove the chapter `Chapter 1` from the 
 
 * Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
-The following sequence diagram shows how the Remove Chapter feature works:
+The following sequence diagram shows how the remove chapter feature works:
 ![Sequence Diagram of Remove Chapter](UML/removechap_seq_diagram.png)
 
 #### 4.2.5. Access Chapter Level Feature
@@ -242,8 +242,8 @@ The following sequence diagram shows how the Remove Chapter feature works:
 #### 4.3.4. Remove Flashcard Feature
 (Jia Ern)
 
-The Remove Flashcard feature allows the user to remove a flashcard by specifying the index of the flashcard in the list. 
-The Remove Flashcard mechanism is facilitated by `RemoveFlashcardCommand`. It extends from the abstract class `RemoveCommand`. 
+The remove flashcard feature allows the user to remove a flashcard by specifying the index of the flashcard in the list. 
+The remove flashcard mechanism is facilitated by `RemoveFlashcardCommand`. It extends from the abstract class `RemoveCommand`. 
 
 In addition, it implements the following operations:
 * `RemoveFlashcardCommand#execute()` — oversees entire execution for removing a flashcard.
@@ -260,7 +260,7 @@ For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` f
 
 * Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
-The following sequence diagram shows how the Remove Chapter feature works:
+The following sequence diagram shows how the remove flashcard feature works:
 ![Sequence Diagram of Remove Flashcard](UML/removecard_seq_diagram.png)
 
 #### 4.3.5. Return to Module Level Feature
@@ -293,10 +293,10 @@ The following sequence diagram shows how the return to module level feature work
 ### 4.4. Revise Feature
 (Jia Ern)
 
-The Revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
+The revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
 
 #### 4.4.1. Implementation
-The Revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
+The revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
 
 In addition, it implements the following operations:
 * `ReviseCommand#execute()` — oversees the entire revise process and calls the respective methods when necessary.
@@ -324,7 +324,7 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 
 * Step 7: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
 
-The following sequence diagram shows how the Revise feature works:
+The following sequence diagram shows how the revise feature works:
 ![Sequence Diagram of Revise](UML/revise_seq_diagram.png)
 
 ### 4.5. Scheduler Feature
