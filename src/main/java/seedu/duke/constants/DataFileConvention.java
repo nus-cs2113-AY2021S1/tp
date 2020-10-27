@@ -8,7 +8,7 @@ public class DataFileConvention {
     public static final String WRITING_COMPONENT_MARK = "*";
 
     /** Number of writing class component each section has in the database. */
-    public static final int NUMBER_OF_WRITING_COMPONENT = 7;
+    public static final int NUMBER_OF_WRITING_COMPONENT = 8;
 
     public static final int POSITION_OF_ID = 5;
 
@@ -20,6 +20,7 @@ public class DataFileConvention {
     public static final int POSITION_OF_TOPIC = 8;
 
     public static final int POSITION_OF_DATE = 7;
+    public static final int POSITION_OF_REMINDER_DATE = 11;
 
     public static final String POEM = "Poem";
 
