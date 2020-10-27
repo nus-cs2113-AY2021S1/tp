@@ -20,7 +20,7 @@ public class CheckGoalStatus {
         NumberFormat formatter = new DecimalFormat("#0.0");
 
         try {
-            if(status.equals("✓")) {
+            if (status.equals("✓")) {
                 return status;
             }
             if (goal.getDescription().contains("Burn less than ")) {
