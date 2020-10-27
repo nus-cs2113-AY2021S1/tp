@@ -3,17 +3,19 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.notus.command.PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.storage.StorageManager.FOLDER_DIR;
+import static seedu.notus.storage.StorageManager.NOTES_DIR;
 
+
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 //@@author prachi2023

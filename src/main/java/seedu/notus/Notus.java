@@ -44,8 +44,9 @@ public class Notus {
 
         try {
             storageManager.createFiles();
-            storageManager.loadAllNotes(notebook, timetable, tagManager, parserManager);
-            storageManager.loadAllArchivedNotes(notebook, timetable, tagManager, parserManager);
+            storageManager.loadAllNotes(notebook, timetable, tagManager, parserManager, false);
+            storageManager.loadAllNotes(notebook, timetable, tagManager, parserManager, true);
+           // storageManager.loadAllArchivedNotes(notebook, timetable, tagManager, parserManager);
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }

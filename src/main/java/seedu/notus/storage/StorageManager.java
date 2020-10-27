@@ -9,7 +9,6 @@ import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.util.parser.ParserManager;
 
-import javax.swing.plaf.metal.MetalIconFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -24,14 +23,16 @@ import java.util.Scanner;
 public class StorageManager {
     /** Default folders directory. */
     public static final String FOLDER_DIR = "data";
-    private static final String NOTES_DIR = "/notes";
+    public static final String NOTES_DIR = "/notes";
     private static final String ARCHIVED_NOTES_DIR = "/archived";
 
     /** Default file path. */
-    private static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
+    public static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
     private static final String ARCHIVED_NOTEBOOK_FILE_PATH = "/archived_notebook.txt";
     private static final String TAG_FILE_PATH = "/tags.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
+
+    /* Set up of Storage manager */
 
     /**
      * Checks if the file directories exist otherwise creates them.
@@ -88,6 +89,64 @@ public class StorageManager {
         }
     }
 
+    /* Loading of information from files */
+
+    /**
+     * Loads the Notebook details and content for unArchived Notebooks.
+     *
+     * @param notebook The Notebook to be loaded into.
+     * @param timetable The Timetable to be loaded into.
+     */
+    public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager,
+                             ParserManager parserManager , boolean isArchive) throws SystemException {
+        String path;
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
+        } else {
+            path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
+        }
+
+        File f = new File(path);
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+        while (s.hasNext()) {
+            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
+            Command command = parserManager.parseCommand(taskDetails);
+            command.setData(notebook, timetable, tagManager, this);
+            command.execute();
+        }
+        s.close();
+    }
+
+    public ArrayList<String> getNoteContent(Note note, boolean isArchive) throws SystemException {
+        ArrayList<String> content = new ArrayList<>();
+        String path;
+
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
+        } else {
+            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        }
+
+        File f = new File(path);
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+
+        while (s.hasNext()) {
+            content.add(s.nextLine());
+        }
+        s.close();
+        return content;
+    }
+
     /**
      * Saves all the Notes in the Notebook to the storage file.
      *
@@ -103,6 +162,8 @@ public class StorageManager {
             }
         }
     }
+
+    /* Saving and deleting notes */
 
     /**
      * Clears the content in the original file storing all the note details.
@@ -138,28 +199,6 @@ public class StorageManager {
             saveNoteContent(note, isArchive);
             saveNoteDetails(note, isArchive);
         }
-    }
-
-    /**
-     * Returns a boolean of whether the file storing the content of the note already exists.
-     *
-     * @param note note whose file status needs to be checked
-     * @return boolean
-     */
-    public boolean noteExists(Note note, boolean isArchive) {
-        String path;
-
-        if (isArchive) {
-            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
-        } else {
-            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
-        }
-
-        File file = new File(path);
-        if (!file.exists()) {
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -200,31 +239,6 @@ public class StorageManager {
         fwAppend.close();
     }
 
-    public ArrayList<String> getNoteContent(Note note, boolean isArchive) throws SystemException {
-        ArrayList<String> content = new ArrayList<>();
-        String path;
-
-        if (isArchive) {
-            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
-        } else {
-            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
-        }
-
-        File f = new File(path);
-        Scanner s;
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException exception) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
-        }
-
-        while (s.hasNext()) {
-            content.add(s.nextLine());
-        }
-        s.close();
-        return content;
-    }
-
     public void deleteNoteContentFile(String noteTitle, boolean isArchive) throws SystemException {
         String path;
 
@@ -246,62 +260,24 @@ public class StorageManager {
     }
 
     /**
-     * Saves all the Events in the Timetable to the storage file.
+     * Returns a boolean of whether the file storing the content of the note already exists.
      *
-     * @param timetable The Timetable containing all the events to be saved.
+     * @param note note whose file status needs to be checked
+     * @return boolean
      */
-    private void saveTimetable(Timetable timetable){
+    public boolean noteExists(Note note, boolean isArchive) {
+        String path;
 
-    }
+        if (isArchive) {
+            path = FOLDER_DIR + ARCHIVED_NOTES_DIR + "/" + note.getTitle() + ".txt";
+        } else {
+            path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        }
 
-    /**
-     * Loads the Notebook details and content for unArchived Notebooks.
-     *
-     * @param notebook The Notebook to be loaded into.
-     * @param timetable The Timetable to be loaded into.
-     */
-    public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager, ParserManager parserManager)
-            throws SystemException {
-        String path = FOLDER_DIR + NOTEBOOK_FILE_PATH;
-        File f = new File(path);
-        Scanner s;
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException exception) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        File file = new File(path);
+        if (!file.exists()) {
+            return false;
         }
-        while (s.hasNext()) {
-            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
-            Command command = parserManager.parseCommand(taskDetails);
-            command.setData(notebook, timetable, tagManager, this);
-            command.execute();
-        }
-        s.close();
-    }
-
-    /**
-     * Loads the Notebook details and content for Archived Notebooks.
-     *
-     * @param notebook The Notebook to be loaded into.
-     * @param timetable The Timetable to be loaded into.
-     */
-    public void loadAllArchivedNotes(Notebook notebook, Timetable timetable,
-                                     TagManager tagManager, ParserManager parserManager)
-            throws SystemException {
-        String path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
-        File f = new File(path);
-        Scanner s;
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException exception) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
-        }
-        while (s.hasNext()) {
-            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
-            Command command = parserManager.parseCommand(taskDetails);
-            command.setData(notebook, timetable, tagManager, this);
-            command.execute();
-        }
-        s.close();
+        return true;
     }
 }
