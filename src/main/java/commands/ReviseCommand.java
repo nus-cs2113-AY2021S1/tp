@@ -120,19 +120,23 @@ public class ReviseCommand extends Command {
         prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
         String input = ui.getInput(prompt.toString()).trim().toUpperCase();
         boolean isInvalid = true;
+        boolean notRevising = false;
         while (isInvalid) {
             switch (input) {
             case "Y":
                 isInvalid = false;
+                notRevising = false;
                 break;
             case "N":
-                return true;
+                isInvalid = false;
+                notRevising = true;
+                break;
             default:
                 input = ui.getInput("You have entered an invalid input, please try again.")
                         .trim().toUpperCase();
             }
         }
-        return false;
+        return notRevising;
     }
 
     private void addHistory(Ui ui, Access access, Storage storage) throws IOException {
