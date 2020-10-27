@@ -19,9 +19,10 @@ public class InputChecker {
     public static final int WEIGHT_CAP = 500;
     public static final String[] PARAM_ACTIVITY = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
+    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
-    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
+    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/","c/"};
 
     /**
      * Takes in user input and command to check for any expected parameters after the command.
@@ -52,6 +53,25 @@ public class InputChecker {
             }
         } else {
             throw new DietException("Error! Option specified with empty field!");
+        }
+    }
+
+    /**
+     * Takes in processed user input to check for options specified with an empty field.
+     *
+     * @param options option part of user input command.
+     * @throws DietException when an option is specified but its field is empty.
+     */
+    public static void checkRepeatedOption(String command, String options) throws DietException {
+        String[] paramList = FULL_PARAM_ADD;
+        if (command.equals("info")) {
+            paramList = PARAM_INFO;
+        }
+        for (String param: paramList) {
+            int countOccurrence = options.length() - options.replace(param, "").length();
+            if (countOccurrence > 2) {
+                throw new DietException("There are repeated options!");
+            }
         }
     }
 
