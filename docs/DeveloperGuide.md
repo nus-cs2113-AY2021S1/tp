@@ -14,6 +14,7 @@ enhancements.
     + [2.1.4. Storage Component](#214-storage-component)
   * [2.2. Implementation](#22-implementation)
     + [2.2.1 Direct Route Finder (`/route` Feature)](#221-direct-route-finder-route-feature)
+    + [2.2.2. Favourite command description modifier (`/descfav` Feature)](#222-favourite-command-description-modifier-descfav-feature)
 - [3. Appendix I: Requirements](#3-appendix-i-requirements)
   * [3.1 Product scope](#31-product-scope)
     + [3.1.1 Target user profile](#311-target-user-profile)
