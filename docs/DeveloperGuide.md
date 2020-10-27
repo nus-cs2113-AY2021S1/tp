@@ -14,6 +14,7 @@ enhancements.
     + [2.1.4. Storage Component](#214-storage-component)
   * [2.2. Implementation](#22-implementation)
     + [2.2.1 Direct Route Finder (`/route` Feature)](#221-direct-route-finder-route-feature)
+    + [2.2.1 Full Route Display (`/routemap` Feature)](#222-full-route-display-routemap-feature)
 - [3. Appendix I: Requirements](#3-appendix-i-requirements)
   * [3.1 Product scope](#31-product-scope)
     + [3.1.1 Target user profile](#311-target-user-profile)
@@ -116,6 +117,21 @@ The following sequence diagrams explain the interactions omitted in the main dia
 ![executing command](DG_Diagrams/RouteCommandInternal.png)
 
 ![bus data](DG_Diagrams/BusData.png)
+
+#### 2.2.2 Full Route Display (`/routemap` Feature)
+
+The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
+bus route.
+
+The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
+1. Calls `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
+returned. Else, null is returned.
+2. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+
+The following sequence diagram explains the above steps when the user searches for the full route of a bus.
+
+![Overview](DG_Diagrams/RouteMapCommandSeq.png)
+
 
 ## 3. Appendix I: Requirements
 
