@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false
@@ -45,8 +46,10 @@ rectangle Logic {
         + checkAndReturnCategory(paramType : String) : String
     }
 
-    ParamChecker -[hidden] p1
 
+    p1 -[hidden] p2
+    p2 -[hidden] p3
+    p2 -[hidden] ParamChecker
     p3 -[hidden] ParamHandler
 }
 
@@ -89,17 +92,19 @@ rectangle Commands {
     ParamChecker -[hidden]- ParamHandler
 }
 
-ParamChecker "1" <-[norank]- createLedgerCommand #line:blue;line.bold;text:red
-ParamChecker "1" <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:red
-ParamChecker "1" <-[norank]- createEntryCommand #line:blue;line.bold;text:red
-ParamChecker "1" <-[norank]- editEntryCommand #line:blue;line.bold;text:red
-ParamChecker "1" <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:red
+Commands -[hidden]down- Logic
+
+ParamChecker "1" <-[norank]- createLedgerCommand #line:blue;line.bold;text:black :'
+ParamChecker "1" <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- createEntryCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- editEntryCommand #line:blue;line.bold;text:black
+ParamChecker "1" <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:black
 ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
 
-Commands -[hidden]down- Logic
+
 
 @enduml

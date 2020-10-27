@@ -178,7 +178,7 @@ The Manual Tracker is capable of executing the following states of operation:
 ***Handler and Command***
 ***Command and Logic***
 
-![](uml_images/manualTracker/images/Commands_Logic.png)
+![](uml_images/manualTracker/images/Commands_Logic_edited.png)
 
 |Class| Function |
 |--------|----------|
