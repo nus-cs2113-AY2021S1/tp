@@ -2,6 +2,17 @@
 
 ## Introduction
 
+RevisED is a command line application to help students revise by creating flashcards and taking quizzes, 
+and keeping track of their deadlines, tasks and any other important dates. This application allows users to add subjects, 
+their different topics and create different flashcards in form of question and answers on each topic. Students can also 
+take quizzes which asks them the questions that they added in form of flashcards and prompted to answer them. 
+The student can view results of these quizzes immediately and are stored so that students can view them later. 
+Additionally, students can delete, and list subjects, topics, and flashcards and find and enter subjects and topics.   
+
+This developer guide is for developers who wish to understand and/or develop ReviseED further. 
+This guide includes design, implementation, product scope, user stories, non-functional requirements, glossary, 
+testing and development sections to help developers better understand the application.
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}

@@ -11,9 +11,9 @@
    <a href =#tasks>4.3 Tasks </a>
    <a href =#flashcards>4.4 Flashcards </a>
    <a href =#takeQuiz>4.5 Taking Quizzes </a>
-   <a href =#result>4.6. Viewing quiz results </a>
-   <a href =#store>4.7. Storing data </a>
-   <a href =#export>4.8. Exporting data </a>
+   <a href =#result>4.6 Viewing quiz results </a>
+   <a href =#store>4.7 Storing data </a>
+   <a href =#export>4.8 Exporting data </a>
 <a href =#faq>5. FAQ </a>
 <a href =#summary>6. Command Summary </a>
 </pre>
@@ -100,6 +100,7 @@ help:          shows the list of commands available at the main level
 add abc:       adds a subject called 'abc'
 find abc:      finds all subjects containing the letters abc
 list:          shows the list of all subjects
+list all:      shows the tree of all subjects, topics, tasks and flashcards
 delete 1:      deletes the 1st subject in the list.
 subject abc:   enters the subject called abc, now you can create, find, list, delete and enter the topics of subject abc
 quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc,
@@ -230,6 +231,7 @@ deadline abc /by 1:  adds a deadline type task with description 'abc' and date/t
 event abc /at 1:     adds an event type task with description 'abc' and date/time of event as 1
 find abc:            finds all topics and tasks containing the letters abc in the current subject
 list:                shows the list of all topics and tasks in the current subject
+list all:            shows the tree of all subjects, topics, tasks and flashcards
 delete topic 1:      deletes the 1st topic in the list of topics.
 delete task 1:       deletes the 1st task in the list of tasks.
 done 1:              marks the 1st task in the list of tasks as done
@@ -462,12 +464,21 @@ ____________________________________________________________
 ```
 
 ### 4.4 Flashcards <a name ="flashcards"> </a>
-Flashcard commands can only be used when looking at a topic.
-#### 4.4.1 `help` - Display all commands
 
-Displays all the available commands.
+Flashcards can be added to take notes, in the form of questions and answers.
+These flashcards can also be used to take quizzes, which is described in the next section.
+This section describes the usage of commands that can be used to list all the available commands, 
+and add, delete and list flashcards. 
 
-Format: `help`   
+NOTE: Flashcard commands can only be used when looking at a topic.
+
+#### 4.4.1 `help` - Displaying all commands
+
+The help command displays all the available commands so that you can refer to them whenever you get confused 
+or need help to navigate the application.   
+
+Format: `help`
+   
 Example of usage:
 ```
 help
@@ -478,13 +489,18 @@ ________________________________________________________________________________
 help:              shows the list of commands available at the topic level
 add abc; def:      adds a flashcard with question 'abc' and answer 'def' in the current topic
 list:              shows the list of all flashcards in the current topic
+list all:          shows the tree of all subjects, topics, tasks and flashcards
 delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-#### 4.4.2 `add` - Add flashcard
+NOTE: Do not add extra spaces after or before help.
 
-Add a topic.
+#### 4.4.2 `add` - Adding a flashcard
+
+The add command allows you to add a flashcard, under the topic you are currently viewing.
+These flashcards can be added to take notes. 
+They are added in the form of questions and answers.
 
 Format:
 
@@ -504,10 +520,13 @@ Got it. I've added this flashcard:
 Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
+NOTE: Do not forget the semicolon, as it separates the question and the answer.
 
-#### 4.4.3 `delete` - Delete a flashcard
+#### 4.4.3 `delete` - Deleting a flashcard
 
-Deletes the specified flashcard.
+The delete command deletes the specified flashcard. 
+This can be used if you make a mistake or no longer need a flashcard.
+You can check the flashcard number from the list of flashcards, which is described next.
 
 Format:
 
@@ -528,7 +547,9 @@ ____________________________________________________________```
 ```
 #### 4.4.4 `list` - List all flashcards
 
-Prints a list of all flashcards of the topic you are currently viewing.
+The list command prints a list of all flashcards of the topic you are currently viewing. 
+This will help you to keep track of all the flashcards you have added 
+and to take note of the number of the flashcard you might want to delete.
   
 Example of usage: 
 
@@ -542,6 +563,7 @@ Here are the flashcard(s) under speed:
 1.What is the formula for time?; Time = Distance/Speed.
 2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
 ```
+NOTE: Do not add extra spaces after or before list.
 
 ### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
 Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
