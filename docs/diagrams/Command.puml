@@ -1,7 +1,7 @@
 @startuml
 
 Package " "<<Rectangle>>{
-    Class Command
+    Class Command <<abstract>>
     Class ExitCommand
     Class AddEventCommand
     Class AddNoteCommand
@@ -17,14 +17,15 @@ Package " "<<Rectangle>>{
     Class ListTagCommand
     Class PinCommand
     Class RemindCommand
-    Class TagCommand
+    Class TagNoteCommand
+    Class TagEventCommand
     Class ViewNoteCommand
     Class ArchiveNoteCommand
     Class UnarchiveNoteCommand
 }
 
-ExitCommand --|> Command 
-AddEventCommand --|> Command 
+ExitCommand ---|> Command
+AddEventCommand ---|> Command
 AddNoteCommand --|> Command 
 ArchiveNoteCommand --|> Command 
 CreateTagCommand --|> Command 
@@ -39,7 +40,8 @@ ListNoteCommand --|> Command
 ListTagCommand --|> Command
 PinCommand --|> Command 
 RemindCommand --|> Command 
-TagCommand --|> Command 
+TagNoteCommand --|> Command
+TagEventCommand --|> Command
 UnarchiveNoteCommand --|> Command 
 ViewNoteCommand --|> Command 
 

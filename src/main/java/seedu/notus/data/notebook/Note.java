@@ -12,7 +12,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.notus.ui.Formatter.LS;
 
-//@@author Narzyl
+//@@author Nazryl
 /**
  * Represents a Note. Contains all the information of a note.
  */
@@ -123,31 +123,6 @@ public class Note extends TaggableObject {
 
     public void setArchived(boolean archived) {
         isArchived = archived;
-    }
-
-    public ArrayList<Tag> getTags() {
-        return this.tags;
-    }
-
-    /**
-     * Gets the tags of note from existing data.
-     *
-     * @return tags of the note.
-     */
-    public String getTagsName() {
-        String tagsName = "";
-
-        for (Tag t : tags) {
-            tagsName = tagsName.concat(t.toString());
-        }
-        return tagsName;
-    }
-
-    /**
-     * Sets the tags of note from the changes.
-     */
-    public void setTags(ArrayList<Tag> tags) {
-        this.tags = tags;
     }
 
     public String toSaveString() {

@@ -5,7 +5,7 @@ activate PinCommand
 Parser -> PinCommand : PinCommand(index)
 deactivate PinCommand
 
-Duke -> PinCommand: execute()
+NotUS -> PinCommand: execute()
 activate PinCommand 
 
 alt PinByIndex
@@ -27,11 +27,11 @@ end
 
 alt note does not exist 
 
-    PinCommand --> Duke: Unsuccesful 
+    PinCommand --> NotUS: Unsuccesful
 
 else 
 
-    PinCommand --> Duke: note content + pinned status 
+    PinCommand --> NotUS: note content + pinned status
     deactivate PinCommand
 
 end

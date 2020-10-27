@@ -64,9 +64,9 @@ public class Notebook {
      */
     public ArrayList<Note> getPinnedNotes() {
         ArrayList<Note> noteList = new ArrayList<>();
-        for (int i = 0; i < notes.size(); i++) {
-            if (notes.get(i).getPinned()) {
-                noteList.add(notes.get(i));
+        for (Note note : notes) {
+            if (note.getPinned()) {
+                noteList.add(note);
             }
         }
         return noteList;
@@ -81,9 +81,9 @@ public class Notebook {
      */
     public ArrayList<Note> getPinnedNotes(ArrayList<Note> noteArrayList) {
         ArrayList<Note> noteList = new ArrayList<>();
-        for (int i = 0; i < noteArrayList.size(); i++) {
-            if (noteArrayList.get(i).getPinned()) {
-                noteList.add(noteArrayList.get(i));
+        for (Note note : noteArrayList) {
+            if (note.getPinned()) {
+                noteList.add(note);
             }
         }
         return noteList;
@@ -97,9 +97,9 @@ public class Notebook {
      */
     public ArrayList<Note> getUnpinnedNotes() {
         ArrayList<Note> noteList = new ArrayList<>();
-        for (int i = 0; i < notes.size(); i++) {
-            if (!notes.get(i).getPinned()) {
-                noteList.add(notes.get(i));
+        for (Note note : notes) {
+            if (!note.getPinned()) {
+                noteList.add(note);
             }
         }
         return noteList;
@@ -114,9 +114,9 @@ public class Notebook {
      */
     public ArrayList<Note> getUnpinnedNotes(ArrayList<Note> noteArrayList) {
         ArrayList<Note> noteList = new ArrayList<>();
-        for (int i = 0; i < noteArrayList.size(); i++) {
-            if (!noteArrayList.get(i).getPinned()) {
-                noteList.add(noteArrayList.get(i));
+        for (Note note : noteArrayList) {
+            if (!note.getPinned()) {
+                noteList.add(note);
             }
         }
         return noteList;
@@ -136,7 +136,7 @@ public class Notebook {
      * @return sortedNotes ArrayList containing the sorted notes.
      */
     public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean isPinned) {
-        ArrayList<Note> sortedNotes = new ArrayList<>();
+        ArrayList<Note> sortedNotes;
 
         if (isPinned == null) {
             // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
@@ -151,11 +151,11 @@ public class Notebook {
                     .filter((s) -> !s.getPinned())
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
-        } else if (isPinned) {
+        } else {
             // Takes only the pinned notes in the notebook and sorts them according to title, alphabetically (a-z)
             sortedNotes = (ArrayList<Note>) notes.stream()
                     .filter(Objects::nonNull)
-                    .filter((s) -> s.getPinned())
+                    .filter(Note::getPinned)
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -182,7 +182,7 @@ public class Notebook {
      * @return sortedNotes ArrayList containing the sorted notes.
      */
     public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean isPinned, ArrayList<Note> noteArrayList) {
-        ArrayList<Note> sortedNotes = new ArrayList<>();
+        ArrayList<Note> sortedNotes;
 
         if (isPinned == null) {
             // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
@@ -194,10 +194,10 @@ public class Notebook {
             // Takes only the pinned notes in the notebook and sorts them according to title, alphabetically (a-z)
             sortedNotes = (ArrayList<Note>) noteArrayList.stream()
                     .filter(Objects::nonNull)
-                    .filter((s) -> s.getPinned())
+                    .filter(Note::getPinned)
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
-        } else if (!isPinned) {
+        } else {
             // Takes only the unpinned notes in the notebook and sorts them according to title, alphabetically (a-z)
             sortedNotes = (ArrayList<Note>) noteArrayList.stream()
                     .filter(Objects::nonNull)
@@ -367,6 +367,10 @@ public class Notebook {
 
     public int getSize() {
         return notes.size();
+    }
+
+    public int getNoteIndex(Note note) {
+        return notes.indexOf(note) + 1;
     }
 
     public int getArchivedNoteSize() {
