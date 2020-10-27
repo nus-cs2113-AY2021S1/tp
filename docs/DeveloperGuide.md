@@ -58,8 +58,10 @@ The rest of the App consists of four components.
 
 * `Storage` Reads and writes data from and to a text file.
 
-### Model ComponentModel Component
+### Model Component Model Component
 
 ### Storage Component
 
+
+### 
 ## Implementation
