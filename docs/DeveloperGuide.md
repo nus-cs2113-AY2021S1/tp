@@ -178,6 +178,7 @@ The `AnimeData `component:
 
 <br/>
 
+<!-- @@author ChanJianHao -->
 ### 3.6 User Component
 ![User Component Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 7: User Component Diagram*
@@ -186,13 +187,14 @@ The User inherits from the abstract `Human` class and stores the name and gender
 
 The `User`component: 
 * can provide user information like `name`, `gender`, and `honorific name`
-* Stores an array list of type `Workspace`
+* stores an array list of type `Workspace`
 * can add, set, and switch between workspaces 
 
 The `Workspace` component:  
 * can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
 * can allow `User` to change his active `Watchlist`.
 
+<!-- @@author -->
 <br/>
 
 ### 3.7 StorageManager Component
