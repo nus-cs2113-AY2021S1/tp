@@ -331,7 +331,7 @@ public class Ui {
 
     public static void printStartSubjectQuiz(Subject subject) {
         System.out.println(DIVIDER);
-        System.out.println("You are about to begin the quiz for \" + subject + \".You have 2 minutes.");
+        System.out.println("You are about to begin the quiz for " + subject + ".You have 2 minutes.");
         System.out.println(DIVIDER);
     }
 
