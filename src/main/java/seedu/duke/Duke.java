@@ -2,7 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.model.project.ProjectManager;
-import seedu.duke.parser.Parser;
+import seedu.duke.parser.ParserManager;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 
@@ -17,7 +17,7 @@ public class Duke {
 
     private static final String dataFilename = "data.json";
 
-    private static Parser parser = new Parser();
+    private static ParserManager parser = new ParserManager();
     private static StorageManager sm;
     private static ProjectManager projectManager = new ProjectManager();
 

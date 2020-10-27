@@ -16,7 +16,7 @@ public class HelpParser implements ExceptionsParser {
     public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                    ProjectManager projectListManager)
             throws DukeException {
-        if (!Parser.isStringContainsNumber(action)) {
+        if (!ParserManager.isStringContainsNumber(action)) {
             throw new DukeException("Please give me a number!");
         }
         if (Integer.parseInt(action) < 1 || Integer.parseInt(action) > 5) {
