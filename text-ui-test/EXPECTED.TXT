@@ -113,7 +113,7 @@
 	____________________________________________________________
 	 Enter doctor name: 
 	 Here are the list of available appointments: 
-	 1. 2020-10-10, available
+	 1. 2020-10-10 | available
 	 Enter the index: 
 	 ☹ OOPS!!! Index out of bounds! Input should be between 1 to 1.
 	____________________________________________________________
