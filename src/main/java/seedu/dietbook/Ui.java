@@ -5,15 +5,17 @@ import seedu.dietbook.person.Gender;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 /**
  * Represents a text user interface.
- * A <code>Ui</code> objects deals with user interaction by showing users the appropriate messages after a
- * valid command is executed or when an error occurs.
+ * A <code>Ui</code> objects deals with user interaction by taking in user inputs and showing users the
+ * appropriate messages after a valid command is executed or when an error occurs.
  */
 public class Ui {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructs a <code>Ui</code> object.
@@ -25,6 +27,15 @@ public class Ui {
     // database related, person related, food list related, calculator related and other helper methods.
 
     // Methods required to print system related commands or messages.
+
+    /**
+     * Reads in and returns the user input.
+     *
+     * @return The user input.
+     */
+    public String readCommand() {
+        return scanner.nextLine();
+    }
 
     /**
      * Prints the welcome message from DietBook when it is fist booted up.
