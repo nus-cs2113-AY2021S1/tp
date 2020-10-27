@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Topic implements Displayable {
     private String description;
     private QuestionList questionList;
-    private ArrayList<Displayable> noteList;
+    private NoteList noteList;
     private boolean wasShown;
 
     public Topic(String description, QuestionList questionList) {
@@ -19,10 +19,11 @@ public class Topic implements Displayable {
 
         this.description = description;
         this.questionList = questionList;
+        this.noteList = new NoteList(new ArrayList<>());
         wasShown = false;
     }
 
-    public Topic(String description, QuestionList questionList, ArrayList<Displayable> noteList) {
+    public Topic(String description, QuestionList questionList, NoteList noteList) {
         assert description != null;
         assert questionList != null;
 
@@ -34,8 +35,13 @@ public class Topic implements Displayable {
 
     @Override
     public String getDescription() {
-        wasShown = true;
+        markAsShown();
         return description;
+    }
+
+    @Override
+    public void markAsShown() {
+        wasShown = true;
     }
 
     @Override
@@ -47,7 +53,11 @@ public class Topic implements Displayable {
         return questionList;
     }
 
+    public NoteList getNoteList() {
+        return noteList;
+    }
+
     public void showNotes(Ui ui) {
-        ui.printNoteList(noteList);
+        ui.printNoteList(noteList.getInnerList());
     }
 }

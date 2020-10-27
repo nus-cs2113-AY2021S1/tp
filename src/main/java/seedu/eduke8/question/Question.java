@@ -37,8 +37,12 @@ public class Question implements Displayable {
      */
     @Override
     public String getDescription() {
-        wasShown = true;
         return description;
+    }
+
+    @Override
+    public void markAsShown() {
+        wasShown = true;
     }
 
     /**
@@ -48,7 +52,7 @@ public class Question implements Displayable {
      */
     @Override
     public boolean wasShown() {
-        return wasShown;
+        return this.wasShown;
     }
 
 

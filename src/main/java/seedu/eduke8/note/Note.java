@@ -13,11 +13,17 @@ public class Note implements Displayable {
 
     @Override
     public String getDescription() {
+        markAsShown();
         return this.description;
     }
 
     @Override
+    public void markAsShown() {
+        wasShown = true;
+    }
+
+    @Override
     public boolean wasShown() {
-        return false;
+        return this.wasShown;
     }
 }

@@ -16,7 +16,8 @@ These are the commands that you can use:
 4) textbook
 5) quiz t/<topic> n/<number of questions>
 6) bookmark
-7) exit
+7) stats
+8) exit
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 The textbook for this module is available at:

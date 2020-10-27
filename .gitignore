@@ -18,3 +18,5 @@ text-ui-test/EXPECTED-UNIX.TXT
 
 /data/logs/
 /text-ui-test/data/logs
+
+/data/main/user.json

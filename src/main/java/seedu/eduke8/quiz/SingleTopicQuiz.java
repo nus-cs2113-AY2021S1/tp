@@ -38,6 +38,13 @@ public class SingleTopicQuiz implements Quiz {
         quizParser = new QuizParser(bookmarks);
     }
 
+    /**
+     * Starts a quiz with a single topic.
+     *
+     * @param ui  Ui to print quiz messages.
+     * @throws Eduke8Exception if numberOfQuestions used to construct QuizQuestionsManager <= 0
+     *     or > number of question in the topic.
+     */
     @Override
     public void startQuiz(Ui ui) throws Eduke8Exception {
         LOGGER.log(Level.INFO, "New quiz started.");
@@ -63,6 +70,7 @@ public class SingleTopicQuiz implements Quiz {
             Question question = quizQuestionsManager.getNextQuestion();
             ui.printQuestion(question, quizQuestionsManager.getCurrentQuestionNumber());
 
+            question.markAsShown();
             assert question.wasShown();
 
             OptionList optionList = question.getOptionList();
@@ -85,8 +93,10 @@ public class SingleTopicQuiz implements Quiz {
                 command = getCommand(ui, optionList);
                 if (command instanceof IncorrectCommand) {
                     LOGGER.log(Level.INFO, "Invalid answer given for question");
-                } else {
+                } else if (command instanceof HintCommand) {
                     LOGGER.log(Level.INFO, "Hint shown");
+                } else {
+                    LOGGER.log(Level.INFO, "Question bookmarked");
                 }
             }
 
