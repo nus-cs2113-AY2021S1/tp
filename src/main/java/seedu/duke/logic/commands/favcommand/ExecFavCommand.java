@@ -18,6 +18,7 @@ public class ExecFavCommand extends Command {
     }
 
     private void getFav() throws CustomException {
+        assert ! (parser ==null) : "parser not declared";
         try {
             index = parser.getIndex();
             fav = FavList.getFav(index);
