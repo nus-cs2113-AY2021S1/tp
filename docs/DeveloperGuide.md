@@ -32,6 +32,7 @@
         1. [Remove Task from Sprint](#remove-task-from-sprint)
         1. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        
     1. [Saving of Data](#saving-of-data)
+1. [Appendix: Requirements]()
 1. [Others](#target-user-profile)
 
 ## Introduction
@@ -58,8 +59,30 @@ This guide is geared towards developers who wish to enhance or create their own 
 This program can be run once it is compiled. If you have built its artifacts (.jar) file, you may run it using java -jar <filename.jar> on your command line.
 
 ## Design
+This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
+NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes.
 ### Architecture
-{UML}
+![Figure X: Architecture Diagram](./image/developerguide/architecturediagram.png "Architecture Diagram UML")  
+The **Architecture Diagram** shown above describes the high level association operations of the application. 
+A quick overview of the components is as follows:
+
+`Main` is single-class component of `SCRUMptious`. It is responsible for:
+    1. At app launch: Initializes the components in the correct sequence(Storage, UI, Parser), and links them together where appropriate.
+    1. At program exit: Invokes Storage component to save all unsaved data.
+
+The other packages are described below: 
+1. `UI` : The user interface of the app, reads user input and is visible to the user.
+1. `Parser Manager` : The module that reads user inputs, and creates a suitable parser based on the command to make 
+ sense of user input. Respective parser then tells the Command module what to execute.
+1. `ProjectManager` : Manages and stores all the projects added by the user, keeps track of selected project.    
+1. `SprintManager` : Stores all sprints associated with a project.
+1. `TaskManager` : Stores all tasks in backlog associated with a project.
+1. `ProjectMembers` : Stores all team-members associated to a project. 
+1. `Parser` : Creates a suitable parser, based on the command to make sense of the user input. Respective parser then
+ make use the information and call respective commands. 
+ 
+Each of the modules listed above are a collection of constituent classes, with each handling specialized tasks in-line with the SLAP principle.
+
 ### UI Component
 {UML}
 ### Logic Component
@@ -91,6 +114,14 @@ This requires the model classes to implement two methods required for JSON seria
 ## Implementation
 ### Project
 #### Create Project
+A project is created with a clear title and description of what the team is working on 
+for delivery, as well as the project length and the sprint duration specified.
+Command executed by user `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>`
+is passed, the following operations are implemented:
+    * UI receives user input and passes it to Parser class.
+    * Parser checks if input format is valid, and executes a corresponding AddProjectCommand object
+    * A new project is created , and added to project manager.
+
 #### Select Project
 ### Task
 #### Add Task

@@ -47,38 +47,38 @@ public class Project implements JsonableObject {
     }
 
     public String toIdString() {
-        return String.format("[Project ID: %s]", this.projectID);
+        return String.format("[Project ID: %s]%n", this.projectID);
     }
 
     @Override
     public String toString() {
         StringBuilder projectInString = new StringBuilder();
-        projectInString.append("\n============================ PROJECT ============================\n");
-        projectInString.append(String.format("[ID: %s]\n", this.projectID));
-        projectInString.append(String.format("[Title: %s]\n", this.title));
-        projectInString.append(String.format("[Description: %s]\n", this.description));
+        projectInString.append(String.format("============================ PROJECT ============================%n"));
+        projectInString.append(String.format("[ID: %s]%n", this.projectID));
+        projectInString.append(String.format("[Title: %s]%n", this.title));
+        projectInString.append(String.format("[Description: %s]%n", this.description));
         if (!memberList.getAllMembers().isEmpty()) {
             projectInString.append(memberList.toString());
         } else {
-            projectInString.append("[No members added]\n");
+            projectInString.append(String.format("[No members added]%n"));
         }
         if (this.startDate != null) {
-            projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
+            projectInString.append(String.format("[Period: %s - %s]%n", this.startDate, this.endDate));
         } else {
-            projectInString.append("[Project will start along with the first sprint]\n");
+            projectInString.append(String.format("[Project will start along with the first sprint]%n"));
         }
 
         if (!this.backlog.backlogTasks.isEmpty()) {
             projectInString.append(this.backlog.toString());
         } else {
-            projectInString.append("[Project backlog is empty]\n");
+            projectInString.append(String.format("[Project backlog is empty]%n"));
         }
         if (this.sprintList.size() != 0) {
             projectInString.append(sprintList.toString());
         } else {
-            projectInString.append("[There are no Sprints]\n");
+            projectInString.append(String.format("[There are no Sprints]%n"));
         }
-        projectInString.append("=================================================================\n");
+        projectInString.append(String.format("=================================================================%n"));
         return projectInString.toString();
     }
 
@@ -219,7 +219,7 @@ public class Project implements JsonableObject {
         this.sprintList = new SprintManager();
         this.backlog = new TaskManager();
         this.memberList = new ProjectMembers();
-        
+
         sprintList.fromJson((JsonObject) jsonObj.get("allSprints"), this);
         backlog.fromJson((JsonObject) jsonObj.get("backlog"), this);
         memberList.fromJson((JsonArray) jsonObj.get("members"));

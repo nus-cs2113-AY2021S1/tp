@@ -39,11 +39,11 @@ public class ProjectParser implements ExceptionsParser {
             if (parameters.get(DESCRIPTION).isBlank()) {
                 throw new DukeException("No description.");
             }
-            if (parameters.get(DURATION).isBlank() || !Parser.isStringContainsNumber(parameters.get(DURATION))) {
+            if (parameters.get(DURATION).isBlank() || !ParserManager.isStringContainsNumber(parameters.get(DURATION))) {
                 throw new DukeException("Please give a number for duration.");
             }
             if (parameters.get(SPRINT_DURATION).isBlank()
-                    || !Parser.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
+                    || !ParserManager.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
                 throw new DukeException("Please give a number for sprint duration.");
             } else {
                 return new CreateProjectCommand(parameters, projectListManager);
@@ -62,7 +62,7 @@ public class ProjectParser implements ExceptionsParser {
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
             }
-            if (!Parser.isStringContainsNumber(parameters.get("0"))) {
+            if (!ParserManager.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("Please give a project number.");
             }
             // Get index of the project to select

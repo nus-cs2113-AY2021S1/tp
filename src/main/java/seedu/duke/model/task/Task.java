@@ -114,27 +114,27 @@ public class Task implements JsonableObject {
         StringBuilder taskString = new StringBuilder();
         taskString.append(String.format("[Task ID: %d]", this.id));
         taskString.append(String.format("\t[Title: %s]", this.title));
-        taskString.append(String.format("\t[Completion: %s]\n", this.isDone ? "Completed" : "Incomplete"));
+        taskString.append(String.format("\t[Completion: %s]%n", this.isDone ? "Completed" : "Incomplete"));
         return taskString.toString();
     }
 
     @Override
     public String toString() {
         StringBuilder taskString = new StringBuilder();
-        taskString.append(String.format("\n[Task]\n"));
-        taskString.append(String.format("\tID: %d\n", this.id));
-        taskString.append(String.format("\tTitle: %s\n", this.title));
-        taskString.append(String.format("\tDescription: %s\n", this.description));
-        taskString.append(String.format("\tPriority: %s\n", this.priority));
-        taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        taskString.append(String.format("[Task]%n"));
+        taskString.append(String.format("\tID: %d%n", this.id));
+        taskString.append(String.format("\tTitle: %s%n", this.title));
+        taskString.append(String.format("\tDescription: %s%n", this.description));
+        taskString.append(String.format("\tPriority: %s%n", this.priority));
+        taskString.append(String.format("\tCompletion: %s%n", this.isDone ? "Completed" : "Incomplete"));
         if (!memberList.isEmpty()) {
             taskString.append("\tAssigned to: ");
             for (String member : memberList) {
                 taskString.append(String.format("%s ", member));
             }
-            taskString.append("\n");
+            taskString.append(System.lineSeparator());
         } else {
-            taskString.append("\tTask have yet to be assigned to anyone\n");
+            taskString.append(String.format("\tTask have yet to be assigned to anyone%n"));
         }
         return taskString.toString();
     }
