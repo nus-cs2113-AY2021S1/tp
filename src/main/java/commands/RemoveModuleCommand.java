@@ -19,7 +19,7 @@ public class RemoveModuleCommand extends RemoveCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes module based on the index in the list. \n"
-            + "Parameters: MODULE_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+            + "Parameters: " + MODULE_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_INVALID_INDEX_MODULE = "The module is not found, please try again.";
 

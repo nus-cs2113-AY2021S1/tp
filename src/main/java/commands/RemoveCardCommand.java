@@ -17,8 +17,8 @@ public class RemoveCardCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveCardCommand.class.getName());
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes chapter based on the index in the list. \n"
-            + "Parameters: CHAPTER_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+            + ": Removes card based on the index in the list. \n"
+            + "Parameters: " + CARD_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_INVALID_INDEX_FLASHCARD = "The flashcard is not found, please try again.";
 

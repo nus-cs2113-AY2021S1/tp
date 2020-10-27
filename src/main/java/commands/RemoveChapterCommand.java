@@ -18,8 +18,8 @@ public class RemoveChapterCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveChapterCommand.class.getName());
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes flashcard based on the index in the list. \n"
-            + "Parameters: FLASHCARD_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+            + ": Removes chapter based on the index in the list. \n"
+            + "Parameters: " + CHAPTER_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_INVALID_INDEX_CHAPTER = "The chapter is not found, please try again.";
 
