@@ -207,6 +207,27 @@ Expected outcome:
     All tasks cleared.
 
 
+### <span style="color:red">Setting a reminder for tasks</span> : `reminder`
+
+Allows you to set a reminder for any specific task on the list.
+You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
+before the start time of the task.
+
+Format: `reminder INDEX [t/TIME]`
+
+Example of usage: 
+
+`reminder 5349 t/2315`
+
+Expected outcome:
+
+![reminder_set](images/reminder_set)
+
+Once the specified time is reached:
+
+![reminder_popup](images/reminder_popup)
+
+
 ### <span style="color:red">Exiting program</span> : `bye`
 
 Display a message and exits the program.
