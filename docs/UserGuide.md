@@ -153,13 +153,22 @@ Format: `editapp NRIC`
 Example of usage:
 
 `editapp S9900999D`
-`editapp S9900299D`
+
+`editapp S9922312E`
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Clone the program to the other computer, and copy the data folder over.
+
+**Q**: Why is the name Hospitalsaurus Rex?
+
+**A**: Because we are nerds.
+
+**Q**: How do I request for more features?
+
+**A**: Contact us.
 
 ## Command Summary
 
