@@ -13,7 +13,8 @@ public class ModuleList {
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
-    private static final String INVALID_HOURS = "Please input a whole number between 1 and 84 for the expected workload.";
+    private static final String INVALID_HOURS = "Please input a whole number between 1 and 84 for the "
+        + "expected workload.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";

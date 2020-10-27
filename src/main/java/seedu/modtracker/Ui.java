@@ -9,9 +9,9 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
     public static final String INVALID_MODULETYPE = "The module code should have 2 - 3 characters, followed by "
-            + "4 digits, followed by an optional character.";
+        + "4 digits, followed by an optional character.";
     public static final String MODULETYPE_EXAMPLE = "The accepted module code is of the following forms: CG1111, "
-            + "CS2113T, GER1000, GES1000T.";
+        + "CS2113T, GER1000, GES1000T.";
     public static final String MODULECODE_SPACING = "Please type module code without any spacing.";
     public static final String INVALID_MODULECODE = "Please check module code again.";
     public static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
