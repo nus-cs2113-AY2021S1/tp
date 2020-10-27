@@ -147,7 +147,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
   <br/>Figure <>. Sequence diagram of Logic component  
 </p>
 
-:information_source: <b>Note:</b> The lifeline for `Parser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### 3.3. Model Component
 (Jiayi)
@@ -183,13 +183,13 @@ In addition, it implements the following operations:
 * `ModuleList#getModule()` - Returns a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
  
-For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:<br>
-Step 1: The user is currently in `admin` level.<br>
-Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.<br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.<br>
-Step 5: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.<br>
-Step 6: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.<br>
-Step 7: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.<br>
+For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `admin` level.<br><br>
+Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.<br><br>
+Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.<br><br>
+Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.<br><br>
+Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.<br><br>
 
 The following sequence diagram shows how the edit module name feature works:
 
@@ -197,7 +197,8 @@ The following sequence diagram shows how the edit module name feature works:
   <img src="DG_Images/EditModuleSequenceDiagram.png" width="600" alt="Edit Module Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
-:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
 (Jia Ern)
@@ -249,13 +250,13 @@ In addition, it implements the following operations:
 * `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
  
-For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:<br>
-Step 1: The user is currently in `CS2113T` at the module level.<br>
-Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.<br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.<br>
-Step 5: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.<br>
-Step 6: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.<br>
-Step 7: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.<br>
+For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `CS2113T` at the module level.<br><br>
+Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.<br><br>
+Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.<br><br>
+Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.<br><br>
+Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.<br><br>
 
 The following sequence diagram shows how the edit chapter name feature works:
 
@@ -263,7 +264,8 @@ The following sequence diagram shows how the edit chapter name feature works:
   <img src="DG_Images/EditChapterSequenceDiagram.png" width="600" alt="Edit Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
-:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.2.4. Remove Chapter Feature
 (Jia Ern)
@@ -321,14 +323,14 @@ In addition, it implements the following operations:
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
  
-For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:<br>
-Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.<br>
-Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.<br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.<br>
-Step 5: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.<br>
-Step 6: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.<br>
-Step 7: The question is edited to `1+1` by the method `Card#setQuestion()`.<br>
-Step 8: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.<br>
+For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.<br><br>
+Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.<br><br>
+Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.<br><br>
+Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.<br><br>
+Step 6: The question is edited to `1+1` by the method `Card#setQuestion()`.<br><br>
+Step 7: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.<br><br>
 
 The following sequence diagram shows how the edit flashcard content feature works:
 
@@ -336,7 +338,8 @@ The following sequence diagram shows how the edit flashcard content feature work
   <img src="DG_Images/EditCardSequenceDiagram.png" width="600" alt="Edit Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
-:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.4. Remove Flashcard Feature
 (Jia Ern)
