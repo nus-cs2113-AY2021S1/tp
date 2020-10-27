@@ -1,15 +1,18 @@
 package studyit;
 
-import academic.AcademicCommandParser;
+import academic.Grade;
+import academic.GradeBook;
+import academic.Person;
+import academic.PersonBook;
 import academic.AcademicCommandType;
+import academic.AcademicStorage;
+import academic.AcademicCommandParser;
 import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
-import academic.GradeBook;
-import academic.PersonBook;
 import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
@@ -17,6 +20,7 @@ import userinterface.ErrorMessage;
 import userinterface.HelpMessage;
 import userinterface.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -90,6 +94,8 @@ public class Command {
     public static void executeAcademicModeCommand(String command, ArrayList<academic.Grade> currentGrades,
                                                   ArrayList<academic.Person> listOfPerson) {
         StudyItLog.logger.info("Processing academic mode.");
+
+
         try {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
@@ -132,6 +138,13 @@ public class Command {
             ErrorMessage.printInvalidMc();
             StudyItLog.logger.info("Invalid MC.");
         }
+
+        try {
+            AcademicStorage.writeFile(listOfPerson, currentGrades);
+        } catch (IOException e) {
+            System.out.println("placeholder error message");
+        }
+
     }
 
     public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {

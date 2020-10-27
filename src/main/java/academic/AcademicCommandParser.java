@@ -56,7 +56,20 @@ public class AcademicCommandParser extends CommandParser {
         } else if (mc.equals("0")) {
             throw new InvalidMcException();
         }
-
         return new String[]{name, mc, grade};
     }
+
+    public static String[] parseImportedStatement(String importedStatement) {
+        int positionOfFirstDivider = importedStatement.indexOf("|");
+        int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
+        int positionOfThirdDivider = importedStatement.lastIndexOf("|");
+
+        String var1 = importedStatement.substring(positionOfFirstDivider + 1,positionOfSecondDivider).trim();
+        String var2 = importedStatement.substring(positionOfSecondDivider + 1,positionOfThirdDivider).trim();
+        String var3 = importedStatement.substring(positionOfThirdDivider + 1).trim();
+
+        return new String[]{var1, var2, var3};
+
+    }
+
 }

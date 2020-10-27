@@ -16,6 +16,10 @@ public class Grade {
         this.moduleGrade = grade;
     }
 
+    public static String printIndividualGrade(Grade grade) {
+        return "[G] | " + grade.moduleName + " | " + grade.moduleCredits + " | " + grade.moduleGrade;
+    }
+
     public static Integer getModuleCredits(Grade grade) {
         return grade.moduleCredits;
     }

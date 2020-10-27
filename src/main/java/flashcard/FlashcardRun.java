@@ -37,7 +37,7 @@ public class FlashcardRun {
             flashcardDeck.testRandomCard();
             break;
         default:
-            System.out.println("Invalid command. Valid commands are 'add', 'list'. "
+            System.out.println("Invalid command. Valid commands are 'add', 'delete', 'list', 'test'. "
                     + "Use 'exit' to exit the flashcard mode.");
         }
         storage.writeToFile(flashcardDeck);
