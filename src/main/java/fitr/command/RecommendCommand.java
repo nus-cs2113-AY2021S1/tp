@@ -42,7 +42,7 @@ public class RecommendCommand extends Command {
         }
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
-                + "type y for yes or n for no!");
+                + "type y for yes");
 
         String checker = Ui.read();
         try {
@@ -62,10 +62,8 @@ public class RecommendCommand extends Command {
                     listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
                     storageManager.writeExerciseList(listManager.getExerciseList());
                 }
-            } else if (checker.toLowerCase().equals("n")) {
-                Ui.printCustomError("Okay! Next time then.");
             } else {
-                Ui.printCustomMessage("Next time then!");
+                Ui.printCustomError("Okay! Next time then.");
             }
         } catch (IOException e) {
             Ui.printCustomError("Sorry there is an error with the file");
