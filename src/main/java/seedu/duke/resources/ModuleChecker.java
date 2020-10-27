@@ -40,9 +40,9 @@ public class ModuleChecker {
     }
 
     /**
-     *  Generate a hashmap which maps the module code to a NusModule object/class.
+     * Generate a hashmap which maps the module code to a NusModule object/class.
      *
-     * @param onlineLink             the URL link to the JSON file generated from NUSMod's API.
+     * @param onlineLink the URL link to the JSON file generated from NUSMod's API.
      * @return generatedNusModsList  a hash map containing the module code information only.
      */
     private static HashMap<String, NusModule> generateNusModsMap(String onlineLink) {

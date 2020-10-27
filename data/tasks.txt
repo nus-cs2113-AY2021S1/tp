@@ -1,4 +1,3 @@
-EXAM|true|cs2113|2020-10-10|12:30|nus|0
 D|true|project submission|false|2020-10-30
 ACT|true|CCA|2020-09-20|16:00|NUS UTOWN|0
 T|false|everyday reading|false
@@ -9,3 +8,4 @@ EXAM|false|cs2101|2020-11-11|14:00|nus|0
 LEC|false|cs2113|2020-10-27|16:00|zoom|0
 LEC|false|cs2113|2020-11-03|16:00|zoom|0
 LEC|false|cs2113|2020-11-10|16:00|zoom|0
+
