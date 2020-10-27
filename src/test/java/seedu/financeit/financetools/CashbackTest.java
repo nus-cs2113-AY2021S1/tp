@@ -14,9 +14,16 @@ public class CashbackTest {
     }
 
     @Test
-    void calculateCashback_input1000_expect5() {
+    void calculateCashback_inputAmount_expectCorrectCashbackEarned() {
         CommandPacket packet = handleInput("cashb /a 1000 /r 5 /c 1000");
         Double cashbackEarned = Handler.handleCashback(packet);
-        assertEquals(cashbackEarned, 50.0);
+        assertEquals(50.0, cashbackEarned);
+    }
+
+    @Test
+    void calculateCashback_inputAmountWithValidCap_expectCorrectCashbackEarned() {
+        CommandPacket packet = handleInput("cashb /a 1000 /r 5 /c 10");
+        Double cashbackEarned = Handler.handleCashback(packet);
+        assertEquals(10.0, cashbackEarned);
     }
 }
