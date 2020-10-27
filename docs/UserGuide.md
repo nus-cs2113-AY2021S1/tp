@@ -507,6 +507,26 @@ Expected outcome:
 Reflection for the quote "no, i am your father" has been deleted!
 ```
 
+### Progress Tracker
+If you want to save your reading progress, you can do so by adding bookmarks to the books you read.
+If you want to set a goal on reading, you can do so by adding tasks (with deadlines) to your todo list. 
+
+#### Add bookmarks: `bookmark -b /pg`
+Add the only one bookmark to any book that has been already added.
+
+Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
+* book number refers to the index of the book shown in the book list.
+* You must specify both book number and page number.
+
+Example of usage: `bookmark -b 3 /pg 109`
+
+Expected outcome:
+```
+The bookmark ["Harry Potter" at page: 109] has been added!
+```
+
+
+
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
 

@@ -376,3 +376,9 @@ Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
 INFO: going to add book to booklist
 Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
 INFO: added book to booklist
+Oct 27, 2020 12:14:09 AM seedu.quotesify.commands.BookmarkCommand handleBookmarkByNumber
+INFO: add bookmark to bookmarkList failed
+Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
