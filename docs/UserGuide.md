@@ -1,43 +1,49 @@
-# User Guide
-- [Introduction](#introduction)
-- [Quick Start](#quick-start)
-- [Features](#features)
-    - [Adding an exercise: `exercise`](#adding-an-exercise-exercise)
-    - [Adding a food item: `food`](#adding-a-food-item-food)
-    - [Deleting an item: `delete`](#deleting-an-item-delete)
-    - [Viewing the exercise list: `view exercise`](#viewing-the-exercise-list-view-exercise)
-    - [Viewing the food list: `view food`](#viewing-the-food-list-view-food)
-    - [Viewing the user profile: `view profile`](#viewing-the-user-profile-view-profile)
-    - [Viewing the user's BMI: `view bmi`](#viewing-the-users-bmi-view-bmi)
-    - [Viewing the user's caloric summary: `view summary`](#viewing-the-users-caloric-summary-view-summary)
-    - [Editing the user's profile: `edit`](#editing-the-users-profile-edit)
-    - [Editing previous exercise entry: `edit exercise`](#editing-previous-exercise-entry-edit-exercise)
-    - [Editing previous food entry: `edit food`](#editing-previous-food-entry-edit-food)
-    - [Viewing help: `help`](#viewing-help-help)
-    - [Clearing the lists: `clear`](#clearing-the-lists-clear)
-    - [Exiting the program: `bye`](#exiting-the-program-bye)
-    - [Saving the data](#saving-the-data)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
+# Fitr User Guide
 
-## Introduction
-**Fitr** is a command-line application, helping you keep track of your food intake and exercises, and also provide exercise recommendations, in one application. This application is aimed at university students at all fitness levels.
+* Table of Contents
+{:toc}
 
-## Quick Start
-1. Ensure that you have Java 11 or above installed.
+# 1. Introduction
+**Fitr** is a command line application, helping you keep track of your food intake and exercises. 
+Fitr is targeted at university students, who want a comprehensive application to track your food consumption and exercises. 
+You can enter your food intake and the exercises that you have done for the day, and track your net calories along the way. 
+If you are unsure of what exercises to do, you can also ask for recommendations from Fitr.
+
+This user guide provides a detailed documentation on how to use Fitr, and also shows you how to get started using Fitr.
+
+## 1.1 Prerequisites
+You must have **Java 11** or above installed on your computer. You must also be comfortable using the command line or the terminal.
+
+## 1.2 How to use this guide
+Note the formatting used in this guide:
+- A command that you need to enter at the command line is formatted as `command`.
+- Important information is indicated with 💡.
+- Warnings are indicated with ⚠️.
+- Words formatted as `UPPER_CASE` are to be supplied by you.
+
+## 1.3 Quick start
+This quick start section provides a step-by-step procedure to get you started with Fitr.
+1. Ensure that you have **Java 11** or above installed.
 2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-3. Open command prompt/terminal.
-4. Run the command `java -jar {filename}.jar` e.g., `java -jar Fitr.jar` (i.e., run the command in the same folder as the jar file).
-5. If the setup is correct, you should see something like below:
-      ``` 
-       _______   __   __
-      |    ___| |__| |  |_  .----.
-      |    ___| |  | |   _| |   _|
-      |___|     |__| |____| |__|
-      Hello! Welcome to Fitr. 
-      ```
+3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
+4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
+5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1.
+6. Follow the setup process by entering your name, age, height, weight, gender and your fitness level. Note that the height is in metres and weight is in kilograms.
+7. Once done, you are ready to use Fitr. You can type help to find out what commands are supported in Fitr.
    
-## Features
+# 2. Features
+This section introduces the features available in Fitr, explaining how you can use each feature and its expected outcomes.
+
+## 2.1 Adding Commands
+
+## 2.2 Viewing Commands
+
+## 2.3 Editing Commands
+
+## 2.4 Deleting Commands
+
+## 2.8 Tip of the Day
+
 ### Adding an exercise: `exercise`
 Adds a new exercise to the list of exercises you have done.
 
@@ -291,37 +297,54 @@ delete            Deletes selected entry
 bye               Exits the program
 ```
 
-### Clearing the lists: `clear`	
-Clears either the exercise list, or the food list, or both.	
+## 2.4 Deleting Commands
+If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
 
-Format: `clear LIST`	
-- `LIST` can either take `exercise` or `food`.	
-- If `LIST` is not provided, both exercise and food lists are cleared.	
+> 💡 **Warning:** The delete action is irreversible.
 
-Example of usage:	
-- `clear food` clears the food list.	
-- `clear` clears both the exercise and food lists.
+### 2.4.1 Deleting a food entry
 
-### Exiting the program: `bye`
-Exits the program.
+### 2.4.2 Deleting an exercise entry
 
-Format: `bye`
+### 2.4.3 Deleting a goal entry
 
-### Saving the data
-The user's profile, food consumed and exercises done are saved automatically after any command that changes the data. 
-There is no need to save manually.
+## 2.5 Clearing Commands
+Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
 
-## FAQ
+> 💡 **Warning:** The clear action is irreversible.
 
-**Q**: How do I transfer my data to another computer? 
+### 2.5.1 Clearing all food entries
 
-**A**: Install `Fitr` on another computer, and overwrite the empty data files that it creates with the files with your data files.
+### 2.5.2 Clearing all exercise entries
 
-## Command Summary
+### 2.5.3 Clearing all goal entries
 
-In this section, you can view a summary of the commands supported in Fitr.
+### 2.5.4 Clearing all entries
 
-Table 1: Commands supported in Fitr
+## 2.6 Other Commands
+Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
+
+### 2.6.1 Getting a recommended workout
+
+### 2.6.2 Marking a goal as complete
+
+### 2.6.3 Exiting the application
+
+## 2.7 Saving your Data
+Your profile, food consumed and exercises done are saved automatically after any command that changes the data.
+There is no need to save manually. All your data will be saved in the same location as `fitr.jar`.
+
+# 3. FAQ
+In this section, you can find answers to some of the frequently asked questions (FAQs).
+
+**Q: How do I transfer my data to another computer?**
+
+A: Install Fitr on another computer, and overwrite the empty data files that it creates with the files with your data files.
+
+# 4. Command Summary
+Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for reference.
+
+_Table 1: Commands supported in Fitr_
 
 Action | Format | Examples
 ------ | ------ | --------
