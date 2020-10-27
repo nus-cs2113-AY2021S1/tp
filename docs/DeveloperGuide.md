@@ -1,3 +1,4 @@
+![Logo](DG_Diagrams/Nav@NUSLogo.jpg)
 # Developer Guide
 
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
