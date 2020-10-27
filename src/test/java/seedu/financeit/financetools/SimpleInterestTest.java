@@ -14,9 +14,9 @@ public class SimpleInterestTest {
     }
 
     @Test
-    void calculateSimpleInterest_input1000_expect5() {
+    void calculateSimpleInterest_inputAmount_expectCorrectInterestEarned() {
         CommandPacket packet = handleInput("simple /a 1000 /r 5");
-        Double interestRate = Handler.handleSimpleInterest(packet);
-        assertEquals(interestRate, 50.0);
+        Double interestEarned = Handler.handleSimpleInterest(packet);
+        assertEquals(50.0, interestEarned);
     }
 }

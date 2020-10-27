@@ -48,12 +48,12 @@ public class YearlyCompoundInterest extends ParamHandler {
         System.out.println("Compound Interval: Yearly\n");
         if (yearlyDeposit == 0) {
             totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval * period);
-            totalInterestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+            totalInterestEarned = totalAmount - this.amount;
         } else {
             for (int i = 0; i < calculationPeriod; i++) {
                 this.amount += yearlyDeposit;
                 totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval);
-                interestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+                interestEarned = totalAmount - this.amount;
                 System.out.printf("Total Interest earned in Year " + "%d", i + 1);
                 System.out.printf(": $%.2f\n", interestEarned);
                 totalInterestEarned += interestEarned;
@@ -61,7 +61,7 @@ public class YearlyCompoundInterest extends ParamHandler {
             }
         }
 
-        return totalInterestEarned;
+        return Math.round(totalInterestEarned * 100.00) / 100.00;
     }
 
     @Override

@@ -135,15 +135,15 @@ public class Handler {
     public static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No;Finance Tool             ;Input Format                                         ");
-        TablePrinter.addRow("1;Simple Interest Calculator;simple /a {AMOUNT} /r {INTEREST_RATE} ");
+        TablePrinter.addRow("1;Simple Interest Calculator;simple /a {AMOUNT} /r {INTEREST_RATE}");
         TablePrinter.addRow("2;Yearly Compound Interest Calculator;cyearly /a {AMOUNT} /r {INTEREST_RATE}"
-                + " /p {YEARS} /d {YEARLY_DEPOSIT} ");
+                + " /p {YEARS} /d {YEARLY_DEPOSIT}");
         TablePrinter.addRow("3;Monthly Compound Interest Calculator;cmonthly /a {AMOUNT} /r {INTEREST_RATE}"
-                + " /p {MONTHS} /d {MONTHLY_DEPOSIT} ");
+                + " /p {MONTHS} /d {MONTHLY_DEPOSIT}");
         TablePrinter.addRow("4;Cashback Calculator;cashb /a {AMOUNT} /r {CASHBACK_RATE} /c {CASHBACK_CAP}");
         TablePrinter.addRow("5;Miles Credit Calculator;miles /a {AMOUNT} /r {MILES_RATE}");
         TablePrinter.addRow("6;Account Storage;store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE}"
-                + " /c {CASHBACK_CAP} /o {OTHER_NOTES} ");
+                + " /c {CASHBACK_CAP} /o {OTHER_NOTES}");
         TablePrinter.addRow("7;Delete Account;store /rm {ACCOUNT_NO}");
         TablePrinter.addRow("8;Delete All Account Information;clearinfo");
         TablePrinter.addRow("9;Show Account Information;info");
