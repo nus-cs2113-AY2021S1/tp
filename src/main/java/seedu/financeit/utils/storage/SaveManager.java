@@ -91,12 +91,12 @@ public class SaveManager {
     private static void listSaves(CommandPacket packet) {
         try {
             menu = false;
-            SaveHandler.buildFile(dirPath, fullPath);
-            File file = new File(fullPath);
             UiManager.refreshPage();
             helpMsg();
             TablePrinter.setTitle("List Saves");
             TablePrinter.addRow("No.; Names                                           ");
+            SaveHandler.buildFile(dirPath, fullPath);
+            File file = new File(fullPath);
             Scanner scanner = new Scanner(file);
             for (int i = 1; scanner.hasNext(); ) {
                 String name = scanner.nextLine();
