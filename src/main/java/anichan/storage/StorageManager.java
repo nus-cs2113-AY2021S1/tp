@@ -56,15 +56,17 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     public void deleteWorkspace(String name) throws AniException {
+        assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
-        Path deletePath = Paths.get(deletePathString);
 
         try {
+            Path deletePath = Paths.get(deletePathString);
+
             Files.walk(deletePath)
                     .sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
                     .forEach(File::delete);
-        } catch (IOException e) {
+        } catch (IOException | SecurityException exception) {
             throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
         }
     }

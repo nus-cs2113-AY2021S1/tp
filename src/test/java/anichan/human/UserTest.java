@@ -48,9 +48,7 @@ class UserTest {
     void setGender_Monster_throwsAniException() throws AniException {
         User user = new User("Monster", "MaLE");
 
-        assertThrows(AniException.class, () -> {
-            user.setGender("Monster");
-        });
+        assertThrows(AniException.class, () -> user.setGender("Monster"));
     }
 
     @Test
@@ -106,19 +104,14 @@ class UserTest {
         User user = new User("new User", "femaLe");
         Workspace newWorkspace = user.addWorkspace("Default");
 
-        assertThrows(AniException.class, () -> {
-            user.setActiveWorkspace(newWorkspace);
-        });
+        assertThrows(AniException.class, () -> user.setActiveWorkspace(newWorkspace));
     }
 
     @Test
     void switchActiveWorkspace_emptyWorkspaceList_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
-        Workspace newWorkspace = user.addWorkspace("Default");
 
-        assertThrows(AniException.class, () -> {
-            user.switchActiveWorkspace("I want to switch!");
-        });
+        assertThrows(AniException.class, () -> user.switchActiveWorkspace("I want to switch!"));
     }
 
     @Test
@@ -126,9 +119,7 @@ class UserTest {
         User user = new User("new User", "femaLe");
         Workspace newWorkspace = user.addWorkspace("Default");
 
-        assertThrows(AniException.class, () -> {
-            user.addWorkspace("Default");
-        });
+        assertThrows(AniException.class, () -> user.addWorkspace("Default"));
     }
 
     @Test
