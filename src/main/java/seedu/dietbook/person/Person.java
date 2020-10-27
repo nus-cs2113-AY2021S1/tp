@@ -288,8 +288,10 @@ public class Person {
      * @param weightType A string describing whether the weight given the original, current or target weight.
      */
     private void performAssertionsForWeight(int weight, String weightType) {
-        assert weight > 0 : weightType + " of person should be greater than 0";
-        assert weight < 500 : weightType + " of person should less than 500";
+        int minWeight = 1;
+        assert weight >= minWeight : weightType + " of person should be greater than 0";
+        int maxWeight = 500;
+        assert weight <= maxWeight : weightType + " of person should less than 500";
     }
 
     /**
@@ -298,8 +300,10 @@ public class Person {
      * @param height The height of the person.
      */
     private void performAssertionsForHeight(int height) {
-        assert height > 0 : "Height of person should be greater than 0";
-        assert height < 300 : "Height of person should be less than 300";
+        int minHeight = 1;
+        assert height >= minHeight : "Height of person should be greater than 0";
+        int maxHeight = 300;
+        assert height <= maxHeight : "Height of person should be less than 300";
     }
 
     /**
@@ -327,7 +331,9 @@ public class Person {
      * @param age The age of the person.
      */
     private void performAssertionsForAgeInput(int age) {
-        assert age > 0 : "The age of person should be greater than 0";
-        assert age < 150 : "The age of person should be lesser than 150";
+        int minAge = 0;
+        assert age >= minAge : "The age of person should be equals to or greater than 0";
+        int maxAge = 150;
+        assert age <= maxAge : "The age of person should be lesser than 150";
     }
 }

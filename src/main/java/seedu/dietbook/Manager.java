@@ -15,7 +15,7 @@ import seedu.dietbook.command.UserinfoCommand;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.ActivityLevel;
 import seedu.dietbook.person.Person;
-import seedu.calculator.Calculator;
+import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.exception.DietException;
@@ -38,7 +38,6 @@ public class Manager {
     private int commandCount = 1;
     private DataBase dataBase;
     private Calculator calculator;
-    private static Scanner s = new Scanner(System.in);
 
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
@@ -59,10 +58,6 @@ public class Manager {
         this.foodList = foodlist;
         this.dataBase = dataBase;
         this.calculator = new Calculator(foodList.getFoods());
-    }
-
-    public String readCommand() {
-        return s.nextLine();
     }
 
     public FoodList getFoodList() {
