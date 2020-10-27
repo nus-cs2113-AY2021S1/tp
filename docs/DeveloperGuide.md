@@ -74,6 +74,19 @@ The *On Command* shown above explains the Sequence Diagram of the On Command.
 #### Off Command
 ![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png)
 The *Off Command* shown above explains the Sequence Diagram of the Off Command
+#### Invalid Command
+![Sequence of Invalid Command](images/diagrams/Sequence_InvalidCommand.png)
+The *Invalid Command* shown above explains the Sequence Diagram of the Invalid Command
+#### Help Command
+![Sequence of Help Command](images/diagrams/Sequence_HelpCommand.png)
+The *Help Command* shown above explains the Sequence Diagram of the Help Command
+#### Exit Command
+![Sequence of Off Command](images/diagrams/Sequence_ExitCommand.png)
+The *Exit Command* shown above explains the Sequence Diagram of the Exit Command
+#### CommandResult Command
+![Sequence of CommandResult Command](images/diagrams/Sequence_CommandResult.png)
+The *CommandResult* shown above explains the Sequence Diagram of the CommandResult
+
 ### Storage Component
 
 ## Implementation
