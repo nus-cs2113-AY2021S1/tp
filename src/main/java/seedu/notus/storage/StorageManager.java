@@ -82,7 +82,7 @@ public class StorageManager {
      * @param path path of file to be created
      * @throws IOException thrown when directory does not exist. Unable to create file
      */
-    private void createFile(String path) throws IOException {
+    public void createFile(String path) throws IOException {
         File file = new File(path);
         if (!file.exists()) {
             file.createNewFile();
@@ -98,7 +98,7 @@ public class StorageManager {
      * @param timetable The Timetable to be loaded into.
      */
     public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager,
-                             ParserManager parserManager , boolean isArchive) throws SystemException {
+                             ParserManager parserManager, boolean isArchive) throws SystemException {
         String path;
         if (isArchive) {
             path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
