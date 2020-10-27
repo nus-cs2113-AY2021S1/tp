@@ -34,7 +34,7 @@ public abstract class Parser {
     protected static final int NULL_INDEX = 0;
     protected String userMessage;
     protected static final String[] INSTRUCTIONS_INPUT_CONTENTS = {
-            "Enter Note:", "*/del to delete previous line*", "*/end on a new line to end note input*"
+        "Enter Note:", "*/del to delete previous line*", "*/end on a new line to end note input*"
     };
 
     //@@author Chongjx
