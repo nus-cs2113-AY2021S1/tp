@@ -668,61 +668,6 @@ works. However, we would strongly recommend you not to as you may cause data cor
 <br/>
 <br/>
 
-### 3.2 Workspace management: `workspace`
 
-This command handles all workspace related operations:
-*   Creates new workspace
-*   Switches workspace
-*   Lists existing workspaces
-*   Deletes workspace
-
-Therefore, the command parameter for workspace command is dependent on the operation you wish to use. 
-For example, `-l` would signify list workspace while `-d` signifies delete.
-
-#### 3.2.1 Creating new workspace
-
-Format: `workspace -n <NAME>`
-
-Example of usage: `workspace -n Crispy Donuts Studio`
-
-The expected outcome:
-```
-Successfully added new workspace: Crispy Donuts Studio
-```
-
-#### 3.2.2 Switching workspace
-
-Format: `workspace -s <NAME>`
-
-Example of usage: `workspace -s Crispy Donuts Studio`
-
-The expected outcome:
-```
-Workspace switched to Crispy Donuts Studio
-```
-
-#### 3.2.3 Listing workspaces
-
-Format: `workspace -l`
-
-Example of usage: `workspace -l`
-
-The expected outcome:
-```
-Currently, you have 2 workspace(s):
-1. Default
-2. Crispy Donuts Studio
-```
-
-#### 3.2.4 Deleting workspace
-
-Format: `workspace -d <NAME>`
-
-Example of usage: `workspace -d Default`
-
-The expected outcome:
-```
-Successfully deleted workspace: Default
-```
 
 <br/>
