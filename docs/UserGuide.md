@@ -35,6 +35,7 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.6 [View information of bookmark entry](#386-view-information-of-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
+
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -340,9 +341,9 @@ Changed active watchlist to: "Default".
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are created or modified, and will be **loaded automatically** when **AniChan** is launched. 
 
 In the folder where **AniChan** is launched, there will be a `data` folder which would contain these data:
-* User data will be stored in `data/user.txt`.
-* Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
-* Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
+*   User data will be stored in `data/user.txt`.
+*   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
+*   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
 <br/>
 
