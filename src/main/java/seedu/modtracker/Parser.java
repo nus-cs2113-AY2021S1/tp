@@ -17,7 +17,7 @@ public class Parser {
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
-    public static final String COMMAND_ANALYSIS = "analysis";
+    public static final String COMMAND_ANALYSIS = "analyse";
     public static final String COMMAND_ADDTASK = "addtask";
     public static final String COMMAND_DELETETASK = "deletetask";
     public static final String COMMAND_DONE = "done";

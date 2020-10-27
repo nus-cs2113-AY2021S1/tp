@@ -7,8 +7,8 @@ It helps you to prioritise your work and balance your time spent among your modu
 
 
 ## Table of Contents
-1. [Quick Start](#1-quick-start)
-1. [Features](#2-features)
+1. [Quick Start](#quickstart)
+1. [Features](#features)
     <br/>&nbsp;2.1 [View help: `help`](#help)
     <br/>&nbsp;2.2 [Add a module: `addmod`](#addmod)
     <br/>&nbsp;2.3 [Add expected module workload: `addexp`](#addexp) 
@@ -17,7 +17,7 @@ It helps you to prioritise your work and balance your time spent among your modu
     <br/>&nbsp;2.6 [Analyse actual time spent on all modules: `analyse`](#analyse)
     <br/>&nbsp;2.7 [Delete a module: `deletemod`](#deletemod)
     <br/>&nbsp;2.8 [Delete expected module workload: `deleteexp`](#deleteexp)
-    <br/>&nbsp;2.9 [Minus from actual time spent on a module: `minus`](#minus) 
+    <br/>&nbsp;2.9 [Minus from actual time spent on a module: `minustime`](#minus) 
     <br/>&nbsp;2.10 [Delete actual time spent on a module: `deletetime`](#deletetime)
     <br/>&nbsp;2.11 [Add tasks: `addtask`](#addtask)
     <br/>&nbsp;2.12 [List all tasks: `listtask`](#listtask)
@@ -28,10 +28,10 @@ It helps you to prioritise your work and balance your time spent among your modu
     <br/>&nbsp;2.17 [Save user data](#save)
     <br/>&nbsp;2.18 [Delete user data: `reset`](#reset)
 1. [FAQ](#faq)
-1. [Command Summary](#command-summary)
+1. [Command Summary](#summary)
 
 
-## 1. Quick Start
+## 1. Quick Start <a name="quickstart"></a>
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `ModTracker` from [here](https://github.com/AY2021S1-CS2113T-F12-4/tp/releases).
@@ -58,7 +58,7 @@ has successfully executed.
 1. Refer to the Features section below for more details on the application's available commands.
 
 
-## 2. Features 
+## 2. Features <a name="features"></a>
 
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user.
@@ -219,10 +219,10 @@ Expected output:
 Expected Workload of CS2113T is removed.
 ````
 
-### 2.9 Minus from actual time spent on a module: `minus` <a name="minus"></a>
+### 2.9 Minus from actual time spent on a module: `minustime` <a name="minus"></a>
 Minus the actual time spent on a specified module.
 
-Format: `minus <module code> <time spent> <week number>` 
+Format: `minustime <module code> <time spent> <week number>` 
 
 * The `module code` is valid.
 * The `time spent` is in hours.
@@ -230,7 +230,7 @@ Format: `minus <module code> <time spent> <week number>`
 
 Example of usage:
 
-`minus CS2113T 3 1`
+`minustime CS2113T 3 1`
 
 Expected output:
 ````
@@ -393,13 +393,13 @@ Expected output:
 Reset not confirmed. Your data is safe :)
 ````
 
-## 3. FAQ
+## 3. FAQ <a name="faq"></a>
 
 **Q**: Are the commands case-sensitive? 
 
 **A**: No, all the commands are case-insensitive. Eg. typing in `HELP` will be taken in as a `help` command.
 
-## 4. Command Summary
+## 4. Command Summary <a name="summary"></a>
 |Feature|Command|
 |--------|--------|
 |Viewing help|`help`|
