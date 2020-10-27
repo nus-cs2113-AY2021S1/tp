@@ -15,10 +15,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#generating-names-from-name-database-list-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Finding names from name database: `filter name`](#generating-names-from-name-database-filter-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding name to the name database: `add name`](#generating-names-from-name-database-add-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Removing a name from the name database: `delete name`](#generating-names-from-name-database-delete-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Finding names from name database: `filter name`](#finding-names-from-name-database-filter-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding name to the name database: `add name`](#adding-name-to-the-name-database-add-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Removing a name from the name database: `delete name`](#removing-a-name-from-the-name-database-delete-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word bank: `filter`](#filtering-words-in-word-bank-filter) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter`](#listing-your-filter-list-list-filter) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Beginning your writing session: `start`](#beginning-your-writing-session-start) <br>
