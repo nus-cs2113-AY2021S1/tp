@@ -6,7 +6,6 @@ import fitr.Goal;
 import fitr.storage.StorageManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ListManager {
     private final ExerciseList exerciseList;
@@ -35,10 +34,6 @@ public class ListManager {
         return exerciseList;
     }
 
-    public ArrayList<Exercise> filterExerciseByDate(String date) {
-        return exerciseList.filterByDate(date);
-    }
-
     public void clearExerciseList() {
         exerciseList.clearList();
     }
@@ -61,10 +56,6 @@ public class ListManager {
 
     public void clearFoodList() {
         foodList.clearList();
-    }
-
-    public ArrayList<Food> filterFoodByDate(String date) {
-        return foodList.filterByDate(date);
     }
 
     public void addGoal(Goal goal) {
