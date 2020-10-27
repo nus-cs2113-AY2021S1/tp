@@ -1,9 +1,9 @@
-package seedu.duke.list;
+package seedu.dietbook.list;
 
 import java.util.ArrayList;
 import java.util.List;
-import seedu.duke.food.Food;
 import java.time.LocalDateTime;
+import seedu.dietbook.food.Food;
 
 
 /**

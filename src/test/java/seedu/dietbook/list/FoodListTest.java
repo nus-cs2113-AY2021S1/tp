@@ -1,4 +1,4 @@
-package seedu.duke.list;
+package seedu.dietbook.list;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
+import seedu.dietbook.food.Food;
 
-import seedu.duke.food.Food;
 
 class FoodListTest {
 
