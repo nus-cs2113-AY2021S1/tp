@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.dietbook.database;
 
 import java.util.ArrayList;
 import java.util.List;

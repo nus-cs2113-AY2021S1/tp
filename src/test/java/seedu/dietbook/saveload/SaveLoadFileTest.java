@@ -1,4 +1,4 @@
-package seedu.duke.saveload;
+package seedu.dietbook.saveload;
 
 import java.io.FileNotFoundException;
 

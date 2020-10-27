@@ -1,7 +1,7 @@
-package seedu.duke.database;
+package seedu.dietbook.database;
 
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import java.io.File;
 import java.io.FileNotFoundException;

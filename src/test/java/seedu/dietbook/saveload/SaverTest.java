@@ -1,4 +1,4 @@
-package seedu.duke.saveload;
+package seedu.dietbook.saveload;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

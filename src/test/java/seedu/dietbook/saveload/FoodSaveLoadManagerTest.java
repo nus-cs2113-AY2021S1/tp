@@ -1,8 +1,8 @@
-package seedu.duke.saveload;
+package seedu.dietbook.saveload;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

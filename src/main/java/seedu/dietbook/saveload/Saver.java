@@ -1,4 +1,4 @@
-package seedu.duke.saveload;
+package seedu.dietbook.saveload;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -60,6 +60,13 @@ public class Saver {
      */
     public void resetSize(int newWidth, int newHeight) {
         setWidthAndHeight(newWidth, newHeight);
+        initEntries();
+    }
+
+    /**
+     * Clears the entire table.
+     */
+    public void reset() {
         initEntries();
     }
 

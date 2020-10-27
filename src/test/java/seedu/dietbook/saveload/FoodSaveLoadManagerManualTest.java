@@ -1,6 +1,6 @@
-package seedu.duke.saveload;
+package seedu.dietbook.saveload;
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
