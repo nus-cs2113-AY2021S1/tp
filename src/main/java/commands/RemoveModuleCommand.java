@@ -17,6 +17,10 @@ import static common.Messages.MODULE;
 public class RemoveModuleCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveModuleCommand.class.getName());
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes module based on the index in the list. \n"
+            + "Parameters: MODULE_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+
     public static final String MESSAGE_INVALID_INDEX_MODULE = "The module is not found, please try again.";
 
     private final int removeIndex;
@@ -50,10 +54,5 @@ public class RemoveModuleCommand extends RemoveCommand {
             logger.info(MESSAGE_INVALID_INDEX_MODULE);
             return MESSAGE_INVALID_INDEX_MODULE;
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

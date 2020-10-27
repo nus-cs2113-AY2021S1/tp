@@ -17,6 +17,10 @@ import static common.Messages.CHAPTER;
 public class RemoveChapterCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveChapterCommand.class.getName());
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes flashcard based on the index in the list. \n"
+            + "Parameters: FLASHCARD_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+
     public static final String MESSAGE_INVALID_INDEX_CHAPTER = "The chapter is not found, please try again.";
 
     private final int removeIndex;
@@ -52,10 +56,5 @@ public class RemoveChapterCommand extends RemoveCommand {
         } catch (IndexOutOfBoundsException e) {
             return MESSAGE_INVALID_INDEX_CHAPTER;
         }
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

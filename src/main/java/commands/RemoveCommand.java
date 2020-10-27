@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import storage.Storage;
 import ui.Ui;
 
@@ -12,8 +11,10 @@ public abstract class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes %1$s based on the index in the list. \n"
-            + "Parameters: %2$s_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+            + ": Removes module / chapter / flashcard based on the index in the list. \n"
+            + "Parameters: MODULE_INDEX\n"
+            + "            CHAPTER_INDEX\n"
+            + "            FLASHCARD_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "Got it. I've removed this %1$s:\n";
     public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
@@ -30,5 +31,7 @@ public abstract class RemoveCommand extends Command {
     }
 
     @Override
-    public abstract boolean isExit();
+    public boolean isExit() {
+        return false;
+    };
 }
