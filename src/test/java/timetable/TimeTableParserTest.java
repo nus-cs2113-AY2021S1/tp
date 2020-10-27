@@ -43,7 +43,7 @@ class TimeTableParserTest {
 
 
     @Test
-    void showLinkTest() throws InvalidDayOfTheWeekException {
+    void showLinkTest() throws InvalidDayOfTheWeekException, ClashScheduleException {
         DateList dateList = new DateList();
         int currentHour = LocalDateTime.now().getHour();
         String currentDay = LocalDateTime.now().getDayOfWeek().toString();
@@ -55,12 +55,12 @@ class TimeTableParserTest {
         String[] period2 = periodText2.split(", ");
         TimeTableParser.addClassPeriods(period1, 1, LocalDateTime.now().toLocalDate().atTime(0,0), lesson1);
         TimeTableParser.addClassPeriods(period2, 1, LocalDateTime.now().toLocalDate().atTime(0,0), lesson2);
-        dateList.addLesson(lesson1);
-        dateList.addLesson(lesson2);
+        dateList.addEvent(lesson1);
+        dateList.addEvent(lesson2);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         TimeTableParser.showLink(dateList);
-        String expected = "www.zoom.com/asdf\nwww.zoom.com/qwer\n";
+        String expected = "www.zoom.com/asdf|CS1234\nwww.zoom.com/qwer|CS5678\n";
         assertEquals(expected, outContent.toString());
     }
 }
