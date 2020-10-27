@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.admin.ModuleList;
 import manager.chapter.Chapter;
 import manager.module.Module;
@@ -19,7 +18,7 @@ public class GoModuleCommand extends GoCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
+    public void execute(Ui ui, Access access, Storage storage) {
         String result = goModule(access, storage, ui);
         if (result.equals("")) {
             return;
@@ -27,7 +26,7 @@ public class GoModuleCommand extends GoCommand {
         ui.showToUser(result);
     }
 
-    private String goModule(Access access, Storage storage, Ui ui) throws IncorrectAccessLevelException {
+    private String goModule(Access access, Storage storage, Ui ui) {
         boolean isLevelExist = false;
         String result = "";
         String currentModule = this.module;

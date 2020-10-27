@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+package Parser {
+Class Parser
+}
+
+package Command {
+Class XYZCommand
+Class "{abstract}\nCommand" as Command
+}
+
+package Scheduler {
+Class Scheduler
+}
+}
+
+package Model{
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .right.> Parser
+
+Parser .right.> XYZCommand : creates >
+
+HiddenOutside .right.> Command : executes >
+
+XYZCommand -up-|> Command
+
+Command .right.> Model
+note right of XYZCommand: XYZCommand = AddCommand, \nEditCommand, etc
+Command .up.> Scheduler
+
+@enduml

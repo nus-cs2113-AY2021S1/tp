@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":EditCardCommand" as EditCardCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+participant ":CardList" as CardList MODEL_COLOR
+participant ":Card" as Card MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Parser : parse("edit 1 q:1+1 | a:")
+activate Parser
+
+create EditCardCommand
+Parser -> EditCardCommand : EditCardCommand(0, "1+1", "")
+activate EditCardCommand
+
+EditCardCommand --> Parser : c
+deactivate EditCardCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> EditCardCommand : execute()
+activate EditCardCommand
+
+EditCardCommand -> EditCardCommand : editCard()
+activate EditCardCommand
+
+EditCardCommand -> Access : getChapter()
+activate Access
+
+Access --> EditCardCommand : Chapter
+deactivate Access
+
+EditCardCommand -> Chapter : getCards()
+activate Chapter
+
+Chapter--> EditCardCommand : CardList
+deactivate Chapter
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- EditCardCommand
+destroy Chapter
+
+EditCardCommand -> CardList : getCard(editIndex)
+activate CardList
+
+CardList --> EditCardCommand : Card
+deactivate CardList
+
+opt questionIsNotEmpty
+EditCardCommand -> Card : setQuestion(question)
+activate Card
+
+Card --> EditCardCommand
+deactivate Card
+end
+
+opt answerIsNotEmpty
+EditCardCommand -> Card : setAnswer(answer)
+activate Card
+
+Card --> EditCardCommand
+deactivate Card
+end
+
+EditCardCommand -> Storage : saveCards(CardList, moduleName, chapterName)
+activate Storage
+
+Storage --> EditCardCommand
+deactivate Storage
+
+EditCardCommand --> EditCardCommand : result
+deactivate EditCardCommand
+
+[<-- EditCardCommand
+deactivate EditCardCommand
+
+destroy CardList
+destroy Card
+@enduml

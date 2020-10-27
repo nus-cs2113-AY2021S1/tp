@@ -3,6 +3,7 @@ package commands;
 import access.Access;
 import common.KajiLog;
 import manager.card.Card;
+import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.history.History;
 import scheduler.Scheduler;
@@ -14,6 +15,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 
 /**
@@ -27,9 +31,9 @@ public class ReviseCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts revision based on a particular chapter. \n"
             + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.\n";
+    public static final String MESSAGE_SUCCESS = "You have completed revision for <%1$s>.";
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
-    public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter %1$s is not due for revision today.\n";
+    public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter <%1$s> is not due for revision today.\n";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
     public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
             + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
@@ -52,7 +56,7 @@ public class ReviseCommand extends Command {
             chapter = access.getModule().getChapters().getChapter(reviseIndex);
             return chapter;
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("The chapter is not found.\n");
+            throw new IndexOutOfBoundsException(String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER));
         }
     }
 
@@ -80,22 +84,8 @@ public class ReviseCommand extends Command {
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter toRevise = getChapter(reviseIndex, access);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
-            StringBuilder prompt = new StringBuilder();
-            prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
-            prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
-            String input = ui.getInput(prompt.toString()).trim().toUpperCase();
-            boolean isInvalid = true;
-            while (isInvalid) {
-                switch (input) {
-                case "Y":
-                    isInvalid = false;
-                    break;
-                case "N":
-                    return;
-                default:
-                    input = ui.getInput("You have entered an invalid input, please try again.")
-                            .trim().toUpperCase();
-                }
+            if (promptNotDue(ui, toRevise)) {
+                return;
             }
         }
 
@@ -119,8 +109,34 @@ public class ReviseCommand extends Command {
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         logger.info("Revision has completed for chapter: " + toRevise);
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
-
+        CardList newCards = new CardList(allCards);
+        storage.saveCards(newCards, access.getModuleLevel(), toRevise.getChapterName());
         addHistory(ui, access, storage);
+    }
+
+    private boolean promptNotDue(Ui ui, Chapter toRevise) {
+        StringBuilder prompt = new StringBuilder();
+        prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
+        prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
+        String input = ui.getInput(prompt.toString()).trim().toUpperCase();
+        boolean isInvalid = true;
+        boolean notRevising = false;
+        while (isInvalid) {
+            switch (input) {
+            case "Y":
+                isInvalid = false;
+                notRevising = false;
+                break;
+            case "N":
+                isInvalid = false;
+                notRevising = true;
+                break;
+            default:
+                input = ui.getInput("You have entered an invalid input, please try again.")
+                        .trim().toUpperCase();
+            }
+        }
+        return notRevising;
     }
 
     private void addHistory(Ui ui, Access access, Storage storage) throws IOException {
@@ -140,23 +156,23 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
-                c.setRating(Card.EASY);
                 c.setPreviousInterval(Scheduler.computeEasyInterval(c.getPreviousInterval()));
+                c.setRating(Card.EASY);
                 isInvalid = false;
                 break;
             case MEDIUM:
-                c.setRating(Card.MEDIUM);
                 c.setPreviousInterval(Scheduler.computeMediumInterval(c.getPreviousInterval()));
+                c.setRating(Card.MEDIUM);
                 isInvalid = false;
                 break;
             case HARD:
-                c.setRating(Card.HARD);
                 c.setPreviousInterval(Scheduler.computeHardInterval(c.getPreviousInterval()));
+                c.setRating(Card.HARD);
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
-                c.setRating(Card.CANNOT_ANSWER);
                 repeatCards.add(c);
+                c.setRating(Card.CANNOT_ANSWER);
                 isInvalid = false;
                 break;
             default:

@@ -42,8 +42,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.6. [Check Overall Performance for a Chapter Feature](#436-check-overall-performance-for-a-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.7. [Example of the Chapter Feature](#437-example-of-the-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
-4.4. [Revision Features](#44-revision-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Revision Feature](#441-revision-feature)<br>
+4.4. [Revise Feature](#44-revise-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Implementation](#441-implementation)<br>
 4.5. [Scheduler feature](#45-scheduler-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
@@ -78,6 +78,7 @@ This documentation describes the software architecture and software design decis
 ### 2.1. Prerequisites
 * JDK 11
 * IntelliJ IDEA
+
 ### 2.2. Setting up the project in your computer
 1. Fork this repository, and clone the fork into your computer.
 2. Open IntelliJ (if you are not in the welcome screen, click `File` → `Close Project` to close the existing project dialog first).
@@ -114,8 +115,39 @@ The rest of the App consists of 8 components:
 ### 3.1. Ui Component 
 (Jia Ern)
 
+![Class Diagram of Ui Component](UML/ui_component.PNG)
+
+The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
+
+The UI component is responsible for:
+* Taking in user input.
+* Printing result of execution for the different commands. 
+* Printing error messages when certain exceptions occur. 
+
 ### 3.2. Logic Component 
 (Jane)
+
+The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
+
+<p align="center">
+  <img src="DG_Images/LogicClassDiagram.png" width="600" alt="Logic Class Diagram"/>
+  <br/>Figure <>. Class diagram of Logic component  
+</p>
+
+1. `Kaji` uses the `Parser` class to parse the user command.
+2. This results in a `Command` object which is executed by `Kaji`.
+3. The command execution can affect the `Model` (e.g. adding a module).
+4. The `Scheduler` is used in some command execution to schedule the due date of a chapter.
+5. The result of the command execution is passed to the `Ui`.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `parse("edit 1 CS2113T")` API call:
+
+<p align="center">
+  <img src="DG_Images/LogicSequenceDiagram.png" width="600" alt="Logic Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of Logic component  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### 3.3. Model Component
 (Jiayi)
@@ -141,9 +173,54 @@ The rest of the App consists of 8 components:
 
 #### 4.1.3. Edit Module Name Feature
 (Jane)
+##### Implementation
+The edit module name feature allows the user to edit the name of any existing module.
+
+The user can edit the name of an existing module with the `edit` command, which follows the following format: `edit MODULE_INDEX MODULE_NAME`.
+
+The edit module name feature is facilitated by `ModuleList` and `Module`.
+In addition, it implements the following operations:
+* `ModuleList#getModule()` - Returns a module based on the specified index from the list of modules.
+* `Module#setModuleName()` — Sets the name of the module.
+ 
+For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `admin` level.<br><br>
+Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.<br><br>
+Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.<br><br>
+Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.<br><br>
+Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.<br><br>
+
+The following sequence diagram shows how the edit module name feature works:
+
+<p align="center">
+  <img src="DG_Images/EditModuleSequenceDiagram.png" width="600" alt="Edit Module Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of edit chapter name feature  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
 (Jia Ern)
+
+The remove module feature allows the user to remove a module by specifying the index of the module in the list. 
+The remove module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
+
+In addition, it implements the following operations:
+* `RemoveModuleCommand#execute()` — oversees entire execution for removing a module.
+* `RemoveModuleCommand#removeModule()` — removes module from list of modules including the chapters and flashcards under it.
+* `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
+
+For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `admin` level. 
+
+* Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
+
+* Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
+
+The following sequence diagram shows how the remove module feature works:
+![Sequence Diagram of Remove Module](UML/removemod_seq_diagram.png)
 
 #### 4.1.5. Access Module Level Feature
 (Jiayi)
@@ -163,9 +240,54 @@ The rest of the App consists of 8 components:
 
 #### 4.2.3. Edit Chapter Name Feature
 (Jane)
+##### Implementation
+The edit chapter name feature allows the user to edit the name of any existing chapter.
+
+The user can edit the name of an existing chapter with the `edit` command, which follows the following format: `edit CHAPTER_INDEX CHAPTER_NAME`.
+
+The edit module name feature is facilitated by `ChapterList` and `Chapter`.
+In addition, it implements the following operations:
+* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `Chapter#setChapterName()` — Sets the name of the chapter.
+ 
+For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `CS2113T` at the module level.<br><br>
+Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.<br><br>
+Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.<br><br>
+Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.<br><br>
+Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.<br><br>
+
+The following sequence diagram shows how the edit chapter name feature works:
+
+<p align="center">
+  <img src="DG_Images/EditChapterSequenceDiagram.png" width="600" alt="Edit Chapter Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of edit flashcard content feature  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.2.4. Remove Chapter Feature
 (Jia Ern)
+
+The remove chapter feature allows the user to remove a chapter by specifying the index of the chapter in the list. 
+The remove chapter mechanism is facilitated by `RemoveChapterCommand`. It extends from the abstract class `RemoveCommand`. 
+
+In addition, it implements the following operations:
+* `RemoveChapterCommand#execute()` — oversees entire execution for removing a chapter.
+* `RemoveChapterCommand#removeModule()` — removes chapter from list of chapters in a module including the flashcards under it.
+* `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
+
+For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `CS2113T` at the module level. 
+
+* Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
+
+* Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
+
+The following sequence diagram shows how the remove chapter feature works:
+![Sequence Diagram of Remove Chapter](UML/removechap_seq_diagram.png)
 
 #### 4.2.5. Access Chapter Level Feature
 (Lucas)
@@ -191,12 +313,77 @@ The rest of the App consists of 8 components:
 
 #### 4.3.3. Edit Flashcard Content Feature
 (Jane)
+The edit flashcard content feature allows the user to edit the content of any existing flashcard.
+
+The user can edit the content of an existing flashcard with the `edit` command, which follows the following format: `edit FLASHCARD_INDEX q:QUESTION | a: ANSWER`.
+
+The edit flashcard content feature is facilitated by `CardList` and `Card`.
+In addition, it implements the following operations:
+* `CardList#getCard()` - Returns a flashcard based on the specified index from the list of flashcards.
+* `Card#setQuestion()` — Sets the question of a flashcard.
+* `Card#setAnswer()` — Sets the answer of a flashcard.
+ 
+For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:<br><br>
+Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.<br><br>
+Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.<br><br>
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.<br><br>
+Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.<br><br>
+Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.<br><br>
+Step 6: The question is edited to `1+1` by the method `Card#setQuestion()`.<br><br>
+Step 7: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.<br><br>
+
+The following sequence diagram shows how the edit flashcard content feature works:
+
+<p align="center">
+  <img src="DG_Images/EditCardSequenceDiagram.png" width="600" alt="Edit Card Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of edit flashcard content feature  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.4. Remove Flashcard Feature
 (Jia Ern)
 
+The remove flashcard feature allows the user to remove a flashcard by specifying the index of the flashcard in the list. 
+The remove flashcard mechanism is facilitated by `RemoveFlashcardCommand`. It extends from the abstract class `RemoveCommand`. 
+
+In addition, it implements the following operations:
+* `RemoveFlashcardCommand#execute()` — oversees entire execution for removing a flashcard.
+* `RemoveFLashcardCommand#removeModule()` — removes flashcard from list of flashcards in a chapter.
+* `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
+
+For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
+
+* Step 2: The user enters `remove 1` command to delete the first flashcard in the list of flashcards — which in this case is `[Q] 1+1 | [A] 2`. The `remove` command creates `RemoveCardCommand` which will then be executed. 
+
+* Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
+
+* Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
+
+The following sequence diagram shows how the remove flashcard feature works:
+![Sequence Diagram of Remove Flashcard](UML/removecard_seq_diagram.png)
+
 #### 4.3.5. Return to Module Level Feature
 (Jia Ern)
+
+The return to module level feature allows the user to return to the module level from the chapter level.
+The return to module level mechanism is facilitated by `BackModuleCommand`. It extends from the abstract class `BackCommand`. 
+
+In addition, it implements the following operation:
+* `BackModuleCommand#execute` — lowers access level of the user.
+
+For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
+
+* Step 2: The user enters `back` command to return to `CS2113T`. The `back` command creates `BackModuleCommand` which will then be executed.
+
+* Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
+
+The following sequence diagram shows how the return to module level feature works:
+![Sequence Diagram of Return to Module](UML/returnmod_seq_diagram.png)
 
 #### 4.3.6. Check Overall Performance for a Chapter Feature
 (Jiayi)
@@ -205,13 +392,45 @@ The rest of the App consists of 8 components:
 
 #### 4.3.8. Conclusion
 
-### 4.4. Revision Feature
-[summary + scenario]
-
-#### 4.4.1. Revision Feature
+### 4.4. Revise Feature
 (Jia Ern)
 
+The revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
+
+#### 4.4.1. Implementation
+The revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
+
+In addition, it implements the following operations:
+* `ReviseCommand#execute()` — oversees the entire revise process and calls the respective methods when necessary.
+* `ReviseCommand#getChapter()` — gets `chapter` based on the index the user provided.
+* `ReviseCommand#getCards()` — gets a list of `card` in `chapter`.
+* `ReviseCommand#promptNotDue()` — prompts user if he still wants to revise a `chapter` that is not due.
+* `ReviseCommand#reviseCard()` — makes use of `ui` to show the contents of each card to the user and gets rating input for the particular card.
+* `ReviseCommand#addHistory()` — adds the `chapter` to storage to track past revisions.
+* `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
+* `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
+
+For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `CS2113T` at the module level.
+
+* Step 2: The user enters `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
+
+* Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
+
+* Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
+
+* Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
+
+* Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
+
+* Step 7: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
+
+The following sequence diagram shows how the revise feature works:
+![Sequence Diagram of Revise](UML/revise_seq_diagram.png)
+
 #### 4.4.2. Scheduling The Chapters Feature
+(Lucas)
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
 At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute to `deckInterval` days after the day of revision.
 

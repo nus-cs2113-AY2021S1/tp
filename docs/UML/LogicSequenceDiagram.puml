@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Module" as Module MODEL_COLOR
+end box
+
+[-> Parser : parse("edit 1 CS2113T")
+activate Parser
+
+Parser ->  Parser : prepareEdit("1 CS2113T")
+activate Parser
+
+Parser ->  Parser : prepareEditModule("1 CS2113T")
+activate Parser
+
+create EditModuleCommand
+Parser -> EditModuleCommand : EditModuleCommand()
+activate EditModuleCommand
+
+EditModuleCommand --> Parser : c
+deactivate EditModuleCommand
+
+Parser --> Parser : c
+deactivate Parser
+
+Parser --> Parser : c
+deactivate Parser
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> EditModuleCommand : execute()
+activate EditModuleCommand
+
+EditModuleCommand -> EditModuleCommand : editModule()
+activate EditModuleCommand
+
+EditModuleCommand -> Module : setModuleName(module)
+activate Module
+
+Module --> EditModuleCommand
+deactivate Module
+
+EditModuleCommand --> EditModuleCommand : result
+deactivate EditModuleCommand
+
+[<-- EditModuleCommand
+deactivate EditModuleCommand
+@enduml
