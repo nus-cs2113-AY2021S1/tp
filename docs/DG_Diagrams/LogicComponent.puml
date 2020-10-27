@@ -1,7 +1,7 @@
 @startuml
 
 allowmixing
-Rectangle logic {
+Rectangle Logic {
 Rectangle commands {
 abstract class Command
 Command <|--up AllBusCommand

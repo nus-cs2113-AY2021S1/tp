@@ -1,6 +1,6 @@
 @startuml
 
-Rectangle ui {
+Rectangle Ui {
 class Ui {
 {static} printLine()
 {static} printWelcomeMessage()
