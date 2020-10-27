@@ -44,6 +44,8 @@ public class LocateCommand extends Command {
             } else {
                 System.out.println("Please input a valid location or event number.");
             }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please input an event number that is within the event list.");
         }
     }
 }
