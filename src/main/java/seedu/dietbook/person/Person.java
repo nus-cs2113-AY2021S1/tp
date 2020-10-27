@@ -331,8 +331,8 @@ public class Person {
      * @param age The age of the person.
      */
     private void performAssertionsForAgeInput(int age) {
-        int minAge = 1;
-        assert age >= minAge : "The age of person should be greater than 0";
+        int minAge = 0;
+        assert age >= minAge : "The age of person should be equals to or greater than 0";
         int maxAge = 150;
         assert age < maxAge : "The age of person should be lesser than 150";
     }
