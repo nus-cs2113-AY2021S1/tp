@@ -1,9 +1,10 @@
 package seedu.dietbook.list;
 
+import seedu.dietbook.food.Food;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDateTime;
-import seedu.dietbook.food.Food;
 
 
 /**
@@ -12,7 +13,7 @@ import seedu.dietbook.food.Food;
  * This is a stateful object.
  */
 public class FoodList {
-    private ArrayList<FoodEntry> foodEntries;
+    private static ArrayList<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -120,7 +121,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed after specified timing.
      */
-    public List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
+    public static List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
         return FoodListManager.listToFoods(entriesAfterDateTime);
     }
@@ -136,7 +137,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed within the range of a specified timing.
      */
-    public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+    public static List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
         return FoodListManager.listToFoods(entriesInRange);
     }
