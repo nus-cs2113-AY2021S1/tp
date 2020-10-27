@@ -239,7 +239,14 @@ public class Parser {
             IncorrectAccessLevelException {
         int removeIndex;
         String type = getType(access);
-        String messageUsage = String.format(RemoveCommand.MESSAGE_USAGE, type, type.toUpperCase());
+        String messageUsage = "";
+        if (type.equals(MODULE)) {
+            messageUsage = RemoveModuleCommand.MESSAGE_USAGE;
+        } else if (type.equals(CHAPTER)) {
+            messageUsage = RemoveChapterCommand.MESSAGE_USAGE;
+        } else if (type.equals(CARD)) {
+            messageUsage = RemoveCardCommand.MESSAGE_USAGE;
+        }
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, type)
                     + messageUsage);
