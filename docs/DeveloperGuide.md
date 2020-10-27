@@ -501,27 +501,6 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
-
-**Operation: Ledger Deletion**
-
-***UML Sequence Diagram***
-
-![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
-
-
-### EntryTracker
-**Operation: Entry Creation**
-
-***UML Sequence Diagram***
-
-![](uml_images/manualTracker/images/entryTrackerCreateEntrySeqDiagram.png)
-
-**Operation: Entry Edit**
-
-***UML Sequence Diagram***
-
-![](uml_images/manualTracker/images/entryTrackerEditEntrySeqDiagram.png)
 ## Product scope
 ### Target user profile
 
