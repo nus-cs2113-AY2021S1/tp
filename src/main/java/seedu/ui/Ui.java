@@ -41,7 +41,7 @@ public class Ui {
     private void displayByDateStructure(TaskMap tasks) {
         displayDateStructure.generateContent(tasks);
         out.println(displayDateStructure.getContent());
-        out.println("q:Quit, w:previous, e:next");
+        out.println("q:quit, w:previous, e:next");
         while (in.hasNext()) {
             String input = in.next();
             if (input.length() != 1 && !"qwe".contains(input.toLowerCase())) {
