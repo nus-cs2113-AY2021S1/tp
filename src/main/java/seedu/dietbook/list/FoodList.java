@@ -12,10 +12,16 @@ import seedu.dietbook.food.Food;
 public class FoodList {
     private ArrayList<FoodEntry> foodEntries;
 
+    /**
+     * Default constructor that instantiates FoodList with an empty foodentry arraylist.
+     */
     public FoodList() {
         this.foodEntries = new ArrayList<>();
     }
 
+    /**
+     * Convenience constructor mainly for testing purposes.
+     */
     protected FoodList(ArrayList<FoodEntry> entries) {
         this.foodEntries = entries;
     }
@@ -34,6 +40,9 @@ public class FoodList {
         return toAdd.toString();
     }
 
+    /**
+     * Default add method that adds a food entry using the food details and portion size.
+     */
     public String addFood(int portionSize, String name, int calorie, 
             int carbohydrate, int protein, int fat) {
         FoodEntry toAdd = new FoodEntry(portionSize, name, calorie, carbohydrate, protein, fat);
@@ -54,7 +63,10 @@ public class FoodList {
         throw new FoodNotFoundException();
     }
 
-
+    /**
+     * Deletes the the entry of the list at the provided index.
+     * index starts from 1 (not 0). i.e. is User's understanding of index.
+     */
     public String delete(int index) throws IndexOutOfBoundsException {
         try {
             return FoodListManager.deleteEntry(foodEntries, index).toString();
@@ -63,6 +75,9 @@ public class FoodList {
         }
     }
     
+    /**
+     * Discards previous foodEntry list and creates a new one.
+     */
     public boolean clear() {
         this.foodEntries = new ArrayList<>();
         return true;
@@ -75,6 +90,13 @@ public class FoodList {
      */
     public ArrayList<Food> getFoods() {
         return FoodListManager.listToFoods(foodEntries);
+    }
+
+    /**
+     * Obtain list of food objects in FoodList, scaled to portion size.
+     */
+    public ArrayList<Food> getPortionedFoods() {
+        return FoodListManager.listToPortionedFoods(foodEntries);
     }
 
     @Override

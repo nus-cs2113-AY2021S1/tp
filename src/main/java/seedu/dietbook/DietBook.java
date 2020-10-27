@@ -2,6 +2,15 @@ package seedu.dietbook;
 
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.list.FoodList;
+import seedu.dietbook.exception.DietException;
+import seedu.dietbook.command.Command;
+
+/**
+ * Main class of the program.
+ * The DietBook program is an application which can store, display and check your daily dietary intake.
+ *
+ * @author tikimonarch
+ */
 
 import java.io.FileNotFoundException;
 
@@ -20,7 +29,7 @@ public class DietBook {
         foodList = new FoodList();
         dataBase = new DataBase();
         manager = new Manager(foodList, dataBase);
-    }
+    }  
 
     /**
      * Main method to run the program.
@@ -31,12 +40,11 @@ public class DietBook {
 
         while (!isExit) {
             try {
-                String userInput = dietBook.manager.readCommand();
-                Parser.parse(userInput, dietBook.manager, dietBook.ui);
+                String userInput = dietBook.ui.readCommand();
+                Command c = dietBook.manager.manage(userInput);
+                c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
-            } finally {
-                System.out.println("__________________");
             }
         }
     }
