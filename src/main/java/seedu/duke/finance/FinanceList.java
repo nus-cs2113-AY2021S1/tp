@@ -1,6 +1,7 @@
 package seedu.duke.finance;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FinanceList {
@@ -33,6 +34,7 @@ public class FinanceList {
      */
     public static String dellog(int index) {
         try {
+            logger.setLevel(Level.OFF);
             logger.info("Start deleting...\n");
             assert index > 0 : "The index must > 0";
             financeLogs.remove(index - 1);
@@ -58,6 +60,7 @@ public class FinanceList {
      * @return the finance list
      */
     public static String summary() {
+        logger.setLevel(Level.OFF);
         logger.info("Start listing summary...\n");
         if (FinanceLog.getSize() == 0) {
             logger.warning("The list is empty.\n");

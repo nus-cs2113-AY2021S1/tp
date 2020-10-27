@@ -5,6 +5,7 @@ import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CommandFinanceAdd extends Command {
@@ -13,6 +14,7 @@ public class CommandFinanceAdd extends Command {
 
     @Override
     public String execute() throws DukeFinanceAddDescriptionLostException, DukeNotNumberException {
+        logger.setLevel(Level.OFF);
         logger.info("Start adding finance log...\n");
         String input = userinput.getArg("");
         if (input == null) {

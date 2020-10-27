@@ -25,9 +25,9 @@
     - [Mark an event as completed `done`](#mark-an-event-as-completed-done)
     - [Search for an Event `search`](#search-for-an-event-search)
   - [4.5 Finance features `finance`](#45-finance-features-finance)
-    - [Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
-    - [Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
-    - [View financial summary: `summary`](#view-financial-summary-summary)
+    - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
+    - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
+    - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
@@ -262,7 +262,7 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 ### 4.5 Finance features `finance`  
-#### Add finance log entry: `addLog`  
+#### 4.5.1 Add finance log entry: `addLog`  
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
@@ -270,18 +270,33 @@ Example of usage:
 `finance addLog have lunch 4.5`  
 `f addlog buy flight ticket 750`  
 
-#### Delete finance log entry: `delLog`  
+Expected outcomes:  
+![Example of usage 1](userGuidePic/addlog%20outcome1.png)  
+
+![Example of usage 2](userGuidePic/addlog%20outcome2.png)  
+
+#### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
 
 Example of usage:  
 `finance dellog 3`  
-`f delLog 10`  
+`f delLog 1`  
 
-#### View financial summary: `summary`  
+Expected outcomes:  
+![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
+
+![Example of usage 2](userGuidePic/dellog%20outcome2.png)  
+
+#### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
 
+Example of usage:  
+`finance summary`  
+
+Expected outcome:  
+![Example of usage](userGuidePic/summary%20outcome.png)  
 
 ## 5. FAQ
 
