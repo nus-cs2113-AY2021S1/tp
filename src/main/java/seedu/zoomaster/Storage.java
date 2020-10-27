@@ -277,6 +277,8 @@ public class Storage<T> {
      */
     public ArrayList<String> loadModuleList() throws IOException, ZoomasterException {
         String moduleListPath = filePath;
+        assert filePath.contains("data") : "filepath to be loaded is from wrong directory";
+        assert filePath.contains("timetable") : "filepath to be loaded has errors";
         moduleListPath = moduleListPath.replace("timetable", "modulelist");
         File f = new File(moduleListPath);
         ArrayList<String> moduleList = new ArrayList<>();
