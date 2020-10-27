@@ -5,17 +5,6 @@
 ## Setting up, getting started
 
 ## Design
-#### Command Component
-
-![Diagram for commmand](./diagrams/Command.jpg)
-
-API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
-1. `Parser` class to parse the user command 
-1.  This results in a `Command` object executed by the `Parser`
-1.  The command execution can affect the `Model`
-
-
-
 ### Architecture
 
 ![Architecture Diagram](./diagrams/Architecture.jpg)
@@ -36,8 +25,17 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
-### Ui
+#### Ui
 The 'Ui' component is in charge of handling input from users and system output.
+
+#### Command Component
+
+![Diagram for commmand](./diagrams/Command.jpg)
+
+API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
+1. `Parser` class to parse the user command 
+1.  This results in a `Command` object executed by the `Parser`
+1.  The command execution can affect the `Model`
 
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
@@ -47,7 +45,7 @@ It is also responsible for printing messages from commands and exception message
 
 The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
 
-### UserData
+#### UserData
 ![UserData diagram](./diagrams/UserData_diagram.jpg)
 
 The `UserData`
@@ -55,6 +53,29 @@ The `UserData`
 - stores a `Goal` object that represents the current user goal.
 - does not depend on the other components.
 
+#### Storage 
+![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
+
+API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
+
+The storage component,
+- is able to store all event and goal information onto the computer
+- is able to load all event and goal information from the computer into the program
+
+![Diagram for storageOverall](./diagrams/storageOverall.jpg)
+
+How the storage component load files
+- the storage component will read the correct txt file.
+- It passes the text to the StorageParser.
+- The event strings are converted to actual events using their respective class constructors.
+- the events are added back into the UserData structure.
+
+How the storage component save files
+- The storage component will first retrieve the correct EventList from the UserData.
+- It will next send this EventList into the StorageParser
+- The StorageParser uses its functions to convert the events into string representations
+- The StorageParser then returns these string representations to Storage
+- the Storage class then writes them to the correct Path and the corresponding text(.txt) files are modified. 
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
@@ -387,3 +408,111 @@ Scheduler--; prints an error message and use case ends.
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Launch and Shutdown
+1. Initial Launch
+    1. Copy the Java Archive file into an empty directory
+    1. On windows machines, open up the terminal and navigate to the directory
+    1. Type in `chcp 65001` and press enter
+    1. Type in `java -Dfile.encoding=UTF-8 -jar scheduler.jar` and press enter
+    1. You should now see the welcome message printed on the screen
+1. Shutdown
+    1. In the program, type the word `bye` and press enter
+    1. You should now see the goodbye message printed on the screen
+    1. The program should return you back to the main terminal window
+
+### Loading  and Saving Data
+1. Sample Load data
+    1. Copy the Java Archive file into an empty directory
+    1. In this directory, make a directory called `data`
+    1. Copy the files in the `storagetester` directory into the `data` directory
+    1. Launch the program as shown in the previous section
+    1. Type `list all`
+    1. You should now see the files listed on the program as shown
+
+### Adding new event
+1. Add a personal event
+    1. Load the program
+    1. Type `add personal dental appointment`
+    1. Type `list personal`, your new personal event should be displayed on the screen
+
+### Delete Event
+1. Deleting a personal event
+    1. Load the program
+    1. Type `add personal dental appointment`
+    1. Type `list personal`, your new personal event should be displayed on the screen
+    1. Test Case: `delete 1` 
+        When you type `list personal`, you should notice that the list is blank
+    1. Test Case: `delete 0`
+        An error message should be displayed as none of the events are labelled with event index 0.
+
+### Repeat Event
+1. Repeating a personal event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal birthday`
+    1. Type `list personal`, your new personal events should be displayed on the screen
+    1. Test Case: `repeat personal 2 monthly 3`
+        An error message should be displayed indicating that you cannot repeat an event with no deadline
+    1. Test Case: `repeat personal 1 monthly 3`
+        When you type `repeat personal 1`, you should see a message indicating to you that the event is repeated monthly for three more times. 
+
+### Changing status of events
+1. Changing the status of a personal event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal birthday`
+    1. Type `list personal`, your new personal events should be displayed on the screen
+    1. Test Case: `done pesonal 1`
+        When you type `list personal`, you should see that the symbol of the first event has changed from a cross to a tick
+    1. Test Case: `undone personal 1`
+        When you type `list personal`, you should see that the symbol of the first event has changed from a tick to a cross 
+
+### Help Command
+1. Getting generic help
+    1. Load the program
+    1. Type `help` and press enter
+    1. You should see a summary of all the commands available to the user printed on the screen
+
+### Printing calendar
+1. Printing calendar
+    1. Copy the Java Archive file into an empty directory
+    1. In this directory, make a directory called `data`
+    1. Copy the files in the `storagetester` directory into the `data` directory
+    1. Launch the program as shown in the previous section
+    1. Type `list all`
+    1. You should now see the files listed on the program as shown
+    1. Type `calendar`
+    1. As you press enter, you should see all your events and timings being displayed in chronological order
+    1. Once all the events have been printed, the `End of calendar` message should appear
+    
+### Checking schedule availability
+1. Check Schedule
+    1. Copy the Java Archive file into an empty directory
+    1. In this directory, make a directory called `data`
+    1. Copy the files in the `storagetester` directory into the `data` directory
+    1. Launch the program as shown in the previous section
+    1. Type `list all`
+    1. You should now see the files listed on the program as shown
+    1. Test Case: `check 01/01/2010; 1100; 01/01/2010; 2359;`
+        1. You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs
+    1. Test Case: `check 01/01/2020; 1100; 01/01/2020; 2359`
+        1. The message `You have no coinciding events!` should be printed. 
+
+### Adding deadline to event
+1. Repeating a personal event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal birthday`
+    1. Type `list personal`, your new personal events should be displayed on the screen
+    1. Test Case: `deadline 2; 03/08/2020`
+        A success message should be printed, indicating that the new deadline has been set
+        When `list personal` is typed, you should see that the second event now has a deadline attached to it
+
+### Setting reminder
+1. Repeating a personal event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal birthday; <<current date that test is run>>`
+    1. Test Case: `reminder`
+        The program should show that the personal birthday event is the event that you have for today. 
