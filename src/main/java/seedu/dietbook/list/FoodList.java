@@ -1,6 +1,8 @@
 package seedu.dietbook.list;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDateTime;
 import seedu.dietbook.food.Food;
 
 
@@ -20,7 +22,7 @@ public class FoodList {
     }
 
     /**
-     * Convenience constructor mainly for testing purposes.
+     * Convenience constructor for testing purposes.
      */
     protected FoodList(ArrayList<FoodEntry> entries) {
         this.foodEntries = entries;
@@ -35,9 +37,9 @@ public class FoodList {
      * @return string representation of the food object added
      */
     public String addFood(int portionSize, Food food) {
-        FoodEntry toAdd = new FoodEntry(portionSize, food);
-        foodEntries.add(toAdd);
-        return toAdd.toString();
+        FoodEntry entry = new DatedFoodEntry(portionSize, food);
+        foodEntries.add(entry);
+        return entry.toString();
     }
 
     /**
@@ -45,10 +47,11 @@ public class FoodList {
      */
     public String addFood(int portionSize, String name, int calorie, 
             int carbohydrate, int protein, int fat) {
-        FoodEntry toAdd = new FoodEntry(portionSize, name, calorie, carbohydrate, protein, fat);
-        foodEntries.add(toAdd);
-        return toAdd.toString();
+        FoodEntry entry = new DatedFoodEntry(portionSize, name, calorie, carbohydrate, protein, fat);
+        foodEntries.add(entry);
+        return entry.toString();
     }
+
 
     /**
      * Food database search functionality support.
@@ -61,6 +64,20 @@ public class FoodList {
      */
     public String addFood(int portionSize, String name) throws FoodNotFoundException {
         throw new FoodNotFoundException();
+    }
+
+
+    /**
+     * Add add method for baglogged entries.
+     * Allows specificiation of time via LocalDateTime param.
+     * @param dateTime User specified time for backlogged entry.
+     */
+    public String addFoodAtDateTime(int portionSize, String name, int calorie, 
+            int carbohydrate, int protein, int fat, LocalDateTime dateTime) {
+        
+        FoodEntry entry = new DatedFoodEntry(portionSize, name, calorie, carbohydrate, protein, fat, dateTime);
+        foodEntries.add(entry);
+        return entry.toString();
     }
 
     /**
@@ -83,20 +100,53 @@ public class FoodList {
         return true;
     }
 
+
     /**
      * Obtain the food objects in Foodlist as an ArrayList.
      * For other classes that wish to operate on the Food items directly.
      * @return Arraylist of ordered Food objects in Foodlist's foodEntries.
      */
-    public ArrayList<Food> getFoods() {
+    public List<Food> getFoods() {
         return FoodListManager.listToFoods(foodEntries);
     }
 
     /**
      * Obtain list of food objects in FoodList, scaled to portion size.
      */
-    public ArrayList<Food> getPortionedFoods() {
+    public List<Food> getPortionedFoods() {
         return FoodListManager.listToPortionedFoods(foodEntries);
+    }
+
+    /**
+     * Obtain list of foods consumed after specified timing.
+     */
+    public static List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
+        List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
+        return FoodListManager.listToFoods(entriesAfterDateTime);
+    }
+
+    /**
+     * Obtain list of foods consumed after specified timing, scaled to portion size.
+     */
+    public List<Food> getPortionedFoodsAfterDateTime(LocalDateTime dateTime) {
+        List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
+        return FoodListManager.listToFoods(entriesAfterDateTime);
+    }
+
+    /**
+     * Obtain list of foods consumed within the range of a specified timing.
+     */
+    public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
+        return FoodListManager.listToFoods(entriesInRange);
+    }
+
+    /**
+     * Obtain list of foods consumed within the range of a specified timing, scaled to portion size.
+     */
+    public List<Food> getPortionedFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
+        return FoodListManager.listToPortionedFoods(entriesInRange);
     }
 
     @Override
