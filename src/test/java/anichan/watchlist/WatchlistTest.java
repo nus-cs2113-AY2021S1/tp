@@ -26,7 +26,7 @@ class WatchlistTest {
     }
 
     @Test
-    void testEquals() {
+    void equals() {
         // Same object -> returns true.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
         assertEquals(firstWatchlist, duplicateNameWatchlist);

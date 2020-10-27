@@ -2,7 +2,7 @@ package anichan.parser;
 
 import anichan.exception.AniException;
 import anichan.logger.AniLogger;
-import anichan.command.InfoCommand;
+import anichan.commands.InfoCommand;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

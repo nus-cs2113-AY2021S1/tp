@@ -1,7 +1,7 @@
 package anichan.parser;
 
 import anichan.exception.AniException;
-import anichan.command.BrowseCommand;
+import anichan.commands.BrowseCommand;
 import anichan.logger.AniLogger;
 
 import java.util.logging.Level;

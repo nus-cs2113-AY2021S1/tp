@@ -1,7 +1,7 @@
 package anichan.parser;
 
 import anichan.anime.AnimeData;
-import anichan.command.SearchCommand;
+import anichan.commands.SearchCommand;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.storage.StorageManager;
