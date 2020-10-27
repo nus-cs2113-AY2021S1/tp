@@ -39,7 +39,7 @@ public class StorageManager {
      *
      * @throws SystemException when it is unable to create a file
      */
-    public static void createFiles() throws SystemException {
+    public void createFiles() throws SystemException {
         //Create directories
         String dataPath = FOLDER_DIR;
         String notesPath = FOLDER_DIR + NOTES_DIR;
@@ -69,7 +69,7 @@ public class StorageManager {
     /**
      * Creates a directory path data/notes. In case both data and /notes do not exist.
      */
-    private static void createDirectory(String path) {
+    private void createDirectory(String path) {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
@@ -81,7 +81,7 @@ public class StorageManager {
      * @param path path of file to be created
      * @throws IOException thrown when directory does not exist. Unable to create file
      */
-    private static void createFile(String path) throws IOException {
+    private void createFile(String path) throws IOException {
         File file = new File(path);
         if (!file.exists()) {
             file.createNewFile();
@@ -93,7 +93,7 @@ public class StorageManager {
      *
      * @param notebook The Notebook containing all the notes to be saved.
      */
-    public static void saveNotebook(Notebook notebook) throws SystemException {
+    public void saveNotebook(Notebook notebook) throws SystemException {
         for (int i = 0; i < notebook.getSize();i++) {
             try {
                 saveNoteContent(notebook.getNote(i), true);
@@ -112,7 +112,7 @@ public class StorageManager {
      * @param isArchive determines whether to save archived notes or normal notes
      * @throws IOException thrown when unable to write to the file
      */
-    public static void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
+    public void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
         String path;
 
         ArrayList<Note> notes;
@@ -167,7 +167,7 @@ public class StorageManager {
      *
      * @param note The note to be saved
      */
-    public static void saveNoteContent(Note note, boolean isArchive) throws IOException {
+    public void saveNoteContent(Note note, boolean isArchive) throws IOException {
         String path;
 
         if (isArchive) {
@@ -186,7 +186,7 @@ public class StorageManager {
      * Saves the details of notes such as title, tags and pinned status to the notebook text file.
      * @param note Note of which details are to be saved to the file
      */
-    public static void saveNoteDetails(Note note, boolean isArchive) throws IOException {
+    public void saveNoteDetails(Note note, boolean isArchive) throws IOException {
         String path;
 
         if (isArchive) {
@@ -225,7 +225,7 @@ public class StorageManager {
         return content;
     }
 
-    public static void deleteNoteContentFile(String noteTitle, boolean isArchive) throws SystemException {
+    public void deleteNoteContentFile(String noteTitle, boolean isArchive) throws SystemException {
         String path;
 
         if (isArchive) {
@@ -252,17 +252,6 @@ public class StorageManager {
      */
     private void saveTimetable(Timetable timetable){
 
-    }
-
-    /**
-     * Saves all the Notes in the Notebook and the Events in the Timetable to the storage file.
-     *
-     * @param notebook The Notebook containing all the notes to be saved.
-     * @param timetable The Timetable containing all the events to be saved.
-     */
-    public void saveAll(Notebook notebook, Timetable timetable)throws SystemException {
-        saveNotebook(notebook);
-        saveTimetable(timetable);
     }
 
     /**

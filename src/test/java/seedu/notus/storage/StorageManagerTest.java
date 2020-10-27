@@ -18,6 +18,7 @@ class StorageManagerTest {
     void saveNotebook() throws SystemException {
         Notebook notes = new Notebook();
         ArrayList<String> content = new ArrayList<>();
+        StorageManager storageManager = new StorageManager();
         content.add("Hello this is a test note");
         content.add("With a few lines");
         content.add("");
@@ -35,7 +36,7 @@ class StorageManagerTest {
             Note note = new Note(title, content, isPinned, isArchived);
             notes.addNote(note);
         }
-        StorageManager.saveNotebook(notes);
+        storageManager.saveNotebook(notes);
     }
 
     @Test
