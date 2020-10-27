@@ -3,8 +3,8 @@ package timetable;
 import studyit.StudyItLog;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class TimeTableParser {
@@ -12,6 +12,10 @@ public class TimeTableParser {
         if (command.equals("show schedule")) {
             System.out.println(Message.printShowSchedule);
             TablePrinter.printTable(dateList.dateList);
+            return;
+        } else if (command.equals("show link")) {
+            System.out.println(Message.printShowLink);
+            showLink(dateList);
             return;
         }
         try {
@@ -63,19 +67,19 @@ public class TimeTableParser {
             }
         }
         String linkOrVenue = in.nextLine();
-        System.out.println("Which days of the week is the lesson?");
+        System.out.println("What are the days and time of the lesson (eg. Monday 5-8pm, Tuesday 6-9pm)");
         String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
-        System.out.println("Which day does the lesson start? ");
+        System.out.println("Which date does the lesson start? (eg. 26/10/2020)");
         LocalDateTime startDay = getDateTime(in.nextLine());
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
         addClassPeriods(periods, repeat, startDay, lesson);
         return lesson;
     }
 
-    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
-                                        Lesson lesson) throws InvalidDayOfTheWeekException {
+    public static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
+                                Lesson lesson) throws InvalidDayOfTheWeekException {
         int startDayNum = startDay.getDayOfWeek().getValue();
         for (int i = 0; i < repeat; i++) {
             for (String period : periods) {
@@ -106,6 +110,28 @@ public class TimeTableParser {
         }
     }
 
+    public static void showLink(DateList dateList) {
+        LocalDate todayDate = LocalDateTime.now().toLocalDate();
+        int now = LocalDateTime.now().toLocalTime().getHour() * 100;
+        for (EventList eventList: dateList.dateList) {
+            if (eventList.dateTag.equals(todayDate)) {
+                accessEventList(eventList, todayDate, now);
+                return;
+            }
+        }
+    }
+
+    public static void accessEventList(EventList eventList, LocalDate todayDate, int now) {
+        for (Event event: eventList.events) {
+            for (Duration period: event.periods) {
+                if ((period.timeSlot.contains(now) || period.timeSlot.contains(now + 100)
+                        || period.timeSlot.contains(now + 200))
+                        && period.startDateTime.toLocalDate().equals(todayDate)) {
+                    System.out.println(event.linkOrVenue);
+                }
+            }
+        }
+    }
 
 
     public static void fileParser(String command, DateList dateList) {

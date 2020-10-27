@@ -1,16 +1,36 @@
 # Developer Guide
+##Content 
+[to be filled] 
+
+## Setting up, Getting Started
+###Setting up the project in your computer
+
+First, **fork** this repo, and **clone** the fork into your computer.
+
+If you plan to use Intellij IDEA (highly recommended):
+1. Configure the JDK: Configuring the JDK to ensure Intellij is configured to use JDK 11.
+2. Import the project as a Gradle project.
+3. Run the studyit.StudyIt and try a few commands.
+4. Run the tests to ensure they all pass.
+
+###Before writing code
+
+1. Configure the coding style. 
+Ensure Coding style is standardised throughout. 
+2. Learn the design. 
+When you are ready to start coding, we recommend that you get some 
+sense of the overall design by reading about AddressBook’s architecture.
 
 ## Design & implementation
-
-
-**Bookmark Component**
+###Architecture
+[to be filled]
+###Bookmark Component
 
 This bookmark section consists of how the bookmark feature is implemented. 
-The bookmark feature is implemented similarly as the main architecture, however, 
+The bookmark feature is implemented similarly to the main architecture, however, 
 in a smaller scale and a more bookmark-specific way. Figure 1 illustrates the general overview, 
 the associations and the multiplicity of the bookmark classes.
 
-[uml diagram]
 ![Bookmark Class Diagram](Images/BookmarkRun_Class.png)
 
 API: java.bookmarkRun
@@ -24,7 +44,6 @@ As shown in figure 1, `BookmarkRun` is
 Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
-[uml diagram]
 ![Bookmark Sequence Diagram](Images/sequence_bookmark.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
@@ -49,10 +68,7 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
 
-
-
-
-**Academic Component**
+### **Academic Component**
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
 Figure x illustrates the general overview, the associations and the multiplicity of the academic classes.
@@ -93,25 +109,100 @@ It implements the following operations:
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
 
-## Product scope
-### Target user profile
+### **Flashcard Component**
 
-{Describe the target user profile}
+This section will describe in detail how the flashcard feature is implemented.
 
-### Value proposition
+![Flashcard Component Class Diagram](Images/Flashcard_Class.png)
 
-{Describe the value proposition: what problem does it solve?}
+The above diagram looks at the overall structure of how the flashcard component is being implemented. 
+This component is split into 4 different classes, their associations and multiplicity as explained in 
+the above Figure 7. As shown in Figure 7, the main class `FlashcardRun` will be accessed when the 
+flashcard mode is called in `StudyIt` Class. `FlashcardRun` class is associated with `FlashcardStorage` 
+class that is used to store data in .txt file and `FlashcardDeck` class which contains any number of `Flashcards`.
 
-## User Stories
+**Flashcard Implementation**
 
-|Version| As a ... | I want to ... | So that I can ...|
+![Sequence Diagram when user input “add card” command](Images/addCard_sequenceDiagram.png)
+
+With reference to Figure 8, when `FlashcardRun` is first initialised by `StudyIt`, it will construct 
+the `FlashcardDeck` class. As an add card command is given by the user, `FlashcardRun` will take in the 
+command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
+it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
+answer of the flashcard that have been created.
+
+##Documentation, logging, testing, configuration, dev-ops
+###Testing guide
+Running tests:  
+The main way that was used to run the test for Study It is:   
+Using IntelliJ JUnit test runner.   
+A. To run all tests, right-click on the src/test/java folder and choose 
+Run Test in ‘tp.test’  
+B. To run a subset of tests, you can right-click on a test package, 
+test class or a test and choose Run ‘ABC’.  
+Type of Tests  
+This project has 5 types of tests. 4 tests to test each feature and 1 test to test the main integration of the whole application.
+
+###Logging guide
+We are using java.util.logging package for logging 
+The StudyItLog class is used to manage the logging levels and logging destinations.
+Log messages are output through the console and to a  .log file.
+The output logging level can be controlled using .setlevel( )
+When choosing a level for a log message, follow the following conventions:
+1. SEVERE: A critical problem detected which may cause the termination of the application.
+2. WARNING: Can continue, but with caution.
+3. INFO: Information showing the noteworthy actions by the App.
+4. FINE:  Details that are not usually noteworthy but may be useful in debugging.
+
+
+###DevOps Guide 
+Build automation  
+This project uses Gradle for build automation management.
+./gradlew build - check for checkstyle error and runs all tests
+Code coverage
+This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
+
+##Appendix: Requirement 
+### Product scope
+**Target user profile:**
+* studies in NUS
+* has a need to manage a significant number of links
+* has a need to manage their classes in a timetable
+* has a need to manage their grades
+* has a need to manage contact numbers of professors and teaching assistants.
+* has a need to memorise content to study 
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps  
+
+**Value proposition:**
+* manage links faster than a typical mouse/GUI driven app
+* manage grades than a typical mouse/GUI driven app
+* manage contact numbers of professors and teaching assistants than a typical mouse/GUI driven app
+* manage timetable than a typical mouse/GUI driven app
+* manage study content than a typical mouse/GUI driven app 
+
+#### User Stories
+
+|Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|Student in Nus|organise my zoom links|don’t need to find the zoom link everytime lectures/tutorials start.|
+|v1.0|student attending online classes|keep track of the timetable of my lessons whether  it is online or offline|do not miss any lessons.|
+|v2.0|Student in Nus|organise all the useful signup links (internship/ hackathon/ talks) sent to our emails|can keep track of my time and dates of any relevant events.|
+|v1.0|Student in Nus|keep track of my results and the number of SUs I have left,|can plan my semester properly|
+|v1.0|student with packed timetables|see clashes in my timetable |can plan things without overlapping events.|
+|v1.0|student taking a mod that requires me to memorize a lot of contents|organize the contents into flashcards|can revise them on the go.|
+|v1.0|student who is worried about my results|calculate my CAP based on estimated grades|know i won’t get expelled :’)|
+|v1.0|Student in Nus|keep track of my profs and ta’s contacts|know who to find when i have troubles.|
+|v1.0|Student in Nus|bookmark all the important NUS websites|can access them more easily|
 
-## Non-Functional Requirements
+#### Non-Functional Requirements
 
-{Give non-functional requirements}
+* Should work on any mainstream OS as long as it has Java 11 or above installed.
+* A user with above average typing speed for regular English text 
+(i.e. not code, not system admin commands) should be able to accomplish most of the 
+tasks faster using commands than using the mouse.
 
 ## Glossary
 
