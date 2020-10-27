@@ -3,11 +3,15 @@ package seedu.commands;
 import seedu.data.TaskMap;
 import seedu.ui.DisplayMode;
 
+import java.time.LocalDate;
+
 public class CommandResult {
     private final String message;
+
     private TaskMap tasks = null;
     private DisplayMode displayMode = DisplayMode.ALL;
     private boolean isExit = false;
+    private LocalDate date;
 
     public CommandResult(String message) {
         this.message = message;
@@ -16,12 +20,6 @@ public class CommandResult {
     public CommandResult(String message, TaskMap tasks) {
         this.message = message;
         this.tasks = tasks;
-    }
-
-    public CommandResult(String message, TaskMap tasks, DisplayMode displayMode) {
-        this.message = message;
-        this.tasks = tasks;
-        this.displayMode = displayMode;
     }
 
     public String getMessage() {
@@ -42,5 +40,21 @@ public class CommandResult {
 
     public void setExit(boolean exit) {
         isExit = exit;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setTasks(TaskMap tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setDisplayMode(DisplayMode displayMode) {
+        this.displayMode = displayMode;
     }
 }
