@@ -17,6 +17,10 @@ public class EditCommand {
 
     }
 
+    /**
+     * Edits the number of seasons for a particular show.
+     * @param editCommand number of seasons
+     */
     public static void editSeasons(String editCommand) {
         int numSeasons = Integer.parseInt(editCommand.substring(7));
         int initialNumSeasons = show.getNumSeasons();
@@ -40,6 +44,10 @@ public class EditCommand {
         show.setNumEpisodesForSeasons(episodes);
     }
 
+    /**
+     * Changes duration of each episodes.
+     * @param input length of episode
+     */
     public static void editDuration(String input) {
         String[] tokenizedInput = input.split(" ");
         try {
@@ -50,6 +58,11 @@ public class EditCommand {
         }
     }
 
+    /**
+     * changes the number of episodes in each season.
+     * @param input number of episodes comma separated
+     * @throws NullPointerException
+     */
     public static void editEpisode(String input) throws NullPointerException {
         String[] numOfEpisodes = input.split(",");
         int i = 0;
@@ -69,6 +82,10 @@ public class EditCommand {
         show.setNumEpisodesForSeasons(intNumOfEpisodes);
     }
 
+    /**
+     * Runs the parser for the edit command
+     * @throws NullPointerException
+     */
     public static void processCommand() throws NullPointerException {
         boolean isShowInList = ShowList.doesShowExist(showName);
         if (!isShowInList) {
