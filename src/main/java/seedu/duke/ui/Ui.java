@@ -33,6 +33,17 @@ public class Ui {
     }
 
     /**
+     * Gets raw user input from user via input stream.
+     * This method is different from getUserCommand():
+     * It does not print "command>" and does not perform loop until it gets a non-empty trimmed string.
+     * 
+     * @return Raw input from user
+     */
+    public static String getUserInput() {
+        return in.nextLine().trim();
+    }
+
+    /**
      * Print messages to user.
      *
      * @param messages Specify messages to print

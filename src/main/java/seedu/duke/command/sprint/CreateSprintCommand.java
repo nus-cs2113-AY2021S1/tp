@@ -21,7 +21,7 @@ public class CreateSprintCommand extends SprintCommand {
      * Creates a new CreateSprint command with arguments.
      */
     public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
         this.sprintStart = LocalDate.now();
     }
 

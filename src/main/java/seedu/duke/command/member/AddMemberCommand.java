@@ -11,7 +11,7 @@ public class AddMemberCommand extends MemberCommand {
 
 
     public AddMemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
-        super(parameters, projectManager);
+        super(parameters, projectManager, true);
     }
 
     public void execute() {

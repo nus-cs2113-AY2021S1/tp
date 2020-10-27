@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class TaskHelpCommand extends Command {
     public TaskHelpCommand(Hashtable<String, String> parameters) {
-        super(parameters);
+        super(parameters, false);
     }
 
     @Override

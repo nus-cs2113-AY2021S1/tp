@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class SprintHelpCommand extends Command {
     public SprintHelpCommand(Hashtable<String, String> parameters) {
-        super(parameters);
+        super(parameters, false);
     }
 
     @Override

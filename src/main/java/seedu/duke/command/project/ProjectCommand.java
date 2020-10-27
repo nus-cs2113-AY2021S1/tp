@@ -10,8 +10,8 @@ public abstract class ProjectCommand extends Command {
     /**
      * Creates a new Sprint command with arguments.
      */
-    public ProjectCommand(Hashtable<String, String> parameters) {
-        super(parameters);
+    public ProjectCommand(Hashtable<String, String> parameters, boolean shouldSave) {
+        super(parameters, shouldSave);
     }
 
     public abstract void execute();

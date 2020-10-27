@@ -10,7 +10,7 @@ public class SelectProjectCommand extends ProjectCommand {
     private final ProjectManager projectManager;
 
     public SelectProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
-        super(parameters);
+        super(parameters, true);
         this.projectManager = projectManager;
     }
 

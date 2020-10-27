@@ -15,7 +15,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
     private final ArrayList<Integer> taskIds;
 
     public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
     }
 

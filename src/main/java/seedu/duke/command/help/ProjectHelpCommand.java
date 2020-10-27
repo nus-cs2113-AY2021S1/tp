@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class ProjectHelpCommand extends Command {
     public ProjectHelpCommand(Hashtable<String, String> parameters) {
-        super(parameters);
+        super(parameters, false);
     }
 
     @Override

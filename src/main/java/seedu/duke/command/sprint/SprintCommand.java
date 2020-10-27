@@ -19,8 +19,8 @@ public abstract class SprintCommand extends Command {
     /**
      * Creates a new Sprint command with arguments.
      */
-    public SprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters);
+    public SprintCommand(Hashtable<String, String> parameters, ProjectManager projectList, boolean shouldSave) {
+        super(parameters, shouldSave);
         this.projectList = projectList;
     }
 

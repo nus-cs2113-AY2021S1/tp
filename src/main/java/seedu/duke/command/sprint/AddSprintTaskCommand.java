@@ -15,7 +15,7 @@ public class AddSprintTaskCommand extends SprintCommand {
     private final ArrayList<Integer> taskIds;
 
     public AddSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
     }
 

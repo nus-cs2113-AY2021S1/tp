@@ -18,7 +18,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     private String[] userIds;
 
     public AllocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
-        super(parameters, projectList);
+        super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
         this.userIds = new String[0];
     }
