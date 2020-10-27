@@ -61,7 +61,7 @@ and it's interaction with other components.
 ![uicomponent](DG_Diagrams/UiComponent.png)
 
 #### 2.1.2. Logic Component
-The logic component is responsible for the following tasks:
+The Logic component is responsible for the following tasks:
 - Make sense of the command entered by the user by splitting it into the command type and the parameters and/or 
 delimiters if any.
 -  Executes a command based on its type and provides an appropriate result to the user via the Ui component.
@@ -138,20 +138,23 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 
 ### 3.2. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
 |v1.0|freshman/ anyone new to nus|know if there is any direct bus to my target destination|I do not need to change buses|
 |v1.0|someone that is unfamiliar with the NUS campus|know the full routes of the buses|I could plan my route to my desired destination|
 |v1.0|someone new to NUS|know all the available bus stops in the school|I can check the possible bus stops I can board/alight at to reach my destination|
 |v1.0|curious person|know the full routes of all the buses in NUS|I can see where each bus is heading to|
-|v1.0|freshman/ anyone new to NUS|I want to know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
+|v1.0|freshman/ anyone new to NUS|know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
 |v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 
 ### 3.3. Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Nav@NUS should be able to work on any OS which has Java 11 or a higher version of Java installed.
+2. The user is expected to have a basic idea about the places around NUS.
+3. A user comfortable with typing english text should be able to find this application faster and more useful than those
+that require mouse clicks.
 
 ### 3.4. Glossary
 
