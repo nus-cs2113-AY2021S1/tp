@@ -298,13 +298,22 @@ There are two ways to run tests.
 
 
 ## Product scope
+
 ### Target user profile
 
+* has the need to manage a significant number of day-to-day matters
+* prefer desktop command line apps over other types
+* prefer typing to using mouse interactions
+* comfortable with using command line apps
+* forgetful person who needs reminders
+* a fast typer
 {Describe the target user profile}
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+By using 25HoursADay, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information. 25HoursADay can manage one's day-to-day matters faster than a 
+typical mouse/GUI driven app.
 
 ## User Stories
 
@@ -312,9 +321,12 @@ There are two ways to run tests.
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|user|set my tasks as done|track my tasks better|
+|v1.0|user|add different tasks and events|better manage my day-to-day matters|
+|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 
 ## Non-Functional Requirements
 
@@ -323,8 +335,8 @@ There are two ways to run tests.
 ## Glossary
 
 * *Task* - a todo item or a deadline item.
-* *School event* - a lecture, tutorial or lab session.
-* *Event* - an activity, lecture, tutorial or lab session.
+* *School event* - a lecture, tutorial, lab session or an examination.
+* *Event* - an activity, examination, lecture, tutorial or lab session.
 * *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
 * *Task list* - a list that stores all the tasks added to the app.
 * *Event list* - a list that stores all the events added to the app.
