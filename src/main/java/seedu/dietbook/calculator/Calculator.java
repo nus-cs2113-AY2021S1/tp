@@ -32,7 +32,7 @@ public class Calculator {
             totalCalorie += foodList.get(i).getCalorie();
             totalCarbohydrate += foodList.get(i).getCarbohydrate();
             totalProtein += foodList.get(i).getProtein();
-            totalFat += foodList.get(i).getFats();
+            totalFat += foodList.get(i).getFat();
         }
     }
 
@@ -189,7 +189,7 @@ public class Calculator {
     public int calculateFat(LocalDateTime startTime) {
         int fat = 0;
         for (int i = 0; i < FoodList.getFoodsAfterDateTime(startTime).size(); i++) {
-            fat += FoodList.getFoodsAfterDateTime(startTime).get(i).getFats();
+            fat += FoodList.getFoodsAfterDateTime(startTime).get(i).getFat();
         }
         return fat;
     }
@@ -207,7 +207,7 @@ public class Calculator {
     public int calculateFat(LocalDateTime startTime, LocalDateTime endTime) {
         int fat = 0;
         for (int i = 0; i < FoodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            fat += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFats();
+            fat += FoodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFat();
         }
         return fat;
     }
