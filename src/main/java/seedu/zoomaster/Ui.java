@@ -474,51 +474,51 @@ public class Ui {
 
         } else if (Parser.programMode == 3) {
             switch (input) {
-                case AddMeetingCommand.ADD_KW:
-                    System.out.println(LINE);
-                    printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
-                    printCyan("Format: add {module} {slot description} {day of the week} "
-                            + "{time interval} {URL}" + NEW_LINE);
-                    printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
-                    printYellow("You can also add the module first then add the slot afterwards, "
-                            + "then add the bookmark to that slot. " + NEW_LINE);
-                    printGreen("eg. add CS2113" + NEW_LINE
-                            + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
-                            + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+            case AddMeetingCommand.ADD_KW:
+                System.out.println(LINE);
+                printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
+                printCyan("Format: add {module} {slot description} {day of the week} "
+                        + "{time interval} {URL}" + NEW_LINE);
+                printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+                printYellow("You can also add the module first then add the slot afterwards, "
+                        + "then add the bookmark to that slot. " + NEW_LINE);
+                printGreen("eg. add CS2113" + NEW_LINE
+                        + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
+                        + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
 
-                    printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
-                    printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
-                    printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html" + NEW_LINE);
-                    System.out.println(LINE);
-                    break;
-                case LoadPlannerCommand.LOAD_KW:
-                    System.out.println(LINE);
-                    printYellow("Loads the common empty slots from a few individual timetables " + NEW_LINE);
-                    printCyan("Format: load" + NEW_LINE);
-                    System.out.println(LINE);
-                    break;
-                case ShowTimetableCommand.SHOW_KW:
-                    System.out.println(LINE);
-                    printYellow("Shows the common empty slots along with the newly added slots (if any)" + NEW_LINE);
-                    printCyan("Format: show '{day}'" + NEW_LINE);
-                    printGreen("eg. show" + NEW_LINE);
-                    printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
+                printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
+                printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
+                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case LoadPlannerCommand.LOAD_KW:
+                System.out.println(LINE);
+                printYellow("Loads the common empty slots from a few individual timetables " + NEW_LINE);
+                printCyan("Format: load" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case ShowTimetableCommand.SHOW_KW:
+                System.out.println(LINE);
+                printYellow("Shows the common empty slots along with the newly added slots (if any)" + NEW_LINE);
+                printCyan("Format: show '{day}'" + NEW_LINE);
+                printGreen("eg. show" + NEW_LINE);
+                printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
 
-                    printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
-                    printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
-                    printGreen("eg. show CS2113" + NEW_LINE);
-                    printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
-                    System.out.println(LINE);
-                    break;
-                case SavePlannerCommand.SAVE_KW:
-                    System.out.println(LINE);
-                    printYellow("Saves the newly added slot(s) to each individual timetables" + NEW_LINE);
-                    printCyan("Format: save" + NEW_LINE);
-                    System.out.println(LINE);
-                    break;
-                default:
-                    printYellowWithBorder("something went wrong...");
-                    break;
+                printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
+                printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
+                printGreen("eg. show CS2113" + NEW_LINE);
+                printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            case SavePlannerCommand.SAVE_KW:
+                System.out.println(LINE);
+                printYellow("Saves the newly added slot(s) to each individual timetables" + NEW_LINE);
+                printCyan("Format: save" + NEW_LINE);
+                System.out.println(LINE);
+                break;
+            default:
+                printYellowWithBorder("something went wrong...");
+                break;
             }
         }
 
