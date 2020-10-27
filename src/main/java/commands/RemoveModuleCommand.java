@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 
 public class RemoveModuleCommand extends RemoveCommand {
@@ -20,8 +21,6 @@ public class RemoveModuleCommand extends RemoveCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes module based on the index in the list. \n"
             + "Parameters: " + MODULE_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
-
-    public static final String MESSAGE_INVALID_INDEX_MODULE = "The module is not found, please try again.";
 
     private final int removeIndex;
 
@@ -51,8 +50,9 @@ public class RemoveModuleCommand extends RemoveCommand {
             logger.info("Module: " + module.toString() + " successfully deleted.");
             return prepareResult(MODULE, module.toString(), allModules.size());
         } catch (IndexOutOfBoundsException e) {
-            logger.info(MESSAGE_INVALID_INDEX_MODULE);
-            return MESSAGE_INVALID_INDEX_MODULE;
+            String result = String.format(MESSAGE_INVALID_INDEX_RANGE, MODULE);
+            logger.info(result);
+            return result;
         }
     }
 }

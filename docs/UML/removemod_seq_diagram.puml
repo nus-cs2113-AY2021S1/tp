@@ -1,0 +1,30 @@
+@startuml
+-> ":RemoveModuleCommand" : execute(ui, access, storage)
+activate ":RemoveModuleCommand"
+":RemoveModuleCommand" -> ":RemoveModuleCommand" : removeModule(access, storage)
+activate ":RemoveModuleCommand"
+":RemoveModuleCommand" -> ":Access" : getAdmin()
+":RemoveModuleCommand" <-- ":Access"
+destroy ":Access"
+":RemoveModuleCommand" -> ":Admin" : getModules()
+":RemoveModuleCommand" <-- ":Admin" : getModules
+destroy ":Admin"
+":RemoveModuleCommand" -> ":ModuleList" : getAllModules()
+":RemoveModuleCommand" <-- ":ModuleList" : allModules
+destroy ":ModuleList"
+":RemoveModuleCommand" -> ":Storage" : deleteDirectory(directory)
+":RemoveModuleCommand" <-- ":Storage" : isRemoved
+destroy ":Storage"
+opt not removed
+    <-- ":RemoveModuleCommand" : IOException
+end
+":RemoveModuleCommand" -> ":RemoveCommand" : prepareResult(type, module, count)
+":RemoveModuleCommand" <-- ":RemoveCommand" : result
+destroy ":RemoveCommand"
+":RemoveModuleCommand" --> ":RemoveModuleCommand" : result
+deactivate ":RemoveModuleCommand"
+":RemoveModuleCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":RemoveModuleCommand"
+deactivate ":RemoveModuleCommand"
+@enduml

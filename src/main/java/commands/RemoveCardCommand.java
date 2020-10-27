@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import static common.Messages.CARD;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class RemoveCardCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveCardCommand.class.getName());
@@ -19,8 +20,6 @@ public class RemoveCardCommand extends RemoveCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes card based on the index in the list. \n"
             + "Parameters: " + CARD_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
-
-    public static final String MESSAGE_INVALID_INDEX_FLASHCARD = "The flashcard is not found, please try again.";
 
     private final int removeIndex;
 
@@ -46,8 +45,9 @@ public class RemoveCardCommand extends RemoveCommand {
             logger.info("Flashcard successfully deleted.");
             return prepareResult(CARD, card.toString(), cards.getCardCount());
         } catch (IndexOutOfBoundsException e) {
-            logger.info(MESSAGE_INVALID_INDEX_FLASHCARD);
-            return MESSAGE_INVALID_INDEX_FLASHCARD;
+            String result = String.format(MESSAGE_INVALID_INDEX_RANGE, CARD);
+            logger.info(result);
+            return result;
         }
     }
 }
