@@ -5,7 +5,7 @@
 2. [Making a release](#2)
 --------------------------------------------------------------------------------------------------------------------
 
-## Build automation
+## 1. Build automation
 
 This project uses Gradle for **build automation and dependency management**.
 
@@ -31,7 +31,7 @@ Given below are how to use Gradle for some important project tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Making a release
+## 2. Making a release
 
 Here are the steps to create a new release.
 

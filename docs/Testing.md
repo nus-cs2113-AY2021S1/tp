@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Running tests
+### 1. Running tests
 
 There are two ways to run tests.
 
@@ -23,7 +23,7 @@ There are two ways to run tests.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Types of tests
+### 2. Types of tests
 
 This project has three types of tests:
 
