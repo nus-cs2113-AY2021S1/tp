@@ -1,17 +1,20 @@
 @startuml
 actor user
 participant ":Duke"
-box model
+box logic #LightBlue
 participant ":Parser"
 participant ":AddFavCommand"
 end box
-box logic
-participant ":Fav"
+box model #A9DFDF
 participant ":FavList"
+participant ":Fav"
+end box
+box Ui #A9D1D0
+participant "<<class>>\n:Ui"
 end box
 
 user ->":Duke"
-":Duke" -> ":Parser" : Enter command
+":Duke" -> ":Parser" : /addfav
 activate ":Parser"
 create ":AddFavCommand"
 ":Parser" -> ":AddFavCommand"
@@ -26,19 +29,20 @@ opt null command
 end
 ":AddFavCommand" -> ":AddFavCommand" : createFav()
 activate ":AddFavCommand"
-alt description empty
-    create ":Fav"
-    ":AddFavCommand" -> ":Fav" : new Fav(command, command)
-     activate ":Fav" 
-    ":Fav" --> ":AddFavCommand"
-    deactivate ":Fav" 
-else description not empty
-    create ":Fav"
-    ":AddFavCommand" -> ":Fav" : new Fav(command, desc)
-     activate ":Fav" 
-    ":Fav" --> ":AddFavCommand"
-    deactivate ":Fav" 
-end
+
+'alt description empty
+'    create ":Fav"
+'    ":AddFavCommand" -> ":Fav" : new Fav(command, command)
+'     activate ":Fav"
+'    ":Fav" --> ":AddFavCommand"
+'    deactivate ":Fav"
+'else description not empty
+'    create ":Fav"
+'    ":AddFavCommand" -> ":Fav" : new Fav(command, desc)
+'     activate ":Fav"
+'    ":Fav" --> ":AddFavCommand"
+'    deactivate ":Fav"
+'end
 
 ":AddFavCommand" --> ":AddFavCommand"
 deactivate ":AddFavCommand"
@@ -59,6 +63,10 @@ opt no duplicate Fav
     activate ":FavList"
     ":FavList" --> ":AddFavCommand"
     deactivate ":FavList"
+    ":AddFavCommand" -> "<<class>>\n:Ui" : addFavMessage()
+    activate "<<class>>\n:Ui"
+    "<<class>>\n:Ui" --> ":AddFavCommand"
+    deactivate "<<class>>\n:Ui"
     ":AddFavCommand" --> ":Parser"
     deactivate ":AddFavCommand"
     ":Parser" --> ":Duke"

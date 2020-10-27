@@ -117,6 +117,8 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
+![add favourites](DG_Diagrams/AddFavSequence.png)
+
 ## 3. Appendix I: Requirements
 
 ### 3.1 Product scope
