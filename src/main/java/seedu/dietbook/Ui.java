@@ -306,6 +306,86 @@ public class Ui {
                 + "Here is your daily recommended calorie intake: " + calorieRecommendation + "kcal");
     }
 
+    public void printCarbIntake(int carbIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(carbIntake,"carbohydrate",
+                "g"));
+    }
+    
+    public void printCarbIntake(int carbIntake, LocalDateTime start, LocalDateTime end) {
+        String carbIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(carbIntake,
+                "carbohydrate", "g");
+        print(stringIntakeAndFoodsWithTime(carbIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printCarbIntake(int carbIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCarbIntake(carbIntake, start, end);
+    }
+
+    public void printCalorieIntake(int calorieIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(calorieIntake,"calorie","kcal"));
+    }
+
+    public void printCalorieIntake(int calorieIntake, LocalDateTime start, LocalDateTime end) {
+        String calorieIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(calorieIntake,
+                "calorie", "kcal");
+        print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printCalorieIntake(int calorieIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCalorieIntake(calorieIntake, start, end);
+    }
+
+    public void printProteinIntake(int proteinIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(proteinIntake,"protein","g"));
+    }
+
+    public void printProteinIntake(int proteinIntake, LocalDateTime start, LocalDateTime end) {
+        String proteinIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(proteinIntake,
+                "protein", "g");
+        print(stringIntakeAndFoodsWithTime(proteinIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printProteinIntake(int proteinIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printProteinIntake(proteinIntake, start, end);
+    }
+
+    public void printFatIntake(int fatIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(fatIntake,"fat","g"));
+    }
+
+    public void printFatIntake(int fatIntake, LocalDateTime start, LocalDateTime end) {
+        String fatIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(fatIntake,
+                "fat", "g");
+        print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printFatIntake(int fatIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printFatIntake(fatIntake, start, end);
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
+                               int fatIntake) {
+        print(stringAllIntakeAndFoodsWithoutTime(calorieIntake, carbIntake, proteinIntake,
+                fatIntake));
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
+                               int fatIntake, LocalDateTime start, LocalDateTime end) {
+        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(calorieIntake,
+                carbIntake, proteinIntake, fatIntake);
+        print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake,
+                               LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printAllIntake(calorieIntake, carbIntake, proteinIntake, fatIntake, start, end);
+    }
+
     /**
      * Prints the total amount of carbohydrates consumed by the user and the list of food items which had
      * their nutritional information recalculated by DietBook if any.
@@ -320,11 +400,6 @@ public class Ui {
     public void printCarbIntakeAndFoods(int carbIntake, String recalculatedFoods) {
         print(stringOneIntakeAndFoodsWithoutTime(carbIntake,"carbohydrate",
                 "g", recalculatedFoods));
-    }
-
-    public void printCarbIntake(int carbIntake) {
-        print(stringOneIntakeAndFoodsWithoutTime(carbIntake,"carbohydrate",
-                "g"));
     }
 
     /**
@@ -349,12 +424,6 @@ public class Ui {
         print(stringIntakeAndFoodsWithTime(carbIntakeAndFoodsWithoutTime, start, end));
     }
 
-    public void printCarbIntake(int carbIntake, LocalDateTime start, LocalDateTime end) {
-        String carbIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(carbIntake,
-                "carbohydrate", "g");
-        print(stringIntakeAndFoodsWithTime(carbIntakeAndFoodsWithoutTime, start, end));
-    }
-
     /**
      * Prints the total amount of carbohydrates consumed by the user and a list of the foods which had
      * their nutritional information recalculated by DietBook if any, given a start date.
@@ -375,10 +444,6 @@ public class Ui {
         printCarbIntakeAndFoods(carbIntake, recalculatedFoods, start, end);
     }
 
-    public void printCarbIntake(int carbIntake, LocalDateTime start) {
-        LocalDateTime end = LocalDateTime.now();
-        printCarbIntake(carbIntake, start, end);
-    }
 
     /**
      * Prints the total amount of calories consumed by the user and the list of food items which had
@@ -394,10 +459,6 @@ public class Ui {
     public void printCalorieIntakeAndFoods(int calorieIntake, String recalculatedFoods) {
         print(stringOneIntakeAndFoodsWithoutTime(calorieIntake,"calorie","kcal",
                 recalculatedFoods));
-    }
-
-    public void printCalorieIntake(int calorieIntake) {
-        print(stringOneIntakeAndFoodsWithoutTime(calorieIntake,"calorie","kcal"));
     }
 
     /**
@@ -422,12 +483,6 @@ public class Ui {
         print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
     }
 
-    public void printCalorieIntake(int calorieIntake, LocalDateTime start, LocalDateTime end) {
-        String calorieIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(calorieIntake,
-                "calorie", "kcal");
-        print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
-    }
-
     /**
      * Prints the total amount of calories consumed by the user and a list of the foods which had their
      * nutritional information recalculated by DietBook if any, given a start date.
@@ -448,10 +503,6 @@ public class Ui {
         printCalorieIntakeAndFoods(calorieIntake, recalculatedFoods, start, end);
     }
 
-    public void printCalorieIntake(int calorieIntake, LocalDateTime start) {
-        LocalDateTime end = LocalDateTime.now();
-        printCalorieIntake(calorieIntake, start, end);
-    }
 
     /**
      * Prints the total amount of proteins consumed by the user and the list of food items which had
@@ -467,10 +518,6 @@ public class Ui {
     public void printProteinIntakeAndFoods(int proteinIntake, String recalculatedFoods) {
         print(stringOneIntakeAndFoodsWithoutTime(proteinIntake,"protein","g",
                 recalculatedFoods));
-    }
-
-    public void printProteinIntake(int proteinIntake) {
-        print(stringOneIntakeAndFoodsWithoutTime(proteinIntake,"protein","g"));
     }
 
     /**
@@ -495,12 +542,6 @@ public class Ui {
         print(stringIntakeAndFoodsWithTime(proteinIntakeAndFoodsWithoutTime, start, end));
     }
 
-    public void printProteinIntake(int proteinIntake, LocalDateTime start, LocalDateTime end) {
-        String proteinIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(proteinIntake,
-                "protein", "g");
-        print(stringIntakeAndFoodsWithTime(proteinIntakeAndFoodsWithoutTime, start, end));
-    }
-
     /**
      * Prints the total amount of proteins consumed by the user and a list of the foods which had their
      * nutritional information recalculated by DietBook if any, given a start date.
@@ -521,10 +562,6 @@ public class Ui {
         printProteinIntakeAndFoods(proteinIntake, recalculatedFoods, start, end);
     }
 
-    public void printProteinIntake(int proteinIntake, LocalDateTime start) {
-        LocalDateTime end = LocalDateTime.now();
-        printProteinIntake(proteinIntake, start, end);
-    }
 
     /**
      * Prints the total amount of fats consumed by the user and the list of food items which had
@@ -540,10 +577,6 @@ public class Ui {
     public void printFatIntakeAndFoods(int fatIntake, String recalculatedFoods) {
         print(stringOneIntakeAndFoodsWithoutTime(fatIntake,"fat","g",
                 recalculatedFoods));
-    }
-
-    public void printFatIntake(int fatIntake) {
-        print(stringOneIntakeAndFoodsWithoutTime(fatIntake,"fat","g"));
     }
 
     /**
@@ -568,12 +601,6 @@ public class Ui {
         print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
     }
 
-    public void printFatIntake(int fatIntake, LocalDateTime start, LocalDateTime end) {
-        String fatIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(fatIntake,
-                "fat", "g");
-        print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
-    }
-
     /**
      * Prints the total amount of fats consumed by the user and a list of the foods which had their
      * nutritional information recalculated by DietBook if any, given a start date.
@@ -594,11 +621,6 @@ public class Ui {
         printFatIntakeAndFoods(fatIntake, recalculatedFoods, start, end);
     }
 
-    public void printFatIntake(int fatIntake, LocalDateTime start) {
-        LocalDateTime end = LocalDateTime.now();
-        printFatIntake(fatIntake, start, end);
-    }
-
     /**
      * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user and the
      * list of food items which had their nutritional information recalculated by DietBook if any.
@@ -617,12 +639,6 @@ public class Ui {
                                        int fatIntake, String recalculatedFoods) {
         print(stringAllIntakeAndFoodsWithoutTime(calorieIntake, carbIntake, proteinIntake,
                 fatIntake, recalculatedFoods));
-    }
-
-    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
-                                       int fatIntake) {
-        print(stringAllIntakeAndFoodsWithoutTime(calorieIntake, carbIntake, proteinIntake,
-                fatIntake));
     }
 
     /**
@@ -655,13 +671,6 @@ public class Ui {
         print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
     }
 
-    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
-                                       int fatIntake, LocalDateTime start, LocalDateTime end) {
-        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(calorieIntake,
-                carbIntake, proteinIntake, fatIntake);
-        print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
-    }
-
     /**
      * Prints the total amount of calories, carbohydrates, fats and proteins consumed by the user and a
      * list of the foods which had their nutritional information recalculated by DietBook if any, given a
@@ -689,12 +698,6 @@ public class Ui {
         LocalDateTime end = LocalDateTime.now();
         printAllIntakeAndFoods(calorieIntake, carbIntake, proteinIntake, fatIntake, recalculatedFoods, start,
                 end);
-    }
-
-    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake,
-                               LocalDateTime start) {
-        LocalDateTime end = LocalDateTime.now();
-        printAllIntake(calorieIntake, carbIntake, proteinIntake, fatIntake, start, end);
     }
 
     // Helper methods for system related commands or messages
