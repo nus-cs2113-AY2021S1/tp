@@ -3,8 +3,12 @@ package parser;
 import access.Access;
 
 import commands.AddCardCommand;
+import commands.AddChapterCommand;
 import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.BackAdminCommand;
 import commands.BackCommand;
+import commands.BackModuleCommand;
 import commands.Command;
 import commands.EditCardCommand;
 import commands.EditChapterCommand;
@@ -12,7 +16,9 @@ import commands.EditCommand;
 import commands.EditModuleCommand;
 import commands.ExcludeCommand;
 import commands.ExitCommand;
+import commands.GoChapterCommand;
 import commands.GoCommand;
+import commands.GoModuleCommand;
 import commands.HelpCommand;
 import commands.HistoryCommand;
 import commands.ListCardCommand;
@@ -34,6 +40,7 @@ import storage.Storage;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static common.Messages.ADMIN;
 import static common.Messages.CARD;
 import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_DATE_FORMAT;
@@ -54,10 +61,6 @@ public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
     private static final String QUESTION_PREFIX = "q:";
     private static final String ANSWER_PREFIX = "a:";
-
-    private static final String ADMIN_LEVEL = "admin";
-    private static final String MODULE_LEVEL = "module";
-    private static final String CHAPTER_LEVEL = "chapter";
 
     public static Command parse(String fullCommand, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
@@ -83,9 +86,9 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
         case BackCommand.COMMAND_WORD:
-            return prepareBack(commandArgs);
+            return prepareBack(commandArgs, access);
         case GoCommand.COMMAND_WORD:
-            return prepareGo(commandArgs);
+            return prepareGo(commandArgs, access);
         case ListDueCommand.COMMAND_WORD:
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
@@ -143,18 +146,40 @@ public class Parser {
         return new HistoryCommand(commandArgs);
     }
 
-    private static Command prepareGo(String commandArgs) throws InvalidInputException {
+    private static Command prepareGo(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        String level = getLevel(access);
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + GoCommand.MESSAGE_USAGE);
         }
-        return new GoCommand(commandArgs);
+
+        switch (level) {
+        case ADMIN:
+            return new GoModuleCommand(commandArgs);
+        case MODULE:
+            return new GoChapterCommand(commandArgs);
+        default:
+            throw new IncorrectAccessLevelException("Go command can only be called "
+                    + "at admin and module level.");
+        }
     }
 
-    private static Command prepareBack(String commandArgs) throws InvalidInputException {
+    private static Command prepareBack(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        String level = getLevel(access);
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + BackCommand.MESSAGE_USAGE);
         }
-        return new BackCommand();
+
+        switch (level) {
+        case CHAPTER:
+            return new BackModuleCommand();
+        case MODULE:
+            return new BackAdminCommand();
+        default:
+            throw new IncorrectAccessLevelException("Back command can only be called "
+                    + "at module and chapter level.");
+        }
     }
 
     private static String[] splitCommandTypeAndArgs(String userCommand) {
@@ -187,26 +212,23 @@ public class Parser {
 
     private static Command prepareAdd(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (access.isAdminLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.MODULE_MESSAGE_USAGE);
-        }
-        if (access.isModuleLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CHAPTER_MESSAGE_USAGE);
-        }
-        if (access.isChapterLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCardCommand.MESSAGE_USAGE);
-        }
-
-        if (access.isAdminLevel()) {
+        String level = getLevel(access);
+        switch (level) {
+        case ADMIN:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddModuleCommand.MODULE_MESSAGE_USAGE);
+            }
             return prepareAddModule(commandArgs);
-        } else if (access.isModuleLevel()) {
+        case MODULE:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddChapterCommand.CHAPTER_MESSAGE_USAGE);
+            }
             return prepareAddChapter(commandArgs);
-        } else if (access.isChapterLevel()) {
+        default:
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCardCommand.MESSAGE_USAGE);
+            }
             return prepareAddCard(commandArgs);
-        } else {
-            assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
-                    AddCommand.COMMAND_WORD));
         }
     }
 
@@ -222,16 +244,32 @@ public class Parser {
             return new AddCardCommand(question, answer);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD)
-                    + AddCommand.CARD_MESSAGE_USAGE));
+                    + AddCardCommand.MESSAGE_USAGE));
         }
     }
 
     private static Command prepareAddChapter(String commandArgs) {
-        return new AddCommand(commandArgs, MODULE_LEVEL);
+        return new AddChapterCommand(commandArgs);
     }
 
     private static Command prepareAddModule(String commandArgs) {
-        return new AddCommand(commandArgs, ADMIN_LEVEL);
+        return new AddModuleCommand(commandArgs);
+    }
+
+    private static String getLevel(Access access) throws IncorrectAccessLevelException {
+        String level;
+        if (access.isAdminLevel()) {
+            level = ADMIN;
+        } else if (access.isModuleLevel()) {
+            level = MODULE;
+        } else if (access.isChapterLevel()) {
+            level = CHAPTER;
+        } else {
+            assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    AddCommand.COMMAND_WORD));
+        }
+        return level;
     }
 
     private static Command prepareRemove(String commandArgs, Access access) throws InvalidInputException,
@@ -314,7 +352,7 @@ public class Parser {
 
             if (containsCardPrefix(args[1].trim().toLowerCase())) {
                 throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                        ADMIN_LEVEL, CHAPTER_LEVEL));
+                        ADMIN, CHAPTER));
             }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
@@ -344,7 +382,7 @@ public class Parser {
 
             if (containsCardPrefix(args[1].trim().toLowerCase())) {
                 throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                        MODULE_LEVEL, CHAPTER_LEVEL));
+                        MODULE, CHAPTER));
             }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
@@ -414,7 +452,7 @@ public class Parser {
             throws InvalidInputException, IncorrectAccessLevelException {
         if (access.isAdminLevel() || access.isChapterLevel()) {
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), MODULE_LEVEL));
+                    access.getLevel(), MODULE));
         } else if (commandArgs.isEmpty()) {
             throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, CHAPTER)
                     + ReviseCommand.MESSAGE_USAGE);

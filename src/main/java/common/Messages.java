@@ -3,6 +3,7 @@ package common;
 public class Messages {
     public static final String LINE = "---------------------------------------------------------------------";
 
+    public static final String ADMIN = "admin";
     public static final String MODULE = "module";
     public static final String CHAPTER = "chapter";
     public static final String CARD = "flashcard";
