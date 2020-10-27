@@ -1,11 +1,14 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.command.BuyCommand;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.InvalidCommand;
+import seedu.duke.command.RemoveBookmarkCommand;
 import seedu.duke.command.SearchCommand;
 import seedu.duke.command.SellCommand;
+import seedu.duke.command.ViewBookmarkedStocksCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
 import seedu.duke.exception.DukeException;
@@ -48,9 +51,47 @@ public class Parser {
             return new ViewCommand();
         case "wallet":
             return new WalletCommand();
+        case "mark":
+            try {
+                return parseMark(userInputSplit);
+            } catch (DukeException e) {
+                return new InvalidCommand(e.getMessage());
+            }
+        case "unmark":
+            try {
+                return parseUnmark(userInputSplit);
+            } catch (DukeException e) {
+                return new InvalidCommand(e.getMessage());
+            }
+        case "bookmarks":
+            return new ViewBookmarkedStocksCommand();
         default:
             logger.log(Level.WARNING, "processing error when parsing command");
             return new InvalidCommand("Invalid command! Please try again.");
+        }
+    }
+
+    public static Command parseMark(String[] userInputSplit) throws DukeException {
+        try {
+            if (!userInputSplit[1].startsWith("/")) {
+                throw new DukeException("Please enter the ticker symbol of the company that you want to mark!");
+            }
+            String symbol = userInputSplit[1].substring(1);
+            return new AddBookmarkCommand(symbol);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(("Wrong input format! E.g. mark /MSFT"));
+        }
+    }
+
+    public static Command parseUnmark(String[] userInputSplit) throws DukeException {
+        try {
+            if (!userInputSplit[1].startsWith("/")) {
+                throw new DukeException("Please enter the ticker symbol of the company that you want to unmark!");
+            }
+            String symbol = userInputSplit[1].substring(1);
+            return new RemoveBookmarkCommand(symbol);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(("Wrong input format! E.g. unmark /MSFT"));
         }
     }
 

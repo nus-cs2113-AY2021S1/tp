@@ -2,18 +2,22 @@ package seedu.duke.controller;
 
 import org.patriques.output.timeseries.data.StockData;
 import seedu.duke.api.StockPriceFetcher;
+import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.command.BuyCommand;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.InvalidCommand;
+import seedu.duke.command.RemoveBookmarkCommand;
 import seedu.duke.command.SearchCommand;
 import seedu.duke.command.SellCommand;
+import seedu.duke.command.ViewBookmarkedStocksCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
 import seedu.duke.exception.DoNotOwnStockException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InsufficientFundException;
 import seedu.duke.exception.InsufficientQtyException;
+import seedu.duke.model.BookmarksManager;
 import seedu.duke.model.PortfolioManager;
 import seedu.duke.model.Stock;
 import seedu.duke.parser.Parser;
@@ -23,11 +27,13 @@ public class Controller {
     private Ui ui;
     private StockPriceFetcher stockPriceFetcher;
     private PortfolioManager portfolioManager;
+    private BookmarksManager bookmarksManager;
 
     public Controller() {
         ui = new Ui();
         stockPriceFetcher = new StockPriceFetcher();
         portfolioManager = new PortfolioManager();
+        bookmarksManager = new BookmarksManager();
     }
 
     private void buyStock(String symbol, int quantity) {
@@ -70,6 +76,30 @@ public class Controller {
         }
     }
 
+    public void addBookmark(String symbol) {
+        try {
+            stockPriceFetcher.fetchLatestPrice(symbol);
+        } catch (DukeException e) {
+            ui.printWithDivider("Invalid stock!");
+            return;
+        }
+        try {
+            bookmarksManager.addToBookmarks(symbol);
+            ui.printWithDivider("You have added " + symbol + " to bookmarks.");
+        } catch (DukeException e) {
+            ui.printWithDivider(e.getMessage());
+        }
+    }
+
+    public void removeBookmark(String symbol) {
+        try {
+            bookmarksManager.removeBookmark(symbol);
+            ui.printWithDivider("You have removed " + symbol + " from bookmarks.");
+        } catch (DukeException e) {
+            ui.printWithDivider(e.getMessage());
+        }
+    }
+
     private boolean executeCommand(Command command) {
         if (command instanceof SearchCommand) {
             SearchCommand searchCommand = (SearchCommand) command;
@@ -90,9 +120,23 @@ public class Controller {
             viewPortfolio();
         } else if (command instanceof WalletCommand) {
             viewWallet();
+        } else if (command instanceof AddBookmarkCommand) {
+            AddBookmarkCommand addBookmarkCommand = (AddBookmarkCommand) command;
+            addBookmark(addBookmarkCommand.getSymbol());
+        } else if (command instanceof RemoveBookmarkCommand) {
+            RemoveBookmarkCommand removeBookmarkCommand = (RemoveBookmarkCommand) command;
+            removeBookmark(removeBookmarkCommand.getSymbol());
+        } else if (command instanceof ViewBookmarkedStocksCommand) {
+            viewBookmarkedStocks();
         }
 
         return true;
+    }
+
+    private void viewBookmarkedStocks() {
+        for (String symbol : bookmarksManager.getBookmarks().getBookmarkedStocks()) {
+            searchSymbol(symbol);
+        }
     }
 
     public void viewPortfolio() {
