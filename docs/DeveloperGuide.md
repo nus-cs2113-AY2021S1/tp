@@ -49,17 +49,17 @@ This component also listens to other components and outputs the desired messages
 
 ### Storage component
 
-The `Storage` class handles the read and write operations of the `FoodList`, `ExerciseList` and `User` classes.
+Under the storage component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
 
 ![Storage class diagram](images/StorageClassDiagram.png)
 
-The figure above shows the associations and dependencies present with the `Storage` class.
+The figure above shows the associations and dependencies present with the `StorageManager` class.
 
-On startup, the `Fitr` class creates a new `Storage` object with the file paths of the text files. 
-This will cause the `Storage` object to retrieve the text files from the given file paths and loads the data into the program. 
-If the files do not exist, the Storage object will create the files.
+On startup, the `Fitr` class creates a new `StorageManager` object. The `StorageManager` class will then create the various storage objects required to load that particular file into the program. 
+This will cause the various storage objects to retrieve the text files from the given file paths and loads the data into the program. 
+If the files do not exist, the various storage objects will create the files. For example, if the file that contains the user's exercise data does not exist, the `ExerciseStorage` object will create a new file to store the user's exercise data.
 
-Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods are invoked. 
+Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods in `StorageManager` are invoked. 
 This will save the data onto the respective text files on the hard disk.
 
 ### User component
