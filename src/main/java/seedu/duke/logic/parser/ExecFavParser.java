@@ -19,12 +19,12 @@ public class ExecFavParser extends Parser {
     }
 
     private void checkInput() throws CustomException {
-        if (super.getUserInput().isBlank()){
+        if (super.getUserInput().isBlank()) {
             throw new CustomException(ExceptionType.NO_INPUT);
         }
         try {
             int index = Integer.parseInt(super.getUserInput()) - 1;
-            this.index=index;
+            this.index = index;
         } catch (NumberFormatException e) {
             throw new CustomException(ExceptionType.NOT_A_NUMBER);
         }

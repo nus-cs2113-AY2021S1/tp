@@ -17,11 +17,11 @@ public class ExecFavCommand extends Command {
         this.parser = new ExecFavParser(input);
     }
 
-    private void getFav() throws CustomException{
+    private void getFav() throws CustomException {
         try {
             index = parser.getIndex();
             fav = FavList.getFav(index);
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new CustomException(ExceptionType.INVALID_INDEX);
         }
 
