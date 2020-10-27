@@ -23,21 +23,24 @@ public class Ui {
             + "   example: deletemod CS2113T\n"
             + "6. deleteexp <module code>\n"
             + "   example: deleteexp CS2113T\n"
-            + "7. minus <module code> <time> <week number>\n"
-            + "   example: minus CS2113T 2 1\n"
-            + "8. deletetime <module code> <week number>\n"
+            + "7. minustime <module code> <time> <week number>\n"
+            + "   example: minustime CS2113T 2 1\n"
+            + "8. edittime <module code> <actual time spent> <week number>\n"
+            + "   example: edittime CS2113T 8 1\n"
+            + "9. deletetime <module code> <week number>\n"
             + "   example: deletetime CS2113T 1\n"
-            + "9. breakdown\n"
-            + "10. addtask <module code> <task description>\n"
+            + "10.analysis <week number>\n"
+            + "   example: analysis 1\n"
+            + "11.addtask <module code> <task description>\n"
             + "   example: addtask CS2113T revise for exam\n"
-            + "11.deletetask <task number>\n"
+            + "12.deletetask <task number>\n"
             + "   example: deletetask 1\n"
-            + "12.done <task number>\n"
+            + "13.done <task number>\n"
             + "   example: done 1\n"
-            + "13.listtask\n"
-            + "14.open\n"
-            + "15.exit\n"
-            + "16.reset\n";
+            + "14.listtask\n"
+            + "15.open\n"
+            + "16.exit\n"
+            + "17.reset\n";
     public static final String LOGO = "|\\\\        /|         |======            ||\n"
             + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
             + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
@@ -50,6 +53,7 @@ public class Ui {
             + "||   \\\\ ||  ||\n"
             + "||___// ||  ||____\n";
     public static final String CONFIRMATION = "yes";
+    public static final String WRONG_FORMAT = "Oops!!! Wrong format entered.";
 
     /**
      * Reads input entered by the user.
@@ -163,14 +167,11 @@ public class Ui {
     }
 
     /**
-     * Prints the given error message.
+     * Prints the analysis of actual time spent.
+     *
+     * @param modList module list
+     * @param week week number
      */
-    public void printErrorMessage(String message) {
-        System.out.println("There was an error :(");
-        System.out.println(message);
-        System.out.println(ENTER_HELP);
-    }
-
     public void printBreakDownAnalysis(ModuleList modList, int week) {
         ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
         breakDown.printTimeBreakDownAndAnalysis(modList, week);
@@ -229,7 +230,7 @@ public class Ui {
                 System.out.println(i + ". " + tasks.get(i - 1));
             }
         }
-        System.out.println(); //adds a new line after the list
+        System.out.println();
     }
 
     /**
@@ -241,12 +242,61 @@ public class Ui {
         System.out.println("---WARNING!---");
         System.out.println("This will delete all your past data.");
         System.out.println("Type '" + CONFIRMATION + "' if you wish to continue.");
+        System.out.println("Enter any key to cancel this operation." + System.lineSeparator());
         String input = in.nextLine();
         if (input.equalsIgnoreCase("yes")) {
-            System.out.println("Okay, your data has been deleted :(");
+            System.out.println("Okay, your data has been deleted :(" + System.lineSeparator());
             return true;
         }
-        System.out.println("Reset not confirmed. Your data is safe :)");
+        System.out.println("Reset not confirmed. Your data is safe :)" + System.lineSeparator());
         return false;
+    }
+
+    /**
+     * Prints the given error message.
+     */
+    public void printErrorMessage(String command) {
+        switch (command) {
+        case Parser.COMMAND_ADDTIME:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: addtime <module code> <actual time spent> <week number>"
+                    + System.lineSeparator());
+            break;
+        case Parser.COMMAND_MINUSTIME:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: minustime <module code> <time> <week number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_EDITTIME:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: edittime <module code> <actual time spent> <week number>"
+                    + System.lineSeparator());
+            break;
+        case Parser.COMMAND_DELETETIME:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: deletetime <module code> <week number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_LIST:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: list <week number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_ANALYSIS:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: analysis <week number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_DONE:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: done <task number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_DELETETASK:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: deletetask <task number>" + System.lineSeparator());
+            break;
+        case Parser.COMMAND_ADDTASK:
+            System.out.println(WRONG_FORMAT);
+            System.out.println("Format: addtask <module code> <task description>" + System.lineSeparator());
+            break;
+        default:
+            break;
+        }
     }
 }
