@@ -4,20 +4,13 @@ import access.Access;
 import exception.IncorrectAccessLevelException;
 import manager.admin.Admin;
 import manager.admin.ModuleList;
-import manager.chapter.Chapter;
 import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
-
-import java.io.IOException;
-
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MODULE;
-import static common.Messages.ADMIN;
 
 public class AddModuleCommand extends AddCommand {
-    public static final String ACCESS_LEVEL = ADMIN;
     public static final String MODULE_PARAMETERS = " MODULE_NAME";
     public static final String MODULE_MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
@@ -33,14 +26,8 @@ public class AddModuleCommand extends AddCommand {
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
         String result = "";
-
-        if (access.isAdminLevel()) {
-            Module module = new Module(this.module);
-            result = addModule(access, storage, module);
-        } else {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), ACCESS_LEVEL));
-        }
+        Module module = new Module(this.module);
+        result = addModule(access, storage, module);
         ui.showToUser(result);
     }
 
