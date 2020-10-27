@@ -1,0 +1,28 @@
+@startuml
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+
+activate ":Fitr"
+":Fitr" -> "<<class>>\n:Parser" ++ : parse("edit exercise 25/10/2020 1...")
+create ":EditCommandParser"
+"<<class>>\n:Parser" -> ":EditCommandParser" ++
+
+return
+|||
+"<<class>>\n:Parser" -> ":EditCommandParser" ++ : editCommand()
+create ":EditEntryCommand"
+":EditCommandParser" -> ":EditEntryCommand" ++
+return
+return
+return
+
+":Fitr" -> ":EditEntryCommand" : execute()
+activate ":EditEntryCommand"
+":EditEntryCommand" -> ":EditEntryCommand" ++ : editExercise()
+return
+":EditEntryCommand" ->] : Saved to local storage
+return
+destroy ":EditEntryCommand"
+
+hide footbox
+@enduml
