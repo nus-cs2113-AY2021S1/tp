@@ -13,7 +13,7 @@ public class ClearLoaderTest {
     private static WritingList writing;
 
     private static void initializeTestDatabase() {
-        LocalDate date = LocalDate.parse("28/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyyy"));
+        LocalDate date = LocalDate.parse("28/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
         WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
         WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
