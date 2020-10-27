@@ -41,18 +41,6 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
 ## Quick start
 
 1. Check that your computer has Java **11** installed.
-<<<<<<< HEAD
-1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-    - Copy the file to the folder you want to use as the home folder.
-    - Type in a command prompt ./duke.jar and press Enter.
-    - Type the `help` command and press Enter to get started.
-    - Some example commands you can try:
-        - `list words` : List the vocabulary stored in the word list.
-        - `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
-        - `exit` : Exits the app.  
-    
-Refer to the Features below for details of each command.
-=======
 1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
 1. Type in a command prompt ./duke.jar and press Enter.
@@ -62,7 +50,7 @@ Refer to the Features below for details of each command.
     1. `filter bunny g/fantasy` : Filters bunny ideas that are of the fantasy genre.
     1. `exit` : Exits the app.
 1. Refer to the Features below for details of each command.
->>>>>>> 34943e3d63a9c42aaae54c77d5cfa199263e4f9b
+
 
 ## Features 
 
@@ -517,14 +505,8 @@ Format: `exit`
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| settings     | `settings n\[NAME]`                                                                                   |
-|              | e.g., settings n\Jane Doe d\2                                                                         |
-|              | The list of dividers is                                                                               |
-|              | 1. ‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵                                                             |
-|              | 2. •❅──────✧❅✦❅✧──────❅•                                                                           |
-|              | 3. ______________________________________                                                             |
-|              | 4. =^..^=                                                                                             |
-|              | 5. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                                                      |
+| divider      | `divider DIVIDER_OPTION` <\br> Example: divider 1 <\br>The list of dividers is:                                                                                                            <\br> 1. \---------------------------------------------------------------- <\br> 2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
+<\br> 3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                             |                                                    |
 | noun         | `noun [WORD] d\[DESCRIPTION]`                                                                         |
 |              | Example: noun bus d\vehicle                                                                           |
 | verb         | `verb [WORD] d\[DESCRIPTION]`                                                                         |
