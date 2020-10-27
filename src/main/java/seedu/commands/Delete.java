@@ -27,12 +27,14 @@ public class Delete extends ModificationCommand {
 
     public CommandResult execute(Model model) throws InvalidTaskNumberException {
         TaskMap tasks = model.getTaskMap();
+        TaskMap taskDeleted = new TaskMap();
         Task task = tasks.get(key);
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
+        taskDeleted.addTask(task);
         tasks.delete(key);
         model.pushAndUpdate(tasks);
-        return new CommandResult(DELETE_MESSAGE);
+        return new CommandResult(DELETE_MESSAGE,taskDeleted);
     }
 }

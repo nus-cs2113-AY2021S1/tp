@@ -41,6 +41,7 @@ public class Add extends ModificationCommand {
         TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.
+        TaskMap taskChanged = new TaskMap();
         Task task = new Task(description, date, startTime, endTime, priority);
         Integer taskID = task.getTaskID();
         if (tasks.size() == TaskMap.MAX_NUM_TASKS) {
@@ -53,8 +54,9 @@ public class Add extends ModificationCommand {
         }
         task.setTaskID(taskID);
         tasks.addTask(task);
+        taskChanged.addTask(task);
         // update stack
         model.pushAndUpdate(tasks);
-        return new CommandResult(ADD_MESSAGE);
+        return new CommandResult(ADD_MESSAGE,taskChanged);
     }
 }
