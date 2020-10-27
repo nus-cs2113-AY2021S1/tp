@@ -118,14 +118,28 @@ Given below is the class diagram for classes related to Book Management in Quote
 #### 4.1.1 Add Books
 The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
 
-![Sequence Diagram for Add Books]()
+![Sequence Diagram for Add Books](images/SeqDiagram_AddBook.png)
 
-* [Explanation of Sequence Diagram]
+* To reduce complexity and increase readability, the sequence diagram excludes error handling.
+* Parsing of user input is done in the Parser and AddCommand classes, which is also not shown in the diagram.
+* `checkMissingInformation()` method is also not included in the sequence diagram as it merely checks for possible
+missing information given in the user input and throws exceptions.
+* Upon ensuring there are no mistakes in the user input, `createNewBook()` will be called, which essentially creates a 
+new book after ensuring there are no identical books already in the BookList.
+* `sort()` method is called after adding the book to the BookList in order to sort the books in 
+alphabetical order.
 
 ##### Design Considerations
 * Title and author must be specified as <title,author> is used as the primary key.
     * Pros: Allows users to specify different books with the same title but different author.
     * Cons: Need to check for both title and author to prevent duplicates.
+* BookList is always sorted in alphabetical order 
+    * Alternative 1: Sort after adding the book
+        * Pros: Only need to sort after every addition, listing is as per normal
+        * Cons: Adding books may take longer if size of BookList is too large
+    * Alternative 2: Sort before listing the books
+        * Pros: Adding books will not take as long
+        * Cons: Since there are multiple listing methods, may not be the best method to keep sorting before listing.
 
 #### 4.1.2 Find Book by Keyword
 The sequence diagram below demonstrates the command execution process when finding books by a keyword.
