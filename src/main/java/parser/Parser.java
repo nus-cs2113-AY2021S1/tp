@@ -25,7 +25,6 @@ import commands.ListCardCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
-import commands.RateCommand;
 import commands.RemoveCardCommand;
 import commands.RemoveChapterCommand;
 import commands.RemoveCommand;
@@ -93,8 +92,6 @@ public class Parser {
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
             return prepareHistory(commandArgs);
-        case RateCommand.COMMAND_WORD:
-            return prepareRate(commandArgs);
         case ShowRateCommand.COMMAND_WORD:
             return prepareShowRate(commandArgs);
         case PreviewCommand.COMMAND_WORD:
@@ -115,22 +112,7 @@ public class Parser {
         }
         return new ShowRateCommand();
     }
-
-    private static RateCommand prepareRate(String commandArgs)
-            throws InvalidInputException, IncorrectAccessLevelException {
-        int chapterIndex;
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException(MESSAGE_MISSING_ARGS + RateCommand.MESSAGE_USAGE);
-        }
-        try {
-            chapterIndex = Integer.parseInt(commandArgs) - 1;
-        } catch (NumberFormatException e) {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_NON_INTEGER, CHAPTER)
-                    + RateCommand.MESSAGE_USAGE);
-        }
-        return new RateCommand(chapterIndex);
-    }
-
+    
     private static Command prepareHistory(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
             LocalDate date = java.time.LocalDate.now();

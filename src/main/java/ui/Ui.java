@@ -12,7 +12,6 @@ import commands.HelpCommand;
 import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
-import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
@@ -144,9 +143,8 @@ public class Ui {
         out.println("9.  " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
         out.println("11. " + HistoryCommand.MESSAGE_USAGE);
-        out.println("12. " + RateCommand.MESSAGE_USAGE);
-        out.println("13. " + ShowRateCommand.MESSAGE_USAGE);
-        out.println("14. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
+        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
