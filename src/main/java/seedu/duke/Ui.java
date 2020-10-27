@@ -324,24 +324,10 @@ public class Ui {
     /**
      * Shows the user's progress on deadlines and todos.
      *
-     * @param calendarList the list of user tasks.
+     * @param numTotal integer of number of total user tasks.
+     * @param numFinished integer of number of finished tasks.
      */
-    public static void printProgress(CalendarList calendarList) {
-        int numFinished = 0;
-        int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem item = calendarList.getCalendarList().get(i);
-            if (!(item instanceof Task)) {
-                continue;
-            }
-            if (((Task) item).getTaskType().equals("D") || ((Task) item).getTaskType().equals("T")) {
-                numTotal++;
-                if (((Task) item).getIsDone()) {
-                    numFinished++;
-                }
-            }
-        }
-
+    public static void printProgress(int numTotal, int numFinished) {
         if (numTotal == 0) {
             System.out.println("You have no deadlines or todos now!");
         } else {
