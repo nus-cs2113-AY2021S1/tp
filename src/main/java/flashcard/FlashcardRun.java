@@ -1,5 +1,7 @@
 package flashcard;
 
+import studyit.StudyItLog;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -20,6 +22,7 @@ public class FlashcardRun {
             e.printStackTrace();
         }
         storage.readFromFile(flashcardDeck);
+        StudyItLog.logger.info("Flashcard mode initialized");
     }
 
     public void run(String command) {
@@ -39,6 +42,7 @@ public class FlashcardRun {
         default:
             System.out.println("Invalid command. Valid commands are 'add', 'delete', 'list', 'test'. "
                     + "Use 'exit' to exit the flashcard mode.");
+            StudyItLog.logger.warning("Invalid flashcard command: Command unidentifiable");
         }
         storage.writeToFile(flashcardDeck);
     }

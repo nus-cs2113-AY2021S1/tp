@@ -7,6 +7,8 @@ public class Grade {
     protected String moduleName;
     protected Integer moduleCredits;
     protected String moduleGrade;
+    protected Boolean isModuleSued;
+    protected Boolean isStar;
 
     public static String[] listOfGrades = new String[]{"a+","a","a-","b+","b","b-","c+","c","d+","d","f"};
 
@@ -14,10 +16,14 @@ public class Grade {
         this.moduleName = name;
         this.moduleCredits = credits;
         this.moduleGrade = grade;
+        this.isModuleSued = false;
+        this.isStar = false;
     }
 
     public static String printIndividualGrade(Grade grade) {
-        return "[G] | " + grade.moduleName + " | " + grade.moduleCredits + " | " + grade.moduleGrade;
+        return "[G] | " + grade.moduleName + " | " + grade.moduleCredits
+                + " | " + grade.moduleGrade + " | " + grade.isModuleSued
+                + " | " + grade.isStar;
     }
 
     public static Integer getModuleCredits(Grade grade) {
@@ -26,6 +32,22 @@ public class Grade {
 
     public static String getModuleGrade(Grade grade) {
         return grade.moduleGrade;
+    }
+
+    public static void suGrade(Grade grade) {
+        grade.isModuleSued = true;
+    }
+
+    public static Boolean isGradeSued(Grade grade) {
+        return  grade.isModuleSued;
+    }
+
+    public static void changeStarGrade(Grade grade) {
+        grade.isStar = true;
+    }
+
+    public static Boolean isGradeStar(Grade grade) {
+        return grade.isStar;
     }
 
     public static double convertLetterToCredit(String input) {

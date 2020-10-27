@@ -14,7 +14,7 @@ public class MainMenu extends Ui {
             + "\n\n"
             + "Current date & time : " + nowFormatted
             + "\n\n"
-            + "Let's get productive! :)"
+            + "Let's get productive!"
             + "\n"
             + LINE_DIVIDER;
 

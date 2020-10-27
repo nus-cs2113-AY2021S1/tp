@@ -13,7 +13,7 @@ public class ErrorMessage extends Ui {
     }
 
     public static void printInvalidNumber() {
-        printLine("Please enter a number when applicable!\n"
+        printLine("Please enter a valid number when applicable!\n"
                 + "or you can type \"help\" for more information");
     }
 
@@ -23,7 +23,12 @@ public class ErrorMessage extends Ui {
     }
     
     public static void printInvalidMc() {
-        printLine("MC cannot be zero!\n"
+        printLine("MC must be a positive integer!\n"
+                + "or you can type \"help\" for more information");
+    }
+
+    public static void printInvalidEmail() {
+        printLine("Please enter a valid email with the structure of abc@xyz!\n"
                 + "or you can type \"help\" for more information");
     }
 

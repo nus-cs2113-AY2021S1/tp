@@ -1,13 +1,21 @@
 package userinterface;
 
+import academic.AcademicRun;
+import academic.AcademicUi;
+import academic.Grade;
+import academic.Person;
 import bookmark.BookmarkUi;
+import bookmark.BookmarkRun;
 import exceptions.InvalidModeException;
 import studyit.ModeNames;
 import studyit.Mode;
 import studyit.CommandParser;
 import studyit.StudyIt;
 import studyit.StudyItLog;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
@@ -66,7 +74,7 @@ public class Ui {
         // Prints introduction to the mode (if any)
         if (newMode == Mode.BOOKMARK) {
             BookmarkUi.printWelcomeBookmarkMessage();
-            BookmarkUi.showBookmarkCategoryList(StudyIt.bookmarkCategories);
+            //BookmarkUi.showBookmarkCategoryList();
             printDivider();
         }
     }
@@ -77,5 +85,12 @@ public class Ui {
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
+    }
+
+    public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
+        System.out.println("Here are your starred items:");
+        bookmarkRun.run("list star");
+        System.out.println();
+        academicRun.run("list star");
     }
 }

@@ -7,4 +7,5 @@ public enum CommandType {
     CHANGE_MODE,
     UNIDENTIFIABLE,
     HELP,
+    HIGHLIGHT
 }

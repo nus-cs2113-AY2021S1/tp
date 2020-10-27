@@ -1,6 +1,7 @@
 package bookmark.commands;
 
 import bookmark.BookmarkCategory;
+import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
 import exceptions.InvalidBookmarkException;
 import exceptions.EmptyBookmarkException;
@@ -20,7 +21,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
-    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
+    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             if (categoryNumber == 0) {
                 ui.printChooseCategoryMessage();
@@ -31,8 +32,11 @@ public class RemoveLinkCommand extends BookmarkCommand {
                 line = line.substring(RM_LENGTH);
                 assert line.length() > 0 : "Link should not be empty";
                 linkNumber = evaluateLinkNumber(categories);
+                System.out.println("Removing link: "
+                        + categories.get(categoryNumber - 1).getLinks().get(linkNumber - 1));
                 categories.get(categoryNumber - 1).removeLink(linkNumber);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
+                storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
             ui.showEmptyLinkError();

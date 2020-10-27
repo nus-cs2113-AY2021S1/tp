@@ -15,5 +15,15 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
-flashcard.txt
+
+# Data files
+data/flashcard.txt
 data/timetable.txt
+data/bookmark.txt
+data/academic.txt
+StudyIt_Log.log
+StudyIt_Log.log.lck
+StudyIt_Logger.log
+StudyIt_Logger.log.1
+StudyIt_Logger.log.1.lck
+StudyIt_Logger.log.lck
