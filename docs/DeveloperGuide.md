@@ -294,13 +294,21 @@ message will be displayed.
     * Pros: Better encapsulation and data hiding as attributes can be set to private
     * Cons: Additional methods and passing of data required
     
-### 4.3 Progress Tracker
+### 4.3 Feature: Progress Tracker
+Progress Tracker consists of two parts: Bookmark Management and Task Management.
+Given below is the class diagram for classes related to Bookmark Management in Quotesify:
+
+![Class Diagram for Bookmark Management](images/ClassDiagram_Bookmark.png)
 
 #### 4.3.1 Feature: Add bookmark
 The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
 be created in the process.
 * The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
 bookmarks named `BookmarkList`.
+
+The sequence diagram below demonstrates the command execution process when adding a bookmark to an existing book.
+
+![Sequence Diagram for Add Bookmark](images/SeqDiagram_AddBookmark.png)
     
 ### 4.4 Feature: Category Management
 Given below is the class diagram for classes related to Category Management in Quotesify:
