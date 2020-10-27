@@ -34,6 +34,7 @@ import static fitr.common.Messages.DATE_HEADER;
 import static fitr.common.Messages.EMPTY_STRING;
 import static fitr.common.Messages.ERROR_INVALID_DATE;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
+import static fitr.common.Messages.EMPTY_FOOD_LIST_DATE;
 import static fitr.common.Messages.NO_RECORDS_FOUND;
 
 import java.text.SimpleDateFormat;
@@ -293,7 +294,7 @@ public class ViewCommand extends Command {
         }
         if (isPrint) {
             if (foodOnThatDate.getSize() == 0) {
-                Ui.printCustomMessage(EMPTY_EXERCISE_LIST_DATE);
+                Ui.printCustomMessage(EMPTY_FOOD_LIST_DATE);
             } else {
                 int index = 0;
                 int printIndex = index + 1;

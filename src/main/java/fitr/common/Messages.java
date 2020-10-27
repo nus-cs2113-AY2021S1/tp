@@ -89,6 +89,7 @@ public class Messages {
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
     public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...";
     public static final String EMPTY_EXERCISE_LIST_DATE = "The exercise list on that date is empty...";
+    public static final String EMPTY_FOOD_LIST_DATE = "The food list on that date is empty...";
     public static final String EMPTY_GOAL_LIST = "The goal list is empty...";
     public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
     public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:";
