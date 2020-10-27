@@ -61,7 +61,7 @@ public class EditCommand {
     /**
      * changes the number of episodes in each season.
      * @param input number of episodes comma separated
-     * @throws NullPointerException
+     * @throws NullPointerException when input is empty
      */
     public static void editEpisode(String input) throws NullPointerException {
         String[] numOfEpisodes = input.split(",");
@@ -83,8 +83,8 @@ public class EditCommand {
     }
 
     /**
-     * Runs the parser for the edit command
-     * @throws NullPointerException
+     * Runs the parser for the edit command.
+     * @throws NullPointerException if the number of episodes input by the user is invalid or empty.
      */
     public static void processCommand() throws NullPointerException {
         boolean isShowInList = ShowList.doesShowExist(showName);
