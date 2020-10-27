@@ -87,9 +87,9 @@ Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGE
 
 * This command is **only used when setting up DietBook for the first time**. Any subsequent editing of user information can be done using the [editinfo](#Editing user information: `editinfo`) command.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **between 0 and 150**.
-* The height in cm must be a positive integer **between 0 and 300**.
-* The original, current and target weight in kg must be a positive integer **between 0 and 500**.
+* The age must be a positive integer **from 0 to 150, inclusive**.
+* The height in cm must be a positive integer **from 1 to 300, inclusive**.
+* The original, current and target weight in kg must be a positive integer ***from 1 to 500, inclusive**.
 * The activity level must be a positive integer **from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
@@ -137,9 +137,9 @@ Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/
 * Existing values will be updated to the input values.
 * The name must not be empty.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **between 0 and 150**.
-* The height in cm must be a positive integer **between 0 and 300**.
-* The original, current and target weight in kg must be a positive integer **between 0 and 500**.
+* The age must be a positive integer **from 0 to 150, inclusive**.
+* The height must be a positive integer **from 1 to 300, inclusive**.
+* The original, current and target weight must be a positive integer **from 1 to 500, inclusive**.
 * The activity level must be a positive integer **from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
