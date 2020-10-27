@@ -68,7 +68,6 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
 
-
 ###Timetable Component
 
 This section will describe in detail how some features inside the timetable section have been 
@@ -94,10 +93,48 @@ the main function make the run(command) API call.
 
 ![timetable_sequence diagram](Images/timetable_sequence%20diagram.png)
 
+### **Academic Component**
 
+This section will describe in detail how some features inside the academic tracker section have been implemented.
+Figure x illustrates the general overview, the associations and the multiplicity of the academic classes.
 
+![Academic_Class_Diagram](Images/Academic_Class_Diagram.png)
 
-###Flashcard Component
+API: `java.academic`
+
+The above diagram looks at the overall structure of how the academic tracker is being implemented. 
+This component is split into 7 different classes, 
+their associations and multiplicity as explained in the above diagram x. 
+The functions of the academic tracker will be called through the `AcademicRun` class 
+when the program is in academic mode, which will subsequently call 
+the functions in `PersonBook` or `GradeBook`. 
+
+The academic component:
+* initialises two arraylists, `ArrayList<Grade>` and `ArrayList<People>` 
+to store the relevant `Grade` and `People` objects.
+* uses `AcademicCommandParser` to parse the user command.
+* identifies `AcademicCommandType` to decide 
+which of the commands under `PersonBook` or `GradeBook` is to be executed.
+* calls `AcademicStorage` to store the current set of data into the local storage file.
+
+**Academic Implementation**
+
+This section explains the details on how certain features 
+are implemented in the academic tracker.
+
+**GradeBook Features**
+The grade features are facilitated `Gradebook`, which further make use of `Grade`. 
+All grades are stored internally under `AcademicRun` as an array list `ArrayList<Grade>`.
+It implements the following operations:
+* `addGrade(String[], ArrayList<Grade>)`:Adds a `Grade` to the `ArrayList<Grade>`. 
+* `printCap(ArrayList<Grade>)`:Calculate the current CAP based on the `ArrayList<Grade>`. 
+* `printListOfGrades(ArrayList<Grade>)`:Print out all the `Grade` that are currently stored inside `ArrayList<Grade>`.
+* `deleteGrade(Integer, ArrayList<Grade>)`:Delete a `Grade` from a specified index inside `ArrayList<Grade>`.
+* `suGradeInGradeBook(Integer, ArrayList<Grade>)`:Su a `Grade` from a specified index inside `ArrayList<Grade>`.
+* `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
+* `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
+
+### **Flashcard Component**
 
 
 This section will describe in detail how the flashcard feature is implemented.
@@ -168,10 +205,10 @@ This project uses code coverage that is in IntelliJ IDE to check for the coverag
 
 **Value proposition:**
 * manage links faster than a typical mouse/GUI driven app
-* manage grades than a typical mouse/GUI driven app
-* manage contact numbers of professors and teaching assistants than a typical mouse/GUI driven app
-* manage timetable than a typical mouse/GUI driven app
-* manage study content than a typical mouse/GUI driven app 
+* manage grades more easily than a typical mouse/GUI driven app
+* manage contact numbers of professors and teaching assistants more effectively than a typical mouse/GUI driven app
+* manage timetable in a more organised manner than a typical mouse/GUI driven app
+* manage study content more efficiently than a typical mouse/GUI driven app 
 
 #### User Stories
 
@@ -189,14 +226,14 @@ This project uses code coverage that is in IntelliJ IDE to check for the coverag
 
 #### Non-Functional Requirements
 
-* Should work on any mainstream OS as long as it has Java 11 or above installed.
+* Should work on any [mainstream OS](#glossary) as long as it has Java 11 or above installed.
 * A user with above average typing speed for regular English text 
 (i.e. not code, not system admin commands) should be able to accomplish most of the 
 tasks faster using commands than using the mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS* - Windows, Unix, Linux, OS-X
 
 ## Instructions for manual testing
 
