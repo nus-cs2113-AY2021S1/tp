@@ -524,7 +524,58 @@ NUS students
 |v2.0|user|(to be updated)|(to be updated)|
 
 ### Use Cases
-{Insert some use cases examples}
+(For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
+
+####Use case: UC1 - Add module
+
+#####MSS: 
+1. User requests to add a module
+1. System prompts user to enter a module code
+1. User enters a module code
+1. System adds module to the database<br>
+Use case ends 
+
+#####Extensions:
+* 3a. Module code is invalid
+  * 3a1. System shows an error message<br>
+Use case ends
+* 3b. Module code already exists in database
+  * 3b1. System shows an error message<br>
+Use case ends
+
+####Use case: UC2 - View analysis of time spent
+
+#####MSS: 
+1. User requests to view analysis of time spent
+1. System prompts user to enter a week number
+1. User enters a week number
+1. System displays analysis of time spent to user<br>
+Use case ends 
+
+#####Extensions:
+* 3a. Week number is invalid<br>
+  * 3a1. System shows an error message<br> 
+Use case ends
+* 3b. Module list is empty<br>
+  * 3b1. System shows an error message<br>
+Use case ends
+* 4a. No time is spent in the specified week
+  * 4a1. System shows only time spent and no analysis<br>
+Use case ends
+
+####Use case: UC3 - Open notifications
+
+#####MSS: 
+1. User requests to open notifications
+1. System displays notifications<br>
+Use case ends 
+
+#####Extensions: 
+* 2a. No notifications
+  * 2a1. System displays an encouraging message<br>
+Use case ends
+
+
 
 ### Non-Functional Requirements
 
@@ -541,4 +592,172 @@ through graphical icons and audio indicator. Most apps like the mobile apps that
 
 ## Appendix: Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Given below are the instructions to test the app manually.
+
+### Initial Launch
+1. Initial launch<br>
+    1. Download the jar file and copy into an empty folder
+    1. Double-click the jar file<br>
+      Expected: A folder called `data` will be created and in the folder 
+      there will be a file named `modtracker.txt`.<br>
+
+### Functions
+
+1. Add module function `addmod`
+    1. Prerequisites: List all modules using `list` command. Empty list.
+    1. Test case: `addmod CS1231`<br>
+      Expected: CS1231 will be added to the module list.
+    1. Test case: `addmod CS1231` <br>
+      Expected: Error message will be shown. CS1231 will not be added as
+      as it is already in the module list.
+    1. Test case: `addmod CS111` <br>
+      Expected: Error message will be shown. CS111 will not be added as it falls
+      of the minimum module length.
+    1. Test case: `addmod CS1111111`<br>
+      Expected: Error message will be shown. CS1111111 will not be added as it 
+      exceeds the minimum module length.
+    1. Test case: `addmod `<br>
+      Expected: Error message will be shown. User will be prompted to enter a module
+      code.
+
+1. Add expected module workload function: `addexp`
+    1. Prerequisites: List all modules using `list` command. List contains 
+    only one module `CS1231` with an expected workload of 5 hours.
+    1. Test case: `addexp CS2113T 3`<br>
+      Expected: `CS2113T` will be added to the module list and has an expected
+    workload of 3 hours.
+    1. Test case: `addexp CS1231 8` <br>
+      Expected: Expected workload of `CS1231` will be changed to 8 H instead of 5 H.
+    1. Test case: `addexp CS1231 -6`<br>
+      Expected: Error message will be shown. Expected workload should not be negative.
+    1. Test case: `addexp CS1231 `<br>
+      Expected: Error message will be shown. User will be prompted to enter an expected workload.
+    1. Test case: `addexp`<br>
+      Expected: Error message will be shown. User will be prompted to enter a module code
+    and an expected workload.
+
+1. Add actual time spent function `addtime`
+    1. Prerequisites: List all modules using `list` command. List contains 
+           only one module `CS1231`.
+    1. Test case: `addtime CS1231 2 4`<br>
+      Expected: 2 H will be added to CS1231 in week 4.
+    1. Test case: `addtime CS1010 2 4`<br>
+      Expected: Error message will be shown. User will be prompted that the specified module 
+      not exist in the module list.
+    1. Test case: `addtime CS1231 2` <br>
+      Expected: Error message will be shown. User will be prompted to enter a week number.
+    1. Other incorrect addtime commands to try `addtime CS1231`,`addtime CS1231 2 s t` etc.
+      Expected: Similar to previous.
+    1. Test case: `addtime CS1231 2 14`<br>
+      Expected: Error message will be shown. User will be prompted to enter a valid
+      week number between 1 and 13 inclusive.
+    1. Other incorrect addtime commands to try `addtime CS1231 3 X` where X <=0 or X>= 14.<br>
+      Expected: Similar to previous.
+        
+1. Minus from actual time spent function: `minus`
+    1. Prerequisites: List all modules using `list` command. List contains 
+       only one module `CS1231`. `CS1231` has no input for actual time for all the weeks.
+    1. Test case: `minus CS1231 2 4`<br>
+      Expected: 2 H will be subtracted from CS1231 in week 4.
+    1. Test case: `minus CS1010 2 4`<br>
+      Expected: Error message will be shown. User will be prompted that the specified module 
+      not exist in the module list.
+    1. Test case: `minus CS1231 2` <br>
+      Expected: Error message will be shown. User will be prompted to enter a week number.
+    1. Other incorrect addtime commands to try `minus CS1231`,`minus CS1231 2 s t` etc.<br>
+      Expected: Similar to previous.
+    1. Test case: `minus CS1231 2 14`
+      Expected: Error message will be shown. User will be prompted to enter a valid
+      week number between 1 and 13 inclusive.
+    1. Other incorrect addtime commands to try `addtime CS1231 3 X` where X <= 0 or X >= 14. <br>
+      Expected: Similar to previous. 
+    1. Test case: `minus CS1231 8 7`<br>
+      Expected: User will be prompted that there is not input for the specified week so
+      time cannot be subtracted from that week.
+    
+1. Analyse actual time spent function: `analyse`
+    1. Prerequisite: List all modules using `list` command. List contains at least 
+      one module.
+    1. Test case: `analyse 3` <br>
+      Expected: Analysis of time spent on the modules in the specified week will be displayed.
+    1. Test case: `analyse 0` <br>
+      Expected: Error message will be shown. User will be prompted to enter a valid 
+      week number between 1 and 13 inclusive.
+    1. Other incorrect analysis commands `analyse 0`, `analyse x` where X <= 0 or X >= 14. <br>
+      Expected: Similar to previous. 
+    1. Prerequisite: List all modules using `list` command. List is empty.
+    1. Test case: `analyse x` for all numeric values of x <br>
+      Expected: Error message will be shown. User will be prompted that module list is empty.
+      
+1. Delete module function: `deletemod`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+    1. Test case: `deletemod CS1010` <br>
+      Expected: Error message will be shown. User will be prompted that `CS1010` is not does not
+      exist in the database.
+    1. Test case: `deletemod CS1231` <br>
+      Expected: `CS1231` and all related tasks would be removed from the database.
+    1. Test case: `deletemod C1213` <br>
+      Expected: Error message will be shown. User will be prompted to enter a valid module code.
+    1. Other incorrect delete module commands to try `deletemod C1`, `deletemod CS12345678` or
+      any other invalid module codes. <br>
+      Expected: Similar to previous.
+      
+1. Delete expected module workload function: `deleteexp`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+    1. Test case: `deletexp CS1010`<br>
+      Expected: Error message will be shown. User will be prompted that `CS1010` does not
+      exist in the database.
+    1. Test case: `delete CS1231`<br>
+      Expected: `Expected workload` of `CS1231` will be removed from the database.
+    1. Test case: `deleteexp C1213` <br>
+       Expected: Error message will be shown. User will be prompted to enter a valid module code.
+    1. Other incorrect delete module commands to try `deleteexp C1`, `deleteexp CS12345678` or
+      any other invalid module codes. <br>
+      Expected: Similar to previous.
+
+1. Delete actual time spent function: `deletetime`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+      `CS1231` has valid actual time spent for week 1 to 13.
+    1. Test case: `deletetime CS1231 7` <br>
+      Expected: Actual time spent on CS1231 in week 7 will be deleted.
+    1. Test case: `deletetime` <br>
+      Expected Error message will be shown. User will be prompted to enter a valid module code
+      and week number.
+    1. Test case: `deletetime CS1231` <br>
+      Expected: Error message will be shown. User will be prompted to enter a valid week number.
+
+1. Add tasks function: `addtask`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+    1. Test case: `addtask CS1010` <br>
+      Expected: Error message will be shown. User will be prompted that `CS1010` does not exist.
+    1. Test case: `addtask` <br>
+      Expected: Error message will be shown. User will be prompted to enter a valid module code
+      and week number.
+    1. Test case: `addtask CS1231` <br>
+      Expected: Error message will be shown. User will be prompted to enter a task description.
+    1. Test case: `addtask CS1231 do homework` <br>
+       Expected: `do homework` task will be added to the tasklist of CS1231.
+       
+1. Mark task as done function: `done`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+      `CS1231` has 2 tasks attached to it, `do homework` and `revise for exam`.
+    1. Test case: `done 1` <br>
+      Expected: Task number 1, `do homework` will be marked as done.
+    1. Test case: `done 8` <br>
+      Expected: Error message will be shown. User will be prompted to enter a task number between
+      1 and total number of tasks (2 in this case).
+    1. Other incorrect done commands to try `done 0` `done x` where  x<0 or x> total number of task <br>
+      Expected: Similar to previous.
+
+1. Delete task function: `deletetask`
+    1. Prerequisites: List all modules using `list` command. List contains a module `CS1231`.
+      `CS1231` has 2 tasks attached to it, `do homework` and `revise for exam`.
+    1. Test case: `deletetask 1` <br>
+      Expected: Task number 1, `do homework` will be deleted.
+    1. Test case: `deletetask 8` <br>
+      Expected: Error message will be shown. User will be prompted to enter a task number between
+      1 and total number of tasks (1 in this case).
+    1. Other incorrect done commands to try `deletetask 0` `deletetask x` where  x<0 or x> total number of task <br>
+      Expected: Similar to previous.
+      
+   
