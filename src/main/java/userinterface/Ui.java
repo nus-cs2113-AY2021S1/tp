@@ -60,9 +60,14 @@ public class Ui {
     public static void changeModeCommand(String command) {
         try {
             Mode newMode = CommandParser.getDestinationMode(command);
-            StudyIt.changeMode(newMode);
-            printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
-            printModeIntro(newMode);
+
+            if (newMode != StudyIt.getCurrentMode()) {
+                StudyIt.changeMode(newMode);
+                printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
+                printModeIntro(newMode);
+            } else {
+                printLine("You are already in " + ModeNames.getCurrentModeName() +"!");
+            }
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
