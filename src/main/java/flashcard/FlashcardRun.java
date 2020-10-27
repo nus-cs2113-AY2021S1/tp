@@ -40,7 +40,7 @@ public class FlashcardRun {
             flashcardDeck.testRandomCard();
             break;
         default:
-            System.out.println("Invalid command. Valid commands are 'add', 'delete', 'list', 'test'. "
+            System.out.println("Invalid command. Valid commands are 'add', 'delete', 'list', 'test'.\n"
                     + "Use 'exit' to exit the flashcard mode.");
             StudyItLog.logger.warning("Invalid flashcard command: Command unidentifiable");
         }
