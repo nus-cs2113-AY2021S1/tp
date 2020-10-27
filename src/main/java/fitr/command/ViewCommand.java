@@ -10,6 +10,7 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
@@ -86,7 +87,9 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
                 if (!lastDate.equals(foodList.getFood(index).getDate())) {
-                    Ui.printCustomMessage(EMPTY_STRING);
+                    if(index != 0) {
+                        Ui.printCustomMessage(EMPTY_STRING);
+                    }
                     Ui.printMessageInYellow(DATE_HEADER + foodList.getFood(index).getDate());
                     lastDate = foodList.getFood(index).getDate();
                     printIndex = 1;
@@ -111,7 +114,9 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
                 if (!lastDate.equals(exerciseList.getExercise(index).getDate())) {
-                    Ui.printCustomMessage(EMPTY_STRING);
+                    if(index != 0) {
+                        Ui.printCustomMessage(EMPTY_STRING);
+                    }
                     Ui.printMessageInYellow(DATE_HEADER + exerciseList.getExercise(index).getDate());
                     lastDate = exerciseList.getExercise(index).getDate();
                     printIndex = 1;
@@ -215,9 +220,8 @@ public class ViewCommand extends Command {
     }
 
     private void viewBmi(User user) {
-        Ui.printCustomMessage(BMI_HEADER);
         String bmiString = String.format("%.2f", user.getBmi());
-        Ui.printCustomMessage(bmiString);
+        Ui.printCustomMessage(BMI_HEADER + bmiString);
     }
 
     private void viewProfile(User user) {

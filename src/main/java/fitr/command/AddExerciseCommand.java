@@ -21,12 +21,11 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
-            String nameOfExercise = command.split("/", 2)[0];
+            String nameOfExercise = command.split("/", 2)[0].trim();
             if (nameOfExercise.isEmpty()) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            nameOfExercise = nameOfExercise.trim();
-            command = command.split("/", 2)[1];
+            command = command.split("/", 2)[1].trim();
             if (command.split(" ").length == 1) {
                 Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 if (amountOfCaloriesBurnt.get() < -1) {

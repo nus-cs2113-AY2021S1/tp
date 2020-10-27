@@ -22,12 +22,11 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
-            String nameOfFood = command.split("/", 2)[0];
-            nameOfFood = nameOfFood.trim();
+            String nameOfFood = command.split("/", 2)[0].trim();
             if (nameOfFood.isEmpty()) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            command = command.split("/", 2)[1];
+            command = command.split("/", 2)[1].trim();
             if (command.split(" ").length == 1) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 if (amountOfCalories.get() < 0) {
