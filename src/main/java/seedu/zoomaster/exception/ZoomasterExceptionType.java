@@ -25,6 +25,5 @@ public enum ZoomasterExceptionType {
     EMPTY_TIMETABLE,
     CONNECTION_ERROR,
     JSON_PARSE_ERROR,
-
-
+    EMPTY_FOLDER
 }

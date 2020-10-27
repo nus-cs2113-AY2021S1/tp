@@ -1,3 +1,4 @@
+//@@author jusufnathanael
 package seedu.zoomaster.command.planner;
 
 import seedu.zoomaster.Ui;
@@ -64,16 +65,13 @@ public class AddMeetingCommand extends AddSlotCommand {
                         + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ") Please check format.");
             }
             Slot newSlot;
-            if (timetable.isOverlapTimeSlot(day, startTime, endTime)) {
-                newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message +=  "  " + lesson + " overlaps with an existing timeslot\n";
-            } else if (isAvailable(day, startTime, endTime)) {
+            if (isAvailable(day, startTime, endTime)) {
                 newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                 module.addSlot(newSlot);
                 message +=  "  " + lesson + " slot added\n";
                 message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
             } else {
-                message +=  "  " + "slot is full" + System.lineSeparator();
+                message +=  "  " + "This slot is already filled." + System.lineSeparator();
             }
         }
         return message;
@@ -91,10 +89,14 @@ public class AddMeetingCommand extends AddSlotCommand {
     }
 
     private void updateEmptySlot(Slot slot, LocalTime startTime, LocalTime endTime) {
+        Slot slot1;
+        Slot slot2;
         if (slot.getStartTime().compareTo(startTime) != 0) {
-            Slot slot1 = new Slot(slot.getStartTime(), startTime, slot.getDay(), slot.getTitle());
-            Slot slot2 = new Slot(endTime, slot.getEndTime(), slot.getDay(), slot.getTitle());
+            slot1 = new Slot(slot.getStartTime(), startTime, slot.getDay(), slot.getTitle());
             localTimetable.getModule("EMPTY").addSlot(slot1);
+        }
+        if (slot.getEndTime().compareTo(endTime) != 0) {
+            slot2 = new Slot(endTime, slot.getEndTime(), slot.getDay(), slot.getTitle());
             localTimetable.getModule("EMPTY").addSlot(slot2);
         }
         localTimetable.getModule("EMPTY").removeSlot(slot);

@@ -9,6 +9,7 @@ import seedu.zoomaster.command.LaunchNowCommand;
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
+import seedu.zoomaster.command.planner.SavePlannerCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
@@ -115,20 +116,19 @@ public class Parser {
         return command;
     }
 
+    //@@author jusufnathanael
     private static Command createPlannerCommand(String input) throws ZoomasterException {
-
         if (input.startsWith(AddMeetingCommand.ADD_KW)) {
             return new AddMeetingCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
-        //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-        //    return new ClearCommand();
+        } else if (input.startsWith(SavePlannerCommand.SAVE_KW)) {
+            return new SavePlannerCommand();
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
             return new LoadPlannerCommand();
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-
     }
 
     public static int getProgramMode() {
