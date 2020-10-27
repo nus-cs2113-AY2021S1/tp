@@ -1,4 +1,4 @@
-package seedu.duke.food;
+package seedu.dietbook.food;
 
 
 public class Food {

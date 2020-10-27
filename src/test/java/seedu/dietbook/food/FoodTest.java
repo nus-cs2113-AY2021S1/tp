@@ -1,6 +1,4 @@
-package seedu.duke.food;
-
-import org.junit.jupiter.api.Test;
+package seedu.dietbook.food;
 
 
 class FoodTest {

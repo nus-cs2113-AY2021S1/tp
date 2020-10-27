@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietbook;
 
 import java.util.Scanner;
 

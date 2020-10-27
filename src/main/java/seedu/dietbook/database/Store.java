@@ -1,9 +1,8 @@
-package seedu.duke.database;
+package seedu.dietbook.database;
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Store {
