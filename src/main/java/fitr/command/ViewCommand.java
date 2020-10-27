@@ -185,7 +185,7 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
             Ui.printCustomMessage(String.valueOf(totalCalorieConsumed));
             Ui.printCustomMessage(CALORIE_BURNT_HEADER);
-            Ui.printCustomMessage(String.valueOf(totalCalorieBurnt));
+            Ui.printCustomMessage(String.valueOf(-totalCalorieBurnt));
             Ui.printCustomMessage(NET_CALORIE_HEADER);
             Ui.printCustomMessage(String.valueOf(totalCalorieBurnt + totalCalorieConsumed));
             totalCalorieBurnt = 0;
