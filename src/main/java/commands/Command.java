@@ -14,7 +14,7 @@ import java.io.IOException;
 public abstract class Command {
 
     public abstract void execute(Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, 
+            throws InvalidInputException, IncorrectAccessLevelException,
             IOException, InvalidFileFormatException, ExclusionFileException;
 
     public abstract boolean isExit();

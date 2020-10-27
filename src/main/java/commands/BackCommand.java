@@ -5,7 +5,7 @@ import exception.IncorrectAccessLevelException;
 import storage.Storage;
 import ui.Ui;
 
-public class BackCommand extends Command {
+public abstract class BackCommand extends Command {
     public static final String COMMAND_WORD = "back";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Back to up-level directory. \n"
