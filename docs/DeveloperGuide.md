@@ -40,8 +40,20 @@ API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
 
-#### Storage 
+### Parser
+![Parser diagram](./diagrams/Parser_diagram.jpg)
 
+The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
+
+#### UserData
+![UserData diagram](./diagrams/UserData_diagram.jpg)
+
+The `UserData`
+- stores `EventList` objects that store events of different categories (i.e. Personal, Timetable, Zoom).
+- stores a `Goal` object that represents the current user goal.
+- does not depend on the other components.
+
+#### Storage 
 ![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
