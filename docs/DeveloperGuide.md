@@ -20,6 +20,9 @@ The rest are just objects that the app requires.
 The diagram below shows the basic design.
 ![image info](./pictures/UML.png)
 
+The complete class diagram is shown below.
+![image info](./pictures/classDiagram.PNG)
+
 ### Implementation
 Retrieve Command
 The flow is for retrieve command is as follows {Replace with sequence diagram}
