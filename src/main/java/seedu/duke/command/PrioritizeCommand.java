@@ -33,6 +33,7 @@ public class PrioritizeCommand extends Command {
             throw new DukeException("prioritize");
         }
         markAsImportant(calendarList, index);
+        storage.writeToFile(calendarList);
     }
 
     /**

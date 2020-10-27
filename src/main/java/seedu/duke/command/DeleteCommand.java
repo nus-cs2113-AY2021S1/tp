@@ -81,5 +81,6 @@ public class DeleteCommand extends Command {
         Ui.printDeleteMessage(calendarNumber, calendarList);
         calendarList.deleteTask(calendarNumber);
         Ui.printTotalTaskNumber(calendarList);
+
     }
 }
