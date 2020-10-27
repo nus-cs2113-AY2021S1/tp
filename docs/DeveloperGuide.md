@@ -202,8 +202,8 @@ Paper trading allows inexperienced people to get a feel of what trading feels li
 |v1.0|investor|view my portfolio|see what stocks I have and my past transactions|
 |v2.0|investor|keep track of what stocks I have bought or sold|see how much money I've made or lost|
 |v2.0|investor|see how much cash I have left|decide how much to buy or sell|
-|v3.0|investor|have a watchlist of stocks|track the price movements of individual stocks|
-|v4.0|investor|see the performance of my portfolio|see if I'm on track for my financial goals|
+|v2.0|investor|have a watchlist of stocks|track the price movements of individual stocks|
+|v2.1|investor|see the performance of my portfolio|see if I'm on track for my financial goals|
 
 ## Non-Functional Requirements
 
