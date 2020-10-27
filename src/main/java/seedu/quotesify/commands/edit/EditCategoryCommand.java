@@ -23,8 +23,8 @@ public class EditCategoryCommand extends EditCommand {
     private void editCategory(CategoryList categoryList, TextUi ui) {
         try {
             String[] oldAndNewCategories = CategoryParser.getEditParameters(information);
-            String oldCategory = oldAndNewCategories[0];
-            String newCategory = oldAndNewCategories[1];
+            String oldCategory = oldAndNewCategories[0].toLowerCase();
+            String newCategory = oldAndNewCategories[1].toLowerCase();
 
             if (categoryList.isExistingCategory(newCategory)) {
                 throw new QuotesifyException("Category [" + newCategory + "] already exists!");

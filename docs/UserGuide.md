@@ -535,11 +535,19 @@ Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
 * The specified book or quote should exist in Quotesify.
 * Multiple categories should be <u>space separated</u>.
 
-Example of usage: `add -c fantasy -b 1`
+Example of usage: 
 
-Expected outcome:
+1. `add -c fantasy -b 1`
+2. `add -c inspirational -q 1`
+
+Expected outcome 1:
 ```
-I have tagged category [fantasy] to "Harry Potter"!
+I have tagged category [fantasy] to the book [Harry Potter]!
+```
+
+Expected outcome 2:
+```
+I have tagged category [inspirational] to the quote ["Life is Great"]!
 ```
 
 #### List categories: `list -c`
@@ -582,17 +590,24 @@ Format: `delete -c CATEGORIES [-b BOOK_NUMBER] [-q QUOTE_NUMBER]`
 
 Example of usage: 
 
-`delete -c fantasy -b 1`
+1. `delete -c fantasy`
+2. `delete -c fantasy -b 1`
+3. `delete -c inspirational -q 1`
 
-`delete -c fantasy`
 
-Expected outcome:
-```
-I have removed category [fantasy] from "Harry Potter"!
-```
-
+Expected outcome 1:
 ```
 I have removed category [fantasy] from all books and quotes!
+```
+
+Expected outcome 2:
+```
+I have removed category [fantasy] from the book [Harry Potter]!
+```
+
+Expected outcome 3:
+```
+I have removed category [inspirational] from the quote ["Life is Great"]!
 ```
 
 #### Edit an existing category: `edit -c`

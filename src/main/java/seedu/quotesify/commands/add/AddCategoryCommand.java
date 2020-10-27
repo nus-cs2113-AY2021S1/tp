@@ -46,6 +46,7 @@ public class AddCategoryCommand extends AddCommand {
 
             List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
             for (String categoryName : categories) {
+                categoryName = categoryName.toLowerCase();
                 addCategoryToList(categoryList, categoryName);
                 Category category = categoryList.getCategoryByName(categoryName);
 
@@ -80,7 +81,7 @@ public class AddCategoryCommand extends AddCommand {
             Book book = bookList.getBook(bookIndex);
 
             if (book.getCategories().contains(category.getCategoryName())) {
-                String errorMessage = String.format(ERROR_CATEGORY_ALREADY_EXISTS,
+                String errorMessage = String.format(ERROR_CATEGORY_EXISTS_IN_BOOK,
                         category.getCategoryName(), book.getTitle());
                 throw new QuotesifyException(errorMessage);
             }
@@ -112,7 +113,7 @@ public class AddCategoryCommand extends AddCommand {
             Quote quote = quoteList.getList().get(quoteIndex);
 
             if (quote.getCategories().contains(category.getCategoryName())) {
-                String errorMessage = String.format(ERROR_CATEGORY_ALREADY_EXISTS,
+                String errorMessage = String.format(ERROR_CATEGORY_EXISTS_IN_QUOTE,
                         category.getCategoryName(), quote.getQuote());
                 throw new QuotesifyException(errorMessage);
             }

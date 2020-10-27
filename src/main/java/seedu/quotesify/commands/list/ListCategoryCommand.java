@@ -31,7 +31,7 @@ public class ListCategoryCommand extends ListCommand {
 
     private void listAllInCategory(CategoryList categoryList, TextUi ui) {
         try {
-            ui.printAllInCategory(categoryList.getCategoryByName(information));
+            ui.printAllInCategory(categoryList.getCategoryByName(information.toLowerCase()));
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }

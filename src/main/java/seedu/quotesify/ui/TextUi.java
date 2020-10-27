@@ -186,19 +186,23 @@ public class TextUi {
     }
 
     public void printAddCategoryToBook(String bookTitle, String categoryName) {
-        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, "\"" + bookTitle + "\"");
+        String trailer = "the book [" + bookTitle + "]";
+        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
     public void printAddCategoryToQuote(String quote, String categoryName) {
-        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, "\"" + quote + "\"");
+        String trailer = "the quote [\"" + quote + "\"]";
+        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
     public void printRemoveCategoryFromBook(String bookTitle, String categoryName) {
-        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, "\"" + bookTitle + "\"");
+        String trailer = "the book [" + bookTitle + "]";
+        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
     public void printRemoveCategoryFromQuote(String quote, String categoryName) {
-        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, "\"" + quote + "\"");
+        String trailer = "the quote [\"" + quote + "\"]";
+        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
     public void printRemoveCategory(String categoryName) {
