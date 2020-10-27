@@ -28,7 +28,7 @@ public class Stock implements Serializable {
             totalQuantity -= transaction.getQuantity();
             break;
         default:
-            break;
+            assert false : "How did you end up here?!";
         }
 
         transactions.add(transaction);

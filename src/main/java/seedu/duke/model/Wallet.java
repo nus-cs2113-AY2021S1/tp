@@ -1,21 +1,27 @@
 package seedu.duke.model;
 
 public class Wallet {
-    private double amount;
+    private double currentAmount;
+    private double initialAmount;
 
-    public Wallet() {
-        amount = 10000.00;
+    public Wallet(double initialAmount) {
+        this.initialAmount = initialAmount;
+        currentAmount = initialAmount;
     }
 
-    public double getAmount() {
-        return this.amount;
+    public double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public double getInitialAmount() {
+        return initialAmount;
     }
 
     public void sellStock(int quantity, double price) {
-        this.amount = this.amount + price * quantity;
+        currentAmount = currentAmount + price * quantity;
     }
 
     public void buyStock(int quantity, double price) {
-        this.amount = this.amount - (price * quantity);
+        currentAmount = currentAmount - (price * quantity);
     }
 }

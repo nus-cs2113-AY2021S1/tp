@@ -73,11 +73,12 @@ public class Ui {
         print(dividerLine);
     }
 
-    public void viewWallet(double amount, double allStocksPrice) {
+    public void viewWallet(double currentAmount, double initialAmount, double allStocksPrice) {
         print(dividerLine);
-        System.out.println("You currently have $" + String.format("%.02f", amount) + " in your wallet.");
-        System.out.println("Allocated: $" + String.format("%.02f", allStocksPrice));
-        double difference = (amount + allStocksPrice) - 10000;
+        System.out.println("You currently have $" + String.format("%.02f", currentAmount) + " in your wallet.");
+        System.out.println("Current market value of all your equities owned: $"
+                + String.format("%.02f", allStocksPrice));
+        double difference = (currentAmount + allStocksPrice) - initialAmount;
         if (difference >= 0) {
             System.out.println("Profit of: +$" + String.format("%.02f", difference));
         } else {
