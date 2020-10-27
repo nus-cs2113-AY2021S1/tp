@@ -31,7 +31,7 @@ public class ClearCommand extends Command {
             switch (command.toLowerCase()) {
             case Commands.COMMAND_FOOD:
                 LOGGER.fine("Clearing food list.");
-                if(listManager.getFoodList().getSize() == 0) {
+                if (listManager.getFoodList().getSize() == 0) {
                     Ui.printCustomError("Food list is empty!");
                     return;
                 }
@@ -40,7 +40,7 @@ public class ClearCommand extends Command {
                 break;
             case Commands.COMMAND_EXERCISE:
                 LOGGER.fine("Clearing exercise list.");
-                if(listManager.getExerciseList().getSize() == 0) {
+                if (listManager.getExerciseList().getSize() == 0) {
                     Ui.printCustomError("Exercise list is empty!");
                     return;
                 }
@@ -49,7 +49,7 @@ public class ClearCommand extends Command {
                 break;
             case Commands.COMMAND_GOAL:
                 LOGGER.fine("Clearing goal list.");
-                if(listManager.getGoalList().getSize() == 0) {
+                if (listManager.getGoalList().getSize() == 0) {
                     Ui.printCustomError("Goal list is empty!");
                     return;
                 }

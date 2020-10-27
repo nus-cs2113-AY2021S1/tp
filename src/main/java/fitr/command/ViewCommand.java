@@ -87,7 +87,7 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
                 if (!lastDate.equals(foodList.getFood(index).getDate())) {
-                    if(index != 0) {
+                    if (index != 0) {
                         Ui.printCustomMessage(EMPTY_STRING);
                     }
                     Ui.printMessageInYellow(DATE_HEADER + foodList.getFood(index).getDate());
@@ -114,7 +114,7 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
                 if (!lastDate.equals(exerciseList.getExercise(index).getDate())) {
-                    if(index != 0) {
+                    if (index != 0) {
                         Ui.printCustomMessage(EMPTY_STRING);
                     }
                     Ui.printMessageInYellow(DATE_HEADER + exerciseList.getExercise(index).getDate());

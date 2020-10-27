@@ -31,7 +31,7 @@ public class CompleteGoalCommand extends Command {
                 command = command.split(" ", 2)[1];
                 int completedGoalIndex = Integer.parseInt(command) - 1;
                 Goal completedGoal = listManager.getGoal(completedGoalIndex);
-                if(completedGoal.getStatus(completedGoal, listManager.getFoodList(),
+                if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
                         listManager.getExerciseList(), user) == "✓") {
                     Ui.printCustomError("This goal has already been completed.");
                     return;

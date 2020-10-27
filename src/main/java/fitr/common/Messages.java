@@ -16,9 +16,11 @@ public class Messages {
     public static final String FORMAT_FOOD = "food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]";
     public static final String FORMAT_EXERCISE = "exercise NAME_OF_EXERCISE /CALORIES_BURNT";
     public static final String FORMAT_FOOD_GOAL = "goal food GOAL_DESCRIPTION";
-    public static final String FORMAT_SMART_FOOD_GOAL = "goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES";
+    public static final String FORMAT_SMART_FOOD_GOAL = "goal food < NUMBER_OF_CALORIES or goal food > "
+            + "NUMBER_OF_CALORIES";
     public static final String FORMAT_EXERCISE_GOAL = "goal exercise GOAL_DESCRIPTION";
-    public static final String FORMAT_SMART_EXERCISE_GOAL = "goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT";
+    public static final String FORMAT_SMART_EXERCISE_GOAL = "goal exercise < CALORIES_BURNT or goal exercise "
+            + "> CALORIES_BURNT";
     public static final String FORMAT_HELP = "help";
     public static final String FORMAT_VIEW_PROFILE = "view profile";
     public static final String FORMAT_VIEW_BMI = "view bmi";
