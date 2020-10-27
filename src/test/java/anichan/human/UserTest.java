@@ -1,7 +1,6 @@
 package anichan.human;
 
 import anichan.exception.AniException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -46,7 +45,7 @@ class UserTest {
     }
 
     @Test
-    void setGender_Monster_throwAniException() throws AniException {
+    void setGender_Monster_throwsAniException() throws AniException {
         User user = new User("Monster", "MaLE");
 
         assertThrows(AniException.class, () -> {
@@ -113,7 +112,7 @@ class UserTest {
     }
 
     @Test
-    void switchActiveWorkspace_emptyWorkspaceList_throwAniException() throws AniException {
+    void switchActiveWorkspace_emptyWorkspaceList_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
         Workspace newWorkspace = user.addWorkspace("Default");
 
@@ -123,7 +122,7 @@ class UserTest {
     }
 
     @Test
-    void addWorkspace_nameExist_throwAniException() throws AniException {
+    void addWorkspace_nameExist_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
         Workspace newWorkspace = user.addWorkspace("Default");
 
@@ -133,7 +132,7 @@ class UserTest {
     }
 
     @Test
-    void deleteWorkspace_invalidNames_throwAniException() throws AniException {
+    void deleteWorkspace_invalidNames_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
         Workspace newWorkspace = user.addWorkspace("Default");
 
