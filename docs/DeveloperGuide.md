@@ -103,6 +103,7 @@ What would you like to do with Quotesify?
 ```
 
 ## 3.0 Design
+*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
 
 ### 3.1 Architecture
 ![Sequence Diagram for Architecture](images/SeqDiagram_Architecture.png)
@@ -174,6 +175,7 @@ On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
 
 ## 4.0 Implementation
+*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
 
 ### 4.1 Feature: Book Management
 Given below is the class diagram for classes related to Book Management in Quotesify:
