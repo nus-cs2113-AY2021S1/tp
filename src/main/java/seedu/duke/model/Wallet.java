@@ -1,6 +1,8 @@
 package seedu.duke.model;
 
-public class Wallet {
+import java.io.Serializable;
+
+public class Wallet implements Serializable {
     private double currentAmount;
     private double initialAmount;
 

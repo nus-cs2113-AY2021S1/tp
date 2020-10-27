@@ -19,7 +19,7 @@ public class StockPriceFetcher {
     private int timeout = 3000;
 
     public StockPriceFetcher() {
-        apiKey = "O8EVQ7YSWDW08BN9";
+        apiKey = "3FPNCQ0JNYEE8BTK";
         timeout = 3000;
     }
 
