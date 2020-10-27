@@ -137,10 +137,10 @@ This project uses code coverage that is in IntelliJ IDE to check for the coverag
 
 **Value proposition:**
 * manage links faster than a typical mouse/GUI driven app
-* manage grades than a typical mouse/GUI driven app
-* manage contact numbers of professors and teaching assistants than a typical mouse/GUI driven app
-* manage timetable than a typical mouse/GUI driven app
-* manage study content than a typical mouse/GUI driven app 
+* manage grades more easily than a typical mouse/GUI driven app
+* manage contact numbers of professors and teaching assistants more effectively than a typical mouse/GUI driven app
+* manage timetable in a more organised manner than a typical mouse/GUI driven app
+* manage study content more efficiently than a typical mouse/GUI driven app 
 
 #### User Stories
 
@@ -158,14 +158,14 @@ This project uses code coverage that is in IntelliJ IDE to check for the coverag
 
 #### Non-Functional Requirements
 
-* Should work on any mainstream OS as long as it has Java 11 or above installed.
+* Should work on any [mainstream OS](#glossary) as long as it has Java 11 or above installed.
 * A user with above average typing speed for regular English text 
 (i.e. not code, not system admin commands) should be able to accomplish most of the 
 tasks faster using commands than using the mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS* - Windows, Unix, Linux, OS-X
 
 ## Instructions for manual testing
 
