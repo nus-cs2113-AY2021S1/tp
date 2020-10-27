@@ -21,11 +21,11 @@ enhancements.
   * [3.2. User Stories](#32-user-stories)
   * [3.3. Non-Functional Requirements](#33-non-functional-requirements)
   * [3.4. Glossary](#34-glossary)
-- [6. Appendix II: Instructions for manual testing](#6-appendix-ii-instructions-for-manual-testing)
+- [4. Appendix II: Instructions for manual testing](#4-appendix-ii-instructions-for-manual-testing)
 
 ## 1. Setting up, getting started
 
-Refer to the guide Setting up and getting started.
+Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
 ## 2. Design & Implementation
 
@@ -160,6 +160,6 @@ that require mouse clicks.
 
 * *glossary item* - Definition
 
-## 6. Appendix II: Instructions for manual testing
+## 4. Appendix II: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
