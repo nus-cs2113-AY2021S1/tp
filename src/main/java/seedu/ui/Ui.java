@@ -97,7 +97,7 @@ public class Ui {
         String messageFormat = "%-15s%-30s%15s" + LS;
         String taskFormat = "%-15s%-6s%-18s%-6s%15s" + LS;
         out.println("||" + Util.generatePadStringWithCharAndLength(' ', 56) + "||");
-        out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " tasks due today.", "||");
+        out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " task(s) due today.", "||");
         for (Task task : tasksDueToday.getValues()) {
             out.format(taskFormat,
                 "||",
@@ -137,6 +137,7 @@ public class Ui {
     }
 
     public void displayTasksForTesting(TaskMap taskMap) {
+        // To be deleted later
         displayAll(taskMap);
     }
 

@@ -8,7 +8,7 @@ import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public abstract class DisplayDateStructure {
+public class DisplayDateStructure {
     protected static final TextStyle MONTH_TEXT_STYLE = TextStyle.FULL;
     protected static final TextStyle WEEKDAY_TEXT_STYLE = TextStyle.SHORT;
     protected static final Locale LOCALE = Locale.ENGLISH;
@@ -29,6 +29,8 @@ public abstract class DisplayDateStructure {
         return screen;
     }
 
-    protected abstract void generateScreen(TaskMap tasks);
+    protected void generateScreen(TaskMap tasks){
 
+    }
+    
 }

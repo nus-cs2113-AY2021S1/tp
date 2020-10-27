@@ -11,7 +11,7 @@ import static seedu.commons.Util.putsIntoArray;
 import static seedu.commons.Util.putsIntoArrayWithCentralise;
 
 public class MonthStructure extends DisplayDateStructure {
-    private static final int DISPLAY_HEIGHT = 51;
+    private static final int DISPLAY_HEIGHT = 53;
     private static final int ROW_NUM_OFFSET = 2;    // Month name and Day of week
 
     @Override
