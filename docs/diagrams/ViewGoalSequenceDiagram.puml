@@ -1,0 +1,32 @@
+@startuml
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+participant ":ViewCommand"
+
+activate ":Fitr"
+":Fitr" -> ":Ui" : read()
+activate ":Ui"
+":Fitr" <-- ":Ui"
+deactivate ":Ui"
+
+":Fitr" -> "<<class>>\n:Parser" : parse("view goal")
+activate "<<class>>\n:Parser"
+create ":ViewCommand"
+"<<class>>\n:Parser" -> ":ViewCommand" ++
+return
+":Fitr" <-- "<<class>>\n:Parser"
+deactivate "<<class>>\n:Parser"
+
+":Fitr" -> ":ViewCommand" : execute()
+activate ":ViewCommand"
+":ViewCommand" -> ":ViewCommand" : viewGoal()
+activate ":ViewCommand"
+":ViewCommand" -> ":Ui" : printCustomMessage()
+activate ":Ui"
+return
+return
+return
+destroy ":ViewCommand"
+
+hide footbox
+@enduml
