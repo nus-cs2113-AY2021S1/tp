@@ -214,7 +214,7 @@ public class EntryTracker {
     }
 
     static FiniteStateMachine.State handleEditEntry() {
-        RetrieveEntryCommand retrieveEntryCommand = new RetrieveEntryCommand("/id");
+        RetrieveEntryCommand retrieveEntryCommand = new RetrieveEntryCommand();
         EditEntryCommand editEntryCommand;
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;

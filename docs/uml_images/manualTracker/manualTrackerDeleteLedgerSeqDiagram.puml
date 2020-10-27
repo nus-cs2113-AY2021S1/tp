@@ -1,0 +1,56 @@
+@startuml
+autoactivate on
+
+":ManualTracker" ->":ManualTracker": handleCreateEntry()
+   note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
+   create "retrieveLedgerCommand:RetrieveLedgerCommand"
+   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : "retrieveLedgerCommand:RetrieveLedgerCommand"()
+   return
+
+   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : handlePacket
+        == Handling of Params in packet for retrieval ==
+        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleParams
+            "retrieveLedgerCommand:RetrieveLedgerCommand" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
+                "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleSingleParam
+                    alt "paramType = PARAM_DATE"
+                        "retrieveLedgerCommand:RetrieveLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
+                        return date
+                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : getIndexFromDate(date)
+                        return index
+                        note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved via regular\ngetter methods from entrylist"
+                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        return
+                    else "paramType = PARAM_INDEX"
+                        "retrieveLedgerCommand:RetrieveLedgerCommand" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
+                        return index
+                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Removal of retrieved ledger from ledgerList ==
+   ":ManualTracker"-> "ledgerList:LedgerList" : removeItemAtCurrIndex()
+   note left "ledger:Ledger": "Note: The retrieved ledger will be deleted here."
+   destroy "ledger:Ledger"
+   return
+return state
+
+box "Data Tracker handler" #LightYellow
+participant ":ManualTracker"
+endBox
+
+box "Logic" #LightBlue
+participant "retrieveLedgerCommand:RetrieveLedgerCommand"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "ledger:Ledger"
+participant "ledgerList:LedgerList"
+endBox
+@enduml
