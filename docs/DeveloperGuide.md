@@ -313,8 +313,11 @@ There are two ways to run tests.
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
+|v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
+|v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 
 ## Non-Functional Requirements
 
