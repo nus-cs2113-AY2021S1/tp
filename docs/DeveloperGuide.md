@@ -54,6 +54,7 @@
   * [Listing a specific category](#listing-a-specific-category)
   * [Deleting existing categories](#deleting-existing-categories)
   * [Editing an existing category](#editing-an-existing-category)
+  * [Finding an existing category](#finding-an-existing-category)
   * [Adding a book rating](#adding-a-book-rating)
   * [Listing all existing book ratings](#listing-all-existing-book-ratings)
   * [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
@@ -889,6 +890,18 @@ quote management, progress tracker, category management and a rating system for 
    
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
+### Finding an existing category
+1. Find an existing category name
+   - Test case: `find -c man`
+   
+     Expected: Quotesify will list all categories containing the keyword "man".
+     
+2. Incorrect commands to try
+   - `find -c` missing keyword
+   - `find -c 123` invalid category name
+   
+   Expected: An error message will be prompted. No categories will be listed.
+
 ### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.

@@ -534,6 +534,7 @@ Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
 * You must specify either a book, quote, or both.
 * The specified book or quote should exist in Quotesify.
 * Multiple categories should be <u>space separated</u>.
+* All categories specified will be converted and stored in <u>lower-case</u> format.
 
 Example of usage: 
 
@@ -620,6 +621,19 @@ Example of usage: `edit -c fantasy /to romance`
 Expected outcome:
 ```
 The category has been changed from [fantasy] to [romance]!
+```
+
+#### Find an existing category: `find -c`
+Find an existing category name.
+
+Format: `find -c KEYWORD`
+
+Example of usage: `find -c rom`
+
+Expected outcome:
+```
+Here is a list of categories with the keyword "man":
+1. romance - (1 items)
 ```
 
 ### Rating System
