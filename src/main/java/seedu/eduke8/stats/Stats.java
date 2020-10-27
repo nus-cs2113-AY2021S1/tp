@@ -12,7 +12,7 @@ public class Stats {
 
     private UserStatsCalculator userStatsCalculator;
 
-    protected ArrayList<Displayable> topics;
+    private ArrayList<Displayable> topics;
 
     public Stats(TopicList topicList) {
         topics = topicList.getInnerList();

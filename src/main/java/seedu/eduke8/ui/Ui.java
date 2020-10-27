@@ -65,7 +65,7 @@ public class Ui {
     private static final String MESSAGE_EXPLANATION = "Explanation:";
     private static final String MESSAGE_PRINT_NOTE_LIST_NONE = "There are no notes for this topic!";
     private static final String MESSAGE_PRINT_NOTE_LIST = "These are the notes for this topic: ";
-    private static final String MESSAGE_QUIZ_TOPIC_CHOSEN = "The chosen topics is: ";
+    private static final String MESSAGE_QUIZ_TOPIC_CHOSEN = "The chosen topic is: ";
     private static final String MESSAGE_QUIZ_QUESTION_CHOSEN = "You have chosen to complete ";
     private static final String MESSAGE_QUIZ_QUESTION_CHOSEN_SECOND = " question";
     private static final String MESSAGE_BOOKMARK_INDICATOR = "Bookmarked this question!";
@@ -76,6 +76,21 @@ public class Ui {
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String MESSAGE_SHOW_POINTS = "You have earned ";
+    private static final String MESSAGE_SHOW_POINTS_SECOND = " points out of a total of ";
+    private static final String MESSAGE_SHOW_POINTS_THIRD = " points available!";
+    private static final String MESSAGE_USER_PROGRESS = "Therefore, your E-Duke-8 progress is ";
+    private static final String MESSAGE_PRAISE = "Good job! Keep it up!";
+    private static final String MESSAGE_MOTIVATE = "Let's do some quizzes!";
+    private static final String TOPICS_PROGRESSION_SECTION_HEADER = "Topics' Progression";
+    private static final String OUT_OF_SYMBOL = "/";
+    private static final String MESSAGE_QUESTIONS_DONE = " questions done";
+    private static final String MESSAGE_CORRECT_QUESTIONS_ANSWERED = " questions correctly answered";
+    private static final String MESSAGE_HINT_USED_SINGULAR = " hint used";
+    private static final String MESSAGE_HINT_USED_PLURAL = " hints used";
+    private static final String MESSAGE_POINTS_EARNED_OUT_OF = " points earned / ";
+    private static final String PERCENTAGE_SIGN = "%";
+    private static final String MESSAGE_AVAILABLE_WORD = " available ";
 
 
     public String getInputFromUser() {
@@ -213,21 +228,21 @@ public class Ui {
     }
 
     public void showPointsEarned(int pointsEarned, int pointsAvailable) {
-        System.out.println("You have earned " + pointsEarned + " points out of a total of "
-                + pointsAvailable + " points available!");
+        System.out.println(MESSAGE_SHOW_POINTS + pointsEarned + MESSAGE_SHOW_POINTS_SECOND
+                + pointsAvailable + MESSAGE_SHOW_POINTS_THIRD);
     }
 
     public void showTotalProgression(int progressionLevelPercentage, boolean progressOverHalf) {
-        System.out.print("Therefore, your E-Duke-8 progress is " + progressionLevelPercentage + "%. ");
+        System.out.print(MESSAGE_USER_PROGRESS + progressionLevelPercentage + PERCENTAGE_SIGN + DOT_SPACE);
         if (progressOverHalf) {
-            System.out.println("Good job! Keep it up!" + System.lineSeparator());
+            System.out.println(MESSAGE_PRAISE + System.lineSeparator());
         } else {
-            System.out.println("Let's do some quizzes!" + System.lineSeparator());
+            System.out.println(MESSAGE_MOTIVATE + System.lineSeparator());
         }
     }
 
     public void printTopicProgressionHeader() {
-        System.out.println("Topics' Progression");
+        System.out.println(TOPICS_PROGRESSION_SECTION_HEADER);
         System.out.println(HORIZONTAL_LINE);
     }
 
@@ -236,23 +251,24 @@ public class Ui {
     }
 
     public void showTopicalQuestionsCompletionLevel(int questionsAttempted, int questionsTotal) {
-        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAttempted + "/" + questionsTotal
-                + " questions done");
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAttempted
+                + OUT_OF_SYMBOL + questionsTotal + MESSAGE_QUESTIONS_DONE);
     }
 
     public void showTopicAccuracyLevel(int questionsAnsweredCorrectly, int questionsAttempted) {
-        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + "/"
-                + questionsAttempted + " questions correctly answered");
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + OUT_OF_SYMBOL
+                + questionsAttempted + MESSAGE_CORRECT_QUESTIONS_ANSWERED);
     }
 
     public void showTopicalHintUsage(int hintUsage) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + hintUsage
-                + (hintUsage <= 1 ? " hint used" : " hints used"));
+                + (hintUsage <= 1 ? MESSAGE_HINT_USED_SINGULAR : MESSAGE_HINT_USED_PLURAL));
     }
 
     public void showTopicalPoints(int pointsEarned, int pointsAvailable, int progressionPercentage) {
-        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + pointsEarned + " points earned / "
-                + pointsAvailable + " available [" + progressionPercentage + "%]");
+        System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + pointsEarned + MESSAGE_POINTS_EARNED_OUT_OF
+                + pointsAvailable + MESSAGE_AVAILABLE_WORD + OPEN_SQUARE_BRACKET
+                + progressionPercentage + PERCENTAGE_SIGN + CLOSE_SQUARE_BRACKET);
     }
 
     public void printBookmarkedIndicator() {

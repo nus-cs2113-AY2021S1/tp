@@ -32,16 +32,25 @@
 
 ### Software Overview
 
-Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and OOP principles** through a gamified
+platform and enhances their learning experience. 
 
-Purpose of the document:
-E-duke-8 is an education companion, intended for students to enhance their learning experience. 
+On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the **Command Line Interface (CLI)**, to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
-This guide will allow any interested contributors who wish to develop this learning companion further, to understand the inner workings of the program. This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
+E-Duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+
+The purpose of this developer guide is to allow any interested contributors, who wish to develop this learning companion further, understand the inner workings of the program. 
+This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
 
 ### Setting up
 
-Fork the repo, and clone the fork into your own PC. You are recommended to use IntelliJ to best edit the program. Do not forget to configure the JDK, and to import the project as a Gradle project, and lastly, remember to verify that the JUnit tests pass, to ensure the program is functional.
+First, fork this repo, and clone the fork into your computer.
+
+You are recommended to use Intellij IDEA to edit the program.
+
+1. **Configure the JDK**: Ensure Intellij is configured to use JDK 11.
+2. **Import the project as a Gradle project**: Choose the option to import the project as a Gradle project when prompted.
+3. **Verify the setup**: Enter some commands to ensure E-Duke-8 functions as expected. Refer to our [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html) for more information.
 
 ## Design & implementation
 
@@ -191,13 +200,13 @@ An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duk
 
 The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
 
-Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user answers all of them on the command line interface.
+Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
 #### Implementation of QuizQuestionsManager
 
-As mentioned in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
+As mentioned earlier in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
 
-The Sequence Diagram below shows how `QuizQuestionsManager` achieves this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
+The Sequence Diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
 
 
 ![QuizQuestionsManager_setQuizQuestions](./images/QuizQuestionsManager_setQuizQuestions.png)

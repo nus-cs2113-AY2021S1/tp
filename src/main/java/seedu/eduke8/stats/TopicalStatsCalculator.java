@@ -47,8 +47,7 @@ public class TopicalStatsCalculator extends StatsCalculator {
     }
 
 
-
-    // check each qn and calculate number of hints used
+    // Checks each question and calculate number of hints used
     public int calculateTopicalHintUsage() {
         ArrayList<Displayable> attemptedQuestions = getTopicalAttemptedQuestions();
         int hintUsageCount = 0;
@@ -60,8 +59,6 @@ public class TopicalStatsCalculator extends StatsCalculator {
         return hintUsageCount;
     }
 
-
-    // The 2 methods below maybe could just extend from StatsCalulator
     public int calculateTopicalPointsEarned() {
         ArrayList<Displayable> attemptedQuestions = getTopicalAttemptedQuestions();
         int pointsEarned = 0;
