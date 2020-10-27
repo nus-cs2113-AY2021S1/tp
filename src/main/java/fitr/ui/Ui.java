@@ -102,30 +102,59 @@ public class Ui {
 
     public static void printHelpMessage() {
         printCustomMessage("These are commands Fitr understands:");
+        printCustomMessage("Do note that:");
+        printCustomMessage(" * On the left shows the command format while the right shows its usage");
+        printCustomMessage(" * Words formatted as UPPER_CASE are to be supplied by you");
+        printCustomMessage(" * Items in square brackets are [optional]");
+        printCustomMessage(" * Items in brackets are (additional information)\n");
 
-        System.out.printf(HELP_SPACER, COMMAND_FOOD, "Adds food entry to Fitr program");
-        printCustomMessage(SPACER + FORMAT + FORMAT_FOOD);
+        printCustomMessage("-".repeat(54) + "Profile" + "-".repeat(55));
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_PROFILE, "View your profile information");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_BMI, "View your BMI");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_NAME, "Edit your profile name");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_AGE, "Edit your profile age");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_GENDER, "Edit your profile gender");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_HEIGHT, "Edit your profile height");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_WEIGHT, "Edit your profile weight");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_FITNESS, "Edit your profile fitness\n");
 
-        System.out.printf(HELP_SPACER, COMMAND_EXERCISE, "Adds exercise entry to Fitr program");
-        printCustomMessage(SPACER + FORMAT + FORMAT_EXERCISE);
-        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND,
-                "Recommends a specific set of exercises based on your fitness level");
-        printCustomMessage(SPACER + FORMAT + "recommend");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_PROFILE, "View your profile information");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_BMI, "View your BMI");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_FOOD, "View food entries");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_EXERCISE, "View exercise entries");
-        System.out.printf(HELP_SPACER, COMMAND_VIEW + " " + COMMAND_VIEW_SUMMARY, "View calorie summary");
+        printCustomMessage("-".repeat(56) + "Food" + "-".repeat(56));
+        System.out.printf(HELP_SPACER, FORMAT_FOOD, "Add a food entry");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD, "View your food entries");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE,
+                "View your food entries on a specified date");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_FOOD, "Edit your previous food entry");
+        System.out.printf(HELP_SPACER, FORMAT_DELETE_FOOD, "Delete a food entry");
+        System.out.printf(HELP_SPACER, FORMAT_CLEAR_FOOD, "Clear all your food entries\n");
 
-        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_EXERCISE, "Edit a previous exercise entry");
-        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EXERCISE);
-        System.out.printf(HELP_SPACER, COMMAND_EDIT + " " + COMMAND_FOOD, "Edit a previous food entry");
-        printCustomMessage(SPACER + FORMAT + COMMAND_EDIT + " " + FORMAT_EDIT_FOOD);
+        printCustomMessage("-".repeat(54) + "Exercise" + "-".repeat(54));
+        System.out.printf(HELP_SPACER, FORMAT_RECOMMEND, "Get a recommended workout");
+        System.out.printf(HELP_SPACER, FORMAT_EXERCISE, "Add an exercise entry");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE, "View your exercise entries");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE,
+                "View your exercise entries on a specified date");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_EXERCISE, "Edit your previous exercise entry");
+        System.out.printf(HELP_SPACER, FORMAT_DELETE_EXERCISE, "Delete an exercise entry");
+        System.out.printf(HELP_SPACER, FORMAT_CLEAR_EXERCISE, "Clear all your exercise entries\n");
 
-        System.out.printf(HELP_SPACER, COMMAND_DELETE, "Deletes selected entry based on date and index");
-        printCustomMessage(SPACER + FORMAT + FORMAT_DELETE);
+        printCustomMessage("-".repeat(56) + "Goal" + "-".repeat(56));
+        System.out.printf(HELP_SPACER, FORMAT_FOOD_GOAL, "Add a food goal");
+        System.out.printf(HELP_SPACER, FORMAT_SMART_FOOD_GOAL, "Add a smart food goal");
+        System.out.printf(HELP_SPACER, FORMAT_EXERCISE_GOAL, "Add an exercise goal");
+        System.out.printf(HELP_SPACER, FORMAT_SMART_EXERCISE_GOAL, "Add a smart exercise goal");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_GOAL, "View your goals");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_GOAL, "Edit your previous goal entry");
+        System.out.printf(HELP_SPACER, FORMAT_MARK_GOAL_AS_COMPLETE, "Mark your goal entry as complete");
+        System.out.printf(HELP_SPACER, FORMAT_DELETE_GOAL, "Delete a goal entry");
+        System.out.printf(HELP_SPACER, FORMAT_CLEAR_GOAL, "Clear all your goal entries\n");
 
-        System.out.printf(HELP_SPACER, COMMAND_BYE, "Exits the program");
+        printCustomMessage("-".repeat(55) + "Other" + "-".repeat(56));
+        System.out.printf(HELP_SPACER, FORMAT_HELP, "Display available commands");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_SUMMARY, "View calorie summary");
+        System.out.printf(HELP_SPACER, FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE,
+                "View calorie summary on a specified date");
+        System.out.printf(HELP_SPACER, FORMAT_CLEAR, "Clear all food, exercise and goal entries");
+        System.out.printf(HELP_SPACER, FORMAT_BYE, "Exit the application");
     }
 
     public static void printFormatError(String command) {
