@@ -242,7 +242,7 @@ public class Ui {
         System.out.println("---WARNING!---");
         System.out.println("This will delete all your past data.");
         System.out.println("Type '" + CONFIRMATION + "' if you wish to continue.");
-        System.out.println("Press any key to cancel this operation." + System.lineSeparator());
+        System.out.println("Enter any key to cancel this operation." + System.lineSeparator());
         String input = in.nextLine();
         if (input.equalsIgnoreCase("yes")) {
             System.out.println("Okay, your data has been deleted :(" + System.lineSeparator());
@@ -255,8 +255,8 @@ public class Ui {
     /**
      * Prints the given error message.
      */
-    public void printErrorMessage(String input) {
-        switch (input) {
+    public void printErrorMessage(String command) {
+        switch (command) {
         case Parser.COMMAND_ADDTIME:
             System.out.println(WRONG_FORMAT);
             System.out.println("Format: addtime <module code> <actual time spent> <week number>"
