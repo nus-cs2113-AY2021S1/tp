@@ -291,7 +291,7 @@ public class Person {
         int minWeight = 1;
         assert weight >= minWeight : weightType + " of person should be greater than 0";
         int maxWeight = 500;
-        assert weight < maxWeight : weightType + " of person should less than 500";
+        assert weight <= maxWeight : weightType + " of person should less than 500";
     }
 
     /**
@@ -303,7 +303,7 @@ public class Person {
         int minHeight = 1;
         assert height >= minHeight : "Height of person should be greater than 0";
         int maxHeight = 300;
-        assert height < maxHeight : "Height of person should be less than 300";
+        assert height <= maxHeight : "Height of person should be less than 300";
     }
 
     /**
@@ -334,6 +334,6 @@ public class Person {
         int minAge = 0;
         assert age >= minAge : "The age of person should be equals to or greater than 0";
         int maxAge = 150;
-        assert age < maxAge : "The age of person should be lesser than 150";
+        assert age <= maxAge : "The age of person should be lesser than 150";
     }
 }
