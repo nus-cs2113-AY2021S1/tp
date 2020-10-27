@@ -11,9 +11,11 @@ import seedu.duke.command.BuyCommand;
 import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
+import seedu.duke.exception.DoNotOwnStockException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InsufficientFundException;
+import seedu.duke.exception.InsufficientQtyException;
 import seedu.duke.model.PortfolioManager;
-import seedu.duke.model.Wallet;
 import seedu.duke.model.Stock;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
@@ -22,26 +24,23 @@ public class Controller {
     private Ui ui;
     private StockPriceFetcher stockPriceFetcher;
     private PortfolioManager portfolioManager;
-    private Wallet wallet;
 
     public Controller() {
         ui = new Ui();
         stockPriceFetcher = new StockPriceFetcher();
         portfolioManager = new PortfolioManager();
-        wallet = new Wallet();
     }
 
     private void buyStock(String symbol, int quantity) {
         try {
             double price = stockPriceFetcher.fetchLatestPrice(symbol);
             portfolioManager.buyStock(symbol, quantity, price);
-            wallet.buyStock(quantity, price);
 
             ui.printWithDivider("You have successfully purchased "
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
-                    + String.format("%.02f", wallet.getAmount()) + " in your wallet.");
-        } catch (DukeException e) {
+                    + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
+        } catch (DukeException | InsufficientFundException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -50,13 +49,12 @@ public class Controller {
         try {
             double price = stockPriceFetcher.fetchLatestPrice(symbol);
             portfolioManager.sellStock(symbol, quantity, price);
-            wallet.sellStock(quantity, price);
 
             ui.printWithDivider("You have successfully sold "
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
-                    + String.format("%.02f", wallet.getAmount()) + " in your wallet.");
-        } catch (DukeException e) {
+                    + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
+        } catch (DoNotOwnStockException | InsufficientQtyException | DukeException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -79,7 +77,7 @@ public class Controller {
             InvalidCommand invalidCommand = (InvalidCommand) command;
             ui.printWithDivider(invalidCommand.getErrorMessage());
         } else if (command instanceof ByeCommand) {
-            ui.printWithDivider("Goodbye!");
+            ui.printWithDivider("Goodbye! Hope to see you again.");
         } else if (command instanceof BuyCommand) {
             BuyCommand buyCommand = (BuyCommand) command;
             buyStock(buyCommand.getSymbol(), buyCommand.getQuantity());
@@ -106,7 +104,7 @@ public class Controller {
                 ui.printWithDivider(e.getMessage());
             }
         }
-        ui.viewWallet(wallet.getAmount(), amount);
+        ui.viewWallet(portfolioManager.getWalletCurrentAmount(), portfolioManager.getWalletInitialAmount(), amount);
     }
 
     public void searchSymbol(String symbol) {
