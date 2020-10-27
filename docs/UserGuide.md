@@ -63,7 +63,7 @@ has successfully executed.
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
-1. The module code is valid if it contains 6-8 characters without any spacing. 
+1. The module code is valid if it contains 2 - 3 characters, followed by 4 digits, followed by an optional character.
 
 ### 2.1 View help: `help` <a name="help"></a>
 Shows a list of the commands available.
@@ -98,7 +98,7 @@ Adds the expected workload of the module to the database.
 Format: `addexp <module code> <expected workload>`
 
 * The `module code` is valid.
-* The `expected workload` is in hours.
+* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 84 inclusive.
 * If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
@@ -243,7 +243,7 @@ Deletes the actual time spent on a specified module.
 Format: `deletetime <module code> <week number>` 
 
 * The `module code` is valid.
-* The `week number` must be between 1 and 13 inclusive.
+* The `week number` must be a whole number between 1 and 13 inclusive.
 
 Example of usage:
 
