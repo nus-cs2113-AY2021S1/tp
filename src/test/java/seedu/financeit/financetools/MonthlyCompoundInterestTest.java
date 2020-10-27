@@ -16,14 +16,14 @@ public class MonthlyCompoundInterestTest {
     @Test
     void calculateCompoundInterest_inputAmount_expectCorrectInterestEarned() {
         CommandPacket packet = handleInput("cmonthly /a 1000 /r 3 /p 2");
-        Double interestRate = FinanceTools.handleMonthlyCompoundInterest(packet);
+        Double interestRate = Handler.handleMonthlyCompoundInterest(packet);
         assertEquals(interestRate, 5.01);
     }
 
     @Test
     void calculateCompoundInterest_inputAmountWithDeposit_expectCorrectInterestEarned() {
         CommandPacket packet = handleInput("cmonthly /a 1000 /r 3 /p 2 /d 100");
-        Double interestRate = FinanceTools.handleMonthlyCompoundInterest(packet);
+        Double interestRate = Handler.handleMonthlyCompoundInterest(packet);
         assertEquals(interestRate, 5.76);
     }
 }

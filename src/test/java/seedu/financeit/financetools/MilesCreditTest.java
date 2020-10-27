@@ -15,7 +15,7 @@ public class MilesCreditTest {
     @Test
     void calculateMilesCredit_input1000_expect5000() {
         CommandPacket packet = handleInput("miles /a 1000 /r 5");
-        Double interestRate = FinanceTools.handleMilesCredit(packet);
+        Double interestRate = Handler.handleMilesCredit(packet);
         assertEquals(interestRate, 5000.0);
     }
 }

@@ -12,6 +12,7 @@ import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.RecurringTrackerSaver;
+import seedu.financeit.utils.storage.SaveManager;
 
 import java.util.logging.Level;
 
@@ -53,6 +54,9 @@ public class Financeit {
                 break;
             case "financial": //FinancialCalculator.main();
                 FinanceTools.main();
+                break;
+            case "saver":
+                SaveManager.main();
                 break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;

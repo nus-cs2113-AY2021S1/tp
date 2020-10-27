@@ -1,0 +1,12 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Handler {
+ +handleSimpleInterest(:CommandPacket)
+}
+
+class SimpleInterest {
+ +calculateSimpleInterest()
+}
+
+Handler --> SimpleInterest : Calculates interest
+@enduml

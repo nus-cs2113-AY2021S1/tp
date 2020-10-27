@@ -1,0 +1,16 @@
+@startuml
+title When User uses Cashback Calculator
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleCashback(packet)
+activate ":Handler"
+
+":Handler" -> ":Cashback" : calculateCashback()
+activate ":Cashback"
+
+":Cashback" --> ":Handler" : Results
+deactivate ":Cashback"
+
+":Handler" --> ":FinanceTools" : Results
+deactivate ":Handler"
+@enduml

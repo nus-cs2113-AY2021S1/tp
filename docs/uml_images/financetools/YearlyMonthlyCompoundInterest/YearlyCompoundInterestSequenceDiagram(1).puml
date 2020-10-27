@@ -1,0 +1,51 @@
+@startuml
+title Yearly Compound Interest Calculator
+autoactivate on
+
+":Handler" ->":Handler": handleYearlyCommpoundInterest(packet)
+    create ":YearlyCompoundInterest"
+   ":Handler"-> ":YearlyCompoundInterest" : calculateCompoundInterest()
+    return
+
+   ":Handler"-> ":YearlyCompoundInterest" : handlePacket
+
+        == Handling of Params in packet ==
+        ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : handleParams
+            ":YearlyCompoundInterest" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : handleSingleParam
+                    alt "paramType = /a"
+                        ":YearlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : getParam(paramType)
+                        return
+                    else "paramType = /r"
+                        ":YearlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : getParam(paramType)
+                        return
+                    else "paramType = /p"
+                        ":YearlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : getParam(paramType)
+                        return
+                    else "paramType = /d"
+                        ":YearlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : getParam(paramType)
+                        return
+                    end
+                return
+            end
+        return
+
+return state
+
+
+box "Logic" #LightBlue
+participant ":YearlyCompoundInterest"
+participant ":ParamChecker"
+endBox
+@enduml

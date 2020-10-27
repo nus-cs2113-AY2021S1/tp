@@ -9,12 +9,13 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
+import seedu.financeit.utils.storage.AccountSaver;
 
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class Storage extends ParamHandler {
+public class AccountStorage extends ParamHandler {
 
     String nameLabel;
     String otherLabel;
@@ -24,9 +25,7 @@ public class Storage extends ParamHandler {
     int deleteIndex;
     boolean activateDelete = false;
 
-
-
-    public Storage() {
+    public AccountStorage() {
         super();
     }
 
@@ -36,6 +35,18 @@ public class Storage extends ParamHandler {
         } catch (ItemNotFoundException exception) {
             // Fall-through
         }
+    }
+
+    public String formatText(String nameLabel, double interestRate, double cashbackRate, double monthlyCap,
+                             String otherLabel) {
+        String nameInfo = "Name: " + nameLabel + "\n";
+        String interestRateInfo = "Interest: " + interestRate + "%\n";
+        String cashbackRateInfo = "Cashback: " + cashbackRate + "%\n";
+        String monthlyCapInfo = "Cashback Cap: $" + monthlyCap + "\n";
+        String otherInfo = "Notes: " + otherLabel + "\n";
+        String textToAdd = nameInfo + interestRateInfo + cashbackRateInfo + monthlyCapInfo + otherInfo;
+
+        return textToAdd;
     }
 
     public void handleInfoStorage(String filePath, ArrayList<String> infoText) throws InfoTextIndexOutOfRangeException {
@@ -50,22 +61,18 @@ public class Storage extends ParamHandler {
                 throw new InfoTextIndexOutOfRangeException();
             }
             try {
-                FileStorage.updateFile(infoText, filePath);
+                AccountSaver.updateFile(infoText, filePath);
             } catch (FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }
             return;
         }
 
-        String nameInfo = "Name: " + this.nameLabel + "\n";
-        String interestRateInfo = "Interest: " + this.interestRate + "%\n";
-        String cashbackRateInfo = "Cashback: " + this.cashbackRate + "%\n";
-        String monthlyCapInfo = "Cashback Cap: $" + this.monthlyCap + "\n";
-        String otherInfo = "Notes: " + this.otherLabel + "\n";
-        String textToAdd = nameInfo + interestRateInfo + cashbackRateInfo + monthlyCapInfo + otherInfo;
+        String textToAdd = formatText(this.nameLabel, this.interestRate, this.cashbackRate, this.monthlyCap,
+                this.otherLabel);
         infoText.add(textToAdd);
         try {
-            FileStorage.updateFile(infoText, filePath);
+            AccountSaver.updateFile(infoText, filePath);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }

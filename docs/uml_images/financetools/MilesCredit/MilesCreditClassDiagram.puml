@@ -1,0 +1,12 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Handler {
+ +handleMilesCredit(:CommandPacket)
+}
+
+class MilesCredit {
+ +calculateMiles()
+}
+
+Handler --> MilesCredit : Calculates miles
+@enduml

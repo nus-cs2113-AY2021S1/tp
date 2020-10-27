@@ -1,0 +1,15 @@
+@startuml
+title When User First Enter FinanceTools
+actor User
+
+User -> ":FinanceTools" : FinanceTools.main()
+activate ":FinanceTools"
+
+":FinanceTools" -> ":AccountSaver" : readFileContents(filePath, infoText)
+activate ":AccountSaver"
+
+":AccountSaver" --> ":FinanceTools" : ArrayList Updated
+deactivate ":AccountSaver"
+
+":FinanceTools" --> User : Information Up-to-date
+@enduml
