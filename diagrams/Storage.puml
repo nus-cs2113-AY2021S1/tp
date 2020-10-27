@@ -1,0 +1,69 @@
+@startuml
+
+!include style.puml
+box
+participant ":Duke" as Duke LOGIC_COLOR
+
+
+create ":Storage" as Storage LOGIC_COLOR
+Duke -> Storage
+activate Storage
+deactivate Storage
+
+
+Duke -> Storage : loadState()
+
+Storage -> Storage : loadWatchTimeDetail()
+
+activate Storage
+create ": WatchTime" as WatchTime LOGIC_COLOR
+Storage -> WatchTime
+activate WatchTime
+Storage --> Storage :
+deactivate WatchTime
+deactivate Storage
+
+create "shows :ShowList" as ShowList LOGIC_COLOR
+Storage -> ShowList
+activate ShowList
+Storage -> ShowList : setRating()
+
+Storage -> ShowList : setReview()
+Storage -> ShowList : setCurrentSeason
+Storage -> ShowList : setCurrentEpisode
+
+deactivate ShowList
+Storage --> Duke : shows
+
+loop !isByTime
+[-> Duke: user input command
+
+Duke -> Storage : saveState()
+participant "__showList: ShowList__" as showList LOGIC_COLOR
+activate showList
+Storage -> showList : getName()
+showList --> Storage : showName
+Storage -> showList : getSeason()
+showList --> Storage : season
+Storage -> showList : getEpisodes()
+showList --> Storage : episodes
+Storage -> showList : getRating()
+showList --> Storage : rating
+Storage -> showList : getReview()
+showList --> Storage : review
+Storage -> showList : getDuration()
+showList --> Storage : duration
+Storage -> showList : getCurrentSeason()
+showList --> Storage : currentSeason
+Storage -> showList : getCurrentEpisode()
+showList --> Storage : currentEpisode
+
+deactivate showList
+[<-- Storage : userData.txt
+deactivate Storage
+
+end
+end box
+
+
+@enduml

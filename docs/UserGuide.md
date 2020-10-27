@@ -150,7 +150,10 @@ Expected outcome:
   Example of usage:
       `edit friends`
     
+     <img src = "images/edit_step_1.PNG" width = "400">
+     
 [Output](Insert picture here)
+
  * You will be prompted thereafter to enter the fields you want to change such as:
  name, season, episode, duration (of an episode).
  
