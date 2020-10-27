@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.Storage;
 import seedu.duke.calendar.CalendarList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeleteInfoCommandTest {
 
