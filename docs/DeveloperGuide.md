@@ -1,27 +1,28 @@
 # Developer Guide
 
-- [Design & implementation](#design--implementation)
-    - [Architecture](#architecture)
-    - [Ui component](#ui-component)
-    - [Storage component](#storage-component)
-    - [User component](#user-component)
-    - [Common classes](#common-classes)
-- [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-- [User stories](#user-stories)
-- [Non-functional requirements](#non-functional-requirements)
-- [Instructions for manual testing](#instructions-for-manual-testing)
+* Table of Contents
+{:toc}
 
-## Design & implementation
+## 1. Introduction
 
-This section provides an overview of the Fitr application.
+**Fitr** is a command line application, helping university students keep track of your food intake and exercises.
 
-### Architecture
+This developer guide documents the design and implementation of Fitr.
+This guide is targeted towards current and future developers, who wish to understand and work on this application.
+
+## 2. Design & implementation
+
+This section provides an overview of the design and implementation of the Fitr application.
+
+### 2.1 Architecture
+
+This section illustrates the high-level architecture of Fitr, as well as an illustration of the components used in Fitr.
 
 ![Main class diagram](images/MainClassDiagram.png)
 
-The _**Architecture Diagram**_ above explains the high-level design of Fitr. Given below is a quick overview of each component.
+Figure 1: Architecture diagram of Fitr
+
+Figure 1 above explains the high-level design of Fitr. Given below is a quick overview of each component.
 
 The main driver of the application is `Fitr` is responsible for mainly two phases:
 * At app launch: Initialises or loads the respective lists and user profile in the correct sequence and is in charge of connecting the various components with each other.
@@ -34,11 +35,13 @@ The rest of the App consists of:
 * `StorageManager`: Reads data from and writes data back into a text file for future use.
 * `ListManager`: Handles all the list operations in Fitr.
 
-The sequence diagram below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
+Figure 2 below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
 
 ![Add food sequence diagram](images/AddFoodSequenceDiagram.png)
+
+Figure 2: Sequence diagram when adding a food into Fitr
  
-### Ui component
+### 2.2 Ui component
 
 **API**: `Ui.java`
 
@@ -46,13 +49,15 @@ The `Ui` class handles all user inputs and system output.
 
 This component also listens to other components and outputs the desired messages in specified formats.
 
-### Storage component
+### 2.3 Storage component
 
 Under the storage component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
 
 ![Storage class diagram](images/StorageClassDiagram.png)
 
-The figure above shows the associations and dependencies present with the `StorageManager` class.
+Figure 3:  StorageManager class diagram
+
+Figure 3 above shows the associations and dependencies present with the `StorageManager` class.
 
 On startup, the `Fitr` class creates a new `StorageManager` object. The `StorageManager` class will then create the various storage objects required to load that particular file into the program. 
 This will cause the various storage objects to retrieve the text files from the given file paths and loads the data into the program. 
@@ -61,7 +66,7 @@ If the files do not exist, the various storage objects will create the files. Fo
 Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods in `StorageManager` are invoked. 
 This will save the data onto the respective text files on the hard disk.
 
-### User component
+### 2.4 User component
 
 The `User` class contains all information related to the user data (i.e. `name`, `age`, `height`, `weight`
 and `gender`) and handles all operations on these user data (i.e. `getBmi()`)
@@ -80,11 +85,11 @@ On startup, the `Fitr` class instantiates a `Storage` object and calls its `load
 returns a `User` type object and is referenced by a pre-declared `User` type variable, which is used throughout the
 running session. 
 
-### Common classes
+### 2.5 Common classes
 
 Classes used by multiple components are in the `fitr.common` package.
 
-## Product scope
+## Appendix A: Product scope
 ### Target user profile
 
 Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed and the tracking of calories in one application. 
@@ -95,7 +100,7 @@ It is also aimed at those who prefer typing over mouse interactions and are reas
 Our application helps users to keep fit without needing them to do any research on healthy living or workout options. 
 We will be collecting user information such as age, weight, fitness level, and the application will recommend users preset exercises.
 
-## User stories
+## Appendix B: User stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -114,12 +119,12 @@ We will be collecting user information such as age, weight, fitness level, and t
 |v2.0|student|be recommended a set of workout|save time finding exercises to do|
 |v2.0|student|unlock achievements|be motivated to workout|
 
-## Non-functional requirements
+## Appendix C: Non-functional requirements
 
 1. This application should work on any mainstream operating system, such as Windows or macOS, as long as Java 11 or above is installed.
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Instructions for manual testing
+## Appendix D: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 1. Initial launch
