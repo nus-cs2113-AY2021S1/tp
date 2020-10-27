@@ -1,0 +1,14 @@
+@startuml
+actor User
+Kaji -> Ui : readCommand()
+User -> Ui : command
+Ui --> Kaji : userCommand
+Kaji -> Parser : parse(userCommand)
+Parser -> Parser: prepareCommand(commandArgs)
+create Command
+Parser -> Command : new()
+Command --> Parser
+Parser -> Kaji : command
+Kaji -> Command : execute()
+
+@enduml
