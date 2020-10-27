@@ -25,7 +25,7 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
-### Ui
+#### Ui
 The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
@@ -40,7 +40,30 @@ API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
 
+#### Storage 
 
+![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
+
+API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
+
+The storage component,
+- is able to store all event and goal information onto the computer
+- is able to load all event and goal information from the computer into the program
+
+![Diagram for storageOverall](./diagrams/storageOverall.jpg)
+
+How the storage component load files
+- the storage component will read the correct txt file.
+- It passes the text to the StorageParser.
+- The event strings are converted to actual events using their respective class constructors.
+- the events are added back into the UserData structure.
+
+How the storage component save files
+- The storage component will first retrieve the correct EventList from the UserData.
+- It will next send this EventList into the StorageParser
+- The StorageParser uses its functions to convert the events into string representations
+- The StorageParser then returns these string representations to Storage
+- the Storage class then writes them to the correct Path and the corresponding text(.txt) files are modified. 
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
