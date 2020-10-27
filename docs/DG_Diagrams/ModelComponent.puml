@@ -1,0 +1,26 @@
+@startuml
+
+Rectangle Model {
+Rectangle bus {
+enum BusStops {
+PGP
+KENTRIDGEMRTSTATION
+...
+COLLEGEGREEN
+OEITIONGHAM
+}
+Bus ->"*" BusStops
+BusData ->"*" Bus
+BusInfo ->"*" Bus
+BusInfo ..> BusData
+}
+Rectangle favorite {
+FavList->"*"Fav
+}
+Rectangle foodoptions {
+FoodPlace ->"*" DiningOptions
+FoodPlacesData ..>FoodPlace
+}
+}
+
+@enduml

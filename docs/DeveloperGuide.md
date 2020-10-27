@@ -74,6 +74,13 @@ and with other components.
 
 #### 2.1.3. Model Component
 [Work in Progress]
+The Model component is responsible for the following tasks:
+- Stores the bus data, dine info data and favourites list in memory.
+- Performs operations on the data to facilitate the command execution by Logic component.
+
+The following class diagram briefly explains how different classes in the Model component interact with each other.
+
+![modelcomponet](DG_Diagrams/ModelComponent.png)
 
 #### 2.1.4. Storage Component
 [Work in Progress]
