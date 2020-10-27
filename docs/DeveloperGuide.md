@@ -69,7 +69,7 @@ delimiters if any.
 
 The following class diagram briefly explains how different classes in the Logic component interact with each other.
 
-![logiccomponent](DG_Diagrams/LogicComponent.png)
+<img src="DG_Diagrams/LogicComponent.png" alt="logiccomponent" width=1100 height=500>
 
 #### 2.1.3. Model Component
 The Model component is responsible for the following tasks:
