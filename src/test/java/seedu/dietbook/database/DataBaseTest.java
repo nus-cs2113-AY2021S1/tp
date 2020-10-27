@@ -7,11 +7,7 @@ import java.util.NoSuchElementException;
 class DataBaseTest {
     public static void main(String[] args) {
         DataBase database = new DataBase();
-        try {
-            database.init();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        database.init();
         // ----- Print everything in the data base -----
         database.printAllData();
 
