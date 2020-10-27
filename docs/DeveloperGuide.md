@@ -25,7 +25,7 @@
     - [UpdateShowSeasonCommand](#updateshowseasoncommand)
     - [UpdateTimeLimitCommand](#updatetimelimitcommand)
     - [Storage](#storage)
-    - [Errorhandling](#error-handling)
+    - [ErrorHandling](#error-handling)
   - [5. Documentation](#5-documentation)
   - [6. Testing](#6-testing)
   - [7. Dev Ops](#7-dev-ops)
@@ -543,7 +543,7 @@ The following sequence diagram shows the working flow of `Storage` class.
 <img src = "images/StorageSequence.png" width = "550">  
 
 
-### Error Handling
+### ErrorHandling
 
 The `ErrorHandling` class extends `Exception` by providing the appropriate exception error message to the user when the program encounters an exception.
 
