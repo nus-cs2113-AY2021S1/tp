@@ -36,7 +36,11 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
+### Ui
+The 'Ui' component is in charge of handling input from users and system output.
 
+It listens for commands made in the Duke Class and sends the input to the parser class.
+It is also responsible for printing messages from commands and exception messages. 
 
 
 ## Implementation
@@ -279,7 +283,9 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 ##### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Manage one's events quickly compared to GUI scheduling applications. 
+Users can check when they are free using a simple command 
+and also extract deadlines from any body of text.
 
 ### User Stories
 
@@ -300,6 +306,60 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 |v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
 
 ### Use Cases
+(For all use cases below, the System is Scheduler--; and the Actor is the user, unless specified otherwise)
+
+**Use case: Extracting deadlines from an email**
+
+MSS:
+1. User enters extract command for a body of text/email
+2. Scheduler--; shows a list of dates detected
+3. User chooses one of the dates
+4. Scheduler--; shows a list of the time slots detected
+5. User chooses one of the time slots
+6. Scheduler--; creates a personal event based on the user's choices
+
+Use case ends.
+
+Extensions:
+
+2a. There are no dates detected.
+
+Scheduler--; creates a Personal event with no date or time.
+
+ 3a. User selects an invalid index from the list of dates.
+- 3a1. Scheduler--; requests for the user to pick a valid number.
+- 3a2. User enters new index.
+
+Steps 3a1-3a2 are repeated until the index entered is valid.
+Use case resumes from step 4.
+
+ 5a. User selects an invalid index from the list of time slots.
+- 5a1. Scheduler--; requests for the user to pick a valid number.
+- 5a2. User enters new index.
+
+Steps 5a1-5a2 are repeated until the index entered is valid.
+Use case resumes from step 6.
+
+**Use case: Repeating an event and checking its status**
+
+MSS:
+
+1. User uses list command for one of the three types of events.
+2. Scheduler--; prints a list for the event type chosen.
+3. User enters repeat command for one of the events.
+4. Scheduler--; prints a confirmation message.
+5. User uses repeat command to check status of the repeated event.
+6. Scheduler--; prints out the status of the repeated event.
+
+Use case ends.
+
+Extensions:
+
+3a. User selects a personal event that does not have a deadline
+
+Scheduler--; prints an error message and use case ends.
+
+
 
 ### Non-Functional Requirements
 
@@ -310,7 +370,7 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 ## Glossary
 
-* *glossary item* - Definition
+{* *glossary item* - Definition}
 
 ## Instructions for manual testing
 
