@@ -4,7 +4,7 @@ import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
-
+//@@author Artemis-Hunt
 public class ParamsParser {
     protected String paramSubstring;
     protected Matcher matcher;

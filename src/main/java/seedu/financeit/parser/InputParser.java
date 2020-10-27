@@ -8,7 +8,7 @@ import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
-
+//@@author Artemis-Hunt
 public class InputParser {
     private Matcher matcher;
     private static InputParser inputParser = null;
