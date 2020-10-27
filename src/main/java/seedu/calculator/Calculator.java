@@ -25,7 +25,7 @@ public class Calculator {
             totalCalorie += foodList.get(i).getCalorie();
             totalCarbohydrate += foodList.get(i).getCarbohydrate();
             totalProtein += foodList.get(i).getProtein();
-            totalFat += foodList.get(i).getFats();
+            totalFat += foodList.get(i).getFat();
         }
     }
 
