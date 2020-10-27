@@ -376,23 +376,39 @@ Format (chaining commands):
 * The chaining of commands only performs on one module which is {MODULE}.    
   
 Example of usage:   
-* Adding a module
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addmodule.png)
 
-* Adding a slot to a module
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslot.png)
+* Adding a module  
+input:  
+![](./images/addmoduleinput.PNG)  
+output:  
+![](./images/addmoduleoutput.PNG)  
 
-* Adding a bookmark to a module
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addmodulebookmark.png)
 
-* Adding a bookmark to a slot
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)
+* Adding a slot to a module  
+input:  
+![](./images/addslottomoduleinput.PNG)  
+output:  
+![](./images/addslottomoduleoutput.PNG)  
 
-* Chaining commands
-TODO
+* Adding a bookmark to a module  
+input:  
+![](./images/addbookmarktomoduleinput.PNG)  
+output:  
+![](./images/addbookmarktomoduleoutput.PNG)  
 
-* End result:
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showbookmarks.png)
+* Adding a bookmark to a slot  
+input:  
+![](./images/addbookmarktoslotinput.PNG)  
+output:  
+![](./images/addbookmarktoslotoutput.PNG)  
+
+* Chaining commands  
+input:  
+![](./images/addchaincommandinputnew.PNG)  
+output:  
+![](./images/addchaincommandoutput.PNG)  
+result:  
+![](./images/addresult.PNG)  
 
 
 More examples:
