@@ -30,7 +30,9 @@ The table below shows the information and contact details of developers.
 |Ng Hong Ming|E0426149@u.nus.edu|
 |Zhang Yilin|E0377000@u.nus.edu|
 
-## Setting Up
+## Setting Up & Getting started
+
+### Setting up
 
 Before diving into the project development and testing, here are some essential tools required in this project:
 
@@ -61,7 +63,24 @@ Now, Open Intellij
     * Click `OK` to accept the default settings but do ensure that the selected version of Gradle JVM matches the 
     JDK being used for the project.
     * Wait for the importing process to finish (may take a few minutes, so get some :coffee: :relaxed:)
+1. **Verify the set up**:
+    * Run the `..main/java/seedu.duke/Duke`
+    * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
+    ![verify_set_up](images/Verify_setup.PNG)
+    * Run some tests to ensure it is working properly.
 
+### Getting started
+
+1. **Configure the coding style**
+If using IDEA, follow the guide If using IDEA, follow the guide [se-edu/guides IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
+to set up IDEA’s coding style to match ours.
+    :bulb: Tips: Optionally, you can follow the guide  [se-edu/guides Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) 
+    to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
+1. **Set up CI**
+This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
+1. **Learn the design**
+When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [25HoursADay’s architecture](#architecture).
 
 ## Design
 This section describes the design overview of the application.
