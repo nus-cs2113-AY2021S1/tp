@@ -22,7 +22,10 @@ public abstract class Command {
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
-    public static final String ERROR_CATEGORY_ALREADY_EXISTS = "Category [%s] already exists in \"%s\"!";
+    public static final String ERROR_CATEGORY_EXISTS_IN_BOOK = "Category [%s] already exists in book [%s]!";
+    public static final String ERROR_CATEGORY_EXISTS_IN_QUOTE = "Category [%s] already exists in quote [\"%s\"]!";
+    public static final String ERROR_CATEGORY_NOT_IN_BOOK = "Category [%s] not found in book [%s]!";
+    public static final String ERROR_CATEGORY_NOT_IN_QUOTE = "Category [%s] not found in quote [\"%s\"]!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_QUOTE_NUMBER = "Quote number is missing";
     public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";

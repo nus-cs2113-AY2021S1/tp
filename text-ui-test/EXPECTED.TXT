@@ -19,14 +19,14 @@ What would you like to do with Quotesify?
 The quote ["quote1"] has been added!
 
 What would you like to do with Quotesify?
-I have tagged category [action] to "book1"!
+I have tagged category [action] to the book [book1]!
 
 What would you like to do with Quotesify?
-I have tagged category [motivational] to "quote1"!
+I have tagged category [motivational] to the quote ["quote1"]!
 
 What would you like to do with Quotesify?
-I have tagged category [nice] to "book1"!
-I have tagged category [nice] to "quote1"!
+I have tagged category [nice] to the book [book1]!
+I have tagged category [nice] to the quote ["quote1"]!
 
 What would you like to do with Quotesify?
 Here is the list of all categories:
@@ -36,13 +36,13 @@ Here is the list of all categories:
 
 
 What would you like to do with Quotesify?
-I have removed category [action] from "book1"!
+I have removed category [action] from the book [book1]!
 
 What would you like to do with Quotesify?
 Category [action] does not exist!
 
 What would you like to do with Quotesify?
-I have removed category [motivational] from "quote1"!
+I have removed category [motivational] from the quote ["quote1"]!
 
 What would you like to do with Quotesify?
 Category [motivational] does not exist!

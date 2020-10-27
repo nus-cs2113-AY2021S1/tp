@@ -45,6 +45,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
 
             List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
             for (String categoryName : categories) {
+                categoryName = categoryName.toLowerCase();
                 Category category = categoryList.getCategoryByName(categoryName);
 
                 String bookTitle = parameters[1];
@@ -69,17 +70,26 @@ public class DeleteCategoryCommand extends DeleteCommand {
             return;
         }
 
-        BookList bookList = category.getBookList();
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
             int bookNum = Integer.parseInt(bookTitle) - 1;
             Book book = bookList.getBook(bookNum);
             ArrayList<String> categories = book.getCategories();
+
+            if (!categories.contains(category.getCategoryName())) {
+                String errorMessage = String.format(ERROR_CATEGORY_NOT_IN_BOOK,
+                        category.getCategoryName(), book.getTitle());
+                throw new QuotesifyException(errorMessage);
+            }
+
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromBook(book.getTitle(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_NO_BOOK_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
@@ -89,23 +99,33 @@ public class DeleteCategoryCommand extends DeleteCommand {
             return;
         }
 
-        QuoteList quoteList = category.getQuoteList();
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
             ArrayList<String> categories = quote.getCategories();
+
+            if (!categories.contains(category.getCategoryName())) {
+                String errorMessage = String.format(ERROR_CATEGORY_NOT_IN_QUOTE,
+                        category.getCategoryName(), quote.getQuote());
+                throw new QuotesifyException(errorMessage);
+            }
+
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromQuote(quote.getQuote(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_NO_QUOTE_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
+            ui.printErrorMessage(ERROR_NO_QUOTE_FOUND);
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
     private void deleteCategory(CategoryList categoryList, String categories, TextUi ui) {
         for (String name : categories.split(" ")) {
+            name = name.toLowerCase();
             try {
                 Category category = categoryList.getCategoryByName(name);
                 deleteCategoryInBooksAndQuotes(name);
@@ -117,15 +137,10 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
-    public void deleteCategoryInBooksAndQuotes(String oldCategory) {
+    private void deleteCategoryInBooksAndQuotes(String oldCategory) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
-            book.getCategories().remove(oldCategory);
-        });
-
-        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
-            quote.getCategories().remove(oldCategory);
-        });
+        bookList.filterByCategory(oldCategory).getList().forEach(book -> book.getCategories().remove(oldCategory));
+        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> quote.getCategories().remove(oldCategory));
     }
 }
