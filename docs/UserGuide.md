@@ -46,10 +46,13 @@ This user guide would help you walkthrough the features of Zoomaster and ways to
 1. Ensure that you have Java 11 or above installed.  
 2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 3. Move the **zoomaster.jar** file into your desired home folder for Zoomaster.
+
 4. Copy the absolute path of the **zoomaster.jar** file by first highlighting the file, then while
 holding the <kbd>Shift</kbd> key, right click the file and select "Copy as path". 
+
 5. Start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> ,  keying in "cmd"
 then pressing <kbd>Enter</kbd>. <br/><br/> 
+
 6. In the Command Prompt, type in "java -jar", then paste in the copied absolute path. It should look something like the picture below:<br><br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png)<br/><br/> 
 7. Press <kbd>Enter</kbd>. You should see this Zoomaster logo.  <br/><br/> 
@@ -91,16 +94,20 @@ You can see the list of commands available in mode you are currently in.
 Format: help
 ```
 >Help commands you see in the main menu mode <br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
 
 >Help commands you see in the bookmark mode <br/>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
 
 >Help commands you see in the timetable mode <br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
 
 >Help commands you see in the planner mode <br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplanner.PNG)
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplanner.PNG)
 
 <br/>
 
@@ -130,10 +137,13 @@ Example of usage:
 * `mode timetable` 
 * `mode planner`
 
->What you will see on successful switch to bookmark, timetable or planner mode:<br><br>
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/> 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/> 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
+>What you will see on successful switch to bookmark, timetable or planner mode:
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
 <a name="launchnow"></a>  
@@ -161,8 +171,9 @@ You exit the application by using the exit command.
 ```
 Format: exit    
 ```
->You should see this message on exit.<br>
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
+>You should see this message on exit.
+>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
 
@@ -455,8 +466,8 @@ Loads all the timetables from the `planner` folder and helps you find some commo
 ```
 Format: load
 ```
-<br/> 
 
+<br/><br/> 
 <a name="addmeeting"></a>  
 #### 2.4.2. Add meeting: `add`  
 You can add modules, time slots and bookmarks using this feature.
@@ -468,9 +479,8 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 > You will need to type `save` to save it.
 
 Format: same as [add time slots](#addtimeslot) command.
-<br/>
 
-
+<br/><br/> 
 <a name="showplanner"></a>  
 #### 2.4.3. Show planner: `show`
 You will be able to see the empty time slots for a certain day or the whole week.  
@@ -489,7 +499,6 @@ Example of usage:
 * `show today`
 
 <br/><br/> 
-
 <a name="saveplanner"></a>  
 #### 2.4.4. Save planner: `save`  
 Saves the newly added slot(s) to each individual timetables.
@@ -523,6 +532,7 @@ and save the txt file. You can now add the module in Zoomaster.
 ---
 
 <br>
+
 ## 4. Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
