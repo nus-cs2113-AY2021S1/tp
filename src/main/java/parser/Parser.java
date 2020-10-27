@@ -23,6 +23,9 @@ import commands.HelpCommand;
 import commands.HistoryCommand;
 import commands.ListCardCommand;
 import commands.ListCommand;
+import commands.ListModuleCommand;
+import commands.ListChapterCommand;
+import commands.ListCardCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
 import commands.RemoveCardCommand;
@@ -181,13 +184,13 @@ public class Parser {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
                         + ListCommand.MESSAGE_USAGE);
             }
-            return new ListCommand();
+            return new ListModuleCommand();
         case MODULE:
             if (!commandArgs.isEmpty()) {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
                         + ListCommand.MESSAGE_USAGE);
             }
-            return new ListCommand();
+            return new ListChapterCommand();
         case CHAPTER:
             if (!commandArgs.isEmpty()) {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
@@ -604,5 +607,3 @@ public class Parser {
         }
     }
 }
-
-
