@@ -16,6 +16,29 @@ API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src
 
 
 
+### Architecture
+
+![Architecture Diagram](./diagrams/Architecture.jpg)
+
+The ***Architecture Diagram*** given above explains the high-level design of App. Given below is a quick overview of
+each component.
+
+`Duke` class contains the main method. It is responsible for,
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
+- At shut down: Stores the user data from memory into the hard disk.
+
+The rest of the App consists of five components.
+
+- `Ui`: The Ui of the App.
+- `Parser`: Parses the input to determine which command to execute.
+- `Command`: The command executer.
+- `UserData`: Holds the data of the App in the memory.
+- `Storage`: Reads data from, and writes data to, the hard disk.
+
+
+
+
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
@@ -99,7 +122,6 @@ The following sequence diagram shows how the `goal save money` command is parsed
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
-
 ![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
 #### Add Feature
@@ -147,6 +169,32 @@ Step 5. The Zoom event is then added to the user's `UserData` for further use.
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+
+#### List feature
+
+The list feature allows the user to print a list of events added by type.
+The list of events is print according to the order it was added in.
+
+User calls the list command by executing `list [argument]`.
+
+Executing `list` without specifying any argument prints a list of event types available.  
+Specifying an event type as the argument prints a list of events of that type.  
+Specifying `all` as the argument prints a list of all events in the order: Personal, Timetable, Zoom.
+
+Given below is an example usage scenario of the list feature.
+
+Step 1. The user executes `list zoom` command to print a list of Zoom events.
+The `list` command is passed through a parser to return the ListCommand with arguments initialised.
+
+Step 2. `ListCommand#execute()` is called, retrieving the list of Zoom events in `UserData`.
+
+Step 3. `ListCommand#execute()` calls `Ui#printList()` and passes the list of Zoom events to print.
+
+Step 4. `Ui#printList()` loops through every event in the Zoom event arraylist and prints it.
+
+The following sequence diagram shows how the `list zoom` command is parsed:
+
+![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
 #### Repeat Feature
 
