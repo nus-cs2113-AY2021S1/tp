@@ -214,10 +214,12 @@ public class Storage {
         }
         String[] modules = admin.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
-        return checkAllChaptersForDue(ui, excludedChapters, modules, dueChapters);
+        return checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules);
     }
 
-    private ArrayList<DueChapter> checkAllChaptersForDue(Ui ui, ArrayList<String> excludedChapters, String[] modules, ArrayList<DueChapter> dueChapters) throws FileNotFoundException {
+    private ArrayList<DueChapter> checkAllChaptersForDue(Ui ui, ArrayList<String> excludedChapters,
+                                                         ArrayList<DueChapter> dueChapters,
+                                                         String[] modules) throws FileNotFoundException {
         for (String module : modules) {
             if (module.equals("exclusions.txt")) {
                 continue;
@@ -237,31 +239,27 @@ public class Storage {
                 if (excludedChapters.contains(entry)) {
                     continue;
                 }
-                processChapterDeadline(ui, dueChapters, module, target);
+                String deadline = retrieveChapterDeadline(module, target);
+                assert !deadline.equals(null) : "Invalid deadline retrieved";
+                if (deadline.equals("Invalid Date")) {
+                    ui.showToUser("\nThe chapter:");
+                    ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                            + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                } else if (deadline.equals("Does not exist")) {
+                    if (missingDueFileCheck(module, target)) {
+                        deadline = "Invalid Date";
+                        ui.showToUser("\nThe chapter:");
+                        ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                                + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+                        dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                    }
+                } else {
+                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                }
             }
         }
         return dueChapters;
-    }
-
-    private void processChapterDeadline(Ui ui, ArrayList<DueChapter> dueChapters, String module, String target) {
-        String deadline = retrieveChapterDeadline(module, target);
-        assert !deadline.equals(null) : "Invalid deadline retrieved";
-        if (deadline.equals("Invalid Date")) {
-            ui.showToUser("\nThe chapter:");
-            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-        } else if (deadline.equals("Does not exist")) {
-            if (missingDueFileCheck(module, target)) {
-                deadline = "Invalid Date";
-                ui.showToUser("\nThe chapter:");
-                ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                        + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-                dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-            }
-        } else {
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-        }
     }
 
     public void chapterExists(String moduleName, String chapterName) throws FileNotFoundException {
