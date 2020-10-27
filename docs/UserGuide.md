@@ -1,22 +1,25 @@
 # User Guide for E-Duke-8
 
 Table of contents:
-
-- [1. Introduction](#1-introduction)
-- [2. Quick Start](#2-quick-start)
-- [3. Features](#3-features)
-  * [3.1. Loading Data](#31-loading-data)
-  * [3.2. Welcome Page](#32-welcome-page)
-  * [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
-  * [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
-  * [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
-  * [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
-  * [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
-  * [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-  * [3.9. Exiting the program: `exit`](#39-exiting-the-program-exit)
-- [4. FAQ](#4-faq)
-- [5. Command summary](#5-command-summary)
-- [6. Glossary](#6-glossary)
+- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
+  - [1. Introduction](#1-introduction)
+  - [2. Quick Start](#2-quick-start)
+  - [3. Features](#3-features)
+    - [3.1. Loading Data](#31-loading-data)
+    - [3.2. Welcome Page](#32-welcome-page)
+    - [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
+    - [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
+    - [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
+    - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
+    - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
+    - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
+    - [3.9. Exiting the program: `exit`](#39-exiting-the-program-exit)
+    - [3.10. Saving user data](#310-saving-user-data)
+  - [4. FAQ](#4-faq)
+  - [5. Command summary](#5-command-summary)
+  - [6. Glossary](#6-glossary)
+        - [1. Command Line Interface (CLI)](#1-command-line-interface-cli)
+        - [2. Object-oriented Programming (OOP)](#2-object-oriented-programming-oop)
 
 ## 1. Introduction
 
@@ -190,6 +193,10 @@ exit
 ```
 
 ![exit](./images/exit.png)
+
+### 3.10. Saving user data
+
+User data is only saved upon successful exit of the application through the `exit` command. This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your quiz history.
 
 
 ## 4. FAQ
