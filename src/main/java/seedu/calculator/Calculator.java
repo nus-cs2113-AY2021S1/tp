@@ -1,6 +1,6 @@
 package seedu.calculator;
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import java.util.ArrayList;
 import java.util.List;
