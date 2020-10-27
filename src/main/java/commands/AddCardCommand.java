@@ -10,14 +10,11 @@ import ui.Ui;
 import java.io.IOException;
 
 import static common.Messages.CARD;
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 
 public class AddCardCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
-
-    private static final String ACCESS_LEVEL = "chapter";
 
     private Card card;
 
@@ -28,11 +25,6 @@ public class AddCardCommand extends AddCommand {
     @Override
     public void execute(Ui ui, Access access, Storage storage)
             throws IncorrectAccessLevelException, IOException {
-        if (!access.isChapterLevel()) {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                    access.getLevel(), ACCESS_LEVEL));
-        }
-
         String result = addCard(access, storage);
         ui.showToUser(result);
     }
@@ -44,10 +36,5 @@ public class AddCardCommand extends AddCommand {
         int cardCount = cards.getCardCount();
         storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
         return prepareResult(CARD, card.toString(), cardCount);
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
