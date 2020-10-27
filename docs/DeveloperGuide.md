@@ -63,17 +63,15 @@ and it's interaction with other components.
 
 #### 2.1.2. Logic Component
 The Logic component is responsible for the following tasks:
-- Make sense of the command entered by the user by splitting it into the command type and the parameters and/or 
+- Makes sense of the command entered by the user by splitting it into the command type and the parameters and/or 
 delimiters if any.
--  Executes a command based on its type and provides an appropriate result to the user via the Ui component.
+- Executes a command based on its type and provides an appropriate result to the user via the Ui component.
 
-The following class diagram briefly explains how different classes in the logic component interact with each other
-and with other components.
+The following class diagram briefly explains how different classes in the Logic component interact with each other.
 
 ![logiccomponent](DG_Diagrams/LogicComponent.png)
 
 #### 2.1.3. Model Component
-[Work in Progress]
 The Model component is responsible for the following tasks:
 - Stores the bus data, dine info data and favourites list in memory.
 - Performs operations on the data to facilitate the command execution by Logic component.
@@ -83,7 +81,18 @@ The following class diagram briefly explains how different classes in the Model 
 ![modelcomponet](DG_Diagrams/ModelComponent.png)
 
 #### 2.1.4. Storage Component
-[Work in Progress]
+The Storage component is responsible for the following tasks:
+- Stores the favourite commands in a file in a certain format and retrieves this information everytime 
+the user enters the application.
+- Stores the number of times each bus stop has been typed by the user since he/she started using the application and 
+retrieves it everytime the user enters the application.
+    + This information is used to find out the user's most frequently searched location so far and display it to the 
+    user. 
+- These files are updated after every execution of a user command.
+
+The following class diagram briefly explains how different classes in the Storage component interact with each other.
+
+![StorageComponent](DG_Diagrams/StorageComponent.png)
 
 ### 2.2. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
