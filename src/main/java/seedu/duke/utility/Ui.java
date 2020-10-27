@@ -2,6 +2,7 @@ package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
 import seedu.duke.classes.WatchTime;
+import seedu.duke.utility.ErrorHandling.ExceptionResponse;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -177,6 +178,7 @@ public class Ui {
         }
     }
 
+
     public static void printDailyWatchTracking() {
         //Print when user starts program
         LocalDate date = WatchTime.getRecordedDate();
@@ -285,7 +287,7 @@ public class Ui {
     }
 
     public static void printIoException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
 
     public static void printSpecifyShowName() {
@@ -309,43 +311,47 @@ public class Ui {
     }
 
     public static void printInvalidEpisodesInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
 
     public static void printNoDescriptionException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
     }
 
     public static void printNoTimeException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_TIME_DATA);
+        System.out.println(ExceptionResponse.EXCEPTION_NO_TIME_DATA);
+    }
+
+    public static void printAddNameFormatException() {
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_ADDING_NAME_FORMAT_EXCEPTION);
     }
 
     public static void printNoInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
     }
 
     public static void printInvalidDateException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
     }
 
     public static void printInvalidFormatException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_FORMAT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_FORMAT);
     }
 
     public static void printNotFoundException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
     }
 
     public static void printBadInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_INPUT);
     }
 
     public static void showCreateFileError() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
+        System.out.println(ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
     }
 
     public static void printInvalidRatingInput() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
     }
 
     public static void printDailyWatchTimeLeft() {
