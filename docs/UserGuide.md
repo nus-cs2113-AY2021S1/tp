@@ -342,7 +342,7 @@ Trigun added to watchlist!
 Remove an anime from the currently selected watchlist
 
 Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
-* The index used has to be the anime ID in the watchlist, and not the general anime ID
+> :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID
 <br/>
 
 Example of usage: 'remove -d 1'
@@ -435,8 +435,8 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete workspace                             | `workspace -d <NAME>`                                    |
 | Create watchlist                             | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                           | `watchlist -l`                                           |
-| Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                         |
-| Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                         |
+| Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                            |
+| Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
 | Add to watchlist                             | `add -a <ANIME_ID>`                                      |
 | Remove from watchlist                        | `remove -d <ANIME_ID_IN_WATCHLIST>`                      |
 | View anime in watchlist                      | `view -v <WATCHLIST_ID>`                                 |
