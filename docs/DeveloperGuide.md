@@ -5,12 +5,10 @@
 * [Setting Up, Getting Started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
-    * [UI component]()
-    * [Logic component]()
-    * [Model component]()
-    * [Storage component]()
+    * [UI component](#ui-component)
     * [Parser component]()
-    * [Common classes]()
+    * [Model component](#model-component)
+    * [Storage component]()
 * [Implementation](#implementation)
     * [Store Data](#store-data)
     * [Add Module](#add-module) 
@@ -54,14 +52,38 @@ startAndGetName and runCommandLoopUntilExitCommand methods. The methods are resp
 The rest of the app consists of 4 packages:
 * `Ui` : The user interface of the app.
 * `Parser` : Parses the user input and calls the corresponding methods.
-* `Model` : Holds the data of the app in-memory.
+* `Model` : Holds the data of the app in-memory, containing the classes: ModuleList, Module, TaskList and Task.
 * `Storage` : Saves and loads data to and from the hard disk.
 
-#####How the architecture components interact with each other
+##### How the architecture components interact with each other
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user types 
-the command `addmod CS2113T`.
+the command `addmod CS2113T`.  
+
 ![highlevelsequencediagram](diagrams/highlevelsequencediagram.png)
+
+
+### UI component
+
+`UI` consists of a UI class that is responsible for dealing with user interaction. 
+
+The `UI` component,
+
+* Reads in the user input and passes the user input to the `Parser` component.
+* Displays the message to the user based on the commands inputted by the user. 
+
+### Model component
+
+![modelcomponent](diagrams/modelcomponent.png)
+
+The Model,
+* consists of ModuleList class that supports functions to execute module-related commands, 
+  such as addmod, deletemod etc.
+* consists of Module class that represents the module
+* consists of TaskList class that supports functions to execute task-related commands, 
+  such as addtask, deletetask etc.
+* consists of Task class that represents the task
+
 
 ## Implementation
 {Insert your own respective implementations here}
@@ -173,11 +195,14 @@ the list of modules.
 
 > **_NOTE:_**  A module is identfied by its module code
 
-&nbsp; 
+The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
 
-Given below is an example usage scenario and how the add module mechanism behaves at each step.
+![addmod](diagrams/addmod%20activity%20diagram.png)
 
-Step 1. The user launches the application for the first time and hence, the list of modules is empty. The user types in a command: `addmod CS2113T`. 
+Given below is a detailed explanation on how the add module mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and hence, the list of modules is empty. 
+        The user types in a command: `addmod CS2113T`. 
 
 Step 2. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
 
@@ -196,12 +221,12 @@ Step 6. The newly created module is added to the list of modules.
 
 Step 7. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
 
-Step 8. The newly created module is saved to storage.
-&nbsp;
+Step 8. The newly created module is saved to storage.  
 
-The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
+The following sequence diagram shows how the addmod CS2113T command works.
 
-![addmod](diagrams/addmod%20activity%20diagram.png)
+![Addmodseq](diagrams/Addmodseq.png)  
+
 
 #### Design Considerations
 
