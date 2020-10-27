@@ -44,11 +44,13 @@ public class InputChecker {
      * @throws DietException when an option is specified but its field is empty.
      */
     public static void checkEmptyOption(String[] input) throws DietException {
-        try {
-            if (input[1].trim().charAt(1) == '/') {
-                throw new DietException("Error! Option specified with empty field!");
+        if (input.length > 1) {
+            if (input[1].length() > 1) {
+                if (input[1].trim().charAt(1) == '/') {
+                    throw new DietException("Error! Option specified with empty field!");
+                }
             }
-        } catch (IndexOutOfBoundsException e) {
+        } else {
             throw new DietException("Error! Option specified with empty field!");
         }
     }
@@ -122,7 +124,7 @@ public class InputChecker {
     public static void checkActivity(String userInput) throws DietException {
         boolean checkContain = false;
         for (String param: PARAM_ACTIVITY) {
-            if (userInput.contains(param)) {
+            if (userInput.equals(param)) {
                 checkContain = true;
             }
         }
