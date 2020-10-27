@@ -1,13 +1,4 @@
-/t testNote_0 /pin true
-/t testNote_2 /pin true 
-/t testNote_3 /pin false 
-/t testNote_4 /pin true 
-/t testNote_5 /pin false 
-/t testNote_6 /pin true 
-/t testNote_7 /pin false 
-/t testNote_8 /pin true 
-/t testNote_9 /pin false 
-/t title /pin false /archive false /tag important RED 
-/t title 2 /pin false /archive false /tag cs2113 BLUE /tag important RED 
-/t title 3 /pin false /archive false /tag important RED 
-/t title 4 /pin false /archive false /tag cs2113 BLUE 
+/t test1 /pin true /archive false /tag CS2113 BLUE 
+/t test 2 /pin false /archive false 
+/t Java OOP /pin true /archive false 
+/t C++ Standard Libraries /pin false /archive false 

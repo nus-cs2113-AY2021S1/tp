@@ -226,7 +226,7 @@ public class Notebook {
      * @return note that was filtered.
      */
     public Note getNote(String noteTitle, boolean isArchive) {
-        if (isArchive) {
+        if (!isArchive) {
             return notes.stream()
                     .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
                     .findFirst().get();

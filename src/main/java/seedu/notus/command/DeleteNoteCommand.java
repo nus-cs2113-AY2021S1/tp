@@ -65,12 +65,12 @@ public class DeleteNoteCommand extends Command {
             }
 
             if (isDeleted &&  title.isBlank()) {
-                storageManager.deleteNoteContentFile(deletedTitle);
-                storageManager.saveAllNoteDetails(notebook);
+                storageManager.deleteNoteContentFile(deletedTitle, false);
+                storageManager.saveAllNoteDetails(notebook, false);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else if (isDeleted) {
-                storageManager.deleteNoteContentFile(title);
-                storageManager.saveAllNoteDetails(notebook);
+                storageManager.deleteNoteContentFile(title, false);
+                storageManager.saveAllNoteDetails(notebook, false);
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
             } else {
                 return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
