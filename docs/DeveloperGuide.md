@@ -144,7 +144,11 @@ alphabetical order.
 #### 4.1.2 Find Book by Keyword
 The sequence diagram below demonstrates the command execution process when finding books by a keyword.
 
-![Sequence Diagram for Find Book by Keyword]()
+![Sequence Diagram for Find Book by Keyword](images/SeqDiagram_FindBook.png)
+
+* Opt-frames ensure that the user input is correct and that the keyword results in a non-empty list of books.
+* Parsing of user input is done in the Parser and FindCommand classes, which is not shown in the diagram.
+* `findByKeyword()` method filters books regardless of case. 
 
 ##### Design Considerations
 * Allows user to find books if either title or author contains the keyword.
@@ -154,8 +158,12 @@ The sequence diagram below demonstrates the command execution process when findi
     * Pros: Users do not have to bother about the exact letter case when typing the keyword.
     * Cons: Need to ensure all title or author are converted to the same case before searching.
 * Keyword or phrase
-    * Pros: Users can search for an exact phrase instead of just one word.
-    * Cons: The exact phrase must be typed out for the correct result to show.
+    * Alternative 1: Let users find by multiple space-separated keywords
+        * Pros: Users can find books if they can only remember part of the book title.
+        * Cons: Search list may not be narrowed as much. 
+    * Alternative 2: Let users find by exact phrase
+        * Pros: Users can narrow down the search using an exact phrase instead of just one word.
+        * Cons: The exact phrase must be typed out for the correct result to show.
 
 ### 4.2 Feature: Quote Management System
 Given below is the class diagram for classes related to the Quote Management System in Quotesify:
