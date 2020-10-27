@@ -85,7 +85,8 @@ public class StorageParser {
         words.add(time);
         words.add(repeatUnit);
         words.add(repeatNumber);
-
+        String noteString = notesListToString(activity.getNotes());
+        words.add(noteString);
         for (int i = 0; i < statuses.size(); i++) {
             boolean isDone = Boolean.parseBoolean(statuses.get(i));
             if (isDone) {
@@ -94,8 +95,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString = notesListToString(activity.getNotes());
-        words.add(noteString);
+
     }
 
     public static void zoomToArguments(Zoom activity, ArrayList<String> words) {
@@ -136,7 +136,8 @@ public class StorageParser {
         words.add(repeatUnit);
         words.add(repeatNumber);
         words.add(url);
-
+        String noteString = notesListToString(activity.getNotes());
+        words.add(noteString);
         for (int i = 0; i < statuses.size(); i++) {
             boolean isDone = Boolean.parseBoolean(statuses.get(i));
             if (isDone) {
@@ -145,8 +146,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString = notesListToString(activity.getNotes());
-        words.add(noteString);
+
     }
 
     public static void timetableToArguments(Timetable activity, ArrayList<String> words) {
@@ -187,6 +187,8 @@ public class StorageParser {
         words.add(repeatUnit);
         words.add(repeatNumber);
         words.add(location);
+        String noteString = notesListToString(activity.getNotes());
+        words.add(noteString);
 
         for (int i = 0; i < statuses.size(); i++) {
             boolean isDone = Boolean.parseBoolean(statuses.get(i));
@@ -196,8 +198,7 @@ public class StorageParser {
                 words.add("F");
             }
         }
-        String noteString = notesListToString(activity.getNotes());
-        words.add(noteString);
+
     }
 
     public static Event stringToEvent(String line, String type) {
@@ -212,18 +213,18 @@ public class StorageParser {
         switch (type) {
         case "Personal":
             info = Arrays.copyOfRange(words, 0, 5);
-            statuses = Arrays.copyOfRange(words, 5, 6);
-            notes = Arrays.copyOfRange(words, 6, words.length);
+            notes = Arrays.copyOfRange(words, 5, 6);
+            statuses = Arrays.copyOfRange(words, 6, words.length);
             return makePersonal(info, statuses, notes);
         case "Zoom":
             info = Arrays.copyOfRange(words, 0, 6);
-            statuses = Arrays.copyOfRange(words, 6, 7);
-            notes = Arrays.copyOfRange(words, 7, words.length);
+            notes = Arrays.copyOfRange(words, 6, 7);
+            statuses = Arrays.copyOfRange(words, 7, words.length);
             return makeZoom(info, statuses, notes);
         case "Timetable":
             info = Arrays.copyOfRange(words, 0, 6);
-            statuses = Arrays.copyOfRange(words, 6, 7);
-            notes = Arrays.copyOfRange(words, 7, words.length);
+            notes = Arrays.copyOfRange(words, 6, 7);
+            statuses = Arrays.copyOfRange(words, 7, words.length);
             return makeTimetable(info, statuses, notes);
         default:
             return null;
@@ -382,11 +383,18 @@ public class StorageParser {
      */
     private static String notesListToString(ArrayList<String> notes) {
         StringBuffer notesBuffer = new StringBuffer();
-        for (String s : notes) {
-            notesBuffer.append(s);
-            notesBuffer.append(";");
+        String noteString = "";
+        if (!notes.isEmpty() && !(notes.size() == 1 && notes.get(0).equals(""))){
+            for (String s : notes) {
+                if (s != ""){
+                    notesBuffer.append(s);
+                    notesBuffer.append(";");
+                }
+
+            }
+            noteString = notesBuffer.toString();
         }
-        String noteString = notesBuffer.toString();
+
         return noteString;
     }
 }

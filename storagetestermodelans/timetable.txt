@@ -1,2 +1,2 @@
-math | 2010-01-01 | 1200 | MONTHLY | 4 | S17 | F | F | F | T | F
-computing | 2010-01-01 | 1200 | 0 | 0 | COM2 | T
+math | 2010-01-01 | 1200 | MONTHLY | 4 | S17 |  | F | F | F | T | F
+computing | 2010-01-01 | 1200 | 0 | 0 | COM2 |  | T
