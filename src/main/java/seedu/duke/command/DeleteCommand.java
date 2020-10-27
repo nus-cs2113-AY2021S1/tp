@@ -14,15 +14,10 @@ import java.util.ArrayList;
 
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
-public class DoneCommand extends Command {
+public class DeleteCommand extends Command {
     private String listType;
 
-    /**
-     * Constructor for setting event to done.
-     *
-     * @param command from user input
-     */
-    public DoneCommand(String listType, String command) {
+    public DeleteCommand(String listType, String command) {
         this.isExit = false;
         this.listType = listType;
         this.command = command;
@@ -45,7 +40,7 @@ public class DoneCommand extends Command {
             throw new WrongNumberFormatException("Event index given is not an integer.");
         }
 
-        return new DoneCommand(listType, eventIndex);
+        return new DeleteCommand(listType, eventIndex);
     }
 
     @Override
@@ -55,18 +50,20 @@ public class DoneCommand extends Command {
         String[] eventIndexArray = command.split(" ",2);
 
         int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
-        Event doneEvent = eventList.getEventByIndex(eventIndex);
+        Event deleteEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIndexArray.length == 1 || doneEvent.getRepeatType() == null) {
-            doneEvent.markAsDone();
-            ui.printEventMarkedDoneMessage(doneEvent);
-        } else if (eventIndexArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
-            LocalDate doneEventDate = dateParser(eventIndexArray[1]);
-            ArrayList<Event> repeatEventList = doneEvent.getRepeatEventList();
+        if (eventIndexArray.length == 1 || deleteEvent.getRepeatType() == null) {
+            eventList.getEvents().remove(deleteEvent);
+            ui.printEventDeletedMessage(deleteEvent);
+        } else if (eventIndexArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
+            LocalDate deleteEventDate = dateParser(eventIndexArray[1]);
+            ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
+
             for (Event e: repeatEventList) {
-                if (e.getDate().isEqual(doneEventDate)) {
-                    e.markAsDone();
-                    ui.printEventMarkedDoneMessage(e);
+                if (e.getDate().isEqual(deleteEventDate)) {
+                    repeatEventList.remove(e);
+                    ui.printEventDeletedMessage(e);
+                    break;
                 }
             }
         }

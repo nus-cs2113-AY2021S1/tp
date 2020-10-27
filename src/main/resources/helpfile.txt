@@ -1,0 +1,133 @@
+summary | help | add | deadline | repeat | goal | done | delete | note | reminder | extract | save | bye
+begin summary
+Here is a summary of all the commands that the program can run
+help - Provides more information on how to use the commands available in the program
+add - Records a personal, timetable or zoom event into the program
+deadline - Sets or change a deadline for a personal event
+repeat - repeat an event for a specified amount of times every day, week or month
+goal - Sets up a goal for the user
+done - mark the event as completed
+delete - remove a personal, timetable or zoom event permamently from the program
+note - Add in additional notes associate to the personal, timetable or zoom event
+reminder - prints out events that will be occuring on the present day
+extract - extracts out important event information from text to be recorded as events in the program
+save - save current changes made to the program
+bye - exits the program 
+
+To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
+end summary
+
+begin help
+help - Provides more information on how to use the commands available in the program
+Format: help [COMMAND]
+
+[COMMAND] - command which you would like to find out more information about. 
+
+text in lowercase indicates that you should type it exactly like this when you type the command in the terminal
+text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
+text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
+end help
+
+begin add
+add - Records a personal, timetable or zoom event into the program
+Format: add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
+EVENT_DESCRIPTION is the name of the event
+[LINK/LOCATION] is an optional argument. provide a zoom link if your event is a zoom conference and provide a location if your event is a timetable event
+DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
+[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format.
+
+end add
+
+begin deadline
+deadline - Sets or change a deadline for a personal event
+
+Format: deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM
+
+EVENT_INDEX is a number. It contains the index of the personal event that will have its deadline set or changed.
+DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
+[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
+
+end deadline
+
+begin repeat
+repeat - repeat an event for a specified amount of times every day, week or month
+
+Format: repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]
+
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
+EVENT_INDEX is an number. It contains the index of the event that is to be repeated
+[UNIT] can either take the word “Weekly” or “Monthly”. It tells the program to repeat the event either every week or every month.
+[COUNT] takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks.
+
+end repeat
+
+begin goal
+goal - Sets up a goal for the user
+
+Format: goal [NEW_GOAL]
+
+[NEW_GOAL] is the goal that you will want to set for yourself. For example, "goal get cap 5.0" will set your current goal as "get cap 5.0".
+
+end goal
+
+begin done
+
+done - mark the event as completed
+
+Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] 
+
+EVENT_TYPE specify what kind of event you would like to mark as done. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that is to be repeated
+[EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as done, the done command will mark the repetition with the date matching EVENT_DATE as done
+
+end done
+
+begin delete
+delete - remove a personal, timetable or zoom event permamently from the program
+
+Format: delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+EVENT_TYPE specify what kind of event you would like to delete. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that is to be deleted
+[EVENT_DATE] is an optional argument. When a date is provided for deleting a repeated command, the delete command will delete the repetition with the date matching EVENT_DATE
+
+end delete
+
+begin note
+
+To be implemented
+
+end note
+
+begin reminder
+reminder - prints out events that will be occuring on the present day
+
+Format: reminder
+
+end reminder
+
+begin extract
+extract - extracts out important event information from text to be recorded as events in the program
+
+Format: extract TEXT_SUBJECT; TEXT_BODY
+
+TEXT_SUBJECT - name of the event
+TEXT_BODY - body of text to be provided to the scheduler. The scheduler will san through looking for important information and will present you with the information to be recorded for your consideration.
+
+end extract
+
+begin save
+save - save current changes made to the program
+
+Format: save
+
+end save
+
+begin bye
+bye - exits the program 
+
+Format: bye
+
+end bye

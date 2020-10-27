@@ -104,7 +104,11 @@ public abstract class Event implements Cloneable {
     }
 
     public String getRepeatType() {
-        return repeatType.toLowerCase();
+        if (repeatType == null) {
+            return null;
+        } else {
+            return repeatType.toLowerCase();
+        }
     }
 
     public int getRepeatCount() {

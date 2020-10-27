@@ -65,7 +65,6 @@ class ListCommandTest {
         assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
                         + "[Z][✕] Math class, Link: "
                         + "zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator()
                         + "Here is a list of your Zoom events:" + System.lineSeparator()
                         + "1. [Z][✕] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),

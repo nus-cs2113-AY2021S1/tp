@@ -45,7 +45,6 @@ public class Ui {
     public void printEventAddedMessage(Event event) {
         System.out.println("You have successfully added this event to your list!");
         System.out.println(event);
-        printDividerLine();
     }
 
     public void printRepeatAdd(Event event) {
@@ -84,26 +83,34 @@ public class Ui {
         printDividerLine();
     }
 
+    private void printCalendarDivider() {
+        System.out.println("---------------------------------------------------------------------------------------");
+    }
+
     public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
         System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
-        printDividerLine();
+        printCalendarDivider();
         ArrayList<Event> eventsOnDate;
         eventsOnDate = entry.getValue();
         eventsOnDate.sort(Comparator.comparing(Event::getTime));
         for (Event e : eventsOnDate) {
             System.out.println(e.toCalendarString());
         }
-        printDividerLine();
-        //print there are how many task without date
+        printCalendarDivider();
     }
 
     public void printCalendarStart(int size, int count) {
-        System.out.println("Calendar has " + size + " dates to display.");
+        System.out.println("Calendar has " + size + " dates to display");
         if (count > 1) {
-            System.out.println(count + " events not on the calendar because they have no date.");
+            System.out.println(count + " events not on the calendar because they have no date and time");
         } else if (count > 0) {
-            System.out.println(count + " event not on the calendar because it has no date.");
+            System.out.println(count + " event not on the calendar because it has no date and time");
         }
+        printCalendarDivider();
+    }
+
+    public void printCalendarEnd() {
+        System.out.println("End of calendar");
         printDividerLine();
     }
 
@@ -181,6 +188,11 @@ public class Ui {
         System.out.println(undoneEvent);
     }
 
+    public void printEventDeletedMessage(Event deleteEvent) {
+        System.out.println("You have successfully deleted this event!");
+        System.out.println(deleteEvent);
+    }
+
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }
@@ -200,6 +212,9 @@ public class Ui {
      */
     public void printErrorMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
-        printDividerLine();
+    }
+
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }

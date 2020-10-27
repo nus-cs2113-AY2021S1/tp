@@ -67,9 +67,9 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][✕] math, Link: www.zoom.com/blah" + System.lineSeparator()
+                        + "1. [Z][✕] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated daily for 4 times." + System.lineSeparator()
-                        + "2. [Z][✓] computing, Link: www.zoom.com/hello" + System.lineSeparator()
+                        + "2. [Z][✓] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 

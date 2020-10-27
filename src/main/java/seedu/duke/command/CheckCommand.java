@@ -95,21 +95,21 @@ public class CheckCommand extends Command {
         try {
             switch (dateFields.length) {
             case 1: // only year is given
-                DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yy[yy]");
+                DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("[yyyy][yy]");
                 Year givenYear = Year.parse(stringDate, yearFormat);
                 date = currentDate.with(givenYear);
                 return date;
             case 2: // month and year is given
-                DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("M/yy[yy]");
+                DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("M/[yyyy][yy]");
                 YearMonth givenYearMonth = YearMonth.parse(stringDate, yearMonthFormat);
                 date = currentDate.with(givenYearMonth);
                 return date;
             case 3: // day, month and year given
-                DateTimeFormatter dayMonthYearFormat = DateTimeFormatter.ofPattern("d/M/yy[yy]");
+                DateTimeFormatter dayMonthYearFormat = DateTimeFormatter.ofPattern("d/M/[yyyy][yy]");
                 date = LocalDate.parse(stringDate, dayMonthYearFormat);
                 return date;
             default:
-                throw new DateErrorException("Something is wrong with the date!");
+                throw new DateErrorException("Too many fields given for the date!");
             }
         } catch (DateTimeParseException e) {
             throw new DateErrorException("Something is wrong with the date!");
@@ -177,15 +177,27 @@ public class CheckCommand extends Command {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 
         for (Event event : eventsList.getEvents()) {
-            boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
+            if (event.getDate() == null) {
+                continue;
+            }
 
+            boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
             boolean eventIsBetweenTime;
+
             if (eventIsBetweenDate) {
                 eventIsBetweenTime = true;
             } else if (event.getDate().isEqual(startDate)) {
-                eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+                if (event.getTime() == null) {
+                    eventIsBetweenTime = true;
+                } else {
+                    eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+                }
             } else if (event.getDate().isEqual(endDate)) {
-                eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+                if (event.getTime() == null) {
+                    eventIsBetweenTime = true;
+                } else {
+                    eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+                }
             } else {
                 eventIsBetweenTime = false;
             }
