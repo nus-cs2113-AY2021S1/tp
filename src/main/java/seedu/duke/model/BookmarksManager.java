@@ -14,7 +14,7 @@ public class BookmarksManager {
 
     private Bookmarks bookmarks;
 
-    public BookmarksManager () {
+    public BookmarksManager() {
         load();
     }
 
