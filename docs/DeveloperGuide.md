@@ -31,9 +31,8 @@ The rest of the App consists of:
 * `Ui`: The user interface of the application.
 * `Parser`: Handles and parses user commands.
 * `Command`: Handles the various commands Fitr understands.
-* `Storage`: Reads data from and writes data back into a text file for future use.
-
-Each of the component defines its _API_ in an `interface` with the same name as the Component.
+* `StorageManager`: Reads data from and writes data back into a text file for future use.
+* `ListManager`: Handles all the list operations in Fitr.
 
 The sequence diagram below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
 
