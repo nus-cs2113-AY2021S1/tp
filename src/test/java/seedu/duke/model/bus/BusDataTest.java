@@ -54,7 +54,7 @@ class BusDataTest {
         routes.add(new Bus("AA2", stops));
         String startingLoc = "centrAL LibraRy";
         String destination = "Pgp";
-        //System.out.println(BusData.listOfAllBuses());
+        assertEquals(routes.toString(), BusData.possibleBuses(startingLoc, destination).toString());
         ArrayList<Bus> busOptions = new ArrayList<>(BusData.possibleBuses(startingLoc, destination));
         assertEquals(routes.toString(), busOptions.toString());
     }
