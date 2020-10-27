@@ -63,15 +63,26 @@ This section seeks to explain the high-level design of the application. Given be
 NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes.
 ### Architecture
 ![Figure X: Architecture Diagram](./image/developerguide/architecturediagram.png "Architecture Diagram UML")  
-The architecture design is given in the diagram above. The main components of
-SCRUMptious are:
+The **Architecture Diagram** shown above describes the high level association operations of the application. 
+A quick overview of the components is as follows:
 
+`Main` is single-class component of `SCRUMptious`. It is responsible for:
+    1. At app launch: Initializes the components in the correct sequence(Storage, UI, Parser), and links them together where appropriate.
+    1. At program exit: Invokes Storage component to save all unsaved data.
+
+The other packages are described below: 
+1. `UI` : The user interface of the app, reads user input and is visible to the user.
+1. `Parser Manager` : The module that reads user inputs, and creates a suitable parser based on the command to make 
+ sense of user input. Respective parser then tells the Command module what to execute.
 1. `ProjectManager` : Manages and stores all the projects added by the user, keeps track of selected project.    
 1. `SprintManager` : Stores all sprints associated with a project.
 1. `TaskManager` : Stores all tasks in backlog associated with a project.
 1. `ProjectMembers` : Stores all team-members associated to a project. 
 1. `Parser` : Creates a suitable parser, based on the command to make sense of the user input. Respective parser then
  make use the information and call respective commands. 
+ 
+Each of the modules listed above are a collection of constituent classes, with each handling specialized tasks in-line with the SLAP principle.
+
 ### UI Component
 {UML}
 ### Logic Component
