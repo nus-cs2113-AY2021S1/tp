@@ -25,13 +25,9 @@ There are two ways to run tests.
 
 ### 2. Types of tests <a name="2"></a>
 
-This project has three types of tests:
+This project uses JUnit testing in IntelliJ.
 
-1. *Unit tests* targeting the lowest level methods/classes.<br>
-   e.g. `seedu.address.commons.StringUtilTest`
-1. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
-   e.g. `seedu.address.storage.StorageManagerTest`
-1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-   e.g. `seedu.address.logic.LogicManagerTest`
+1. We test each class and its methods.<br>
+   e.g. `seedu.modTrackerTest.ParserTest` Tests the methods in the `Parser` class
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
