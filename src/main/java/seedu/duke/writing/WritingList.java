@@ -20,7 +20,16 @@ import static seedu.duke.commands.CommandChecker.ESSAY;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
-import static seedu.duke.constants.FluffleMessages.*;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_REMINDER;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TITLE;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TOPIC;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TYPE;
+import static seedu.duke.constants.FluffleMessages.ASSERTION_ID_ERROR;
+import static seedu.duke.constants.FluffleMessages.INSTRUCTION_FOR_ADDING_NEW_WRITINGS;
+import static seedu.duke.constants.FluffleMessages.CLEAR_DATA_MESSAGE;
+import static seedu.duke.constants.FluffleMessages.EMPTY_WRITING_MESSAGE;
+import static seedu.duke.constants.FluffleMessages.SUCCESSFUL_ADD_WRITING_TO_DATABASE;
+import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;

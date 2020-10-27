@@ -71,7 +71,7 @@ public enum CommandChecker {
             return CommandChecker.ADJ;
         } else if (userInput.toLowerCase().trim().startsWith("remind ")) {
             return CommandChecker.REMIND;
-        }else if (userInput.toLowerCase().trim().startsWith("list words")) {
+        } else if (userInput.toLowerCase().trim().startsWith("list words")) {
             return CommandChecker.LIST_WORDS;
         } else if (userInput.toLowerCase().trim().startsWith("three words")) {
             return CommandChecker.GEN_THREE_WORDS;

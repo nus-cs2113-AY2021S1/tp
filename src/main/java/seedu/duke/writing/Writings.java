@@ -107,8 +107,8 @@ public abstract class Writings {
         System.out.println(getTitle().toUpperCase() + "\n");
         System.out.println(getContent());
         System.out.println("This writing was created on " + date);
-        System.out.println("You want to continue on this writing on " +
-                getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("You want to continue on this writing on "
+                + getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println(PLAIN_TEXT_DIVIDER);
     }
 }
