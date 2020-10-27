@@ -16,7 +16,8 @@ public class Stats {
 
     public Stats(TopicList topicList) {
         topics = topicList.getInnerList();
-        userStatsCalculator = new UserStatsCalculator(topicList);
+        assert topics != null;
+        userStatsCalculator = new UserStatsCalculator(topics);
     }
 
     public void showStatsToUser(Ui ui) {
@@ -27,13 +28,13 @@ public class Stats {
     }
 
     private void showPointsEarned(Ui ui) {
-        ui.showPointsEarned(userStatsCalculator.calculateTotalPointsEarned(),
+        ui.printPointsEarned(userStatsCalculator.calculateTotalPointsEarned(),
                userStatsCalculator.calculateTotalPointsAvailable());
     }
 
 
     private void showTotalProgression(Ui ui) {
-        ui.showTotalProgression(userStatsCalculator.calculateOverallProgressionLevelPercentage(),
+        ui.printTotalProgression(userStatsCalculator.calculateOverallProgressionPercentage(),
                 userStatsCalculator.isProgressionOverHalf());
     }
 
@@ -46,16 +47,16 @@ public class Stats {
 
             ui.printTopicDescriptionForStats(topic);
 
-            ui.showTopicalQuestionsCompletionLevel(
+            ui.printTopicCompletionLevel(
                     specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount(),
                     specificTopicStatsCalculator.getTopicQuestionsCount());
 
-            ui.showTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
+            ui.printTopicAccuracyLevel(specificTopicStatsCalculator.calculateTopicalQuestionsCorrectCount(),
                     specificTopicStatsCalculator.calculateTopicalQuestionsAttemptCount());
 
-            ui.showTopicalHintUsage(specificTopicStatsCalculator.calculateTopicalHintUsage());
+            ui.printTopicalHintUsage(specificTopicStatsCalculator.calculateTopicalHintUsage());
 
-            ui.showTopicalPoints(specificTopicStatsCalculator.calculateTopicalPointsEarned(),
+            ui.printTopicalPoints(specificTopicStatsCalculator.calculateTopicalPointsEarned(),
                     specificTopicStatsCalculator.calculateTopicalPointsAvailable(),
                     specificTopicStatsCalculator.calculateTopicalProgressionPercentage());
         }

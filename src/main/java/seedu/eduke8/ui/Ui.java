@@ -227,12 +227,12 @@ public class Ui {
         System.out.println(POINT_SYSTEM_RULE + System.lineSeparator());
     }
 
-    public void showPointsEarned(int pointsEarned, int pointsAvailable) {
+    public void printPointsEarned(int pointsEarned, int pointsAvailable) {
         System.out.println(MESSAGE_SHOW_POINTS + pointsEarned + MESSAGE_SHOW_POINTS_SECOND
                 + pointsAvailable + MESSAGE_SHOW_POINTS_THIRD);
     }
 
-    public void showTotalProgression(int progressionLevelPercentage, boolean progressOverHalf) {
+    public void printTotalProgression(int progressionLevelPercentage, boolean progressOverHalf) {
         System.out.print(MESSAGE_USER_PROGRESS + progressionLevelPercentage + PERCENTAGE_SIGN + DOT_SPACE);
         if (progressOverHalf) {
             System.out.println(MESSAGE_PRAISE + System.lineSeparator());
@@ -250,22 +250,22 @@ public class Ui {
         System.out.println(topic.getDescription());
     }
 
-    public void showTopicalQuestionsCompletionLevel(int questionsAttempted, int questionsTotal) {
+    public void printTopicCompletionLevel(int questionsAttempted, int questionsTotal) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAttempted
                 + OUT_OF_SYMBOL + questionsTotal + MESSAGE_QUESTIONS_DONE);
     }
 
-    public void showTopicAccuracyLevel(int questionsAnsweredCorrectly, int questionsAttempted) {
+    public void printTopicAccuracyLevel(int questionsAnsweredCorrectly, int questionsAttempted) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + questionsAnsweredCorrectly + OUT_OF_SYMBOL
                 + questionsAttempted + MESSAGE_CORRECT_QUESTIONS_ANSWERED);
     }
 
-    public void showTopicalHintUsage(int hintUsage) {
+    public void printTopicalHintUsage(int hintUsage) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + hintUsage
                 + (hintUsage <= 1 ? MESSAGE_HINT_USED_SINGULAR : MESSAGE_HINT_USED_PLURAL));
     }
 
-    public void showTopicalPoints(int pointsEarned, int pointsAvailable, int progressionPercentage) {
+    public void printTopicalPoints(int pointsEarned, int pointsAvailable, int progressionPercentage) {
         System.out.println(HORIZONTAL_LINE_FOR_TOPICAL_STATS_FIELDS + pointsEarned + MESSAGE_POINTS_EARNED_OUT_OF
                 + pointsAvailable + MESSAGE_AVAILABLE_WORD + OPEN_SQUARE_BRACKET
                 + progressionPercentage + PERCENTAGE_SIGN + CLOSE_SQUARE_BRACKET);

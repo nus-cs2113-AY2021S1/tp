@@ -76,7 +76,7 @@ public class TopicalStatsCalculator extends StatsCalculator {
 
 
     public int calculateTopicalProgressionPercentage() {
-        return calculateProgressionLevelPercentage(calculateTopicalPointsEarned(),
+        return calculateProgressionPercentage(calculateTopicalPointsEarned(),
                 calculateTopicalPointsAvailable());
     }
 }

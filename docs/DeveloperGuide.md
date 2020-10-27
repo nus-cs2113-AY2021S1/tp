@@ -16,6 +16,7 @@
       - [2.3.2. Implementation of MenuParser](#232-implementation-of-menuparser)
       - [2.3.3. Design of QuizQuestionsManager](#233-design-of-quizquestionsmanager)
       - [2.3.4. Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager)
+      - [2.3.5. Design of Stats Feature](#235-design-of-stats-feature)
     - [2.4. Storage Component](#24-storage-component)
       - [2.4.1. Design of TopicsStorage](#241-design-of-topicsstorage)
       - [2.4.2. Implementation of TopicsStorage](#242-implementation-of-topicsstorage)
@@ -201,7 +202,7 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
 
 To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
-The Class Diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
+The class diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
 ![QuizQuestionsManager_Class_Diagram](./images/QuizQuestionsManager.png)
 
@@ -215,7 +216,7 @@ Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `a
 
 As mentioned earlier in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
 
-The Sequence Diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
+The sequence diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
 
 
 ![QuizQuestionsManager_setQuizQuestions](./images/QuizQuestionsManager_setQuizQuestions.png)
@@ -225,6 +226,24 @@ The Sequence Diagram below shows how `QuizQuestionsManager` is implemented to ac
 To ensure that no two of the same question is selected, the selected randomQuestionIndex is checked to see if it is repeated. To determine if randomQuestionIndex is not selected before, an integer ArrayList is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
+
+#### 2.3.5 Design of Stats Feature
+
+E-Duke-8 allows for user’s stats to be shown to the user when requested. These stats correspond to the results of the user’s past attempts of the quiz. An aggregate result, followed by topical results of the quiz will be displayed. 
+
+A `Stats` class facilitates what is to be shown to the user. It also calls the methods of the two subclasses of `StatsCalculator` to retrieve the necessary information to be displayed.
+
+The class diagram given below showcases the high-level design of the stats feature in E-Duke-8. Given below it is a quick overview of each component.
+
+![Stats_Class_Diagram](./images/Stats.png)
+
+Results of the quiz attempts can be calculated using the information stored in a `Question` object, because of its methods, namely `wasShown()`,  `wasHintShown()` and `wasAnsweredCorrectly()`, that indicate if it has been attempted before, whether hint was used when user attempted the question and if the question was answered correctly respectively.
+
+An object of `UserStatsCalculator` class is responsible for calculating the aggregate results from the user’s previous quiz results. For instance, its `calculateTotalPointsEarned()` method will iterate through the multiple topics stored in E-Duke-8 and calculate the total sum of the user’s past results of the quizzes done for those topics.
+
+On the other hand, an object of `TopicStatsCalculator` is used by the object of `Stats` class to calculate the topical results. In its constructor, the `TopicStatsCalculator` object uses the single `Topic` object passed into it to retrieve its specific `QuestionList` object. Thereafter, by iterating through the questions for the particular `QuestionList` object, the results for individual topics can be calculated with its methods.
+
+
 
 ### 2.4. Storage Component
 
