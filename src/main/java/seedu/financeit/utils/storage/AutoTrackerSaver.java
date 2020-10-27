@@ -1,9 +1,9 @@
 package seedu.financeit.utils.storage;
 
-import seedu.financeit.parser.InputParser;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
+import seedu.financeit.parser.InputParser;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,18 +11,35 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class RecurringTrackerSaver extends SaveHandler {
+public class AutoTrackerSaver extends SaveHandler {
 
-    public RecurringTrackerSaver() {
+    private static AutoTrackerSaver saver;
+
+    private AutoTrackerSaver() {
         super();
     }
 
-    public RecurringTrackerSaver(String filepath, String directory) {
-        super(filepath, directory);
+    private AutoTrackerSaver(String directory, String filepath) {
+        super(directory, filepath);
     }
 
-    public void save() throws IOException {
-        buildFile();
+    public static AutoTrackerSaver getInstance(String... paths) {
+        if (saver == null) {
+            if (paths.length == 2) {
+                saver = new AutoTrackerSaver(paths[0], paths[1]);
+            } else {
+                saver = new AutoTrackerSaver();
+            }
+        }
+        return saver;
+    }
+
+    public void save(String... paths) throws IOException {
+        if (paths.length == 2) {
+            buildFile(paths[0], paths[1]);
+        } else {
+            buildFile();
+        }
         RecurringEntryList entries = RecurringTracker.getEntries();
         StringBuilder saveString = new StringBuilder();
         int size = entries.getItemsSize();
@@ -30,14 +47,18 @@ public class RecurringTrackerSaver extends SaveHandler {
             RecurringEntry entry = (RecurringEntry) entries.getItemAtCurrIndex(i);
             saveString.append(entry.toString() + System.lineSeparator());
         }
-        FileWriter fileWriter = new FileWriter(fullPath);
+        FileWriter fileWriter = new FileWriter(paths.length == 2 ? paths[1] : fullPath);
         fileWriter.write(String.valueOf(saveString));
         fileWriter.close();
     }
 
-    public void load() throws IOException {
-        buildFile();
-        File file = new File(fullPath);
+    public void load(String... paths) throws IOException {
+        if (paths.length == 2) {
+            buildFile(paths[0], paths[1]);
+        } else {
+            buildFile();
+        }
+        File file = new File(paths.length == 2 ? paths[1] : fullPath);
         Scanner scanner = new Scanner(file);
         String[] classContents;
         String inputString;
@@ -59,8 +80,8 @@ public class RecurringTrackerSaver extends SaveHandler {
                 classContents[5] = "";
             }
             inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
-                + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0]
-                + " /notes " + classContents[6];
+                    + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0]
+                    + " /notes " + classContents[6];
             RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
         }
     }
