@@ -10,12 +10,10 @@ import ui.Ui;
 
 import java.io.IOException;
 
-import static common.Messages.MODULE;
 import static common.Messages.CHAPTER;
 
 public class AddChapterCommand extends AddCommand {
-    public static final String CHAPTER_PARAMETERS = " CHAPTER_NAME";
-    public static final String CHAPTER_MESSAGE_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
             + "Parameters:" + CHAPTER_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " Chapter 1\n";
 
@@ -27,9 +25,8 @@ public class AddChapterCommand extends AddCommand {
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException, IOException {
-        String result = "";
         Chapter chapter = new Chapter(this.chapter, rateChapter(), storage, access);
-        result = addChapter(access, storage, chapter);
+        String result = addChapter(access, storage, chapter);
         ui.showToUser(result);
     }
 
@@ -50,5 +47,4 @@ public class AddChapterCommand extends AddCommand {
             return "N";
         }
     }
-
 }
