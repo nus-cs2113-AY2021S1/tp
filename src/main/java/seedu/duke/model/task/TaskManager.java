@@ -109,11 +109,11 @@ public class TaskManager implements JsonableObject {
     @Override
     public String toString() {
         StringBuilder backlogString = new StringBuilder();
-        backlogString.append("\n---------------------------- BACKLOG ----------------------------\n");
+        backlogString.append(String.format("---------------------------- BACKLOG ----------------------------%n"));
         for (Task task : backlogTasks) {
             backlogString.append(task.toSimplifiedString());
         }
-        backlogString.append("-----------------------------------------------------------------\n");
+        backlogString.append(String.format("-----------------------------------------------------------------%n"));
         return backlogString.toString();
     }
 
@@ -141,7 +141,7 @@ public class TaskManager implements JsonableObject {
 
     public void fromJson(JsonObject jsonObject, Project project) {
         proj = project;
-        assert project != null && proj.getProjectID() == JsonableObject.parseInt(jsonObject, "owner") 
+        assert project != null && proj.getProjectID() == JsonableObject.parseInt(jsonObject, "owner")
                 : "Project Id does not corresponds to the project object which this backlog is stored under.";
         nextId = JsonableObject.parseInt(jsonObject, "nextId");
         proj = project;

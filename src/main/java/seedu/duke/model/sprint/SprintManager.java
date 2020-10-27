@@ -68,11 +68,11 @@ public class SprintManager implements JsonableObject {
     @Override
     public String toString() {
         StringBuilder allSprintsInString = new StringBuilder();
-        allSprintsInString.append("\n-------------------------- ALL SPRINTS --------------------------\n");
+        allSprintsInString.append(String.format("-------------------------- ALL SPRINTS --------------------------%n"));
         for (Sprint sprint : sprintList) {
             allSprintsInString.append(sprint.toSimplifiedString());
         }
-        allSprintsInString.append("-----------------------------------------------------------------\n");
+        allSprintsInString.append(String.format("-----------------------------------------------------------------%n"));
         return allSprintsInString.toString();
     }
 

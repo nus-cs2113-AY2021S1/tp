@@ -47,10 +47,9 @@ public class AddSprintTaskCommand extends SprintCommand {
             addedTask.allocateToSprint(this.sprintOwner.getId());
 
             //Output to user
-            Ui.showToUser(projOwner.getProjectBacklog().getTask(taskId).getTitle()
-                    + " added to sprint "
-                    + this.sprintOwner.getId()
-                    + ".\n");
+            Ui.showToUserLn(String.format("\t%s added to sprint %s."
+                            , projOwner.getProjectBacklog().getTask(taskId).getTitle()
+                            , this.sprintOwner.getId()));
         }
     }
 

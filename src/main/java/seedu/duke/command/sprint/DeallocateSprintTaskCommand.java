@@ -38,7 +38,7 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
 
             //Valid Command
             Ui.showToUser(this.projOwner.toIdString());
-            Ui.showToUserLn(this.sprintOwner.toIdString());
+            Ui.showToUser(this.sprintOwner.toIdString());
             deallocateTask();
         } catch (DukeException e) {
             e.printExceptionMessage();

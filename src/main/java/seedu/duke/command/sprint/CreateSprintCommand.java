@@ -72,7 +72,7 @@ public class CreateSprintCommand extends SprintCommand {
             LocalDate projEndDate = this.sprintStart.plusDays(this.projOwner.getProjectDuration() - 1);
             this.projOwner.setStartDate(this.sprintStart);
             this.projOwner.setEndDate(projEndDate);
-            Ui.showToUserLn("\nProject will start along with the newly created sprint");
+            Ui.showToUserLn("Project will start along with the newly created sprint");
             Ui.showToUserLn("Project period: " + this.sprintStart + " to " + projEndDate);
         }
     }
