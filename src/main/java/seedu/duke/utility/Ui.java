@@ -2,6 +2,7 @@ package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
 import seedu.duke.classes.WatchTime;
+import seedu.duke.utility.ErrorHandling.ExceptionResponse;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -63,30 +64,32 @@ public class Ui {
                     + "|__|  |__| |_______||_______|| _|      \n";
 
         System.out.println(helpIcon);
-        System.out.println("The following options are available:");
+        System.out.println("Enter the 'example' command for help on the command format.");
         System.out.println(("help") + " - Views help\n"
+                + " \n"
+                + ("example") + " - Outlines command format\n"
                 + " \n"
                 + ("add") + " - Adds a show\n"
                 + " \n"
                 + ("edit") + " - Edits your show details\n"
                 + " \n"
-                + ("list") + " - Displays all your shows in thw watchlist\n"
+                + ("list") + " - Displays all your shows in the watchlist\n"
                 + "\n"
                 + ("delete") + " - Deletes your show\n"
                 + " \n"
-                + ("deleterating") + " - Deletes rating of your show\n"
-                + "\n"
-                + ("changerating") + " - Changes rating of your show\n"
-                + "\n"
                 + ("addreview") + " - Adds a review to your show\n"
                 + "\n"
                 + ("changereview") + " - Changes review of your show\n"
                 + "\n"
                 + ("deletereview") + " - Deletes review of your show\n"
                 + "\n"
-                + ("episode") + " - Update your episode progress\n"
+                + ("deleterating") + " - Deletes rating of your show\n"
                 + "\n"
-                + ("season") + " - Update your season progress\n"
+                + ("changerating") + " - Changes rating of your show\n"
+                + "\n"
+                + ("episode") + " - Update your current episode progress\n"
+                + "\n"
+                + ("season") + " - Update your current season progress\n"
                 + "\n"
                 + ("search") + " - Look for your show in the watchlist\n"
                 + "\n"
@@ -96,6 +99,55 @@ public class Ui {
                 + "\n"
                 + ("bye") + " - Exits the program\n");
         System.out.println("Refer to our user guide for more help!");
+        printLine();
+    }
+
+    public static void printExample() {
+        printLine();
+        String exampleIcon =
+                "  ________   __          __  __ _____  _      ______ \n"
+                + " |  ____\\ \\ / /    /\\   |  \\/  |  __ \\| |    |  ____|\n"
+                + " | |__   \\ V /    /  \\  | \\  / | |__) | |    | |__   \n"
+                + " |  __|   > <    / /\\ \\ | |\\/| |  ___/| |    |  __|  \n"
+                + " | |____ / . \\  / ____ \\| |  | | |    | |____| |____ \n"
+                + " |______/_/ \\_\\/_/    \\_\\_|  |_|_|    |______|______|\n"
+                + "                                                     \n";
+
+        System.out.println(exampleIcon);
+        System.out.println("Example of commands for our available features:");
+        System.out.println(("help") + " -> help\n"
+                + " \n"
+                + ("add") + " -> add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON SEPARATED BY COMMAS> "
+                + "<DURATION OF EPISODE>\n"
+                + " \n"
+                + ("edit") + " -> edit <SHOWNAME>\n"
+                + " \n"
+                + ("list") + " -> list\n"
+                + "\n"
+                + ("delete") + " -> delete <SHOWNAME>\n"
+                + " \n"
+                + ("addreview") + " -> addreview <SHOWNAME> <RATING> / <REVIEW>\n"
+                + "\n"
+                + ("changereview") + " -> changereview <SHOWNAME> / <REVIEW>\n"
+                + "\n"
+                + ("deletereview") + " -> deletereview <SHOWNAME>\n"
+                + "\n"
+                + ("deleterating") + " -> deleterating <SHOWNAME>\n"
+                + "\n"
+                + ("changerating") + " -> changerating <SHOWNAME> / <NEWRATING>\n"
+                + "\n"
+                + ("episode") + " -> episode <SHOWNAME> <EPISODE>\n"
+                + "\n"
+                + ("season") + " -> season <SHOWNAME> <SEASON>\n"
+                + "\n"
+                + ("search") + " -> search <SHOWNAME>\n"
+                + "\n"
+                + ("updatetimelimit") + " -> updatetimelimit <DURATION LIMIT>\n"
+                + "\n"
+                + ("watch") + " -> watch <SHOWNAME>\n"
+                + "\n"
+                + ("bye") + " -> bye\n");
+        System.out.println("Refer to our user guide for more explaination on the format!");
         printLine();
     }
 
@@ -125,6 +177,7 @@ public class Ui {
             System.out.println(show.toString());
         }
     }
+
 
     public static void printDailyWatchTracking() {
         //Print when user starts program
@@ -193,7 +246,7 @@ public class Ui {
 
     public static void printChangeReview(String showName) {
         printLine();
-        System.out.println("The review for " + (showName) + " has been changed");
+        System.out.println("The review for " + (showName) + " has been changed.");
     }
 
     public static void printDeleteRating(String showName) {
@@ -234,7 +287,7 @@ public class Ui {
     }
 
     public static void printIoException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
 
     public static void printSpecifyShowName() {
@@ -243,6 +296,15 @@ public class Ui {
 
     public static void printShowNotInList() {
         System.out.println("The show that you have specified is not in the list.");
+    }
+
+    public static void printExceededWatchTimeLimit() {
+        System.out.println("You have exceeded your allocated watch time today!");
+        System.out.println("Your watch time deficit will be highlighted below :(");
+    }
+
+    public static void printUsedUpWatchTimeLimit() {
+        System.out.println("You have used up your allocated watch time today!");
     }
 
     public static void printUpdatedTimeLimit(Integer newTime) {
@@ -258,43 +320,47 @@ public class Ui {
     }
 
     public static void printInvalidEpisodesInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
 
     public static void printNoDescriptionException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
     }
 
     public static void printNoTimeException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_TIME_DATA);
+        System.out.println(ExceptionResponse.EXCEPTION_NO_TIME_DATA);
+    }
+
+    public static void printAddNameFormatException() {
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_ADDING_NAME_FORMAT_EXCEPTION);
     }
 
     public static void printNoInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
     }
 
     public static void printInvalidDateException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
     }
 
     public static void printInvalidFormatException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_FORMAT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_FORMAT);
     }
 
     public static void printNotFoundException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
+        System.out.println(ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
     }
 
     public static void printBadInputException() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_INPUT);
     }
 
     public static void showCreateFileError() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
+        System.out.println(ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
     }
 
     public static void printInvalidRatingInput() {
-        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
     }
 
     public static void printDailyWatchTimeLeft() {

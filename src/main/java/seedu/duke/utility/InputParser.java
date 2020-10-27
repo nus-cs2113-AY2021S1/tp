@@ -1,20 +1,18 @@
 package seedu.duke.utility;
 
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.ChangeReviewCommand;
-import seedu.duke.commands.DeleteReviewCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
-import seedu.duke.commands.ChangeRatingCommand;
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteReviewCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.SearchCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-import seedu.duke.commands.WatchCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
-
+import seedu.duke.commands.WatchCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +45,7 @@ public class InputParser {
      */
     public String parseInput(String input) {
 
-        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
+        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime", "example"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
@@ -67,6 +65,10 @@ public class InputParser {
 
         case "help":
             Ui.printHelp();
+            return command;
+
+        case "example":
+            Ui.printExample();
             return command;
 
         case "episode":
@@ -120,6 +122,7 @@ public class InputParser {
         case "changereview":
             parseChangeReviewCommand(input);
             return command;
+
         case "deletereview":
             parseDeleteReviewCommand(input);
             return command;
@@ -167,6 +170,7 @@ public class InputParser {
      * @param command command input by user in string format.
      * @throws IndexOutOfBoundsException if input is invalid or unable to be processed.
      * @throws NullPointerException      if the command format input by the user is invalid.
+     * @throws NumberFormatException     if the time limit input by the user is not a number.
      */
     private static void parseUpdateTimeLimitCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
@@ -175,10 +179,10 @@ public class InputParser {
             newTimeLimitCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printBadInputException();
-            return;
         } catch (NullPointerException e) {
             Ui.printInvalidFormatException();
-            return;
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
         }
     }
 
@@ -187,7 +191,6 @@ public class InputParser {
      *
      * @param input full input of user in string format.
      * @param command command input by user in string format.
-     * @throws IndexOutOfBoundsException if input is empty or show was not specified.
      * @throws NullPointerException      if the show specified is invalid or could not be found.
      */
     private static void parseWatchCommand(String input, String command) {
@@ -195,9 +198,6 @@ public class InputParser {
         try {
             WatchCommand showWatched = new WatchCommand(command, tokenizedString);
             showWatched.processCommand();
-        } catch (IndexOutOfBoundsException e) {
-            Ui.printSpecifyShowName();
-            return;
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
             return;
@@ -226,6 +226,9 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
+            return;
         }
         updateShowProgress.processCommand();
 
@@ -238,6 +241,9 @@ public class InputParser {
             updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
         } catch (NullPointerException e) {
             Ui.printBadInputException();
+            return;
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
             return;
         }
         updateShowSeason.processCommand();
@@ -269,6 +275,7 @@ public class InputParser {
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the rating is invalid.
      * @throws NullPointerException      if the input is invalid or show could not be found.
+     * @throws NumberFormatException     if the input given does not have a rating.
      */
     private static void parseChangeRatingCommand(String input) {
         input = removeFirstWord(input);
@@ -283,6 +290,8 @@ public class InputParser {
             return;
         } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidRatingInput();
+        } catch (NumberFormatException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 
@@ -292,6 +301,7 @@ public class InputParser {
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the format is invalid.
      * @throws NullPointerException      if the format of episodes added is invalid.
+     * @throws NumberFormatException      if the format of show name added is invalid.
      */
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
@@ -302,6 +312,9 @@ public class InputParser {
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printInvalidFormatException();
+            return;
+        } catch (NumberFormatException e) {
+            Ui.printAddNameFormatException();
             return;
         }
         Ui.printShowAdded(tokenizedInput[1]);
@@ -340,6 +353,10 @@ public class InputParser {
      * @param input user input
      */
     private  static void parseAddReviewCommand(String input) {
+        if (!input.contains("/")) {
+            Ui.printInvalidFormatException();
+            return;
+        }
         try {
             new AddReviewCommand(input);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -348,11 +365,17 @@ public class InputParser {
             Ui.printNotFoundException();
         } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidRatingInput();
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
         }
     }
 
     private static void parseChangeReviewCommand(String input) {
         input = removeFirstWord(input);
+        if (!input.contains("/")) {
+            Ui.printInvalidFormatException();
+            return;
+        }
         try {
             String[] tokenizedInput = input.split(" ");
             String showName = tokenizedInput[0];
@@ -363,6 +386,8 @@ public class InputParser {
             Ui.printChangeReview(showName);
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (NumberFormatException e) {
+            Ui.printInvalidFormatException();
         }
     }
     

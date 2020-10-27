@@ -21,8 +21,8 @@ public class ShowList {
         return show;
     }
 
-    public static boolean doesShowExist(String show) {
-        return showList.containsKey(show);
+    public static boolean doesShowExist(String showName) {
+        return showList.containsKey(showName);
     }
 
     public static void setShow(String showName, Show show) {
