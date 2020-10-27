@@ -45,18 +45,19 @@ This user guide would help you walkthrough the features of Zoomaster and ways to
   
 1. Ensure that you have Java 11 or above installed.  
 2. Download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
-3. Move the **zoomaster.jar** file into your desired home folder for Zoomaster. <br/><br/> 
+3. Move the **zoomaster.jar** file into your desired home folder for Zoomaster.
 4. Copy the absolute path of the **zoomaster.jar** file by first highlighting the file, then while
-holding the <kbd>Shift</kbd> key, right click the file and select "Copy as path". <br/><br/> 
+holding the <kbd>Shift</kbd> key, right click the file and select "Copy as path". 
 5. Start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> ,  keying in "cmd"
 then pressing <kbd>Enter</kbd>. <br/><br/> 
-6. In the Command Prompt, type in "java -jar", then paste in the copied absolute path. It should look something like the picture below:  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png)<br/><br/> 
+6. In the Command Prompt, type in "java -jar", then paste in the copied absolute path. It should look something like the picture below:<br><br>
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png)<br/><br/> 
 7. Press <kbd>Enter</kbd>. You should see this Zoomaster logo.  <br/><br/> 
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/startscreen.png)
-
-8. The app is now ready to go! Go ahead and test it out with a `help` command. The app should print out a list of different commands. <br/><br/> 
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/startscreen.png)<br><br>
+8. The app is now ready to go! Go ahead and test it out with a `help` command. The app should print out a list of different commands. 
 9. Refer to the section below for the different features of the Zoomaster app.
   
+
 <a name="features"></a> 
 ## 2. Features   
 
@@ -74,6 +75,8 @@ then pressing <kbd>Enter</kbd>. <br/><br/>
 >eg. `CS2113`, `CS2101`  
 >* Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours.
 >eg. `12:00`, `14:00`, `00:00`
+
+<br>
 
 <a name="global"></a> 
 ### 2.1. Global
@@ -114,7 +117,7 @@ Example of usage:
 <br/><br/> 
 <a name="mode"></a>  
 #### 2.1.2. Switch mode: `mode` (Yu Shing)
-You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
+You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br>
 
 There are two modes for Zoomaster, Bookmark and Timetable.
 
@@ -127,9 +130,9 @@ Example of usage:
 * `mode timetable` 
 * `mode planner`
 
->What you will see on successful switch to bookmark, timetable or planner mode
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/><br/> 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/><br/> 
+>What you will see on successful switch to bookmark, timetable or planner mode:<br><br>
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/> 
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/> 
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
@@ -158,7 +161,7 @@ You exit the application by using the exit command.
 ```
 Format: exit    
 ```
->You should see this message on exit
+>You should see this message on exit.<br>
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
@@ -515,8 +518,11 @@ Start the application and all the data should be loaded.
 **A**: Yes you can! <br> In the **data** directory locate the  `modulelist.txt` file. Add the new module on a new line
 and save the txt file. You can now add the module in Zoomaster.
 
+<br>
 
+---
 
+<br>
 ## 4. Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
