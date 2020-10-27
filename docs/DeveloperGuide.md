@@ -166,16 +166,15 @@ This feature is being facilitated by `AddCommand`.
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
-
-It checks the type of the new event first, 
-then it analyses the attached information and saves the event with the information in the event list.  
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
 
-Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
-there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+Note: It checks the type of the new calendar item first, then it analyses the attached information, 
+and finally uses the corresponding adding function to add the new calendar item into the calendar list.  
 
-Note: Multiple `Lecture`, `Lab`, and `Tutorial`events can be added by one command since they are recurring,
-while only one `Exam` or `Activity` event can be added at a time.   
+Note: It has seven command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
+If the item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+If the item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
+while only one `Todo`, `Deadline`, `Exam` or `Activity` item can be added at a time.   
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
