@@ -1,5 +1,4 @@
 /t testNote_0 /pin true
-/t testNote_1 /pin false 
 /t testNote_2 /pin true 
 /t testNote_3 /pin false 
 /t testNote_4 /pin true 

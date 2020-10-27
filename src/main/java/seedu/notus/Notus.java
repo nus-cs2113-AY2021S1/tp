@@ -1,5 +1,6 @@
 package seedu.notus;
 
+import org.fusesource.jansi.AnsiConsole;
 import seedu.notus.command.Command;
 import seedu.notus.command.ExitCommand;
 import seedu.notus.data.exception.SystemException;

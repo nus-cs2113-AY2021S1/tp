@@ -16,14 +16,15 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Delete Tags](#delete-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Add Event](#add-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Exit](#exit)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
@@ -297,15 +298,51 @@ Example of usage:
 
 Expected output:
 
+### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
+Tags or untags a note with the given tag name.
 
-### <a id="delete-t"><ins>3.13 Delete Tags:</ins> `delete-t`</a>
-Deletes a tag from the list of tags and remove the tag from the related notes.
+Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
+
+- Tags a note with a given TAG. If the note already contains the TAG, the tag will be removed from the note.The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
+- The user can create tag or untag multiple tags to a note within a single line.
+
+💡 If the user tries to tag a non-existing tag to a note, the application will automatically create a new tag, and add the tag to the note.
+
+Example of usage: 
+
+`tag-n /i 1 /tag CS2113`
+
+`tag-n /i 1 /tag CS2113 /tag important`
+
+Expected output:
+
+### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
+Tags or untags an event with the given tag name.
+
+Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
+
+- Tags a note with a given TAG. If the event already contains the TAG, the tag will be removed from the event.The index
+ refers to the index number shown in the displayed event list. The index must be a **positive integer** (1, 2, 3, …).
+- The user can create tag or untag multiple tags to an event within a single line.
+
+💡 If the user tries to tag a non-existing tag to an event, the application will automatically create a new tag, and add the tag to the event.
+
+Example of usage: 
+
+`tag-e /i 1 /tag CS2113`
+
+`tag-e /i 1 /tag CS2113 /tag important`
+
+Expected output:
+
+### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
+Deletes a tag from the list of tags and remove the tag from the related notes and events.
 
 Format: `delete-t /tag TAG [/tag TAG]...`
 
 - Deletes the tag with the name TAG.
 - The user can delete multiple tags within a single line.
-- Notes with the tag, will have the tag removed.
+- Notes and events with the tag, will have the tag removed.
 
 Example of usage: 
 
@@ -314,26 +351,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="tag"><ins>3.14 Tag/Untag Notes:</ins> `tag`</a>
-Tags or untags a note with the given tag name.
-
-Format: `tag /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
-
-- Tags a note with a given TAG. If the note already contains the TAG, the tag will be removed from the note.The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
-- The user can create tag or untag multiple tags to a note within a single line.
-
-💡 If the user tries to tag a non existing tag to a note, the application will automatically create the tag for it.
-
-Example of usage: 
-
-`Tag /i 1 /tag CS2113`
-
-`Tag /i 1 /tag CS2113 /tag important`
-
-Expected output:
-
-
-### <a id="add-e"><ins>3.15 Add Event:</ins> `add-e`</a>
+### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
 Format: `add-e /t TITLE /d DATETIME [/repeat REPEAT] [/remind REMIND]`
@@ -349,7 +367,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="edit-e"><ins>3.16 Edit Event:</ins> `edit-e`</a>
+### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
 Format: `edit-e /i INDEX [/t TITLE] [/d DATETIME] [/repeat REPEAT] [/remind REMIND]`
@@ -365,7 +383,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="list-e"><ins>3.17 Event Manager:</ins> `list-e`</a>
+### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -380,7 +398,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="remind-e"><ins>3.18 Remind:</ins> `remind-e`</a>
+### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -394,7 +412,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-e"><ins>3.19 Delete Event:</ins> `delete-e`</a>
+### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -408,7 +426,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="exit"><ins>3.20 Exit:</ins> `exit`</a>
+### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 

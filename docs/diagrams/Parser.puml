@@ -1,42 +1,92 @@
 @startuml
-NotUS -> Parser: ParseCommand()
+-> ParserManager: ParseCommand()
 
 alt add-n
-Parser -> Parser: prepareAddNote()
-Parser -> Command: <<new>>
-Parser <-- Command
-NotUS <-- Parser
+create ParseAddNoteCommand
+ParserManager -> ParseAddNoteCommand: <<create>>
+
+activate ParseAddNoteCommand
+ParserManager <-- ParseAddNoteCommand
+deactivate ParseAddNoteCommand
+
+ParserManager -> ParseAddNoteCommand: parse()
+
+activate ParseAddNoteCommand
+create Command
+ParseAddNoteCommand -> Command: <<create>>
+
+activate Command
+<-- Command:
+deactivate Command
+
+deactivate ParseAddNoteCommand
+destroy ParseAddNoteCommand
+
 else delete-n
-Parser -> Parser: prepareDeleteNote()
-Parser -> Command: <<new>>
-Parser <-- Command
-NotUS <-- Parser
-else edit-n
-Parser -> Parser: prepareEditNote()
-Parser -> Command: <<new>>
-Parser <-- Command
-NotUS <-- Parser
+create ParseDeleteNoteCommand
+ParserManager -> ParseDeleteNoteCommand: <<create>>
+
+activate ParseDeleteNoteCommand
+ParserManager <-- ParseDeleteNoteCommand
+deactivate ParseDeleteNoteCommand
+
+ParserManager -> ParseDeleteNoteCommand: parse()
+
+activate ParseDeleteNoteCommand
+create Command
+ParseDeleteNoteCommand -> Command: <<create>>
+
+activate Command
+<-- Command:
+deactivate Command
+
+deactivate ParseDeleteNoteCommand
+destroy ParseDeleteNoteCommand
+
 end
 
 @enduml
 
 @startuml
 
--> AddNoteCommand: <<new>>
-<-- AddNoteCommand:
+create ParserManager
 
-@enduml
+create ParseAddNoteCommand
+ParserManager -> ParseAddNoteCommand: <<create>>
 
-@startuml
+activate ParseAddNoteCommand
+ParserManager <-- ParseAddNoteCommand
+deactivate ParseAddNoteCommand
 
--> DeleteNoteCommand: <<new>>
-<-- DeleteNoteCommand:
+ParserManager -> ParseAddNoteCommand: parse()
+activate ParseAddNoteCommand
 
-@enduml
+alt valid string
+create AddNoteCommand
+ParseAddNoteCommand -> AddNoteCommand: <<create>>
 
-@startuml
+activate AddNoteCommand
+ParseAddNoteCommand <-- AddNoteCommand
+deactivate AddNoteCommand
 
--> EditNoteCommand: <<new>>
-<-- EditNoteCommand:
+ParserManager <-- ParseAddNoteCommand
+<-- ParserManager
+
+else invalid string
+create IncorrectCommand
+ParseAddNoteCommand -> IncorrectCommand: <<create>>
+
+activate IncorrectCommand
+ParseAddNoteCommand <-- IncorrectCommand
+deactivate IncorrectCommand
+
+ParserManager <-- ParseAddNoteCommand
+
+deactivate ParseAddNoteCommand
+destroy ParseAddNoteCommand
+
+<-- ParserManager
+
+end
 
 @enduml
