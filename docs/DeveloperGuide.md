@@ -210,7 +210,20 @@ their respective storage class, `UserStorage`, `WatchlistStorage`, and `Bookmark
 
 <br/>
 
+## 4. Implementation
+This section describes some details on some of the noteworthy features in **AniChan**.
+
+<br/>
+
+### 4.1 Workspace Feature
+
+To be written soon.
+
+<br/>
+
 ## 8. Documentation, logging, testing, dev-ops
+
+This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
 
 <br/>
 
