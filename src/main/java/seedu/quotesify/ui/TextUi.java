@@ -454,17 +454,13 @@ public class TextUi {
         System.out.println(UiMessage.EDIT_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
         System.out.println(UiMessage.EDIT_RATING_COMMAND);
-        System.out.println(UiMessage.EDIT_TODO_COMMAND);
     }
 
     public void printListOfFindCommands() {
         System.out.println("Here is a list of Find commands you can do:\n");
         System.out.println(UiMessage.FIND_BOOK_COMMAND);
-        System.out.println(UiMessage.FIND_BOOKMARK_COMMAND);
         System.out.println(UiMessage.FIND_QUOTE_COMMAND);
-        System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
         System.out.println(UiMessage.FIND_RATING_COMMAND);
-        System.out.println(UiMessage.FIND_TODO_COMMAND);
     }
 
     public void printDoneCommandUsage() {
