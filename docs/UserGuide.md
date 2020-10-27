@@ -2,9 +2,11 @@
 
 ## Introduction
 
-_ModTracker_ is a desktop app for tracking the time spent on your modules, via a Command Line Interface (CLI).
-It helps you to prioritise your work and balance your time spent among your modules. 
-
+_ModTracker_ is a desktop app for NUS students to track the time spent 
+as well as tasks to do for each of their modules.
+It helps students prioritise their work and 
+balance their time spent amongst their modules. 
+This app uses a Command Line Interface (CLI).
 
 ## Table of Contents
 1. [Quick Start](#quickstart)
