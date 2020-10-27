@@ -1,8 +1,11 @@
 package fitr.list;
 
+import fitr.Exercise;
 import fitr.Food;
 
 import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toList;
 
 public class FoodList {
     private final ArrayList<Food> foodList;
@@ -33,5 +36,11 @@ public class FoodList {
 
     public void clearList() {
         foodList.clear();
+    }
+
+    public ArrayList<Food> filterByDate(String date) {
+        return (ArrayList<Food>) foodList.stream()
+                .filter((s) -> s.getDate().contentEquals(date))
+                .collect(toList());
     }
 }

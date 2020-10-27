@@ -4,6 +4,8 @@ import fitr.Exercise;
 
 import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toList;
+
 public class ExerciseList {
     private final ArrayList<Exercise> exerciseList;
 
@@ -33,5 +35,11 @@ public class ExerciseList {
 
     public void clearList() {
         exerciseList.clear();
+    }
+
+    public ArrayList<Exercise> filterByDate(String date) {
+        return (ArrayList<Exercise>) exerciseList.stream()
+                .filter((s) -> s.getDate().contentEquals(date))
+                .collect(toList());
     }
 }

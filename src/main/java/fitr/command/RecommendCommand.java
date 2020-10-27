@@ -42,7 +42,8 @@ public class RecommendCommand extends Command {
         }
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
-                + "type y for yes and n for no!");
+                + "type y for yes!");
+
         String checker = Ui.read();
         try {
             if (checker.equals("y")) {
@@ -60,9 +61,7 @@ public class RecommendCommand extends Command {
                             + caloriesBurnt.get());
                     listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
                     storageManager.writeExerciseList(listManager.getExerciseList());
-                }    
-            } else if (checker.equals("n")) {
-                Ui.printCustomMessage("Next time then!");
+                }
             } else {
                 throw new FitrException();
             }
