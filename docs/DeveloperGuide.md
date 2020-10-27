@@ -763,47 +763,48 @@ Expected:
 
 #### Watching a show
 
-1.
+1. Prerequisites: The show name `friends` has already been added into the list. 
 
-2. 
+2. Test case: `watch friends`
 
-3. Test case: ``
+Expected: An acknowledgement message that displays the current show progress for `friends` and the updated watch time progress.
 
-Expected: 
+3. Test case: `watch friends 123`
 
-4. Test case: ``
+Expected: An error message indicating that the program was unable to find the show that you requested.
 
-Expected:
+4. Other incorrect select commands to try: `watch -1`, `watch <any show not in the list>`
+
+Expected: Similar to previous.
 
 #### Updating watch time limit
 
-1.
+1. Test case: `updatetimelimit 100`
 
-2. 
+Expected: An acknowledgement message that displays the current daily watch time limit now set to 100 minutes.
 
-3. Test case: ``
+2. Test case: `updatetimelimit -100`
 
-Expected: 
+Expected: An acknowledgement message that displays the current daily watch time limit, decremented by 100 minutes.
 
-4. Test case: ``
+3. Test case: `updatetimelimit test`
 
-Expected:
+Expected: An error message indicating that the input supplied was in a wrong format.
+
 
 ### Viewing show details
 
 #### Viewing your watch list
 
-1.
+1. Test case: `list`
 
-2. 
+Expected: A list of the shows you have added will be displayed into the terminal. If no shows have been added, the list wil be empty.
 
-3. Test case: ``
+2. Test case: `List`
 
-Expected: 
+Expected: An error message indicating that the input supplied was in a wrong format.
 
-4. Test case: ``
-
-Expected:
+> **[NOTE]** The command to be input is case-sensitive.
 
 #### Finding a show in your watch list
 
