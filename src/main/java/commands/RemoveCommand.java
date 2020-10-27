@@ -10,11 +10,14 @@ public abstract class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
 
+    public static final String MODULE_PARAMETER = "MODULE_INDEX";
+    public static final String CHAPTER_PARAMETER = "CHAPTER_INDEX";
+    public static final String CARD_PARAMETER = "CARD_INDEX";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes module / chapter / flashcard based on the index in the list. \n"
-            + "Parameters: MODULE_INDEX\n"
-            + "            CHAPTER_INDEX\n"
-            + "            FLASHCARD_INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
+            + "Parameters: " + MODULE_PARAMETER + "\n"
+            + "            " + CHAPTER_PARAMETER + "\n"
+            + "            " + CARD_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "Got it. I've removed this %1$s:\n";
     public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
@@ -33,5 +36,5 @@ public abstract class RemoveCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
-    };
+    }
 }
