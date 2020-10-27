@@ -20,12 +20,14 @@ import java.util.regex.Pattern;
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class EditEntryCommand extends Command {
-    private static final Pattern EXERCISE_FORMAT =
-            Pattern.compile("(?<index>\\d+)\\s*(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)");
-    private static final Pattern FOOD_FORMAT =
-            Pattern.compile("(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s+(?<quantity>\\d+)");
+    private static final String EXERCISE_FORMAT_REGEX =
+            "(?<date>\\S+)\\s+(?<index>\\d+)\\s+(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)";
+    private static final String FOOD_FORMAT_REGEX =
+            "(?<date>\\S+)\\s+(?<index>\\d+)\\s*(?<foodName>.*)\\s*/\\s*(?<calories>\\d+)\\s+(?<quantity>\\d+)";
+    private static final Pattern EXERCISE_FORMAT = Pattern.compile(EXERCISE_FORMAT_REGEX);
+    private static final Pattern FOOD_FORMAT = Pattern.compile(FOOD_FORMAT_REGEX);
     private static final Pattern GOAL_FORMAT =
-            Pattern.compile("(?<index>\\d+)\\s*(?<goalType>\\S+)\\s+(?<goalDescription>.*)");
+            Pattern.compile("(?<index>\\d+)\\s+(?<goalType>\\S+)\\s+(?<goalDescription>.*)");
     private final String arguments;
 
     public EditEntryCommand(String command, String arguments) {
@@ -60,7 +62,7 @@ public class EditEntryCommand extends Command {
             storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                     listManager.getExerciseList(), user);
         } catch (IOException e) {
-            Ui.printCustomMessage(Messages.MISSING_FILE);
+            Ui.printCustomError(Messages.MISSING_FILE);
         }
     }
 
@@ -82,8 +84,11 @@ public class EditEntryCommand extends Command {
             return;
         }
 
+        String date = matcher.group("date").trim();
+        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(date));
+
         int index = Integer.parseInt(matcher.group("index").trim());
-        if (index <= 0 || index > exerciseList.getSize()) {
+        if (index <= 0 || index > filteredExercises.getSize()) {
             Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
@@ -96,8 +101,8 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        exerciseList.getExercise(index - 1).setNameOfExercise(exerciseName);
-        exerciseList.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
+        filteredExercises.getExercise(index - 1).setNameOfExercise(exerciseName);
+        filteredExercises.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
 
         Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName);
     }
@@ -115,8 +120,11 @@ public class EditEntryCommand extends Command {
             return;
         }
 
+        String date = matcher.group("date").trim();
+        FoodList filteredFood = new FoodList(foodList.filterByDate(date));
+
         int index = Integer.parseInt(matcher.group("index").trim());
-        if (index <= 0 || index > foodList.getSize()) {
+        if (index <= 0 || index > filteredFood.getSize()) {
             Ui.printCustomError("Error: Invalid index entered!");
             return;
         }
@@ -134,9 +142,10 @@ public class EditEntryCommand extends Command {
             Ui.printCustomError("Error: Quantity cannot be negative!");
             return;
         }
-        foodList.getFood(index - 1).setNameOfFood(foodName);
-        foodList.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
-        foodList.getFood(index - 1).setAmountOfFood(quantity);
+
+        filteredFood.getFood(index - 1).setNameOfFood(foodName);
+        filteredFood.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
+        filteredFood.getFood(index - 1).setAmountOfFood(quantity);
 
         Ui.printCustomMessage("Successfully edited food to: " + foodName);
     }

@@ -123,7 +123,8 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD, "View your food entries");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE,
                 "View your food entries on a specified date");
-        System.out.printf(HELP_SPACER, FORMAT_EDIT_FOOD, "Edit your previous food entry");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_FOOD, "");
+        System.out.printf(HELP_SPACER, "", "Edit your previous food entry");
         System.out.printf(HELP_SPACER, FORMAT_DELETE_FOOD, "Delete a food entry");
         System.out.printf(HELP_SPACER, FORMAT_CLEAR_FOOD, "Clear all your food entries\n");
 
@@ -133,7 +134,8 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE, "View your exercise entries");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE,
                 "View your exercise entries on a specified date");
-        System.out.printf(HELP_SPACER, FORMAT_EDIT_EXERCISE, "Edit your previous exercise entry");
+        System.out.printf(HELP_SPACER, FORMAT_EDIT_EXERCISE, "");
+        System.out.printf(HELP_SPACER, "", "Edit your previous exercise entry");
         System.out.printf(HELP_SPACER, FORMAT_DELETE_EXERCISE, "Delete an exercise entry");
         System.out.printf(HELP_SPACER, FORMAT_CLEAR_EXERCISE, "Clear all your exercise entries\n");
 
