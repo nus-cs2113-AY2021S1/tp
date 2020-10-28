@@ -15,7 +15,7 @@
 <br/>&nbsp;3.7 [Storage Component](#37-storage-component)
 
 4. [Implementation](#4-implementation)
-<br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
+<br/>&nbsp;4.1 [Estimate Feature](#41-estimate-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
 <br/>&nbsp;4.3 [Workspace Feature](#43-workspace-feature)
 <br/>&nbsp;4.4 [Watchlist Management Feature](#44-watchlist-management-feature)
@@ -217,66 +217,60 @@ This section introduces the specific implementation details and design considera
 
 <br/>
 
-### 4.1 Estimation Feature
-The `estimate` feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, users will be able to ensure they do not overpromise their clients.
-
-> :bulb: The application only accepts `.txt` files.
-
-<br/>
+### 4.1 Estimate Feature
+The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, allowing users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
-The `estimate` feature is facilitated by `EstimateCommand`, which extends from the abstract class `Command`. `EstimateCommand` is instantiated by `EstimateParser`, and it requires two parameters:
-*   `ScriptFileName` (mandatory).
-*   `wordsPerHour` (optional), if not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used to generate 3 estimation timings.
+The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant arguments, `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
+* `scriptFileName` (mandatory).
+* `wordsPerHour` (optional).
 
 <br/>
 
-Given below is an example usage scenario showing how the `estimate` command behaves at each step.
+Given below is an example usage scenario showing how the `EstimateCommand` behaves at each step.
 
-**Step 1:** User executes `estimate script.txt -wph 300`, `Main` calls `Parser#getCommand()` and passes the command to it.
+**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invoke `Parser#getCommand()`, and because the command type is `estimate`, `Parser` will invoke `EstimateParser#parse()` to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300".
 
-**Step 2:** `Parser` extracts “estimate” from the command, and according to the command type, it calls `EstimateParser#parse()` and passes the command description, "script.txt -wph 300", to it.
+**Step 2:** `EstimateParser` is terminated at this point, and the application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `EstimateParser` proceed to parse the command description, extract, and validate the inputs "script.txt" and "300". Once validated and no exception was thrown, it creates and initialises `EstimateCommand` with the inputs and returns this object to `Parser`, which then returns it to `Main`.
+**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace containing the file, then it invokes `StorageManager#loadScriptFile()`, passing in the arguments `activeWorkspace.getName()` and `scriptFileName`, to read the content of `scriptFileName` in the workspace into the variable `fileContent`.
 
-**Step 4:** `EstimateParser` is terminated and `Main` calls `EstimateCommand#execute()` with `animeData`, `storageManager`, and `user` to begin estimating the time needed.
+> :memo: Every workspace is actually a folder in the system.
 
-![Estimate Command After Step 4 Diagram](images/EstimateCommand-After-Step-4.png) <br/>
-*Figure 9: Estimate Command After Step 4*
-
-<br/>
-
-**Step 5:** `EstimateCommand` first calls `User#getActiveWorkspace()` to initialise a `Workspace` object, `activeWorkspace`. It then calls `StorageManager#loadScript()` with `scriptFileName` and `activeWorkspace.getName()` to initialise `fileContent`, with the content of `scriptFileName` located in the workspace folder named `activeWorkspace.getName()`.
-
-**Step 6:** `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`. It then calls `EstimateCommand#timeNeededToString()` with the estimated time to convert the timing into a human-readable format and return the result to `Main` for it to be printed to the user via `Ui`.
-
-**Step 7:** `EstimateCommand` is terminated.
-
-![Estimate Command Final State Diagram](images/EstimateCommand-Final-State.png) <br/>
-*Figure 10: Estimate Command Final State*
+> :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
 
 <br/>
 
-The sequence diagram presented below depicts the interaction between the components for running the `estimate` command, provided that the user has entered a valid command.
+**Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+
+> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimatino timing will be generated.
 
 <br/>
 
-![Estimate Command Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
-*Figure 11. Sequence Diagram for EstimateCommand*
+**Step 5:** `EstimateCommand` is terminated.
 
 <br/>
 
-#### 4.1.2 Design Consideration
+The sequence diagram presented below depicts the interaction between the components for running the command, `estimate script.txt -wph 300`.
+> :memo: This shows from step 2 onward.
+
+![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
+
+*Figure 11. Sequence Diagram for `estimate script.txt -wph 300`*
+
+<br/>
+
+#### 4.1.2 Design Considerations
 This section shows some design considerations taken when implementing the estimate feature.
 
 Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution (current design) |  Easy to implement since `Command` already handle file matters. | Waiting till command execution to validate the existence and validity of the script file would have wasted some memory resources. |
-| During parsing | No memory resource wasted as it ensures the command does not fail execution due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters, and this would affect the understandability, maintainability and reusability of the class. |
+| During command execution **(current design)** | Easy to implement since `Command` already handle file matters. | Failing the file validation during command execution would have wasted some memory resources. |
+| During parsing | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the alternatives, we have decided to implement the first alternative, that is to **read script file content during command execution** because we do not want to decrease the cohension of `Parser`, and we find that the memory resource that are wasted in the process is a worthy exchange for the cohesion preserved.
+Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohension of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
 <br/>
 
@@ -284,12 +278,10 @@ Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| User have to specify file extension (current design) |  Ensures that the correct file will be read. | Some users may not be aware of how to identify their file extension. |
-| User do not have to specify file extension | Users can easily specify the file to read and do not have to worry about knowing the file extension. | The application may end up reading the wrong file if there happens to be two files with the identical name name but different file extension. |
+| Specify file extension **(current design)** |  Ensures the correct file will be read. | Some users does not know how to identify file extension. |
+| Do not have to specify file extension | Users can easily specify the file to read | The application may end up reading the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first alternative, **users should specify the file extension in their input** because the importance of getting a correct estimation timing would outweighs and compensate for the hassle of entering the file extension. Moreover, if we were to allow such mistakes to be made, we could end up losing potential users of this product as using the wrong estimation timing could end up being costly for these users.
-
-<br/>
+We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing and it far outweights and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
 ### 4.2 Browse Feature
 The browse feature is a useful feature that will allow users to quickly look through all 
