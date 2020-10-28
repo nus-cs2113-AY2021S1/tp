@@ -41,22 +41,18 @@
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
 <br>It additionally serves as a tracker to limit your weekly watch time to help you better manage your time.
+<br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
+<br><br>This motivated our team to create an application that would not only help track all your shows and lectures, 
+but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
-For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
+### 1.b. Why use **WatchNext**?
+It is difficult and can be taxing to track your favourite shows through browser bookmarks.
+This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
+
+For students, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
-### 1.b. Why use **WatchNext**?
-
-**WatchNext** allows you to watch shows on multiple free streaming platforms or other open source stream websites and keep track of which episode you are at.
-<br>It is difficult and can be taxing to track your favourite shows through browser bookmarks.
-This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
-
-For students, there is also a need for to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
-
-This motivated our team to create an application that would not only help track all your shows and lectures, 
-but also foster a community where everyone will be able to share their favourite shows and their watchlist with like-minded individuals and friends. <br>
-<!-- I used foster for ambiguous language so we can get away with the feature not being implemented yet and also clarify that sharing show does not mean sharing the physical video file -->
 
 ### 1.c. What will this guide do?
 
@@ -81,13 +77,12 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 <img src = "images/firstopen.PNG" width = "500">
 
-
-
 &nbsp;  
 
+If you are unfamilar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
 ## 3. Command Format
 
-* Words in `UPPER_CASE` and within the `<>` field are the parameters to be supplied by the user e.g. rating `<SCORE>`.
+* Words in `UPPER_CASE` and within the `<>` field are the inputs that need to be supplied by the user e.g. rating `<SCORE>`.
 
 * The maximum length for a Show `SHOWNAME` is 100 characters.
 
@@ -115,27 +110,32 @@ Expected outcome:
  The `add` command adds a show into your existing watchlist.
  
   Format:
-   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS> <DURATION OF EPISODE>`
+   `add <SHOWNAME> <NUMBER OF SEASONS> <NUMBER OF EPISODES PER SEASON> <DURATION OF EPISODE>`
    
+   Examples of usage: 
+     `add RunningMan 2 10,12 90` <br>
+     `add Friends 3 10,20,30 25` <br><br>
+  Explanation of input: <br>
+  For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
+  <br>_Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
+  The duration of each episode is `25` minutes.<br>
+ <img src = "images/addCommandUG/addInput.PNG" width = "400">
+  &nbsp;
+ After keying in the input as shown in the image above, the next image shows the expected output.
+ <img src = "images/addCommandUG/addResponse.PNG" width = "400">
+  &nbsp;
+ If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
+
  >  **[NOTE]**
  >
- >  * The `<DURATION OF EPISODE>` is in minutes.
+ >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.
  >
- >  * If a show has 2 seasons, you will need to input the number of episodes for both seasons (see example of usage below) for the `<NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>` field. The program will not add the show into the watchlist otherwise.
+ >  * If a show has 3 seasons, you will need to input the number of episodes for all three seasons in the `<NUMBER OF EPISODES PER SEASONS>` field. The program will not add the show into the watchlist otherwise.
  >  
- >  * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (example of usage below for `<RunningMan>` or you may use `_` to represent a space.)
+ >  * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (an example would be `<RunningMan>` or you may use `_` to represent a space and use `Running_Man`.)
    
-  Example of usage:
-  
-  `add Friends 2 10,10 60`
-  
-  `add RunningMan 3 10,12,11 90`
  
- Expected outcome:
-  
- <img src = "images/add.PNG" width = "400">
-  
- &nbsp;
+
  
 #### 4.c. `edit` - Edits your show details
  The `edit` command allows you to edit the name of the show, number of seasons, number of episodes, or the duration 

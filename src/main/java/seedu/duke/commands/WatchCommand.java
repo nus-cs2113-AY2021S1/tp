@@ -48,7 +48,7 @@ public class WatchCommand extends Command {
             ShowList.setShow(showName, show);
             Ui.printWatchingNewSeason(showName, updatedSeason);
             Ui.printChangeEpisode(showName);
-        } else if (!hasFinishedSeason) {
+        } else {
             show.setEpisodeWatched(showEpisode + 1);
             ShowList.setShow(showName, show);
             Ui.printChangeEpisode(showName);

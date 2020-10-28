@@ -3,39 +3,21 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="757.5" y="481.0">seedu.duke.utility.SaveState</node>
-    <node x="71.5" y="62.5">seedu.duke.Duke</node>
-    <node x="45.0" y="353.5">seedu.duke.classes.WatchTime</node>
-    <node x="373.5" y="376.5">seedu.duke.classes.Storage</node>
+    <node x="29.5" y="-38.0">seedu.duke.utility.SaveState</node>
+    <node x="-15.0" y="466.0">seedu.duke.Duke</node>
+    <node x="328.0" y="-11.0">seedu.duke.classes.WatchTime</node>
+    <node x="-38.5" y="102.0">seedu.duke.classes.Storage</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="seedu.duke.Duke" target="seedu.duke.classes.Storage">
-      <point x="0.0" y="-97.5" />
-      <point x="160.0" y="0.0" />
-      <point x="520.0" y="0.0" />
-      <point x="0.0" y="-143.5" />
-    </edge>
-    <edge source="seedu.duke.classes.Storage" target="seedu.duke.classes.WatchTime">
-      <point x="0.0" y="143.5" />
-      <point x="520.0" y="760.0" />
-      <point x="160.0" y="760.0" />
-      <point x="0.0" y="166.5" />
-    </edge>
     <edge source="seedu.duke.classes.Storage" target="seedu.duke.utility.SaveState">
-      <point x="146.5" y="0.0" />
-      <point x="-82.5" y="0.0" />
-    </edge>
-    <edge source="seedu.duke.Duke" target="seedu.duke.classes.WatchTime">
-      <point x="-88.5" y="0.0" />
-      <point x="0.0" y="160.0" />
-      <point x="0.0" y="520.0" />
-      <point x="-115.0" y="0.0" />
+      <point x="0.0" y="-138.0" />
+      <point x="0.0" y="38.0" />
     </edge>
   </edges>
-  <settings layout="Orthogonal" zoom="0.9" x="210.0" y="433.0" />
+  <settings layout="Orthogonal" zoom="0.9" x="518.6666666666666" y="449.22222222222223" />
   <SelectedNodes>
-    <node>seedu.duke.classes.WatchTime</node>
+    <node>seedu.duke.classes.Storage</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
