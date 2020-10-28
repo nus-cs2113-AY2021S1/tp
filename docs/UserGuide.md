@@ -275,6 +275,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/addlog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
@@ -288,6 +291,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/dellog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
@@ -297,6 +303,9 @@ Example of usage:
 
 Expected outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
+
+[Return to the top](#user-guide)
+
 
 ## 5. FAQ
 
