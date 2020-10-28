@@ -1,0 +1,45 @@
+@startuml
+
+abstract class Command
+Class RouteMapCommand{
+executeCommand(): void
+}
+Class Parser{
+{static} getCommand(): String
+}
+Class BusData {
+{static} selectBus (:String) : Bus
+}
+Class Bus {
+}
+enum BusStops {
+PGP
+KENTRIDGEMRTSTATION
+...
+COLLEGEGREEN
+PGPR
+}
+Class Ui {
+{static} printFullRoute(:Bus) :void
+}
+
+enum ExceptionType {
+MISSING_BUS_CODE
+INVALID_BUS
+INVALID_COMMAND
+...
+}
+
+Command <|--right RouteMapCommand
+Parser "1"<--down RouteMapCommand
+RouteMapCommand ..right> BusData
+BusData --> "0..*" Bus
+Bus ..> BusStops
+RouteMapCommand ..> CustomException :throws
+Parser ..> CustomException :throws
+RouteMapCommand ..> Ui
+
+CustomException -> ExceptionType
+
+
+@enduml

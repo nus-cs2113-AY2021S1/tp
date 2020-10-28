@@ -1,3 +1,4 @@
+![Logo](DG_Diagrams/Nav@NUSLogo.jpg)
 # Developer Guide
 
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
@@ -82,7 +83,7 @@ The Model component is responsible for the following tasks:
 
 The following class diagram briefly explains how different classes in the Model component interact with each other.
 
-![modelcomponet](DG_Diagrams/ModelComponent.png)
+![modelcomponent](DG_Diagrams/ModelComponent.png)
 
 #### 2.1.4. Storage Component
 The Storage component is responsible for the following tasks:
@@ -138,8 +139,24 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
-#### 2.2.2. Full Route Display (`/routemap` Feature)
+#### 2.2.2 Full Route Display (`/routemap` Feature)
 
+The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
+bus route.
+
+The class diagram in the figure below shows how different classes used for implementation of the `/routemap` command 
+are linked to each other.
+
+![RouteCommandClass](DG_Diagrams/RouteMapCommandClass.png)
+
+The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
+1. Calls `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
+returned. Else, null is returned.
+2. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+
+The following sequence diagram explains the above steps when the user searches for the full route of a bus.
+
+![Overview](DG_Diagrams/RouteMapCommandSeq.png)
 
 
 #### 2.2.3. Favourite command adder (`/addfav` Feature)
@@ -206,6 +223,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![bus data](DG_Diagrams/DineSequence.png)
 
 
+
 ## 3. Appendix I: Requirements
 
 ### 3.1 Product scope
@@ -224,6 +242,7 @@ These are people who:
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
+ - Personalised application suited to the user's needs
 
 ### 3.2. User Stories
 
