@@ -1,0 +1,27 @@
+@startuml
+Kaji -> Parser ++ : parse(userCommand)
+Parser -> Parser ++ : prepareGoModuleCommand
+Parser -> Access ++ : isAdminLevel()
+return True
+return
+create GoModuleCommand
+Parser -> GoModuleCommand ++ : new()
+return
+return GoModuleCommand
+Kaji -> GoModuleCommand ++ : execute
+
+GoModuleCommand -> Access ++ : setModuleLevel(module)
+Access -> Access ++ : setLevel(module)
+return
+return
+return
+
+create Ui
+Kaji -> Ui ++ : showLevel(access)
+Ui -> Access ++ : getLevel()
+return level : String
+Ui -> Ui ++ : showLevel(level)
+return
+return
+
+@enduml

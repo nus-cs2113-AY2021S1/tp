@@ -38,7 +38,7 @@ public class ShowRateCommand extends Command {
     @Override
     public void execute(Ui ui, Access access, Storage storage) {
         Chapter chapter = access.getChapter();
-        int cardCount = computePercentage(chapter, ui);
+        int cardCount = computePercentage(chapter);
         if (cardCount == noCard) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, chapter));
             return;
@@ -50,7 +50,7 @@ public class ShowRateCommand extends Command {
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, CANNOT_ANSWER, cannotAnswerPercentage));
     }
 
-    private int computePercentage(Chapter chapter, Ui ui) {
+    private int computePercentage(Chapter chapter) {
         ArrayList<Card> allCards = chapter.getCards().getAllCards();
         int cardCount = allCards.size();
         if (cardCount == 0) {

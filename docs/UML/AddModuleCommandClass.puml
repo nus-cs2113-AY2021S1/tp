@@ -1,0 +1,52 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n AddCommand"{
+  + prepareResult() : String
+  + isExist() : boolean
+}
+
+class "{abstract} \n Command"{
+  + isExist() : String {abstract}
+  + execute() : void {abstract}
+}
+
+class "Kaji" {
+    + run() : void
+}
+
+class "Access" {
+    + getAdmin() : Admin
+    + setAdmin(Admin) : void
+}
+
+class "Storage" {
+    + createModule(String) : void
+}
+
+class "ModuleList" {
+    + addModule(Module) : void
+    + getModuleCount() : int
+}
+
+class "Ui" {
+    + showToUser(String) : void
+}
+
+"{abstract} \n AddCommand" <|-- AddModuleCommand
+AddModuleCommand : - module : String
+AddModuleCommand : - addModule(Access, Storage, Module)
+
+"{abstract} \n Command" <|-- "{abstract} \n AddCommand"
+
+Kaji *- "{abstract} \n Command"
+
+AddModuleCommand ..> Access
+AddModuleCommand ..> Storage
+AddModuleCommand ..> ModuleList
+AddModuleCommand ..> Ui
+
+
+@enduml
