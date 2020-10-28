@@ -105,7 +105,7 @@ public class ReadStorageFile extends StorageFile {
             String locations = location.substring(openBracesIndex, closeBracesIndex);
             String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {
-                if(!locationName.isEmpty()) {
+                if (!locationName.isEmpty()) {
                     locationList.addLocation(locationName.trim());
                 }
             }
