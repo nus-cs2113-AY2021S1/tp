@@ -17,8 +17,8 @@ You must have **Java 11** or above installed on your computer. You must also be 
 ## 1.2 How to use this guide
 Note the formatting used in this guide:
 - A command that you need to enter at the command line is formatted as `command`.
-- Important information is indicated with 💡.
-- Warnings are indicated with ⚠️.
+- Important information is indicated with :bulb:.
+- Warnings are indicated with :warning:.
 - Words formatted as `UPPER_CASE` are to be supplied by you.
 
 ## 1.3 Quick start
@@ -296,7 +296,7 @@ bye               Exits the program
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
 
-> ⚠️ **Warning:** The delete action is irreversible.
+> :warning: **Warning:** The delete action is irreversible.
 
 ### 2.4.1 Deleting a food entry
 
@@ -307,7 +307,7 @@ If you would like to delete a particular entry, you can utilise the various dele
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
 
-> ⚠️ **Warning:** The clear action is irreversible.
+> :warning: **Warning:** The clear action is irreversible.
 
 ### 2.5.1 Clearing all food entries
 
