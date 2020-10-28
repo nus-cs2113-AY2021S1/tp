@@ -150,6 +150,10 @@ public class Ui {
                 if (e.getRepeatEventList() != null) {
                     System.out.println("   Repeated " + e.getRepeatType() + " for " + e.getRepeatCount() + " times.");
                 }
+                if (e.getNotes().size() > 0) {
+                    String indexWord = Integer.toString(index);
+                    System.out.println("   Type \"view " + eventListName + " " + indexWord + "\" to see notes");
+                }
                 index++;
             }
         }
