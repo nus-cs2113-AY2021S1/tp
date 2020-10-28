@@ -151,7 +151,7 @@ Figure 4 below shows the sequence diagram when the user enters `edit exercise 25
 
 ![Sequence diagram for editing exercise](images/EditExerciseSequenceDiagram.png)
 
-_Figure 4: Sequence diagram for edit command_
+_Figure 4: Sequence diagram for `edit` command_
 
 ### 4.2 Help command
 
@@ -160,7 +160,7 @@ Figure 5 below shows the sequence diagram when the user enters `help`.
 
 ![Sequence diagram for help command](images/HelpCommandSequenceDiagram.png)
 
-_Figure 5: Sequence diagram for help command_
+_Figure 5: Sequence diagram for `help` command_
 
 ### 4.3 View command
 
@@ -168,13 +168,19 @@ When the user enters a view command, the `Ui` class reads it and passes it throu
 
 ![Sequence diagram for view goal command](images/ViewGoalSequenceDiagram.png)
 
-_Figure 6: Sequence diagram for view goal command_
+_Figure 6: Sequence diagram for `view goal` command_
 
 ### 4.4 Clear command
 
 The `clear` command allows the user to clear either the exercise list, food list, or goal list, by specifying in the user's input as an argument (i.e. `clear exercise`, `clear food`, or `clear goal`). The user is also able to clear all the lists at the same time, if no argument is specified (i.e. `clear`).
 
 The user's input is first parsed by the `Parser` class. It is then passed to the `ClearCommand` class, which is then executed. The arguments are parsed in the `ClearCommand` class, and the required list(s) is then cleared. After clearing, it then writes the new empty list(s) to local storage.
+
+Figure 7 below shows the sequence diagram when the user inputs the `clear` command.
+
+![Sequence diagram for clear command](images/ClearCommandSequenceDiagram.png)
+
+_Figure 6: Sequence diagram for `clear` command_
 
 ## Appendix A: Product Scope
 ### Target user profile
