@@ -9,11 +9,16 @@
   * [UI Component](#ui-component)
   * [Logic Component](#logic-component)
 * [Implementation](#implementation)
-  * [Model Component](#model-component)
+  * [Detailed Data Component](#detailed-data-component)
   * [Command Component](#command-component)
   * [Storage Component](#storage-component)
   * [Parser Component](#parser-component)
-* [Implementation](#implementation) 
+* [Product scope](#implementation)
+  * [Target user profile](#target-user-profile)
+  * [Value proposition](#value-proposition) 
+* [User Stories](#user-stories)
+* [Non Functional Requirements](#non-functional-requirements)
+* [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## **Introduction**
 
@@ -62,18 +67,17 @@ The rest of the App consists of four components.
 * `Storage` Reads and writes data from and to a text file.
 
 
-### Model Component
-![Model Component](images/diagrams/ClassDiagram_DataOverview.png)
+### Data Component
+![Data Component](images/diagrams/ClassDiagram_DataOverview.png)
 
  
 ## Implementation
 
-### Data Component
-### Detailed Model Component 
-The *Model Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
+### Detailed Data Component 
+The *Detailed Data Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
 from the abstract appliance class. 
 
-![Detailed Model Component](images/diagrams/ClassDiagram_DetailedData.png)
+![Detailed Data Component](images/diagrams/ClassDiagram_DetailedData.png)
 
 To create an Appliance, we pass the name, location, wattage, power and the entire locationList. We first check from the 
 locationList if the name of the appliance is inside the locationList, and the location exists within the locationList. 
@@ -112,31 +116,55 @@ Below is the list of commands available.
 * Resetting usage of appliance: `p_reset`
 * Exiting the application: `exit`
  	
-Sequence Diagram for `create`
+#### Sequence Diagram for `create`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Create.png)
 
-Sequence Diagram for `remove`
+When the user enters the `create` command, the `prepareCreateCommand(arguments)` is called. 
+It will reject the input provided by the user if the `arguments` is empty or contain characters such as `/` or if the argument contains spaces in between. 
+If the arguments is not rejected, it will return and construct a new CreateCommand object with arguments as the parameter to be created.  
+
+For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` will return a new CreateCommand object to be executed to create the location `bedroom1` in the LocationList. 
+
+#### Sequence Diagram for `remove`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Remove.png)
 
-Sequence Diagram for `add`
+When the user enters the `remove` command, the `prepareRemoveCommand(arguments)` is called. 
+It will reject the input provided by the user if the `arguments` is empty. 
+If the arguments is not rejected, it will return a new RemoveCommand object with arguments as the parameter to be used to remove a location in the LocationList. 
+
+For example: user input: `remove bedroom1`. `prepareRemoveCommand(bedroom1)` will return and construct a new RemoveCommand object to be executed to remove the location `bedroom1` in the LocationList.  
+
+#### Sequence Diagram for `add`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Add.png)
 
-Sequence Diagram for `delete`
+When the user enters the `add` command, the `prepareAddCommand(arguments)` is called. 
+It will reject the input provided by the user if the l/[LOCATION_NAME] w/[WATTAGE] t/[APPLIANCE_TYPE] is not in this particular order. 
+If the `arguments` entered are in the right order, it will split and reject if any of the parameters entered by the user is empty. 
+Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or spaces in between and [WATTAGE] is a valid int number from 1-9999. 
+If all these conditions are fulfilled, it will return and construct a new AddCommand object with name, location, wattage and type as the parameters to be used to add an appliance to the ApplianceList. 
+
+#### Sequence Diagram for `delete`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Delete.png)
 
-Sequence Diagram for `on`
+When the user enters the `delete` command, the `prepareDeleteCommand(arguments)` is called. 
+It will reject the input provided by the user if the `arguments` is empty. If the arguments is not rejected, it will return a new DeleteCommand object with arguments as the parameter to be used to delete an appliance from the ApplianceList. 
+
+For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will return and construct a new DeleteCommand object to be executed to remove the location `aircon1` in the LocationList.  
+
+
+#### Sequence Diagram for `on`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_On.png)
 
-Sequence Diagram for `off`
+#### Sequence Diagram for `off`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Off.png) 
 
-Sequence Diagram for `list`
+#### Sequence Diagram for `list`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_List.png)<br><br>
 When the user enters the `list` command, the 
@@ -150,7 +178,7 @@ Else, a new `ListCommand(APPLIANCE_TYPE, ““)` will be returned.
 3. Any argument that does not contains “location” and “appliance” or contains “appliance” with a wrong 
 format will return a `InvalidCommand` class with their respective error messages. 
 
-Sequence Diagram for `commandword`
+#### Sequence Diagram for `commandword`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Commandword.png)
 
@@ -159,10 +187,12 @@ As these 4 commands does not require any additional parsing. The sequence diagra
 respective CommandObject to execute the command. 
 
 
-
-Sequence Diagram for `default`
+#### Sequence Diagram for `default`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Default.png)
+
+When input provided by the User is not any of the commands available, it will return a new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT) 
+that will be executed to inform the user that it is a ‘Invalid Command Format’.  
 
 ### Command Component
 #### Help Command
@@ -171,21 +201,44 @@ first created by the `Parser` class, where it is then returned to the `Main` cla
 function called. When the `Main` class calls the `execute()` function, the `HelpCommand` 
 will then return a new `CommandResult` class (which stores the Help message)
 
-The `HelpCommand` shown above explains the Sequence Diagram of the `HelpCommand`.
-
+The `HelpCommand` shown below explains the Sequence Diagram of the `HelpCommand`.
 ![Sequence of Help Command](images/diagrams/Sequence_HelpCommand.png) <br><br>
+
 #### Create Command
+To create a new location, the `CreateCommand` class is used. 
+This class object is first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` function called. 
+The userEnteredLocation which was the argument parsed by the `Parser` will be used in LocationList’s addLocation(userEnteredLocation) function to create the location in the LocationList. 
+After the location is created, it will then return a new CommandResult class to indicate the result of this process. 
+
+If the userEnteredLocation already exists in the LocationList, it will return a new CommandResult class to indicate that the location already exists and could not be created.
+
+The `CreateCommand` shown below explains the Sequence Diagram of the Create Command.
 ![Sequence of Create Command](images/diagrams/Sequence_CreateCommand.png) <br>
-The *CreateCommand* shown above explains the Sequence Diagram of the Create Command.
+
+
 #### Remove Command 
+To remove a location, the `RemoveCommand` class is used. 
+The class object is first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` method called. 
+The name of the location to be removed will be parsed into the `RemoveCommand` class. 
+The `RemoveCommand` class will call the `removeLocation` method in `LocationList`, which will loop until the name of the location to be removed is found in the `LocationList`. 
+Next, the `RemoveCommand` class will call the `deleteByLocation` method in `ApplianceList`, which will loop to look for all the appliance in the location to be removed and delete the appliance. 
+If the name of the location to be removed is not found, the `RemoveCommand` will return the “location does not exist” message.
+
+The `RemoveCommand` shown below explains the Sequence Diagram of the Remove Command.
 ![Sequence of Remove Command](images/diagrams/Sequence_RemoveCommand.png) <br>
-The *RemoveCommand* shown above explains the Sequence Diagram of the Remove Command.
+
+
 #### Add Command
+
+The `AddCommand` shown above explains the Sequence Diagram of the Add Command.
 ![Sequence of Add Command](images/diagrams/Sequence_AddCommand.png) <br>
-The *AddCommand* shown above explains the Sequence Diagram of the Add Command.
+
 #### Delete Command
 ![Sequence of Delete Command](images/diagrams/Sequence_DeleteCommand.png) <br>
+
 The *DeleteCommand* shown above explains the Sequence Diagram of the Delete Command.
+
+
 #### On Command
 
 The *OnCommand* shown below explains the Sequence Diagram of the OnCommand. When the Main class calls the execute() function there will be are 2 cases for on command to flow:
