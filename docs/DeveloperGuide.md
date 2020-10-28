@@ -161,7 +161,7 @@ Notebook handles adding, deleting, editing, finding, sorting, pinning and archiv
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
-The timetable component stores an array of events. On launch, an empty timetable will be created. It will then be filled by any stored events. 
+The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
 Timetable handles adding, deleting and getting all instances of stored events in a given time period.
 
