@@ -1,17 +1,9 @@
 package seedu.eduke8.parser;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.AboutCommand;
-import seedu.eduke8.command.BookmarkCommand;
-import seedu.eduke8.command.Command;
-import seedu.eduke8.command.ExitCommand;
-import seedu.eduke8.command.HelpCommand;
-import seedu.eduke8.command.IncorrectCommand;
-import seedu.eduke8.command.QuizCommand;
-import seedu.eduke8.command.StatsCommand;
-import seedu.eduke8.command.TextbookCommand;
-import seedu.eduke8.command.TopicsCommand;
+import seedu.eduke8.command.*;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
@@ -35,6 +27,7 @@ public class MenuParser implements Parser {
     private static final String COMMAND_TOPICS = "topics";
     private static final String COMMAND_TEXTBOOK = "textbook";
     private static final String COMMAND_QUIZ = "quiz";
+    private static final String COMMAND_NOTE = "note";
     private static final String COMMAND_BOOKMARK = "bookmark";
     private static final String COMMAND_EXIT = "exit";
 
@@ -92,7 +85,13 @@ public class MenuParser implements Parser {
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
-        case COMMAND_EXIT:
+        case COMMAND_NOTE:
+            if(commandArr[1].equalsIgnoreCase("add") || commandArr[1].
+                    equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
+                return new NoteCommand(commandArr[1], (TopicList) topicList);
+            }
+            case COMMAND_EXIT:
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
             return new ExitCommand();
         case "stats":

@@ -23,6 +23,16 @@ public class TopicList implements DisplayableList {
         ui.printTopicList(topics);
     }
 
+    public boolean doesTopicExist(String topicName) {
+        boolean result = false;
+        for(int i = 0; i < topics.size(); i++) {
+            if(topics.get(i).getDescription().equalsIgnoreCase(topicName)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
     @Override
     public ArrayList<Displayable> getInnerList() {
         return topics;
