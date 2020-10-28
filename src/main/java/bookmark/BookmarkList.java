@@ -16,7 +16,7 @@ public class BookmarkList {
         if (star) {
             returnLink += "|STAR|";
         }
-        if (title != null || title != "") {
+        if (title != null ) {
             return returnLink + link + " t->" + title;
         } else {
             return returnLink + link;
@@ -38,8 +38,8 @@ public class BookmarkList {
     }
 
     public String toString() {
-        if (title == "") {
-            return getLink() + getStarIcon();
+        if (title == "" || title == null) {
+            return link + getStarIcon();
         }
         return title + ": " + link + getStarIcon();
     }

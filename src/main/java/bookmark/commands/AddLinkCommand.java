@@ -13,7 +13,7 @@ public class AddLinkCommand extends BookmarkCommand {
     private String line;
     private int categoryNumber;
     private String link;
-    private String title = "";
+    private String title;
 
     public AddLinkCommand(String line, int categoryNumber) {
         this.categoryNumber = categoryNumber;
@@ -53,6 +53,8 @@ public class AddLinkCommand extends BookmarkCommand {
             }
             link = array[0].trim();
             title = array[1].trim();
+        } else {
+            title = null;
         }
         if (!link.contains(".") || link.contains(" ")) {
             throw new InvalidBookmarkException();
