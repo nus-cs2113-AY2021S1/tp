@@ -13,7 +13,7 @@ public class BookmarkList {
 
     public String getLink() {
         String returnLink = "";
-        if (star){
+        if (star) {
             returnLink += "|STAR|";
         }
         if (title != null || title != "") {
@@ -44,7 +44,7 @@ public class BookmarkList {
         return title + ": " + link + getStarIcon();
     }
 
-    public Boolean getStar(){
+    public Boolean getStar() {
         return star;
     }
 }

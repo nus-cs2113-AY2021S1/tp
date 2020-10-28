@@ -30,7 +30,7 @@ public class BookmarkUi {
         } else {
             int i = 1;
             for (BookmarkList link: links) {
-                System.out.println(i + "." + link);
+                System.out.println("\t" + i + "." + link);
                 i++;
             }
         }

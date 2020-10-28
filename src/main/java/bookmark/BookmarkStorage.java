@@ -44,7 +44,7 @@ public class BookmarkStorage {
                 int x = 0;
                 for (String link : links) {
                     link = link.trim();
-                    if (link.contains(" t->")){
+                    if (link.contains(" t->")) {
                         String[] array = link.split(" t->");
                         link = array[0].trim();
                         title = array[1].trim();
@@ -69,6 +69,7 @@ public class BookmarkStorage {
             newBookmarkCategories.add(new BookmarkCategory("Internship"));
             newBookmarkCategories.add(new BookmarkCategory("Hackathon"));
             newBookmarkCategories.add(new BookmarkCategory("Career Talk"));
+            saveLinksToFile(newBookmarkCategories);
             StudyItLog.logger.info(e + "\nflashcard storage file created");
             return newBookmarkCategories;
         }

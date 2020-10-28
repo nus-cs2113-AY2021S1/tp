@@ -46,7 +46,7 @@ public class AddLinkCommand extends BookmarkCommand {
         }
         assert line.length() > 0 : "Link should not be empty";
         link = line.substring(ADD_LENGTH).trim();
-        if (link.contains(" t->")){
+        if (link.contains(" t->")) {
             String[] array = link.split(" t->");
             if (array.length < 2) {
                 throw new EmptyBookmarkException();
