@@ -261,8 +261,8 @@ Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution **(current design)** | Easy to implement since `Command` already handle file matters. | Failing file validation during command execution would have wasted some memory resources. |
-| During parsing | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
+| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Failing file validation during command execution would have wasted some memory resources. |
+| During parsing. | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
 Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
@@ -272,8 +272,8 @@ Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| Specify file extension **(current design)** |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
-| Do not have to specify file extension | Users can easily specify the file to read | May read the wrong file due to identical names but different file extension. |
+| Specify file extension **(current design)**. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
 We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
@@ -504,8 +504,8 @@ Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution **(current design)** | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
-| When the user exits the program | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
+| After each command execution **(current design)**. | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
+| When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
 Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
 
