@@ -5,17 +5,21 @@ import seedu.notus.command.Command;
 import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.exception.SystemException.ExceptionType;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.data.timetable.Event;
 import seedu.notus.ui.Formatter;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_END;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELETE_LINE;
 import static seedu.notus.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
+import static seedu.notus.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -85,6 +89,55 @@ public abstract class Parser {
         } else {
             return input.trim();
         }
+    }
+
+    //@@author brandonywl
+    /**
+     * Provides a parser method for converting user input to a reminder schedule for add and edit event commands.
+     *
+     * @param inputTimeUnitString String to be parsed after /remind
+     * @return Returns a reminder schedule that maps the unit (day/week) to map how many days/week before a reminder
+     * @throws SystemException Wrong reminder format input or number format errors.
+     */
+    static HashMap<String, ArrayList<Integer>> handleReminderParsing(
+            String inputTimeUnitString) throws SystemException  {
+        HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+
+        String[] timePeriodUnitStrings  = inputTimeUnitString.split(STRING_SPLIT_DELIMITER);
+        for (String timePeriodUnitString : timePeriodUnitStrings) {
+            String[] timePeriodUnit = timePeriodUnitString.split(TIMING_SPLIT_DELIMITER);
+            if (timePeriodUnit.length != 2) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+            }
+
+            int timePeriod;
+            String timeUnit;
+
+            try {
+                timePeriod = Integer.parseInt(timePeriodUnit[0]);
+                timeUnit = timePeriodUnit[1];
+                if ((!timeUnit.equalsIgnoreCase(Event.REMINDER_DAY)
+                        && !timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK)) || timePeriod < 1) {
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+                }
+                ExceptionType exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
+                if (timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK) && timePeriod > 1) {
+                    throw new SystemException(exception);
+                } else if (timeUnit.equalsIgnoreCase(Event.REMINDER_DAY) && timePeriod > 7) {
+                    throw new SystemException(exception);
+                }
+            } catch (NumberFormatException exceptionNumFormat) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+            }
+            ArrayList<Integer> storedReminders = reminderSchedule.get(timeUnit);
+            if (storedReminders == null) {
+                storedReminders = new ArrayList<>(List.of(timePeriod));
+            } else {
+                storedReminders.add(timePeriod);
+            }
+            reminderSchedule.put(timeUnit, storedReminders);
+        }
+        return reminderSchedule;
     }
 
     //@@author Chongjx
