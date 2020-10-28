@@ -17,6 +17,7 @@
       - [2.3.3. Design of QuizQuestionsManager](#233-design-of-quizquestionsmanager)
       - [2.3.4. Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager)
       - [2.3.5. Design of Stats Feature](#235-design-of-stats-feature)
+      - [2.3.6. Implementation of Stats Feature](#236-implementation-of-stats-feature)
     - [2.4. Storage Component](#24-storage-component)
       - [2.4.1. Design of TopicsStorage](#241-design-of-topicsstorage)
       - [2.4.2. Implementation of TopicsStorage](#242-implementation-of-topicsstorage)
