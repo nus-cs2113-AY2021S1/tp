@@ -2,9 +2,12 @@
 
 ## Table of Contents
 
-1. [Introduction](#1.-introduction)
-1. [Quick Start](#2.-quick-start) 
-1. [Features](#3.-features)<br>
+1. [Introduction](#1-introduction)<br>
+&nbsp;&nbsp;1.1. [Purpose](#11-purpose)<br>
+&nbsp;&nbsp;1.2. [Overview](#12-Overview)<br>
+&nbsp;&nbsp;1.3. [Features](#13-Features)<br>
+1. [Quick Start](#2-quick-start)<br>
+1. [Commands](#3-commands)<br>
 &nbsp;&nbsp;3.1. [Project `project`](#31-project-project)<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1. [Create a new project](#311-create-project)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2. [View project information](#312-view-project-information)<br>
@@ -22,24 +25,30 @@
 &nbsp;&nbsp;3.4. [Sprint `sprint`](#34-sprint-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a new sprint](#341-create-a-new-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View sprint information](#342-view-current-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Add tasks to the sprint](#343-add-tasks-to-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Delete tasks from the sprint](#344-remove-tasks-from-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Allocate tasks to team members](#345-allocate-tasks-to-team-members)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Edit sprint goal](#343-edit-sprint-goal)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Add tasks to the sprint](#344-add-tasks-to-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Delete tasks from the sprint](#345-remove-tasks-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.6. [Allocate tasks to team members](#346-allocate-tasks-to-team-members)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate tasks from team members](#347-deallocate-tasks-from-team-members)<br> 
 1. [Command Summary](#4-command-summary)
 
 
 ## 1. Introduction
+
+### 1.1. Purpose
 This document is the User Manual of the SCRUMptious.
 It is intended to provide all the necessary information to use this software.  
 
+### 1.2. Overview
 SCRUMptious is a command line project management software, designed for project managers who adopt the
 [SCRUM](https://www.scrumguides.org/scrum-guide.html) methodology.  
-SCRUMptious allows project managers to do the following:  
-##### Manage multiple projects
-##### Breakdown projects into smaller iterations known as *Sprints*
-##### Manage tasks in the form of *Backlog* items
-##### Assign tasks to different *Sprint* iterations
-##### Assign tasks to team members
+
+### 1.3. Features   
+* Manage multiple projects
+* Breakdown projects into smaller iterations known as *Sprints*
+* Manage tasks in the form of *Backlog* items
+* Assign tasks to different *Sprint* iterations
+* Assign tasks to team members
 
 
 ## 2. Quick Start
@@ -58,7 +67,7 @@ into the command line and press `Enter` to execute it.
 Project successfully created.
 ```
 
-## 3. Features 
+## 3. Commands 
 | :memo: | Words in `<userInput>` are parameters.|
 |----------------|---------------------------------------|
 ### 3.1. Project `project`
@@ -221,20 +230,35 @@ Mark specified task as complete.
 `Add parser has been marked as done.`
 
 ### 3.4. Sprint `sprint`
+In SCRUMptious, a `Project` will be broken down into smaller iterations known as Sprints.
+After planning and creating these `Sprints`, `Tasks` then can be allocated to these iterations and assigned to `Members` later.
+
+The following section will explain the commands to manage Sprints.
+
 #### 3.4.1. Create a new sprint
 Create a new sprint for the project.
-##### Format: `sprint /create -goal <goal_input> -start <start_date>`
-##### Tags:
-* `-goal`: Specify the goal for the sprint
-* `-start`: Specify the start date of the sprint (Only used for the first sprint)
-##### Constraints:
-* `goal_input` must be specified
-* `start_date` will only be accepted in `YYYYMMDD` format
-##### Optional field:
-* `start_date` will be set as the date of command execution if not specified
-##### Example: `sprint /create Shopping Cart -start 20201010`
+##### Format: `sprint /create -goal <goal_input> [optional tags]`
+##### Constraints:   
+* Project must be created.
+* `goal` must be specified.
+##### Note:
+* When the new Sprint is the first sprint in the Project, the `-start` parameter will be used to determine the start date for both the project and sprint.                             
+* On the other hand, if the new Sprint is not the first sprint, it will automatically start after the previous sprint ends and the `-start` parameter is ignored even if specified.
+##### Mandatory Tag:
+* `-goal` Specify the goal for the sprint.
+##### Optional Tags:                                                                                              
+* No optional tag: Create a new sprint in the selected project that start today. 
+* `-start` Specify the start date of the sprint.
+    * Format: Start date must be in `YYYYMMDD` format.  
+    * Example: `sprint /create -goal UI -start 20201010` - New Sprint to start on 10 October 2020. 
+    * If not specified: Date of command execution will be the start date.
+* `-project` Specify the Project using its ID that will hold the new Sprint. 
+    * Example: `sprint /create -goal UI -start 20201010 -project 3` - New Sprint to be added to Project 3.    
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will own the new Sprint.
+##### Example: `sprint /create -goal Shopping Cart -start 20201010`
 ##### Expected outcome:
 ```
+[Project ID: 1]
 Project will start along with the newly created sprint
 Project period: 2020-10-10 to 2020-11-08
 
@@ -247,11 +271,26 @@ Project period: 2020-10-10 to 2020-11-08
 ```
   
 #### 3.4.2. View current sprint
-Display the information of the current sprint.
-##### Format: `sprint /view`
+Display the information of the sprint.
+##### Format: `sprint /view [optional tags]`
+##### Constraints:   
+* Project must be created.
+* Sprint must be created. 
+##### Optional Tags:
+* No optional tag: View the ongoing sprint in the select project.
+    * Example: `sprint /view`  
+* No optional tag but specify the Sprint using its ID.
+    * Example: `sprint /view 2` - View the second sprint of the selected Project.                                                                                    
+* `-project` Specify the Project using its ID. 
+    * Example: `sprint /view -project 2` - View the current sprint of the Project 2.
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen.
+* `-sprint` Specify the Sprint using its ID.
+    * Example: `sprint /view -project 2 -sprint 3` - View the third sprint of the Project 2.
+    * If not specified: Ongoing Sprint.         
 ##### Example: `sprint /view`
 ##### Expected outcome:
 ```
+[Project ID: 1] 
 ========================= CURRENT SPRINT ========================
 [ID: 1]
 [Goal: Shopping Cart ]
@@ -260,50 +299,172 @@ Display the information of the current sprint.
 [No allocated tasks]
 =================================================================
 ```
+#### 3.4.3. Edit sprint goal                                                                                                       
+Edit the Sprint goal of the selected sprint.                                                                                                  
+##### Format: `sprint /edit -goal <goal_input> [optional tags]`                                                                     
+##### Constraints:                                                                                                                    
+* Project must be created. 
+* Sprint must be created.                                                                                                           
+* `goal` must be specified.                                                                                                           
+##### Mandatory Tag:                                                                                                                  
+* `-goal` Specify the new goal for the sprint.                                                                                            
+##### Optional Tags:                                                                                                                  
+* No optional tag: Edit the ongoing sprint in the select project.                                                                          
+    * Example: `sprint /edit -goal Add Documentation` - Edit the goal for the ongoing sprint in the select project.                                         
+* `-project` Specify the Project using its ID.                                                                           
+    * Example: `sprint /edit -project 2 -goal Add Documentation` - Edit the goal for the ongoing sprint in Project 2.                                     
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen. 
+* `-sprint` Specify the Sprint using its ID.                                                                                                               
+    * Example: `sprint /edit -project 2 -sprint 3 -goal Add Documentation` - Edit the goal for the third sprint in Project 2.                                                               
+    * If not specified: Ongoing Sprint.                                                                                                                                   
+##### Example: `sprint /edit -goal Add Documentation`                                                                   
+##### Expected outcome:                                                                                                               
+```                                                                                                                                   
+[Project ID: 1]                                                                                                                                                                                                                                                                                                                                                                                                                       
+============================ SPRINT =============================                                                                     
+[ID: 1]                                                                                                                               
+[Goal: Add Documentation]                                                                                                                
+[Period: 2020-10-10 - 2020-10-19]                                                                                                     
+[No allocated tasks]                                                                                                                  
+=================================================================                                                                     
+```                                                                                                                                   
+
+
   
-#### 3.4.3. Add tasks to sprint
-Add task(s) from the project backlog to the current sprint
-##### Format: `sprint /addtask <task_id> [<task_id> ...]`
+#### 3.4.4. Add tasks to sprint
+Add task(s) from the project backlog to the current sprint.
+##### Format: `sprint /addtask <task_id> [<task_id> ...] [optional tags]`
 ##### Constraints:
-* `task_id` must be a positive integer
-* At least one `task_id` must be specified
+* Project must be created. 
+* Sprint must be created.
+* `task_id` must be a positive integer.
+* At least one `task_id` must be specified .
+* Specified tasks must exist in project backlog.
+##### Mandatory Tag:
+* Without tag: Specify the tasks to add to Sprint.
+    * Cannot be used with other optional tags.
+    * Example: `sprint /addtask 1 2` - Add Task 1 and 2 to Sprint.                       
+* `-task` Specify the tasks to add to Sprint.
+    * Must be used if other optional tags are used.
+    * Example: `sprint /addtask -task 1 2` - Add Task 1 and 2 to Sprint.  
+##### Optional Tags:                                                                                                                                                                                              
+* All the following optional tags must be used with the `-task` tag as specified above.
+* `-project` Specify the Project using its ID.                                                                              
+    * Example: `sprint /addtask -project 2 -task 1 2` - Add Task 1 and 2 to current Sprint in Project 2.                                        
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen.    
+* `-sprint` Specify the Sprint using its ID.                                                                                
+    * Example: `sprint /addtask -project 2 -sprint 3 -task 1 2` - Add Task 1 and 2 to the third sprint of the Project 2.                              
+    * If not specified: Ongoing Sprint.                                                                        
+
 ##### Example: `sprint /addtask 1 3 4`
 ##### Expected outcome:
 ```
-DummyTask1  added to sprint.
-DummyTask3  added to sprint.
-DummyTask4  added to sprint.
+[Project ID: 1]
+    DummyTask1 added to sprint 1.
+    DummyTask3 added to sprint 1.
+    DummyTask4 added to sprint 1.
 ```
   
-#### 3.4.4. Remove tasks from sprint
-Remove task(s) from the current sprint
-##### Format: `sprint /deltask <task_id> [<task_id> ...]`
-##### Constraints:
-* `task_id` must be a positive integer
-* At least one `task_id` must be specified
-##### Example: `sprint /deltask 1 3 4`
+#### 3.4.5. Remove tasks from sprint
+Remove task(s) from the current sprint.
+##### Format: `sprint /removetask <task_id> [<task_id> ...] [optional tags]`
+##### Constraints:                              
+* Project must be created.                           
+* Sprint must be created.                            
+* `task_id` must be a positive integer.         
+* At least one `task_id` must be specified .    
+* Specified tasks must exist in Sprint.
+##### Mandatory Tag:                                                                                                      
+* Without tag: Specify the tasks to remove from Sprint.                                                                   
+    * Cannot use with other optional tags.                                                                            
+    * Example: `sprint /removetask 1 2` - Remove Task 1 and 2 from Sprint.                                                        
+* `-task` Specify the tasks to remove from Sprint.                                                                        
+    * Must be used if other optional tags are used.                                                                       
+    * Example: `sprint /removetask -task 1 2` - Remove Task 1 and 2 from Sprint.                                                  
+##### Optional Tags:                                                                                                      
+* All the following optional tags must be used with the `-task` tag as specified above.                                   
+* `-project` Specify the Project using its ID.                                                                            
+    * Example: `sprint /removetask -project 2 -task 1 2` - Remove Task 1 and 2 from the ongoing Sprint in Project 2.                  
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen.  
+* `-sprint` Specify the Sprint using its ID.                                                                              
+    * Example: `sprint /removetask -project 2 -sprint 3 -task 1 2` - Remove Task 1 and 2 from the third sprint of the Project 2.  
+    * If not specified: Ongoing Sprint.                                                                      
+
+##### Example: `sprint /removetask 1 3 4`
 ##### Expected outcome:
-```
-DummyTask1 removed from sprint.
-DummyTask3 removed from sprint.
-DummyTask4 removed from sprint.
+```    
+[Project ID: 1]
+    DummyTask1 removed from sprint 1.
+    DummyTask3 removed from sprint 1.
+    DummyTask4 removed from sprint 1.
 ```
   
-#### 3.4.5. Allocate tasks to team members
-Assign a task to a team member(s)
-##### Format: `sprint /assign -task <task_id> -user <user_id> [<user_id> ...]`
-##### Tags:
-* `-task`: Specify the task to be allocated
-* `-user`: Specify the user(s) to be assign with a task
-##### Constraints:
-* `task_id` must be a positive integer
-* `task_id` must be specified
+#### 3.4.6. Allocate tasks to team members
+Assign task(s) to team member(s).
+##### Format: `sprint /allocate  -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`
+##### Constraints:                        
+* Project must be created.
+* Sprint must be created. 
+* `task_id` must be a positive integer    
+* `task_id` must be specified.             
 * At least one `user_id` must be specified
-##### Example: `sprint /assign -task 1 -user johntan mary jane`
+* Specified tasks must exist in Sprint.  
+* Specified members must exist in Project.  
+##### Mandatory Tag:                                                                                                             
+* `-task` Specify the task to be allocated.
+* `-user` Specify the user(s) to be assign with a task.                                                                                                                                                                                                                                                                                                          
+##### Optional Tags:                                                                                                                                                      
+* `-project` Specify the Project using its ID.                                                                                   
+    * Example: `sprint /allocate -project 2 -task 1 -user mary` - In the ongoing Sprint in Project 2, allocate Task 1 to mary.            
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen.         
+* `-sprint` Specify the Sprint using its ID.                                                                                     
+    * Example: `sprint /allocate -project 2 -sprint 3 -task 1 -user mary` - In the third Sprint in Project 2, allocate Task 1 to mary.
+    * If not specified: Ongoing Sprint.                                                                                          
+
+##### Example: `sprint /allocate -task 1 2 -user johntan mary jane`
 ##### Expected outcome:
 ```
-DummyTask1 assigned to [johntan, mary, jane]
+[Project ID: 1]
+[Sprint ID: 1]
+DummyTask1 is assigned to [johntan, mary, jane]
+DummyTask2 is assigned to [johntan, mary, jane]  
+```       
+
+#### 3.4.7. Deallocate tasks from team members                                                                                             
+Deallocate a task from team member(s).                                                                                                     
+##### Format: `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`                                      
+##### Constraints:                                                                                                                     
+* Project must be created.                                                                                                             
+* Sprint must be created.                                                                                                              
+* `task_id` must be a positive integer.                                                                                                 
+* `task_id` must be specified.                                                                                                          
+* At least one `user_id` must be specified.                                                                                             
+* Specified tasks must exist in Sprint.                                                                                                
+* Specified members must exist in Project.
+* All specified task must be allocated to all specified members.                                                                                          
+##### Mandatory Tag:                                                                                                                   
+* `-task` Specify the task to be deallocated.                                                                                             
+* `-user` Specify the user(s) to be deallocated from the task.                                                                                 
+##### Optional Tags:                                                                                                                   
+* `-project` Specify the Project using its ID.                                                                                         
+    * Example: `sprint /deallocate -project 2 -task 1 -user mary` - In the ongoing Sprint in Project 2, deallocate Task 1 from mary.         
+    * If not specified: Selected Project determined by the [Project select command](#314-select-project) will be chosen.               
+* `-sprint` Specify the Sprint using its ID.                                                                                           
+    * Example: `sprint /deallocate -project 2 -sprint 3 -task 1 -user mary` - In the third Sprint in Project 2, deallocate Task 1 to mary. 
+    * If not specified: Ongoing Sprint.                                                                                                
+                                                                                                                                       
+##### Example: `sprint /deallocate -task 1 2 -user johntan mary jane`                                                                    
+##### Expected outcome:                                                                                                                
+```                                                                                                                                    
+[Project ID: 1]                                                                                                                        
+[Sprint ID: 1]                                                                                                                         
+DummyTask1 is removed to [johntan, mary, jane]                                                                                        
+DummyTask2 is removed to [johntan, mary, jane]                                                                                        
 ```
+
+
+
+
 
 ## 4. Command Summary
 
