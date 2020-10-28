@@ -69,7 +69,7 @@ If you plan to use Intellij IDEA:
 
 ### Before writing code
 1. **Configuring the coding style**
-    
+
     If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
 2. **Set up CI**
@@ -467,7 +467,8 @@ Below is a table describing the 4 options supported by the `watchlist` command, 
 
 Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the watchlist creation process.
 
-![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png) <br/>
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
+
 *Figure 14: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
