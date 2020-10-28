@@ -2,10 +2,20 @@
 
 ## Introduction
 
-**_25 hours a day_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
+**_25HoursADay_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **_25 hours a day_** can 
 schedule your tasks and events faster than traditional GUI apps.
 
+## Foreword
+
+25HoursADay is targeted towards students from National University of Singapore (NUS). This user guide is designed to provide documentation for potential users who will use 25HoursADay on a day-to-day basis. This document will provide a step-by-step guide to show you how to access following features of the program:
+1)	View available commands of the program
+2)	Add tasks and events to the program
+3)	View your personalized calendar and the items available
+4)	Search an item in the program
+5)	Prioritize your tasks and keep track of your progress
+
+After familiarizing with all the functionalities, you will definitely be able to better manage your day-to-day matters. Feeling excited? Let’s begin!
 
 ## Table of Contents
 * [Important Notes](#important-notes)
@@ -52,23 +62,13 @@ schedule your tasks and events faster than traditional GUI apps.
 
 ## Important Notes
 
-Kindly read this section before proceeding to the feature section for a better understanding of the feature section.
-This section consists of the legends and common terminology used in the feature section.
+Before we jump into the main content, kindly read this section before proceeding to the feature section for a better understanding of it. This section consists of the legends and common terminology used in the feature section.
+
+The following table shows the list of legends used in this document:
+![table_of_legeng](../images/Table1_legeng.PNG)
 
 
-The following shows a list of legends used in this document:
-
-`code` - a code segment.
-
-`<placeholder>` - a placeholder.
-
- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **Tips - provides some additional information of the 
- features.**  ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) 
-
- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Warning - provides warning messages for the user with 
- regard to certain restrictions of the features.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
-  
-Please refer to the following table if you encounter any unfamiliar terminologies.
+The following table displays the list of terminologies used in this document:
 
 |Term| Meaning | 
 |--------|----------|
@@ -90,10 +90,9 @@ Please refer to the following table if you encounter any unfamiliar terminologie
 1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
 1. type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to strat the programme.
 1. The _Command Prompt_ should display similar output as shown in the figure below:
-    ![Screen_Shot_of_welcome_message](/images/logo.png)
+    ![Screen_Shot_of_welcome_message](../images/Verify_setup.PNG)
 1. Type the command in the _Command Prompt_ and press _Enter_ to execute it. 
     1. E.g. typing `help` and pressing _Enter_ will display the help information:
-    ![Screen_Shot_of_help_command](/images/logo.png)
 1. Refer to the [Features](#features) below for details of each command.
 
 ## Features 
@@ -106,39 +105,52 @@ As a first-time user you can always type help in the terminal to view the list o
 
 Format: `help`
 
+![Screen_Shot_of_help_command](../images/Help_Command.PNG)
+![wanring_message_for_help](../images/warning_help_command.PNG)
+
 ### Adding a task:
 
-If you want to add a task to the calendar list, you can use `todo` or `deadline` command with following format:  
+Are you sometimes overwhelmed by different tasks and not sure how to document them properly? Why not just use our task adding features? This feature allows you to add 2 types of tasks:
+•	Todo task which has no specific due date and just serves as a reminder for your day to day matters.
+•	Deadline tasks which has a specific due date and the program has a count down feature to monitor them.
+
+The following 2 sub-sections will provide you with the guide on how to add a task to the calendar list.  
 
 #### Adding a todo task: `todo`
 
-You can add a todo task to the calendar list by using the following format.
+This function allows you to add a todo task, such as exercise plans or small reminders for your day to day matters 
+which can be a great help if you are a forgetful person.
 
 Format: `todo <task_description`
 
-Example of usage: 
+Example: 
 
-`todo read a book and write some reflection`
+`todo exercise for 10 minutes` adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
+![todo_command](../images/todo_command.png)
 
-`todo exercise for 10 minutes before starting to code`
+![tips_todo](../images/tip_for_todo.PNG)
 
 #### Adding a deadline task: `deadline`
 
-You can add a deadline task to the calendar list by using the following format.
+This function allows you to add a deadline task, such as project submission or assignment submission and the program 
+will keep track of the due date which will definitely make your study life more manageable!
 
 Format: `deadline <task_description> / <due_date>`
 
-Example of usage:
+Example:
 
-`deadline project submission / sunday 2359`
+`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 
+as illustrated by the figure below.
+![deadline_command](../images/deadline_command.png)
 
-`deadline payment for school fee / 23rd Sept`
+![tips_deadline](../images/tips_deadline.PNG)
 
-![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **There is no fix format for due date.**![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) 
+![warning_dadline](../images/warning_deadline.PNG)
 
 ### Marking a task as done: `done`
 
-You can mark a task on your calendar list as completed by using the `done` command.
+To help manage your tasks better, you can mark a task on your calendar list as completed by using the `done` command. 
+If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task
 
 Format: `done <task_number>`
 

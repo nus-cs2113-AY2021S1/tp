@@ -45,7 +45,7 @@ Now, Open Intellij
         1. Click `Configure` → `Project Structure for New Project`
         1. Click `New...` and set it to the directory of the JDK
 1. Upon the successful configuration, you should be able to see the following screenshot:
-![JDK Config](images/JDK_Config_Screenshot.png)
+![JDK Config](../images/JDK_Config_Screenshot.png)
 1. Lastly, **Import the project as a Gradle Project.**
     * Intellij IDEA by default has the Gradle plugin installed. If you have disabled it, go to 
     `File` → `Settings` → `Plugins` to re-enable them.
@@ -58,7 +58,7 @@ Now, Open Intellij
 1. **Verify the set up**:
     * Run the `..main/java/seedu.duke/Duke`
     * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
-    ![verify_set_up](images/Verify_setup.PNG)
+    ![verify_set_up](../images/Verify_setup.PNG)
     * Run some tests to ensure it is working properly.
 
 ### Getting started
@@ -195,12 +195,12 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
-![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+![print_tasks_command_sd](../images/PrintTasksCommand_SD.png)
 
 ### Print events feature
 This feature is facilitated by `PrintEventsCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
-![print_events_command_sd](images/PrintEventsCommand_SD.png)
+![print_events_command_sd](../images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
