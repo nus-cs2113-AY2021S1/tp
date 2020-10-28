@@ -62,6 +62,12 @@ the following packages.
 ![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/97392568-0bf0ab80-191d-11eb-99cf-c98d7863ba91.png)
 ![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/97392572-0f843280-191d-11eb-8820-f69bdae48e83.png)
 
+####Diagrams
+![TaskCommandClassDiagram](https://user-images.githubusercontent.com/47527482/97393705-211a0a00-191e-11eb-9546-f6b6b0e47bc4.png)
+![FlashcardCommandClassDiagram](https://user-images.githubusercontent.com/47527482/97393768-24ad9100-191e-11eb-8f35-c7ed86d3dd55.png)
+![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/97393784-25462780-191e-11eb-87b8-1dd4f776f2bf.png)
+![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/97393798-25debe00-191e-11eb-9c8d-c1b2f0707c46.png)
+
 ### Quiz package
 The `Storage` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package:an abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
