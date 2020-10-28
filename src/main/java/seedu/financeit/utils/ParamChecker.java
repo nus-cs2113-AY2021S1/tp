@@ -443,7 +443,7 @@ public class ParamChecker {
     }
 
     public String getUnrecognizedParamMessage(String paramType) {
-        return String.format("The param type is not recognized: \"%s\"", paramType);
+        return String.format("The param type is not recognized: \"%s\". ParamArgument (if any) for this param will be ignored.", paramType);
     }
 
     public String getParseFailParamMessage(String paramType) {

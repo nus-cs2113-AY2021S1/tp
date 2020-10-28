@@ -2,6 +2,7 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 import seedu.financeit.common.Constants;
 import seedu.financeit.data.Item;
+import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
 import java.util.HashMap;
@@ -52,20 +53,8 @@ public class RecurringEntry extends Item {
                 description, day);
     }
 
-    public boolean getIsAuto() {
-        return isAuto;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public int getDay() {
         return day;
-    }
-
-    public Constants.EntryType getEntryType() {
-        return entryType;
     }
 
     public boolean equals(RecurringEntry entry) {
@@ -91,10 +80,34 @@ public class RecurringEntry extends Item {
     public HashMap<String,Object> getDetailsForReminder() {
         HashMap<String,Object> details = new HashMap<>();
         details.put("day", day);
+        details.put("description", description);
         details.put("entryType", entryType);
         details.put("isAuto", isAuto);
-        details.put("description", description);
 
+        return details;
+    }
+
+    /**
+     * Gets all entry details as paramMap format.
+     * Used for JUnit testing
+     * @return HashMap of all attributes, with key being the paramType that
+     *         would have added that attribute and value being the attribute value in String form.
+     */
+    public HashMap<String, Object> getAllDetailsAsParamMap() {
+        HashMap<String,Object> details = getDetailsForReminder();
+        details.put(ParamChecker.PARAM_DAY, String.valueOf(day));
+        details.put(ParamChecker.PARAM_DESCRIPTION, description);
+        if (entryType == Constants.EntryType.EXP) {
+            details.put(ParamChecker.PARAM_EXP, "");
+        }
+        else {
+            details.put(ParamChecker.PARAM_INC, "");
+        }
+        details.put(ParamChecker.PARAM_AMOUNT, String.valueOf(amount));
+        if(isAuto) {
+            details.put(ParamChecker.PARAM_AUTO, "");
+        }
+        details.put(ParamChecker.PARAM_NOTES, notes);
         return details;
     }
 

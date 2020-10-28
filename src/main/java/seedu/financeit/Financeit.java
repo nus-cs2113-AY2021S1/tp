@@ -10,11 +10,9 @@ import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.AutoTrackerSaver;
-import seedu.financeit.utils.storage.GoalTrackerSaver;
-import seedu.financeit.utils.storage.ManualTrackerSaver;
-import seedu.financeit.utils.storage.SaveManager;
+import seedu.financeit.utils.storage.*;
 
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 
 public class Financeit {
@@ -35,11 +33,13 @@ public class Financeit {
         GoalTrackerSaver gt = GoalTrackerSaver.getInstance("./data", "./data/save1.txt");
         AutoTrackerSaver at = AutoTrackerSaver.getInstance("./data", "./data/save2.txt");
         load(gt, mt, at);
+        loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
+        saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
 
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
-            MenuPrinter.printReminder();    //Print reminder for all upcoming recurring entries
+            MenuPrinter.printReminders();    //Print reminder for all upcoming recurring entries
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
             packet = InputParser.getInstance().parseInput(input);
@@ -120,6 +120,24 @@ public class Financeit {
             at.save();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to save: " + m);
+        }
+    }
+
+    public static void loadLastRunDateTime() {
+        try {
+            String lastRunDateTime = SaveHandler.takeString("LastRunDateTime");
+            RunHistory.setLastRunDateTime(lastRunDateTime);
+        } catch (Exception m) {
+            System.out.println("Failed to load last run time: " + m);
+        }
+    }
+
+    public static String saveCurrentRunDateTimeAsLastRun() {
+        try {
+            String currentDateTime = RunHistory.getCurrentRunDateTime().toString();
+            SaveHandler.putString(currentDateTime, "LastRunDateTime");
+        } catch (Exception m) {
+            System.out.println("Failed to save current run time: " + m);
         }
     }
 }

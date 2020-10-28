@@ -7,7 +7,8 @@ public class RunHistory {
     private static LocalDateTime lastRunDateTime;
     private static LocalDateTime currentRunDateTime;
 
-    private static void setLastRunDateTime(LocalDateTime dateTime) {
+    public static void setLastRunDateTime(String dateTimeString) {
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString);
         RunHistory.lastRunDateTime = dateTime;
     }
 
@@ -24,6 +25,7 @@ public class RunHistory {
     }
 
     public static int getCurrentDayOfMonth() {
+        assert currentRunDateTime != null;
         return RunHistory.currentRunDateTime.getDayOfMonth();
     }
 
@@ -32,6 +34,7 @@ public class RunHistory {
     }
 
     public static int getNumOfDaysInCurrentMonth() {
+        assert currentRunDateTime != null;
         Month currentMonth = RunHistory.currentRunDateTime.getMonth();
         return currentMonth.length(false);
     }
