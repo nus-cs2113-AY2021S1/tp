@@ -554,17 +554,17 @@ Add to watchlist command extends the `Command` class, and the `parse` method in 
 
 Below is an example usage scenario of how add to watchlist command behaves at each step.
 
-**Step 1**: Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser`. 
+**Step 1:** Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser`. 
 
-**Step 2**: The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
+**Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
 
-**Step 3**: `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class.
+**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class.
 
-**Step 4**: The `Main` class would then invoke `AddToWatchlistCommand#execute()`, which will retrieve the active `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
+**Step 4:** The `Main` class would then invoke `AddToWatchlistCommand#execute()`, which will retrieve the active `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
 
-**Step 5**: `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the ArrayList of integers storing all the animes in that `Watchlist`.
+**Step 5:** `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the ArrayList of integers storing all the animes in that `Watchlist`.
 
-**Step 6**: `AddToWatchlistCommand`, `AddToWatchlistParser`, `Parser` and `Command` are terminated
+**Step 6:** `AddToWatchlistCommand`, `AddToWatchlistParser`, `Parser` and `Command` are terminated
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of anime in the AnimeData. 
 
@@ -614,15 +614,15 @@ The `view` command is currently implemented by the `ViewWatchlistCommand`. It is
 
 An example usage scenario on how view anime in watchlist behaves is given below.
 
-**Step 1**: In the `Main` class, the user will input `view -v <WATCHLIST_ID>`. `Ui` will take in this input and is passed into `Parser`.
+**Step 1:** In the `Main` class, the user will input `view -v <WATCHLIST_ID>`. `Ui` will take in this input and is passed into `Parser`.
 
-**Step 2**: In `Parser’, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
+**Step 2:** In `Parser’, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
 
-**Step 3**: `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`.
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`.
 
-**Step 4**: The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated, and if valid, a string containing all the anime name inside the active `Watchlist` will be built and returned to `Main`, where it will be printed out by `Ui`.
+**Step 4:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated, and if valid, a string containing all the anime name inside the active `Watchlist` will be built and returned to `Main`, where it will be printed out by `Ui`.
 
-**Step 5**: `ViewWatchlistParser`, `ViewWatchlistCommand`, `Parser` and `Command` are terminated
+**Step 5:** `ViewWatchlistParser`, `ViewWatchlistCommand`, `Parser` and `Command` are terminated
 
 <br/>
 
