@@ -1,4 +1,5 @@
 @startuml
+hide circle
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false
@@ -26,14 +27,16 @@ rectangle Handler {
 }
 
 rectangle Parser{
-    class InputParser {
+    class InputParser <<Singleton>> {
+        + parseInput(inputString:String):CommandPacket
     }
 
-    class ParamParser {
+    class ParamParser <<Singleton>> {
+        + parseParams(inputString:String):HashMap
     }
-    InputParser *-> ParamParser
-    InputParser "1" <-[#red]- ManualTracker #line:red;line.bold;text:red
+    InputParser *-> ParamParser : Parse param substring with >
+    InputParser "1" <-[#red]- ManualTracker #line:red;line.dashed;text:red : Parse input string with <
 
-    InputParser "1" <-[#red]- EntryTracker  #line:red;line.bold;text:red
+    InputParser "1" <-[#red]- EntryTracker  #line:red;line.dashed;text:red : Parse input string with <
 }
 @enduml

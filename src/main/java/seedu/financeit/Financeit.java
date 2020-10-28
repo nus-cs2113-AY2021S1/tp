@@ -6,7 +6,7 @@ import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.financetools.FinanceTools;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.ui.MenuPrinter;
+import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
@@ -15,14 +15,11 @@ import seedu.financeit.utils.storage.*;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 
+//@@author Feudalord
 public class Financeit {
+    static String prompt = "";
 
     public static void main(String[] args) {
-
-        String test = "$123.45";
-        test = test.replaceAll("[^\\w | .]", "");
-        System.out.println(test);
-
         String input = "";
         Boolean load = false;
         CommandPacket packet = null;
@@ -39,8 +36,12 @@ public class Financeit {
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
+<<<<<<< HEAD
             MenuPrinter.printReminders();    //Print reminder for all upcoming recurring entries
             MenuPrinter.printMainMenu();
+=======
+            printMainMenu();
+>>>>>>> 7a826c404d975c68a68ecd22f5d61bb3bc937806
             input = UiManager.handleInput();
             packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
@@ -64,7 +65,7 @@ public class Financeit {
                 break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
-                MenuPrinter.prompt = (mode == Level.OFF)
+                prompt = (mode == Level.OFF)
                         ? "Logger is off."
                         : "Logger is on.";
                 LoggerCentre.getInstance().setLevel(mode);
@@ -75,10 +76,30 @@ public class Financeit {
                 }
                 return;
             default:
-                MenuPrinter.prompt = "Invalid Command";
+                prompt = "Invalid Command";
                 break;
             }
         }
+    }
+
+    public static void status() {
+        System.out.println("Status: " + prompt);
+        prompt = "";
+    }
+
+    public static void printMainMenu() {
+        status();
+        TablePrinter.setTitle("Welcome to Main Menu");
+        TablePrinter.addRow("No.; Feature                                           ; Commands                    ");
+        TablePrinter.addRow("[1]; Manual Income/Expense Tracker; manual");
+        TablePrinter.addRow("[2]; Recurring Income/Expense Tracker; recur");
+        TablePrinter.addRow("[3]; Account Summary; acc");
+        TablePrinter.addRow("[4]; Goals Tracker; goal");
+        TablePrinter.addRow("[5]; Financial Calculator; financial");
+        TablePrinter.addRow("[6]; Save Manager; saver");
+        TablePrinter.addRow("[7]; Toggle Log On or Off; logger");
+        TablePrinter.addRow("[8]; Quit The Program; exit");
+        TablePrinter.printList();
     }
 
     public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {

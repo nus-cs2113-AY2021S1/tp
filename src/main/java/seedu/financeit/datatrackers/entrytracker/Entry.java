@@ -80,7 +80,7 @@ public class Entry extends DateTimeItem {
 
     @Override
     public String toString() {
-        return String.format("%s;%s;%s;%s;%s", this.entryType, this.category, this.amount,
+        return String.format("%s;%s;$%.2f;%s;%s", this.entryType, this.category, this.amount,
             this.getTimeFormatted(), this.description);
     }
 

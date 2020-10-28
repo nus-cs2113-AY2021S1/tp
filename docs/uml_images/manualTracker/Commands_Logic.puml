@@ -1,5 +1,6 @@
 @startuml
 left to right direction
+hide circle
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false
@@ -12,7 +13,7 @@ skinparam package<<Layout>> {
 }
 
 rectangle Logic {
-    abstract class ParamHandler <<Singleton>> {
+    abstract class ParamHandler {
         # requiredParams : HashSet<String>
         # paramsSuccessfullyParsed : HashSet<String>
         # missingRequiredParams : HashSet<String>
@@ -94,11 +95,11 @@ rectangle Commands {
 
 Commands -[hidden]down- Logic
 
-ParamChecker "1" <-[norank]- createLedgerCommand #line:blue;line.bold;text:black :'
-ParamChecker "1" <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:black
-ParamChecker "1" <-[norank]- createEntryCommand #line:blue;line.bold;text:black
-ParamChecker "1" <-[norank]- editEntryCommand #line:blue;line.bold;text:black
-ParamChecker "1" <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:black
+ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
+ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black
+ParamChecker "1" <.[norank]. createEntryCommand #line:blue;text:black
+ParamChecker "1" <.[norank]. editEntryCommand #line:blue;text:black
+ParamChecker "1" <.[norank]. retrieveEntryCommand #line:blue;text:black
 ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red

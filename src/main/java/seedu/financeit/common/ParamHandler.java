@@ -113,7 +113,6 @@ public abstract class ParamHandler {
         return false;
     }
 
-
     /**
      * To be implemented by children classes.
      *
@@ -125,4 +124,5 @@ public abstract class ParamHandler {
      */
     public abstract void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException;
+
 }
