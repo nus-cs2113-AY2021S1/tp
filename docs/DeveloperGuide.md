@@ -351,7 +351,14 @@ This section describes the user stories considered when implementing the feature
 
 ## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The program should work on any _mainstream_ OS as long as it has **Java 11.0.8** or above installed.
+1. The program should be able to hold up to 1000 tasks without a noticeable slowness in performance for typical usage.
+1. A user with an above average typing speed for regular English text (e.g not code, not system admin commands) should 
+find it handy to use command lines rather than using the mouse.
+1. The program should be able to detect all NUS modules, provided there is proper connection established between the program
+and the NUS Mods API.   
+
+{Give non-functional requirements; More to add}
 
 ## Appendix D: Glossary
 
