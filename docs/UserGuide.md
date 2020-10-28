@@ -13,11 +13,173 @@
 
 ## Features 
 
+## 1. Bookmark
+Now that more lessons are moving online, are you managing your links well? You might 
+want to save your time finding your zoom links in your email inbox and save all your 
+links in the bookmark feature to access them easily! The bookmark mode enables you to 
+compile all your links in one destination and even categorise them into different groups. 
+After entering the bookmark mode (refer to General Command 2), use the following commands to 
+navigate around bookmark mode. This section contains 8 commands : 1.1, 1.2, 1.3, 1.4, 1.5, 
+1.6, 1.7 and 1.8. 
+
+###1.1 Viewing bookmarks in each category : 
+`bm NUMBER`   
+
+Managing so many links can be a hassle! However, categorising the links into different 
+groups can make it even more efficient to find your links! After entering bookmark mode 
+(refer to General Command 2), you can view the list of links in each category using the 
+following commands. This command allows you to change the bookmark category within the
+ bookmark mode. 
+ 
+ 
+Instruction:
+1. `bm NUMBER `
+
+E.g. `bm 2`  
+Expected output: 
+![Bookmark_1.1](Images/BookmarkUG/Figure1.png)
 
 
+**Useful Information:**
+* You can only use this command anywhere after entering the bookmark mode. ( Refer to General Command 2)
+* Zoom, Nus, Internship, Hackathon, Career Talks categories are included in the default.
 
+If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
 
+**Warning:**
+* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.6)
 
+###1.2 Viewing all the bookmarks links : 
+`list`   
+
+Are you trying to find your links by entering into each category to view the links? You might want to have an easy way to view the overview of the entire list of links in each category. You can now view the entire list of links using the following commands. 
+Instructions:
+1. `list`  
+
+Expected output:
+![Bookmark_1.2](Images/BookmarkUG/Figure2.png)
+
+**Useful Information:**
+* You can only use this command anywhere after entering the bookmark mode.  (Refer to General Command 2)
+* If your category does not have any links, it will indicate that the list is empty.
+
+###1.3 Adding category :  
+`cat CATEGORY_NAME `
+
+If you cannot find the perfect category to place your bookmark, why not create your own category! In addition to the default categories that are added (Zoom, NUS, Internship, Hackathon, Career Talks), create your own category to add your bookmark links. Use the following commands to add a category and navigate it (Refer to 1.1) the same way as the rest of your categories.
+
+Instruction: 
+1. `cat CATEGORY_NAME`   
+  
+e.g. `cat entertainment`, `cat stocks`
+
+Expected output:   
+![Bookmark_1.3](Images/BookmarkUG/Figure3.png)
+
+**Useful Information:** 
+* You can only use this command anywhere after entering the bookmark mode.  (Refer to General Command 2)
+* NUS, Zoom, Internship, Hackathon and Career Talk categories are included in the default.
+
+If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
+
+**Warning:** 
+* Ensure that the category name is not empty. Error will be shown if the category name is empty. 
+
+###1.4 Deleting a category :  
+`delete CATEGORY_NUMBER`  
+
+When you have a category, but you have no important links related to the category, take it out of your bookmark list! Organise and design your bookmark categories to your own personal needs by adding your own category (refer to 1.3) and deleting unnecessary categories using these following commands.
+
+Instruction:  
+
+1. delete CATEGORY_NUMBER  
+
+e.g. delete 6  
+Expected output:  
+![Bookmark_1.4](Images/BookmarkUG/Figure4.png)
+
+**Useful Information:**
+* You can only use this command in bookmark main.  (Refer to 1.5 to go back to the bookmark main)
+
+Before deleting a category, take note of the following warnings. If you encounter any problems, refer to FAQ at the end of the user guide. 
+
+**Warning:**
+* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.5)
+* CAUTION: Deleting a category will delete all the bookmarks in the category! 
+
+###1.5 Going back to bookmark main : 
+`back` 
+There are two modes in bookmark feature: the main bookmark mode (refer to General Command 2) and the category mode (refer to 1.1). To navigate freely from mode to mode, use the following command. This command goes back to the previous mode depending on which mode you are in. 
+ 
+Instruction: 
+1. back 
+
+Expected output:   
+![Bookmark_1.5](Images/BookmarkUG/Figure5.png)
+![Bookmark_1.6](Images/BookmarkUG/Figure6.png)
+
+**Useful Information:**
+* When you input back in any bookmark category, you are brought back to the bookmark main. 
+* When you input back in the bookmark main, you will be prompted to type “exit” to exit bookmark mode. 
+
+###1.6 Adding a link to your chosen category : 
+`add LINK` 
+If you have a link to add to your bookmark category, follow these commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not add an invalid link or an empty link to your bookmark.
+
+Instruction: 
+1. add LINK  
+
+e.g. add https://nus-cs2113-ay2021s1.github.io/website/index.html
+Expected output:   
+![Bookmark_1.7](Images/BookmarkUG/Figure7.png)
+
+**Useful Information:**
+* You can only use this command after choosing your category. (Refer to 1.1)
+
+If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
+
+**Warning:** 
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to 1.1) 
+* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (does not contain “https://” and a “.”). 
+
+###1.7 Deleting a link: 
+`rm LINK_NUMBER `
+If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not add input an empty or a invalid link number
+
+Instruction: 
+1. rm LINK_NUMBER  
+
+e.g. rm 1
+Expected output:   
+![Bookmark_1.8](Images/BookmarkUG/Figure8.png)
+
+**Useful Information:**
+* You can only use this command after choosing your category. (Refer to 1.1)
+
+If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
+
+**Warning:**
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to 1.1) 
+* Ensure that the link number that you want to remove is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
+
+###1.8 Marking/ Unmarking a link as a starred link: star LINK_NUMBER 
+You might have many links that you need to manage, however, some of the links might be more important than others. If you have such links, you can easily mark them up by following these few commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not have an empty or invalid link number.
+
+Instruction: 
+1. `star LINK_NUMBER`  
+
+e.g. `star 1`
+Expected output:   
+![Bookmark_1.9](Images/BookmarkUG/Figure9.png)
+
+**Useful Information:** 
+* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
+
+If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
+
+**Warning:**
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to 1.1) 
+* Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
 
 
 ## 3. Academic
