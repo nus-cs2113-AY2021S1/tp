@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class QuoteList extends QuotesifyList<Quote> {
     private ArrayList<Quote> quotes = super.getList();
 
+    public static final String DEFAULT_QUOTE = "Better days are coming, they are called Saturday and Sunday.";
+
     public QuoteList() {
         super(new ArrayList<>());
     }
@@ -88,7 +90,7 @@ public class QuoteList extends QuotesifyList<Quote> {
             Quote quoteToPrint = getQuote(randomQuoteNumber);
             return quoteToPrint.toString();
         } catch (IllegalArgumentException e) {
-            return "*Inserts inspirational quote here*";
+            return DEFAULT_QUOTE;
         }
     }
 
