@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class StorageManager {
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
+    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -59,28 +60,6 @@ public class StorageManager {
         return workspaceList;
     }
 
-    // ========================== User Saving and Loading ==========================
-
-    /**
-     * Invokes the save method in UserStorage to save the user data.
-     *
-     * @param user the user object to be saved
-     * @throws AniException when an error occurred while saving the user data
-     */
-    public void saveUser(User user) throws AniException {
-        userStorage.save(user);
-    }
-
-    /**
-     * Invokes the load method in UserStorage to load the user data.
-     *
-     * @return the user object that was loaded
-     * @throws AniException when an error occurred while loading the user data
-     */
-    public User loadUser() throws AniException {
-        return userStorage.load();
-    }
-
     // ========================== Workspace Saving ==========================
 
     public void saveWorkspace(Workspace workspace) throws AniException {
@@ -91,17 +70,31 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     public void deleteWorkspace(String name) throws AniException {
+        assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
-        Path deletePath = Paths.get(deletePathString);
 
         try {
+            Path deletePath = Paths.get(deletePathString);
+            LOGGER.log(Level.INFO, "Deleting workspace " + name);
+
             Files.walk(deletePath)
                     .sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
                     .forEach(File::delete);
-        } catch (IOException e) {
-            throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
+        } catch (IOException exception) {
+            LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
+            throw new AniException(EXCEPTION_DELETE_FAILED);
         }
+    }
+
+    // ========================== User Saving and Loading ==========================
+
+    public void saveUser(User user) throws AniException {
+        userStorage.save(user);
+    }
+
+    public User loadUser() throws AniException {
+        return userStorage.load();
     }
 
     // ========================== Watchlist Saving and Loading ==========================

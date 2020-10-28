@@ -1,7 +1,5 @@
 package anichan.human;
 
-import anichan.anime.Anime;
-import anichan.anime.AnimeData;
 import anichan.bookmark.Bookmark;
 import anichan.watchlist.Watchlist;
 

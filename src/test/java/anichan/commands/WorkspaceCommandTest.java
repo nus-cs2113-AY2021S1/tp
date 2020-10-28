@@ -1,4 +1,4 @@
-package anichan.command;
+package anichan.commands;
 
 import anichan.anime.AnimeData;
 import anichan.human.User;
@@ -23,7 +23,6 @@ class WorkspaceCommandTest {
     private AnimeData animeData;
     private StorageManager storageManager;
     private User user;
-    // private Workspace activeWorkspace;
 
     @BeforeEach
     void setUp() throws AniException {
@@ -46,7 +45,6 @@ class WorkspaceCommandTest {
         Workspace newWorkspace = user.addWorkspace("Default2");
         newWorkspace.setWatchlistList(watchlistList);
         user.setActiveWorkspace(newWorkspace);
-        // activeWorkspace = user.getActiveWorkspace();
     }
 
     @Test
@@ -60,12 +58,12 @@ class WorkspaceCommandTest {
 
     @Test
     void switchWorkspace_validName_switched() throws AniException {
-        // Create workspace
+        // Creates workspace
         WorkspaceParser addParse = new WorkspaceParser();
         WorkspaceCommand testAddWorkspace = addParse.parse("-n Crunchy rail 12345");
         testAddWorkspace.execute(animeData, storageManager, user);
 
-        // Test switching workspace
+        // Tests switching workspace
         WorkspaceParser switchParse = new WorkspaceParser();
         WorkspaceCommand testSwitchWorkspace = switchParse.parse("-s Crunchy rail 12345");
 
@@ -76,12 +74,12 @@ class WorkspaceCommandTest {
 
     @Test
     void deleteWorkspace_validName_deleted() throws AniException {
-        // Create two workspaces
+        // Creates two workspaces
         WorkspaceParser addParse = new WorkspaceParser();
         WorkspaceCommand testAddWorkspace = addParse.parse("-n Crunchy rail 12345");
         testAddWorkspace.execute(animeData, storageManager, user);
 
-        // Test deleting workspace
+        // Tests deleting workspace
         WorkspaceParser deleteParse = new WorkspaceParser();
         WorkspaceCommand testDeleteWorkspace = deleteParse.parse("-d Crunchy rail 12345");
 

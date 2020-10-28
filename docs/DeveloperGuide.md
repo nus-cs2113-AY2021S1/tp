@@ -178,6 +178,7 @@ The `AnimeData `component:
 
 <br/>
 
+<!-- @@author ChanJianHao -->
 ### 3.6 User Component
 ![User Component Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 7: User Component Diagram*
@@ -186,13 +187,14 @@ The User inherits from the abstract `Human` class and stores the name and gender
 
 The `User`component: 
 * can provide user information like `name`, `gender`, and `honorific name`
-* Stores an array list of type `Workspace`
+* stores an array list of type `Workspace`
 * can add, set, and switch between workspaces 
 
 The `Workspace` component:  
 * can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
 * can allow `User` to change his active `Watchlist`.
 
+<!-- @@author -->
 <br/>
 
 ### 3.7 StorageManager Component
@@ -205,5 +207,84 @@ their respective storage class, `UserStorage`, `WatchlistStorage`, and `Bookmark
 * can **read** script files that are in `.txt` format using the `ScriptStorage` class.
 
 **AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
+
+<br/>
+
+## 4. Implementation
+This section describes some details on some of the noteworthy features in **AniChan**.
+
+<br/>
+
+### 4.1 Workspace Feature
+
+Similar to a desktop, AniChan has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+
+#### 4.1.1 Add new workspace 
+
+WIP.
+
+<br/>
+
+## 8. Documentation, logging, testing, dev-ops
+
+This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
+
+<br/>
+
+### 8.1 Documentation
+
+We use **Jekyll** to manage documentation. We recommend that you document your features implementation and code changes so that other developers are aware of its architecture.
+
+The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website at with [this guide](https://se-education.org/guides/tutorials/jekyll.html).
+
+
+<br/>
+
+### 8.2 Logging
+
+We encourage the use of logger in this project as they provide deeper insights than error messages which can greatly help developers identify bugs and simplify their logging process.
+
+We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
+
+`AniLogger` is used to manage the logging levels and logging destinations. Based on the default setting, logs will be written to both console and file `data/AniChan.log`.
+
+The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
+
+We use the following log levels:
+*   `Level.SEVERE` : A critical failure, which prevents normal execution of the program.
+*   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
+*   `Level.INFO`: General noteworthy information of the program.
+
+<br/>
+
+
+### 8.3 Testing
+
+Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
+
+<br/>
+
+#### 8.3.1 Running tests
+
+There are primarily 2 ways to run the tests.
+
+**Method 1: Using IntelliJ**
+*   To run all tests, right-click on the `src/test/java` folder in the project panel and choose `Run Tests`.
+<br/>
+
+**Method 2: Using Gradle**
+*   Open a terminal and navigate to project directory, run command `./gradlew clean checkstyleMain checkstyleTest test`.
+
+<br/>
+
+### 8.4 Dev-ops
+
+<br/>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <br/>

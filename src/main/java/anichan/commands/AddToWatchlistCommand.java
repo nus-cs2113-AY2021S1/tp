@@ -1,14 +1,13 @@
-package anichan.command;
+package anichan.commands;
 
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.watchlist.Watchlist;
 import anichan.anime.Anime;
 import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.storage.StorageManager;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,7 +18,7 @@ public class AddToWatchlistCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
 
     private Integer animeIndex;
-    private static final Logger LOGGER = getAniLogger(AddToWatchlistCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
     public AddToWatchlistCommand() {
         // LOGGER.setLevel(Level.WARNING);
