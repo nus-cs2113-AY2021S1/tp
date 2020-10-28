@@ -20,11 +20,11 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
-[comment]:<>(##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Exit](#exit)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
@@ -403,8 +403,6 @@ Example of usage:
 Expected output:
 
 
-
-<!---
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
@@ -421,9 +419,7 @@ Example of usage:
 Expected output:
 
 
--->
-
-### <a id="list-e"><ins>3.17 Event Manager:</ins> `list-e`</a>
+### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -438,7 +434,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="remind-e"><ins>3.18 Remind:</ins> `remind-e`</a>
+### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -452,7 +448,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-e"><ins>3.19 Delete Event:</ins> `delete-e`</a>
+### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -466,7 +462,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="exit"><ins>3.20 Exit:</ins> `exit`</a>
+### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 
