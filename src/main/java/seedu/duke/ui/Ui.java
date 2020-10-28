@@ -206,18 +206,14 @@ public class Ui {
         System.out.println("The file does not exist or has been corrupted!");
     }
 
-    public void printExtractEmptyTextMessage() {
-        System.out.println("Empty text subject and no date/time fields, event won't be created!");
-    }
-
     public void printExtractNoDateEventMessage() {
-        System.out.println("Since no date was detected in the text body, " +
-                "the personal event will only contain the description.");
+        System.out.println("Since no date was detected in the text body, "
+                + "the personal event will only contain the description.");
     }
 
     public void printExtractNoTimeEventMessage() {
         System.out.println("Since no time detected in text body, "
-                + " the personal event will only have the date and description.");
+                + "the personal event will only have the date and description.");
     }
 
     public void printExtractChooseTimeMessage(int timeCount, ArrayList<LocalTime> timeList) {
@@ -265,7 +261,7 @@ public class Ui {
     }
 
     public void printExtractSingleDateDetectedMessage(LocalDate finalDate) {
-        System.out.println("One time slot detected and chosen: " + finalDate);
+        System.out.println("One date detected and chosen: " + finalDate);
     }
 
     /**

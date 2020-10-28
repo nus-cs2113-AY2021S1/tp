@@ -33,29 +33,28 @@ public class AddCommand extends Command {
      */
     public AddCommand(String command) {
         this.isExit = false;
-        String[] commandWords = command.split(" ");
-        String tempEventType = commandWords[0].toLowerCase();
-        switch (tempEventType) {
-        case "zoom":
-            eventType = "Zoom";
-            break;
-        case "personal":
-            eventType = "Personal";
-            break;
-        case "timetable":
-            eventType = "Timetable";
-            break;
-        default:
+        if (command == null || command.equals("") || command.equals(" ")) {
             isInvalidEventType = true;
-            break;
+        } else {
+            String[] commandWords = command.split(" ");
+            String tempEventType = commandWords[0].toLowerCase();
+            switch (tempEventType) {
+            case "zoom":
+                eventType = "Zoom";
+                break;
+            case "personal":
+                eventType = "Personal";
+                break;
+            case "timetable":
+                eventType = "Timetable";
+                break;
+            default:
+                isInvalidEventType = true;
+                break;
+            }
+            String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
+            argument = String.join(" ", argumentWords);
         }
-        if (commandWords.length == 1 && eventType.equals("Personal")) {
-            // empty description, even with valid event types
-            isInvalidEventType = true;
-            System.out.println("Empty parameters for Personal event!");
-        }
-        String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
-        argument = String.join(" ", argumentWords);
     }
 
     /**
@@ -67,33 +66,39 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        String[] argumentWords = argument.split(";");
-        if (!isInvalidEventType) {
-            try {
-                switch (eventType) {
-                case "Personal":
-                    addPersonal(data, ui, argumentWords);
-                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                    break;
-                case "Zoom":
-                    addZoom(data, ui, argumentWords);
-                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                    break;
-                case "Timetable":
-                    addTimetable(data, ui, argumentWords);
-                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                    storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                    break;
-                default:
-                    throw new EventAddErrorException("Invalid event type ot be added!");
-                }
-            } catch (DukeException e) {
-                e.printErrorMessage();
+        if (argument == null) {
+            throw new EventAddErrorException("Wrong format for the add command!");
+        }
+        if (isInvalidEventType) {
+            throw new EventAddErrorException("Invalid event type to be added!");
+        }
+        if (argument.equals("")) {
+            throw new EventAddErrorException("Empty description for the event!");
+        }
+
+        try {
+            String[] argumentWords = argument.split(";");
+            switch (eventType) {
+            case "Personal":
+                addPersonal(data, ui, argumentWords);
+                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+                break;
+            case "Zoom":
+                addZoom(data, ui, argumentWords);
+                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+                break;
+            case "Timetable":
+                addTimetable(data, ui, argumentWords);
+                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+                break;
+            default:
+                throw new EventAddErrorException("Invalid event type to be added!");
             }
-        } else {
-            throw new EventAddErrorException("Invalid event type to add!");
+        } catch (DukeException e) {
+                e.printErrorMessage();
         }
     }
 

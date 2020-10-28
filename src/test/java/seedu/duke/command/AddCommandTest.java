@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.EventAddErrorException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -12,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddCommandTest {
     private final PrintStream standardOut = System.out;
@@ -20,6 +22,30 @@ class AddCommandTest {
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @Test
+    void execute_emptyInputForAddCommand_EventAddErrorException() throws DukeException {
+        UserData data = new UserData();
+        Ui ui = new Ui();
+        Storage storage = new Storage("data", ui);
+        String addInput = "";
+        assertThrows(EventAddErrorException.class, () -> {
+            AddCommand addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    void execute_emptyDescriptionForPersonalEvent_EventAddErrorException() throws DukeException {
+        UserData data = new UserData();
+        Ui ui = new Ui();
+        Storage storage = new Storage("data", ui);
+        String addInput = "zoom";
+        assertThrows(EventAddErrorException.class, () -> {
+            AddCommand addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
     }
 
     @Test

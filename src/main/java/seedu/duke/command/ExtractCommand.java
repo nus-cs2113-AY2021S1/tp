@@ -20,6 +20,8 @@ import java.util.regex.Pattern;
 public class ExtractCommand extends Command {
     private int dateCount;
     private int timeCount;
+    private String textSubject = null;
+    private String textBody = null;
 
 
     /**
@@ -29,7 +31,11 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        this.command = command;
+        String[] arguments = command.split(";", 2);
+        if (arguments.length == 2) {
+            textSubject = arguments[0];
+            textBody = arguments[1].trim();
+        }
     }
 
     /**
@@ -41,24 +47,23 @@ public class ExtractCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        String[] arguments = command.split(";", 2);
-        if (arguments.length != 2) {
-            throw new InvalidExtractCommandException("The format for extract command is wrong!");
+        if (textSubject == null || textBody == null) {
+            throw new InvalidExtractCommandException("Incorrect format for extract command!");
         }
-        String textSubject = arguments[0];
-        String textBody = arguments[1].trim();
+        if (textSubject.equals("")) {
+            throw new InvalidExtractCommandException("There is no text subject entered!");
+        }
+        if (textBody.equals("")) {
+            throw new InvalidExtractCommandException("There is no text body entered!");
+        }
 
         ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
         if (finalDate == null) {
-            if (textSubject.equals("")) {
-                ui.printExtractEmptyTextMessage();
-            } else {
-                ui.printExtractNoDateEventMessage();
-                Personal personalEvent = new Personal(textSubject);
-                data.addToEventList("Personal", personalEvent);
-            }
+            ui.printExtractNoDateEventMessage();
+            Personal personalEvent = new Personal(textSubject);
+            data.addToEventList("Personal", personalEvent);
         } else {
             ArrayList<LocalTime> timeList = detectTime(textBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
@@ -97,6 +102,7 @@ public class ExtractCommand extends Command {
                     time = time.substring(0, time.length() - 2) + ":00 " + time.substring(time.length() - 2);
                 }
                 if (!time.contains(" ")) {
+                    // adds space between AM/PM for it to work with parser later
                     time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
                 }
             }
@@ -375,6 +381,5 @@ public class ExtractCommand extends Command {
         String year = String.valueOf(yearInInt);
         return year;
     }
-
 
 }
