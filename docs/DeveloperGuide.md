@@ -449,7 +449,9 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
 
-**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. `activeWorkspace.getWatchlistList()` is first invoked to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. The `Watchlist` object is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
+**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. Then, `activeWorkspace.getWatchlistList()` is invoked to initialise the variable `watchlistList`. 
+
+**Step 5:** A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. It is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
 
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
@@ -457,15 +459,15 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 <br/>
 
-**Step 5:** `WatchlistCommand` is terminated.
+**Step 6:** `WatchlistCommand` is terminated.
 
-![WatchlistCommand After Step 5 State](images/WatchlistCommand-After-Step-5-State.png)
+![WatchlistCommand After Step 6 State](images/WatchlistCommand-After-Step-6-State.png)
 
-*Figure 15: WatchlistCommand After Step 5 State*
+*Figure 15: WatchlistCommand After Step 6 State*
 
 <br/>
 
-All the other options in the watchlist command also follows a similar execution process. The following diagrams will continue from step 5, and it will show you how the state of the application changes as it continues to execute the select and delete option.
+All the other options in the watchlist command also follows a similar execution process. The following diagrams will continue from step 6, and it will show you how the state of the application changes as it continues to execute the select and delete option.
 > :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
 The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
