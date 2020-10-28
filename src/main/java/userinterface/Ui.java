@@ -66,7 +66,7 @@ public class Ui {
                 printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
                 printModeIntro(newMode);
             } else {
-                printLine("You are already in " + ModeNames.getCurrentModeName() +"!");
+                printLine("You are already in " + ModeNames.getCurrentModeName() + "!");
             }
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
@@ -90,8 +90,8 @@ public class Ui {
 
     public static void printWelcomeAcademicMessage() {
         System.out.println("Welcome to academic mode!");
-        System.out.println("\nYou can use this mode to keep track of your grades" +
-                "\n& important contacts");
+        System.out.println("\nYou can use this mode to keep track of your grades"
+                + "\n& important contacts");
         System.out.println("\nInsert \"help\" to find the list of commands available");
         printDivider();
     }
