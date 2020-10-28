@@ -21,6 +21,8 @@ public class CommandParser {
             return CommandType.CHANGE_MODE;
         } else if (commandModified.equals("help")) {
             return CommandType.HELP;
+        } else if (commandModified.equals("highlight")) {
+            return CommandType.HIGHLIGHT;
         } else {
             return CommandType.UNIDENTIFIABLE;
         }

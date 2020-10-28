@@ -21,8 +21,17 @@ public class StudyItLog {
         ch.setLevel(Level.SEVERE);
         logger.addHandler(ch);
 
+
+
         try {
-            FileHandler fh = new FileHandler("StudyIt_Log.log");
+            String dirPath = "logs";
+            File fileDir = new File(dirPath);
+
+            if (!fileDir.exists()) {
+                fileDir.mkdir();
+            }
+
+            FileHandler fh = new FileHandler("logs/StudyIt_Logger.log", true);
             fh.setFormatter(new SimpleFormatter());
             fh.setLevel(Level.FINE);
             logger.addHandler(fh);

@@ -1,13 +1,21 @@
 package userinterface;
 
+import academic.AcademicRun;
+import academic.AcademicUi;
+import academic.Grade;
+import academic.Person;
 import bookmark.BookmarkUi;
+import bookmark.BookmarkRun;
 import exceptions.InvalidModeException;
 import studyit.ModeNames;
 import studyit.Mode;
 import studyit.CommandParser;
 import studyit.StudyIt;
 import studyit.StudyItLog;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
@@ -52,9 +60,14 @@ public class Ui {
     public static void changeModeCommand(String command) {
         try {
             Mode newMode = CommandParser.getDestinationMode(command);
-            StudyIt.changeMode(newMode);
-            printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
-            printModeIntro(newMode);
+
+            if (newMode != StudyIt.getCurrentMode()) {
+                StudyIt.changeMode(newMode);
+                printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
+                printModeIntro(newMode);
+            } else {
+                printLine("You are already in " + ModeNames.getCurrentModeName() + "!");
+            }
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
@@ -68,7 +81,26 @@ public class Ui {
             BookmarkUi.printWelcomeBookmarkMessage();
             //BookmarkUi.showBookmarkCategoryList();
             printDivider();
+        } else if (newMode == Mode.ACADEMIC) {
+            printWelcomeAcademicMessage();
+        } else if (newMode == Mode.TIMETABLE) {
+            printWelcomeTimetableMessage();
         }
+    }
+
+    public static void printWelcomeAcademicMessage() {
+        System.out.println("Welcome to academic mode!");
+        System.out.println("\nYou can use this mode to keep track of your grades"
+                + "\n& important contacts");
+        System.out.println("\nInsert \"help\" to find the list of commands available");
+        printDivider();
+    }
+
+    public static void printWelcomeTimetableMessage() {
+        System.out.println("Welcome to timetable mode!");
+        System.out.println("\nYou can use this mode to schedule your classes & events");
+        System.out.println("\nInsert \"help\" to find the list of commands available");
+        printDivider();
     }
 
     public static void exitMode() {
@@ -77,5 +109,12 @@ public class Ui {
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
+    }
+
+    public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
+        System.out.println("Here are your starred items:");
+        bookmarkRun.run("list star");
+        System.out.println();
+        academicRun.run("list star");
     }
 }

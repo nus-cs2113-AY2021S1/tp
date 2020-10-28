@@ -15,5 +15,10 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
-flashcard.txt
-data/timetable.txt
+
+# Data files
+data
+
+# Log files
+logs
+

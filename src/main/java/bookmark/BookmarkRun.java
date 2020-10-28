@@ -8,17 +8,18 @@ import studyit.StudyItLog;
 import java.util.ArrayList;
 
 public class BookmarkRun {
-    private ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
+    private ArrayList<BookmarkCategory> bookmarkCategories;
     private BookmarkUi bookmarkUi;
     private BookmarkParser bookmarkParser;
     private BookmarkStorage bookmarkStorage;
-    private int mode;
+    private int mode = 0;
 
     public BookmarkRun() {
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
         bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
         bookmarkCategories = bookmarkStorage.loadFile();
+        StudyItLog.logger.info("Bookmark mode initialized");
     }
 
     public void run(String command) {
@@ -28,7 +29,7 @@ public class BookmarkRun {
             mode = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
-            StudyItLog.logger.info("Cannot understand bookmark command");
+            StudyItLog.logger.warning("Invalid bookmark command: Command unidentifiable");
         }
     }
 }

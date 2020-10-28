@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.InvalidEmailException;
 import timetable.DateList;
 import userinterface.Ui;
 
@@ -19,7 +20,7 @@ public class AcademicStorage {
     public static void loadFile(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades) throws IOException {
         try {
             loadText(listOfPerson,listOfGrades);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | InvalidEmailException e) {
             File f = new File(filePath);
             f.createNewFile();
             System.out.println("New file created for academic helper.");
@@ -27,17 +28,16 @@ public class AcademicStorage {
     }
 
     private static void loadText(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades)
-            throws FileNotFoundException {
+            throws FileNotFoundException, InvalidEmailException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
             String importedCommand = s.nextLine();
             if (importedCommand.startsWith("[P]")) {
-                PersonBook.addPerson(AcademicCommandParser.parseImportedStatement(importedCommand),listOfPerson);
+                PersonBook.addPerson(AcademicCommandParser.parseImportedPerson(importedCommand),listOfPerson);
             } else if (importedCommand.startsWith("[G]")) {
-                GradeBook.addGrade(AcademicCommandParser.parseImportedStatement(importedCommand),listOfGrades);
+                GradeBook.addGrade(AcademicCommandParser.parseImportedGrade(importedCommand),listOfGrades);
             }
-
         }
     }
 
