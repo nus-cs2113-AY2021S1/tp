@@ -91,7 +91,7 @@ public class InputParser {
             }
             commandString = buffer[0].toLowerCase();
             String paramSubstring = separator + buffer[1];
-            params = new ParamsParser(paramSubstring).parseParams();
+            params = ParamsParser.getInstance().parseParams(paramSubstring);
         } catch (EmptyCommandStringException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());
         }

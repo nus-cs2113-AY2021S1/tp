@@ -1,6 +1,7 @@
+logger
 manual
 commands
-ledger open /date 200404
+ledger new /date 200404 /date 190505
 exit
 ledger open /id
 ledger list
