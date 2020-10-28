@@ -19,6 +19,7 @@
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
 <br/>&nbsp;4.3 [Workspace Feature](#43-workspace-feature)
 <br/>&nbsp;4.4 [Watchlist Management Feature](#44-watchlist-management-feature)
+<br/>&nbsp;4.5 [Bookmark Feature](#45-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
@@ -512,6 +513,148 @@ Aspect: **Saving watchlist data**
 
 Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. 
 Losing work data can also be a frustrating and costly mistake to translators especially if these data are important. Hence, we definitely do not want to lose potential users of this product due to such a problem that could be alleviated easily.
+
+<br/>
+
+### 4.5 Bookmark Feature
+Overview of the different features provided by bookmark
+The `bookmark` feature aims to provide the user with the ability to create shortcuts to anime they wish to track. This feature further provides tools to monitor the progress of a series and make informative notes.
+
+
+#### 4.5.1 Current Implementation
+
+The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
+
+![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
+*Figure 22: Bookmark Class Diagram*
+
+`BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
+
+| Bookmark Command | Bookmark Action | Required field |
+|---|---|---|
+| Add              | a               | Anime ID       |
+| Delete           | d               | Bookmark ID    |
+| List             | l               | Not required |
+| Episode          | e               | Bookmark ID, Episode |
+| Note             | n               | Bookmark ID, Note |
+| Remove Note      | r               | Bookmark ID, Note ID |
+| Info             | i               | Bookmark ID |
+
+<br/>
+
+Given below is the example usage scenario and how the `Bookmark` command behaves at each step.
+
+> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. 
+The following example will use one-based to be consistent with the command. 
+
+**Step 1:** User inputs command `bookmark`,  the application then calls `Parser#getCommand()` and passes the command to it.
+
+**Step 2:** `BookmarkParser` extracts “Bookmark Action” from the command, and based on the command type, it will determine the respective required field. The `BookmarkParser` is responsible for validating the input parameters and will throw an `AniException` when encountering unrecognised inputs.
+
+For example: `bookmark 2 -e 5`, the parser will create `BookmarkCommand` and call the method setBookmarkAction(“e”), setBookmarkIndex(2) and setBookmarkEpisode(5).
+
+**Step 3:** The application calls `BookmarkCommand#execute()` and the command will use the `BookmarkAction` to do a corresponding validation check on the field before calling the  Bookmark Operations.
+
+Below is a list of bookmark operations:
+* `Bookmark#addAnimeBookmark()` : Adds the `Anime` index provided into the bookmark list.
+* `Bookmark#getListInString()`: List all entries within the `Bookmark` using the `Bookmark` index together with the `Anime` name.
+* `Bookmark#deleteAnimeBookmark()`: Remove the `Bookmark` index provided from the bookmark list.
+* `Bookmark#editBookmarkEpisode()`: Edit the current episode for a Bookmark entry .
+* `Bookmark#addNote()`: Add a note for a Bookmark entry.
+* `Bookmark#removeNote()`: Remove a note from a Bookmark entry.
+* `Bookmark#getAnimeInfoFromBookmark()`: Retrieve the anime info on the anime id kept at the specified bookmark entry.
+* `Bookmark#getBookmarkEpisode()`: Retrieve the episode field for a Bookmark entry.
+* `Bookmark#getNoteInString()`: Retrieve notes in a list within the specified bookmark entry.
+
+**Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
+
+![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
+*Figure 23: Bookmark Entry After Add*
+
+> :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
+
+**Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
+
+![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
+*Figure 24: Bookmark Entries with more Add*
+
+The following sequence diagram shows how the `Add Bookmark` operation works:
+
+![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
+*Figure 25: Bookmark Add Command Sequence Diagram*
+
+**Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
+
+```
+Listing all anime in bookmark:
+	1. To Heart 2
+	2. Cowboy Bebop
+	3. InuYasha the Movie 2: The Castle Beyond the Looking Glass
+```
+
+**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
+
+![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
+*Figure 25: Bookmark Entries After Delete*
+
+> :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
+
+**Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
+
+![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
+*Figure 26: Bookmark Entries After Edit Episode*
+
+**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
+
+![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
+*Figure 25: Bookmark Entries After Add Note*
+
+**Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime id at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
+
+```
+Here is the information for that anime.
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. Schedule push back
+```
+
+**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
+
+![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
+*Figure 25: Bookmark Entries After Edit Episode*
+
+<br/>
+
+#### 4.5.2 Design consideration
+This section describes the various design considerations taken when implementing the `Bookmark` feature.
+
+Aspect: **How should the bookmark entries be kept**
+
+The first design consideration was the data structure on how to bookmark entries should be maintained. The main issue here was the cohesiveness between the `bookmark` object and the `workspace`.
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Keep only the anime index information within the bookmark **(Current)**            | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
+| 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
+
+<br/>
+
+Aspect: **How should bookmark entries keep anime information**
+
+The second design consideration was how to keep the reference to the anime object. The main issue here was the storage and duplication of data.
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(Current)**            | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands has to communicate with AnimeData for anime-related functionalities. |
+| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - One extra layer of unnecessary abstraction (nesting), also introducing more coupling and dependency  |
 
 <br/>
 
