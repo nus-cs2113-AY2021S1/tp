@@ -48,7 +48,8 @@ public class Ui {
             + "14.listtask\n"
             + "15.open\n"
             + "16.exit\n"
-            + "17.reset\n";
+            + "17.clear\n"
+            + "18.reset\n";
     public static final String LOGO = "|\\\\        /|         |======            ||\n"
             + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
             + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"

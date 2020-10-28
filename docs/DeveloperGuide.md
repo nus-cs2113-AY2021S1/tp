@@ -61,7 +61,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 
 ### 2.2 Before writing the code <a name="2.2"></a>
 1. Configure the coding style
-    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style yo match ours.
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
     
 1. Set up CI
     * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
