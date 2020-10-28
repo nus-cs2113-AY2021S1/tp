@@ -76,7 +76,7 @@ This section describes the design overview of the application.
 
 ### Architecture
 
-The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
+The figure below shows the overall design of the application. 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
 
@@ -85,41 +85,39 @@ Parser: Interprets the user's input.
 Command: The command executor.
 Model: Holds the data of the application in memory.
 Storage: Reads data from, and writes data to, the hard disk. 
-
+Given below is a sequence diagram when adding a Todo task.
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
 
-The quick overview of components and the workflow is given below.
+An overview of each components is listed below.
 
 ### Ui
-The `Ui` class receives the input from the keyboard and passes to the `Parser` class to handle it. After executing commands, 
-most of the output will be done by the `Ui` class.
+The `Ui` class is responsible for receiving the input from the user and printing the results to the user.
 
 ### Parser
 
-The `Parser` class receives the user's input from the `Ui` class. It interprets the user's input and returns the resepective command. 
+The `Parser` class is responsible for interpreting the user's input and calling the respective command. 
 
 ### Command
 
-The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
+The different `Command` classes are responsible for receiving the user's input from the `Parser` class and executing the corresponding commands. 
 The figure belows shows the class diagram of the command class: <br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/command.JPG" alt="" width="200"/><br/>
-All the different Command classes inherit from the `Command` class.
+All Command classes inherit from the `Command` class.
 
 ### Storage
 
-The `Storage` class will create a local file when the user launches the application for the first time to save the data. 
-After the first launch, every time the user reopens the application, it will load the information to the Model from the local file. 
-Whenever the calendarList is updated, all information will be automatically saved to the same local file.
+The `Storage` class is responsible for reading and writing data to the hard disk.
+
 
 ### Model
+The model is responsible for holding the data of the application in memory. The figure below shows the structure of the Model in this application.
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
-The figure given above shows the structure of the Model in this application. When executing commands, 
-the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
+ When executing commands,the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
 It is split into two subclasses: `Task` and `Event` class.
 The `CalendarList` class holds the array of `CalendarItem` and keeps track of the number of total items, total tasks, and total events.
-Given below is the simple overview of Task and Event classes.
+The `Task` and `Event` classes are further explained below.
 
 #### Task
 
@@ -309,7 +307,13 @@ There are two ways to run tests.
 ### DevOps guide
 
 
-## Appendix A: Product scope
+## Appendix A: About the product 
+
+### Product scope
+*25HoursADay* is a task scheduling program optimized for use via a Command Line Interface (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). It serves as a one-stop application for the users to keep track of their
+tasks, events and any 
+It is specially catered to NUS students, offering features relevant to a NUS student. 
 
 ### Target user profile
 
@@ -373,11 +377,16 @@ The table below shows the information and contact details of developers.
 
 ## Appendix F: Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+General steps for manual testing:
+1. Execute an "Add" action.
+2. Execute a "Delete" / "Find" / "Print" / "Set" / "View" action of the same command type.
 
-Command summary
+Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format. 
 
-|Action| Type | Command Format | 
+### Command summary
+The following table contains the list of commands available in the application.
+
+|Action| Command Type | Command Format | 
 |--------|----------|----------|
 |add|activity event|`act <activity_description> @<venue> / <date> <time>`|
 |add|additional information for event|`/a <event_number> - <additional_information>`|
