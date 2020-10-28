@@ -377,8 +377,9 @@ double check how many days you still have before the deadline, you can type the 
 
 #### Printing countdown of both deadline and exam events: `countdown`
 
-Print the countdown of all the unfinished deadlines and all the upcoming exams.
-The remaining date is being printed in the ascending sequence.
+If you type `countdown`, you can see the countdown of all the unfinished deadlines tasks and all the upcoming exam events.
+
+The remaining date is printed in ascending order.
 
 All the unfinished deadlines will be printed before all the upcoming exams.
 
@@ -387,15 +388,18 @@ Format: `countdown`
 
 #### Printing countdown for exam events only: `countdown exams`
 
-Print the countdown of all upcoming exams.
-The remaining date is being printed in the ascending sequence.
+If you type `countdown exams`, you can see the countdown of all upcoming exams.
+
+The remaining date for the exams is printed in ascending order.
 
 Format: `countdown exams`
 
 #### Printing countdown for deadline tasks only: `countdown deadlines`
 
-Print the countdown of all unfinished deadlines.
-The remaining date is being printed in the ascending sequence.
+If you type `countdown deadlines`, you can see the countdown of all unfinished deadlines.
+
+The remaining dates for the deadlines are printed in ascending order.
+
 
 Format: `countdown deadlines`
 
@@ -414,6 +418,11 @@ Format: `bye`
 
 
 ## FAQ
+
+Want to find out more about 25HoursADay? 
+How to transfer our data to another device? Or how to store our data? 
+Here are the most common questions that NUS students would ask about our app. 
+The questions and the answers to them can be found below.
 
 **Q**: How do I transfer my data to another computer? 
 
