@@ -63,49 +63,96 @@ The rest of the App consists of four components.
 
 
 ### Model Component
-
+![Model Component](images/diagrams/ClassDiagram_DataOverview.png)
 
  
 ## Implementation
 
-### Model Component
-![Summarised Model Component](images/diagrams/SummarisedClassDiagram.png)
-
-The *Model Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended from the abstract appliance class. 
-
+### Data Component
 ### Detailed Model Component 
-![Detailed Model Component](images/diagrams/FullDataClassDiagram.png)
-The *Detailed Model Component* shown above explains the full detailed model of SmartHomeBot; which includes all of their variables and methods. 
+The *Model Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
+from the abstract appliance class. 
+
+![Detailed Model Component](images/diagrams/ClassDiagram_DetailedData.png)
+
+To create an Appliance, we pass the name, location, wattage, power and the entire locationList. We first check from the 
+locationList if the name of the appliance is inside the locationList, and the location exists within the locationList. 
+If all these conditions are met, the Appliance will be created. It will be appended into the ApplianceList with the 
+`addAppliance()` method. 
+
+The Power class is responsible for computing the appliance’s power consumption.
+
+The public methods in the Appliances accessible via the ApplianceList are used to manipulate the appliances such as
+turning `ON` and `OFF`. From the appliance class, the program will be able to retrieving the name, location, statuses of
+the appliances. 
 
 ### Command Component
 
 #### Create Command
 ![Sequence of Create Command](images/diagrams/Sequence_CreateCommand.png) <br>
-The *Create Command* shown above explains the Sequence Diagram of the Create Command.
+The *CreateCommand* shown above explains the Sequence Diagram of the Create Command.
 #### Remove Command 
 ![Sequence of Remove Command](images/diagrams/Sequence_RemoveCommand.png) <br>
-The *Remove Command* shown above explains the Sequence Diagram of the Remove Command.
+The *RemoveCommand* shown above explains the Sequence Diagram of the Remove Command.
 #### Add Command
 ![Sequence of Add Command](images/diagrams/Sequence_AddCommand.png) <br>
-The *Add Command* shown above explains the Sequence Diagram of the Add Command.
+The *AddCommand* shown above explains the Sequence Diagram of the Add Command.
 #### Delete Command
 ![Sequence of Delete Command](images/diagrams/Sequence_DeleteCommand.png) <br>
-The *Delete Command* shown above explains the Sequence Diagram of the Delete Command.
+The *DeleteCommand* shown above explains the Sequence Diagram of the Delete Command.
 #### On Command
+
+The *OnCommand* shown below explains the Sequence Diagram of the On Command. When the Main class calls the execute() function there will be are 2 cases for on command to flow:
+1. OnByLocation
+2. OnByAppliance
+
 ![Sequence of On Command](images/diagrams/Sequence_OnCommand.png) <br>
-The *On Command* shown above explains the Sequence Diagram of the On Command.
+
+The program will determine if the user inputted: key is a name of an appliance, or a location.THis is done by checking the key in the LocationList, if it exists, the program will deem it as 'OnByLocation' vice versa.
+
+##### 1. OnByLocation
+The first condition checks if the user types in any parameter into the command, if so, the program will be unable to turn on
+the appliances in the location. This is done as not all parameters are accepted by every appliance, for example,
+setTemperature is only accepted for Air Conditioner. Thus, the parameter option is only opened to the OnByAppliance method.
+Then, onByApplianceLoop will be called to turn on all appliances in the location.
+
+##### 2. OnByAppliance
+The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies
+that that key does not exist in the location or appliance list. Else, we will call the onAppliance method.
+
+##### CommandResult
+Each condition will correspond to a reciprocal CommandResult printout.
+
+
 #### Off Command
+
+The *OffCommand* shown below explains the Sequence Diagram of the Off Command. When the Main class calls the `execute()` function there are 2 cases for off command:
+1. OnByLocation
+2. OnByAppliance
+
 ![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png) <br>
-The *Off Command* shown above explains the Sequence Diagram of the Off Command.
+
+The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking the key in the LocationList, if it exists, the program will deem it as 'OffByLocation' vice versa.
+
+##### 1. OffByLocation
+This method will call offByApplianceLoop which turns off every appliance in that location.
+
+##### 2. OffByAppliance
+The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies that that key does not exist in the location or appliance list. Else, we will call the offAppliance method.
+
+##### CommandResult
+Each condition will correspond to a reciprocal CommandResult printout.
+
+
 #### Invalid Command
 ![Sequence of Invalid Command](images/diagrams/Sequence_InvalidCommand.png) <br>
-The *Invalid Command* shown above explains the Sequence Diagram of the Invalid Command.
+The *InvalidCommand* shown above explains the Sequence Diagram of the Invalid Command.
 #### Help Command
 ![Sequence of Help Command](images/diagrams/Sequence_HelpCommand.png) <br>
-The *Help Command* shown above explains the Sequence Diagram of the Help Command.
+The *HelpCommand* shown above explains the Sequence Diagram of the Help Command.
 #### Exit Command
 ![Sequence of Off Command](images/diagrams/Sequence_ExitCommand.png) <br>
-The *Exit Command* shown above explains the Sequence Diagram of the Exit Command.
+The *ExitCommand* shown above explains the Sequence Diagram of the Exit Command.
 #### CommandResult Command
 ![Sequence of CommandResult Command](images/diagrams/Sequence_CommandResult.png) <br>
 The *CommandResult* shown above explains the Sequence Diagram of the CommandResult.
@@ -221,3 +268,42 @@ respective CommandObject to execute the command.
 Sequence Diagram for `default`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Default.png)
+
+
+
+## Product scope
+
+### Target user profile
+
+Disabled Home Users who want to automate/monitor their home with smart home devices.
+
+### Value proposition
+
+This program consolidates all the home appliance’s control into a centralised system. Users can also review and 
+monitor electricity usage; having a clearer picture of their electrical usage patterns. We can extract the latest 
+electricity price to calculate users’ utility bills. A backlog of the usage can also be recorded. 
+
+## User Stories
+
+|Version| As a(n) ... | I want to ... | So that I can ...|
+|--------|----------|---------------|------------------|
+|v1.0|Inexperienced user|list all the functions of the app |To see what he can do. |
+|v1.0|New user |add new locations into SmartHomeBot|Tag these locations into appliances |
+|v1.0|New user |add new appliances|Manipulate and view his appliances usage|
+|v1.0|disabled user |On/Off appliances|Turn on and off appliances without moving much|
+|v1.0|Lazy user|list all the appliances in SmartHomeBot|Remove unnecessary locations and appliances|
+|v1.0|Calculative user |View usage of his appliances|View all the appliances and see their status|
+|v2.0|Lazy user|Change the temperature of the air-conditioner and the speed of the fan from SmartHomeBot|Monitor his smart home appliances|
+|v2.0|Experienced SmartHomeBot user|On/OFF appliances by location and list appliances by location|Easily view and manipulate appliances by location|
+
+## Non-Functional Requirements
+
+{Give non-functional requirements}
+
+## Glossary
+
+* *glossary item* - Definition
+
+## Instructions for manual testing
+
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
