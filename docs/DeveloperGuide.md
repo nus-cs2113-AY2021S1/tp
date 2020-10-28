@@ -1,9 +1,9 @@
 # Developer Guide
 
-### Overview of architecture
+## Overview of architecture
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
-##### Architecture
+### Architecture
 ![](.DeveloperGuide_images/Overall%20Architecture.png)
 * __Feature modules__: Modules implementing the features of the application as follows:
 
@@ -27,13 +27,7 @@ interface facilitated in FinanceIt.java.
 
 ## Design & implementation
 
-### Logic
-
-#### Param Handling
-
-##### UML Class Diagram
-
-##### Summary
+### Summary
 * Classes which require input parameters by users require the collection of
 helper classes to handle the parsing, checking and organisation of the input string.
 * The handling of parameter input is isolated into an abstract class, whereby classes which requires a param handling
@@ -41,7 +35,7 @@ feature will inherit from the abstract class.
 * Specific behavior towards different ```param type```-```parameter``` pairs  will be defined within their 
 own class declarations.
 
-##### Architecture
+### Architecture
 * The initialisation of ```Ledger``` and ```Entry``` instances can be
 performed with reference to input parameters supplied from the user input.
 * For ledger creation operations, the input from the user is parsed and passed into an initialized ledger instance
@@ -57,6 +51,8 @@ attribute.
 <br>After which, an operation of edit/open would be performed upon the ledger referenced from 
 ```currLedger``` in ```ledgerList```.
 
+
+### Logic
 
 #### Input Parsing
 
@@ -116,9 +112,9 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
-#### Param Handling
+### Param Handling
 
-##### ParamHandler
+#### ParamHandler
 * An abstract class that defines all param handling behavior. 
     * Handling of params via```handleParams(packet)```:
         * Initialize the state of the handler 
@@ -133,15 +129,16 @@ and ```param``` indicates the parameter that is associated with the ```param typ
             1. All ```param``` in ```createLedgerCommand.requiredParams``` string array are parsed with no exceptions thrown.
         1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
 
-### Main Menu
+### Features
+#### Main Menu
 - Loading up user data
 - Access to various features
 - Saving outstanding user data to respective save files
 
-### Feature 1: Manual Tracker & Entry Tracker
-#### Overview
+#### Feature 1: Manual Tracker & Entry Tracker
+##### Overview
 
-##### Ledgers and Entries
+###### Ledgers and Entries
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
 Instances of ```Entry``` class are categorised by the date of origin, which is represented by
@@ -158,7 +155,7 @@ Instances of ```Entry``` class are categorised by the date of origin, which is r
 * Time of transaction
 * Collection of ```Entry```instances
 
-##### Manual Tracker
+###### Manual Tracker
 
 The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
 and open operations. Ledgers is a class that maintains a list of transactions that are 
@@ -180,9 +177,9 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
 |```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
 
-#### Architecture
+##### Architecture
 
-##### Architecture Overview
+###### Architecture Overview
 
 ![](uml_images/manualTracker/images/Architecture_ManualTracker.png)
 
@@ -199,7 +196,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 ##### Handler and Command
 
-##### Command and Logic
+###### Command and Logic
 
 ![](uml_images/manualTracker/images/Commands_Logic_edited.png)
 
@@ -225,7 +222,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
 |```EntryTracker```| Omitted for brevity.
 
-##### Handler and Parser
+###### Handler and Parser
 
 ![](uml_images/manualTracker/images/Handler_Parser.png)
 
@@ -236,7 +233,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ManualTracker```| Refer to section above.
 |```EntryTracker```| Omitted for brevity.
 
-##### Handler and Data
+###### Handler and Data
 
 ![](uml_images/manualTracker/images/Handler_Data.png)
 
@@ -252,9 +249,9 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
 
-#### Functions with Sequence Diagrams
+##### Functions with Sequence Diagrams
 
-##### Creation of Ledger
+###### Creation of Ledger
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
@@ -276,7 +273,7 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 ![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
 
 
-##### Deletion of Ledger
+###### Deletion of Ledger
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
@@ -500,6 +497,19 @@ This class diagram will show how the setting of expense goal works:
  
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
+
+## Save Manager
+### What it does
+Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
+It allows multiple saves to be created and loaded at will.
+
+### Overview
+Save Manager is the backup storage and Ui program for the various save handler subclasses. Without Save Manager, save handler alone
+will only save one copy of goal tracker, manual tracker and auto tracker information upon exiting the program and load them upon
+start up.
+
+### Save Manager Sequence Diagram
+![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
 ## Product scope
 ### Target user profile
