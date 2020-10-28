@@ -239,8 +239,8 @@ Note: It uses `getEarliestDeadline()` function to get the earliest ordinary dead
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
 If no corresponding items, the functions will return null.
 
-### Printing countdown feature
-The feature is facilitated by `CountdownCommand`.
+### Print countdown feature
+This feature is facilitated by `CountdownCommand`.
 
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
@@ -248,6 +248,18 @@ The following sequence diagram shows how the `execute()` operation works when th
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
 
+### Check the validity of a module code
+This feature is facilitated by `ModuleChecker` class and `NusModule` class.
+
+The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
+The `ModuleChecker` class has a *generateNusModsMap* which generates a HashMap<String, NusModule>. This is achieved by reading
+the JSON file from the NUS Mod website and parser it into a list of Module objects.
+
+After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
+valid, FALSE otherwise.
+
+The following sequence diagram further illustrates the above process. 
+![ModuleChecker_SD]()
 
 ## Documentation
 
@@ -302,6 +314,40 @@ There are two ways to run tests.
 
 ### DevOps guide
 
+### 1. Build automation
+This project uses Gradle for **build automation and dependency management.**
+**You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
+
+Given below are how to use Gradle for some important project tasks.
+
+* `clean`: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).
+e.g. `./gradlew clean`
+
+* `shadowJar`: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, if the current file is outdated.
+e.g. `./gradlew shadowJar`
+
+* `run`: Builds and run the program.
+  `runShadow`: Builds the application as a fat JAR, and then runs it.
+    
+* `checkstyleMain`: Runs the code style check for the main code base.
+  `checkstyleTest`: Runs the code style check for the test code base.
+  
+* `test`: Runs all tests.
+    * `./gradlew test` - Runs all tests
+    * `./gradlew clean test` - Cleans the project and runs tests
+
+### 2. Continuous integration (CI)
+This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files 
+(in the `.github/workflows` folder). No further setting up required.
+
+### 3. Make a release
+Here are the stpes to create a new release after you have implemented new features.
+
+1. Update the version number in `Main.java`.
+1. Generate a fat JAR file using Gradle (i.e. `gradle shadow`).
+1. Tag the repo with the version number e.g: `V2.0`.
+1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
+1. Upload the JAR file you created.
 
 ## Appendix A: About the product 
 This section provides a description of the product.
