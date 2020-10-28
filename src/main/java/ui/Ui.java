@@ -77,8 +77,10 @@ public class Ui {
     }
 
     public String readCommand() {
+        out.print("Enter command here: ");
         String userCommand = in.nextLine();
         while (userCommand.trim().isEmpty()) {
+            out.print("Enter command here: ");
             userCommand = in.nextLine();
         }
         return userCommand;
