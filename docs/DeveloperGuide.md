@@ -1,36 +1,28 @@
 # Developer Guide
 
 ## Introduction
-### Introduction to *25 hours a day*
-*25 hours a day* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 25 hours a day can schedule your tasks and events faster than traditional GUI apps.
+This section provides an introduction to the developer guide for *25HoursADay*.
+
+### Introduction to *25HoursADay*
+*25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
 ### Purpose and scope
-The goal of this developer guide is to describe the architecture and software design decisions for the task scheduling application 25 hours a day. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions that is helpful for you to get started or refer to.
+The purpose of this developer guide is to describe the architecture and software design decisions for the task scheduling application *25HoursADay*. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions.
 
-The intended audience of the developer guide is the developers and software testers of 25 hours a day.
+The intended audience of this guide are the developers and software testers of *25HoursADay*.
 
 ### Developer guide organization
-The table below shows the current content of the developer guide.
+The table below shows the content of the developer guide.
 
 |Section| Purpose | 
 |--------|----------|
-|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up 25 hours a day on your computer.|
-|[Section 3: Design](#design)|To explain the architecture of 25 hours a day,  and describe the major components of 25 hours a day, the roles of major components, as well as their organization and interaction of major components.|
-|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to 25 hours a day and the features added to 25 hours a day.|
+|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up *25HoursADay* on your computer.|
+|[Section 3: Design](#design)|To explain the architecture of *25HoursADay*,  and describe the major components of *25HoursADay*, the roles of major components, as well as their organization and interaction of major components.|
+|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to *25HoursADay* and the features added to *25HoursADay*.|
 |[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
 
-### Information for developer
-The table below shows the information and contact details of developers.
-
-|Developer| Contact details | 
-|--------|----------|
-|Liu Jingming|E0424608@u.nus.edu|
-|Liu Yifeng|E0425960@u.nus.edu|
-|Lyu Jiawen|E0376928@u.nus.edu|
-|Ng Hong Ming|E0426149@u.nus.edu|
-|Zhang Yilin|E0377000@u.nus.edu|
-
 ## Setting Up & Getting started
+This section provides on setting up the *25HoursADay* application.
 
 ### Setting up
 
@@ -74,63 +66,57 @@ Now, Open Intellij
 1. **Configure the coding style**
 If using IDEA, follow the guide If using IDEA, follow the guide [se-edu/guides IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
 to set up IDEA’s coding style to match ours.
+
     :bulb: Tips: Optionally, you can follow the guide  [se-edu/guides Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) 
     to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
 1. **Set up CI**
 This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
 it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
 1. **Learn the design**
-When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [25HoursADay’s architecture](#architecture).
+When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [*25HoursADay*’s architecture](#architecture).
 
 ## Design
-This section describes the design overview of the application.
+This section describes the design overview of the *25HoursADay* application.
 
 ### Architecture
 
-The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
+The figure below shows the overall design of the application. 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
-
-UI: The user interface of the application.
-Parser: Interprets the user's input.
-Command: The command executor.
-Model: Holds the data of the application in memory.
-Storage: Reads data from, and writes data to, the hard disk. 
-
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `todo`.
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
 
-The quick overview of components and the workflow is given below.
+An overview of each components is listed below.
 
 ### Ui
-The `Ui` class receives the input from the keyboard and passes to the `Parser` class to handle it. After executing commands, 
-most of the output will be done by the `Ui` class.
+The `Ui` class is responsible for the user interface of the application. It receives the input from the user and prints the results to the user.
 
 ### Parser
 
-The `Parser` class receives the user's input from the `Ui` class. It interprets the user's input and returns the resepective command. 
+The `Parser` class is responsible for interpreting the user's input and calling the respective command. 
 
 ### Command
 
-The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
+The different `Command` classes are responsible for receiving the user's input from the `Parser` class and executing the corresponding commands. 
 The figure belows shows the class diagram of the command class: <br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/command.JPG" alt="" width="200"/><br/>
-All the different Command classes inherit from the `Command` class.
+All Command classes inherit from the `Command` class.
 
 ### Storage
 
-The `Storage` class will create a local file when the user launches the application for the first time to save the data. 
-After the first launch, every time the user reopens the application, it will load the information to the Model from the local file. 
-Whenever the calendarList is updated, all information will be automatically saved to the same local file.
+The `Storage` class is responsible for reading and writing data to the hard disk.
+
 
 ### Model
+The model is responsible for holding the data of the application in memory. The figure below shows the structure of the Model in this application.
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
-The figure given above shows the structure of the Model in this application. When executing commands, 
-the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
+ When executing commands,the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
 It is split into two subclasses: `Task` and `Event` class.
 The `CalendarList` class holds the array of `CalendarItem` and keeps track of the number of total items, total tasks, and total events.
-Given below is the simple overview of Task and Event classes.
+
+The `Task` and `Event` classes are further explained below.
 
 #### Task
 
@@ -148,46 +134,54 @@ All `Event` items update the information or provide needed information about `Ev
 Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
 
 ## Implementation
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the details of how each feature is implemented.
 
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
-The following sequence diagram shows how the `execute()` operation works:
+The following sequence diagram shows how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
 
-Note: It checks the type of the new calendar item first, then it analyses the attached information, 
-and finally uses the corresponding adding function to add the new calendar item into the calendar list.  
+Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the `CalendarItem` being added.  
 
-Note: It has seven adding command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
-`todo` tasks only have a string description, while `Deadline` items have description and due date, and other items have description, date and time of the event.
-The `TimeParser` analyses the date and time in the corresponding commands. Furthermore,
-if the new item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
-If the new item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
-while only one `Todo`, `Deadline`, `Exam` or `Activity` item can be added at a time.   
+`CalendarItems` with deviations to sequence diagram above: 
+1. All `CalendarItems` with a date or time attribute calls the `TimeParser` class to interpret the date and time input of the user. 
+2. `Lecture`, `Lab`, `Tutorial`, or `Exam` type does a self-call for an additional check using the function `isValid(command)`. It ensures the module code included in the item is valid.
+3. `Lecture`, `Lab`, or `Tutorial`can be added as recurring items (multiple addition of the same class).   
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
-Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
+Note: The command first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
 
 ### Additional information of an event feature
-This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`.
+#### Add additional information
+This feature is facilitated by `AddInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
+
+#### View additional information
+This feature is facilitated by `ViewInfoCommand`.
+
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
-Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
+#### Delete additional information
+This feature is facilitated by `DeleteInfoCommand`.
+
+The following sequence diagram show how the `execute()` operation of `DeleteInfoCommand` works:<br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteInfoCommand_SD.JPG" alt="" width="750"/><br/>
+
+Note: The commands first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
 
-Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
+Note: The command first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
 
 ### Find a calendar item feature
@@ -195,18 +189,18 @@ This feature is facilitated by `FindCommand`.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
-The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
+The search for tasks or events feature has a similar sequence diagram with a slight difference to the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
-![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+![print_tasks_command_sd](../images/PrintTasksCommand_SD.png)
 
 ### Print events feature
 This feature is facilitated by `PrintEventsCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
-![print_events_command_sd](images/PrintEventsCommand_SD.png)
+![print_events_command_sd](../images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
@@ -309,54 +303,133 @@ There are two ways to run tests.
 ### DevOps guide
 
 
-## Product scope
+## Appendix A: About the product 
+This section provides a description of the product.
+
+### Product scope
+*25HoursADay* is a task scheduling program optimized for use via a Command Line Interface (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). It serves as a one-stop application for the users to keep track of their
+tasks, events and any 
+It is specially catered to NUS students, offering features relevant to a NUS student. 
 
 ### Target user profile
 
+* NUS student
 * has the need to manage a significant number of day-to-day matters
 * prefer desktop command line apps over other types
 * prefer typing to using mouse interactions
 * comfortable with using command line apps
 * forgetful person who needs reminders
 * a fast typer
-{Describe the target user profile}
+
 
 ### Value proposition
 
-By using 25HoursADay, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
-need to search through different platforms for information. 25HoursADay can manage one's day-to-day matters faster than a 
+By using *25HoursADay*, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information. *25HoursADay* can manage one's day-to-day matters faster than a 
 typical mouse/GUI driven app.
 
-## User Stories
+## Appendix B: User Stories
+This section describes the user stories considered when implementing the features.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|add different tasks and events|better manage my day-to-day matters|
-|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
+|v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
+|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
+|v1.0|user|store all the data locally|load my saved data to the app next time|
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
+|v2.0|NUS student|see the exam and deadline countdown|be conscious about the coming exams and deadlines and manage my time more wisely|
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+## Appendix D: Glossary
 
 * *Task* - a todo item or a deadline item.
 * *School event* - a lecture, tutorial, lab session or an examination.
-* *Event* - an activity, examination, lecture, tutorial or lab session.
-* *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
+* *Event* - an activity or a school event.
+* *Calendar item* - a task or an event.	
 * *Task list* - a list that stores all the tasks added to the app.
 * *Event list* - a list that stores all the events added to the app.
 * *Calendar list* - a list that stores all the calendar items added to the app.
 
-## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+## Appendix E: Contact the initial developers
+The table below shows the information and contact details of developers.
+
+|Developer| Contact details | 
+|--------|----------|
+|Liu Jingming|E0424608@u.nus.edu|
+|Liu Yifeng|E0425960@u.nus.edu|
+|Lyu Jiawen|E0376928@u.nus.edu|
+|Ng Hong Ming|E0426149@u.nus.edu|
+|Zhang Yilin|E0377000@u.nus.edu|
+
+## Appendix F: Instructions for manual testing
+
+General steps for manual testing:
+1. Execute an "Add" action.
+2. Execute a "Delete" / "Find" / "Print" / "Set" / "View" action of the same command type.
+
+Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format. 
+
+### Command summary
+The following table contains the list of commands available in the application.
+
+|Action| Command Type | Command Format | 
+|--------|----------|----------|
+|add|activity event|`act <activity_description> @<venue> / <date> <time>`|
+|add|additional information for event|`/a <event_number> - <additional_information>`|
+|add|deadline task|`deadline <task_description>/ <due_date>`|
+|add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
+|add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|add| todo task | `todo <task_description>` | 
+|add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|Delete| events | `-e <event_number>` |
+|Delete|tasks|`-t <task_number>`|
+|Delete|additional information for event|`/- <event_number> a <additional_information_number>`|
+|Find|all items|`/f <keyword>`|
+|Find|events|`/fe <keyword>`|
+|Find|tasks|`/ft <keyword>`|
+|Print |countdown for all items|`countdown`|
+|Print |countdown for deadlines|`countdown deadlines`|
+|Print |countdown for exams|`countdown exams`|
+|Print |events|`print events`|
+|Print |important tasks|`print *`|
+|Print |progress|`print progress`|
+|Print |tasks|`print tasks`|
+|Print|timeline (default)|`print timeline`|
+|Print|timeline before a date|`print timeline date <DATE>`|
+|Print|timeline for current month|`print timeline month`|
+|Print|timeline for current week|`print timeline week`|
+|Set|tasks as done|`done <task number>`|
+|Set|tasks as important|`*t <task_number>`|
+|View|additional information|`/v <event_number>`|
+|View|available commands|`help`|
+|View|suggestions|`suggestion`|
+|Quit|exit the program|`bye`|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
