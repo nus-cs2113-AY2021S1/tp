@@ -176,7 +176,7 @@ useful since it lets the students add their tasks. The application then reminds 
 regarding the upcoming tasks, which would prompt the students to prepare them.
 
 Students who find it difficult to organise woudl find this app useful since it
-offers a one stop solution to manage both their revision and their upcoming tasks .
+offers a one stop solution to manage both their revision and their upcoming tasks.
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
