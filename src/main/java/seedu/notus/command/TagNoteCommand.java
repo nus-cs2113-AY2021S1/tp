@@ -51,7 +51,7 @@ public class TagNoteCommand extends Command {
 
             // save the changed details
             try {
-                storageManager.saveAllNoteDetails(notebook, false);
+                storageManager.saveAllNoteDetails(false);
             } catch (IOException e) {
                 return Formatter.formatString(e.getMessage());
             }

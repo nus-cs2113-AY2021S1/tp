@@ -23,7 +23,7 @@ class DeleteNoteCommandTest {
     private Notebook notebook = new Notebook();
     private Timetable timetable = new Timetable();
     private TagManager tagManager = new TagManager();
-    private StorageManager storageManager = new StorageManager();
+    private StorageManager storageManager = new StorageManager(timetable, null, notebook, tagManager);
 
     @BeforeEach
     public void setUp() {

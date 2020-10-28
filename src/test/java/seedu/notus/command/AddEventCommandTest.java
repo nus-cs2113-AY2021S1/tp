@@ -30,7 +30,7 @@ class AddEventCommandTest {
             TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
     private static final Timetable TIMETABLE = new Timetable();
-    private StorageManager storageManager = new StorageManager();
+    private StorageManager storageManager = new StorageManager(TIMETABLE, null, null, null);
 
 
 

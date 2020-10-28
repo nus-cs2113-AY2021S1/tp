@@ -43,6 +43,20 @@ public class StorageManager {
     private static final String TAG_FILE_PATH = "/tags.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
 
+    /** Related classes. */
+    private Timetable timetable;
+    private ParserManager parserManager;
+    private Notebook notebook;
+    private TagManager tagManager;
+
+    public StorageManager(Timetable timetable, ParserManager parserManager,
+                    Notebook notebook, TagManager tagManager) {
+        this.timetable = timetable;
+        this.parserManager = parserManager;
+        this.notebook = notebook;
+        this.tagManager = tagManager;
+    }
+
     /* Set up of Storage manager */
 
     /**
@@ -105,13 +119,9 @@ public class StorageManager {
     /**
      * Loads the Notebook details and content for unArchived Notebooks.
      *
-     * @param notebook The Notebook to be loaded into.
-     * @param tagManager TagManager to manage the tags associated with the notes.
-     * @param parserManager ParserManager to parse the notes to prepare the information for add-note.
      * @param isArchive  Boolean to determine whether to load archived or non-archived files.
      */
-    public void loadAllNotes(Notebook notebook, TagManager tagManager,
-                             ParserManager parserManager, boolean isArchive) throws SystemException {
+    public void loadAllNotes(boolean isArchive) throws SystemException {
         String path;
         if (isArchive) {
             path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
@@ -129,7 +139,7 @@ public class StorageManager {
         while (s.hasNext()) {
             String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = parserManager.parseCommand(taskDetails);
-            command.setData(notebook, null, tagManager, this);
+            command.setData(notebook, timetable, tagManager, this);
             command.execute();
         }
         s.close();
@@ -138,11 +148,9 @@ public class StorageManager {
     /**
      * Loads all the details from the the timetable stored in the text file.
      *
-     * @param timetable the timetable manager to load the data into.
-     * @param parserManager ParserManager to parse the notes to prepare the information for add-note.
      * @throws SystemException Thrown when there is no file to read from.
      */
-    public void loadTimetable(Timetable timetable, ParserManager parserManager) throws SystemException {
+    public void loadTimetable() throws SystemException {
         String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
         File f = new File(path);
 
@@ -155,7 +163,7 @@ public class StorageManager {
         while (s.hasNext()) {
             String eventDetails = AddEventCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = parserManager.parseCommand(eventDetails);
-            command.setData(null, timetable, null, this);
+            command.setData(notebook, timetable, tagManager, this);
             command.execute();
         }
         s.close();
@@ -186,33 +194,16 @@ public class StorageManager {
         return content;
     }
 
-    /**
-     * Saves all the Notes in the Notebook to the storage file.
-     *
-     * @param notebook The Notebook containing all the notes to be saved.
-     */
-    public void saveNotebook(Notebook notebook) throws SystemException {
-        for (int i = 0; i < notebook.getSize();i++) {
-            try {
-                saveNoteContent(notebook.getNote(i), true);
-                saveNoteDetails(notebook.getNote(i), true);
-            } catch (IOException e) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
-            }
-        }
-    }
-
     /* Saving and deleting notes */
 
     /**
      * Clears the content in the original file storing all the note details.
      * Replaces it with the new note content details.
      *
-     * @param notebook notebook that stores all the notes to be saved
      * @param isArchive determines whether to save archived notes or normal notes
      * @throws IOException thrown when unable to write to the file
      */
-    public void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
+    public void saveAllNoteDetails(Boolean isArchive) throws IOException {
         String path;
 
         ArrayList<Note> notes;
