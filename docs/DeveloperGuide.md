@@ -66,6 +66,7 @@ Now, Open Intellij
 1. **Configure the coding style**
 If using IDEA, follow the guide If using IDEA, follow the guide [se-edu/guides IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
 to set up IDEA’s coding style to match ours.
+
     :bulb: Tips: Optionally, you can follow the guide  [se-edu/guides Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) 
     to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
 1. **Set up CI**
