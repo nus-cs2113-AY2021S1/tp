@@ -12,6 +12,8 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
+import java.util.ArrayList;
+
 public class RecurringEntryList extends ItemList {
 
     @Override
@@ -78,6 +80,38 @@ public class RecurringEntryList extends ItemList {
             }
         }
         TablePrinter.printList();
+    }
+
+    public ArrayList<RecurringEntry> getEntriesOnAndAfterDay(int day) {
+        ArrayList<RecurringEntry> entries = new ArrayList<>();
+        for(int i = 0; i < super.items.size(); i++) {
+            RecurringEntry entry = (RecurringEntry) super.items.get(i);
+            if(entry.getDay() >= day) {
+                entries.add(entry);
+            }
+        }
+        return entries;
+    }
+
+    /**
+     * Returns an ArrayList of all RecurringEntry with
+     * day of month between X and Y  (both inclusive)
+     * i.e. Y >= day >= X (inequality)
+     *
+     * @param X - start day
+     * @param Y - end day
+     * @return ArrayList of RecurringEntry
+     */
+    public ArrayList<RecurringEntry> getEntriesFromDayXtoY(int X, int Y) {
+        ArrayList<RecurringEntry> entries = new ArrayList<>();
+        for(int i = 0; i < super.items.size(); i++) {
+            RecurringEntry entry = (RecurringEntry) super.items.get(i);
+            int dayOfEntry = entry.getDay();
+            if(dayOfEntry >= X && dayOfEntry < Y) {
+                entries.add(entry);
+            }
+        }
+        return entries;
     }
 
 }

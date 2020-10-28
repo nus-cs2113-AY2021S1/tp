@@ -70,10 +70,21 @@ public class RecurringEntry extends Item {
                 description, day);
     }
 
+    public boolean getAuto() {
+        return auto;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public int getDay() {
         return day;
     }
 
+    public Constants.EntryType getEntryType() {
+        return entryType;
+    }
     public boolean equals(RecurringEntry entry) {
         if (entry == this) {
             return true;

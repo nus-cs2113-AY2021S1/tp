@@ -94,7 +94,11 @@ public abstract class ItemList extends ParamHandler {
         this.items.remove(this.indexToModify);
     }
 
-    //Manually specify index in the code, if necessary
+    /**
+     * Removes the specified item at the zero-based index.
+     *
+     * @throws IndexOutOfBoundsException If invalid index is passed as argument
+     */
     public void removeItemAtIndex(int index) throws IndexOutOfBoundsException {
         assert index < this.items.size();
         this.items.remove(index);

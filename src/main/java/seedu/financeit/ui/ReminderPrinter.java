@@ -1,2 +1,5 @@
-package seedu.financeit.ui;public class ReminderPrinter {
+package seedu.financeit.ui;
+
+public class ReminderPrinter {
+
 }

@@ -38,6 +38,8 @@ public class InputParser {
         String[] newCommand = userCommand.split(" ", 5);
         return newCommand;
     }
+
+    //@@author Artemis-Hunt
     /**
      * Example input: deadline /by tomorrow /note skip page 70.
      * commandString: "deadline"
@@ -79,6 +81,7 @@ public class InputParser {
             }
             commandString = buffer[0].toLowerCase();
             String paramSubstring = separator + buffer[1];
+            //Build params HashMap
             params = new ParamsParser(paramSubstring).parseParams();
         } catch (EmptyCommandStringException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());

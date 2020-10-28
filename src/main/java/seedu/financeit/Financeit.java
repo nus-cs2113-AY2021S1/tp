@@ -9,9 +9,10 @@ import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
+import seedu.financeit.utils.RunHistory;
+import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
 import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 
 import java.util.logging.Level;
 
@@ -26,19 +27,24 @@ public class Financeit {
         SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
         SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
         SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
+        RunHistory.setCurrentRunDateTime();
 
         try {
-            gt.load();
+            //Order swapped for testing. Swap back to gt mt at later
             mt.load();
             at.load();
-        } catch (Exception m) {
-            MenuPrinter.prompt = "An exception has occurred: " + m;
+            gt.load();
+        } catch (Exception exception) {
+            MenuPrinter.prompt = "An exception has occurred: " + exception;
         }
+
 
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
+            System.out.println();
             MenuPrinter.printMainMenu();
+            MenuPrinter.printReminder();
             input = UiManager.handleInput();
             packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
