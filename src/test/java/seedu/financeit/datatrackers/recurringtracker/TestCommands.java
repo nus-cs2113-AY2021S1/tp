@@ -4,8 +4,12 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.RandomGenerator;
 
-import static seedu.financeit.utils.ParamChecker.*;
-
+import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_AUTO;
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_NOTES;
 
 public class TestCommands {
 
@@ -19,30 +23,12 @@ public class TestCommands {
         CommandPacket testPacket = TestUtil.createCommandPacket(
                 "new",
                 new String[][] {
-                        {
-                                PARAM_DAY,
-                                paramDay
-                        },
-                        {
-                                PARAM_INC,
-                                ""
-                        },
-                        {
-                                PARAM_DESCRIPTION,
-                                "test description"
-                        },
-                        {
-                                PARAM_AUTO,
-                                ""
-                        },
-                        {
-                                PARAM_AMOUNT,
-                                paramAmt
-                        },
-                        {
-                                PARAM_NOTES,
-                                "aslk(*& 67687 687^*& ^*&&*7334"
-                        }
+                        { PARAM_DAY, paramDay },
+                        { PARAM_INC, "" },
+                        { PARAM_DESCRIPTION, "test description" },
+                        { PARAM_AUTO, "" },
+                        { PARAM_AMOUNT, paramAmt },
+                        { PARAM_NOTES, "aslk(*& 67687 687^*& ^*&&*7334" }
                 }
         );
         return testPacket;
@@ -56,30 +42,12 @@ public class TestCommands {
         CommandPacket testPacket = TestUtil.createCommandPacket(
                 "new",
                 new String[][] {
-                        {
-                                PARAM_INC,
-                                ""
-                        },
-                        {
-                                PARAM_AUTO,
-                                ""
-                        },
-                        {
-                                PARAM_DAY,
-                                paramDay
-                        },
-                        {
-                                PARAM_DESCRIPTION,
-                                paramDescription
-                        },
-                        {
-                                PARAM_AMOUNT,
-                                paramAmt
-                        },
-                        {
-                                PARAM_NOTES,
-                                paramNotes
-                        }
+                        { PARAM_INC, "" },
+                        { PARAM_AUTO, "" },
+                        { PARAM_DAY, paramDay },
+                        { PARAM_DESCRIPTION, paramDescription },
+                        { PARAM_AMOUNT, paramAmt },
+                        { PARAM_NOTES, paramNotes }
                 }
         );
         return testPacket;
