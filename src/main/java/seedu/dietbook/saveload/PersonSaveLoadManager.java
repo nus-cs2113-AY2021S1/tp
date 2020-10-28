@@ -101,7 +101,7 @@ public class PersonSaveLoadManager {
         this.saver.add(Integer.toString(this.originalWeight), ORIGINAL_WEIGHT_ENTRY_INDEX, PERSON_DATA_ROW);
         this.saver.add(Integer.toString(this.currentWeight), CURRENT_WEIGHT_ENTRY_INDEX, PERSON_DATA_ROW);
         this.saver.add(Integer.toString(this.targetWeight), TARGET_WEIGHT_ENTRY_INDEX, PERSON_DATA_ROW);
-        this.saver.add(Integer.toString(this.currentWeight), ACTIVITY_LEVEL_ENTRY_INDEX, PERSON_DATA_ROW);
+        this.saver.add(Integer.toString(this.activityLevel), ACTIVITY_LEVEL_ENTRY_INDEX, PERSON_DATA_ROW);
         this.saver.save(PERSON_FOLDER_NAME, fileName);
     }
 

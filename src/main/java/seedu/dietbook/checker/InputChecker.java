@@ -1,6 +1,7 @@
 package seedu.dietbook.checker;
 
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.parser.Parser;
 
 /**
  * InputChecker class of the program.
@@ -91,6 +92,18 @@ public class InputChecker {
     }
 
     /**
+     * Takes in user input to check if the expected number of parameter is present for the calculate command.
+     *
+     * @param param parameter part of user input.
+     * @throws DietException when number of parameter is not as expected.
+     */
+    public static void checkCalculateParam(String[] param) throws DietException {
+        if (param.length > 3) {
+            throw new DietException("Incorrect calculate statement");
+        }
+    }
+
+    /**
      * Takes in user input to check if the expected number and type of parameter for the info command is present.
      *
      * @param userInput user input.
@@ -101,6 +114,18 @@ public class InputChecker {
             if (!userInput.contains(param)) {
                 throw new DietException("Missing or incorrect info statement");
             }
+        }
+    }
+
+    /**
+     * Takes in user input to check if the expected number of parameter is present for the list command.
+     *
+     * @param param parameter part of user input.
+     * @throws DietException when number of parameter is not as expected.
+     */
+    public static void checkList(String[] param) throws DietException {
+        if (param.length > 3) {
+            throw new DietException("Incorrect list statement");
         }
     }
 

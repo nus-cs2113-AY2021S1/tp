@@ -7,6 +7,8 @@ import seedu.dietbook.exception.DietException;
 import seedu.dietbook.Manager;
 import seedu.dietbook.checker.InputChecker;
 
+import java.time.LocalDateTime;
+
 /**
  * Parser class of the program.
  * The parser class takes in user input and process it into command data that manager can use.

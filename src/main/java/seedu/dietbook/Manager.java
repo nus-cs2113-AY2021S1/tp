@@ -125,7 +125,7 @@ public class Manager {
         case COMMAND_INFO:
             return new InfoCommand(userInput);
         case COMMAND_LIST:
-            return new ListCommand();
+            return new ListCommand(userInput);
         case COMMAND_NAME:
             return new NameCommand(Parser.getCommandParam(userInput));
         case COMMAND_RECOMMEND:
