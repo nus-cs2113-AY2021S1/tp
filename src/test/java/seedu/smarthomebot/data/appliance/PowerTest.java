@@ -1,9 +1,8 @@
-package seedu.smarthomebot.data.appliance.framework;
+package seedu.smarthomebot.data.appliance;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
@@ -54,20 +53,20 @@ class PowerTest {
     @Test
     void resetPower_fanOnForThreeSeconds_powerResetToZero() throws InterruptedException {
         useFanForThreeSeconds();
-        coolingFan.resetPower();
+        coolingFan.resetPowerUsage();
         assertEquals("0.00", coolingFan.getPowerInString());
     }
 
     @Test
     void getPower_fanOnForThreeSeconds_returnPowerValue() throws InterruptedException {
         useFanForThreeSeconds();
-        assertEquals(0.075, coolingFan.getPowerInDouble());
+        assertEquals(0.0, coolingFan.getPowerInDouble());
     }
 
     @Test
     void testToString() throws InterruptedException {
         useFanForThreeSeconds();
-        assertEquals("0.08", coolingFan.getPowerInString());
+        assertEquals("0.00", coolingFan.getPowerInString());
     }
 
     private void useFanForThreeSeconds() throws InterruptedException {
