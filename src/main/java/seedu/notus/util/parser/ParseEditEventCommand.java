@@ -36,7 +36,7 @@ public class ParseEditEventCommand extends Parser {
     public Command parse() throws SystemException {
 
         int index = -1;
-        String new_title = "";
+        String newTitle = "";
         LocalDateTime startDateTime = null;
         // Not set yet. Has no prefix for this.
         LocalDateTime endDateTime = null;
@@ -54,7 +54,7 @@ public class ParseEditEventCommand extends Parser {
                 switch (prefix) {
                 case PREFIX_TITLE:
                     exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    new_title = checkBlank(infoDetails[1], exception);
+                    newTitle = checkBlank(infoDetails[1], exception);
                     break;
                 case PREFIX_TIMING:
                     exception = ExceptionType.EXCEPTION_MISSING_TIMING;
@@ -131,7 +131,7 @@ public class ParseEditEventCommand extends Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         }
 
-        return new EditEventCommand(index - 1, new_title, startDateTime,
+        return new EditEventCommand(index - 1, newTitle, startDateTime,
                 reminderTodo, reminderSchedule, recurringType, endRecurrenceDate);
     }
 }

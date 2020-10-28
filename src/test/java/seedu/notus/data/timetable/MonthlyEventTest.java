@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,16 +21,16 @@ class MonthlyEventTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
-    private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
-    private final MonthlyEvent event = new MonthlyEvent(TEST_TITLE, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+    private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+    private MonthlyEvent event = new MonthlyEvent(TEST_TITLE, TEST_DATE_TIME,
+            TEST_REMINDER, reminderSchedule);
 
     /**
      * Tests if the time-step for MonthlyEvent is still correct (1 month).
      */
     @Test
     void timeStep_singleMonth_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusMonths(1), event.timeStep(dateTime));
     }
@@ -39,6 +40,7 @@ class MonthlyEventTest {
      */
     @Test
     void toReoccur_twoTimeStepsOneDay_successSuccessFail() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -53,6 +55,7 @@ class MonthlyEventTest {
      */
     @Test
     void getRecurrences_fourMonths_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusMonths(4);
         assertEquals(5, (event.getRecurrences(startDate, endDate).size()));

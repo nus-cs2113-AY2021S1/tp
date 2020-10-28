@@ -148,38 +148,6 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    /**
-     * Takes an array list of events and converts it to a formatted, non-indexed string for output.
-     *
-     * @param header Success message.
-     * @param year Year of timetable
-     * @param month Month of timetable
-     * @param timetable Events to be printed
-     * @return Formatted string of non-indexed events in timetable
-     */
-    public static String formatTimetable(String header, int year, int month,
-                                         HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
-        ArrayList<String> eventsStrings = new ArrayList<>();
-        
-        if (month != 0) {
-            eventsStrings.add(header + String.format(" %d-%d", year, month));
-            Month curr_month = Month.of(month);
-            HashMap<Integer, ArrayList<Event>> month_events = timetable.get(curr_month);
-            assert month_events != null;
-            eventsStrings.addAll(formatMonthTimetable(curr_month.name(), month_events));
-        } else {
-            eventsStrings.add(header + " " + year);
-            ArrayList<Month> months = new ArrayList<>(timetable.keySet());
-            months.sort(Month::compareTo);
-            for (Month curr_month : months) {
-                eventsStrings.addAll(formatMonthTimetable(curr_month.name(), timetable.get(curr_month)));
-                eventsStrings.add(" ");
-            }
-            eventsStrings.remove(eventsStrings.size() - 1);
-        }
-
-        return formatString(eventsStrings, true);
-    }
 
     public static ArrayList<String> formatMonthTimetable(String month, HashMap<Integer, ArrayList<Event>> timetable) {
         ArrayList<String> results = new ArrayList<>();
@@ -197,6 +165,38 @@ public class Formatter {
         return results;
     }
 
+    /**
+     * Takes an array list of events and converts it to a formatted, non-indexed string for output.
+     *
+     * @param header Success message.
+     * @param year Year of timetable
+     * @param month Month of timetable
+     * @param timetable Events to be printed
+     * @return Formatted string of non-indexed events in timetable
+     */
+    public static String formatTimetable(String header, int year, int month,
+                                         HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
+        ArrayList<String> eventsStrings = new ArrayList<>();
+
+        if (month != 0) {
+            eventsStrings.add(header + String.format(" %d-%d", year, month));
+            Month currMonth = Month.of(month);
+            HashMap<Integer, ArrayList<Event>> monthEvents = timetable.get(currMonth);
+            assert monthEvents != null;
+            eventsStrings.addAll(formatMonthTimetable(currMonth.name(), monthEvents));
+        } else {
+            eventsStrings.add(header + " " + year);
+            ArrayList<Month> months = new ArrayList<>(timetable.keySet());
+            months.sort(Month::compareTo);
+            for (Month currMonth : months) {
+                eventsStrings.addAll(formatMonthTimetable(currMonth.name(), timetable.get(currMonth)));
+                eventsStrings.add(" ");
+            }
+            eventsStrings.remove(eventsStrings.size() - 1);
+        }
+
+        return formatString(eventsStrings, true);
+    }
 
     /**
      * Takes an array list of events and converts it to a formatted, indexed string for output.

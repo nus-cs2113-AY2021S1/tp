@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,16 +21,16 @@ class WeeklyEventTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
-    private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
+    private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private final WeeklyEvent event = new WeeklyEvent(TEST_TITLE, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            TEST_REMINDER, reminderSchedule);
 
     /**
      * Tests if the time-step for WeeklyEvent is still correct (1 week).
      */
     @Test
     void timeStep_oneWeek_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusWeeks(1), event.timeStep(dateTime));
     }
@@ -39,6 +40,7 @@ class WeeklyEventTest {
      */
     @Test
     void toReoccur_twoTimeStepsOneDay_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -53,6 +55,7 @@ class WeeklyEventTest {
      */
     @Test
     void getRecurrences_fourWeeks_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusWeeks(4);
         assertEquals(5, (event.getRecurrences(startDate, endDate).size()));

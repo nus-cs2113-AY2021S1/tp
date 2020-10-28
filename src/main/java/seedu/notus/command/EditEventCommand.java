@@ -50,7 +50,7 @@ public class EditEventCommand extends Command {
     private static final String COMMAND_SUCCESSFUL_RECURRENCE_MESSAGE = "Recurrence type edited!";
     private static final String COMMAND_WARNING_RECURRENCE_MESSAGE = "The event is currently of this recurrence type. "
             + "No changes are made to it's recurrence type.";
-    private static final String COMMAND_SUCCESSFUL_RECURRENCE_DATE_MESSAGE ="End recurrence date edited!";
+    private static final String COMMAND_SUCCESSFUL_RECURRENCE_DATE_MESSAGE = "End recurrence date edited!";
     private static final String COMMAND_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = "You attempted to put a "
             + "recurrence date on a non-recurring event. No recurrence date was set.";
 
@@ -59,7 +59,7 @@ public class EditEventCommand extends Command {
     public static final String REMINDER_TYPE_CLEAR = "clear";
 
     private final int index;
-    private final String new_title;
+    private final String newTitle;
     private final LocalDateTime newStartDate;
     private final String reminderTodo;
     private final HashMap<String, ArrayList<Integer>> reminderSchedule;
@@ -72,16 +72,16 @@ public class EditEventCommand extends Command {
      * Constructs an EditEventCommand to edit an Event.
      *
      * @param index Index of the event to be edited.
-     * @param new_title New title of the event. Null if it is not edited.
+     * @param newTitle New title of the event. Null if it is not edited.
      * @param newStartDate New start date of the event. Null if it is not edited.
      * @param reminderTodo Reminder edit type of the event. "" If it is not edited.
      * @param reminderSchedule Reminder schedule of the things to do to event. Null if it is not edited.
      */
-    public EditEventCommand(int index, String new_title, LocalDateTime newStartDate,
+    public EditEventCommand(int index, String newTitle, LocalDateTime newStartDate,
                             String reminderTodo, HashMap<String, ArrayList<Integer>> reminderSchedule,
                             String recurringType, LocalDate endRecurrenceDate) {
         this.index = index;
-        this.new_title = new_title;
+        this.newTitle = newTitle;
         this.newStartDate = newStartDate;
         this.reminderTodo = reminderTodo;
         this.reminderSchedule = reminderSchedule;
@@ -96,8 +96,8 @@ public class EditEventCommand extends Command {
         Event event = timetable.getEvent(index);
 
         // Edit title is indicated
-        if (!new_title.isBlank()) {
-            event.setTitle(new_title);
+        if (!newTitle.isBlank()) {
+            event.setTitle(newTitle);
             results.add(COMMAND_SUCCESSFUL_TITLE_MESSAGE);
         }
 

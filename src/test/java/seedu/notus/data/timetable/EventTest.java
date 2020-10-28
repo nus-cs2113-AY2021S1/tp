@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 //@@author brandonywl
@@ -19,18 +20,18 @@ public class EventTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
-    private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
+    private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private static final boolean TEST_RECURRING = false;
 
     Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
-            TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            reminderSchedule);
 
     /**
      * Test if you can get all the reminder dates that's needed from an event.
      */
     @Test
     void getReminderDates() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         ArrayList<LocalDate> reminderDates = event.getReminderDates();
         reminderDates.sort(LocalDate::compareTo);
         Collections.reverse(reminderDates);

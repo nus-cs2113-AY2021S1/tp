@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,22 +20,23 @@ class TimetableTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
-    private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
+    private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private final DailyEvent dailyEvent = new DailyEvent(TEST_TITLE_4, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            TEST_REMINDER, reminderSchedule);
     private final WeeklyEvent weeklyEvent = new WeeklyEvent(TEST_TITLE_3, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            TEST_REMINDER, reminderSchedule);
     private final MonthlyEvent monthlyEvent = new MonthlyEvent(TEST_TITLE_2, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            TEST_REMINDER, reminderSchedule);
     private final YearlyEvent yearlyEvent = new YearlyEvent(TEST_TITLE_1, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+            TEST_REMINDER, reminderSchedule);
+
 
     /**
      * Asserts storing of events in timetable in respective recurrence length is correct.
      */
     @Test
     void addEvent_oneDailyThreeOthers_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = initializeTimetable();
         assertEquals(4, timetable.getEvents().size());
         assertEquals(1, timetable.getDailyEvents().size());
@@ -46,6 +48,7 @@ class TimetableTest {
      */
     @Test
     void deleteEvent_oneDailyThreeOthers_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = initializeTimetable();
         timetable.deleteEvent(0);
         assertEquals(3, timetable.getEvents().size());
@@ -57,6 +60,7 @@ class TimetableTest {
      */
     @Test
     void getAllEvents_dailyEvent_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = initializeTimetable(dailyEvent);
         LocalDate startDate = TEST_DATE_TIME.withDayOfYear(1).toLocalDate();
         LocalDate endDate = startDate.withDayOfYear(startDate.lengthOfYear());
@@ -70,6 +74,7 @@ class TimetableTest {
      */
     @Test
     void getReminders_dailyEvent_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = initializeTimetable(dailyEvent);
         assertEquals(2, timetable.getReminders().size());
     }
@@ -80,6 +85,7 @@ class TimetableTest {
      * @return Instantiated Timetable with 4 default events.
      */
     private Timetable initializeTimetable() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = new Timetable();
         timetable.addEvent(dailyEvent);
         timetable.addEvent(weeklyEvent);
@@ -94,6 +100,7 @@ class TimetableTest {
      * @return Instantiated Timetable with 1 event.
      */
     private Timetable initializeTimetable(Event event) {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         Timetable timetable = new Timetable();
         timetable.addEvent(event);
         return timetable;

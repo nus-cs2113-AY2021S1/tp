@@ -62,7 +62,7 @@ public class Timetable {
     }
 
     /**
-     * Method to allow a new event to be set at a specific index
+     * Method to allow a new event to be set at a specific index.
      *
      * @param index Index to set at.
      * @param event Event to set.
