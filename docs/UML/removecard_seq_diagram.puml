@@ -1,26 +1,83 @@
 @startuml
--> ":RemoveCardCommand" : execute(ui, access, storage)
-activate ":RemoveCardCommand"
-":RemoveCardCommand" -> ":RemoveCardCommand" : removeCard(access, storage)
-activate ":RemoveCardCommand"
-":RemoveCardCommand" -> ":Access" : getChapter()
-":RemoveChapterCommand" <-- ":Access"
-destroy ":Access"
-":RemoveCardCommand" -> ":Chapter" : getCards()
-":RemoveCardCommand" <-- ":Chapter" : cards
-destroy ":Chapter"
-":RemoveCardCommand" -> ":CardList" : getAllCards()
-":RemoveCardCommand" <-- ":CardList" : allCards
-destroy ":CardList"
-":RemoveCardCommand" -> ":Storage" : saveCards(cards, module, chapter)
-destroy ":Storage"
-":RemoveCardCommand" -> ":RemoveCommand" : prepareResult(type, card, count)
-":RemoveCardCommand" <-- ":RemoveCommand" : result
-destroy ":RemoveCommand"
-":RemoveCardCommand" --> ":RemoveCardCommand" : result
-deactivate ":RemoveCardCommand"
-":RemoveCardCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":RemoveCardCommand"
-deactivate ":RemoveCardCommand"
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":RemoveCardCommand" as RemoveCardCommand LOGIC_COLOR
+participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+participant ":CardList" as CardList MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Parser : parse("remove 1")
+activate Parser
+
+create RemoveCardCommand
+Parser -> RemoveCardCommand : RemoveCardCommand(1)
+activate RemoveCardCommand
+
+RemoveCardCommand --> Parser : command
+deactivate RemoveCardCommand
+
+[<-- Parser : command
+deactivate Parser
+[<-[hidden]- Parser
+destroy Parser
+
+-> RemoveCardCommand : execute(ui, access, storage)
+activate RemoveCardCommand
+RemoveCardCommand -> RemoveCardCommand : removeCard(access, storage)
+activate RemoveCardCommand
+RemoveCardCommand -> Access : getChapter()
+activate Access
+RemoveCardCommand <-- Access
+deactivate Access
+[<-[hidden]- Access
+destroy Access
+RemoveCardCommand -> Chapter : getCards()
+activate Chapter
+RemoveCardCommand <-- Chapter : cards
+deactivate Chapter
+[<-[hidden]- Chapter
+destroy Chapter
+RemoveCardCommand -> CardList : getAllCards()
+activate CardList
+RemoveCardCommand <-- CardList : allCards
+deactivate CardList
+[<-[hidden]- CardList
+destroy CardList
+RemoveCardCommand -> Storage : saveCards(cards, module, chapter)
+activate Storage
+RemoveCardCommand <-- Storage
+deactivate Storage
+[<-[hidden]- Storage
+destroy Storage
+RemoveCardCommand -> RemoveCommand : prepareResult(type, card, count)
+activate RemoveCommand
+RemoveCardCommand <-- RemoveCommand : result
+deactivate RemoveCommand
+[<-[hidden]- RemoveCommand
+destroy RemoveCommand
+RemoveCardCommand --> RemoveCardCommand : result
+deactivate RemoveCardCommand
+RemoveCardCommand -> Ui : showToUser(result)
+activate Ui
+RemoveCardCommand <-- Ui
+deactivate Ui
+[<-[hidden]- Ui
+destroy Ui
+<-- RemoveCardCommand
+deactivate RemoveCardCommand
 @enduml
