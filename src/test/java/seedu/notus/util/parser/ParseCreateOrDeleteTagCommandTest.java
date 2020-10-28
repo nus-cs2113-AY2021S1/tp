@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParseCreateOrDeleteTagCommandTest {
 
-    private ParseCreateTagOrDeleteCommand parser;
+    private ParseCreateOrDeleteTagCommand parser;
     private SystemException exception;
     private String inputString;
     private String expectedMessage;
@@ -24,7 +24,7 @@ class ParseCreateOrDeleteTagCommandTest {
     void parseCommand_validMessage_returnNewCommand() {
         inputString = "/tag tag1 ";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         Command command;
         try {
             command = parser.parse();
@@ -33,7 +33,7 @@ class ParseCreateOrDeleteTagCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         try {
             command = parser.parse();
             assertTrue(command instanceof DeleteTagCommand);
@@ -43,7 +43,7 @@ class ParseCreateOrDeleteTagCommandTest {
 
         inputString = "/tag tag1 /tag tag2";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         try {
             command = parser.parse();
             assertTrue(command instanceof CreateTagCommand);
@@ -51,7 +51,7 @@ class ParseCreateOrDeleteTagCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         try {
             command = parser.parse();
             assertTrue(command instanceof DeleteTagCommand);
@@ -62,13 +62,13 @@ class ParseCreateOrDeleteTagCommandTest {
 
     @Test
     void parseCommand_missingContent_throwException() {
-        parser = new ParseCreateTagOrDeleteCommand(null, true);
+        parser = new ParseCreateOrDeleteTagCommand(null, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         String expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        parser = new ParseCreateTagOrDeleteCommand(null, false);
+        parser = new ParseCreateOrDeleteTagCommand(null, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND.toString();
         actualMessage = exception.getMessage();
@@ -79,13 +79,13 @@ class ParseCreateOrDeleteTagCommandTest {
     void parseCommand_missingTagPrefix_throwException() {
         inputString = "";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
@@ -93,13 +93,13 @@ class ParseCreateOrDeleteTagCommandTest {
 
         inputString = " ";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG_PREFIX.toString();
         actualMessage = exception.getMessage();
@@ -110,13 +110,13 @@ class ParseCreateOrDeleteTagCommandTest {
     void parseCommand_missingTagDescription_throwException() {
         inputString = "/tag ";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
@@ -124,13 +124,13 @@ class ParseCreateOrDeleteTagCommandTest {
 
         inputString = "/tag tag1/tag";
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, true);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, true);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        parser = new ParseCreateTagOrDeleteCommand(inputString, false);
+        parser = new ParseCreateOrDeleteTagCommand(inputString, false);
         exception = assertThrows(SystemException.class, () -> parser.parse());
         expectedMessage = ExceptionType.EXCEPTION_MISSING_TAG.toString();
         actualMessage = exception.getMessage();

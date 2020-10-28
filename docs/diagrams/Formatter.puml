@@ -1,0 +1,40 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class Formatter {
+<u>+ LS: String
+<u>+ ROW_SPLIT: String
+<u>+ COLUMN_START: String
+<u>+ COLUMN_END: String
+<u>+ EMPTY_SPACE: String
+<u>+ CONTINUATION: String
+<u>+ TITLE: String
+<u>+ EMPTY_CHAR: char
+
+<u>- MAX_ROW_LENGTH: int
+<u>- MAX_MESSAGE_LENGTH: int
+<u>- ANSI_PREFIX_LENGTH: int
+<u>- CONTENT_CUTOFF: int
+<u>+ formatNotes(String, String, ArrayList<Note>, ArrayList<Note>, Notebook): String
+<u>+ formatNotes(String, ArrayList<Note>): String
+<u>+ formatNotes(String, ArrayList<Note>, Notebook): String
+<u>+ formatNote(String, Note): String
+<u>+ formatTimetable(String, int, int, HashMap<Month, HashMap<Integer, ArrayList<Event>>>): String
+<u>+ formatTimetable(String, ArrayList<Event>): String
+<u>+ formatEvent(Event): ArrayList<String>
+<u>+ formatEventString(String, Event): String
+<u>+ formatReminders(String, ArrayList<Reminders>): String
+<u>+ formatReminder(Reminder): ArrayList<String>
+<u>+ formatString(String): String
+<u>+ formatString(ArrayList<String>, boolean): String
+<u>+ formatString(String[], boolean): String
+<u>+ generatesHeader(String): String
+<u>+ generatesRowSplit(): String
+<u>+ encloseTopAndBottom(String): String
+<u>+ encloseRow(String): String
+<u>+ getNumAsciiCode(String, ArrayList<Integer>, ArrayList<Integer>, ArrayList<String>): int
+}
+
+@enduml
