@@ -146,7 +146,6 @@ The following are some examples of the different type of Command Objects.
    <br><em>Figure 8</em>
 </p>
 
-
 <br>
 
 #### <a id="note"><ins>2.5 Notebook</ins></a>
@@ -180,14 +179,14 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 11</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 12</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
@@ -196,7 +195,7 @@ The Formatter class handles the formatting of the Note(s), Event(s) and message(
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 11</em>
+   <br><em>Figure 13</em>
 </p>
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
@@ -206,7 +205,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 12</em>
+   <br><em>Figure 14</em>
 </p>
 
 💡 As there are various types of exception, the class diagram is split into two.
@@ -225,7 +224,7 @@ The figure below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 13</em>
+ <br><em>Figure 15</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>

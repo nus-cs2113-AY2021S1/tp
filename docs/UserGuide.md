@@ -46,23 +46,11 @@ Any points with the 💡 emoji represents an additional information. You can acc
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
 1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
 1. If the program is running correctly, you should see the following:
-```
-Welcome to NotUS! 
- 
-             .-') _               .-') _                 .-')    
-            ( OO ) )             (  OO) )               ( OO ).  
-        ,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
-        |   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
-        |    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
-        |  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
-        |  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
-        |  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
-        `--'  `--'       `-----'    `--'    `-----'     `-----'  
- 
-    Type "help" if you need to see a list of commands and their usages.
- 
-    Enter command:
-```    
+
+<p align="center">
+   <img alt="startUp" src="startUp/help.png"/>
+</p>
+
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
 <br>
