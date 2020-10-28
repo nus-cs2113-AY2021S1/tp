@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static common.Messages.CARD;
 
-public class ListCardCommand extends ListCommand {
+public class ListCardsCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of flashcards available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 

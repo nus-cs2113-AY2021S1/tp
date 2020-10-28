@@ -21,11 +21,10 @@ import commands.GoCommand;
 import commands.GoModuleCommand;
 import commands.HelpCommand;
 import commands.HistoryCommand;
-import commands.ListCardCommand;
 import commands.ListCommand;
-import commands.ListModuleCommand;
-import commands.ListChapterCommand;
-import commands.ListCardCommand;
+import commands.ListModulesCommand;
+import commands.ListChaptersCommand;
+import commands.ListCardsCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
 import commands.RemoveCardCommand;
@@ -182,21 +181,21 @@ public class Parser {
         case ADMIN:
             if (!commandArgs.isEmpty()) {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
-                        + ListCommand.MESSAGE_USAGE);
+                        + ListModulesCommand.MESSAGE_USAGE);
             }
-            return new ListModuleCommand();
+            return new ListModulesCommand();
         case MODULE:
             if (!commandArgs.isEmpty()) {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
-                        + ListCommand.MESSAGE_USAGE);
+                        + ListChaptersCommand.MESSAGE_USAGE);
             }
-            return new ListChapterCommand();
+            return new ListChaptersCommand();
         case CHAPTER:
             if (!commandArgs.isEmpty()) {
                 throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListCommand.COMMAND_WORD)
-                        + ListCardCommand.MESSAGE_USAGE);
+                        + ListCardsCommand.MESSAGE_USAGE);
             }
-            return new ListCardCommand();
+            return new ListCardsCommand();
         default:
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,

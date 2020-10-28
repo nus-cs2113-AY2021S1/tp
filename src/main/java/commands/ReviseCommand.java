@@ -5,14 +5,12 @@ import common.KajiLog;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
-import manager.history.History;
 import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -111,7 +109,7 @@ public class ReviseCommand extends Command {
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
         CardList newCards = new CardList(allCards);
         storage.saveCards(newCards, access.getModuleLevel(), toRevise.getChapterName());
-        addHistory(ui, access, storage);
+        HistoryCommand.addHistory(ui, access, storage, reviseIndex);
     }
 
     private boolean promptNotDue(Ui ui, Chapter toRevise) {
@@ -137,17 +135,6 @@ public class ReviseCommand extends Command {
             }
         }
         return notRevising;
-    }
-
-    private void addHistory(Ui ui, Access access, Storage storage) throws IOException {
-        LocalDate date = java.time.LocalDate.now();
-        storage.createHistory(ui, date.toString());
-        String moduleName = access.getModule().getModuleName();
-        String chapterName = access.getModule().getChapters().getChapter(reviseIndex).getChapterName();
-        History history = new History(moduleName, chapterName, 100);
-        ArrayList<History> histories = storage.loadHistory(date.toString());;
-        histories.add(history);
-        storage.saveHistory(histories, date.toString());
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {

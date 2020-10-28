@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static common.Messages.MODULE;
 
-public class ListModuleCommand extends ListCommand {
+public class ListModulesCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of modules available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
