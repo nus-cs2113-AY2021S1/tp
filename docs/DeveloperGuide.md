@@ -1,9 +1,80 @@
 # Developer Guide
 
-{Table of contents goes here}
+## Table of Contents
+- [Introduction]()
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    * [Architecture](#architecture)
+    * [UI Component](#ui-component)
+    * [Command Component](#command-component)
+    * [Parser Component](#parser-component)
+    * [UserData Component](#userdata-component)
+    * [Storage component](#storage-component)
+- [Implementation](#implementation)
+    * [Help](#help-feature)
+    * [Add](#add-feature)
+    * [List](#list-feature)
+    * [Calendar](#calendar-feature)
+    * [Repeat](#repeat-feature)
+    * [Deadline](#deadline-feature)
+    * [Check](#check-feature)
+    * [Goal](#goal-feature)
+    * [Done](#done-feature)
+    * [Undone](#undone-feature)
+    * [Delete](#delete-feature)
+    * [Note](#note-feature)
+    * [Reminder](#reminder-feature)
+    * [Extract](#extract-feature)    
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)   
+    * [User Stories](#user-stories) 
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
+- [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and Shutdown](#launch-and-shutdown)
+    * [Loading and Saving Data](#loading--and-saving-data)
+    * [Adding new event](#adding-new-event)
+    * [Delete Event](#delete-event)
+    * [Repeat Event](#repeat-event)
+    * [Changing status of events](#changing-status-of-events)
+    * [Help Command](#help-command)
+    * [Printing calendar](#printing-calendar)
+    * [Checking schedule availability](#checking-schedule-availability)
+    * [Adding deadline to event](#adding-deadline-to-event)
+    * [Setting reminder](#setting-reminder)
 
 ## Setting up, getting started
-
+1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
+2. Clone the fork on to your computer.
+3. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
+to close the existing project dialog. 
+4. Set up the correct JDK version for Gradle.
+    1. Click `Configure` -> `Project Defaults` -> `Project Structure`
+    2. Click `New...` and set it to the directory of the JDK.
+5. Click `Open or Import` in Intellij.
+6. Locate the `build.gradle` file, select it and click `OK`.
+7. If asked, choose to `Open as Project`.
+8. Click `OK` to accept the default settings.
+9. Wait for the importing process to finish.
+10. Locate run the 'Duke.java' file, right click and select `Run Duke.main()`.
+11. Navigate to the `test\java` folder and right click `seedu.duke` and select `Run Tests in 'seedu.duke'`.
+If the setup is successful, you should see this after step 10. All tests should also pass.
+````
+_________________________________
+Welcome to scheduler--;!
+What can I do for you?
+_________________________________
+File Created: Personal
+File Created: Zoom
+File Created: Timetable
+File Created: Goal
+The file has successfully been loaded!
+_________________________________
+You have no events today!
+_________________________________
+````
 ## Design
 ### Architecture
 
@@ -25,7 +96,7 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
-#### Ui
+#### Ui Component
 The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
@@ -40,12 +111,12 @@ API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
 
-### Parser
+#### Parser Component
 ![Parser diagram](./diagrams/Parser_diagram.jpg)
 
 The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
 
-#### UserData
+#### UserData Component
 ![UserData diagram](./diagrams/UserData_diagram.jpg)
 
 The `UserData`
@@ -53,7 +124,7 @@ The `UserData`
 - stores a `Goal` object that represents the current user goal.
 - does not depend on the other components.
 
-#### Storage 
+#### Storage Component
 ![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
@@ -78,90 +149,12 @@ How the storage component save files
 - the Storage class then writes them to the correct Path and the corresponding text(.txt) files are modified. 
 ## Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
+In this section, the features implemented will be explained using various UML diagrams and code snippets.
 
-### Check feature
+#### Help feature
+(WIP)
 
-#### Implementation
-
-The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event`s stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
-
-- `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
-- `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
-- `CheckCommand#checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime)` -- Checks each event in the eventsList to see if they occur within the time period defined in the command, and saves all coinciding events in an ArrayList.
-
-These operations are not exposed, and are used as private methods within the `CheckCommand` interface.
-
-Given below is an example usage scenario and how the check feature functions.
-
-Step 1. The user inputs `check 11/5/2020; 5:15 PM; 15/5/2020; 9 PM` in order to check for events occurring between 11th May 2020, 5:15 pm and 15th May 2020, 9:00 pm. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which returns a CheckCommand with the date and time parameters stored in it as a string.
-
-Step 2. `CheckCommand#execute()` is called. The command string containing the date and time parameters are split into a String array to separate the different parameters. 
-
-Step 3. Within `CheckCommand#execute()`, `CheckCommand#getDate()` is called to parse the start and end dates, and `CheckCommand#getTime()` is called to parse the start and end times.
-
-This sequence diagram shows how the `getDate` method functions:
-
-![Sequence Diagram for getDate](./diagrams/getDate_seq_diagram.jpg)
-
-Step 4. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
-
-Step 5. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
-
-Step 6. `Ui#printList()` is called to print the list of coinciding events.
-
-The following sequence diagram shows how the check operation works:
-
-![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
-
-#### [Proposed] Deadline feature
-
-The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
-to be on the 7th October 2020 at 11:20 PM. 
-The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
-Given below is how the deadline command behave: <br>
-
-<p align="center">
-  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
-</p>
-
-The following sequence diagram shows how the deadline operation works: <br>
-
-![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
-
-#### [Proposed] Goal feature
-
-##### Proposed Implementation
-
-The proposed goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
-`UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
-
-Given below is an example usage scenario of the goal feature.
-
-Step 1. The user launches the application for the first time. `Ui#printGoal` is called, 
-a line informing them they have no goal is printed.
-
-Step 2. The user executes `goal save money` command to set the goal as "save money".
-The `goal` command is passed through a parser to return the GoalCommand with arguments initialised.
-
-Step 3. `GoalCommand#execute()` is called, setting the goal in `UserData` to "save money". The change is printed
-with `Ui#printChangeGoal()`.
-
-Step 4. The user executes `goal` command to print the current goal.
-The `goal` command is passed through a parser to return the GoalCommand with blank arguments.
-
-Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
-with `Ui#printGoal()`.
-
-The following sequence diagram shows how the `goal save money` command is parsed:
-
-![Sequence diagram for parsing goal command](./diagrams/GoalParseSequenceDiagram.jpg)
-
-The following sequence diagram shows how `GoalCommand#execute()` works:
-
-![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
-
-#### Add Feature
+#### Add feature
 
 The add feature in the program allows the user to create one of 3 different events in scheduler--;.
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
@@ -233,7 +226,10 @@ The following sequence diagram shows how the `list zoom` command is parsed:
 
 ![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
-#### Repeat Feature
+#### Calendar feature
+(WIP)
+
+#### Repeat feature
 
 The repeat feature on the program allows for the user to be able to make certain events repeat several times over a defined time period.
 For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat [event type] [index] [timeUnit] [count]`
@@ -296,9 +292,105 @@ Steps 2 to 5 are repeated up till the number specified by `count` as shown in th
 Finally, set the `repeatEventList` using the `setRepeatEventList` command as shown in the following section of the sequence diagram. The results of this process is printed and control returns back to the main program.
 
 ![Sequence Diagram for Repeat Command step 7](./diagrams/repeatstep7.jpg)
+
+#### Deadline feature
+
+The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
+to be on the 7th October 2020 at 11:20 PM. 
+The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
+Given below is how the deadline command behave: <br>
+
+<p align="center">
+  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
+</p>
+
+The following sequence diagram shows how the deadline operation works: <br>
+
+![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
+
+#### Check feature
+
+The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event`s stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
+
+- `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
+- `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
+- `CheckCommand#checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime)` -- Checks each event in the eventsList to see if they occur within the time period defined in the command, and saves all coinciding events in an ArrayList.
+
+These operations are not exposed, and are used as private methods within the `CheckCommand` interface.
+
+Given below is an example usage scenario and how the check feature functions.
+
+Step 1. The user inputs `check 11/5/2020; 5:15 PM; 15/5/2020; 9 PM` in order to check for events occurring between 11th May 2020, 5:15 pm and 15th May 2020, 9:00 pm. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which returns a CheckCommand with the date and time parameters stored in it as a string.
+
+Step 2. `CheckCommand#execute()` is called. The command string containing the date and time parameters are split into a String array to separate the different parameters. 
+
+Step 3. Within `CheckCommand#execute()`, `CheckCommand#getDate()` is called to parse the start and end dates, and `CheckCommand#getTime()` is called to parse the start and end times.
+
+This sequence diagram shows how the `getDate` method functions:
+
+![Sequence Diagram for getDate](./diagrams/getDate_seq_diagram.jpg)
+
+Step 4. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
+
+Step 5. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
+
+Step 6. `Ui#printList()` is called to print the list of coinciding events.
+
+The following sequence diagram shows how the check operation works:
+
+![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
+
+#### Goal feature
+
+The goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
+`UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
+
+Given below is an example usage scenario of the goal feature.
+
+Step 1. The user launches the application for the first time. `Ui#printGoal` is called, 
+a line informing them they have no goal is printed.
+
+Step 2. The user executes `goal save money` command to set the goal as "save money".
+The `goal` command is passed through a parser to return the GoalCommand with arguments initialised.
+
+Step 3. `GoalCommand#execute()` is called, setting the goal in `UserData` to "save money". The change is printed
+with `Ui#printChangeGoal()`.
+
+Step 4. The user executes `goal` command to print the current goal.
+The `goal` command is passed through a parser to return the GoalCommand with blank arguments.
+
+Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
+with `Ui#printGoal()`.
+
+The following sequence diagram shows how the `goal save money` command is parsed:
+
+![Sequence diagram for parsing goal command](./diagrams/GoalParseSequenceDiagram.jpg)
+
+The following sequence diagram shows how `GoalCommand#execute()` works:
+
+![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
+
+#### Done feature
+(WIP)
+
+#### Undone feature
+(WIP)
+
+#### Delete feature
+(WIP)
+
+#### Note feature
+(WIP)
+
+#### Reminder feature
+(WIP)
+
+#### Extract feature
+(WIP)
+
+
  
- 
-## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
+## Documentation, logging, testing, configuration, dev-ops
 
 ## Appendix: Requirements
 
@@ -403,7 +495,7 @@ Scheduler--; prints an error message and use case ends.
 
 ## Glossary
 
-{* *glossary item* - Definition}
+- Mainstream OS: Windows, Linux, Unix, OS-X
 
 ## Instructions for manual testing
 
