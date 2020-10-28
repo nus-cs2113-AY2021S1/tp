@@ -4,7 +4,8 @@ package seedu.modtracker;
  * Parses user input.
  */
 public class Parser {
-    protected static boolean exit = false;
+    protected boolean exit = false;
+    protected boolean restart = false;
     public static final String COMMAND_ADDMOD = "addmod";
     public static final String COMMAND_ADDEXP = "addexp";
     public static final String COMMAND_DELETEMOD = "deletemod";
@@ -22,6 +23,7 @@ public class Parser {
     public static final String COMMAND_DELETETASK = "deletetask";
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_LISTTASK = "listtask";
+    public static final String COMMAND_CLEAR = "clear";
     public static final String COMMAND_RESET = "reset";
 
 
@@ -137,12 +139,20 @@ public class Parser {
                 exit = true;
             }
             break;
+        case COMMAND_CLEAR:
+            assert toPrint : "toPrint should be true";
+            if (ui.confirmClear()) {
+                storage.clearData();
+                modList.clear();
+                taskList.clear();
+            }
+            break;
         case COMMAND_RESET:
             assert toPrint : "toPrint should be true";
             if (ui.confirmReset()) {
-                storage.resetFile();
-                modList.clear();
-                taskList.clear();
+                storage.reset();
+                restart = true;
+                exit = true;
             }
             break;
         default:
@@ -155,10 +165,18 @@ public class Parser {
     /**
      * Checks for exit status.
      *
-     * @return status of exit
+     * @return status of exit.
      */
     public boolean isExit() {
         return exit;
     }
 
+    /**
+     * Checks for whether the program wants to restart.
+     *
+     * @return status of restart.
+     */
+    public boolean isRestart() {
+        return restart;
+    }
 }

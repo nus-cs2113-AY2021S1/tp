@@ -271,13 +271,32 @@ public class Ui {
     }
 
     /**
-     * Confirms with the user whether he/ she wants to clear all data.
+     * Confirms with the user whether he/ she wants to reset all data.
      *
      * @return true if user wants to reset data.
      */
     public boolean confirmReset() {
         System.out.println("---WARNING!---");
-        System.out.println("This will delete all your past data.");
+        System.out.println("This will delete all your past data and reset the whole program.");
+        System.out.println("Type '" + CONFIRMATION + "' if you wish to continue.");
+        System.out.println("Enter any key to cancel this operation." + System.lineSeparator());
+        String input = in.nextLine();
+        if (input.equalsIgnoreCase("yes")) {
+            System.out.println("Okay, the program will reset now..." + System.lineSeparator());
+            return true;
+        }
+        System.out.println("Reset not confirmed. Your data is safe :)" + System.lineSeparator());
+        return false;
+    }
+
+    /**
+     * Confirms with the user whether he/ she wants to clear all data.
+     *
+     * @return true if user wants to clear data.
+     */
+    public boolean confirmClear() {
+        System.out.println("---WARNING!---");
+        System.out.println("This will delete all modules and tasks data.");
         System.out.println("Type '" + CONFIRMATION + "' if you wish to continue.");
         System.out.println("Enter any key to cancel this operation." + System.lineSeparator());
         String input = in.nextLine();
@@ -285,7 +304,7 @@ public class Ui {
             System.out.println("Okay, your data has been deleted :(" + System.lineSeparator());
             return true;
         }
-        System.out.println("Reset not confirmed. Your data is safe :)" + System.lineSeparator());
+        System.out.println("Clearing of data not confirmed. Your data is safe :)" + System.lineSeparator());
         return false;
     }
 
