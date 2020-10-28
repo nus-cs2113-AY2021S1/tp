@@ -70,6 +70,12 @@ Before you begin, here's what you need to do:
 ## Features 
 
 ### 1. Book Management
+To manage your books, the book management feature allows you to add, delete and edit books you've already read or
+wish to read. You can then mark these books as done if you've already finished reading them, list them according to 
+their authors or completion and even find any book you want by just typing in keywords.
+
+What are you waiting for? If you've struggled with keeping up with your long booklist, Quotesify is here to help! 
+
 ### 2. Quote Management
 ### 3. Progress Tracker
 Progress Tracker in Quotesify allows you to add, update, list and delete bookmarks for the books you add. 
