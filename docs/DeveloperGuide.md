@@ -170,8 +170,7 @@ NUS students living on campus who would like to track their daily food and nutri
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OD* - Windows, Linux, Unix, OS-X
+* *Food items* - Includes both food and drinks 
 
 ## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
