@@ -48,6 +48,8 @@ public class ReadStorageFile extends StorageFile {
             myReader.close();
         } catch (FileNotFoundException | DuplicateDataException e) {
             ui.printToUser("Load File does not exist. No contents will be loaded.");
+        } catch (IOException e) {
+            ui.printToUser("Load File is corrupted.");
         }
     }
 
