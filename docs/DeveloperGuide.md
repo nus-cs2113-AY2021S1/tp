@@ -30,7 +30,7 @@
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
-This document describes the design, implementation and architecture of NotUS.
+This document describes the design, implementation and architecture of NotUS. The aim of this developer guide is to get developers and potential contributors familiarised with the design and implementation of NotUS. It is assumed that the reader has some basic understanding of UML Notations. If you do not possess such knowledge, this document is probably not meant for you. Please access the [User Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md) instead.
 
 #### <a id="setup"><ins>1.1 Setting Up</ins></a>
 
@@ -41,6 +41,8 @@ This document describes the design, implementation and architecture of NotUS.
 Fork this repo and clone it onto your local machine.
 Import the project as a **Gradle project**.
 Ensures that you are using the correct JDK version (For this project we are using JDK 11).
+
+For a more detailed set of instructions, please refer to the [following guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/README.md).
 
 <br>
 
@@ -53,7 +55,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 
 <p align="center">
   <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_Overview.png" />
-  <br><em>Figure #</em>
+  <br><em>Figure 1</em>
 </p>
 
 The architecture design is given in the diagram above. The main components of NotUS are:
@@ -70,16 +72,16 @@ A Program Evaluation Review Technique (PERT) Chart was created prior to the star
 
 <p align="center">
   <img alt="PERT Chart" src="diagrams/out/PERT_Chart.png" />
-  <br><em>Figure #</em>
+  <br><em>Figure 2</em>
 </p>
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
-NotUs manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
+NotUS manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
 
 <p align="center">
   <img alt="NotUS" src="diagrams/out/Notus.png" />
-  <br><em>Figure #</em>
+  <br><em>Figure 3</em>
 </p>
 
 #### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
@@ -88,7 +90,7 @@ The ParserManager manages the creation of specific parser objects based on the t
 
 <p align="center">
   <img alt="ParserManagerClass" src="diagrams/out/ParserManagerClass.png" />
-  <br><em>Figure #</em>
+  <br><em>Figure 4</em>
 </p>
 
 💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
@@ -102,14 +104,14 @@ The sequence diagram is as follows.
 
 <p align="center">
   <img alt="Parser" src="diagrams/out/Parser.png" />
-  <br><em>Figure #</em>
+  <br><em>Figure 5</em>
 </p>
 
 💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
 
  <p align="center">
    <img alt="AddNoteParser" src="diagrams/out/AddNoteParser.png" />
-   <br><em>Figure #</em>
+   <br><em>Figure 6</em>
  </p>
 
 Based on the user input, the Parser handles and creates the corresponding Command object.
@@ -129,7 +131,7 @@ The following are some examples of the different type of Command Objects.
 
 <p align="center">
    <img alt="AddNote_Sequence" src="diagrams/out/AddNote_Sequence.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 7</em>
 </p>
 
 **PinCommand**
@@ -141,7 +143,7 @@ The following are some examples of the different type of Command Objects.
 
 <p align="center"> 
    <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
-   <br><em>Figure 4</em>
+   <br><em>Figure 8</em>
 </p>
 
 
@@ -153,7 +155,7 @@ The notebook component stores a catalogue of notes. On launch, an empty notebook
 
 <p align="center">
    <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 9</em>
 </p>
 
 Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
@@ -166,7 +168,7 @@ The class diagram below denotes the relationship between the TagManager and the 
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 10</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
@@ -181,7 +183,7 @@ The Formatter class handles the formatting of the Note(s), Event(s) and message(
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 11</em>
 </p>
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
@@ -191,18 +193,18 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 12</em>
 </p>
 
 💡 As there are various types of exception, the class diagram is split into two.
 
 #### <a id="color"><ins>2.11 Usage of External Libraries</ins></a>
 
-This application uses 2 color libraries, <a href="https://github.com/dialex/JColor">JColor</a> and <a href="https://fusesource.github.io/jansi/">Jansi</a>, to print colored messages on the terminals using ANSI escape codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **does not support** ANSI escape code. Hence, there was a need for the Jansi library to support ANSI escape codes on Windows.
+This application uses 2 color libraries, <a href="https://github.com/dialex/JColor">JColor</a> and <a href="https://fusesource.github.io/jansi/">Jansi</a>, to print colored messages on the terminals using ANSI escape codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **does NOT support** ANSI escape code. Hence, there was a need for the Jansi library to support ANSI escape codes on Windows.
   
 <ins>Note on usage of JColor library:</ins>
 
-IntelliJ's 'Dracula' and 'High Contrast' themes print white fonts as black and vice versa. Developers using either of the themes will have to change the white and black console color to reflect the correct color that is being printed. Instructions to do so are given below.
+IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black and vice versa. Developers using either of the themes will have to change the white and black console color to reflect the correct color that is being printed. Instructions to do so are given below.
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
@@ -210,7 +212,7 @@ The figure below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure #</em>
+ <br><em>Figure 13</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
@@ -240,7 +242,10 @@ She also wants to be able to export the information so she is able to share them
 
 #### <a id="value"><ins>3.3 Value Proposition</ins></a>
 
-A all-in-one solution for note-taking and managing your schedule.
+A all-in-one solution for note-taking and managing your schedule. NotUS solves the following problems.
+
+1. Lack of access to organizing schedule
+1. Lack of access to organizing notes
 
 <br>
 
@@ -290,6 +295,12 @@ A all-in-one solution for note-taking and managing your schedule.
 
 * *CLI* - Command Line Interface
 * *DBMS* - Database Management System
+* *UML* - Unified Modelling Language
+* *PERT* -  Program Evaluation Review Technique
+* *IntelliJ* - An Integrated Development Environment (IDE) developed by [JetBrains](https://www.jetbrains.com/idea/) for developing computer software.
+* *SOC* - School of Computing
+* *FOE* - Faculty of Engineering
+* *CEG* - Computer Engineering
 
 <br>
 
