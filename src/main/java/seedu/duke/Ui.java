@@ -55,7 +55,8 @@ public class Ui {
                 + "21. countdown deadlines\n"
                 + "22. /a <event number> - information\n"
                 + "23. /v <event number>\n"
-                + "24. suggestion"
+                + "24. /- <event_number> a <additional_information_number>\n"
+                + "25. suggestion"
         );
     }
 
