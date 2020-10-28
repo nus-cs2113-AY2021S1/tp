@@ -19,10 +19,11 @@ public class FlashcardRun {
         flashcardDeck = new FlashcardDeck();
         try {
             storage = new FlashcardStorage("data/flashcard.txt");
+            storage.readFromFile(flashcardDeck);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.readFromFile(flashcardDeck);
+
         StudyItLog.logger.info("Flashcard mode initialized");
     }
 

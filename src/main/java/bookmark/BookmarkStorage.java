@@ -27,7 +27,7 @@ public class BookmarkStorage {
         bookmarkFile = new File(filePath);
     }
 
-    public ArrayList<BookmarkCategory> loadFile() {
+    public ArrayList<BookmarkCategory> loadFile() throws IOException {
         try {
             Scanner s = new Scanner(bookmarkFile);
             ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
@@ -60,6 +60,7 @@ public class BookmarkStorage {
             return bookmarkCategories;
         } catch (FileNotFoundException e) {
             System.out.println("data/bookmark.txt is not found, creating a new file now!");
+            bookmarkFile.createNewFile();
             ArrayList<BookmarkCategory> newBookmarkCategories = new ArrayList<>();
             newBookmarkCategories.add(new BookmarkCategory("NUS"));
             newBookmarkCategories.add(new BookmarkCategory("Zoom"));

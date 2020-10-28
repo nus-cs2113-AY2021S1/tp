@@ -5,6 +5,7 @@ import exceptions.InvalidCommandException;
 import studyit.StudyItLog;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BookmarkRun {
@@ -18,7 +19,12 @@ public class BookmarkRun {
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
         bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
-        bookmarkCategories = bookmarkStorage.loadFile();
+        try {
+            bookmarkCategories = bookmarkStorage.loadFile();
+        } catch (IOException e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
+
         StudyItLog.logger.info("Bookmark mode initialized");
     }
 

@@ -18,7 +18,8 @@ import java.util.Scanner;
 
 
 public class Ui {
-    public static final String LINE_DIVIDER = "=======================================================================";
+    public static final String LINE_DIVIDER = "=============================================================="
+            + "===============";
 
     public static void printDivider() {
         System.out.println(LINE_DIVIDER);
