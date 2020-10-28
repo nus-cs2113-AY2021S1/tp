@@ -52,9 +52,9 @@ public class NoteCommand extends Command {
             EventList list = data.getEventList(event);
             Event eventRequested = list.getEventByIndex(index - 1);
             if (eventRequested != null) {
-                ui.printMessage("Please type in your notes." +
-                        " To stop note taking, ensure that you are in a new line and type the semicolon key," +
-                        " \';\' and press enter");
+                ui.printMessage("Please type in your notes."
+                        + " To stop note taking, ensure that you are in a new line and type the semicolon key,"
+                        + " \';\' and press enter");
                 ArrayList<String> existingNotes = eventRequested.getNotes();
                 ArrayList<String> additionalNotes = getNotesFromUser();
                 ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
