@@ -445,6 +445,7 @@ To understand the `Workspace` feature better, you may refer to [user guide](http
 **Design Overview**
 
 `Workspace` is primarily the layer of code that sits between the user, and the rest of AniChan data management features (i.e., `Watchlist`, `Bookmark`). 
+
 As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
 and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
 
@@ -454,12 +455,12 @@ and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/sr
 
 #### 4.4.1 Current Implementation
 
-| Workspace Command | Option          | Required field |
+| Command Option        | Workspace Command                      | Description field |
 |---|---|---|
-| Create new        | n               | Workspace Name |
-| Switch            | s               | Workspace Name |
-| List              | l               | None           |
-| Delete            | d               | Workspace Name |
+| `-n`       | `WorkspaceCommand#createWorkspace()`              | Creates new workspace |
+| `-s`       | `WorkspaceCommand#switchWorkspace()`              | Switches to specified workspace |
+| `-l`       | `WorkspaceCommand#listWorkspace()`                | Lists existing workspace(s)           |
+| `-d`       | `WorkspaceCommand#deleteWorkspace()`              | Deletes specified workspace |
 
 The `WorkspaceCommand` is instantiated by `WorkspaceParser`, and it requires 2 parameters: 
 *   `commandOption` (mandatory).
