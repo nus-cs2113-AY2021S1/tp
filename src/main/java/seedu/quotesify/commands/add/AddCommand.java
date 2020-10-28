@@ -52,7 +52,7 @@ public class AddCommand extends Command {
             addLogger.log(Level.INFO, "rating of book has completed");
             break;
         case TAG_TODO:
-            addLogger.log(Level.INFO, "going yo add task to ToDoList");
+            addLogger.log(Level.INFO, "going to add task to ToDoList");
             new AddToDoCommand(arguments).execute(ui, storage);
             break;
         default:
