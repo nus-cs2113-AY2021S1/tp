@@ -20,11 +20,11 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
+[comment]:<>(##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Exit](#exit)
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
@@ -187,8 +187,6 @@ Example of usage:
 `edit-n /i 2 /ln 1 /c @param refers to parameters`
 
 Expected output:
-
-
 
 ### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
@@ -406,6 +404,7 @@ Expected output:
 
 
 
+<!---
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
@@ -422,7 +421,9 @@ Example of usage:
 Expected output:
 
 
-### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
+-->
+
+### <a id="list-e"><ins>3.17 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -437,7 +438,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
+### <a id="remind-e"><ins>3.18 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -451,7 +452,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
+### <a id="delete-e"><ins>3.19 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -465,7 +466,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
+### <a id="exit"><ins>3.20 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 
@@ -505,7 +506,7 @@ List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
 Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`
+Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`
