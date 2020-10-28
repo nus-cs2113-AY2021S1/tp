@@ -85,6 +85,7 @@ public class Event extends TaggableObject implements Comparable<Event> {
         this(title, startDateTime, isToRemind, isRecurring);
         this.reminderPeriods = reminderPeriods;
     }
+
     public String getTitle() {
         return title;
     }
