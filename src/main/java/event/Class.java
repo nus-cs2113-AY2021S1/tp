@@ -3,6 +3,7 @@ package event;
 
 import location.Location;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -17,6 +18,16 @@ public class Class extends Event {
         super(description, location);
 
         this.at = at;
+    }
+
+    /**
+     * Provides the date of the Class.
+     *
+     * @return the LocalDate get from LocalDateTime.
+     */
+    @Override
+    public LocalDate getDate() {
+        return LocalDate.from(at);
     }
 
     /**
