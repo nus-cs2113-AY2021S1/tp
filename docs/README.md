@@ -5,6 +5,8 @@ platform and enhances their learning experience.
 
 It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [**Command Line Interface (CLI)**](#1-command-line-interface-cli), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
+If you are a CS2113/T student yourself, do give E-Duke-8 a try!
+
 On E-Duke-8, you can earn points for yourself as you attempt the quizzes! You can also view the statistics of your past quiz attempts to understand your current level of mastery of the various topics!
 
 Challenge your friends to see who can earn the most points on E-Duke-8!

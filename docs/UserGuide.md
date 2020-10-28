@@ -33,6 +33,8 @@ On E-Duke-8, you can earn points for yourself as you attempt the quizzes! You ca
 
 Challenge your friends to see who can earn the most points on E-Duke-8!
 
+Understand more about E-Duke-8, and how you can use it to aid your learning, through this User Guide.
+
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
