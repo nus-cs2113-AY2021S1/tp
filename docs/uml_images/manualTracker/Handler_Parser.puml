@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+}
+
+rectangle Parser{
+    class InputParser {
+    }
+
+    class ParamParser {
+    }
+    InputParser *-> ParamParser
+    InputParser "1" <-[#red]- ManualTracker #line:red;line.bold;text:red
+
+    InputParser "1" <-[#red]- EntryTracker  #line:red;line.bold;text:red
+}
+@enduml

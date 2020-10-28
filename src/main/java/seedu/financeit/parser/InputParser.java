@@ -9,32 +9,41 @@ import seedu.financeit.utils.RegexMatcher;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
+//@@author Artemis-Hunt
 public class InputParser {
-    protected Matcher matcher;
+    private Matcher matcher;
+    private static InputParser inputParser = null;
 
-    public InputParser() {
+    private InputParser() {
+    }
+
+    public static InputParser getInstance() {
+        if (inputParser == null) {
+            inputParser = new InputParser();
+        }
+        return inputParser;
     }
 
     /**
-     * This will parse the command into 4 small parts
+     * This will parse the command into 4 small parts.
      * Example: expense 5000 for 08
      * Output: expense;5000;for;08
-     * @param userCommand
+     * @param userCommand the command user enter
      * @return
      */
-    public String[] parseGoalCommand (String userCommand) {
+    public String[] parseGoalCommand(String userCommand) {
         String[] newCommand = userCommand.split(" ", 4);
         return newCommand;
     }
 
     /**
-     * This will parse the edit command into 5 small parts
+     * This will parse the edit command into 5 small parts.
      * Example: edit expense 2000 for 08
      * Output: edit;expense;2000;for;08
-     * @param userCommand
+     * @param userCommand command user entered
      * @return
      */
-    public String[] parseEditCommand (String userCommand) {
+    public String[] parseEditCommand(String userCommand) {
         String[] newCommand = userCommand.split(" ", 5);
         return newCommand;
     }
@@ -53,6 +62,7 @@ public class InputParser {
      *  }
      * }
      */
+
     public CommandPacket parseInput(String input) {
         String commandString = "";
         HashMap<String, String> params = new HashMap<>();

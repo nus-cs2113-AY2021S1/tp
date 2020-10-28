@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParamCheckerTest {
-    private ParamChecker paramCheckerUnderTest;
     CommandPacket testPacket;
 
     @Test
@@ -24,9 +23,9 @@ public class ParamCheckerTest {
                 new String[]{testParam, "202020"}
             }
         );
-        paramCheckerUnderTest = TestUtil.createParamChecker(testPacket);
+        ParamChecker.getInstance().setPacket(testPacket);
         try {
-            paramCheckerUnderTest.checkAndReturnDate(testParam);
+            ParamChecker.getInstance().checkAndReturnDate(testParam);
             fail();
         } catch (ParseFailParamException exception) {
             assertEquals(
@@ -34,7 +33,7 @@ public class ParamCheckerTest {
                 exception.getMessage()
             );
         }
-        assertCorrectErrorMessage(paramCheckerUnderTest, ParamChecker.getErrorMessageDateDateTimeException());
+        assertCorrectErrorMessage(ParamChecker.getInstance(), ParamChecker.getErrorMessageDateDateTimeException());
     }
 
     @Test
@@ -46,9 +45,9 @@ public class ParamCheckerTest {
                 new String[]{testParam, "2500"}
             }
         );
-        paramCheckerUnderTest = TestUtil.createParamChecker(testPacket);
+        ParamChecker.getInstance().setPacket(testPacket);
         try {
-            paramCheckerUnderTest.checkAndReturnTime(testParam);
+            ParamChecker.getInstance().checkAndReturnTime(testParam);
             fail();
         } catch (ParseFailParamException exception) {
             assertEquals(
@@ -56,7 +55,7 @@ public class ParamCheckerTest {
                 exception.getMessage()
             );
         }
-        assertCorrectErrorMessage(paramCheckerUnderTest, ParamChecker.getErrorMessageTimeDateTimeException());
+        assertCorrectErrorMessage(ParamChecker.getInstance(), ParamChecker.getErrorMessageTimeDateTimeException());
     }
 
     @Test
@@ -77,9 +76,9 @@ public class ParamCheckerTest {
                     new String[]{testParam, errorInput[i]}
                 }
             );
-            paramCheckerUnderTest = TestUtil.createParamChecker(testPacket);
+            ParamChecker.getInstance().setPacket(testPacket);
             try {
-                paramCheckerUnderTest.checkAndReturnTime(testParam);
+                ParamChecker.getInstance().checkAndReturnTime(testParam);
                 fail();
             } catch (ParseFailParamException exception) {
                 System.out.println(errorInput[i]);
@@ -88,7 +87,7 @@ public class ParamCheckerTest {
                     exception.getMessage()
                 );
             }
-            assertCorrectErrorMessage(paramCheckerUnderTest, ParamChecker.getErrorMessageTimeInvalidFormat());
+            assertCorrectErrorMessage(ParamChecker.getInstance(), ParamChecker.getErrorMessageTimeInvalidFormat());
         }
     }
 
@@ -110,9 +109,9 @@ public class ParamCheckerTest {
                     new String[]{testParam, errorInput[i]}
                 }
             );
-            paramCheckerUnderTest = TestUtil.createParamChecker(testPacket);
+            ParamChecker.getInstance().setPacket(testPacket);
             try {
-                paramCheckerUnderTest.checkAndReturnDate(testParam);
+                ParamChecker.getInstance().checkAndReturnDate(testParam);
                 fail();
             } catch (ParseFailParamException exception) {
                 assertEquals(
@@ -120,7 +119,7 @@ public class ParamCheckerTest {
                     exception.getMessage()
                 );
             }
-            assertCorrectErrorMessage(paramCheckerUnderTest, ParamChecker.getErrorMessageDateInvalidFormat());
+            assertCorrectErrorMessage(ParamChecker.getInstance(), ParamChecker.getErrorMessageDateInvalidFormat());
         }
     }
 
@@ -140,9 +139,9 @@ public class ParamCheckerTest {
                     new String[]{testParam, errorInput[i]}
                 }
             );
-            paramCheckerUnderTest = TestUtil.createParamChecker(testPacket);
+            ParamChecker.getInstance().setPacket(testPacket);
             try {
-                paramCheckerUnderTest.checkAndReturnIndex(testParam, testList);
+                ParamChecker.getInstance().checkAndReturnIndex(testParam, testList);
                 fail();
             } catch (ParseFailParamException exception) {
                 assertEquals(
@@ -152,7 +151,7 @@ public class ParamCheckerTest {
             }
             int index = Integer.parseInt(errorInput[i]);
             assertCorrectErrorMessage(
-                paramCheckerUnderTest,
+                ParamChecker.getInstance(),
                 ParamChecker.getErrorMessageListIndexOutOfBounds(
                     ParamChecker.getMessageListRangeIndex(testList.size()),
                     index));

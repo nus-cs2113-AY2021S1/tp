@@ -1,0 +1,40 @@
+@startuml
+autoactivate on
+
+":Handler" ->":Handler": handleMilesCredit(packet)
+    create ":MilesCredit"
+   ":Handler"-> ":MilesCredit" : calculateMiles()
+    return
+
+   ":Handler"-> ":MilesCredit" : handlePacket
+
+        == Handling of Params in packet ==
+        ":MilesCredit" -> ":MilesCredit" : handleParams
+            ":MilesCredit" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":MilesCredit" -> ":MilesCredit" : handleSingleParam
+                    alt "paramType = /a"
+                        ":MilesCredit" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":MilesCredit" -> ":MilesCredit" : getParam(paramType)
+                        return
+                    else "paramType = /r"
+                        ":MilesCredit" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":MilesCredit" -> ":MilesCredit" : getParam(paramType)
+                        return
+                    end
+                return
+            end
+        return
+
+return state
+
+
+box "Logic" #LightBlue
+participant ":MilesCredit"
+participant ":ParamChecker"
+endBox
+@enduml

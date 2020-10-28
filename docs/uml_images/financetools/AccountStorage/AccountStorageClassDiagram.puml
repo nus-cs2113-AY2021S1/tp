@@ -1,0 +1,17 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Handler {
+ +handleAccountStorage(:CommandPacket, :String, :ArrayList<String>)
+}
+
+class AccountStorage {
+ +handleInfoStorage(:String, :ArrayList<String>)
+}
+
+class AccountSaver {
+ +updateFile(:String, :ArrayList<String>)
+}
+
+Handler --> AccountStorage : Stores account information >
+AccountStorage --> AccountSaver : Stores account information into txt >
+@enduml

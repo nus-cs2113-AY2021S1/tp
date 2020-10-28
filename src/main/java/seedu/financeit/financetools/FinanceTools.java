@@ -2,153 +2,102 @@ package seedu.financeit.financetools;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.FolderNotFoundException;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.AccountSaver;
 
-public class FinanceTools {
-    public static double handleMonthlyCompoundInterest(CommandPacket packet) {
-        MonthlyCompoundInterest tool = new MonthlyCompoundInterest();
-        tool.setRequiredParams(
-                "/amount",
-                "/ir",
-                "/period"
-        );
-        try {
-            tool.handlePacket(packet);
-            return (tool.calculateCompoundInterest());
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-        }
-        return 0;
-    }
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
-    public static double handleCompoundInterest(CommandPacket packet) {
-        CompoundInterest tool = new CompoundInterest();
-        tool.setRequiredParams(
-                "/amount",
-                "/ir",
-                "/period"
-        );
-        try {
-            tool.handlePacket(packet);
-            return (tool.calculateCompoundInterest());
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-        }
-        return 0;
-    }
-
-    public static double handleMilesCredit(CommandPacket packet) {
-        MilesCredit tool = new MilesCredit();
-        tool.setRequiredParams(
-            "/amount",
-            "/miles"
-        );
-        try {
-            tool.handlePacket(packet);
-            return (tool.calculateMiles());
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-        } finally {
-            if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
-        }
-        return 0;
-    }
-
-    public static double handleCashback(CommandPacket packet) {
-        Cashback tool = new Cashback();
-        tool.setRequiredParams(
-            "/amount",
-            "/cap",
-            "/cashback"
-        );
-        try {
-            tool.handlePacket(packet);
-            return (tool.calculateCashback());
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-        } finally {
-            if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
-        }
-        return 0;
-    }
-
-    public static double handleSimpleInterest(CommandPacket packet) {
-        SimpleInterest tool = new SimpleInterest();
-        tool.setRequiredParams(
-            "/amount",
-            "/ir"
-        );
-        try {
-            tool.handlePacket(packet);
-            return (tool.calculateSimpleInterest());
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-        }  finally {
-            if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
-        }
-        return 0;
-    }
+public abstract class FinanceTools {
 
     public static void main() {
+        ArrayList<String> commands = new ArrayList<String>();
+        ArrayList<String> infoText = new ArrayList<String>();
+        String filePath = "./data/info.txt";
+        // Retrieve account data
+        try {
+            AccountSaver.readFileContents(filePath, infoText);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (FolderNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
 
-        boolean endTracker = true;
+        boolean continueProgram = true;
         String outputAmount;
 
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Finance Tools!");
 
-        while (endTracker) {
+        while (continueProgram) {
             UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
-            CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
+            CommandPacket packet = InputParser.getInstance().parseInput(input);
+            commands.add(input);
             switch (packet.getCommandString()) {
-            case "simplecalc":
-                System.out.print("Total Interest Earned: $" + handleSimpleInterest(packet));
+            case "simple":
+                outputAmount = Double.toString(Math.round(Handler.handleSimpleInterest(packet) * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
-            case "cashbackcalc":
-                System.out.print("Total Cashback Earned: $" + handleCashback(packet));
+            case "cashb":
+                outputAmount = Double.toString(Math.round(Handler.handleCashback(packet) * 100.00) / 100.00);
+                System.out.println("Total Cashback Earned: $" + outputAmount);
+                commands.add("Total Cashback Earned: $" + outputAmount);
                 break;
-            case "milescalc":
-                System.out.print("Total Miles Earned: " + handleMilesCredit(packet));
+            case "miles":
+                outputAmount = Double.toString(Math.round(Handler.handleMilesCredit(packet) * 100.00) / 100.00);
+                System.out.println("Total Miles Earned: " + outputAmount);
+                commands.add("Total Miles Earned: " + outputAmount);
                 break;
-            case "compoundcalc":
-                System.out.printf("Compound Interval: Yearly\n"
-                        + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
+            case "cyearly":
+                outputAmount = Double.toString(Math.round(Handler.handleYearlyCompoundInterest(packet)
+                        * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cmonthly":
-                outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
-                System.out.println("Total Interest Earned: $\n\n" + outputAmount);
-                //commands.add("Total Interest Earned: $" + outputAmount);
+                outputAmount = Double.toString(Math.round(Handler.handleMonthlyCompoundInterest(packet)
+                        * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $" + outputAmount);
+                commands.add("Total Interest Earned: $" + outputAmount);
+                break;
+            case "store":
+                Handler.handleAccountStorage(packet, filePath, infoText);
+                System.out.println("Information Updated");
                 break;
             case "commands":
-                printCommandList();
+                Handler.printCommandList();
+                break;
+            case "history":
+                for (int i = 0; i < commands.size(); i++) {
+                    System.out.printf("%d) ", i + 1);
+                    System.out.println(commands.get(i));
+                }
+                break;
+            case "info":
+                if (infoText.size() == 0) {
+                    System.out.println("There is no account in the list");
+                }
+                for (int i = 0; i < infoText.size(); i++) {
+                    System.out.printf("====Account No." + "%d" + "====\n", i + 1);
+                    System.out.println(infoText.get(i));
+                }
+                break;
+            case "clearinfo":
+                infoText.removeAll(infoText);
+                try {
+                    AccountSaver.updateFile(infoText, filePath);
+                } catch (FileNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+                System.out.println("All account(s) cleared in list");
                 break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");
-                endTracker = false;
+                continueProgram = false;
                 break;
             default:
                 System.out.println("Invalid Command");
@@ -157,15 +106,4 @@ public class FinanceTools {
         }
     }
 
-    public static void printCommandList() {
-        TablePrinter.setTitle("List of Commands");
-        TablePrinter.addRow("No; Finance Tool             ;Input Format                                          ");
-        TablePrinter.addRow("1; Simple Interest Calculator; simplecalc /amount {AMOUNT} /ir {INTEREST_RATE} ");
-        TablePrinter.addRow("2; Compound Interest Calculator; compoundcalc /amount {AMOUNT} /ir {INTEREST_RATE} "
-                + "/period {YEARS}");
-        TablePrinter.addRow("3; Cashback Calculator; milescalc /amount {AMOUNT} /miles {MILES RATE}");
-        TablePrinter.addRow("4; Miles Credit Calculator; cashbackcalc /amount {AMOUNT} /cashback {CASHBACK_RATE} "
-                + "/cap {CASHBACK_CAP}");
-        TablePrinter.printList();
-    }
 }

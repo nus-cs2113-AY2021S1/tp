@@ -1,0 +1,114 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam linetype ortho
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+rectangle Data {
+    class DateTimeItem {
+        + setDate() : void
+        + getDate() : LocalDate
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+
+    abstract class Item {
+    }
+
+    abstract class ItemList {
+        # currItem : Item
+        # items : ArrayList<Item>
+        # indexToModify : int
+
+        + addItemAndSort(item : Item, comparator : Comparator)
+        + getItemSize() : int
+        + getItemAtIndex() : Item
+        + getItemAtIndex(index : int) : Item
+        + {abstract} printList()
+    }
+    rectangle DataList {
+        class LedgerList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+
+        class EntryList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+    }
+
+    class Ledger {
+        # date : LocalDate = null
+        + entryList : EntryList
+        + Ledger()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setDate() : void
+        + getDate() : LocalDate
+    }
+
+    class Entry {
+        # date : LocalDate = null
+        + Entry()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+
+
+    DateTimeItem --|> Item
+    Ledger --|> DateTimeItem
+    Entry --|> DateTimeItem
+    LedgerList --|> ItemList
+    EntryList --|> ItemList
+    Ledger "1" -- "1" EntryList
+    LedgerList --> "*" Ledger : contains >
+    EntryList --> "*" Entry : contains >
+    EntryList -[hidden]- Entry
+
+}
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+
+    EntryTracker --> EntryList : stores entries with >
+    ManualTracker --> LedgerList : stores ledgers with >
+}
+
+@enduml

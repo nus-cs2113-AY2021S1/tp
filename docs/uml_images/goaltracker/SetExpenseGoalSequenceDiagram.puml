@@ -1,0 +1,26 @@
+@startuml
+title When User Set an Expense Goal
+actor User
+
+User -> ":GoalTracker" : setExpenseGoal()
+activate ":GoalTracker"
+
+":GoalTracker" -> ":InputParser" : parseGoalCommand()
+activate ":InputParser"
+
+":InputParser" -> ":Goal" : Goal()
+activate ":Goal"
+destroy ":InputParser"
+
+":Goal" -> ":TotalGoalList" : addGoal()
+activate ":TotalGoalList"
+
+":TotalGoalList" -> ":Goal" : Goal being set
+destroy ":TotalGoalList"
+
+":Goal" -> ":GoalTracker" : Goal status updated
+destroy ":Goal"
+
+":GoalTracker" -> User : Goal Status displayed to user
+deactivate ":GoalTracker"
+@enduml

@@ -1,18 +1,18 @@
 package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.datatrackers.goaltracker.GoalTracker;
+import seedu.financeit.datatrackers.manualtracker.ManualTracker;
+import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.financetools.FinanceTools;
-import seedu.financeit.goaltracker.GoalTracker;
-import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
+import seedu.financeit.utils.LoggerCentre;
+import seedu.financeit.utils.storage.AutoTrackerSaver;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+import seedu.financeit.utils.storage.SaveManager;
 
 import java.util.logging.Level;
 
@@ -20,33 +20,25 @@ public class Financeit {
 
     public static void main(String[] args) {
 
+        String test = "$123.45";
+        test = test.replaceAll("[^\\w | .]", "");
+        System.out.println(test);
+
         String input = "";
+        Boolean load = false;
         CommandPacket packet = null;
         Level mode = Level.OFF;
-        ParamChecker.logger.setLevel(mode);
-        SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
-        SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
-        SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
-        RunHistory.setCurrentRunDateTime();
-
-        try {
-            //Order swapped for testing. Swap back to gt mt at later
-            mt.load();
-            at.load();
-            gt.load();
-        } catch (Exception exception) {
-            MenuPrinter.prompt = "An exception has occurred: " + exception;
-        }
-
-
+        LoggerCentre.getInstance().setLevel(mode);
+        ManualTrackerSaver mt = ManualTrackerSaver.getInstance("./data", "./data/save.txt");
+        GoalTrackerSaver gt = GoalTrackerSaver.getInstance("./data", "./data/save1.txt");
+        AutoTrackerSaver at = AutoTrackerSaver.getInstance("./data", "./data/save2.txt");
+        load(gt, mt, at);
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
-            System.out.println();
             MenuPrinter.printMainMenu();
-            MenuPrinter.printReminder();
             input = UiManager.handleInput();
-            packet = new InputParser().parseInput(input);
+            packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
@@ -63,26 +55,67 @@ public class Financeit {
             case "financial": //FinancialCalculator.main();
                 FinanceTools.main();
                 break;
+            case "saver":
+                load = SaveManager.main();
+                break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
                 MenuPrinter.prompt = (mode == Level.OFF)
-                    ? "Logger is off."
-                    : "Logger is on.";
-                ParamChecker.logger.setLevel(mode);
+                        ? "Logger is off."
+                        : "Logger is on.";
+                LoggerCentre.getInstance().setLevel(mode);
                 break;
             case "exit":
-                try {
-                    mt.save();
-                    gt.save();
-                    at.save();
-                } catch (Exception m) {
-                    System.out.println("An exception has occurred: " + m);
+                if (load == false) {
+                    save(gt, mt, at);
                 }
                 return;
             default:
                 MenuPrinter.prompt = "Invalid Command";
                 break;
             }
+        }
+    }
+
+    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
+
+        try {
+            gt.load();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to load: " + m);
+        }
+
+        try {
+            mt.load();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to load: " + m);
+        }
+
+        try {
+            at.load();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to load: " + m);
+        }
+    }
+
+    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
+
+        try {
+            gt.save();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to save: " + m);
+        }
+
+        try {
+            mt.save();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to save: " + m);
+        }
+
+        try {
+            at.save();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to save: " + m);
         }
     }
 }
