@@ -1,20 +1,25 @@
 package seedu.duke.database;
 
-import seedu.duke.wordlist.WordList;
+import seedu.duke.exceptions.ClearLoaderException;
+import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.writing.WritingList;
 
 public class ClearLoader {
 
-    public static void clearItems(String userInput, WritingList writings) throws AssertionError {
+    public static void clearItems(String userInput, WritingList writings) throws WrongClearCommandFormat {
         String type;
         String item;
         String[] words = userInput.split(" ");
         if (!(words.length == 3)) {
-            throw new AssertionError();
+            throw new WrongClearCommandFormat();
         } else {
             type = getType(words[1]);
             item = getItem(words[2]);
-            processing(type, item, writings);
+            try {
+                processing(type, item, writings);
+            } catch (ClearLoaderException e) {
+                System.out.println("The format is not correct!");
+            }
         }
     }
 
@@ -28,9 +33,17 @@ public class ClearLoader {
         return rawItem.substring("item\\".length()).trim();
     }
 
-    public static void processing(String type, String item, WritingList writings) {
-        if (type == "writing") {
-            processingItem(item, writings);
+    public static void processing(String type, String item, WritingList writings) throws ClearLoaderException {
+        try {
+            System.out.println(type);
+            if (type.equals("writing")) {
+                System.out.println(type);
+                processingItem(item, writings);
+            } else {
+                throw new ClearLoaderException();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("The format of item number is inappropriate");
         }
     }
 
@@ -41,16 +54,26 @@ public class ClearLoader {
      * @param writings the writing list to be affected
      * @throws NumberFormatException indicate that the item is not an integer number
      */
-    public static void processingItem(String item, WritingList writings) throws NumberFormatException {
+    public static void processingItem(String item, WritingList writings) {
         int element;
         if (item.contains("-id")) {
-            element = Integer.parseInt(item.substring("-id".length()));
-            writings.removeID(element);
+            String nearFilted = item.substring("-id".length());
+            try {
+                element = Integer.parseInt(nearFilted);
+                System.out.println("We have removed this item");
+                writings.removeID(element);
+            } catch (NumberFormatException e) {
+                System.out.println("Your item format is not an integer!");
+            }
         } else {
-            element = Integer.parseInt(item);
-            writings.remove(element);
+            try {
+                element = Integer.parseInt(item);
+                System.out.println("We have removed this item");
+                writings.removeWriting(element);
+            } catch (NumberFormatException e) {
+                System.out.println("Your item format is not an integer!");
+            }
         }
-        throw new NumberFormatException();
     }
 
 }

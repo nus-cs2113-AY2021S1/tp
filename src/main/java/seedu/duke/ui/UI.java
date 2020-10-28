@@ -295,4 +295,8 @@ public class UI {
     public static void printBunnyInList(String bunny) {
         System.out.println(bunny);
     }
+
+    public static void printNumBunnies(int numBunny) {
+        System.out.println("Total Bunnies in list: " + numBunny);
+    }
 }

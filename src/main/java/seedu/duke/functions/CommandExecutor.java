@@ -16,10 +16,12 @@ import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;
 import seedu.duke.names.Names;
+import seedu.duke.reminder.WritingReminder;
 import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
@@ -28,6 +30,7 @@ import java.io.IOException;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
+import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
@@ -56,12 +59,15 @@ public class CommandExecutor {
             break;
         case NOUN:
             WordList.addNoun(userInput);
+            saveWordsToFile();
             break;
         case VERB:
             WordList.addVerb(userInput);
+            saveWordsToFile();
             break;
         case ADJ:
             WordList.addAdjective(userInput);
+            saveWordsToFile();
             break;
         case GEN_THREE_WORDS:
             WordList.listThreeWords();
@@ -118,6 +124,9 @@ public class CommandExecutor {
             break;
         case RANDOM_BUNNY:
             GenBunny.pickRandomBunny(bunniesList);
+            break;
+        case REMIND:
+            WritingReminder.printReminderOnADay(userInput);
             break;
         case GEN_NAME:
             try {
@@ -180,7 +189,12 @@ public class CommandExecutor {
             WritingList.clearAll(writings);
             break;
         case CLEAR:
-            ClearLoader.clearItems(userInput, writings);
+            try {
+                ClearLoader.clearItems(userInput, writings);
+            } catch (WrongClearCommandFormat e) {
+                System.out.println("The appropriate format is:\n"
+                    + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
+            }
             break;
         case DELETE:
             break;

@@ -67,6 +67,7 @@ public class BunnyList {
             for (int i = 0; i < bunniesList.size(); i++) {
                 UI.printBunnyInList((i + 1) + ".\n" + bunniesList.get(i).getDescription());
             }
+            UI.printNumBunnies(numBunny());
 
             return;
         }

@@ -69,8 +69,6 @@ public class Duke {
             executeCommand(commandChecker, userInput, writings);
             printDivider();
         }
-
-        saveWordsToFile();
         printFarewellMessage(username);
 
     }
