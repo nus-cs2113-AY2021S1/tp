@@ -12,13 +12,11 @@
 <br/>&nbsp;3.5 [AnimeData Component](#35-animedata-component)
 <br/>&nbsp;3.6 [User Component](#36-user-component)
 <br/>&nbsp;3.7 [Storage Component](#37-storage-component)
-
 4. [Implementation](#4-implementation)
 <br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
 <br/>&nbsp;4.3 [Workspace Feature](#43-workspace-feature)
 <br/>&nbsp;4.4 [Watchlist Management Feature](#44-watchlist-management-feature)
-
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
 <br/>&nbsp;5.2 [Logging](#52-logging)
@@ -99,7 +97,6 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 > :bulb:   The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
 
-
 The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
 
 The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
@@ -121,8 +118,8 @@ Below is an overall sequence diagram to help illustrate the general program flow
 <br/>
 
 ![Main Sequence Diagram](images/Overall-Sequence-Diagram.png) <br/>
-*Figure 2: Overall Sequence Diagram* 
-<br/>
+*Figure 2: Overall Sequence Diagram*
+ 
 <br/>
 
 ### 3.2 UI Component
@@ -351,7 +348,6 @@ Gamma
 If the 2nd page of the list was requested instead with the command `browse -p 2`. 
 `BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
 
-
 ![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
 *Figure 13: Browse Next Page Object Diagram*
 
@@ -366,7 +362,6 @@ Currently, this result is not very exciting as it is just based on the Anime ID 
 
 An example scenario would be browsing the 2nd page of a **sorted** list in ascending order.
 The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
-
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png) <br/>
 *Figure 14: Browse Sorted State Object Diagram*
@@ -428,7 +423,7 @@ WIP.
 
 The watchlist management feature aims to provide translators with a simple way to keep track of animes of different genres, allowing them to stay organized and focus on their work.
 
-##### 4.4.1 Current Implementation
+#### 4.4.1 Current Implementation
 
 The `watchlist` feature is facilitated by `WatchlistCommand`, which extends from the abstract class `Command`. `WatchlistCommand` is instantiated by `WatchlistParser`, and it requires 3 parameters: 
 *   `option` (mandatory).
@@ -545,7 +540,6 @@ We use the following log levels:
 *   `Level.INFO`: General noteworthy information of the program.
 
 <br/>
-
 
 ### 5.3 Testing
 
