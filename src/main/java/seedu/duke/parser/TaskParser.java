@@ -50,7 +50,7 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
             }
-            if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
+            if (parameters.get("0").isBlank() || !ParserManager.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number!");
             } else {
                 return new DeleteTaskCommand(parameters, projectListManager);
@@ -60,7 +60,7 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get("0") == null) {
                 Ui.showError("Please do not enter dashes.");
             }
-            if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
+            if (parameters.get("0").isBlank() || !ParserManager.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("Please give a task number!");
             } else {
                 return new DoneTaskCommand(parameters, projectListManager);
@@ -71,7 +71,7 @@ public class TaskParser implements ExceptionsParser {
             if (!parameters.containsKey(TASK_ID) || !parameters.containsKey(PRIORITY)) {
                 throw new DukeException("Missing parameters.");
             }
-            if (parameters.get(TASK_ID).isBlank() || !Parser.isStringContainsNumber(parameters.get(TASK_ID))) {
+            if (parameters.get(TASK_ID).isBlank() || !ParserManager.isStringContainsNumber(parameters.get(TASK_ID))) {
                 throw new DukeException("Task ID entered is invalid!");
             }
             if (parameters.get(PRIORITY).isBlank()) {

@@ -12,15 +12,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.duke.command.CommandSummary.BYE;
-import static seedu.duke.command.CommandSummary.PROJECT;
-import static seedu.duke.command.CommandSummary.TASK;
-import static seedu.duke.command.CommandSummary.MEMBER;
-import static seedu.duke.command.CommandSummary.SPRINT;
 import static seedu.duke.command.CommandSummary.HELP;
+import static seedu.duke.command.CommandSummary.MEMBER;
+import static seedu.duke.command.CommandSummary.PROJECT;
+import static seedu.duke.command.CommandSummary.SPRINT;
 import static seedu.duke.command.CommandSummary.STORAGE;
+import static seedu.duke.command.CommandSummary.TASK;
 
 
-public class Parser {
+public class ParserManager {
     //Groups of 3: (command) (action) (options)
     private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s*(.*)");
     //Groups of 2: (option name) (option value)
