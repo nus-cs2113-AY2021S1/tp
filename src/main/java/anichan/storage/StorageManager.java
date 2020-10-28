@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 public class StorageManager {
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
+    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -56,16 +57,20 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     public void deleteWorkspace(String name) throws AniException {
+        assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
-        Path deletePath = Paths.get(deletePathString);
 
         try {
+            Path deletePath = Paths.get(deletePathString);
+            LOGGER.log(Level.INFO, "Deleting workspace " + name);
+
             Files.walk(deletePath)
                     .sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
                     .forEach(File::delete);
-        } catch (IOException e) {
-            throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
+        } catch (IOException exception) {
+            LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
+            throw new AniException(EXCEPTION_DELETE_FAILED);
         }
     }
 
