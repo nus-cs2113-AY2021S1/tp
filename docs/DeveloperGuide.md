@@ -86,125 +86,6 @@ The public methods in the Appliances accessible via the ApplianceList are used t
 turning `ON` and `OFF`. From the appliance class, the program will be able to retrieving the name, location, statuses of
 the appliances. 
 
-### Command Component
-
-#### Create Command
-![Sequence of Create Command](images/diagrams/Sequence_CreateCommand.png) <br>
-The *CreateCommand* shown above explains the Sequence Diagram of the Create Command.
-#### Remove Command 
-![Sequence of Remove Command](images/diagrams/Sequence_RemoveCommand.png) <br>
-The *RemoveCommand* shown above explains the Sequence Diagram of the Remove Command.
-#### Add Command
-![Sequence of Add Command](images/diagrams/Sequence_AddCommand.png) <br>
-The *AddCommand* shown above explains the Sequence Diagram of the Add Command.
-#### Delete Command
-![Sequence of Delete Command](images/diagrams/Sequence_DeleteCommand.png) <br>
-The *DeleteCommand* shown above explains the Sequence Diagram of the Delete Command.
-#### On Command
-
-The *OnCommand* shown below explains the Sequence Diagram of the On Command. When the Main class calls the execute() function there will be are 2 cases for on command to flow:
-1. OnByLocation
-2. OnByAppliance
-
-![Sequence of On Command](images/diagrams/Sequence_OnCommand.png) <br>
-
-The program will determine if the user inputted: key is a name of an appliance, or a location.THis is done by checking the key in the LocationList, if it exists, the program will deem it as 'OnByLocation' vice versa.
-
-##### 1. OnByLocation
-The first condition checks if the user types in any parameter into the command, if so, the program will be unable to turn on
-the appliances in the location. This is done as not all parameters are accepted by every appliance, for example,
-setTemperature is only accepted for Air Conditioner. Thus, the parameter option is only opened to the OnByAppliance method.
-Then, onByApplianceLoop will be called to turn on all appliances in the location.
-
-##### 2. OnByAppliance
-The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies
-that that key does not exist in the location or appliance list. Else, we will call the onAppliance method.
-
-##### CommandResult
-Each condition will correspond to a reciprocal CommandResult printout.
-
-
-#### Off Command
-
-The *OffCommand* shown below explains the Sequence Diagram of the Off Command. When the Main class calls the `execute()`
-function there are 2 cases for off command:
-1. OnByLocation
-2. OnByAppliance
-
-![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png) <br>
-
-The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking 
-the key in the LocationList, if it exists, the program will deem it as 'OffByLocation' vice versa. 
-
-##### 1. OffByLocation
-This method will call offByApplianceLoop which turns off every appliance in that location.
-
-##### 2. OffByAppliance
-The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies that that key does not exist in the location or appliance list. Else, we will call the offAppliance method.
-
-##### CommandResult
-Each condition will correspond to a reciprocal CommandResult printout.
-
-
-#### Invalid Command
-![Sequence of Invalid Command](images/diagrams/Sequence_InvalidCommand.png) <br>
-The *InvalidCommand* shown above explains the Sequence Diagram of the Invalid Command.
-#### Help Command
-![Sequence of Help Command](images/diagrams/Sequence_HelpCommand.png) <br>
-The *HelpCommand* shown above explains the Sequence Diagram of the Help Command.
-#### Exit Command
-![Sequence of Off Command](images/diagrams/Sequence_ExitCommand.png) <br>
-The *ExitCommand* shown above explains the Sequence Diagram of the Exit Command.
-#### CommandResult Command
-![Sequence of CommandResult Command](images/diagrams/Sequence_CommandResult.png) <br>
-The *CommandResult* shown above explains the Sequence Diagram of the CommandResult.
-
-### Storage Component
-
-#### Storage Module
-The Storage module manages the load and save operations of the SmartHomeBot. It consist of two different classes, 
-the ReadStorageFile class, and the WriteToFile class. As of the name stated, the function of WriteStorageFile class is 
-to store the data into a .txt file for future usage. The ReadStorageFile class is to load the previously stored data 
-from the .txt file back into the SmartHomeBot when it start up. 
-
-The class diagram for storage module is shown below:
-
-![StorageFile Model Component](images/diagrams/ClassDiagram_Storage.png)
-
-##### Process of writing data into Storage File
-After each command input by the user, SmartHomeBot will perform the execute() method in SaveStorageFile. This allows
-the program to continuously save the changes made by the user into the .txt file and prevent the lost of updates made 
-by the user.
-
-Within the execute() method, the createFile() method will be performed to create a new .txt file if there is no .txt 
-file exist. Then the clearFile() method will be performed to empty .txt file. After that all the data updated by the 
-user will be written into the .txt file. This process will be carried out each time the user input a command. The first
-line in the .txt file will always be the LocationList and subsequent lines will be all the appliances, each occupying 
-one line each. The appliances will be written together with their parameters in each line. 
-
-The sequence diagram for WriteStorageFile is shown below:
-
-![StorageFile Model Component](images/diagrams/Sequence_WriteStorageFile.png)
-
-##### Process of retrieving data back into the program
-On startup, SmartHomeBot will perform the execute() method in ReadStorageFile. This allows the program to retrieve all 
-stored data saved previously from the .txt file back into the program to be used again.
-
-Within the execute() method, a Scanner object will be created to parse individual lines in the .txt file back into the 
-program and converting them into String. The first line parsed into the program will be the locationlist, which will 
-then be parse into the readToLocationList(locations) method. In the readToLocationList method, the locations will be 
-added back into the locationList one by one. Then the program will return back to execute(). 
-
-The second line onwards in the .txt file will be the appliances. These appliances will be converted into String and parse into the 
-readToApplianceList method. In the readToApplianceList(appliance) method, each line will be split up into their 
-specific parameters(name,location, power, type, powerConsumption and parameter). Then the appliance will be converted 
-into static (Fan, AirConditioner, Lights, SmartPlug) depending on their types. Then the appliance will be added back to
-the applianceList. The powerConsumption of each appliance will also be updated to keep track of the power Usage of each 
-appliance.
-
-The sequence diagram for ReadStorageFile is shown below:
-
-![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
 ### Parser Component
 
@@ -257,7 +138,17 @@ Sequence Diagram for `off`
 
 Sequence Diagram for `list`
 
-![Parser Model Component](images/diagrams/Sequence_Parser_List.png)
+![Parser Model Component](images/diagrams/Sequence_Parser_List.png)<br><br>
+When the user enters the `list` command, the 
+`prepareListCommand(arguments)` is called. It will check if the argument contains “appliance’ or ‘location”.
+1. If the arguments contains “location”,  a new `ListCommand(LOCATION_TYPE, ““)` will be returned. 
+
+2. If the arguments contains “appliance”, it will check if it contains a “l/” parameter. If it exist, it 
+means there is a filteredLocation, thus a new `ListCommand(APPLIANCE_TYPE, filteredLocation)` will be returned.
+Else, a new `ListCommand(APPLIANCE_TYPE, ““)` will be returned.
+
+3. Any argument that does not contains “location” and “appliance” or contains “appliance” with a wrong 
+format will return a `InvalidCommand` class with their respective error messages. 
 
 Sequence Diagram for `commandword`
 
@@ -273,6 +164,157 @@ Sequence Diagram for `default`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Default.png)
 
+### Command Component
+#### Help Command
+To see the help usage for the commands in SmartHomebot, the `HelpCommand` class is used. This class' object is 
+first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` 
+function called. When the `Main` class calls the `execute()` function, the `HelpCommand` 
+will then return a new `CommandResult` class (which stores the Help message)
+
+The `HelpCommand` shown above explains the Sequence Diagram of the `HelpCommand`.
+
+![Sequence of Help Command](images/diagrams/Sequence_HelpCommand.png) <br><br>
+#### Create Command
+![Sequence of Create Command](images/diagrams/Sequence_CreateCommand.png) <br>
+The *CreateCommand* shown above explains the Sequence Diagram of the Create Command.
+#### Remove Command 
+![Sequence of Remove Command](images/diagrams/Sequence_RemoveCommand.png) <br>
+The *RemoveCommand* shown above explains the Sequence Diagram of the Remove Command.
+#### Add Command
+![Sequence of Add Command](images/diagrams/Sequence_AddCommand.png) <br>
+The *AddCommand* shown above explains the Sequence Diagram of the Add Command.
+#### Delete Command
+![Sequence of Delete Command](images/diagrams/Sequence_DeleteCommand.png) <br>
+The *DeleteCommand* shown above explains the Sequence Diagram of the Delete Command.
+#### On Command
+
+The *OnCommand* shown below explains the Sequence Diagram of the OnCommand. When the Main class calls the execute() function there will be are 2 cases for on command to flow:
+1. OnByLocation
+2. OnByAppliance
+
+![Sequence of On Command](images/diagrams/Sequence_OnCommand.png) <br>
+
+The program will determine if the user inputted: key is a name of an appliance, or a location.This is done by checking the key in the LocationList, if it exists, the program will deem it as 'OnByLocation' vice versa.
+
+1. OnByLocation
+The first condition checks if the user types in any parameter into the command, if so, the program will be unable to turn on
+the appliances in the location. This is done as not all parameters are accepted by every appliance, for example,
+setTemperature is only accepted for Air Conditioner. Thus, the parameter option is only opened to the OnByAppliance method.
+Then, onByApplianceLoop will be called to turn on all appliances in the location.
+
+2. OnByAppliance
+The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies
+that that key does not exist in the location or appliance list. Else, we will call the onAppliance method.
+
+
+#### Off Command
+
+The *OffCommand* shown below explains the Sequence Diagram of the *OffCommand*. When the Main class calls the `execute()`
+function there are 2 cases for off command:
+1. OffByLocation
+2. OffByAppliance
+
+![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png) <br>
+
+The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking 
+the key in the LocationList, if it exists, the program will deem it as 'OffByLocation' vice versa. 
+
+1. OffByLocation
+This method will call offByApplianceLoop which turns off every appliance in that location.
+
+2. OffByAppliance
+The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies that that key does not exist in the location or appliance list. Else, we will call the offAppliance method.
+
+#### List Command 
+To list appliances or locations, the `ListCommand` class is used. This class' object is first created by the `Parser` class, 
+where it is then returned to the `Main` class to have its `execute()` function be called.When the Main class calls the `execute()` 
+function, ListCommand will call upon the function “list appliance” or  “list location”  in ListCommand class to determine whether 
+to list the appliances or locations. ,then return a new `CommandResult` class (which stores the list)
+
+The `ListCommand` shown below explains the Sequence Diagram of the `ListCommand`. As depicted from the diagram, there are 
+2 cases for `ListCommand`:
+1. listAppliance
+2. listLocation
+
+
+![Sequence of Invalid Command](images/diagrams/Sequence_ListCommand.png) <br><br>
+
+1. listAppliance
+This method checks for the user's key in a filteredLocation together with the “list appliance”. If there is no filteredLocation, 
+it will just create a list of all the appliances in all the locations. Vice versa, if it exists a filteredLocation,it will 
+just create a list of all the appliances in filteredLocation. 
+
+2. listLocation
+This method creates a list of all the locations that stores in the locationList.
+
+#### Invalid Command
+If users key in the wrong command, the `InvalidCommand` class is used.This class' object is 
+first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()`  
+function be called. When the `Main` class calls the `execute()` function, `InvalidCommand` will 
+return a new `CommandResult` class (which stores the Invalid message)
+
+The `InvalidCommand` shown above explains the Sequence Diagram of the `InvalidCommand`.
+
+![Sequence of Invalid Command](images/diagrams/Sequence_InvalidCommand.png) <br><br>
+
+#### Exit Command
+To exit SmartHomeBot, the `ExitCommand` class is used. For this `ExitCommand`  class. This class' object 
+is first created by the `Parser` class, where it is then returned to the Main class to have its `execute()` 
+function be called. When the `Main` class calls the `execute()` function, the `ExitCommand` will off all the 
+appliance and ,then return a new `CommandResult` class (which stores the Exit message)
+
+The `ExitCommand` shown above explains the Sequence Diagram of the Exit Command.
+
+![Sequence of Off Command](images/diagrams/Sequence_ExitCommand.png) <br><br>
+#### CommandResult Command
+The `CommandResult` class is used to store feedback to users and will interact with `UI` in the `Main`.
+
+### Storage Component
+
+#### Storage Module
+The Storage module manages the load and save operations of the SmartHomeBot. It consist of two different classes, 
+the ReadStorageFile class, and the WriteToFile class. As of the name stated, the function of WriteStorageFile class is 
+to store the data into a .txt file for future usage. The ReadStorageFile class is to load the previously stored data 
+from the .txt file back into the SmartHomeBot when it start up. 
+
+The class diagram for storage module is shown below:
+
+![StorageFile Model Component](images/diagrams/ClassDiagram_Storage.png)
+
+##### Process of writing data into Storage File
+After each command input by the user, SmartHomeBot will perform the execute() method in SaveStorageFile. This allows
+the program to continuously save the changes made by the user into the .txt file and prevent the lost of updates made 
+by the user.
+
+Within the execute() method, the createFile() method will be performed to create a new .txt file if there is no .txt 
+file exist. Then the clearFile() method will be performed to empty .txt file. After that all the data updated by the 
+user will be written into the .txt file. This process will be carried out each time the user input a command. The first
+line in the .txt file will always be the LocationList and subsequent lines will be all the appliances, each occupying 
+one line each. The appliances will be written together with their parameters in each line. 
+
+The sequence diagram for WriteStorageFile is shown below:
+
+![StorageFile Model Component](images/diagrams/Sequence_WriteStorageFile.png)
+
+##### Process of retrieving data back into the program
+On startup, SmartHomeBot will perform the execute() method in ReadStorageFile. This allows the program to retrieve all 
+stored data saved previously from the .txt file back into the program to be used again.
+
+Within the execute() method, a Scanner object will be created to parse individual lines in the .txt file back into the 
+program and converting them into String. The first line parsed into the program will be the locationlist, which will 
+then be parse into the readToLocationList(locations) method. In the readToLocationList method, the locations will be 
+added back into the locationList one by one. Then the program will return back to execute(). 
+
+The second line onwards in the .txt file will be the appliances. These appliances will be converted into String and parse into the 
+readToApplianceList method. In the readToApplianceList(appliance) method, each line will be split up into their 
+specific parameters(name,location, power, type, powerConsumption and parameter). Then the appliance will be converted 
+into static (Fan, AirConditioner, Lights, SmartPlug) depending on their types. Then the appliance will be added back to
+the applianceList. The powerConsumption of each appliance will also be updated to keep track of the power Usage of each 
+appliance.
+
+The sequence diagram for ReadStorageFile is shown below:
+
+![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
 
 ## Product scope
