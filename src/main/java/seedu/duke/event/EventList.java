@@ -1,6 +1,8 @@
 
 package seedu.duke.event;
 
+import seedu.duke.hr.Member;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;

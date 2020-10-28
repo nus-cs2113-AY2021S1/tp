@@ -1,11 +1,15 @@
 package seedu.duke.event;
 
+import seedu.duke.hr.Member;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
@@ -15,6 +19,7 @@ public class Event {
     protected LocalDate date;
     protected String symbol;
     protected boolean isDone;
+    public ArrayList<Member> attendance = new ArrayList<>();
 
 
     public Event(String name, String date, String time) {
@@ -134,6 +139,14 @@ public class Event {
         if (start != null) {
             date = start.toLocalDate();
         }
+    }
+
+    public void setAttendance(Member m) {
+        this.attendance.add(m);
+    }
+
+    public ArrayList<Member> getAttendance() {
+        return attendance;
     }
 
     /**
