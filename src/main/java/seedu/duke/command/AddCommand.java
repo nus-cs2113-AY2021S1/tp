@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.DateTimeParser;
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -50,10 +50,10 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the new task to.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the add command input is invalid.
+     * @throws CommandException if the add command input is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         String[] command;
         boolean isTask = false;
 
@@ -65,21 +65,21 @@ public class AddCommand extends Command {
             try {
                 isTask = addTodoTask(calendarList, command[DESCRIPTION]);
             } catch (Exception e) {
-                throw new DukeException("todo");
+                throw new CommandException("todo");
             }
             break;
         case DEADLINE:
             try {
                 isTask = addDeadlineTask(calendarList, command);
             } catch (Exception e) {
-                throw new DukeException("deadline");
+                throw new CommandException("deadline");
             }
             break;
         case ACTIVITY:
             try {
                 addActivityEvent(calendarList, command);
             } catch (Exception e) {
-                throw new DukeException("activity");
+                throw new CommandException("activity");
             }
             break;
         case EXAM:
@@ -87,10 +87,10 @@ public class AddCommand extends Command {
                 try {
                     addExamEvent(calendarList, command);
                 } catch (Exception e) {
-                    throw new DukeException("exam");
+                    throw new CommandException("exam");
                 }
             } else {
-                throw new DukeException("invalid module code");
+                throw new CommandException("invalid module code");
             }
             break;
         case LECTURE:
@@ -98,10 +98,10 @@ public class AddCommand extends Command {
                 try {
                     addLectureEvent(calendarList, command);
                 } catch (Exception e) {
-                    throw new DukeException("lecture");
+                    throw new CommandException("lecture");
                 }
             } else {
-                throw new DukeException("invalid module code");
+                throw new CommandException("invalid module code");
             }
             break;
         case TUTORIAL:
@@ -109,10 +109,10 @@ public class AddCommand extends Command {
                 try {
                     addTutorialEvent(calendarList, command);
                 } catch (Exception e) {
-                    throw new DukeException("tutorial");
+                    throw new CommandException("tutorial");
                 }
             } else {
-                throw new DukeException("invalid module code");
+                throw new CommandException("invalid module code");
             }
             break;
         case LAB:
@@ -120,14 +120,14 @@ public class AddCommand extends Command {
                 try {
                     addLabEvent(calendarList, command);
                 } catch (Exception e) {
-                    throw new DukeException("lab");
+                    throw new CommandException("lab");
                 }
             } else {
-                throw new DukeException("invalid module code");
+                throw new CommandException("invalid module code");
             }
             break;
         default:
-            throw new DukeException("invalid command");
+            throw new CommandException("invalid command");
         }
         Ui.printAddMessage(calendarList, isTask);
         if (isTask) {
@@ -157,7 +157,7 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
         if (moduleCode.isEmpty()) {
-            throw new DukeException("lab");
+            throw new CommandException("lab");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lab(moduleCode, date, time, venue));
@@ -191,7 +191,7 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
         if (moduleCode.isEmpty()) {
-            throw new DukeException("tutorial");
+            throw new CommandException("tutorial");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
@@ -220,7 +220,7 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
         if (moduleCode.isEmpty()) {
-            throw new DukeException("lecture");
+            throw new CommandException("lecture");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
@@ -247,7 +247,7 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
         ModuleChecker moduleChecker = new ModuleChecker();
         if (moduleCode.isEmpty()) {
-            throw new DukeException("exam");
+            throw new CommandException("exam");
         } else {
             calendarList.addEvent(new Exam(moduleCode, date, time, venue));
         }
@@ -272,7 +272,7 @@ public class AddCommand extends Command {
 
 
         if (eventDescription.isEmpty()) {
-            throw new DukeException("activity");
+            throw new CommandException("activity");
         } else {
             calendarList.addEvent(new Activity(eventDescription, date, time, venue));
         }
@@ -294,7 +294,7 @@ public class AddCommand extends Command {
         date = DateTimeParser.inputDateProcessor(command[1].trim());
 
         if (taskDescription.isEmpty()) {
-            throw new DukeException("deadline");
+            throw new CommandException("deadline");
         } else {
             calendarList.addTask(new Deadline(taskDescription, date));
             isTask = true;
@@ -314,7 +314,7 @@ public class AddCommand extends Command {
         boolean isTask;
         taskDescription = s.trim();
         if (taskDescription.isEmpty()) {
-            throw new DukeException("todo");
+            throw new CommandException("todo");
         } else {
             calendarList.addTask(new Todo(taskDescription));
             isTask = true;

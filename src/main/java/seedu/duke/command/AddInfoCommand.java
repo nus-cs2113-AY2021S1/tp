@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -19,10 +19,10 @@ public class AddInfoCommand extends Command {
      *
      * @param calendarList the calendar list containing the event.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the additional info command is invalid.
+     * @throws CommandException if the additional info command is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         String[] command;
         int eventNumber = 0;
         int calendarNumber;
@@ -34,7 +34,7 @@ public class AddInfoCommand extends Command {
             eventNumber = Integer.parseInt(command[0].replace("/a", "").trim());
 
         } catch (Exception e) {
-            throw new DukeException("invalid add info");
+            throw new CommandException("invalid add info");
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
 
