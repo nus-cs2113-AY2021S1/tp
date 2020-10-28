@@ -36,7 +36,7 @@ application {
 jar {
     manifest {
         attributes (
-            'Main-Class': 'StudyIt'
+            'Main-Class': 'studyit.StudyIt'
         )
     }
 }

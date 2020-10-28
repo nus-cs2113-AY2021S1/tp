@@ -30,7 +30,7 @@ public class TimeTableStorage {
     public void checkFile(DateList dateList) {
         try {
             if (taskFile.createNewFile()) {
-                System.out.println("data/timetable.txt created for time table");
+                System.out.println("data/timetable.txt is not found, creating a new file now!");
             } else {
                 loadFile(dateList);
             }

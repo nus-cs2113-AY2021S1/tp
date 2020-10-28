@@ -35,8 +35,9 @@ public class StudyIt {
     }
 
     public static void main(String[] args) {
+        StudyIt studyIt = new StudyIt();
         MainMenu.printWelcome();
-        new StudyIt().run();
+        studyIt.run();
     }
 
     public void run() {

@@ -9,15 +9,16 @@ import java.util.Scanner;
 
 public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
-        if (command.equals("show schedule")) {
+        switch (command) {
+        case "show schedule":
             System.out.println(Message.printShowSchedule);
             TablePrinter.printTable(dateList.dateList);
             return;
-        } else if (command.equals("show link")) {
+        case "show link":
             System.out.println(Message.printShowLink);
             showLink(dateList);
             return;
-        } else if (command.equals("show activity")) {
+        case "show activity":
             showActivities(dateList);
             return;
         }
@@ -60,7 +61,7 @@ public class TimeTableParser {
 
     public static Lesson addClass() throws InvalidDayOfTheWeekException {
         Scanner in = new Scanner(System.in);
-        System.out.println("Please enter module name: ");
+        System.out.println("Please enter module code: ");
         boolean isInvalid = true;
         String moduleCode = null;
         while (isInvalid) {
@@ -88,7 +89,7 @@ public class TimeTableParser {
             }
         }
         String linkOrVenue = in.nextLine();
-        System.out.println("What are the days and time of the lesson (eg. Monday 5-8pm, Tuesday 6-9pm)");
+        System.out.println("What are the days and time of the lesson\n(eg. Monday 5-8pm, Tuesday 6-9pm)");
         String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());

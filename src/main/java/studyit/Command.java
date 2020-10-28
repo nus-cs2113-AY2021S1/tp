@@ -57,12 +57,16 @@ public class Command {
 
     public static void executeBookmarkModeCommand(String command, BookmarkRun bookmarkRun) {
         StudyItLog.logger.info("Processing bookmark command: " + command);
+        Ui.printDivider();
         bookmarkRun.run(command);
+        Ui.printDivider();
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
         StudyItLog.logger.info("Processing timetable command: " + command);
+        Ui.printDivider();
         timeTableRun.run(command);
+        Ui.printDivider();
     }
 
     public static void executeAcademicModeCommand(String command, AcademicRun academicRun) {
