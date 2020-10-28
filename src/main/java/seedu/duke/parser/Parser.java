@@ -13,6 +13,7 @@ import seedu.duke.command.ExtractCommand;
 import seedu.duke.command.GoalCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ListCommand;
+import seedu.duke.command.NoteCommand;
 import seedu.duke.command.ReminderCommand;
 import seedu.duke.command.RepeatCommand;
 import seedu.duke.command.UndoneCommand;
@@ -92,6 +93,9 @@ public class Parser {
 
         case "extract":
             return new ExtractCommand(argument);
+
+        case "note":
+            return new NoteCommand(argument);
 
         default:
             throw new DukeException("Invalid Command.");
