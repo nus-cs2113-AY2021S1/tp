@@ -1,0 +1,61 @@
+@startuml
+actor User
+participant Ui
+participant Duke
+participant SaveState
+participant InputParser
+participant ErrorHandling
+participant ShowList
+participant Command
+activate Duke
+create ShowList
+Duke -> ShowList : Create Empty ShowList
+activate ShowList
+create SaveState
+Duke -> SaveState : Create
+activate SaveState
+SaveState -> ShowList : Loaded Data
+ShowList -> ShowList : Insert Loaded Data
+activate ShowList
+deactivate ShowList
+ShowList --> SaveState : Loaded Data Successfully
+deactivate ShowList
+SaveState --> Duke : Load Success
+deactivate SaveState
+create InputParser
+Duke -> InputParser : Create
+activate InputParser
+create Ui
+Duke -> Ui : Create
+activate Ui
+Ui -> User : Welcome!
+Ui -> User : Request Input
+User -> Ui : Input Command
+Ui -> InputParser : User Input
+
+opt invalid command
+InputParser -> ErrorHandling : Error detected
+activate ErrorHandling
+ErrorHandling --> Ui : Error
+Ui -> User : Error Message
+deactivate ErrorHandling
+end
+create Command
+InputParser -> Command : Command Requested
+deactivate InputParser
+activate Command
+Command -> ShowList : Query Data
+activate ShowList
+ShowList --> Command : Data
+Command -> Command : Processing Data
+activate Command
+deactivate Command
+Command -> ShowList : Processed Data
+Command --> Ui : Command Outcome
+destroy Command
+Duke -> SaveState : Save Data
+activate SaveState
+SaveState --> Duke : Save Success
+deactivate SaveState
+Ui --> User : Output
+@enduml

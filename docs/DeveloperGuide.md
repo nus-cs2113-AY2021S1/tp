@@ -108,13 +108,19 @@ This will generate all the resources required by the application and tests.
 ## 3. Design
 
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
+The class diagram below describes the relationship between the different components in **WatchNext**
+<img src = "images/designDG/designArchitecture.png" width = "700"> <br><br>
 <br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
 <br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
 <br>All available operations will be processed by the classes in the commands package. Every command class, like the `AddCommand` class, inherits from the `Command` class. Each individual command class is able to contain all the processing required for each command with the inputs passed in during the initiation of each command object. <br>
 <br>During runtime, the show related data is all stored in the `ShowList` class. The data is accessible and can be modified statically by all the command classes. The `ShowList` contains `Show` objects which describes the attributes of a show. 
 <br>Certain commands relating to the monitoring of the amount of time users spend watching shows depend on information from the `WatchTime` class. The class tracks the date and time remaining for the users to watch shows for the day. The time limit will be set by the user. <br>
+<img src = "images/storageDG/StorageClassDiagram.png" width = "700"> <br><br>
+This class diagram shows how the Storage class is setup as an example.<br>
 <br>On the initiation of WatchNext, the `Storage` object will be initiated and retrieves any user data that has been saved from previous runs. The data is stored in plain text and can be manually edited by advanced users. The data is stored in `data/showList.txt`. After the execution of every command, the `Storage` object calls upon the save command to automatically update the save data file. The commands relating to saving and loading data can be accessed from the `SaveState` interface.<br>
 <br>Throughout the lifespan of the program, various errors may occur. The `ErrorHandling` class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The `Ui` class informs the users of the errors detected and suggests actions for rectification. <br>
+<img src = "images/designDG/designSequence.png" width = "700"> <br><br>
+This shows the flow of the program for one user command input.
 
 ## 4. Implementation
 
@@ -573,7 +579,7 @@ The `Ui` class prints the `exceptionMessage` into the terminal.
 ## 5. Documentation
 
 This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
-
+<br> Throughout the code JavaDocs was used to explain the individual classes and functions.
 
 ## 6. Testing
 

@@ -50,7 +50,7 @@ public class Storage implements SaveState {
     }
 
 
-    public WatchTime loadWatchTimeDetail(Scanner s) {
+    private WatchTime loadWatchTimeDetail(Scanner s) {
         if (s.hasNext()) {
             String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
             try {
