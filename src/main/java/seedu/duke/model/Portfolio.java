@@ -52,6 +52,10 @@ public class Portfolio implements Serializable {
         Transaction transaction = new Transaction(TransactionType.SELL, quantity, sellPrice, LocalDateTime.now());
         Stock stock = stocks.get(symbol);
         stock.addTransaction(transaction);
+
+        if (stock.getTotalQuantity() == 0) {
+            stocks.remove(symbol);
+        }
     }
 
     public double getWalletCurrentAmount() {
