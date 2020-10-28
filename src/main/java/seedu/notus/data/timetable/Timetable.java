@@ -62,12 +62,33 @@ public class Timetable {
     }
 
     /**
-     * Adds an event into the timetable.
+     * Method to allow a new event to be set at a specific index
+     *
+     * @param index Index to set at.
+     * @param event Event to set.
+     */
+    public void setEvent(int index, Event event) {
+        deleteEvent(index);
+        addEvent(index, event);
+    }
+
+    /**
+     * Adds an event into the timetable at the last index.
      *
      * @param event to be added.
      */
     public void addEvent(Event event) {
-        events.add(event);
+        addEvent(events.size(), event);
+    }
+
+    /**
+     * Adds an event into the timetable at a specified index.
+     *
+     * @param index Index to add the event.
+     * @param event to be added.
+     */
+    public void addEvent(int index, Event event) {
+        events.add(index, event);
         if (!event.getRecurring()) {
             nonRecurringEvents.add(event);
         } else {

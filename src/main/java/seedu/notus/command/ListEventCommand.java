@@ -89,6 +89,8 @@ public class ListEventCommand extends Command {
         HashMap<Month, HashMap<Integer, ArrayList<Event>>> calendar;
         if (month != 0) {
             calendar = timetable.getMonthTimetable(year, month);
+            if (calendar.size() == 0) {
+            }
         } else {
             calendar = timetable.getYearTimetable(year);
         }

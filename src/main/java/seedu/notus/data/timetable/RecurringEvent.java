@@ -13,6 +13,7 @@ public abstract class RecurringEvent extends Event {
     private String recurrenceType;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
+    public static final String NO_RECURRENCE_TYPE = "none";
     public static final String DAILY_RECURRENCE_TYPE = "daily";
     public static final String WEEKLY_RECURRENCE_TYPE = "weekly";
     public static final String MONTHLY_RECURRENCE_TYPE = "monthly";
@@ -49,6 +50,14 @@ public abstract class RecurringEvent extends Event {
         this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods);
     }
 
+    public LocalDate getEndRecurrenceDate() {
+        return endRecurrenceDate;
+    }
+
+    public void setEndRecurrenceDate(LocalDate endRecurrenceDate) {
+        this.endRecurrenceDate = endRecurrenceDate;
+    }
+
     /**
      * Checks if the event should still re-occur at a specified date.
      *
@@ -81,6 +90,10 @@ public abstract class RecurringEvent extends Event {
             startDate = startDate.plusDays(1);
         }
         return eventSet;
+    }
+
+    public String getRecurrenceType() {
+        return recurrenceType;
     }
 
     /**

@@ -159,19 +159,44 @@ public class Formatter {
      */
     public static String formatTimetable(String header, int year, int month,
                                          HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
-        String formattedString;
+        ArrayList<String> eventsStrings = new ArrayList<>();
+        
         if (month != 0) {
-            formattedString = generatesHeader(header + String.format(" %d-%d", year, month));
+            eventsStrings.add(header + String.format(" %d-%d", year, month));
+            Month curr_month = Month.of(month);
+            HashMap<Integer, ArrayList<Event>> month_events = timetable.get(curr_month);
+            assert month_events != null;
+            eventsStrings.addAll(formatMonthTimetable(curr_month.name(), month_events));
         } else {
-            formattedString = generatesHeader(header + " " + year);
-        }
-        ArrayList<String> unformattedEvents = Event.yearCalendarToString(timetable);
-        for (String event : unformattedEvents) {
-            formattedString = formattedString.concat(encloseRow(event));
+            eventsStrings.add(header + " " + year);
+            ArrayList<Month> months = new ArrayList<>(timetable.keySet());
+            months.sort(Month::compareTo);
+            for (Month curr_month : months) {
+                eventsStrings.addAll(formatMonthTimetable(curr_month.name(), timetable.get(curr_month)));
+                eventsStrings.add(" ");
+            }
+            eventsStrings.remove(eventsStrings.size() - 1);
         }
 
-        return encloseTopAndBottom(formattedString);
+        return formatString(eventsStrings, true);
     }
+
+    public static ArrayList<String> formatMonthTimetable(String month, HashMap<Integer, ArrayList<Event>> timetable) {
+        ArrayList<String> results = new ArrayList<>();
+        results.add(month);
+        ArrayList<Integer> days = new ArrayList<>(timetable.keySet());
+        days.sort(Integer::compareTo);
+        for (Integer day : days) {
+            ArrayList<Event> dailyEvents = timetable.get(day);
+            for (Event event : dailyEvents) {
+                results.addAll(formatEvent(event));
+                results.add(" ");
+            }
+        }
+        results.remove(results.size() - 1);
+        return results;
+    }
+
 
     /**
      * Takes an array list of events and converts it to a formatted, indexed string for output.
@@ -181,17 +206,17 @@ public class Formatter {
      * @return Formatted string of indexed events in timetable
      */
     public static String formatTimetable(String header, ArrayList<Event> events) {
-        String formattedString = generatesHeader(header);
-        ArrayList<String> eventStrings = Event.calendarToString(events);
-        for (String event : eventStrings) {
-            formattedString = formattedString.concat(encloseRow(event));
+        ArrayList<String> eventsStrings = new ArrayList<>();
+        eventsStrings.add(header);
+        ArrayList<String> eventStringRepresentation;
+        int i = 1;
+        for (Event event : events) {
+            eventStringRepresentation = formatEvent(event);
+            String title = String.format("%d. %s", i++, eventStringRepresentation.get(0));
+            eventStringRepresentation.set(0, title);
+            eventsStrings.addAll(eventStringRepresentation);
         }
-        return encloseTopAndBottom(formattedString);
-    }
-
-    public static String formatEvent(String header, Event event) {
-        String formattedString = "";
-        return formattedString;
+        return formatString(eventsStrings, true);
     }
 
     //@@author brandonywl
@@ -206,18 +231,17 @@ public class Formatter {
         result.add("Event: " + event.getTitle());
         result.add("Date: " + event.getStartDate().toString() + "\tTime: " + event.getStartTime().toString());
         result.add("Reminder: " + event.getIsToRemind());
-        String repeatingString = "Repeating: " + event.getRecurring();
+        String repeatingString = "Repeating: ";
         String endRecurrenceDateString = "";
         if (event instanceof RecurringEvent) {
+            String recurrenceType = ((RecurringEvent) event).getRecurrenceType();
             RecurringEvent recurringEvent = (RecurringEvent) event;
-            endRecurrenceDateString = recurringEvent.getEndRecurrenceString();
+            endRecurrenceDateString = recurrenceType.concat(recurringEvent.getEndRecurrenceString());
+        } else {
+            endRecurrenceDateString = "False";
         }
         result.add(repeatingString + endRecurrenceDateString);
         return result;
-    }
-
-    public static String formatEventString(Event event) {
-        return formatString(formatEvent(event), false);
     }
 
     //@@author brandonywl
