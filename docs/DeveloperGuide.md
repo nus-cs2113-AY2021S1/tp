@@ -1,6 +1,8 @@
 # Developer Guide
 
 ## Introduction
+This section provides an introduction to the developer guide for *25HoursADay*.
+
 ### Introduction to *25HoursADay*
 *25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
@@ -20,6 +22,7 @@ The table below shows the content of the developer guide.
 |[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
 
 ## Setting Up & Getting started
+This section provides on setting up the *25HoursADay* application.
 
 ### Setting up
 
@@ -72,20 +75,14 @@ it will run the CI for your project automatically at each push to the master bra
 When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [*25HoursADay*’s architecture](#architecture).
 
 ## Design
-This section describes the design overview of the application.
+This section describes the design overview of the *25HoursADay* application.
 
 ### Architecture
 
 The figure below shows the overall design of the application. 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
-
-UI: The user interface of the application.
-Parser: Interprets the user's input.
-Command: The command executor.
-Model: Holds the data of the application in memory.
-Storage: Reads data from, and writes data to, the hard disk. 
-Given below is a sequence diagram when adding a Todo task.
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `todo`.
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
 
 An overview of each components is listed below.
@@ -117,6 +114,7 @@ The model is responsible for holding the data of the application in memory. The 
  When executing commands,the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
 It is split into two subclasses: `Task` and `Event` class.
 The `CalendarList` class holds the array of `CalendarItem` and keeps track of the number of total items, total tasks, and total events.
+
 The `Task` and `Event` classes are further explained below.
 
 #### Task
@@ -135,7 +133,7 @@ All `Event` items update the information or provide needed information about `Ev
 Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
 
 ## Implementation
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the details of how each feature is implemented.
 
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
@@ -305,6 +303,7 @@ There are two ways to run tests.
 
 
 ## Appendix A: About the product 
+This section provides a description of the product.
 
 ### Product scope
 *25HoursADay* is a task scheduling program optimized for use via a Command Line Interface (CLI) while still 
@@ -314,13 +313,14 @@ It is specially catered to NUS students, offering features relevant to a NUS stu
 
 ### Target user profile
 
+* NUS student
 * has the need to manage a significant number of day-to-day matters
 * prefer desktop command line apps over other types
 * prefer typing to using mouse interactions
 * comfortable with using command line apps
 * forgetful person who needs reminders
 * a fast typer
-{Describe the target user profile}
+
 
 ### Value proposition
 
@@ -329,7 +329,7 @@ need to search through different platforms for information. *25HoursADay* can ma
 typical mouse/GUI driven app.
 
 ## Appendix B: User Stories
-This section describes the user stories we have considered when implementing our features.
+This section describes the user stories considered when implementing the features.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
