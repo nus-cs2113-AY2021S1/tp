@@ -36,16 +36,18 @@ public class Notus {
      */
     private void init() {
         this.interfaceManager = new InterfaceManager();
-        this.storageManager = new StorageManager();
         this.notebook = new Notebook();
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
         this.parserManager = new ParserManager();
+        this.storageManager = new StorageManager(timetable, parserManager, notebook, tagManager);
 
         try {
             storageManager.createFiles();
-            storageManager.loadAllNotes(notebook, timetable, tagManager, parserManager, false);
-            storageManager.loadAllNotes(notebook, timetable, tagManager, parserManager, true);
+
+            storageManager.loadAllNotes(false);
+            storageManager.loadAllNotes(true);
+            storageManager.loadTimetable();
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }

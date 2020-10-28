@@ -1,12 +1,20 @@
 package seedu.notus.storage;
 
+import seedu.notus.command.AddEventCommand;
 import seedu.notus.command.AddNoteCommand;
 import seedu.notus.command.Command;
+
 import seedu.notus.data.exception.SystemException;
+
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
-import seedu.notus.data.timetable.Timetable;
 import seedu.notus.data.tag.TagManager;
+
+import seedu.notus.data.timetable.Event;
+import seedu.notus.data.timetable.RecurringEvent;
+import seedu.notus.data.timetable.Timetable;
+
+import seedu.notus.util.PrefixSyntax;
 import seedu.notus.util.parser.ParserManager;
 
 import java.io.File;
@@ -16,7 +24,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static seedu.notus.ui.Formatter.LS;
+
 //@@author prachi2023
+
 /**
  * Represents a StorageManager. Manages the saving and loading of task list data.
  */
@@ -31,6 +42,20 @@ public class StorageManager {
     private static final String ARCHIVED_NOTEBOOK_FILE_PATH = "/archived_notebook.txt";
     private static final String TAG_FILE_PATH = "/tags.txt";
     private static final String TIMETABLE_FILE_PATH = "/timetable.txt";
+
+    /** Related classes. */
+    private Timetable timetable;
+    private ParserManager parserManager;
+    private Notebook notebook;
+    private TagManager tagManager;
+
+    public StorageManager(Timetable timetable, ParserManager parserManager,
+                    Notebook notebook, TagManager tagManager) {
+        this.timetable = timetable;
+        this.parserManager = parserManager;
+        this.notebook = notebook;
+        this.tagManager = tagManager;
+    }
 
     /* Set up of Storage manager */
 
@@ -94,11 +119,9 @@ public class StorageManager {
     /**
      * Loads the Notebook details and content for unArchived Notebooks.
      *
-     * @param notebook The Notebook to be loaded into.
-     * @param timetable The Timetable to be loaded into.
+     * @param isArchive  Boolean to determine whether to load archived or non-archived files.
      */
-    public void loadAllNotes(Notebook notebook, Timetable timetable, TagManager tagManager,
-                             ParserManager parserManager, boolean isArchive) throws SystemException {
+    public void loadAllNotes(boolean isArchive) throws SystemException {
         String path;
         if (isArchive) {
             path = FOLDER_DIR + ARCHIVED_NOTEBOOK_FILE_PATH;
@@ -116,6 +139,30 @@ public class StorageManager {
         while (s.hasNext()) {
             String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = parserManager.parseCommand(taskDetails);
+            command.setData(notebook, timetable, tagManager, this);
+            command.execute();
+        }
+        s.close();
+    }
+
+    /**
+     * Loads all the details from the the timetable stored in the text file.
+     *
+     * @throws SystemException Thrown when there is no file to read from.
+     */
+    public void loadTimetable() throws SystemException {
+        String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
+        File f = new File(path);
+
+        Scanner s;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException exception) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
+        }
+        while (s.hasNext()) {
+            String eventDetails = AddEventCommand.COMMAND_WORD + " " +  s.nextLine();
+            Command command = parserManager.parseCommand(eventDetails);
             command.setData(notebook, timetable, tagManager, this);
             command.execute();
         }
@@ -147,33 +194,16 @@ public class StorageManager {
         return content;
     }
 
-    /**
-     * Saves all the Notes in the Notebook to the storage file.
-     *
-     * @param notebook The Notebook containing all the notes to be saved.
-     */
-    public void saveNotebook(Notebook notebook) throws SystemException {
-        for (int i = 0; i < notebook.getSize();i++) {
-            try {
-                saveNoteContent(notebook.getNote(i), true);
-                saveNoteDetails(notebook.getNote(i), true);
-            } catch (IOException e) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
-            }
-        }
-    }
-
     /* Saving and deleting notes */
 
     /**
      * Clears the content in the original file storing all the note details.
      * Replaces it with the new note content details.
      *
-     * @param notebook notebook that stores all the notes to be saved
      * @param isArchive determines whether to save archived notes or normal notes
      * @throws IOException thrown when unable to write to the file
      */
-    public void saveAllNoteDetails(Notebook notebook, Boolean isArchive) throws IOException {
+    public void saveAllNoteDetails(Boolean isArchive) throws IOException {
         String path;
 
         ArrayList<Note> notes;
@@ -279,5 +309,67 @@ public class StorageManager {
             return false;
         }
         return true;
+    }
+
+    /* Timetable Saving and Loading */
+
+    /**
+     * Saves all the Events in the Timetable to the storage file.
+     *
+     * @param timetable The Timetable containing all the events to be saved.
+     */
+    public void saveTimetable(Timetable timetable) throws IOException {
+        String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
+
+        //clear file
+        FileWriter fwClear = new FileWriter(path, false);
+        fwClear.write("");
+        fwClear.close();
+
+        //rewrite information to the file
+        FileWriter fwAppend = new FileWriter(path, true);
+
+        ArrayList<Event> nonRecurringEvents = timetable.getAllNonRecurringEvents();
+        String eventDetails;
+
+        for (Event event: nonRecurringEvents) {
+            eventDetails = getEventDetailsSaveFormat(event);
+            fwAppend.write(eventDetails);
+        }
+
+        ArrayList<RecurringEvent> recurringEvents = timetable.getAllRecurringEventsArray();
+
+        for (RecurringEvent event: recurringEvents) {
+            eventDetails = getEventDetailsSaveFormat(event);
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+                        + " " + event.getRecurrenceType() + " "
+                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+                        + " " + event.getEndRecurrenceDate() + " "
+                        + LS;
+            fwAppend.write(eventDetails);
+        }
+        fwAppend.close();
+    }
+
+    private static String getEventDetailsSaveFormat(Event event) {
+        String eventDetails;
+        eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
+
+        ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
+
+        if (!reminderPeriods.isEmpty()) {
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
+            for (String reminderPeriod : reminderPeriods) {
+                eventDetails += reminderPeriod + " ";
+            }
+        }
+
+
+        if (!event.getRecurring()) {
+            eventDetails += LS;
+        }
+
+        return eventDetails;
     }
 }
