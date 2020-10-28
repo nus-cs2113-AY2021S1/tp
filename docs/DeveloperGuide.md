@@ -316,7 +316,7 @@ Given below is the class diagram for classes related to Category Management in Q
 ![Class Diagram for Category Management](images/ClassDiagram_Category.png)
 
 A `Category` object holds the following attributes:
-* A `String` object that holds the category name.
+* A `String` object that holds the category name in **lower-case** format.
 * A `BookList` object that stores a list of `Book` objects tagged with the specified category name.
 * A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
 * An `int` value that indicates the total number of books/quotes tagged under the specified category.

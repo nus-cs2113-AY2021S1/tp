@@ -526,6 +526,8 @@ The bookmark ["Harry Potter" at page: 109] has been added!
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
 
+Note: All categories will be stored in **lower-case** format.
+
 #### Add categories: `add -c`
 Add one or more categories to a specified book or quote.
 
@@ -534,8 +536,8 @@ Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
 * `[-b QUOTE_NUMBER]` tag is optional. Use it to specify an existing quote.
 * You must specify either a book, quote, or both.
 * The specified book or quote should exist in Quotesify.
-* Multiple categories should be <u>space separated</u>.
-* All categories specified will be converted and stored in <u>lower-case</u> format.
+* Multiple categories should be **space separated**.
+* All categories specified will be converted and stored in **lower-case** format.
 
 Example of usage: 
 
@@ -629,7 +631,7 @@ Find existing categories related to a keyword.
 
 Format: `find -c KEYWORD`
 
-Example of usage: `find -c rom`
+Example of usage: `find -c man`
 
 Expected outcome:
 ```
