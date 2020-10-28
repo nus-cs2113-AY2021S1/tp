@@ -15,15 +15,15 @@
 <br/>&nbsp;3.7 [Storage Component](#37-storage-component)
 
 4. [Implementation](#4-implementation)
-<br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
+<br/>&nbsp;4.1 [Estimate Feature](#41-estimate-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
-<br/>&nbsp;4.3 [View Information Feature](#43-view-information-feature)
+<br/>&nbsp;4.3 [View Information Feature](#43-view-anime-information)
 <br/>&nbsp;4.4 [Workspace Feature](#44-workspace-feature)
 <br/>&nbsp;4.5 [Watchlist Management Feature](#45-watchlist-management-feature)
-<br/>&nbsp;4.6 [Add To Watchlist Feature](#46-add-to-watchlist-feature)
-<br/>&nbsp;4.7 [Remove From Watchlist Feature](#46-remove-from-watchlist-feature)
-<br/>&nbsp;4.8 [View Anime In Watchlist Feature](#46-view-anime-in-watchlist-feature)
-<br/>&nbsp;4.9 [Bookmark Feature](#46-bookmark-feature)
+<br/>&nbsp;4.6 [Add To Watchlist Feature](#46-add-to-watchlist)
+<br/>&nbsp;4.7 [Remove From Watchlist Feature](#47-remove-from-watchlist)
+<br/>&nbsp;4.8 [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist)
+<br/>&nbsp;4.9 [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
@@ -35,7 +35,6 @@
 
 ## 1. Introduction
 **AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized, reusable and reusable pieces of code that makes it good for future improvements and revisions.
-<br/>
 
 ### 1.1 Purpose
 
@@ -70,22 +69,18 @@ If you plan to use Intellij IDEA:
 ### Before writing code
 1. **Configuring the coding style**
 
-    If using IDEA, follow this guide 
-    [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
-    to setup IDEA’s coding style to match ours.
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
+    
 2. **Set up CI**
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder.
 
-    There is no set up required as the project comes with a GitHub Actions config files, 
-    located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project
-    automatically at each push to the master branch or to any PR.
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
+    
 3. **Learn the design**
-
-    When you are ready to start writing codes, 
-    we recommended that you have a look at AniChan's overall design 
-    by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
-
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+    
 <br/>
 
 ## 3. Design 
@@ -103,7 +98,7 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 *Figure 1: Architecture Design Diagram*
 
-> :bulb:   The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
+> :bulb: The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
 
 <br/>
 
@@ -221,66 +216,60 @@ This section introduces the specific implementation details and design considera
 
 <br/>
 
-### 4.1 Estimation Feature
-The `estimate` feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, users will be able to ensure they do not overpromise their clients.
-
-> :bulb: The application only accepts `.txt` files.
-
-<br/>
+### 4.1 Estimate Feature
+The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, allowing users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
-The `estimate` feature is facilitated by `EstimateCommand`, which extends from the abstract class `Command`. `EstimateCommand` is instantiated by `EstimateParser`, and it requires two parameters:
-*   `ScriptFileName` (mandatory).
-*   `wordsPerHour` (optional), if not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used to generate 3 estimation timings.
+The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant arguments, `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
+*   `scriptFileName` (mandatory).
+*   `wordsPerHour` (optional).
 
 <br/>
 
-Given below is an example usage scenario showing how the `estimate` command behaves at each step.
+Given below is an example usage scenario showing how the `EstimateCommand` behaves at each step.
 
-**Step 1:** User executes `estimate script.txt -wph 300`, `Main` calls `Parser#getCommand()` and passes the command to it.
+**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is `estimate`, `Parser` will invoke `EstimateParser#parse()` to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300".
 
-**Step 2:** `Parser` extracts “estimate” from the command, and according to the command type, it calls `EstimateParser#parse()` and passes the command description, "script.txt -wph 300", to it.
+**Step 2:** `EstimateParser` is terminated at this point, and the application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `EstimateParser` proceed to parse the command description, extract, and validate the inputs "script.txt" and "300". Once validated and no exception was thrown, it creates and initialises `EstimateCommand` with the inputs and returns this object to `Parser`, which then returns it to `Main`.
+**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace containing the file, then it invokes `StorageManager#loadScriptFile()`, passing in the arguments `activeWorkspace.getName()` and `scriptFileName`, to read the content of `scriptFileName` in the workspace into the variable `fileContent`.
 
-**Step 4:** `EstimateParser` is terminated and `Main` calls `EstimateCommand#execute()` with `animeData`, `storageManager`, and `user` to begin estimating the time needed.
+> :memo: Every workspace is actually a folder in the system.
 
-![Estimate Command After Step 4 Diagram](images/EstimateCommand-After-Step-4.png) <br/>
-*Figure 9: Estimate Command After Step 4*
-
-<br/>
-
-**Step 5:** `EstimateCommand` first calls `User#getActiveWorkspace()` to initialise a `Workspace` object, `activeWorkspace`. It then calls `StorageManager#loadScript()` with `scriptFileName` and `activeWorkspace.getName()` to initialise `fileContent`, with the content of `scriptFileName` located in the workspace folder named `activeWorkspace.getName()`.
-
-**Step 6:** `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`. It then calls `EstimateCommand#timeNeededToString()` with the estimated time to convert the timing into a human-readable format and return the result to `Main` for it to be printed to the user via `Ui`.
-
-**Step 7:** `EstimateCommand` is terminated.
-
-![Estimate Command Final State Diagram](images/EstimateCommand-Final-State.png) <br/>
-*Figure 10: Estimate Command Final State*
+> :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
 
 <br/>
 
-The sequence diagram presented below depicts the interaction between the components for running the `estimate` command, provided that the user has entered a valid command.
+**Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` with the estimated time to convert it into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+
+> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
 <br/>
 
-![Estimate Command Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
-*Figure 11. Sequence Diagram for EstimateCommand*
+**Step 5:** `EstimateCommand` is terminated.
 
 <br/>
 
-#### 4.1.2 Design Consideration
+The sequence diagram presented below depicts the interaction between the components for running the command, `estimate script.txt -wph 300`.
+> :memo: The sequence diagram shows the interaction from step 2 onward.
+
+![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
+
+*Figure 9: Sequence Diagram for `estimate script.txt -wph 300`*
+
+<br/>
+
+#### 4.1.2 Design Considerations
 This section shows some design considerations taken when implementing the estimate feature.
 
 Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution (current design) |  Easy to implement since `Command` already handle file matters. | Waiting till command execution to validate the existence and validity of the script file would have wasted some memory resources. |
-| During parsing | No memory resource wasted as it ensures the command does not fail execution due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters, and this would affect the understandability, maintainability and reusability of the class. |
+| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Failing file validation during command execution would have wasted some memory resources. |
+| During parsing. | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the alternatives, we have decided to implement the first alternative, that is to **read script file content during command execution** because we do not want to decrease the cohension of `Parser`, and we find that the memory resource that are wasted in the process is a worthy exchange for the cohesion preserved.
+Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
 <br/>
 
@@ -288,10 +277,10 @@ Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| User have to specify file extension (current design) |  Ensures that the correct file will be read. | Some users may not be aware of how to identify their file extension. |
-| User do not have to specify file extension | Users can easily specify the file to read and do not have to worry about knowing the file extension. | The application may end up reading the wrong file if there happens to be two files with the identical name name but different file extension. |
+| Specify file extension **(current design)**. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first alternative, **users should specify the file extension in their input** because the importance of getting a correct estimation timing would outweighs and compensate for the hassle of entering the file extension. Moreover, if we were to allow such mistakes to be made, we could end up losing potential users of this product as using the wrong estimation timing could end up being costly for these users.
+We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
 <br/>
 
@@ -346,7 +335,7 @@ For this case since it is a default browse operation, there is no sorting perfor
 `Anime objects within the page window, as shown in the diagram below.
 
 ![Browse Object Diagram 1](images/Browse-Default-State.png) <br/>
-*Figure 12: Browse Default State Object Diagram*
+*Figure 10: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
 ```text
@@ -359,7 +348,7 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 `BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
 
 ![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
-*Figure 13: Browse Next Page Object Diagram*
+*Figure 11: Browse Next Page Object Diagram*
 
 **Step 5:** At each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
@@ -373,7 +362,7 @@ An example scenario would be browsing the 2nd page of a **sorted** list in ascen
 The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png) <br/>
-*Figure 14: Browse Sorted State Object Diagram*
+*Figure 12: Browse Sorted State Object Diagram*
 
 As you can see, even though the page window is at the same position as the previous command, 
 the list is different as it has been sorted.
@@ -383,7 +372,7 @@ From this point onwards, the operation will continue as per the steps above but 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
 
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png) <br/>
-*Figure 15: Browse Sorted Sequence Diagram*
+*Figure 13: Browse Sorted Sequence Diagram*
 
 <br/>
 
@@ -457,90 +446,97 @@ WIP.
 <br/>
 
 ### 4.5 Watchlist Management Feature
-The watchlist management feature aims to provide translators with a simple way to keep track of animes of different genres, allowing them to stay organized and focus on their work.
-
-<br/>
+The watchlist management feature aims to provide translators with a simple way to keep track of animes by being able to group animes based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
 
 #### 4.5.1 Current Implementation
-The `watchlist` feature is facilitated by `WatchlistCommand`, which extends from the abstract class `Command`. `WatchlistCommand` is instantiated by `WatchlistParser`, and it requires 3 parameters: 
+The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in three parameters: 
 *   `option` (mandatory).
-*   `watchlistName` (mandatory only if the option `-n` is specified).
-*   `watchlistIndex` (mandatory only if the options `-s` and `-d` is specified).
+*   `watchlistName` (mandatory only if the option `-n` was specified).
+*   `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
+
+Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
+> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by the variable `activeWatchlist` in `Workspace`.
+
+| Option | Method | Description |
+| --- | --- | --- |
+| `-n` | `WatchlistCommand#createWatchlist()` | Creates a new watchlist |
+| `-l` | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
+| `-s` | `WatchlistCommand#selectWatchlist()` | Selects a watchlist to be the new active watchlist |
+| `-d` | `WatchlistCommand#deleteWatchlist()` | Deletes a watchlist |
 
 <br/>
 
-Given below is an example usage scenario showing how the `watchlist` command behaves at each step.
+Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the watchlist creation process.
 
-**Step 1:** User launches the application for the first time. The `Workspace` of a user will be initialised to the initial workspace state, and the `activeWatchlist` will point to the first watchlist found in the `watchlistList` of the initialised `Workspace`.
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-![Watchlist Command Initial State Diagram](images/WatchlistCommand-Initial-State.png) <br/>
-*Figure 16: Watchlist Command Initial State*
+*Figure 14: WatchlistCommand Initial State*
 
-<br/>
+**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
 
-**Step 2:** User executes `watchlist -n NewAnime` to create a new watchlist named "NewAnime". `Main` calls `Parser#getCommand()` and passes the command to it.
+**Step 2:** `WatchlistParser` is terminated at this point, and the application invokes `WatchlistCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `Parser` extracts "watchlist" from the command, and according to the command type, it calls `WatchlistParser#parse()` and passes the command description, "-n NewAnime", to it.
+**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
 
-**Step 4:** `WatchlistParser` proceed to parse the command description, extract, and validate the inputs "-n" and "NewAnime". Once validated and no exception was thrown, it creates and initialises `WatchlistCommand` with the inputs and return this object to `Parser`, which then returns it to `Main`.
+**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. Then, `activeWorkspace.getWatchlistList()` is invoked to initialise the variable `watchlistList`. 
 
-**Step 5:** `WatchlistParser` is terminated and `Main` calls `WatchlistCommand#execute()` with `animeData`, `storageManager`, and `user` to create the new watchlist.
+**Step 5:** A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. It is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
 
-![Watchlist Command After Step 5 Diagram](images/WatchlistCommand-After-Step-5.png) <br/>
-*Figure 17: Watchlist Command After Step 5*
+> :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
-<br/>
-
-**Step 6:** `WatchlistCommand` first calls `User#getActiveWorkspace()` to initialise a `Workspace` object, `activeWorkspace`. It then calls `WatchlistCommand#createWatchlist()` to perform the operation and to call `StorageManager#saveWatchlist()` with `activeWorkspace.getName()` and `watchlistName` to save the newly created watchlist.
-
-**Step 7:** `WatchlistCommand` is terminated.
-
-![Watchlist Command Final State After Create Diagram](images/WatchlistCommand-Final-State-After-Create.png) <br/>
-*Figure 18: Watchlist Command Final State After Create*
+> :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
 <br/>
 
-All the other options in the `watchlist` command also follows a similar execution process. 
+**Step 6:** `WatchlistCommand` is terminated.
 
-The following diagrams will continue from step 7, and it will show you how the state of the application changes as it continues to execute the select and delete option of the `watchlist` command. The list option (`-l`) is not shown as there is no change in the application state after its execution.
+![WatchlistCommand After Step 6 State](images/WatchlistCommand-After-Step-6-State.png)
 
-<br/>
-
-The user executes `watchlist -s 2` to change his active watchlist to the second watchlist ("NewAnime") in the list.
-
-![Watchlist Command State After Select Diagram](images/WatchlistCommand-After-Select.png) <br/>
-*Figure 19: Watchlist Command State After Select*
+*Figure 15: WatchlistCommand After Step 6 State*
 
 <br/>
 
-The user executes `watchlist -d 2` to delete the second watchlist ("NewAnime") in the list.
+All the other options in the watchlist command also follows a similar execution process. The following diagrams will continue from step 6, and it will show you how the state of the application changes as it continues to execute the select and delete option.
+> :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
-![Watchlist Command State After Delete Diagram](images/WatchlistCommand-After-Delete.png) <br/>
-*Figure 20: Watchlist Command Final State After Delete*
+The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
 
-<br/>
+![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-The sequence diagram presented below depicts the interaction between the components for running the `watchlist` command, provided that the user has entered a valid command.
-
-<br/>
-
-![Watchlist Command Sequence Diagram](images/WatchlistCommand-Sequence-Diagram.png) <br/>
-*Figure 21: Sequence diagram for WatchlistCommand*
+*Figure 16: WatchlistCommand After Select State*
 
 <br/>
 
-#### 4.5.2 Design Consideration
-This section shows some design considerations taken when implementing the watchlist feature.
+The user executes `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
+
+![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
+
+*Figure 17: WatchlistCommand After Delete State*
+
+<br/>
+
+The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
+> :memo: The sequence diagram shows the interaction from step 2 onward.
+
+> :memo: The other options (`-l`, `-s`, `-d`) follow a similar process, only the list and select option does not interact with `StorageManager`.
+
+![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
+
+*Figure 18: Sequence Diagram for `watchlist -n NewAnime`*
+
+<br/>
+
+#### 4.5.2 Design Considerations
+This section shows some design considerations taken when implementing the watchlist management features.
 
 Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution (current design) | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
-| When the user exits the program | Saving is more efficient and can potentially improve performance. | User may lose their data if the application or system crashes midway. |
+| After each command execution **(current design)**. | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
+| When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
-Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. 
-Losing work data can also be a frustrating and costly mistake to translators especially if these data are important. Hence, we definitely do not want to lose potential users of this product due to such a problem that could be alleviated easily.
+Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
 
 <br/>
 
@@ -637,7 +633,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
-*Figure 22: Bookmark Class Diagram*
+*Figure 19: Bookmark Class Diagram*
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
 
@@ -679,19 +675,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 23: Bookmark Entry After Add*
+*Figure 20: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 24: Bookmark Entries with more Add*
+*Figure 21: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 25: Bookmark Add Command Sequence Diagram*
+*Figure 22: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -705,14 +701,14 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 25: Bookmark Entries After Delete*
+*Figure 23: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 26: Bookmark Entries After Edit Episode*
+*Figure 24: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
 
@@ -739,7 +735,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 25: Bookmark Entries After Edit Episode*
+*Figure 26: Bookmark Entries After Edit Episode*
 
 <br/>
 
