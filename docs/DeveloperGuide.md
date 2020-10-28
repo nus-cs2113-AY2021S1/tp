@@ -83,7 +83,7 @@ The Model component is responsible for the following tasks:
 
 The following class diagram briefly explains how different classes in the Model component interact with each other.
 
-![modelcomponet](DG_Diagrams/ModelComponent.png)
+![modelcomponent](DG_Diagrams/ModelComponent.png)
 
 #### 2.1.4. Storage Component
 The Storage component is responsible for the following tasks:
@@ -221,7 +221,7 @@ specified faculty.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
->>>>>>> master
+
 
 
 ## 3. Appendix I: Requirements
