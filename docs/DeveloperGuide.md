@@ -212,10 +212,11 @@ The diagram below shows the architecture for Event feature.
 ![](EventDiagram/EventArchitecture.png)
 
 
-There are a total of 6 commands under Event feature. 
-
+There are a total of 6 commands under Event feature.
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`. 
+ The implementation for each command is described in detail below.
+                                                             
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
- 
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
