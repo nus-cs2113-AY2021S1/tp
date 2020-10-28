@@ -13,8 +13,11 @@ Table of contents:
     - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
     - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
     - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-    - [3.9. Exiting the program: `exit`](#39-exiting-the-program-exit)
-    - [3.10. Saving user data](#310-saving-user-data)
+    - [3.9. Adding a note: `note add`](#39-adding-a-note-note)
+    - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note)
+    - [3.11. Listing out notes: `note add`](#311-listing-out-notes-notes)
+    - [3.12. Exiting the program: `exit`](#312-exiting-the-program-exit)
+    - [3.13. Saving user data](#313-saving-user-data)
   - [4. FAQ](#4-faq)
   - [5. Command summary](#5-command-summary)
   - [6. Glossary](#6-glossary)
@@ -181,7 +184,41 @@ What you should see:
 
 ![hint](./images/hint.png)
 
-### 3.9. Exiting the program: `exit`
+
+### 3.9. Adding a note: `note add`
+
+Adds a note to a specified topic.
+
+Note:
+- There can be many notes under each topic
+- The UI will guide you through the note-adding process
+
+Example of usage:
+```
+note add
+```
+
+What you should see:
+
+### 3.10. Deleting a note: `note delete`
+
+Deletes a note from a specific topic.
+
+Example of usage:
+```
+note delete
+```
+
+### 3.11. Listing out notes: `note list`
+
+Lists out all notes belonging to a specific topic.
+
+Example of usage:
+```
+note list
+```
+
+### 3.12. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -194,7 +231,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.10. Saving user data
+### 3.13. Saving user data
 
 User data is only saved upon successful exit of the application through the `exit` command. This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your quiz history.
 

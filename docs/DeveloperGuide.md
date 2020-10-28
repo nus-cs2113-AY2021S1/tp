@@ -68,16 +68,17 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ####  2.2.1. Design of TopicList
 
+TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
+in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
+each topic stores a NoteList, which contains Notes.
+
 1. Listing topics in TopicList
 2. Adding a new note
 3. Deleting an existing note
 4. Listing out all notes in a topic
 
 ![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
-
-TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
-in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
-use of the package java.util.ArrayList. The TopicList is used to store Topics.
 
 #### 2.2.2. Implementation of TopicList
 
@@ -123,12 +124,12 @@ Step 2: The `NoteList.delete()` method makes use of `ArrayList` API, specificall
 
 **Listing out all notes in a topic**
 
-This task is performed by the `Topic.showNotes()` method.
+This task is performed by the `Ui.printNoteList()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. This method then calls the `Topic.getNoteList` method. 
+and calls the `Ui.listInteraction` method. 
 
-Step 2: The `Topic.showNotes()` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
+Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
 this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
 topic's `NoteList`.
 
