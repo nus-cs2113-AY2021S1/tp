@@ -1,0 +1,31 @@
+@startuml
+box Logic
+[-> ":Parser": setUserInput("/route 1 /to hello")
+activate ":Parser"
+[-> ":Parser": extractType()
+
+create ":DescFavCommand"
+":Parser" -> ":DescFavCommand":new DescFavCommandCommand("1 /to hello")
+activate ":DescFavCommand"
+
+create ":DescFavParser"
+":DescFavCommand" -> ":DescFavParser": new DescFavParser("1 /to hello")
+activate ":DescFavParser"
+":DescFavCommand" <-- ":DescFavParser"
+deactivate ":DescFavParser"
+
+":Parser" <-- ":DescFavCommand"
+deactivate ":DescFavCommand"
+
+":Parser" -> ":DescFavCommand":executeCommand()
+activate ":DescFavCommand"
+
+ref over ":DescFavCommand"
+execute description changer
+end
+
+":Parser" <-- ":DescFavCommand"
+deactivate ":DescFavCommand"
+[<-- ":Parser": boolean isOngoing
+deactivate ":Parser"
+@enduml

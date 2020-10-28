@@ -1,0 +1,40 @@
+@startuml
+
+abstract class Command
+
+class FavList {
+ {static} changeDesc(:int, :String):String
+ {static} checkIndexAndDesc(:int, :String):String
+}
+
+class Fav {
+    changeDesc(:String)
+}
+
+enum ExceptionType {
+NO_INPUT
+EMPTY_DESCRIPTION
+NOT_A_NUMBER
+INVALID_INDEX
+...
+}
+
+Class Ui {
+{static} printDescChangeMessage(:String, :String, :String)
+}
+
+Command <|- DescFavCommand
+Parser <|- DescFavParser
+DescFavParser "1"<--down DescFavCommand
+
+DescFavCommand ..> FavList
+FavList "throws"..> CustomException
+DescFavParser "throws"..> CustomException
+
+FavList ->"*" Fav
+
+CustomException -> ExceptionType
+
+DescFavCommand .> Ui
+
+@enduml

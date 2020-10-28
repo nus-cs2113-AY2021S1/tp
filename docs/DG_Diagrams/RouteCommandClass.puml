@@ -14,6 +14,11 @@ Class SimilarityCheck {
 {static} similarLoc(:String) : ArrayList<String>
 }
 
+Class Ui {
+{static} printRouteMessage(:ArrayList<Bus>)
+{static} printPossibleLocsMessage(:ArrayList<String>)
+}
+
 enum BusStops {
 PGP
 KENTRIDGEMRTSTATION
@@ -35,10 +40,12 @@ RouteParser "1"<--down RouteCommand
 RouteCommand .> BusData
 BusData --> "0..*" Bus
 Bus ..> BusStops
-RouteCommand ..> CustomException
-RouteParser ..> CustomException
-Bus ..> CustomException
+RouteCommand "throws"..> CustomException
+RouteParser "throws"..> CustomException
+Bus "throws"..> CustomException
 CustomException -> ExceptionType
 RouteCommand .left> SimilarityCheck
+
+RouteCommand ..up> Ui
 
 @enduml

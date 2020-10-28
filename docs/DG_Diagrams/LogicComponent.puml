@@ -3,21 +3,39 @@
 allowmixing
 Rectangle Logic {
 Rectangle commands {
+Rectangle commons {
 abstract class Command
-Command <|--up AllBusCommand
-Command <|-left BusCommand
-Command <|-left DineCommand
-Command <|--up DineInfoCommand
 Command <|-left ExitCommand
 Command <|- HelpCommand
+}
+Rectangle buscommand {
+Command <|-- AllBusCommand
+Command <|-left BusCommand
 Command <|-- ListStopsCommand
 Command <|-- ResetSearchFreqCommand
 Command <|-- RouteCommand
-Command <|--up RouteMapCommand
+Command <|-- RouteMapCommand
+}
+Rectangle dinecommand {
+Command <|-left DineCommand
+Command <|-left DineInfoCommand
+}
+Rectangle favcommand {
+Command <|--up AddFavCommand
+Command <|--up ClearFavCommand
+Command <|--up DeleteFavCommand
+Command <|--up DescFavCommand
+Command <|-- ExecFavCommand
+Command <|-- ListFavCommand
+}
 }
 Rectangle parser {
 Parser <|-- RouteParser
-RouteParser <-- RouteCommand
+RouteParser <-down RouteCommand
+Parser <|-- DescFavParser
+DescFavParser <- DescFavCommand
+Parser <|-- ExecFavParser
+ExecFavParser <- ExecFavCommand
 }
 class SimilarityCheck
 
