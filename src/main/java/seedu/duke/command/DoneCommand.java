@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -19,20 +19,20 @@ public class DoneCommand extends Command {
      *
      * @param calendarList the calendar list that contains the task.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the done command is invalid.
+     * @throws CommandException if the done command is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int taskNumberCompleted;
 
         try {
             taskNumberCompleted = Integer.parseInt(userInput.replace("done", "").trim());
         } catch (Exception e) {
-            throw new DukeException("done");
+            throw new CommandException("done");
         }
 
         if (taskNumberCompleted > calendarList.getTotalTasks() || taskNumberCompleted <= 0) {
-            throw new DukeException("invalid task action");
+            throw new CommandException("invalid task action");
         }
         int calendarNumberCompleted = CalendarList.convertTaskNumberToCalendarNumber(taskNumberCompleted, calendarList);
 

@@ -388,14 +388,14 @@ The following table contains the list of commands available in the application.
 
 |Action| Command Type | Command Format | 
 |--------|----------|----------|
-|add|activity event|`act <activity_description> @<venue> / <date> <time>`|
-|add|additional information for event|`/a <event_number> - <additional_information>`|
-|add|deadline task|`deadline <task_description>/ <due_date>`|
-|add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
-|add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|add| todo task | `todo <task_description>` | 
-|add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
+|Add|additional information for event|`/a <event_number> - <additional_information>`|
+|Add|deadline task|`deadline <task_description>/ <due_date>`|
+|Add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
+|Add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|Add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|Add| todo task | `todo <task_description>` | 
+|Add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
 |Delete| events | `-e <event_number>` |
 |Delete|tasks|`-t <task_number>`|
 |Delete|additional information for event|`/- <event_number> a <additional_information_number>`|
