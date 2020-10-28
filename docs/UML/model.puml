@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package model {
+
+ package manager {
+
+    package admin {
+        class Admin
+        class ModuleList
+    }
+
+    package card {
+        class Card
+    }
+
+    package chapter {
+        class CardList
+        class Chapter
+        class DueChapter
+    }
+
+    package history {
+        class history
+    }
+
+    package module {
+        class Module
+        class ChapterList
+    }
+ }
+
+package access {
+Class Access
+}
+}
+
+package logic {
+    Class HiddenLogic #FFFFFF
+}
+
+package ui {
+    Class HiddenUi #FFFFFF
+}
+
+Access ..> Admin : creates >
+Access .left.> Module : creates >
+Access ..> Chapter : creates >
+Admin ..> ModuleList : contains >
+ModuleList .down.> Module : manages >
+Module ..> ChapterList: contains >
+ChapterList .down.> Chapter: manages >
+Chapter .down.> CardList: contains >
+CardList .down.> Card: manages >
+DueChapter .right.> Chapter: uses >
+
+logic .right.> Access
+ui ..> Access
+
+@enduml

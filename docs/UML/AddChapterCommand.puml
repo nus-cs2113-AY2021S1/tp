@@ -1,0 +1,29 @@
+@startuml
+Kaji -> Parser ++ : parse(userCommand)
+Parser -> Parser ++ : prepareAddCommand
+Parser -> Access ++ : isChapterLevel()
+return True
+return
+create AddChapterCommand
+Parser -> AddChapterCommand ++ : new()
+return
+return AddChapterCommand
+Kaji -> AddChapterCommand ++ : execute
+
+create Chapter
+AddChapterCommand -> Chapter ++ : new()
+return
+AddChapterCommand -> AddChapterCommand ++ : addChapter()
+AddChapterCommand -> Access ++ : getModule()
+return Module
+create ChapterList
+AddChapterCommand -> ChapterList ++ : addChapters()
+return newModule
+AddChapterCommand -> Access ++ : setModule(newModule)
+return
+return result
+AddChapterCommand -> Ui ++ : showToUser(result)
+return
+return
+
+@enduml

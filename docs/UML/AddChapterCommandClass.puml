@@ -1,0 +1,51 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n AddCommand"{
+  + prepareResult() : String
+  + isExist() : boolean
+}
+
+class "{abstract} \n Command"{
+  + isExist() : String {abstract}
+  + execute() : void {abstract}
+}
+
+class "Kaji" {
+    + run() : void
+}
+
+class "Access" {
+    + getModule() : Module
+    + setModule(Module) : void
+}
+
+class "Storage" {
+    + createChapter(String) : void
+}
+
+class "ChapterList" {
+    + addChapter(Chapter) : void
+    + getChapterCount() : int
+}
+
+class "Ui" {
+    + showToUser(String) : void
+}
+
+"{abstract} \n AddCommand" <|-- AddChapterCommand
+AddChapterCommand : - Chapter : String
+AddChapterCommand : - addChapter(Access, Storage, Chapter)
+
+"{abstract} \n Command" <|-- "{abstract} \n AddCommand"
+
+Kaji *- "{abstract} \n Command"
+
+AddChapterCommand ..> Access
+AddChapterCommand ..> Storage
+AddChapterCommand ..> ChapterList
+AddChapterCommand ..> Ui
+
+@enduml

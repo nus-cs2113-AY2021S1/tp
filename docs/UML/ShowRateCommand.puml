@@ -1,0 +1,34 @@
+@startuml
+Kaji -> Parser ++ : parse(userCommand)
+Parser -> Parser ++ : prepareShowRateCommand
+Parser -> Access ++ : isChapterLevel()
+return True
+return
+create ShowRateCommand
+Parser -> ShowRateCommand ++ : new()
+return
+return ShowRateCommand
+Kaji -> ShowRateCommand ++ : execute
+
+ShowRateCommand -> Access ++ : getChapter()
+return chapter
+ShowRateCommand -> ShowRateCommand ++ : computePercentage(chapter)
+create Chapter
+ShowRateCommand -> Chapter ++ : getCards()
+create CardList
+Chapter -> CardList ++ : getAllCards()
+return cards
+destroy CardList
+destroy Chapter
+return cards
+    loop cards.size times
+        Create Card
+        ShowRateCommand -> Card ++ : getRating()
+        return
+        destroy Card
+    end
+return
+ShowRateCommand -> Ui ++ : showToUser()
+return
+return
+@enduml

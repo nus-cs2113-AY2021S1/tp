@@ -1,0 +1,69 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n GoCommand"{
+    isExist() : boolean
+}
+
+class "{abstract} \n Command"{
+  + isExist() : String {abstract}
+  + execute() : void {abstract}
+}
+
+class "Kaji" {
+    + run() : void
+}
+
+class "Access" {
+    - admin : Admin
+    - module : Module
+    + getAdmin() : Admin
+    + setAdmin(Admin) : void
+    + setModuleLevel(Module) : void
+    + setModule(Module) : void
+}
+
+class "Admin" {
+    + getModules() : ModuleList
+}
+
+class "Storage" {
+    + createModule(String) : void
+    + loadChapter()
+}
+
+class "ModuleList" {
+    + getAllModules() : ArrayList<Module>
+}
+
+class "Module" {
+    + getModuleName() : String
+    + setChapters(ArrayList<Chapter>) : void
+}
+
+class "Ui" {
+    + showToUser(String) : void
+}
+
+"{abstract} \n GoCommand" <|-- GoModuleCommand
+GoModuleCommand : - module : String
+GoModuleCommand : - goModule(Access, Storage, Ui)
+GoModuleCommand : + execute(Ui, Access, Storage)
+
+"{abstract} \n Command" <|-- "{abstract} \n GoCommand"
+
+Kaji *- "{abstract} \n Command"
+
+Access -> Module
+Access -> Admin
+Admin -> Module
+ModuleList -> Module
+GoModuleCommand ..> Access
+GoModuleCommand ..> Storage
+GoModuleCommand ..> ModuleList
+GoModuleCommand ..> Ui
+
+
+@enduml
