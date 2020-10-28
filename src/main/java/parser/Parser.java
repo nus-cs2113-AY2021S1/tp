@@ -77,6 +77,9 @@ public abstract class Parser {
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
     public static final String SORT = "sort";
+    public static final String END_TIME_MARKER = "/et";
+    public static final String ONLINE_LOCATION_MARKER = "/o";
+    public static final String PASSWORD_MARKER = "/p";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -105,6 +108,7 @@ public abstract class Parser {
 
         String[] words = fullCommand.split(SINGLE_SPACE);
 
+        //this block deals with locate command
         if (words[0].equals(LOCATE_EVENT)) {
             return new LocateCommand(words[1]);
         }
@@ -176,11 +180,18 @@ public abstract class Parser {
 
         //these variables are used by either Edit or Add
         //the position of /t
-        int timeDividerPosition;
+        int startTimeDividerPosition;
         //the position of the space when the user enters a date time in the format yyyy-mm-dd HH:mm
+        //may use twice if the end time is needed
         int timeDivider;
+        //the position of /et
+        int endTimeDividerPosition;
         //the position of /l
         int locationDividerPosition;
+        //the position of /o
+        int onlineLocationDividerPosition;
+        //the position of /p
+        int pwdDividerPosition;
         String dateTime;
         Location location;
 
@@ -202,27 +213,28 @@ public abstract class Parser {
             }
 
             //the following part is almost the same as AddCommand, but returns EditCommand
-            timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
+            startTimeDividerPosition = fullCommand.indexOf(TIME_MARKER);
+            endTimeDividerPosition = fullCommand.indexOf(END_TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
+            onlineLocationDividerPosition = fullCommand.indexOf(ONLINE_LOCATION_MARKER);
+            pwdDividerPosition = fullCommand.indexOf(PASSWORD_MARKER);
 
-            switch (words[2]) {
-            case ASSIGNMENT:
-            case CLASS:
-            case PERSONAL_EVENT:
-                if (timeDividerPosition == -1) {
+            if (words[2].equals(ASSIGNMENT) || words[2].equals(CLASS) || words[2].equals(PERSONAL_EVENT)) {
+                if (startTimeDividerPosition == -1) {
                     throw new NoEventTimeMarkerException();
                 }
 
-                if (locationDividerPosition == -1) {
+                if (locationDividerPosition == -1 && onlineLocationDividerPosition == -1) {
                     throw new NoEventLocationException();
                 }
+
                 int prefixLength = words[0].length() + words[1].length() + words[2].length();
 
-                if (fullCommand.substring(prefixLength, timeDividerPosition).isBlank()) {
+                if (fullCommand.substring(prefixLength, startTimeDividerPosition).isBlank()) {
                     throw new EmptyEventException();
                 }
 
-                if (fullCommand.substring(timeDividerPosition + 3, locationDividerPosition - 1).isBlank()) {
+                if (fullCommand.substring(startTimeDividerPosition + 3, locationDividerPosition - 1).isBlank()) {
                     throw new NoEventTimeException();
                 }
 
@@ -231,33 +243,32 @@ public abstract class Parser {
                 }
 
                 try {
-                    timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
-                    dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)
+                    timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                    dateTime = fullCommand.substring(startTimeDividerPosition + 3,
+                            startTimeDividerPosition + 3 + timeDivider)
                             + "T"
-                            + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
+                            + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
                             locationDividerPosition - 1);
 
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
                     switch (words[2]) {
                     case ASSIGNMENT:
                         return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
-                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                                startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case CLASS:
                         return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
-                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                                startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case PERSONAL_EVENT:
                         return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
-                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                                startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     default:
                         break;
                     }
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
                 }
-                break;
-            default:
-                throw new WrongCommandException();
-            }
+            } else throw new WrongCommandException();
+
         }
 
         //this block deals with add command
@@ -268,13 +279,13 @@ public abstract class Parser {
         case ASSIGNMENT:
         case CLASS:
         case PERSONAL_EVENT:
-            timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
+            startTimeDividerPosition = fullCommand.indexOf(TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
             if (fullCommand.substring(words[0].length()).isBlank()) {
                 throw new EmptyEventException();
             }
 
-            if (timeDividerPosition == -1) {
+            if (startTimeDividerPosition == -1) {
                 throw new NoEventTimeMarkerException();
             }
 
@@ -282,11 +293,11 @@ public abstract class Parser {
                 throw new NoEventLocationMarkerException();
             }
 
-            if (fullCommand.substring(words[0].length(), timeDividerPosition).isBlank()) {
+            if (fullCommand.substring(words[0].length(), startTimeDividerPosition).isBlank()) {
                 throw new EmptyEventException();
             }
 
-            if (fullCommand.substring(timeDividerPosition + 3, locationDividerPosition - 1).isBlank()) {
+            if (fullCommand.substring(startTimeDividerPosition + 3, locationDividerPosition - 1).isBlank()) {
                 throw new NoEventTimeException();
             }
 
@@ -295,22 +306,23 @@ public abstract class Parser {
             }
 
             try {
-                timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
-                dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)
+                timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                dateTime = fullCommand.substring(startTimeDividerPosition + 3,
+                        startTimeDividerPosition + 3 + timeDivider)
                         + "T"
-                        + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
+                        + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
                         locationDividerPosition - 1);
                 location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
                 switch (words[0]) {
                 case ASSIGNMENT:
                     return new AddCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
-                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                            startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
                 case CLASS:
                     return new AddCommand(new Class(fullCommand.substring(words[0].length() + 1,
-                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                            startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
                 case PERSONAL_EVENT:
                     return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
-                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                            startTimeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
                 default:
                     break;
                 }

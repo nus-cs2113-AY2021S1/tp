@@ -2,6 +2,7 @@ package event;
 
 
 import location.Location;
+import location.OnlineLocation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,11 +11,13 @@ import java.util.Comparator;
 
 
 /**
- * Represents the Event Events.
+ * Represents the PersonalEvent Events.
+ * PersonalEvent may or may not have an end time.
  */
 public class PersonalEvent extends Event {
 
     protected LocalDateTime at;
+    protected LocalDateTime end = null;
 
     /**
      * Convert the information about this personal event to a string that is to be stored in a file.
@@ -22,7 +25,8 @@ public class PersonalEvent extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + location.fileString();
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (location != null ?
+                location.fileString() : link.fileString());
     }
 
     /**
@@ -39,14 +43,32 @@ public class PersonalEvent extends Event {
         this.at = at;
     }
 
+    public PersonalEvent(String description, Location location, LocalDateTime at, LocalDateTime end) {
+        super(description, location);
+        this.at = at;
+        this.end = end;
+    }
+
+    public PersonalEvent(String description, OnlineLocation location, LocalDateTime at) {
+        super(description, location);
+        this.at = at;
+    }
+
+    public PersonalEvent(String description, OnlineLocation location, LocalDateTime at, LocalDateTime end) {
+        super(description, location);
+        this.at = at;
+        this.end = end;
+    }
+
     /**
      * Prepare the string to be printed in the list.
      *
-     * @return the string required in a certain format
-     *         Example of the format: [P][✘]a  (at: 2020/02/20 08:00)
+     * @return the string required in a certain format。
      */
     public String toString() {
         return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
-                + "\n" + location;
+                + (end != null ? "\n(end at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")" :
+                null)
+                + "\n" + (location != null ? location : link);
     }
 }

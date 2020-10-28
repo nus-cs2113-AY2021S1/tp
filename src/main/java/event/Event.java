@@ -1,10 +1,11 @@
 package event;
 
 import location.Location;
+import location.OnlineLocation;
+
 import java.util.Comparator;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 
 /**
  * Represents the event objects.
@@ -17,12 +18,19 @@ import java.util.Comparator;
 public abstract class Event {
     protected String description;
     protected boolean isDone;
-    protected Location location;//to be implemented
+    protected Location location = null;
+    protected OnlineLocation link = null;
 
-    public Event(String description,Location location) {
+    public Event(String description, Location location) {
         this.description = description;
         this.isDone = false;
         this.location = location;
+    }
+
+    public Event(String description, OnlineLocation location) {
+        this.description = description;
+        this.isDone = false;
+        this.link = location;
     }
 
     /**
