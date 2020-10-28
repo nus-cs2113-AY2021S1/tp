@@ -80,6 +80,7 @@ public class Parser {
         String trimmedParam;
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
+        InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
         for (String param: paramList) {
             if (getCommandParam(userInput).contains(param)) {
                 processedParam = getCommandParam(userInput).split(param);
@@ -135,6 +136,7 @@ public class Parser {
         int tarWeight = 0;
         String trimmedParam;
         String[] processedParam;
+        InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
         for (String param: PARAM_INFO) {
             processedParam = getCommandParam(userInput).split(param);
             InputChecker.checkEmptyOption(processedParam);
