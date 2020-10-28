@@ -151,6 +151,19 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.3. Model Component
 (Jiayi)
+API: Model.java
+
+The Model,
+
+* stores a Access object that holds temporary data for user's access level and contents of level being accessed.
+* stores a History object that saves revision history of current day.
+* stores a DueChapter object that manages due chapter data.
+* contains an Admin class that can be created and accessed by Access object. The Admin class contains a ModuleList object to manage data for modules.
+* contains a Module class that can be created and accessed by Access object. The Module class contains a ChapterList object to manage data for chapters.
+* contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
+* contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
+
+![Architecture Diagram of Model](UML/model.png)
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -167,6 +180,38 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
+##### Implementation
+`AddModuleCommand` facilitates the proposed add module feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
+
+Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddModuleCommand`, `Kaji` is able to execute the operation `AddModuleCommand#excute()`. 
+
+![Class Diagram of add module command](UML/AddModuleCommandClass.png)
+
+Given below is an example usage scenario at Admin level and how the add module feature behaves at each step:
+
+Step 1: The user is currently in admin level.
+
+Step 2: The user want to add a new module CS2113 and enters `add CS2113` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddModuleCommand` object and return the `AddModuleCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `AddModuleCommand#excute()` to add new modules into Kaji application.
+
+Step 5: The `AddModuleCommand` object creates a new `Module` object with the `Module#moduleName` of CS2113. 
+
+Step 6: The new `CS2113 : Module` object will be passed into the `AddModuleCommand#addModule()` with `Access` and `Storage`.
+
+Step 7: The `AddModuleCommand#addModule()` gets the current `Admin` object via `Access#getAdmin()` method, then it adds the new `CS2113: Module` object into the `Admin#ModuleList`. 
+
+Step 8: The new `Admin` object with the `CS2113: Module` object is updated to `Access` via the method `Access#setAdmin(Admin)`.
+
+Step 9: The new `Module` is updated in the folder by executing the `Storage#createModule()`. A 'CS2113' folder is created under the 'data/admin' folder.
+
+Step 10: A result message is returned from `AddModuleCommand#addModule()` method to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+
+The following diagam shows how the add module command feature works:
+
+![Sequence Diagram of add module command](UML/AddModuleCommand.png)
 
 #### 4.1.2. List Modules Feature
 (Zeyu)
@@ -225,6 +270,40 @@ The following sequence diagram shows how the remove module feature works:
 #### 4.1.5. Access Module Level Feature
 (Jiayi)
 
+`GoModuleCommand` class facilitates the proposed access module level feature. It extends `GoCommand` class. 
+
+It implements the following operations:
+* `GoModuleCommand#execute()` -- Inherites from the abstract `GoCommand`. It is overrided to calls `GoModuleCommand#goModule()` and print message to user.
+* `GoModuleCommand#goModule()` -- Accesses a new module level from admin level based on the module name entered by user. If the module name does not match with any of the existing module, it returns a error message. Otherwise, this operation returns a successful message to the `GoModuleCommand#execute` operation.
+
+Shown as the class diagram below, with the inheritance of `GoCommand` and `Command`, `Kaji` is able to execute the operation `GoModuleCommand#execute()` directly. 
+
+![Class Diagram of go module command](UML/GoModuleCommandClass.png)
+
+Given below is an example usage scenario at Admin level and how the access module level feature behaves at each step:
+
+Step 1: The user is currently in admin level.
+
+Step 2: The user want to access a module level named 'CS2113' and enters `go CS2113` command. This example is based on the assumption that the module 'CS2113' already has been added.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. The `Parser` creates a new `GoModuleCommand` object if the user's current access level is admin level. Then `Parser` returns the `GoModuleCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `GoModuleCommand#execute()` to access module level 'CS2113'.
+
+Step 5: The `GoModuleCommand#execute()` object calls its own private operation `GoModuleCommand#goModule()` to check the existence of the module level entered by user and modify the user's access level if the module level exists. 
+
+Step 6: The reference of both the `Access` and `Storage` objects is passed into `GoModuleCommand#goModule()`.
+
+Step 7: The `GoModuleCommand#goModule()` gets all the `Module` objects in the `Access#Admin` via the methods `Access#getAdmin()`, `Admin#getModules()` and `ModuleList#getAllModules()` respectively. 
+
+Step 8: A for loop is used to check the existence of module entered by user. If there is an existing module with same `Module#moduleName` as the module code entered by user, the `GoModuleCommand#goModule()` operation returns an successful message.
+
+Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
+
+The following diagam shows how the add chapter command feature works:
+
+![Sequence Diagram of add chapter command](UML/AddChapterCommand.png)
+
 #### 4.1.6. Example of the Admin Feature
 
 #### 4.1.7. Conclusion
@@ -234,6 +313,38 @@ The following sequence diagram shows how the remove module feature works:
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
+##### Implementation
+`AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
+
+Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddChapterCommand`, `Kaji` is able to execute the operation `AddChapterCommand#excute()`. 
+
+![Class Diagram of add chapter command](UML/AddChapterCommandClass.png)
+
+Given below is an example usage scenario at Module level and how the add chapter feature behaves at each step:
+
+Step 1: The user is currently in module level.
+
+Step 2: The user want to add a new chapter chapter1 and enters `add chapter1` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddChapterCommand` object and return the `AddChapterCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `AddChapterCommand#excute()` to add new chapters into Kaji application.
+
+Step 5: The `AddChapterCommand` object creates a new `Chapter` object with the `Chapter#chapterName` of chapter1. 
+
+Step 6: The new `chapter1 : Chapter` object will be passed into the `AddChapterCommand#addChapter()` with `Access` and `Storage`.
+
+Step 7: The `AddChapterCommand#addChapter()` gets the current `Module` object via `Access#getModule()` method, then it adds the new `chapter1: Chapter` object into the `Module#ChapterList`. 
+
+Step 8: The new `Module` object with the `chapter1: Chapter` object is updated to `Access` via the method `Access#setModule(Module)`.
+
+Step 9: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is created under the 'data/module' folder.
+
+Step 10: A result message is returned from `AddChapterCommand#addChapter()` method to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+
+The following diagam shows how the add chapter command feature works:
+
+![Sequence Diagram of add chapter command](UML/AddChapterCommand.png)
 
 #### 4.2.2. List Chapters Feature
 (Zeyu)
@@ -387,6 +498,43 @@ The following sequence diagram shows how the return to module level feature work
 
 #### 4.3.6. Check Overall Performance for a Chapter Feature
 (Jiayi)
+##### Implementation
+`ShowRateCommand` facilitates the proposed check overall performance feature. It extends an abstract `Command` class with the abstract `Command#execute()` and `Command#isExit()`.
+
+It implements the following operations:
+* `ShowRateCommand#execute()` -- Inherites from the abstract `Command`. It is overrided to calls `ShowRateCommand#computePercentage()` and print message that specific to performance checking feature.
+* `ShowRateCommand#computePercentage()` -- Computes the overall performance by master levels and updates the `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage`, then it returns number of cards in the `Chapter`.
+* `ShowRateCommand#isExit()` -- Inherites from the abstract `Command`. It is overrided to return `false`.
+
+Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is able to execute the operation `ShowRateCommand#execute()` directly. 
+
+![Class Diagram of show overall performance command](UML/ShowRateCommandClass.png)
+
+Given below is an example usage scenario at Chapter level and how the show overall performance feature behaves at each step:
+
+Step 1: The user is currently in chapter level.
+
+Step 2: The user want to check overall performance of the current chapter level and enters `showrate` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `ShowRateCommand` object and return the `ShowRateCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `ShowRateCommand#excute()` to compute overall performance and print relevant message to user.
+
+Step 5: The `ShowRateCommand` object gets the reference of current chapter level via the `Access#getChapter()` and stores the reference as a `Chapter` object. 
+
+Step 6: The `Chapter` object will be passed into the operation `ShowRateCommand#computePercentage()`.
+
+Step 7: The `ShowRateCommand#computePercentage()` gets all the `Card` objects in the current `Chapter` object via the methods `Chapter#getCards()` and `CardList#getAllCards()` respectively. 
+
+Step 8: If there is no `Card` object in the current `Chapter`, the `ShowRateCommand#computePercentage()` operation returns int `0` after checking the `ArrayList<Card>` size. If there are `Card` objects, a 'for' loop is used to check the `Card#rating` of every `Card` objects and compute the overall performance. 
+
+Step 9: `ShowRateCommand#computePercentage()` updates the variables `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage` at the end and returns the number of cards in the chapter
+
+Step 10: `GoModuleCommand#execute()` prints the performance message to the user via `Ui#showToUser` if the `ShowRateCommand#computePercentage()` is greater than int `0`.
+
+The following diagam shows how the show overall performance feature works:
+
+![Sequence Diagram of show overall performance command](UML/ShowRateCommand.png)
 
 #### 4.3.7. Example of the Chapter Feature
 
