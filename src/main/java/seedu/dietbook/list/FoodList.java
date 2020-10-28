@@ -13,7 +13,7 @@ import java.util.List;
  * This is a stateful object.
  */
 public class FoodList {
-    private static ArrayList<FoodEntry> foodEntries;
+    private ArrayList<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -121,7 +121,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed after specified timing.
      */
-    public static List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
+    public List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
         return FoodListManager.listToFoods(entriesAfterDateTime);
     }
@@ -137,7 +137,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed within the range of a specified timing.
      */
-    public static List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+    public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
         return FoodListManager.listToFoods(entriesInRange);
     }
@@ -158,6 +158,7 @@ public class FoodList {
         return FoodListManager.listToPortionSizes(foodEntries);
     }
 
+
     /**
      * Obtain list of LocalDateTimes for when the entries were made.
      * (For storage purposes)
@@ -169,6 +170,27 @@ public class FoodList {
     @Override
     public String toString() {
         return FoodListManager.listToString(foodEntries);
+    }
+
+    /**
+     * Returns toString representation of the segmented list based on DateTime.
+     * @param dateTime Start DateTime.
+     * @return string representation of FoodList
+     */
+    public String getAfterDateTimeToString(LocalDateTime dateTime) {
+        List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
+        return FoodListManager.listToString(entriesAfterDateTime);
+    }
+
+    /**
+     * Returns toString representation of the segmented list based on DateTime (within a range of 2 datetimes).
+     * @param start start DateTime.
+     * @param end   end DateTime.
+     * @return  string representation of FoodList
+     */
+    public String getInDateTimeRangeToString(LocalDateTime start, LocalDateTime end) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
+        return FoodListManager.listToString(entriesInRange);
     }
 
 }
