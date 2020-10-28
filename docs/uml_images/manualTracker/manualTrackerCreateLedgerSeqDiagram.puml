@@ -1,0 +1,55 @@
+@startuml
+autoactivate on
+actor User
+
+User-> ":ManualTracker": Create Ledger
+
+":ManualTracker" ->":ManualTracker": handleCreateLedger()
+    create "command:CreateLedgerCommand"
+   ":ManualTracker"-> "command:CreateLedgerCommand" : CreateLedgerCommand()
+    return
+
+   ":ManualTracker"-> "command:CreateLedgerCommand" : handlePacket(packet)
+
+        create ":ledger:Ledger"
+        "command:CreateLedgerCommand" -> ":ledger:Ledger" : Entry()
+        return
+        == Handling of Params in packet ==
+        "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleParams(packet)
+            "command:CreateLedgerCommand" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
+                "command:CreateLedgerCommand" -> "command:CreateLedgerCommand" : handleSingleParam(packet)
+                    alt "paramType = PARAM_DATE"
+                        "command:CreateLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
+                        return date
+                        "command:CreateLedgerCommand" -> ":ledger:Ledger" : setDate(date)
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Retrieval of newly created ledger from the command instance ==
+   ":ManualTracker"-> "command:CreateLedgerCommand" : getCurrLedger()
+   return ledger
+   == Storing of ledger into ledgerList ==
+   ":ManualTracker"-> "ledger:LedgerList" : addItem(ledger)
+    return
+return state
+
+box "Data Tracker handler" #LightYellow
+participant ":ManualTracker"
+endBox
+
+box "Logic" #LightBlue
+participant "command:CreateLedgerCommand"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant ":ledger:Ledger"
+participant "ledger:LedgerList"
+endBox
+@enduml

@@ -19,7 +19,6 @@ public class SimpleInterest extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {
@@ -39,22 +38,22 @@ public class SimpleInterest extends ParamHandler {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
 
-        return this.amount * (this.interestRate / 100);
+        return Math.round((this.amount * (this.interestRate / 100)) * 100.00) / 100.00;
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+        case "/a":
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+        case "/r":
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

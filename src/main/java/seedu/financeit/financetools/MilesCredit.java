@@ -7,6 +7,7 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.ParamChecker;
 
 public class MilesCredit extends ParamHandler {
 
@@ -37,22 +38,22 @@ public class MilesCredit extends ParamHandler {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.milesRate >= 0 : "Miles rate should not be a negative number";
 
-        return this.amount * this.milesRate;
+        return Math.round((this.amount * this.milesRate) * 100.00) / 100.00;
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+        case "/a":
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/miles":
-            this.milesRate = paramChecker.checkAndReturnDouble(paramType);
+        case "/r":
+            this.milesRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                    ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

@@ -7,24 +7,23 @@ import seedu.financeit.ui.UiManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YearlyCompoundInterestTest {
-    private static InputParser inputParser = new InputParser();
 
     public static CommandPacket handleInput(String input) {
         UiManager.printInputPrompt();
-        return inputParser.parseInput(input.toLowerCase());
+        return InputParser.getInstance().parseInput(input.toLowerCase());
     }
 
     @Test
     void calculateCompoundInterest_inputAmount_expectCorrectInterestEarned() {
-        CommandPacket packet = handleInput("cyearly /amount 1000 /ir 3 /period 2");
-        Double interestRate = FinanceTools.handleYearlyCompoundInterest(packet);
-        assertEquals(interestRate, 60.9);
+        CommandPacket packet = handleInput("cyearly /a 1000 /r 3 /p 2");
+        Double interestEarned = Handler.handleYearlyCompoundInterest(packet);
+        assertEquals(60.9, interestEarned);
     }
 
     @Test
     void calculateCompoundInterest_inputAmountWithDeposit_expectCorrectInterestEarned() {
-        CommandPacket packet = handleInput("cyearly /amount 1000 /ir 3 /period 2 /deposit 1200");
-        Double interestRate = FinanceTools.handleYearlyCompoundInterest(packet);
-        assertEquals(interestRate, 169.98000000000002);
+        CommandPacket packet = handleInput("cyearly /a 1000 /r 3 /p 2 /d 1200");
+        Double interestEarned = Handler.handleYearlyCompoundInterest(packet);
+        assertEquals(169.98, interestEarned);
     }
 }

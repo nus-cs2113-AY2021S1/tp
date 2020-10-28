@@ -1,0 +1,16 @@
+@startuml
+title When User uses Simple Interest Calculator
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleSimpleInterest(packet)
+activate ":Handler"
+
+":Handler" -> ":SimpleInterest" : calculateSimpleInterest()
+activate ":SimpleInterest"
+
+":SimpleInterest" --> ":Handler" : Results
+deactivate ":SimpleInterest"
+
+":Handler" --> ":FinanceTools" : Results
+deactivate ":Handler"
+@enduml

@@ -4,15 +4,26 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.EmptyCommandStringException;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 
+//@@author Artemis-Hunt
 public class InputParser {
-    protected Matcher matcher;
+    private Matcher matcher;
+    private static InputParser inputParser = null;
 
-    public InputParser() {
+    private InputParser() {
+    }
+
+    public static InputParser getInstance() {
+        if (inputParser == null) {
+            inputParser = new InputParser();
+        }
+        return inputParser;
     }
 
     /**
@@ -84,7 +95,9 @@ public class InputParser {
         } catch (EmptyCommandStringException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());
         }
-        return new CommandPacket(commandString, params);
+        CommandPacket packet = new CommandPacket(commandString, params);
+        LoggerCentre.loggerInputParser.log(Level.INFO, packet.toString());
+        return packet;
     }
 
     public String getSeparator(String input) {

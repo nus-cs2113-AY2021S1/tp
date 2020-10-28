@@ -1,0 +1,222 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+rectangle Data {
+    class DateTimeItem {
+        + setDate() : void
+        + getDate() : LocalDate
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+
+    abstract class Item {
+    }
+
+    abstract class ItemList {
+        # currItem : Item
+        # items : ArrayList<Item>
+        # indexToModify : int
+
+        + addItemAndSort(item : Item, comparator : Comparator)
+        + getItemSize() : int
+        + getItemAtIndex() : Item
+        + getItemAtIndex(index : int) : Item
+        + {abstract} printList()
+    }
+    rectangle DataList {
+        class LedgerList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+
+        class EntryList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+    }
+
+    class Ledger {
+        # date : LocalDate = null
+        + entryList : EntryList
+        + Ledger()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setDate() : void
+        + getDate() : LocalDate
+    }
+
+    class Entry {
+        # date : LocalDate = null
+        + Entry()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+
+
+    DateTimeItem --|> Item
+    Ledger --|> DateTimeItem
+    Entry --|> DateTimeItem
+    LedgerList --|> ItemList
+    EntryList --|> ItemList
+    Ledger "1" -- "1" EntryList
+    LedgerList --> "*" Ledger : contains >
+    EntryList --> "*" Entry : contains >
+    EntryList -[hidden]- Entry
+
+}
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+
+    EntryTracker --> EntryList : stores entries with >
+    ManualTracker --> LedgerList : stores ledgers with >
+}
+
+
+
+rectangle Commands {
+    rectangle LedgerCommands {
+        class createLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveLedgerCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        ManualTracker --> createLedgerCommand
+        ManualTracker --> retrieveLedgerCommand
+    }
+
+    rectangle EntryCommands {
+        class createEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class editEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveEntryCommand {
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        EntryTracker --> createEntryCommand
+        EntryTracker --> retrieveEntryCommand
+        EntryTracker --> editEntryCommand
+
+    }
+}
+
+
+rectangle Logic {
+    abstract class ParamHandler <<Singleton>> {
+        # requiredParams : HashSet<String>
+        # paramsSuccessfullyParsed : HashSet<String>
+        # missingRequiredParams : HashSet<String>
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        + resetAllParamCollections() : void
+        # checkParseFailedParams() : boolean
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    package p1 <<Layout>> {
+    }
+
+    package p2 <<Layout>> {
+    }
+
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+    ParamChecker -[hidden] p1
+    p1 -[hidden] p2
+    p2 -[hidden] ParamHandler
+}
+
+rectangle Parser{
+    class InputParser {
+    }
+
+    class ParamParser {
+    }
+    InputParser *-> ParamParser
+    InputParser "1" <-[#red]- ManualTracker #line:red;line.bold;text:red
+
+    InputParser "1" <-[#red]- EntryTracker  #line:red;line.bold;text:red
+}
+
+Data -[hidden] Handler
+Commands -[hidden]down- Logic
+
+
+ParamChecker <-[norank]- createLedgerCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- createEntryCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- editEntryCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:red
+
+ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
+
+
+@enduml

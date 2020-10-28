@@ -9,13 +9,14 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.parser.DateTimeParser;
 import seedu.financeit.ui.UiManager;
 
+import java.math.RoundingMode;
 import java.security.InvalidParameterException;
+import java.text.DecimalFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class that handles error handling of params
@@ -35,11 +36,24 @@ public class ParamChecker {
     public static final String PARAM_INC = "-i";
     public static final String PARAM_EXP = "-e";
     public static final String PARAM_AUTO = "-auto";
-    public static Logger logger = Logger.getLogger(ParamChecker.class.getName());
-    CommandPacket packet;
-    private static String errorMessage;
+    // Maximum amount of money that can be inputed: 100 digits including floating point + 1 char for decimal point
+    private static final int MAX_INPUT_DOUBLE_LENGTH = 101;
 
-    public ParamChecker(CommandPacket packet) {
+    private CommandPacket packet;
+    private static String errorMessage;
+    private static ParamChecker paramChecker = null;
+
+    private ParamChecker() {
+    }
+
+    public static ParamChecker getInstance() {
+        if (paramChecker == null) {
+            paramChecker = new ParamChecker();
+        }
+        return paramChecker;
+    }
+
+    public void setPacket(CommandPacket packet) {
         this.packet = packet;
     }
 
@@ -62,7 +76,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking date...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking date...");
         try {
             String rawDate = packet.getParam(paramType);
             if (rawDate.trim().length() == 0) {
@@ -71,17 +85,17 @@ public class ParamChecker {
             date = DateTimeParser.parseLocalDate(rawDate);
             parseSuccess = true;
         } catch (DateTimeException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Date parsed but not valid... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageDateDateTimeException();
         } catch (InvalidParameterException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Date input cannot be parsed... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageDateInvalidFormat();
         } catch (EmptyParamException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("No date input supplied... Err: %s", exception.getMessage()));
 
             errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -103,7 +117,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking time...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking time...");
         try {
             String rawTime = packet.getParam(paramType);
             if (rawTime.trim().length() == 0) {
@@ -112,17 +126,17 @@ public class ParamChecker {
             time = DateTimeParser.parseLocalTime(rawTime);
             parseSuccess = true;
         } catch (DateTimeException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Time parsed but not valid... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageTimeDateTimeException();
         } catch (InvalidParameterException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Time input cannot be parsed... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageTimeInvalidFormat();
         } catch (EmptyParamException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("No time input supplied... Err: %s", exception.getMessage()));
 
             errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -152,7 +166,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking index validity...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking index validity...");
 
         if (list.size() == 0) {
             message = getMessageNoItemsInList();
@@ -169,12 +183,12 @@ public class ParamChecker {
             }
             parseSuccess = true;
         } catch (IndexOutOfBoundsException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Index out of bounds... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageListIndexOutOfBounds(message, index);
         } catch (NumberFormatException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Index cannot be parsed... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageListNumberFormatException(message);
@@ -196,15 +210,58 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking input Double...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Double...");
+        input = input.replaceAll("[^\\w | .]", "");
         try {
             output = Double.parseDouble(input);
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
-            logger.log(Level.WARNING,
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Double not recognised... Err: %s", exception.getMessage()));
-
             errorMessage = getErrorMessageDoubleNumberFormatException();
+        } finally {
+            printErrorMessage();
+        }
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public double checkAndReturnDoubleSigned(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        double output = -1;
+
+        clearErrorMessage();
+        System.out.println(input.length());
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Double...");
+        try {
+            input = input.replaceAll("[^\\w | .]", "");
+            if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
+                throw new NumberFormatException();
+            }
+            DecimalFormat bd = new DecimalFormat("#.##");
+            bd.setRoundingMode(RoundingMode.CEILING);
+            input = bd.format(Double.parseDouble(input));
+            output = Double.parseDouble(input);
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected input out of bounds... Err: %s", exception.getMessage()));
+                errorMessage = "Amount provided is too long in length! "
+                    + "Maximum amount is of 100 digits long.\n";
+            } else if (output < 0) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected positive double... Err: %s", exception.getMessage()));
+                errorMessage = "Expected Positive decimal value with at most 2 d.p!\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Double not recognised... Err: %s", exception.getMessage()));
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
         } finally {
             printErrorMessage();
         }
@@ -222,15 +279,59 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking input Integer...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Integer...");
         try {
             output = Integer.parseInt(input);
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
-            logger.log(Level.WARNING,
-                String.format("Int not recognised... Err: %s", exception.getMessage()));
+            if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int format is too long... Err: %s", exception.getMessage()));
+                errorMessage = "\nInput value is too out of range: 9,223,372,036,854,775,807\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int not recognised... Err: %s", exception.getMessage()));
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
+        } finally {
+            printErrorMessage();
+        }
 
-            errorMessage = getErrorMessageNumberFormatException();
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        int output = -1;
+
+        clearErrorMessage();
+
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Integer...");
+        try {
+            output = Integer.parseInt(input);
+            if (output < 0) {
+                throw new NumberFormatException();
+            }
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int format is too long... Err: %s", exception.getMessage()));
+                errorMessage = "\nInput value is too out of range: 9,223,372,036,854,775,807\n";
+            } else if (output < 0) {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Expected positive integer... Err: %s", exception.getMessage()));
+                errorMessage = "\nExpected Positive integer!\n";
+            } else {
+                LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                    String.format("Int not recognised... Err: %s", exception.getMessage()));
+
+            }
+            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
         } finally {
             printErrorMessage();
         }
@@ -249,14 +350,14 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        logger.log(Level.INFO, "Checking input Category...");
+        LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Category...");
         try {
             if (! CategoryMap.inputToCategoryMap.containsKey(category)) {
                 throw new InvalidCategoryException(category);
             }
             parseSuccess = true;
         } catch (InvalidCategoryException exception) {
-            logger.log(Level.WARNING, "Category not recognised...");
+            LoggerCentre.loggerParamChecker.log(Level.WARNING, "Category not recognised...");
 
             errorMessage = getErrorMessageInvalidCategoryException(exception);
         } finally {

@@ -7,9 +7,7 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
-
-import java.util.ArrayList;
-import java.lang.Math;
+import seedu.financeit.utils.ParamChecker;
 
 public class YearlyCompoundInterest extends ParamHandler {
 
@@ -50,12 +48,12 @@ public class YearlyCompoundInterest extends ParamHandler {
         System.out.println("Compound Interval: Yearly\n");
         if (yearlyDeposit == 0) {
             totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval * period);
-            totalInterestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+            totalInterestEarned = totalAmount - this.amount;
         } else {
             for (int i = 0; i < calculationPeriod; i++) {
                 this.amount += yearlyDeposit;
                 totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval);
-                interestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+                interestEarned = totalAmount - this.amount;
                 System.out.printf("Total Interest earned in Year " + "%d", i + 1);
                 System.out.printf(": $%.2f\n", interestEarned);
                 totalInterestEarned += interestEarned;
@@ -63,28 +61,28 @@ public class YearlyCompoundInterest extends ParamHandler {
             }
         }
 
-        return totalInterestEarned;
+        return Math.round(totalInterestEarned * 100.00) / 100.00;
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException {
         switch (paramType) {
-        case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+        case "/a":
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+        case "/r":
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
-        case "/period":
-            this.calculationPeriod = paramChecker.checkAndReturnInt(paramType);
+        case "/p":
+            this.calculationPeriod = ParamChecker.getInstance().checkAndReturnInt(paramType);
             break;
-        case "/deposit":
-            this.yearlyDeposit = paramChecker.checkAndReturnDouble(paramType);
+        case "/d":
+            this.yearlyDeposit = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

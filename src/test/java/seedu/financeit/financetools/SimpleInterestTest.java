@@ -7,17 +7,16 @@ import seedu.financeit.ui.UiManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimpleInterestTest {
-    private static InputParser inputParser = new InputParser();
 
     public static CommandPacket handleInput(String input) {
         UiManager.printInputPrompt();
-        return inputParser.parseInput(input.toLowerCase());
+        return InputParser.getInstance().parseInput(input.toLowerCase());
     }
 
     @Test
-    void calculateSimpleInterest_input1000_expect5() {
-        CommandPacket packet = handleInput("simplecalc /amount 1000 /ir 5");
-        Double interestRate = FinanceTools.handleSimpleInterest(packet);
-        assertEquals(interestRate, 50.0);
+    void calculateSimpleInterest_inputAmount_expectCorrectInterestEarned() {
+        CommandPacket packet = handleInput("simple /a 1000 /r 5");
+        Double interestEarned = Handler.handleSimpleInterest(packet);
+        assertEquals(50.0, interestEarned);
     }
 }

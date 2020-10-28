@@ -17,9 +17,6 @@ public abstract class ParamHandler {
     protected HashSet<String> paramsSuccessfullyParsed = new HashSet<>();
     // Params that are part of requiredParams yet are not present in paramsSuccessfullyParsed
     protected ArrayList<String> missingRequiredParams = new ArrayList<>();
-
-    // Class to check the validity of the param input. Instantiated for each individual packet
-    protected ParamChecker paramChecker;
     protected boolean hasParsedAllRequiredParams = false;
 
     /**
@@ -36,7 +33,7 @@ public abstract class ParamHandler {
         // Reset Sequence
         this.resetAllParamCollections();
         this.hasParsedAllRequiredParams = false;
-        this.paramChecker = new ParamChecker(packet);
+        ParamChecker.getInstance().setPacket(packet);
 
         // Handle each param using individual handleSingleParam of subclass
         for (String paramType : packet.getParamTypes()) {
@@ -44,11 +41,11 @@ public abstract class ParamHandler {
                 handleSingleParam(packet, paramType);
                 // ParamTypes that are parsed correctly
                 // (i.e. no exception thrown) will be recorded
-                this.paramsSuccessfullyParsed.add(paramType);;
+                this.paramsSuccessfullyParsed.add(paramType);
             } catch (ParseFailParamException exception) {
                 // Report paramTypes that failed to parse.
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getParseFailParamMessage(paramType));
+                    ParamChecker.getInstance().getParseFailParamMessage(paramType));
             }
         }
         this.hasParsedAllRequiredParams = checkParseFailedParams();

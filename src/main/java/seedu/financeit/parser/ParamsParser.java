@@ -5,6 +5,7 @@ import seedu.financeit.utils.RegexMatcher;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
+//@@author Artemis-Hunt
 public class ParamsParser {
     protected String paramSubstring;
     protected Matcher matcher;
@@ -16,7 +17,7 @@ public class ParamsParser {
     public String getSeparator(String input) {
         //Matcher gives index of space before the param, so (matched index + 1) gives the separator
         int separatorIndex = matcher.start() + 1;
-        return String.valueOf(input.charAt(separatorIndex));
+        return " " + String.valueOf(input.charAt(separatorIndex));
     }
 
     String prependAppendSpaces(String str) {

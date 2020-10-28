@@ -1,0 +1,56 @@
+@startuml
+autoactivate on
+
+":Handler" ->":Handler": handleAccountStorage(packet, filePath, infoText)
+    create ":AccountStorage"
+   ":Handler"-> ":AccountStorage" : handleInfoStorage(filePath, infoText)
+    return
+
+   ":Handler"-> ":AccountStorage" : handlePacket
+
+        == Handling of Params in packet ==
+        ":AccountStorage" -> ":AccountStorage" : handleParams
+            ":AccountStorage" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":AccountStorage" -> ":AccountStorage" : handleSingleParam
+                    alt "paramType = /n"
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    else "paramType = /ir"
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    else "paramType = /r"
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    else "paramType = /c"
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        return amount
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    else "paramType = /o"
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    else "paramType = /rm"
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnInt(paramType)
+                        return amount
+                        ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
+                        return
+                    end
+                return
+            end
+        return
+
+return state
+
+
+box "Logic" #LightBlue
+participant ":AccountStorage"
+participant ":ParamChecker"
+endBox
+@enduml
