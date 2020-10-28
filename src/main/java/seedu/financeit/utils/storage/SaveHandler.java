@@ -40,16 +40,16 @@ public abstract class SaveHandler {
         }
     }
 
-    public static void putString(String input) throws IOException {
-        buildFile("./data", "./data/saveString.txt");
-        FileWriter fileWriter = new FileWriter("./data/saveString.txt");
+    public static void putString(String input, String fileName) throws IOException {
+        buildFile("./data", "./data/" + fileName + ".txt");
+        FileWriter fileWriter = new FileWriter("./data/" + fileName + ".txt");
         fileWriter.write(input);
         fileWriter.close();
     }
 
-    public static String takeString() throws IOException {
-        buildFile("./data", "./data/saveString.txt");
-        File file = new File("./data/saveString.txt");
+    public static String takeString(String fileName) throws IOException {
+        buildFile("./data", "./data/" + fileName + ".txt");
+        File file = new File("./data/" + fileName + ".txt");
         Scanner scanner = new Scanner(file);
         return scanner.nextLine();
     }

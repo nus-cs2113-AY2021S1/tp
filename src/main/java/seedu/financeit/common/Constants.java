@@ -30,7 +30,8 @@ public class Constants {
         INSTRUCTION("TODO"),
         GOAL_STATUS("GOAL STATUS"),
         DIRECTORY("DIR"),
-        SYS_MSG("SYSTEM MESSAGE");
+        SYS_MSG("SYSTEM MESSAGE"),
+        REMINDER("REMINDER");
         public String literal;
         PrintType(String string) {
             literal = string;

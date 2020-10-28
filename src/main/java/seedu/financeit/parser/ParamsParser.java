@@ -75,10 +75,12 @@ public class ParamsParser {
             matcher = RegexMatcher.paramMatcher(paramSubstring);
 
             try {
-                //Throws IllegalStateException if no more params are present after current param
+                //Attempts to look for the start of the next param. If found, everything before start of next
+                //param is the paramArgument belonging to the current param.
                 paramArgumentExist = matcher.start() > 0;
             } catch (java.lang.IllegalStateException e) {
-                //No further params
+                //If no more params are present after current param
+                //Only thing in paramSubstring is the paramArgument
                 paramArgument = paramSubstring.trim();
                 putParamIntoParamMap(paramType, paramArgument, paramMap);
                 break;
