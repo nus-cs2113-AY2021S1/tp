@@ -13,7 +13,12 @@
   * [Command Component](#command-component)
   * [Storage Component](#storage-component)
   * [Parser Component](#parser-component)
-* [Implementation](#implementation) 
+* [Product scope](#implementation)
+  * [Target user profile](#target-user-profile)
+  * [Value proposition](#value-proposition) 
+* [User Stories](#user-stories)
+* [Non Functional Requirements](#non-functional-requirements)
+* [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## **Introduction**
 
