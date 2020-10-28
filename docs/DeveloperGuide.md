@@ -242,8 +242,11 @@ This section explains the details on how certain features
 are implemented in the academic tracker.
 
 **GradeBook Features**
-The grade features are facilitated `Gradebook`, which further make use of `Grade`. 
+
+The grade features are facilitated by `Gradebook`, which further make use of `Grade`. 
+Each `Grade` will contain information such as the module's title, credits, grade, status of SU and status of star.
 All grades are stored internally under `AcademicRun` as an array list `ArrayList<Grade>`.
+
 It implements the following operations:
 * `addGrade(String[], ArrayList<Grade>)`:Adds a `Grade` to the `ArrayList<Grade>`. 
 * `printCap(ArrayList<Grade>)`:Calculate the current CAP based on the `ArrayList<Grade>`. 
@@ -252,6 +255,17 @@ It implements the following operations:
 * `suGradeInGradeBook(Integer, ArrayList<Grade>)`:Su a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
+
+The following sequence diagram demonstrates an example of how the Su Grade function works:
+![Academic_Sequence_Diagram](Images/Academic_Sequence_Diagram.png)
+With reference to above, it can be observed that whenever a command modifies the array lists, 
+`AcademicStorage` is called to update the local storage files.
+
+**PersonBook Features**
+
+The contact features are facilitated by `Personbook`, which further make use of `Person`. 
+In terms of general structure, it is largely similar to that of `GradeBook`'s.
+
 
 ### **Flashcard Component**
 
