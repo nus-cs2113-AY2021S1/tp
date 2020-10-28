@@ -42,7 +42,7 @@ public class DeleteTagCommand extends Command {
         executedMessage.add(0, HEADER_DELETE_TAG);
 
         try {
-            storageManager.saveAllNoteDetails(notebook, false);
+            storageManager.saveAllNoteDetails(false);
         } catch (IOException exception) {
             Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }

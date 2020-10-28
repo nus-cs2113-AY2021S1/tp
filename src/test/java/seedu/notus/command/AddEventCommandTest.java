@@ -1,9 +1,11 @@
 package seedu.notus.command;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.notus.data.timetable.DailyEvent;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.data.timetable.Timetable;
+import seedu.notus.storage.StorageManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ class AddEventCommandTest {
             TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
     private static final Timetable TIMETABLE = new Timetable();
+    private StorageManager storageManager = new StorageManager(TIMETABLE, null, null, null);
 
 
 
@@ -38,7 +41,7 @@ class AddEventCommandTest {
      */
     @Test
     void execute_singleEvent_success() {
-        command.setData(null, TIMETABLE, null, null);
+        command.setData(null, TIMETABLE, null, storageManager);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));
     }

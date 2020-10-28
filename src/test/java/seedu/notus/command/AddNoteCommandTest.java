@@ -63,7 +63,7 @@ class AddNoteCommandTest {
         notebook = new Notebook();
         timetable = new Timetable();
         tagManager = new TagManager();
-        storageManager = new StorageManager();
+        storageManager = new StorageManager(timetable, null, notebook, tagManager);
 
         ArrayList<String> content = new ArrayList<>();
         content.add("Encapsulation");
