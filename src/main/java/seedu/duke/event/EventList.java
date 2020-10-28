@@ -7,12 +7,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
 public class EventList {
     public static ArrayList<Event> events = new ArrayList<>();
-    public static Logger logger = Logger.getGlobal();
+    //public static Logger logger = Logger.getGlobal();
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static Scanner scanner = new Scanner(System.in);
 
     public static final String COMMAND_EVENT_NOT_EXIST =
@@ -37,12 +40,14 @@ public class EventList {
      * @param event event to be added in the list.
      */
     public static String addEvent(Event event) {
+        logger.setLevel(Level.OFF);
         logger.info("Adding event to list\n");
         String userOutput;
         events.add(event);
         userOutput = COMMAND_ADD_EVENT_SUCCESSFUL + event.printEvent()
                 + "\nNow you have " + events.size() + " event in the list.\n";
         logger.info("Added event to list\n");
+
         return userOutput;
     }
 
@@ -52,6 +57,7 @@ public class EventList {
      * @param index index to be deleted from list
      */
     public static String deleteEvent(int index) {
+        logger.setLevel(Level.OFF);
         logger.info("Deleting event\n");
         String userOutput;
         try {
@@ -71,6 +77,7 @@ public class EventList {
      * @return output String informing if list is emptied
      */
     public static String clearEvents() {
+        logger.setLevel(Level.OFF);
         logger.info("Clearing event\n");
         String output = "";
         if (events.size() == 0) {
@@ -116,6 +123,7 @@ public class EventList {
      * @return list of events
      */
     public static String printEventList() {
+        logger.setLevel(Level.OFF);
         logger.info("Initialising event list\n");
         String userOutput;
         if (events.size() == 0) {
@@ -173,6 +181,8 @@ public class EventList {
                 output = output.concat(printFilteredEventsByName(keyword));
             } else if (checkIfEventDateMatch(keyword)) {
                 output = output.concat(printFilteredEventsByDate(keyword));
+            } else {
+                output = output.concat(COMMAND_KEYWORD_NOT_FOUND);
             }
         } catch (Exception e) {
             output = output.concat(COMMAND_KEYWORD_NOT_FOUND);
@@ -205,6 +215,7 @@ public class EventList {
      * @return returns true if at least one event contains the event date
      */
     public static boolean checkIfEventDateMatch(String keyword) {
+        assert keyword != null;
         LocalDate date = LocalDate.parse(keyword);
         boolean hasMatchedTask = false;
         for (Event event : events) {
@@ -222,6 +233,7 @@ public class EventList {
      * @param keyword The word used for search.
      */
     private static String printFilteredEventsByName(String keyword) {
+        assert keyword != null;
         int taskNumber = 1;
         String output = "";
         for (Event event : events) {
@@ -234,6 +246,7 @@ public class EventList {
     }
 
     private static String printFilteredEventsByDate(String keyword) {
+        assert keyword != null;
         int taskNumber = 1;
         String output = "";
         for (Event event : events) {

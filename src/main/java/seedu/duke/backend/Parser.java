@@ -20,7 +20,7 @@ public class Parser {
 
         userInput = sanitize(input);
         // Regex looks silly, you  have to escape the / so you type double \ to escape the \ used to escape the /
-        String[] output = userInput.split("\\/");
+        String[] output = userInput.split(" \\/");
         UserInput ui;
         Map<String, String> map = new HashMap<>();
         String category = checkCategory(output);
