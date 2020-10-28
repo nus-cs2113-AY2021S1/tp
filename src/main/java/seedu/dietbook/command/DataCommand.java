@@ -14,6 +14,6 @@ public class DataCommand extends Command {
             throw new DietException("Please enter your basic information first!");
         }
         manager.getDataBase().init();
-        //ui.printDatabase(manager.getDataBase().getFoodList());
+        ui.printDatabase(manager.getDataBase().getFoodListString());
     }
 }

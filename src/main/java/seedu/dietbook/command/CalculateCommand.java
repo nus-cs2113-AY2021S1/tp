@@ -46,18 +46,18 @@ public class CalculateCommand extends Command {
                     ui.printAllIntake(this.calorie, this.carb, this.protein, this.fat);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
-                    calorie = manager.getCalculator().calculateCalorie(startTime);
-                    carb = manager.getCalculator().calculateCarb(startTime);
-                    protein = manager.getCalculator().calculateProtein(startTime);
-                    fat = manager.getCalculator().calculateFat(startTime);
+                    calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
+                    carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
+                    protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
+                    fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime);
                     ui.printAllIntake(calorie, carb, protein, fat, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     endTime = LocalDateTime.parse(processedParam[2]);
-                    calorie = manager.getCalculator().calculateCalorie(startTime, endTime);
-                    carb = manager.getCalculator().calculateCarb(startTime, endTime);
-                    protein = manager.getCalculator().calculateProtein(startTime, endTime);
-                    fat = manager.getCalculator().calculateFat(startTime, endTime);
+                    calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
+                    carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
+                    protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
+                    fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                     ui.printAllIntake(calorie, carb, protein, fat, startTime, endTime);
                 }
                 break;
@@ -66,12 +66,12 @@ public class CalculateCommand extends Command {
                     ui.printCalorieIntake(this.calorie);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
-                    calorie = manager.getCalculator().calculateCalorie(startTime);
+                    calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
                     ui.printCalorieIntake(calorie, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     endTime = LocalDateTime.parse(processedParam[2]);
-                    calorie = manager.getCalculator().calculateCalorie(startTime, endTime);
+                    calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
                     ui.printCalorieIntake(calorie, startTime, endTime);
                 }
                 break;
@@ -80,12 +80,12 @@ public class CalculateCommand extends Command {
                     ui.printCarbIntake(this.carb);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
-                    carb = manager.getCalculator().calculateCarb(startTime);
+                    carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
                     ui.printCarbIntake(carb, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     endTime = LocalDateTime.parse(processedParam[2]);
-                    carb = manager.getCalculator().calculateCarb(startTime, endTime);
+                    carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
                     ui.printCarbIntake(carb, startTime, endTime);
                 }
                 break;
@@ -94,12 +94,12 @@ public class CalculateCommand extends Command {
                     ui.printProteinIntake(this.protein);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
-                    protein = manager.getCalculator().calculateProtein(startTime);
+                    protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
                     ui.printProteinIntake(protein, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     endTime = LocalDateTime.parse(processedParam[2]);
-                    protein = manager.getCalculator().calculateProtein(startTime, endTime);
+                    protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
                     ui.printProteinIntake(protein, startTime, endTime);
                 }
                 break;
@@ -108,12 +108,12 @@ public class CalculateCommand extends Command {
                     ui.printFatIntake(this.fat);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
-                    fat = manager.getCalculator().calculateFat(startTime);
+                    fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime);
                     ui.printFatIntake(fat, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     endTime = LocalDateTime.parse(processedParam[2]);
-                    fat = manager.getCalculator().calculateFat(startTime, endTime);
+                    fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                     ui.printFatIntake(fat, startTime, endTime);
                 }
             }

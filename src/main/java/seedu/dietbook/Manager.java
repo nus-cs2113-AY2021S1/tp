@@ -23,6 +23,8 @@ import seedu.dietbook.person.Gender;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
 
+import java.util.ArrayList;
+
 /**
  * Manager class of the program.
  * The manager class takes in the checked and processed input and carry out the command specified.
@@ -64,6 +66,10 @@ public class Manager {
 
     public FoodList getFoodList() {
         return this.foodList;
+    }
+
+    public void setFoodList(FoodList foodList) {
+        this.foodList = foodList;
     }
 
     public Person getPerson() {

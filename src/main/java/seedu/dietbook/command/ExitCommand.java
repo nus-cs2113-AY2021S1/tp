@@ -19,7 +19,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(Manager manager, Ui ui) {
-        ui.printExitMessage();
         ActivityLevel actLvl = manager.getPerson().getActivityLevel();
         int actLvlInt = 1;
         if (actLvl.equals(ActivityLevel.NONE)) {
@@ -35,7 +34,7 @@ public class ExitCommand extends Command {
         }
 
         Gender gender = manager.getPerson().getGender();
-        String genderString = "Male";
+        String genderString;
         if (gender.equals(Gender.MALE)) {
             genderString = "Male";
         } else if (gender.equals(Gender.FEMALE)) {
@@ -52,8 +51,10 @@ public class ExitCommand extends Command {
         personSave.setName(manager.getPerson().getName());
         personSave.setOriginalWeight(manager.getPerson().getOriginalWeight());
         personSave.setTargetWeight(manager.getPerson().getTargetWeight());
-        personSave.save("resources/UserInfo.txt");
-        foodSave.save("resources/FoodList.txt", manager.getFoodList().getFoods());
+        personSave.save("UserInfo.txt");
+        foodSave.save("FoodList.txt", manager.getFoodList().getFoods());
+        ui.dataSuccessfullySavedMessage();
         DietBook.isExit = true;
+        ui.printExitMessage();
     }
 }

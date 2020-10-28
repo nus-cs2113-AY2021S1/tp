@@ -1,5 +1,7 @@
 package seedu.dietbook.parser;
 
+import seedu.dietbook.database.DataBase;
+import seedu.dietbook.food.Food;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.ActivityLevel;
@@ -100,6 +102,7 @@ public class Parser {
         int protein = -1;
         int fat = -1;
         String trimmedParam;
+        //String[] databaseCheck = getCommandParam(userInput).trim().split("/");;
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
         InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
@@ -138,6 +141,11 @@ public class Parser {
                 }
             }
         }
+        //if (databaseCheck.length == 3) {
+        //    DataBase dataBase = new DataBase();
+        //    Food searchedFood = dataBase.searchFoodByName(foodName);
+        //    return  foodList.addFood(portionSize, searchedFood);
+        //}
         return foodList.addFood(portionSize, foodName, calorie, carb, protein, fat);
     }
 
