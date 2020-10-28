@@ -85,7 +85,7 @@ class EventListTest {
         String expected10 = "Oops! The event list is empty!";
         assertEquals(expected10,EventList.printEventList());
 
-        assertEquals("The list is empty",EventList.countdownView());
+        assertEquals("Oops! The event list is empty!",EventList.countdownView());
 
 
     }
