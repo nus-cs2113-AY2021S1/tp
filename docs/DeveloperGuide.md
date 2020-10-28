@@ -71,15 +71,15 @@ If you plan to use Intellij IDEA:
 1. **Configuring the coding style**
 
     If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
-
+    
 2. **Set up CI**
-
+    
     There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
-
+    
 3. **Learn the design**
-
+    
     When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
-
+    
 <br/>
 
 ## 3. Design 
@@ -467,8 +467,7 @@ Below is a table describing the 4 options supported by the `watchlist` command, 
 
 Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the watchlist creation process.
 
-![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
-
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png) <br/>
 *Figure 14: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
