@@ -75,7 +75,7 @@ public abstract class RecurringEvent extends Event {
             }
             if (toReoccur(startDate)) {
                 LocalDateTime dateTime = LocalDateTime.of(startDate, getStartTime());
-                Event event = new Event(getTitle(), dateTime, getToRemind(), false, getReminderPeriod());
+                Event event = new Event(getTitle(), dateTime, getIsToRemind(), false, getReminderPeriods());
                 eventSet.add(event);
             }
             startDate = startDate.plusDays(1);

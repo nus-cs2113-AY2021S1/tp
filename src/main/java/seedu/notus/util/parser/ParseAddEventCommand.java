@@ -56,7 +56,7 @@ public class ParseAddEventCommand extends Parser {
         boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
-        HashMap<String, ArrayList<Integer>> reminderSchedule = null;
+        HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -86,35 +86,6 @@ public class ParseAddEventCommand extends Parser {
                         break;
                     }
                     reminderSchedule = handleReminderParsing(infoDetails[1]);
-
-//                    String[] reminderDetails = infoDetails[1].split(STRING_SPLIT_DELIMITER);
-//                    for (String reminderDetail : reminderDetails) {
-//                        String[] timeStrings = reminderDetail.split(TIMING_SPLIT_DELIMITER);
-//                        if (timeStrings.length != 2) {
-//                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-//                        }
-//                        int timePeriod;
-//                        String timeUnit;
-//                        try {
-//                            timePeriod = Integer.parseInt(timeStrings[0]);
-//                            timeUnit = timeStrings[1];
-//                            if ((!timeUnit.equalsIgnoreCase(Event.REMINDER_DAY)
-//                                    && !timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK)) || timePeriod < 1) {
-//                                throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-//                            }
-//
-//                            exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
-//                            if (timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK) && timePeriod > 1) {
-//                                throw new SystemException(exception);
-//                            } else if (timeUnit.equalsIgnoreCase(Event.REMINDER_DAY) && timePeriod > 7) {
-//                                throw new SystemException(exception);
-//                            }
-//                        } catch (NumberFormatException exceptionNumFormat) {
-//                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-//                        }
-//                        timeUnits.add(timeUnit);
-//                        timePeriods.add(timePeriod);
-//                    }
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;

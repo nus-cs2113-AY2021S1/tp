@@ -130,12 +130,20 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return endDateTime.toLocalTime();
     }
 
-    public boolean getToRemind() {
+    public boolean getIsToRemind() {
         return isToRemind;
     }
 
-    public HashMap<String, ArrayList<Integer>> getReminderPeriod() {
+    public void setIsToRemind(boolean isToRemind) {
+        this.isToRemind = isToRemind;
+    }
+
+    public HashMap<String, ArrayList<Integer>> getReminderPeriods() {
         return this.reminderPeriods;
+    }
+
+    public void setReminderPeriods(HashMap<String, ArrayList<Integer>> reminderPeriods) {
+        this.reminderPeriods = reminderPeriods;
     }
 
     public boolean getRecurring() {

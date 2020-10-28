@@ -11,6 +11,7 @@ import seedu.notus.util.DateTimeManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_ADD;
@@ -36,11 +37,11 @@ public class ParseEditEventCommand extends Parser {
         LocalDateTime startDateTime = null;
         // Not set yet. Has no prefix for this.
         LocalDateTime endDateTime = null;
-        boolean isRecurring = false;
+        Boolean isRecurring = null;
         String recurringType = "";
-        ArrayList<Integer> timePeriods = null;
-        ArrayList<String> timeUnits = null;
+        HashMap<String, ArrayList<Integer>> reminderSchedule = null;
         String reminderTodo = "";
+        String remindersString;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -60,13 +61,39 @@ public class ParseEditEventCommand extends Parser {
                 case PREFIX_INDEX:
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     String indexString = checkBlank(infoDetails[1], exception);
-                    index = Integer.parseInt(indexString);
+                    try {
+                        index = Integer.parseInt(indexString);
+                    } catch (NumberFormatException exception1) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+                    }
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
                     break;
                 case PREFIX_REMIND_ADD:
+                    if (!reminderTodo.isBlank()) {
+                        throw new SystemException(ExceptionType.EXCEPTION_EDIT_REMINDER_SET);
+                    }
+                    reminderTodo = EditEventCommand.REMINDER_TYPE_ADD;
+                    exception = ExceptionType.EXCEPTION_MISSING_EDIT_REMINDERS;
+                    remindersString = checkBlank(infoDetails[1], exception);
+                    reminderSchedule = handleReminderParsing(remindersString);
                     break;
                 case PREFIX_REMIND_CLEAR:
+                    if (!reminderTodo.isBlank()) {
+                        throw new SystemException(ExceptionType.EXCEPTION_EDIT_REMINDER_SET);
+                    }
+                    reminderTodo = EditEventCommand.REMINDER_TYPE_CLEAR;
+                    // Ignore if there are any reminder timings set after /remind-clear
                     break;
                 case PREFIX_REMIND_DROP:
+                    if (!reminderTodo.isBlank()) {
+                        throw new SystemException(ExceptionType.EXCEPTION_EDIT_REMINDER_SET);
+                    }
+                    reminderTodo = EditEventCommand.REMINDER_TYPE_DROP;
+                    exception = ExceptionType.EXCEPTION_MISSING_EDIT_REMINDERS;
+                    remindersString = checkBlank(infoDetails[1], exception);
+                    reminderSchedule = handleReminderParsing(remindersString);
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
@@ -80,6 +107,6 @@ public class ParseEditEventCommand extends Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         }
 
-        return new EditEventCommand(index, new_title, startDateTime, reminderTodo, timePeriods, timeUnits);
+        return new EditEventCommand(index - 1, new_title, startDateTime, reminderTodo, reminderSchedule);
     }
 }

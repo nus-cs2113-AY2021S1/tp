@@ -205,7 +205,7 @@ public class Formatter {
         ArrayList<String> result = new ArrayList<>();
         result.add("Event: " + event.getTitle());
         result.add("Date: " + event.getStartDate().toString() + "\tTime: " + event.getStartTime().toString());
-        result.add("Reminder: " + event.getToRemind());
+        result.add("Reminder: " + event.getIsToRemind());
         String repeatingString = "Repeating: " + event.getRecurring();
         String endRecurrenceDateString = "";
         if (event instanceof RecurringEvent) {
