@@ -164,11 +164,10 @@ Example:
 
 ### Adding an event:
 
-When you have a lot of events in different types, you can add them to the calendar list in different types.
-If you have new school events, including `lecture`, `tutorial`, `exam`, and `lab` events, and any other events which can in `activitie` type.
-you can add the new event to the calendar list with corresponding type. 
+When you have a lot of events, you can add them to the calendar list in different types, including school events, 
+such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activitie` type.
 You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activitie` events cannot be recurring. 
-When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command with following formats:  
+When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command in following formats:  
 
 ![tip_event](images/tip_event.PNG)
 
@@ -201,9 +200,9 @@ Example of usage:
 
 `exam CS1221 @MPSH2 / 221120 1100` - adds CS1221 exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
 
-#### Adding a laboratory session event: `lab`
+#### Adding recurring laboratory session events: `lab`
 
-You can add a laboratory session event to the calendar list by using the following format.
+When you have new recurring lecture events and want to add them to the calendar list, you can use `lab` command.
 
 Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -213,9 +212,9 @@ Example of usage:
 
 `lab CS2100 @com2-2112 -9 / 220920 1300` - adds CS2100 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
 
-#### Adding a lecture event: `lect`
+#### Adding recurring lecture events: `lect`
 
-You can add a lecture event to the calendar list by using the following format.
+When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
 
 Format: `lect <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -225,9 +224,9 @@ Example of usage:
 
 `lect CS2100 @lt11 -r 5 / 101020 1300` - adds CS2100 lecture at 2020-10-10 1p.m. to the event list, the venue is lt11 and the lecture will happen for the next 5 weeks.
 
-#### Adding a tutorial event: `tut`
+#### Adding recurring tutorial events: `tut`
 
-You can add a tutorial event to the calendar list by using the following format.
+When you have new recurring lecture events and want to add them to the calendar list, you can use `tut` command.
 
 Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
