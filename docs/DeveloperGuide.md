@@ -153,25 +153,36 @@ Note: A self-call to a specific method to add the new `CalendarItem` to the `Cal
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
-Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
+Note: The command first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
 
 ### Additional information of an event feature
-This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`.
+#### Add additional information
+This feature is facilitated by `AddInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
+
+#### View additional information
+This feature is facilitated by `ViewInfoCommand`.
+
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
-Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
+#### Delete additional information
+This feature is facilitated by `DeleteInfoCommand`.
+
+The following sequence diagram show how the `execute()` operation of `DeleteInfoCommand` works:<br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteInfoCommand_SD.JPG" alt="" width="750"/><br/>
+
+Note: The commands first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
 
-Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
+Note: The command first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
 
 ### Find a calendar item feature
