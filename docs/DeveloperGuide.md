@@ -1,34 +1,23 @@
 # Developer Guide
 
 ## Introduction
-### Introduction to *25 hours a day*
-*25 hours a day* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 25 hours a day can schedule your tasks and events faster than traditional GUI apps.
+### Introduction to *25HoursADay*
+*25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
 ### Purpose and scope
-The goal of this developer guide is to describe the architecture and software design decisions for the task scheduling application 25 hours a day. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions that is helpful for you to get started or refer to.
+The purpose of this developer guide is to describe the architecture and software design decisions for the task scheduling application *25HoursADay*. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions.
 
-The intended audience of the developer guide is the developers and software testers of 25 hours a day.
+The intended audience of this guide are the developers and software testers of *25HoursADay*.
 
 ### Developer guide organization
-The table below shows the current content of the developer guide.
+The table below shows the content of the developer guide.
 
 |Section| Purpose | 
 |--------|----------|
-|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up 25 hours a day on your computer.|
-|[Section 3: Design](#design)|To explain the architecture of 25 hours a day,  and describe the major components of 25 hours a day, the roles of major components, as well as their organization and interaction of major components.|
-|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to 25 hours a day and the features added to 25 hours a day.|
+|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up *25HoursADay* on your computer.|
+|[Section 3: Design](#design)|To explain the architecture of *25HoursADay*,  and describe the major components of *25HoursADay*, the roles of major components, as well as their organization and interaction of major components.|
+|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to *25HoursADay* and the features added to *25HoursADay*.|
 |[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
-
-### Information for developer
-The table below shows the information and contact details of developers.
-
-|Developer| Contact details | 
-|--------|----------|
-|Liu Jingming|E0424608@u.nus.edu|
-|Liu Yifeng|E0425960@u.nus.edu|
-|Lyu Jiawen|E0376928@u.nus.edu|
-|Ng Hong Ming|E0426149@u.nus.edu|
-|Zhang Yilin|E0377000@u.nus.edu|
 
 ## Setting Up & Getting started
 
@@ -80,7 +69,7 @@ to set up IDEA’s coding style to match ours.
 This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
 it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
 1. **Learn the design**
-When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [25HoursADay’s architecture](#architecture).
+When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [*25HoursADay*’s architecture](#architecture).
 
 ## Design
 This section describes the design overview of the application.
@@ -320,7 +309,7 @@ There are two ways to run tests.
 ### DevOps guide
 
 
-## Product scope
+## Appendix A: Product scope
 
 ### Target user profile
 
@@ -334,40 +323,104 @@ There are two ways to run tests.
 
 ### Value proposition
 
-By using 25HoursADay, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
-need to search through different platforms for information. 25HoursADay can manage one's day-to-day matters faster than a 
+By using *25HoursADay*, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information. *25HoursADay* can manage one's day-to-day matters faster than a 
 typical mouse/GUI driven app.
 
-## User Stories
+## Appendix B: User Stories
+This section describes the user stories we have considered when implementing our features.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|add different tasks and events|better manage my day-to-day matters|
-|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
+|v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
+|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+## Appendix D: Glossary
 
 * *Task* - a todo item or a deadline item.
 * *School event* - a lecture, tutorial, lab session or an examination.
-* *Event* - an activity, examination, lecture, tutorial or lab session.
-* *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
+* *Event* - an activity or a school event.
+* *Calendar item* - a task or an event.	
 * *Task list* - a list that stores all the tasks added to the app.
 * *Event list* - a list that stores all the events added to the app.
 * *Calendar list* - a list that stores all the calendar items added to the app.
 
-## Instructions for manual testing
+
+## Appendix E: Contact the initial developers
+The table below shows the information and contact details of developers.
+
+|Developer| Contact details | 
+|--------|----------|
+|Liu Jingming|E0424608@u.nus.edu|
+|Liu Yifeng|E0425960@u.nus.edu|
+|Lyu Jiawen|E0376928@u.nus.edu|
+|Ng Hong Ming|E0426149@u.nus.edu|
+|Zhang Yilin|E0377000@u.nus.edu|
+
+## Appendix F: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+Command summary
+
+|Action| Type | Command Format | 
+|--------|----------|----------|
+|add|activity event|`act <activity_description> @<venue> / <date> <time>`|
+|add|additional information for event|`/a <event_number> - <additional_information>`|
+|add|deadline task|`deadline <task_description>/ <due_date>`|
+|add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
+|add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|add| todo task | `todo <task_description>` | 
+|add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
+|Delete| events | `-e <event_number>` |
+|Delete|tasks|`-t <task_number>`|
+|Delete|additional information for event|`/- <event_number> a <additional_information_number>`|
+|Find|all items|`/f <keyword>`|
+|Find|events|`/fe <keyword>`|
+|Find|tasks|`/ft <keyword>`|
+|Print |countdown for all items|`countdown`|
+|Print |countdown for deadlines|`countdown deadlines`|
+|Print |countdown for exams|`countdown exams`|
+|Print |events|`print events`|
+|Print |important tasks|`print *`|
+|Print |progress|`print progress`|
+|Print |tasks|`print tasks`|
+|Print|timeline (default)|`print timeline`|
+|Print|timeline before a date|`print timeline date <DATE>`|
+|Print|timeline for current month|`print timeline month`|
+|Print|timeline for current week|`print timeline week`|
+|Set|tasks as done|`done <task number>`|
+|Set|tasks as important|`*t <task_number>`|
+|View|additional information|`/v <event_number>`|
+|View|available commands|`help`|
+|View|suggestions|`suggestion`|
+|Quit|exit the program|`bye`|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
