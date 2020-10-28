@@ -115,7 +115,8 @@ Example of usage:
 
 Expected outcome:
 
-    Task added.
+![add_with_start_time](images/add_with_st.png)
+![add_without_optional_parameters](images/add_normal.png)
 
 
 ### <span style="color:red">Editing a task</span> : `edit`
@@ -126,22 +127,29 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 
 Example of usage: 
 
-`edit 5546 des/reading`  
-`edit 7019 st/1400 et/1600 p/3`
+`edit 8833 des/reading`  
+`edit 4893 st/1400 et/1600 p/3`
 
 Expected outcome:
 
-    Task edited.
+Initial list:
+
+![edit_before](images/edit_before.png)
+
+After edits:
+
+![edit_after_description](images/edit_after_des.png)
+![edit_after_start_end_priority](images/edit_after_st_et_p.png)
 
 
 ### <span style="color:red">Displaying tasks</span> : `list` 
 
-Default display mode: display **all** tasks by **adding sequence**.  
-`-d`: display **all** tasks by **date**, from past to future.  
+Default display mode: display **all** tasks in the **order of their addition** to the list.  
+`-d`: display **all** tasks by **date**, from oldest to newest.  
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.  
-`-w`: display **only tasks in current week** by **adding sequence**.   
-`-m`: display **only tasks in current month** by **adding sequence**.  
-`d/DATE`: display **all tasks of a date provided** by adding sequence.  
+`-w`: display **only tasks in current week** in the **order of their addition** to the list.    
+`-m`: display **only tasks in current month** in the **order of their addition** to the list.   
+`d/DATE`: display **all tasks of a date provided** in **order of their addition** to the list.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
@@ -154,10 +162,24 @@ Example of usage:
 
 Expected outcome:
 
+list:
+
 ![list](images/list.PNG)
+
+list -d:
+
 ![sort_by_date](images/list_sort_by_date.PNG)
+
+list -p:
+
 ![sort_by_priority](images/list_sort_by_priority.PNG)
+
+list -w:
+
 ![weekly_view](images/list_week.PNG)
+
+list -m:
+
 ![monthly_view](images/list_month.PNG)
 
 
@@ -185,11 +207,11 @@ Format: `delete INDEX`
 
 Example of usage: 
 
-`delete 5546`
+`delete 8833`
 
 Expected outcome:
 
-    Task deleted.
+![delete](images/delete.png)
     
 
 ### <span style="color:red">Clearing tasks</span> : `clear`
@@ -205,6 +227,27 @@ Example of usage:
 Expected outcome:
 
     All tasks cleared.
+
+
+### <span style="color:red">Setting a reminder for tasks</span> : `reminder`
+
+Allows you to set a reminder for any specific task on the list.
+You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
+before the start time of the task.
+
+Format: `reminder INDEX [t/TIME]`
+
+Example of usage: 
+
+`reminder 5349 t/2305`
+
+Expected outcome:
+
+![reminder_set](images/reminder_set.png)
+
+Once the specified time is reached:
+
+![reminder_popup](images/reminder_popup.png)
 
 
 ### <span style="color:red">Exiting program</span> : `bye`

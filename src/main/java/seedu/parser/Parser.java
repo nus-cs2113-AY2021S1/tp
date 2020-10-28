@@ -10,6 +10,7 @@ import seedu.commands.Help;
 import seedu.commands.List;
 import seedu.commands.Search;
 import seedu.commands.Undo;
+import seedu.commands.Reminder;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
@@ -72,6 +73,13 @@ public class Parser {
             }
         } else if (rawInput.startsWith(Undo.COMMAND_WORD)) {
             return new Undo();
+        } else if (rawInput.startsWith(Reminder.COMMAND_WORD)) {
+            matcher = Reminder.COMMAND_PATTERN.matcher(rawInput);
+            if (matcher.find()) {
+                return new Reminder(matcher.group("key"), matcher.group("t"));
+            } else {
+                throw new InvalidCommandException();
+            }
         } else {
             throw new UnknowCommandException();
         }

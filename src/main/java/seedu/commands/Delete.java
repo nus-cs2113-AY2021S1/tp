@@ -31,8 +31,9 @@ public class Delete extends ModificationCommand {
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
+        Task taskDeleted = task;
         tasks.delete(key);
         model.pushAndUpdate(tasks);
-        return new CommandResult(DELETE_MESSAGE);
+        return new CommandResult(DELETE_MESSAGE,taskDeleted);
     }
 }
