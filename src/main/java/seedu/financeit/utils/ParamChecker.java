@@ -16,6 +16,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 /**
@@ -39,7 +40,7 @@ public class ParamChecker {
     // Maximum amount of money that can be inputed: 100 digits including floating point + 1 char for decimal point
     private static final int MAX_INPUT_DOUBLE_LENGTH = 101;
 
-    private CommandPacket packet;
+    private static CommandPacket packet;
     private static String errorMessage;
     private static ParamChecker paramChecker = null;
 
@@ -342,6 +343,19 @@ public class ParamChecker {
         return output;
     }
 
+    public void checkAndReturnDuplicateParamTypes(String paramType, HashMap paramMap)
+        throws ParseFailParamException {
+        LoggerCentre.loggerParamChecker.log(Level.INFO,"Params: " + paramMap);
+        LoggerCentre.loggerParamChecker.log(Level.INFO,"ParamType: " + paramType);
+        if (paramMap.containsKey(paramType)) {
+            LoggerCentre.loggerParamChecker.log(Level.WARNING,
+                String.format("Duplicate param detected..."));
+            errorMessage = getMessageMultipleParamToParamType(paramType, paramMap);
+            printErrorMessage();
+            throw new ParseFailParamException(paramType);
+        }
+    }
+
 
 
     public String checkAndReturnCategory(String paramType) throws ParseFailParamException {
@@ -440,6 +454,12 @@ public class ParamChecker {
         return errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
             exception.getMessage(),
             "Input \"exp cat\" to show valid categories!");
+    }
+
+    public static String getMessageMultipleParamToParamType(String paramType, HashMap params) {
+        return errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Multiple params supplied to the same paramType is not allowed!",
+            "The first instance of the param is accepted: " + params.get(paramType));
     }
 
     public String getUnrecognizedParamMessage(String paramType) {

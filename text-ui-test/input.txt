@@ -1,4 +1,5 @@
 manual
+ledger new /date 200404 /date 190505
 ledger new /date 200404
 ledger list
 ledger open /date 200404
