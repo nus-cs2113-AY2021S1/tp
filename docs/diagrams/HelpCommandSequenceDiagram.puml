@@ -25,6 +25,7 @@ activate ":Ui"
 return
 return
 destroy ":HelpCommand"
+deactivate ":Fitr"
 
 hide footbox
 @enduml

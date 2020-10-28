@@ -28,6 +28,10 @@ This quick start section provides a step-by-step procedure to get you started wi
 3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1.
+
+<p align="center"><img src="images/Figure1.png" width="350"></p>
+<p align="center">Figure 1: Welcome screen of Fitr for new users</p>
+
 6. Follow the setup process by entering your name, age, height, weight, gender and your fitness level. Note that the height is in metres and weight is in kilograms.
 7. Once done, you are ready to use Fitr. You can type help to find out what commands are supported in Fitr.
    
@@ -35,10 +39,43 @@ This quick start section provides a step-by-step procedure to get you started wi
 This section introduces the features available in Fitr, explaining how you can use each feature and its expected outcomes.
 
 ## 2.1 Adding Commands
+You can add various types of entries to Fitr, such as your food intake, exercise completed and goals you wish to achieve. These features are documented below.
+
+### 2.1.1 Adding a food entry
+
+### 2.1.2 Adding an exercise entry
+
+### 2.1.3 Adding a food goal
+
+### 2.1.4 Adding an exercise goal
 
 ## 2.2 Viewing Commands
+You can view various aspects of Fitr, such as commands the application supports and its usages, your profile details, previous food and exercise entries, and your goals. These features are documented below.
+
+### 2.2.1 Viewing help
+
+### 2.2.2 Viewing your profile
+
+### 2.2.3 Viewing your BMI
+
+### 2.2.4 Viewing food entries
+
+### 2.2.5 Viewing exercise entries
+
+### 2.2.6 Viewing goal entries
+
+### 2.2.7 Viewing calorie summary
 
 ## 2.3 Editing Commands
+You can edit various aspects of Fitr, such as your profile, previous food and exercise entries, and your goals. These features are documented below.
+
+### 2.3.1 Editing your profile
+
+### 2.3.2 Editing a food entry
+
+### 2.3.3 Editing an exercise entry
+
+### 2.3.4 Editing a goal entry
 
 Adding an exercise: `exercise`
 Adds a new exercise to the list of exercises you have done.
@@ -310,12 +347,16 @@ Want to start anew? Instead of deleting entries one by one, you can clear all yo
 > :warning: **Warning:** The clear action is irreversible.
 
 ### 2.5.1 Clearing all food entries
+If you wish to clear all your previous food entries, you can do so with this command.
 
 ### 2.5.2 Clearing all exercise entries
+If you wish to clear all your previous exercise entries, you can do so with this command.
 
 ### 2.5.3 Clearing all goal entries
+If you do decide to reset your whole goal list (i.e. removing all goal entries stored), you can utilise this command.
 
 ### 2.5.4 Clearing all entries
+If you decide to clear all past entries made, regardless of the type (food, exercise or goal), you can utilise this command.
 
 ## 2.6 Other Commands
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
@@ -340,14 +381,18 @@ In this section, you can find answers to some of the frequently asked questions 
 A: Install Fitr on another computer, and overwrite the empty data files that it creates with the files with your data files.
 
 # 4. Command Summary
-Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for reference.
+Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for your reference.
 
 _Table 1: Commands supported in Fitr_
 
 Action | Format | Examples
 ------ | ------ | --------
-add food entry | `food <name of food> / <number of calories consumed> <quantity (optional)>` | `food apple / 52 1`
-add exercise entry | `exercise <name of exercise> / <number of calories burnt>` | `exercise 5km run / 400`
+Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD  AMOUNT_OF_FOOD` | `food apple /50 1` or `food pear /57`
+Add exercise entry | `exercise NAME_OF_EXERCISE /CALORIES_BURNT` | `exercise run /360`
+Add food goal | `goal food GOAL_DESCRIPTION` | `goal food eat more`
+Add smart food goal | `goal food < NUMBER_OF_CALORIES` or `goal food > NUMBER_OF_CALORIES` | `goal food < 2000` or `goal food > 3800`
+Add exercise goal | `goal exercise GOAL_DESCRIPTION` | `goal exercise run more`
+Add smart exercise goal | `goal exercise < CALORIES_BURNT` or `goal exercise > CALORIES_BURNT` | `goal exercise < 4000` or `goal exercise > 3800`
 delete food entry | `delete food <Index from Food List>` | `delete food 3`
 delete exercise entry | `delete exercise <Index from Exercise List>"` | `delete exercise 5`
 view help | `help` 
@@ -357,4 +402,4 @@ view food entries | `view food`
 view exercise entries | `view exercise`
 view calorie summary | `view summary`
 clear | `clear` | `clear`, `clear exercise`, `clear food`
-terminate Fitr program | `bye`
+Exit Fitr | `bye`

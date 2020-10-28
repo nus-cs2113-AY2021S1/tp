@@ -1,10 +1,9 @@
 @startuml
-
 participant ":Fitr"
 participant "<<class>>\n:Ui"
 participant "<<class>>\n:Parser"
 
--> ":Fitr" : "food chicken rice /600 1"
+-> ":Fitr" ++ : "food chicken rice /600 1"
 
 ":Fitr" -> "<<class>>\n:Ui" : read()
 activate "<<class>>\n:Ui"
@@ -22,7 +21,7 @@ deactivate "<<class>>\n:Parser"
 
 participant ":Food"
 participant ":FoodList"
-participant ":Storage"
+participant ":StorageManager"
 
 ":Fitr" -> ":AddFoodCommand" : execute()
 activate ":AddFoodCommand"
@@ -37,8 +36,9 @@ activate ":FoodList"
 |||
 return
 
-":AddFoodCommand" -> ":Storage" : writeFoodList()
-activate ":Storage"
+":AddFoodCommand" -> ":StorageManager" : writeFoodList()
+activate ":StorageManager"
+":StorageManager" ->] : Saved to local storage
 |||
 return
 |||
