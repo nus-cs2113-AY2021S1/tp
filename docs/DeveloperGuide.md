@@ -69,12 +69,9 @@ Aspect: Whether to use singleton pattern for Person class
 
 * **Alternative 1 (current choice)**: Did not use singleton pattern for `Person`
     * Pros: Reduce coupling and increase testability.
-    * Cons:  Risk of creating multiple `Person` object by mistake and there might be negative consequence in
-    creating multiple objects.
+    * Cons:  Risk of creating multiple `Person` object by mistake and there might be negative consequence in creating multiple objects.
     
-    However, there  is minimal risk of creating multiple `Person` object by mistake and minimal negative
-     consequence in creating multiple objects as long as the `Manager` refers the correct instance of
-      `Person`.
+    However, there  is minimal risk of creating multiple `Person` object by mistake and minimal negative consequence in creating multiple objects as long as the `Manager` refers the correct instance of `Person`.
       
 * **Alternative 2**: Use singleton pattern for `Person`    
     * Pros: Easy to implement, prevent the instantiation of more than one `Person` object.
@@ -83,14 +80,12 @@ Aspect: Whether to use singleton pattern for Person class
 Aspect: Changing attribute values in `Person` object or creating new `Person` object
 
 * **Alternative 1 (current choice)**: Changing attribute values in `Person` object 
-    * Pros: Reduce the number of objects being created to reduce memory usage and reduce the risk of creating
-     multiple objects which can potentially lead to negative consequences and bugs.
+    * Pros: Reduce the number of objects being created to reduce memory usage and reduce the risk of creating multiple objects which can potentially lead to negative consequences and bugs.
     * Cons: Unable to write tests as method chains.
 
 * **Alternative 2**: Creating new `Person` object
     * Pros: Ability to write tests as method chains.
-    * Cons: Creation of many objects, which take up memory spaces and ensure that only the correct `Person
-    ` instance is kept and referred to.
+    * Cons: Creation of many objects, which take up memory spaces and ensure that only the correct `Person` instance is kept and referred to.
     
 ## Save/Load Feature
 
