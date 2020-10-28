@@ -1,8 +1,8 @@
 package fitr.user;
 
-import fitr.Calorie;
-import fitr.Exercise;
-import fitr.Food;
+import fitr.calorie.Calorie;
+import fitr.exercise.Exercise;
+import fitr.food.Food;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import org.junit.jupiter.api.Test;

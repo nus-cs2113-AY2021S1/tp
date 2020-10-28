@@ -1,4 +1,4 @@
-package fitr;
+package fitr.calorie;
 
 public class Calorie {
     protected int amountOfCalories;

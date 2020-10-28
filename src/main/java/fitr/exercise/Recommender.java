@@ -1,4 +1,4 @@
-package fitr;
+package fitr.exercise;
 
 import fitr.list.StandardExerciseList;
 import fitr.storage.StandardExerciseStorage;

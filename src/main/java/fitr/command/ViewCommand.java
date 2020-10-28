@@ -1,7 +1,7 @@
 package fitr.command;
 
-import fitr.Goal;
-import fitr.Recommender;
+import fitr.goal.Goal;
+import fitr.exercise.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
@@ -10,7 +10,6 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;

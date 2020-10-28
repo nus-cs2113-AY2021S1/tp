@@ -1,4 +1,6 @@
-package fitr;
+package fitr.food;
+
+import fitr.calorie.Calorie;
 
 public class Food {
     protected String nameOfFood; // The name of the Food

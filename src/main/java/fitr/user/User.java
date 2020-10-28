@@ -3,7 +3,7 @@ package fitr.user;
 import fitr.command.ViewCommand;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
-import fitr.Calorie;
+import fitr.calorie.Calorie;
 import fitr.ui.Ui;
 
 import static fitr.common.Messages.USER_SETUP_GREET;

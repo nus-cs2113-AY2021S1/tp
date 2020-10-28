@@ -1,8 +1,8 @@
 package fitr.command;
 
-import fitr.Calorie;
-import fitr.Food;
-import fitr.Recommender;
+import fitr.calorie.Calorie;
+import fitr.food.Food;
+import fitr.exercise.Recommender;
 import fitr.exception.FitrException;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;

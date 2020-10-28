@@ -1,6 +1,6 @@
 package fitr.storage;
 
-import fitr.StandardExercise;
+import fitr.exercise.StandardExercise;
 import fitr.common.ResourceManager;
 import fitr.list.StandardExerciseList;
 
