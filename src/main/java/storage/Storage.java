@@ -1,6 +1,5 @@
 package storage;
 
-import access.Access;
 import common.KajiLog;
 import exception.DuplicateDataException;
 import exception.ExclusionFileException;
@@ -162,7 +161,7 @@ public class Storage {
     }
 
     private String retrieveChapterDeadline(String moduleName, String chapterName) {
-        File f = new File(filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt");
+        File f = new File(filePath + "/" + moduleName + "/dues/" + chapterName + "due" + ".txt");
         try {
             Scanner s = new Scanner(f);
             if (s.hasNext()) {
@@ -176,11 +175,6 @@ public class Storage {
         } catch (FileNotFoundException e) {
             return "Does not exist";
         }
-    }
-
-    private boolean missingDueFileCheck(String moduleName, String chapterName) {
-        File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        return f.exists();
     }
 
     private ArrayList<String> loadExclusionFile() throws ExclusionFileException {
@@ -240,27 +234,29 @@ public class Storage {
                 if (excludedChapters.contains(entry)) {
                     continue;
                 }
-                String deadline = retrieveChapterDeadline(module, target);
-                assert !deadline.equals(null) : "Invalid deadline retrieved";
-                if (deadline.equals("Invalid Date")) {
-                    ui.showToUser("\nThe chapter:");
-                    ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                            + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-                } else if (deadline.equals("Does not exist")) {
-                    if (missingDueFileCheck(module, target)) {
-                        deadline = "Invalid Date";
-                        ui.showToUser("\nThe chapter:");
-                        ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                                + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-                        dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-                    }
-                } else {
-                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-                }
+                checkChapterDeadline(ui, dueChapters, module, target);
             }
         }
         return dueChapters;
+    }
+
+    private void checkChapterDeadline(Ui ui, ArrayList<DueChapter> dueChapters, String module, String target) {
+        String deadline = retrieveChapterDeadline(module, target);
+        assert !deadline.equals(null) : "Invalid deadline retrieved";
+        if (deadline.equals("Invalid Date")) {
+            ui.showToUser("\nThe chapter:");
+            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+        } else if (deadline.equals("Does not exist")) {
+            deadline = "Invalid Date";
+            ui.showToUser("\nThe chapter:");
+            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+        } else {
+            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+        }
     }
 
     public void chapterExists(String moduleName, String chapterName) throws FileNotFoundException {
@@ -323,7 +319,6 @@ public class Storage {
     public void removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
             ExclusionFileException {
         ArrayList<String> excludedChapters = loadExclusionFile();
-        chapterExists(moduleName, chapterName);
         String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
         excludedChapters.remove(chapterEntry);
         updateExclusionFile(excludedChapters);
