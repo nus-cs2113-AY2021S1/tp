@@ -19,7 +19,7 @@ public class HelpMessage extends Ui {
             + "5 flashcard  - flashcards to revise your study materials";
 
     private static final String academicCommands = "Here are the academic commands available:\n"
-            + "list star                                 - prints the list of starred components"
+            + "list star                                 - prints the list of starred components\n"
             + "---CONTACTS---\n"
             + "add contact c/CONTACT  m/MOBILE  e/EMAIL  - adds a contact\n"
             + "list contact                              - prints the list of contact currently stored\n"
@@ -37,7 +37,8 @@ public class HelpMessage extends Ui {
             + "bm CATEGORY_INDEX    - changes mode from bookmark main into a category \n"
             + "add LINK             - add bookmark link into a specific category\n"
             + "rm INDEX_NUMBER      - remove a bookmark link into a specific category\n"
-            + "list                 - prints the list of categories and respective list of links\n"
+            + "list                 - prints the list of categories and respective\n"
+            + "                       list of links\n"
             + "back                 - go back to bookmark main\n";
 
     private static final String timetableCommands =  "Here are the timetable commands available:\n"
