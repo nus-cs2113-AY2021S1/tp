@@ -106,7 +106,45 @@ Based on the user input, the Parser handles and creates the corresponding Comman
 
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
+**AddNoteCommand**
+
+1. Created by the parser function
+1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
+1. Obtain content input into note.
+1. Process and stores tags into TagsManager.
+1. Handle saving of notes.
+1. Returns the title, tags as well as the contents of the note. 
+
+<p align="center">
+   <img alt="Parser" src="diagrams/out/AddNote_Sequence.png"/>
+   <br><em>Figure #</em>
+</p>
+
+**PinCommand**
+
+1. Created by the parser function
+1. Gets the note that is referenced too either by title or index 
+1. Toggles the pinned status of the specified note. 
+1. Returns the title as well as the pinned status of the note. 
+
+<p align="center"> 
+   <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
+   <br><em>Figure 4</em>
+</p>
+
+
+<br>
+
 #### <a id="note"><ins>2.5 Notebook</ins></a>
+
+The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user. The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
+
+<p align="center">
+   <img alt="Parser" src="diagrams/out/NotebookObject.png"/>
+   <br><em>Figure #</em>
+</p>
+
+Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
@@ -117,7 +155,7 @@ The class diagram below denotes the relationship between the TagManager and the 
 <p align="center">
    <img alt="Parser" src="diagrams/out/TaggableObject.png"/>
    <br><em>Figure #</em>
- </p>
+</p>
  
 Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
@@ -150,21 +188,6 @@ While Jansi provides support for Windows terminal to print colored texts, it doe
  `AnsiConsole.systemUninstall();`
  
 Remember to uncomment them when building jar files for release.
-
-**PinCommand**
-
-1. Created by the parser function
-1. Gets the note that is referenced too either by title or index 
-1. Toggles the pinned status of the specified note. 
-1. Returns the title as well as the pinned status of the note. 
-
-<p align="center"> 
-   <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
-   <br><em>Figure 4</em>
-</p>
-
-
-<br>
 
 ## <a id="scope">3. Product Scope</a>
 
