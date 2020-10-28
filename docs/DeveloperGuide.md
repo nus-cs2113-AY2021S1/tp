@@ -157,7 +157,7 @@ String objects in nameList into the file using the updateDB method. String objec
 by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
 Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 6, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
+As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
