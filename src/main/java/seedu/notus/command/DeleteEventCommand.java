@@ -3,8 +3,11 @@ package seedu.notus.command;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.ui.Formatter;
 
+import java.io.IOException;
+
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
+
 import java.util.ArrayList;
 
 //@@author brandonywl
@@ -23,6 +26,7 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete";
     public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
             + "Please specify the index that is indicated when you print the event list";
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
 
@@ -46,6 +50,13 @@ public class DeleteEventCommand extends Command {
         }
         Event event = timetable.getEvent(index);
         timetable.deleteEvent(index);
+
+        try {
+            storageManager.saveTimetable(timetable);
+        } catch (IOException exception) {
+            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+        }
+
         return Formatter.formatEventString(COMMAND_SUCCESSFUL_MESSAGE, event);
     }
 }

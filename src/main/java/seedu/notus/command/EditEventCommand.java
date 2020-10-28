@@ -8,6 +8,7 @@ import seedu.notus.data.timetable.WeeklyEvent;
 import seedu.notus.data.timetable.YearlyEvent;
 import seedu.notus.ui.Formatter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -53,6 +54,9 @@ public class EditEventCommand extends Command {
     private static final String COMMAND_SUCCESSFUL_RECURRENCE_DATE_MESSAGE = "End recurrence date edited!";
     private static final String COMMAND_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = "You attempted to put a "
             + "recurrence date on a non-recurring event. No recurrence date was set.";
+
+
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     public static final String REMINDER_TYPE_ADD = "add";
     public static final String REMINDER_TYPE_DROP = "drop";
@@ -266,10 +270,18 @@ public class EditEventCommand extends Command {
             }
         }
 
-        // TODO: Add StorageManager saveEvents once PR is merged.
+
         if (results.size() == 1) {
             results.add(COMMAND_UNSUCCESSFUL_MESSAGE);
+        } else {
+            try {
+                storageManager.saveTimetable(timetable);
+            } catch (IOException exception) {
+                results.add(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+                return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+            }
         }
+
         return Formatter.formatString(results, true);
     }
 }

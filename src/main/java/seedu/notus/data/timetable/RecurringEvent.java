@@ -4,15 +4,18 @@ import seedu.notus.ui.Formatter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 //@@author brandonywl
 public abstract class RecurringEvent extends Event {
     private LocalDate endRecurrenceDate;
+    private LocalTime endRecurrenceTime;
     private String recurrenceType;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
+    public static final LocalTime DEFAULT_END_RECURRENCE_TIME = LocalTime.of(23, 59);
     public static final String NO_RECURRENCE_TYPE = "none";
     public static final String DAILY_RECURRENCE_TYPE = "daily";
     public static final String WEEKLY_RECURRENCE_TYPE = "weekly";
@@ -26,6 +29,7 @@ public abstract class RecurringEvent extends Event {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
         this.endRecurrenceDate = endRecurrenceDate;
+        this.endRecurrenceTime = DEFAULT_END_RECURRENCE_TIME;
         this.recurrenceType = recurrenceType;
     }
 
@@ -42,7 +46,12 @@ public abstract class RecurringEvent extends Event {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
         this.endRecurrenceDate = endRecurrenceDate;
+        this.endRecurrenceTime = DEFAULT_END_RECURRENCE_TIME;
         this.recurrenceType = recurrenceType;
+    }
+
+    public String getRecurrenceType() {
+        return recurrenceType;
     }
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
@@ -52,6 +61,10 @@ public abstract class RecurringEvent extends Event {
 
     public LocalDate getEndRecurrenceDate() {
         return endRecurrenceDate;
+    }
+
+    public String getEndRecurrenceDateTime() {
+        return endRecurrenceDate.toString() + " " + endRecurrenceTime.toString();
     }
 
     public void setEndRecurrenceDate(LocalDate endRecurrenceDate) {
@@ -90,10 +103,6 @@ public abstract class RecurringEvent extends Event {
             startDate = startDate.plusDays(1);
         }
         return eventSet;
-    }
-
-    public String getRecurrenceType() {
-        return recurrenceType;
     }
 
     /**

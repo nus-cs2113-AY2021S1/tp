@@ -1,0 +1,2 @@
+/t Homework /timing 2020-02-26 12:00 /repeat daily /stop 3000-12-31 23:59 
+/t CS2113 Tutorial /timing 2020-08-27 13:00 /remind 1-day 3-day /repeat weekly /stop 3000-12-31 23:59 

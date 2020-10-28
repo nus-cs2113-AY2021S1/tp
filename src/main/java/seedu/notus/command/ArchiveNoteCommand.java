@@ -71,8 +71,8 @@ public class ArchiveNoteCommand extends Command {
             }
 
             try {
-                storageManager.saveAllNoteDetails(notebook, false);
-                storageManager.saveAllNoteDetails(notebook, true);
+                storageManager.saveAllNoteDetails(false);
+                storageManager.saveAllNoteDetails(true);
 
                 // delete the content file from unarchived notes and add it to archived
                 storageManager.deleteNoteContentFile(title, false);

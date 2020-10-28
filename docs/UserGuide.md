@@ -34,7 +34,9 @@
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
-This document describes the features found in NotUS, along with example usages.
+This document describes the features found in NotUS, along with example usages. It aims to help you get familiarised with the commands used in the application.
+
+Any points with the 💡 emoji represents an additional information. You can access a summary of commands used in the application at the end of this document.
 
 <br>
 
@@ -121,11 +123,11 @@ Expected output:
 💡 Use `/end` on a new line to denote the end of the note.
 
 ### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
-Shows a list of all the notes in the database.
+Shows a list of all the notes in the notebook.
 
 Format: `list-n [/tag TAG_1] [/tag TAG_2]... [/sort DIRECTION] [/archive]`
 
-- Specifying [/archive] will **ONLY** show archived notes. Even if the other optional parameters are listed, archived notes nor will any other notes be filtered or sorted. The archived notes will **ONLY** be listed in chronological order. 
+- Specifying [/archive] will **ONLY** show archived notes. Even if the other optional parameters are listed, archived notes nor will any other notes be filtered or sorted.
 - Specifying [/tag TAG] will only show the notes with the relevant tag.
 - Specifying [/sort DIRECTION] will show the sorted list in ascending or descending alphabetical order according to the title of the notes.
 
@@ -141,10 +143,10 @@ Expected output:
 
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
 💡 Use `/sort down` to display the list of notes in descending order (Z-A).
-
+💡 The archived notes will **ONLY** be listed in chronological order. 
 
 ### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
-View selected note.
+View the selected note.
 
 Format: `view-n [/i INDEX] [/t TITLE]`
 

@@ -6,10 +6,8 @@ import seedu.notus.ui.Formatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 //@@author brandonywl
@@ -81,7 +79,6 @@ public class Event extends TaggableObject implements Comparable<Event> {
             Collections.sort(storedReminders);
             reminderPeriods.put(timeUnit, storedReminders);
         }
-
     }
 
     public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring,
@@ -126,8 +123,13 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return endDateTime.toLocalDate();
     }
 
+
     public LocalTime getEndTime() {
         return endDateTime.toLocalTime();
+    }
+
+    public String getDateTime() {
+        return startDateTime.toLocalDate().toString() + " " + startDateTime.toLocalTime().toString();
     }
 
     public boolean getIsToRemind() {
@@ -148,6 +150,26 @@ public class Event extends TaggableObject implements Comparable<Event> {
 
     public boolean getRecurring() {
         return isRecurring;
+    }
+
+    public ArrayList<String> getReminderPeriodsString() {
+        ArrayList<String> periods = new ArrayList<>();
+
+        ArrayList<Integer> dayRepeatPeriod = reminderPeriods.get(REMINDER_DAY);
+        ArrayList<Integer> weekRepeatPeriod = reminderPeriods.get(REMINDER_WEEK);
+
+        if (dayRepeatPeriod != null) {
+            for (Integer unit: dayRepeatPeriod) {
+                periods.add(unit + "-day");
+            }
+        }
+
+        if (weekRepeatPeriod != null) {
+            for (Integer unit : weekRepeatPeriod) {
+                periods.add(unit + "-week");
+            }
+        }
+        return periods;
     }
 
     /**
