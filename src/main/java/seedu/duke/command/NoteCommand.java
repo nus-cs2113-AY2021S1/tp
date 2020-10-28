@@ -15,6 +15,8 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -50,6 +52,9 @@ public class NoteCommand extends Command {
             EventList list = data.getEventList(event);
             Event eventRequested = list.getEventByIndex(index - 1);
             if (eventRequested != null) {
+                ui.printMessage("Please type in your notes."
+                        + " To stop note taking, ensure that you are in a new line and type the semicolon key,"
+                        + " \';\' and press enter");
                 ArrayList<String> existingNotes = eventRequested.getNotes();
                 ArrayList<String> additionalNotes = getNotesFromUser();
                 ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
@@ -95,11 +100,10 @@ public class NoteCommand extends Command {
         sc = new Scanner(System.in);
         ArrayList<String> notesList = new ArrayList<String>();
         String temp = sc.nextLine().trim();
-        do {
+        while (!temp.equals(";")) {
             notesList.add(temp);
             temp = sc.nextLine().trim();
-        } while (!temp.equals(";"));
-
+        }
         return notesList;
     }
 
@@ -115,8 +119,20 @@ public class NoteCommand extends Command {
         LocalDateTime now = LocalDateTime.now();
         String timestamp = "---------" + now + "---------";
         existingNotes.add(timestamp);
+        additionalNotes = convertSemiColonToBlank(additionalNotes);
         existingNotes.addAll(additionalNotes);
         return existingNotes;
+    }
+
+    private ArrayList<String> convertSemiColonToBlank(ArrayList<String> notes) {
+        ArrayList<String> convertedList = new ArrayList<>();
+
+        for (String note : notes) { //after splitting up the lines based on semicolons, add them
+            String[] lines = note.split(";", -1);
+            List<String> toBeAdded = Arrays.asList(lines);
+            convertedList.addAll(toBeAdded);
+        }
+        return convertedList;
     }
 
     /**
