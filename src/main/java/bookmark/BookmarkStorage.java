@@ -40,7 +40,7 @@ public class BookmarkStorage {
                     continue;
                 }
                 String[] links = parseCategory[1].split(",");
-                String title = "";
+                String title;
                 int x = 0;
                 for (String link : links) {
                     link = link.trim();
@@ -48,6 +48,8 @@ public class BookmarkStorage {
                         String[] array = link.split(" t->");
                         link = array[0].trim();
                         title = array[1].trim();
+                    } else {
+                        title = null;
                     }
                     assert i >= 0 : "Problem reading file";
                     if (link.contains("|STAR|")) {
@@ -79,7 +81,7 @@ public class BookmarkStorage {
         try {
             FileWriter fw = new FileWriter(filePath, false); //true append, false overwrite
             for (BookmarkCategory category : categories) {
-                fw.write(category.getName() + " = " + getCategoryLinks(category) + System.lineSeparator());
+                fw.write(category.getName() + " =" + getCategoryLinks(category) + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
