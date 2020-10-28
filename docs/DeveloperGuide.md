@@ -1,5 +1,31 @@
 # Developer Guide
 
+## Table of Contents
+
+[Introduction](#introduction) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Design Goals](#design-goals) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Maintainability](#maintainability) <br>
+[Definitions](#definitions) <br>
+[Setting up the project in your computer](#setting-up-the-project-in-your-computer) <br>
+[System Overview](#system-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-view) <br>
+[Architecture](#architecture) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Project Overview](#project-overview) <br>
+[Writings class family](#writings-class-family) <br>
+[Filter words class family](#filter-words-class-family) <br>
+[Bunny class family](#bunny-class-family) <br>
+[Names class family](#names-class-family) <br>
+[Design and Implementation](#design-and-implementation) <br>
+[Product scope](#product-scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Target user profile](#target-user-profile) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#value-proposition) <br>
+[User Stories](#user-stories) <br>
+[Non-Functional Requirements](#non-functional-requirements) <br>
+[Glossary](#glossary) <br>
+[Instruction for manual testing](#instructions-for-manual-testing) <br>
+
 ## Introduction
 
 ### Purpose
@@ -57,6 +83,8 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## System Overview
 
+The following sections describe the high level overview of our application, Fluffle.
+
 ### Technological view
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, 
 and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported 
@@ -95,7 +123,7 @@ either poem or essay at this stage)
 ![UML WritingList family sequence diagram](graphics/diagrams/UML_Writing_Sequence_diagram.png)
 <p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
 
-### Filter words class family
+## Filter words class family
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <p align = "center"><i><b>Figure 4: Filter word UML Class Diagram</b></i></p>
 
@@ -169,11 +197,11 @@ String objects in nameList into the file using the updateDB method. String objec
 by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
 Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 6, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
+As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
-## Design & implementation
+## Design and implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -211,9 +239,6 @@ The application aims to provide the writer with the following services:
 
 {Give non-functional requirements}
 
-## Glossary
-
-* *glossary item* - Definition
 
 ## Instructions for manual testing
 
