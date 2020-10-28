@@ -48,8 +48,6 @@ public class ReadStorageFile extends StorageFile {
             myReader.close();
         } catch (FileNotFoundException | DuplicateDataException e) {
             ui.printToUser("Load File does not exist. No contents will be loaded.");
-        } catch (IOException e) {
-            ui.printToUser("Load File is corrupted.");
         }
     }
 
@@ -107,7 +105,9 @@ public class ReadStorageFile extends StorageFile {
             String locations = location.substring(openBracesIndex, closeBracesIndex);
             String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {
-                locationList.addLocation(locationName.trim());
+                if(!locationName.isEmpty()) {
+                    locationList.addLocation(locationName.trim());
+                }
             }
         } catch (IndexOutOfBoundsException | DuplicateDataException e) {
             throw new FileCorruptedException();
