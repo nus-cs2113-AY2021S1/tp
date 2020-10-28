@@ -390,63 +390,78 @@ Expected output:
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
-Format: `add-e /t TITLE /d DATETIME [/repeat REPEAT] [/remind REMIND]`
+Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND]`
 
 💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”
-💡 Specifying  [/rec RECURRING] will set the event as a recurring event.
-💡 Specifying [/rem REMIND] will set the program to remind the event.
+💡 Specifying  [/repeat RECURRING] will set the event as a recurring event.
+💡 Specifying [/remind REMIND] will set the program to remind the event.
 
 Example of usage: 
 
-`Add-e /t Flag day /d 14-09-2020 18:58:17`
+`add-e /t CS2113 Tutorial /timing 2020-10-30 13:00 /repeat weekly /remind 1-day 3-day`
 
 Expected output:
 
+<p align="center">
+   <img alt="addEvent" src="screenshots/addEvent.png"/>
+</p>
 
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
-Format: `edit-e /i INDEX [/t TITLE] [/d DATETIME] [/repeat REPEAT] [/remind REMIND]`
+Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
 
 - Edits the event at the specified INDEX. The index refers to the index number shown in the displayed events list. The index must be a **positive integer** (1, 2, 3, …).​
-- At least one of the optional fields must be provided [/t TITLE], [/d DATETIME], [/repeat REPEAT], [/remind REMIND].
+- At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
 
 Example of usage: 
 
-`edit-e 2 /t CS2113 Module /d 14-09-2020 18:58:17`
+`edit-e /i 1 /t CS2113 Lecture /timing 2020-10-30 16:00 /stop 2020-12-01 12:00 /remind-clear`
 
 Expected output:
 
+<p align="center">
+   <img alt="editEvent" src="screenshots/editEvent.png"/>
+</p>
 
 ### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
-Format: `list-e [/d DATE]`
+Format: `list-e [/timing Year] [/timing Year-Month]`
 
-- Specifying [/d DATE] will display the module timetable for that day followed by a list of reminders, else it will display those on the current day.
-💡 DATE format pattern "dd-MM-yyyy”.
+- Having no optional prefixes will display all events stored. Recurring events will only display once. Index shown is the index used when deleting or editing events.
+- Specifying [/timing Year] will display all events for the year. Will include repeated events.
+💡 Year format pattern "YYYY”.
+- Specifying [/timing Year-Month] will display all events for that month. Will include repeated events.
+💡 Year format pattern "YYYY-MM”.
 
 Example of usage: 
 
-`list-e /d 14-09-2020`
+`list-e /timing 2020-10`
 
 Expected output:
 
+<p align="center">
+   <img alt="listEvent" src="screenshots/listEvent.png"/>
+</p>
 
 ### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
-Format: `remind-e INDEX`
+Format: `remind-e`
 
-- Remind the event at the specified INDEX. The index refers to the index number shown in the displayed event list (list-e). The index must be a **positive integer** (1, 2, 3, …).
+- Shows all reminders for today.
 
 Example of usage: 
 
-`remind 2`
+`remind-e`
 
 Expected output:
 
+<p align="center">
+   <img alt="remindEvent" src="screenshots/remindEvent.png"/>
+</p>
 
 ### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
@@ -457,10 +472,13 @@ Format: `delete-e INDEX`
 
 Example of usage: 
 
-`delete-e 2`
+`delete-e 1`
 
 Expected output:
 
+<p align="center">
+   <img alt="deleteEvent" src="screenshots/deleteEvent.png"/>
+</p>
 
 ### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
 Exits the program..

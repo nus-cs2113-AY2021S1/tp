@@ -211,7 +211,7 @@ public class Formatter {
     public static ArrayList<String> formatEvent(Event event) {
         ArrayList<String> result = new ArrayList<>();
         result.add("Event: " + event.getTitle());
-        result.add("Date: " + event.getStartDate().toString() + "\tTime: " + event.getStartTime().toString());
+        result.add("Date: " + event.getStartDate().toString() + EMPTY_SPACE.repeat(4) +"Time: " + event.getStartTime().toString());
         result.add("Reminder: " + event.getIsToRemind());
         String repeatingString = "Repeating: ";
         String endRecurrenceDateString = "";
@@ -272,7 +272,7 @@ public class Formatter {
         Event event = reminder.getEvent();
         ArrayList<String> result = new ArrayList<>();
         result.add("Event: " + event.getTitle());
-        result.add("Date: " + event.getStartDate().toString() + "\tTime: " + event.getStartTime().toString());
+        result.add("Date: " + event.getStartDate().toString() + EMPTY_SPACE.repeat(4) +"Time: " + event.getStartTime().toString());
         return result;
     }
 
