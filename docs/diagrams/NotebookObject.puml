@@ -9,18 +9,25 @@ class Notebook {
 -notes: <ArrayList<Note>
 -archivedNotes: <ArrayList<Note>
 +addNote(Note): Note
++getNote(int): Note
++getNote(String): boolean
 +getNote(String, boolean): Note
++setNotes(int, Note): boolean
++getNoteIndex(Note): int
++getSize(): int
 +findNotes(String): ArrayList<Note>
 +deleteNote(int): boolean
 +deleteNote(String): boolean
 +checkPinned(): boolean
 +getPinnedNotes(ArrayList<Note>): ArrayList<Note>
 +getUnpinnedNotes(ArrayList<Note>): ArrayList<Note>
++getSortedList(Boolean, Boolean): ArrayList<Note>
++getSortedList(Boolean, Boolean, ArrayList<Note>): ArrayList<Note>
 +archiveNotes(int): String
 +archiveNotes(String): boolean
 +unarchiveNotes(int): String
 +unarchiveNotes(String): boolean
-+getSortedList(Boolean, Boolean, ArrayList<Note>): ArrayList<Note>
++getArchivedNoteSize(): int
 }
 
 class Note {
@@ -28,6 +35,8 @@ class Note {
 -content: ArrayList<String>
 -isPinned: Boolean
 -isArchived: boolean
++getContentString(): String
++getPinnedString(): String
 +togglePinned(): void
 +toggleArchived(): void
 +toSaveString(): String
@@ -35,6 +44,7 @@ class Note {
 
 abstract class TaggableObject {
 -tags: ArrayList<Tag>
++getTagsName(): String
 }
 
 @enduml
