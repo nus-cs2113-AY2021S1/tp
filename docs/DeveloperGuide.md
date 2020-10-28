@@ -474,6 +474,8 @@ to **create new** `Workspace`:
 ![Workspace Command Initial State Diagram](images/WorkspaceCommand-Initial-State.png) <br/>
 *Figure 14: Workspace Command Initial State*
 
+<br/>
+
 **Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser.java` and then further parsed by `WorkspaceParser.java`.
 
 **Step 3:** Upon completion of parsing and input validation, `WorkspaceParser.java` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
@@ -486,17 +488,21 @@ Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
 *Figure 15: Workspace Command After New Workspace Creation*
 
+<br/>
+
 **Step 6:** If successful, `WorkspaceCommand` returns the successfully created workspace message to `Main`.
 
 <br/>
 
 Likewise, the operations to switch, list, and delete follows a similar execution process. 
-The following diagrams will continue from step 6, and will illustrate the changes to the `Workspace` `ArrayList`.
+The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
 
 User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
 *Figure 16: Workspace Command After New Workspace Switch*
+
+<br/>
 
 User keys in `workspace -d Default` to delete the workspace named `Default`.
 
@@ -505,10 +511,14 @@ User keys in `workspace -d Default` to delete the workspace named `Default`.
 
 <br/>
 
-The following sequence diagram shows how `Workspace` creation in Step 4 works:
+The following sequence diagram illustrates how `Workspace` creation in the example above works:
+
+> :memo: The other options (`-s`, `-l`, `-d`) follows a similar process, only the list and switch option does not interact with `StorageManager` and `Watchlist`.
 
 ![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
 *Figure 18: Workspace Command After New Workspace Delete*
+
+
 
 <br/>
 
