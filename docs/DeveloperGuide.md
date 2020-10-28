@@ -207,8 +207,16 @@ Aspect: Repeated items
 
 
 ### 3.4. Event
-**3.4.1. Add/delete events feature** 
- 
+The diagram below shows the architecture for Event feature.
+
+![](EventDiagram/EventArchitecture.png)
+
+
+There are a total of 6 commands under Event feature.
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`. 
+ The implementation for each command is described in detail below.
+                                                             
+**3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
@@ -243,7 +251,7 @@ The sequence diagram for deleting a particular event or all events is as shown b
 
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
-**3.5.2. Listing Events** 
+**3.5.2. Listing Events** `CommandEventList`
 
 3.5.2.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
@@ -267,7 +275,7 @@ The sequence diagram for listing events is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
-**3.4.3. Searching for an event via name or date**
+**3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
 Current Implementation
 The `CommandSearchEvent` class in `seedu.duke.event` handles search of an event via its name or its date.
@@ -280,7 +288,7 @@ It implements the following operation:
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
  
-**3.4.3: Displaying countdown to upcoming events**
+**3.4.4: Displaying countdown to upcoming events** `CommandEventCountdown`
 
 Current Implementation
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
@@ -291,6 +299,18 @@ It implements the following operation:
 The sequence diagram for displaying countdown is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
+
+**3.4.5: Mark an event as completed** `CommandEventStatus`
+
+Current Implementation
+The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
+ 
+It implements the following operation:
+*`CommandEventStatus#execute()` -  Marks an `Event` in the `EventList` as done.
+
+The sequence diagram for marking an event as done is as shown below:
+
+![CommandEventStatus](EventDiagram/SequenceDiagram/CommandEventStatus.png)
 
 ### 3.5. HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
