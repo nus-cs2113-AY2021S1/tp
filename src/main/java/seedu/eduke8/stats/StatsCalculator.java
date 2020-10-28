@@ -38,6 +38,8 @@ public class StatsCalculator {
     }
 
     protected int calculateProgressionPercentage(int userProgress, int total) {
+        assert total > 0;
+
         double progressionLevel = (double) userProgress / total;
 
         int progressionLevelPercentage = (int) (progressionLevel * 100);
