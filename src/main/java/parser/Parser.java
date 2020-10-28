@@ -16,23 +16,27 @@ import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.SortCommand;
 import event.Assignment;
+import event.Class;
 import event.PersonalEvent;
-
-
 import exception.DateFormatException;
 import exception.DeleteNumberFormatException;
 import exception.DoneNumberFormatException;
 import exception.EmptyDeleteException;
 import exception.EmptyDoneException;
+import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
 import exception.InvalidSortCriteriaException;
 import exception.NoEndTimeClassException;
 import exception.NoEventLocationException;
-import exception.NoEventLocationMarkerException;
+import exception.NoEventTimeException;
+import exception.NoEventTimeMarkerException;
 import exception.NoSortCriteriaException;
+import exception.NuScheduleException;
+import exception.TimeFormatException;
 import exception.UnknownErrorException;
+import exception.WrongCommandException;
 import exception.WrongEditFormatException;
 import location.Building;
 import location.Hostel;
@@ -41,14 +45,6 @@ import location.Location;
 import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
-import event.Class;
-import exception.NoEventTimeMarkerException;
-import exception.TimeFormatException;
-import exception.EmptyEventException;
-import exception.NuScheduleException;
-import exception.NoEventTimeException;
-import exception.WrongCommandException;
-
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

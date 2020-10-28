@@ -8,7 +8,7 @@ package location;
  * does not require a password.
  */
 public class OnlineLocation {
-    private String link;
+    private final String link;
     private String password;
 
     /**
@@ -49,6 +49,6 @@ public class OnlineLocation {
      * @return the link of the meeting. If there is password, return the password also.
      */
     public String fileString() {
-        return link + (password != null ? "//" + password : null);
+        return "online//"+link + (password != null ? "//" + password : null);
     }
 }
