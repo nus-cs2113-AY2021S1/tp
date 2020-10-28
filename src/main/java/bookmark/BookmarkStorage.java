@@ -67,6 +67,7 @@ public class BookmarkStorage {
             newBookmarkCategories.add(new BookmarkCategory("Internship"));
             newBookmarkCategories.add(new BookmarkCategory("Hackathon"));
             newBookmarkCategories.add(new BookmarkCategory("Career Talk"));
+            saveLinksToFile(newBookmarkCategories);
             StudyItLog.logger.info(e + "\nflashcard storage file created");
             return newBookmarkCategories;
         }
