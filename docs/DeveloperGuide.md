@@ -571,7 +571,7 @@ The `Ui` class prints the `exceptionMessage` into the terminal.
 ## 5. Documentation
 
 This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
-
+<br> Throughout the code JavaDocs was used to explain the individual classes and functions.
 
 ## 6. Testing
 
