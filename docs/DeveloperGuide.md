@@ -198,6 +198,9 @@ This requires the model classes to implement two methods required for JSON seria
 ## Implementation
 ### Project
 #### Create Project
+![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
+ "Add Project Sequence Diagram") 
+ Link: [CreateProjectCommand.java](/src/main/java/seedu/duke/command/project/CreateProjectCommand.java) 
 A project is created with a clear title and description of what the team is working on 
 for delivery, as well as the project length and the sprint duration specified.
 Command executed by user `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>`
