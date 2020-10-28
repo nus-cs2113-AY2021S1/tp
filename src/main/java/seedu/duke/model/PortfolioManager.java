@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,10 @@ public class PortfolioManager {
     private static Logger logger = Logger.getLogger("tp");
 
     public PortfolioManager() {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         load();
     }
 
