@@ -151,6 +151,6 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
-        return isAnimeIndexInteger;
+        return true;
     }
 }
