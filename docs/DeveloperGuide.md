@@ -2,30 +2,26 @@
 google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFXK3VgL6807x5ivZ5yJk/edit)
 
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Getting Started](#getting-started)<br>
-2.1 [Prerequisites](#prerequisites)<br>
-2.2 [Setting Up]()<br>
-2.3 [Running The Program]()<br>
-3. [Design](#design) <br>
-3.1 [Architecture](#architecture) <br>
-3.2 [UI](#ui) <br>
-3.3 [Storage](#storage) <br>
-3.4 [Logic](#logic) <br>
-3.5 [Events](#events) <br>
-3.6 [Locations](#locations) <br>
-4. [Implementation](#implementation) <br>
-4.1 [Add events](#add-events) <br>
-4.2 [Clear events](#clear-events) <br>
-4.3 [Edit events](#edit-events) <br>
-4.4 [Locate events](#locate-events) <br> 
-4.5 [Reminders](#reminders) <br>
-4.6 [Sort events](#sort-events) <br>
-4.7 [View events](#view-events) <br>
-4.8 [Summary of Features](#summary-of-features) <br>
-5. [Documentation](#documentation) <br>
-5.1 [Product scope](#product-scope) <br>
-5.2 [User stories](#user-stories) <br>
+1. [Introduction](#1-introduction)
+2. [Setting Up](#2-setting-up)
+3. [Design](#3-design) <br>
+3.1 [Architecture](#31-architecture) <br>
+3.2 [UI](#32-ui) <br>
+3.3 [Storage](#33-storage) <br>
+3.4 [Logic](#34-logic) <br>
+3.5 [Model](#35-model) <br>
+3.6 [Location](#36-location) <br>
+4. [Implementation](#4-implementation) <br>
+4.1 [Add events](#41-add-events) <br>
+4.2 [Clear events](#42-clear-events) <br>
+4.3 [Edit events](#43-edit-events) <br>
+4.4 [Locate](#44-locate) <br> 
+4.5 [Reminders](#45-reminders) <br>
+4.6 [Sort events](#46-sort-events) <br>
+4.7 [View events](#47-view-events) <br>
+5. [Documentation](#5-documentation) <br>
+5.1 [Product scope](#51-product-scope) <br>
+5.2 [User stories](#52-user-stories) <br>
 
 ## 1. Introduction
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
@@ -36,16 +32,14 @@ This developer guide provides information on the architecture and design of the 
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
 to refer to even if you are already a contributor
 
-
-
-## 2.Getting Started
+## 2. Getting Started
 This section provides information to help you get NUSchedule up and running on your own computers.
 
-### Prerequisites
+### 2.1 Prerequisites
 1. JDK 11
 2. Intellij IDEA
 
-### Setting Up
+### 2.2 Setting Up
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-F14-4/tp), and clone the fork onto your computer.   
 2. Open IntelliJ (if you are not in the welcome screen, click File > Close Project
 to close the existing project dialog 
@@ -59,11 +53,11 @@ first).
 6. Click OK to accept the default settings but do ensure that the selected version of Gradle JVM matches the JDK 
    being used for the project.
 
-## Design
+## 3. Design
 This section describes the different components of the application and how each component interact with
 each other to run the program. 
 
-### Architecture
+### 3.1 Architecture
 ![architecture](../diagrams/architecture.png)
 
 The Architecture Diagram above provides a high-level view of the design of NUSchedule. The app can be broken down into 
@@ -78,29 +72,51 @@ __How the architecture components interact with each other__
 The sequence diagram below shows how each individual component interacts with each other when the user inputs a command.
 ![sequence](../diagrams/ArchitectureSequence.png)
 
-### UI
+### 3.2 UI
  __API__:`UI.java`  
 The UI consists of various parts, e.g. `printGreetingMessage`, `printEventList`, `showError`, `printNumEvent`, etc.
  
 The `UI` component executes user commands according to the Logic component.
 
-### Storage
+### 3.3 Storage
 __API__:`Storage.java`
 The `Storage` component can save the list of event data in .txt format and read it back.   
-### Logic
+### 3.4 Logic
 __API__:`Parser.java`  
 The `logic` component parses the user input and executes commands based on the given input.
  1.	Parser reads the user input and returns a command to be executed.
  2.	The command execution affects the EventList (e.g. clearing the list).
  3.	The result passes back to the UI, which then displays relevant feedback to the user.  
 
-### Model
+### 3.5 Model
 __API__:`EventList.java`   
 The `Model` component stores an ArrayList, events, that represents the current list of events.
-## Implementation
+
+### 3.6 Location
+![Location class diagram](diagrams/Location.jpeg)
+*Figure 3.6.1 Class diagram for location component*
+
+__API:__ `LocationList.java` <br>
+
+The `LocationList` is made up of an ArrayList of Locations, which is a type of variable that stores different information 
+for different types of location (eg. `Building`, `Hostel`, etc.). However, do note that any place that is 
+not within the list of saved locations will be saved as type `OutOfNUS`, and would not be saved into the `location.txt` 
+file. The location will still be part of the location list before the app closes, and it will also be 
+saved as part of the Event information.
+
+<br>There is a separate api for bus stops (`BusStopList.java`), which stores all available bus stops 
+and their information. Although the variable is declared in the main NUScheule class, it is only referenced 
+and not edited in any part of the program.
+
+<br>The `Location` component 
+* stores information about various types of locations 
+* prints the list of locations that is saved in the data file 
+* checks if a location is saved in the list and returns the location when asked
+
+## 4. Implementation
 This section describes the implementation of some noteworthy features. 
 
-### Add events
+### 4.1 Add events
 This feature allows users to add events and relevant information about them (description, time and location) to the list
 . There are three possible types of events that can be added: classes, assignments, and personal events.
 
@@ -114,7 +130,7 @@ and location ‘LT27’.
 
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
-### Clear events
+### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
 
 Given below is an example usage scenario:
@@ -124,7 +140,7 @@ Step 1. The user launches the application and wants to delete everything previou
 Step 2. If there is no information stored before the user input the `clear` command, the user will be reminded about 
 that the list is already empty. 
  
-### Edit events
+### 4.3 Edit events
 This feature allows users to edit the information of events that was previously added. 
 
 Given below is an example usage scenario:
@@ -139,26 +155,46 @@ Step 3. The Parser class parses the 'edit 1' command. The user enters a new even
 Step 4. 'editCommand()' function replaces the original event with the edited one. 
 
 
-### Locate events
+### 4.4 Locate
 This feature allows users to add locations as part of the event information. If the place is located within the school, 
 additional information about the location will be provided such as nearest bus stops or buildings. If the place is a 
-bus stop, the buses available will be provided instead. 
+bus stop, the buses available will be provided instead. The user will add location name as the last piece of information 
+when adding an event. The LocationList has a method that searches for the place with the exact same name, if such a 
+place is not found, it will create a location and allocate it to be OutOfNUS.  
 
-Given below is an example usage scenario: 
+This feature also allows users to search for a location based on a given location name, or the location where an event 
+is held. It will print out additional information about the location to the user. 
 
-Step 1. The user will add location name as the last piece of information when adding an event.   
+The `locate` command executes with the following steps: 
+  
+Step 1. When the user type in `locate [input]`, the Parser class will extract the input from the command and call a 
+`LocateCommand` object.  
+* `input` will always be a String when passed into the command object. 
 
-Step 2. The LocationList has a method that searches for the place with the exact same name, if such a place is not 
-found, it will create a location and allocate it to be OutOfNUS.  
+Step 2. `LocateCommand` will then try to convert the input into an integer, if possible.  
 
-### Reminders
-### Sort events
-### View events
-### Summary of Features
+Step 3. If conversion is possible, the method will obtain the event at the given index and return its location 
+information.  
+* Tries to catch `IndexOutOfBoundException` to check if the given index is within the range of the
+event list.
 
-## Documentation
+Step 4. If conversion is not possible, then it will check if the given string is a valid location.  
+* Returns the location if valid
+* Prints an error message if invalid   
 
-### Product scope
+The sequence diagram below shows exactly which methods, from which classes, are called to obtain the required location. 
+![](diagrams/Locate.jpg)
+*Figure 4.4.1 Sequence diagram for locate function*
+
+### 4.5 Reminders
+
+### 4.6 Sort events
+
+### 4.7 View events
+
+## 5. Documentation
+
+### 5.1 Product scope
 __Target user profile:__
 * NUS student or staff
 * able to type quickly
@@ -167,11 +203,11 @@ __Target user profile:__
 * prefers using Command Line Interface (CLI) apps
 * prefers typing instead of mouse interactions
 
-### Value proposition
+### 5.2 Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 
-### User Stories
+### 5.3 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
