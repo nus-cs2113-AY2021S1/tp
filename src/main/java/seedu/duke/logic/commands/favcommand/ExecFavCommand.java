@@ -1,7 +1,6 @@
 package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.logic.parser.ExecFavParser;
 import seedu.duke.logic.parser.Parser;
@@ -19,13 +18,8 @@ public class ExecFavCommand extends Command {
 
     private void getFav() throws CustomException {
         assert ! (parser ==null) : "parser not declared";
-        try {
-            index = parser.getIndex();
-            fav = FavList.getFav(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new CustomException(ExceptionType.INVALID_INDEX);
-        }
-
+        index = parser.getIndex();
+        fav = FavList.getFav(index);
     }
 
     @Override
