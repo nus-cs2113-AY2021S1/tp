@@ -10,7 +10,9 @@ import ui.Ui;
 
 import java.time.LocalDate;
 
+import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class RescheduleCommand extends Command {
     public static final String COMMAND_WORD = "reschedule";
@@ -42,27 +44,28 @@ public class RescheduleCommand extends Command {
                     access.getLevel(), ACCESS_LEVEL));
         }
 
+        String result = reschedule(access, storage);
+        ui.showToUser(result);
+    }
+
+    private String reschedule(Access access, Storage storage) throws InvalidInputException {
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(index);
             LocalDate dueBy = chapter.getDueBy();
 
             if (dueBy != null && date.isEqual(dueBy)) {
-                String result = String.format(MESSAGE_SAME_DATE, chapter.getChapterName(), date);
-                ui.showToUser(result);
-                return;
+                return String.format(MESSAGE_SAME_DATE, chapter.getChapterName(), date);
             }
-
 
             chapter.setDueBy(date, storage, access);
             StringBuilder result = new StringBuilder();
             result.append(String.format(MESSAGE_BEFORE_RESCHEDULE, chapter.getChapterName(),
                     (dueBy == null) ? "No due date" : dueBy));
             result.append(String.format(MESSAGE_AFTER_RESCHEDULE, date));
-            ui.showToUser(result.toString());
+            return result.toString();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
-            throw new InvalidInputException("The chapter number needs to be within the range "
-                    + "of the total number of chapters\n");
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER));
         }
     }
 
