@@ -20,7 +20,7 @@ public class FlashcardDeck {
         Ui.printDivider();
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter question: ");
-        String question = in.nextLine();
+        final String question = in.nextLine();
         System.out.println("Please enter answer: ");
         String answer = in.nextLine();
         while (answer.equals("back")) {
