@@ -21,7 +21,7 @@ public class WorkspaceCommand extends Command {
     private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
-    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9]*$";
+    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
     public static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
             + "options: -n, -s, -l, and -d.";
     public static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
