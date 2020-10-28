@@ -276,6 +276,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/addlog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
@@ -288,6 +291,9 @@ Expected outcomes:
 ![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
 
 ![Example of usage 2](userGuidePic/dellog%20outcome2.png)  
+
+[Return to the top](#user-guide)  
+
 
 #### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
@@ -303,6 +309,9 @@ Expected outcome:
 
 You can import data from other existing CSVs quickly with the import command  
 Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME` OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME` OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
+
+
+[Return to the top](#user-guide)
 
 ## 5. FAQ
 
