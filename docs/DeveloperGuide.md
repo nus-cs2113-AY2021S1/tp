@@ -1,6 +1,56 @@
 # Developer Guide
 
-{Table of contents goes here}
+## Table of Contents
+- [Introduction]()
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    * [Architecture](#architecture)
+    * [UI Component](#ui-component)
+    * [Command Component](#command-component)
+    * [Parser Component](#parser-component)
+    * [UserData Component](#userdata-component)
+    * [Storage component](#storage-component)
+- [Implementation](#implementation)
+    * [Help]()
+    * [Check](#check-feature)
+    * [Deadline](#deadline-feature)
+    * [Goal](#goal-feature)
+    * [Add](#add-feature)
+    * [List](#list-feature)
+    * [Repeat](#repeat-feature)
+    * [Reminder]()
+    * [Undone]()
+    * [Delete]()
+    * [Extract]()
+    * [Calendar]()
+    * [Done]()
+    * [Note]()
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)   
+    * [User Stories](#user-stories) 
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
+- [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and Shutdown](#launch-and-shutdown)
+    * [Loading and Saving Data](#loading--and-saving-data)
+    * [Adding new event](#adding-new-event)
+    * [Delete Event](#delete-event)
+    * [Repeat Event](#repeat-event)
+    * [Changing status of events](#changing-status-of-events)
+    * [Help Command](#help-command)
+    * [Printing calendar](#printing-calendar)
+    * [Checking schedule availability](#checking-schedule-availability)
+    * [Adding deadline to event](#adding-deadline-to-event)
+    * [Setting reminder](#setting-reminder)
+ 
+ 
+ 
+  
+  
+  
+  
 
 ## Setting up, getting started
 
@@ -25,7 +75,7 @@ The rest of the App consists of five components.
 - `UserData`: Holds the data of the App in the memory.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
-#### Ui
+#### Ui Component
 The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
@@ -40,12 +90,12 @@ API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
 
-### Parser
+#### Parser Component
 ![Parser diagram](./diagrams/Parser_diagram.jpg)
 
 The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
 
-#### UserData
+#### UserData Component
 ![UserData diagram](./diagrams/UserData_diagram.jpg)
 
 The `UserData`
@@ -53,7 +103,7 @@ The `UserData`
 - stores a `Goal` object that represents the current user goal.
 - does not depend on the other components.
 
-#### Storage 
+#### Storage Component
 ![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
@@ -78,11 +128,9 @@ How the storage component save files
 - the Storage class then writes them to the correct Path and the corresponding text(.txt) files are modified. 
 ## Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
+In this section, the features implemented will be explained using various UML diagrams and code snippets.
 
-### Check feature
-
-#### Implementation
+#### Check feature
 
 The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event`s stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
 
@@ -114,7 +162,7 @@ The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
 
-#### [Proposed] Deadline feature
+#### Deadline feature
 
 The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
@@ -129,11 +177,9 @@ The following sequence diagram shows how the deadline operation works: <br>
 
 ![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
 
-#### [Proposed] Goal feature
+#### Goal feature
 
-##### Proposed Implementation
-
-The proposed goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
+The goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
 `UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
 
 Given below is an example usage scenario of the goal feature.
@@ -161,7 +207,7 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 
 ![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
-#### Add Feature
+#### Add feature
 
 The add feature in the program allows the user to create one of 3 different events in scheduler--;.
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
@@ -233,7 +279,7 @@ The following sequence diagram shows how the `list zoom` command is parsed:
 
 ![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
-#### Repeat Feature
+#### Repeat feature
 
 The repeat feature on the program allows for the user to be able to make certain events repeat several times over a defined time period.
 For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat [event type] [index] [timeUnit] [count]`
@@ -298,7 +344,7 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 ![Sequence Diagram for Repeat Command step 7](./diagrams/repeatstep7.jpg)
  
  
-## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
+## Documentation, logging, testing, configuration, dev-ops
 
 ## Appendix: Requirements
 
@@ -403,7 +449,7 @@ Scheduler--; prints an error message and use case ends.
 
 ## Glossary
 
-{* *glossary item* - Definition}
+- Mainstream OS: Windows, Linux, Unix, OS-X
 
 ## Instructions for manual testing
 
