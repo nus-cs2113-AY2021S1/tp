@@ -1,6 +1,6 @@
 package anichan.parser;
 
-import anichan.command.BookmarkCommand;
+import anichan.commands.BookmarkCommand;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 

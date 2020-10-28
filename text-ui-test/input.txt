@@ -1,3 +1,9 @@
+
+
+random name 123
+monster
+
+Other
 Abec Steiner 33rd
 Female
 addws -n
@@ -46,5 +52,18 @@ bookmark -l
 add -a 1
 search -n cowboy
 browse -p 1
+workspace -l
+workspace -d Default
+workspace -d Crunchy Cinnamon
+workspace -d CrispyDonut
+workspace -d CrispyDonut
+workspace -d ED VELVET Crumblesss
+workspace -d COOKIES N CREME CH33SECAKE 
+workspace -d COOKIES N CREME CH33SECAKE  
+workspace -d COOKIES N CREME CH33SECAKE   
+workspace -d  COOKIES N CREME CH33SECAKE   
+workspace -d  COOKIES N CREME CH33SECAKE 
+workspace -d  COOKIES N CREME CH33SECAKE
+workspace -d Default
 workspace -l
 exit

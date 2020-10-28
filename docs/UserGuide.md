@@ -235,9 +235,84 @@ Genre: [Action, Adventure, Drama, Sci-Fi]
 ```
 <br/>
 
-### 3.6
+<!-- @@author ChanJianHao -->
+### 3.6 Workspace management
+
+The workspace management feature provides translators the flexibility of organising their application data like watchlist and bookmark easily.
 
 <br/>
+
+#### 3.6.1 Create new workspace
+
+Creates a new workspace to manage your watchlist(s) and bookmark.
+
+> :memo: Every new workspace you create will generate a similarly named folder to store the watchlist(s) and bookmark. This helps to avoid accidental intermixing of data when you are working on multiple translation projects.
+<br/>
+
+Format: `workspace -n <NAME>`
+
+Example of usage: `workspace -n Crispy Donuts Studio`
+
+The expected outcome:
+```
+Successfully added new workspace: Crispy Donuts Studio
+```
+
+<br/>
+
+#### 3.6.2 Switch workspace
+
+Switches your currently active workspace.
+
+> :memo: As you may create multiple workspaces to organise your translation work, this command allows you to switch between them. A workspace named `Default` is created when you run AniChan for the first time.
+<br/>
+
+Format: `workspace -s <NAME>`
+
+Example of usage: `workspace -s Crispy Donuts Studio`
+
+The expected outcome:
+```
+Workspace switched to Crispy Donuts Studio
+```
+
+<br/>
+
+#### 3.6.3 List workspaces
+
+Lists all your existing workspaces.
+
+Format: `workspace -l`
+
+Example of usage: `workspace -l`
+
+The expected outcome:
+```
+Currently, you have 2 workspace(s):
+1. Default
+2. Crispy Donuts Studio
+```
+
+<br/>
+
+#### 3.6.4 Delete workspace
+
+Deletes an existing workspace and all its data.
+
+> :bulb: Note the command is irreversible and case-sensitive. All watchlists and bookmark created in this workspace will be deleted along with it.
+<br/>
+
+Format: `workspace -d <NAME>`
+
+Example of usage: `workspace -d Default`
+
+The expected outcome:
+```
+Successfully deleted workspace: Default
+```
+
+<br/>
+<!-- @@author -->
 
 ### 3.7 Watchlist management
 
@@ -537,6 +612,7 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 
 ## 4. FAQ
 
+<!-- @@author ChanJianHao -->
 **Q:** What is a workspace?
 <br/>
 **A:** Workspace is a functionality in **AniChan** which provides users the flexibility to organise information. 
@@ -555,6 +631,7 @@ directory you run **AniChan** in.
 **A:** Yes! As **AniChan** saves and loads your information from the data directory, editing the files in `data` folder
 works. However, we would strongly recommend you not to as you may cause data corruption. Use **AniChan** instead if you wish to edit your information!
 <br/>
+<!-- @@author -->
 
 ## 5. Command Summary
 
@@ -592,62 +669,5 @@ works. However, we would strongly recommend you not to as you may cause data cor
 <br/>
 <br/>
 <br/>
-
-### 3.2 Workspace management: `workspace`
-
-This command handles all workspace related operations:
-*   Creates new workspace
-*   Switches workspace
-*   Lists existing workspaces
-*   Deletes workspace
-
-Therefore, the command parameter for workspace command is dependent on the operation you wish to use. 
-For example, `-l` would signify list workspace while `-d` signifies delete.
-
-#### 3.2.1 Creating new workspace
-
-Format: `workspace -n <NAME>`
-
-Example of usage: `workspace -n Crispy Donuts Studio`
-
-The expected outcome:
-```
-Successfully added new workspace: Crispy Donuts Studio
-```
-
-#### 3.2.2 Switching workspace
-
-Format: `workspace -s <NAME>`
-
-Example of usage: `workspace -s Crispy Donuts Studio`
-
-The expected outcome:
-```
-Workspace switched to Crispy Donuts Studio
-```
-
-#### 3.2.3 Listing workspaces
-
-Format: `workspace -l`
-
-Example of usage: `workspace -l`
-
-The expected outcome:
-```
-Currently, you have 2 workspace(s):
-1. Default
-2. Crispy Donuts Studio
-```
-
-#### 3.2.4 Deleting workspace
-
-Format: `workspace -d <NAME>`
-
-Example of usage: `workspace -d Default`
-
-The expected outcome:
-```
-Successfully deleted workspace: Default
-```
 
 <br/>

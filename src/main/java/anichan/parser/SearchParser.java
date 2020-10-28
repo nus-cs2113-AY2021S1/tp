@@ -1,6 +1,6 @@
 package anichan.parser;
 
-import anichan.command.SearchCommand;
+import anichan.commands.SearchCommand;
 import anichan.exception.AniException;
 
 public class SearchParser extends CommandParser {
