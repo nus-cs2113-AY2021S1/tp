@@ -5,27 +5,27 @@
 1. [Introduction](#1.-introduction)
 1. [Quick Start](#2.-quick-start) 
 1. [Features](#3.-features)<br>
-&nbsp;&nbsp;3.1. [Project `project`](#3.1.-Project-project)<br> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1. [Create a new project](#3.1.1.-create-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2. [View project information](#3.1.2.-View-project-information)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3. [List all projects](#3.1.3.-list-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.4. [Select project](#3.1.4.-select-project)<br>
-&nbsp;&nbsp;3.2. [Project Member `member`](#3.2.-Project-Member-member)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add team members](#3.2.1.-Add-team-members-into-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove team members](#3.2.2.-Remove-team-members-from-project)<br>
-&nbsp;&nbsp;3.3. [Project Backlog `task`](#3.3.-Project-Backlog-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Add tasks](#3.3.1.-Add-tasks)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [View tasks](#3.3.2.-View-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete tasks](#3.3.3.-Delete-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the priority of tasks](#3.3.4.-Change-the-priority-of-a-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark tasks as complete](#3.3.5.-Mark-task-as-complete)<br>
-&nbsp;&nbsp;3.4. [Sprint `sprint`](#3.4.-Sprint-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a new sprint](#3.4.1.-Create-a-new-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View sprint information](#3.4.2.-View-current-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Add tasks to the sprint](#3.4.3.-Add-tasks-to-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Delete tasks from the sprint](#3.4.4.-Remove-tasks-from-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Allocate tasks to team members](#3.4.5.-Allocate-tasks-to-team-members)<br>
-1. [Command Summary](#4.-command-summary)
+&nbsp;&nbsp;3.1. [Project `project`](#31-project-project)<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1. [Create a new project](#311-create-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2. [View project information](#312-view-project-information)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3. [List all projects](#313-list-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.4. [Select project](#314-select-project)<br>
+&nbsp;&nbsp;3.2. [Project Member `member`](#32-project-member-member)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add team members](#321-add-team-members-into-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove team members](#322-remove-team-members-from-project)<br>
+&nbsp;&nbsp;3.3. [Project Backlog `task`](#33-project-backlog-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Add tasks](#331-add-tasks)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [View tasks](#332-view-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete tasks](#333-delete-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the priority of tasks](#334-change-the-priority-of-a-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark tasks as complete](#335-mark-task-as-complete)<br>
+&nbsp;&nbsp;3.4. [Sprint `sprint`](#34-sprint-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a new sprint](#341-create-a-new-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View sprint information](#342-view-current-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Add tasks to the sprint](#343-add-tasks-to-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Delete tasks from the sprint](#344-remove-tasks-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Allocate tasks to team members](#345-allocate-tasks-to-team-members)<br>
+1. [Command Summary](#4-command-summary)
 
 
 ## 1. Introduction
