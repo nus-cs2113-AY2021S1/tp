@@ -1,0 +1,28 @@
+@startuml
+-> ":ListChaptersCommand" : execute(ui, access, storage)
+activate ":ListChaptersCommand"
+":ListChaptersCommand" -> ":ListChaptersCommand" : listChapters(access, storage)
+activate ":ListChaptersCommand"
+":ListChaptersCommand" -> ":Access" : getModule()
+":ListChaptersCommand" <-- ":Access"
+destroy ":Access"
+":ListChaptersCommand" -> ":Module" : getChapters()
+":ListChaptersCommand" <-- ":Module" : chapters
+destroy ":Module"
+":ListChaptersCommand" -> ":ChapterList" : getAllChapters()
+":ListChaptersCommand" <-- ":ChapterList" : allChapters
+":ListChaptersCommand" -> ":ChapterList" : getChapterCount()
+":ListChaptersCommand" <-- ":ChapterList" : chapterCount
+destroy ":ChapterList"
+opt chapterCount = 0
+    <-- ":ListChaptersCommand" : EmptyFileException
+end
+loop go through all chapters
+":ListChaptersCommand" --> ":ListChaptersCommand" : result
+end
+deactivate ":ListChaptersCommand"
+":ListChaptersCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":ListChaptersCommand"
+deactivate ":ListChaptersCommand"
+@enduml

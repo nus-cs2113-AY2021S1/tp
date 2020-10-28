@@ -1,0 +1,26 @@
+@startuml
+-> ":HistoryCommand" : execute(ui, access, storage)
+activate ":HistoryCommand"
+":HistoryCommand" -> ":HistoryCommand" : listHistory(access, storage)
+activate ":HistoryCommand"
+":HistoryCommand" -> ":Storage" : loadHistory(date)
+":HistoryCommand" <-- ":Storage"
+":HistoryCommand" -> ":ArrayList<History>" : size()
+":HistoryCommand" <-- ":ArrayList<History>" : count
+destroy ":ArrayList<History>"
+opt count = 0
+":HistoryCommand" --> ":HistoryCommand" : result
+end
+loop go through history
+    alt last history
+    ":HistoryCommand" --> ":HistoryCommand" : result
+    else
+    ":HistoryCommand" --> ":HistoryCommand" : result
+    end
+end
+deactivate ":HistoryCommand"
+":HistoryCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":HistoryCommand"
+deactivate ":HistoryCommand"
+@enduml

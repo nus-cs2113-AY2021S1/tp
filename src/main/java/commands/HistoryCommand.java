@@ -6,6 +6,7 @@ import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,6 +31,17 @@ public class HistoryCommand extends Command {
     public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
         String result = listHistory(storage);
         ui.showToUser(result);
+    }
+
+    public static void addHistory(Ui ui, Access access, Storage storage, int reviseIndex) throws IOException {
+        LocalDate date = java.time.LocalDate.now();
+        storage.createHistory(ui, date.toString());
+        String moduleName = access.getModule().getModuleName();
+        String chapterName = access.getModule().getChapters().getChapter(reviseIndex).getChapterName();
+        History history = new History(moduleName, chapterName, 100);
+        ArrayList<History> histories = storage.loadHistory(date.toString());;
+        histories.add(history);
+        storage.saveHistory(histories, date.toString());
     }
 
     private String listHistory(Storage storage) throws FileNotFoundException {

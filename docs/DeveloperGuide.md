@@ -95,6 +95,8 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
+![Architecture Diagram of Design Component](UML/Architecture.png)
+
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 The main class is `Kaji.java`. It is responsible for:
@@ -216,6 +218,23 @@ The following diagam shows how the add module command feature works:
 #### 4.1.2. List Modules Feature
 (Zeyu)
 
+The list modules feature allows the user to list all modules in admin level 
+
+The list modules mechanism is facilitated by `ListModulesCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListModulesCommand#execute()` — oversees entire execution for listing modules.
+* `ListModulesCommand#listModules()` — gets and lists all modules in admin level.
+
+For instance, the user wants to list all modules available in `admin`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `admin` level. 
+
+* Step 2: The user enters `list` command to list all modules in `admin` level. 
+
+The following sequence diagram shows how the list modules feature works:
+![Sequence Diagram of List Modules](UML/listmod_seq_diagram.png)
+
 #### 4.1.3. Edit Module Name Feature
 (Jane)
 ##### Implementation
@@ -249,6 +268,7 @@ The following sequence diagram shows how the edit module name feature works:
 (Jia Ern)
 
 The remove module feature allows the user to remove a module by specifying the index of the module in the list. 
+
 The remove module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
 
 In addition, it implements the following operations:
@@ -349,6 +369,23 @@ The following diagam shows how the add chapter command feature works:
 #### 4.2.2. List Chapters Feature
 (Zeyu)
 
+The list chapters feature allows the user to list all chapters in module level 
+
+The list chapters mechanism is facilitated by `ListChaptersCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListChaptersCommand#execute()` — oversees entire execution for listing chapters.
+* `ListChaptersCommand#listChapters()` — gets and lists all chapters in module level.
+
+For instance, the user wants to list all chapters available in `CS2113T` (module name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `CS2113T` level. 
+
+* Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
+
+The following sequence diagram shows how the list chapters feature works:
+![Sequence Diagram of List Chapters](UML/listchap_seq_diagram.png)
+
 #### 4.2.3. Edit Chapter Name Feature
 (Jane)
 ##### Implementation
@@ -421,6 +458,23 @@ The following sequence diagram shows how the remove chapter feature works:
 
 #### 4.3.2. List Flashcards Feature
 (Zeyu)
+
+The list flashcards feature allows the user to list all flashcards in chapter level 
+
+The list flashcards mechanism is facilitated by `ListCardsCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListCardsCommand#execute()` — oversees entire execution for listing flashcards.
+* `ListCardsCommand#listCards()` — gets and lists all flashcards in chapter level.
+
+For instance, the user wants to list all flashcards available in `Chapter 1` (chapter name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `Chapter 1` level. 
+
+* Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
+
+The following sequence diagram shows how the list flashcards feature works:
+![Sequence Diagram of List Cards](UML/listcard_seq_diagram.png)
 
 #### 4.3.3. Edit Flashcard Content Feature
 (Jane)
@@ -733,6 +787,23 @@ The following sequence Diagrams illustrates how the Exclusion Process is execute
 #### 4.5.5. View Revision History Feature
 (Zeyu)
 
+The view revision history feature allows the user to list the revision completed in the session/in a day. In case the user enters `history` follow by a `date(example: 2020-10-10)`, `Kaji` will list the revision completed in `October 10, 2020`. Otherwise, `Kaji` will list the revision completed in the day the user uses `HelpCommand`. This feature can be accessed at any level.
+
+The history mechanism is facilitated by `HistoryCommand`. It extends from the abstract class `Command`. 
+
+In addition, it implements the following operations:
+
+* `HistoryCommand#execute()` — calls the list method to list the history. 
+* `HistoryCommand#listHistory()` — lists the revision completed in the session/in a day.
+
+Given below is an example usage scenario and how the history mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the admin level. 
+
+Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
+
+The following sequence diagram shows how the list chapters feature works:
+![Sequence Diagram of List History](UML/listhistory_seq_diagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
