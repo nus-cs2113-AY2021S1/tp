@@ -136,7 +136,10 @@ public class Formatter {
         for (Integer day : days) {
             ArrayList<Event> dailyEvents = timetable.get(day);
             for (Event event : dailyEvents) {
-                results.addAll(formatEvent(event));
+                ArrayList<String> tempResults = formatEvent(event);
+                String title = tempResults.get(0).concat(event.getTagsName());
+                tempResults.set(0, title);
+                results.addAll(tempResults);
                 results.add(" ");
             }
         }
@@ -191,7 +194,7 @@ public class Formatter {
         int i = 1;
         for (Event event : events) {
             eventStringRepresentation = formatEvent(event);
-            String title = String.format("%d. %s", i++, eventStringRepresentation.get(0));
+            String title = String.format("%d. %s %s", i++, eventStringRepresentation.get(0), event.getTagsName());
             eventStringRepresentation.set(0, title);
             eventsStrings.addAll(eventStringRepresentation);
         }
