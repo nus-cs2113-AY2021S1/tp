@@ -308,8 +308,8 @@ Example of usage:
 
 ### Prioritizing a task: `*t`                                                                                                    
 
-If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. Only tasks can be marked as important.
-Mark a task as important.
+When you have important tasks, you can prioritize them in the task list to distinguish from ordinary tasks.
+If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. 
     
 Format: `*t <task_number>`
     
@@ -317,7 +317,7 @@ Example of usage:
 
 `*t 1` - marks the first task in the task list as important.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Only a task can be marked as important, events are not allowed to be marked as important.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **You can only mark tasks as important, events are not allowed to be marked as important.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
 
 ### Printing tasks: `print tasks`
 
@@ -335,20 +335,23 @@ Format: `print events`
 
 ### Printing important tasks: `print *`
     
-If you want to see the important tasks you have now, you can type `print *` to see the list of all-important tasks.                           
+If you just want to view all the important tasks instead of all the tasks in the calendar list now, 
+you can type `print *` command to view the list of important tasks together with their information.                           
                                                     
 Format: `print *`
 
 ### Printing progress: `print progress`
 
-If you want to know the progress of your tasks now, you can type `print progress` command to see the proportion in fraction and percentage of the finished tasks in all the tasks. 
-Show the fraction and percentage of tasks which are marked as done in all tasks.
+If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, 
+you can type  `print progress` command to see the fraction and percentage proportion of the finished tasks among all the tasks.
 
 Format: `print progress`
 
 ### Giving suggestion: `suggestion`
 
-If you want to get some suggestions about preparing tasks that are important or have the earliest deadline, you can type the `suggestion` command to see suggestions.  
+When you have a lot of tasks and do not know which several tasks should be prepared first, you can get some simple suggestions from the 25HoursADay. 
+The program can select several important and recent tasks and print them out together will their information. 
+If you want to get the suggestions, you can type the `suggestion` command to see suggestions.  
 Print simple suggestions about preparing which tasks first.
     
 Format: `suggestion`
