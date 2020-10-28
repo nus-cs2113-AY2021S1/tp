@@ -20,7 +20,7 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.7 [Delete a module: `deletemod`](#deletemod)
     <br/>&nbsp;2.8 [Delete expected module workload: `deleteexp`](#deleteexp)
     <br/>&nbsp;2.9 [Minus from actual time spent on a module: `minustime`](#minus) 
-    <br/>&nbsp;2.10 [Edit actual time spent on a module: `deletetime`](#edit)
+    <br/>&nbsp;2.10 [Edit actual time spent on a module: `edittime`](#edit)
     <br/>&nbsp;2.11 [Delete actual time spent on a module: `deletetime`](#deletetime)
     <br/>&nbsp;2.12 [Add tasks: `addtask`](#addtask)
     <br/>&nbsp;2.13 [List all tasks: `listtask`](#listtask)
