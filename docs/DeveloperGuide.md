@@ -18,7 +18,7 @@
 <br/>&nbsp;4.2 [Estimation Feature](#42-estimation-feature)
 <br/>&nbsp;4.3 [Bookmark Feature](#43-bookmark-feature)
 <br/>&nbsp;4.4 [Browse Feature](#44-browse-feature)
-5. [Produce scope](#5-product-scope)
+5. [Product scope](#5-product-scope)
 <br/>&nbsp;5.1 [Target user profile]()
 <br/>&nbsp;5.2 [Value proposition]()
 6. [User stories](#6-user-stories)
@@ -99,8 +99,8 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 *Figure 1: Architecture Diagram*
 
-| :bulb:  | The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder |
-|---------------|:------------------------|
+> :bulb:   The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder |
+
 
 The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
 
@@ -225,6 +225,132 @@ WIP.
 
 <br/>
 
+### 4.8 Browse Feature
+The browse feature is a useful feature that will allow users to quickly look through all 
+the different anime series available in a browsing fashion. The feature will have several enhancements such 
+as sorted browsing to browse in alphabetical or by the rating of the anime.
+
+#### 4.8.1 Current Implementation
+The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user input. It will then fetch `Anime` objects matching the parameters specified by `BrowseCommandParser` that are stored in `AnimeData`. It extends the `Command` class and implements the following operations:
+- `BrowseCommand#sortBrowseList()` - Handles any sorting of `Anime` objects. 
+- `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
+
+These are the two fundamental operations that will carry out the execution of the browse command.
+
+`BrowseCommand` will be constructed with default values. This ensures that even when there is no input provided, 
+it can still perform a default browse and return relevant useful information.
+
+Before going any further, please refer to this helpful table of the `BrowseCommand` parameters for reference.
+
+| Attribute | Option | Function          |
+| ---       | ---    | ---               |
+| order     | 0      | Ascending         |
+| order	    | 1      | Descending        |
+| sortType  | 0      | No Sort           |
+| sortType  | 1      | by name           |
+| sortType  | 2      | by rating         |
+| sortType  | 3      | back to original  |
+| page      | \>= 1  | page number       |
+
+> :bulb: The magic values have already been refactored out into constant variables.
+
+Given below is an example usage scenario to showcase how a `BrowseCommand` will behave at each step. 
+This example will utilise a small sample list of `AnimeData` and a page size of `3`.
+
+> :memo: It is set to `20` as default in actual execution. 
+
+**Step 1:** When the user enters the command for `Browse`, the input will be processed and parsed by `parser.java` and 
+then further parsed by `BrowseParser.java`.
+
+**Step 2:** Upon completion of parsing and input validation, `BrowseParser.java` will create an executable `BrowseCommand` 
+object and return it to `main`.
+
+**Step 3:** Once the `BrowseCommand` object is executed, it will firstly process the `AnimeData` by calling on its `BrowseCommand#sortBrowseList()` operation to identify the order that the list will need to be in (if any).
+
+For this case since it is a default browse operation, there is no sorting performed.
+
+**Step 4:** Now `BrowseCommand` will utilise its `BrowseCommand#buildBrowseOutput()` operation to access all 
+`Anime objects within the page window, as shown in the diagram below.
+
+![Browse Object Diagram 1](images/Browse-Default-State.png)
+
+*Figure 9: Browse Default State Object Diagram*
+
+In this example, it fetches the following `Anime` objects.
+```
+Charlie
+Echo
+Gamma
+```
+
+If the 2nd page of the list was requested instead with the command `browse -p 2`. 
+`BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
+
+
+![Browse Object Diagram 2](images/Browse-Default-State2.png)
+
+*Figure 10: Browse Next Page Object Diagram*
+
+**Step 5:** At each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
+
+**Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseOption()` again to reset the `AnimeData` list to its original form if it has been altered.
+
+**Step 7:** Once `AnimeData` has been sorted, it will return the result back to `Main` for printing.
+
+
+Currently, this result is not very exciting as it is just based on the Anime ID which is assigned randomly by our data source, AniList.
+
+An example scenario would be browsing the 2nd page of a **sorted** list in ascending order.
+The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
+
+
+![Browse Object Diagram 3](images/Browse-Sorted-State.png)
+
+*Figure 11: Browse Sorted State Object Diagram*
+
+As you can see, even though the page window is at the same position as the previous command, 
+the list is different as it has been sorted.
+
+From this point onwards, the operation will continue as per the steps above but during the final `BrowseCommand#sortBrowseList()` call in step 6. It will perform a sort to reset the list.
+
+Here is the sequence diagram to better illustrate the lifecycle of a browse command.
+
+![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
+
+*Figure 12: Browse Sorted Sequence Diagram*
+
+<br/>
+
+
+#### 4.8.2 Design Consideration
+Here are some various design considerations that was taken when implementing the `browse` feature.
+
+The first design consideration was how the sorting should be carried out. The main issues here are the time and storage complexity.
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Leaving the list unsorted                    | - No complexity and fastest approach  | - List will be unsorted and may cause confusion to users |
+| 2. Resorting the list again                     | - The list will be back into its original form before browsing    | - May hinder performance as resorting could take time <br/> - Requires altering of the main list |
+| 3. Cloning a duplicate animeData object to sort | - The list will be back to its original form <br/> - The main list will not be affected at all | - Expensive operation that will require large storage and time complexity |
+
+Currently, the 2nd approach is being used with the following rationale. While the 1st approach is the fastest, the consequence of 
+leaving the main list unsorted is too great and may produce a lot of uncertain results as well as confuse the user. 
+Although the 3rd approach provides the best benefit, its complexity may end up violating the project’s memory limit constraint if the list is large. 
+Therefore, the 2nd approach was chosen, as its performance cost outweighs the other approaches cons.  
+
+The second design consideration was how to carry out the page by page browsing as shown above. 
+The main issue was the cohesiveness between components.
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Interactive browsing, users can `flip` pages and `pick` to view specific anime | - Fluid and seamless browsing session. <br/>- Very good usability. | - Would require `BrowseCommand` to get user input. |
+| 2. Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component <br/>- Allows for browse to be more precise in finding what the user wants |  - Not as seamless as the first approach but still usable. |
+
+Though the 1st approach could have created a more authentic browsing feature it would not fit the requirements as well as the 
+2nd approach. The 2nd approach allows for more precise browsing of pages means that more experienced users are able to utilise the 
+tool quicker and to the same effect as the first approach. As a result, the 2nd approach was chosen as a better fit of the requirements 
+and in favour of having an application that is highly object-oriented.
+
 ## 8. Documentation, logging, testing, dev-ops
 
 This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
@@ -278,6 +404,9 @@ There are primarily 2 ways to run the tests.
 <br/>
 
 ### 8.4 Dev-ops
+
+`Coming soon`
+
 
 <br/>
 
