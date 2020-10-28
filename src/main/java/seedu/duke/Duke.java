@@ -11,6 +11,7 @@ import seedu.duke.storage.StorageParser;
 import seedu.duke.ui.Ui;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -62,11 +63,13 @@ public class Duke {
 
                 ui.printDividerLine();
                 String userInput = ui.receiveCommand();
-                ui.printDividerLine();
-                Command c = currentParse.parse(userInput);
-                isExit = c.isExit();
-
-                c.execute(data, ui, storage);
+                ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+                for (String commInputs : allCommandInputs) {
+                    ui.printDividerLine();
+                    Command c = currentParse.parse(commInputs);
+                    isExit = c.isExit();
+                    c.execute(data, ui, storage);
+                }
 
             } catch (DukeException e) {
                 ui.printErrorMessage(e.getMessage());
