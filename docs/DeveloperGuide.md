@@ -1,5 +1,8 @@
 # Developer Guide
 
+* Table of Contents
+{:toc} 
+
 ## Design 
 
 ### UI component
