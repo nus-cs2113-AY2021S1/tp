@@ -269,7 +269,7 @@ public class Parser {
         return level;
     }
 
-    private static Command  prepareRemove(String commandArgs, Access access) throws InvalidInputException,
+    private static Command prepareRemove(String commandArgs, Access access) throws InvalidInputException,
             IncorrectAccessLevelException {
         int removeIndex;
         String type = getType(access);
