@@ -487,8 +487,42 @@ User keys in `workspace -d Default` to delete the workspace named `Default`.
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
 *Figure 1: Workspace Command After New Workspace Delete*
 
+<br/>
 
+The following sequence diagram shows how `Workspace` creation in Step 4 works:
 
+<br/>
+
+#### 4.3.2 Design Consideration
+
+This section shows some design considerations taken when implementing the `Workspace` feature.
+
+Aspect: **How can `Workspace` be identified?**
+
+As most commands in `WorkspaceCommand` operates on an individual `Workspace`, there needs to be some way to identify each of them uniquely. 
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| Identify using an number ID | Users can quickly `switch` and `delete` `Workspace` just by keying in a number | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic |
+| Identify using name  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first | User may waste time typing long workspace names |
+
+We have decided to use `name` to identify `Workspace` as it is more intuitive for end-user. 
+This also avoids the need to maintain an integer `ID` for each `Workspace`.
+
+<br/>
+
+Aspect: **`Workspace` name restrictions**
+
+As `Workspace` is identified by their names, and other classes like Storage relies on the name to make folders for data storage purposes.
+Should we allow the user full discretion to naming `Workspace`?
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
+| No   | No unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
+
+For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
+all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented.
 
 <br/>
 
