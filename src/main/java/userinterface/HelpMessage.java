@@ -41,15 +41,17 @@ public class HelpMessage extends Ui {
             + "back                 - go back to bookmark main\n";
 
     private static final String timetableCommand =  "Here are the timetable commands available:\n"
-            + "add class /MODULE_CODE /ONLINE or OFFLINE\n"
-            + "/ZOOM_LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
-            + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
-            + "show schedule                                                     - display schedule";
+            + "add class        - adds a class to the timetable\n"
+            + "add activity     - adds an activity to the timetable\n"
+            + "show link        - displays the links/venues of events occurring in the next 2 hours\n"
+            + "show schedule    - displays schedule\n";
 
     private static final String flashcardCommands = "Here are the flashcard commands available:\n"
             + "add     - adds a question and answer to the flashcard deck\n"
             + "list    - shows the flashcards that have been added\n"
+            + "delete  - deletes the flashcard corresponding to the card index entered by user"
             + "test    - user can attempt to answer a random question from the flashcard deck\n"
+            + "find    - searches and returns flashcards containing user's desired search term"
             + "back    - exit test mode and go back to flashcard main\n";
 
     public static void printHelpMessage() {
