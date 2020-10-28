@@ -60,9 +60,14 @@ public class Ui {
     public static void changeModeCommand(String command) {
         try {
             Mode newMode = CommandParser.getDestinationMode(command);
-            StudyIt.changeMode(newMode);
-            printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
-            printModeIntro(newMode);
+
+            if (newMode != StudyIt.getCurrentMode()) {
+                StudyIt.changeMode(newMode);
+                printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
+                printModeIntro(newMode);
+            } else {
+                printLine("You are already in " + ModeNames.getCurrentModeName() + "!");
+            }
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
@@ -76,7 +81,26 @@ public class Ui {
             BookmarkUi.printWelcomeBookmarkMessage();
             //BookmarkUi.showBookmarkCategoryList();
             printDivider();
+        } else if (newMode == Mode.ACADEMIC) {
+            printWelcomeAcademicMessage();
+        } else if (newMode == Mode.TIMETABLE) {
+            printWelcomeTimetableMessage();
         }
+    }
+
+    public static void printWelcomeAcademicMessage() {
+        System.out.println("Welcome to academic mode!");
+        System.out.println("\nYou can use this mode to keep track of your grades"
+                + "\n& important contacts");
+        System.out.println("\nInsert \"help\" to find the list of commands available");
+        printDivider();
+    }
+
+    public static void printWelcomeTimetableMessage() {
+        System.out.println("Welcome to timetable mode!");
+        System.out.println("\nYou can use this mode to schedule your classes & events");
+        System.out.println("\nInsert \"help\" to find the list of commands available");
+        printDivider();
     }
 
     public static void exitMode() {
