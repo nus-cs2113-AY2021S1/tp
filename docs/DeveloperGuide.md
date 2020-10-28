@@ -126,13 +126,15 @@ Each condition will correspond to a reciprocal CommandResult printout.
 
 #### Off Command
 
-The *OffCommand* shown below explains the Sequence Diagram of the Off Command. When the Main class calls the `execute()` function there are 2 cases for off command:
+The *OffCommand* shown below explains the Sequence Diagram of the Off Command. When the Main class calls the `execute()`
+function there are 2 cases for off command:
 1. OnByLocation
 2. OnByAppliance
 
 ![Sequence of Off Command](images/diagrams/Sequence_OffCommand.png) <br>
 
-The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking the key in the LocationList, if it exists, the program will deem it as 'OffByLocation' vice versa.
+The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking 
+the key in the LocationList, if it exists, the program will deem it as 'OffByLocation' vice versa. 
 
 ##### 1. OffByLocation
 This method will call offByApplianceLoop which turns off every appliance in that location.
