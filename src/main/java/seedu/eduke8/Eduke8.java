@@ -48,7 +48,7 @@ public class Eduke8 {
 
             userStorage = new UserStorage(userPath, topicList, bookmarkList);
             userStorage.load();
-        } catch (ParseException | IOException e) {
+        } catch (ParseException | IOException | ClassCastException e) {
             ui.printError(ERROR_STORAGE_FAIL);
             LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
             System.exit(1);

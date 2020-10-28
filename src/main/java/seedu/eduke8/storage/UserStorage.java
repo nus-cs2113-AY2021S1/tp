@@ -29,6 +29,13 @@ public class UserStorage extends LocalStorage {
         this.bookmarkList = bookmarkList;
     }
 
+    /**
+     * Saves user attributes to a local file in JSON format from the topicList and bookmarkList.
+     * Returns the file where data was written to.
+     *
+     * @return File where data was written to.
+     * @throws IOException  If the file is not found or cannot be written to.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public File save() throws IOException {
@@ -49,10 +56,21 @@ public class UserStorage extends LocalStorage {
         return file;
     }
 
+    /**
+     * Loads user attributes from a local file in JSON format into the topicList and bookmarkList.
+     * Returns the topics in the topicList.
+     *
+     * @return Topics from the topicList in an ArrayList.
+     * @throws IOException  If the file is not found or cannot be read.
+     * @throws ParseException  If the file contents cannot be parsed as a JSON.
+     * @throws ClassCastException If the the nesting of arrays and objects in the JSON is wrong
+     * @throws NullPointerException If the keys required are not present in the file.
+     */
     @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException, Eduke8Exception {
+    public ArrayList<Displayable> load()
+            throws IOException, ParseException, Eduke8Exception, ClassCastException, NullPointerException {
         if (!file.exists()) {
-            return new ArrayList<>();
+            return super.load();
         }
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();

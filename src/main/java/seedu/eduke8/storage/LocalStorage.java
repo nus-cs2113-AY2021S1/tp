@@ -13,6 +13,14 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public abstract class LocalStorage implements Storage {
+    protected static final String KEY_TOPIC = "topic";
+    protected static final String KEY_QUESTIONS = "questions";
+    protected static final String KEY_DESCRIPTION = "description";
+    protected static final String KEY_OPTIONS = "options";
+    protected static final String KEY_HINT = "hint";
+    protected static final String KEY_EXPLANATION = "explanation";
+    protected static final String KEY_CORRECT_OPTION = "correct";
+    protected static final String PATH_SEPARATOR = "/";
     protected String filePath = new File("").getAbsolutePath();
     protected static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     protected File file;
@@ -31,8 +39,9 @@ public abstract class LocalStorage implements Storage {
     }
 
     @Override
-    public ArrayList<Displayable> load() throws IOException, ParseException, Eduke8Exception {
-        return null;
+    public ArrayList<Displayable> load()
+            throws IOException, ParseException, Eduke8Exception, ClassCastException, NullPointerException {
+        return new ArrayList<>();
     }
 
     protected JSONArray getJsonArrayFromFile() throws IOException, ParseException {
@@ -47,7 +56,7 @@ public abstract class LocalStorage implements Storage {
 
     private String appendRelativePath(String originalPath, String relativePath) {
         String fullPath = originalPath;
-        String[] relativePathSplit = relativePath.split("/");
+        String[] relativePathSplit = relativePath.split(PATH_SEPARATOR);
         for (String path: relativePathSplit) {
             fullPath += File.separator + path;
         }
