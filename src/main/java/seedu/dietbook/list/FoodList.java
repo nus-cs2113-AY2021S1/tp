@@ -150,6 +150,22 @@ public class FoodList {
         return FoodListManager.listToPortionedFoods(entriesInRange);
     }
 
+    /**
+     * Obtain list of portion sizes.
+     * (For storage purposes)
+     */
+    public List<Integer> getPortionSizes() {
+        return FoodListManager.listToPortionSizes(foodEntries);
+    }
+
+    /**
+     * Obtain list of LocalDateTimes for when the entries were made.
+     * (For storage purposes)
+     */
+    public List<LocalDateTime> getDateTimes() {
+        return FoodListManager.listToLocalDateTimes(foodEntries);
+    }
+
     @Override
     public String toString() {
         return FoodListManager.listToString(foodEntries);

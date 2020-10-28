@@ -38,7 +38,7 @@ public class Ui {
     }
 
     /**
-     * Prints the welcome message from DietBook when it is fist booted up.
+     * Prints the welcome message from DietBook when it is first booted up.
      */
     public void printWelcomeMessage() {
         String logo = getLogo();
@@ -245,6 +245,19 @@ public class Ui {
     }
 
     /**
+     * Prints food items recorded into the food list after a given timing in the order that they were
+     * added or a message stating no food items were recorded after the given timing till now.
+     *
+     * @param foods The string representation of food items in the food list recorded from the given time
+     *     till now.
+     * @param start Starting date time of the time period till now.
+     */
+    public void printFoodList(String foods, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printFoodList(foods, start, end);
+    }
+
+    /**
      * Prints a message to show that the food specified has been added to the food list.
      *
      * @param newFood The string representation of the new food item that was added to the food list.
@@ -291,6 +304,86 @@ public class Ui {
 
         print("Hi " + trimString(name) + "!" + LINE_SEPARATOR
                 + "Here is your daily recommended calorie intake: " + calorieRecommendation + "kcal");
+    }
+
+    public void printCarbIntake(int carbIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(carbIntake,"carbohydrate",
+                "g"));
+    }
+    
+    public void printCarbIntake(int carbIntake, LocalDateTime start, LocalDateTime end) {
+        String carbIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(carbIntake,
+                "carbohydrate", "g");
+        print(stringIntakeAndFoodsWithTime(carbIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printCarbIntake(int carbIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCarbIntake(carbIntake, start, end);
+    }
+
+    public void printCalorieIntake(int calorieIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(calorieIntake,"calorie","kcal"));
+    }
+
+    public void printCalorieIntake(int calorieIntake, LocalDateTime start, LocalDateTime end) {
+        String calorieIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(calorieIntake,
+                "calorie", "kcal");
+        print(stringIntakeAndFoodsWithTime(calorieIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printCalorieIntake(int calorieIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printCalorieIntake(calorieIntake, start, end);
+    }
+
+    public void printProteinIntake(int proteinIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(proteinIntake,"protein","g"));
+    }
+
+    public void printProteinIntake(int proteinIntake, LocalDateTime start, LocalDateTime end) {
+        String proteinIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(proteinIntake,
+                "protein", "g");
+        print(stringIntakeAndFoodsWithTime(proteinIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printProteinIntake(int proteinIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printProteinIntake(proteinIntake, start, end);
+    }
+
+    public void printFatIntake(int fatIntake) {
+        print(stringOneIntakeAndFoodsWithoutTime(fatIntake,"fat","g"));
+    }
+
+    public void printFatIntake(int fatIntake, LocalDateTime start, LocalDateTime end) {
+        String fatIntakeAndFoodsWithoutTime = stringOneIntakeAndFoodsWithoutTime(fatIntake,
+                "fat", "g");
+        print(stringIntakeAndFoodsWithTime(fatIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printFatIntake(int fatIntake, LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printFatIntake(fatIntake, start, end);
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
+                               int fatIntake) {
+        print(stringAllIntakeAndFoodsWithoutTime(calorieIntake, carbIntake, proteinIntake,
+                fatIntake));
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
+                               int fatIntake, LocalDateTime start, LocalDateTime end) {
+        String allIntakeAndFoodsWithoutTime = stringAllIntakeAndFoodsWithoutTime(calorieIntake,
+                carbIntake, proteinIntake, fatIntake);
+        print(stringIntakeAndFoodsWithTime(allIntakeAndFoodsWithoutTime, start, end));
+    }
+
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake,
+                               LocalDateTime start) {
+        LocalDateTime end = LocalDateTime.now();
+        printAllIntake(calorieIntake, carbIntake, proteinIntake, fatIntake, start, end);
     }
 
     /**
@@ -351,6 +444,7 @@ public class Ui {
         printCarbIntakeAndFoods(carbIntake, recalculatedFoods, start, end);
     }
 
+
     /**
      * Prints the total amount of calories consumed by the user and the list of food items which had
      * their nutritional information recalculated by DietBook if any.
@@ -409,6 +503,7 @@ public class Ui {
         printCalorieIntakeAndFoods(calorieIntake, recalculatedFoods, start, end);
     }
 
+
     /**
      * Prints the total amount of proteins consumed by the user and the list of food items which had
      * their nutritional information recalculated by DietBook if any.
@@ -466,6 +561,7 @@ public class Ui {
         LocalDateTime end = LocalDateTime.now();
         printProteinIntakeAndFoods(proteinIntake, recalculatedFoods, start, end);
     }
+
 
     /**
      * Prints the total amount of fats consumed by the user and the list of food items which had
@@ -776,6 +872,16 @@ public class Ui {
         return stringNutrientIntake + LINE_SEPARATOR + message;
     }
 
+    private String stringOneIntakeAndFoodsWithoutTime(int nutrientIntake, String nutrientType,
+                                                      String nutrientUnit) {
+        performAssertionsForStringInputs(nutrientType,"Nutrient Type");
+        performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
+        performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
+
+        String stringNutrientIntake = stringNutritionalIntake(nutrientIntake, nutrientType, nutrientUnit);
+        return stringNutrientIntake;
+    }
+
     /**
      * Returns a string representation of the total amount of a nutrient or all nutrientS consumed by the
      * user  during a given time period and the list of food items recorded during the same time period
@@ -832,6 +938,27 @@ public class Ui {
                 + stringProteinIntake + LINE_SEPARATOR
                 + stringFatIntake + LINE_SEPARATOR
                 + message;
+
+    }
+
+    private String stringAllIntakeAndFoodsWithoutTime(int calorieIntake, int carbIntake, int proteinIntake,
+                                                      int fatIntake) {
+        performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
+        performAssertionsForNutritionalIntake(calorieIntake, "calorie");
+        performAssertionsForNutritionalIntake(proteinIntake, "protein");
+        performAssertionsForNutritionalIntake(fatIntake, "fat");
+
+
+        String stringCarbIntake = stringNutritionalIntake(carbIntake,"carbohydrate", "g");
+        String stringCalorieIntake = stringNutritionalIntake(calorieIntake,"calorie",
+                "kcal");
+        String stringProteinIntake = stringNutritionalIntake(proteinIntake,"protein", "g");
+        String stringFatIntake = stringNutritionalIntake(fatIntake,"fat", "g");
+
+        return stringCalorieIntake + LINE_SEPARATOR
+                + stringCarbIntake + LINE_SEPARATOR
+                + stringProteinIntake + LINE_SEPARATOR
+                + stringFatIntake + LINE_SEPARATOR;
 
     }
 

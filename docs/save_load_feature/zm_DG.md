@@ -1,8 +1,3 @@
-# Developer Guide
-
-## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Save/Load Feature
 
 The Save/Load feature is implemented by the saveload package.
@@ -10,7 +5,7 @@ At the base of the package, there is the <mark> Saver </mark>
 and <mark> Loader </mark>  class.
 
 ### Architecture
-![Alt text](save_load_feature/Architecture.png)
+![Alt text](Architecture.png)
 Note only the Saver and Loader class is flexible. They can be adapted to new situations without modifying
 the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specifically for this version. They
 will have to be modified/replaced for future versions.
@@ -54,35 +49,7 @@ Unlike the FoodSaveLoadManager, it stores the data inside itself and can be upda
 
 #### UML diaghram
 ##### FoodSaveLoadManager#save()
-![Alt text](save_load_feature/FoodSaveLoadManager_save.png)
+![Alt text](FoodSaveLoadManager_save.png)
 ##### FoodSaveLoadManager#load()
-![Alt text](save_load_feature/FoodSaveLoadManager_load.png)
+![Alt text](FoodSaveLoadManager_load.png)
 similiar diaghrams for PersonSaveLoadManager
-
-## Product scope
-### Target user profile
-
-{Describe the target user profile}
-
-### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
-
-## User Stories
-
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
-## Non-Functional Requirements
-
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}

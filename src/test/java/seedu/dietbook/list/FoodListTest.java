@@ -95,8 +95,15 @@ class FoodListTest {
 
         assertTrue(list.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
 
-        assertEquals(list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, timeNow).toString(),
-                 list.getPortionedFoods().toString());
+        assertEquals(list.getPortionedFoods().toString(), 
+                list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, LocalDateTime.MAX).toString());
+    }
+
+    @Test
+    void getFoodEntryProperties_standardList_FoodEntryProperties() {
+        assertTrue(list.getDateTimes().get(0) instanceof LocalDateTime);
+        assertEquals(list.getPortionSizes().get(0), 3);
+        assertEquals(list.getFoods().get(0), food);
     }
 
 }
