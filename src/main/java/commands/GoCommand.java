@@ -4,6 +4,8 @@ import access.Access;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.IOException;
+
 public abstract class GoCommand extends Command {
     public static final String COMMAND_WORD = "go";
 
@@ -16,7 +18,7 @@ public abstract class GoCommand extends Command {
             + "         " + COMMAND_WORD + " Chapter 1\n";
 
     @Override
-    public abstract void execute(Ui ui, Access access, Storage storage);
+    public abstract void execute(Ui ui, Access access, Storage storage) throws IOException;
 
     @Override
     public boolean isExit() {
