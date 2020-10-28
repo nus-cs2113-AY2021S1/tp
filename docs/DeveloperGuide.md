@@ -472,6 +472,23 @@ Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
 
 **Step 6:** If successful, `WorkspaceCommand` returns the successfully created workspace message to `Main`.
 
+<br/>
+
+Likewise, the operations to switch, list, and delete follows a similar execution process. 
+The following diagrams will continue from step 6, and will illustrate the changes to the `Workspace` `ArrayList`.
+
+User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
+
+![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
+*Figure 1: Workspace Command After New Workspace Switch*
+
+User keys in `workspace -d Default` to delete the workspace named `Default`.
+
+![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
+*Figure 1: Workspace Command After New Workspace Delete*
+
+
+
 
 <br/>
 
