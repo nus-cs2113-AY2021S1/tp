@@ -63,8 +63,8 @@ public class CheckCommand extends Command {
             ArrayList<Event> eventsInTimeRange = new ArrayList<>();
             String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
             for (String type: eventTypes) {
-                EventList eventsList = data.getEventList(type);
-                eventsInTimeRange.addAll(checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime));
+                ArrayList<Event> events = data.getEventList(type).getEvents();
+                eventsInTimeRange.addAll(checkEventsInTimeRange(events, startDate, endDate, startTime, endTime));
             }
             EventList coinciding = new EventList("coinciding", eventsInTimeRange);
 
@@ -165,18 +165,18 @@ public class CheckCommand extends Command {
     /**
      * Checks for events within a given time period.
      *
-     * @param eventsList the eventsList containing events to be checked
+     * @param events the eventsList containing events to be checked
      * @param startDate the start date of the time period to be checked
      * @param endDate the end date of the time period to be checked
      * @param startTime the start time of the time period to be checked
      * @param endTime the end time of the time period to be checked
      * @return an ArrayList of events found occurring during the time period
      */
-    private ArrayList<Event> checkEventsInTimeRange(EventList eventsList, LocalDate startDate, LocalDate endDate,
-                                                   LocalTime startTime, LocalTime endTime) {
+    private ArrayList<Event> checkEventsInTimeRange(ArrayList<Event> events, LocalDate startDate, LocalDate endDate,
+                                                    LocalTime startTime, LocalTime endTime) {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 
-        for (Event event : eventsList.getEvents()) {
+        for (Event event : events) {
             if (event.getDate() == null) {
                 continue;
             }
@@ -205,6 +205,12 @@ public class CheckCommand extends Command {
             if (eventIsBetweenTime) {
                 eventsInTimeRange.add(event);
             }
+
+            if (event.getRepeatType() != null && event.getRepeatEventList() != null) {
+                eventsInTimeRange.addAll(checkEventsInTimeRange(event.getRepeatEventList(),
+                        startDate, endDate, startTime, endTime));
+            }
+
         }
 
         return eventsInTimeRange;
