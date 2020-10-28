@@ -168,6 +168,12 @@ When the user enters a view command, the `Ui` class reads it and passes it throu
 
 _Figure 6: Sequence diagram for view goal command_
 
+### 4.4 Clear command
+
+The `clear` command allows the user to clear either the exercise list, food list, or goal list, by specifying in the user's input as an argument. The user is also able to clear all the lists at the same time, if no argument is specified.
+
+The user's input is first parsed by the `Parser` class. It is then passed to the `ClearCommand` class, which is then executed. The arguments are parsed in the `ClearCommand` class, and the required list(s) is then cleared. After clearing, it then writes the new empty list(s) to local storage.
+
 ## Appendix A: Product Scope
 ### Target user profile
 
