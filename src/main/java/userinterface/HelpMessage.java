@@ -11,7 +11,7 @@ public class HelpMessage extends Ui {
             + "highlight            - prints out the important items you stored\n"
             + "exit                 - exit the program/mode you are currently at\n";
 
-    private static final String currentModes = "These are the modes you can go to:\n"
+    public static final String currentModes = "These are the modes you can go to:\n"
             + "1 menu       - main menu\n"
             + "2 bookmark   - bookmark internet links\n"
             + "3 timetable  - plan your study schedule\n"
