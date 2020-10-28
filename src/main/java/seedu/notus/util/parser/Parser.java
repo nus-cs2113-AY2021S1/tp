@@ -83,7 +83,7 @@ public abstract class Parser {
      * @return Trimmed non-blank string.
      * @throws SystemException Occurs when input is blank.
      */
-    static String checkBlank(String input, SystemException.ExceptionType exceptionType) throws SystemException {
+    static String checkBlank(String input, ExceptionType exceptionType) throws SystemException {
         if (input.isBlank()) {
             throw new SystemException(exceptionType);
         } else {

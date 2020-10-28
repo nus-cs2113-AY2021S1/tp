@@ -1,0 +1,159 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Parser" {
+<u># CONTAINS_TAG_COLOR_INFO: int</u>
+<u># NULL_INDEX: int</u>
+<u># INSTRUNCTIONS_INPUT_CONTENTS: String </u>
+# userMessage: String
++ {abstract} parse(): Command
+<u>splitInfoDetails(String): ArrayList<String[]></u>
+<u>checkBlank(String, SystemException.ExceptionType): String</u>
+<u>handleTagPrefix(String[]): Tag</u>
+<u>+ inputContent(): ArrayList<String></u>
+<u>+ sortByKey(Map<Integer, String>): Map<Integer, String></u>
+<u>+ addToLists(String, Map<Integer, String>, String): Map<Integer, String></u>
+}
+
+class ParserManager {
++parseCommand(String): Command
+}
+
+ParserManager ..> "{abstract} \n Parser"
+ParserManager -> Command
+
+@enduml
+
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Package "Parsers"<<Rectangle>>{
+    Class "{abstract} \n Parser"
+    Class ParseAddNoteCommand
+    Class ParseAddEventCommand
+    Class ParseArchiveOrUnarchiveNoteCommand
+    Class ParseCreateOrDeleteTagCommand
+    Class ParseEditEventCommand
+    Class ParseEditNoteCommand
+    Class ParseDeleteEventCommand
+    Class ParseDeleteNoteCommand
+    Class ParseFindCommand
+    Class ParseListEventCommand
+    Class ParseListNoteCommand
+    Class ParsePinCommand
+    Class ParsePinCommand
+    Class ParseViewNoteCommand
+    Class ParseTagCommand
+}
+
+class "{abstract} \n Parser" {
+<u># CONTAINS_TAG_COLOR_INFO: int</u>
+<u># NULL_INDEX: int</u>
+<u># INSTRUNCTIONS_INPUT_CONTENTS: String </u>
+# userMessage: String
++ {abstract} parse(): Command
+<u>splitInfoDetails(String): ArrayList<String[]></u>
+<u>checkBlank(String, SystemException.ExceptionType): String</u>
+<u>handleTagPrefix(String[]): Tag</u>
+<u>+ inputContent(): ArrayList<String></u>
+<u>+ sortByKey(Map<Integer, String>): Map<Integer, String></u>
+<u>+ addToLists(String, Map<Integer, String>, String): Map<Integer, String></u>
+}
+
+class ParseAddEventCommand {
++ParseAddEventCommand(String)
++parse(): Command
+}
+
+class ParseAddNoteCommand {
++ParseAddNoteCommand(String)
++parse(): Command
+}
+
+class ParseArchiveOrUnarchiveNoteCommand {
++ParseArchiveOrUnarchiveNoteCommand(String, boolean)
++parse(): Command
+}
+
+class ParseCreateOrDeleteTagCommand {
++ParseCreateOrDeleteTagCommand(String, boolean)
++parse(): Command
+}
+
+class ParseDeleteEventCommand {
++ParseDeleteEventCommand(String)
++parse(): Command
+}
+
+class ParseDeleteNoteCommand {
++ParseDeleteNoteCommand(String)
++parse(): Command
+}
+
+class ParseEditNoteCommand {
++ParseEditNoteCommand(String)
++parse(): Command
+}
+
+class ParseEditEventCommand {
++ParseEditEventCommand(String)
++parse(): Command
+}
+
+class ParseFindCommand {
++ParseFindCommand(String)
++parse(): Command
+}
+
+class ParseListEventCommand {
++ParseListEventCommand(String)
++parse(): Command
+}
+
+class ParseListNoteCommand {
++ParseAddEvent(String)
++parse(): Command
+}
+
+class ParsePinCommand {
++ParsePinCommand(String)
++parse(): Command
+}
+
+class ParseTagCommand {
++ParseTagCommand(String, boolean)
++parse(): Command
+}
+
+class ParseViewNoteCommand {
++ParseViewNoteCommand(String)
++parse(): Command
+}
+
+ParserManager ..> Parsers
+ParserManager -> Command
+
+ParseAddNoteCommand -down-|> "{abstract} \n Parser"
+ParseAddEventCommand -down-|> "{abstract} \n Parser"
+ParseDeleteNoteCommand -down-|> "{abstract} \n Parser"
+ParseDeleteEventCommand -down-|> "{abstract} \n Parser"
+
+ParseArchiveOrUnarchiveNoteCommand -left-|> "{abstract} \n Parser"
+ParseCreateOrDeleteTagCommand -left-|> "{abstract} \n Parser"
+ParseViewNoteCommand -left-|> "{abstract} \n Parser"
+
+ParseTagCommand -right-|> "{abstract} \n Parser"
+ParsePinCommand -right-|> "{abstract} \n Parser"
+ParseFindCommand -right-|> "{abstract} \n Parser"
+
+
+ParseEditNoteCommand -up-|> "{abstract} \n Parser"
+ParseEditEventCommand -up-|> "{abstract} \n Parser"
+ParseListNoteCommand -up-|> "{abstract} \n Parser"
+ParseListEventCommand -up-|> "{abstract} \n Parser"
+
+@enduml

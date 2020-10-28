@@ -36,7 +36,7 @@ public class HelpCommand extends Command {
         colorize(DeleteEventCommand.COMMAND_USAGE, getColor(true)),
         colorize(DeleteTagCommand.COMMAND_USAGE, getColor(false)),
         colorize(EditNoteCommand.COMMAND_USAGE, getColor(true)),
-        colorize(EditEventCommand.COMMAND_USAGE, getColor(false)),
+        /*colorize(EditEventCommand.COMMAND_USAGE, getColor(false)),
         colorize(ExitCommand.COMMAND_USAGE, getColor(true)),
         colorize(FindCommand.COMMAND_USAGE, getColor(false)),
         colorize(ListEventCommand.COMMAND_USAGE, getColor(true)),
@@ -47,7 +47,18 @@ public class HelpCommand extends Command {
         colorize(TagNoteCommand.COMMAND_USAGE, getColor(false)),
         colorize(TagEventCommand.COMMAND_USAGE, getColor(true)),
         colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true))
+        colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true))*/
+        colorize(FindCommand.COMMAND_USAGE, getColor(false)),
+        colorize(ListEventCommand.COMMAND_USAGE, getColor(true)),
+        colorize(ListNoteCommand.COMMAND_USAGE, getColor(false)),
+        colorize(ListTagCommand.COMMAND_USAGE, getColor(true)),
+        colorize(PinCommand.COMMAND_USAGE, getColor(false)),
+        colorize(RemindCommand.COMMAND_USAGE, getColor(true)),
+        colorize(TagNoteCommand.COMMAND_USAGE, getColor(false)),
+        colorize(TagEventCommand.COMMAND_USAGE, getColor(true)),
+        colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(false)),
+        colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true)),
+        colorize(ExitCommand.COMMAND_USAGE, getColor(false))
     };
 
     @Override
@@ -61,7 +72,8 @@ public class HelpCommand extends Command {
     public static Attribute getColor(boolean toggleColor) {
         int colorGold = 94;
         if (toggleColor) {
-            return Attribute.TEXT_COLOR(colorGold);
+            //return Attribute.TEXT_COLOR(colorGold);
+            return Attribute.BRIGHT_CYAN_TEXT();
         }
         return Attribute.BRIGHT_WHITE_TEXT();
     }

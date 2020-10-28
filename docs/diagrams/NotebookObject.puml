@@ -1,9 +1,12 @@
 @startuml
 
-Note --|> TaggableObject
-Notebook "1" o-- "*" Note
-Note ..> Tag
-TaggableObject }o== Tag
+hide circle
+skinparam classAttributeIconSize 0
+
+Note --|> "{abstract} \n TaggableObject"
+Notebook "1" --> "*" Note
+Note "*"-> Tag
+"{abstract} \n TaggableObject" "*" --> Tag
 
 class Notebook {
 -notes: <ArrayList<Note>
@@ -42,7 +45,7 @@ class Note {
 +toSaveString(): String
 }
 
-abstract class TaggableObject {
+class "{abstract} \n TaggableObject" {
 -tags: ArrayList<Tag>
 +getTagsName(): String
 }

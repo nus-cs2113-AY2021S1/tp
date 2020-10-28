@@ -16,10 +16,10 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 /**
  * Represents a parser object specifically to parse message for CreateTagCommand.
  */
-public class ParseCreateTagOrDeleteCommand extends Parser {
+public class ParseCreateOrDeleteTagCommand extends Parser {
     boolean isCreate;
 
-    public ParseCreateTagOrDeleteCommand(String userMessage, boolean isCreate) {
+    public ParseCreateOrDeleteTagCommand(String userMessage, boolean isCreate) {
         super(userMessage);
         this.isCreate = isCreate;
     }

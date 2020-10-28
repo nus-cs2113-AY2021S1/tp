@@ -25,7 +25,7 @@ class HelpCommandTest {
             colorize(DeleteEventCommand.COMMAND_USAGE, getColor(true)),
             colorize(DeleteTagCommand.COMMAND_USAGE, getColor(false)),
             colorize(EditNoteCommand.COMMAND_USAGE, getColor(true)),
-            colorize(EditEventCommand.COMMAND_USAGE, getColor(false)),
+            /*colorize(EditEventCommand.COMMAND_USAGE, getColor(false)),
             colorize(ExitCommand.COMMAND_USAGE, getColor(true)),
             colorize(FindCommand.COMMAND_USAGE, getColor(false)),
             colorize(ListEventCommand.COMMAND_USAGE, getColor(true)),
@@ -36,7 +36,18 @@ class HelpCommandTest {
             colorize(TagNoteCommand.COMMAND_USAGE, getColor(false)),
             colorize(TagEventCommand.COMMAND_USAGE, getColor(true)),
             colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(false)),
-            colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true))
+            colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true))*/
+            colorize(FindCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ListEventCommand.COMMAND_USAGE, getColor(true)),
+            colorize(ListNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ListTagCommand.COMMAND_USAGE, getColor(true)),
+            colorize(PinCommand.COMMAND_USAGE, getColor(false)),
+            colorize(RemindCommand.COMMAND_USAGE, getColor(true)),
+            colorize(TagNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(TagEventCommand.COMMAND_USAGE, getColor(true)),
+            colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(false)),
+            colorize(ViewNoteCommand.COMMAND_USAGE, getColor(true)),
+            colorize(ExitCommand.COMMAND_USAGE, getColor(false))
     };
 
     @Test
