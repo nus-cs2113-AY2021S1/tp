@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -20,10 +20,10 @@ public class DeleteCommand extends Command {
      *
      * @param calendarList the calendar list to delete the task/event from.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the delete command input is invalid.
+     * @throws CommandException if the delete command input is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int numberDelete = 0;
         boolean isTask = false;
 
@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
                 throw new Exception("e");
             }
         } catch (Exception e) {
-            throw new DukeException("delete");
+            throw new CommandException("delete");
         }
 
         if (isTask) {
@@ -56,9 +56,9 @@ public class DeleteCommand extends Command {
      *
      * @param calendarList the calendar list to delete the event from.
      * @param numberDelete the delete event number specified by the user.
-     * @throws DukeException if the delete command input is invalid.
+     * @throws CommandException if the delete command input is invalid.
      */
-    private void deleteEvent(CalendarList calendarList, int numberDelete) throws DukeException {
+    private void deleteEvent(CalendarList calendarList, int numberDelete) throws CommandException {
         int calendarNumber;
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
         assert calendarNumber >= 0;
@@ -71,9 +71,9 @@ public class DeleteCommand extends Command {
      *
      * @param calendarList the calendar list to delete the task from.
      * @param numberDelete the delete task number specified by the user.
-     * @throws DukeException if the delete command input is invalid.
+     * @throws CommandException if the delete command input is invalid.
      */
-    private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {
+    private void deleteTask(CalendarList calendarList, int numberDelete) throws CommandException {
         int calendarNumber;
         calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
         assert calendarNumber >= 0;

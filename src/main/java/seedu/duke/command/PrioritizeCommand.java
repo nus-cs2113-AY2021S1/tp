@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -18,19 +18,19 @@ public class PrioritizeCommand extends Command {
      *
      * @param calendarList the list of user events and tasks.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the command is invalid.
+     * @throws CommandException if the command is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int index;
         try {
             if (userInput.startsWith("*t")) {
                 index = Integer.parseInt(userInput.replace("*t", "").trim());
             } else {
-                throw new DukeException("prioritize");
+                throw new CommandException("prioritize");
             }
         } catch (Exception e) {
-            throw new DukeException("prioritize");
+            throw new CommandException("prioritize");
         }
         markAsImportant(calendarList, index);
         storage.writeToFile(calendarList);
@@ -41,11 +41,11 @@ public class PrioritizeCommand extends Command {
      *
      * @param calendarList the list of user events and tasks.
      * @param indexOfTask  the index of the task in the list.
-     * @throws DukeException if the index is invalid.
+     * @throws CommandException if the index is invalid.
      */
-    public void markAsImportant(CalendarList calendarList, int indexOfTask) throws DukeException {
+    public void markAsImportant(CalendarList calendarList, int indexOfTask) throws CommandException {
         if (indexOfTask > calendarList.getTotalTasks() || indexOfTask < 0) {
-            throw new DukeException("invalid task action");
+            throw new CommandException("invalid task action");
         }
         int calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(indexOfTask, calendarList);
 

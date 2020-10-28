@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarItem;
@@ -28,10 +28,10 @@ public class CountdownCommand extends Command {
      *
      * @param calendarList the calendarList to calculate the countdown for.
      * @param storage      the storage to store data to.
-     * @throws DukeException when there is an invalid command.
+     * @throws CommandException when there is an invalid command.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         if (userInput.equals("countdown")) {
             countdownExamsDeadlines(calendarList);
         } else if (userInput.equals("countdown deadlines")) {
@@ -39,7 +39,7 @@ public class CountdownCommand extends Command {
         } else if (userInput.equals("countdown exams")) {
             countdownExams(calendarList);
         } else {
-            throw new DukeException("invalid countdown");
+            throw new CommandException("invalid countdown");
         }
     }
 
@@ -50,7 +50,7 @@ public class CountdownCommand extends Command {
      */
     public void countdownExamsDeadlines(CalendarList calendarList) {
         countdownDeadlines(calendarList);
-        Ui.printDukeBorder(false);
+        Ui.printBorder(false);
         countdownExams(calendarList);
     }
 
@@ -166,7 +166,7 @@ public class CountdownCommand extends Command {
             for (int j = 0; j < deadlineList.getTotalItems() - i - 1; j++) {
                 CalendarItem item1 = deadlineList.getCalendarList().get(j);
                 CalendarItem item2 = deadlineList.getCalendarList().get(j + 1);
-                if (((Exam) item1).getCountdown() > ((Exam) item2).getCountdown()) {
+                if (((Deadline) item1).getCountdown() > ((Deadline) item2).getCountdown()) {
                     deadlineList.swapTasks(j, j + 1);
                 }
             }
