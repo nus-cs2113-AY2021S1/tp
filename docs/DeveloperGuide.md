@@ -147,7 +147,7 @@ This section describes some noteworthy details on how certain features are being
 The storage feature saves the data of the user so that 
 the ModTracker application continues from where the user left off the previous time. 
 
-#### Proposed Implementation 
+#### Current Implementation 
 The `Storage` class facilitates the data saving and loading mechanism. 
 The constructor `Storage(filePath)` accepts a String which is the file path to an external file.
 This external file stores the user's data locally.
@@ -305,7 +305,7 @@ The add time feature edits the actual workload for a specific module as indicate
 This is done by adding time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks.
 
-#### Current implementation
+#### Current Implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
@@ -355,7 +355,7 @@ The minus time feature edits the actual workload for a specific module as indica
 This is done by removing time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks. This feature is the opposite of the add time feature. 
 
-#### Current implementation
+#### Current Implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
