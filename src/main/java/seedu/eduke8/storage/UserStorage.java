@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class UserStorage extends LocalStorage {
     private BookmarkList bookmarkList;
@@ -41,6 +42,8 @@ public class UserStorage extends LocalStorage {
     public File save() throws IOException {
         file = super.save();
 
+        assert file.exists();
+
         // Get all the questions seen before
         JSONArray topics = new JSONArray();
 
@@ -52,6 +55,8 @@ public class UserStorage extends LocalStorage {
         FileWriter writer = new FileWriter(file.getAbsolutePath());
         writer.write(topics.toJSONString());
         writer.flush();
+
+        LOGGER.log(Level.INFO, "User data saved to file");
 
         return file;
     }
@@ -72,6 +77,7 @@ public class UserStorage extends LocalStorage {
         if (!file.exists()) {
             return super.load();
         }
+        assert file.exists();
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
@@ -79,17 +85,19 @@ public class UserStorage extends LocalStorage {
             parseFromTopicJson((JSONObject) topic);
         }
 
+        LOGGER.log(Level.INFO, "User data loaded from file");
+
         return topicList.getInnerList();
     }
 
     private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
-        String topicDescription = (String) topic.get("topic");
+        String topicDescription = (String) topic.get(KEY_TOPIC);
         Topic topicObject = (Topic) topicList.find(topicDescription);
 
-        JSONArray questions = (JSONArray) topic.get("questions");
+        JSONArray questions = (JSONArray) topic.get(KEY_QUESTIONS);
         loadQuestionAttributes(questions, topicObject);
 
-        JSONArray notes = (JSONArray) topic.get("notes");
+        JSONArray notes = (JSONArray) topic.get(KEY_NOTES);
         loadNotes(notes, topicObject);
     }
 
@@ -108,16 +116,16 @@ public class UserStorage extends LocalStorage {
     }
 
     private void parseFromQuestionJson(QuestionList questionList, JSONObject question) throws Eduke8Exception {
-        String questionDescription = (String) question.get("description");
+        String questionDescription = (String) question.get(KEY_DESCRIPTION);
         Question questionObject = (Question) questionList.find(questionDescription);
         questionObject.markAsShown();
-        if ((boolean) question.get("correct")) {
+        if ((boolean) question.get(KEY_CORRECT)) {
             questionObject.markAsAnsweredCorrectly();
         }
-        if ((boolean) question.get("bookmarked")) {
+        if ((boolean) question.get(KEY_BOOKMARKED)) {
             bookmarkList.add(questionObject);
         }
-        if ((boolean) question.get("hint")) {
+        if ((boolean) question.get(KEY_HINT)) {
             questionObject.getHint().markAsShown();
         }
     }
@@ -125,13 +133,13 @@ public class UserStorage extends LocalStorage {
     @SuppressWarnings("unchecked")
     private JSONObject parseToTopicJson(Displayable topicObject) {
         JSONObject topic = new JSONObject();
-        topic.put("topic", topicObject.getDescription());
+        topic.put(KEY_TOPIC, topicObject.getDescription());
 
         JSONArray questions = getQuestionsJsonArray((Topic) topicObject);
-        topic.put("questions", questions);
+        topic.put(KEY_QUESTIONS, questions);
 
         JSONArray notes = getNotesJsonArray(((Topic) topicObject).getNoteList());
-        topic.put("notes", notes);
+        topic.put(KEY_NOTES, notes);
         return topic;
     }
 
@@ -160,10 +168,10 @@ public class UserStorage extends LocalStorage {
     private JSONObject parseToQuestionJson(Question questionObject) {
         JSONObject question = new JSONObject();
 
-        question.put("description", questionObject.getDescription());
-        question.put("correct", questionObject.wasAnsweredCorrectly());
-        question.put("bookmarked", bookmarkList.find(questionObject.getDescription()) != null);
-        question.put("hint", questionObject.wasHintShown());
+        question.put(KEY_DESCRIPTION, questionObject.getDescription());
+        question.put(KEY_CORRECT, questionObject.wasAnsweredCorrectly());
+        question.put(KEY_BOOKMARKED, bookmarkList.find(questionObject.getDescription()) != null);
+        question.put(KEY_HINT, questionObject.wasHintShown());
 
         return question;
     }

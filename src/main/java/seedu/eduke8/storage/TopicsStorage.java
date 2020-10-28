@@ -91,7 +91,7 @@ public class TopicsStorage extends LocalStorage {
 
     private Option parseToOptionObject(JSONObject option) {
         String optionDescription = (String) option.get(KEY_DESCRIPTION);
-        boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT_OPTION);
+        boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT);
 
         Option optionAsObject = new Option(optionDescription);
 
