@@ -1,6 +1,7 @@
 package seedu.financeit.utils;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 
 public class RunHistory {
     private static LocalDateTime lastRunDateTime;
@@ -24,6 +25,15 @@ public class RunHistory {
 
     public static int getCurrentDayOfMonth() {
         return RunHistory.currentRunDateTime.getDayOfMonth();
+    }
+
+    public static int getCurrentMonthAsInt() {
+        return RunHistory.currentRunDateTime.getMonthValue();
+    }
+
+    public static int getNumOfDaysInCurrentMonth() {
+        Month currentMonth = RunHistory.currentRunDateTime.getMonth();
+        return currentMonth.length(false);
     }
 
     /**

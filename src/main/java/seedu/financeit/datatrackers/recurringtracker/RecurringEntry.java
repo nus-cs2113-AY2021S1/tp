@@ -4,6 +4,7 @@ import seedu.financeit.common.Constants;
 import seedu.financeit.data.Item;
 
 import java.time.Month;
+import java.util.HashMap;
 
 //@@author Artemis-Hunt
 public class RecurringEntry extends Item {
@@ -51,8 +52,20 @@ public class RecurringEntry extends Item {
                 description, day);
     }
 
+    public boolean getIsAuto() {
+        return isAuto;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public int getDay() {
         return day;
+    }
+
+    public Constants.EntryType getEntryType() {
+        return entryType;
     }
 
     public boolean equals(RecurringEntry entry) {
@@ -66,6 +79,23 @@ public class RecurringEntry extends Item {
                 && (this.amount == entry.amount)
                 && (this.isAuto == entry.isAuto)
                 && (this.notes.equals(entry.notes));
+    }
+
+    /**
+     * Get entry details necessary for printing a reminder.
+     * Remember to do appropriate downcasting when accessing attributes.
+     *
+     * @return HashMap of details, with key being the attribute name and value
+     *         being the attribute itself, upcasted to Object.
+     */
+    public HashMap<String,Object> getDetailsForReminder() {
+        HashMap<String,Object> details = new HashMap<>();
+        details.put("day", day);
+        details.put("entryType", entryType);
+        details.put("isAuto", isAuto);
+        details.put("description", description);
+
+        return details;
     }
 
 

@@ -9,6 +9,7 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
+import seedu.financeit.utils.RunHistory;
 import seedu.financeit.utils.storage.AutoTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
@@ -29,13 +30,16 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         LoggerCentre.getInstance().setLevel(mode);
+        RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
         ManualTrackerSaver mt = ManualTrackerSaver.getInstance("./data", "./data/save.txt");
         GoalTrackerSaver gt = GoalTrackerSaver.getInstance("./data", "./data/save1.txt");
         AutoTrackerSaver at = AutoTrackerSaver.getInstance("./data", "./data/save2.txt");
         load(gt, mt, at);
+
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
+            MenuPrinter.printReminder();    //Print reminder for all upcoming recurring entries
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
             packet = InputParser.getInstance().parseInput(input);
