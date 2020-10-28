@@ -501,12 +501,12 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-### Save Manager
-#### What it does
+## Save Manager
+### What it does
 Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 
-#### Architecture overview
-
+### Architecture overview
+![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
 ## Product scope
 ### Target user profile
