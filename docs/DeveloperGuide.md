@@ -91,7 +91,7 @@ Given below is a sequence diagram when adding a Todo task.
 An overview of each components is listed below.
 
 ### Ui
-The `Ui` class is responsible for receiving the input from the user and printing the results to the user.
+The `Ui` class is responsible for the user interface of the application. It receives the input from the user and prints the results to the user.
 
 ### Parser
 
@@ -139,18 +139,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
-The following sequence diagram shows how the `execute()` operation works:
+The following sequence diagram shows how the `execute()` operation works:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
 
-Note: It checks the type of the new calendar item first, then it analyses the attached information, 
-and finally uses the corresponding adding function to add the new calendar item into the calendar list.  
+Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the `CalendarItem` being added.  
 
-Note: It has seven adding command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
-`todo` tasks only have a string description, while `Deadline` items have description and due date, and other items have description, date and time of the event.
-The `TimeParser` analyses the date and time in the corresponding commands. Furthermore,
-if the new item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
-If the new item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
-while only one `Todo`, `Deadline`, `Exam` or `Activity` item can be added at a time.   
+`CalendarItems` with deviations to sequence diagram above: 
+1. All `CalendarItems` with a date or time attribute calls the `TimeParser` class to interpret the date and time input of the user. 
+2. `Lecture`, `Lab`, `Tutorial`, or `Exam` type does a self-call for an additional check using the function `isValid(command)`. It ensures the module code included in the item is valid.
+3. `Lecture`, `Lab`, or `Tutorial`can be added as recurring items (multiple addition of the same class).   
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
@@ -182,7 +179,7 @@ This feature is facilitated by `FindCommand`.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
-The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
+The search for tasks or events feature has a similar sequence diagram with a slight difference to the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
 ### Print tasks feature
