@@ -27,6 +27,11 @@ public abstract class Eduke8Test {
             "Option A gives the best explanation out of all.";
     protected static final String NONSENSE_DESCRIPTION = "Nonsense";
 
+    protected static final String DATA_TEST_INVALID_PATH = "data/test/invalid.json";
+    protected static final String DATA_TEST_EMPTY_JSON = "data/test/empty.json";
+    protected static final String DATA_TEST_WRONG_FORMAT_JSON = "data/test/wrong_format.json";
+    protected static final String DATA_TEST_MISSING_KEY_JSON = "data/test/missing_key.json";
+
     protected TopicList createTestTopicList() {
         Topic topic1 = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
         Topic topic2 = createTestTopic(PLACEHOLDER_TOPIC_TWO_DESCRIPTION);
