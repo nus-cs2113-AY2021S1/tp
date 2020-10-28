@@ -145,27 +145,29 @@ the command `filter -continue by\start limit\10 -cs -cg.`
 <p align = "center"><i><b>Figure 5: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
    
 ## Bunny class family
-![UML Bunny class diagram](graphics/diagrams/classDiagram_BunnyList.png)
+![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 <center><i>Figure 6:  Bunny ideas UML Class Diagram</i></center>
-The above class diagram describes the overall architecture of the bunny list functionalities. The BunnyList class has 
-the public ArrayList of bunnies bunniesList that is accessed by the DeleteBunny class method deleteBunny which removes 
-a selected bunny from the bunniesList ArrayList. Similarly, bunniesList is also accessed by the BunnyFilter class which 
-contains the filterBunny function which can filter through the list and obtain bunnies with specified keywords in the 
-idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
-or the `GENRE` when running the command
+The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
+The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
-The BunnySaver class accesses the bunniesList and overwrites the current bunny.txt file in the data directory, 
-saving all Bunny objects into the file using the saveAllBunny  method. Bunny objects saved in that file can then 
-be read by the BunnyLoader class and saved into the bunniesList ArrayList using the loadBunnyFile method.
+The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes 
+a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which 
+contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the 
+idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
+or the `GENRE` when running the command. 
+
+
+![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
+<center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
+
+The user may call upon the `bunny` command to add bunnies to the list. The command executor would 
 
 ## Names class family
 
-<p align="center">
-  <img src="https://github.com/AY2021S1-CS2113T-W11-4/tp/blob/master/docs/graphics/diagrams/classDiagram_Names.png"><br>
-  <i>Figure 7: Names UML Class Diagram</i>
-</p>
+![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
+<center><i>Figure 8: Names UML Class Diagram</i></center>
 
-The above class diagram (Figure 6) describes the overall architecture of the name list functionalities. The Names class 
+The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
 a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
 filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
@@ -183,7 +185,7 @@ String objects in nameList into the file using the updateDB method. String objec
 by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
 Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 6, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
+As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
@@ -225,9 +227,6 @@ The application aims to provide the writer with the following services:
 
 {Give non-functional requirements}
 
-## Glossary
-
-* *glossary item* - Definition
 
 ## Instructions for manual testing
 
