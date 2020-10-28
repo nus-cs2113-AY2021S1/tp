@@ -151,7 +151,7 @@ similiar diaghrams for PersonSaveLoadManager
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+NUS students living on campus who would like to track their daily food and nutritional intake.
 
 ### Value proposition
 
