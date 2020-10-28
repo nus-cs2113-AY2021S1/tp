@@ -202,7 +202,7 @@ Example of usage:
 
 #### Adding recurring laboratory session events: `lab`
 
-When you have new recurring lecture events and want to add them to the calendar list, you can use `lab` command.
+When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
 
 Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -226,7 +226,7 @@ Example of usage:
 
 #### Adding recurring tutorial events: `tut`
 
-When you have new recurring lecture events and want to add them to the calendar list, you can use `tut` command.
+When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
 
 Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
