@@ -166,7 +166,7 @@ NUS students living on campus who would like to track their daily food and nutri
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as `Java 11` is installed in the system.
 
 ## Glossary
 
