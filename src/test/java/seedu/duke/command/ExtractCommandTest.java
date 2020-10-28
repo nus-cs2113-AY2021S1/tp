@@ -6,17 +6,14 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidExtractCommandException;
-import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExtractCommandTest {
     private final PrintStream standardOut = System.out;
@@ -60,7 +57,7 @@ class ExtractCommandTest {
         String extractInput = "Meeting; There will be a meeting on tuesday at 16.00";
         Command extractCommand = new ExtractCommand(extractInput);
         extractCommand.execute(data, ui, storage);
-        assertEquals( "No dates detected for this text body!" + System.lineSeparator()
+        assertEquals("No dates detected for this text body!" + System.lineSeparator()
                         + "Since no date was detected in the text body, "
                         + "the personal event will only contain the description." + System.lineSeparator()
                         + "You have successfully added this event to your list!" + System.lineSeparator()
@@ -74,10 +71,11 @@ class ExtractCommandTest {
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        String extractInput = "CS2113T Makeup Lesson; Please note there will be a make up lesson on 17th November and 32 Dec";
+        String extractInput = "CS2113T Makeup Lesson;"
+                + " Please note there will be a make up lesson on 17th November and 32 Dec";
         Command extractCommand = new ExtractCommand(extractInput);
         extractCommand.execute(data, ui, storage);
-        assertEquals( "One date detected and chosen: 2020-11-17" + System.lineSeparator()
+        assertEquals("One date detected and chosen: 2020-11-17" + System.lineSeparator()
                         + "No time slots detected for this text body!" + System.lineSeparator()
                         + "Since no time detected in text body, "
                         + "the personal event will only have the date and description." + System.lineSeparator()
@@ -101,7 +99,7 @@ class ExtractCommandTest {
         System.setIn(in);*/
         Command extractCommand = new ExtractCommand(extractInput);
         extractCommand.execute(data, ui, storage);
-        assertEquals( "One date detected and chosen: 2020-10-05" + System.lineSeparator()
+        assertEquals("One date detected and chosen: 2020-10-05" + System.lineSeparator()
                         + "One time slot detected and chosen: 16:00" + System.lineSeparator()
                         + "You have successfully added this event to your list!" + System.lineSeparator()
                         + "[P][✕] CG2271 Quiz on 2020-10-05, 16:00" + System.lineSeparator(),

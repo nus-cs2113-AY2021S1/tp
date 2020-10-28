@@ -98,7 +98,7 @@ public class AddCommand extends Command {
                 throw new EventAddErrorException("Invalid event type to be added!");
             }
         } catch (DukeException e) {
-                e.printErrorMessage();
+            e.printErrorMessage();
         }
     }
 
