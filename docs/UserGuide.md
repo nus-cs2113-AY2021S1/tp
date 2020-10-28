@@ -261,6 +261,16 @@ Example of usage:
 
 `/v 1` - This lists the additional information that you have added for event number 1.
 
+#### Deleting the additional information of an event: `/-`
+
+You can view the additional information pertaining to an event in your calendar list.
+
+Format: `/- <event_number> a <additional_information_number>`
+
+Example of usage:
+
+`/- 1 a 2` - When you view the additional information for event number 1, you will not be able to see that additional information that you have just deleted.
+
 ### Deleting a calendar item:
 
 You may delete any calendar item that you deem unnecessary by using the following command:

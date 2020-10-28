@@ -1,9 +1,9 @@
-# 25 Hours A day
+# 25HoursADay
 
 #### Introduction
 
-`25 hours a day` is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `25 hours a day` can 
+*25HoursADay* is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can 
 schedule your tasks and events faster than traditional GUI apps.
 
 ## Target User Profile
