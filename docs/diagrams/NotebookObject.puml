@@ -1,0 +1,62 @@
+@startuml
+
+Note --|> TaggableObject
+Notebook "1" o-- "*" Note
+Note ..> Tag
+TaggableObject }o== Tag
+
+class Notebook {
+-notes: <ArrayList<Note>
+-archivedNotes: <ArrayList<Note>
++addNote(Note): Note
++getNote(int): Note
++getNote(String): boolean
++getNote(String, boolean): Note
++getNotes(): ArrayList<Note>
++setNotes(int, Note): boolean
++getNoteIndex(Note): int
++getSize(): int
++findNotes(String): ArrayList<Note>
++deleteNote(int): boolean
++deleteNote(String): boolean
++checkPinned(): boolean
++getPinnedNotes(): ArrayList<Note>
++getPinnedNotes(ArrayList<Note>): ArrayList<Note>
++getUnpinnedNotes(): ArrayList<Note>
++getUnpinnedNotes(ArrayList<Note>): ArrayList<Note>
++getSortedList(Boolean, Boolean): ArrayList<Note>
++getSortedList(Boolean, Boolean, ArrayList<Note>): ArrayList<Note>
++archiveNotes(int): String
++archiveNotes(String): boolean
++unarchiveNotes(int): String
++unarchiveNotes(String): boolean
++getArchivedNotes(): ArrayList<Note>
++getArchivedNoteSize(): int
+}
+
+class Note {
+-title: String
+-content: ArrayList<String>
+-isPinned: Boolean
+-isArchived: boolean
++getTitle(): String
++setTitle(String): void
++getContent(): ArrayList<String>
++setContent(ArrayList<String>): void
++getContentString(): String
++getPinned(): boolean
++setPinned(Boolean): void
++getPinnedString(): String
++togglePinned(): void
++toggleArchived(): void
++getIsArchived(): boolean
++setArchived(boolean): void
++toSaveString(): String
+}
+
+abstract class TaggableObject {
+-tags: ArrayList<Tag>
++getTagsName(): String
+}
+
+@enduml
