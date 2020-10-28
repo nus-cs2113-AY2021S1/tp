@@ -76,6 +76,15 @@ public class Note extends TaggableObject {
         return content;
     }
 
+    public String getContentString() {
+        String contentString = "";
+
+        for (String information: content) {
+            contentString += information + LS;
+        }
+        return contentString;
+    }
+
     /**
      * Sets the content of note from the changes.
      */
@@ -126,8 +135,7 @@ public class Note extends TaggableObject {
         noteDetails += PREFIX_DELIMITER + PREFIX_TITLE + " " + this.title + " "
                     + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
                     + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
-                    + tagDetails
-                    + LS;
+                    + tagDetails + LS;
 
         return noteDetails;
     }

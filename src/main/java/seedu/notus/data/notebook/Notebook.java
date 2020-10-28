@@ -220,13 +220,13 @@ public class Notebook {
     /**
      * Filters the specified notebook to get a note that has a title matching to the noteTitle parameter.
      *
-     * @param noteTitle String containing the title of the note
+     * @param noteTitle String containing the title of the note.
      * @param isArchive boolean specifies what kind of notebook to be used for filtering (acts as a toggle).
      *                  If true, uses the archive notebook. Else it uses the notes notebook.
      * @return note that was filtered.
      */
     public Note getNote(String noteTitle, boolean isArchive) {
-        if (isArchive) {
+        if (!isArchive) {
             return notes.stream()
                     .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
                     .findFirst().get();
@@ -239,6 +239,9 @@ public class Notebook {
 
     /**
      * Returns true if there is a matching note based on the note title parameter.
+     *
+     * @param noteTitle String containing the title of the note.
+     * @return if the note exist.
      */
     public boolean getNote(String noteTitle) {
         return notes.stream().anyMatch(note -> note.getTitle().equalsIgnoreCase(noteTitle));
@@ -246,6 +249,8 @@ public class Notebook {
 
     /**
      * Adds a note into the notebook.
+     *
+     * @param note refers to the note to be added.
      */
     public void addNote(Note note) {
         if (note.getIsArchived()) {
@@ -257,6 +262,9 @@ public class Notebook {
 
     /**
      * Removes a note from the notebook.
+     *
+     * @param index of the item to be deleted.
+     * @return if the note is deleted.
      */
     public boolean deleteNote(int index) {
         notes.remove(index);
@@ -265,6 +273,9 @@ public class Notebook {
 
     /**
      * Removes a note from the notebook.
+     *
+     * @param title String containing the title of the note.
+     * @return if the note is deleted.
      */
     public boolean deleteNote(String title) {
         return notes.removeIf(note -> note.getTitle().equalsIgnoreCase(title));
@@ -272,6 +283,9 @@ public class Notebook {
 
     /**
      * Replace a note from the notebook.
+     *
+     * @param index of the item to be edited.
+     * @param note refers to the note to be added.
      */
     public void setNotes(int index, Note note) {
         notes.set(index, note);
