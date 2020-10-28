@@ -112,6 +112,7 @@ public class EventList {
      * Remove the event indicated by the user.
      */
     public void remove(int eventIndex) {
+        assert events != null;
         events.remove(eventIndex);
     }
 

@@ -1,6 +1,5 @@
 package parser;
 
-
 import command.AddCommand;
 import command.ClearCommand;
 import command.Command;
@@ -14,7 +13,11 @@ import command.HelpCommand;
 import command.LocateCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
+import command.ReminderCommand;
 import command.SortCommand;
+
+import event.Assignment;
+import event.PersonalEvent;
 import event.Assignment;
 import event.PersonalEvent;
 
@@ -77,6 +80,7 @@ public abstract class Parser {
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
     public static final String SORT = "sort";
+    public static final String REMIND = "reminder";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -127,6 +131,10 @@ public abstract class Parser {
             } catch (DateTimeParseException e) {
                 throw new DateFormatException();
             }
+        }
+
+        if (words[0].equals(REMIND)) {
+            return new ReminderCommand();
         }
 
         int eventIndex;//to indicate what is the Event we are dealing with. may not be used.
@@ -293,7 +301,7 @@ public abstract class Parser {
             if (fullCommand.substring(locationDividerPosition + 3).isBlank()) {
                 throw new NoEventLocationException();
             }
-
+            
             try {
                 timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
                 dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)

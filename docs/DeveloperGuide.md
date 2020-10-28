@@ -73,18 +73,27 @@ The sequence diagram below shows how each individual component interacts with ea
 ![sequence](../diagrams/ArchitectureSequence.png)
 
 ### 3.2 UI
+![UI Class Diagram](diagrams/Ui.png)
+
+*Figure 3.2.1 Class diagram for UI component*
+
  __API__:`UI.java`  
 The UI consists of various parts, e.g. `printGreetingMessage`, `printEventList`, `showError`, `printNumEvent`, etc.
  
-The `UI` component executes user commands according to the Logic component.
+The `UI` component reads user input using readCommand() and executes user commands according to the Logic component.
 
 ### 3.3 Storage
 __API__:`Storage.java`
 The `Storage` component can save the list of event data in .txt format and read it back.   
 ### 3.4 Logic
 __API__:`Parser.java`  
+
+![Logic Class Diagram](diagrams/LogicClass.png)
+
+*Figure 3.4.1 Class diagram for Logic component*
+
 The `logic` component parses the user input and executes commands based on the given input.
- 1.	Parser reads the user input and returns a command to be executed.
+ 1.	Parser reads the user input and returns a command to be executed by `NuSchedule`.
  2.	The command execution affects the EventList (e.g. clearing the list).
  3.	The result passes back to the UI, which then displays relevant feedback to the user.  
 
@@ -129,6 +138,10 @@ Step 2. The Parser class parses the input as a new class with description ‘CS1
 and location ‘LT27’.  
 
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
+
+The sequence diagram below shows the process of adding a new event.
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)
+*Figure 4.1.1 Sequence Diagram for add function*
 
 ### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
