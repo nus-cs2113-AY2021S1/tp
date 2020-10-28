@@ -164,6 +164,11 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
 #### 2.2.4. Favourite command executor (`/execfav` Feature)
+[Work in Progress]<br>
+`/execfav <INDEX>` is the command which executes a command from the user's list of favourites
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
+![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand.png)
 
 
 

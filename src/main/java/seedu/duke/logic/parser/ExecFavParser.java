@@ -11,14 +11,14 @@ public class ExecFavParser extends Parser {
     public ExecFavParser(String userInput) throws CustomException {
         super(userInput);
         this.userInput = userInput;
-        checkInput();
+        setIndex();
     }
 
     public int getIndex() {
         return index;
     }
 
-    private void checkInput() throws CustomException {
+    private void setIndex() throws CustomException {
         if (userInput.isBlank()) {
             throw new CustomException(ExceptionType.EMPTY_INDEX);
         }
