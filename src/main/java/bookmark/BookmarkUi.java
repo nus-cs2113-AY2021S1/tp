@@ -8,10 +8,11 @@ public class BookmarkUi {
 
     }
 
+    //TODO: make this print the list when entering
     public static void printWelcomeBookmarkMessage() {
-        System.out.println("Welcome to B00KMARK!");
+        System.out.println("Welcome to bookmark mode!");
         System.out.println("Choose your category by typing \"bm <category index>!\"");
-        //showBookmarkCategoryList();
+        // showBookmarkCategoryList();
     }
 
     public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {

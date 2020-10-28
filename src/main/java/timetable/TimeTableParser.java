@@ -24,11 +24,16 @@ public class TimeTableParser {
             String type = words[1];
             if (action.equals("add")) {
                 switch (type) {
-                case "activity":
+                case "activity": {
+                    Activity activity = addActivity();
+                    dateList.addEvent(activity);
+                    storage.writeFile(activity);
+                    System.out.println(Message.printSuccessfulClassAddition);
+                }
                     break;
                 case "class": {
                     Lesson lesson = addClass();
-                    dateList.addLesson(lesson);
+                    dateList.addEvent(lesson);
                     storage.writeFile(lesson);
                     System.out.println(Message.printSuccessfulClassAddition);
                 }
@@ -43,16 +48,27 @@ public class TimeTableParser {
         } catch (InvalidDayOfTheWeekException e) {
             System.out.println("Day of the week input is invalid. Please add the class again");
             StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
+        } catch (ClashScheduleException e) {
+            System.out.println("There is a clash in schedule");
         }
     }
 
     public static Lesson addClass() throws InvalidDayOfTheWeekException {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter module name: ");
-        final String moduleCode = in.nextLine();
-        System.out.println("Is the class online? ");
-        boolean isOnline = false;
         boolean isInvalid = true;
+        String moduleCode = null;
+        while (isInvalid) {
+            moduleCode = in.nextLine();
+            if (moduleCode.length() > 7) {
+                System.out.println("The code exceed the maximum number of characters allowed please enter again");
+            } else {
+                isInvalid = false;
+            }
+        }
+        isInvalid = true;
+        System.out.println("Is the class online? (yes/no)");
+        boolean isOnline = false;
         while (isInvalid) {
             String status = in.nextLine();
             if (status.equals("yes") || status.equals("online")) {
@@ -110,6 +126,43 @@ public class TimeTableParser {
         }
     }
 
+    public static Activity addActivity() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter the activity: ");
+        final String activityName = in.nextLine();
+        boolean isInvalid = true;
+        System.out.println("Is the activity online? (yes/no)");
+        boolean isOnline = false;
+        while (isInvalid) {
+            String status = in.nextLine();
+            if (status.equals("yes") || status.equals("online")) {
+                isOnline = true;
+                System.out.println("Please enter zoom link");
+                isInvalid = false;
+            } else if (status.equals("no") || status.equals("offline")) {
+                System.out.println("Please enter the venue");
+                isInvalid = false;
+            } else {
+                System.out.println("Invalid command command\n Is the class online? ");
+            }
+        }
+        final String linkOrVenue = in.nextLine();
+        System.out.println("Please enter the date (eg. 28/10/2020)");
+        LocalDateTime date = getDateTime(in.nextLine());
+        System.out.println("Please enter the time of your activity(eg. 6-9pm)");
+        String time = in.nextLine();
+        int startTime = Integer.parseInt(time.split("-")[0]);
+        int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));
+        if (time.contains("pm")) {
+            startTime += 12;
+            endTime += 12;
+        }
+        LocalDateTime startDateTime = date.plusHours(startTime);
+        LocalDateTime endDateTime = date.withHour(endTime);
+        Duration duration = new Duration(startDateTime, endDateTime);
+        return new Activity(activityName, isOnline, linkOrVenue, duration);
+    }
+
     public static void showLink(DateList dateList) {
         LocalDate todayDate = LocalDateTime.now().toLocalDate();
         int now = LocalDateTime.now().toLocalTime().getHour() * 100;
@@ -127,12 +180,11 @@ public class TimeTableParser {
                 if ((period.timeSlot.contains(now) || period.timeSlot.contains(now + 100)
                         || period.timeSlot.contains(now + 200))
                         && period.startDateTime.toLocalDate().equals(todayDate)) {
-                    System.out.println(event.linkOrVenue);
+                    System.out.print(event.linkOrVenue + "|" + event.name + "\n");
                 }
             }
         }
     }
-
 
     public static void fileParser(String command, DateList dateList) {
         String[] words = command.split("\\|");
@@ -140,31 +192,35 @@ public class TimeTableParser {
         String name = words[1];
         String linkOrVenue = words[2];
         boolean isOnline = Boolean.parseBoolean(words[3]);
-        int numPerWeek = Integer.parseInt(words[4]);
-        switch (eventType) {
-        case L: {
-            int durationNum = Integer.parseInt(words[5]);
-            Lesson lesson = new Lesson(name, linkOrVenue, isOnline, numPerWeek);
-            for (int i = 0; i < durationNum; i++) {
-                assert words[ 5 + 2 * i + 1].contains("-") : "this word should be the datetime format";
-                LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
-                assert words[5 + 2 * i + 2].contains("-") : "this word should be the datetime format";
-                LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
-                Duration duration = new Duration(start, end);
-                lesson.addPeriod(duration);
+        try {
+            switch (eventType) {
+            case L: {
+                int numPerWeek = Integer.parseInt(words[4]);
+                int durationNum = Integer.parseInt(words[5]);
+                Lesson lesson = new Lesson(name, linkOrVenue, isOnline, numPerWeek);
+                for (int i = 0; i < durationNum; i++) {
+                    assert words[5 + 2 * i + 1].contains("-") : "this word should be the datetime format";
+                    LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
+                    assert words[5 + 2 * i + 2].contains("-") : "this word should be the datetime format";
+                    LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
+                    Duration duration = new Duration(start, end);
+                    lesson.addPeriod(duration);
+                }
+                dateList.addEvent(lesson);
             }
-            dateList.addLesson(lesson);
-        }
             break;
-        case A: {
-            LocalDateTime start = LocalDateTime.parse(words[5]);
-            LocalDateTime end = LocalDateTime.parse(words[6]);
-            Duration duration = new Duration(start, end);
-            Activity activity = new Activity(name, isOnline, linkOrVenue, duration);
-            dateList.addLesson(activity);
-        }
+            case A: {
+                LocalDateTime start = LocalDateTime.parse(words[4]);
+                LocalDateTime end = LocalDateTime.parse(words[5]);
+                Duration duration = new Duration(start, end);
+                Activity activity = new Activity(name, isOnline, linkOrVenue, duration);
+                dateList.addEvent(activity);
+            }
             break;
-        default:
+            default:
+            }
+        } catch (ClashScheduleException e) {
+            System.out.println("There is a clash in schedule");
         }
     }
 

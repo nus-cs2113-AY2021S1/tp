@@ -103,7 +103,7 @@ public class AcademicCommandParser extends CommandParser {
     }
 
     public static Integer parseDeletePerson(String command) {
-        return Integer.parseInt(command.substring("delete person".length()).trim());
+        return Integer.parseInt(command.substring("delete contact".length()).trim());
     }
 
     public static Integer parseDeleteGrade(String command) {
