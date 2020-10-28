@@ -300,15 +300,58 @@ Given below is the class diagram for classes related to Bookmark Management in Q
 
 ![Class Diagram for Bookmark Management](images/ClassDiagram_Bookmark.png)
 
-#### 4.3.1 Feature: Add bookmark
-The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+Given below is the class diagram for classes related to Task Management in Quotesify:
+
+![Class Diagram for Task Management](images/ClassDiagram_ToDo.png)
+
+#### 4.3.1 Add/Update bookmark
+The proposed add or update bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
 be created in the process.
 * The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
 bookmarks named `BookmarkList`.
 
-The sequence diagram below demonstrates the command execution process when adding a bookmark to an existing book.
+The sequence diagram below demonstrates the command execution process when adding or updating a bookmark to an existing book.
 
 ![Sequence Diagram for Add Bookmark](images/SeqDiagram_AddBookmark.png)
+
+* To reduce complexity and increase readability, the sequence diagram excludes error handling.
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+`BookmarkCommand` object as seen in the diagram, and then calling it's `execute()` method.
+
+#### Design Considerations
+* BookmarkList is always sorted in order of creation time
+    * Pros: Allow user to easily find the earliest and the latest book they started to read.
+    * Cons: Make user hard to find the bookmark they recently updated.
+
+#### 4.3.2 Add task
+The add task feature allows users to add tasks with a deadline to Quotesify. Tasks added can be of the following format:
+
+* Task without any deadline
+* Task with an unformatted deadline
+* Task with a formatted deadline 
+ 
+* The `ToDo` object (we mentioned as 'task' before) will be made up of a name and a deadline, which is stored in a list of 
+tasks named `ToDoList`.
+
+The sequence diagram below demonstrates the command execution process when adding a task.
+
+![Sequence Diagram for Add ToDo](images/SeqDiagram_AddToDo.png)
+
+* To reduce complexity and increase readability, the sequence diagram excludes error handling.
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+`AddCommand` object which subsequently creates the `AddToDoCommand` as seen in the diagram, and then calling it's 
+`execute()` method.
+
+#### Design Considerations
+* ToDoList is sorted in two ways:
+    * Tasks with formatted deadline will be sorted in ascending order of time. (The one with an earlier deadline 
+    is displayed ahead of the one with a later deadline)
+    * Task with unformatted deadline and without specified deadline will be arranged in order of creation time.
+    * Tasks with formatted deadline will be listed ahead of all other tasks.
+    
+        * Pros: User can view the most urgent task easily
+        * Cons: It is hard for user to find a task with an unformatted deadline 
+        even though the text in the deadline represents a high urgency.
     
 ### 4.4 Feature: Category Management
 Given below is the class diagram for classes related to Category Management in Quotesify:
