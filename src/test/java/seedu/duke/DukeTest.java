@@ -17,7 +17,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class DukeTest {
 
@@ -60,7 +62,7 @@ class DukeTest {
         try {
             setupComponents(inputString);
             String userInput = ui.receiveCommand();
-            ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+            ArrayList<String> allCommandInputs = currentParse.multiParse(userInput);
             for (String commInputs : allCommandInputs) {
                 ui.printDividerLine();
                 Command c = currentParse.parse(commInputs);
@@ -95,7 +97,7 @@ class DukeTest {
         try {
             setupComponents(inputString);
             String userInput = ui.receiveCommand();
-            ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+            ArrayList<String> allCommandInputs = currentParse.multiParse(userInput);
             for (String commInputs : allCommandInputs) {
                 ui.printDividerLine();
                 Command c = currentParse.parse(commInputs);
@@ -123,7 +125,7 @@ class DukeTest {
         try {
             setupComponents(inputString);
             String userInput = ui.receiveCommand();
-            ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+            ArrayList<String> allCommandInputs = currentParse.multiParse(userInput);
             for (String commInputs : allCommandInputs) {
                 ui.printDividerLine();
                 Command c = currentParse.parse(commInputs);
@@ -143,6 +145,7 @@ class DukeTest {
         }
 
     }
+
     @Test
     public void sampleTest() {
         assertTrue(true);

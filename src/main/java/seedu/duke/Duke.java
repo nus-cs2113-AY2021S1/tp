@@ -63,7 +63,7 @@ public class Duke {
 
                 ui.printDividerLine();
                 String userInput = ui.receiveCommand();
-                ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+                ArrayList<String> allCommandInputs = currentParse.multiParse(userInput);
                 for (String commInputs : allCommandInputs) {
                     ui.printDividerLine();
                     Command c = currentParse.parse(commInputs);
