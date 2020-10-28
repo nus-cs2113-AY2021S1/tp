@@ -57,7 +57,6 @@ public class BookmarksManager {
             oos.writeObject(bookmarks);
             oos.close();
             fos.close();
-            System.out.println("Serialization Done!!");
         } catch (IOException e) {
             System.out.println(e);
         }
