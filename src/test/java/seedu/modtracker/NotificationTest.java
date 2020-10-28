@@ -30,6 +30,7 @@ class NotificationTest {
 
     @Test
     void start_addOneModuleWithTooLittleTime_startMessage() {
+        modules.clear();
         modules.addExp("addExp CS5555 3", true, storage);
         modules.addTime("addtime cs5555 1 1", true, storage);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
