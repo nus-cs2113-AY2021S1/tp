@@ -166,7 +166,7 @@ public class CountdownCommand extends Command {
             for (int j = 0; j < deadlineList.getTotalItems() - i - 1; j++) {
                 CalendarItem item1 = deadlineList.getCalendarList().get(j);
                 CalendarItem item2 = deadlineList.getCalendarList().get(j + 1);
-                if (((Exam) item1).getCountdown() > ((Exam) item2).getCountdown()) {
+                if (((Deadline) item1).getCountdown() > ((Deadline) item2).getCountdown()) {
                     deadlineList.swapTasks(j, j + 1);
                 }
             }

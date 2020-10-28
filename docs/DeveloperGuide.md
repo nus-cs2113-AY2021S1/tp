@@ -66,6 +66,7 @@ Now, Open Intellij
 1. **Configure the coding style**
 If using IDEA, follow the guide If using IDEA, follow the guide [se-edu/guides IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
 to set up IDEA’s coding style to match ours.
+
     :bulb: Tips: Optionally, you can follow the guide  [se-edu/guides Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html) 
     to find how to use the CheckStyle within IDEA e.g., to report problems as you write code.
 1. **Set up CI**
@@ -194,12 +195,12 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
-![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+![print_tasks_command_sd](../images/PrintTasksCommand_SD.png)
 
 ### Print events feature
 This feature is facilitated by `PrintEventsCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
-![print_events_command_sd](images/PrintEventsCommand_SD.png)
+![print_events_command_sd](../images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
@@ -339,12 +340,14 @@ This section describes the user stories considered when implementing the feature
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
 |v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
+|v1.0|user|store all the data locally|load my saved data to the app next time|
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 |v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
+|v2.0|NUS student|see the exam and deadline countdown|be conscious about the coming exams and deadlines and manage my time more wisely|
 
 ## Appendix C: Non-Functional Requirements
 
