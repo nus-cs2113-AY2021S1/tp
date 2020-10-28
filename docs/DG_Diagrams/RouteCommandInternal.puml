@@ -2,6 +2,8 @@
 mainframe **sd** execute route finder
 skinparam BoxPadding 10
 box Logic
+[-> ":RouteCommand":executeCommand()
+activate ":RouteCommand"
 ":RouteCommand" -> ":RouteParser": getLocations()
 activate ":RouteParser"
 ":RouteCommand" <-- ":RouteParser": {loc1, loc2}
@@ -42,4 +44,6 @@ end ref
 deactivate "<<class>>\n:BusData"
 end
 end box
+[<-- ":RouteCommand"
+deactivate ":RouteCommand"
 @enduml

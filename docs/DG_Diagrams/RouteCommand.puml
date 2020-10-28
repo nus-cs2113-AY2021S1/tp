@@ -2,8 +2,11 @@
 box Logic
 [-> ":Parser": setUserInput("/route loc1 /to loc2")
 activate ":Parser"
-[-> ":Parser": extractType()
+[<--":Parser"
+deactivate ":Parser"
 
+[-> ":Parser": extractType()
+activate ":Parser"
 create ":RouteCommand"
 ":Parser" -> ":RouteCommand":new RouteCommand("loc1 /to loc2")
 activate ":RouteCommand"
