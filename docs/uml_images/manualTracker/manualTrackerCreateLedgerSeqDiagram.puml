@@ -1,5 +1,8 @@
 @startuml
 autoactivate on
+actor User
+
+User-> ":ManualTracker": Create Ledger
 
 ":ManualTracker" ->":ManualTracker": handleCreateLedger()
     create "command:CreateLedgerCommand"

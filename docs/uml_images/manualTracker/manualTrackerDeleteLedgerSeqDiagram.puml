@@ -1,6 +1,9 @@
 @startuml
 autoactivate on
-scale 2048 width
+
+actor User
+
+User-> ":ManualTracker": Delete Ledger
 
 ":ManualTracker" ->":ManualTracker": handleDeleteLedger()
    note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
