@@ -12,12 +12,14 @@
 <br/>&nbsp;3.5 [AnimeData Component](#35-animedata-component)
 <br/>&nbsp;3.6 [User Component](#36-user-component)
 <br/>&nbsp;3.7 [Storage Component](#37-storage-component)
+
 4. [Implementation](#4-implementation)
 <br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
 <br/>&nbsp;4.3 [Workspace Feature](#43-workspace-feature)
 <br/>&nbsp;4.4 [Watchlist Management Feature](#44-watchlist-management-feature)
-5. [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
+
+5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
 <br/>&nbsp;5.2 [Logging](#52-logging)
 <br/>&nbsp;5.3 [Testing](#53-testing)
@@ -105,12 +107,12 @@ The `Main` class is the starting point of the application and has only one class
 * At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
 The rest of AniChan consists of 6 components: 
-- `Ui`: Manages the user interface of AniChan.
-- `Parser`: Parses the user input.
-- `Command`: Executes the command.
-- `User`: Manages the workspace(s) and user data.
-- `AnimeData`: Provides data from the anime source file.
-- `Storage`: Reads data from, and writes data to, the hard disk.
+*   `Ui`: Manages the user interface of AniChan.
+*   `Parser`: Parses the user input.
+*   `Command`: Executes the command.
+*   `User`: Manages the workspace(s) and user data.
+*   `AnimeData`: Provides data from the anime source file.
+*   `Storage`: Reads data from, and writes data to, the hard disk.
 
 <br/>
 
@@ -295,8 +297,8 @@ as sorted browsing to browse in alphabetical or by the rating of the anime.
 
 #### 4.2.1 Current Implementation
 The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user input. It will then fetch `Anime` objects matching the parameters specified by `BrowseCommandParser` that are stored in `AnimeData`. It extends the `Command` class and implements the following operations:
-- `BrowseCommand#sortBrowseList()` - Handles any sorting of `Anime` objects. 
-- `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
+*   `BrowseCommand#sortBrowseList()` - Handles any sorting of `Anime` objects. 
+*   `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
 <br/>
 
 These are the two fundamental operations that will carry out the execution of the browse command.
