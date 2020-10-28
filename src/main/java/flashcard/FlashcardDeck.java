@@ -90,8 +90,8 @@ public class FlashcardDeck {
                         + "Please enter a number within the range of 1-" + flashcardDeck.size() + ".");
                 Ui.printDivider();
             } else {
-                assert cardIndex <= flashcardDeck.size() : "card index inserted should be less than size of deck at this"
-                        + "step";
+                assert cardIndex <= flashcardDeck.size() : "card index inserted should be less than size of deck "
+                        + "at this step";
                 Ui.printDivider();
                 System.out.println("Noted. I have removed this card: "
                         + flashcardDeck.get(cardIndex - 1).question + "|" + flashcardDeck.get(cardIndex - 1).answer
@@ -120,8 +120,7 @@ public class FlashcardDeck {
             Ui.printDivider();
             System.out.println("There are no matching cards in your list.");
             Ui.printDivider();
-        }
-        else {
+        } else {
             Ui.printDivider();
             System.out.println("Here are the matching cards in your list:");
             for (Flashcard flashcard: cardsFound) {
