@@ -36,16 +36,16 @@ public class RecurringEntryList extends ItemList {
      * day of month between X and Y  (both inclusive)
      * i.e. Y >= day >= X (inequality)
      *
-     * @param X - start day
-     * @param Y - end day
+     * @param startDay - X
+     * @param endDay - Y
      * @return ArrayList of RecurringEntry
      */
-    public ArrayList<RecurringEntry> getEntriesFromDayXtoY(int X, int Y) {
+    public ArrayList<RecurringEntry> getEntriesFromDayXtoY(int startDay, int endDay) {
         ArrayList<RecurringEntry> entries = new ArrayList<>();
         for (Item item : super.items) {
             RecurringEntry entry = (RecurringEntry) item;
             int dayOfEntry = entry.getDay();
-            if (dayOfEntry >= X && dayOfEntry <= Y) {
+            if (dayOfEntry >= startDay && dayOfEntry <= endDay) {
                 entries.add(entry);
             }
         }

@@ -51,7 +51,7 @@ public class RunHistory {
         int currentRunMonth = currentRunDateTime.getMonthValue();
         int currentRunYear = currentRunDateTime.getYear();
 
-        if(currentRunYear == lastRunYear) {
+        if (currentRunYear == lastRunYear) {
             return currentRunMonth > lastRunMonth;
         }
 

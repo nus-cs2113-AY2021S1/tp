@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ReminderPrinter {
     /**
      * Prints a list of reminders for recurring entries that are
-     * upcoming 5 days from the current date
+     * upcoming 5 days from the current date.
      */
     public static void printReminders() {
         ArrayList<String> remindersToPrint = ReminderGenerator.generateListOfRemindersAsStrings();

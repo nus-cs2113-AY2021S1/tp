@@ -12,7 +12,7 @@ public class DateTimeHelper {
         int lastDigit = day % 10;
         int firstDigit = day / 10;
 
-        if(firstDigit == 1) {
+        if (firstDigit == 1) {
             return day + "th";
         }
 

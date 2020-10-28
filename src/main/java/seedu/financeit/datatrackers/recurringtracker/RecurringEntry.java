@@ -99,12 +99,11 @@ public class RecurringEntry extends Item {
         details.put(ParamChecker.PARAM_DESCRIPTION, description);
         if (entryType == Constants.EntryType.EXP) {
             details.put(ParamChecker.PARAM_EXP, "");
-        }
-        else {
+        } else {
             details.put(ParamChecker.PARAM_INC, "");
         }
         details.put(ParamChecker.PARAM_AMOUNT, String.valueOf(amount));
-        if(isAuto) {
+        if (isAuto) {
             details.put(ParamChecker.PARAM_AUTO, "");
         }
         details.put(ParamChecker.PARAM_NOTES, notes);
