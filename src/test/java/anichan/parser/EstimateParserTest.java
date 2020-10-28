@@ -21,14 +21,25 @@ public class EstimateParserTest {
     }
 
     @Test
-    void parse_invalidParameters_throwsAniException() {
+    void parse_invalidScriptFileName_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse(""));
         assertThrows(AniException.class, () -> estimateParser.parse("script"));
         assertThrows(AniException.class, () -> estimateParser.parse("/path/to/script"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -one -two"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt script_two.txt"));
+    }
 
+    @Test
+    void parse_multipleScriptFile_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt script_two.txt"));
+    }
+
+    @Test
+    void parse_invalidOption_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -o"));
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -one -two"));
+    }
+
+    @Test
+    void parse_invalidWordsPerHour_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph one"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 0"));

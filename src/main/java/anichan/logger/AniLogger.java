@@ -79,9 +79,6 @@ public class AniLogger {
         return fileHandler;
     }
 
-
-
-
     private static void clearHandlers(Logger logger) {
         assert logger != null : "Logger is null!";
 

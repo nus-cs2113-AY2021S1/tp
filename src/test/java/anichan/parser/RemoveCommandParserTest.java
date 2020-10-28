@@ -10,6 +10,7 @@ class RemoveCommandParserTest {
     protected static final String INVALID_PARAMETERS_TEST2 = "-d";
     protected static final String INVALID_PARAMETERS_TEST3 = "-n 1";
     protected static final String INVALID_FIELD_TEST1 = "-d Gundam";
+    protected static final String TOO_MANY_PARAMETERS = "-d 1 -d 2";
 
     @Test
     void parse_emptyDescription_throwsAniException() {
@@ -40,6 +41,14 @@ class RemoveCommandParserTest {
         RemoveCommandParser testParse = new RemoveCommandParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_FIELD_TEST1);
+        });
+    }
+
+    @Test
+    void parse_tooManyParameters_throwsAniException() {
+        RemoveCommandParser testParse = new RemoveCommandParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(TOO_MANY_PARAMETERS);
         });
     }
 }
