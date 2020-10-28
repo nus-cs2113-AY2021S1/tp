@@ -28,8 +28,8 @@ public class ScriptStorage extends Storage {
     /**
      * Reads the script file.
      *
-     * @param workspaceName name of the workspace where the script can be found
-     * @param fileName file name of the script file
+     * @param workspaceName the name of the workspace where the script can be found
+     * @param fileName the file name of the script file
      * @return the content of the script file
      * @throws AniException when an error occurred while loading the script data
      */

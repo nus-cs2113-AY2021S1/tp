@@ -78,7 +78,7 @@ public class UserStorage extends Storage {
     /**
      * Encodes the user object into a readable string representation for saving in file
      *
-     * @param user user object to be saved
+     * @param user the user object to be saved
      * @return the readable string representation of the user object
      */
     private String encode(User user) {

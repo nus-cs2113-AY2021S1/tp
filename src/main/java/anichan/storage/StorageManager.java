@@ -89,10 +89,22 @@ public class StorageManager {
 
     // ========================== User Saving and Loading ==========================
 
+    /**
+     * Invokes the save method in UserStorage to save the user data.
+     *
+     * @param user the user object to save
+     * @throws AniException when an error occurred while saving the user data
+     */
     public void saveUser(User user) throws AniException {
         userStorage.save(user);
     }
 
+    /**
+     * Invokes the load method in UserStorage to load the user data.
+     *
+     * @return the user object loaded
+     * @throws AniException when an error occurred while loading the user data
+     */
     public User loadUser() throws AniException {
         return userStorage.load();
     }
@@ -100,9 +112,9 @@ public class StorageManager {
     // ========================== Watchlist Saving and Loading ==========================
 
     /**
-     * Invokes the save method in UserStorage to save the watchlist data.
+     * Invokes the save method in WatchlistStorage to save the watchlist data.
      *
-     * @param workspaceName name of the workspace to save the list under
+     * @param workspaceName the name of the workspace to save the list under
      * @param watchlistList the watchlist list to save
      * @throws AniException when an error occurred while saving the watchlist list data
      */
@@ -111,9 +123,9 @@ public class StorageManager {
     }
 
     /**
-     * Invokes the load method in UserStorage to save the watchlist data.
+     * Invokes the load method in WatchlistStorage to save the watchlist data.
      *
-     * @param workspaceName name of the workspace to load the list from
+     * @param workspaceName the name of the workspace to load the list from
      * @param watchlistList the watchlist list to load the data into
      * @return the load result message
      * @throws AniException when an error occurred while loading the watchlist list data
@@ -137,8 +149,8 @@ public class StorageManager {
     /**
      * Loads the script file.
      *
-     * @param workspaceName name of the workspace where the script can be found
-     * @param fileName file name of the script file
+     * @param workspaceName the name of the workspace where the script can be found
+     * @param fileName the file name of the script file
      * @return the content of the script file
      * @throws AniException when an error occurred while loading the script data
      */

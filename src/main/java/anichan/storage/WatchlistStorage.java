@@ -45,7 +45,7 @@ public class WatchlistStorage extends Storage {
     /**
      * Saves the watchlist list at the specified workspace folder.
      *
-     * @param workspaceName name of the workspace to save the list under
+     * @param workspaceName the name of the workspace to save the list under
      * @param watchlistList the watchlist list to save
      * @throws AniException when an error occurred while saving the watchlist list data
      */
@@ -61,7 +61,7 @@ public class WatchlistStorage extends Storage {
     /**
      * Loads the watchlist list from the specified workspace.
      *
-     * @param workspaceName name of the workspace to load the list from
+     * @param workspaceName the name of the workspace to load the list from
      * @param watchlistList the watchlist list to load the data into
      * @return the load result message
      * @throws AniException when an error occurred while loading the watchlist list data
@@ -123,7 +123,7 @@ public class WatchlistStorage extends Storage {
     /**
      * Decodes the readable string representation of the watchlist object
      *
-     * @param line readable string representation of the watchlist object
+     * @param line the readable string representation of the watchlist object
      * @return the decoded watchlist object
      */
     private Watchlist decode(String line) {

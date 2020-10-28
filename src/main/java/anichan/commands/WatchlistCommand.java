@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command to manage the watchlist(s) in AniChan.
+ */
 public class WatchlistCommand extends Command {
     private static final String CREATE_OPTION = "n";
     private static final String LIST_OPTION = "l";
@@ -35,12 +38,34 @@ public class WatchlistCommand extends Command {
     private final String watchlistName;
     private final int watchlistIndex;
 
+    /**
+     * Creates a new instance of WatchlistCommand the specified option, watchlist name, and watchlist index.
+     *
+     * @param option specified watchlist command type
+     * @param watchlistName specified watchlist name (for create)
+     * @param watchlistIndex specified watchlist index (for select and delete)
+     */
     public WatchlistCommand(String option, String watchlistName, int watchlistIndex) {
         this.option = option;
         this.watchlistName = watchlistName;
         this.watchlistIndex = watchlistIndex - 1; // 1-based to 0-based numbering
     }
 
+    /**
+     * Depending on the option supplied, it can perform one of the following operations:
+     * <ul>
+     *     <li>Creates a watchlist</li>
+     *     <li>List all watchlist</li>
+     *     <li>Select a watchlist to be the new active watchlist</li>
+     *     <li>Delete a watchlist</li>
+     * </ul>
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
@@ -51,7 +76,7 @@ public class WatchlistCommand extends Command {
         case CREATE_OPTION:
             return createWatchlist(storageManager, activeWorkspace);
         case LIST_OPTION:
-            return listWatchlistList(activeWorkspace);
+            return listAllWatchlist(activeWorkspace);
         case SELECT_OPTION:
             return selectWatchlist(activeWorkspace);
         case DELETE_OPTION:
@@ -61,6 +86,14 @@ public class WatchlistCommand extends Command {
         }
     }
 
+    /**
+     * Creates a watchlist.
+     *
+     * @param storageManager used to save watchlist data
+     * @param activeWorkspace used to update watchlist list and save watchlist data to correct folder
+     * @return result after executing the command
+     * @throws AniException when an error occurred while creating the watchlist
+     */
     private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         Watchlist createdWatchlist = new Watchlist(watchlistName);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
@@ -80,7 +113,13 @@ public class WatchlistCommand extends Command {
         return "Watchlist \"" + watchlistName + "\" has been created successfully!";
     }
 
-    private String listWatchlistList(Workspace activeWorkspace) {
+    /**
+     * Lists all watchlist created in the workspace in a readable format.
+     *
+     * @param activeWorkspace used to retrieve all watchlist created in the workspace
+     * @return all watchlist created in the workspace
+     */
+    private String listAllWatchlist(Workspace activeWorkspace) {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         if (watchlistList.size() == 0) {
             LOGGER.log(Level.INFO, "Empty watchlistList message because size is 0");
@@ -101,6 +140,13 @@ public class WatchlistCommand extends Command {
         return sbWatchlistList.toString();
     }
 
+    /**
+     * Selects a watchlist to be the new active watchlist.
+     *
+     * @param activeWorkspace used to update the active watchlist for the active workspace
+     * @return result after executing the command
+     * @throws AniException when an error occurred while selecting a new active watchlist
+     */
     private String selectWatchlist(Workspace activeWorkspace) throws AniException {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         validateModificationOption(watchlistList, watchlistIndex);
@@ -117,6 +163,14 @@ public class WatchlistCommand extends Command {
         return "\"" + selectedWatchlist.getName() + "\" is now your active watchlist!";
     }
 
+    /**
+     * Deletes a watchlist.
+     *
+     * @param storageManager used to save watchlist data
+     * @param activeWorkspace used to update watchlist list and save watchlist data to correct folder
+     * @return result after executing the command
+     * @throws AniException when an error occurred while deleting a watchlist
+     */
     private String deleteWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         validateModificationOption(watchlistList, watchlistIndex);
@@ -138,6 +192,18 @@ public class WatchlistCommand extends Command {
         return commandOutput;
     }
 
+    /**
+     * Validates that the parameters supplied for the select and delete watchlist command is valid:
+     * <ul>
+     *     <li>There is no watchlist created before.</li>
+     *     <li>Attempts to delete the last watchlist.</li>
+     *     <li>Watchlist index specified is out of range.</li>
+     * </ul>
+     *
+     * @param watchlistList a list containing all of the watchlist for the active workspace
+     * @param index the watchlist index to check
+     * @throws AniException when the watchlist index is invalid
+     */
     private void validateModificationOption(ArrayList<Watchlist> watchlistList, int index) throws AniException {
         if (watchlistList.size() == 0) {
             throw new AniException(EMPTY_WATCHLIST_LIST);

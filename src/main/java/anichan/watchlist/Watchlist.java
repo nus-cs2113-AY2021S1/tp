@@ -23,8 +23,8 @@ public class Watchlist {
     /**
      * Creates a new instance of Watchlist with the specified name and anime list.
      *
-     * @param name specified watchlist name
-     * @param animeList specified anime list
+     * @param name the specified watchlist name
+     * @param animeList the specified anime list
      */
     public Watchlist(String name, ArrayList<Integer> animeList) {
         this.name = name;

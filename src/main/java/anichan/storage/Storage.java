@@ -26,7 +26,7 @@ public abstract class Storage {
     /**
      * Reads input file.
      *
-     * @param filePath path of the file to read from
+     * @param filePath the path of the file to read from
      * @return {@code String} containing the file content
      * @throws AniException when unable to read from the file
      */
@@ -46,8 +46,8 @@ public abstract class Storage {
     /**
      * Writes to file based on the content supplied.
      *
-     * @param filePath path to the file to be written
-     * @param fileContent content to be written
+     * @param filePath the path to the file to be written
+     * @param fileContent the content to be written
      * @throws AniException When unable to write to the file
      */
     public void writeFile(String filePath, String fileContent) throws AniException {

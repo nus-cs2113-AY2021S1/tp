@@ -10,25 +10,46 @@ import anichan.storage.StorageManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command to estimate the time needed to translate a script.
+ */
 public class EstimateCommand extends Command {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
     private static final int MINUTES_PER_HOUR = 60;
     private static final String SPLIT_WHITESPACE = " ";
 
-    // On average, translator translates about 400 to 600 words in an hour, so a multiple
-    // of 100 (400, 500, 600) is chosen to provide users with various estimation times so
-    // they can identify which of these 3 values is a better estimate for them.
+    // The values 400, 500, and 600 refers to the amount of words an average translator
+    // can translates in an hour.
     private static final int[] AVERAGE_TRANSLATOR_WORDS_PER_HOUR = {400, 500, 600};
     private static final Logger LOGGER = AniLogger.getAniLogger(EstimateCommand.class.getName());
 
     private final String scriptFileName;
     private final int wordsPerHour;
 
+    /**
+     * Creates a new instance of EstimateCommand with the specified script file name and words per hour.
+     *
+     * @param scriptFileName specified script file name
+     * @param wordsPerHour specified words per hour
+     */
     public EstimateCommand(String scriptFileName, int wordsPerHour) {
         this.scriptFileName = scriptFileName;
         this.wordsPerHour = wordsPerHour;
     }
 
+    /**
+     * Depending on whether the optional parameter, words per hour (wph) is specified:
+     * <ul>
+     *     <li>Specified: Calculates using the value.</li>
+     *     <li>Not specified: Calculates using the values defined in {@link #AVERAGE_TRANSLATOR_WORDS_PER_HOUR}.</li>
+     * </ul>
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return estimation timing generated after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
@@ -64,6 +85,12 @@ public class EstimateCommand extends Command {
         return commandResult.toString();
     }
 
+    /**
+     * Converts the estimated timing to a human-readable format.
+     *
+     * @param timeNeeded the estimated timing
+     * @return a human-readable format of the estimated timing
+     */
     private String timeNeededToString(double timeNeeded) {
         double hoursNeeded = Math.floor(timeNeeded);
         double minutesNeeded = (timeNeeded - hoursNeeded) * MINUTES_PER_HOUR;
