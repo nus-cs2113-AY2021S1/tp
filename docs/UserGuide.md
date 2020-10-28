@@ -164,9 +164,10 @@ Example:
 
 ### Adding an event:
 
-If you have new events including school event and any other event, you can add the new event to the calendar list. 
-You can add lectures, tutorials, and labs as recurring events, but the exams and activities cannot be recurring. 
-When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command with following formats:  
+When you have new events, you can add them to the calendar list in different types, including school events, 
+such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activitie` type.
+You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activitie` events cannot be recurring. 
+When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command in following formats:  
 
 ![tip_event](images/tip_event.PNG)
 
@@ -199,9 +200,9 @@ Example of usage:
 
 `exam CS1221 @MPSH2 / 221120 1100` - adds CS1221 exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
 
-#### Adding a laboratory session event: `lab`
+#### Adding recurring laboratory session events: `lab`
 
-You can add a laboratory session event to the calendar list by using the following format.
+When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
 
 Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -211,9 +212,9 @@ Example of usage:
 
 `lab CS2100 @com2-2112 -9 / 220920 1300` - adds CS2100 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
 
-#### Adding a lecture event: `lect`
+#### Adding recurring lecture events: `lect`
 
-You can add a lecture event to the calendar list by using the following format.
+When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
 
 Format: `lect <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -223,9 +224,9 @@ Example of usage:
 
 `lect CS2100 @lt11 -r 5 / 101020 1300` - adds CS2100 lecture at 2020-10-10 1p.m. to the event list, the venue is lt11 and the lecture will happen for the next 5 weeks.
 
-#### Adding a tutorial event: `tut`
+#### Adding recurring tutorial events: `tut`
 
-You can add a tutorial event to the calendar list by using the following format.
+When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
 
 Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -325,8 +326,8 @@ Example of usage:
 
 ### Prioritizing a task: `*t`                                                                                                    
 
-If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. Only tasks can be marked as important.
-Mark a task as important.
+When you have important tasks, you can prioritize them in the task list to distinguish from ordinary tasks.
+If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. 
     
 Format: `*t <task_number>`
     
@@ -361,17 +362,17 @@ Format: `print events`
 
 ### Printing important tasks: `print *`
     
-If you just want to view all the important tasks you have now instead of all the tasks in the calendar list, you can 
-type `print *` command to view the list of all important tasks together with their information.    
-                                                                           
+If you just want to view all the important tasks instead of all the tasks in the calendar list now, 
+you can type `print *` command to view the list of important tasks together with their information.                           
+                                                    
 Format: `print *`
 
 ![print*](images/printImportant_command..PNG)
 
 ### Printing progress: `print progress`
 
-If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, you can 
-type `print progress` command to see the proportion of the finished tasks among all the tasks.
+If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, 
+you can type  `print progress` command to see the fraction and percentage proportion of the finished tasks among all the tasks.
 
 Format: `print progress`
 
@@ -379,9 +380,9 @@ Format: `print progress`
 
 ### Giving suggestion: `suggestion`
 
-When you have a lot of tasks and do not know which several tasks should be prepared first, you can get some simple 
-suggestions from the 25HoursADay! The program can select several important and recent tasks and print them out together 
-will their information. If you want to get the suggestions, you can type the `suggestion` command to see them.  
+When you have a lot of tasks and do not know preparing for which several tasks first, you can get some simple suggestions from the 25HoursADay. 
+This application can select several important and urgent tasks in the task list for you. If you want to view the suggestions, 
+you can type the `suggestion` command to see the recommended tasks together with their information.  
     
 Format: `suggestion`
 
