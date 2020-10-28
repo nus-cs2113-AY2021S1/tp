@@ -35,7 +35,6 @@
 
 ## 1. Introduction
 **AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized, reusable and reusable pieces of code that makes it good for future improvements and revisions.
-<br/>
 
 ### 1.1 Purpose
 
