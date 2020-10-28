@@ -65,7 +65,7 @@ After familiarizing with all the functionalities, you will definitely be able to
 Before we jump into the main content, kindly read this section before proceeding to the feature section for a better understanding of it. This section consists of the legends and common terminology used in the feature section.
 
 The following table shows the list of legends used in this document:
-![table_of_legeng](../images/Table1_legeng.PNG)
+![table_of_legeng](images/Table1_legeng.PNG)
 
 
 The following table displays the list of terminologies used in this document:
@@ -90,7 +90,7 @@ The following table displays the list of terminologies used in this document:
 1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
 1. type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to strat the programme.
 1. The _Command Prompt_ should display similar output as shown in the figure below:
-    ![Screen_Shot_of_welcome_message](../images/Verify_setup.PNG)
+    ![Screen_Shot_of_welcome_message](images/Verify_setup.PNG)
 1. Type the command in the _Command Prompt_ and press _Enter_ to execute it. 
     1. E.g. typing `help` and pressing _Enter_ will display the help information:
 1. Refer to the [Features](#features) below for details of each command.
@@ -105,8 +105,8 @@ As a first-time user you can always type help in the terminal to view the list o
 
 Format: `help`
 
-![Screen_Shot_of_help_command](../images/Help_Command.PNG)
-![wanring_message_for_help](../images/warning_help_command.PNG)
+![Screen_Shot_of_help_command](images/Help_Command.PNG)
+![wanring_message_for_help](images/warning_help_command.PNG)
 
 ### Adding a task:
 
@@ -126,9 +126,9 @@ Format: `todo <task_description`
 Example: 
 
 `todo exercise for 10 minutes` adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
-![todo_command](../images/todo_command.png)
+![todo_command](images/todo_command.png)
 
-![tips_todo](../images/tip_for_todo.PNG)
+![tips_todo](images/tip_for_todo.PNG)
 
 #### Adding a deadline task: `deadline`
 
@@ -141,11 +141,11 @@ Example:
 
 `deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 
 as illustrated by the figure below.
-![deadline_command](../images/deadline_command.png)
+![deadline_command](images/deadline_command.png)
 
-![tips_deadline](../images/tips_deadline.PNG)
+![tips_deadline](images/tips_deadline.PNG)
 
-![warning_dadline](../images/warning_deadline.PNG)
+![warning_dadline](images/warning_deadline.PNG)
 
 ### Marking a task as done: `done`
 

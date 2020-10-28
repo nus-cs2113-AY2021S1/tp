@@ -45,7 +45,7 @@ Now, Open Intellij
         1. Click `Configure` → `Project Structure for New Project`
         1. Click `New...` and set it to the directory of the JDK
 1. Upon the successful configuration, you should be able to see the following screenshot:
-![JDK Config](../images/JDK_Config_Screenshot.png)
+![JDK Config](images/JDK_Config_Screenshot.png)
 1. Lastly, **Import the project as a Gradle Project.**
     * Intellij IDEA by default has the Gradle plugin installed. If you have disabled it, go to 
     `File` → `Settings` → `Plugins` to re-enable them.
@@ -58,7 +58,7 @@ Now, Open Intellij
 1. **Verify the set up**:
     * Run the `..main/java/seedu.duke/Duke`
     * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
-    ![verify_set_up](../images/Verify_setup.PNG)
+    ![verify_set_up](images/Verify_setup.PNG)
     * Run some tests to ensure it is working properly.
 
 ### Getting started
