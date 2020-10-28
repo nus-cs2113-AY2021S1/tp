@@ -30,8 +30,10 @@ public class NoteCommand extends Command {
         case (NOTE_DELETE):
             ui.deleteNoteInteractions(topics);
             break;
-        case (NOTE_LIST) :
+        case (NOTE_LIST):
             ui.listInteraction(topics);
+            break;
+        default:
             break;
         }
     }

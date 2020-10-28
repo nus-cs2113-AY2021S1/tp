@@ -121,7 +121,7 @@ public class UserStorage extends LocalStorage {
     private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
         for (Displayable noteObject: noteList.getInnerList()) {
-            notes.add(noteObject.getDescription());
+            notes.add(noteObject.getDescription(), noteObject.get);
         }
         return notes;
     }

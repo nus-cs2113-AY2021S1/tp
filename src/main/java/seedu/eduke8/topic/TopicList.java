@@ -25,8 +25,8 @@ public class TopicList implements DisplayableList {
 
     public boolean doesTopicExist(String topicName) {
         boolean result = false;
-        for(int i = 0; i < topics.size(); i++) {
-            if(topics.get(i).getDescription().equalsIgnoreCase(topicName)) {
+        for (int i = 0; i < topics.size(); i++) {
+            if (topics.get(i).getDescription().equalsIgnoreCase(topicName)) {
                 result = true;
             }
         }
