@@ -13,12 +13,20 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_STORE = "storing";
 
     private BookmarkList bookmarks;
+    private Question question;
+    private boolean alreadyBookmarked = false;
     String typeOfBookmarkCommand = "";
 
     public BookmarkCommand(Question question, String typeOfBookmarkCommand, BookmarkList bookmarks) {
         super();
         assert bookmarks != null;
-        bookmarks.add(question);
+        this.question = question;
+        if(question.isBookmarked()){
+            alreadyBookmarked = true;
+        } else {
+            bookmarks.add(question);
+            question.markAsBookmarked();
+        }
         this.bookmarks = bookmarks;
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
     }
@@ -34,7 +42,11 @@ public class BookmarkCommand extends Command {
         if (typeOfBookmarkCommand.equals(BOOKMARK_LIST)) {
             ui.printListOfBookmarkedQuestions(bookmarks);
         } else if (typeOfBookmarkCommand.equals(BOOKMARK_STORE)) {
-            ui.printBookmarkedIndicator();
+            if(alreadyBookmarked){
+                ui.printAlreadyBookmarkedIndicator();
+            } else {
+                ui.printBookmarkedIndicator();
+            }
         }
     }
 }

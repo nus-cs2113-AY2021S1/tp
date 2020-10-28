@@ -70,6 +70,7 @@ public class Ui {
     private static final String MESSAGE_QUIZ_QUESTION_CHOSEN_SECOND = " question";
     private static final String MESSAGE_BOOKMARK_INDICATOR = "Bookmarked this question!";
     private static final String MESSAGE_BOOKMARK_LIST = "This is your list of bookmarks: ";
+    private static final String MESSAGE_BOOKMARKED_ALREADY_INDICATOR = "This has already been bookmarked.";
     private static final String CLOSE_BRACKET = ") ";
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "] ";
@@ -257,6 +258,10 @@ public class Ui {
 
     public void printBookmarkedIndicator() {
         printMessage(MESSAGE_BOOKMARK_INDICATOR);
+    }
+
+    public void printAlreadyBookmarkedIndicator() {
+        printMessage(MESSAGE_BOOKMARKED_ALREADY_INDICATOR);
     }
 
     public void printListOfBookmarkedQuestions(BookmarkList bookmarks) {
