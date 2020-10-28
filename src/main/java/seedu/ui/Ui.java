@@ -177,7 +177,7 @@ public class Ui {
                 }
                 displayByDateStructure(result.getTasks());
             }
-        } else if(result.getTask() != null) {
+        } else if (result.getTask() != null) {
             displaySingleTask(result.getTask());
         }
     }
