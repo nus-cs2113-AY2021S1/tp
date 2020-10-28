@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
      * @param showName show to be deleted
      * @throws NullPointerException throws exception when show is not in the list
      */
-    public void delete(String showName) throws NullPointerException {
+    public static void delete(String showName) throws NullPointerException {
         if (ShowList.getShowList().containsKey(showName)) {
             ShowList.getShowList().remove(showName);
         } else {

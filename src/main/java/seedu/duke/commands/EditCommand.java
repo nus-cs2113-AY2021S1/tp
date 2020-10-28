@@ -103,6 +103,7 @@ public class EditCommand {
             if (editCommand.startsWith("name")) {
                 String newName = editCommand.substring(5);
                 show.setName(newName);
+                DeleteCommand.delete(showName);
                 showName = newName;
             } else if (editCommand.startsWith("episode")) {
                 editEpisodes(editCommand.substring(8));
@@ -111,9 +112,10 @@ public class EditCommand {
             } else if (editCommand.startsWith("duration")) {
                 editDuration(editCommand);
             } else if (editCommand.equals("done")) {
+                ShowList.setShow(showName, show);
                 break;
             }
-            ShowList.setShow(showName, show);
+
         }
         Ui.printEditShow(showName);
     }

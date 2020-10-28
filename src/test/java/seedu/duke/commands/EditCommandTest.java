@@ -45,9 +45,15 @@ public class EditCommandTest {
         ByteArrayInputStream in = new ByteArrayInputStream("edit friends\nepisode 10,20,30,40,50\ndone".getBytes());
         System.setIn(in);
         EditCommand.processCommand();
-        int[] correctAnswer = {10,20,30,40,50};
-        assertArrayEquals(correctAnswer,ShowList.getShow("friends").getNumEpisodesForSeasons());
         System.setIn(sysInBackup);
+        int[] correctAnswer = {10, 20, 30, 40, 50};
+        int[] testAnswer;
+        try {
+            testAnswer = ShowList.getShow("friends").getNumEpisodesForSeasons();
+        } catch (NullPointerException e) {
+            testAnswer = ShowList.getShow("f.r.i.e.n.d.s").getNumEpisodesForSeasons();
+        }
+        assertArrayEquals(correctAnswer, testAnswer);
     }
 
     @Test
