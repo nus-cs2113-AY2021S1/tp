@@ -172,8 +172,8 @@ The following sequence diagram explains the interactions omitted in the main dia
 
 ![executing command](DG_Diagrams/descFavInternal.png)
 
-#### 2.2.x Favourite command adder (`/dine` Feature)
-
+#### 2.2.x Favourite command adder (`/addfav` Feature)
+[Work in Progress]<br>
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
 #### 2.2.x Dining options finder (`/dine` Feature)
