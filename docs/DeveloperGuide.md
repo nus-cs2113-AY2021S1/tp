@@ -144,6 +144,10 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 #### 2.2.3. Favourite command adder (`/addfav` Feature)
 [Work in Progress]<br>
+`/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's
+list of favourites.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
 #### 2.2.4. Favourite command executor (`/execfav` Feature)
