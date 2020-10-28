@@ -115,7 +115,7 @@ The rest of the App consists of 8 components:
 ### 3.1. Ui Component 
 (Jia Ern)
 
-![Class Diagram of Ui Component](UML/ui_component.PNG)
+![Class Diagram of Ui Component](DG_Images/ui_component.PNG)
 
 The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
 
@@ -406,7 +406,6 @@ In addition, it implements the following operations:
 * `ReviseCommand#getCards()` — gets a list of `card` in `chapter`.
 * `ReviseCommand#promptNotDue()` — prompts user if he still wants to revise a `chapter` that is not due.
 * `ReviseCommand#reviseCard()` — makes use of `ui` to show the contents of each card to the user and gets rating input for the particular card.
-* `ReviseCommand#addHistory()` — adds the `chapter` to storage to track past revisions.
 * `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
 * `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
 
@@ -422,9 +421,13 @@ Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDu
 
 Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
 
+Step 6: A success message of completeing the revision will be shown to the user through `Ui#showToUser()`.
+
+Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
+
 Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
 
-Step 7: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
+Step 7: Lastly, `ReviseCommand#execute()` calls `HistoryCommand#addHistory()` to keep a record of the chapter revised so that the user can review what revision has been completed.
 
 The following sequence diagram shows how the revise feature works:
 ![Sequence Diagram of Revise](DG_Images/revise_seq_diagram.png)
