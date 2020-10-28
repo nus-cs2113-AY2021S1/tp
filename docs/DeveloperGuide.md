@@ -172,6 +172,10 @@ The following sequence diagram explains the interactions omitted in the main dia
 
 ![executing command](DG_Diagrams/descFavInternal.png)
 
+#### 2.2.x Favourite command adder (`/dine` Feature)
+
+![add favourites](DG_Diagrams/AddFavSequence.png)
+
 #### 2.2.x Dining options finder (`/dine` Feature)
 [Work in Progress]<br>
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
