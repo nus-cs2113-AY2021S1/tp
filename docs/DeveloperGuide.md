@@ -69,7 +69,7 @@ If you plan to use Intellij IDEA:
 
 ### Before writing code
 1. **Configuring the coding style**
-
+    
     If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
 2. **Set up CI**
