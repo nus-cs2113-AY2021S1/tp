@@ -380,7 +380,7 @@ Format: `print progress`
 
 ### Giving suggestion: `suggestion`
 
-When you have a lot of tasks and do not know prepare for which several tasks first, you can get some simple suggestions from the 25HoursADay. 
+When you have a lot of tasks and do not know preparing for which several tasks first, you can get some simple suggestions from the 25HoursADay. 
 This application can select several important and urgent tasks in the task list for you. If you want to view the suggestions, 
 you can type the `suggestion` command to see the recommended tasks together with their information.  
     
