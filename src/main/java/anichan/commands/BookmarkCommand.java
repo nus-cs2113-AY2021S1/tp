@@ -20,10 +20,13 @@ public class BookmarkCommand extends Command {
     private static final String ANIME_ID_EXIST_ERROR = " Anime index is already in bookmark.";
     private static final String BOOKMARK_ID_ERROR = " Bookmark index is outside Bookmark range "
             + "(Bigger than bookmark entries).";
-    private static final String NOTES_ID_ERROR = " Bookmark index is outside Bookmark range "
+    private static final String NOTES_ID_ERROR = " Note index is outside Bookmark range "
             + "(Bigger than number of notes).";
+    private static final String BOOKMARK_EPISODE_ERROR = " is invalid." + System.lineSeparator()
+            + "Episode provided is bigger than the total episode.";
     private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
     private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
+    private static final String BOOKMARK_NOTE_ERROR_MESSAGE = " provided contain \"~\" which is not allowed.";
     private static final String BOOKMARK_EXECUTE_EDIT = "Executing Edit Episode.";
     private static final String BOOKMARK_EXECUTE_ADD = "Executing Add Anime to Bookmark.";
     private static final String BOOKMARK_EXECUTE_DELETE = "Executing Delete Anime from Bookmark.";
@@ -34,6 +37,7 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_EXECUTE_SUCCESS = "Execute Bookmark command successful.";
     private static final String BOOKMARK_LIST_HEADER = "Listing all anime in bookmark:";
     private static final String BOOKMARK_INFO_HEADER = "Here is the information for that anime.";
+    private static final String BOOKMARK_NOTE_FORBIDDEN_CHAR = "~";
     private int bookmarkIndex;
     private int animeIndex;
 
@@ -135,14 +139,16 @@ public class BookmarkCommand extends Command {
     }
 
     private String addNoteToBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
-        String result;
         checkBookmarkIndex(bookmark);
+        checkNoteForForbiddenChar();
         bookmark.addNote(bookmarkIndex - 1, bookmarkNote);
         Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        String result;
         result = "Adding note:\"" + bookmarkNote + "\""
                 + " to " + animeToDelete.getAnimeName() + "!";
         return result;
     }
+
 
     private String getAnimeInfoFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -164,9 +170,9 @@ public class BookmarkCommand extends Command {
         checkAnimeIndex(animeData);
         checkAnimeNotInBookmark(bookmark);
         String result;
+        bookmark.addAnimeBookmark(animeIndex - 1);
         Anime animeToAdd = animeData.getAnime(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
-        bookmark.addAnimeBookmark(animeIndex - 1);
         return result;
     }
 
@@ -182,8 +188,9 @@ public class BookmarkCommand extends Command {
     private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
         String result;
-        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        checkEpisode(animeToEdit.getTotalEpisodes());
+        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode(s).";
         return result;
     }
@@ -195,6 +202,22 @@ public class BookmarkCommand extends Command {
                     + System.lineSeparator() + BOOKMARK_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
+        }
+    }
+
+    private void checkNoteForForbiddenChar() throws AniException {
+        if (bookmarkNote.contains(BOOKMARK_NOTE_FORBIDDEN_CHAR)) {
+            String invalidBookmarkNote = "Bookmark note " + bookmarkNote + BOOKMARK_NOTE_ERROR_MESSAGE;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkNote);
+            throw new AniException(invalidBookmarkNote);
+        }
+    }
+
+    private void checkEpisode(int totalEpisode) throws AniException {
+        if (bookmarkEpisode > totalEpisode) {
+            String invalidBookmarkNote = "Bookmark episode " + bookmarkEpisode + BOOKMARK_EPISODE_ERROR;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkNote);
+            throw new AniException(invalidBookmarkNote);
         }
     }
 

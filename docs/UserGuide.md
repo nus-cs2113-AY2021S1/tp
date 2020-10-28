@@ -649,6 +649,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 <br/>
 
 ## 5. Command Summary
+
 | Feature                                      | Command                                                  |
 | ---                                          | ---                                                      |
 | Help                                         | `help`                                                   |

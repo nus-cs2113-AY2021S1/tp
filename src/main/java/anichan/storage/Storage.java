@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Abstract class to represent the various storage type.
+ */
 public abstract class Storage {
     private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
     private static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
@@ -20,6 +23,13 @@ public abstract class Storage {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(Storage.class.getName());
 
+    /**
+     * Reads input file.
+     *
+     * @param filePath the path of the file to read from
+     * @return {@code String} containing the file content
+     * @throws AniException when unable to read from the file
+     */
     public String readFile(String filePath) throws AniException {
         String fileContent = EMPTY_STRING;
         try {
@@ -33,6 +43,13 @@ public abstract class Storage {
         return fileContent;
     }
 
+    /**
+     * Writes to file based on the content supplied.
+     *
+     * @param filePath the path to the file to be written
+     * @param fileContent the content to be written
+     * @throws AniException When unable to write to the file
+     */
     public void writeFile(String filePath, String fileContent) throws AniException {
         try {
             FileWriter fileWriter = new FileWriter(filePath);
@@ -45,10 +62,22 @@ public abstract class Storage {
         }
     }
 
+    /**
+     * Checks if a {@code String} is a positive integer.
+     *
+     * @param integerString the {@code String} to be checked
+     * @return {@code true} if {@code integerString} is a positive integer; false otherwise
+     */
     public boolean isPositiveInteger(String integerString) {
         return integerString.matches(POSITIVE_INTEGER_REGEX);
     }
 
+    /**
+     * Checks if a {@code String} is a (positive or negative) integer.
+     *
+     * @param integerString the {@code String} to be checked
+     * @return {@code true} if {@code integerString} is a (positive or negative) integer; false otherwise
+     */
     public boolean isPositiveOrNegativeInteger(String integerString) {
         return integerString.matches(POSITIVE_INTEGER_REGEX) || integerString.matches(NEGATIVE_INTEGER_REGEX);
     }
