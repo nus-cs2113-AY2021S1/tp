@@ -9,7 +9,7 @@ The app was mainly inspired by [addressbook-level2](https://github.com/se-edu/ad
 ### Design
 The App consists of a few main components.
 
-* UI: The UI that deals with getting user input and displaying output.
+* Ui: The UI that deals with getting user input and displaying output.
 * Command: Command to be executed.
 * Parser: Parse user input and make sense of it.
 * Storage: Reads data from, and writes data to, the hard disk.
@@ -27,11 +27,22 @@ The complete class diagram is shown below.
 #### Retrieve Command
 The flow for the retrieve command is as follows:
 ![image info](./pictures/retrieveCommandSD.png)
-1. User calls retrieve command with NRIC
-2. Ui receives the command, returns it to Main and Main calls parser to parse
-3. Parser returns with retrieve command, and Main executes retrieve command
-4. Retrieve command extracts NRIC using parser, searches through the patients list and returns the patient
-5. Ui receives the patient and prints it.
+1. Retrieve command extracts NRIC using parser, 
+2. Retrieve command searches through the patients list and obtains the patient's index.
+3. Patients list returns the patient.
+4. Ui object prints the patient.
+
+#### Add Command
+The flow for add command is as follows:
+![image_info](./pictures/addCommandSD.PNG)
+1. Add command extracts NRIC by calling its own method.
+2. Add command checks patients list if NRIC already exists. Add command ends if so.
+3. Add command calls Ui object to get the patient name and date of birth from user.
+4. Patient list adds the new patient.
+5. Add command obtains the newly added patient.
+6. Ui receives the call to print the patient.
+7. The updated patients list is saved by the Storage object.
+
 
 #### Book Command
 The flow for the book command is shown in the sequence diagram below:
