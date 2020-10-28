@@ -261,7 +261,7 @@ Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution **(current design)** | Easy to implement since `Command` already handle file matters. | Failing the file validation during command execution would have wasted some memory resources. |
+| During command execution **(current design)** | Easy to implement since `Command` already handle file matters. | Failing file validation during command execution would have wasted some memory resources. |
 | During parsing | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
 Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
@@ -272,8 +272,8 @@ Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| Specify file extension **(current design)** |  Ensures the correct file will be read. | Some users does not know how to identify file extension. |
-| Do not have to specify file extension | Users can easily specify the file to read | The application may end up reading the wrong file due to identical names but different file extension. |
+| Specify file extension **(current design)** |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Do not have to specify file extension | Users can easily specify the file to read | May read the wrong file due to identical names but different file extension. |
 
 We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
