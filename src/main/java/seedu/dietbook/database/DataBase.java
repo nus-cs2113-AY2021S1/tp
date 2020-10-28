@@ -129,7 +129,6 @@ public class DataBase {
      *
      * @param food part of the name of the food
      * @return Food
-     * @throws NoSuchElementException if no food contains the name provided
      */
     public Food searchFoodByName(String food) {
         return foodStream().filter(x -> x.getName().contains(food)).findFirst().orElseThrow();
@@ -151,7 +150,6 @@ public class DataBase {
      * @param food partial name of the food
      * @param store partial name of the store
      * @return Food object
-     * @throws NoSuchElementException if no food contains the name provided
      */
     public Food searchFoodByNameByStore(String food, String store) {
         return searchAllFoodByStore(store)
@@ -165,7 +163,6 @@ public class DataBase {
      *
      * @param store partial name of the store
      * @return food stream
-     * @throws NoSuchElementException if no there is no store
      */
     public Stream<Food> searchAllFoodByStore(String store) {
         return canteenList.stream()
@@ -198,8 +195,6 @@ public class DataBase {
      * @param food partial name of the food
      * @param canteen partial name of the canteen
      * @return Food object
-     *
-     * @throws NoSuchElementException if no food contains the name provided
      */
     public Food searchFoodByNameByCanteen(String food, String canteen) {
         return searchAllFoodByNameByCanteen(food, canteen)
@@ -259,8 +254,24 @@ public class DataBase {
 
     /**
      * Provide a list of all food in the data base.
+     * @return List of food
      */
     public List<Food> getFoodList() {
         return foodStream().collect(Collectors.toList());
+    }
+
+    /**
+     * Provide a list o all food in the data base in numbered String form.
+     * @return String
+     */
+    public String getFoodListString() {
+        List<Food> foodlist = foodStream().collect(Collectors.toList());
+        StringBuilder foodListString = new StringBuilder();
+        int foodnum = 0;
+        for (Food food : foodlist) {
+            foodnum++;
+            foodListString.append("  ").append(foodnum).append(". ").append(food.toString()).append("\n");
+        }
+        return foodListString.toString();
     }
 }
