@@ -1,0 +1,73 @@
+@startuml
+box Logic
+participant ":Parser"
+participant ":ExecFavCommand"
+participant ":ExecFavParser"
+participant "p:Parser"
+end box
+
+box Model
+participant ":FavList" <<(C,#ADD1B2) Class>>
+participant ":Fav"
+end box
+
+[-> ":Parser": setUserInput("/execfav index")
+activate ":Parser"
+[-> ":Parser": extractType()
+
+create ":ExecFavCommand"
+":Parser" -> ":ExecFavCommand": ExecFavCommand(index)
+activate ":ExecFavCommand"
+
+create ":ExecFavParser"
+":ExecFavCommand" -> ":ExecFavParser": ExecFavParser(index)
+activate ":ExecFavParser"
+":ExecFavParser" -> ":ExecFavParser": setIndex()
+activate ":ExecFavParser"
+":ExecFavParser" --> ":ExecFavParser"
+deactivate ":ExecFavParser"
+":ExecFavParser"-->":ExecFavCommand"
+deactivate ":ExecFavParser"
+":ExecFavCommand"--> ":Parser"
+deactivate ":ExecFavCommand"
+
+":Parser" -> ":ExecFavCommand": executeCommand()
+activate ":ExecFavCommand"
+":ExecFavCommand" ->":ExecFavCommand": getFav()
+activate ":ExecFavCommand"
+":ExecFavCommand" -> ":ExecFavParser": getIndex()
+activate ":ExecFavParser"
+":ExecFavParser"-->":ExecFavCommand"
+deactivate ":ExecFavParser"
+
+
+
+":ExecFavCommand" -> ":FavList": getFav(Index)
+activate ":FavList"
+":FavList" --> ":ExecFavCommand"
+deactivate ":FavList"
+":ExecFavCommand" --> ":ExecFavCommand"
+deactivate ":ExecFavCommand"
+":ExecFavCommand" -> ":Fav": getCommand()
+activate ":Fav"
+":Fav"-->":ExecFavCommand"
+deactivate ":Fav"
+
+create "p:Parser"
+":ExecFavCommand" -> "p:Parser": Parser(Command)
+activate "p:Parser"
+"p:Parser"->"p:Parser": extractType()
+activate "p:Parser"
+"p:Parser"-->"p:Parser"
+deactivate "p:Parser"
+"p:Parser"-->":ExecFavCommand"
+deactivate "p:Parser"
+":ExecFavCommand"--> ":Parser"
+deactivate ":ExecFavCommand"
+[<--":Parser"
+deactivate ":Parser"
+
+
+
+
+@enduml
