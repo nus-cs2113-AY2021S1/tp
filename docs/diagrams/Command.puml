@@ -1,48 +1,55 @@
 @startuml
 
+hide circle
+skinparam classAttributeIconSize 0
+
 Package " "<<Rectangle>>{
     Class Command <<abstract>>
-    Class ExitCommand
     Class AddEventCommand
     Class AddNoteCommand
+    Class ArchiveNoteCommand
     Class CreateTagCommand
+    Class DeleteEventCommand
     Class DeleteNoteCommand
     Class DeleteTagCommand
     Class EditEventCommand
     Class EditNoteCommand
-    Class HelpCommand
+    Class ExitCommand
     Class FindCommand
+    Class HelpCommand
+    Class IncorrectCommand
     Class ListEventCommand
     Class ListNoteCommand
     Class ListTagCommand
     Class PinCommand
     Class RemindCommand
-    Class TagNoteCommand
     Class TagEventCommand
-    Class ViewNoteCommand
-    Class ArchiveNoteCommand
+    Class TagNoteCommand
     Class UnarchiveNoteCommand
+    Class ViewNoteCommand
 }
 
-ExitCommand ---|> Command
-AddEventCommand ---|> Command
-AddNoteCommand --|> Command 
-ArchiveNoteCommand --|> Command 
-CreateTagCommand --|> Command 
-DeleteNoteCommand --|> Command 
-DeleteTagCommand --|> Command 
-EditEventCommand --|> Command 
-EditNoteCommand --|> Command 
-FindCommand --|> Command 
-HelpCommand --|> Command 
-ListEventCommand --|> Command 
-ListNoteCommand --|> Command 
-ListTagCommand --|> Command
-PinCommand --|> Command 
-RemindCommand --|> Command 
-TagNoteCommand --|> Command
-TagEventCommand --|> Command
-UnarchiveNoteCommand --|> Command 
-ViewNoteCommand --|> Command 
+AddEventCommand -up-|> Command
+AddNoteCommand -up-|> Command 
+ArchiveNoteCommand -up-|> Command 
+CreateTagCommand -up-|> Command 
+DeleteEventCommand -up-|> Command
+DeleteNoteCommand -up-|> Command 
+DeleteTagCommand -up-|> Command 
+EditEventCommand -down-|> Command 
+EditNoteCommand -down-|> Command 
+ExitCommand -down-|> Command
+FindCommand -down-|> Command 
+HelpCommand -down-|> Command
+IncorrectCommand -down-|> Command
+ListEventCommand -down-|> Command 
+ListNoteCommand -left-|> Command 
+ListTagCommand -left-|> Command
+PinCommand -left-|> Command 
+RemindCommand -left-|> Command 
+TagNoteCommand -right-|> Command
+TagEventCommand -right-|> Command
+UnarchiveNoteCommand -right-|> Command 
+ViewNoteCommand -right-|> Command 
 
 @enduml
