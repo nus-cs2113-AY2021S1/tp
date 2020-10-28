@@ -22,22 +22,22 @@ public class ListDueCommand extends Command {
     public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
             + "yet. Please try this command again once you have added some flashcards!";
 
-    public ArrayList<DueChapter> allChapters;
-    public ArrayList<DueChapter> dueChapters;
+    public ArrayList<DueChapter> allDueChapters;
+    public ArrayList<DueChapter> dueDueChapters;
   
-    private void loadAllChapters(Storage storage, Ui ui) throws InvalidFileFormatException, ExclusionFileException {
+    private void loadAllDueChapters(Storage storage, Ui ui) throws InvalidFileFormatException, ExclusionFileException {
         try {
-            allChapters = storage.loadAllDueChapters(ui);
+            allDueChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
             throw new InvalidFileFormatException(UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
-    private void setDueChapters() {
-        for (DueChapter chapter : allChapters) {
+    private void setDueDueChapters() {
+        for (DueChapter chapter : allDueChapters) {
             LocalDate deadline = chapter.getChapter().getDueBy();
             if (Scheduler.isDeadlineDue(deadline)) {
-                dueChapters.add(chapter);
+                dueDueChapters.add(chapter);
             }
         }
     }
@@ -45,11 +45,11 @@ public class ListDueCommand extends Command {
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws InvalidFileFormatException,
             ExclusionFileException {
-        dueChapters = new ArrayList<>();
-        loadAllChapters(storage, ui);
-        setDueChapters();
-        ui.printDueByTodayMessage(dueChapters.size(), COMMAND_WORD);
-        ui.printDueChapters(dueChapters);
+        dueDueChapters = new ArrayList<>();
+        loadAllDueChapters(storage, ui);
+        setDueDueChapters();
+        ui.printDueByTodayMessage(dueDueChapters.size(), COMMAND_WORD);
+        ui.printDueChapters(dueDueChapters);
     }
 
     @Override
