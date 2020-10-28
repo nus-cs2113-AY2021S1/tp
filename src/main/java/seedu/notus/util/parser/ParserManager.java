@@ -77,9 +77,9 @@ public class ParserManager {
             case PinCommand.COMMAND_WORD:
                 return new ParsePinCommand(userMessage).parse();
             case CreateTagCommand.COMMAND_WORD:
-                return new ParseCreateTagOrDeleteCommand(userMessage, true).parse();
+                return new ParseCreateOrDeleteTagCommand(userMessage, true).parse();
             case DeleteTagCommand.COMMAND_WORD:
-                return new ParseCreateTagOrDeleteCommand(userMessage, false).parse();
+                return new ParseCreateOrDeleteTagCommand(userMessage, false).parse();
             case ListTagCommand.COMMAND_WORD:
                 return new ListTagCommand();
             case TagNoteCommand.COMMAND_WORD:

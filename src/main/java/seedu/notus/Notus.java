@@ -95,8 +95,8 @@ public class Notus {
      * Main entry-point for the application.
      */
     public static void main(String[] args) {
-        //AnsiConsole.systemInstall();
+        AnsiConsole.systemInstall();
         new Notus().run();
-        //AnsiConsole.systemUninstall();
+        AnsiConsole.systemUninstall();
     }
 }

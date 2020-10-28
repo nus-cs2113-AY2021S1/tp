@@ -113,7 +113,7 @@ public class ListNoteCommand extends Command {
         // no sorting, no viewing, no filtering of notes in the archived notebook.
         if (isArchived) {
             notes = notebook.getArchivedNotes();
-            return formatNotes(ARCHIVE_NOTES_MESSAGE, notes);
+            return formatNotes(ARCHIVE_NOTES_MESSAGE, notes, notebook);
         }
 
         // if no /archive or /tags and there is no pinned notes at all this if-else block will be executed
@@ -130,7 +130,7 @@ public class ListNoteCommand extends Command {
                 return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK);
             }
 
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
         }
 
         // if no /archive or /tags and there are pinned notes this if-else block will be executed
@@ -205,7 +205,7 @@ public class ListNoteCommand extends Command {
             } else {
                 sortedTaggedNotes = notes;
             }
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes);
+            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes, notebook);
         }
 
         // if no /archive and there are both pinned notes and /tags
@@ -223,6 +223,6 @@ public class ListNoteCommand extends Command {
             return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned, notebook);
         }
 
-        return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+        return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
     }
 }

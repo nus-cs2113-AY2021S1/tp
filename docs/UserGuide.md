@@ -20,11 +20,11 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
+[comment]:<>(##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Exit](#exit)
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
@@ -46,23 +46,11 @@ Any points with the 💡 emoji represents an additional information. You can acc
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
 1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
 1. If the program is running correctly, you should see the following:
-```
-Welcome to NotUS! 
- 
-             .-') _               .-') _                 .-')    
-            ( OO ) )             (  OO) )               ( OO ).  
-        ,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
-        |   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
-        |    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
-        |  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
-        |  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
-        |  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
-        `--'  `--'       `-----'    `--'    `-----'     `-----'  
- 
-    Type "help" if you need to see a list of commands and their usages.
- 
-    Enter command:
-```    
+
+<p align="center">
+   <img alt="startUp" src="startUp/help.png"/>
+</p>
+
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
 <br>
@@ -91,14 +79,20 @@ Example of usage:
 
 Expected output: 
 
+<p align="center">
+   <img alt="help" src="screenshots/help.png"/>
+</p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
 Adds a new note to the list of note items (think of it as a notebook).
 
-Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN]`
+Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
-💡 One can choose to add a `TAG` or/and `ISPIN` but it both parameters are not necessary.<br>
+💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
 💡 Set `ISPIN` to true if you want the note to be pinned.  
+💡 Set `ISARHCIVE` to true if you want the note to be archive.
+
+Subsequently, the application prompts the user to enter the content of the note.
 
 Example of usage: 
 
@@ -110,17 +104,22 @@ Example of usage:
 
 ```css
 Enter Note: 
+/del to delete previous line
+/end on a new line to end note input
 ```
 
 `Test Note line 1`<br>
 `Line 2`<br>
 `/end`
 
-Expected output:
-
-
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
+
+Expected output:
+
+<p align="center">
+   <img alt="addNote" src="screenshots/addNote.png"/>
+</p>
 
 ### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
 Shows a list of all the notes in the notebook.
@@ -139,11 +138,15 @@ Example of usage:
 
 `list-n /archive`
 
-Expected output:
-
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
 💡 Use `/sort down` to display the list of notes in descending order (Z-A).
-💡 The archived notes will **ONLY** be listed in chronological order. 
+💡 The archived notes will **ONLY** be listed in chronological order.
+
+Expected output:
+
+<p align="center">
+   <img alt="listNote" src="screenshots/listNote.png"/>
+</p>
 
 ### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
 View the selected note.
@@ -157,15 +160,18 @@ Example of usage:
 
 `view-n /i 1`
 
-`view-n /i 1 /t JavaDocs`
+`view-n /t JavaDocs`
 
 Expected output:
 
+<p align="center">
+   <img alt="viewNote" src="screenshots/viewNote.png"/>
+</p>
 
 #### <a id="edit-n">3.5 Edit Note: `edit-n`</a>
 Edits an existing note.
 
-Format: `edit-n /i INDEX [/t TITLE] [/ln LINE] [/c CONTENT] [/tag TAG_1] [/tag TAG_2]...`
+Format: `edit-n /i INDEX [/t TITLE] [/del LINE] [/add CONTENT] [/tag TAG_1] [/tag TAG_2]...`
 
 - Edits a note at the specified INDEX. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
@@ -182,7 +188,6 @@ Example of usage:
 
 Expected output:
 
-
 ### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
 
@@ -196,6 +201,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="findNote" src="screenshots/findNote.png"/>
+</p>
 
 ### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
@@ -213,6 +221,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="pinNote" src="screenshots/pinNote.png"/>
+</p>
 
 ### <a id="archive-n"><ins>3.8 Archive Note:</ins> `archive-n`</a>
 Archives a note.
@@ -232,6 +243,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="archiveNote" src="screenshots/archiveNote.png"/>
+</p>
 
 ### <a id="unarchive-n"><ins>3.9 Unarchive Note:</ins> `unarchive-n`</a>
 Unarchives a note.
@@ -249,6 +263,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="unarchiveNote" src="screenshots/unarchiveNote.png"/>
+</p>
 
 ### <a id="delete-n"><ins>3.10 Delete note:</ins> `delete-n`</a>
 Deletes an existing note.
@@ -262,12 +279,15 @@ Format: `delete-n [/i INDEX] [t/TITLE]`
 
 Example of usage: 
 
-`delete-n i/ 1`
+`delete-n /i 1`
 
-`delete-n /t JavaDocs Notes`
+`delete-n /t JavaDocs`
 
 Expected output:
 
+<p align="center">
+   <img alt="deleteNote" src="screenshots/deleteNote.png"/>
+</p>
 
 ### <a id="create-t"><ins>3.11 Create Tags:</ins> `create-t`</a>
 Create tags.
@@ -290,6 +310,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="createTag" src="screenshots/createTag.png"/>
+</p>
 
 ### <a id="list-t"><ins>3.12 List Tags:</ins> `list-t`</a>
 Shows a list of tags that have been created.
@@ -299,6 +322,10 @@ Example of usage:
 `list-t`
 
 Expected output:
+
+<p align="center">
+   <img alt="listTag" src="screenshots/listTag.png"/>
+</p>
 
 ### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
 Tags or untags a note with the given tag name.
@@ -317,6 +344,10 @@ Example of usage:
 `tag-n /i 1 /tag CS2113 /tag important`
 
 Expected output:
+
+<p align="center">
+   <img alt="tagAndUntag" src="screenshots/tagAndUntag.png"/>
+</p>
 
 ### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
 Tags or untags an event with the given tag name.
@@ -352,6 +383,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="deleteTag" src="screenshots/deleteTag.png"/>
+</p>
 
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
@@ -369,6 +403,8 @@ Example of usage:
 Expected output:
 
 
+
+<!---
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
@@ -385,7 +421,9 @@ Example of usage:
 Expected output:
 
 
-### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
+-->
+
+### <a id="list-e"><ins>3.17 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -400,7 +438,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
+### <a id="remind-e"><ins>3.18 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -414,7 +452,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
+### <a id="delete-e"><ins>3.19 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -428,7 +466,7 @@ Example of usage:
 Expected output:
 
 
-### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
+### <a id="exit"><ins>3.20 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 
@@ -468,7 +506,7 @@ List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
 Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`
+Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`

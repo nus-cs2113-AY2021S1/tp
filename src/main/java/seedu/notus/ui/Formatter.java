@@ -32,6 +32,8 @@ public class Formatter {
     private static final String EMPTY_SPACE = " ";
     private static final String CONTINUATION = "...";
     private static final String TITLE = "Title: ";
+    private static final String NOTE_INDEX = "Note index: ";
+    private static final String CONTENT = "Content: ";
     private static final char EMPTY_CHAR = ' ';
 
     /**
@@ -74,41 +76,8 @@ public class Formatter {
      * @param notes ArrayList of notes to obtain note title/tags from
      * @return noteString StringBuilder containing the notes ready to be printed
      */
-    public static String formatNotes(String header, ArrayList<Note> notes) {
-        String formattedString = "";
-        int i = 1;
-
-        formattedString = formattedString.concat(generatesHeader(header));
-
-        for (Note note: notes) {
-            String colorText = colorize("Note Index: " + i + ". " + TITLE + note.getTitle() + EMPTY_SPACE
-                    + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
-            formattedString = formattedString.concat(encloseRow(colorText));
-
-            int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
-
-            String truncatedContent = note.getContent()
-                    .get(0)
-                    .substring(0, truncatedContentLength)
-                    .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
-            formattedString = formattedString.concat(generatesRowSplit());
-
-            i++;
-        }
-        return encloseTopAndBottom(formattedString);
-    }
-
-    //@@author R-Ramana
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     *
-     * @param notes ArrayList of notes to obtain note title/tags from
-     * @return noteString StringBuilder containing the notes ready to be printed
-     */
     public static String formatNotes(String header, ArrayList<Note> notes, Notebook notebook) {
         String formattedString = "";
-        int i = 1;
         int colorGold = 94;
         int colorBrown = 95;
 
@@ -117,8 +86,19 @@ public class Formatter {
         for (Note note: notes) {
             String colorIndex = colorize("Note Index: " + notebook.getNoteIndex(note),
                     Attribute.TEXT_COLOR(colorBrown));
+            int noteIndex = notebook.getNoteIndex(note);
+
+            if (noteIndex == 0) {
+                noteIndex = notebook.getArchiveNoteIndex(note);
+            }
+
+            colorIndex = colorize(NOTE_INDEX + noteIndex, Attribute.CYAN_TEXT());
+
             String colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE
                     + note.getTagsName(), Attribute.TEXT_COLOR(colorGold));
+            colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE + note.getTagsName(),
+                    Attribute.YELLOW_TEXT());
+
             formattedString = formattedString.concat(encloseRow(colorIndex)).concat(encloseRow(colorTitle));
 
             int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
@@ -127,10 +107,8 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
-            formattedString = formattedString.concat(generatesRowSplit());
-
-            i++;
+            formattedString = formattedString.concat(encloseRow(CONTENT + truncatedContent))
+                    .concat(generatesRowSplit());
         }
         return encloseTopAndBottom(formattedString);
     }
@@ -139,6 +117,7 @@ public class Formatter {
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
+        header = colorize(header, Attribute.GREEN_TEXT());
         header = header.concat(note.getTitle() + " " + note.getTagsName());
 
         formattedString = formattedString.concat(generatesHeader(header));

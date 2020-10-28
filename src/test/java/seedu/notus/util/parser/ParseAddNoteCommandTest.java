@@ -2,12 +2,11 @@ package seedu.notus.util.parser;
 
 //@@author Nazryl
 
-import seedu.notus.command.Command;
 import seedu.notus.data.exception.SystemException;
 
 class ParseAddNoteCommandTest {
 
-    private ParseCreateTagOrDeleteCommand parser;
+    private ParseCreateOrDeleteTagCommand parser;
     private SystemException exception;
     private String inputString;
     private String expectedMessage;

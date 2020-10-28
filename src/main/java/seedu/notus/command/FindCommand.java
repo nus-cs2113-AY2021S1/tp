@@ -59,7 +59,7 @@ public class FindCommand extends Command {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
         LOGGER.log(Level.INFO, "Filtered notes will be returned.");
-        return Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, filteredNotes);
+        return Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, filteredNotes, notebook);
     }
 
     public void setupLogger() {
