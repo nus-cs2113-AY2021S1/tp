@@ -36,10 +36,10 @@ class DukeTest {
     private ByteArrayInputStream inStream;
 
 
-    @BeforeEach
-    public void setupComponents() {
 
-        String inputString = "add personal birthday; 03/01/2001; 0000; | list personal | delete personal 1\r\n";
+    public void setupComponents(String inputString) {
+
+
         inStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inStream);
         Scanner scan = new Scanner(System.in);
@@ -55,11 +55,10 @@ class DukeTest {
     public void multiParser_multipleValidCommands_allCommandsRun() {
 
         System.setOut(new PrintStream(outputStreamCaptor));
+        String inputString = "add personal birthday; 03/01/2001; 0000; | list personal | delete personal 1\r\n";
 
         try {
-            //setting input stream to be the string
-
-
+            setupComponents(inputString);
             String userInput = ui.receiveCommand();
             ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
             for (String commInputs : allCommandInputs) {
@@ -68,16 +67,82 @@ class DukeTest {
                 c.execute(data, ui, storage);
             }
 
-            assertTrue(true);
+            assertEquals("_________________________________" + System.lineSeparator()
+                            + "You have successfully added this event to your list!" + System.lineSeparator()
+                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "Here is a list of your Personal events:" + System.lineSeparator()
+                            + "1. [P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "You have successfully deleted this event!" + System.lineSeparator()
+                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
+                    outputStreamCaptor.toString());
         } catch (DukeException e) {
             fail("Should not have any errors in executing commands");
         } finally {
             System.setIn(stdin);
         }
 
+    }
+
+    @Test
+    public void multiParser_singleValidCommand_singleCommandsRun() {
+
+        System.setOut(new PrintStream(outputStreamCaptor));
+        String inputString = "add personal birthday; 03/01/2001; 0000;\r\n";
+
+        try {
+            setupComponents(inputString);
+            String userInput = ui.receiveCommand();
+            ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+            for (String commInputs : allCommandInputs) {
+                ui.printDividerLine();
+                Command c = currentParse.parse(commInputs);
+                c.execute(data, ui, storage);
+            }
+
+            assertEquals("_________________________________" + System.lineSeparator()
+                            + "You have successfully added this event to your list!" + System.lineSeparator()
+                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
+                    outputStreamCaptor.toString());
+        } catch (DukeException e) {
+            fail("Should not have any errors in executing commands");
+        } finally {
+            System.setIn(stdin);
+        }
 
     }
 
+    @Test
+    public void multiParser_singleErrorCommand_singleCommandsRunWithException() {
+
+        System.setOut(new PrintStream(outputStreamCaptor));
+        String inputString = "add personal birthday; 03/01/2001; 0000; | delete 1\r\n";
+
+        try {
+            setupComponents(inputString);
+            String userInput = ui.receiveCommand();
+            ArrayList<String> allCommandInputs= currentParse.multiParse(userInput);
+            for (String commInputs : allCommandInputs) {
+                ui.printDividerLine();
+                Command c = currentParse.parse(commInputs);
+                c.execute(data, ui, storage);
+            }
+
+
+        } catch (DukeException e) {
+            assertTrue(true);
+        } finally {
+            System.setIn(stdin);
+            assertEquals("_________________________________" + System.lineSeparator()
+                            + "You have successfully added this event to your list!" + System.lineSeparator()
+                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator(),
+                    outputStreamCaptor.toString());
+        }
+
+    }
     @Test
     public void sampleTest() {
         assertTrue(true);
