@@ -5,7 +5,7 @@ import seedu.smarthomebot.data.appliance.Appliance;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 import static seedu.smarthomebot.commons.Messages.LINE;
 
@@ -16,15 +16,15 @@ public class OffCommand extends Command {
             + " [APPLIANCE_NAME] \n\t\t b. " + COMMAND_WORD + " [LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private final String name;
+    private final String key;
 
-    public OffCommand(String name) {
-        this.name = name;
+    public OffCommand(String key) {
+        this.key = key;
     }
 
     private int getApplianceToOffIndex() {
         for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.name))) {
+            if (appliance.getName().equals((this.key))) {
                 return applianceList.getAllAppliance().indexOf(appliance);
             }
         }
@@ -36,7 +36,7 @@ public class OffCommand extends Command {
         String type = APPLIANCE_TYPE;
         ArrayList<Appliance> filterApplianceList =
                 (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(this.name))
+                        .filter((s) -> s.getLocation().equals(this.key))
                         .collect(toList());
         if (!filterApplianceList.isEmpty()) {
             type = LOCATION_TYPE;
@@ -55,7 +55,7 @@ public class OffCommand extends Command {
         int toOffApplianceIndex = getApplianceToOffIndex();
         if (toOffApplianceIndex < 0) {
             assert toOffApplianceIndex < 0 : "Index should be negative.";
-            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
+            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
         } else {
             assert toOffApplianceIndex > 0 : "Index should be positive.";
             Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
@@ -65,19 +65,15 @@ public class OffCommand extends Command {
     }
 
     private CommandResult offByLocation() {
-        if (locationList.isLocationCreated(this.name)) {
-            String outputResults = LINE;
-            outputResults = offByApplianceLoop(outputResults);
-            outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned off ");
-            return new CommandResult(outputResults);
-        } else {
-            return new CommandResult("No appliance in this location");
-        }
+        String outputResults = offByApplianceLoop();
+        outputResults = outputResults.concat("All appliance in \"" + this.key + "\" are turned off ");
+        return new CommandResult(outputResults);
     }
 
-    private String offByApplianceLoop(String outputResults) {
+    private String offByApplianceLoop() {
+        String outputResults = LINE;
         for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
-            if (toOffAppliance.getLocation().equals(this.name)) {
+            if (toOffAppliance.getLocation().equals(this.key)) {
                 outputResults = offAppliance(toOffAppliance, outputResults, true);
             }
         }
