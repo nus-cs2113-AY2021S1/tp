@@ -117,18 +117,12 @@ the command `filter -continue by\start limit\10 -cs -cg.`
 <p align = "center"><i><b>Figure 5: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
    
 ## Bunny class family
-![UML Bunny class diagram](graphics/diagrams/classDiagram_BunnyList.png)
-<center><i>Figure 6:  Bunny ideas UML Class Diagram</i></center>
-The above class diagram describes the overall architecture of the bunny list functionalities. The BunnyList class has 
-the public ArrayList of bunnies bunniesList that is accessed by the DeleteBunny class method deleteBunny which removes 
-a selected bunny from the bunniesList ArrayList. Similarly, bunniesList is also accessed by the BunnyFilter class which 
-contains the filterBunny function which can filter through the list and obtain bunnies with specified keywords in the 
-idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
-or the `GENRE` when running the command
+![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 
-The BunnySaver class accesses the bunniesList and overwrites the current bunny.txt file in the data directory, 
-saving all Bunny objects into the file using the saveAllBunny  method. Bunny objects saved in that file can then 
-be read by the BunnyLoader class and saved into the bunniesList ArrayList using the loadBunnyFile method.
+
+![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny)
+
+
 
 ## Names class family
 
