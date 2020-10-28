@@ -15,7 +15,8 @@ class FilterCommandSlicerTest {
     public void getTargetedWordType_adjectiveFilterRecognition_arrayOfAdjectiveType()
             throws FilterCommandException {
         String[] expected = {"adjective"};
-        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter -continue by\\type -adjective");
+        String[] actual = FilterCommandSlicer
+                .getTargetedWordTypes("filter words -continue by\\type -adjective");
         assertEquals(1, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -24,7 +25,7 @@ class FilterCommandSlicerTest {
     public void getTargetedWordType_nounAndVerbFilterRecognition_arrayOfNounAndVerbElements()
             throws FilterCommandException {
         String[] expected = {"verb", "noun"};
-        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter by\\type -verb -noun");
+        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -verb -noun");
         assertEquals(2, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -33,7 +34,7 @@ class FilterCommandSlicerTest {
     public void getTargetedWordType_allTypeFilterRecognition_arrayOfAllWordType()
             throws FilterCommandException {
         String[] expected = {"adjective", "verb", "noun"};
-        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter by\\type -adjective -verb -noun");
+        String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adjective -verb -noun");
         assertEquals(3, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -41,13 +42,13 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedWordType_noWordTypeFound_filterCommandExceptionThrown() {
         assertThrows(FilterCommandException.class,
-            () -> FilterCommandSlicer.getTargetedWordTypes("filter by\\type -adverb -preposition"));
+            () -> FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adverb -preposition"));
     }
 
     @Test
     public void getTargetedStringTags_oneStringTagNoSpace_success() throws FilterCommandException {
         String[] expected = {"cs"};
-        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter by\\contain -cs");
+        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter words by\\contain -cs");
         assertEquals(1, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -55,7 +56,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_oneStringTagHaveSpace_success() throws FilterCommandException {
         String[] expected = {"cs 2113 t"};
-        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter by\\start -cs 2113 t");
+        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter words by\\start -cs 2113 t");
         assertEquals(1, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -63,7 +64,8 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_twoStringTagsNoSpace_success() throws FilterCommandException {
         String[] expected = {"cs 2113 t", "cs 2101"};
-        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter by\\start -cs 2113 t -cs 2101");
+        String[] actual = FilterCommandSlicer
+                .getTargetedStringTags("filter words by\\start -cs 2113 t -cs 2101");
         assertEquals(2, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -71,7 +73,8 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_twoStringTagsHaveSpace_success() throws FilterCommandException {
         String[] expected = {"cs2113t", "cs2101"};
-        String[] actual = FilterCommandSlicer.getTargetedStringTags("filter by\\contain -cs2113t -cs2101");
+        String[] actual = FilterCommandSlicer
+                .getTargetedStringTags("filter words by\\contain -cs2113t -cs2101");
         assertEquals(2, actual.length);
         assertTrue(Arrays.equals(expected, actual));
     }
@@ -79,7 +82,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_noStringTagProvided_filterCommandExceptionThrown() {
         assertThrows(FilterCommandException.class,
-            () -> FilterCommandSlicer.getTargetedStringTags("filter by\\start - "));
+            () -> FilterCommandSlicer.getTargetedStringTags("filter words by\\start - "));
     }
 
 }

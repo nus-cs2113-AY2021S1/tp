@@ -16,11 +16,11 @@ public class FilterCommandSlicer {
      * @throws FilterCommandException When the command is not a filter command.
      */
     public static boolean isNewFilter(String command) throws FilterCommandException {
-        if (!command.startsWith("filter")) {
+        if (!command.startsWith("filter words")) {
             throw new FilterCommandException();
         }
 
-        return !command.toLowerCase().startsWith("filter -continue");
+        return !command.toLowerCase().startsWith("filter words -continue");
     }
 
     /**
