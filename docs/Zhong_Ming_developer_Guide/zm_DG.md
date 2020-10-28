@@ -6,6 +6,7 @@ and <mark> Loader </mark>  class.
 
 ### Architecture
 
+
 #### Saver class
 Stores data in a internal table with length and height specified.
 Handles the storage of its data by writing to a text file.

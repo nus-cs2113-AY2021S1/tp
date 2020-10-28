@@ -1,0 +1,8 @@
+@startuml
+object Saver
+object Loader
+object FoodSaveLoadManager
+object PersonSaveLoadManager
+
+
+@enduml
