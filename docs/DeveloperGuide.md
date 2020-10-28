@@ -56,38 +56,36 @@ Other than that, the way the functions work is the same.
 Below is the explanation of the implementation of based on buy stock command, 
 which can be applied to the sell stock command as well.
 
-Buy stock command is instantiated by `Parser`. It allows users to buy stocks and add them to their 
- `Portfolio` by calling the `buyStock` methods from `PortfolioManager`, `StockPriceFetcher` and `Wallet` 
- objects instantiated by the `Controller` This will also _add_ the stock `portfolio` in `PortfolioManager`. 
-
-Additionally, buy stock command extends the `Command` class which contains the `symbol` and `quantity` attributes. 
-An external class, `buyParse` method is being called to validate the various parameters that the user has entered.
-
 Given below is an example usage scenario and how buy stock command behaves at each step.
 
 ![](./diagrams/BuyStockState0.png)
 
-**Step 1** : The user calls the buy stock command from the `Parser`, which will initialise a 
-`BuyCommand` and get the attribute values for `symbol` and `quantity`. 
-`BuyCommand`'s constructor takes in parameter of `String symbol`, `Person`.
+**Step 1** : The user calls the buy stock command from the `Parser`. 
+Buy stock command is instantiated by `Parser`, which calls the `buyParse` method to get the attribute values 
+for `symbol` and `quantity` required to instantiate `buyCommand`. The `Controller` instantiates `Ui`, `PortfolioManager`
+and `StockPriceFetcher`, which gets the `price` of stock. 
+In the `Controller`, we check for the instance of `buyCommand` object and calls the `buyStock` method.
+
 Below is a table of what each parameter corresponds to in the state diagram of the program.
 
 |Parameter|Corresponds to
 |:---:|:---:
 |`symbol`| Ticker symbol of Stock to buy
 |`quantity`| Integer number of shares to be 
+|`price`| Price of stock at current time 
 
-**Step 2** : `buyStock()` is called from the instances of both `portfolioManager` and `wallet` 
-with the values of `symbol` and `quantity` passed to them. 
+**Step 2** : `buyStock()` is called from the `PortfolioManager` with the values of `symbol` and `quantity` 
+and `price` passed to them. 
 
-**Step 3** : In the instance of `wallet`, the value of attribute `amount` is updated accordingly.
-In the instance of `portfolioManager`, a new `Portfolio` object is instantiated. 
+**Step 3** : `Portfolio` is instantiated and its `buyStock` method is called as well. 
  
  ![](./diagrams/BuyStockState1.png)
 
  
-**Step 4** : The `buyStock` method is called from the `portfolio` instance, which instantiates a new `Transaction` object. 
- The `transaction` object stores details of the stock bought.
+**Step 4** : `Wallet` and `Stock` are instantiated. 
+It then checks if there is sufficient fund in the wallet. If so, `buyStock` method is called from the `wallet` instance.
+Then, new `Transaction` object is instantiated. 
+The `transaction` object stores details of the stock bought.
 Below is a table of what each attribute in `Transaction` corresponds to in the program.
 
 |Attribute|Corresponds to
@@ -97,23 +95,25 @@ Below is a table of what each attribute in `Transaction` corresponds to in the p
 |`BuyPrice`| Cost price of a stock at a specific time 
 |`LocalDateTime`| the time when the command is called 
 
-**Step 5** : A new 'Stock' object is also instantiated from the method call in the previous step. 
-(_If a stock with the same symbol has not been instantiated before_.) Otherwise, the `Stock` object of that stock
-symbol will be used. 
+**Step 5** : Following that, _if a stock with the same symbol has not been instantiated before_, 
+a new 'Stock' object is also instantiated. Otherwise, the `Stock` object of that stock symbol will be used. 
 
 The method `addTransaction` in the `stock` object is then called, with the `transaction` object as a parameter, 
 to update the value of the attribute `totalQuantity` in `Stock`.
 
 ![](./diagrams/BuyStockState2.png)
 
-**Step 6** : `BuyCommand`, `Parser`, `StockPriceFetcher`, `Transaction` and `Stock` are terminated.
+**Step 6** : `Portfolio`, `Wallet`, `Transaction` and `Stock` are terminated first.
+The `save` method is then called. 
+
+**Step 7**: `Controller` then calls the relevant methods from `Ui` to print the information about the stock bought and 
+the amount left in the wallet. `StockPriceFetcher`, `Ui` and `PortfolioManager` are then terminated.
 
 ![](./diagrams/BuyStockState3.png)
 
 The following sequence diagram summarizes what happens when the user executes an `BuyCommand` :
 
 ![](./diagrams/BuyStockSequence.png)
-(Sequence Diagram to be added)
 
 #### Design consideration
 
@@ -122,7 +122,7 @@ The following explains the design considerations when implementing commands:
 * Make `BuyCommand` As a class by itself
     * Reason: Increases modularity of code, higher overall code quality 
 * Alternatives: have a `buyCommand` method, increases coupling and reduces testability
-=======
+
 ### View Portfolio feature
 
 #### Current implementation
@@ -183,22 +183,33 @@ against historical buy price.
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+We are targeting people below 25 who have never traded stocks before.
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+Paper trading allows inexperienced people to get a feel of what trading feels like so that they can used to it without the downside of losing real money.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a/an ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new investor|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|new investor|trade without putting my money at risk|learn from my mistakes and experience without losing money|
+|v1.0|investor|search for stocks I can buy|have more information to make a more informed decision|
+|v1.0|investor|buy stocks|profit from any capital gains or dividends|
+|v1.0|investor|sell stocks|realise my gains or reallocate my money to other stocks|
+|v1.0|investor|view my portfolio|see what stocks I have and my past transactions|
+|v2.0|investor|keep track of what stocks I have bought or sold|see how much money I've made or lost|
+|v2.0|investor|see how much cash I have left|decide how much to buy or sell|
+|v2.0|investor|have a watchlist of stocks|track the price movements of individual stocks|
+|v2.1|investor|see the performance of my portfolio|see if I'm on track for my financial goals|
 
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
+1. Program should not take more than 5s to run for every command.
+2. Program should give some loading indicator when fetching stock prices from API calls.
 
 ## Glossary
 

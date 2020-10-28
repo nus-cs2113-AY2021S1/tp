@@ -10,16 +10,16 @@ import org.patriques.output.timeseries.data.StockData;
 import seedu.duke.exception.DukeException;
 
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StockPriceFetcher {
     private static Logger logger = Logger.getLogger("tp");
-    private String apiKey;
+    private String[] apiKeys = {"O8EVQ7YSWDW08BN9", "3FPNCQ0JNYEE8BTK"};
     private int timeout = 3000;
 
     public StockPriceFetcher() {
-        apiKey = "O8EVQ7YSWDW08BN9";
         timeout = 3000;
     }
 
@@ -31,7 +31,9 @@ public class StockPriceFetcher {
     }
 
     public StockData fetchLatestStockData(String symbol) throws DukeException {
-        AlphaVantageConnector apiConnector = new AlphaVantageConnector(apiKey, timeout);
+        Random random = new Random();
+        String randomApiKey = apiKeys[random.nextInt(apiKeys.length)];
+        AlphaVantageConnector apiConnector = new AlphaVantageConnector(randomApiKey, timeout);
         TimeSeries stockTimeSeries = new TimeSeries(apiConnector);
 
         try {
