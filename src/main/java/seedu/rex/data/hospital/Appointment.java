@@ -78,9 +78,9 @@ public class Appointment {
         String doctorName = doctor == null ? null : doctor.getName();
 
         if (bookedStatus.contentEquals("booked")) {
-            return date + ", " + bookedStatus + ", " + patientNric + ", " + doctorName;
+            return date + " | " + bookedStatus + " | " + patientNric + " | " + doctorName;
         } else {
-            return date + ", " + bookedStatus;
+            return date + " | " + bookedStatus;
         }
     }
 

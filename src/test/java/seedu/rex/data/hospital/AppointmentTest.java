@@ -87,13 +87,13 @@ class AppointmentTest {
         Appointment appointment = new Appointment(LocalDate.now());
         Patient patient = new Patient(null, null, null);
         appointment.bookPatient(patient);
-        assertEquals(LocalDate.now() + ", booked, null, null", appointment.toString());
+        assertEquals(LocalDate.now() + " | booked | null | null", appointment.toString());
     }
 
     @Test
     void testToString_notBookedAppointment_correctString() {
         Appointment appointment = new Appointment(LocalDate.now());
-        assertEquals(LocalDate.now() + ", available", appointment.toString());
+        assertEquals(LocalDate.now() + " | available", appointment.toString());
     }
 
     @Test

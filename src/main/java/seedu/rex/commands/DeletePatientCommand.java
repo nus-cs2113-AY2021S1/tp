@@ -48,8 +48,8 @@ public class DeletePatientCommand extends Command {
             ui.showPatientDeleted(deletedPatient);
 
             for (int i = 0; i < appointments.getSize(); i++) {
-                String tempNric = appointments.getAppointmentByIndex(i).getPatient().getNric();
-                if (tempNric.contentEquals(nric)) {
+                Patient tempPatient = appointments.getAppointmentByIndex(i).getPatient();
+                if (tempPatient != null && tempPatient.getNric().contentEquals(nric)) {
                     appointments.getAppointmentByIndex(i).setPatient(null);
                     appointments.getAppointmentByIndex(i).removeBooking();
                     appointments.getAppointmentByIndex(i).setDoctor(null);
