@@ -100,6 +100,8 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 > :bulb:   The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
 
+<br/>
+
 The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
 
 The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
@@ -193,6 +195,7 @@ The `Workspace` component:
 *   can allow `User` to change his active `Watchlist`.
 
 <!-- @@author -->
+
 <br/>
 
 ### 3.7 Storage Component
@@ -214,16 +217,17 @@ This section introduces the specific implementation details and design considera
 <br/>
 
 ### 4.1 Estimation Feature
-
 The `estimate` feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, users will be able to ensure they do not overpromise their clients.
 
 > :bulb: The application only accepts `.txt` files.
 
-#### 4.1.1 Current Implementation
+<br/>
 
+#### 4.1.1 Current Implementation
 The `estimate` feature is facilitated by `EstimateCommand`, which extends from the abstract class `Command`. `EstimateCommand` is instantiated by `EstimateParser`, and it requires two parameters:
 *   `ScriptFileName` (mandatory).
 *   `wordsPerHour` (optional), if not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used to generate 3 estimation timings.
+
 <br/>
 
 Given below is an example usage scenario showing how the `estimate` command behaves at each step.
@@ -262,12 +266,9 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.1.2 Design Consideration
-
 This section shows some design considerations taken when implementing the estimate feature.
 
-<br/>
-
-##### Aspect: When should the program read the script file
+Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -278,7 +279,7 @@ Having considered both of the alternatives, we have decided to implement the fir
 
 <br/>
 
-##### Aspect: The way user can specify the script file
+Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -293,6 +294,8 @@ We have decided to the implement the first alternative, **users should specify t
 The browse feature is a useful feature that will allow users to quickly look through all 
 the different anime series available in a browsing fashion. The feature will have several enhancements such 
 as sorted browsing to browse in alphabetical or by the rating of the anime.
+
+<br/>
 
 #### 4.2.1 Current Implementation
 The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user input. It will then fetch `Anime` objects matching the parameters specified by `BrowseCommandParser` that are stored in `AnimeData`. It extends the `Command` class and implements the following operations:
@@ -382,6 +385,8 @@ Here is the sequence diagram to better illustrate the lifecycle of a browse comm
 #### 4.2.2 Design Consideration
 Here are some various design considerations that was taken when implementing the `browse` feature.
 
+Aspect: **How should the program handle the sorted list**
+
 The first design consideration was how the sorting should be carried out. The main issues here are the time and storage complexity.
 
 | Approach | Pros | Cons  |
@@ -394,6 +399,8 @@ Currently, the 2nd approach is being used with the following rationale. While th
 leaving the main list unsorted is too great and may produce a lot of uncertain results as well as confuse the user. 
 Although the 3rd approach provides the best benefit, its complexity may end up violating the project’s memory limit constraint if the list is large. 
 Therefore, the 2nd approach was chosen, as its performance cost outweighs the other approaches cons.  
+
+Aspect: **Should the program use an interactive or static browsing approach**
 
 The second design consideration was how to carry out the page by page browsing as shown above. 
 The main issue was the cohesiveness between components.
@@ -411,25 +418,26 @@ and in favour of having an application that is highly object-oriented.
 <br/>
 
 ### 4.3 Workspace Feature
-
 Similar to a desktop, AniChan has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
 
-#### 4.3.1 Add new workspace 
+<br/>
 
+#### 4.3.1 Add new workspace 
 WIP.
 
 <br/>
 
 ### 4.4 Watchlist Management Feature
-
 The watchlist management feature aims to provide translators with a simple way to keep track of animes of different genres, allowing them to stay organized and focus on their work.
 
-#### 4.4.1 Current Implementation
+<br/>
 
+#### 4.4.1 Current Implementation
 The `watchlist` feature is facilitated by `WatchlistCommand`, which extends from the abstract class `Command`. `WatchlistCommand` is instantiated by `WatchlistParser`, and it requires 3 parameters: 
 *   `option` (mandatory).
 *   `watchlistName` (mandatory only if the option `-n` is specified).
 *   `watchlistIndex` (mandatory only if the options `-s` and `-d` is specified).
+
 <br/>
 
 Given below is an example usage scenario showing how the `watchlist` command behaves at each step.
@@ -493,12 +501,9 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.4.2 Design Consideration
-
 This section shows some design considerations taken when implementing the watchlist feature.
 
-<br/>
-
-##### Aspect: Saving watchlist data
+Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -511,13 +516,11 @@ Losing work data can also be a frustrating and costly mistake to translators esp
 <br/>
 
 ## 5. Documentation, Logging, Testing, and DevOps
-
 This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
 
 <br/>
 
 ### 5.1 Documentation
-
 We use **Jekyll** to manage documentation. We recommend that you document your features implementation and code changes so that other developers are aware of its architecture.
 
 The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website at with [this guide](https://se-education.org/guides/tutorials/jekyll.html).
@@ -525,7 +528,6 @@ The `docs/` folder stores the documentation of this project. You can learn more 
 <br/>
 
 ### 5.2 Logging
-
 We encourage the use of logger in this project as they provide deeper insights than error messages which can greatly help developers identify bugs and simplify their logging process.
 
 We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
@@ -542,13 +544,11 @@ We use the following log levels:
 <br/>
 
 ### 5.3 Testing
-
 Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
 
 <br/>
 
 #### 5.3.1 Running Tests
-
 There are primarily 2 ways to run the tests.
 
 **Method 1: Using IntelliJ**
