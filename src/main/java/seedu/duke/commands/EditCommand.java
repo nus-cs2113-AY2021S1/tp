@@ -65,7 +65,7 @@ public class EditCommand {
      * @param input number of episodes comma separated
      * @throws NullPointerException when input is empty
      */
-    public static void editEpisode(String input) throws NullPointerException {
+    public static void editEpisodes(String input) throws NullPointerException {
         String[] numOfEpisodes = input.split(",");
         int i = 0;
         assert numOfEpisodes.length == show.getNumSeasons();
@@ -101,9 +101,11 @@ public class EditCommand {
         while (true) {
             String editCommand = in.nextLine();
             if (editCommand.startsWith("name")) {
-                show.setName(editCommand.substring(5));
+                String newName = editCommand.substring(5);
+                show.setName(newName);
+                showName = newName;
             } else if (editCommand.startsWith("episode")) {
-                editEpisode(editCommand.substring(8));
+                editEpisodes(editCommand.substring(8));
             } else if (editCommand.startsWith("season")) {
                 editSeasons(editCommand);
             } else if (editCommand.startsWith("duration")) {
