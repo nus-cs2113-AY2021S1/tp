@@ -229,7 +229,7 @@ _Table 1: User stories_
     1. View food entries again to check if the list has been cleared (i.e empty).
     1. If done correctly, you should see something like the following:
        ```
-       The goal list is empty...
+       The food list is empty...
        ```
 1. Saving your data feature
     1. Enter a few goal entries.
