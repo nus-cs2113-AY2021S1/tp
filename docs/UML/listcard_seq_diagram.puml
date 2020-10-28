@@ -1,0 +1,28 @@
+@startuml
+-> ":ListCardsCommand" : execute(ui, access, storage)
+activate ":ListCardsCommand"
+":ListCardsCommand" -> ":ListCardsCommand" : ListCards(access, storage)
+activate ":ListCardsCommand"
+":ListCardsCommand" -> ":Access" : getChapter()
+":ListCardsCommand" <-- ":Access"
+destroy ":Access"
+":ListCardsCommand" -> ":Chapter" : getCards()
+":ListCardsCommand" <-- ":Chapter" : cards
+destroy ":Chapter"
+":ListCardsCommand" -> ":CardList" : getAllCards()
+":ListCardsCommand" <-- ":CardList" : allCards
+":ListCardsCommand" -> ":CardList" : getCardCount()
+":ListCardsCommand" <-- ":CardList" : cardCount
+destroy ":CardList"
+opt cardCount = 0
+    <-- ":ListCardsCommand" : EmptyFileException
+end
+loop go through all cards
+":ListCardsCommand" --> ":ListCardsCommand" : result
+end
+deactivate ":ListCardsCommand"
+":ListCardsCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":ListCardsCommand"
+deactivate ":ListCardsCommand"
+@enduml

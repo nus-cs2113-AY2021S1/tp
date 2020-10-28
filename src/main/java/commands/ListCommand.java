@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.EmptyFileException;
 import storage.Storage;
 import ui.Ui;
 
@@ -16,7 +17,7 @@ public abstract class ListCommand extends Command {
     public static final String MESSAGE_DOES_NOT_EXIST = "There are no %s(s) in your list.";
 
     @Override
-    public abstract void execute(Ui ui, Access access, Storage storage);
+    public abstract void execute(Ui ui, Access access, Storage storage) throws EmptyFileException;
 
     @Override
     public boolean isExit() {

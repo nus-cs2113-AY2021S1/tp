@@ -1,11 +1,7 @@
 package commands;
 
 import access.Access;
-import exception.DuplicateDataException;
-import exception.ExclusionFileException;
-import exception.IncorrectAccessLevelException;
-import exception.InvalidFileFormatException;
-import exception.InvalidInputException;
+import exception.*;
 import storage.Storage;
 import ui.Ui;
 
@@ -15,7 +11,7 @@ public abstract class Command {
 
     public abstract void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException,
-            IOException, InvalidFileFormatException, ExclusionFileException, DuplicateDataException;
+            IOException, InvalidFileFormatException, ExclusionFileException, DuplicateDataException, EmptyFileException;
 
     public abstract boolean isExit();
 }

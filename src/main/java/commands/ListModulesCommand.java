@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.EmptyFileException;
 import manager.admin.ModuleList;
 import manager.module.Module;
 import storage.Storage;
@@ -15,19 +16,19 @@ public class ListModulesCommand extends ListCommand {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws EmptyFileException {
         String result = listModules(access);
         ui.showToUser(result);
     }
 
-    private String listModules(Access access) {
+    private String listModules(Access access) throws EmptyFileException {
         assert access.isAdminLevel() : "Not admin level";
         ModuleList modules = access.getAdmin().getModules();
         ArrayList<Module> allModules = modules.getAllModules();
         int moduleCount = modules.getModuleCount();
 
         if (moduleCount == 0) {
-            return String.format(MESSAGE_DOES_NOT_EXIST, MODULE);
+            throw new EmptyFileException(String.format(MESSAGE_DOES_NOT_EXIST, MODULE));
         }
 
         StringBuilder result = new StringBuilder();

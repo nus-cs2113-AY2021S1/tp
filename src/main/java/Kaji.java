@@ -1,11 +1,7 @@
 import access.Access;
 import commands.Command;
 import common.KajiLog;
-import exception.DuplicateDataException;
-import exception.ExclusionFileException;
-import exception.IncorrectAccessLevelException;
-import exception.InvalidFileFormatException;
-import exception.InvalidInputException;
+import exception.*;
 import manager.admin.Admin;
 import parser.Parser;
 import storage.Storage;
@@ -49,8 +45,9 @@ public class Kaji {
                 c.execute(ui, access, storage);
                 ui.printLine();
                 isExit = c.isExit();
-            } catch (InvalidInputException | IncorrectAccessLevelException | IOException | IndexOutOfBoundsException
-                    | InvalidFileFormatException | ExclusionFileException | DuplicateDataException e) {
+            } catch (InvalidInputException | IncorrectAccessLevelException | IOException
+                    | IndexOutOfBoundsException | InvalidFileFormatException | ExclusionFileException
+                    | DuplicateDataException | EmptyFileException e) {
                 logger.warning("An error occured: " + e.getMessage());
                 ui.showError(e.getMessage());
                 ui.printLine();

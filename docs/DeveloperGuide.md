@@ -584,6 +584,23 @@ The following sequence Diagrams illustrates how the Exclusion Process is execute
 #### 4.5.5. View Revision History Feature
 (Zeyu)
 
+The view revision history feature allows the user to list the revision completed in the session/in a day. In case the user enters `history` follow by a `date(example: 2020-10-10)`, `Kaji` will list the revision completed in `October 10, 2020`. Otherwise, `Kaji` will list the revision completed in the day the user uses `HelpCommand`. This feature can be accessed at any level.
+
+The history mechanism is facilitated by `HistoryCommand`. It extends from the abstract class `Command`. 
+
+In addition, it implements the following operations:
+
+* `HistoryCommand#execute()` — calls the list method to list the history. 
+* `HistoryCommand#listHistory()` — lists the revision completed in the session/in a day.
+
+Given below is an example usage scenario and how the history mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the admin level. 
+
+Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
+
+The following sequence diagram shows how the list chapters feature works:
+![Sequence Diagram of List History](UML/listhistory_seq_diagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

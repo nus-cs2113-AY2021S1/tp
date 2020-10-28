@@ -1,0 +1,28 @@
+@startuml
+-> ":ListModulesCommand" : execute(ui, access, storage)
+activate ":ListModulesCommand"
+":ListModulesCommand" -> ":ListModulesCommand" : listModules(access, storage)
+activate ":ListModulesCommand"
+":ListModulesCommand" -> ":Access" : getAdmin()
+":ListModulesCommand" <-- ":Access"
+destroy ":Access"
+":ListModulesCommand" -> ":Admin" : getModules()
+":ListModulesCommand" <-- ":Admin" : modules
+destroy ":Admin"
+":ListModulesCommand" -> ":ModuleList" : getAllModules()
+":ListModulesCommand" <-- ":ModuleList" : allModules
+":ListModulesCommand" -> ":ModuleList" : getModuleCount()
+":ListModulesCommand" <-- ":ModuleList" : moduleCount
+destroy ":ModuleList"
+opt moduleCount = 0
+    <-- ":ListModulesCommand" : EmptyFileException
+end
+loop go through all modules
+":ListModulesCommand" --> ":ListModulesCommand" : result
+end
+deactivate ":ListModulesCommand"
+":ListModulesCommand" -> ":Ui" : showToUser(result)
+destroy ":Ui"
+<-- ":ListModulesCommand"
+deactivate ":ListModulesCommand"
+@enduml
