@@ -199,9 +199,6 @@ The application aims to provide the writer with the following services:
 
 {Give non-functional requirements}
 
-## Glossary
-
-* *glossary item* - Definition
 
 ## Instructions for manual testing
 
