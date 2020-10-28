@@ -370,9 +370,17 @@ public class StorageParser {
     private static void notesSetter(Event e, String notes) {
         String noteString = notes;
         noteString = noteString.trim();
-        String[] noteArr = noteString.split(";");
         ArrayList<String> noteList = new ArrayList<>();
-        Collections.addAll(noteList, noteArr);
+        if (noteString.equals("")) {
+            e.setNotes(noteList);
+            assert noteList.size() == 0 : "There were notes provided";
+        } else {
+            //do not discard trailing empty strings
+            String[] noteArr = noteString.split(";", -1);
+            Collections.addAll(noteList, noteArr);
+        }
+
+
         e.setNotes(noteList);
     }
 

@@ -27,6 +27,8 @@ public abstract class Event implements Cloneable {
         repeatType = null;
         repeatEventList = null;
         notes = new ArrayList<String>();
+        assert notes.size() == 0 : "Notes should be empty";
+
     }
 
     /**
