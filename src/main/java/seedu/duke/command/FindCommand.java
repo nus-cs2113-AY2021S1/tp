@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarItem;
@@ -28,10 +28,10 @@ public class FindCommand extends Command {
      *
      * @param calendarList the calendar list to search from.
      * @param storage      not required.
-     * @throws DukeException if the keyword is not found.
+     * @throws CommandException if the keyword is not found.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         assert userInput.startsWith(COMMAND_FIND_EVENT_OR_TASK) : "Find command invalid but passes";
 
         if (userInput.startsWith(COMMAND_FIND_EVENT)) {
@@ -44,12 +44,12 @@ public class FindCommand extends Command {
 
     }
 
-    private void find(String command, CalendarList calendarList) throws DukeException {
+    private void find(String command, CalendarList calendarList) throws CommandException {
         boolean isFound = false;
         keyword = userInput.replace(command, "").trim();
 
         if (keyword.isEmpty()) {
-            throw new DukeException("keyword not found");
+            throw new CommandException("keyword not found");
         }
 
         int itemCount = 0;
@@ -95,7 +95,7 @@ public class FindCommand extends Command {
         }
 
         if (!isFound) {
-            throw new DukeException("keyword not found");
+            throw new CommandException("keyword not found");
         }
 
 

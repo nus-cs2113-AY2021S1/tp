@@ -6,10 +6,10 @@ import seedu.duke.command.Command;
 import java.io.FileNotFoundException;
 
 /**
- * Entry point of the Duke application.
+ * Entry point of the Main application.
  * Initializes the application and starts the interaction with the user.
  */
-public class Duke {
+public class Main {
 
     private Storage storage;
     private CalendarList calendarList;
@@ -20,7 +20,7 @@ public class Duke {
      *
      * @param filePath Filepath of the storage data.
      */
-    public Duke(String filePath) {
+    public Main(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         calendarList = new CalendarList();
@@ -42,19 +42,19 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.handleUserInput(fullCommand);
-                Ui.printDukeBorder(true);
+                Ui.printBorder(true);
                 c.execute(calendarList, storage);
                 isExit = c.isExit();
-            } catch (DukeException e) {
-                Ui.printDukeExceptionMessage(e, calendarList);
+            } catch (CommandException e) {
+                Ui.printExceptionMessage(e, calendarList);
             } finally {
-                Ui.printDukeBorder(false);
+                Ui.printBorder(false);
             }
         }
     }
 
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Main("data/tasks.txt").run();
     }
 }

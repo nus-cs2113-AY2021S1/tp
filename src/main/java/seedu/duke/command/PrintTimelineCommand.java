@@ -32,12 +32,25 @@ public class PrintTimelineCommand extends Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (endDate != null) {
-            endDate = startDate.plusDays(7);
-            for (int i = 0; i < calendarList.getTotalItems(); i++) {
-                if ((calendarList.getItem(i).getDate() == null)
-                        || ((calendarList.getItem(i).getDate().isAfter(startDate))
-                        && (calendarList.getItem(i).getDate().isBefore(endDate)))) {
+        if (calendarList.getTotalItems() == 0) {
+            System.out.println("Your calendar list is empty!");
+        } else {
+            if (endDate != null) {
+                endDate = startDate.plusDays(7);
+                for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                    if ((calendarList.getItem(i).getDate() == null)
+                            || ((calendarList.getItem(i).getDate().isAfter(startDate))
+                            && (calendarList.getItem(i).getDate().isBefore(endDate)))) {
+                        CalendarItem temp = calendarList.getItem(i);
+                        if (temp instanceof Todo) {
+                            todoList.addItem(temp);
+                        } else {
+                            timelineList.addItem(temp);
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < calendarList.getTotalItems(); i++) {
                     CalendarItem temp = calendarList.getItem(i);
                     if (temp instanceof Todo) {
                         todoList.addItem(temp);
@@ -46,53 +59,48 @@ public class PrintTimelineCommand extends Command {
                     }
                 }
             }
-        } else {
-            for (int i = 0; i < calendarList.getTotalItems(); i++) {
-                CalendarItem temp = calendarList.getItem(i);
-                if (temp instanceof Todo) {
-                    todoList.addItem(temp);
+
+            CalendarList sortedList = sortByDateTime(timelineList);
+
+            System.out.println("Here is your timeline:");
+            System.out.println("Timeline\n|");
+            if (sortedList.getTotalItems() != 0) {
+                System.out.println("|__ " + sortedList.getItem(0).getDate()
+                        + " " + sortedList.getItem(0).getDate().getDayOfWeek());
+                if (sortedList.getItem(0).getTime() == null) {
+                    System.out.println("|            |_____ " + "23:59");
                 } else {
-                    timelineList.addItem(temp);
+                    System.out.println("|            |_____ " + sortedList.getItem(0).getTime());
+                }
+                System.out.println("|                     |_____ " + sortedList.getItem(0).getDescription());
+
+                for (int i = 1; i < sortedList.getTotalItems(); i++) {
+                    LocalTime thisTime = (sortedList.getItem(i).getTime() == null
+                            ? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
+                    LocalTime prevTime = (sortedList.getItem(i - 1).getTime() == null
+                            ? LocalTime.of(23, 59) : sortedList.getItem(i - 1).getTime());
+                    if (!(sortedList.getItem(i - 1).getDate().isEqual(sortedList.getItem(i).getDate()))) {
+                        System.out.println("|__ " + sortedList.getItem(i).getDate()
+                                + " " + sortedList.getItem(i).getDate().getDayOfWeek());
+                    }
+                    if (!thisTime.equals(prevTime)) {
+                        System.out.println("|            |_____ " + thisTime);
+                    }
+                    System.out.println("|                     |_____ "
+                            + sortedList.getItem(i).getDescription());
                 }
             }
-        }
 
-        CalendarList sortedList = sortByDateTime(timelineList);
-
-        System.out.println("Here is your timeline:");
-        System.out.println("Timeline\n|");
-        System.out.println("|__ " + sortedList.getItem(0).getDate()
-                + " " + sortedList.getItem(0).getDate().getDayOfWeek());
-        if (sortedList.getItem(0).getTime() == null) {
-            System.out.println("|            |_____ " + "23:59");
-        } else {
-            System.out.println("|            |_____ " + sortedList.getItem(0).getTime());
-        }
-        System.out.println("|                     |_____ " + sortedList.getItem(0).getDescription());
-
-        for (int i = 1; i < sortedList.getTotalItems(); i++) {
-            LocalTime thisTime = (sortedList.getItem(i).getTime() == null
-                    ? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
-            LocalTime prevTime = (sortedList.getItem(i - 1).getTime() == null
-                    ? LocalTime.of(23, 59) : sortedList.getItem(i - 1).getTime());
-            if (!(sortedList.getItem(i - 1).getDate().isEqual(sortedList.getItem(i).getDate()))) {
-                System.out.println("|__ " + sortedList.getItem(i).getDate()
-                        + " " + sortedList.getItem(i).getDate().getDayOfWeek());
+            System.out.println("|__ Todo items");
+            int index = 1;
+            if (todoList.getTotalItems() != 0) {
+                for (int i = 0; i < todoList.getTotalItems(); i++) {
+                    System.out.println(index + ". " + todoList.getItem(i).toString());
+                    index++;
+                }
+                System.out.println("\n");
             }
-            if (!thisTime.equals(prevTime)) {
-                System.out.println("|            |_____ " + thisTime);
-            }
-            System.out.println("|                     |_____ "
-                    + sortedList.getItem(i).getDescription());
         }
-
-        System.out.println("|__ Todo items");
-        int index = 1;
-        for (int i = 0; i < todoList.getTotalItems(); i++) {
-            System.out.println(index + ". " + todoList.getItem(i).toString());
-            index++;
-        }
-        System.out.println("\n");
     }
 
     /**
@@ -103,24 +111,28 @@ public class PrintTimelineCommand extends Command {
      */
     public CalendarList sortByDateTime(CalendarList calendarList) {
         CalendarList sortingList = calendarList;
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            for (int j = i + 1; j < calendarList.getTotalItems(); j++) {
-                if (calendarList.getItem(i).getDate() != null && calendarList.getItem(j).getDate() != null) {
-                    if (calendarList.getItem(j).getDate().isBefore(calendarList.getItem(i).getDate())) {
-                        sortingList.swapTasks(i, j);
-                    } else if (calendarList.getItem(j).getDate().isEqual(calendarList.getItem(i).getDate())) {
-                        LocalTime timeOfi = (calendarList.getItem(i).getTime() == null
-                                ? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
-                        LocalTime timeOfj = (calendarList.getItem(j).getTime() == null
-                                ? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
-                        if (timeOfj.isBefore(timeOfi)) {
+        if (calendarList.getTotalItems() == 0) {
+            return calendarList;
+        } else {
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                for (int j = i + 1; j < calendarList.getTotalItems(); j++) {
+                    if (calendarList.getItem(i).getDate() != null && calendarList.getItem(j).getDate() != null) {
+                        if (calendarList.getItem(j).getDate().isBefore(calendarList.getItem(i).getDate())) {
                             sortingList.swapTasks(i, j);
+                        } else if (calendarList.getItem(j).getDate().isEqual(calendarList.getItem(i).getDate())) {
+                            LocalTime timeOfi = (calendarList.getItem(i).getTime() == null
+                                    ? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
+                            LocalTime timeOfj = (calendarList.getItem(j).getTime() == null
+                                    ? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
+                            if (timeOfj.isBefore(timeOfi)) {
+                                sortingList.swapTasks(i, j);
+                            }
                         }
                     }
                 }
             }
+            return sortingList;
         }
-        return sortingList;
     }
 
     public LocalDate detectEndDate(String userInput) throws Exception {
