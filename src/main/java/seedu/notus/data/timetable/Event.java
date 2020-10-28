@@ -88,7 +88,6 @@ public class Event extends TaggableObject implements Comparable<Event> {
             Collections.sort(storedReminders);
             reminderPeriods.put(timeUnit, storedReminders);
         }
-
     }
 
     public Event(String title, LocalDate date, LocalTime time, boolean isToRemind, boolean isRecurring,
@@ -151,6 +150,10 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return time;
     }
 
+    public String getDateTime() {
+        return date.toString() + " " + time.toString();
+    }
+
     public void setTime(LocalTime time) {
         this.time = time;
     }
@@ -165,6 +168,26 @@ public class Event extends TaggableObject implements Comparable<Event> {
 
     public boolean getRecurring() {
         return isRecurring;
+    }
+
+    public ArrayList<String> getReminderPeriodsString() {
+        ArrayList<String> periods = new ArrayList<>();
+
+        ArrayList<Integer> dayRepeatPeriod = reminderPeriods.get(REMINDER_DAY);
+        ArrayList<Integer> weekRepeatPeriod = reminderPeriods.get(REMINDER_WEEK);
+
+        if (dayRepeatPeriod != null) {
+            for (Integer unit: dayRepeatPeriod) {
+                periods.add(unit + "-day");
+            }
+        }
+
+        if (weekRepeatPeriod != null) {
+            for (Integer unit : weekRepeatPeriod) {
+                periods.add(unit + "-week");
+            }
+        }
+        return periods;
     }
 
     /**

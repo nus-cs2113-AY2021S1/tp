@@ -61,6 +61,20 @@ public class Timetable {
         this.events = events;
     }
 
+    public ArrayList<Event> getAllNonRecurringEvents() {
+        return nonRecurringEvents;
+    }
+
+    public ArrayList<RecurringEvent> getAllRecurringEventsArray() {
+        ArrayList<RecurringEvent> events = new ArrayList<>();
+        events.addAll(dailyEvents);
+        events.addAll(weeklyEvents);
+        events.addAll(monthlyEvents);
+        events.addAll(yearlyEvents);
+
+        return events;
+    }
+
     /**
      * Adds an event into the timetable.
      *
