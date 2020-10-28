@@ -1,4 +1,5 @@
 ![Logo](DG_Diagrams/Nav@NUSLogo.jpg)
+
 # Developer Guide
 
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
@@ -7,33 +8,33 @@ enhancements.
 ## Table of Contents
 
 - [1. Setting up, getting started](#1-setting-up-getting-started)
-- [2. Design & Implementation](#2-design--implementation)
+- [2. Design](#2-design)
   * [2.1. Architecture](#21-architecture)
     + [2.1.1 Ui Component](#211-ui-component)
     + [2.1.2. Logic Component](#212-logic-component)
     + [2.1.3. Model Component](#213-model-component)
     + [2.1.4. Storage Component](#214-storage-component)
-  * [2.2. Implementation](#22-implementation)
-    + [2.2.1 Direct Route Finder (`/route` Feature)](#221-direct-route-finder-route-feature)
-    + [2.2.2 Full Route Display (`/routemap` Feature)](#222-full-route-display-routemap-feature)
-    + [2.2.3 Favourite command adder (`/addfav` Feature)](#223-favourite-command-adder-addfav-feature)
-    + [2.2.4. Favourite command executor (`/execfav` Feature)](#224-favourite-command-executor-execfav-feature)
-    + [2.2.5. Favourite command description modifier (`/descfav` Feature)](#225-favourite-command-description-modifier-descfav-feature)
-    + [2.2.6. Dining options finder (`/dine` Feature)](#226-dining-options-finder-dine-feature)
-- [3. Appendix I: Requirements](#3-appendix-i-requirements)
-  * [3.1 Product scope](#31-product-scope)
-    + [3.1.1 Target user profile](#311-target-user-profile)
-    + [3.1.2 Value](#312-value)
-  * [3.2. User Stories](#32-user-stories)
-  * [3.3. Non-Functional Requirements](#33-non-functional-requirements)
-  * [3.4. Glossary](#34-glossary)
-- [4. Appendix II: Instructions for manual testing](#4-appendix-ii-instructions-for-manual-testing)
+- [3. Implementation](#3-implementation)
+  * [3.1. Direct Route Finder (`/route` Feature)](#31-direct-route-finder-route-feature)
+  * [3.2. Full Route Display (`/routemap` Feature)](#32-full-route-display-routemap-feature)
+  * [3.3. Favourite command adder (`/addfav` Feature)](#33-favourite-command-adder-addfav-feature)
+  * [3.4. Favourite command executor (`/execfav` Feature)](#34-favourite-command-executor-execfav-feature)
+  * [3.5. Favourite command description modifier (`/descfav` Feature)](#35-favourite-command-description-modifier-descfav-feature)
+  * [3.6. Dining options finder (`/dine` Feature)](#36-dining-options-finder-dine-feature)
+- [4. Appendix I: Requirements](#4-appendix-i-requirements)
+  * [4.1 Product scope](#41-product-scope)
+    + [4.1.1 Target user profile](#411-target-user-profile)
+    + [4.1.2 Value](#412-value)
+  * [4.2. User Stories](#42-user-stories)
+  * [4.3. Non-Functional Requirements](#43-non-functional-requirements)
+  * [4.4. Glossary](#44-glossary)
+- [5. Appendix II: Instructions for manual testing](#5-appendix-ii-instructions-for-manual-testing)
 
 ## 1. Setting up, getting started
 
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
-## 2. Design & Implementation
+## 2. Design
 
 This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
 and Implementation. 
@@ -99,10 +100,10 @@ The following class diagram briefly explains how different classes in the Storag
 
 ![StorageComponent](DG_Diagrams/StorageComponent.png)
 
-### 2.2. Implementation
+## 3. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
-#### 2.2.1 Direct Route Finder (`/route` Feature)
+### 3.1. Direct Route Finder (`/route` Feature)
 
 `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from **location1** to **location2**.
@@ -139,7 +140,7 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
-#### 2.2.2 Full Route Display (`/routemap` Feature)
+### 3.2. Full Route Display (`/routemap` Feature)
 
 The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
 bus route.
@@ -159,7 +160,7 @@ The following sequence diagram explains the above steps when the user searches f
 ![Overview](DG_Diagrams/RouteMapCommandSeq.png)
 
 
-#### 2.2.3. Favourite command adder (`/addfav` Feature)
+### 3.3. Favourite command adder (`/addfav` Feature)
 [Work in Progress]<br>
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's
 list of favourites.
@@ -167,7 +168,7 @@ list of favourites.
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
-#### 2.2.4. Favourite command executor (`/execfav` Feature)
+### 3.4. Favourite command executor (`/execfav` Feature)
 [Work in Progress]<br>
 `/execfav <INDEX>` is the command which executes a command from the user's list of favourites
 
@@ -176,7 +177,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 
 
-#### 2.2.5. Favourite command description modifier (`/descfav` Feature)
+### 3.5. Favourite command description modifier (`/descfav` Feature)
 
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
@@ -214,7 +215,7 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/descFavInternal.png)
 
 
-#### 2.2.6. Dining options finder (`/dine` Feature)
+### 3.6. Dining options finder (`/dine` Feature)
 [Work in Progress]<br>
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
@@ -224,11 +225,11 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 
 
-## 3. Appendix I: Requirements
+## 4. Appendix I: Requirements
 
-### 3.1 Product scope
+### 4.1 Product scope
 
-#### 3.1.1 Target user profile
+#### 4.1.1 Target user profile
 
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
@@ -237,14 +238,14 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-#### 3.1.2 Value 
+#### 4.1.2 Value 
 
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
 
-### 3.2. User Stories
+### 4.2. User Stories
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -258,17 +259,17 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
-### 3.3. Non-Functional Requirements
+### 4.3. Non-Functional Requirements
 
 1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
 
-### 3.4. Glossary
+### 4.4. Glossary
 
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
 
-## 4. Appendix II: Instructions for manual testing
+## 5. Appendix II: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
