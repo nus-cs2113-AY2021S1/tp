@@ -11,18 +11,19 @@ DietBook is a desktop application targeting NUS students living on campus, optim
 1. Download the latest version of `dietbook.jar` from [here](https://github.com/AY2021S1-CS2113-T14-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your DietBook.
 1. Either double-click the jar file to start the application or navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
-1. For first time users: 
-   1. A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](#Entering username: `name`) and [info](#Entering user information: `info`) for more detailed explanations.<br/>
-   ![DietBook Welcome Message](/images/DietBookWelcomeMessage.PNG)  
+1. For first time users: <br/>
+A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions
+    provided to setup DietBook or refer to [name](####Entering username: `name`) and [info](####Entering user information: `info`) for more detailed explanations.<br/>
+ [DietBook Welcome Message](/images/DietBookWelcomeMessage.PNG)  
 1. Start using DietBook by typing any valid command and pressing Enter to execute it.
-1. Refer to the [Features](#Features) section below for more details of each command.
+1. Refer to the [Features](##Features) section below for more details of each command.
 
 ## Features 
 
 Notes about the command format:
 
 * Words in `UPPER_CASE` are parameters to be supplied by the user.<br/> 
-e.g. For `delete INDEX`, `delete 1`would be a valid command.
+e.g. For `delete INDEX`, `delete 1` would be a valid command.
   
 * Parameters in square brackets are optional. However, if all parameters are optional, at least one parameter needs to be given. In such cases, any one of the parameters would be valid.<br/>
 e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]`, `add x/1 n/Toast k/120`, `add x/1 n/Toast k/120 c/18`,  `add x/1 n/Toast k/120 c/18 p/3`, `add x/1 n/Toast k/120
@@ -36,7 +37,7 @@ e.g. `help` is a valid command but `Help` is not.<br/>
 e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add N/mee x/1` is not.
 
 * A single spacing to separate command words, parameters, command word and parameters is required.<br/>
-e.g. For `calculate all`, `calculate all` is valid but `calculateall` and `calculate` &nbsp; &nbsp; &nbsp; &nbsp; `all`is not.<br/>
+e.g. For `calculate all`, `calculate all` is valid but `calculateall` and `calculate` &nbsp; &nbsp; &nbsp; &nbsp; `all` is not.<br/>
 e.g. For `delete INDEX`, `delete 1` is valid if there is a food item with index 1 but`delete1` is not.<br/>
 e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add n/meex/1` is not.<br/>
 
