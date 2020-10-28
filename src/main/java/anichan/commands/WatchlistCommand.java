@@ -52,7 +52,7 @@ public class WatchlistCommand extends Command {
     }
 
     /**
-     * Depending on the option supplied, it can perform one of the following operations:
+     * Depending on the option supplied, it can perform one of the following operations.
      * <ul>
      *     <li>Creates a watchlist</li>
      *     <li>List all watchlist</li>
@@ -193,7 +193,7 @@ public class WatchlistCommand extends Command {
     }
 
     /**
-     * Validates that the parameters supplied for the select and delete watchlist command is valid:
+     * Validates that the parameters supplied for the select and delete watchlist command is valid.
      * <ul>
      *     <li>There is no watchlist created before.</li>
      *     <li>Attempts to delete the last watchlist.</li>

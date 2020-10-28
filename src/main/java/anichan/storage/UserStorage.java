@@ -76,7 +76,7 @@ public class UserStorage extends Storage {
     // ========================== Encode and Decode ==========================
 
     /**
-     * Encodes the user object into a readable string representation for saving in file
+     * Encodes the user object into a readable string representation for saving in file.
      *
      * @param user the user object to be saved
      * @return the readable string representation of the user object
@@ -91,7 +91,7 @@ public class UserStorage extends Storage {
     }
 
     /**
-     * Decodes the readable string representation of the user object
+     * Decodes the readable string representation of the user object.
      *
      * @param fileContentSplit readable string representation of the user object
      * @return the decoded user object

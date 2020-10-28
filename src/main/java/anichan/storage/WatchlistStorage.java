@@ -103,7 +103,7 @@ public class WatchlistStorage extends Storage {
     // ========================== Encode and Decode ==========================
 
     /**
-     * Encodes the watchlistList object into a readable string representation for saving in file
+     * Encodes the watchlistList object into a readable string representation for saving in file.
      *
      * @param watchlistList the arraylist of watchlist object to be encoded
      * @return the readable string representation of the arraylist of watchlist object
@@ -121,7 +121,7 @@ public class WatchlistStorage extends Storage {
     }
 
     /**
-     * Decodes the readable string representation of the watchlist object
+     * Decodes the readable string representation of the watchlist object.
      *
      * @param line the readable string representation of the watchlist object
      * @return the decoded watchlist object
@@ -161,7 +161,7 @@ public class WatchlistStorage extends Storage {
     // ========================== Validation ==========================
 
     /**
-     * Validates the string representation of the watchlist object
+     * Validates the string representation of the watchlist object.
      *
      * @param lineSplit the string representation of the watchlist object
      * @return {@code true} if the string representation is valid; false otherwise
@@ -182,7 +182,7 @@ public class WatchlistStorage extends Storage {
     }
 
     /**
-     * Validates the anime index read from the string representation of the watchlist object
+     * Validates the anime index read from the string representation of the watchlist object.
      *
      * @param animeIndex the index of an anime series
      * @return {@code true} if the index is valid; false otherwise

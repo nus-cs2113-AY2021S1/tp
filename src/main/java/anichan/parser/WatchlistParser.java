@@ -91,7 +91,7 @@ public class WatchlistParser extends CommandParser {
     }
 
     /**
-     * Validates that watchlist creation parameters are valid:
+     * Validates that watchlist creation parameters are valid.
      * <ul>
      *     <li>Have the exact required parameter count.</li>
      * </ul>
@@ -106,7 +106,7 @@ public class WatchlistParser extends CommandParser {
     }
 
     /**
-     * Validates that the watchlist list parameters are valid:
+     * Validates that the watchlist list parameters are valid.
      * <ul>
      *     <li>Have the exact required parameter count.</li>
      * </ul>
@@ -121,7 +121,7 @@ public class WatchlistParser extends CommandParser {
     }
 
     /**
-     * Validates that the watchlist modification (select and delete) parameters are valid:
+     * Validates that the watchlist modification (select and delete) parameters are valid.
      * <ul>
      *     <li>Have the exact required parameter count.</li>
      *     <li>Provided a parameter value that can be parsed to a positive integer.</li>

@@ -38,7 +38,7 @@ public class EstimateCommand extends Command {
     }
 
     /**
-     * Depending on whether the optional parameter, words per hour (wph) is specified:
+     * Depending on whether the optional parameter, words per hour (wph) is specified.
      * <ul>
      *     <li>Specified: Calculates using the value.</li>
      *     <li>Not specified: Calculates using the values defined in {@link #AVERAGE_TRANSLATOR_WORDS_PER_HOUR}.</li>
