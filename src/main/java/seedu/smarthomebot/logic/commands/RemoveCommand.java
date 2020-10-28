@@ -4,7 +4,7 @@ import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 public class RemoveCommand extends Command {
@@ -27,7 +27,7 @@ public class RemoveCommand extends Command {
         } catch (InvalidRemovalLocationException e) {
             return new CommandResult(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST + " Nothing will be deleted.");
+            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST + " Nothing will be deleted.");
         }
     }
 }
