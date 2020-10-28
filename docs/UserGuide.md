@@ -89,14 +89,21 @@ Example of usage:
 
 Expected output: 
 
+<p align="center">
+   <img alt="SystemExceptionEnum1" src="screenshots/help.png"/>
+   <br><em>Figure #</em>
+</p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
 Adds a new note to the list of note items (think of it as a notebook).
 
-Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN]`
+Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
-💡 One can choose to add a `TAG` or/and `ISPIN` but it both parameters are not necessary.<br>
+💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
 💡 Set `ISPIN` to true if you want the note to be pinned.  
+💡 Set `ISARHCIVE` to true if you want the note to be archive.
+
+Subsequently, the application prompts the user to enter the content of the note.
 
 Example of usage: 
 
@@ -108,17 +115,23 @@ Example of usage:
 
 ```css
 Enter Note: 
+/del to delete previous line
+/end on a new line to end note input
 ```
 
 `Test Note line 1`<br>
 `Line 2`<br>
 `/end`
 
-Expected output:
-
-
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
+
+Expected output:
+
+<p align="center">
+   <img alt="SystemExceptionEnum1" src="screenshots/addNote.png"/>
+   <br><em>Figure #</em>
+</p>
 
 ### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
 Shows a list of all the notes in the database.
@@ -137,11 +150,15 @@ Example of usage:
 
 `list-n /archive`
 
-Expected output:
-
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
 💡 Use `/sort down` to display the list of notes in descending order (Z-A).
 
+Expected output:
+
+<p align="center">
+   <img alt="SystemExceptionEnum1" src="screenshots/listNote.png"/>
+   <br><em>Figure #</em>
+</p>
 
 ### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
 View selected note.
