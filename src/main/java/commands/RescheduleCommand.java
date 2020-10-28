@@ -17,7 +17,7 @@ import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 public class RescheduleCommand extends Command {
     public static final String COMMAND_WORD = "reschedule";
 
-    public static final String PARAMETERS = " CHAPTER_NUMBER DATE(yyyy-MM-dd)";
+    public static final String PARAMETERS = " CHAPTER_INDEX DATE(yyyy-MM-dd)";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reschedules the due date of a chapter.\n"
             + "Parameters:" + PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 2020-12-12\n";

@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":RescheduleCommand" as RescheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":ChapterList" as ChapterList MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> Parser : parse("reschedule 1 2020-12-20")
+activate Parser
+
+create RescheduleCommand
+Parser -> RescheduleCommand : RescheduleCommand(0, 2020-12-20)
+activate RescheduleCommand
+
+RescheduleCommand --> Parser : c
+deactivate RescheduleCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> RescheduleCommand : execute(Ui, Access, Storage)
+activate RescheduleCommand
+
+RescheduleCommand -> RescheduleCommand : reschedule(Access, Storage)
+activate RescheduleCommand
+
+RescheduleCommand -> Access : getModule()
+activate Access
+
+Access --> RescheduleCommand : Module
+deactivate Access
+
+RescheduleCommand -> Module : getChapters()
+activate Module
+
+Module --> RescheduleCommand : ChapterList
+deactivate Module
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- RescheduleCommand
+destroy Module
+
+RescheduleCommand -> ChapterList : getChapter(index)
+activate ChapterList
+
+ChapterList --> RescheduleCommand : Chapter
+deactivate ChapterList
+
+RescheduleCommand -> Chapter : setDueBy(date, Storage, Access)
+activate Chapter
+
+Chapter -> Storage : saveChapterDeadline(date, moduleName, chapterName)
+activate Chapter
+
+Storage --> Chapter
+deactivate Chapter
+
+Chapter --> RescheduleCommand
+deactivate Chapter
+
+
+RescheduleCommand --> RescheduleCommand : result
+deactivate RescheduleCommand
+
+RescheduleCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> RescheduleCommand
+deactivate Ui
+
+[<-- RescheduleCommand
+deactivate RescheduleCommand
+
+destroy ChapterList
+destroy Chapter
+@enduml

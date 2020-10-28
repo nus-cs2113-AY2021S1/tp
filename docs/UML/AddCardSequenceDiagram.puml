@@ -1,0 +1,99 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":AddCardCommand" as AddCardCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Card" as Card MODEL_COLOR
+participant ":Access" as Access MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+participant ":CardList" as CardList MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> Parser : parse("add q:1+1 | a:2")
+activate Parser
+
+create AddCardCommand
+Parser -> AddCardCommand : AddCardCommand("1+1", "2")
+activate AddCardCommand
+
+create Card
+AddCardCommand -> Card : Card(question, answer)
+activate Card
+
+Card --> AddCardCommand : card
+deactivate Card
+
+AddCardCommand --> Parser : c
+deactivate AddCardCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> AddCardCommand : execute(Ui, Access, Storage)
+activate AddCardCommand
+
+AddCardCommand -> AddCardCommand : addCard(Access, Storage)
+activate AddCardCommand
+
+AddCardCommand -> Access : getChapter()
+activate Access
+
+Access --> AddCardCommand : Chapter
+deactivate Access
+
+AddCardCommand -> Chapter : getCards()
+activate Chapter
+
+Chapter --> AddCardCommand : CardList
+deactivate Chapter
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- AddCardCommand
+destroy Chapter
+
+AddCardCommand -> CardList : addCard(card)
+activate CardList
+
+CardList --> AddCardCommand
+deactivate CardList
+
+AddCardCommand -> CardList : getCardCount()
+activate CardList
+
+CardList --> AddCardCommand : cardCount
+deactivate CardList
+
+AddCardCommand -> Storage : saveCards(CardList, moduleName, chapterName)
+activate Storage
+
+Storage --> AddCardCommand
+deactivate Storage
+
+AddCardCommand --> AddCardCommand : result
+deactivate AddCardCommand
+
+AddCardCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> AddCardCommand
+deactivate Ui
+
+[<-- AddCardCommand
+deactivate AddCardCommand
+
+destroy CardList
+@enduml

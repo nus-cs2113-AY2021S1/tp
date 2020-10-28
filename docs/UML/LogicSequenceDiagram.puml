@@ -38,10 +38,10 @@ deactivate Parser
 [<-[hidden]- Parser
 destroy Parser
 
-[-> EditModuleCommand : execute()
+[-> EditModuleCommand : execute(Access, Storage)
 activate EditModuleCommand
 
-EditModuleCommand -> EditModuleCommand : editModule()
+EditModuleCommand -> EditModuleCommand : editModule(Access, Storage)
 activate EditModuleCommand
 
 EditModuleCommand -> Module : setModuleName(module)
