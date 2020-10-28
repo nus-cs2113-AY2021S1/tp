@@ -9,9 +9,14 @@ public class ModTracker {
     private Storage storage;
     private TaskList taskList;
     private Notification notification;
+    private Parser parser;
 
     public static void main(String[] args) {
-        new ModTracker("data/modtracker.txt").run();
+        ModTracker modTracker;
+        do {
+            modTracker = new ModTracker("data/modtracker.txt");
+            modTracker.run();
+        } while (modTracker.toRestart());
     }
 
     public ModTracker(String filePath) {
@@ -20,6 +25,7 @@ public class ModTracker {
         storage = new Storage(filePath);
         taskList = new TaskList();
         notification = new Notification();
+        parser = new Parser();
     }
 
     /**
@@ -27,6 +33,7 @@ public class ModTracker {
      */
     public void run() {
         ui.printWelcomeScreen();
+        storage.unlockFile();
         String name = storage.getName();
         if (name == null) {
             name = ui.printNamePrompt();
@@ -34,7 +41,6 @@ public class ModTracker {
         }
         ui.printGreeting(name);
         storage.loadData(this);
-        storage.unlockFile();
         notification.start();
         runCommandLoopUntilExitCommand(name);
         storage.lockFile();
@@ -46,7 +52,6 @@ public class ModTracker {
      * @param name name of user
      */
     private void runCommandLoopUntilExitCommand(String name) {
-        Parser parser = new Parser();
         while (!parser.isExit()) {
             String input = ui.readCommand();
             parser.parse(input, modList, name, storage, true, taskList);
@@ -65,4 +70,7 @@ public class ModTracker {
         return taskList;
     }
 
+    public boolean toRestart() {
+        return parser.isRestart();
+    }
 }

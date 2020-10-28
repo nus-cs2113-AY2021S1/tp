@@ -57,11 +57,11 @@ If you plan to use IntelliJ IDEA (highly recommended):
 1. Verify the setup.
     * Under the `seedu.modtracker` package, locate the `ModTracker` class and run it.
     * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html).
-    * Run the [tests]() to ensure they all pass.
+    * Run the [tests](Testing.md) to ensure they all pass.
 
 ### 2.2 Before writing the code <a name="2.2"></a>
 1. Configure the coding style
-    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style yo match ours.
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
     
 1. Set up CI
     * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
@@ -69,7 +69,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
     No setup is required for this.
     
 1. Learn the design
-    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#architecture) to get some 
+    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#3.1) to get some 
     sense of the overall design.
 
 
@@ -147,7 +147,7 @@ This section describes some noteworthy details on how certain features are being
 The storage feature saves the data of the user so that 
 the ModTracker application continues from where the user left off the previous time. 
 
-#### Proposed Implementation 
+#### Current Implementation 
 The `Storage` class facilitates the data saving and loading mechanism. 
 The constructor `Storage(filePath)` accepts a String which is the file path to an external file.
 This external file stores the user's data locally.
@@ -305,7 +305,7 @@ The add time feature edits the actual workload for a specific module as indicate
 This is done by adding time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks.
 
-#### Current implementation
+#### Current Implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
@@ -355,7 +355,7 @@ The minus time feature edits the actual workload for a specific module as indica
 This is done by removing time spent on the module. The actual workload is broken down into academic weeks and
 hours spent in the respective academic weeks. This feature is the opposite of the add time feature. 
 
-#### Current implementation
+#### Current Implementation
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
@@ -608,7 +608,9 @@ NUS students
 |v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly/
 |v1.0|user|save my data permanently|save the trouble of re-entering my data everytime I start the app|
 |v2.0|user of ModTracker|add tasks related to a module|know what are the outstanding tasks for each module
-|v2.0|user|(to be updated)|(to be updated)|
+|v2.0|user|save tasks related to a module|be reminded of what tasks I have to do|
+|v2.0|user|save my username|I don't have to re-enter it every time|
+|v2.0|user|manage the task list|use the app as a planner|
 
 ### 6.3 Use Cases <a name="6.3"></a>
 (For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)

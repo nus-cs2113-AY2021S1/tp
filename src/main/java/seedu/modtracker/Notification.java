@@ -1,9 +1,10 @@
 package seedu.modtracker;
 
+import static seedu.modtracker.ModuleList.modList;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static seedu.modtracker.ModuleList.modList;
 
 public class Notification {
 
@@ -42,10 +43,7 @@ public class Notification {
 
     //check if module has actual and expected time
     private boolean hasExpAndAct(Module mod) {
-        if (mod.doesExpectedWorkLoadExist() && mod.doesActualTimeExist(currentWeek)) {
-            return true;
-        }
-        return false;
+        return mod.doesExpectedWorkLoadExist() && mod.doesActualTimeExist(currentWeek);
     }
 
     public int getNumNotification(ModuleList list) {

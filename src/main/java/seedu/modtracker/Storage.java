@@ -96,11 +96,21 @@ public class Storage {
         }
     }
 
-    public void resetFile() {
+    public void clearData() {
         String name = getName();
         try {
             FileWriter fw = new FileWriter(filePath, false);
             fw.write(name + System.lineSeparator());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reset() {
+        try {
+            FileWriter fw = new FileWriter(filePath, false);
+            fw.write("");
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();

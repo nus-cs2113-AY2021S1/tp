@@ -20,7 +20,7 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.7 [Delete a module: `deletemod`](#deletemod)
     <br/>&nbsp;2.8 [Delete expected module workload: `deleteexp`](#deleteexp)
     <br/>&nbsp;2.9 [Minus from actual time spent on a module: `minustime`](#minus) 
-    <br/>&nbsp;2.10 [Edit actual time spent on a module: `deletetime`](#edit)
+    <br/>&nbsp;2.10 [Edit actual time spent on a module: `edittime`](#edit)
     <br/>&nbsp;2.11 [Delete actual time spent on a module: `deletetime`](#deletetime)
     <br/>&nbsp;2.12 [Add tasks: `addtask`](#addtask)
     <br/>&nbsp;2.13 [List all tasks: `listtask`](#listtask)
@@ -29,7 +29,8 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.16 [Open notification: `open`](#open)
     <br/>&nbsp;2.17 [Exit the program : `exit`](#exit)
     <br/>&nbsp;2.18 [Save user data](#save)
-    <br/>&nbsp;2.19 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.19 [Clear module and task data: `clear`](#clear)
+    <br/>&nbsp;2.20 [Delete user data: `reset`](#reset)
 1. [FAQ](#faq)
 1. [Command Summary](#summary)
 
@@ -101,7 +102,7 @@ Adds the expected workload of the module to the database.
 Format: `addexp <module code> <expected workload>`
 
 * The `module code` is valid.
-* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 84 inclusive.
+* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 24 inclusive.
 * If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
@@ -348,6 +349,16 @@ You currently have no task :-)
 
 ### 2.16 Open notification: `open` <a name="open"></a>
 Opens the notification with a randomised encouraging message.
+The user is notified on the progress of the current week.
+The current week is defined by the latest week that has at least one actual time input.
+
+A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
+workload by more than 30%. For example, if the expected workload is 100 hours, a user is considered to spend too 
+little time on the module if his actual workload is less than 130 hours.
+
+A user is considered to spend too much time on a module if the user exceeds the expected workload by more than 30%. 
+For example, if the expected workload is 100 hours, a user is considered to spend too much time on the module if 
+his actual workload is more than 130 hours.
 
 Format: `open`
 
@@ -387,17 +398,18 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 2.19 Delete module and task data: `reset` <a name="reset"></a>
-Deletes all module and tasks data. 
+### 2.19 Clear module and task data: `clear` <a name="clear"></a>
+Deletes all module and tasks data.
 The program will also prompt the user to confirm this action.
 
-Format: `reset`
+Format: `clear`
 
 Expected output:
 ````
 ---WARNING!---
-This will delete all your past data.
+This will delete all modules and tasks data.
 Type 'yes' if you wish to continue.
+Enter any key to cancel this operation.
 ````
 
 **Case 1: User enters `yes`**
@@ -407,6 +419,53 @@ Note: `yes` is case-insensitive here.
 Expected output:
 ````
 Okay, your data has been deleted :(
+````
+
+**Case 2: User enters `no`**
+
+Note: any other input will fall under this case.
+
+Expected output:
+````
+Clearing of data not confirmed. Your data is safe :)
+````
+ 
+### 2.20 Delete user data: `reset` <a name="reset"></a>
+Deletes all module and tasks data, and the username.
+The program will also prompt the user to confirm this action.
+If confirmed, the program will restart and prompt for a new username.
+
+Format: `reset`
+
+Expected output:
+````
+---WARNING!---
+This will delete all your past data and reset the whole program.
+Type 'yes' if you wish to continue.
+Enter any key to cancel this operation.
+````
+
+**Case 1: User enters `yes`**
+
+Note: `yes` is case-insensitive here.
+
+Expected output:
+````
+Okay, the program will reset now...
+
+Hello from
+|\\        /|         |======            ||
+||\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____
+|| \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
+||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
+||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
+*****************************************************|
+
+Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html
+Enter <help> for a quick view of available commands.
+
+What is your name?
+
 ````
 
 **Case 2: User enters `no`**

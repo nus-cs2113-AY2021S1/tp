@@ -19,7 +19,7 @@ public class ViewTimeBreakdownAnalysis {
     public static final String TOO_LITTLE_TIME_SPENT = "You seem to be spending too little time on the module.\n"
             + "Perhaps you should spend more time on this module.";
     public static final String JUST_RIGHT = "Good Job! Great time management!";
-    public static final String TOO_MUCH_TIME_SPENT = "Seems like you are spending too much time one this module.\n"
+    public static final String TOO_MUCH_TIME_SPENT = "Seems like you are spending too much time on this module.\n"
             + "Do you perhaps need help for this module?";
     public static final String MODULE_WEEK = "Module    Week ";
     private static final int NONE = 0;
