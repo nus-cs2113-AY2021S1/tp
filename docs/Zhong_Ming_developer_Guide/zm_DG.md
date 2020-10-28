@@ -10,8 +10,10 @@ the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specific
 will have to be modified/replaced for future versions.
 
 #### Saver class
+![Alt text](Architecture.png)
 Stores data in a internal table with length and height specified.
 Handles the storage of its data by writing to a text file.
+
 ##### Constructor
 Specifies the length and height of the internal Saver table
 ##### Main Methods
@@ -44,3 +46,4 @@ Unlike the FoodSaveLoadManager, it stores the data inside itself and can be upda
 * PersonSaveLoadManager#load() loads the file 
 * Setters and Getters for all the personal data in this current version
 
+#### UML diaghram

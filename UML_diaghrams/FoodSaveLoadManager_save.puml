@@ -1,15 +1,24 @@
-
 @startuml
 -> FoodSaveLoadManager : save
+activate FoodSaveLoadManager
+
 
 loop all food items
     loop every entry in a food object
+    activate Saver
     FoodSaveLoadManager -> Saver : add()
     end
 end
 
 FoodSaveLoadManager -> Saver : save()
+deactivate Saver
+
+activate FileWriter
 loop all entries in Saver table
     Saver -> FileWriter : write()
 end
+destroy FileWriter
+
+deactivate FoodSaveLoadManager
+
 @enduml
