@@ -2,6 +2,8 @@
 mainframe **sd** execute description changer
 skinparam BoxPadding 10
 box Logic
+[->":DescFavCommand":executeCommand()
+activate ":DescFavCommand"
 ":DescFavCommand" -> ":DescFavParser": parseInput()
 activate ":DescFavParser"
 opt has delimiter and is not empty
@@ -58,4 +60,6 @@ end
 ":DescFavCommand" <-- "<<class>>\n:FavList": oldDesc
 deactivate "<<class>>\n:FavList"
 end box
+[<--":DescFavCommand"
+deactivate ":DescFavCommand"
 @enduml
