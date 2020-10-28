@@ -270,7 +270,7 @@ public class DataBase {
         int foodnum = 0;
         for (Food food : foodlist) {
             foodnum++;
-            foodListString.append("  ").append(foodnum).append(". ").append(food.toString());
+            foodListString.append("  ").append(foodnum).append(". ").append(food.toString()).append("\n");
         }
         return foodListString.toString();
     }
