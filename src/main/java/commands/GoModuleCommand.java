@@ -8,6 +8,7 @@ import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GoModuleCommand extends GoCommand {
@@ -18,15 +19,15 @@ public class GoModuleCommand extends GoCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
-        String result = goModule(access, storage, ui);
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
+        String result = goModule(access, storage);
         if (result.equals("")) {
             return;
         }
         ui.showToUser(result);
     }
 
-    private String goModule(Access access, Storage storage, Ui ui) {
+    private String goModule(Access access, Storage storage) throws IOException {
         boolean isLevelExist = false;
         String result = "";
         String currentModule = this.module;
@@ -37,7 +38,7 @@ public class GoModuleCommand extends GoCommand {
                 access.setModuleLevel(currentModule);
                 isLevelExist = true;
                 try {
-                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName(), ui);
+                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
                     if (chapters.size() == 0) {
                         result = "This is a new module, you can try to add chapters inside!";
                     }

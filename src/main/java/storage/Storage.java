@@ -106,7 +106,7 @@ public class Storage {
         }
     }
 
-    public ArrayList<Module> loadModule(Ui ui) throws FileNotFoundException {
+    public ArrayList<Module> loadModule() throws FileNotFoundException {
         File f = new File(filePath);
         boolean dirExists = f.exists();
         if (!dirExists) {
@@ -127,7 +127,7 @@ public class Storage {
         return modules;
     }
 
-    public ArrayList<Chapter> loadChapter(String module, Ui ui) throws FileNotFoundException {
+    public ArrayList<Chapter> loadChapter(String module) throws IOException {
         File f = new File(filePath + "/" + module);
         boolean dirExists = f.exists();
         if (!dirExists) {
@@ -146,7 +146,25 @@ public class Storage {
             }
             String target = content.replace(".txt", "");
             result += content;
-            chapters.add(new Chapter(target));
+
+            String deadline = retrieveChapterDeadline(module, target);
+            assert !deadline.equals(null) : "Invalid deadline retrieved";
+            if (deadline.equals("Invalid Date")) {
+                chapters.add(new Chapter(target));
+                continue;
+            }
+            if (deadline.equals("Does not exist")) {
+                String dirPath = filePath + "/" + module + "/" + "dues";
+                String duePath = filePath + "/" + module + "/" + "dues" + "/" + target + "due" + ".txt";
+                boolean success = createChapterDue(duePath, dirPath);
+                if (!success) {
+                    throw new IOException("Error creating chapter due file");
+                }
+                chapters.add(new Chapter(target));
+                continue;
+            }
+
+            chapters.add(new Chapter(target, Scheduler.parseDate(deadline)));
         }
         logger.info(result);
         return chapters;
@@ -416,13 +434,21 @@ public class Storage {
     }
 
     public void renameChapter(String newChapterName, Module module, Chapter chapter) throws DuplicateDataException {
-        File file = new File(getFilePath()
+        File chapterFile = new File(getFilePath()
                 + "/" + module.getModuleName()
                 + "/" + chapter.getChapterName() + ".txt");
-        boolean success = file.renameTo(new File(getFilePath()
+        File dueFile = new File(getFilePath()
+                + "/" + module.getModuleName()
+                + "/dues"
+                + "/" + chapter.getChapterName() + "due.txt");
+        boolean chapterSuccess = chapterFile.renameTo(new File(getFilePath()
                 + "/" + module.getModuleName()
                 + "/" + newChapterName + ".txt"));
-        if (!success) {
+        boolean dueSuccess = dueFile.renameTo(new File(getFilePath()
+                + "/" + module.getModuleName()
+                + "/dues"
+                + "/" + newChapterName + "due.txt"));
+        if (!chapterSuccess || !dueSuccess) {
             throw new DuplicateDataException("A chapter with this name already exists.");
         }
     }

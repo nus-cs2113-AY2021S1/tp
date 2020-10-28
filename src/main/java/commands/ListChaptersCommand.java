@@ -35,7 +35,7 @@ public class ListChaptersCommand extends ListCommand {
         for (Chapter c : allChapters) {
             result.append("\n").append(allChapters.indexOf(c) + 1).append(".").append(c);
             if (c.getDueBy() == null) {
-                result.append(" (No due date)");
+                result.append(" (Corrupted due date. Please revise soon.)");
             } else {
                 result.append(" (due by ").append(c.getDueBy()).append(")");
             }
