@@ -23,6 +23,10 @@ public class FlashcardDeck {
         String question = in.nextLine();
         System.out.println("Please enter answer: ");
         String answer = in.nextLine();
+        while (answer.equals("back")) {
+            System.out.println("The answer cannot be 'back'! Please enter another answer: ");
+            answer = in.nextLine();
+        }
         Ui.printDivider();
         flashcardDeck.add(new Flashcard(question, answer));
         System.out.println("You have successfully created the flashcard below: \n"
