@@ -16,10 +16,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `list name`](#generating-names-from-name-database-list-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `filter name`](#generating-names-from-name-database-filter-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `add name`](#generating-names-from-name-database-add-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `delete name`](#generating-names-from-name-database-delete-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Finding names from name database: `filter name`](#finding-names-from-name-database-filter-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Adding name to the name database: `add name`](#adding-name-to-the-name-database-add-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Removing a name from the name database: `delete name`](#removing-a-name-from-the-name-database-delete-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word bank: `filter`](#filtering-words-in-word-bank-filter) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter`](#listing-your-filter-list-list-filter) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Beginning your writing session: `start`](#beginning-your-writing-session-start) <br>
@@ -258,7 +258,7 @@ name 2
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `list name`
+### Listing names from name database: `list name`
 Displays all the names currently stored in the names database.  
 Format: `list name`
 
@@ -275,7 +275,7 @@ list name
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `filter name`
+### Finding names from name database: `filter name`
 Gets the list of names after filtering from the stored list of names.  
 Format: `filter name <NAME>`
 
@@ -303,7 +303,7 @@ filter name name
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `add name`
+### Adding name to the name database: `add name`
 Adds a name to the list of names currently stored in the names database.
 Format: `add name <NAME>`
 
@@ -318,7 +318,7 @@ name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
 
-### Generating names from name database: `delete name`
+### Removing a name from the name database: `delete name`
 Removes a name from the list of names currently stored in the names database.
 Format: `delete name <INDEX>`
 
