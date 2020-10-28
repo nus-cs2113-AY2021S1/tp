@@ -3,6 +3,7 @@
 ## Table of Content
 1. [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
+
 2. [Setting up](#2-setting-up)
 3. [Design](#3-design)
 <br/>&nbsp;3.1 [Architecture](#31-architecture)
@@ -12,11 +13,13 @@
 <br/>&nbsp;3.5 [AnimeData Component](#35-animedata-component)
 <br/>&nbsp;3.6 [User Component](#36-user-component)
 <br/>&nbsp;3.7 [Storage Component](#37-storage-component)
+
 4. [Implementation](#4-implementation)
 <br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
 <br/>&nbsp;4.3 [Workspace Feature](#43-workspace-feature)
 <br/>&nbsp;4.4 [Watchlist Management Feature](#44-watchlist-management-feature)
+
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
 <br/>&nbsp;5.2 [Logging](#52-logging)
@@ -198,8 +201,7 @@ The `Workspace` component:
 
 The `Storage` component consist of `StorageManager` which:
 *   can **save** workspace created by the user as a folder.
-*   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using 
-their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
+*   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
 *   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
 
 **AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
@@ -217,7 +219,7 @@ The `estimate` feature aims to provide translators with better estimates on the 
 
 > :bulb: The application only accepts `.txt` files.
 
-##### 4.1.1 Current Implementation
+#### 4.1.1 Current Implementation
 
 The `estimate` feature is facilitated by `EstimateCommand`, which extends from the abstract class `Command`. `EstimateCommand` is instantiated by `EstimateParser`, and it requires two parameters:
 *   `ScriptFileName` (mandatory).
@@ -265,7 +267,7 @@ This section shows some design considerations taken when implementing the estima
 
 <br/>
 
-**Aspect: When should the program read the script file**
+##### Aspect: When should the program read the script file
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -276,7 +278,7 @@ Having considered both of the alternatives, we have decided to implement the fir
 
 <br/>
 
-**Aspect: The way user can specify the script file**
+##### Aspect: The way user can specify the script file
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -339,7 +341,7 @@ For this case since it is a default browse operation, there is no sorting perfor
 *Figure 12: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
-```
+```text
 Charlie
 Echo
 Gamma
@@ -356,7 +358,6 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 **Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseOption()` again to reset the `AnimeData` list to its original form if it has been altered.
 
 **Step 7:** Once `AnimeData` has been sorted, it will return the result back to `Main` for printing.
-
 
 Currently, this result is not very exciting as it is just based on the Anime ID which is assigned randomly by our data source, AniList.
 
@@ -497,7 +498,7 @@ This section shows some design considerations taken when implementing the watchl
 
 <br/>
 
-**Aspect: Saving watchlist data**
+##### Aspect: Saving watchlist data
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -520,7 +521,6 @@ This section details the documentation, logging, testing and dev-ops setup used 
 We use **Jekyll** to manage documentation. We recommend that you document your features implementation and code changes so that other developers are aware of its architecture.
 
 The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website at with [this guide](https://se-education.org/guides/tutorials/jekyll.html).
-
 
 <br/>
 
