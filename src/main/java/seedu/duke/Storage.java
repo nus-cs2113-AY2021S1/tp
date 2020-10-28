@@ -99,7 +99,7 @@ public class Storage {
      *
      * @param calendarList A taskList that store the data read from file.
      */
-    public static void readFromFile(CalendarList calendarList) throws DukeException {
+    public static void readFromFile(CalendarList calendarList) {
         LocalDate date;
         LocalTime time;
         File input = new File(filePath);
