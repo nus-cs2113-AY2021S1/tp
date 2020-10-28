@@ -122,19 +122,90 @@ Expected output:
 
 *Note that module credits need to be a positive integer, and grade entered must be a valid grade.
 
+### 3.7 Listing all grades: 
+`list grade`
 
+You can view all the grades that have been added previously 
+and stored on your computer by following these sets of instructions
 
+Instruction: 
+1. `list grade`
 
+Expected output:
+![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
+### 3.8 Checking current cap : 
+`check cap`
 
+To calculate your current CAP based on the grades you have entered previously, 
+follow the instructions below
 
+Instruction: 
+1. `check cap`
 
+Expected output:
+![Academic_3_8](Images/AcademicUG/Academic_3_8.png)
 
+### 3.9 Starring a grade:
+`star grade INDEX`
 
+The star grade function can be used to highlight a particular grade. 
+Follow the instructions below to mark an 
+important grade with a star.
 
+Instruction: 
+1. `star grade INDEX`
 
+Example of usage: 
 
+`star grade 1` will mark the first grade in the list with a star.
 
+Expected output:
+![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
+
+### 3.10 SUing a grade:
+`su grade INDEX`
+
+SUed a module and want to exclude it from your CAP calculation? The SU grade
+function allows you to do just that through these simple steps.
+
+Instruction: 
+1. `su grade INDEX`
+
+Example of usage: 
+
+`su grade 1` will su the first grade in the list.
+
+Expected output:
+![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
+
+### 3.11 Deleting a grade:
+`delete grade INDEX`
+
+The delete grade function can be used to delete a grade from the currently stored
+ list of grades by following the instructions below.
+
+Instruction: 
+1. `delete grade INDEX`
+
+Example of usage: 
+
+`delete grade 1` will delete the first grade in the list.
+
+Expected output:
+![Academic_3_11](Images/AcademicUG/Academic_3_11.png)
+
+### 3.12 Listing all the starred items in academic:
+`list star`
+
+The list star function works like the highlight function, but only displaying
+the starred items inside the academic section. 
+
+Instruction: 
+1. `list star`
+
+Expected output:
+![Academic_3_12](Images/AcademicUG/Academic_3_12.png)
 
 
 
