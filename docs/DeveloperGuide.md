@@ -135,8 +135,6 @@ The following sequence diagrams explain the interactions omitted in the main dia
 ![bus data](DG_Diagrams/BusData.png)
 
 
-![add favourites](DG_Diagrams/AddFavSequence.png)
-
 #### 2.2.2. Favourite command description modifier (`/descfav` Feature)
 
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
@@ -173,6 +171,18 @@ The following sequence diagram explains the above steps when the user enters `/d
 The following sequence diagram explains the interactions omitted in the main diagram.
 
 ![executing command](DG_Diagrams/descFavInternal.png)
+
+#### 2.2.x Favourite command adder (`/dine` Feature)
+
+![add favourites](DG_Diagrams/AddFavSequence.png)
+
+#### 2.2.x Dining options finder (`/dine` Feature)
+[Work in Progress]<br>
+`/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
+specified faculty.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
+![bus data](DG_Diagrams/DineSequence.png)
 
 
 ## 3. Appendix I: Requirements
