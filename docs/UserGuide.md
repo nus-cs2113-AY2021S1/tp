@@ -68,6 +68,18 @@ has successfully executed.
 1. Items in <> are the parameters to be supplied by the user.
    e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
 1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits, followed by an optional character.
+1. Definition of too much / too little time spent on module. 
+    1. A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
+workload by more than 30%. For example, if the expected workload is 10 hours, a user is considered to spend too 
+little time on the module if his actual workload is less than 7 hours.
+
+    1. A user is considered to spend too much time on a module if the user exceeds the expected workload by at least 30%. 
+For example, if the expected workload is 10 hours, a user is considered to spend too much time on the module if 
+his actual workload is 13 hours or more.
+    
+    1. A user is considered to spend just right amount of time on a module if the user spends between 70% to 130% of the 
+expected workload. For example, if the expected workload is 10 hours, a user is considered to spend just right amount of
+time on the module if his actual workload is between 7 hours and 13 hours.
 
 ### 2.1 View help: `help` <a name="help"></a>
 Shows a list of the commands available.
@@ -352,13 +364,6 @@ Opens the notification with a randomised encouraging message.
 The user is notified on the progress of the current week.
 The current week is defined by the latest week that has at least one actual time input.
 
-A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
-workload by more than 30%. For example, if the expected workload is 10 hours, a user is considered to spend too 
-little time on the module if his actual workload is less than 7 hours.
-
-A user is considered to spend too much time on a module if the user exceeds the expected workload by at least 30%. 
-For example, if the expected workload is 10 hours, a user is considered to spend too much time on the module if 
-his actual workload is 13 hours or more.
 
 Format: `open`
 
