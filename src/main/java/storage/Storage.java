@@ -434,13 +434,21 @@ public class Storage {
     }
 
     public void renameChapter(String newChapterName, Module module, Chapter chapter) throws DuplicateDataException {
-        File file = new File(getFilePath()
+        File chapterFile = new File(getFilePath()
                 + "/" + module.getModuleName()
                 + "/" + chapter.getChapterName() + ".txt");
-        boolean success = file.renameTo(new File(getFilePath()
+        File dueFile = new File(getFilePath()
+                + "/" + module.getModuleName()
+                + "/dues"
+                + "/" + chapter.getChapterName() + "due.txt");
+        boolean chapterSuccess = chapterFile.renameTo(new File(getFilePath()
                 + "/" + module.getModuleName()
                 + "/" + newChapterName + ".txt"));
-        if (!success) {
+        boolean dueSuccess = dueFile.renameTo(new File(getFilePath()
+                + "/" + module.getModuleName()
+                + "/dues"
+                + "/" + newChapterName + "due.txt"));
+        if (!chapterSuccess || !dueSuccess) {
             throw new DuplicateDataException("A chapter with this name already exists.");
         }
     }
