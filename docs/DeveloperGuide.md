@@ -58,6 +58,10 @@ the following packages.
 * Task: Contains the classes for the different types of tasks.
 * Ui: In charge of interaction with the user.
 
+####SubjectCommand
+![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/97392568-0bf0ab80-191d-11eb-99cf-c98d7863ba91.png)
+![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/97392572-0f843280-191d-11eb-8820-f69bdae48e83.png)
+
 ### Quiz package
 The `Storage` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package:an abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
