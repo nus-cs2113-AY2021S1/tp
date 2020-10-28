@@ -1,0 +1,61 @@
+@startuml
+mainframe **sd** execute description changer
+skinparam BoxPadding 10
+box Logic
+":DescFavCommand" -> ":DescFavParser": parseInput()
+activate ":DescFavParser"
+opt has delimiter and is not empty
+":DescFavParser" -> ":DescFavParser":checkComponents()
+activate ":DescFavParser"
+":DescFavParser" <-- ":DescFavParser"
+deactivate ":DescFavParser"
+":DescFavParser" -> ":DescFavParser":checkIndex()
+activate ":DescFavParser"
+":DescFavParser" <-- ":DescFavParser": index
+deactivate ":DescFavParser"
+":DescFavParser" -> ":DescFavParser":checkDescription()
+activate ":DescFavParser"
+":DescFavParser" <-- ":DescFavParser": description
+deactivate ":DescFavParser"
+end
+
+":DescFavCommand" <-- ":DescFavParser":
+deactivate ":DescFavParser"
+
+":DescFavCommand" -> ":DescFavParser": getIndex()
+activate ":DescFavParser"
+":DescFavCommand" <-- ":DescFavParser": index
+deactivate ":DescFavParser"
+
+":DescFavCommand" -> ":DescFavParser": getDescription()
+activate ":DescFavParser"
+":DescFavCommand" <-- ":DescFavParser": description
+deactivate ":DescFavParser"
+end box
+
+box Model#lightPink
+":DescFavCommand" -> "<<class>>\n:FavList": changeDesc()
+activate "<<class>>\n:FavList"
+
+"<<class>>\n:FavList" -> "<<class>>\n:FavList" : checkIndexAndDesc()
+activate "<<class>>\n:FavList"
+opt index is not out of bounds
+"<<class>>\n:FavList" -> ":Fav" : getDesc()
+activate ":Fav"
+"<<class>>\n:FavList" <-- ":Fav" : desc
+deactivate ":Fav"
+opt oldDesc is not the same as new description
+"<<class>>\n:FavList" <-- "<<class>>\n:FavList" : oldDesc
+deactivate "<<class>>\n:FavList"
+
+"<<class>>\n:FavList" -> ":Fav" : changeDesc()
+activate ":Fav"
+"<<class>>\n:FavList" <-- ":Fav"
+deactivate ":Fav"
+end
+end
+
+":DescFavCommand" <-- "<<class>>\n:FavList": oldDesc
+deactivate "<<class>>\n:FavList"
+end box
+@enduml
