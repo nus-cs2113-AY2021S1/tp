@@ -6,13 +6,13 @@ import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.financetools.FinanceTools;
 import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.ReminderPrinter;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
 import seedu.financeit.utils.storage.*;
 
-import java.time.LocalDateTime;
 import java.util.logging.Level;
 
 //@@author Feudalord
@@ -36,12 +36,8 @@ public class Financeit {
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
-<<<<<<< HEAD
-            MenuPrinter.printReminders();    //Print reminder for all upcoming recurring entries
-            MenuPrinter.printMainMenu();
-=======
+            ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
             printMainMenu();
->>>>>>> 7a826c404d975c68a68ecd22f5d61bb3bc937806
             input = UiManager.handleInput();
             packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
@@ -153,7 +149,7 @@ public class Financeit {
         }
     }
 
-    public static String saveCurrentRunDateTimeAsLastRun() {
+    public static void saveCurrentRunDateTimeAsLastRun() {
         try {
             String currentDateTime = RunHistory.getCurrentRunDateTime().toString();
             SaveHandler.putString(currentDateTime, "LastRunDateTime");
