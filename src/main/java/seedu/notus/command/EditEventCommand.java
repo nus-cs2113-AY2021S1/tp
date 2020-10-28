@@ -20,6 +20,7 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_ADD;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_CLEAR;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_DROP;
+import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 
@@ -38,7 +39,9 @@ public class EditEventCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND_ADD + " REMIND]"
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND_DROP + " REMIND]"
-            + "[" + PREFIX_DELIMITER + PREFIX_REMIND_CLEAR + "]";
+            + "[" + PREFIX_DELIMITER + PREFIX_REMIND_CLEAR + "]"
+            + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + "]"
+            + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + "](Only works when event is / set to a recurring type.)";
 
 
     private static final String COMMAND_PROCESSING_MESSAGE = "Editing event:";
