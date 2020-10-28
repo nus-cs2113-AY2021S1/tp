@@ -14,6 +14,7 @@ public class Activity extends Event {
 
     @Override
     public String getStorageString() {
-        return null;
+        return "|" + periods.get(0).startDateTime.toString()
+                + "|" + periods.get(0).endDateTime.toString();
     }
 }
