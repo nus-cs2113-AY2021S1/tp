@@ -177,9 +177,8 @@ Sprint package
 * Includes a SprintList to manage every Sprints created by the user
 * Sprint can contain Tasks and Members allocated to those Tasks
 ### Storage Component
-![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
-  
-API: [StorageManager.java](/src/main/java/seedu/duke/storage/StorageManager.java)  
+![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
+API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
 As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
 - ProjectManager  
@@ -202,14 +201,38 @@ This requires the model classes to implement two methods required for JSON seria
  "Add Project Sequence Diagram") 
  Link: [CreateProjectCommand.java](/src/main/java/seedu/duke/command/project/CreateProjectCommand.java) 
 A project is created with a clear title and description of what the team is working on 
-for delivery, as well as the project length and the sprint duration specified.
-Command executed by user `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>`
-is passed, the following operations are implemented:
-    * UI receives user input and passes it to Parser class.
-    * Parser checks if input format is valid, and executes a corresponding AddProjectCommand object.
-    * A new project is created, and added to project manager.
+for delivery, as well as the project length and the sprint duration specified. `ProjectManager` stores all the projects
+in a hash table with `projectID`, `project` as key,value pair.
+
+Before execution:
+1. Parse user input `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>` into Command
+
+    SCRUMptious will receive user input using the `Ui` class and parse it into `CreateProjectCommand` with `Parser` and
+     `ProjectParser`.
+1. Execute CreateProjectCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command as mentioned in the implementation.
+
+Implementation:
+
+1. Prepare parameters
+    1. Extracts required arguements, to be passed as parameters for project creation.
+        
+1. `projectManager.addProject()` adds a project using the parameters provided.
+    
+1. Output to User
+    
+    `printCreatedProject()` is then called to output the newly created Project in `addProj.toString` via `Ui
+    .showToUserLn()`
+
+#### List Project
+All the projects added by the user are shown
+
 
 #### Select Project
+
+#### View Project
+
 ### Task
 #### Add Task
 A task is created following the creation of a project, with a clear title, description 
