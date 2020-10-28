@@ -353,12 +353,12 @@ The user is notified on the progress of the current week.
 The current week is defined by the latest week that has at least one actual time input.
 
 A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
-workload by more than 30%. For example, if the expected workload is 100 hours, a user is considered to spend too 
-little time on the module if his actual workload is less than 130 hours.
+workload by more than 30%. For example, if the expected workload is 10 hours, a user is considered to spend too 
+little time on the module if his actual workload is less than 7 hours.
 
-A user is considered to spend too much time on a module if the user exceeds the expected workload by more than 30%. 
-For example, if the expected workload is 100 hours, a user is considered to spend too much time on the module if 
-his actual workload is more than 130 hours.
+A user is considered to spend too much time on a module if the user exceeds the expected workload by at least 30%. 
+For example, if the expected workload is 10 hours, a user is considered to spend too much time on the module if 
+his actual workload is 13 hours or more.
 
 Format: `open`
 
