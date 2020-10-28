@@ -20,6 +20,9 @@ public class CheckGoalStatus {
         NumberFormat formatter = new DecimalFormat("#0.0");
 
         try {
+            if (status.equals("✓")) {
+                return status;
+            }
             if (goal.getDescription().contains("Burn less than ")) {
                 targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
                 calorieDifference = targetCalorie - userBurntCalorie;

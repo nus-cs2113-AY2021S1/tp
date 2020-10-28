@@ -51,7 +51,7 @@ public class Goal {
     }
 
     public void markAsCompleted() {
-        this.goalStatus = "100.0";
+        this.goalStatus = "✓";
     }
 
     public void setGoal(Goal goal, String goalStatus) {
