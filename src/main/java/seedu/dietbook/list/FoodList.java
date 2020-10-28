@@ -13,7 +13,7 @@ import java.util.List;
  * This is a stateful object.
  */
 public class FoodList {
-    private static ArrayList<FoodEntry> foodEntries;
+    private ArrayList<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -121,7 +121,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed after specified timing.
      */
-    public static List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
+    public List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
         return FoodListManager.listToFoods(entriesAfterDateTime);
     }
@@ -137,7 +137,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed within the range of a specified timing.
      */
-    public static List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+    public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
         return FoodListManager.listToFoods(entriesInRange);
     }
