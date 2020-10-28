@@ -419,12 +419,58 @@ and in favour of having an application that is highly object-oriented.
 <br/>
 
 ### 4.3 Workspace Feature
-Similar to a desktop, AniChan has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+
+To understand the `Workspace` feature better, you may refer to [user guide](https://ay2021s1-cs2113t-f12-2.github.io/tp/UserGuide.html#36-workspace-management).
 
 <br/>
 
-#### 4.3.1 Add new workspace 
-WIP.
+**Design Overview**
+
+`Workspace` is primarily the layer of code that sits between the user, and the rest of AniChan data management features (i.e., `Watchlist`, `Bookmark`). 
+As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
+and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
+
+> :memo: Upon running the program for the first time, a workspace named `Default` is created. A similarly named folder will also be created in `/data` directory, managed by our `Storage` class.
+
+<br/>
+
+#### 4.3.2 Current Implementation
+
+| Workspace Command | Option          | Required field |
+|---|---|---|
+| Create new        | n               | Workspace Name |
+| Switch            | s               | Workspace Name |
+| List              | l               | None           |
+| Delete            | d               | Workspace Name |
+
+The `WorkspaceCommand` is instantiated by `WorkspaceParser`, and it requires 2 parameters: 
+*   `commandOption` (mandatory).
+*   `workspaceName` (mandatory unless option `-l` is specified).
+
+<br/>
+
+Given below is an example usage scenario showing how the command behaves at each step when the user tries 
+to **create new** `Workspace`:
+
+**Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
+
+![Workspace Command Initial State Diagram](images/WorkspaceCommand-Initial-State.png) <br/>
+*Figure 1: Workspace Command Initial State*
+
+**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser.java` and then further parsed by `WorkspaceParser.java`.
+
+**Step 3:** Upon completion of parsing and input validation, `WorkspaceParser.java` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
+
+**Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` and before running `WorkspaceCommand#createWorkspace()` accordingly.
+
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new workspace to User, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
+Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
+
+> :bulb: You can find more information about Watchlist at its section.
+
+**Step 6:** If successful, `WorkspaceCommand` returns the successfully created workspace message to `Main`.
+
 
 <br/>
 
