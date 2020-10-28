@@ -193,8 +193,8 @@ public class InputChecker {
      * @throws DietException when value is not within the limit.
      */
     public static void checkHeightLimit(int height) throws DietException {
-        if (height < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+        if (height < 1) {
+            throw new DietException("Input value cannot be less than 1");
         } else if (height > HEIGHT_CAP) {
             throw new DietException("Input value cannot be more than 273!");
         }
@@ -207,8 +207,8 @@ public class InputChecker {
      * @throws DietException when value is not within the limit.
      */
     public static void checkWeightLimit(int weight) throws DietException {
-        if (weight < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+        if (weight < 1) {
+            throw new DietException("Input value cannot be less than 1!");
         } else if (weight > WEIGHT_CAP) {
             throw new DietException("Input value cannot be more than 443!");
         }

@@ -1,7 +1,5 @@
 package seedu.dietbook;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.exception.DietException;
@@ -13,6 +11,8 @@ import seedu.dietbook.command.Command;
  *
  * @author tikimonarch
  */
+
+import java.io.FileNotFoundException;
 
 public class DietBook {
     private FoodList foodList;
