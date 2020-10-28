@@ -14,9 +14,11 @@ enhancements.
     + [2.1.4. Storage Component](#214-storage-component)
   * [2.2. Implementation](#22-implementation)
     + [2.2.1 Direct Route Finder (`/route` Feature)](#221-direct-route-finder-route-feature)
-    + [2.2.x Favourite command adder (`/addfav` Feature)](#22x-favourite-command-adder-addfav-feature)
-    + [2.2.2. Favourite command description modifier (`/descfav` Feature)](#222-favourite-command-description-modifier-descfav-feature)
-    + [2.2.x Dining options finder (`/dine` Feature)](#22x-dining-options-finder-dine-feature)
+    + [2.2.2 Full Route Display (`/routemap` Feature)](#222-full-route-display-routemap-feature)
+    + [2.2.3 Favourite command adder (`/addfav` Feature)](#223-favourite-command-adder-addfav-feature)
+    + [2.2.4. Favourite command executor (`/execfav` Feature)](#224-favourite-command-executor-execfav-feature)
+    + [2.2.5. Favourite command description modifier (`/descfav` Feature)](#225-favourite-command-description-modifier-descfav-feature)
+    + [2.2.6. Dining options finder (`/dine` Feature)](#226-dining-options-finder-dine-feature)
 - [3. Appendix I: Requirements](#3-appendix-i-requirements)
   * [3.1 Product scope](#31-product-scope)
     + [3.1.1 Target user profile](#311-target-user-profile)
@@ -136,11 +138,19 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 ![bus data](DG_Diagrams/BusData.png)
 
-#### 2.2.x Favourite command adder (`/addfav` Feature)
+#### 2.2.2. Full Route Display (`/routemap` Feature)
+
+
+
+#### 2.2.3. Favourite command adder (`/addfav` Feature)
 [Work in Progress]<br>
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
-#### 2.2.2. Favourite command description modifier (`/descfav` Feature)
+#### 2.2.4. Favourite command executor (`/execfav` Feature)
+
+
+
+#### 2.2.5. Favourite command description modifier (`/descfav` Feature)
 
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
@@ -178,7 +188,7 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/descFavInternal.png)
 
 
-#### 2.2.x Dining options finder (`/dine` Feature)
+#### 2.2.6. Dining options finder (`/dine` Feature)
 [Work in Progress]<br>
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
