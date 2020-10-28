@@ -187,7 +187,7 @@ public class ParamChecker {
             LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Index out of bounds... Err: %s", exception.getMessage()));
 
-            errorMessage = getErrorMessageListIndexOutOfBounds(message, index);
+            errorMessage = getErrorMessageListIndexOutOfBounds(message);
         } catch (NumberFormatException exception) {
             LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("Index cannot be parsed... Err: %s", exception.getMessage()));
@@ -262,7 +262,7 @@ public class ParamChecker {
                 LoggerCentre.loggerParamChecker.log(Level.WARNING,
                     String.format("Double not recognised... Err: %s", exception.getMessage()));
             }
-            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
+            errorMessage = getErrorMessageNumberFormatException();
         } finally {
             printErrorMessage();
         }
@@ -434,9 +434,8 @@ public class ParamChecker {
             message);
     }
 
-    public static String getErrorMessageListIndexOutOfBounds(String message, int index) {
+    public static String getErrorMessageListIndexOutOfBounds(String message) {
         return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-            getMessageListRangeIndex(index),
             message);
     }
 
@@ -447,7 +446,8 @@ public class ParamChecker {
 
     public static String getErrorMessageNumberFormatException() {
         return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-            "Cannot parse your input. Please enter valid integer input!");
+            "Cannot parse your input. Please enter valid integer input!",
+            errorMessage);
     }
 
     public static String getErrorMessageInvalidCategoryException(InvalidCategoryException exception) {

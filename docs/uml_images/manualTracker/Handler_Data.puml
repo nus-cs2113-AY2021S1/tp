@@ -1,8 +1,9 @@
 @startuml
+hide circle
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 50
 skinparam shadowing false
-skinparam linetype ortho
+
 
 skinparam package<<Layout>> {
   borderColor Transparent

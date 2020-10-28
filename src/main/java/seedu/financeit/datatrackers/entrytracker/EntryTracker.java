@@ -250,7 +250,8 @@ public class EntryTracker {
         TablePrinter.addRow("2.;Edit entry;entry edit /id {integer} {param-type/parameter to edit}");
         TablePrinter.addRow("3.;list entries;entry list");
         TablePrinter.addRow("4.;delete entry;entry delete /id {integer}");
-        TablePrinter.addRow("5.;exit to manual tracker;exit");
+        TablePrinter.addRow("5.;list transaction categories;cat");
+        TablePrinter.addRow("6.;exit to manual tracker;exit");
         TablePrinter.printList();
     }
 

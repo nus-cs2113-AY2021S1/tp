@@ -69,7 +69,7 @@ public class ParamCheckerTest {
             ".,/-=",
             "this is a test",
             "d d d d d ",
-            "sdffds"
+            "sdffds",
         };
 
         for (int i = 0; i < errorInput.length; i++) {
@@ -156,8 +156,7 @@ public class ParamCheckerTest {
             assertCorrectErrorMessage(
                 ParamChecker.getInstance(),
                 ParamChecker.getErrorMessageListIndexOutOfBounds(
-                    ParamChecker.getMessageListRangeIndex(testList.size()),
-                    index));
+                    ParamChecker.getMessageListRangeIndex(testList.size())));
         }
     }
 
@@ -165,10 +164,9 @@ public class ParamCheckerTest {
     public void testDuplicateEntryTypes() {
         String testParam = "/id";
         String[] errorInput = {
-            "-1",
-            "23",
+            "1",
+            "2",
         };
-        ArrayList testList = new ArrayList(Arrays.asList(errorInput));
 
         for (int i = 0; i < errorInput.length; i++) {
             testPacket = TestUtil.createCommandPacket(
@@ -181,7 +179,7 @@ public class ParamCheckerTest {
             );
             ParamChecker.getInstance().setPacket(testPacket);
             try {
-                ParamChecker.getInstance().checkAndReturnIndex(testParam, testList);
+                ParamChecker.getInstance().checkAndReturnDuplicateParamTypes(testParam, testPacket.getParamMap());
                 fail();
             } catch (ParseFailParamException exception) {
                 assertEquals(
@@ -189,7 +187,6 @@ public class ParamCheckerTest {
                     exception.getMessage()
                 );
             }
-            int index = Integer.parseInt(errorInput[i]);
             assertCorrectErrorMessage(
                 ParamChecker.getInstance(),
                 ParamChecker.getMessageMultipleParamToParamType(testParam, testPacket.getParamMap()));

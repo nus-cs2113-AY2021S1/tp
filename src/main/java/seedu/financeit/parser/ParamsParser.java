@@ -9,11 +9,17 @@ import java.util.regex.Matcher;
 
 //@@author Artemis-Hunt
 public class ParamsParser {
-    protected String paramSubstring;
     protected Matcher matcher;
+    private static ParamsParser paramsParser;
 
-    public ParamsParser(String paramSubstring) {
-        this.paramSubstring = paramSubstring;
+    private ParamsParser() {
+    }
+
+    public static ParamsParser getInstance() {
+        if (paramsParser == null) {
+            paramsParser = new ParamsParser();
+        }
+        return paramsParser;
     }
 
     public String getSeparator(String input) {
@@ -38,7 +44,7 @@ public class ParamsParser {
      * paramArgument: "skip page 70"
      * etc.
      */
-    public HashMap<String, String> parseParams() {
+    public HashMap<String, String> parseParams(String paramSubstring) {
         HashMap<String, String> paramMap = new HashMap<>();
         String[] buffer;
         String paramArgument = "";
