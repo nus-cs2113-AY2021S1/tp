@@ -18,7 +18,8 @@ import java.util.Scanner;
 
 
 public class Ui {
-    public static final String LINE_DIVIDER = "=======================================================================";
+    public static final String LINE_DIVIDER = "=============================================================="
+            + "==================";
 
     public static void printDivider() {
         System.out.println(LINE_DIVIDER);
@@ -79,19 +80,22 @@ public class Ui {
         // Prints introduction to the mode (if any)
         if (newMode == Mode.BOOKMARK) {
             BookmarkUi.printWelcomeBookmarkMessage();
-            //BookmarkUi.showBookmarkCategoryList();
             printDivider();
         } else if (newMode == Mode.ACADEMIC) {
             printWelcomeAcademicMessage();
         } else if (newMode == Mode.TIMETABLE) {
             printWelcomeTimetableMessage();
+        } else if (newMode == Mode.FLASHCARD) {
+            printWelcomeFlashcardMessage();
+        } else if (newMode == Mode.MENU) {
+            MainMenu.printWelcomeBackMessage();
         }
     }
 
     public static void printWelcomeAcademicMessage() {
         System.out.println("Welcome to academic mode!");
-        System.out.println("\nYou can use this mode to keep track of your grades"
-                + "\n& important contacts");
+        System.out.println("\nYou can use this mode to keep track of your grades "
+                + "& important contacts");
         System.out.println("\nInsert \"help\" to find the list of commands available");
         printDivider();
     }
@@ -103,12 +107,21 @@ public class Ui {
         printDivider();
     }
 
+    public static void printWelcomeFlashcardMessage() {
+        System.out.println("Welcome to flashcard mode!");
+        System.out.println("\nYou can use this mode to create and store flashcards and use them to help");
+        System.out.println("you memorize your study content!");
+        System.out.println("\nInsert \"help\" to find the list of commands available");
+        printDivider();
+    }
+
     public static void exitMode() {
         printDivider();
         System.out.println("Exited " + ModeNames.getCurrentModeName() + "!");
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
+        MainMenu.printWelcomeBackMessage();
     }
 
     public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
