@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -19,16 +19,16 @@ public class ViewInfoCommand extends Command {
      *
      * @param calendarList the calendar list containing the event.
      * @param storage      not required.
-     * @throws DukeException if the view info command is invalid.
+     * @throws CommandException if the view info command is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int eventNumber = 0;
         int calendarNumber;
         try {
             eventNumber = Integer.parseInt(userInput.replace("/v", "").trim());
         } catch (Exception e) {
-            throw new DukeException("invalid view info");
+            throw new CommandException("invalid view info");
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
 
