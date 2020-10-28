@@ -340,12 +340,14 @@ This section describes the user stories considered when implementing the feature
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
 |v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
+|v1.0|user|store all the data locally|load my saved data to the app next time|
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 |v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
+|v2.0|NUS student|see the exam and deadline countdown|be conscious about the coming exams and deadlines and manage my time more wisely|
 
 ## Appendix C: Non-Functional Requirements
 
