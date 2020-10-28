@@ -51,7 +51,7 @@ public class WorkspaceParser extends CommandParser {
      * @param paramGiven a String Array containing the parameters and the value
      * @throws AniException when an error occurred while parsing the parameters
      */
-    public void parameterParser(String[] paramGiven) throws AniException {
+    private void parameterParser(String[] paramGiven) throws AniException {
         if (paramGiven.length != 2) {
             LOGGER.log(Level.WARNING, "Invalid number of parameters given");
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);

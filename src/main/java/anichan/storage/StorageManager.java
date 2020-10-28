@@ -69,6 +69,12 @@ public class StorageManager {
 
     // ========================== Workspace Deletion ==========================
 
+    /**
+     * Deletes directory containing specified workspace.
+     *
+     * @param name name of workspace
+     * @throws AniException when an error occurred while trying to delete directory
+     */
     public void deleteWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
@@ -150,7 +156,7 @@ public class StorageManager {
      * Loads the script file.
      *
      * @param workspaceName the name of the workspace where the script can be found
-     * @param fileName the file name of the script file
+     * @param fileName      the file name of the script file
      * @return the content of the script file
      * @throws AniException when an error occurred while loading the script data
      */
