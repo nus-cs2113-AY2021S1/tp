@@ -571,7 +571,13 @@ to add the expected time required to complete the task to the actual time spent 
     `addTime` method.
 
 ## 5. Documentation, Logging, Testing, Configuration, Dev-Ops <a name="5"></a>
-{Insert guides here for doc, testing etc}
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
 
 ## 6. Appendix: Requirements <a name="6"></a>
 ### 6.1 Product Scope <a name="6.1"></a>
