@@ -246,11 +246,11 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 <br/>
 
 The sequence diagram presented below depicts the interaction between the components for running the command, `estimate script.txt -wph 300`.
-> :memo: This shows from step 2 onward.
+> :memo: The sequence diagram shows the interaction from step 2 onward.
 
 ![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
 
-*Figure 11. Sequence Diagram for `estimate script.txt -wph 300`*
+*Figure 9: Sequence Diagram for `estimate script.txt -wph 300`*
 
 <br/>
 
@@ -330,7 +330,7 @@ For this case since it is a default browse operation, there is no sorting perfor
 `Anime objects within the page window, as shown in the diagram below.
 
 ![Browse Object Diagram 1](images/Browse-Default-State.png) <br/>
-*Figure 12: Browse Default State Object Diagram*
+*Figure 10: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
 ```text
@@ -343,7 +343,7 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 `BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
 
 ![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
-*Figure 13: Browse Next Page Object Diagram*
+*Figure 11: Browse Next Page Object Diagram*
 
 **Step 5:** At each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
@@ -357,7 +357,7 @@ An example scenario would be browsing the 2nd page of a **sorted** list in ascen
 The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png) <br/>
-*Figure 14: Browse Sorted State Object Diagram*
+*Figure 12: Browse Sorted State Object Diagram*
 
 As you can see, even though the page window is at the same position as the previous command, 
 the list is different as it has been sorted.
@@ -367,7 +367,7 @@ From this point onwards, the operation will continue as per the steps above but 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
 
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png) <br/>
-*Figure 15: Browse Sorted Sequence Diagram*
+*Figure 13: Browse Sorted Sequence Diagram*
 
 <br/>
 
@@ -441,7 +441,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-*Figure x: WatchlistCommand Initial State*
+*Figure 14: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
 
@@ -461,7 +461,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand After Step 5 State](images/WatchlistCommand-After-Step-5-State.png)
 
-*Figure x: WatchlistCommand After Step 5 State*
+*Figure 15: WatchlistCommand After Step 5 State*
 
 <br/>
 
@@ -472,7 +472,7 @@ The user executes `watchlist -s 2` to change his active watchlist to the second 
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-*Figure x: WatchlistCommand After Select State*
+*Figure 16: WatchlistCommand After Select State*
 
 <br/>
 
@@ -480,23 +480,23 @@ The user executes `watchlist -d 2` to delete the second watchlist (â€œNewAnimeâ€
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
-*Figure x: WatchlistCommand After Delete State*
+*Figure 17: WatchlistCommand After Delete State*
 
 <br/>
 
 The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
-> :memo: This shows from step 2 onward.
+> :memo: The sequence diagram shows the interaction from step 2 onward.
 
-> :memo: The other option (`-l`, `-s`, `-d`) follows a similar process.
+> :memo: The other options (`-l`, `-s`, `-d`) follow a similar process, only the list and select option does not interact with `StorageManager`.
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
-*Figure x: Sequence Diagram for `watchlist -n NewAnime`*
+*Figure 18: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
 
 #### 4.4.2 Design Considerations
-This section shows some design considerations taken when implementing the estimate feature.
+This section shows some design considerations taken when implementing the watchlist management features.
 
 Aspect: **Saving watchlist data**
 
@@ -520,7 +520,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
-*Figure 22: Bookmark Class Diagram*
+*Figure 19: Bookmark Class Diagram*
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
 
@@ -562,19 +562,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 23: Bookmark Entry After Add*
+*Figure 20: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 24: Bookmark Entries with more Add*
+*Figure 21: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 25: Bookmark Add Command Sequence Diagram*
+*Figure 22: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -588,14 +588,14 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 25: Bookmark Entries After Delete*
+*Figure 23: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 26: Bookmark Entries After Edit Episode*
+*Figure 24: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
 
@@ -622,7 +622,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 25: Bookmark Entries After Edit Episode*
+*Figure 26: Bookmark Entries After Edit Episode*
 
 <br/>
 
