@@ -16,7 +16,7 @@ public class BookmarkList {
         if (star) {
             returnLink += "|STAR|";
         }
-        if (title != null ) {
+        if (title != null) {
             return returnLink + link + " t->" + title;
         } else {
             return returnLink + link;
