@@ -102,7 +102,7 @@ Adds the expected workload of the module to the database.
 Format: `addexp <module code> <expected workload>`
 
 * The `module code` is valid.
-* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 84 inclusive.
+* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 24 inclusive.
 * If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
@@ -351,6 +351,14 @@ You currently have no task :-)
 Opens the notification with a randomised encouraging message.
 The user is notified on the progress of the current week.
 The current week is defined by the latest week that has at least one actual time input.
+
+A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
+workload by more than 30%. For example, if the expected workload is 100 hours, a user is considered to spend too 
+little time on the module if his actual workload is less than 130 hours.
+
+A user is considered to spend too much time on a module if the user exceeds the expected workload by more than 30%. 
+For example, if the expected workload is 100 hours, a user is considered to spend too much time on the module if 
+his actual workload is more than 130 hours.
 
 Format: `open`
 
