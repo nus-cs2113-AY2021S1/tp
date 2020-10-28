@@ -360,10 +360,11 @@ public class StorageManager {
 
         if (!reminderPeriods.isEmpty()) {
             eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
+            for (String reminderPeriod : reminderPeriods) {
+                eventDetails += reminderPeriod + " ";
+            }
         }
-        for (String reminderPeriod : reminderPeriods) {
-            eventDetails += reminderPeriod + " ";
-        }
+
 
         if (!event.getRecurring()) {
             eventDetails += LS;
