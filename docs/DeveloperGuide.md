@@ -256,7 +256,7 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 ![Estimate Command Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
-*Figure 11. Sequence diagram for estimating translation time needed for a script*
+*Figure 11. Sequence Diagram for EstimateCommand*
 
 <br/>
 
