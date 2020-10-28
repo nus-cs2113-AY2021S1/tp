@@ -509,6 +509,9 @@ User keys in `workspace -d Default` to delete the workspace named `Default`.
 
 The following sequence diagram shows how `Workspace` creation in Step 4 works:
 
+![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
+*Figure 1: Workspace Command After New Workspace Delete*
+
 <br/>
 
 #### 4.4.2 Design Consideration
