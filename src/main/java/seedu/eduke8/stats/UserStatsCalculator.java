@@ -5,15 +5,14 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
-import seedu.eduke8.topic.TopicList;
 
 import java.util.ArrayList;
 
 
 public class UserStatsCalculator extends StatsCalculator {
 
-    public UserStatsCalculator(TopicList topicList) {
-        super(topicList);
+    public UserStatsCalculator(ArrayList<Displayable> topics) {
+        super(topics);
     }
 
 
@@ -41,13 +40,13 @@ public class UserStatsCalculator extends StatsCalculator {
         return totalPointsAvailable;
     }
 
-    public int calculateOverallProgressionLevelPercentage() {
-        return calculateProgressionLevelPercentage(calculateTotalPointsEarned(),
+    public int calculateOverallProgressionPercentage() {
+        return calculateProgressionPercentage(calculateTotalPointsEarned(),
                 calculateTotalPointsAvailable());
     }
 
     // Determines if progression is over 50%, print diff messages for each section
     public boolean isProgressionOverHalf() {
-        return calculateOverallProgressionLevelPercentage() >= 50;
+        return calculateOverallProgressionPercentage() >= 50;
     }
 }
