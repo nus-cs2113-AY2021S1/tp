@@ -80,7 +80,7 @@ public abstract class Appliance {
         return appliancePower.offAppliance();
     }
 
-    public void resetPower() {
+    public void resetPowerUsage() {
         appliancePower.resetPower();
     }
 

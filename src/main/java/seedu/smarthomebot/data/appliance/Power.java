@@ -142,8 +142,7 @@ public class Power {
             }
         }
 
-        // For simulation purpose, 1 second in System equals to 10 minutes in SmartHomeBot
-        totalHours = timeUsed / (1000 * 6);
+        totalHours = timeUsed / (1000 * 60 * 60);
         return totalHours;
     }
 
@@ -161,7 +160,7 @@ public class Power {
 
     private void computeTotalPower() {
         computePower();
-        this.totalPowerConsumption += this.powerUsed;
+        this.totalPowerConsumption += Math.round(this.powerUsed * 100.0) / 100.0;
         assert this.totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";
     }
 
