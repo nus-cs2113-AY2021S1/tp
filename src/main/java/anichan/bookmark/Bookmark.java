@@ -71,10 +71,6 @@ public class Bookmark {
         this.noteList.get(bookmarkIndex).addNote(note);
     }
 
-    public void addNote(int bookmarkIndex, String note, String date) throws AniException {
-        this.noteList.get(bookmarkIndex).addNote(note, date);
-    }
-
     public String getNoteInString(int bookmarkIndex) {
         StringBuilder sbNoteList = new StringBuilder(System.lineSeparator());
         if (noteList.get(bookmarkIndex).getSize() == 0) {
