@@ -504,8 +504,14 @@ This sequence diagram will show the flow of setting of expense goal:
 ## Save Manager
 ### What it does
 Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
+It allows multiple saves to be created and loaded at will.
 
-### Architecture overview
+### Overview
+Save Manager is the backup storage and Ui program for the various save handler subclasses. Without Save Manager, save handler alone
+will only save one copy of goal tracker, manual tracker and auto tracker information upon exiting the program and load them upon
+start up.
+
+### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
 ## Product scope
