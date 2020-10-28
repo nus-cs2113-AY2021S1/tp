@@ -1,53 +1,73 @@
 # Developer Guide for E-Duke-8
 
 - [Developer Guide for E-Duke-8](#developer-guide-for-e-duke-8)
-  - [Introduction](#introduction)
-    - [Software Overview](#software-overview)
-    - [Setting up](#setting-up)
-  - [Design & implementation](#design--implementation)
-    - [Model Component](#model-component)
-      - [Design of TopicList](#design-of-topiclist)
-      - [Implementation of TopicList](#implementation-of-topiclist)
-      - [Implementation of Notes](#implementation-of-notes)
-      - [Design of Option and OptionList](#design-of-option-and-optionlist)
-    - [Logic Component](#logic-component)
-      - [Design of Parser](#design-of-parser)
-      - [Implementation of MenuParser](#implementation-of-menuparser)
-      - [Design of QuizQuestionsManager](#design-of-quizquestionsmanager)
-      - [Implementation of QuizQuestionsManager](#implementation-of-quizquestionsmanager)
-    - [Storage Component](#storage-component)
-      - [Design of TopicsStorage](#design-of-topicsstorage)
-      - [Implementation of TopicsStorage](#implementation-of-topicsstorage)
-    - [UI Component](#ui-component)
-      - [Implementation of Ui](#implementation-of-ui)
-  - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
+  - [1. Introduction](#1-introduction)
+    - [1.1. Software Overview](#11-software-overview)
+    - [1.2. Setting up](#12-setting-up)
+  - [2. Design & implementation](#2-design--implementation)
+    - [2.1. Architecture](#21-architecture)
+    - [2.2. Model Component](#22-model-component)
+      - [2.2.1. Design of TopicList](#221-design-of-topiclist)
+      - [2.2.2. Implementation of TopicList](#222-implementation-of-topiclist)
+      - [2.2.3. Implementation of Notes](#223-implementation-of-notes)
+      - [2.2.4. Design of Option and OptionList](#224-design-of-option-and-optionlist)
+    - [2.3. Logic Component](#23-logic-component)
+      - [2.3.1. Design of Parser](#231-design-of-parser)
+      - [2.3.2. Implementation of MenuParser](#232-implementation-of-menuparser)
+      - [2.3.3. Design of QuizQuestionsManager](#233-design-of-quizquestionsmanager)
+      - [2.3.4. Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager)
+      - [2.3.5. Design of Stats Feature](#235-design-of-stats-feature)
+      - [2.3.6. Implementation of Stats Feature](#236-implementation-of-stats-feature)
+    - [2.4. Storage Component](#24-storage-component)
+      - [2.4.1. Design of TopicsStorage](#241-design-of-topicsstorage)
+      - [2.4.2. Implementation of TopicsStorage](#242-implementation-of-topicsstorage)
+      - [2.4.3. Design of UserStorage](#243-design-of-userstorage)
+      - [2.4.4. Implementation of UserStorage](#244-implementation-of-userstorage)
+    - [2.5. UI Component](#25-ui-component)
+      - [2.5.1. Implementation of Ui](#251-implementation-of-ui)
+  - [3. Product scope](#3-product-scope)
+    - [3.1. Target user profile](#31-target-user-profile)
+    - [3.2. Value proposition](#32-value-proposition)
+  - [4. User Stories](#4-user-stories)
+  - [5. Non-Functional Requirements](#5-non-functional-requirements)
+  - [6. Glossary](#6-glossary)
   - [Instructions for manual testing](#instructions-for-manual-testing)
 
-## Introduction
+## 1. Introduction
 
-### Software Overview
+### 1.1. Software Overview
 
-Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and OOP principles** through a gamified
+platform and enhances their learning experience. 
 
-Purpose of the document:
-E-duke-8 is an education companion, intended for students to enhance their learning experience. 
+On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the **Command Line Interface (CLI)**, to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
-This guide will allow any interested contributors who wish to develop this learning companion further, to understand the inner workings of the program. This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
+E-Duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
-### Setting up
+The purpose of this developer guide is to allow any interested contributors, who wish to develop this learning companion further, understand the inner workings of the program. 
+This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
 
-Fork the repo, and clone the fork into your own PC. You are recommended to use IntelliJ to best edit the program. Do not forget to configure the JDK, and to import the project as a Gradle project, and lastly, remember to verify that the JUnit tests pass, to ensure the program is functional.
+### 1.2. Setting up
 
-## Design & implementation
+First, fork this repo, and clone the fork into your computer.
 
-### Model Component
+You are recommended to use Intellij IDEA to edit the program.
 
-####  Design of TopicList
+1. **Configure the JDK**: Ensure Intellij is configured to use JDK 11.
+2. **Import the project as a Gradle project**: Choose the option to import the project as a Gradle project when prompted.
+3. **Verify the setup**: Enter some commands to ensure E-Duke-8 functions as expected. Refer to our [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html) for more information.
+
+## 2. Design & implementation
+
+### 2.1. Architecture
+
+The high-level design of our program is based on a 3-tier architecture which consists of the Presentation, Application and Database layers. The Logic component, UI component, Storage component, and Model component can be found in each layer as shown in the architecture diagram below.
+
+![Architecture](images/Architecture.png)
+
+### 2.2. Model Component
+
+####  2.2.1. Design of TopicList
 
 1. Listing topics in TopicList
 2. Finding a topic in TopicList
@@ -61,7 +81,7 @@ TopicList is an ArrayList of type Displayable, which is one of two interfaces im
 in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
 use of the package java.util.ArrayList. The TopicList is used to store Topics.
 
-#### Implementation of TopicList
+#### 2.2.2. Implementation of TopicList
 
 **Listing topics in TopicList:**
 
@@ -94,7 +114,7 @@ Step 3: The `TopicList.find()` method then calls the `TopicList.showTopics()` me
 E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
 The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`. 
 
-#### Implementation of Notes
+#### 2.2.3. Implementation of Notes
 
 **Adding a new note:**
 
@@ -126,7 +146,7 @@ Step 1: The `parseCommand()` method instantiates a `TopicCommand` object which t
 Step 2: The `Topic.showNotes()` method calls the `Ui.printNoteList()` method. The topic's `NoteList` into this method. 
         `Ui.printNoteList()` prints out all the descriptions of the `Note` objects in the `NoteList`.
 
-#### Design of Option and OptionList 
+#### 2.2.4. Design of Option and OptionList 
 
 The `Option` and `OptionList` classes implements the `Displayable` and `DisplayableList` interfaces respectively. 
 The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
@@ -134,9 +154,9 @@ question. The class diagram below illustrates the structure of both classes.
 
 ![Option_and_OptionList_Class](./images/Option.png)
 
-### Logic Component
+### 2.3. Logic Component
 
-#### Design of Parser
+#### 2.3.1. Design of Parser
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
@@ -146,7 +166,7 @@ question. The class diagram below illustrates the structure of both classes.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
 to be completed as per the user input.
 
-#### Implementation of MenuParser
+#### 2.3.2. Implementation of MenuParser
 
 Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
 
@@ -179,11 +199,11 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         options available. As such, the contents of the case with reference “help” is run, which is a return statement 
         containing a new `HelpCommand()`. This leads to the execution of the `help` command.
         
-#### Design of QuizQuestionsManager
+#### 2.3.3. Design of QuizQuestionsManager
 
 To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
-The Class Diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
+The class diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
 ![QuizQuestionsManager_Class_Diagram](./images/QuizQuestionsManager.png)
 
@@ -191,16 +211,16 @@ An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duk
 
 The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
 
-Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user answers all of them on the command line interface.
+Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
-#### Implementation of QuizQuestionsManager
+#### 2.3.4. Implementation of QuizQuestionsManager
 
-As mentioned in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
+As mentioned earlier in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
 
-The Sequence Diagram below shows how `QuizQuestionsManager` achieves this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
+The sequence diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
 
 
-![QuizQuestionsManager_setQuizQuestions](./images/QuizQuestionsManager_setQuizQuestions.png)
+![QuizQuestionsManager::setQuizQuestions_Sequence_Diagram](./images/QuizQuestionsManager_setQuizQuestions.png)
 
 `nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
 
@@ -208,11 +228,42 @@ To ensure that no two of the same question is selected, the selected randomQuest
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
 
-### Storage Component
+#### 2.3.5 Design of Stats Feature
 
-#### Design of TopicsStorage
+E-Duke-8 allows for user’s stats to be shown to the user when requested. These statistics correspond to the results of the user’s past attempts of the quiz. An aggregate result, followed by topical results of the quiz will be displayed. 
 
-Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
+A `Stats` class facilitates what is to be shown to the user. It also calls the methods of the objects of the two subclasses of `StatsCalculator`, `UserStatsCalculator` and `TopicalStatsCalculator` to retrieve the necessary information to be displayed.
+
+The class diagram given below showcases the high-level design of the stats feature in E-Duke-8. Given below it is a quick overview of each component.
+
+![Stats_Class_Diagram](./images/Stats.png)
+
+Results of the quiz attempts can be calculated using the information stored in a `Question` object, because of its methods, namely `wasShown()`,  `wasHintShown()` and `wasAnsweredCorrectly()`, that indicate if it has been attempted before, whether hint was used when user attempted the question and if the question was answered correctly respectively. 
+
+The current design of the stats feature is such that a correct answer without hint being used would award the user with 2 points, while a correct answer with hint used would award the user with 1 point. No point is awarded to the user if they chose the wrong answer. `calculatePointsEarnedForQuestion( :Question)` in `StatsCalculator` class and its subclasses, is the method that contains the logic for this calculation.
+
+An object of `UserStatsCalculator` class is responsible for calculating the aggregate results from the user’s previous quiz results. For instance, its `calculateTotalPointsEarned()` method will iterate through the multiple topics stored in E-Duke-8 and calculate the total sum of the user’s past results of the quizzes done for those topics.
+
+On the other hand, an object of `TopicalStatsCalculator` is used by the object of `Stats` class to calculate the topical results. In its constructor, the `TopicalStatsCalculator` object uses the single `Topic` object passed into it to retrieve its specific `QuestionList` object. Thereafter, by iterating through the questions for the particular `QuestionList` object, the results for individual topics can be calculated with its methods.
+
+#### 2.3.6. Implementation of Stats Feature
+
+The current implementation of the stats feature is such that the object of `Stats` class controls what is shown to the user when the `stats` command is received. It calls on methods of a `UserStatsCalculator` object and a `TopicalStatsCalculator` object to calculate and retrieve the statistics of the user’s previous attempts of quizzes in E-Duke-8, before displaying them.
+
+The sequence diagram below shows the interactions between the different objects when `showPointsEarned(ui)` is invoked, by the object of `Stats` class, to display to the user the total points he has earned in E-Duke-8 so far, out of all the points that he can potentially earn. 
+
+![Stats::showPointsEarned_Sequence_Diagram](./images/Stats_showPointsEarned.png)
+
+Through the logic in the object of `UserStatsCalculator`, necessary information regarding the user’s statistics, such as the `totalPointsGained` integer value and `totalPointsAvailable` integer value, are calculated, and then passed to the `Ui` object to print them to the user. This same concept and procedure are applied to the display the other aggregate results.
+
+A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the ` TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
+
+
+### 2.4. Storage Component
+
+#### 2.4.1. Design of TopicsStorage
+
+Given data for the topics and questions is loaded automatically from JSON (JavaScript Object Notation) files in the data folder. This is mainly facilitated through the `TopicsStorage` 
 class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects. The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
@@ -252,20 +303,64 @@ The format of the JSON file is important as it is loaded in a particular way. Th
 ]
 ```
 
-#### Implementation of TopicsStorage
+#### 2.4.2. Implementation of TopicsStorage
 
 Given below is an example usage scenario of loading in two topics with two questions each.
 
 When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
 which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
 
-![TopicsStorage load](./images/TopicsStorage_load.png)
+![TopicsStorage::load Sequence Diagram](./images/TopicsStorage_load.png)
 
 As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. For example, a `Question` object requires an `OptionList` which is created with an `ArrayList<Option>` collection. Thus, `parseToOptionObject(optionAsJson)` must first be called to return the `Option` objects to be placed in the `ArrayList<Option>`. More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
-### UI Component
+#### 2.4.3. Design of UserStorage
 
-#### Implementation of Ui
+In order to save and load attributes specific to each user, such as the questions attempted, answered correctly or bookmarked, a `UserStorage` class is used to selectively store these attributes into a JSON file, `user.json`. This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
+
+![UserStorage Class Diagram](./images/UserStorage.png)
+
+The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description. A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values. An example is given below.
+
+```json
+[
+  {
+    "notes":[],
+    "questions": [
+      {
+        "correct":true,
+        "bookmarked":true,
+        "hint":true,
+        "description":"OO is a higher level mechanism than the procedural paradigm."
+      },
+      {
+        "correct":false,
+        "bookmarked":false,
+        "hint":true,
+        "description":"Which of the following is NOT a core concept of OOP?"
+      }
+    ],
+    "topic":"OOP"
+  },
+  {
+    "notes":[],
+    "questions":[],
+    "topic":"Code_Quality"
+  }
+]
+```
+
+#### 2.4.4. Implementation of UserStorage
+
+Unlike `TopicStorage`, `UserStorage` accesses existing objects in order to extract their attributes. The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList`.
+
+![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
+
+A similar method is used to extract the attributes from each `Question` object inside the `Topic`.
+
+### 2.5. UI Component
+
+#### 2.5.1. Implementation of Ui
 
 The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
 the users. It is the point of communication between EDuke8 and the users. 
@@ -280,18 +375,18 @@ The user inputs the number of questions that he wants to answer and also the top
 The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
 Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
 
-## Product scope
+## 3. Product scope
 
-### Target user profile
+### 3.1. Target user profile
 
 CS2113/T Students
 
-### Value proposition
+### 3.2. Value proposition
 
 Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
 enhance their learning experience. Consolidate key concepts for easy revision.
 
-## User Stories
+## 4. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -307,11 +402,11 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 |v2.0|frequent disorganized user|view the percentage of error in each topic|tell how well I understand the content|
 
 
-## Non-Functional Requirements
+## 5. Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+## 6. Glossary
 
 * *glossary item* - Definition
 

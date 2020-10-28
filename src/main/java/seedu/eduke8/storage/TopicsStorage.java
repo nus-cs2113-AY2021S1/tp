@@ -20,14 +20,6 @@ import static java.util.stream.Collectors.toList;
 
 public class TopicsStorage extends LocalStorage {
 
-    private static final String KEY_TOPIC = "topic";
-    private static final String KEY_QUESTIONS = "questions";
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_OPTIONS = "options";
-    private static final String KEY_HINT = "hint";
-    private static final String KEY_EXPLANATION = "explanation";
-    private static final String KEY_CORRECT_OPTION = "correct";
-
     public TopicsStorage(String filePath) {
         super(filePath);
     }
@@ -38,10 +30,12 @@ public class TopicsStorage extends LocalStorage {
      * @return Topics loaded into an ArrayList.
      * @throws IOException  If the file is not found or cannot be read.
      * @throws ParseException  If the file contents cannot be parsed as a JSON.
+     * @throws ClassCastException If the the nesting of arrays and objects in the JSON is wrong
+     * @throws NullPointerException If the keys required are not present in the file.
      */
     @Override
     @SuppressWarnings("unchecked")
-    public ArrayList<Displayable> load() throws IOException, ParseException {
+    public ArrayList<Displayable> load() throws IOException, ParseException, ClassCastException, NullPointerException {
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
         //Iterate over topics array
@@ -97,7 +91,7 @@ public class TopicsStorage extends LocalStorage {
 
     private Option parseToOptionObject(JSONObject option) {
         String optionDescription = (String) option.get(KEY_DESCRIPTION);
-        boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT_OPTION);
+        boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT);
 
         Option optionAsObject = new Option(optionDescription);
 
