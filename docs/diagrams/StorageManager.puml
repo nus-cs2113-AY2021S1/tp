@@ -1,0 +1,42 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class StorageManager {
+    + {static} FOLDER_DIR : String
+    + {static} NOTES_DIR : String
+    - {static} ARCHIVED_NOTES_DIR : String
+    + {static} NOTEBOOK_FILE_PATH : String
+    - {static} ARCHIVED_NOTEBOOK_FILE_PATH : String
+    - {static} TAG_FILE_PATH : String
+    - {static} TIMETABLE_FILE_PATH : String
+
+    + StorageManager (Timetable timetable, ParserManager parserManager,Notebook notebook, TagManager tagManager)
+    + createFiles(void) : void
+    + createFile(String path) : void
+    - createDirectory (String path) : void
+
+    + loadAllNotes (boolean isArchive) : void
+    + loadTimetable () : void
+    + getNoteContent (Note note, boolean isArchive) : ArrayList <string>
+
+    + saveAllNoteDetails (boolean isArchive) : void
+    + saveNote (Note note, boolean isArchive) : void
+    + saveNoteContent (Note note, boolean isArchive) : void
+    + saveNoteDetails (Note note, boolean isArchive) : void
+    + saveTimetable () : void
+
+    + deleteNoteContentFile (String noteTitle, boolean isArchive) : void
+    + noteExists (Note note, boolean isArchive) : boolean
+
+    - {static} getEventDetailsSaveFormat (Event event) : String
+
+
+}
+
+StorageManager --> "1" Timetable
+StorageManager --> "1" Notebook
+StorageManager --> "1" ParserManager
+StorageManager --> "1" TagManager
+
+@enduml

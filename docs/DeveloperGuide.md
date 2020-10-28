@@ -162,6 +162,19 @@ The class diagram below denotes the relationship between the TagManager and the 
 Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
+The StorageManager saves and loads data to text files. On launch, the storage manager checks for existing directories that may contain previously saved data, otherwise it creates the necessary directories. Following that, it will load the previously saved notes and events from the text files into NotUS.Below is the class diagram representing the relationship between the StorageManager, Timetable, Notebook, TagManager and ParserManager.
+
+<p align="center">
+   <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
+   <br><em>Figure #</em>
+</p>
+
+While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
+
+<p align="center">
+   <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
+   <br><em>Figure #</em>
+</p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 

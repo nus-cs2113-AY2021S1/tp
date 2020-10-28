@@ -1,0 +1,71 @@
+@startuml
+activate NotUS
+
+create StorageManager
+NotUS -> StorageManager : StorageManager (Timetable, Notebook, ParserManager, TagManager)
+activate StorageManager
+StorageManager --> NotUS
+deactivate StorageManager
+
+
+NotUS -> StorageManager : createFiles ()
+activate StorageManager
+loop directory paths
+    StorageManager -> StorageManager : createDirectory (String)
+    activate StorageManager
+    StorageManager --> StorageManager
+    deactivate StorageManager
+end
+
+loop file paths
+    StorageManager -> StorageManager : createFile (String)
+    activate StorageManager
+    StorageManager --> StorageManager
+    deactivate StorageManager
+end
+
+StorageManager --> NotUS
+deactivate StorageManager
+
+NotUS -> StorageManager : loadAllNotes (boolean)
+activate StorageManager
+loop file lines
+    StorageManager -> ParserManager : parseCommand (String taskDetails)
+    activate ParserManager
+    ParserManager --> StorageManager : Command
+    deactivate ParserManager
+
+    StorageManager -> AddNoteCommand : setData (Timetable, Notebook, TagManager, this)
+    activate AddNoteCommand
+    AddNoteCommand --> StorageManager :
+    deactivate AddNoteCommand
+
+    StorageManager -> AddNoteCommand : execute ()
+    activate AddNoteCommand
+    AddNoteCommand --> StorageManager :
+    deactivate AddNoteCommand
+end
+StorageManager --> NotUS
+deactivate StorageManager
+
+NotUS -> StorageManager : loadAllTimetable
+activate StorageManager
+loop file lines
+    StorageManager -> ParserManager : parseCommand (String taskDetails)
+    activate ParserManager
+    ParserManager --> StorageManager : Command
+    deactivate ParserManager
+
+    StorageManager -> AddEventCommand : setData (Timetable, Notebook, TagManager, this)
+    activate AddEventCommand
+    AddEventCommand --> StorageManager :
+    deactivate AddEventCommand
+
+    StorageManager -> AddEventCommand : execute ()
+    activate AddEventCommand
+    AddEventCommand --> StorageManager :
+    deactivate AddEventCommand
+end
+StorageManager --> NotUS
+deactivate StorageManager
+@enduml
