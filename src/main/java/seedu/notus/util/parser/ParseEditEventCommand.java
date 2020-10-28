@@ -36,12 +36,10 @@ public class ParseEditEventCommand extends Parser {
         LocalDateTime startDateTime = null;
         // Not set yet. Has no prefix for this.
         LocalDateTime endDateTime = null;
-        boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
         ArrayList<Integer> timePeriods = null;
         ArrayList<String> timeUnits = null;
-        ArrayList<Tag> tags = null;
         String reminderTodo = "";
 
         try {
@@ -82,6 +80,6 @@ public class ParseEditEventCommand extends Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         }
 
-        return new EditEventCommand(index, new_title, startDateTime, reminderTodo, timePeriods, timeUnits, tags);
+        return new EditEventCommand(index, new_title, startDateTime, reminderTodo, timePeriods, timeUnits);
     }
 }
