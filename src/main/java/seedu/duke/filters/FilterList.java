@@ -68,7 +68,7 @@ public class FilterList {
             UI.printDivider();
             System.out.printf(FilterMessages.FILTER_MESSAGE, filteredWords.size());
             for (Words word : filteredWords) {
-                System.out.println(word.getDescription() + ": " + word.getDefinition());
+                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
             }
             UI.printDivider();
         } else if (userInput.trim().equalsIgnoreCase("n")
@@ -77,7 +77,7 @@ public class FilterList {
             System.out.printf(FilterMessages.FILTER_MESSAGE_LIMIT, printLimit, filteredWords.size());
             for (int i = 0; i < printLimit; i++) {
                 Words word = filteredWords.get(i);
-                System.out.println(word.getDescription() + ": " + word.getDefinition());
+                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
             }
             UI.printDivider();
         } else {
