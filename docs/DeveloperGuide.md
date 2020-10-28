@@ -221,9 +221,12 @@ Its main role is:
 
 This section explains the implementations of Zoomaster features. It goes through the step-by-step proccess, expected outcomes of each feature and the design considerations.
 
-### Bookmark and Timetable modes feature (TYS)
+### Bookmark, Timetable and Planner modes feature (TYS)
 
-Zoomaster stores two lists of information from users. One the list of bookmarks with link to online resources and second the list of timetable slots. To simplify input commands for users, both lists has the same keywords for adding, deleting, editing? and showing items in the lists. Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
+Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
+To simplify input commands for users, all lists has the same keywords for adding, deleting, and showing items in the lists. 
+Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
 
 #### Implementation
 
