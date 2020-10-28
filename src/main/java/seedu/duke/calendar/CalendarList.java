@@ -1,6 +1,6 @@
 package seedu.duke.calendar;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
@@ -81,10 +81,10 @@ public class CalendarList {
      * @return calendar index of the task
      */
     public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList)
-            throws DukeException {
+            throws CommandException {
 
         if (taskNumber > calendarList.getTotalTasks() || taskNumber <= 0) {
-            throw new DukeException("invalid task action");
+            throw new CommandException("invalid task action");
         }
 
         int taskCount = 0;
@@ -111,10 +111,10 @@ public class CalendarList {
      * @return calendar index of the event
      */
     public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList)
-            throws DukeException {
+            throws CommandException {
 
         if (eventNumber > calendarList.getTotalEvents() || eventNumber <= 0) {
-            throw new DukeException("invalid event action");
+            throw new CommandException("invalid event action");
         }
 
         int eventCount = 0;
@@ -138,12 +138,12 @@ public class CalendarList {
      *
      * @param calendarNumberCompleted of the task that is completed.
      */
-    public void markTaskAsDone(int calendarNumberCompleted) throws DukeException {
+    public void markTaskAsDone(int calendarNumberCompleted) throws CommandException {
 
         if (calendarList.get(calendarNumberCompleted) instanceof Task) {
             ((Task) calendarList.get(calendarNumberCompleted)).markAsDone();
         } else {
-            throw new DukeException("invalid done number");
+            throw new CommandException("invalid done number");
         }
 
     }
@@ -153,11 +153,11 @@ public class CalendarList {
      *
      * @param calendarNumber the index of the task in the calendar list.
      */
-    public void markTaskAsImportant(int calendarNumber) throws DukeException {
+    public void markTaskAsImportant(int calendarNumber) throws CommandException {
         if (calendarList.get(calendarNumber) instanceof Task) {
             ((Task) calendarList.get(calendarNumber)).markAsImportant();
         } else {
-            throw new DukeException("prioritize");
+            throw new CommandException("prioritize");
         }
     }
 

@@ -102,7 +102,7 @@ public class Ui {
     }
 
     /**
-     * Prints the Duke exit message.
+     * Prints the exit message.
      */
     public static void printExitMessage() {
         System.out.println("Bye. Hope to see you again soon!");
@@ -113,7 +113,7 @@ public class Ui {
      *
      * @param top set to true to print the top border. Else, set to false to print the bottom border
      */
-    public static void printDukeBorder(boolean top) {
+    public static void printBorder(boolean top) {
         if (top) {
             System.out.println("................................. "
                     + "25HoursADay Chat Box ^^ ...............................");
@@ -442,7 +442,7 @@ public class Ui {
      * @param e            type of error.
      * @param calendarList the working calendar list.
      */
-    public static void printDukeExceptionMessage(DukeException e, CalendarList calendarList) {
+    public static void printExceptionMessage(CommandException e, CalendarList calendarList) {
         switch (e.getException()) {
         case "todo":
             System.out.println("Error: The description of todo cannot be empty.");

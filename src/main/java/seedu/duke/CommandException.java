@@ -3,11 +3,11 @@ package seedu.duke;
 /**
  * Signals an error caused by an invalid command input by the user.
  */
-public class DukeException extends Exception {
+public class CommandException extends Exception {
 
     private String exception;
 
-    public DukeException(String message) {
+    public CommandException(String message) {
         super(message);
         exception = message;
     }
