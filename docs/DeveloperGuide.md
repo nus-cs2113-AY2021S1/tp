@@ -88,7 +88,7 @@ This section describes the design overview of the application.
 ### Architecture
 
 The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
 
 UI: The user interface of the application.
@@ -97,7 +97,7 @@ Command: The command executor.
 Model: Holds the data of the application in memory.
 Storage: Reads data from, and writes data to, the hard disk. 
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="750"/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
 
 The quick overview of components and the workflow is given below.
 
@@ -113,7 +113,7 @@ The `Parser` class receives the user's input from the `Ui` class. It interprets 
 
 The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
 The figure belows shows the class diagram of the command class: <br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/command.JPG" alt="" width="200"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/command.JPG" alt="" width="200"/><br/>
 All the different Command classes inherit from the `Command` class.
 
 ### Storage
@@ -124,7 +124,7 @@ Whenever the calendarList is updated, all information will be automatically save
 
 ### Model
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
 The figure given above shows the structure of the Model in this application. When executing commands, 
 the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
@@ -150,23 +150,36 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add an event item feature
-This feature is facilitated by `AddCommand`.
+### Add a task item feature
+This feature is being facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
 
-It checks the type of the new event first, 
-then it analyses the attached information and saves the event with the information in the event list.  
+It first checks the type of the new task,
+then it analyses the attached information, if the format is desired, the program saves the event with the information in the task list.
 
-Note: If the event is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, 
-there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+Note: A todo task has only task description while a deadline task has both the task description and a due date. 
+The due date must be in the pattern of ddMMyy as it is the pattern set by the `TimeParser` class.
 
-Note: Multiple `Lecture`, `Lab`, and `Tutorial`events can be added by one command since they are recurring,
-while only one `Exam` or `Activity` event can be added at a time.   
+### Add an event item feature
+This feature is being facilitated by `AddCommand`.
+
+### Add a calendar item feature
+This feature is facilitated by `AddCommand`.
+The following sequence diagram shows how the `execute()` operation works:
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
+
+Note: It checks the type of the new calendar item first, then it analyses the attached information, 
+and finally uses the corresponding adding function to add the new calendar item into the calendar list.  
+
+Note: It has seven command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
+If the item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+If the item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
+while only one `Todo`, `Deadline`, `Exam` or `Activity` item can be added at a time.   
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
 Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
@@ -174,16 +187,16 @@ There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure
 ### Additional information of an event feature
 This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
@@ -191,20 +204,30 @@ Note: It first extracts the task/event number from the user input prior to `conv
 ### Find a calendar item feature
 This feature is facilitated by `FindCommand`.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
+### Print tasks feature
+This feature is facilitated by `PrintTasksCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
+![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
+
+### Print events feature
+This feature is facilitated by `PrintEventsCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
+![print_events_command_sd](images/PrintEventsCommand_SD.png)
+
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
 
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
 The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrioritizeCommand_DG.png" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
 
 Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
 There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
@@ -212,14 +235,14 @@ There will be a check in the function `markTaskAsImportant(calendarNumber)` to e
 ### Print prioritized tasks feature
 This feature is facilitated by `PrintPriorityCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
 
 Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
 
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
 
 Note: It uses `calculateNumTotal()` and `calculateNumFinshed()` to calculate the numbers of only tasks and finished tasks in the list, not including events. 
 Then it uses these numbers to calculate the progress. 
@@ -227,7 +250,7 @@ Then it uses these numbers to calculate the progress.
 ### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
 
 Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
@@ -237,7 +260,7 @@ If no corresponding items, the functions will return null.
 The feature is facilitated by `CountdownCommand`.
 
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
 
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
@@ -298,13 +321,22 @@ There are two ways to run tests.
 
 
 ## Product scope
+
 ### Target user profile
 
+* has the need to manage a significant number of day-to-day matters
+* prefer desktop command line apps over other types
+* prefer typing to using mouse interactions
+* comfortable with using command line apps
+* forgetful person who needs reminders
+* a fast typer
 {Describe the target user profile}
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+By using 25HoursADay, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information. 25HoursADay can manage one's day-to-day matters faster than a 
+typical mouse/GUI driven app.
 
 ## User Stories
 
@@ -312,9 +344,15 @@ There are two ways to run tests.
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|user|set my tasks as done|track my tasks better|
+|v1.0|user|add different tasks and events|better manage my day-to-day matters|
+|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
+|v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
+|v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
+|v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
+|v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 
 ## Non-Functional Requirements
 
@@ -323,8 +361,8 @@ There are two ways to run tests.
 ## Glossary
 
 * *Task* - a todo item or a deadline item.
-* *School event* - a lecture, tutorial or lab session.
-* *Event* - an activity, lecture, tutorial or lab session.
+* *School event* - a lecture, tutorial, lab session or an examination.
+* *Event* - an activity, examination, lecture, tutorial or lab session.
 * *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
 * *Task list* - a list that stores all the tasks added to the app.
 * *Event list* - a list that stores all the events added to the app.
