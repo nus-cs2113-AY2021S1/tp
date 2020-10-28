@@ -23,7 +23,7 @@ public class PortfolioManager {
 
     public PortfolioManager() {
         File directory = new File("data");
-        if (!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
         }
         load();
