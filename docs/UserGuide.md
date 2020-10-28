@@ -169,22 +169,137 @@ To get started on this application, please perform the following steps:
 #### 3.4.1. Showing a list of commands available: `help`
 (by Zeyu)
 
-
-#### 3.4.2. Listing the chapters due for today: `due`
-(by Yan An)
-
-#### 3.4.3. Listing the chapters due in the upcoming week: `preview`
-(by Yan An)
-
 #### 3.4.4. Viewing the revision history: `history`
 (by Zeyu)
-
-#### 3.4.5. Excluding or including modules and chapters: `exclude`
-(by Yan An)
 
 #### 3.4.6. Exiting the program: `exit`
 (by Zeyu)
 
+### 4.5 Scheduling In KAJI
+(by Yan An)
+
+Now that you know how to make KAJI manage your Database of revision content for you, **what about scheduling?** For your benefit, the **scheduling** in KAJI is mostly **automated**! 
+
+**You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands [`due`](#) and [`preview`](#) to view what chapters are due and complete the revision  for them accordingly. 
+
+Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to [`reschedule`](#451) and [`exclude`](#451) Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
+<br><br>
+
+### 4.5.1. Listing the chapters due for today: `due`
+(by Yan An)
+
+As you now know, **each Chapter will be scheduled** to be due on a date. However, it will be **tedious** for you to go through each chapter **one by one** to find their deadlines. Our **solution** to that, is the `due` command.
+
+The `due` command simplifies the process for by **showing you the Chapters that you have scheduled on that day** and the Modules they belong to.
+<br><br>
+
+
+#### Format: `due`
+
+
+#### Key Pointers:
+* There are **no parameters** for this command.
+* This command can be **called from any Level**
+
+#### Example: 
+At any point, if you want to **see what Chapters are due**, all you have to do is enter the `due` command. Below is an example of an execution of the `due` command.
+
+* ***Step 1***: Key the **`due`** command **into the prompt** as shown below and **press *[Enter]***
+
+[Show welcome prompt, and label where to put in command]
+
+* ***Upon completion***: This is what you will see:
+
+[Labeled expected output]
+
+<br><br>
+
+### 4.5.2. Listing the chapters that are due in the upcoming week: `preview`
+(by Yan An)
+
+Beyond simply being able to view the Chapters that are due on the day itself, what if you would like to **view your upcoming revision schedule** so that you can **plan ahead**? For that specific purpose, we have the `preview` command.
+
+The `preview` command shows you **the Chapters that you have scheduled for each day of the upcoming week** and the Modules that they belong to.
+<br>
+
+#### Format: `preview`
+
+#### Key Pointers:
+* There are **no parameters** for this command.
+* This command can be **called from any Level**
+
+
+#### Example: 
+At any point, if you **want to see a preview of which Chapters are going to be due within the upcoming week**, all you have to do is enter the `preview` command. Below is an example of an execution of the `preview` command.
+
+* ***Step 1***: Key the **`preview`** command **into the prompt** as shown below and **press *[Enter]***
+
+[Show welcome prompt, and label where to put in command]
+
+* ***Upon completion***: This is what you will see:
+
+[Labeled expected output]
+
+<br><br>
+
+### 4.5.3. Customising your list of Excluded Modules: `exclude`
+(by Yan An)
+
+
+As your Database grows in size over time, you might want to **customise the automated scheduling** that KAJI provides for you. However, it would **take considerable effort** for you to **delete** an entire Module or Chapter, only to find that you have to **add it back** into your Database **Card by Card**.
+
+Our solution to that is an Exclusion List: **a list of Chapters that KAJI will ignore** as it creates your schedule for you. In this way, you will only have to **add** a Chapter to the list to **exclude** it from your schedule and **remove** it from the list to **include** it back into your schedule.
+
+The `exclude` command allows you to **add or remove** a single Chapter or an entire Module, to and from your Exclusion list to **customise which Chapters are scheduled** in your Database.
+<br>
+
+#### Format: `exclude \PRIMARY_OPTION`
+\PRIMARY_OPTION has two values which changes the mode of the `exclude` command:
+* ***more***: This option allows you to use `exclude` to **add** to the Exclusion List
+* ***less***: This option allows you to use `exclude` to **remove** from the Exclusion List
+
+
+#### Key Pointers:
+* This command can be **called from any Level**
+* This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will not be filled with non-existing exclusions.
+* After calling the command with either "more" or "less", there will be **a guided secondary option** on whether you would like to add/remove **a single Chapter** or **an entire Module**
+* The name entry of the Chapter/Module to be operated on is **case-sensitive**
+
+
+#### Example
+At any point, if you **customise your Exclusion List**, all you have to do is enter the `exclude` command with the choice of "more" or "less" in the format specified above. Below are examples of the execution of the `exclude` command using both options.
+
+Example of ***`exclude more`***
+* ***Step 1***: Key the **`exclude more`** command **into the prompt** as shown below and **press *[Enter]***
+
+* ***Step 2***: Key either **"chapter"**, to exclude a new Chapter, or **"module"**, to exclude an entire Module, **into the prompt** as shown below and **press *[Enter]***
+
+* ***`exclude more`*** + ***chapter***
+    * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
+
+    * ***Upon completion***: This is what you will see:
+
+* ***`exclude more`*** + ***module***
+    * ***Step 3***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
+
+    * ***Upon completion***: This is what you will see:
+
+Example of ***`exclude less`***
+* ***Step 1***: Key the **`exclude less`** command **into the prompt** as shown below and **press *[Enter]***
+
+* ***Step 2***: Key either **"chapter"**, to include a excluded Chapter, or **"module"**, to include a excluded Module, **into the prompt** as shown below and **press *[Enter]***
+
+* ***`exclude less`*** + ***chapter***
+    * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+
+    * ***Upon completion***: This is what you will see:
+
+* ***`exclude less`*** + ***module***
+    * ***Step 3***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+
+    * ***Upon completion***: This is what you will see:
+
+<br>
 
 
 --------------------------------------------------------------------------------------------------------------------
