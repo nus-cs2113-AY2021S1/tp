@@ -215,7 +215,8 @@ public class Parser {
     }
 
     /**
-     * Processes the parameters for <code>info</code> command of user input and updates the <code>Person</code> object.
+     * Processes the parameters for <code>editinfo</code> command of user input.
+     * The specified parameters are used to update the <code>Person</code> object.
      *
      * @param userInput user input.
      * @param manager the manager object.
