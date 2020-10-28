@@ -128,12 +128,8 @@ contains the `filterBunny` function which can filter through the list and obtain
 idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
 or the `GENRE` when running the command. 
 
-The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, 
-saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then 
-be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up 
-using the `loadBunnyFile` method.
 
-![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny)
+![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
 
 The user may call upon the `bunny` command to add bunnies to the list. The command executor would 
@@ -143,7 +139,7 @@ The user may call upon the `bunny` command to add bunnies to the list. The comma
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
 <center><i>Figure 8: Names UML Class Diagram</i></center>
 
-The above class diagram (Figure 6) describes the overall architecture of the name list functionalities. The Names class 
+The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
 a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
 filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
