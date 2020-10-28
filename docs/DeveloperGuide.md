@@ -467,7 +467,8 @@ to **create new** `Workspace`:
 **Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new workspace to User, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
 Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
 
-> :bulb: You can find more information about Watchlist at its section.
+![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
+*Figure 1: Workspace Command After New Workspace Creation*
 
 **Step 6:** If successful, `WorkspaceCommand` returns the successfully created workspace message to `Main`.
 
