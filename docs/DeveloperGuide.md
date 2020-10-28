@@ -235,7 +235,7 @@ Given below is an example usage scenario showing how the `estimate` command beha
 
 **Step 4:** `EstimateParser` is terminated and `Main` calls `EstimateCommand#execute()` with `animeData`, `storageManager`, and `user` to begin estimating the time needed.
 
-![Estimate Command After Step 4 Diagram](images/EstimateCommand-After-Step-4.png)
+![Estimate Command After Step 4 Diagram](images/EstimateCommand-After-Step-4.png) <br/>
 *Figure 9: Estimate Command After Step 4*
 
 <br/>
@@ -246,7 +246,7 @@ Given below is an example usage scenario showing how the `estimate` command beha
 
 **Step 7:** `EstimateCommand` is terminated.
 
-![Estimate Command Final State Diagram](images/EstimateCommand-Final-State.png)
+![Estimate Command Final State Diagram](images/EstimateCommand-Final-State.png) <br/>
 *Figure 10: Estimate Command Final State*
 
 <br/>
@@ -255,7 +255,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 <br/>
 
-![Estimate Command Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
+![Estimate Command Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
 *Figure 11. Sequence diagram for estimating translation time needed for a script*
 
 <br/>
@@ -336,9 +336,8 @@ For this case since it is a default browse operation, there is no sorting perfor
 **Step 4:** Now `BrowseCommand` will utilise its `BrowseCommand#buildBrowseOutput()` operation to access all 
 `Anime objects within the page window, as shown in the diagram below.
 
-![Browse Object Diagram 1](images/Browse-Default-State.png)
-
-*Figure 9: Browse Default State Object Diagram*
+![Browse Object Diagram 1](images/Browse-Default-State.png) <br/>
+*Figure 12: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
 ```
@@ -351,9 +350,8 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 `BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
 
 
-![Browse Object Diagram 2](images/Browse-Default-State2.png)
-
-*Figure 10: Browse Next Page Object Diagram*
+![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
+*Figure 13: Browse Next Page Object Diagram*
 
 **Step 5:** At each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
@@ -368,9 +366,8 @@ An example scenario would be browsing the 2nd page of a **sorted** list in ascen
 The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
 
 
-![Browse Object Diagram 3](images/Browse-Sorted-State.png)
-
-*Figure 11: Browse Sorted State Object Diagram*
+![Browse Object Diagram 3](images/Browse-Sorted-State.png) <br/>
+*Figure 14: Browse Sorted State Object Diagram*
 
 As you can see, even though the page window is at the same position as the previous command, 
 the list is different as it has been sorted.
@@ -379,9 +376,8 @@ From this point onwards, the operation will continue as per the steps above but 
 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
 
-![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
-
-*Figure 12: Browse Sorted Sequence Diagram*
+![Browse Sequence Diagram](images/Browse-SequenceDiagram.png) <br/>
+*Figure 15: Browse Sorted Sequence Diagram*
 
 <br/>
 
@@ -442,8 +438,8 @@ Given below is an example usage scenario showing how the `watchlist` command beh
 
 **Step 1:** User launches the application for the first time. The `Workspace` of a user will be initialised to the initial workspace state, and the `activeWatchlist` will point to the first watchlist found in the `watchlistList` of the initialised `Workspace`.
 
-![Watchlist Command Initial State Diagram](images/WatchlistCommand-Initial-State.png)
-*Figure x: Watchlist Command Initial State*
+![Watchlist Command Initial State Diagram](images/WatchlistCommand-Initial-State.png) <br/>
+*Figure 16: Watchlist Command Initial State*
 
 <br/>
 
@@ -455,7 +451,8 @@ Given below is an example usage scenario showing how the `watchlist` command beh
 
 **Step 5:** `WatchlistParser` is terminated and `Main` calls `WatchlistCommand#execute()` with `animeData`, `storageManager`, and `user` to create the new watchlist.
 
-![Watchlist Command After Step 5 Diagram](images/WatchlistCommand-After-Step-5.png)
+![Watchlist Command After Step 5 Diagram](images/WatchlistCommand-After-Step-5.png) <br/>
+*Figure 17: Watchlist Command After Step 5*
 
 <br/>
 
@@ -463,8 +460,8 @@ Given below is an example usage scenario showing how the `watchlist` command beh
 
 **Step 7:** `WatchlistCommand` is terminated.
 
-![Watchlist Command Final State After Create Diagram](images/WatchlistCommand-Final-State-After-Create.png)
-*Figure x: Watchlist Command Final State After Create*
+![Watchlist Command Final State After Create Diagram](images/WatchlistCommand-Final-State-After-Create.png) <br/>
+*Figure 18: Watchlist Command Final State After Create*
 
 <br/>
 
@@ -476,15 +473,15 @@ The following diagrams will continue from step 7, and it will show you how the s
 
 The user executes `watchlist -s 2` to change his active watchlist to the second watchlist ("NewAnime") in the list.
 
-![Watchlist Command State After Select Diagram](images/WatchlistCommand-After-Select.png)
-*Figure x: Watchlist Command State After Select*
+![Watchlist Command State After Select Diagram](images/WatchlistCommand-After-Select.png) <br/>
+*Figure 19: Watchlist Command State After Select*
 
 <br/>
 
 The user executes `watchlist -d 2` to delete the second watchlist ("NewAnime") in the list.
 
-![Watchlist Command State After Delete Diagram](images/WatchlistCommand-After-Delete.png)
-*Figure x: Watchlist Command Final State After Delete*
+![Watchlist Command State After Delete Diagram](images/WatchlistCommand-After-Delete.png) <br/>
+*Figure 20: Watchlist Command Final State After Delete*
 
 <br/>
 
@@ -492,8 +489,8 @@ The sequence diagram presented below depicts the interaction between the compone
 
 <br/>
 
-![Watchlist Command Sequence Diagram](images/WatchlistCommand-Sequence-Diagram.png)
-*Figure x. Sequence diagram for watchlist command*
+![Watchlist Command Sequence Diagram](images/WatchlistCommand-Sequence-Diagram.png) <br/>
+*Figure 21: Sequence diagram for WatchlistCommand*
 
 <br/>
 
