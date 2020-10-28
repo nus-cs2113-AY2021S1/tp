@@ -1,2 +1,2 @@
-math | 2010-01-01 | 1200 | DAILY | 4 | www.zoom.com/blah | F | F | F | T | F
-computing | 2010-01-01 | 1200 | 0 | 0 | www.zoom.com/hello | T
+math | 2010-01-01 | 1200 | DAILY | 4 | www.zoom.com/blah |  | F | F | F | T | F
+computing | 2010-01-01 | 1200 | 0 | 0 | www.zoom.com/hello |  | T

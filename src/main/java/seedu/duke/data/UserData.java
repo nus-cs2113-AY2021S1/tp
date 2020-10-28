@@ -31,7 +31,7 @@ public class UserData {
     public EventList getEventList(String name) throws InvalidListException {
         assert name != null : "name should not be null";
         for (EventList e : eventLists) {
-            if (e.getName().equals(name)) {
+            if (e.getName().equalsIgnoreCase(name)) {
                 return e;
             }
         }
