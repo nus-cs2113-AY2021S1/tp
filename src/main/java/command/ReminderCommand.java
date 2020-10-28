@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ReminderCommand extends Command {
     private final LocalDate filterDate;
 
-    public ReminderCommand (){
+    public ReminderCommand() {
         filterDate = LocalDate.now();
     }
 
