@@ -21,7 +21,6 @@ public class WorkspaceCommand extends Command {
     private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
-    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
     public static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
             + "options: -n, -s, -l, and -d.";
     public static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
@@ -83,12 +82,13 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String createWorkspace(User user, StorageManager storageManager) throws AniException {
-        checkName(workspaceName);
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
+        Watchlist newWatchlist = new Watchlist("Default");
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
-        watchlistList.add(new Watchlist("Default"));
+        watchlistList.add(newWatchlist);
         newWorkspace.setWatchlistList(watchlistList);
+
         storageManager.saveWorkspace(newWorkspace);
 
         LOGGER.log(Level.INFO, "Successfully added new workspace: " + newWorkspace);
@@ -103,7 +103,6 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String switchWorkspace(User user) throws AniException {
-        checkName(workspaceName);
         String trimmedName = workspaceName;
         user.switchActiveWorkspace(trimmedName);
 
@@ -120,8 +119,6 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
-        checkName(workspaceName);
-
         if (user.getActiveWorkspace().toString().equals(workspaceName)) {
             throw new AniException(EXCEPTION_WORKSPACE_IN_USE);
         }
@@ -152,23 +149,6 @@ public class WorkspaceCommand extends Command {
         }
 
         return workspacesString.toString();
-    }
-
-    /**
-     * Checks if workspace name is valid.
-     *
-     * @param workspaceName name of workspace
-     * @throws AniException when name is not of valid format
-     */
-    private void checkName(String workspaceName) throws AniException {
-        if (workspaceName != null) {
-            boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
-
-            if (!isValid) {
-                LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
-                throw new AniException("Invalid parameters detected!");
-            }
-        }
     }
 
 }
