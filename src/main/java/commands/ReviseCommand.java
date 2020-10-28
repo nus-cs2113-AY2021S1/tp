@@ -108,7 +108,7 @@ public class ReviseCommand extends Command {
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         logger.info("Revision has completed for chapter: " + toRevise);
-        toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
+        toRevise.setDueBy(Scheduler.computeChapterDeadline(toRevise.getCards()), storage, access);
         CardList newCards = new CardList(allCards);
         storage.saveCards(newCards, access.getModuleLevel(), toRevise.getChapterName());
         addHistory(ui, access, storage);

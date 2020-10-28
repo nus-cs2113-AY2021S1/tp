@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.InvalidFileFormatException;
 import exception.ExclusionFileException;
 import manager.chapter.DueChapter;
 import scheduler.Scheduler;
@@ -18,38 +17,38 @@ public class PreviewCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
     public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
             + "yet. Please try this command again once you have added some flashcards!";
-    public ArrayList<DueChapter> allChapters;
-    public ArrayList<DueChapter> dueChapters;
+    public ArrayList<DueChapter> allDueChapters;
+    public ArrayList<DueChapter> dueDueChapters;
 
-    private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
+    private void loadAllDueChapters(Storage storage, Ui ui) throws ExclusionFileException {
         try {
-            allChapters = storage.loadAllDueChapters(ui);
+            allDueChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
             ui.showToUser(UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
-    private void setDueChapters(int increment) {
-        for (DueChapter chapter : allChapters) {
+    private void setDueDueChapters(int increment) {
+        for (DueChapter chapter : allDueChapters) {
             LocalDate deadline = chapter.getChapter().getDueBy();
             if (Scheduler.isDeadlineDueIn(deadline, increment)) {
-                dueChapters.add(chapter);
+                dueDueChapters.add(chapter);
             }
         }
     }
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException {
-        loadAllChapters(storage, ui);
+        loadAllDueChapters(storage, ui);
         for (int i = 0; i < 7; i++) {
-            dueChapters = new ArrayList<>();
-            setDueChapters(i);
+            dueDueChapters = new ArrayList<>();
+            setDueDueChapters(i);
             if (i == 0) {
-                ui.printDueByTodayMessage(dueChapters.size(), COMMAND_WORD);
+                ui.printDueByTodayMessage(dueDueChapters.size(), COMMAND_WORD);
             } else {
-                ui.printDueByIncrementMessage(dueChapters.size(), Scheduler.getIncrementedDate(i));
+                ui.printDueByIncrementMessage(dueDueChapters.size(), Scheduler.getIncrementedDate(i));
             }
-            ui.printDueChapters(dueChapters);
+            ui.printDueChapters(dueDueChapters);
         }
     }
 

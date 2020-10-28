@@ -9,9 +9,9 @@ import java.lang.Math;
 import java.time.format.DateTimeParseException;
 
 public class Scheduler {
-    public static final double EASY_MULTIPLIER = 1.1;
+    public static final double EASY_MULTIPLIER = 4.4;
     public static final double MEDIUM_MULTIPLIER = 2.2;
-    public static final double HARD_MULTIPLIER = 4.4;
+    public static final double HARD_MULTIPLIER = 1.1;
     public static final int MAX_INTERVAL = 365;
 
     public static boolean isDeadlineDue(LocalDate dueBy) {
@@ -68,12 +68,6 @@ public class Scheduler {
         }
     }
 
-    public static LocalDate computeEasyDeadline(Card c, int previousInterval) {
-        int interval = computeEasyInterval(previousInterval);
-        c.setPreviousInterval(interval);
-        return getCurrentDate().plusDays(interval);
-    }
-
     public static int computeMediumInterval(int previousInterval) {
         int newInterval = (int) Math.round(previousInterval * MEDIUM_MULTIPLIER);
         assert newInterval > 0 : "Invalid new Interval";
@@ -82,12 +76,6 @@ public class Scheduler {
         } else {
             return newInterval;
         }
-    }
-
-    public static LocalDate computeMediumDeadline(Card c, int previousInterval) {
-        int interval = computeMediumInterval(previousInterval);
-        c.setPreviousInterval(interval);
-        return getCurrentDate().plusDays(interval);
     }
 
     public static int computeHardInterval(int previousInterval) {
@@ -100,13 +88,7 @@ public class Scheduler {
         }
     }
 
-    public static LocalDate computeHardDeadline(Card c, int previousInterval) {
-        int interval = computeHardInterval(previousInterval);
-        c.setPreviousInterval(interval);
-        return getCurrentDate().plusDays(interval);
-    }
-
-    public static int computeDeckInterval(CardList cards) {
+    public static int computeChapterInterval(CardList cards) {
         double averageInterval = 0;
         for (Card c : cards.getAllCards()) {
             averageInterval += c.getPreviousInterval();
@@ -115,8 +97,8 @@ public class Scheduler {
         return (int) Math.round(averageInterval);
     }
 
-    public static LocalDate computeDeckDeadline(CardList cards) {
-        int interval = computeDeckInterval(cards);
+    public static LocalDate computeChapterDeadline(CardList cards) {
+        int interval = computeChapterInterval(cards);
         return getCurrentDate().plusDays(interval);
     }
 }

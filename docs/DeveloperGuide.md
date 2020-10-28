@@ -430,26 +430,27 @@ The following sequence diagram shows how the revise feature works:
 ![Sequence Diagram of Revise](UML/revise_seq_diagram.png)
 
 #### 4.4.2. Scheduling The Chapters Feature
-(Lucas)
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
-At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute to `deckInterval` days after the day of revision.
+At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute of the `Chapter` to `deckInterval` days after the day of revision.
 
-`Scheduler` implements the following operations:
-* `Scheduler#computeEasyInterval()`
-* `Scheduler#computeMediumInterval()`
-* `Scheduler#computeHardInterval()`
-* `Scheduler#computeDeckInterval()`
-* `Scheduler#computeDeckDeadline()`
+To support this feature, `Scheduler` implements the following operations:
+* `Scheduler#computeEasyInterval()` - returns the product of the `Card`'s `previousInterval` and the Easy Multiplier(4.4) rounded to the nearest integer
+* `Scheduler#computeMediumInterval()` - returns the product of the `Card`'s `previousInterval` and the Medium Multiplier(2.2) rounded to the nearest integer
+* `Scheduler#computeHardInterval()` - returns the product of the `Card`'s `previousInterval` and the Hard Multiplier(1.1) rounded to the nearest integer
+* `Scheduler#computeChapterInterval()` - returns the mean of the `previousInterval` of each `Card` within the `Chapter` rounded off to the nearest integer
+* `Scheduler#computeChapterDeadline()` - returns a `LocalDate` object containing the new `dueBy`, which is interval(returned from `Scheduler#computeChapterInterval()`) days away from the current day
 
 `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` and `Scheduler#computeHardInterval()` are exposed in the `ReviseCommand` class as `ReviseCommand#rateCard()` while `Scheduler#computeDeckDeadline()` is exposed as `ReviseCommand#execute()`.
 
 ***Example***
-Given below is an example usage scenario and how the Scheduler mechanism behaves at each step when: 
+Given below is an example usage scenario on how the Scheduler mechanism behaves at each step when: 
 `revise 1` is called in a `Module` that contains only one `Chapter` with three `Card`s in its `CardList` attribute and confirmation is given to proceed with revision.
+
+\<OBJECT DIAGRAMS\>
 
 Step 1:
 * The user enters `revise 1` within the `Module` and `ReviseCommand` is instantiated. 
-* Upon confirmation and check that `CardList` of the designated `Chapter` is not empty, `ReviseCommand` proceeds to create an `ArrayList<Card>` named `allCards` comprising of all `Card`s within in the `CardList`.
+* Upon confirmation to revise and a check that `CardList` of the designated `Chapter` is not empty is complete, `ReviseCommand` proceeds to create a `ArrayList<Card> allCards` comprising of all `Card`s within in the `CardList`.
 
 Step 2:
 * For each `Card` in `allCards`, `ReviseCommand#reviseCard()` is called upon completion of either `ReviseCommand#execute()` or `ReviseCommand#repeateRevision()`.
@@ -465,21 +466,73 @@ Step 4:
 ### 4.5. Viewing and Customising the Schedule Feature
 KAJI schedules the user's database automatically for them based on their [revision sessions](#), chapter by chapter, using Spaced Repetition. Users should be able to view their schedule for the current day to know which tasks they need to complete on the day itself and to view their schedule for the upcoming week so that they can plan ahead. However, to effectively use the scheduling feature, users should also be able to customise their scheduling system to include or exclude chapters from their schedule with ease.
 
-To utilise this feature, the following commands and their corresponding sub-features are introduced:
-* [`due`](#451-View-Due-Chapters-Feature) - Viewing their schedule for the current day
-* [`preview`](#452-Preview-Upcoming-Dues-Feature) - Viewing their schedule for the upcoming week
-* [`exclude`](#453-Exclusion-Feature) - Customising which of their Chapters will be in the Scheduler
+To utilise this feature, the following commands and their corresponding features are introduced:
+* [`due`](#451-View-Due-Chapters-Feature) - Viewing their schedule for the current day (View Due)
+* [`preview`](#452-Preview-Upcoming-Dues-Feature) - Viewing their schedule for the upcoming week (Preview Upcoming Due)
+* [`exclude`](#453-Exclusion-Feature) - Customising which of their Chapters will be in the Scheduler (Exclusion)
+
 
 #### 4.5.1. View Due Chapters Feature
 (Lucas)
 
+***Implementation***
+
+Each Chapter has a [`deadline assigned to it`](#) from the point of creation, which forms the core of the Scheduling process. The View Due Chapters Feature builds on that by allowing users to view every chapter in the database that is due on the current day with a single command.
+
+To support this feature, the following command was added to KAJI:
+* `due` - A command that displays every `Chapter` in the database that is due on a given day.
+A corresponding Class `ListDueCommand` was also created to carry out the functions related to the command.
+
+This feature takes the [`Exclusions`](#) of the database into account and will not display `Chapter`s from the Exclusion List when the user calls them even if their deadlines are due.
+
+As this Feature can be activated at any point, the following class is created to identify `Chapter`s easily.
+* `DueChapter` - object contain two variables, `String parentModule` to identify the `Chapter`'s parent `Module`, and `Chapter chapter` to hold a reference to the actual `Chapter`
+
+To support the View Due feature, `ListDueCommand` implements the following operations:
+* `ListDueCommand#loadAllDueChapters()` - Calls `Storage#loadAllDueChapters()` to load every `Chapter` in the database as a `DueChapter` and stores them into a `ArrayList<DueChapter> allDueChapters` 
+* `ListDueCommand#setDueDueChapters()` - Checks each `DueChapter` in `ArrayList<DueChapter> allDueChapters` to verify if the underlying `Chapter` is due by the current day by calling `Scheduler#isDeadlineDue()` on the `Chapter`'s deadline', and adds the due `DueChapters` into `ArrayList<DueChapter> dueDueChapters`
+* `ListDueCommand#execute()` - Calls `ListDueCommand#loadAllDueChapters()`, `ListDueCommand#setDueDueChapters()` and prints the `DueChapter`s that are due
+
+On top of that, `Storage` implements the following operations:
+* `Storage#checkChapterDeadline()` - Reads the deadline for each `Chapter`, prompts if they are corrupted, and adds a `DueChapter` formed with the `Chapter` into `ArrayList<DueChapter> allDueChapters`
+* `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
+* `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
+
+The following sequence Diagrams illustrates how the View Due Chapters Process is executed:
+
 #### 4.5.2. Preview Upcoming Dues Feature
 (Lucas)
+
+***Implementation***
+
+Similar to the View Due Chapters Feature, the Preview Upcoming Dues Feature builds on the Scheduling process by allowing users to view every chapter in the database that is due in the upcoming week with a single command.
+
+To support this feature, the following command was added to KAJI:
+* `preview` - A command that displays every `Chapter` in the database that is due in the upcoming week.
+A corresponding Class `PreviewCommand` was also created to carry out the functions related to the command.
+
+This feature also takes the [`Exclusions`](#) of the database into account and will not display `Chapters` from the Exclusion List when the user calls them even if they are due in the upcoming week.
+
+As this Feature can be activated at any point, the following class is also (similar to View Due Chapters) used to identify `Chapter`s easily.
+* `DueChapter` - object contain two variables, `String parentModule` to identify the `Chapter`'s parent `Module`, and `Chapter chapter` to hold a reference to the actual `Chapter`
+
+To support the Preview Upcoming Dues feature, `PreviewCommand` implements the following operations:
+* `PreviewCommand#loadAllDueChapters()` - Calls `Storage#loadAllDueChapters()` to load every `Chapter` in the database as a `DueChapter` and stores them into a `ArrayList<DueChapter> allDueChapters` 
+* `PreviewCommand#setDueDueChapters()` - Checks each `DueChapter` in `ArrayList<DueChapter> allChapters` to verify if the underlying `Chapter` is due in an increment number of days from the current day by calling `Scheduler#isDeadlineDueIn()` on the `Chapter`'s deadline, and adds the due `DueChapters` into `ArrayList<DueChapter> dueDueChapters`
+* `PreviewCommand#execute()` - Calls `PreviewCommand#loadAllDueChapters()`, before calling `PreviewCommand#setDueDueChapters()` for the current day, then one to six days after the current day, and prints the `DueChapter`s for each day individually
+
+On top of that, the following operations from `Storage` are used:
+* `Storage#checkChapterDeadline()` - Reads the deadline for each `Chapter`, prompts if they are corrupted, and adds a `DueChapter` formed with the `Chapter` into `ArrayList<DueChapter> allDueChapters`
+* `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
+* `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
+
+The following sequence Diagrams illustrates how the Preview Upcoming Dues Process is executed:
 
 #### 4.5.3. Exclusion Feature
 (Lucas)
 
 ***Implementation***
+
 KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of Chapters that KAJI will ignore as it parses for Chapters that are due in the `due` and `preview` commands. This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
 
 To support this feature, the following command was added to KAJI:
@@ -488,38 +541,40 @@ A corresponding Class `ExecuteCommand` was also created to carry out the functio
 
 The `exclude` command can be called with either `exclude more` or `exclude less`, which adds to or removes from the Exclusion List respectively. Furthermore, both modes can be used to edit the Exclusion List a single `Chapter` at a time or every `Chapter` belonging to a `Module` at a time as a secondary option.
 
+To determine if the Exclusion List is going to be modified by a single `Chapter` or by an entire `Module`, `ExcludeCommand` implements an operation each for `exclude more` and `exclude less`.
+* For `exclude more`:
+    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#addChapterToExclusion()` if user inputs "chapter", `ExcludeCommand#addModuleToExclusion()` if user inputs "module"
+* For `exclude less`:
+    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#removeChapterFromExclusion()` if user inputs "chapter", `ExcludeCommand#removeModuleFromExclusion()` if user inputs "module"
+
 To load and store the Exclusion List, a Exclusion File is created and maintained using these two methods from the `Storage` Class:
-* `Storage#loadExclusionFile` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
-* `Storage#updateExclusionFile` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
+* `Storage#loadExclusionFile()` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
+* `Storage#updateExclusionFile()` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
 
 The `ArrayList<String>` Exclusion List is modified using four pairs of commands in both `ExcludeCommand` and `Storage`:
 
 * Excluding a Chapter from Scheduling
-    * `ExcludeCommand#addChapterToExclusion`
-    * `Storage#appendChapterToExclusionFile`
+    * `ExcludeCommand#addChapterToExclusion()` - gets the name of the `Chapter` to be excluded and the name of the `Module` it belongs to, and calls `Storage#appendChapterToExclusionFile()`
+    * `Storage#appendChapterToExclusionFile()` - appends the target `Chapter` to the Exclusion File if the target `Chapter` exists and is not already in the Exclusion File
 * Excluding a Module from Scheduling
-    * `ExcludeCommand#addModuleToExclusion`
-    * `Storage#appendModuleToExclusionFile`
+    * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
+    * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 * Including a Chapter from Scheduling
-    * `ExcludeCommand#removeChapterFromExclusion`
-    * `Storage#aremoveChapterFromExclusionFile`
+    * `ExcludeCommand#removeChapterFromExclusion()` - gets the name of the `Chapter` to be included and the name of the `Module` it belongs to, and calls `Storage#removeChapterFromExclusionFile()`
+    * `Storage#removeChapterFromExclusionFile()` - removes the target `Chapter` from the Exclusion File if the target `Chapter` is in the Exclusion File
 * Including a Module from Scheduling
-    * `ExcludeCommand#removeModuleFromExclusion`
-    * `Storage#removeModuleFromExclusionFile`
+    * `ExcludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
+    * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
 The following sequence Diagrams illustrates how the Exclusion Process is executed:
 
 ![](images/ExcludeCommand.png)
-<br>
 
 ![](images/addModuleToExclusion.png)
-<br>
 
 ![](images/addChapterToExclusion.png)
-<br>
 
 ![](images/removeModuleFromExclusion.png)
-<br>
 
 ![](images/removeChapterFromExclusion.png)
 <br>
