@@ -48,7 +48,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 1. If the program is running correctly, you should see the following:
 
 <p align="center">
-   <img alt="startUp" src="startUp/help.png"/>
+   <img alt="startUp" src="screenshots/startUp.png"/>
 </p>
 
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
@@ -493,7 +493,11 @@ Example of usage:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: You can export the file as a human-editable file. Once exported, you can transfer the file over to the new computer and load the data.
+**A**: The notes along with the list of all the notes and event are automatically saved in a human editable text file, whenever there is a change made. Once exported, you can transfer the file over to the new computer and load the data.
+
+**Q**: What if the app crashes half way through what happens to my data?
+
+**A**: All the data is saved in a text file whenever there are changes made throughout the program. Hence, you can start NotUS again and the updated data will be loaded in.
 
 **Q**: What if I don't remember some of the commands? 
 
