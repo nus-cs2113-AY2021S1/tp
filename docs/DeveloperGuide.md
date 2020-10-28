@@ -180,7 +180,7 @@ Figure 7 below shows the sequence diagram when the user inputs the `clear` comma
 
 ![Sequence diagram for clear command](images/ClearCommandSequenceDiagram.png)
 
-_Figure 6: Sequence diagram for `clear` command_
+_Figure 7: Sequence diagram for `clear` command_
 
 ## Appendix A: Product Scope
 ### Target user profile
