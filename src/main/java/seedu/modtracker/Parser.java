@@ -151,6 +151,8 @@ public class Parser {
             assert toPrint : "toPrint should be true";
             if (ui.confirmReset()) {
                 storage.reset();
+                modList.clear();
+                taskList.clear();
                 restart = true;
                 exit = true;
             }

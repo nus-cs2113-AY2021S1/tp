@@ -16,8 +16,7 @@ public class ModTracker {
         do {
             modTracker = new ModTracker("data/modtracker.txt");
             modTracker.run();
-        }
-        while (modTracker.toRestart());
+        } while (modTracker.toRestart());
     }
 
     public ModTracker(String filePath) {
@@ -42,7 +41,7 @@ public class ModTracker {
         }
         ui.printGreeting(name);
         storage.loadData(this);
-        notification.start(modList);
+        notification.start();
         runCommandLoopUntilExitCommand(name);
         storage.lockFile();
     }
