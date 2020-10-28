@@ -47,3 +47,8 @@ Unlike the FoodSaveLoadManager, it stores the data inside itself and can be upda
 * Setters and Getters for all the personal data in this current version
 
 #### UML diaghram
+##### FoodSaveLoadManager#save()
+![Alt text](FoodSaveLoadManager_save.png)
+##### FoodSaveLoadManager#load()
+![Alt text](FoodSaveLoadManager_load.png)
+similiar diaghrams for PersonSaveLoadManager
