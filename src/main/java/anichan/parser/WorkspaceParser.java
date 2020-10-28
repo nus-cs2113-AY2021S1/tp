@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for workspace command.
+ */
 public class WorkspaceParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
     public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
@@ -20,6 +23,13 @@ public class WorkspaceParser extends CommandParser {
     private String commandOption;
     private String commandDescription;
 
+    /**
+     * Parses the specified command description.
+     *
+     * @param description the specified command description
+     * @return initialised WorkspaceCommand object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public WorkspaceCommand parse(String description) throws AniException {
         assert description != null : "Description should not be null.";
 
@@ -35,6 +45,12 @@ public class WorkspaceParser extends CommandParser {
         return new WorkspaceCommand(commandOption, commandDescription);
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven a String Array containing the parameters and the value
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     public void parameterParser(String[] paramGiven) throws AniException {
         if (paramGiven.length != 2) {
             LOGGER.log(Level.WARNING, "Invalid number of parameters given");
@@ -72,4 +88,5 @@ public class WorkspaceParser extends CommandParser {
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
     }
+
 }

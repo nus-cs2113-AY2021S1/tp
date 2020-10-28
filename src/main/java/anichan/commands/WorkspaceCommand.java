@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command to manage the workspace(s) in AniChan.
+ */
 public class WorkspaceCommand extends Command {
     private static final String CREATE_OPTION = "n";
     private static final String SWITCH_OPTION = "s";
@@ -19,15 +22,39 @@ public class WorkspaceCommand extends Command {
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
     public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9]*$";
+    public static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
+            + "options: -n, -s, -l, and -d.";
+    public static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
 
     private final String commandOption;
     private final String workspaceName;
 
+    /**
+     * Creates a new instance of WorkspaceCommand with the specified option and workspace name.
+     *
+     * @param commandOption command option parameter
+     * @param workspaceName workspace name for command to operate on
+     */
     public WorkspaceCommand(String commandOption, String workspaceName) {
         this.commandOption = commandOption;
         this.workspaceName = workspaceName;
     }
 
+    /**
+     * Depending on the option supplied, it can perform one of the following operations.
+     * <ul>
+     *     <li>Creates a new workspace</li>
+     *     <li>Switches to workspace</li>
+     *     <li>Lists all workspace</li>
+     *     <li>Delete a workspace</li>
+     * </ul>
+     *
+     * @param animeData      used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user           used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         assert (commandOption != null) : "Option should not be null.";
@@ -43,11 +70,19 @@ public class WorkspaceCommand extends Command {
             return deleteWorkspace(user, storageManager);
         default:
             LOGGER.log(Level.WARNING, "Invalid workspace command provided.");
-            throw new AniException("Workspace command only accepts the options: -n, -s, -l, and -d.");
+            throw new AniException(EXPECTED_PARAMETERS_MESSAGE);
         }
     }
 
-    public String createWorkspace(User user, StorageManager storageManager) throws AniException {
+    /**
+     * Creates a workspace.
+     *
+     * @param user           used to modify user data
+     * @param storageManager used to save or read AniChan data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
+    private String createWorkspace(User user, StorageManager storageManager) throws AniException {
         checkName(workspaceName);
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
@@ -60,7 +95,14 @@ public class WorkspaceCommand extends Command {
         return "Successfully added new workspace: " + newWorkspace;
     }
 
-    public String switchWorkspace(User user) throws AniException {
+    /**
+     * Switches to specified workspace.
+     *
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
+    private String switchWorkspace(User user) throws AniException {
         checkName(workspaceName);
         String trimmedName = workspaceName;
         user.switchActiveWorkspace(trimmedName);
@@ -69,11 +111,19 @@ public class WorkspaceCommand extends Command {
         return "Workspace switched to " + trimmedName;
     }
 
-    public String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
+    /**
+     * Deletes specified workspace.
+     *
+     * @param user           used to modify user data
+     * @param storageManager used to save or read AniChan data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
+    private String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
         checkName(workspaceName);
 
         if (user.getActiveWorkspace().toString().equals(workspaceName)) {
-            throw new AniException("Please switch workspace before trying to delete it.");
+            throw new AniException(EXCEPTION_WORKSPACE_IN_USE);
         }
 
         user.deleteWorkspace(workspaceName);
@@ -83,7 +133,14 @@ public class WorkspaceCommand extends Command {
         return "Successfully deleted workspace: " + workspaceName;
     }
 
-    public String listWorkspace(User user) {
+    /**
+     * Lists all existing workspace.
+     *
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
+     */
+    private String listWorkspace(User user) {
         StringBuilder workspacesString = new StringBuilder();
         ArrayList<Workspace> userWorkspaces = user.getWorkspaceList();
 
@@ -97,7 +154,13 @@ public class WorkspaceCommand extends Command {
         return workspacesString.toString();
     }
 
-    public void checkName(String workspaceName) throws AniException {
+    /**
+     * Checks if workspace name is valid.
+     *
+     * @param workspaceName name of workspace
+     * @throws AniException when name is not of valid format
+     */
+    private void checkName(String workspaceName) throws AniException {
         if (workspaceName != null) {
             boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
 
@@ -107,4 +170,5 @@ public class WorkspaceCommand extends Command {
             }
         }
     }
+
 }
