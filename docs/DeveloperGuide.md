@@ -150,7 +150,7 @@ The bookmark feature is implemented similarly to the main architecture, however,
 in a smaller scale and a more bookmark-specific way. Figure 1 illustrates the general overview, 
 the associations and the multiplicity of the bookmark classes.
 
-![Bookmark Class Diagram](Images/BookmarkRun_Class.png)
+![Bookmark Class Diagram](Images/BookmarkDG/BookmarkRun_Class.png)
 
 API: java.bookmarkRun
 
@@ -163,7 +163,7 @@ As shown in figure 1, `BookmarkRun` is
 Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
-![Bookmark Sequence Diagram](Images/sequence_bookmark.png)
+![Bookmark Sequence Diagram](Images/BookmarkDG/sequence_bookmark.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
 As shown in Figure 2, when `BookmarkRun` is called, 
@@ -179,13 +179,13 @@ shown below. `BookmarkUi` and `BookmarkStorage` follow the same design implement
 architecture. The below figure shows the command classes available and they are called based on the 
 `BookmarkParser` class as illustrated in Figure 2. 
 
-![BookmarkCommand ClassDiagram](Images/bookmarkCommand_Class.png)
+![BookmarkCommand ClassDiagram](Images/BookmarkDG/bookmarkCommand_Class.png)
 
 Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `BookmarkCommand` 
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
-![BookmarkCommand ClassDiagram](Images/AddCommand_sequenceDiagram.png)
+![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_sequenceDiagram.png)
 
 ###Timetable Component
 
