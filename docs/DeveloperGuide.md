@@ -217,7 +217,7 @@ This section introduces the specific implementation details and design considera
 
 <br/>
 
-### 4.1 Estimate Feature
+### 4.1 Estimate
 The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, allowing users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
@@ -229,7 +229,7 @@ The estimate feature is facilitated by `EstimateCommand`. By running the command
 
 Given below is an example usage scenario showing how the `EstimateCommand` behaves at each step.
 
-**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invoke `Parser#getCommand()`, and because the command type is `estimate`, `Parser` will invoke `EstimateParser#parse()` to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300".
+**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is `estimate`, `Parser` will invoke `EstimateParser#parse()` to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300".
 
 **Step 2:** `EstimateParser` is terminated at this point, and the application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
@@ -241,7 +241,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 
 <br/>
 
-**Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+**Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` with the estimated time to convert it into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimatino timing will be generated.
 
@@ -282,6 +282,8 @@ Aspect: **The way user can specify the script file**
 | Do not have to specify file extension | Users can easily specify the file to read | The application may end up reading the wrong file due to identical names but different file extension. |
 
 We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing and it far outweights and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
+
+<br/>
 
 ### 4.2 Browse Feature
 The browse feature is a useful feature that will allow users to quickly look through all 
@@ -421,90 +423,95 @@ WIP.
 <br/>
 
 ### 4.4 Watchlist Management Feature
-The watchlist management feature aims to provide translators with a simple way to keep track of animes of different genres, allowing them to stay organized and focus on their work.
-
-<br/>
+The watchlist management feature aims to provide translators with a simple way to keep track of animes by being able to group animes based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
 
 #### 4.4.1 Current Implementation
-The `watchlist` feature is facilitated by `WatchlistCommand`, which extends from the abstract class `Command`. `WatchlistCommand` is instantiated by `WatchlistParser`, and it requires 3 parameters: 
-*   `option` (mandatory).
-*   `watchlistName` (mandatory only if the option `-n` is specified).
-*   `watchlistIndex` (mandatory only if the options `-s` and `-d` is specified).
+The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
+* `option` (mandatory).
+* `watchlistName` (mandatory only if the option `-n` was specified).
+* `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
+
+Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
+> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by the variable `activeWatchlist` in `Workspace`.
+
+| Option | Method | Description |
+| --- | --- | --- |
+| `-n` | `WatchlistCommand#createWatchlist()` | Creates a new watchlist |
+| `-l` | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
+| `-s` | `WatchlistCommand#selectWatchlist()` | Selects a watchlist to be the new active watchlist |
+| `-d` | `WatchlistCommand#deleteWatchlist()` | Deletes a watchlist |
 
 <br/>
 
-Given below is an example usage scenario showing how the `watchlist` command behaves at each step.
+Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the watchlist creation process.
 
-**Step 1:** User launches the application for the first time. The `Workspace` of a user will be initialised to the initial workspace state, and the `activeWatchlist` will point to the first watchlist found in the `watchlistList` of the initialised `Workspace`.
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-![Watchlist Command Initial State Diagram](images/WatchlistCommand-Initial-State.png) <br/>
-*Figure 16: Watchlist Command Initial State*
+*Figure x: WatchlistCommand Initial State*
 
-<br/>
+**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
 
-**Step 2:** User executes `watchlist -n NewAnime` to create a new watchlist named "NewAnime". `Main` calls `Parser#getCommand()` and passes the command to it.
+**Step 2:** `WatchlistParser` is terminated at this point, and the application invokes `WatchlistCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `Parser` extracts "watchlist" from the command, and according to the command type, it calls `WatchlistParser#parse()` and passes the command description, "-n NewAnime", to it.
+**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
 
-**Step 4:** `WatchlistParser` proceed to parse the command description, extract, and validate the inputs "-n" and "NewAnime". Once validated and no exception was thrown, it creates and initialises `WatchlistCommand` with the inputs and return this object to `Parser`, which then returns it to `Main`.
+**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. `activeWorkspace.getWatchlistList()` is first invoked to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and a empty `ArrayList<Integer>` object. The `Watchlist` object is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
 
-**Step 5:** `WatchlistParser` is terminated and `Main` calls `WatchlistCommand#execute()` with `animeData`, `storageManager`, and `user` to create the new watchlist.
+> :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
-![Watchlist Command After Step 5 Diagram](images/WatchlistCommand-After-Step-5.png) <br/>
-*Figure 17: Watchlist Command After Step 5*
+> :memo: The details of all `Watchlist` object for a workspace are saved in the file "watchlist.txt" in the workspace folder.
 
 <br/>
 
-**Step 6:** `WatchlistCommand` first calls `User#getActiveWorkspace()` to initialise a `Workspace` object, `activeWorkspace`. It then calls `WatchlistCommand#createWatchlist()` to perform the operation and to call `StorageManager#saveWatchlist()` with `activeWorkspace.getName()` and `watchlistName` to save the newly created watchlist.
+**Step 5:** `WatchlistCommand` is terminated.
 
-**Step 7:** `WatchlistCommand` is terminated.
+![WatchlistCommand After Step 5 State](images/WatchlistCommand-After-Step-5-State.png)
 
-![Watchlist Command Final State After Create Diagram](images/WatchlistCommand-Final-State-After-Create.png) <br/>
-*Figure 18: Watchlist Command Final State After Create*
-
-<br/>
-
-All the other options in the `watchlist` command also follows a similar execution process. 
-
-The following diagrams will continue from step 7, and it will show you how the state of the application changes as it continues to execute the select and delete option of the `watchlist` command. The list option (`-l`) is not shown as there is no change in the application state after its execution.
+*Figure x: WatchlistCommand After Step 5 State*
 
 <br/>
 
-The user executes `watchlist -s 2` to change his active watchlist to the second watchlist ("NewAnime") in the list.
+All the other options in the watchlist command also follows a similar execution process. The following diagrams will continue from step 5, and it will show you how the state of the application changes as it continues to execute the select and delete option.
+> :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
-![Watchlist Command State After Select Diagram](images/WatchlistCommand-After-Select.png) <br/>
-*Figure 19: Watchlist Command State After Select*
+The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
 
-<br/>
+![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-The user executes `watchlist -d 2` to delete the second watchlist ("NewAnime") in the list.
-
-![Watchlist Command State After Delete Diagram](images/WatchlistCommand-After-Delete.png) <br/>
-*Figure 20: Watchlist Command Final State After Delete*
+*Figure x: WatchlistCommand After Select State*
 
 <br/>
 
-The sequence diagram presented below depicts the interaction between the components for running the `watchlist` command, provided that the user has entered a valid command.
+The user executes `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
+
+![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
+
+*Figure x: WatchlistCommand After Delete State*
 
 <br/>
 
-![Watchlist Command Sequence Diagram](images/WatchlistCommand-Sequence-Diagram.png) <br/>
-*Figure 21: Sequence diagram for WatchlistCommand*
+The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
+> :memo: This shows from step 2 onward.
+
+> :memo: The other option (`-l`, `-s`, `-d`) follows a similar process.
+
+![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
+
+*Figure x: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
 
-#### 4.4.2 Design Consideration
-This section shows some design considerations taken when implementing the watchlist feature.
+#### 4.1.2 Design Considerations
+This section shows some design considerations taken when implementing the estimate feature.
 
 Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution (current design) | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
-| When the user exits the program | Saving is more efficient and can potentially improve performance. | User may lose their data if the application or system crashes midway. |
+| After each command execution **(current design)** | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
+| When the user exits the program | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
-Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. 
-Losing work data can also be a frustrating and costly mistake to translators especially if these data are important. Hence, we definitely do not want to lose potential users of this product due to such a problem that could be alleviated easily.
+Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
 
 <br/>
 
