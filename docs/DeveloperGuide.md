@@ -1,6 +1,19 @@
 # Developer Guide
 
-## Design & implementation
+## Design 
+
+### UI component
+![Ui component](/UML/Ui component.png)
+
+**API**: [`Ui.java`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/Ui.java)
+
+The `UI` component,
+* Takes in user command and passes to the `Logic` components for command execution.
+* Updates the user about any changes in the data after executing the command or errors encountered when executing the commands.
+
+The UI has a dependency with two enumeration class, `ActivityLevel` and `Gender` as descriptions of each
+ `ActivityLevel` and `Gender` is required. Increased coupling was sacrificed to reduce code duplicates and increase ease of code extension/editing.
+
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Save/Load Feature
