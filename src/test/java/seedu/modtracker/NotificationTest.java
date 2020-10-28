@@ -29,7 +29,8 @@ class NotificationTest {
     }*/
 
     @Test
-    void start_addOneModuleWithtooLittleTime_startMessage() {
+    void start_addOneModuleWithTooLittleTime_startMessage() {
+        modules.clear();
         modules.addExp("addExp CS5555 3", true, storage);
         modules.addTime("addtime cs5555 1 1", true, storage);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -60,7 +61,7 @@ class NotificationTest {
     }
 
     @Test
-    void getNumNotification_addOneModuleWithtooLittleTime_NumOfNotification() {
+    void getNumNotification_addOneModuleWithTooLittleTime_NumOfNotification() {
         modules.clear();
         modules.addExp("addExp CS1010 8", true, storage);
         modules.addTime("addtime cs1010 2 1", true, storage);
@@ -69,7 +70,7 @@ class NotificationTest {
     }
 
     @Test
-    void printNotification_ModuleWithtooLittleTime_tooLittleTimeMessage() {
+    void printNotification_ModuleWithTooLittleTime_tooLittleTimeMessage() {
         modules.clear();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
