@@ -36,10 +36,6 @@ public class Duration {
     }
 
     public boolean containTimeSlot(int timeSlot) {
-        if (this.timeSlot.contains(timeSlot)) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.timeSlot.contains(timeSlot);
     }
 }

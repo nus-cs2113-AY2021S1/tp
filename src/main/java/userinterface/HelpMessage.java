@@ -7,7 +7,7 @@ public class HelpMessage extends Ui {
     private static final String generalCommands = "Here are the general commands available:\n"
             + "help                 - prints out help message\n"
             + "location             - tells you your current mode\n"
-            + "cd <mode index/name> - changes the program to the corresponding mode\n"
+            + "cd MODE_INDEX/NAME   - changes the program to the corresponding mode\n"
             + "highlight            - prints out the important items you stored\n"
             + "exit                 - exit the program/mode you are currently at\n";
 
@@ -19,25 +19,30 @@ public class HelpMessage extends Ui {
             + "5 flashcard  - flashcards to revise your study materials";
 
     private static final String academicCommands = "Here are the academic commands available:\n"
+            + "list star                                 - prints the list of starred components"
+            + "---CONTACTS---\n"
             + "add contact c/CONTACT  m/MOBILE  e/EMAIL  - adds a contact\n"
             + "list contact                              - prints the list of contact currently stored\n"
-            + "delete contact <index number>             - deletes contact at specified index\n"
-            + "add grade n/MODULE NAME  m/MC  g/GRADE    - adds a grade\n"
+            + "delete contact INDEX_NUMBER               - deletes contact at specified index\n"
+            + "star contact INDEX_NUMBER                 - marks the contact as star\n"
+            + "---GRADE----\n"
+            + "add grade n/MODULE_NAME  m/MC  g/GRADE    - adds a grade\n"
             + "check cap                                 - prints the current CAP based on grade stored\n"
             + "list grade                                - prints the list of grades currently stored\n"
-            + "delete grade <index number>               - deletes grade at specified index\n"
-            + "su grade <index number>                   - sus grade at specified index\n";
+            + "delete grade INDEX_NUMBER                 - deletes grade at specified index\n"
+            + "su grade INDEX_NUMBER                     - SU the grade at specified index\n"
+            + "star grade INDEX_NUMBER                   - marks the grade as star\n";
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
-            + "bm <category index>  - changes mode from bookmark main into a category \n"
-            + "add <link>           - add bookmark link into a specific category\n"
-            + "rm <index number>    - remove a bookmark link into a specific category\n"
+            + "bm CATEGORY_INDEX    - changes mode from bookmark main into a category \n"
+            + "add LINK             - add bookmark link into a specific category\n"
+            + "rm INDEX_NUMBER      - remove a bookmark link into a specific category\n"
             + "list                 - prints the list of categories and respective list of links\n"
             + "back                 - go back to bookmark main\n";
 
     private static final String timetableCommand =  "Here are the timetable commands available:\n"
-            + "add class /MODULE CODE /ONLINE or OFFLINE\n"
-            + "/ZOOM LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
+            + "add class /MODULE_CODE /ONLINE or OFFLINE\n"
+            + "/ZOOM_LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
             + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
             + "show schedule                                                     - display schedule";
 
