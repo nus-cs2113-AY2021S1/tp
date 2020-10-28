@@ -520,6 +520,7 @@ Losing work data can also be a frustrating and costly mistake to translators esp
 Overview of the different features provided by bookmark
 The `bookmark` feature aims to provide the user with the ability to create shortcuts to anime they wish to track. This feature further provides tools to monitor the progress of a series and make informative notes.
 
+<br/>
 
 #### 4.5.1 Current Implementation
 
@@ -544,8 +545,7 @@ The Bookmark class uses three ArrayList to store bookmark entries of the user, t
 
 Given below is the example usage scenario and how the `Bookmark` command behaves at each step.
 
-> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. 
-The following example will use one-based to be consistent with the command. 
+> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the command. 
 
 **Step 1:** User inputs command `bookmark`,  the application then calls `Parser#getCommand()` and passes the command to it.
 
@@ -556,15 +556,15 @@ For example: `bookmark 2 -e 5`, the parser will create `BookmarkCommand` and cal
 **Step 3:** The application calls `BookmarkCommand#execute()` and the command will use the `BookmarkAction` to do a corresponding validation check on the field before calling the  Bookmark Operations.
 
 Below is a list of bookmark operations:
-* `Bookmark#addAnimeBookmark()` : Adds the `Anime` index provided into the bookmark list.
-* `Bookmark#getListInString()`: List all entries within the `Bookmark` using the `Bookmark` index together with the `Anime` name.
-* `Bookmark#deleteAnimeBookmark()`: Remove the `Bookmark` index provided from the bookmark list.
-* `Bookmark#editBookmarkEpisode()`: Edit the current episode for a Bookmark entry .
-* `Bookmark#addNote()`: Add a note for a Bookmark entry.
-* `Bookmark#removeNote()`: Remove a note from a Bookmark entry.
-* `Bookmark#getAnimeInfoFromBookmark()`: Retrieve the anime info on the anime id kept at the specified bookmark entry.
-* `Bookmark#getBookmarkEpisode()`: Retrieve the episode field for a Bookmark entry.
-* `Bookmark#getNoteInString()`: Retrieve notes in a list within the specified bookmark entry.
+*   `Bookmark#addAnimeBookmark()`: Adds the `Anime` index provided into the bookmark list.
+*   `Bookmark#getListInString()`: List all entries within the `Bookmark` using the `Bookmark` index together with the `Anime` name.
+*   `Bookmark#deleteAnimeBookmark()`: Remove the `Bookmark` index provided from the bookmark list.
+*   `Bookmark#editBookmarkEpisode()`: Edit the current episode for a Bookmark entry .
+*   `Bookmark#addNote()`: Add a note for a Bookmark entry.
+*   `Bookmark#removeNote()`: Remove a note from a Bookmark entry.
+*   `Bookmark#getAnimeInfoFromBookmark()`: Retrieve the anime info on the anime id kept at the specified bookmark entry.
+*   `Bookmark#getBookmarkEpisode()`: Retrieve the episode field for a Bookmark entry.
+*   `Bookmark#getNoteInString()`: Retrieve notes in a list within the specified bookmark entry.
 
 **Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
@@ -585,7 +585,7 @@ The following sequence diagram shows how the `Add Bookmark` operation works:
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
-```
+```text
 Listing all anime in bookmark:
 	1. To Heart 2
 	2. Cowboy Bebop
@@ -611,7 +611,7 @@ Listing all anime in bookmark:
 
 **Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime id at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
-```
+```text
 Here is the information for that anime.
 Index: 1
 Name: Cowboy Bebop
