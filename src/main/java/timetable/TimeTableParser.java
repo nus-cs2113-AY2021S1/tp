@@ -55,7 +55,7 @@ public class TimeTableParser {
 
     public static Lesson addClass() throws InvalidDayOfTheWeekException {
         Scanner in = new Scanner(System.in);
-        System.out.println("Please enter module name: ");
+        System.out.println("Please enter module code: ");
         boolean isInvalid = true;
         String moduleCode = null;
         while (isInvalid) {
@@ -83,7 +83,7 @@ public class TimeTableParser {
             }
         }
         String linkOrVenue = in.nextLine();
-        System.out.println("What are the days and time of the lesson (eg. Monday 5-8pm, Tuesday 6-9pm)");
+        System.out.println("What are the days and time of the lesson\n(eg. Monday 5-8pm, Tuesday 6-9pm)");
         String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
@@ -149,7 +149,7 @@ public class TimeTableParser {
         final String linkOrVenue = in.nextLine();
         System.out.println("Please enter the date (eg. 28/10/2020)");
         LocalDateTime date = getDateTime(in.nextLine());
-        System.out.println("Please enter the time of your activity(eg. 6-9pm)");
+        System.out.println("Please enter the time of your activity (eg. 6-9pm)");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
         int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));

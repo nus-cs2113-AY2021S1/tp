@@ -20,7 +20,7 @@ public class MainMenu extends Ui {
             + "Let's get productive!"
             + "\n\n"
             + HelpMessage.currentModes
-            + "\n\nInsert \"cd MODE_INDEX or MODE_NAME\" to access these modes"
+            + "\nInsert \"cd MODE_INDEX or MODE_NAME\" to access these modes"
             + "\nor \"help\" to get the list of available commands\n"
             + LINE_DIVIDER;
 

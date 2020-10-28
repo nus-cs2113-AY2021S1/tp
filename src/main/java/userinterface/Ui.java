@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class Ui {
     public static final String LINE_DIVIDER = "=============================================================="
-            + "=========";
+            + "==================";
 
     public static void printDivider() {
         System.out.println(LINE_DIVIDER);
@@ -94,8 +94,8 @@ public class Ui {
 
     public static void printWelcomeAcademicMessage() {
         System.out.println("Welcome to academic mode!");
-        System.out.println("\nYou can use this mode to keep track of your grades"
-                + "\n& important contacts");
+        System.out.println("\nYou can use this mode to keep track of your grades "
+                + "& important contacts");
         System.out.println("\nInsert \"help\" to find the list of commands available");
         printDivider();
     }
@@ -109,8 +109,8 @@ public class Ui {
 
     public static void printWelcomeFlashcardMessage() {
         System.out.println("Welcome to flashcard mode!");
-        System.out.println("\nYou can use this mode to create and store flashcards and use them");
-        System.out.println("to help you memorize your study content!");
+        System.out.println("\nYou can use this mode to create and store flashcards and use them to help");
+        System.out.println("you memorize your study content!");
         System.out.println("\nInsert \"help\" to find the list of commands available");
         printDivider();
     }
@@ -121,6 +121,7 @@ public class Ui {
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
         printDivider();
+        MainMenu.printWelcomeBackMessage();
     }
 
     public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
