@@ -506,7 +506,6 @@ List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
 Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`
