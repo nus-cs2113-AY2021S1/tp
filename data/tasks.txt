@@ -1,7 +1,7 @@
-D|true|project submission|false|2020-10-30
+D|true|project submission|true|2020-10-30
 ACT|true|CCA|2020-09-20|16:00|NUS UTOWN|0
 T|false|everyday reading|false
-T|false|prepare birthday gift for BF|false
+T|false|prepare birthday gift for BF|true
 D|false|project draft version 1.2|false|2020-10-28
 D|false|drafting cover letter for interview|false|2020-11-11
 EXAM|false|cs2101|2020-11-11|14:00|nus|0
