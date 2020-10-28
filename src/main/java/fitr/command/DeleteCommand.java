@@ -1,6 +1,6 @@
 package fitr.command;
 
-import fitr.Recommender;
+import fitr.exercise.Recommender;
 import fitr.exception.FitrException;
 
 import fitr.list.ExerciseList;

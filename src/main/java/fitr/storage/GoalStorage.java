@@ -1,6 +1,6 @@
 package fitr.storage;
 
-import fitr.Goal;
+import fitr.goal.Goal;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;

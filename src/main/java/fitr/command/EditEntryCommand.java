@@ -1,8 +1,8 @@
 package fitr.command;
 
-import fitr.Calorie;
-import fitr.Goal;
-import fitr.Recommender;
+import fitr.calorie.Calorie;
+import fitr.goal.Goal;
+import fitr.exercise.Recommender;
 import fitr.common.Commands;
 import fitr.common.Messages;
 import fitr.list.ExerciseList;

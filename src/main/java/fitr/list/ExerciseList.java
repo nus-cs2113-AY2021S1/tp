@@ -1,6 +1,6 @@
 package fitr.list;
 
-import fitr.Exercise;
+import fitr.exercise.Exercise;
 
 import java.util.ArrayList;
 

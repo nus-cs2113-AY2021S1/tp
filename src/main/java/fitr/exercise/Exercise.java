@@ -1,4 +1,6 @@
-package fitr;
+package fitr.exercise;
+
+import fitr.calorie.Calorie;
 
 public class Exercise {
     protected String nameOfExercise; // The name of the Exercise

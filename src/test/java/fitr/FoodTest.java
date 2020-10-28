@@ -1,5 +1,7 @@
 package fitr;
 
+import fitr.calorie.Calorie;
+import fitr.food.Food;
 import org.junit.jupiter.api.Test;
 
 import static fitr.common.DateManager.getCurrentDate;

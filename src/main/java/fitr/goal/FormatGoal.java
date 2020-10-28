@@ -1,7 +1,5 @@
 package fitr.goal;
 
-import fitr.Goal;
-
 import java.util.Objects;
 
 public class FormatGoal {

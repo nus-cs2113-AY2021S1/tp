@@ -1,13 +1,11 @@
 package fitr.goal;
 
-import fitr.Goal;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Calendar;
 
 public class CheckGoalStatus {
 

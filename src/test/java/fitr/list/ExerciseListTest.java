@@ -1,8 +1,8 @@
 package fitr.list;
 
 import org.junit.jupiter.api.Test;
-import fitr.Calorie;
-import fitr.Exercise;
+import fitr.calorie.Calorie;
+import fitr.exercise.Exercise;
 
 import java.util.ArrayList;
 

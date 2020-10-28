@@ -1,7 +1,7 @@
 package fitr.storage;
 
-import fitr.Calorie;
-import fitr.Exercise;
+import fitr.calorie.Calorie;
+import fitr.exercise.Exercise;
 import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 

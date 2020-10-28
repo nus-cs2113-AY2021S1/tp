@@ -1,15 +1,14 @@
 package fitr.command;
 
-import fitr.Calorie;
-import fitr.Recommender;
-import fitr.StandardExercise;
+import fitr.calorie.Calorie;
+import fitr.exercise.Recommender;
+import fitr.exercise.StandardExercise;
 import fitr.list.StandardExerciseList;
-import fitr.exception.FitrException;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
-import fitr.Exercise;
+import fitr.exercise.Exercise;
 
 import java.io.IOException;
 

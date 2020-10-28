@@ -1,7 +1,6 @@
 package fitr.list;
 
-import fitr.Exercise;
-import fitr.Food;
+import fitr.food.Food;
 
 import java.util.ArrayList;
 

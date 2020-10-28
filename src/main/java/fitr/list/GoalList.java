@@ -1,6 +1,6 @@
 package fitr.list;
 
-import fitr.Goal;
+import fitr.goal.Goal;
 import fitr.user.User;
 
 import java.util.ArrayList;

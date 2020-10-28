@@ -1,8 +1,8 @@
 package fitr.list;
 
-import fitr.Exercise;
-import fitr.Food;
-import fitr.Goal;
+import fitr.exercise.Exercise;
+import fitr.food.Food;
+import fitr.goal.Goal;
 import fitr.storage.StorageManager;
 
 import java.io.IOException;

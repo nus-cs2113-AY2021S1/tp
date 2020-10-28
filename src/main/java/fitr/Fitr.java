@@ -1,6 +1,7 @@
 package fitr;
 
 import fitr.command.Command;
+import fitr.exercise.Recommender;
 import fitr.list.ListManager;
 import fitr.list.TipList;
 import fitr.storage.StorageManager;

@@ -1,6 +1,6 @@
 package fitr.command;
 
-import fitr.Recommender;
+import fitr.exercise.Recommender;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;

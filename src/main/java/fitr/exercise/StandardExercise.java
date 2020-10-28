@@ -1,4 +1,4 @@
-package fitr;
+package fitr.exercise;
 
 import java.util.ArrayList;
 

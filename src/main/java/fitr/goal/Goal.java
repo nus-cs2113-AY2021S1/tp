@@ -1,10 +1,8 @@
-package fitr;
+package fitr.goal;
 
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
-
-import java.util.Objects;
 
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
