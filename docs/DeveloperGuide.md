@@ -1,8 +1,6 @@
 # **Developer Guide**
 
 
-
-
 ## **Introduction**
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
 ### **Welcome to Zoomaster!**
@@ -15,11 +13,11 @@ Zoomaster can also intelligently determine the current lesson you are having, al
 * [Getting Started](#getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
-  * [UI component](#architecture)
-  * [Logic component](#architecture)
-  * [Model component](#architecture)
-  * [Storage component](#architecture)
-  * [Common classes](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
 * [Implementation](#implementation)
   * [Bookmark and Timetable modes feature](#bookmark-and-timetable-modes-feature-tys)
   * [Add Module and Slot feature](#add-module-and-slot-feature-xing-rong)
@@ -46,11 +44,11 @@ Refer to the setting up guide over [here](https://github.com/AY2021S1-CS2113T-W1
 
 ### Architecture
 
+The figure below shows a high-level design for the architecture of Zoomaster. 
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/archiveture2-01.png?raw=true)
 *<center/> Figure 1.1 Architecture diagram of Zoomaster </center> <br/></br>*
 
 Our Program can be split up into 8 components
-
 * Initialization
 * User Interface
 * Parser
@@ -63,8 +61,8 @@ Our Program can be split up into 8 components
 These components interact with each other as shown in Figure 1.1 to execute the functionalities of Zoomaster.
 
 ### Initialization
-
-![]()
+The diagram below shows a class-level diagram for Zoomaster. <br/></br>
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/initial.png)
 *<center/> Figure 1.2 Class diagram of Initialization </center> <br/></br>*
 
 **API**:`Zoomaster.java`
@@ -76,7 +74,7 @@ It consists of `Zoomaster`, `Ui`, `Storage`, `BookmarkList`, `Timetable` and `Mo
 Its main roles are:
 * Retrieving bookmark, timetable and planner lists from storage if it exists.
 * Set the list of Modules for Zoomaster 
-* Creates the User Interface object
+* Initializes the User Interface object, as well as the 3 Storage  objects for `BookmarkList`, `Timetable` and `Planner`.
 
 ### User Interface component
 
@@ -104,25 +102,46 @@ Its main roles are:
 
 ### Parser component
 
+
+
 ![]()
 *<center/> Figure 1.4 Class diagram of Parser </center> <br/></br>*
+
 
 The Parser component is responsible for decoding the user's input and telling the Main function which command to execute.
 
 It also contains the **programMode** which indicates which mode the program currently is in.
 
+
+It initializes the different commands according to which mode the program currently is in.
+
 It consists of `Parser` and the Command interface classes.
+
 
 Its main roles are:
 
 * Decoding users commands and returning the correct command to the Main function to be executed
 * Catch errors in users commands and return the appropriate exception to the Main function
-* Storing the mode Zoomaster is in
+* Storing the mode Zoomaster is in (Bookmark/Timetable/Planner)
+
+The interaction of the Parser component with the Command component is covered in greater detail below. 
 
 ### Commands component
+Figures 1.3 to 1.6 below show the class-level diagrams for Parser and Command for each different mode. <br/>
+The diagrams are colour coded as such:
+* Orange -> Global
+* Green -> Bookmark Mode
+* Blue -> Timetable Mode
+* Red -> Planner Mode
 
-![]()
-*<center/> Figure 1.5 Class diagram of Commands </center> <br/></br>*
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode1.png)
+*<center/> Figure 1.3 Class diagram of Commands valid in all modes (Global) </center> <br/></br>*
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode2.png)
+*<center/> Figure 1.4 Class diagram of Commands valid in Bookmark Mode </center> <br/></br>*
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode3.png)
+*<center/> Figure 1.5 Class diagram of Commands valid in Timetable Mode</center> <br/></br>*
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode4.png)
+*<center/> Figure 1.6 Class diagram of Commands valid in Planner Mode</center> <br/></br>*
 
 The Command component is responsible for carrying out the functions of Zoomaster.
 
@@ -140,7 +159,8 @@ Its main roles are:
 ### Temp List component
 
 ![]()
-*<center/> Figure 1.6 Class diagram of Temp List </center> <br/></br>*
+
+*<center/> Figure 1.7 Class diagram of Temp List </center> <br/></br>*
 
 The Temp List component is responsible for holding on to temporary data of Zoomaster to be used by Commands.
 
@@ -153,7 +173,8 @@ Its main role is:
 ### Storage component
 
 ![]()
-*<center/> Figure 1.7 Class diagram of Storage </center> <br/></br>*
+
+*<center/> Figure 1.8 Class diagram of Storage </center> <br/></br>*
 
 The Storage component is responsible for saving and retrieving Zoomaster data to and from an external text file.
 
@@ -170,7 +191,8 @@ Its main roles are:
 ### Local Files component
 
 ![]()
-*<center/> Figure 1.8 Class diagram of Local Files </center> <br/></br>*
+*<center/> Figure 1.9 Class diagram of Local Files </center> <br/></br>*
+
 
 The Local Files component is where Zoomaster's long term storage of data is kept
 
@@ -181,7 +203,8 @@ Its main role is:
 ### Exceptions component
 
 ![]()
-*<center/> Figure 1.9 Class diagram of Exceptions </center> <br/></br>*
+
+*<center/> Figure 1.10 Class diagram of Exceptions </center> <br/></br>*
 
 The Exceptions component is responsible for responding to the different errors different components of Zoomaster sends back to the Main function.
 
@@ -198,9 +221,12 @@ Its main role is:
 
 This section explains the implementations of Zoomaster features. It goes through the step-by-step proccess, expected outcomes of each feature and the design considerations.
 
-### Bookmark and Timetable modes feature (TYS)
+### Bookmark, Timetable and Planner modes feature (TYS)
 
-Zoomaster stores two lists of information from users. One the list of bookmarks with link to online resources and second the list of timetable slots. To simplify input commands for users, both lists has the same keywords for adding, deleting, editing? and showing items in the lists. Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
+Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
+To simplify input commands for users, all lists has the same keywords for adding, deleting, and showing items in the lists. 
+Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
 
 #### Implementation
 
@@ -209,9 +235,10 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequential diagram of how changing between modes occur.
 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
+![]() <br/><br/>
 
 *<center/>Figure 2.1 Sequential diagram for ChangeModeCommand</center> <br/></br>*
+
 
 1. When Zoomaster gets a command from the user to change modes, a new ChangeModeCommand object is created.
 
@@ -246,7 +273,6 @@ Given below is a sequence diagram of how the feature works.
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
 *<center/> Figure 2.3 Sequence diagram for AddSlotCommand </center> <br/></br>*
 
-
 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
 2. There will then be a check for additional commands pertaining to the module entered by the user.
@@ -271,6 +297,21 @@ Given below is a sequence diagram of how the feature works.
 ### Edit Slot feature (Francisco)
 
 This feature allows users to edit a slot's title or time. Users can also move slots over to another module.
+
+Given below is an example usage scenario and how the edit mechanism works.
+
+1. The user enters "edit title mon 2 new_title"
+2. A new EditSlotCommand instance is created and the execute() method is called.
+3. The slot corresponding to the day and index given in the user input is retrieved by calling the getSlotByIndexInDay method of the timetable. In this case, the 2nd slot on Monday will be returned.
+4. Based on the chosen field in the user input, different methods are called:
+    a. If the command is "edit module", the moveSlotToAnotherModule method in timetable is called to move the slot to a given module.
+    b. If the command is "edit title", the setTitle method of the retrieved slot is called.
+    c. If the command is "edit time", changeSlotTime is called. This method will call setDay(), setStartTime(), and setEndTime() of the retrieved slot.
+
+The sequence diagram below explains how this feature is executed:
+
+ ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
+
 
 
 
