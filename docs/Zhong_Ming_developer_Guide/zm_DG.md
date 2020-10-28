@@ -5,12 +5,13 @@ At the base of the package, there is the <mark> Saver </mark>
 and <mark> Loader </mark>  class.
 
 ### Architecture
+![Alt text](Architecture.png)
 Note only the Saver and Loader class is flexible. They can be adapted to new situations without modifying
 the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specifically for this version. They
 will have to be modified/replaced for future versions.
 
 #### Saver class
-![Alt text](Architecture.png)
+
 Stores data in a internal table with length and height specified.
 Handles the storage of its data by writing to a text file.
 
