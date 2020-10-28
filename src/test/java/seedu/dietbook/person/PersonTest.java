@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersonTest {
 
@@ -12,95 +13,69 @@ class PersonTest {
     @BeforeEach
     public void setUp() {
         person = new Person("Jack", Gender.MALE,21,165,75,65,
-                ActivityLevel.LOW);
+                60, ActivityLevel.LOW);
     }
 
     @Test
-    void getName_person_returnsName() {
-        assertEquals("Jack", person.getName());
-    }
-
-    @Test
-    void setName_personWithNewName_returnNewName() {
-        person.setName("Jackie");
-        assertEquals("Jackie", person.getName());
-    }
-
-    @Test
-    void gender_person_returnsGender() {
-        assertEquals(Gender.MALE, person.getGender());
-    }
-
-    @Test
-    void gender_personWithNewGender_returnsNewGender() {
+    void gender_setGenderToFemale_returnsCorrectGenderDescription() {
         person.setGender(Gender.FEMALE);
-        assertEquals(Gender.FEMALE, person.getGender());
+        assertEquals("female", person.getGender().getDescription());
     }
 
     @Test
-    void getAge_person_returnsAge() {
-        assertEquals(21, person.getAge());
+    void gender_setGenderToMale_returnsCorrectGenderDescription() {
+        person.setGender(Gender.MALE);
+        assertEquals("male", person.getGender().getDescription());
     }
 
     @Test
-    void setAge_personWithNewAge_returnsNewAge() {
-        person.setAge(24);
-        assertEquals(24, person.getAge());
+    void gender_setGenderToOthers_returnsCorrectGenderDescription() {
+        person.setGender(Gender.OTHERS);
+        assertEquals("others", person.getGender().getDescription());
+    }
+    
+    @Test
+    void gender_setGenderToNull_expectAssertionError() {
+        assertThrows(AssertionError.class, () -> person.setGender(null));
     }
 
     @Test
-    void getHeight_person_returnsHeight() {
-        assertEquals(165, person.getHeight());
+    void setActivityLevel_setNewActivityLevelToNone_returnsCorrectActivityLevelDescription() {
+        person.setActivityLevel(ActivityLevel.NONE);
+        assertEquals("You hardly engage in any exercise or have a job that requires little to no "
+                + "physical activity.", person.getActivityLevel().getDescription());
     }
 
     @Test
-    void setHeight_personWithNewHeight_returnsNewHeight() {
-        person.setHeight(175);
-        assertEquals(175, person.getHeight());
+    void setActivityLevel_setActivityLevelToLow_returnsCorrectActivityLevelDescription() {
+        person.setActivityLevel(ActivityLevel.LOW);
+        assertEquals("You engage in some form of light exercise or have a job that requires some "
+                + "physical activity.", person.getActivityLevel().getDescription());
     }
 
     @Test
-    void getOriginalWeight_person_returnsOriginalWeight() {
-        assertEquals(75, person.getOriginalWeight());
+    void setActivityLevel_setActivityLevelToMedium_returnsCorrectActivityLevelDescription() {
+        person.setActivityLevel(ActivityLevel.MEDIUM);
+        assertEquals("You engage in moderate amount of exercise or have a job that requires moderate "
+                + "physical activity.", person.getActivityLevel().getDescription());
     }
 
     @Test
-    void setOriginalWeight_personWithNewOriginalWeight_returnsNewOriginalWeight() {
-        person.setOriginalWeight(70);
-        assertEquals(70, person.getOriginalWeight());
-    }
-
-    @Test
-    void getTargetWeight_person_returnsTargetWeight() {
-        assertEquals(65, person.getTargetWeight());
-    }
-
-    @Test
-    void setTargetWeight_personWithNewTargetWeight_returnsNewTargetWeight() {
-        person.setTargetWeight(68);
-        assertEquals(68, person.getTargetWeight());
-    }
-
-    @Test
-    void getActivityLevel_person_returnsActivityLevel() {
-        assertEquals(ActivityLevel.LOW, person.getActivityLevel());
-    }
-
-    @Test
-    void setActivityLevel_personWithNewActivityLevel_returnsNewActivityLevel() {
+    void setActivityLevel_setActivityLevelToHigh_returnsCorrectActivityLevelDescription() {
         person.setActivityLevel(ActivityLevel.HIGH);
-        assertEquals(ActivityLevel.HIGH, person.getActivityLevel());
+        assertEquals("You engage in vigorous exercise or have a physically demanding job.",
+                person.getActivityLevel().getDescription());
     }
 
     @Test
-    void toString_person_returnsStringRepresentationOfPersonInformation() {
-        assertEquals("  Name: Jack" + System.lineSeparator()
-                + "  Gender: male" + System.lineSeparator()
-                + "  Age: 21" + System.lineSeparator()
-                + "  Height: 165cm" + System.lineSeparator()
-                + "  Original weight: 75kg" + System.lineSeparator()
-                + "  Target weight: 65kg" + System.lineSeparator()
-                + "  Activity level: You engage in some form of light exercise or have a job that requires "
-                + "some physical activity.", person.toString());
+    void setActivityLevel_setActivityLevelToExtreme_returnsCorrectActivityLevelDescription() {
+        person.setActivityLevel(ActivityLevel.EXTREME);
+        assertEquals("You engage in extremely vigorous exercise or have an extremely physically "
+                + "demanding job.", person.getActivityLevel().getDescription());
+    }
+
+    @Test
+    void setActivityLevel_setActivityLevelToNull_expectsAssertionErrors() {
+        assertThrows(AssertionError.class, () -> person.setActivityLevel(null));
     }
 }

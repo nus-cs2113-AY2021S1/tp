@@ -1,11 +1,6 @@
 package seedu.dietbook.food;
 
 
-/**
- * Constructor of the Food class
- * Store information regarding a food item: name, number of calories in kcal, amount of carbohydrate in grams,
- * amount of protein in grams, amount of fats in grams.
- */
 public class Food {
     private final String name;
     private final int calorie;
@@ -20,7 +15,6 @@ public class Food {
         this.protein = protein;
         this.fats = fats;
     }
-
 
     public int getFat() {
         return fats;

@@ -8,8 +8,10 @@ public class Person {
 
     /* The height of the person in cm */
     private int height;
-    /* The original weight of the person in kg */
+    /* The original weight of the person when he or she first started using DietBook in kg */
     private int originalWeight;
+    /* The current weight of the person in kg */
+    private int currentWeight;
     /* The target weight of the person in kg */
     private int targetWeight;
     private int age;
@@ -18,40 +20,58 @@ public class Person {
     private String name;
 
     /**
-     * Constructs a <code>Person</code> with the given name, gender, age, height, original weight, target
-     * weight and activity level.
+     * Constructs a <code>Person</code> with the given name, gender, age, height, activity level, original,
+     * current and target weight.
      *
      * @param name The name of the person.
      * @param gender The gender of the person.
      * @param age The age of the person.
      * @param height The height of the person.
-     * @param originalWeight The original weight of the person.
+     * @param originalWeight The original weight of the person when he or she first started using DietBook.
+     * @param currentWeight The current weight of the person.
      * @param targetWeight The target/desired weight that the person wants to achieve.
      * @param activityLevel The activity level of the person or in other words, the amount of exercise the
      *     person engages in.
      */
-    public Person(String name, Gender gender, int age, int height, int originalWeight, int targetWeight,
-                  ActivityLevel activityLevel) {
-        assert name != null : "Name of person should not be null";
-        assert name.trim().length() > 0 : "Name of person should not be an empty string";
-        assert gender != null : "Gender of person should not be null";
-        assert age > 0 : "Age of person should be greater than 0";
-        assert age < 125 : "Age of person should be less than 125";
-        assert height > 0 : "Height of person should be greater than 0";
-        assert height < 273 : "Height of person should be less than 273";
-        assert originalWeight > 0 : "Original weight of person should be greater than 0";
-        assert originalWeight < 443 : "Original weight of person should be less than 443";
-        assert targetWeight > 0 : "Target weight of person should be greater than 0";
-        assert targetWeight < 443 : "Target weight of person should be less than 443";
-        assert activityLevel != null : "Activity level of person should not be null";
+    public Person(String name, Gender gender, int age, int height, int originalWeight,
+                  int currentWeight, int targetWeight, ActivityLevel activityLevel) {
+        performAssertionsForPerson(name, gender, age, height, originalWeight, currentWeight,
+                targetWeight, activityLevel);
 
         this.name = name.trim();
         this.gender = gender;
         this.age = age;
         this.height = height;
         this.originalWeight = originalWeight;
+        this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
         this.activityLevel = activityLevel;
+    }
+
+    /**
+     * Sets all the attributes of a person to the new attributes given.
+     *
+     * @param newName The new/revised name of the person.
+     * @param newGender The new/revised gender of the person.
+     * @param newAge The new/revised age of the person.
+     * @param newHeight The new/revised height of the person.
+     * @param newOriginalWeight The new/revised original weight of the person when he or she first started
+     *     using DietBook.
+     * @param newCurrentWeight The new/revised current weight of the person.
+     * @param newTargetWeight The new/revised target weight that the person wants to achieve.
+     * @param newActivityLevel The new/revised activity level of the person or in other words, the amount
+     *     of exercise the person engages in.
+     */
+    public void setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight,
+                             int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel) {
+        setName(newName);
+        setGender(newGender);
+        setAge(newAge);
+        setHeight(newHeight);
+        setOriginalWeight(newOriginalWeight);
+        setCurrentWeight(newCurrentWeight);
+        setTargetWeight(newTargetWeight);
+        setActivityLevel(newActivityLevel);
     }
 
     /**
@@ -69,8 +89,7 @@ public class Person {
      * @param newName The new/revised name of the person.
      */
     public void setName(String newName) {
-        assert newName != null : "The revised name of person should not be null";
-        assert newName.trim().length() > 0 : "The revised name of person should not be an empty string";
+        performAssertionsForNameInput(newName);
         name = newName.trim();
     }
 
@@ -89,7 +108,7 @@ public class Person {
      * @param newGender The new/revised gender of the person.
      */
     public void setGender(Gender newGender) {
-        assert newGender != null : "The revised gender of person should not be null";
+        performAssertionsForGenderInput(newGender);
         gender = newGender;
     }
 
@@ -108,8 +127,7 @@ public class Person {
      * @param newAge The new/revised age of the person.
      */
     public void setAge(int newAge) {
-        assert newAge > 0 : "The revised age of person should be greater than 0";
-        assert newAge < 125 : "The revised age of person should be lesser than 125";
+        performAssertionsForAgeInput(newAge);
         age = newAge;
     }
 
@@ -128,8 +146,7 @@ public class Person {
      * @param newHeight The new/revised height of the person.
      */
     public void setHeight(int newHeight) {
-        assert newHeight > 0 : "The revised height of person should be greater than 0";
-        assert newHeight < 273 : "The revised height of person should be lesser than 273";
+        performAssertionsForHeight(newHeight);
         height = newHeight;
     }
 
@@ -148,9 +165,27 @@ public class Person {
      * @param newOriginalWeight The new/revised original weight of the person.
      */
     public void setOriginalWeight(int newOriginalWeight) {
-        assert newOriginalWeight > 0 : "The revised original weight of person should be greater than 0";
-        assert newOriginalWeight < 443 : "The revised original weight of person should be lesser than 443";
+        performAssertionsForWeight(newOriginalWeight,"Original weight");
         originalWeight = newOriginalWeight;
+    }
+
+    /**
+     * Returns the current weight of the person when he or she first started using DietBook.
+     *
+     * @return The current weight of the person when he or she first started using DietBook.
+     */
+    public int getCurrentWeight() {
+        return currentWeight;
+    }
+
+    /**
+     * Sets the current weight of the person to the new current weight given.
+     *
+     * @param newCurrentWeight The new/revised current weight of the person.
+     */
+    public void setCurrentWeight(int newCurrentWeight) {
+        performAssertionsForWeight(newCurrentWeight, "Current weight");
+        currentWeight = newCurrentWeight;
     }
 
     /**
@@ -168,8 +203,7 @@ public class Person {
      * @param newTargetWeight The new/revised target weight of the person.
      */
     public void setTargetWeight(int newTargetWeight) {
-        assert newTargetWeight > 0 : "The revised target weight of person should be greater than 0";
-        assert newTargetWeight < 443 : "The revised target weight of person should be lesser than 443";
+        performAssertionsForWeight(newTargetWeight, "Target weight");
         targetWeight = newTargetWeight;
     }
 
@@ -188,7 +222,7 @@ public class Person {
      * @param newActivityLevel The new/revised activity level of the person.
      */
     public void setActivityLevel(ActivityLevel newActivityLevel) {
-        assert newActivityLevel != null : "The revised activity level of person should not be null";
+        performAssertionsForActivityLevel(newActivityLevel);
         activityLevel = newActivityLevel;
     }
 
@@ -205,8 +239,101 @@ public class Person {
                 + "  Age: " + age + System.lineSeparator()
                 + "  Height: " + height + "cm" + System.lineSeparator()
                 + "  Original weight: " + originalWeight + "kg" + System.lineSeparator()
+                + "  Current weight: " + currentWeight + "kg" + System.lineSeparator()
                 + "  Target weight: " + targetWeight + "kg" + System.lineSeparator()
                 + "  Activity level: " + activityLevel.getDescription();
         return userInformation;
+    }
+
+    /**
+     * Performs assertions on all possible person inputs parameters.
+     *
+     * @param name The name of the person.
+     * @param gender The gender of the person.
+     * @param age The age of the person.
+     * @param height The height of the person.
+     * @param originalWeight The original weight of the person when he or she first started using DietBook.
+     * @param currentWeight The current weight of the person.
+     * @param targetWeight The target/desired weight that the person wants to achieve.
+     * @param activityLevel The activity level of the person or in other words, the amount of exercise the
+     *     person engages in.
+     */
+    private void performAssertionsForPerson(String name, Gender gender, int age, int height,
+                                            int originalWeight, int currentWeight, int targetWeight,
+                                            ActivityLevel activityLevel) {
+        performAssertionsForNameInput(name);
+        performAssertionsForGenderInput(gender);
+        performAssertionsForAgeInput(age);
+        performAssertionsForHeight(height);
+        performAssertionsForWeight(originalWeight, "Original weight");
+        performAssertionsForWeight(currentWeight, "Current weight");
+        performAssertionsForWeight(targetWeight, "Target weight");
+        performAssertionsForActivityLevel(activityLevel);
+    }
+
+    /**
+     * Performs assertion on the activity level input.
+     *
+     * @param activityLevel The activity level of the person or in other words, the amount of exercise the
+     *     person engages in.
+     */
+    private void performAssertionsForActivityLevel(ActivityLevel activityLevel) {
+        assert activityLevel != null : "Activity level of person should not be null";
+    }
+
+    /**
+     * Performs assertions the weight related inputs.
+     *
+     * @param weight Either the original, current or target weight of the person.
+     * @param weightType A string describing whether the weight given the original, current or target weight.
+     */
+    private void performAssertionsForWeight(int weight, String weightType) {
+        int minWeight = 1;
+        assert weight >= minWeight : weightType + " of person should be greater than 0";
+        int maxWeight = 500;
+        assert weight <= maxWeight : weightType + " of person should less than 500";
+    }
+
+    /**
+     * Performs assertions on the height input.
+     *
+     * @param height The height of the person.
+     */
+    private void performAssertionsForHeight(int height) {
+        int minHeight = 1;
+        assert height >= minHeight : "Height of person should be greater than 0";
+        int maxHeight = 300;
+        assert height <= maxHeight : "Height of person should be less than 300";
+    }
+
+    /**
+     * Performs assertion on the gender input.
+     *
+     * @param gender The gender of the person.
+     */
+    private void performAssertionsForGenderInput(Gender gender) {
+        assert gender != null : "Gender of person should not be null";
+    }
+
+    /**
+     * Performs assertions on the name input.
+     *
+     * @param name The name of the person.
+     */
+    private void performAssertionsForNameInput(String name) {
+        assert name != null : "The name of person should not be null";
+        assert name.trim().length() > 0 : "The name of person should not be an empty string";
+    }
+
+    /**
+     * Performs assertions on the age input.
+     *
+     * @param age The age of the person.
+     */
+    private void performAssertionsForAgeInput(int age) {
+        int minAge = 0;
+        assert age >= minAge : "The age of person should be equals to or greater than 0";
+        int maxAge = 150;
+        assert age <= maxAge : "The age of person should be lesser than 150";
     }
 }

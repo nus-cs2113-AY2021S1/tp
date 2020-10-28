@@ -1,6 +1,10 @@
 package seedu.dietbook.food;
 
-import seedu.dietbook.food.Food;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +24,6 @@ class FoodTest {
         assertEquals(480, testFood.getCalorie());
         assertEquals(50, testFood.getCarbohydrate());
         assertEquals(40, testFood.getProtein());
-        assertEquals(30, testFood.getFats());
+        assertEquals(30, testFood.getFat());
     }
 }
