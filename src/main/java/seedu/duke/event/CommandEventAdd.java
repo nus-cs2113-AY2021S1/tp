@@ -2,6 +2,8 @@ package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+import java.time.LocalDate;
+
 
 
 public class CommandEventAdd extends Command {
@@ -16,6 +18,7 @@ public class CommandEventAdd extends Command {
         }
         String eventName = userInput.getArg("n");
         String eventDate = userInput.getArg("d");
+
         if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
             output = "This event already exists!";
         } else {

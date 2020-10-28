@@ -20,7 +20,7 @@ else else
  activate ":EventList"
  activate ":CommandEventDel"
  ":EventList" -> ":Event": clear()
- activate ":Event"
+
  return
  return output
  deactivate ":EventList"

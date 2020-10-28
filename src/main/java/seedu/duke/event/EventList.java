@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
 public class EventList {
     public static ArrayList<Event> events = new ArrayList<>();
-    //public static Logger logger = Logger.getGlobal();
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    public static Logger logger = Logger.getGlobal();
     public static Scanner scanner = new Scanner(System.in);
 
     public static final String COMMAND_EVENT_NOT_EXIST =
@@ -27,6 +25,8 @@ public class EventList {
     public static final String COMMAND_DELETE_EVENT_SUCCESSFUL = "Got it! I'll remove this Event:\n";
     public static final String COMMAND_MARK_EVENT_AS_COMPLETE_SUCCESSFUL = "Nice! I've marked this task as done:\n";
     public static final String COMMAND_KEYWORD_NOT_FOUND = "No matching events found!";
+    public static final String COMMAND_NOT_VALID_DATE =
+            "Oops! Seems like you have entered a past date. Please enter a valid date.";
 
     public static Event getEvent(int index) {
         return events.get(index);
@@ -41,10 +41,16 @@ public class EventList {
         logger.setLevel(Level.OFF);
         logger.info("Adding event to list\n");
         String userOutput;
-        events.add(event);
-        userOutput = COMMAND_ADD_EVENT_SUCCESSFUL + event.printEvent()
-                + "\nNow you have " + events.size() + " event in the list.\n";
-        logger.info("Added event to list\n");
+
+        LocalDate date = event.getEventDate();
+        if (date.isBefore(LocalDate.now())) {
+            return COMMAND_NOT_VALID_DATE;
+        } else {
+            events.add(event);
+            userOutput = COMMAND_ADD_EVENT_SUCCESSFUL + event.printEvent()
+                    + "\nNow you have " + events.size() + " event in the list.\n";
+            logger.info("Added event to list\n");
+        }
 
         return userOutput;
     }
@@ -106,6 +112,7 @@ public class EventList {
             int numToBeMarked = index + 1;
             Event event = events.get(index);
             event.isDone = true;
+
             userOutput = userOutput.concat(COMMAND_MARK_EVENT_AS_COMPLETE_SUCCESSFUL
                     + numToBeMarked + "." + events.get(index).printEvent());
         } catch (IndexOutOfBoundsException e) {
@@ -161,7 +168,7 @@ public class EventList {
                 }
             }
         } else {
-            userOutput = "The list is empty";
+            userOutput = COMMAND_EVENT_LIST_EMPTY;
         }
         return userOutput;
     }
