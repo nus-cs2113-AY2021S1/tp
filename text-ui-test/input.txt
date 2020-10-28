@@ -38,8 +38,8 @@ bookmark -a 500
 bookmark -a 3
 bookmark -a 430
 bookmark 1 -e 5
-bookmark 2 -e 4
-bookmark 3 -e 6
+bookmark 2 -e 1
+bookmark 3 -e 1
 bookmark 4 -e 8
 bookmark 1 -n test
 bookmark 1 -n test 2 withspace
