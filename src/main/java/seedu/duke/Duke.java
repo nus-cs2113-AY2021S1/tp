@@ -26,8 +26,8 @@ public class Duke {
         calendarList = new CalendarList();
         try {
             storage.readFromFile(calendarList);
-        } catch (FileNotFoundException e) {
-            Ui.printFileNotFoundErrorMessage();
+        } catch (DukeException e) {
+            Ui.printDukeExceptionMessage(e, calendarList);
         }
     }
 
