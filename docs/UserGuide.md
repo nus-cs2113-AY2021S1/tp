@@ -28,6 +28,7 @@
     - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
     - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
     - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
+  - [4.6 Importing features](#46-import)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
@@ -297,6 +298,11 @@ Example of usage:
 
 Expected outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
+
+### 4.6 Import
+
+You can import data from other existing CSVs quickly with the import command  
+Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME` OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME` OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
 
 ## 5. FAQ
 
