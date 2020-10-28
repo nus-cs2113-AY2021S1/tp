@@ -150,19 +150,6 @@ Design consideration: `SchoolEvent` is modelled after NUS modules to cater to ou
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add a task item feature
-This feature is being facilitated by `AddCommand`.
-The following sequence diagram shows how the `execute()` operation works:
-
-It first checks the type of the new task,
-then it analyses the attached information, if the format is desired, the program saves the event with the information in the task list.
-
-Note: A todo task has only task description while a deadline task has both the task description and a due date. 
-The due date must be in the pattern of ddMMyy as it is the pattern set by the `TimeParser` class.
-
-### Add an event item feature
-This feature is being facilitated by `AddCommand`.
-
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works:
@@ -171,9 +158,11 @@ The following sequence diagram shows how the `execute()` operation works:
 Note: It checks the type of the new calendar item first, then it analyses the attached information, 
 and finally uses the corresponding adding function to add the new calendar item into the calendar list.  
 
-Note: It has seven command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
-If the item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
-If the item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
+Note: It has seven adding command types, including `Todo`, `Deadline`, `Activity`, `Lecture`, `Tutorial`, `Lab` and ` Exam`.
+`todo` tasks only have a string description, while `Deadline` items have description and due date, and other items have description, date and time of the event.
+The `TimeParser` analyses the date and time in the corresponding commands. Furthermore,
+if the new item is in `Lecture`, `Lab`, `Tutorial`, or `Exam` type, there will be a check in the function `isValid(command)` to ensure the module code included in the item is valid.
+If the new item is in `Lecture`, `Lab`, or `Tutorial`type, it can be added as recurring items,
 while only one `Todo`, `Deadline`, `Exam` or `Activity` item can be added at a time.   
 
 ### Mark a task as done feature
