@@ -154,25 +154,38 @@ If the task is done, you will be able to see a small tick [/] beside the task. E
 
 Format: `done <task_number>`
 
-Example of usage:
+Example:
 
-`done 1` - This marks the first task on your task list as done.
+`done 1` - By using this command, you will mark the first task on your task list as done! 
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **You can mark tasks as done, but not events!** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
+![done_command](images/done_command.PNG)
+
+![warning_done](images/warning_done.PNG)
 
 ### Adding an event:
 
-If you want to add a school event or any other event to the calendar list, you can use `act`, `exam`, `lab`, `lect` or `tut` command with following format:  
+If you have new events including school event and any other event, you can add the new event to the calendar list. 
+You can add lectures, tutorials, and labs as recurring events, but the exams and activities cannot be recurring. 
+When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command with following formats:  
+
+![tip_event](images/tip_event.PNG)
+
+![warning_event](images/warning_event.PNG)
 
 #### Adding an activity event: `act`
 
-You can add an activity event to the calendar list by using the following format.
+This function allows you to add school activities, such as interview workshops or Co-Curriculum Activities (CCAs). 
+This definitely the best way to keep track of your commitments and will surely make your student life more colourful and gain the most out of it! 
 
 Format: `act <activity_description> @<venue> / <date> <time>`
 
-Example of usage:
+Example:
 
-`act CCA @NUS UTOWN / 200920 1600` - adds a CCA event held in NUS UTOWN on 2020-09-20 4p.m. to the calendar list.
+`act CCA @NUS UTOWN / 200920 1600` - adds a CCA event held at NUS UTOWN on 20th September 2020, 4pm as shown in the figure below.
+
+![act_command](images/act_command.png)
+
+![warning_act](images/warning_act.PNG)
 
 #### Adding an examination event: `exam`
 
@@ -222,7 +235,7 @@ Example of usage:
 
 `tut CS2100 @com1-1111 -r 5 / 151020 1400` - adds CS2100 lab at 2020-10-15 2p.m. to the event list, the venue is com1-1111 and the tutorial will happen for the next 5 weeks.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **The date and time format must be followed precisely.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
+![warning_event_date](images/warning_event_format.PNG)
 
 ### Additional information of an event
 
@@ -236,7 +249,7 @@ Example of usage:
 
 `/a 1 - This is the additional information for event number 1`
 
-![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **You can add multiple additional information to an event.**![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) 
+![tip_addtional_info](images/tip_additional_info.PNG)
 
 #### Viewing the additional information of an event: `/v`
 
@@ -286,6 +299,8 @@ Example of usage:
 
 `/f Tuition` - the lists of items (both tasks and events) containing the keyword “Tuition” will appear.
 
+![tip_find](images/tip_find.PNG)
+
 #### Finding an item from the task list: `/ft`
 
 You can search the task list based on a keyword.
@@ -306,6 +321,8 @@ Example of usage:
 
 `/fe Tuition` - the lists of events containing the keyword “Tuition” will appear.
 
+![tip_find_event](images/tip_find_event.PNG)
+
 ### Prioritizing a task: `*t`                                                                                                    
 
 If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. Only tasks can be marked as important.
@@ -317,52 +334,72 @@ Example of usage:
 
 `*t 1` - marks the first task in the task list as important.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Only a task can be marked as important, events are not allowed to be marked as important.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
+![warning_prioritizing](images/warning_prioritizing.PNG)
 
 ### Printing tasks: `print tasks`
 
-If you want to print out all tasks saved in the program, you can always type `print tasks` in the terminal to view all the 
-available task items, which include the todo and the deadlines. 
+If you want to prioritize or delete some of the tasks on hand but cannot recall the task number as there are simply 
+too many tasks, you can always ask the program to print out all tasks saved in the program. 
+In this way, you can have a better picture of the tasks on hand! 
 
 Format: `print tasks`
 
+![printTasks](images/printTasks_command.png)
+
+![tips_printtask](images/tip_printTasks.PNG)
+
 ### Printing events: `print events`
 
-If you want to print out all events saved in the program, you can always type `print events` in the terminal to view all 
-the available event items, which include activities, examinations, laboratory, sessions, lecture and tutorial.
+If you want to delete past events or to add additional information to a certain event, you can always ask the program 
+to display all events saved in the program. This feature will definitely save your brain space wated on memorising them.
 
 Format: `print events`
 
+![printEvents](images/printEvents_command.png)
+
+![tips_printevents](images/tip_printEvents.PNG)
+
 ### Printing important tasks: `print *`
     
-If you want to see the important tasks you have now, you can type `print *` to see the list of all-important tasks.                           
-                                                    
+If you just want to view all the important tasks you have now instead of all the tasks in the calendar list, you can 
+type `print *` command to view the list of all important tasks together with their information.    
+                                                                           
 Format: `print *`
+
+![print*](images/printImportant_command..PNG)
 
 ### Printing progress: `print progress`
 
-If you want to know the progress of your tasks now, you can type `print progress` command to see the proportion in fraction and percentage of the finished tasks in all the tasks. 
-Show the fraction and percentage of tasks which are marked as done in all tasks.
+If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, you can 
+type `print progress` command to see the proportion of the finished tasks among all the tasks.
 
 Format: `print progress`
 
+![print_progress](images/printProgress_command.PNG)
+
 ### Giving suggestion: `suggestion`
 
-If you want to get some suggestions about preparing tasks that are important or have the earliest deadline, you can type the `suggestion` command to see suggestions.  
-Print simple suggestions about preparing which tasks first.
+When you have a lot of tasks and do not know which several tasks should be prepared first, you can get some simple 
+suggestions from the 25HoursADay! The program can select several important and recent tasks and print them out together 
+will their information. If you want to get the suggestions, you can type the `suggestion` command to see them.  
     
 Format: `suggestion`
 
+![suggestion_command](images/suggestion_command.PNG)
+
 ### Printing timeline
 
-If you want to see your calendar items in timeline format, you can type `print timeline` to view the default calendar. 
-If you just want to see your personal calendar for a certain time period, you can type `print timeline <week/ month/ date>`.
+If you want to see your calendar items in timeline format, you can always use the personalised calendar feature. 
+There are four kinds of personalised calendar that you can print: default calendar, weekly calendar, monthly calendar, 
+and calendar before a specific date you choose.
 
 #### Printing default calendar: `print timeline`
 
 Print the personal calendar including all calendar items, with todo items (which do not have a specific date) printed as a list at the bottom of the timeline.
 
 Format: `print timeline`
+
+![print_timeline](images/printTimeline_command.PNG)
 
 #### Printing calendar for the current week: `print timeline week`
 
@@ -376,11 +413,15 @@ Print the personal calendar for the current month.
 
 Format: `print timeline month`
 
+![tip_timeline_month](images/warning_timeline_month.PNG)
+
 #### Printing calendar before a specific date: `print timeline date`
 
 Print the calendar before a specific date.
 
 Format: `print timeline date <DATE>`
+
+![warning_timeline_date](images/warning_timeline_date.PNG)
 
 ### Printing countdown:
       
@@ -397,6 +438,7 @@ All the unfinished deadlines will be printed before all the upcoming exams.
 
 Format: `countdown`
  
+ ![countdown](images/countdown_command.PNG)
 
 #### Printing countdown for exam events only: `countdown exams`
 
@@ -405,6 +447,8 @@ If you type `countdown exams`, you can see the countdown of all upcoming exams.
 The remaining date for the exams is printed in ascending order.
 
 Format: `countdown exams`
+
+![warning_countdown](images/warning_countdown.PNG)
 
 #### Printing countdown for deadline tasks only: `countdown deadlines`
 
@@ -427,6 +471,8 @@ If you want to exit the program, you can always type `bye` in the terminal to qu
 automatically for your future use. 
 
 Format: `bye`
+
+![bye_command](images/bye_command.png)
 
 
 ## FAQ
