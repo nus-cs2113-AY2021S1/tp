@@ -21,7 +21,7 @@ public class BookmarkCommand extends Command {
         super();
         assert bookmarks != null;
         this.question = question;
-        if(question.isBookmarked()){
+        if (question.isBookmarked()) {
             alreadyBookmarked = true;
         } else {
             bookmarks.add(question);
@@ -42,7 +42,7 @@ public class BookmarkCommand extends Command {
         if (typeOfBookmarkCommand.equals(BOOKMARK_LIST)) {
             ui.printListOfBookmarkedQuestions(bookmarks);
         } else if (typeOfBookmarkCommand.equals(BOOKMARK_STORE)) {
-            if(alreadyBookmarked){
+            if (alreadyBookmarked) {
                 ui.printAlreadyBookmarkedIndicator();
             } else {
                 ui.printBookmarkedIndicator();
