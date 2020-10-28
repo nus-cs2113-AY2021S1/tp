@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class ModuleList {
 
     public Ui ui = new Ui();
-    public static ArrayList<Module> modList = new ArrayList<>();
+    private ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
     private static final String INVALID_HOURS = "Please input a whole number between 1 and 84 for the "
         + "expected workload.";

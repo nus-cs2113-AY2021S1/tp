@@ -35,7 +35,7 @@ public class ModTracker {
         ui.printGreeting(name);
         storage.loadData(this);
         storage.unlockFile();
-        notification.start();
+        notification.start(modList);
         runCommandLoopUntilExitCommand(name);
         storage.lockFile();
     }

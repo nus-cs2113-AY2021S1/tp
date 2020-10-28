@@ -3,8 +3,6 @@ package seedu.modtracker;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static seedu.modtracker.ModuleList.modList;
-
 public class Notification {
 
     public static int numOfNotification = 0;
@@ -28,7 +26,7 @@ public class Notification {
     public static final String[] pushForward = {HARD_WORK, PUSH_ON, STRONGER, CAPABLE, TODAY};
 
     //update week number with user input
-    public void updateCurrentWeek() {
+    public void updateCurrentWeek(ArrayList<Module> modList) {
         currentWeek = 13;
         while (currentWeek > 0) {
             for (Module mod : modList) {
@@ -42,16 +40,13 @@ public class Notification {
 
     //check if module has actual and expected time
     private boolean hasExpAndAct(Module mod) {
-        if (mod.doesExpectedWorkLoadExist() && mod.doesActualTimeExist(currentWeek)) {
-            return true;
-        }
-        return false;
+        return mod.doesExpectedWorkLoadExist() && mod.doesActualTimeExist(currentWeek);
     }
 
     public int getNumNotification(ModuleList list) {
         numOfNotification = 0;
         ArrayList<Module> modList = list.getData();
-        updateCurrentWeek();
+        updateCurrentWeek(modList);
         if (currentWeek == 0) {
             return 0;
         }
@@ -115,9 +110,8 @@ public class Notification {
         }
     }
 
-    public void start() {
-        ModuleList list = new ModuleList();
-        numOfNotification = getNumNotification(list);
+    public void start(ModuleList moduleList) {
+        numOfNotification = getNumNotification(moduleList);
         if (numOfNotification > 0) {
             System.out.println("You have " + numOfNotification + " notifications.");
             System.out.println(OPEN + System.lineSeparator());
