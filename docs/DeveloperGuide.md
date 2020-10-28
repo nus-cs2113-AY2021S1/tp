@@ -632,7 +632,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 
 <br/>
 
-#### 4.6.1 Current Implementation
+#### 4.9.1 Current Implementation
 
 The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
 
@@ -743,7 +743,7 @@ Notes for anime:
 
 <br/>
 
-#### 4.5.2 Design consideration
+#### 4.9.2 Design consideration
 This section describes the various design considerations taken when implementing the `Bookmark` feature.
 
 Aspect: **How should the bookmark entries be kept**
