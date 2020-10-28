@@ -164,7 +164,7 @@ Example:
 
 ### Adding an event:
 
-When you have a lot of events, you can add them to the calendar list in different types, including school events, 
+When you have new events, you can add them to the calendar list in different types, including school events, 
 such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activitie` type.
 You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activitie` events cannot be recurring. 
 When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command in following formats:  
