@@ -41,8 +41,8 @@ This document is meant for new and current developers of AniChan. It describes t
 ### Setting up the project in your computer
 
 Ensure that you have the following installed: 
-* JDK 11.
-* IntelliJ IDE (highly recommended).
+*   JDK 11.
+*   IntelliJ IDE (highly recommended).
 
 Firstly, **fork** this repo and **clone** a copy into your computer.
 
@@ -103,8 +103,8 @@ This section will help provide insight to the general overview of Anichan’s ar
 The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
 
 The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
-* At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
-* At shut down: Shuts down the components and invokes any clean up methods where necessary.
+*   At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
+*   At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
 The rest of AniChan consists of 6 components: 
 *   `Ui`: Manages the user interface of AniChan.
@@ -132,8 +132,8 @@ Below is an overall sequence diagram to help illustrate the general program flow
 The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes ensuring high cohesiveness and separation of roles.
 
 The `Ui` component listens for: 
-*  the execution of commands to print the result of the Command.
-* any exceptions thrown to show an error message to the user, instead of a program termination.
+*   the execution of commands to print the result of the Command.
+*   any exceptions thrown to show an error message to the user, instead of a program termination.
 
 <br/>
 
@@ -170,9 +170,9 @@ Example: The Browse command would be represented by a `BrowseCommand`.
 The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing AniChan with an interface for the program to retrieve with the source data.
 
 The `AnimeData `component:
-* can retrieve Anime objects using ID.
-* can view detailed  information of each Anime Object.
-* can browse the Anime catalog with sorting algorithms.
+*   can retrieve Anime objects using ID.
+*   can view detailed  information of each Anime Object.
+*   can browse the Anime catalog with sorting algorithms.
 
 <br/>
 
@@ -184,13 +184,13 @@ The `AnimeData `component:
 The User inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interaction with `Workspace` class.
 
 The `User`component: 
-* can provide user information like `name`, `gender`, and `honorific name`
-* stores an array list of type `Workspace`
-* can add, set, and switch between workspaces 
+*   can provide user information like `name`, `gender`, and `honorific name`
+*   stores an array list of type `Workspace`
+*   can add, set, and switch between workspaces 
 
 The `Workspace` component:  
-* can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
-* can allow `User` to change his active `Watchlist`.
+*   can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
+*   can allow `User` to change his active `Watchlist`.
 
 <!-- @@author -->
 <br/>
@@ -200,10 +200,10 @@ The `Workspace` component:
 *Figure 8: Storage Class Diagram*
 
 The `Storage` component consist of `StorageManager` which:
-* can **save** workspace created by the user as a folder.
-* can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using 
+*   can **save** workspace created by the user as a folder.
+*   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using 
 their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
-* can **read** script files that are in `.txt` format using the class `ScriptStorage`.
+*   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
 
 **AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
 
@@ -223,8 +223,8 @@ The `estimate` feature aims to provide translators with better estimates on the 
 ##### 4.1.1 Current Implementation
 
 The `estimate` feature is facilitated by `EstimateCommand`, which extends from the abstract class `Command`. `EstimateCommand` is instantiated by `EstimateParser`, and it requires two parameters:
-* `ScriptFileName` (mandatory).
-* `wordsPerHour` (optional), if not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used to generate 3 estimation timings.
+*   `ScriptFileName` (mandatory).
+*   `wordsPerHour` (optional), if not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used to generate 3 estimation timings.
 <br/>
 
 Given below is an example usage scenario showing how the `estimate` command behaves at each step.
@@ -431,9 +431,9 @@ The watchlist management feature aims to provide translators with a simple way t
 ##### 4.4.1 Current Implementation
 
 The `watchlist` feature is facilitated by `WatchlistCommand`, which extends from the abstract class `Command`. `WatchlistCommand` is instantiated by `WatchlistParser`, and it requires 3 parameters: 
-* `option` (mandatory).
-* `watchlistName` (mandatory only if the option `-n` is specified).
-* `watchlistIndex` (mandatory only if the options `-s` and `-d` is specified).
+*   `option` (mandatory).
+*   `watchlistName` (mandatory only if the option `-n` is specified).
+*   `watchlistIndex` (mandatory only if the options `-s` and `-d` is specified).
 <br/>
 
 Given below is an example usage scenario showing how the `watchlist` command behaves at each step.
