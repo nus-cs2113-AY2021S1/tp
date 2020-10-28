@@ -4,11 +4,13 @@ participant "<<class>>\n:Parser"
 
 activate ":Fitr"
 ":Fitr" -> "<<class>>\n:Parser" ++ : parse("edit exercise 25/10/2020 1...")
+
 create ":EditCommandParser"
 "<<class>>\n:Parser" -> ":EditCommandParser" ++
-
 return
+
 |||
+
 "<<class>>\n:Parser" -> ":EditCommandParser" ++ : editCommand()
 create ":EditEntryCommand"
 ":EditCommandParser" -> ":EditEntryCommand" ++
@@ -23,6 +25,7 @@ return
 ":EditEntryCommand" ->] : Saved to local storage
 return
 destroy ":EditEntryCommand"
+deactivate ":Fitr"
 
 hide footbox
 @enduml
