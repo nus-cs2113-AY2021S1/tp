@@ -27,13 +27,13 @@ class WordsFilterTest {
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {
-            FilterExecutor.executeFilterCommand("filter by\\type -noun -verb");
+            FilterExecutor.executeFilterCommand("filter words by\\type -noun -verb");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
         assertEquals(7, WordsFilter.filteredWords.size());
         try {
-            FilterExecutor.executeFilterCommand("filter -continue by\\type -noun");
+            FilterExecutor.executeFilterCommand("filter words -continue by\\type -noun");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
@@ -46,13 +46,13 @@ class WordsFilterTest {
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {
-            FilterExecutor.executeFilterCommand("filter by\\start -gr -co -s -ho");
+            FilterExecutor.executeFilterCommand("filter words by\\start -gr -co -s -ho");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
         assertEquals(4, WordsFilter.filteredWords.size());
         try {
-            FilterExecutor.executeFilterCommand("filter -continue by\\start -g");
+            FilterExecutor.executeFilterCommand("filter words -continue by\\start -g");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
@@ -65,19 +65,19 @@ class WordsFilterTest {
         initializeTestDatabase();
         assertEquals(10, WordList.getNumberOfWords());
         try {
-            FilterExecutor.executeFilterCommand("filter by\\include -mp -pu -a -e");
+            FilterExecutor.executeFilterCommand("filter words by\\include -mp -pu -a -e");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
         assertEquals(10, WordsFilter.filteredWords.size());
         try {
-            FilterExecutor.executeFilterCommand("filter -continue by\\include -e");
+            FilterExecutor.executeFilterCommand("filter words -continue by\\include -e");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
         assertEquals(8, WordsFilter.filteredWords.size());
         try {
-            FilterExecutor.executeFilterCommand("filter -continue by\\include -lo");
+            FilterExecutor.executeFilterCommand("filter words -continue by\\include -lo");
         } catch (FilterCommandException e) {
             e.printStackTrace();
         }
