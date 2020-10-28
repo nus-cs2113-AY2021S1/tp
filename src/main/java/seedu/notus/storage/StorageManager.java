@@ -358,8 +358,11 @@ public class StorageManager {
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
+        if (!reminderPeriods.isEmpty()) {
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
+        }
         for (String reminderPeriod : reminderPeriods) {
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " " + reminderPeriod + " ";
+            eventDetails += reminderPeriod + " ";
         }
 
         if (!event.getRecurring()) {
