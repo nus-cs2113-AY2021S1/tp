@@ -48,7 +48,8 @@ public class ListApptCommand extends Command {
 
         int i;
         for (i = 0; i < appointments.getSize(); i++) {
-            if (appointments.getAppointmentByIndex(i).getPatient().equals(targetPatient)) {
+            Patient tempPatient = appointments.getAppointmentByIndex(i).getPatient();
+            if (tempPatient != null && tempPatient.equals(targetPatient)) {
                 ui.showAppointmentLine(appointments.getAppointmentByIndex(i), i + 1);
             }
         }

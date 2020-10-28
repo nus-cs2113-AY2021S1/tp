@@ -43,7 +43,7 @@
 	 Enter patient date of birth (YYYY-MM-DD) including the dashes: 
 	____________________________________________________________
 	 Patient successfully added: 
-	 Trump, S9123456Z, 1960-06-14
+	 Trump | S9123456Z | 1960-06-14
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
@@ -52,7 +52,7 @@
 	 Enter command: 
 	____________________________________________________________
 	 Patient Details: 
-	 Trump, S9123456Z, 1960-06-14
+	 Trump | S9123456Z | 1960-06-14
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
@@ -64,7 +64,7 @@
 	 Enter patient date of birth (YYYY-MM-DD) including the dashes: 
 	____________________________________________________________
 	 Patient successfully edited: 
-	 Donald, S9123456Z, 1962-06-14
+	 Donald | S9123456Z | 1962-06-14
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
@@ -72,7 +72,7 @@
 	 Enter patient date of birth (YYYY-MM-DD) including the dashes: 
 	____________________________________________________________
 	 Patient successfully added: 
-	 John, S9993222A, 1985-06-14
+	 John | S9993222A | 1985-06-14
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
@@ -81,7 +81,7 @@
 	 Enter command: 
 	____________________________________________________________
 	 Patient successfully deleted: 
-	 John, S9993222A, 1985-06-14
+	 John | S9993222A | 1985-06-14
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
@@ -113,7 +113,7 @@
 	____________________________________________________________
 	 Enter doctor name: 
 	 Here are the list of available appointments: 
-	 1. 2020-10-10, available
+	 1. 2020-10-10 | available
 	 Enter the index: 
 	 ☹ OOPS!!! Index out of bounds! Input should be between 1 to 1.
 	____________________________________________________________
@@ -121,7 +121,7 @@
 	____________________________________________________________
 	 Enter doctor name: 
 	 Here are the list of available appointments: 
-	 1. 2020-10-10, available
+	 1. 2020-10-10 | available
 	 Enter the index: 
 	____________________________________________________________
 	 Appointment on 2020-10-10 booked!
@@ -141,9 +141,9 @@
 	 Enter command: 
 	____________________________________________________________
 	 Here are the appointments. Choose one to edit
-	 1. 2020-10-10, booked, S9123456Z, TAN
+	 1. 2020-10-10 | booked | S9123456Z | TAN
 	 Enter the index: 
-	 Deleted appointment: 2020-10-10, booked, S9123456Z, TAN
+	 Deleted appointment: 2020-10-10 | booked | S9123456Z | TAN
 	____________________________________________________________
 	 Here are the list of available appointments.
 	 1. 2020-10-10
@@ -157,9 +157,9 @@
 	 Enter command: 
 	____________________________________________________________
 	 Choose appointment to delete: 
-	 1. 2020-10-10, booked, S9123456Z, TAN
+	 1. 2020-10-10 | booked | S9123456Z | TAN
 	 Enter the index: 
-	 Deleted appointment: 2020-10-10, booked, S9123456Z, TAN
+	 Deleted appointment: 2020-10-10 | booked | S9123456Z | TAN
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________

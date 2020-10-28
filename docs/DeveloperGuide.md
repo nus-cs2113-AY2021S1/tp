@@ -25,7 +25,7 @@ The complete class diagram is shown below.
 
 ### Implementation
 #### Retrieve Command
-The flow for retrieve command is as follows:
+The flow for the retrieve command is as follows:
 ![image info](./pictures/retrieveCommandSD.png)
 1. Retrieve command extracts NRIC using parser, 
 2. Retrieve command searches through the patients list and obtains the patient's index.
@@ -43,6 +43,10 @@ The flow for add command is as follows:
 6. Ui receives the call to print the patient.
 7. The updated patients list is saved by the Storage object.
 
+
+#### Book Command
+The flow for the book command is shown in the sequence diagram below:
+![image info](./pictures/bookApptSequenceDiagram.PNG)
 
 ## Product scope
 ### Target user profile
