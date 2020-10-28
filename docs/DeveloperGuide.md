@@ -57,7 +57,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 1. Verify the setup.
     * Under the `seedu.modtracker` package, locate the `ModTracker` class and run it.
     * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html).
-    * Run the [tests]() to ensure they all pass.
+    * Run the [tests](Testing.md) to ensure they all pass.
 
 ### 2.2 Before writing the code <a name="2.2"></a>
 1. Configure the coding style
@@ -69,7 +69,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
     No setup is required for this.
     
 1. Learn the design
-    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#architecture) to get some 
+    * When you are ready to start coding, we recommend that you look at [ModTracker's architecture](#3.1) to get some 
     sense of the overall design.
 
 
@@ -608,7 +608,9 @@ NUS students
 |v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly/
 |v1.0|user|save my data permanently|save the trouble of re-entering my data everytime I start the app|
 |v2.0|user of ModTracker|add tasks related to a module|know what are the outstanding tasks for each module
-|v2.0|user|(to be updated)|(to be updated)|
+|v2.0|user|save tasks related to a module|be reminded of what tasks I have to do|
+|v2.0|user|save my username|I don't have to re-enter it every time|
+|v2.0|user|manage the task list|use the app as a planner|
 
 ### 6.3 Use Cases <a name="6.3"></a>
 (For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
