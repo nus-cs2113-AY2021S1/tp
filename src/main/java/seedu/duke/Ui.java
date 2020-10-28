@@ -72,8 +72,8 @@ public class Ui {
      * Prints the file not found message.
      */
     public static void printFileNotFoundMessage() {
-        System.out.println("The file cannot be found: You should follow the UG's quick " +
-                "start to normally access the file");
+        System.out.println("The file cannot be found: You should follow the UG's quick "
+                + "start to normally access the file");
     }
 
 

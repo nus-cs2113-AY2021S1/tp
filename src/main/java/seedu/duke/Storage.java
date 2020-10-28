@@ -119,28 +119,28 @@ public class Storage {
             case "T":
                 if (num == 4) {
                     item = new Todo(taskInFile[TASK_DESCRIPTION]);
-                    break;
                 }
+                break;
             case "D":
                 if (num == 5) {
                     date = LocalDate.parse(taskInFile[TASK_DATE].trim());
                     item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
-                    break;
                 }
+                break;
             case "ACT":
                 if (num >= 7) {
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
-                    break;
                 }
+                break;
             case "LEC":
-                if(num >= 7) {
+                if (num >= 7) {
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
-                    break;
                 }
+                break;
             case "TUT":
                 if (num >= 7) {
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -153,15 +153,15 @@ public class Storage {
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
-                    break;
                 }
+                break;
             case "EXAM":
                 if (num >= 7) {
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
-                    break;
                 }
+                break;
             default:
                 Ui.printWrongStorageInput();
                 break;
