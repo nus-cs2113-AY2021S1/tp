@@ -45,7 +45,7 @@ public class RemoveCommand extends Command {
         if (activeWatchlist.getWatchlistSize() == 0) {
             LOGGER.log(Level.WARNING, EMPTY_WATCHLIST_ERROR);
             throw new AniException(EMPTY_WATCHLIST_ERROR);
-        } else if (activeWatchlist.getWatchlistSize() <= animeIndexInWatchlist - 1) {
+        } else if (activeWatchlist.getWatchlistSize() <= animeIndexInWatchlist) {
             LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         } else if (animeIndexInWatchlist < 0) {
