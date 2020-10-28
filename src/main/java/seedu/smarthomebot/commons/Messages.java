@@ -44,7 +44,8 @@ public class Messages {
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = "The appliance is already ON. ";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = "The appliance is already OFF. ";
     public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data will not be entered";
-    public static final String MESSAGE_APPLIANCE_NOT_EXIST = "Appliance does not exist in the list.";
+    public static final String MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST =
+            "Appliance or Location does not exist in the list.";
     public static final String MESSAGE_INVALID_TEMPERATURE_AC =
             "Invalid Temperature is inputted, ensure that it is within 16-30 degrees. \n"
                     + "Previous set temperature will be set.";

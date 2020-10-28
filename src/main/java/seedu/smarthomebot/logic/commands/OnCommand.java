@@ -7,7 +7,7 @@ import seedu.smarthomebot.data.appliance.Appliance;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 
@@ -19,22 +19,23 @@ public class OnCommand extends Command {
             + COMMAND_WORD + " [LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private final String name;
+    private final String key;
     private final String parameter;
 
-    public OnCommand(String name, String parameter) {
-        this.name = name;
+    public OnCommand(String key, String parameter) {
+        this.key = key;
         this.parameter = parameter;
     }
 
     @Override
     public CommandResult execute() {
         String onByType = APPLIANCE_TYPE;
-        // To determine if the keyword is a location, if so, append that selected appliance into a list
+        // To check if any of the appliances contains the name of the location
         ArrayList<Appliance> filterApplianceList =
                 (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(name))
+                        .filter((s) -> s.getLocation().equals(this.key))
                         .collect(toList());
+
         // if list is empty
         if (!filterApplianceList.isEmpty()) {
             onByType = LOCATION_TYPE;
@@ -51,7 +52,7 @@ public class OnCommand extends Command {
 
     private int getApplianceToOnIndex() {
         for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.name))) {
+            if (appliance.getName().equals((this.key))) {
                 return applianceList.getAllAppliance().indexOf(appliance);
             }
         }
@@ -74,20 +75,17 @@ public class OnCommand extends Command {
     private CommandResult onByLocation() {
         if (!parameter.isEmpty()) {
             return new CommandResult("There should be no parameter for on by location.");
-        }
-        if (locationList.isLocationCreated(this.name)) {
+        }  else {
             String outputResults = LINE;
             outputResults = onApplianceByLoop(outputResults);
             return new CommandResult(outputResults);
-        } else {
-            return new CommandResult("No appliances found in this location");
         }
     }
 
     private CommandResult onByAppliance() {
         int toOnApplianceIndex = getApplianceToOnIndex();
         if (toOnApplianceIndex < 0) {
-            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
+            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
         } else {
             Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
             String outputResult = onAppliance(toOnAppliance, "", false);
@@ -97,11 +95,11 @@ public class OnCommand extends Command {
 
     private String onApplianceByLoop(String outputResults) {
         for (Appliance toOnAppliance : applianceList.getAllAppliance()) {
-            if (toOnAppliance.getLocation().equals(this.name)) {
+            if (toOnAppliance.getLocation().equals(this.key)) {
                 outputResults = onAppliance(toOnAppliance, outputResults, true);
             }
         }
-        outputResults = "All appliance in \"" + this.name + "\" are turned on ";
+        outputResults = "All appliance in \"" + this.key + "\" are turned on ";
         return outputResults;
     }
 
