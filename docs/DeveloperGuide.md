@@ -216,8 +216,8 @@ The estimate feature aims to provide translators with better estimates on the ti
 
 #### 4.1.1 Current Implementation
 The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant arguments, `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
-* `scriptFileName` (mandatory).
-* `wordsPerHour` (optional).
+*   `scriptFileName` (mandatory).
+*   `wordsPerHour` (optional).
 
 <br/>
 
@@ -421,9 +421,9 @@ The watchlist management feature aims to provide translators with a simple way t
 
 #### 4.4.1 Current Implementation
 The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in three parameters: 
-* `option` (mandatory).
-* `watchlistName` (mandatory only if the option `-n` was specified).
-* `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
+*   `option` (mandatory).
+*   `watchlistName` (mandatory only if the option `-n` was specified).
+*   `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
 
 Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
 > :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by the variable `activeWatchlist` in `Workspace`.
