@@ -5,6 +5,9 @@ import seedu.notus.data.timetable.RecurringEvent;
 import seedu.notus.util.DateTimeManager;
 import seedu.notus.ui.Formatter;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
@@ -32,6 +35,8 @@ public class AddEventCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATE_FORMAT + ")]";
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Added the following!";
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
+
     // No COMMAND_UNSUCCESSFUL_MESSAGE as we do not expect failure to occur at this stage.
 
     private Event event;
@@ -48,6 +53,13 @@ public class AddEventCommand extends Command {
     @Override
     public String execute() {
         timetable.addEvent(event);
+
+        try {
+            storageManager.saveTimetable(timetable);
+        } catch (IOException exception) {
+            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+        }
+
         return Formatter.formatEventString(COMMAND_SUCCESSFUL_MESSAGE, event);
     }
 }
