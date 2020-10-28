@@ -66,21 +66,15 @@ If you plan to use Intellij IDEA:
 ### Before writing code
 1. **Configuring the coding style**
 
-    If using IDEA, follow this guide 
-    [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
-    to setup IDEA’s coding style to match ours.
+    If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
 
 2. **Set up CI**
 
-    There is no set up required as the project comes with a GitHub Actions config files, 
-    located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project
-    automatically at each push to the master branch or to any PR.
+    There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
 
 3. **Learn the design**
 
-    When you are ready to start writing codes, 
-    we recommended that you have a look at AniChan's overall design 
-    by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+    When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
 
 <br/>
 
@@ -99,7 +93,7 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 *Figure 1: Architecture Design Diagram*
 
-> :bulb:   The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
+> :bulb: The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
 
 <br/>
 
@@ -217,7 +211,7 @@ This section introduces the specific implementation details and design considera
 
 <br/>
 
-### 4.1 Estimate
+### 4.1 Estimate Feature
 The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, allowing users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
@@ -243,7 +237,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 
 **Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` with the estimated time to convert it into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
 
-> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimatino timing will be generated.
+> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
 <br/>
 
@@ -270,7 +264,7 @@ Aspect: **When should the program read the script file**
 | During command execution **(current design)** | Easy to implement since `Command` already handle file matters. | Failing the file validation during command execution would have wasted some memory resources. |
 | During parsing | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohension of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
+Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
 <br/>
 
@@ -281,7 +275,7 @@ Aspect: **The way user can specify the script file**
 | Specify file extension **(current design)** |  Ensures the correct file will be read. | Some users does not know how to identify file extension. |
 | Do not have to specify file extension | Users can easily specify the file to read | The application may end up reading the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing and it far outweights and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
+We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
 <br/>
 
@@ -426,7 +420,7 @@ WIP.
 The watchlist management feature aims to provide translators with a simple way to keep track of animes by being able to group animes based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
 
 #### 4.4.1 Current Implementation
-The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
+The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in three parameters: 
 * `option` (mandatory).
 * `watchlistName` (mandatory only if the option `-n` was specified).
 * `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
@@ -455,11 +449,11 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
 
-**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. `activeWorkspace.getWatchlistList()` is first invoked to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and a empty `ArrayList<Integer>` object. The `Watchlist` object is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
+**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. `activeWorkspace.getWatchlistList()` is first invoked to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. The `Watchlist` object is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
 
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
-> :memo: The details of all `Watchlist` object for a workspace are saved in the file "watchlist.txt" in the workspace folder.
+> :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
 <br/>
 
@@ -501,7 +495,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 <br/>
 
-#### 4.1.2 Design Considerations
+#### 4.4.2 Design Considerations
 This section shows some design considerations taken when implementing the estimate feature.
 
 Aspect: **Saving watchlist data**
