@@ -138,10 +138,16 @@ The following sequence diagrams explain the interactions omitted in the main dia
 ![executing command](DG_Diagrams/RouteCommandInternal.png)
 
 ![bus data](DG_Diagrams/BusData.png)
+
 #### 2.2.2 Full Route Display (`/routemap` Feature)
 
 The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
 bus route.
+
+The class diagram in the figure below shows how different classes used for implementation of the `/routemap` command 
+are linked to each other.
+
+![RouteCommandClass](DG_Diagrams/RouteMapCommandClass.png)
 
 The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
 1. Calls `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
@@ -151,8 +157,6 @@ returned. Else, null is returned.
 The following sequence diagram explains the above steps when the user searches for the full route of a bus.
 
 ![Overview](DG_Diagrams/RouteMapCommandSeq.png)
-
-
 
 
 #### 2.2.3. Favourite command adder (`/addfav` Feature)
