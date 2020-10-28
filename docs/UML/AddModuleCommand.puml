@@ -21,6 +21,8 @@ AddModuleCommand -> ModuleList ++ : addModules()
 return newAdmin
 AddModuleCommand -> Access ++ : setAdmin(newAdmin)
 return
+AddModuleCommand -> Storage ++: createModule(String)
+return
 return result
 AddModuleCommand -> Ui ++ : showToUser(result)
 return

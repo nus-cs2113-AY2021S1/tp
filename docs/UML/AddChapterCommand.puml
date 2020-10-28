@@ -21,6 +21,8 @@ AddChapterCommand -> ChapterList ++ : addChapters()
 return newModule
 AddChapterCommand -> Access ++ : setModule(newModule)
 return
+AddChapterCommand -> Storage ++: createChapter(String)
+return
 return result
 AddChapterCommand -> Ui ++ : showToUser(result)
 return
