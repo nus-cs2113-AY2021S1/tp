@@ -1,5 +1,7 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,11 +22,12 @@ public class WeeklyEvent extends RecurringEvent {
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to this event.
      */
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                       HashMap<String, ArrayList<Integer>> reminderSchedule) {
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
         super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.WEEKLY_RECURRENCE_TYPE,
-                reminderSchedule);
+                reminderSchedule, tags);
     }
 
     /**
@@ -34,10 +37,11 @@ public class WeeklyEvent extends RecurringEvent {
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to this event.
      */
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
-                       HashMap<String, ArrayList<Integer>> reminderSchedule) {
-        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, reminderSchedule);
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
     @Override

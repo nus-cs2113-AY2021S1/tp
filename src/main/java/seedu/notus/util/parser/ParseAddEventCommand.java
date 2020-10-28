@@ -120,22 +120,22 @@ public class ParseAddEventCommand extends Parser {
             LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
-                event = new DailyEvent(title, dateTime, toRemind, date, reminderSchedule);
+                event = new DailyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
-                event = new WeeklyEvent(title, dateTime, toRemind, date, reminderSchedule);
+                event = new WeeklyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
-                event = new MonthlyEvent(title, dateTime, toRemind, date, reminderSchedule);
+                event = new MonthlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
-                event = new YearlyEvent(title, dateTime, toRemind, date, reminderSchedule);
+                event = new YearlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
-            event = new Event(title, dateTime, toRemind, false, reminderSchedule);
+            event = new Event(title, dateTime, toRemind, false, reminderSchedule, tags);
         }
         return new AddEventCommand(event);
     }

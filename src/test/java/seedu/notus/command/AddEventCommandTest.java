@@ -2,6 +2,7 @@ package seedu.notus.command;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.timetable.DailyEvent;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.data.timetable.Timetable;
@@ -25,9 +26,10 @@ class AddEventCommandTest {
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+    private static final ArrayList<Tag> tags = new ArrayList<>();
 
     private Event event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
 
     private static final Timetable TIMETABLE = new Timetable();
     private StorageManager storageManager = new StorageManager(TIMETABLE, null, null, null);

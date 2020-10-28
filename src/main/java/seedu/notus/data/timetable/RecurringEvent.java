@@ -1,5 +1,6 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
 import seedu.notus.ui.Formatter;
 
 import java.time.LocalDate;
@@ -23,8 +24,9 @@ public abstract class RecurringEvent extends Event {
     public static final String YEARLY_RECURRENCE_TYPE = "yearly";
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
-                          String recurrenceType, ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
-        super(title, dateTime, isToRemind, true, timePeriods, timeUnits);
+                          String recurrenceType, HashMap<String, ArrayList<Integer>> reminderPeriods,
+                          ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, true, reminderPeriods, tags);
         if (endRecurrenceDate == null) {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
@@ -34,29 +36,12 @@ public abstract class RecurringEvent extends Event {
     }
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
-                          ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
-        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, timePeriods, timeUnits);
-    }
-
-
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
-                          String recurrenceType, HashMap<String, ArrayList<Integer>> reminderPeriods) {
-        super(title, dateTime, isToRemind, true, reminderPeriods);
-        if (endRecurrenceDate == null) {
-            endRecurrenceDate = DEFAULT_END_RECURRENCE;
-        }
-        this.endRecurrenceDate = endRecurrenceDate;
-        this.endRecurrenceTime = DEFAULT_END_RECURRENCE_TIME;
-        this.recurrenceType = recurrenceType;
+                          HashMap<String, ArrayList<Integer>> reminderPeriods, ArrayList<Tag> tags) {
+        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods, tags);
     }
 
     public String getRecurrenceType() {
         return recurrenceType;
-    }
-
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
-                          HashMap<String, ArrayList<Integer>> reminderPeriods) {
-        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods);
     }
 
     public LocalDate getEndRecurrenceDate() {

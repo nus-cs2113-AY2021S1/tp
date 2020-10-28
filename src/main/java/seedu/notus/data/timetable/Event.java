@@ -1,5 +1,6 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.tag.TaggableObject;
 import seedu.notus.ui.Formatter;
 
@@ -7,7 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 //@@author brandonywl
@@ -24,6 +24,8 @@ public class Event extends TaggableObject implements Comparable<Event> {
     private Boolean isToRemind;
     private Boolean isRecurring;
     private HashMap<String, ArrayList<Integer>> reminderPeriods = new HashMap<>();
+    private ArrayList<Tag> tags = new ArrayList<>();
+
 
     /**
      * Creates an Event object with its title, date and time provided.
@@ -53,40 +55,36 @@ public class Event extends TaggableObject implements Comparable<Event> {
     }
 
     /**
-     * Creates an Event object with its title, date, time, isToRemind, isRecurring as well as time before reminder and
-     * time unit provided.
+     * Creates an Event object with its title, date, time, isToRemind, isRecurring, reminder periods and tags provided.
      *
-     * @param title Title of the event.
-     * @param startDateTime Start DateTime of the event.
-     * @param isToRemind Whether event is set to remind.
-     * @param isRecurring Whether event is set to re-occur.
-     * @param timePeriods Time periods to remind about this event before it occurs.
-     * @param timeUnits Time units to remind about this event before it occurs.
+     * @param title Title of event.
+     * @param startDateTime Start DateTime of event.
+     * @param isToRemind Whether the event requires a reminder.
+     * @param isRecurring Whether the event will reoccur.
+     * @param reminderPeriods When the reminders will be given.
+     * @param tags Tags of the event.
      */
     public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring,
-                 ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+                  HashMap<String, ArrayList<Integer>> reminderPeriods, ArrayList<Tag> tags) {
         this(title, startDateTime, isToRemind, isRecurring);
-
-        assert timePeriods.size() == timeUnits.size() : "Something is wrong with the parser! Check it out.";
-
-        for (int i = 0; i < timePeriods.size(); i++) {
-            String timeUnit = timeUnits.get(i);
-            ArrayList<Integer> storedReminders = reminderPeriods.get(timeUnit);
-            if (storedReminders == null) {
-                storedReminders = new ArrayList<>();
-            }
-            storedReminders.add(timePeriods.get(i));
-            Collections.sort(storedReminders);
-            reminderPeriods.put(timeUnit, storedReminders);
-        }
+        this.reminderPeriods = reminderPeriods;
+        this.tags = tags;
     }
 
+    /**
+     * Creates an Event object with its title, date, time, isToRemind, isRecurring as well as reminder periods provided.
+     *
+     * @param title Title of event.
+     * @param startDateTime Start DateTime of event.
+     * @param isToRemind Whether the event requires a reminder.
+     * @param isRecurring Whether the event will reoccur.
+     * @param reminderPeriods When the reminders will be given.
+     */
     public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring,
-                  HashMap<String, ArrayList<Integer>> reminderPeriods) {
+                 HashMap<String, ArrayList<Integer>> reminderPeriods) {
         this(title, startDateTime, isToRemind, isRecurring);
         this.reminderPeriods = reminderPeriods;
     }
-
     public String getTitle() {
         return title;
     }

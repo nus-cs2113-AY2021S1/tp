@@ -1,5 +1,7 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,10 +22,12 @@ public class YearlyEvent extends RecurringEvent {
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to the event.
      */
     public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                       HashMap<String, ArrayList<Integer>> reminderSchedule) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.YEARLY_RECURRENCE_TYPE, reminderSchedule);
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.YEARLY_RECURRENCE_TYPE,
+                reminderSchedule, tags);
     }
 
     /**
@@ -33,11 +37,12 @@ public class YearlyEvent extends RecurringEvent {
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to the event.
      */
     public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
-                       HashMap<String, ArrayList<Integer>> reminderSchedule) {
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
         super(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, RecurringEvent.YEARLY_RECURRENCE_TYPE,
-                reminderSchedule);
+                reminderSchedule, tags);
     }
 
     @Override

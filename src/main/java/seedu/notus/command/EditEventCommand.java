@@ -1,5 +1,6 @@
 package seedu.notus.command;
 
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.timetable.DailyEvent;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.data.timetable.MonthlyEvent;
@@ -194,6 +195,7 @@ public class EditEventCommand extends Command {
             String eventTitle = event.getTitle();
             LocalDateTime eventStartDateTime = event.getStartDateTime();
             LocalDate endRecurrenceDate = null;
+            ArrayList<Tag> tags = event.getTags();
             if (!recurringType.equals(RecurringEvent.NO_RECURRENCE_TYPE)) {
                 if (event instanceof RecurringEvent) {
                     endRecurrenceDate = ((RecurringEvent) event).getEndRecurrenceDate();
@@ -209,7 +211,7 @@ public class EditEventCommand extends Command {
                     break;
                 }
                 newEvent = new Event(eventTitle, eventStartDateTime, eventIsToRemind,
-                        false, event.getReminderPeriods());
+                        false, event.getReminderPeriods(), tags);
                 break;
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
                 if (event instanceof DailyEvent) {
@@ -218,7 +220,7 @@ public class EditEventCommand extends Command {
                 }
                 assert (endRecurrenceDate != null);
                 newEvent = new DailyEvent(eventTitle, eventStartDateTime, eventIsToRemind, endRecurrenceDate,
-                        event.getReminderPeriods());
+                        event.getReminderPeriods(), tags);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
                 if (event instanceof WeeklyEvent) {
@@ -227,7 +229,7 @@ public class EditEventCommand extends Command {
                 }
                 assert (endRecurrenceDate != null);
                 newEvent = new WeeklyEvent(eventTitle, eventStartDateTime, eventIsToRemind, endRecurrenceDate,
-                        event.getReminderPeriods());
+                        event.getReminderPeriods(), tags);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
                 if (event instanceof MonthlyEvent) {
@@ -236,7 +238,7 @@ public class EditEventCommand extends Command {
                 }
                 assert (endRecurrenceDate != null);
                 newEvent = new MonthlyEvent(eventTitle, eventStartDateTime, eventIsToRemind, endRecurrenceDate,
-                        event.getReminderPeriods());
+                        event.getReminderPeriods(), tags);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
                 if (event instanceof YearlyEvent) {
@@ -245,7 +247,7 @@ public class EditEventCommand extends Command {
                 }
                 assert (endRecurrenceDate != null);
                 newEvent = new YearlyEvent(eventTitle, eventStartDateTime, eventIsToRemind, endRecurrenceDate,
-                        event.getReminderPeriods());
+                        event.getReminderPeriods(), tags);
                 break;
             default:
                 // Should not hit here.

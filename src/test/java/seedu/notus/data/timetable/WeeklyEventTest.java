@@ -1,6 +1,7 @@
 package seedu.notus.data.timetable;
 
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.tag.Tag;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,8 +23,9 @@ class WeeklyEventTest {
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+    private static final ArrayList<Tag> tags = new ArrayList<>();
     private final WeeklyEvent event = new WeeklyEvent(TEST_TITLE, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
 
     /**
      * Tests if the time-step for WeeklyEvent is still correct (1 week).

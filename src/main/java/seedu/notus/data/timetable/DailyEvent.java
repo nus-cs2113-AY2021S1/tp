@@ -24,9 +24,9 @@ public class DailyEvent extends RecurringEvent {
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                      HashMap<String, ArrayList<Integer>> reminderSchedule) {
+                      HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
         super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE,
-                reminderSchedule);
+                reminderSchedule, tags);
     }
 
     /**
@@ -38,8 +38,8 @@ public class DailyEvent extends RecurringEvent {
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
-                      HashMap<String, ArrayList<Integer>> reminderSchedule) {
-        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE, reminderSchedule);
+                      HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
 

@@ -1,5 +1,7 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,9 +24,9 @@ public class MonthlyEvent extends RecurringEvent {
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      */
     public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                        HashMap<String, ArrayList<Integer>> reminderSchedule) {
+                        HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
         super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.MONTHLY_RECURRENCE_TYPE,
-                reminderSchedule);
+                reminderSchedule, tags);
     }
 
     /**
@@ -36,8 +38,8 @@ public class MonthlyEvent extends RecurringEvent {
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      */
     public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
-                        HashMap<String, ArrayList<Integer>> reminderSchedule) {
-        super(title, dateTime, isToRemind, RecurringEvent.MONTHLY_RECURRENCE_TYPE, reminderSchedule);
+                        HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, RecurringEvent.MONTHLY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
     @Override

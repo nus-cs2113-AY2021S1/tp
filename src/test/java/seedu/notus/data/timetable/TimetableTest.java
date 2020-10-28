@@ -1,6 +1,7 @@
 package seedu.notus.data.timetable;
 
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.tag.Tag;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,14 +22,15 @@ class TimetableTest {
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+    private static final ArrayList<Tag> tags = new ArrayList<>();
     private final DailyEvent dailyEvent = new DailyEvent(TEST_TITLE_4, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
     private final WeeklyEvent weeklyEvent = new WeeklyEvent(TEST_TITLE_3, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
     private final MonthlyEvent monthlyEvent = new MonthlyEvent(TEST_TITLE_2, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
     private final YearlyEvent yearlyEvent = new YearlyEvent(TEST_TITLE_1, TEST_DATE_TIME,
-            TEST_REMINDER, reminderSchedule);
+            TEST_REMINDER, reminderSchedule, tags);
 
 
     /**

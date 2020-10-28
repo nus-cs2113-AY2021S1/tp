@@ -1,6 +1,7 @@
 package seedu.notus.data.timetable;
 
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.tag.Tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,9 +23,10 @@ public class EventTest {
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private static final boolean TEST_RECURRING = false;
+    private static final ArrayList<Tag> tags = new ArrayList<>();
 
     Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
-            reminderSchedule);
+            reminderSchedule, tags);
 
     /**
      * Test if you can get all the reminder dates that's needed from an event.
