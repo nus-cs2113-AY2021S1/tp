@@ -86,6 +86,16 @@ public class EditCommand {
     }
 
     /**
+     * Changes the name of current show and add the update show into ShowList.
+     * @param newName the updated name
+     */
+    public static void editName(String newName) {
+        show.setName(newName);
+        DeleteCommand.delete(showName);
+        showName = newName;
+    }
+
+    /**
      * Runs the parser for the edit command.
      * @throws NullPointerException if the number of episodes input by the user is invalid or empty.
      */
@@ -101,10 +111,7 @@ public class EditCommand {
         while (true) {
             String editCommand = in.nextLine();
             if (editCommand.startsWith("name")) {
-                String newName = editCommand.substring(5);
-                show.setName(newName);
-                DeleteCommand.delete(showName);
-                showName = newName;
+                editName(editCommand.substring(5));
             } else if (editCommand.startsWith("episode")) {
                 editEpisodes(editCommand.substring(8));
             } else if (editCommand.startsWith("season")) {
