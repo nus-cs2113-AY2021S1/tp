@@ -17,6 +17,9 @@ public class TimeTableParser {
             System.out.println(Message.printShowLink);
             showLink(dateList);
             return;
+        } else if (command.equals("show activity")) {
+            showActivities(dateList);
+            return;
         }
         try {
             String[] words = command.split(" ");
@@ -41,6 +44,8 @@ public class TimeTableParser {
                 default:
                     System.out.println((Message.printInvalidEvent));
                 }
+            } else {
+                System.out.println(Message.printInvalidEvent);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(Message.printInvalidEvent);
@@ -88,11 +93,12 @@ public class TimeTableParser {
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
         System.out.println("Which date does the lesson start? (eg. 26/10/2020)");
-        LocalDateTime startDay = getDateTime(in.nextLine());
+        LocalDateTime startDay = getDate(in.nextLine());
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
         addClassPeriods(periods, repeat, startDay, lesson);
         return lesson;
     }
+
 
     public static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
                                 Lesson lesson) throws InvalidDayOfTheWeekException {
@@ -148,7 +154,7 @@ public class TimeTableParser {
         }
         final String linkOrVenue = in.nextLine();
         System.out.println("Please enter the date (eg. 28/10/2020)");
-        LocalDateTime date = getDateTime(in.nextLine());
+        LocalDateTime date = getDate(in.nextLine());
         System.out.println("Please enter the time of your activity(eg. 6-9pm)");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
@@ -183,6 +189,12 @@ public class TimeTableParser {
                     System.out.print(event.linkOrVenue + "|" + event.name + "\n");
                 }
             }
+        }
+    }
+
+    public static void showActivities(DateList dateList) {
+        for (Event event: dateList.activities) {
+            System.out.println(event.name + "|" + event.periods.get(0).startDateTime);
         }
     }
 
@@ -225,11 +237,22 @@ public class TimeTableParser {
     }
 
 
-    public static LocalDateTime getDateTime(String date)throws ArrayIndexOutOfBoundsException {
+    public static LocalDateTime getDate(String date)throws ArrayIndexOutOfBoundsException {
         String [] dateArray = date.split("/");
         int day = Integer.parseInt(dateArray[0]);
         int month = Integer.parseInt(dateArray[1]);
         int year = Integer.parseInt(dateArray[2]);
         return LocalDateTime.of(year, month, day, 0, 0);
     }
+
+    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
+        String[] dateTime;
+        String[] date;
+        int fromIndex = command.indexOf("from");
+        dateTime = command.substring(fromIndex + 5).split(" ");
+        date = dateTime[0].split("/");
+        return LocalDateTime.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0]),
+                0,0);
+    }
+
 }
