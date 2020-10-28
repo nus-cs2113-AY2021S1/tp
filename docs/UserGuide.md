@@ -48,7 +48,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 1. If the program is running correctly, you should see the following:
 
 <p align="center">
-   <img alt="startUp" src="startUp/help.png"/>
+   <img alt="startUp" src="screenshots/startUp.png"/>
 </p>
 
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
