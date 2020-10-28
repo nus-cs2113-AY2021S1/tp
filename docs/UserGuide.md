@@ -92,8 +92,7 @@ Example of usage:
 Expected output: 
 
 <p align="center">
-   <img alt="SystemExceptionEnum1" src="screenshots/help.png"/>
-   <br><em>Figure #</em>
+   <img alt="help" src="screenshots/help.png"/>
 </p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
@@ -131,8 +130,7 @@ Enter Note:
 Expected output:
 
 <p align="center">
-   <img alt="SystemExceptionEnum1" src="screenshots/addNote.png"/>
-   <br><em>Figure #</em>
+   <img alt="addNote" src="screenshots/addNote.png"/>
 </p>
 
 ### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
@@ -159,8 +157,7 @@ Example of usage:
 Expected output:
 
 <p align="center">
-   <img alt="SystemExceptionEnum1" src="screenshots/listNote.png"/>
-   <br><em>Figure #</em>
+   <img alt="listNote" src="screenshots/listNote.png"/>
 </p>
 
 ### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
@@ -175,15 +172,18 @@ Example of usage:
 
 `view-n /i 1`
 
-`view-n /i 1 /t JavaDocs`
+`view-n /t JavaDocs`
 
 Expected output:
 
+<p align="center">
+   <img alt="viewNote" src="screenshots/viewNote.png"/>
+</p>
 
 #### <a id="edit-n">3.5 Edit Note: `edit-n`</a>
 Edits an existing note.
 
-Format: `edit-n /i INDEX [/t TITLE] [/ln LINE] [/c CONTENT] [/tag TAG_1] [/tag TAG_2]...`
+Format: `edit-n /i INDEX [/t TITLE] [/del LINE] [/add CONTENT] [/tag TAG_1] [/tag TAG_2]...`
 
 - Edits a note at the specified INDEX. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
@@ -201,6 +201,7 @@ Example of usage:
 Expected output:
 
 
+
 ### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
 
@@ -214,6 +215,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="findNote" src="screenshots/findNote.png"/>
+</p>
 
 ### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
@@ -231,6 +235,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="pinNote" src="screenshots/pinNote.png"/>
+</p>
 
 ### <a id="archive-n"><ins>3.8 Archive Note:</ins> `archive-n`</a>
 Archives a note.
@@ -250,6 +257,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="archiveNote" src="screenshots/archiveNote.png"/>
+</p>
 
 ### <a id="unarchive-n"><ins>3.9 Unarchive Note:</ins> `unarchive-n`</a>
 Unarchives a note.
@@ -267,6 +277,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="unarchiveNote" src="screenshots/unarchiveNote.png"/>
+</p>
 
 ### <a id="delete-n"><ins>3.10 Delete note:</ins> `delete-n`</a>
 Deletes an existing note.
@@ -280,12 +293,15 @@ Format: `delete-n [/i INDEX] [t/TITLE]`
 
 Example of usage: 
 
-`delete-n i/ 1`
+`delete-n /i 1`
 
-`delete-n /t JavaDocs Notes`
+`delete-n /t JavaDocs`
 
 Expected output:
 
+<p align="center">
+   <img alt="deleteNote" src="screenshots/deleteNote.png"/>
+</p>
 
 ### <a id="create-t"><ins>3.11 Create Tags:</ins> `create-t`</a>
 Create tags.
@@ -308,6 +324,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="createTag" src="screenshots/createTag.png"/>
+</p>
 
 ### <a id="list-t"><ins>3.12 List Tags:</ins> `list-t`</a>
 Shows a list of tags that have been created.
@@ -317,6 +336,10 @@ Example of usage:
 `list-t`
 
 Expected output:
+
+<p align="center">
+   <img alt="listTag" src="screenshots/listTag.png"/>
+</p>
 
 ### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
 Tags or untags a note with the given tag name.
@@ -335,6 +358,10 @@ Example of usage:
 `tag-n /i 1 /tag CS2113 /tag important`
 
 Expected output:
+
+<p align="center">
+   <img alt="tagAndUntag" src="screenshots/tagAndUntag.png"/>
+</p>
 
 ### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
 Tags or untags an event with the given tag name.
@@ -370,6 +397,9 @@ Example of usage:
 
 Expected output:
 
+<p align="center">
+   <img alt="deleteTag" src="screenshots/deleteTag.png"/>
+</p>
 
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
@@ -385,6 +415,7 @@ Example of usage:
 `Add-e /t Flag day /d 14-09-2020 18:58:17`
 
 Expected output:
+
 
 
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
