@@ -40,7 +40,7 @@ public class HelpMessage extends Ui {
             + "list                 - prints the list of categories and respective list of links\n"
             + "back                 - go back to bookmark main\n";
 
-    private static final String timetableCommand =  "Here are the timetable commands available:\n"
+    private static final String timetableCommands =  "Here are the timetable commands available:\n"
             + "add class        - adds a class to the timetable\n"
             + "add activity     - adds an activity to the timetable\n"
             + "show link        - displays the links/venues of events occurring in the next 2 hours\n"
@@ -80,7 +80,7 @@ public class HelpMessage extends Ui {
     }
 
     public static void printTimetableHelp() {
-        System.out.println(timetableCommand);
+        System.out.println(timetableCommands);
     }
 
     public static void printAcademicHelp() {
