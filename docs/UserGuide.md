@@ -72,6 +72,16 @@ Before you begin, here's what you need to do:
 ### 1. Book Management
 ### 2. Quote Management
 ### 3. Progress Tracker
+Progress Tracker in Quotesify allows you to add, update, list and delete bookmarks for the books you add. 
+It also allows you to add, mark as done, list and delete tasks in the todo list. 
+
+With the bookmarks you have created, you can record your reading progress and trace to the page you stopped at quickly. 
+WIth the tasks in your todo list, you can set reminders for various activities 
+and easily find the most urgent task in the list.
+
+If you hate flipping pages to find the page to continue reading, 
+or want to develop a reading habit by setting many goals of readling, this feature is prepared for you!
+
 ### 4. Category Management
 Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
 With the categories you have created, you can simply tag them to any book or quote and list all of them in a categorised fashion.
@@ -509,6 +519,7 @@ Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been delet
 If you want to save your reading progress, you can do so by adding bookmarks to the books you read.
 If you want to set a goal on reading, you can do so by adding tasks (with deadlines) to your todo list. 
 
+
 #### Add bookmarks: `bookmark -b /pg`
 Add the only one bookmark to any book that has been already added.
 
@@ -522,6 +533,130 @@ Expected outcome:
 ```
 The bookmark ["Harry Potter" at page: 109] has been added!
 ```
+
+#### List bookmarks: `list -bm`
+List all bookmarks that you have already added.
+
+Format: `list -bm`
+* You mist specify the bookmark number.
+
+Example of usage: `list -bm`
+
+Expected outcome:
+```
+Here is the lsit of all bookmark(s) recorded:
+1. "hp" at page: 123
+2. "Harry Potter" at page: 56
+```
+
+
+#### Delete bookmarks: `delete -bm`
+Delete the bookmark that you have already added.
+
+Format: `delete -bm BOOKMARK_NUMBER`
+* You mist specify the bookmark number.
+
+Example of usage: `delete -bm 1`
+
+Expected outcome:
+```
+The bookmark ["hp" at page: 123] has been removed!
+```
+
+
+#### Edit bookmarks: `bookmark -b`
+Update the bookmark that you have already added. 
+The command is the same as adding a new bookmark.
+
+Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
+* You must add the bookmark of the same book before so as to update it.
+* * You must specify both book number and page number.
+
+Example of usage: `bookmark -b 3 /pg 185`
+
+Expected outcome:
+```
+The bookmark ["Harry Potter" at page: 185] has been updated!
+```
+
+
+#### Add tasks: `add -t /by`
+
+Format: 
+1. `add -t TASK_NAME /by DEADLINE`
+2. `add -t TASK_NAME /by YYYY-MM-DD`
+3. `add -t TASK_NAME`
+* You must specify the task name.
+* If you want to use YYYY-MM-DD format, remember the date must exist in real life. Fake date such as `3001-02-30`
+ will be rejected by the system and treated as an unformatted deadline (plain text).
+
+Example of usage:
+1. add a task with an unformatted deadline: `add -t return Harry Potter /by tmr 2pm`
+
+Expected outcome:
+```
+The task [[x] return Harry Potter (by: tmr 2pm)] has been added!
+```
+
+2. add a task with a formatted deadline: `add -t return Harry Potter /by 2020-10-24`
+
+Expected outcome:
+```
+The task [[x] return Harry Potter (by: Oct 24 2020, SATURDAY)] has been added!
+```
+
+3. add a task without any deadline: `add -t return Harry Potter`
+
+Expected outcome:
+```
+The task [[x] return Harry Potter (by: not specified)] has been added!
+```
+
+
+#### List tasks: `list -t`
+If successful, you will see a full list of todo tasks added by you.
+If some tasks have formatted deadlines (YYYY-MM-DD), they will be arranged in ascending order of date 
+and displayed ahead of those with unformatted deadline. 
+
+Format: `list -t`
+
+Example of usage: `list -t`
+
+Expected outcome:
+```
+Here is the list of all task(s) recorded:
+1.[x] task4 (by: Sep 13 2020, Sunday)
+2.[x] task3 (by: Oct 24 2020, SATURDAY)
+3.[x] return Harry Potter (by: Oct 25 2020, SUNDAY)
+4.[x] task 1 (by: 1908008)
+5.[x] task 2 (by: 1999-12-34)
+```
+
+
+#### Mark tasks as Done: `done -t`
+
+Format: `done -t TASK_NUMBER`
+* The task Number must be an integer and smaller than the total number of tasks you added.
+
+Example of usage: `done -t 1`
+
+Expected outcome:
+```
+The task [[v] return Harry Potter (by: tmr 2pm)] has been marked as done!
+```
+
+#### Delete tasks: `delete -t`
+
+Format: `delete -t TASK_NUMBER`
+* The task Number must be an integer and smaller than the total number of tasks you added.
+
+Example of usage: `delete -t 1`
+
+Expected outcome:
+```
+The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
+```
+
 
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
