@@ -112,6 +112,13 @@ public class Ui {
         print("Thank you! DietBook has been initialised " + getStartMessage());
     }
 
+    /**
+     * Prints a message informing the user that DietBook has successfully saved all their data.
+     */
+    public void dataSuccessfullySavedMessage() {
+        print("Your data has been saved successfully.");
+    }
+
 
     /**
      * Prints the welcome back message when user reboots up DietBook after the first initialisation.
