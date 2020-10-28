@@ -1,0 +1,44 @@
+@startuml
+actor user
+box Logic
+participant ":Duke"
+participant ":Parser"
+participant ":DineCommand"
+end box
+box Ui
+participant "<<class>>\n:Ui"
+end box
+
+user -> ":Duke"
+box Logic
+":Duke" -> ":Parser": user command
+activate ":Parser"
+create ":DineCommand"
+":Parser" -> ":DineCommand": user input
+activate ":DineCommand"
+":DineCommand" --> ":Parser"
+deactivate ":DineCommand"
+":Parser" -> ":DineCommand": executeCommand()
+activate ":DineCommand"
+alt user input empty
+    ":DineCommand" --> ":Parser": invalid input
+else user input not empty
+    ":DineCommand" -> ":DineCommand": checkFaculty()
+    activate ":DineCommand"
+    alt displaycount = 0
+        ":DineCommand" --> ":DineCommand": no match found
+    else displaycount > 0
+        ":DineCommand" -> "<<class>>\n:Ui" : printDineResult()
+        activate "<<class>>\n:Ui"
+        "<<class>>\n:Ui" --> ":DineCommand"
+        deactivate "<<class>>\n:Ui"
+        ":DineCommand" --> ":DineCommand": results
+    deactivate ":DineCommand"
+    end
+    ":DineCommand" --> ":Parser": list of dining options
+deactivate ":DineCommand"
+end
+":Parser" --> ":Duke"
+deactivate ":Parser"
+":Duke" --> user
+@enduml
