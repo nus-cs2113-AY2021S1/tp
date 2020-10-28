@@ -1,9 +1,11 @@
 @startuml
 autoactivate on
+actor User
 
+User-> ":EntryTracker": Create Entry
 ":EntryTracker" ->":EntryTracker": handleCreateEntry()
     create "command:CreateEntryCommand"
-   ":EntryTracker"-> "command:CreateEntryCommand" : "command:CreateEntryCommand"()
+   ":EntryTracker"-> "command:CreateEntryCommand" : CreateEntryCommand()
     return
 
    ":EntryTracker"-> "command:CreateEntryCommand" : handlePacket
