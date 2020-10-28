@@ -6,20 +6,20 @@ Package " "<<Rectangle>>{
     Class Notebook
     Class Timetable
     Class TagManager
-    Class Parser
+    Class ParserManager
     Class Command
-    Class Duke 
+    Class Notus
 }
 
-Duke --> StorageManager
-Duke --> InterfaceManager
-Duke --> Notebook
-Duke --> Timetable
-Duke --> TagManager
-Duke --> Parser
-Duke --> Command
+Notus --> StorageManager
+Notus --> InterfaceManager
+Notus --> Notebook
+Notus --> Timetable
+Notus --> TagManager
+Notus --> ParserManager
+Notus --> Command
 
-Parser --> Command
+ParserManager --> Command
 
 Command --> Notebook
 Command --> Timetable

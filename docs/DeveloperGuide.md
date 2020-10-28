@@ -6,7 +6,7 @@
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser](#parser)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -58,7 +58,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 The architecture design is given in the diagram above. The main components of NotUS are:
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
-1. `Parser`: Makes sense of user input, and parses the information to the respective commands.
+1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
 1. `Command`: Executes the necessary tasks, depending on the respective command calls .
 1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
@@ -81,12 +81,13 @@ NotUs manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure #</em>
 </p>
 
-#### <a id="parser"><ins>2.3 Parser</ins></a>
+#### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
 
-The Parser class handles all the user input from the command terminal. It makes sense of the user input and calls the respective commands into action.
+The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action.
 
 1. Receives the user input message as a whole.
-1. Interprets the type of command and splits the message to identify all the parameters provided.
+1. Interprets the type of command and creates the respective parser for each command.
+1. The parser then splits the message to identify all the parameters provided.
 1. Creates and returns the Command class respectively.
  
 <p align="center">
@@ -94,13 +95,69 @@ The Parser class handles all the user input from the command terminal. It makes 
   <br><em>Figure #</em>
 </p>
 
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
+ 
+ <p align="center">
+   <img alt="Parser" src="diagrams/out/AddNoteParser.png" />
+   <br><em>Figure #</em>
+ </p>
+
+Based on the user input, the Parser handles and creates the corresponding Command object.
+
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
+**AddNoteCommand**
+
+1. Created by the parser function
+1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
+1. Obtain content input into note.
+1. Process and stores tags into TagsManager.
+1. Handle saving of notes.
+1. Returns the title, tags as well as the contents of the note. 
+
+<p align="center">
+   <img alt="Parser" src="diagrams/out/AddNote_Sequence.png"/>
+   <br><em>Figure #</em>
+</p>
+
+**PinCommand**
+
+1. Created by the parser function
+1. Gets the note that is referenced too either by title or index 
+1. Toggles the pinned status of the specified note. 
+1. Returns the title as well as the pinned status of the note. 
+
+<p align="center"> 
+   <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
+   <br><em>Figure 4</em>
+</p>
+
+
+<br>
+
 #### <a id="note"><ins>2.5 Notebook</ins></a>
+
+The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user. The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
+
+<p align="center">
+   <img alt="Parser" src="diagrams/out/NotebookObject.png"/>
+   <br><em>Figure #</em>
+</p>
+
+Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
 #### <a id="tag"><ins>2.7 Tags</ins></a>
+
+The class diagram below denotes the relationship between the TagManager and the Taggable Objects (Notes and Events).
+
+<p align="center">
+   <img alt="Parser" src="diagrams/out/TaggableObject.png"/>
+   <br><em>Figure #</em>
+</p>
+ 
+Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
 
@@ -131,21 +188,6 @@ While Jansi provides support for Windows terminal to print colored texts, it doe
  `AnsiConsole.systemUninstall();`
  
 Remember to uncomment them when building jar files for release.
-
-**PinCommand**
-
-1. Created by the parser function
-1. Gets the note that is referenced too either by title or index 
-1. Toggles the pinned status of the specified note. 
-1. Returns the title as well as the pinned status of the note. 
-
-<p align="center"> 
-   <img alt="PinCommand" src="diagrams/out/PinCommand.png" 
-   <br><em>Figure 4</em>
-</p>
-
-
-<br>
 
 ## <a id="scope">3. Product Scope</a>
 
@@ -226,4 +268,3 @@ A all-in-one solution for note-taking and managing your schedule.
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
-

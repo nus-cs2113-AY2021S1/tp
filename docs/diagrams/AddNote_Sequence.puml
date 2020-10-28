@@ -1,60 +1,86 @@
 @startuml
 box "Parser" #LightBlue
 
-Notus -> Parser: parseCommand(add-n /t Java OOP /pin true /tag CS2113 red /tag OOP)
-activate Parser #DarkSalmon
+activate Notus #DarkSalmon
+Notus -> ParserManager: parseCommand()
 
-Parser -> Parser: prepareAddNote(add-n /t Java OOP /pin true /tag CS2113 red /tag OOP)
-activate Parser #DarkSalmon
-Parser -> Parser: handleTagPrefix(add-n /t Java OOP /pin true /tag CS2113 red /tag OOP)
-activate Parser #DarkSalmon
+create ParseAddNoteCommand
+ParserManager -> ParseAddNoteCommand: <<create>>
 
-Parser -> Tag: Tag(CS2113, red), Tag(OOP, "")
-activate Tag #DarkSalmon
-Tag --> Parser: tag
-deactivate Tag
+activate ParseAddNoteCommand #DarkSalmon
+ParseAddNoteCommand --> ParserManager
+deactivate ParseAddNoteCommand
 
-Parser --> Parser: tag
-deactivate Parser
+ParserManager -> ParseAddNoteCommand: parse()
+activate ParseAddNoteCommand #DarkSalmon
+ParseAddNoteCommand -> ParseAddNoteCommand: splitInfoDetails(String)
 
-Parser -> Note: note(Java OOP, "", true, tags)
-activate Note #DarkSalmon
-deactivate Note
-Note --> Parser: note
-Parser -> AddNoteCommand
-deactivate Parser
+loop infoDetails in splitInfo
+
+alt /t
+ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
+
+else /tag
+ParseAddNoteCommand -> ParseAddNoteCommand: handleTagPrefix(String)
+
+else /pin
+ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
+
+else /archive
+ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
+
+end
+end
+
+create AddNoteCommand
+ParseAddNoteCommand -> AddNoteCommand: <<create>>
 
 activate AddNoteCommand #DarkSalmon
-AddNoteCommand --> Parser
+AddNoteCommand --> Notus
 deactivate AddNoteCommand
-deactivate Parser
-return command
 
-Notus -> Notus: executeCommand(command)
+deactivate ParseAddNoteCommand
+
+destroy ParseAddNoteCommand
+
+Notus -> AddNoteCommand: setData()
+
+activate AddNoteCommand #DarkSalmon
+AddNoteCommand --> Notus
+deactivate AddNoteCommand
+
+Notus -> Notus: executeCommand()
 activate Notus #DarkSalmon
 Notus -> AddNoteCommand: execute()
+
 activate AddNoteCommand #DarkSalmon
 AddNoteCommand -> Parser: inputContent()
 activate Parser #DarkSalmon
 return
 deactivate Parser
-
-AddNoteCommand -> TagManager: rebindTags(note)
+AddNoteCommand -> TagManager: rebindTags()
 activate TagManager #DarkSalmon
 return
 deactivate TagManager
 
-AddNoteCommand -> Notebook: addNote(note)
+AddNoteCommand -> Notebook: addNote()
 activate Notebook #DarkSalmon
 return
 deactivate Notebook
 
-deactivate AddNoteCommand
-AddNoteCommand --> Notus: result
+AddNoteCommand -> StorageManager: saveNote()
+activate StorageManager #DarkSalmon
+return
+deactivate StorageManager
 
-Notus --> Notus: result
+AddNoteCommand -> Formatter: formatNote()
+activate Formatter #DarkSalmon
+return
+deactivate Formatter
+
+AddNoteCommand --> Notus
+deactivate AddNoteCommand
 
 deactivate Notus
-
 
 @enduml
