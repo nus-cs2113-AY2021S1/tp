@@ -2,8 +2,6 @@ package seedu.notus.command;
 
 import seedu.notus.ui.Formatter;
 
-import com.diogonunes.jcolor.Attribute;
-
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -12,7 +10,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static com.diogonunes.jcolor.Ansi.colorize;
+import static seedu.notus.util.CommandMessage.HELP_COMMAND_USAGE;
 
 //@@author R-Ramana
 /**
@@ -23,48 +21,12 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String HELP_STRING = "The recognized commands and their usages are listed below. "
-            + "Parameters listed in brackets, [ ], represent optional inputs.";
-
-    public static final String[] COMMANDS_USAGE = {
-        HELP_STRING,
-        colorize(AddNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(AddEventCommand.COMMAND_USAGE, getColor(true)),
-        colorize(CreateTagCommand.COMMAND_USAGE, getColor(false)),
-        colorize(DeleteNoteCommand.COMMAND_USAGE, getColor(true)),
-        colorize(DeleteEventCommand.COMMAND_USAGE, getColor(false)),
-        colorize(DeleteTagCommand.COMMAND_USAGE, getColor(true)),
-        colorize(EditNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(EditEventCommand.COMMAND_USAGE, getColor(true)),
-        colorize(ArchiveNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(UnarchiveNoteCommand.COMMAND_USAGE, getColor(true)),
-        colorize(ListEventCommand.COMMAND_USAGE, getColor(false)),
-        colorize(ListNoteCommand.COMMAND_USAGE, getColor(true)),
-        colorize(ListTagCommand.COMMAND_USAGE, getColor(false)),
-        colorize(FindCommand.COMMAND_USAGE, getColor(true)),
-        colorize(PinCommand.COMMAND_USAGE, getColor(false)),
-        colorize(RemindCommand.COMMAND_USAGE, getColor(true)),
-        colorize(TagNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(TagEventCommand.COMMAND_USAGE, getColor(true)),
-        colorize(ViewNoteCommand.COMMAND_USAGE, getColor(false)),
-        colorize(ExitCommand.COMMAND_USAGE, getColor(true))
-    };
-
     @Override
     public String execute() {
         setupLogger();
         LOGGER.log(Level.INFO, "Logger Setup, will return HELP_STRING.");
 
-        return Formatter.formatString(COMMANDS_USAGE, true);
-    }
-
-    public static Attribute getColor(boolean toggleColor) {
-        int colorGold = 94;
-        if (toggleColor) {
-            //return Attribute.TEXT_COLOR(colorGold);
-            return Attribute.BRIGHT_CYAN_TEXT();
-        }
-        return Attribute.BRIGHT_WHITE_TEXT();
+        return Formatter.formatString(HELP_COMMAND_USAGE, true);
     }
 
     public void setupLogger() {

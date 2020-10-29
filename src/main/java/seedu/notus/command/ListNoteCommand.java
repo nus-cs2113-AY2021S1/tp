@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static seedu.notus.ui.Formatter.formatNotes;
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
+import static seedu.notus.util.CommandMessage.ARCHIVE_NOTES_MESSAGE;
+import static seedu.notus.util.CommandMessage.EMPTY_NOTEBOOK_MESSAGE;
+import static seedu.notus.util.CommandMessage.INVALID_TAG_MESSAGE;
+import static seedu.notus.util.CommandMessage.LIST_NOTES_MESSAGE;
+import static seedu.notus.util.CommandMessage.PINNED_NOTES_MESSAGE;
+import static seedu.notus.util.CommandMessage.UNPINNED_NOTES_MESSAGE;
 
 //@@author R-Ramana
 /**
@@ -19,19 +23,6 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
-            + "[/sort up OR down]";
-
-    public static final String PINNED_NOTES_MESSAGE = "Here are the list of pinned notes:";
-    public static final String UNPINNED_NOTES_MESSAGE = "Here are the list of unpinned notes:";
-    public static final String ARCHIVE_NOTES_MESSAGE = "Here are the list of archived notes:";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes:";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
-            + " Please try an alternative tag or check your spellings";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
 
     private ArrayList<String> tags;
     private boolean isSorted;
@@ -127,10 +118,10 @@ public class ListNoteCommand extends Command {
             }
 
             if (notes.isEmpty()) {
-                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK);
+                return Formatter.formatString(EMPTY_NOTEBOOK_MESSAGE);
             }
 
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
+            return formatNotes(LIST_NOTES_MESSAGE, notes, notebook);
         }
 
         // if no /archive or /tags and there are pinned notes this if-else block will be executed
@@ -162,13 +153,14 @@ public class ListNoteCommand extends Command {
 
         // Check if the user inputted tags match any of the existing tags.
         if (tagList.isEmpty()) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG);
+            return Formatter.formatString(INVALID_TAG_MESSAGE);
         }
 
         // Based on user inputted tags, will store the respective values (notes) in an ArrayList
         // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList of notes
         //      1 for the values corresponding to CS2113 and the other for important tag
         ArrayList<ArrayList<Note>> values = new ArrayList<>();
+
         for (int i = 0; i < tagList.size(); i++) {
             ArrayList<TaggableObject> taggableObject = tagMap.get(tagList.get(i));
             ArrayList<Note> tagObjectsAsNote = new ArrayList<>();
@@ -180,11 +172,12 @@ public class ListNoteCommand extends Command {
             values.add(tagObjectsAsNote);
         }
 
-        // Account for note duplicates (multiple tags).
+        // Account for note duplicates (multiple tags) and if archived.
         // For e.g. In case an item has both CS2113 and Important tag
+        // Or if a note is archived
         for (ArrayList<Note> value : values) {
             for (Note note : value) {
-                if (!notes.contains(note)) {
+                if (!notes.contains(note) && !note.getIsArchived()) {
                     notes.add(note);
                 }
             }
@@ -192,12 +185,12 @@ public class ListNoteCommand extends Command {
 
         // Checking for empty notes List
         if (notes.isEmpty()) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK);
+            return Formatter.formatString(EMPTY_NOTEBOOK_MESSAGE);
         }
 
         // if no /archive or pinned notes and there are /tags
         if (!notebook.checkPinned() && tags != null) {
-            ArrayList<Note> sortedTaggedNotes = new ArrayList<>();
+            ArrayList<Note> sortedTaggedNotes;
 
             if (isSorted) {
                 // Sort the tagged notes
@@ -205,7 +198,7 @@ public class ListNoteCommand extends Command {
             } else {
                 sortedTaggedNotes = notes;
             }
-            return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, sortedTaggedNotes, notebook);
+            return formatNotes(LIST_NOTES_MESSAGE, sortedTaggedNotes, notebook);
         }
 
         // if no /archive and there are both pinned notes and /tags
@@ -223,6 +216,6 @@ public class ListNoteCommand extends Command {
             return formatNotes(PINNED_NOTES_MESSAGE, UNPINNED_NOTES_MESSAGE, pinned, unpinned, notebook);
         }
 
-        return formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
+        return formatNotes(LIST_NOTES_MESSAGE, notes, notebook);
     }
 }

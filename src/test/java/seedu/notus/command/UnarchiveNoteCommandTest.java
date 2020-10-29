@@ -16,9 +16,6 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.command.UnarchiveNoteCommand.COMMAND_SUCCESSFUL_MESSAGE;
-import static seedu.notus.command.UnarchiveNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
-import static seedu.notus.command.UnarchiveNoteCommand.INDEX_OUT_OF_RANGE_MESSAGE;
 
 class UnarchiveNoteCommandTest {
     int maxRowLength = 100;

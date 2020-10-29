@@ -15,8 +15,8 @@ import seedu.notus.ui.FormatterStub;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.command.FindCommand.COMMAND_SUCCESSFUL_MESSAGE;
-import static seedu.notus.command.FindCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FIND_NOTE_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FIND_NOTE_UNSUCCESSFUL_MESSAGE;
 
 class FindCommandTest {
 
@@ -64,7 +64,7 @@ class FindCommandTest {
         notes.add(testNote1);
         notes.add(testNote2);
 
-        String expected = Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
+        String expected = Formatter.formatNotes(FIND_NOTE_SUCCESSFUL_MESSAGE, notes, notebook);
         String result = getCommandExecutionString(notebook, keyword);
 
         assertEquals(expected, result);
@@ -74,7 +74,7 @@ class FindCommandTest {
     void execute_keywordNil_returnsNoMatch() {
         String keyword = "NIL";
 
-        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String expected = Formatter.formatString(FIND_NOTE_UNSUCCESSFUL_MESSAGE);
         String result = getCommandExecutionString(notebook, keyword);
 
         assertEquals(expected, result);

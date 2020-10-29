@@ -2,7 +2,6 @@ package seedu.notus.command;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
-import seedu.notus.storage.StorageManager;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -11,9 +10,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 //@@author prachi2023
 /**
@@ -23,12 +20,6 @@ public class PinCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger("PinCommand");
 
     public static final String COMMAND_WORD = "pin-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Pins or unpins a note. Parameters: "
-            + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
-            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
-
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
 
     private int index;
     private String title;
@@ -69,7 +60,7 @@ public class PinCommand extends Command {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
-                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
             }
             LOGGER.log(Level.INFO, "Note found using index");
         } else {
@@ -83,7 +74,7 @@ public class PinCommand extends Command {
 
         if (note == null) {
             LOGGER.log(Level.INFO, "Note does not exist.");
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         }
 
         note.togglePinned();
