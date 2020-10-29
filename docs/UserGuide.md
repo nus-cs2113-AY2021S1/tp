@@ -320,7 +320,21 @@ Expected outcome:
 ### 4.6 Import
 
 You can import data from other existing CSVs quickly with the import command  
-Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME` OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME` OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
+Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME`  
+OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME`  
+OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
+
+This command allows you to specify which columns of your CSV file you would like to copy over to the program.  
+
+Example: Let's say you have a CSV file like shown below, and you would like to import it.    
+![CSV File](userGuidePic/import1.png)  
+In our example, the CSV file we are importing is in the same directory as CCA Manager.  
+![Location of File](userGuidePic/import2.png)  
+You can use the command `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` to import the document.  
+
+The expected outcome is as follows:  
+
+![Outcome](userGuidePic/import3.png)  
 
 
 [Return to the top](#user-guide)
@@ -345,6 +359,7 @@ event search | `event search /s <KEYWORD>` | `event search /s arduino`
 event countdown | `event countdown` | -
 help | `help` | -
 hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
+import  | `import FILENAME /c CATEGORY (...)` | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role`
 listMember  | `hr listMember` | -
 listEvent | `event listEvent` | -
 list prof&admin | `hr list prof&admin` | -
