@@ -15,9 +15,9 @@ public class TopicalStatsCalculator extends StatsCalculator {
     private QuestionList topicQuestionList;
 
     public TopicalStatsCalculator(Topic topic) {
+        assert topic != null;
         this.topicQuestionList = topic.getQuestionList();
     }
-
 
     // check each qn and see if they are done
     public int calculateTopicalQuestionsAttemptCount() {
@@ -69,7 +69,7 @@ public class TopicalStatsCalculator extends StatsCalculator {
     }
 
     public int calculateTopicalPointsAvailable() {
-        int pointsAvailable = topicQuestionList.getCount() * POINTS_PER_QUESTION;
+        int pointsAvailable = getTopicQuestionsCount() * POINTS_PER_QUESTION;
 
         return pointsAvailable;
     }

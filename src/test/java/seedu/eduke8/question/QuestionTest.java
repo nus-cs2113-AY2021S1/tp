@@ -2,10 +2,12 @@ package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.hint.Hint;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QuestionTest extends Eduke8Test {
@@ -15,6 +17,13 @@ class QuestionTest extends Eduke8Test {
     private static final String PLACEHOLDER_EXPLANATION_DESCRIPTION = "Option A gives the best explanation out of all.";
     private static final int OPTIONLIST_OPTIONS_COUNT = 2;
 
+
+    @Test
+    void questionConstructor_nullDescriptionArgument_expectsAssertionError() {
+        assertThrows(AssertionError.class, () -> {
+            Question question = createTestQuestion(null);
+        });
+    }
 
     @Test
     void getDescription_placeholderQuestionDescription_returnsQuestionDescription() {

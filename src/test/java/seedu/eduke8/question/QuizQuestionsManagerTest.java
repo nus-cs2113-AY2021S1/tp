@@ -15,9 +15,13 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     private static final int TOPIC_QUESTIONS_COUNT = 3;
     private static final int QUIZ_QUESTIONS_COUNT = 3;
 
-    // Within acceptable range or questions, positive partition
+    /*
+     * Tests for first parameter of QuizQuestionsManagerConstructor, while keeping second parameter valid.
+     */
+
+    // Within acceptable range of questions, positive partition
     @Test
-    void quizQuestionsManagerConstructor_threeQuizQuestionsFromThreeTopicQuestions_returnsCountOfThree()
+    void quizQuestionsManagerConstructor_validNumberOfQuestionsForQuiz_returnsCountOfThreeQuizQuestions()
             throws Eduke8Exception {
         QuestionList topicQuestionList = createTestQuestionList();
 
@@ -31,7 +35,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     // Below acceptable range of questions, negative partition
     @Test
-    void quizQuestionsManagerConstructor_zeroQuizQuestions_expectsException() {
+    void quizQuestionsManagerConstructor_numberOfQuestionsForQuizTooLow_expectsEduke8Exception() {
         QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
@@ -42,12 +46,26 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     // Above acceptable range of questions, negative partition
     @Test
-    void quizQuestionsManagerConstructor_numberOfQuizQuestionsExceedNumberOfTopicQuestions_expectsException() {
+    void quizQuestionsManagerConstructor_numberOfQuizQuestionsExceedNumberOfTopicQuestions_expectsEduke8Exception() {
         QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
             QuizQuestionsManager quizQuestionsManager =
                     new QuizQuestionsManager(TOPIC_QUESTIONS_COUNT + 1, topicQuestionList.getInnerList());
+        });
+    }
+
+    /*
+     * Tests for second parameter of QuizQuestionsManagerConstructor, while keeping first parameter valid.
+     * Positive partitions for second parameter are shown in the tests above
+     */
+
+    // null case of questionsInTopic passed in, negative partition
+    @Test
+    void quizQuestionsManagerConstructor_nullQuestionsInTopicArgument_expectsAssertionError() {
+        assertThrows(AssertionError.class, () -> {
+            QuizQuestionsManager quizQuestionsManager =
+                    new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, null);
         });
     }
 

@@ -21,7 +21,9 @@ public class QuizQuestionsManager {
 
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
+        assert questionsInTopic != null;
         assert questionsInTopic.size() > 0;
+
         currentQuestionNumber = 0;
         quizQuestions = new ArrayList<>();
         setQuizQuestions(numberOfQuestionsForQuiz, questionsInTopic);
