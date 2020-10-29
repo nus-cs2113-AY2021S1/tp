@@ -49,7 +49,7 @@ This document is meant for new and current developers of AniChan. It describes t
 <br/>
 
 ## 2. Setting Up
-### Setting up the project in your computer
+### 2.1 Setting up the project in your computer
 
 Ensure that you have the following installed: 
 *   JDK 11.
@@ -72,18 +72,19 @@ If you plan to use Intellij IDEA:
 
 ----
 
-### Before writing code
-1. **Configuring the coding style**
+### 2.2 Before writing code
 
-    If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
+#### 2.2.1 Configuring the Coding Style
+
+If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
-2. **Set up CI**
+#### 2.2.2 Set up CI
     
-    There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
+There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
     
-3. **Learn the design**
+#### 2.2.3 Learn the Design
     
-    When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
