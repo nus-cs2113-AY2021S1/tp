@@ -97,7 +97,7 @@ public class Parser {
     public String sanitize(String s) {
         // Check for illegal characters
         // This whitelist can be relaxed with more testing, but for now only basic alphanumeric is permitted
-        s = s.replaceAll("[^a-zA-Z0-9 .-@/]", "");
+        s = s.replaceAll("[^a-zA-Z0-9 .\\-@&/]", "");
         return s;
     }
 
