@@ -7,10 +7,11 @@ import seedu.eduke8.command.Command;
 import seedu.eduke8.command.ExitCommand;
 import seedu.eduke8.command.HelpCommand;
 import seedu.eduke8.command.IncorrectCommand;
-import seedu.eduke8.command.QuizCommand;
 import seedu.eduke8.command.StatsCommand;
-import seedu.eduke8.command.TextbookCommand;
 import seedu.eduke8.command.TopicsCommand;
+import seedu.eduke8.command.TextbookCommand;
+import seedu.eduke8.command.NoteCommand;
+import seedu.eduke8.command.QuizCommand;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
@@ -28,13 +29,14 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAN
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String TOPICS_INDICATOR = "t/";
-    private static final String QN_INDICATOR = "n/";
+    private static final String NUMBER_OF_QUESTIONS_INDICATOR = "n/";
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";
     private static final String COMMAND_TOPICS = "topics";
     private static final String COMMAND_TEXTBOOK = "textbook";
     private static final String COMMAND_QUIZ = "quiz";
+    private static final String COMMAND_NOTE = "note";
     private static final String COMMAND_BOOKMARK = "bookmark";
     private static final String COMMAND_EXIT = "exit";
 
@@ -77,11 +79,13 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             try {
-                if (commandArr[2].contains(QN_INDICATOR)) {
-                    numOfQuestions = Integer.parseInt(commandArr[2].substring(commandArr[2].indexOf(QN_INDICATOR) + 2));
+                if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
+                    numOfQuestions = Integer.parseInt(
+                            commandArr[2].substring(commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + 2));
                     topicName = commandArr[1].substring(commandArr[1].indexOf(TOPICS_INDICATOR) + 2);
                 } else if (commandArr[2].contains(TOPICS_INDICATOR)) {
-                    numOfQuestions = Integer.parseInt(commandArr[1].substring(commandArr[1].indexOf(QN_INDICATOR) + 2));
+                    numOfQuestions = Integer.parseInt(
+                            commandArr[1].substring(commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + 2));
                     topicName = commandArr[2].substring(commandArr[2].indexOf(TOPICS_INDICATOR) + 2);
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
@@ -92,6 +96,14 @@ public class MenuParser implements Parser {
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
+        case COMMAND_NOTE:
+            if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
+                    .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
+                return new NoteCommand(commandArr[1], (TopicList) topicList);
+            } else {
+                break;
+            }
         case COMMAND_EXIT:
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
             return new ExitCommand();

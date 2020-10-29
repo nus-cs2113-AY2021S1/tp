@@ -16,8 +16,9 @@ public class StatsCalculator {
 
     protected ArrayList<Displayable> topics;
 
-    public StatsCalculator(TopicList topicList) {
-        topics = topicList.getInnerList();
+    public StatsCalculator(ArrayList<Displayable> topics) {
+        assert topics != null;
+        this.topics = topics;
     }
 
     public StatsCalculator() {
@@ -36,7 +37,9 @@ public class StatsCalculator {
         }
     }
 
-    protected int calculateProgressionLevelPercentage(int userProgress, int total) {
+    protected int calculateProgressionPercentage(int userProgress, int total) {
+        assert total > 0;
+
         double progressionLevel = (double) userProgress / total;
 
         int progressionLevelPercentage = (int) (progressionLevel * 100);
