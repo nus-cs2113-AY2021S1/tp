@@ -908,9 +908,9 @@ We are using `java.util.logging`  package for logging. The logger can be accesse
 The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
 
 We use the following log levels:
-*   `Level.SEVERE` : A critical failure, which prevents normal execution of the program.
-*   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
-*   `Level.INFO`: General noteworthy information of the program.
+*   `Level.SEVERE` A critical failure, which prevents normal execution of the program.
+*   `Level.WARNING`Indicates a potential problem, but can proceed with caution.
+*   `Level.INFO` General noteworthy information of the program.
 
 <br/>
 
@@ -931,9 +931,34 @@ There are primarily 2 ways to run the tests.
 
 <br/>
 
-### 5.4 DevOps
+### 5.4 Development and Operations (DevOps)
 
-{*Coming soon*}
+We employ DevOps to ensure consistent release of good quality code and write-ups. 
+These tools allow us to detect and mitigate bugs before they are merged to the repository.
+
+#### 5.4.1 Build Automation
+
+This project uses Gradle for build automation and dependency management.
+
+It automates tasks such as:
+*   Managing library dependencies
+*   Analyzing code for style compliance
+*   Running tests
+
+The gradle configuration file can be located in `build.gradle`.
+
+#### 5.4.2 Continuous integration (CI)
+
+We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](https://travis-ci.org/) as our tool for Continuous integration.
+
+Their configuration is complete and there is no need to modify them, these CI will automatically run checks on every commit to **AniChan** repository.
+
+If you wish to modify these tools, you may find their configuration at:
+*   **GitHub Workflow:** `.github/workflows`
+*   **Travis CI:** `.travis.yml`
+
+
+
 
 ## Appendix A: Product Scope
 
