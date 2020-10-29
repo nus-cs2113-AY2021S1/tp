@@ -274,22 +274,22 @@ Here are the food items in DietBook:
 ```
 
  * To calculate carbohydrate intake: calculate carbohydrate
-    Input : calculate carbohydrate
-    Output : 
+    * Input : calculate carbohydrate
+    * Output : 
  ```
  Total carbohydrate intake: 80g
  ```
  * To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-    Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
-    Output : 
+    * Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
+    * Output : 
  ```
  Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
 
  Total carbohydrate intake: 80g
  ```
  * To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
-    Input : calculate carbohydrate 2020-10-29T08:00
-    Output : 
+    * Input : calculate carbohydrate 2020-10-29T08:00
+    * Output : 
  ```
  Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1340
  
@@ -309,8 +309,8 @@ Similar Inputs and outputs for the following
  * To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
 
  * To calculate all nutritional intake: calculate all
-    Input : calculate all
-    OutPut : 
+    * Input : calculate all
+    * OutPut : 
     ```
     Total calorie intake: 1900kcal
     Total carbohydrate intake: 80g
@@ -318,8 +318,8 @@ Similar Inputs and outputs for the following
     Total fat intake: 90g
     ```
  * To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-     Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
-     OutPut : 
+     * Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
+     * OutPut : 
      ```
      Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
      
@@ -329,8 +329,8 @@ Similar Inputs and outputs for the following
      Total fat intake: 90g
      ```
  * To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
-     Input : calculate all 2020-10-29T08:00
-     OutPut : 
+     * Input : calculate all 2020-10-29T08:00
+     * OutPut : 
      ```
      Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
      
