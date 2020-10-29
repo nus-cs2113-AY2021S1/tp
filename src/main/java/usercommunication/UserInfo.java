@@ -4,7 +4,7 @@ package usercommunication;
  * Represents the personal information about the user.
  */
 public class UserInfo {
-    protected String name="";
+    protected String name = "";
     protected UserType type = UserType.UNKNOWN;
 
     public String getName() {
@@ -21,6 +21,6 @@ public class UserInfo {
     }
 
     public String fileString() {
-        return name+"//"+type;
+        return name + "//" + type;
     }
 }
