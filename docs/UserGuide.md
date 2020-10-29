@@ -365,6 +365,7 @@ Format: `upload /w WEB_SERVER /u USERNAME /p PASSWORD `
 
 ## 6. Command Summary
 
+
 | Command          | Format                                                                     | Example                                                                     |
 |------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | addMember        | hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE                      | hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member                 |
@@ -388,6 +389,8 @@ Format: `upload /w WEB_SERVER /u USERNAME /p PASSWORD `
 | list prof&admin  | hr list prof&admin                                                         | -                                                                           |
 | list connections | hr list connections                                                        | -                                                                           |
 | summary          | finance summary                                                            | -                                                                           |
+
+
 [Return to the top](#user-guide)
 
 ## 7. Glossary
