@@ -63,7 +63,12 @@ public class StorageManager {
 
     // ========================== Workspace Saving ==========================
 
-    //@@author
+    /**
+     * Saves the workspace
+     *
+     * @param workspace the name of workspace
+     * @throws AniException when an error occurred while trying to save the workspace
+     */
     public void saveWorkspace(Workspace workspace) throws AniException {
         new File(storageDirectory + workspace.getName()).mkdirs();
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
@@ -71,6 +76,7 @@ public class StorageManager {
 
     // ========================== Workspace Deletion ==========================
 
+    //@@author
     /**
      * Deletes directory containing specified workspace.
      *
