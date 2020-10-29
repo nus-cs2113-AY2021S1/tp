@@ -1,12 +1,11 @@
 # User Guide
-  ```
- _       _      ____  __       __
-| |\ \  | |    / /\ \ \ \     / /
-| | \ \ | |   / /__\ \ \ \   / /
-| |  \ \| |  / /----\ \ \ \ / /
-|_|   \ \_| / /      \ \ \_V_/   @NUS 
-```
+![Logo](UG_Figures/Nav@NUSLogo.jpg)
+## Opening words
+Welcome to Nav@NUS application's user guide! <br><br>
+The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
+around NUS's Kent Ridge Campus via the school's shuttle service.<br>
 
+## Table of Contents
 - [1. What is Nav@NUS?](#1-what-is-navnus)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
