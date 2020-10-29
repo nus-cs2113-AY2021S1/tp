@@ -12,6 +12,13 @@ class QuestionListTest extends Eduke8Test {
     private static final int DEFAULT_QUESTION_COUNT = 3;
 
     @Test
+    void questionListConstructor_nullQuestionsArgument_expectsAssertionError() {
+        assertThrows(AssertionError.class, () -> {
+            QuestionList questionList = new QuestionList(null);
+        });
+    }
+
+    @Test
     void getCount_threeQuestions_returnsCountOfThree() {
         QuestionList questionList = createTestQuestionList();
 

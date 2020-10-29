@@ -15,6 +15,7 @@ public class Stats {
     private ArrayList<Displayable> topics;
 
     public Stats(TopicList topicList) {
+        assert topicList != null;
         topics = topicList.getInnerList();
         assert topics != null;
         userStatsCalculator = new UserStatsCalculator(topics);

@@ -16,18 +16,21 @@ public class Question implements Displayable {
     private Explanation explanation;
     private boolean wasAnsweredCorrectly;
     private boolean wasShown;
+    private boolean isBookmarked;
+
 
     public Question(String description, OptionList optionList, Hint hint, Explanation explanation) {
-        assert description != null;     // A question must have its description
+        assert description != null;     //A question must have its description
         this.description = description;
 
-        assert optionList != null;       // A question must have some options
+        assert optionList != null;       //A question must have some options
         this.optionList = optionList;
 
         this.explanation = explanation;
         this.hint = hint;
         wasAnsweredCorrectly = false;
         wasShown = false;
+        isBookmarked = false;
     }
 
     /**
@@ -40,6 +43,9 @@ public class Question implements Displayable {
         return description;
     }
 
+    /**
+     * Marks this question as shown, in other words, attempted by user.
+     */
     @Override
     public void markAsShown() {
         wasShown = true;
@@ -55,11 +61,10 @@ public class Question implements Displayable {
         return this.wasShown;
     }
 
-
     /**
      * Returns the multiple options of the question.
      *
-     * @return An  arraylist of options pertaining to this question.
+     * @return An arraylist of options pertaining to this question.
      */
     public OptionList getOptionList() {
         return optionList;
@@ -86,7 +91,7 @@ public class Question implements Displayable {
     /**
      * Returns a boolean variable indicating if the user had requested for a hint for this question.
      *
-     * @return Indication of whether the hint for this question was shown before,
+     * @return Indication of whether the hint for this question was shown before.
      */
     public boolean wasHintShown() {
         return hint.wasShown();
@@ -106,5 +111,13 @@ public class Question implements Displayable {
      */
     public void markAsAnsweredCorrectly() {
         wasAnsweredCorrectly = true;
+    }
+
+    public boolean isBookmarked() {
+        return isBookmarked;
+    }
+
+    public boolean markAsBookmarked() {
+        return isBookmarked = true;
     }
 }
