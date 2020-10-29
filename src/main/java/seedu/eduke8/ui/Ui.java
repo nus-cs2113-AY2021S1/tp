@@ -11,11 +11,15 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
+    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
@@ -45,7 +49,7 @@ public class Ui {
             + System.lineSeparator() + "2) help"
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
-            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions>"
+            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
             + System.lineSeparator() + "6) bookmark"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) exit";
@@ -62,7 +66,7 @@ public class Ui {
             + "you earn 2 points if you did not request for hint, "
             + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
-    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
+    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark':";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "
             + "available questions in each:";
     private static final String MESSAGE_EXPLANATION = "Explanation:";
@@ -80,6 +84,7 @@ public class Ui {
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String SPACE = " ";
     private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to";
     private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note";
     private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note";
@@ -110,20 +115,36 @@ public class Ui {
     private static final String MESSAGE_POINTS_EARNED_OUT_OF = " points earned / ";
     private static final String PERCENTAGE_SIGN = "%";
     private static final String MESSAGE_AVAILABLE_WORD = " available ";
+    private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer!";
     public static final String DATA_LOADING = "Please wait while data is loading...";
     public static final String DATA_LOADED = "Data loaded successfully!";
     public static final String DATA_SAVING = "Please wait while data is saving...";
     public static final String DATA_SAVED = "Data saved successfully!";
-
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
         return SCANNER.nextLine();
     }
 
-    public String getQuizInputFromUser() {
+    public void printQuizInputMessage() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
-        return SCANNER.nextLine();
+    }
+
+    public String getQuizInputFromUser(int timer) throws IOException {
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        long startingTime = System.currentTimeMillis();
+
+        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
+                && !userInput.ready()) {
+        }
+
+        if (userInput.ready()) {
+            return userInput.readLine();
+        } else {
+            return null;
+        }
     }
 
     private static void printMessage(String message) {
@@ -149,7 +170,7 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(questionNumber + ". " + question.getDescription() + System.lineSeparator());
+        System.out.println(questionNumber + DOT_SPACE + question.getDescription() + System.lineSeparator());
     }
 
     public void printHint(Hint hint) {
@@ -182,6 +203,14 @@ public class Ui {
     public void printAnswerIsCorrect(String explanation) {
         printMessage(MESSAGE_ANSWER_CORRECT + System.lineSeparator() + System.lineSeparator() + MESSAGE_EXPLANATION
                 + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
+        System.out.println();
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+                + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
+                + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 
@@ -394,7 +423,7 @@ public class Ui {
                         + ((j == optionsAvailable.size()) ? System.lineSeparator() : "");
                 j++;
             }
-            output += i + DOT_SPACE + question.getDescription() + optionOutput + " "
+            output += i + DOT_SPACE + question.getDescription() + optionOutput + SPACE
                     + ((i == allBookmarks.size()) ? "" : System.lineSeparator());
             i++;
         }
