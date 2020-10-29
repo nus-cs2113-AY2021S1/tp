@@ -61,9 +61,8 @@ public class ParserTest {
 
         // Shorthand category, Accented Character and Argument Precedence test
         HashMap<String, String> arg5 = new HashMap<>();
-        arg5.put("", "\350");
         arg5.put("arg", "precedence test");
-        UserInput expected5 = new UserInput("testCase\350", arg5);
+        UserInput expected5 = new UserInput("testCase", arg5);
         expected5.setCategory("finance");
         String test5 = "  f testCase\350  \350 "
                 + "/  arg  some  arg / arg /arg                                     precedence test";
