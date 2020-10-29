@@ -6,7 +6,7 @@ public class RandomGenerator {
 
     //@@author Artemis-Hunt-reused
     //Reused from https://www.baeldung.com/java-random-string with minor additions
-
+    private static final int MAX_LEN = 50;
     /**
      * Generates a random string of MAX_LEN 50,
      * May possibly generate an invalid paramType e.g. /sd(&(f.
@@ -14,8 +14,8 @@ public class RandomGenerator {
      * @return Random string containing alphanumeric characters
      *         and standard special characters.
      */
+
     public static String generateRandomString() {
-        final int MAX_LEN = 50;
         int lengthOfStringGenerated = (int) (Math.random() * MAX_LEN);
         int leftLimit = 32; // SPACE
         int rightLimit = 126; // '~'
@@ -26,6 +26,7 @@ public class RandomGenerator {
                     (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
+
         String generatedString = buffer.toString();
         return generatedString;
     }
