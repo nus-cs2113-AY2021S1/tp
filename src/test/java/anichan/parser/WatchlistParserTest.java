@@ -6,6 +6,7 @@ import anichan.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class WatchlistParserTest {
     private WatchlistParser watchlistParser;
 
@@ -23,17 +24,24 @@ class WatchlistParserTest {
     }
 
     @Test
-    void parse_invalidParameters_throwsAniException() {
+    void parse_invalidOption_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse(""));
         assertThrows(AniException.class, () -> watchlistParser.parse("-invalid"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-n one -one two"));
         assertThrows(AniException.class, () -> watchlistParser.parse("hello -n testing"));
+    }
 
+    @Test
+    void parse_emptyOptionInformation_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse("-n"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d"));
+    }
 
+    @Test
+    void parse_invalidOptionInformation_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse("-l a"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-s 0"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s one"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d one"));
     }

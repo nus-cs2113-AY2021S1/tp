@@ -1,30 +1,44 @@
 package anichan.parser;
 
-import anichan.command.ViewWatchlistCommand;
+import anichan.commands.ViewWatchlistCommand;
 import anichan.exception.AniException;
-
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
+/**
+ * Handles parsing for view watchlist command.
+ */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
+    protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
-    private static final Logger LOGGER = getAniLogger(AddToWatchlistParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
 
     private ViewWatchlistCommand viewWatchlistCommand;
 
+    /**
+     * Creates a new instance of ViewWatchlistParser.
+     */
     public ViewWatchlistParser() {
         viewWatchlistCommand = new ViewWatchlistCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
+    /**
+     * Parses the specified command description.
+     *
+     * @param description the specified command description
+     * @return initialised {@code RemoveCommand} object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public ViewWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
-        if (paramGiven.length <= 1) {
-            throw new AniException("-v WATCHLIST_ID is required");
+        paramIsSetCheck(paramGiven);
+        if (paramGiven.length > 2) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         } else {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, "Parameter parsed properly");
@@ -32,6 +46,12 @@ public class ViewWatchlistParser extends CommandParser {
         return viewWatchlistCommand;
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven a String Array containing the parameters and the value
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");
