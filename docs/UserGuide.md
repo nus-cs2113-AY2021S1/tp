@@ -3,7 +3,7 @@
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
-around NUS's Kent Ridge Campus via the school's shuttle service.<br>
+around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
 - [1. What is Nav@NUS?](#1-what-is-navnus)
@@ -35,10 +35,10 @@ Are you new to NUS? <br>
 Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, you new navigation assistant!
-Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus
+Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
 hassle of physically checking the bus stop's notice board.Nav@NUS is a tool tailor made for anyone unfamiliar to 
-NUS Kent Ridge campus,students,professors and visitors included. Nav@NUS brings convenience to you and wishes your 
+NUS  campus,students,professors and visitors included. Nav@NUS brings convenience to you and wishes your 
 commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
