@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ExecFavCommandTest {
+
     @BeforeAll
     public static void makeList() {
         new FavList();
@@ -26,6 +27,7 @@ public class ExecFavCommandTest {
         assertThrows(CustomException.class, ExecFavCommandTest::performCheck_indexOutOfBounds);
 
     }
+
     static void performCheck_indexOutOfBounds() throws CustomException {
         String input = "10";
         ExecFavCommand command = new ExecFavCommand(input);
@@ -36,6 +38,7 @@ public class ExecFavCommandTest {
     void executeCommand_inputWords_expectException() {
         assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputWords);
     }
+
     static void performCheck_inputWords() throws CustomException {
         String input = "random words";
         ExecFavCommand command = new ExecFavCommand(input);
@@ -46,6 +49,7 @@ public class ExecFavCommandTest {
     void executeCommand_inputBlank_expectException() {
         assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputBlank);
     }
+
     static void performCheck_inputBlank() throws CustomException {
         String input = " ";
         ExecFavCommand command = new ExecFavCommand(input);
@@ -56,6 +60,7 @@ public class ExecFavCommandTest {
     void executeCommand_inputNumberAndWords_expectException() {
         assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputNumberAndWords);
     }
+
     static void performCheck_inputNumberAndWords() throws CustomException {
         String input = "1 random words";
         ExecFavCommand command = new ExecFavCommand(input);
@@ -66,13 +71,11 @@ public class ExecFavCommandTest {
     void executeCommand_inputValidIndex_TaskRuns() {
         assertDoesNotThrow(ExecFavCommandTest::performCheck_inputValidIndex);
     }
+
     static void performCheck_inputValidIndex() throws CustomException {
         String input = "1";
         ExecFavCommand command = new ExecFavCommand(input);
         command.executeCommand();
     }
-
-
-
-
+    
 }
