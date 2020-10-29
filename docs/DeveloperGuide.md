@@ -908,9 +908,9 @@ We are using `java.util.logging`  package for logging. The logger can be accesse
 The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
 
 We use the following log levels:
-*   `Level.SEVERE` : A critical failure, which prevents normal execution of the program.
-*   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
-*   `Level.INFO`: General noteworthy information of the program.
+*   `Level.SEVERE` A critical failure, which prevents normal execution of the program.
+*   `Level.WARNING`Indicates a potential problem, but can proceed with caution.
+*   `Level.INFO` General noteworthy information of the program.
 
 <br/>
 
@@ -931,9 +931,47 @@ There are primarily 2 ways to run the tests.
 
 <br/>
 
-### 5.4 DevOps
+### 5.4 Development and Operations (DevOps)
 
-{*Coming soon*}
+We employ DevOps to ensure consistent release of good quality code and write-ups. 
+These tools allow us to detect and mitigate bugs before they are merged to the repository.
+
+#### 5.4.1 Build Automation
+
+This project uses Gradle for build automation and dependency management.
+
+It automates tasks such as:
+*   Managing library dependencies
+*   Analyzing code for style compliance
+*   Running tests
+
+The gradle configuration file can be located in `build.gradle`.
+
+#### 5.4.2 Continuous integration (CI)
+
+We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](https://travis-ci.org/) as our tool for Continuous integration.
+
+Their configuration is complete and there is no need to modify them, these CI will automatically run checks on every commit to **AniChan** repository.
+
+If you wish to modify these tools, you may find their configuration at:
+*   **GitHub Workflow:** `.github/workflows`
+*   **Travis CI:** `.travis.yml`
+
+##### 5.4.2.1 Code Coverage
+
+As part of CI, this project uses Codecov to generate coverage reports. 
+
+If you wish to configure Codecov for your fork, you may refer to [Codecov Docs](https://docs.codecov.io/docs).
+
+##### 5.4.2.2 Repository-wide checks
+
+In addition to running Gradle checks, CI includes some repository-wide checks. 
+These checks include files from the entire repository and are useful in checking for rules which are hard to enforce on development machines such as line ending requirements.
+
+These checks are POSIX shell scripts (i.e. platform dependent to Linux and macOS). 
+To run all checks, execute the following at project root `./config/travis/run-checks.sh`.
+
+If you wish to add new checks, simply add the check file with a filename `check-*` to the `./config/travis/` and the `run-checks.sh` script will automatically run it.
 
 ## Appendix A: Product Scope
 
