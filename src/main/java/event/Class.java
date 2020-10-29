@@ -42,8 +42,8 @@ public class Class extends Event {
      * @return the result string to be stored.
      */
     public String fileString() {
-        return "C//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + end + "//" + (location != null ?
-                location.fileString() : link.fileString());
+        return "C//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + end + "//" + (location != null
+                ? location.fileString() : link.fileString());
     }
 
     /**

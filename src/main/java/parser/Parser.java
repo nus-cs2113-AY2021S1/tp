@@ -179,27 +179,24 @@ public abstract class Parser {
 
         //these variables are used by either Edit or Add
         //the position of /t
-        int startTimeDividerPosition;
+        int startTimeDividerPosition = fullCommand.indexOf(TIME_MARKER);
+        ;
         //the position of the space when the user enters a date time in the format yyyy-mm-dd HH:mm
         int timeDivider;
         //the position of /et
-        int endTimeDividerPosition;
+        int endTimeDividerPosition = fullCommand.indexOf(END_TIME_MARKER);
         //the position of /l
-        int locationDividerPosition;
+        int locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
         //the position of /o
-        int onlineLocationDividerPosition;
+        int onlineLocationDividerPosition = fullCommand.indexOf(ONLINE_LOCATION_MARKER);
         //the position of /p
-        int pwdDividerPosition;
+        int pwdDividerPosition = fullCommand.indexOf(PASSWORD_MARKER);
         String startDateTime;
         Location location;
         String endDateTime;
         //the position of the space when the user enters an ending date time in the format yyyy-mm-dd HH:mm
         int endingTimeDivider;
-        startTimeDividerPosition = fullCommand.indexOf(TIME_MARKER);
-        endTimeDividerPosition = fullCommand.indexOf(END_TIME_MARKER);
-        locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
-        onlineLocationDividerPosition = fullCommand.indexOf(ONLINE_LOCATION_MARKER);
-        pwdDividerPosition = fullCommand.indexOf(PASSWORD_MARKER);
+
 
         //this block deals with edit command
         //this block will change fullCommand, but this does not affect the later block since
@@ -243,8 +240,8 @@ public abstract class Parser {
                         throw new NoEventLocationException();
                     }
                 } else {
-                    if (fullCommand.substring(startTimeDividerPosition + 3, onlineLocationDividerPosition - 1).
-                            isBlank()) {
+                    if (fullCommand.substring(startTimeDividerPosition + 3, onlineLocationDividerPosition - 1)
+                            .isBlank()) {
                         throw new NoEventTimeException();
                     }
                     if (fullCommand.substring(onlineLocationDividerPosition + 3).isBlank()) {
@@ -314,9 +311,7 @@ public abstract class Parser {
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new TimeFormatException();
                     }
-                }
-                //this deals with the event holding offline
-                else {
+                } else {
                     try {
                         timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
                         OnlineLocation virtualLocation;
@@ -386,7 +381,9 @@ public abstract class Parser {
                     }
 
                 }
-            } else throw new WrongCommandException();
+            } else {
+                throw new WrongCommandException();
+            }
 
         }
 
@@ -415,8 +412,8 @@ public abstract class Parser {
                     throw new NoEventLocationException();
                 }
             } else {
-                if (fullCommand.substring(startTimeDividerPosition + 3, onlineLocationDividerPosition - 1).
-                        isBlank()) {
+                if (fullCommand.substring(startTimeDividerPosition + 3, onlineLocationDividerPosition - 1)
+                        .isBlank()) {
                     throw new NoEventTimeException();
                 }
                 if (fullCommand.substring(onlineLocationDividerPosition + 3).isBlank()) {
@@ -484,9 +481,7 @@ public abstract class Parser {
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
                 }
-            }
-            //this deals with the event holding online
-            else {
+            } else { //this deals with the event holding online
                 try {
                     timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
                     OnlineLocation virtualLocation;
@@ -552,7 +547,9 @@ public abstract class Parser {
                 }
 
             }
-        } else throw new WrongCommandException();
+        } else {
+            throw new WrongCommandException();
+        }
 
         assert false;//nothing should reach here
         throw new UnknownErrorException();

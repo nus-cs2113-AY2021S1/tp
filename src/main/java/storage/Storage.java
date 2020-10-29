@@ -93,7 +93,7 @@ public class Storage {
      * @return the Events in an ArrayList
      * @throws LoadingException             represents the Events is not correctly created
      * @throws EndBeforeStartEventException Represents the case when the user want to create an Event that ends
-     * before it starts.
+     *                                      before it starts.
      */
     public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException, EndBeforeStartEventException {
         ArrayList<Event> events = new ArrayList<>();
@@ -163,7 +163,9 @@ public class Storage {
                             } else if (words[5].equals(ONLINE)) {
                                 events.add(new PersonalEvent(words[2], new OnlineLocation(words[6]),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
-                            } else throw new LoadingException();
+                            } else {
+                                throw new LoadingException();
+                            }
                             break;
                         case 8:
                             events.add(new PersonalEvent(words[2], new OnlineLocation(words[6], words[7]),

@@ -245,8 +245,8 @@ public class UI {
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
         System.out.println("There will be more upcoming features in later versions.");
-        System.out.println("For more information, please refer to detailed user guide: https://ay2021s1-cs2113t-f14-4" +
-                ".github.io/tp/");
+        System.out.println("For more information, please refer to detailed user guide: https://ay2021s1-cs2113t-f14-4"
+                + ".github.io/tp/");
     }
 
     /**

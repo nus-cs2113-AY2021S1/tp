@@ -49,6 +49,6 @@ public class OnlineLocation {
      * @return the link of the meeting. If there is password, return the password also.
      */
     public String fileString() {
-        return "online//"+link + (password != null ? "//" + password : "");
+        return "online//" + link + (password != null ? "//" + password : "");
     }
 }

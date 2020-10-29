@@ -26,8 +26,8 @@ public class PersonalEvent extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (location != null ?
-                location.fileString() : link.fileString());
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (location != null
+                ? location.fileString() : link.fileString());
     }
 
     /**
