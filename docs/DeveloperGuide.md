@@ -17,7 +17,7 @@
 4. [Implementation](#4-implementation)
 <br/>&nbsp;4.1 [Estimate Feature](#41-estimate-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
-<br/>&nbsp;4.3 [View Information Feature](#43-view-anime-information)
+<br/>&nbsp;4.3 [View Anime Information Feature](#43-view-anime-information-feature)
 <br/>&nbsp;4.4 [Workspace Feature](#44-workspace-feature)
 <br/>&nbsp;4.5 [Watchlist Management Feature](#45-watchlist-management-feature)
 <br/>&nbsp;4.6 [Add To Watchlist Feature](#46-add-to-watchlist)
@@ -416,7 +416,7 @@ and in favour of having an application that is highly object-oriented.
 
 <br/>
 
-### 4.3 View Anime Information
+### 4.3 View Anime Information Feature
 The `info` command allows the user to view all the relevant information regarding a specific anime that the user specifies. This allows them to know more about a particular anime.
 
 #### 4.3.1 Current Implementation
@@ -424,19 +424,41 @@ The view information command is currently implemented by the `InfoCommand`. The 
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
 
-**Step 1:** `Ui` would receive input in the `Main` class and pass it into `Parser` class
+**Step 1:** `Ui` would receive input in form of `info -a <ANIME_ID>` in the `Main` class and pass it into `Parser` class
+
+> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object, in which `InfoCommand` object is constructed as well.
 
-**Step3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`.
+**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
+
+Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature
+
+![Info Command Step 1 to 3 Sequence Diagram](images/InfoCommand-Step1-3-Sequence-Diagram.png) <br/>
+*Figure 14: Info feature steps 1 to 3 sequence diagram*
 
 **Step 4:** `Main` will then call `InfoCommand#execute()`. In here the ANIME_ID will be validated and `AnimeData#returnAnimeInfo()` method is invoked, returning a string containing information regarding that particular ANIME_ID.
 
 **Step 5:** The string is returned all the way back to `Main` and printed out by `Ui`.
 
-**Step 6:** `InfoParser`, `InfoCommand`, `Parser` and `Command` are finally terminated
+**Step 6:** `InfoCommand` is terminated
 
-> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
+The diagram below is the sequence diagram from steps 4 onward.
+
+![Info Command Step 4 to 6 Sequence Diagram](images/InfoCommand-Step4-6-Sequence-Diagram.png) <br/>
+*Figure 15: Info feature steps 4 to 6 sequence diagram*
+
+#### 4.3.2 Design Consideration
+This section shows the considerations taken when designing this feature.
+
+Aspect: **Using anime title or Anime ID as the field for input**
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
+| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
+
+We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime title. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
 
 <br/>
 
@@ -475,7 +497,7 @@ to **create new** `Workspace`:
 **Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
 
 ![Workspace Command Initial State Diagram](images/WorkspaceCommand-Initial-State.png) <br/>
-*Figure 14: Workspace Command Initial State*
+*Figure 16: Workspace Command Initial State*
 
 <br/>
 
@@ -489,7 +511,7 @@ to **create new** `Workspace`:
 Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
-*Figure 15: Workspace Command After New Workspace Creation*
+*Figure 17: Workspace Command After New Workspace Creation*
 
 <br/>
 
@@ -503,14 +525,14 @@ The following diagrams will continue **from step 6**, and will illustrate the ch
 **Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
-*Figure 16: Workspace Command After Workspace Switch*
+*Figure 18: Workspace Command After Workspace Switch*
 
 <br/>
 
 **Step 8:** User keys in `workspace -d Default` to delete the workspace named `Default`.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
-*Figure 17: Workspace Command After New Workspace Delete*
+*Figure 19: Workspace Command After New Workspace Delete*
 
 <br/>
 
@@ -519,7 +541,7 @@ The following sequence diagram illustrates how `Workspace` creation in the examp
 > :memo: The other options (`-s`, `-l`, `-d`) follows a similar process, only the list and switch option does not interact with `StorageManager` and `Watchlist`.
 
 ![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
-*Figure 18: Workspace Command After New Workspace Delete*
+*Figure 20: Workspace Command After New Workspace Delete*
 
 <br/>
 
@@ -581,7 +603,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-*Figure 19: WatchlistCommand Initial State*
+*Figure 21: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
 
@@ -603,7 +625,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
 
-*Figure 20: WatchlistCommand After Create State*
+*Figure 22: WatchlistCommand After Create State*
 
 <br/>
 
@@ -614,7 +636,7 @@ All the other options in the watchlist command also follows a similar execution 
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-*Figure 21: WatchlistCommand After Select State*
+*Figure 23: WatchlistCommand After Select State*
 
 <br/>
 
@@ -622,7 +644,7 @@ All the other options in the watchlist command also follows a similar execution 
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
-*Figure 22: WatchlistCommand After Delete State*
+*Figure 24: WatchlistCommand After Delete State*
 
 <br/>
 
@@ -633,7 +655,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
-*Figure 23: Sequence Diagram for `watchlist -n NewAnime`*
+*Figure 25: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
 
@@ -672,31 +694,43 @@ Add to watchlist command extends the `Command` class, and the `parse` method in 
 
 Below is an example usage scenario of how add to watchlist command behaves at each step.
 
-**Step 1:** Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser`. 
-
-**Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
-
-**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class.
-
-**Step 4:** The `Main` class would then invoke `AddToWatchlistCommand#execute()`, which will retrieve the active `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
-
-**Step 5:** `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the ArrayList of integers storing all the animes in that `Watchlist`.
-
-**Step 6:** `AddToWatchlistCommand`, `AddToWatchlistParser`, `Parser` and `Command` are terminated
+**Step 1:** Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser` through `Parser#getCommand(userInput)`. 
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of anime in the AnimeData. 
 
-#### 4.6.2 Design consideration
-Below shows the considerations taken when implementing the `AddToWatchlist` feature
+**Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
 
-Aspect: **whether to use name of anime as input, or use anime ID**
+**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
+
+The figure below shows the sequence diagram of steps 1 to 3.
+
+![Add To Watchlist Command Step 1 to 3](images/AddToWatchlist-Step1-3-Sequence-Diagram.png) <br/>
+*Figure 26: Sequence diagram for Add To Watchlist feature steps 1 to 3*
+
+**Step 4:** `AddToWatchlistCommand#execute()` is then invoked in `Main`, which retrieve the active `workspace` through `AddToWatchlistCommand#getActiveWorkspace()`, and `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
+
+**Step 5:** `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the ArrayList of integers storing all the animes in that `Watchlist`.
+
+**Step 6:** `commandResult` will then be passed back to `Main` to be printed out by `Ui`, and `AddToWatchlistCommand` is  terminated
+
+For better illustration, Figure 27 below shows the sequence diagram of steps 4 to 6.
+
+![Add To Watchlist Command Step 4 to 6](images/AddToWatchlist-Step4-6-Sequence-Diagram.png) <br/>
+*Figure 27: Sequence diagram for Add To Watchlist feature steps 4 to 6*
+
+#### 4.6.2 Design consideration
+Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
+
+Aspect: **Using anime title or anime ID as the field for input**
+
+This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` deature section.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime name as input | Easier for users who remember anime names | Users will have to input the full anime name  |
+| 1. Use anime title as input | Easier for users who remember anime titles | Users will have to input the full anime title  |
 | 2. Use anime ID as input | Users will only need to input one single integer | Users will have to search for the anime ID if they do not know the ID |
 
-We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime name. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a name to search against the whole data of anime to retrieve information.
+Similarly, we decided to go with the second approach as this would be much easier for users to key in, and also faster for the program to find the anime the user wants to add into the watchlist.
 
 <br/>
 
@@ -717,8 +751,8 @@ Aspect: **which index to use when removing an anime**
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime ID itself | Users who remember the anime ID will be able to remove the anime quicker | The program will have to search through the entire list of anime in the watchlist for that particular anime ID  |
-| 2. Use index of anime in the watchlist | Faster for the program to delete a particular index | User will have to view the watchlist to check which index the anime is at |
+| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
+| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
 
 We have decided to use approach 2 instead of 1, as it will not only will it be much faster for the program to delete one particular index instead of having to search through the whole list, it would be provide better user experience as the user will not need to search for the anime ID that he wants to remove in the case that he does not know the anime ID.
 
@@ -734,13 +768,25 @@ An example usage scenario on how view anime in watchlist behaves is given below.
 
 **Step 1:** In the `Main` class, the user will input `view -v <WATCHLIST_ID>`. `Ui` will take in this input and is passed into `Parser`.
 
-**Step 2:** In `Parser’, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
+**Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
 
-**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`.
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. 
 
-**Step 4:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated, and if valid, a string containing all the anime name inside the active `Watchlist` will be built and returned to `Main`, where it will be printed out by `Ui`.
+**Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
-**Step 5:** `ViewWatchlistParser`, `ViewWatchlistCommand`, `Parser` and `Command` are terminated
+The sequence diagram for steps 1 to 4 is as shown in the figure below.
+![View Watchlist Command Step 1 to 4](images/ViewWatchlist-Step1-4-Sequence-Diagram.png) <br/>
+*Figure 28: Sequence diagram for View Watchlist feature steps 1 to 4*
+
+**Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
+
+**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the active `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
+
+**Step 7:** `ViewWatchlistCommand` is terminated
+
+The figure below is the sequence diagram for steps 5 to 7
+![View Watchlist Command Step 5 to 7](images/ViewWatchlist-Step5-7-Sequence-Diagram.png) <br/>
+*Figure 29: Sequence diagram for View Watchlist feature steps 5 to 7*
 
 <br/>
 
@@ -755,7 +801,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
-*Figure 24: Bookmark Class Diagram*
+*Figure 30: Bookmark Class Diagram*
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
 
@@ -797,19 +843,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 25: Bookmark Entry After Add*
+*Figure 31: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 26: Bookmark Entries with more Add*
+*Figure 32: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 27: Bookmark Add Command Sequence Diagram*
+*Figure 33: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -823,19 +869,19 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 28: Bookmark Entries After Delete*
+*Figure 34: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 29: Bookmark Entries After Edit Episode*
+*Figure 35: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
-*Figure 30: Bookmark Entries After Add Note*
+*Figure 36: Bookmark Entries After Add Note*
 
 **Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime id at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
@@ -857,7 +903,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 31: Bookmark Entries After Edit Episode*
+*Figure 37: Bookmark Entries After Edit Episode*
 
 <br/>
 
@@ -989,9 +1035,12 @@ If you wish to add new checks, simply add the check file with a filename `check-
 | Version | As a ... | I want to ... | So that I ... |
 | --- | --- | --- | --- |
 | v1.0 | user | create new watchlist | can keep track of animes easily based on my defined criteria |
+| v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterias |
 | v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
-| v1.0 | user | I want to save the data I have created | can remember what I have done |
-| v1.0 | user | I want to load the data I created previously | can continue to work on these data |
+| v1.0 | user | save the data I have created | can remember what I have done |
+| v1.0 | user | load the data I created previously | can continue to work on these data |
+| v1.0 | new user | view all available commands | can easily find a specific command and its usage |
+| v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
 | v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
 | v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
 | v2.0 | translator | estimate the time needed to translate a script | better manage my time |
