@@ -22,7 +22,9 @@ class Notebook {
 +deleteNote(int): boolean
 +deleteNote(String): boolean
 +checkPinned(): boolean
++getPinnedNotes(): ArrayList<Note>
 +getPinnedNotes(ArrayList<Note>): ArrayList<Note>
++getUnpinnedNotes(): ArrayList<Note>
 +getUnpinnedNotes(ArrayList<Note>): ArrayList<Note>
 +getSortedList(Boolean, Boolean): ArrayList<Note>
 +getSortedList(Boolean, Boolean, ArrayList<Note>): ArrayList<Note>

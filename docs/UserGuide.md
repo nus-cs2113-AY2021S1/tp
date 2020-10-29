@@ -171,12 +171,12 @@ Expected output:
 #### <a id="edit-n">3.5 Edit Note: `edit-n`</a>
 Edits an existing note.
 
-Format: `edit-n /i INDEX [/t TITLE] [/del LINE] [/add CONTENT] [/tag TAG_1] [/tag TAG_2]...`
+Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONTENTS] OR [/del INDEX]) [/c CONTENT] [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...]`
 
-- Edits a note at the specified INDEX. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
+- Edits a note at the specified INDEX. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
+- Only multiple use of the same type prefix [/add INDEX STRING], [/ln LINE_INDEX CONTENTS], [/del INDEX] can be used per edit.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- [/ln LINE] must be paired with [/c CONTENT] to edit a specific line of the note.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
 - Users can remove all the tags by tag/ without specifying any tags after it.
 
@@ -184,9 +184,17 @@ Example of usage:
 
 `edit-n /i 2 /t JavaDocs Notes`
 
-`edit-n /i 2 /ln 1 /c @param refers to parameters`
+`edit-n /i 2 /ln 1 Line 1 /c @param refers to parameters`
+
+`edit-n /i 2 /add 2 Line 2.1 /add 3 Line 2.2`
+
+`edit-n /i 2 /del 1 /del 2`
 
 Expected output:
+
+<p align="center">
+   <img alt="editNote" src="screenshots/editNote.png"/>
+</p>
 
 ### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
