@@ -587,7 +587,7 @@ Below is an example usage scenario of how add to watchlist command behaves at ea
 The figure below shows the sequence diagram of steps 1 to 3.
 
 ![Add To Watchlist Command Step 1 to 3](images/AddToWatchlist-Step1-3-Sequence-Diagram.png) <br/>
-*Figure X: Sequence diagram for AddToWatchlistCommand steps 1 to 3*
+*Figure X: Sequence diagram for Add To Watchlist feature steps 1 to 3*
 
 **Step 4:** `AddToWatchlistCommand#execute()` is then invoked in `Main`, which retrieve the active `workspace` through `AddToWatchlistCommand#getActiveWorkspace()`, and `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
 
@@ -598,7 +598,7 @@ The figure below shows the sequence diagram of steps 1 to 3.
 For better illustration, Figure X below shows the sequence diagram of steps 4 to 6.
 
 ![Add To Watchlist Command Step 4 to 6](images/AddToWatchlist-Step4-6-Sequence-Diagram.png) <br/>
-*Figure X: Sequence diagram for AddToWatchlistCommand steps 4 to 6*
+*Figure X: Sequence diagram for Add To Watchlist feature steps 4 to 6*
 
 #### 4.6.2 Design consideration
 Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
@@ -652,11 +652,23 @@ An example usage scenario on how view anime in watchlist behaves is given below.
 
 **Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
 
-**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`.
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. 
 
-**Step 4:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated, and if valid, a string containing all the anime name inside the active `Watchlist` will be built and returned to `Main`, where it will be printed out by `Ui`.
+**Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
-**Step 5:** `ViewWatchlistParser`, `ViewWatchlistCommand`, `Parser` and `Command` are terminated
+The sequence diagram for steps 1 to 4 is as shown in the figure below.
+![View Watchlist Command Step 1 to 4](images/ViewWatchlist-Step1-4-Sequence-Diagram.png) <br/>
+*Figure X: Sequence diagram for View Watchlist feature steps 1 to 4*
+
+**Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
+
+**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the active `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
+
+**Step 7:** `ViewWatchlistCommand` is terminated
+
+The figure below is the sequence diagram for steps 5 to 7
+![View Watchlist Command Step 5 to 7](images/ViewWatchlist-Step5-7-Sequence-Diagram.png) <br/>
+*Figure X: Sequence diagram for View Watchlist feature steps 5 to 7*
 
 <br/>
 
