@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class WordList {
-    private static ArrayList<Words> wordList = new ArrayList<>();
+    public static ArrayList<Words> wordList = new ArrayList<>();
 
     public static ArrayList<Words> getWordList() {
         return wordList;
@@ -127,6 +127,17 @@ public class WordList {
             System.out.println(FluffleMessages.THREE_WORDS_MSG);
             for (int i = 0; i < 3; i++) {
                 System.out.println("   " + (i + 1) + ". " + threeWords.get(i).getDescription());
+            }
+        }
+    }
+
+    public static void clearWord(String wordToBeCleared) {
+        int i = 0;
+        while (i < wordList.size()) {
+            if (wordList.get(i).getDefinition().equalsIgnoreCase(wordToBeCleared)) {
+                wordList.remove(i);
+            } else {
+                i++;
             }
         }
     }

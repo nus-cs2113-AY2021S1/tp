@@ -29,6 +29,7 @@ import seedu.duke.writing.WritingList;
 import java.io.IOException;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
+import static seedu.duke.wordlist.WordList.wordList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
@@ -190,7 +191,7 @@ public class CommandExecutor {
             break;
         case CLEAR:
             try {
-                ClearLoader.clearItems(userInput, writings);
+                ClearLoader.clearItems(userInput, writings, wordList);
             } catch (WrongClearCommandFormat e) {
                 System.out.println("The appropriate format is:\n"
                     + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
