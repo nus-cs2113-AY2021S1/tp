@@ -19,10 +19,10 @@
   * [3.7. Search for dining options within a faculty: ```/dine```](#37-search-for-dining-options-within-a-faculty-dine)
   * [3.8. Search for specific dining outlet: ```/dineinfo```](#38-search-for-specific-dining-outlet-dineinfo)
   * [3.9. Add a favourite command: `/addfav`](#39-add-a-favourite-command-addfav)
-  * [3.10. Delete a favourite command: `/deletefav`](#310-delete-a-favourite-command-deletefav)
-  * [3.11. Execute a favourite command: `/execfav`](#311-execute-a-favourite-command-execfav)
-  * [3.12. Change the description for a favourite command: `/descfav`](#312-change-the-description-for-a-favourite-command-descfav)
-  * [3.13. List all favourite commands: `/listfav`](#313-list-all-favourite-commands-listfav)
+  * [3.10. List all favourite commands: `/listfav`](#310-list-all-favourite-commands-listfav)
+  * [3.11. Delete a favourite command: `/deletefav`](#311-delete-a-favourite-command-deletefav)
+  * [3.12. Execute a favourite command: `/execfav`](#312-execute-a-favourite-command-execfav)
+  * [3.13. Change the description for a favourite command: `/descfav`](#313-change-the-description-for-a-favourite-command-descfav)
   * [3.14. Clear the list of favourite commands: `/clearfav`](#314-clear-the-list-of-favourite-commands-clearfav)
   * [3.15. Similarity Checks](#315-similarity-checks)
   * [3.16. Reset frequent search data: ```/reset```](#316-reset-frequent-search-data-reset)
@@ -245,13 +245,13 @@ These are the steps to follow:
 
 ### 3.9. Add a favourite command: `/addfav`
 
-### 3.10. Delete a favourite command: `/deletefav`
+### 3.10. List all favourite commands: `/listfav`
 
-### 3.11. Execute a favourite command: `/execfav`
+### 3.11. Delete a favourite command: `/deletefav`
 
-### 3.12. Change the description for a favourite command: `/descfav`
+### 3.12. Execute a favourite command: `/execfav`
 
-### 3.13. List all favourite commands: `/listfav`
+### 3.13. Change the description for a favourite command: `/descfav`
 
 ### 3.14. Clear the list of favourite commands: `/clearfav`
 
