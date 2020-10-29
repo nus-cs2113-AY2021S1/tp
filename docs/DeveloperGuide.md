@@ -195,12 +195,12 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
-![print_tasks_command_sd](../images/PrintTasksCommand_SD.png)
+![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
 
 ### Print events feature
 This feature is facilitated by `PrintEventsCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
-![print_events_command_sd](../images/PrintEventsCommand_SD.png)
+![print_events_command_sd](images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
