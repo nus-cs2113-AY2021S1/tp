@@ -819,9 +819,9 @@ public class Ui {
      * @return A string representation of a list of database related commands that users can input.
      */
     private String getDatabaseRelatedCommands() {
-        return "  To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
-                + "  To add a food from the database consumed at a certain time: add n/FOOD_NAME "
-                + "x/PORTION_SIZE yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
+        return "  [Coming Soon] To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
+                + "  [Coming Soon] To add a food from the database consumed at a certain time: add "
+                + "n/FOOD_NAME x/PORTION_SIZE yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
                 + "  To view all food in the database: data" + LINE_SEPARATOR;
     }
 
