@@ -75,7 +75,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * Reserved for param types which are used to specify a property to be true/false
         * Eg. ```-auto```, to specify if an entry has automatic deduction. 
         
-##### Command Packet
+##### <a name="commandPacket"></a> Command Packet 
 * A helper class. Contains two particular attributes to store the user input in an organised fashion.
     * ```commandString``` :  ```String``` Store the command string from the input.
     * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
@@ -83,7 +83,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * Value:  ```param```
 
 ##### InputParser
-* A helper class. Parses the input string and returns a corresponding ```commandPacket```.
+* A helper class. Parses the input string and returns a corresponding [```commandPacket```](#commandPacket).
     * ```parseInput()```: 
         * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
         * Calls ParamParser instance to parse the segment of the input string
