@@ -39,6 +39,8 @@ public class Eduke8 {
     private Eduke8(String dataPath, String logPath, String userPath) {
         ui = new Ui();
         bookmarkList = new BookmarkList(new ArrayList<>());
+
+        ui.printDataLoading();
         try {
             topicsStorage = new TopicsStorage(dataPath);
             logStorage = new LogStorage(logPath);
@@ -56,6 +58,8 @@ public class Eduke8 {
             ui.printError(e.getMessage());
             LOGGER.log(Level.INFO, e.getMessage());
         }
+        ui.printDataLoaded();
+
         menuParser = new MenuParser(bookmarkList);
     }
 
@@ -82,6 +86,7 @@ public class Eduke8 {
     }
 
     private void exit() {
+        ui.printDataSaving();
         try {
             userStorage.save();
         } catch (IOException e) {
@@ -89,6 +94,8 @@ public class Eduke8 {
             LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
             System.exit(1);
         }
+        ui.printDataSaved();
+
         ui.printExitMessage();
         System.exit(0);
     }

@@ -3,6 +3,7 @@ textbook
 topics
 quiz t/OOP n/1 s/2
 hint
+bookmark
 1
 quiz t/OOP n/1 s/2
 2
@@ -22,4 +23,5 @@ quiz s/2 n/1 t/3
 quiz t/OOPS n/1 s/2
 quiz t/OOP n/1 n/1
 1
+topics
 exit
