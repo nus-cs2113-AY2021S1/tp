@@ -412,6 +412,7 @@ The expected outcome is as follows:
 
 ## 6. Command Summary
 
+
 Command | Format | Example
 ------- | ---------- | ------------
 addAttendance  | `event addAttendance /n EVENT_NAME /p MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
@@ -438,6 +439,8 @@ listEvent | `event listEvent` | -
 list prof&admin | `hr list prof&admin` | -
 list connections | `hr list connections` | -
 summary | `finance summary` |   -
+
+
 
 [Return to the top](#user-guide)
 
