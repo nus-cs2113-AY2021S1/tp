@@ -144,7 +144,7 @@ Want to set a deadline after you have created your personal event? Afraid that y
 
 Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM`
 
-* `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
+- `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
 
 * `DD/MM/YY` contains a date string in the format `[DD/MM/YY]`. This is the date of the deadline for the personal event. 
 
@@ -162,20 +162,21 @@ You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
 
----
-**Note**
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
 
 * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 * AM/PM is required for 12 hour format
----
 
----
-**Warning**
+{{box op="end"}}
+
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
----
+{{box op="end"}}
 
 
 ### Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
@@ -327,12 +328,14 @@ Example of usage:
    _________________________________
    ```
 
----
-**Warning**
+
+
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
----
+{{box op="end"}}
 
 ### Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
