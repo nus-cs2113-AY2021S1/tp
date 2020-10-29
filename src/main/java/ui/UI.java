@@ -166,7 +166,7 @@ public class UI {
      * @param eventAdded the Event being added
      */
     public void printAddEventMessage(Event eventAdded) {
-        System.out.println("Got it. I've added this Event: ");
+        System.out.println("I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
 
@@ -176,7 +176,7 @@ public class UI {
      * @param eventEdited the Event being edited
      */
     public void printEditEventMessage(Event eventEdited) {
-        System.out.println("Got it. I've edited this Event: ");
+        System.out.println("I've edited this Event: ");
         System.out.println(eventEdited.toString());
     }
 
@@ -238,7 +238,7 @@ public class UI {
     public void printHelp() {
         System.out.println("Current version: v2.0");
         System.out.println("Below are all the commands and brief descriptions of their functions in the form of "
-               + "command - function: ");
+                + "command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("assignment - add an assignment event with content, deadline and location");
         System.out.println("class - add a class event with content, deadline and location");
@@ -251,7 +251,7 @@ public class UI {
         System.out.println("reminder - show events of the day");
         System.out.println("There will be more upcoming features in later versions.");
         System.out.println("For more information, please refer to detailed user guide: "
-               + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");
+                + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");
     }
 
     /**
@@ -259,6 +259,27 @@ public class UI {
      */
     public void printClearEventsSuccessful() {
         System.out.println("Clear successful. The list is now empty.");
+    }
+
+    /**
+     * Prints all the Events of the filtered list with labels, based on the input list.
+     * Called for printing the events that having conflict timing with the new event added.
+     *
+     * @param conflictEvents an ArrayList of Events to be printed one by one.
+     */
+    public void printConflictEvents(ArrayList<Event> conflictEvents) {
+        if (conflictEvents.size() == 0) {
+            return;
+        }
+        int numPrintedEvents = 0;
+        System.out.println("You have some events that happen concurrently. Please prepared for multi-thread. "
+                + "\n"
+                + "Here are the Events in your list that have overlaps with your newly added/edited event:");
+        for (Event event : conflictEvents) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + event.toString());
+        }
+        System.out.println("\nBut nonetheless...");
     }
 }
 

@@ -38,6 +38,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
             throws WritingFileException {
+        ui.printConflictEvents(events.checkConflictTiming(event));
         events.addEvent(event);
         ui.printAddEventMessage(event);
         ui.printNumEvent(events.getSize());

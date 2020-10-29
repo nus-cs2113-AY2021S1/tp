@@ -1,11 +1,14 @@
 package eventlist;
 
 
+import event.Assignment;
 import event.Event;
 import exception.EmptyEventListException;
 import exception.UndefinedEventException;
+import ui.UI;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -166,5 +169,46 @@ public class EventList {
         } else {
             events.clear();
         }
+    }
+
+    /**
+     * Checks whether there is any conflicting events in terms of timing.
+     *
+     * @param event the new added event.
+     * @return the filtered event arraylist. If there is no conflict, return null.
+     */
+    public ArrayList<Event> checkConflictTiming(Event event) {
+        LocalDateTime eventStartDateTime = event.getStartDateTime();
+        LocalDateTime eventEndDateTime;
+        try {
+            eventEndDateTime = event.getEndDateTime();
+        } catch (NullPointerException e) {
+            eventEndDateTime = null;
+        }
+        ArrayList<Event> filteredEventList;
+
+        filteredEventList = (ArrayList<Event>) events.stream()
+                .filter(s -> s.getEndDateTime() != null)
+                .filter(s -> ((!(s instanceof Assignment))
+                        && (s.getStartDateTime().isBefore(eventStartDateTime)
+                        || s.getStartDateTime().isEqual(eventStartDateTime))
+                        && (s.getEndDateTime().isAfter(eventStartDateTime)
+                        || s.getEndDateTime().isEqual(eventStartDateTime))))
+                .collect(toList());
+        if (eventEndDateTime != null) {
+            //this considers when the events already in the list lie in the duration of the new event
+            LocalDateTime finalEventEndDateTime = eventEndDateTime;
+            ArrayList<Event> filteredEventList2 = (ArrayList<Event>) events.stream()
+                    .filter(s -> ((!(s instanceof Assignment))
+                            && (s.getStartDateTime().isAfter(eventStartDateTime)
+                            || s.getStartDateTime().isEqual(eventStartDateTime))
+                            && (s.getStartDateTime().isBefore(finalEventEndDateTime)
+                            || s.getStartDateTime().isEqual(finalEventEndDateTime))))
+                    .collect(toList());
+            filteredEventList2.removeAll(filteredEventList);
+            filteredEventList.addAll(filteredEventList2);
+        }
+        filteredEventList.remove(event);
+        return filteredEventList;
     }
 }

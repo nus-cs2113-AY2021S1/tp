@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.PersonalEvent;
 import exception.CreatingFileException;
+import exception.EndBeforeStartEventException;
 import exception.LoadingException;
 import exception.WritingFileException;
 import location.Building;
@@ -14,6 +15,7 @@ import location.LectureTheatre;
 import location.Location;
 import location.LocationType;
 
+import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
 import parser.Parser;
@@ -33,6 +35,7 @@ import java.util.Scanner;
  */
 public class Storage {
     public static final String REGEX_IN_FILE = "//";
+    public static final String ONLINE = "online";
     private final String filePath;
 
     /**
@@ -88,10 +91,12 @@ public class Storage {
      * Prepares the data in the file as an ArrayList, which is used to construct the EventList.
      *
      * @return the Events in an ArrayList
-     * @throws LoadingException represents the <code>Events</code> is not correctly created
+     * @throws LoadingException             represents the Events is not correctly created
+     * @throws EndBeforeStartEventException Represents the case when the user want to create an Event that ends
+     *                                      before it starts.
      */
-    public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException {
-        ArrayList<Event> events = new ArrayList<Event>();
+    public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException, EndBeforeStartEventException {
+        ArrayList<Event> events = new ArrayList<>();
         File dataFile = new File(filePath);
         try {
             Scanner s = new Scanner(dataFile);
@@ -99,16 +104,35 @@ public class Storage {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
                 switch (words[0]) {
                 case "C":
-                    events.add(new Class(words[2], Parser.parseLocation(words[4], locations),
-                            LocalDateTime.parse(words[3])));
+                    try {
+                        if (!words[5].equals(ONLINE)) {
+                            events.add(new Class(words[2], Parser.parseLocation(words[5], locations),
+                                    LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                        } else {
+                            if (words.length >= 8) {
+                                events.add(new Class(words[2], new OnlineLocation(words[6], words[7]),
+                                        LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                            } else {
+                                events.add(new Class(words[2], new OnlineLocation(words[6]),
+                                        LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                            }
+                        }
+                    } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                        throw new LoadingException();
+                    }
                     if (Integer.parseInt(words[1]) == 1) {
                         events.get(events.size() - 1).markAsDone();
                     }
                     break;
                 case "A":
                     try {
-                        events.add(new Assignment(words[2], Parser.parseLocation(words[4], locations),
-                                LocalDateTime.parse(words[3])));
+                        if (!words[4].equals(ONLINE)) {
+                            events.add(new Assignment(words[2], Parser.parseLocation(words[4], locations),
+                                    LocalDateTime.parse(words[3])));
+                        } else {
+                            events.add(new Assignment(words[2], new OnlineLocation(words[5]),
+                                    LocalDateTime.parse(words[3])));
+                        }
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
                     }
@@ -118,8 +142,39 @@ public class Storage {
                     break;
                 case "P":
                     try {
-                        events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4], locations),
-                                LocalDateTime.parse(words[3])));
+                        switch (words.length) {
+                        case 5:
+                            events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4], locations),
+                                    LocalDateTime.parse(words[3])));
+                            break;
+                        case 6:
+                            if (!words[4].equals(ONLINE)) {
+                                events.add(new PersonalEvent(words[2], Parser.parseLocation(words[5], locations),
+                                        LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                            } else {
+                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[5]),
+                                        LocalDateTime.parse(words[3])));
+                            }
+                            break;
+                        case 7:
+                            if (words[4].equals(ONLINE)) {
+                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[5], words[6]),
+                                        LocalDateTime.parse(words[3])));
+                            } else if (words[5].equals(ONLINE)) {
+                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[6]),
+                                        LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                            } else {
+                                throw new LoadingException();
+                            }
+                            break;
+                        case 8:
+                            events.add(new PersonalEvent(words[2], new OnlineLocation(words[6], words[7]),
+                                    LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
+                            break;
+                        default:
+                            throw new LoadingException();
+                        }
+
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
                     }
@@ -154,7 +209,7 @@ public class Storage {
             System.out.println(f.getName() + " not found: " + e.getMessage());
             return;
         }
-        assert s != null;
+
         while (s.hasNext()) {
             String input = s.nextLine();
             String[] split = input.split(":", 2);
@@ -172,7 +227,7 @@ public class Storage {
      */
     public void loadLocationData(ArrayList<Location> locationList) {
         File f = new File("./data/locations.txt");
-        Scanner s = null;
+        Scanner s;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
