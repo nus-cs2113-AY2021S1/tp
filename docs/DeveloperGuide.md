@@ -459,11 +459,11 @@ command calls `CommandDelMember#execute()`, causing the `Member` of index 1 remo
 
 ![](hrDiagramPic/2-1S3.png)
 
-The sequence diagram for adding an event is as shown below:
+The sequence diagram for adding a member is as shown below:
 
 ![CommandEventAdd](hrDiagramPic/CommandAddMember.png)
 
-The sequence diagram for adding an event is as shown below:
+The sequence diagram for deleting a member is as shown below:
 
 ![CommandEventAdd](hrDiagramPic/CommandDelMember.png)
 
@@ -491,7 +491,7 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
  `hr list`<br/>
  `hr l`<br/>
  
- The sequence diagram for adding an event is as shown below:
+ The sequence diagram for listing the members is as shown below:
  
  ![CommandEventAdd](hrDiagramPic/CommandViewMember.png)
 
@@ -518,7 +518,7 @@ sensitive.
 The following shortcut commands can achieve the same result: <br/>
 `hr c /n john Sterling /p 11111111 /r publicity director`<br/>
 
-The sequence diagram for adding an event is as shown below:
+The sequence diagram for changing contacts and role information of a member is as shown below:
 
 ![CommandEventAdd](hrDiagramPic/CommandChangeMemberInfo.png)
 

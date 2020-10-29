@@ -14,7 +14,7 @@ end
 activate ":MemberList"
 ":MemberList" -> ":Member" : toString()
 activate ":Member"
-return 
+return
 return output
 return output
 
