@@ -251,10 +251,17 @@ exams or deadlines will be sorted in ascending sequence by function `sortDeadlin
 
 ### Saving data feature
 
-When you close the program, or you make some changes to the program such as adding an event, the data for the tasks and events 
-are automatically saved locally into file `tasks.txt`. So there is no need for users to save manually.
+This feature is facilitated by `Storage` class and saves the data input by the users automatically into file `tasks.txt` in `/data` directory. 
 
-Next time when you open the program, all the data will automatically be loaded from the local file `tasks.txt` to the program.
+The file `tasks.txt` is loaded when initializing the program by calling the function `readFromFile()`.
+
+The local file is updated every time when the user adds or deletes and item, 
+or changes the attributes of the item by calling the function `writeToFile()`.
+
+Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
+directory, and a new text file.
+
+
 
 ### Check the validity of a module code
 This feature is facilitated by `ModuleChecker` class and `NusModule` class.
