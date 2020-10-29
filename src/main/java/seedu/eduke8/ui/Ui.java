@@ -126,17 +126,15 @@ public class Ui {
     private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer! ";
-    public static final String DATA_LOADING = "Please wait while data is loading...";
-    public static final String DATA_LOADED = "Data loaded successfully!";
-    public static final String DATA_SAVING = "Please wait while data is saving...";
-    public static final String DATA_SAVED = "Data saved successfully!";
+    private static final String DATA_LOADING = "Please wait while data is loading...";
+    private static final String DATA_LOADED = "Data loaded successfully!";
+    private static final String DATA_SAVING = "Please wait while data is saving...";
+    private static final String DATA_SAVED = "Data saved successfully!";
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
-
-    private static Future<String> userInputFuture;
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
-        userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
             return userInputFuture.get();
         } catch (InterruptedException | ExecutionException e) {
@@ -165,7 +163,7 @@ public class Ui {
         //        }
 
         String userInput;
-        userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
             userInput = userInputFuture.get(timer, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
