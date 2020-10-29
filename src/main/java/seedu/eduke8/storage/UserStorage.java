@@ -35,7 +35,7 @@ public class UserStorage extends LocalStorage {
      * Returns the file where data was written to.
      *
      * @return File where data was written to.
-     * @throws IOException  If the file is not found or cannot be written to.
+     * @throws IOException If the file is not found or cannot be written to.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -47,7 +47,7 @@ public class UserStorage extends LocalStorage {
         // Get all the questions seen before
         JSONArray topics = new JSONArray();
 
-        for (Displayable topicObject: topicList.getInnerList()) {
+        for (Displayable topicObject : topicList.getInnerList()) {
             topics.add(parseToTopicJson(topicObject));
         }
 
@@ -66,9 +66,9 @@ public class UserStorage extends LocalStorage {
      * Returns the topics in the topicList.
      *
      * @return Topics from the topicList in an ArrayList.
-     * @throws IOException  If the file is not found or cannot be read.
-     * @throws ParseException  If the file contents cannot be parsed as a JSON.
-     * @throws ClassCastException If the the nesting of arrays and objects in the JSON is wrong
+     * @throws IOException          If the file is not found or cannot be read.
+     * @throws ParseException       If the file contents cannot be parsed as a JSON.
+     * @throws ClassCastException   If the the nesting of arrays and objects in the JSON is wrong
      * @throws NullPointerException If the keys required are not present in the file.
      */
     @Override
@@ -81,13 +81,19 @@ public class UserStorage extends LocalStorage {
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
-        for (Object topic: topicsAsJsonArray) {
+        for (Object topic : topicsAsJsonArray) {
             parseFromTopicJson((JSONObject) topic);
         }
 
         LOGGER.log(Level.INFO, "User data loaded from file");
 
         return topicList.getInnerList();
+    }
+
+    private void parseToBookmarkJson (Question bookmarkedQuestionObject,)
+
+    private void parseFromBookmarkJson(BookmarkList bookmarks, JSONObject bookmark) {
+        String bookmarkDescription = (String) bookmark.get()
     }
 
     private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
@@ -103,14 +109,14 @@ public class UserStorage extends LocalStorage {
 
     private void loadNotes(JSONArray notes, Topic topicObject) {
         NoteList noteList = topicObject.getNoteList();
-        for (Object note: notes) {
+        for (Object note : notes) {
             noteList.add((Note) note);
         }
     }
 
     private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
         QuestionList questionList = topicObject.getQuestionList();
-        for (Object question: questions) {
+        for (Object question : questions) {
             parseFromQuestionJson(questionList, (JSONObject) question);
         }
     }
@@ -146,7 +152,7 @@ public class UserStorage extends LocalStorage {
     @SuppressWarnings("unchecked")
     private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
-        for (Displayable noteObject: noteList.getInnerList()) {
+        for (Displayable noteObject : noteList.getInnerList()) {
             notes.add(noteObject.getDescription());
         }
         return notes;
@@ -157,7 +163,7 @@ public class UserStorage extends LocalStorage {
         JSONArray questions = new JSONArray();
         TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topicObject);
         ArrayList<Displayable> attemptedQuestions = topicalStatsCalculator.getTopicalAttemptedQuestions();
-        for (Displayable questionObject: attemptedQuestions) {
+        for (Displayable questionObject : attemptedQuestions) {
             JSONObject question = parseToQuestionJson((Question) questionObject);
             questions.add(question);
         }

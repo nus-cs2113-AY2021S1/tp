@@ -25,7 +25,6 @@ public class BookmarkCommand extends Command {
             alreadyBookmarked = true;
         } else {
             bookmarks.add(question);
-            question.markAsBookmarked();
         }
         this.bookmarks = bookmarks;
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
