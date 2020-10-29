@@ -3,6 +3,9 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents add attendance command.
+ */
 public class CommandAddEventAttendance extends Command {
     private UserInput savedInput;
 
