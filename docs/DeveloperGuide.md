@@ -151,7 +151,7 @@ and location ‘LT27’.
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
 The sequence diagram below shows the process of adding a new event.
-![AddCommand Sequence Diagram](diagrams/AddCommand.png)  
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
 *Figure 4.1 Sequence Diagram for add function*
 
 
@@ -211,7 +211,7 @@ Step 4. If conversion is not possible, then it will check if the given string is
 * Prints an error message if invalid   
 
 The sequence diagram below shows exactly which methods, from which classes, are called to obtain the required location. 
-![locate sequence diagram](diagrams/LocateSequence.png) <br>
+![locate sequence diagram](diagrams/LocateSequence.png)<br>
 *Figure 4.4 Sequence diagram for locate function*
 
 ### 4.5 Reminders
@@ -227,7 +227,7 @@ Given below is an example usage scenario:
 Step 1. The user wants to see view the events in a chronological order. 
 
 Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
-![](diagrams/SortCommand.png)  
+![](diagrams/SortCommand.png)<br>
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
