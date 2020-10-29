@@ -255,7 +255,7 @@ These are the steps to follow:
 This command helps you change the description of a command in your list of favourites.
 
 Format:<br>
-<code>/descfav <strong>index</strong> /to <strong>newDescription</strong></code>
+<code>/descfav <strong>index</strong> /to <strong>new description</strong></code>
 
 #### Examples of Usage
 **<u>Example 1</u>**<br>
@@ -339,7 +339,7 @@ Command | Format | Example
 /addfav | | 
 /deletefav | |
 /execfav | |
-/descfav | |
+/descfav | `/descfav` **index** /to **new description** | `/descfav` **5** /to **Get dinner @7:30PM every Tuesday**
 /listfav | |
 /clearfav | |
 /exit | `/exit` | `/exit`
