@@ -7,6 +7,7 @@ import anichan.commands.InfoCommand;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
 /**
  * Handles parsing for info command.
  */

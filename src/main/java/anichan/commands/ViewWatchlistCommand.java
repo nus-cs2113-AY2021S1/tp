@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
 /**
  * Represents the command to view all anime in a certain Watchlist.
  */

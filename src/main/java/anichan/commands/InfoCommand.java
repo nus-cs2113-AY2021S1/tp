@@ -9,6 +9,7 @@ import anichan.storage.StorageManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
 /**
  * Represents the command to view the information of an anime.
  */

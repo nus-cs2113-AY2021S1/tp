@@ -1,6 +1,5 @@
 package anichan.commands;
 
-import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.anime.AnimeData;
 import anichan.storage.StorageManager;
