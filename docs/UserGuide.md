@@ -63,12 +63,15 @@ Parameters listed in [ ] denote optional entries. In some cases, at least one of
 Example message as seen on the console
 ```
 
+<!--
 The parameters for the following commands are **NOT** case-sensitive.
 1. `delete-n`
 1. `find-n`
 1. `pin-n`
 1. `create-t`
-
+1. `tag-n`
+1. '
+-->
 
 ### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
@@ -88,24 +91,25 @@ Adds a new note to the list of note items (think of it as a notebook).
 
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
+💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
 💡 Set `ISPIN` to true if you want the note to be pinned.  
-💡 Set `ISARHCIVE` to true if you want the note to be archive.
+💡 Set `ISARHCIVE` to true if you want the note to be archived.
 
-Subsequently, the application prompts the user to enter the content of the note.
+Subsequently, the application prompts the user to enter the content of the note. 
 
 Example of usage: 
 
-`add-n /t JavaDocs /tag CS2113 /pin true`
+`add-n /t JavaDocs /tag CS2113 /pin true` OR
 
-`add-n /t JavaDocs /pin true`
+`add-n /t JavaDocs /pin true` OR
 
 `add-n /t JavaDocs /tag CS2113`
 
 ```css
 Enter Note: 
-/del to delete previous line
-/end on a new line to end note input
+*/del to delete previous line*
+*/end on a new line to end note input*
 ```
 
 `Test Note line 1`<br>
@@ -139,8 +143,9 @@ Example of usage:
 `list-n /archive`
 
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
-💡 Use `/sort down` to display the list of notes in descending order (Z-A).
-💡 The archived notes will **ONLY** be listed in chronological order.
+💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
+💡 The archived notes will **ONLY** be listed in chronological order. <br>
+💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
 
 Expected output:
 
@@ -174,11 +179,13 @@ Edits an existing note.
 Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONTENTS] OR [/del INDEX]) [/c CONTENT] [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...]`
 
 - Edits a note at the specified INDEX. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
-- Only multiple use of the same type prefix [/add INDEX STRING], [/ln LINE_INDEX CONTENTS], [/del INDEX] can be used per edit.
+- Only multiple use of the same type prefix [/add LINE_INDEX CONTENT], [/ln LINE_INDEX CONTENT], [/del LINE_INDEX] can be used per edit.
+- [/add LINE_INDEX CONTENT] inserts the CONTENT at the specified LINE_INDEX to the note.
+- [/ln LINE_INDEX CONTENT] edits the CONTENT of the specified LINE_INDEX in the note.
+- [/del LINE_INDEX] deletes the CONTENT of the specified LINE_INDEX in the note.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
-- Users can remove all the tags by tag/ without specifying any tags after it.
 
 Example of usage: 
 
@@ -354,7 +361,7 @@ Example of usage:
 Expected output:
 
 <p align="center">
-   <img alt="tagAndUntag" src="screenshots/tagAndUntag.png"/>
+   <img alt="tagNote" src="screenshots/tagNote.png"/>
 </p>
 
 ### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
@@ -373,6 +380,10 @@ Example of usage:
 `tag-e /i 1 /tag CS2113`
 
 `tag-e /i 1 /tag CS2113 /tag important`
+
+<p align="center">
+   <img alt="tagEvent" src="screenshots/tagEvent.png"/>
+</p>
 
 Expected output:
 
@@ -398,10 +409,10 @@ Expected output:
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
-Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND]`
+Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”
-💡 Specifying  [/repeat RECURRING] will set the event as a recurring event.
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss” <br>
+💡 Specifying [/repeat RECURRING] will set the event as a recurring event. <br>
 💡 Specifying [/remind REMIND] will set the program to remind the event.
 
 Example of usage: 
@@ -439,9 +450,9 @@ Display the module timetable on the current day.
 Format: `list-e [/timing Year] [/timing Year-Month]`
 
 - Having no optional prefixes will display all events stored. Recurring events will only display once. Index shown is the index used when deleting or editing events.
-- Specifying [/timing Year] will display all events for the year. Will include repeated events.
-💡 Year format pattern "YYYY”.
-- Specifying [/timing Year-Month] will display all events for that month. Will include repeated events.
+- Specifying [/timing Year] will display all events for the year. Will include repeated events. <br>
+💡 Year format pattern "YYYY”. <br>
+- Specifying [/timing Year-Month] will display all events for that month. Will include repeated events. <br>
 💡 Year format pattern "YYYY-MM”.
 
 Example of usage: 

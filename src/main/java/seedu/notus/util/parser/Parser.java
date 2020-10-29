@@ -220,8 +220,7 @@ public abstract class Parser {
     }
 
     /**
-     * Reverse the map integers values for an easier flow of
-     * setting map.
+     * Reverse the map integers values for an easier flow of setting map.
      *
      * @param map Original string user inputs.
      * @return Result of the add note command.
@@ -233,8 +232,7 @@ public abstract class Parser {
     }
 
     /**
-     * Adds on to the current type of lines that is to be added
-     * edit or delete.
+     * Adds on to the current type of lines that is to be added edit or delete.
      *
      * @param prefix type that is passed in.
      * @param lists of list to be returned.
@@ -248,7 +246,7 @@ public abstract class Parser {
         String[] lineInfo;
         int index;
 
-        if (prefix.equals(PREFIX_DELETE_LINE)) {
+        if (prefix.equalsIgnoreCase(PREFIX_DELETE_LINE)) {
             lineInfo = line.split(STRING_SPLIT_DELIMITER, 1);
         } else {
             lineInfo = line.split(STRING_SPLIT_DELIMITER, 2);
@@ -259,7 +257,7 @@ public abstract class Parser {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
         }
 
-        if (prefix.equals(PREFIX_DELETE_LINE)) {
+        if (prefix.equalsIgnoreCase(PREFIX_DELETE_LINE)) {
             lists.put(index - 1, "");
         } else {
             lists.put(index - 1, lineInfo[1]);
