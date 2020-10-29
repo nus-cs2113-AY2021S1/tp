@@ -86,7 +86,8 @@ To get started on this application, please perform the following steps:
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Kaji` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
 1. Copy the file to the folder you want to use as the <I>home folder</I> for your Kaji.
-1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should see the welcome message `Welcome to Kaji` as well as a list of commands available.
+1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below:
+![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -112,6 +113,24 @@ To get started on this application, please perform the following steps:
 #### 3.1.4. Removing a module: `remove` 
 (by Jia Ern)
 
+Removes a module from Kaji.
+
+Format: `remove MODULE_INDEX`
+
+Here are some key pointers:
+* Removes the module based on the index provided.
+* `MODULE_INDEX` refers to the index number shown in the current module list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
+* Step 1: Ensure you are at the admin level: 
+![Remove Module 1](images/RemoveMod1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`:
+![Remove Module 2](images/RemoveMod2.PNG)
+* Step 3: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown:
+![Remove Module 3](images/RemoveMod3.PNG)
+
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
 
@@ -129,6 +148,24 @@ To get started on this application, please perform the following steps:
 #### 3.2.4. Removing a chapter: `remove`
 (by Jia Ern)
 
+Removes a chapter from Kaji.
+
+Format: `remove CHAPTER_INDEX`
+
+Here are some key pointers:
+* Removes the chapter based on the index provided.
+* `CHAPTER_INDEX` refers to the index number shown in the current chapter list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the module level `CS2113T` and want to remove the chapter `Chapter 1`, the steps to do so are shown below:
+* Step 1: Ensure you are at the module level:
+![Remove Chapter 1](images/BackMod1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`.
+![Remove Chapter 2](images/RemoveChap2.PNG)
+* Step 3: The chapter and the flashcards in it are removed, and the output message below will be shown:
+![Remove Chapter 3](images/RemoveChap3.PNG)
+
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
 
@@ -137,6 +174,37 @@ To get started on this application, please perform the following steps:
 
 #### 3.2.7. Starting a revision session: `revise`
 (by Jia Ern)
+
+Starts a revision session for a chapter.
+
+Format: `revise CHAPTER_INDEX` 
+
+Here are some key pointers: 
+* Revision can only be done at module level. 
+* Starts a revision based on the index provided. 
+* The index refers to the index number shown in the chapter list for the module level you are currently in.  
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently in the module level `CS2113T` and want to start a revision for `Chapter 1`, the steps to do so are shown below:
+* Step 1: Ensure you are at the module level:
+![Revise 1](images/BackMod1.PNG)
+* Step 2: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`:
+![Revise 2](images/Revise2.PNG)
+* Step 3: If the chapter is not due for revision yet, you will be shown the below message:
+![Revise 3](images/Revise3.PNG)
+* Step 4: Enter `Y` to start the revision.
+* Step 5: The message below will be shown at the start of the revision:
+![Revise 4](images/Revise4.PNG)
+* Step 6: The question of the flashcard will be shown:
+![Revise 5](images/Revise5.PNG)
+* Step 7: Enter `s` to see the answer for the flashcard:
+![Revise 6](images/Revise6.PNG)
+* Step 8: Based on the difficulty of the flashcard, you may enter either `e`/`m`/`h`/`c` to rate the flashcard as shown below:
+![Revise 7](images/Revise7.PNG)
+* Step 9: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for.  
+* Step 10: Once all the flashcards have been revised, the output message below will be shown:
+![Revise 8](images/Revise8.PNG)
 
 #### 3.2.8. Rating a chapter: `rate`
 (by Jiayi)
@@ -158,8 +226,39 @@ To get started on this application, please perform the following steps:
 #### 3.3.4. Removing a flashcard: `remove`
 (by Jia Ern)
 
+Removes a flashcard from Kaji.
+
+Format: `remove FLASHCARD_INDEX`
+
+Here are some key pointers:
+* Removes the flashcard based on the index provided.
+* `FLASHCARD_INDEX` refers to the index number shown in the current flashcard list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1= | [A] 2`, the steps to do so are shown below:
+* Step 1: Ensure you are at the chapter level:
+![Remove Card 1](images/RemoveCard1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1= | [A] 2`:
+![Remove Card 2](images/RemoveCard2.PNG)
+* Step 3: The flashcard is removed, and the output message below will be shown:
+![Remove Card 3](images/RemoveCard3.PNG)
+
 #### 3.3.5. Returning to module level: `back`
 (by Jia Ern)
+
+Returns to the module level.
+
+Format: `back`
+ 
+Example: <br>
+For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
+* Step 1: Ensure you are at the chapter level:
+![Back Module 1](images/BackMod1.PNG)
+* Step 2: Enter the command `back` to return to the previous level which is the module level.
+![Back Module 2](images/BackMod2.PNG)
+* Step 3: You should return to the module level as shown below:
+![Back Module 3](images/BackMod3.PNG)
 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
