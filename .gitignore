@@ -1,0 +1,41 @@
+# IDEA files
+/.idea/
+/out/
+/*.iml
+
+# Gradle build files
+/.gradle/
+/build/
+src/main/resources/docs/
+
+# MacOS custom attributes files created by Finder
+.DS_Store
+*.iml
+bin/
+
+/text-ui-test/ACTUAL.txt
+text-ui-test/EXPECTED-UNIX.TXT
+logger.log.10
+logger.log.10.lck
+logger.log.11
+logger.log.11.lck
+logger.log.12
+logger.log.12.lck
+logger.log.13
+logger.log.13.lck
+logger.log.3
+logger.log.3.lck
+logger.log.4
+logger.log.4.lck
+logger.log.5
+logger.log.5.lck
+logger.log.6
+logger.log.6.lck
+logger.log.7
+logger.log.7.lck
+logger.log.8
+logger.log.8.lck
+logger.log.9
+logger.log.9.lck
+data/freqList.txt
+text-ui-test/logger.log
