@@ -1,12 +1,10 @@
 package anichan.bookmark;
 
-import anichan.exception.AniException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
+/**
+ * Represents a note for a bookmark entry.
+ */
 public class Note {
 
     public ArrayList<String> notes;
@@ -33,6 +31,11 @@ public class Note {
         return note;
     }
 
+    /**
+     * Construct the note list using the note id and the note.
+     *
+     * @return note list
+     */
     @Override
     public String toString() {
         String result = "";
