@@ -11,7 +11,7 @@ title Initial state
 
 package States {
     class State1 as "__:PortfolioManager__"
-    class State2 as "__:wallet__"
+    class State2 as "__:Ui__"
     class State3 as "__buyCommand:BuyCommand__"
     class State5 as "__stockPriceFetcher:StockPriceFetcher__"
 }
