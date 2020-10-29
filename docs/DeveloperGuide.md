@@ -13,13 +13,13 @@
   * [Command Component](#command-component)
   * [Storage Component](#storage-component)
   * [Parser Component](#parser-component)
-* [Appendix A: Product scope](#Appendix-A:-Product-scope)
+* [Appendix A: Product scope](#appendix-a-product-scope)
   * [Target user profile](#target-user-profile)
   * [Value proposition](#value-proposition) 
-* [Appendix B: User Stories](#Appendix-B:-User-Stories)
-* [Appendix C: Non Functional Requirements](#Appendix-C:-Non-Functional-Requirements)
-* [Appendix D: Glossary](#Appendix-D:-Glossary)
-* [Appendix E: Instructions for manual testing](#Appendix-E:-instructions-for-manual-testing)
+* [Appendix B: User Stories](#appendix-b-user-stories)
+* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
+* [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## **Introduction**
 
