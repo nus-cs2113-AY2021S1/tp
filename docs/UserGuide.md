@@ -66,7 +66,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 ![Windows CLI](UG_Figures/windowsPath.png)
 4. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
 5. Run the .jar file in the command prompt as follows by typing `java -jar duke.jar` and press <kbd>Enter</kbd>.
-6. Your screen should show the start screen of Nav@NUS.<br>
+6. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
 7. Try keying in `/help` and press <kbd>Enter</kbd>!
 
