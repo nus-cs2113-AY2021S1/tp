@@ -98,9 +98,9 @@ public class Parser {
         int portionSize = 1;
         String foodName = "Food Name";
         int calorie = 0;
-        int carb = -1;
-        int protein = -1;
-        int fat = -1;
+        int carb = 0;
+        int protein = 0;
+        int fat = 0;
         String trimmedParam;
         //String[] databaseCheck = getCommandParam(userInput).trim().split("/");;
         String[] processedParam;
