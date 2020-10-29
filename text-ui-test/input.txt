@@ -94,6 +94,14 @@ workspace -a ?fried
 workspace -a !fried
 workspace -a @fried
 workspace -a -fried
+workspace -a /hey/there
+workspace -a ./hey/there
+workspace -a ../hey/there
+workspace -a ..//hey//there
+workspace -a ..///hey///there
+workspace -a \
+workspace -a \a
+workspace -a \\a
 workspace -s //
 workspace -a /hello
 workspace -a OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
@@ -101,6 +109,12 @@ workspace -l
 workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 
 workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU  
+workspace -l
+workspace -l aaa
+blah blah
+blah -e
+blah -e 4234
+blah la
 workspace -l
 workspace -d Default
 workspace -d Crunchy Cinnamon
