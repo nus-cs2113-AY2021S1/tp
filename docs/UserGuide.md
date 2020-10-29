@@ -488,6 +488,133 @@ command> storage /clear
 Data clear aborted.
 ```    
 
+## 3.6 Help `help`
+
+### 3.6.1 Help Menu
+Shows a list of commands needed to use SCRUMptious. You can then type in the command number
+to receive more information about that specific command.
+
+#### Format: `help`
+#### Example: `help`
+#### Expected outcome:
+```
+Here is the list of commands used in SCRUMptious. Type "help /*", where * is the command number for more information on that specific command.
+1. Project
+2. Member
+3. Task
+4. Sprint
+5. Storage
+```
+
+### 3.6.2 Project Help
+Shows a list of project commands and examples of how to use them.
+
+#### Format: `help /1`
+#### Example: `help /1`
+#### Expected outcome:
+```
+1. Create project
+   Format: project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>
+   Example: project /create -title MeTube -desc video streaming software -dur 90 -sd 10
+2. View project
+   Format & example: project /view
+3. Select project
+   Format: project /select <projectid>
+   Example: project /select 1
+```
+
+#### 3.6.3 Member Help
+
+#### Format: `help /2`
+#### Example: `help /2`
+#### Expected outcome:
+```
+1. Add members
+   Format: member /add <username> [<username> ...]
+   Example: member /add john mary
+2. Remove members
+   Format: member /del <username> [<username> ...]
+   Example: member /del john mary
+```
+
+#### 3.6.4 Task Help
+
+#### Format: `help /3`
+#### Example: `help /3`
+#### Expected outcome:
+```
+1. Add tasks 
+   Format: task /add -title <title> -desc <description> -priority <category>
+   Example: task /add -title Add UI -desc add an interactive UI -priority HIGH
+2. Delete tasks
+   Format: task /del <taskid> [<taskid>...]
+   Example: task /del 5 7 9
+3. View task
+   Format: task /view <taskid>
+   Example: task /view 3
+4. Change task priority
+   Format: task /priority -priority <category> -id <taskid>
+   Example: task /priority -priority HIGH -id 1
+5. Mark task as complete
+   Format: task /done <taskid>
+   Example: task /done 1
+```
+
+#### 3.6.5 Sprint Help
+
+#### Format: `help /4`
+#### Example: `help /4`
+#### Expected outcome:
+```
+1. Create sprint
+   Format: sprint /create -goal <goal_input> [optional tags]
+   Example: sprint /create Shopping Cart -start 20201010
+2. View sprint
+   Format: sprint /view [optional tags]
+   Example 1: sprint /view
+   Example 2: sprint /view 2
+   Example 3: sprint /view -project 2
+   Example 4: sprint /view -project 2 -sprint 3
+3. Edit sprint
+   Format: sprint /edit -goal <goal_input> [optional tags]
+   Example: sprint /edit -goal Add Documentation
+   Example: sprint /edit -project 2 -goal Add Documentation
+   Example: sprint /edit -project 2 -sprint 3 -goal Add Documentation
+4. Add tasks to sprint
+   Format: sprint /addtask <task_id> [<task_id> ...] [optional tags]
+   Example: sprint /addtask 1 2
+   Example: sprint /addtask -task 1 2
+   Example: sprint /addtask -project 2 -task 1 2
+   Example: sprint /addtask -project 2 -sprint 3 -task 1 2
+5. Delete tasks from sprint
+   Format: sprint /removetask <task_id> [<task_id> ...] [optional tags]
+   Example: sprint /removetask 1 2
+   Example: sprint /removetask -project 2 -task 1 2
+   Example: sprint /removetask -project 2 -sprint 3 -task 1 2
+6. Allocate task to team members
+   Format: sprint /allocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
+   Example: sprint /allocate -task 1 2 -user johntan mary jane
+   Example: sprint /allocate -project 2 -task 1 -user mary
+   Example: sprint /allocate -project 2 -sprint 3 -task 1 -user mary
+7. Deallocate tasks from team members
+   Format: sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
+   Example: sprint /deallocate -task 1 2 -user johntan mary jane
+   Example: sprint /deallocate -project 2 -task 1 -user mary
+   Example: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary
+```
+
+#### 3.6.6 Storage Help
+
+#### Format: `help /5`
+#### Example: `help /5`
+#### Expected outcome:
+```
+1. Clear all data. You will be prompted to confirm the decision.
+   Data will be cleared if "y" (case-insensitive) is provided.
+   Format: storage /clear
+   Example: storage /clear
+```
+
 ## 4. Command Summary
 
 | **Action** | **Format** | **Examples** |
