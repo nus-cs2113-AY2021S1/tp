@@ -277,36 +277,10 @@ public class EventList {
         return hasExist;
     }
 
-    /*
-    public static String addAttendance(String eventName, String memberName) {
-        String output = "";
-        if (checkEventExistence(eventName)) {
-            Event e = findEventByName(eventName);
-            if (MemberList.checkMemberExistence(MemberList.members, memberName)) {
-                if (!MemberList.checkMemberExistence(e.getEventParticipants(), memberName)) {
-                    Member m = MemberList.findMemberByName(memberName);
-                    e.setEventParticipants(m);
-                    output = "Noted. I have added this participant to this event:\n";
-                    output = output.concat(m.getMemberName() + "\n");
-                    output = output.concat("Now you have " + e.eventParticipants.size() + " member"
-                            + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in "
-                            + e.eventName + ".\n");
-                } else {
-                    output = output.concat("Member attendance had already been taken!\n");
-                }
-            } else {
-                output = output.concat("Member does not exist!\n");
-            }
-        } else {
-            output = output.concat("Event does not exist!\n");
-        }
-        return output;
-    }*/
-
     public static String addAttendance(String eventName, String memberName) {
         String output = "";
         if (!checkEventExistence(eventName)) {
-            output = output.concat("Event does not exist!\n");
+            output = output.concat(COMMAND_EVENT_NOT_EXIST);
             return output;
         }
         if (!MemberList.checkMemberExistence(MemberList.members, memberName)) {
@@ -343,14 +317,33 @@ public class EventList {
                     + ((e.eventParticipants.size() == 1) ? "" : "s") + " attended "
                     + e.eventName + ".\n");
         } else {
-            output = output.concat("Event does not exist!\n");
+            output = COMMAND_EVENT_NOT_EXIST;
         }
         return output;
     }
 
-    public static String deleteAttendance(String n, String m) {
+    public static String deleteAttendance(String eventName, String memberName) {
         String output = "";
-
+        if (!checkEventExistence(eventName)) {
+            output = COMMAND_EVENT_NOT_EXIST;
+            return output;
+        }
+        Event event = findEventByName(eventName);
+        if (!MemberList.checkMemberExistence(event.getEventParticipants(), memberName)) {
+            output = "Member attendance for this event has not been taken!\n";
+            return output;
+        }
+        int index = MemberList.findMemberIndex(event.getEventParticipants(), memberName);
+        try {
+            output = "Got it! I'll remove this member from the event attendance:\n";
+            output = output.concat(event.getEventParticipants().get(index).getMemberName() + "\n");
+            event.getEventParticipants().remove(index);
+            output = output.concat("Now you have " + event.eventParticipants.size() + " member"
+                    + ((event.eventParticipants.size() == 1) ? "" : "s") + " attended "
+                    + event.eventName + ".\n");
+        } catch (IndexOutOfBoundsException e) {
+            output = COMMAND_EVENT_NOT_EXIST;
+        }
         return output;
     }
 }

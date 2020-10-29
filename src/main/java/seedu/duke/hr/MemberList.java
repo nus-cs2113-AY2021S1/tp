@@ -108,6 +108,15 @@ public class MemberList {
         return null;
     }
 
+    public static int findMemberIndex(ArrayList<Member> list, String memberName) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static boolean checkMemberExistence(ArrayList<Member> list, String memberName) {
         boolean hasExist = false;
         for (int i = 0; i < list.size(); i++) {

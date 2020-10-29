@@ -2,6 +2,7 @@ package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+import seedu.duke.hr.MemberList;
 
 public class CommandDelEventAttendance extends Command {
     private UserInput savedInput;
