@@ -113,4 +113,11 @@ class FoodListTest {
         assertEquals(list.getFoods().get(0), food);
     }
 
+    @Test
+    void addAndRetrieveEntryAtDateTime_entryAddedAtDateTimeMax_entryAtDateTimeMax() {
+        list.addFoodAtDateTime(2, food, LocalDateTime.MAX);
+        assertEquals(food, list.getFoodsAfterDateTime(LocalDateTime.now()).get(0));
+
+    }
+
 }
