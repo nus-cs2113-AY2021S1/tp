@@ -8,6 +8,7 @@ import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
 
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -61,13 +62,16 @@ public class ExecFavCommandTest {
         command.executeCommand();
     }
 
-//    @Test
-//
-//    static void performCheck_inputValidIndex() throws CustomException {
-//        String input = "1";
-//        ExecFavCommand command = new ExecFavCommand(input);
-//        command.executeCommand();
-//    }
+    @Test
+    void executeCommand_inputValidIndex_TaskRuns() {
+        assertDoesNotThrow(ExecFavCommandTest::performCheck_inputValidIndex);
+    }
+    static void performCheck_inputValidIndex() throws CustomException {
+        String input = "1";
+        ExecFavCommand command = new ExecFavCommand(input);
+        command.executeCommand();
+    }
+
 
 
 
