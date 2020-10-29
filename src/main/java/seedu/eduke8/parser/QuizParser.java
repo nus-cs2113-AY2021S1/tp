@@ -30,15 +30,17 @@ public class QuizParser implements Parser {
 
     private Question question;
     private BookmarkList bookmarks;
+    private int timer;
 
     public QuizParser(BookmarkList bookmarks) {
         this.bookmarks = bookmarks;
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(Question question, int timer) {
         assert question != null;
 
         this.question = question;
+        this.timer = timer;
     }
 
     /**
@@ -59,8 +61,8 @@ public class QuizParser implements Parser {
         }
 
         try {
-            if (userInput == null ) {
-                return new IncompleteCommand(question);
+            if (userInput == null) {
+                return new IncompleteCommand(question, timer);
             }
             ArrayList<Displayable> options = optionList.getInnerList();
             int chosenIndex = Integer.parseInt(userInput) - 1;

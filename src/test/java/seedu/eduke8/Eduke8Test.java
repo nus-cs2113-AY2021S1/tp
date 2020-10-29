@@ -26,6 +26,7 @@ public abstract class Eduke8Test {
     protected static final String PLACEHOLDER_EXPLANATION_DESCRIPTION =
             "Option A gives the best explanation out of all.";
     protected static final String NONSENSE_DESCRIPTION = "Nonsense";
+    protected static final int TIMER = 5;
 
     protected TopicList createTestTopicList() {
         Topic topic1 = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);

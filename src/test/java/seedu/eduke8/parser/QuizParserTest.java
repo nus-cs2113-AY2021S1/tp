@@ -35,7 +35,7 @@ public class QuizParserTest extends Eduke8Test {
         QuizParser quizParser = new QuizParser(bookmarks);
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
 
-        quizParser.setQuestion(question);
+        quizParser.setQuestion(question, TIMER);
         Command resultCommand = quizParser.parseCommand(optionList, "hint");
         assertTrue(resultCommand instanceof HintCommand);
 

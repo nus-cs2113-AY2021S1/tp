@@ -45,7 +45,7 @@ public class Ui {
             + System.lineSeparator() + "2) help"
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
-            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions>"
+            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> timer/<time to complete one question>"
             + System.lineSeparator() + "6) bookmark"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) exit";
@@ -110,13 +110,15 @@ public class Ui {
     }
 
     public String getQuizInputFromUser(int timer) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        long startTime = System.currentTimeMillis();
-        while (((System.currentTimeMillis() - startTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS) && !in.ready()) {
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        long startingTime = System.currentTimeMillis();
+
+        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
+                && !userInput.ready()) {
         }
 
-        if (in.ready()) {
-            return in.readLine();
+        if (userInput.ready()) {
+            return userInput.readLine();
         } else {
             return null;
         }

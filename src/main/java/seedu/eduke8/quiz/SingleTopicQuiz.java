@@ -30,13 +30,15 @@ public class SingleTopicQuiz implements Quiz {
     private int numberOfQuestions;
     private QuizParser quizParser;
     private BookmarkList bookmarks;
+    private int timer;
 
-    public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks) {
+    public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks, int timer) {
         assert topic != null;
 
         this.topic = topic;
         this.numberOfQuestions = numberOfQuestions;
         this.bookmarks = bookmarks;
+        this.timer = timer;
         quizParser = new QuizParser(bookmarks);
     }
 
@@ -83,7 +85,7 @@ public class SingleTopicQuiz implements Quiz {
                 ui.printOption((Option) options.get(i), i + 1);
             }
 
-            quizParser.setQuestion(question);
+            quizParser.setQuestion(question, timer);
 
             ui.printQuizInputMessage();
 
@@ -116,8 +118,7 @@ public class SingleTopicQuiz implements Quiz {
             String userInput = ui.getQuizInputFromUser(timer);
             return quizParser.parseCommand(optionList, userInput);
         } catch (IOException e) {
-            return quizParser.parseCommand(optionList, "exception from getCommand " + e);
+            return new IncorrectCommand(e.getMessage());
         }
-
     }
 }
