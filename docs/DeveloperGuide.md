@@ -161,7 +161,16 @@ The following sequence diagram explains the above steps when the user searches f
 
 
 ### 3.3. Favourite command adder (`/addfav` Feature)
-[Work in Progress]<br>
+The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
+1. The `RouteParser#executeCommand` method throws an exception if the command to be saved in FavList is missing.
+2. Calls `AddFavCommand#createFav()` to make a new Fav object to be saved in the FavList.
+    - The `AddFavCommand#createFav()` method creates a Fav object with its command saved as its description if 
+    the user left description empty.
+3. Calls `AddFavCommand#addToFavList()` method to add the Fav object created to the Favlist.
+    - The `AddFavCommand#createFav()` method calls the contains method within Favlist to check for any duplicate
+    Fav objects within the list that contains the same command.
+    - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
+
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's
 list of favourites.
 
