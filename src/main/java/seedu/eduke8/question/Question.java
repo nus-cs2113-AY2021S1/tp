@@ -20,10 +20,10 @@ public class Question implements Displayable {
 
 
     public Question(String description, OptionList optionList, Hint hint, Explanation explanation) {
-        assert description != null;     //A question must have its description
+        assert description != null;
         this.description = description;
 
-        assert optionList != null;       //A question must have some options
+        assert optionList != null;
         this.optionList = optionList;
 
         this.explanation = explanation;
