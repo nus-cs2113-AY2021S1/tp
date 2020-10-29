@@ -245,10 +245,9 @@ __Target user profile:__
 ### 5.2 Value proposition
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
-* 
+* easily finding out about the location of their events 
 
 ### 5.3 User stories
-
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
