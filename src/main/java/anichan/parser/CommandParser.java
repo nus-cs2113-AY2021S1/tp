@@ -84,6 +84,15 @@ public abstract class CommandParser {
         return checkStr.matches(INTEGER_REGEX);
     }
 
+    //@@author OngDeZhi
+    /**
+     * Parses the string argument as a signed integer. It also checks if the {@code integer} is within
+     * the range of java.lang.Integer.
+     *
+     * @param stringInteger {@code String} argument to be parsed to {@code integer}
+     * @return the {@code integer} that was parsed successfully
+     * @throws AniException when an error occurred while parsing the string to integer
+     */
     protected int parseStringToInteger(String stringInteger) throws AniException {
         try {
             return Integer.parseInt(stringInteger);
