@@ -64,7 +64,7 @@ public class StorageManager {
     // ========================== Workspace Saving ==========================
 
     /**
-     * Saves the workspace
+     * Saves the workspace.
      *
      * @param workspace the name of workspace
      * @throws AniException when an error occurred while trying to save the workspace
