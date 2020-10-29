@@ -227,7 +227,7 @@ Want to set a deadline after you have created your personal event? Afraid that y
 
 Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM`
 
-* `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
+- `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
 
 * `DD/MM/YY` contains a date string in the format `[DD/MM/YY]`. This is the date of the deadline for the personal event. 
 
@@ -251,6 +251,7 @@ You have successfully updated the deadline for this event!
 * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 * AM/PM is required for 12 hour format
+
 {{box op="end"}}
 
 {{box op="start" cssClass="boxed warningBox"}}
@@ -409,6 +410,7 @@ Example of usage:
    scheduler says hi:)
    _________________________________
    ```
+
 
 {{box op="start" cssClass="boxed warningBox"}}
 **Warning!**
