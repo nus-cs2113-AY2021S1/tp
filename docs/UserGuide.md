@@ -111,8 +111,8 @@ Toggle Logger mode. Developers can toggle it on view more system messages and lo
 
 > Example: 
 
-       ____________________________________________________________
-       >>> logger
+    ____________________________________________________________
+    >>> logger
 
 
 
