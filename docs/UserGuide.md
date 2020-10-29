@@ -119,7 +119,7 @@ To supplement the `help` command, The `example` command provides the correct for
 
 Expected outcome:
  
-<img src = "images/example.PNG" width = "500">
+<img src = "images/example.PNG" width = "800">
 
 &nbsp;
 
