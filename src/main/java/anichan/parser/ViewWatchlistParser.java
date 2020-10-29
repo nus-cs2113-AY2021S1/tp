@@ -26,7 +26,7 @@ public class ViewWatchlistParser extends CommandParser {
     }
 
     /**
-     * Parses the specified command description
+     * Parses the specified command description.
      *
      * @param description the specified command description
      * @return initialised {@code RemoveCommand} object

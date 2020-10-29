@@ -27,7 +27,7 @@ public class InfoParser extends CommandParser {
     }
 
     /**
-     * Parses the specified command description
+     * Parses the specified command description.
      *
      * @param description the specified command description
      * @return initialised {@code InfoCommand} object
