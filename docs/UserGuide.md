@@ -342,9 +342,80 @@ Similar Inputs and outputs for the following
  
 ### Other features
 
- To view a list of valid commands: help
- To exit DietBook: exit
- Saving
+#### To view a list of valid commands: help: `help`
+
+Displays the helping guide for commands.
+
+Format: `help`
+
+Output example: 
+```
+Listed below are the valid commands for DietBook:
+
+For user information related commands
+  To view user information: userinfo
+  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]
+
+For database related commands
+  [Coming Soon] To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE
+  [Coming Soon] To add a food from the database consumed at a certain time: add n/FOOD_NAME x/PORTION_SIZE yyyy-mm-ddTHH:mm
+  To view all food in the database: data
+
+For food list related commands
+  To add a food not in the database that was just consumed: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]
+  To add a food not in the database consumed at a certain time: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] yyyy-mm-ddTHH:mm
+  To view all food in DietBook: list
+  To view all food in DietBook recorded within a time period: list yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To view all food in DietBook recorded from a certain date until now: list yyyy-mm-ddTHH:mm
+  To delete a food from DietBook: delete INDEX
+  To delete all food items from the DietBook: clear
+
+For nutritional intake and recommendation related commands
+  To get recommended calorie intake: recommend
+
+  To calculate carbohydrate intake: calculate carbohydrate
+  To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
+
+  To calculate calorie intake: calculate calorie
+  To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To calculate calorie intake from a certain date until now: calculate calorie yyyy-mm-ddTHH:mm
+
+  To calculate protein intake: calculate protein
+  To calculate protein intake within a time period: calculate protein yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To calculate protein intake from a certain date until now: calculate protein yyyy-mm-ddTHH:mm
+
+  To calculate fat intake: calculate fat
+  To calculate fat intake within a time period: calculate fat yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
+
+  To calculate all nutritional intake: calculate all
+  To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+  To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
+
+For other system related commands
+  To view a list of valid commands: help
+  To exit DietBook: exit
+```
+ #### To exit DietBook: `exit`
+ 
+ Exits the DietBook.
+ 
+ Format: `exit`
+ 
+ Output example:
+ ```
+ Bye! Hope to see you again soon!
+ ```
+ 
+ #### Saving the DietBook: `Coming soon!`
+ 
+ Saves the DietBook data when the exit command have been input. The saved data is in 2 files: UserInfo.txt and FoodList.txt.
+ 
+ Output example:
+  ```
+  Your data has been saved successfully.
+  ```
  
 #### Adding a todo: `todo`
 Adds a new item to the list of todo items.
