@@ -56,12 +56,12 @@ This section will show you the requirements that you need to fulfill in order to
 ### 2.a Prerequisites
 
 1. **JDK `11`**  
-
+<br>   <br> 
 > **[NOTE]**
 > The `WatchNext.jar` file is compiled using the Java version mentioned above.
 
 2. **IntelliJ IDEA IDE**
-
+ <br>  <br> 
 > **[NOTE]**
 > IntelliJ has Gradle and JavaFx plugins installed by default.
 > Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
@@ -97,12 +97,10 @@ This will generate all the resources required by the application and tests.
 
 ### 2.d Before Writing Code
  
- 1. Set up CI
- 
+ 1. Set up CI <br> 
  This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
  
- 2. Learn the design
- 
+ 2. Learn the design <br> 
  When you are ready to start coding, we recommend that you get some sense of the overall design by reading about WatchNext’s architecture [here](#3-design).
 
 ## 3. Design
