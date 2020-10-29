@@ -141,7 +141,7 @@ and location ‘LT27’.
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
 The sequence diagram below shows the process of adding a new event.
-![AddCommand Sequence Diagram](diagrams/AddCommand.png)
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)  
 *Figure 4.1.1 Sequence Diagram for add function*
 
 ### 4.2 Clear events
@@ -212,7 +212,7 @@ Given below is an example usage scenario:
 Step 1. The user wants to see view the events in a chronological order. 
 
 Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
-![](diagrams/SortCommand.png)
+![](diagrams/SortCommand.png)  
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
