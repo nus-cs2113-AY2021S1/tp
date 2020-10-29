@@ -1,0 +1,47 @@
+@startuml
+actor user
+box Logic
+participant ":Duke"
+participant ":Parser"
+participant ":DineInfoCommand"
+end box
+box Ui
+participant "<<class>>\n:Ui"
+end box
+
+user -> ":Duke"
+box Logic
+":Duke" -> ":Parser": user command
+activate ":Parser"
+create ":DineInfoCommand"
+":Parser" -> ":DineInfoCommand": user input
+activate ":DineInfoCommand"
+":DineInfoCommand" --> ":Parser"
+deactivate ":DineInfoCommand"
+":Parser" -> ":DineInfoCommand": executeCommand()
+activate ":DineInfoCommand"
+
+opt user input empty
+    ":DineInfoCommand" --> ":Parser"
+end
+
+":DineInfoCommand" -> ":DineInfoCommand": checkFoodPlace()
+activate ":DineInfoCommand"
+":DineInfoCommand" -> "<<class>>\n:Ui" : printDineInfoResult()
+activate "<<class>>\n:Ui"
+
+alt size=0
+"<<class>>\n:Ui" --> ":DineInfoCommand"
+else size>0
+"<<class>>\n:Ui" --> ":DineInfoCommand": results
+deactivate "<<class>>\n:Ui"
+end
+
+":DineInfoCommand" --> ":DineInfoCommand": results
+deactivate ":DineInfoCommand"
+":DineInfoCommand" --> ":Parser": outlet information
+deactivate ":DineInfoCommand"
+":Parser" --> ":Duke"
+deactivate ":Parser"
+":Duke" --> user
+@enduml
