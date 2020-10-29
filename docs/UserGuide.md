@@ -248,21 +248,22 @@ Got it! I've updated your personal information:
 ### Features related to nutritional intake and recommendation
 
 To get recommended calorie intake: recommend
-    * Example of usage :
-    * Output : 
+* Example of usage :
+* Output : 
     ```
     Hi Jack!
     Here is your daily recommended calorie intake: 2607kcal
     ```
 
 We use the following list as an example, to set up the list we have the following sequence of inputs
-
+```
 add x/1 n/Salty Chicken Rice k/300 c/10 p/20 f/50
 add x/2 n/Chilli Pepper Crab k/400 c/10 p/10 f/20
 add x/1 n/Steak Buns k/500 c/20 p/50 f/10
 add x/3 n/Sweat potato tea k/300 c/30 p/0 f/0
 add x/1 n/Chicken Wing Noodles k/400 c/10 p/30 f/10
 list
+```
 
 ```
 Here are the food items in DietBook:
@@ -416,20 +417,6 @@ For other system related commands
   ```
   Your data has been saved successfully.
   ```
- 
-#### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 ## FAQ
 
