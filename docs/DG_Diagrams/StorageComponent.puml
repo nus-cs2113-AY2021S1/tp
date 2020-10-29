@@ -1,0 +1,9 @@
+@startuml
+
+Rectangle Storage {
+abstract class Storage
+Storage <|- FavStorage
+Storage <|-left FreqStorage
+}
+
+@enduml

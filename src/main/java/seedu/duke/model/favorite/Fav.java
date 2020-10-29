@@ -12,8 +12,7 @@ public class Fav {
     }
 
     public Boolean equals(Fav item, int index) {
-        assert item != null : "Invalid user favourites!";
-        if (this.command.equals(item.command) || this.desc.equals(item.desc)) {
+        if (this.command.toLowerCase().equals(item.command.toLowerCase())) {
             printDupeMessage(index, this.desc, this.command);
             return true;
         }
