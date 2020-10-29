@@ -440,8 +440,6 @@ Similar to a desktop, **AniChan** has a workspace feature which allows users to 
 
 <br/>
 
-**Design Overview**
-
 `Workspace` is primarily the layer of code that sits between the user, and the rest of AniChan data management features (i.e., `Watchlist`, `Bookmark`). 
 
 As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
