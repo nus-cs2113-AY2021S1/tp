@@ -34,15 +34,12 @@ public class InfoParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public InfoCommand parse(String description) throws AniException {
-        String[] paramGiven = parameterSplitter(description);
+        String[] paramGiven = description.split("-", 2);
 
         paramIsSetCheck(paramGiven);
-        if (paramGiven.length > 2) {
-            throw new AniException(TOO_MUCH_ARGUMENTS);
-        } else {
-            parameterParser(paramGiven);
-            LOGGER.log(Level.INFO, "Parameter parsed properly");
-        }
+        parameterParser(paramGiven);
+        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        
         return infoCommand;
     }
 
