@@ -3,6 +3,9 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents delete attendance command.
+ */
 public class CommandDelEventAttendance extends Command {
     private UserInput savedInput;
 
