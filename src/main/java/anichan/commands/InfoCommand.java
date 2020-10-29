@@ -20,13 +20,6 @@ public class InfoCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoCommand.class.getName());
 
     /**
-     * Creates a new instance of InfoCommand.
-     */
-    public InfoCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
-    /**
      * Builds and returns a string representation of the information of
      * the specified anime.
      *

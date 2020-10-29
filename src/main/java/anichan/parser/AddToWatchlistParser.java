@@ -24,7 +24,6 @@ public class AddToWatchlistParser extends CommandParser {
      */
     public AddToWatchlistParser() {
         addToWatchlistCommand = new AddToWatchlistCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**

@@ -94,8 +94,18 @@ public class AniLogger {
      */
     private static FileHandler createFileHandler() throws IOException {
         File file = new File(LOG_FILE);
-        file.getParentFile().mkdirs();
-        file.createNewFile();
+
+        // Checks to ensure log file and folder creation is done correctly
+        boolean isFolderCreated = file.getParentFile().mkdirs();
+        boolean isFileCreated = false;
+
+        if (isFolderCreated) {
+            isFileCreated = file.createNewFile();
+        }
+
+        if (!isFileCreated) {
+            throw new IOException("Failed to create log file/folder.");
+        }
 
         SimpleFormatter formatter = new SimpleFormatter();
 

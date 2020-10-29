@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 //@@author OngDeZhi
 /**
- * Handles parsing for watchlist command.
+ * Represents the class to handle parsing for watchlist command.
  */
 public class WatchlistParser extends CommandParser {
     private static final String CREATE_OPTION = "n";

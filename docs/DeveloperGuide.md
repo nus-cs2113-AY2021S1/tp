@@ -1050,6 +1050,12 @@ If you wish to add new checks, simply add the check file with a filename `check-
 | v1.0 | new user | view all available commands | can easily find a specific command and its usage |
 | v1.0 | user | be able to browse through all anime series | can see easily what anime are available  |
 | v1.0 | user | be able to sort my browsing session | will only browse through relevant data |
+| v1.0 | freelance translator | be able to create new workspaces | can have a clear separation of my work at different companies |
+| v1.0 | freelance translator | switch between workspaces | can swap my workspace to a specific company that my current project is tied to |
+| v1.0 | forgetful user | bookmark specific anime | remember which anime I am currently interested in |
+| v1.0 | forgetful user | set an episode for each bookmarked anime | remember which episode I'm watching or translating |
+| v2.0 | translator | write notes for a bookmark | So that I can remember helpful information regarding a specific anime series |
+| v2.0 | translator | remove notes for a bookmark | So that I can remove outdated information or mistakes in my notes |
 | v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
 | v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
 | v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
