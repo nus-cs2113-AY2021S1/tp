@@ -365,29 +365,30 @@ Format: `upload /w WEB_SERVER /u USERNAME /p PASSWORD `
 
 ## 6. Command Summary
 
-| Command          | Format                                                                     | Example                                                                     |
-|------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| addMember        | hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE                      | hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member                 |
-| addEvent         | event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME                   | event addEvent /n arduino course /d 2020-09-16 /t 8pm                       |
-| addLog           | finance addLog ITEM_NAME ITEM_VALUE                                        | finance addLog have lunch 4.5                                               |
-| bye              | bye                                                                        | -                                                                           |
-| changeInfo       | hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE) | hr changeInfo /n Jack /p 12345678 /r president                              |
-| changeLog        | finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE                         | finance changeLog /i 1 /n buy cake 5.5                                      |
-| delMember        | hr delMember MEMBER_INDEX                                                  | hr delMember 1                                                              |
-| delEvent         | event delEvent EVENT_INDEX                                                 | event delEvent 1                                                            |
-| delEvent all     | event delEvent all                                                         | -                                                                           |
-| delLog           | finance delLog ITEM_INDEX                                                  | finance delLog 3                                                            |
-| event done       | event done EVENT_INDEX                                                     | event done 2                                                                |
-| event search     | event search /s <KEYWORD>                                                  | event search /s arduino                                                     |
-| event countdown  | event countdown                                                            | -                                                                           |
-| help             | help                                                                       | -                                                                           |
-| hr search        | hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)                     | hr search /n Peter /r president                                             |
-| import           | import FILENAME /c CATEGORY (...)                                          | import sample.csv /c hr /name Member /phone Contact /email Email /role Role |
-| listMember       | hr listMember                                                              | -                                                                           |
-| listEvent        | event listEvent                                                            | -                                                                           |
-| list prof&admin  | hr list prof&admin                                                         | -                                                                           |
-| list connections | hr list connections                                                        | -                                                                           |
-| summary          | finance summary                                                            | -                                                                           |
+|      Command     |                                   Format                                   |                                   Example                                   |
+|:----------------:|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
+| addMember        | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`                      | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`                 |
+| addEvent         | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`                   | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`                       |
+| addLog           | `finance addLog ITEM_NAME ITEM_VALUE`                                        | `finance addLog have lunch 4.5`                                               |
+| bye              | `bye`                                                                        | -                                                                           |
+| changeInfo       | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president`                              |
+| changeLog        | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`                         | `finance changeLog /i 1 /n buy cake 5.5`                                      |
+| delMember        | `hr delMember MEMBER_INDEX`                                                  | `hr delMember 1`                                                              |
+| delEvent         | `event delEvent EVENT_INDEX`                                                 | `event delEvent 1`                                                            |
+| delEvent all     | `event delEvent all`                                                         | -                                                                           |
+| delLog           | `finance delLog ITEM_INDEX`                                                  | `finance delLog 3`                                                            |
+| event done       | `event done EVENT_INDEX`                                                     | `event done 2`                                                                |
+| event search     | `event search /s <KEYWORD>`                                                  | `event search /s arduino`                                                     |
+| event countdown  | `event countdown`                                                            | -                                                                           |
+| help             | `help`                                                                       | -                                                                           |
+| hr search        | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`                     | `hr search /n Peter /r president`                                             |
+| import           | `import FILENAME /c CATEGORY (...)`                                          | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` |
+| listMember       | `hr listMember`                                                              | -                                                                           |
+| listEvent        | `event listEvent`                                                            | -                                                                           |
+| list prof&admin  | `hr list prof&admin`                                                         | -                                                                           |
+| list connections | `hr list connections`                                                        | -                                                                           |
+| summary          | `finance summary`      
+                                                      | -                                                                           |
 [Return to the top](#user-guide)
 
 ## 7. Glossary
