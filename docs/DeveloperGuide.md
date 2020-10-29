@@ -237,11 +237,11 @@ The estimate feature is facilitated by `EstimateCommand`. By running the command
 
 Given below is an example usage scenario showing how the `EstimateCommand` behaves at each step.
 
-**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is "estimate", `EstimateParser#parse()` is invoked to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300", which will be returned to `Main`.
+**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is "estimate", `EstimateParser#parse()` is invoked to parse, validate, and construct `EstimateCommand` with "script.txt" and "300". The created object is then returned to `Main`.
 
 **Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace containing the file, then it invokes `StorageManager#loadScriptFile()` with the arguments `activeWorkspace.getName()` and `scriptFileName`, to read `scriptFileName` content into the variable `fileContent`.
+**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read and store the content of `scriptFileName` in the active workspace folder in `fileContent`.
 
 > :memo: Every workspace is actually a folder in the system.
 
@@ -249,7 +249,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 
 <br/>
 
-**Step 4:** Once the file has been read successfully, `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` with the estimated time as argument, to convert it into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+**Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
@@ -570,7 +570,7 @@ The watchlist management feature is facilitated by `WatchlistCommand`. By runnin
 *   `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
 
 Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
-> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by the variable `activeWatchlist` in `Workspace`.
+> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by `activeWatchlist` in `Workspace`.
 
 | Option | Method | Description |
 | --- | --- | --- |
@@ -587,15 +587,15 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 *Figure 19: WatchlistCommand Initial State*
 
-**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime", which will be returned to `Main`.
+**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
 
 **Step 2:** `WatchlistParser` is terminated at this point. The application invokes `WatchlistCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
+**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist, and according to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked.
 
-**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. Then it invokes `activeWorkspace.getWatchlistList()` to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. It is then validated before it is added to `watchlistList`.
+**Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
 
-**Step 5:** Finally, `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
+**Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
