@@ -2,3 +2,4 @@
 2;Tuition payment;;+$1500.0;Every month;Manual payment;No tuition for May
 23;hahasdsd;-$43000.0;;Every month;Auto deduction;nothing
 25;Spotify;-$25.0;;Every month;Auto deduction;Cancel if Infinite is no longer on Spotify
+30;LKK34**(*)))&yhR$@~~!1`;-$230.56789;;Every month;Auto deduction;
