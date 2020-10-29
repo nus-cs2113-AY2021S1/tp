@@ -1,5 +1,5 @@
 # User Guide
-
+![](CCAManager_logo.png)
 # Table of contents
 - [1. Introduction](#1introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
@@ -28,6 +28,7 @@
     - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
     - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
     - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
+  - [4.6 Importing features](#46-import)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
@@ -275,6 +276,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/addlog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
@@ -288,6 +292,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/dellog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
@@ -297,6 +304,40 @@ Example of usage:
 
 Expected outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
+
+
+#### 4.5.4 Change finance log entry information: `changeLog`  
+Change the finance log entry's name and budget amount.  
+Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
+
+Example of usage:  
+`finance changeLog /i 1 /n buy cake 5.5`  
+
+Expected outcome:  
+![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
+
+
+### 4.6 Import
+
+You can import data from other existing CSVs quickly with the import command  
+Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME`  
+OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME`  
+OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
+
+This command allows you to specify which columns of your CSV file you would like to copy over to the program.  
+
+Example: Let's say you have a CSV file like shown below, and you would like to import it.    
+![CSV File](userGuidePic/import1.png)  
+In our example, the CSV file we are importing is in the same directory as CCA Manager.  
+![Location of File](userGuidePic/import2.png)  
+You can use the command `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` to import the document.  
+
+The expected outcome is as follows:  
+
+![Outcome](userGuidePic/import3.png)  
+
+
+[Return to the top](#user-guide)
 
 ## 5. FAQ
 
@@ -308,6 +349,7 @@ addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event a
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
 bye | `bye` | -
 changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
+changeLog | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE` | `finance changeLog /i 1 /n buy cake 5.5`
 delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
@@ -317,6 +359,7 @@ event search | `event search /s <KEYWORD>` | `event search /s arduino`
 event countdown | `event countdown` | -
 help | `help` | -
 hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
+import  | `import FILENAME /c CATEGORY (...)` | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role`
 listMember  | `hr listMember` | -
 listEvent | `event listEvent` | -
 list prof&admin | `hr list prof&admin` | -

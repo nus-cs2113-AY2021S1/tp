@@ -1,0 +1,19 @@
+@startuml
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":Command" as Command
+->Ui:run()
+activate Ui
+Ui -> Parser : parse()
+activate Parser
+return UserInput
+loop status != ACCEPT
+Ui -> Command: validate()
+activate Command
+return status
+end
+Ui -> Command: execute()
+activate Command
+return printString
+return
+@enduml

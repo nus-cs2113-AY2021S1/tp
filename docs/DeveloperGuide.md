@@ -1,5 +1,8 @@
 # CCA Manager Developer Guide
 
+![](CCAManager_logo.png)
+
+# Table of Contents
 
 - [1. Introduction](#1-introduction)
 - [2. Setting up](#2-setting-up)
@@ -9,6 +12,7 @@
   * [3.3. Finance](#33-finance)
   * [3.4. Event](#34-event)
   * [3.5. HR](#35-hr)
+  * [3.6. Storage](#36-storage)
 - [4. Product scope](#4-product-scope)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value proposition](#42-value-proposition)
@@ -43,6 +47,12 @@ The rest of the app consists of the below:
 * [**`Storage`**] : Reads data from, and writes data to, the hard disk.
 
 ### 3.1. Input Parsing
+![Parser](BackendDiagram/ParserFlow.png)
+
+Input parsing describes the process of converting the user's input into an executable command. The diagram above shows the execution flow required to run a single command.
+
+The `Parser` is responsible for the input conversion to a `UserInput` object. Subsequently, we use `validate()` in a loop to identify the command to execute, then we execute the command action with `execute()`.
+
 **Current Implementation**  
 The `Parser` class in `seedu.duke.backend` handles most of the input parsing. The `Parser` is a standalone class. Its purpose is to handle the conversion of read Strings from the `Ui` to UserInput objects
 safely for the rest of the program to handle. It implements the following operations:
@@ -207,8 +217,16 @@ Aspect: Repeated items
 
 
 ### 3.4. Event
-**3.4.1. Add/delete events feature** 
- 
+The diagram below shows the architecture for Event feature.
+
+![](EventDiagram/EventArchitecture.png)
+
+
+There are a total of 6 commands under Event feature.
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`. 
+ The implementation for each command is described in detail below.
+                                                             
+**3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
@@ -243,7 +261,7 @@ The sequence diagram for deleting a particular event or all events is as shown b
 
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
-**3.5.2. Listing Events** 
+**3.5.2. Listing Events** `CommandEventList`
 
 3.5.2.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
@@ -267,7 +285,7 @@ The sequence diagram for listing events is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
-**3.4.3. Searching for an event via name or date**
+**3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
 Current Implementation
 The `CommandSearchEvent` class in `seedu.duke.event` handles search of an event via its name or its date.
@@ -280,7 +298,7 @@ It implements the following operation:
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
  
-**3.4.3: Displaying countdown to upcoming events**
+**3.4.4: Displaying countdown to upcoming events** `CommandEventCountdown`
 
 Current Implementation
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
@@ -291,6 +309,18 @@ It implements the following operation:
 The sequence diagram for displaying countdown is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
+
+**3.4.5: Mark an event as completed** `CommandEventStatus`
+
+Current Implementation
+The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
+ 
+It implements the following operation:
+*`CommandEventStatus#execute()` -  Marks an `Event` in the `EventList` as done.
+
+The sequence diagram for marking an event as done is as shown below:
+
+![CommandEventStatus](EventDiagram/SequenceDiagram/CommandEventStatus.png)
 
 ### 3.5. HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
@@ -389,6 +419,58 @@ Aspect: Changing member information
     *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
     command to find out the index of the target member, before he can change the member's information.  
 
+### 3.6. Storage
+
+![](BackendDiagram/StorageFlow.png)
+
+The storage component is responsible for storing persistent data to disk. This involves objects from all 3 categories of the application.
+The above sequence diagram shows the program flow involving only the `FileManager` component.
+
+The main process of the program in Duke invokes the `readAll()` function on start-up. This reads all the data saved on disk to memory.
+During the program loop, the main process invokes `saveAll()` after every command run. This saves the current state of the application to file automatically.
+
+**Current Implementation**
+
+The `FileManager` class in `seedu.duke.backend` manages all the file related operations. Its purpose is to provide an abstraction layer for saving and reading the current state of the application to and from disk.
+
+* `FileManager#getPath()` - Retrieves the working directory of the `FileManager`.
+* `FileManager#setPath()` - Changes the working directory of the `FileManager`.
+* `FileManager#saveAll()` - Saves the current state of the program. This function invokes `saveEvent()`, `saveFinance()` and `saveMembers()` in sequence.
+* `FileManager#readAll()` - Reads the saved data in the working direction to program memory. This functions invokes `readEvent()`, `readFinance()` and `readMembers()` in sequence.
+* `FileManager#saveEvent()` - Saves the event data to disk.
+* `FileManager#saveFinance()` - Saves the finance data to disk.
+* `FileManager#saveMembers()` - Saves the HR data to disk.
+* `FileManager#saveFile()` - Saves a String to the specified filename.
+* `FileManager#readFile()` - Reads a CSV file from disk and returns a `HashMap<String, ArrayList<String>>` containing the header of each table mapped to an `ArrayList` of all rows in that column.
+* `FileManager#readFinance()` - Reads the finance data from disk.
+* `FileManager#readEvents()` - Reads the event data from disk.
+* `FileManager#readMembers()` - Reads the hr data from the disk.
+
+**Design Considerations**    
+Aspect: When is the file saved
+* Alternative 1 (Current Choice): Saving is performed automatically on every command completion.
+    * Pros: Convenient for users. No requirement to save all 3 categories independently.
+    * Cons: Requires more IO overhead to write the data to disk. Potentially wastes IO cycles writing unchanged data.
+    * Reason for choice: Our design philosophy is to make the program as convenient and easy to use as possible. This alternative allows us to align with that goal.
+* Alternative 2: Dedicated saving command
+    * Pros: Only saves to the disk when required. Can revert accidental changes easily.
+    * Cons: The user may forget to save their data, resulting in data loss.
+* Alternative 3: Each command calls the relevant saving function.
+    * Pros: Minimizes wasted IO cycles. Convenient for users.
+    * Cons: Need to ensure that all commands that change the state of the program actually save the data. Harder to check for bugs.
+
+Aspect: The format of the file
+* Alternative 1 (Current Choice): CSV File
+    * Pros: Commonly used file format, easy to edit. Compatible with other programs.
+    * Cons: None
+    * Reason for choice: This the best choice as it is an already established file format compatible with other programs.
+* Alternative 2: Use `serializable` java interface
+    * Pros: Extremely easy to write and read from file. Very good retention of data and it's relationships. Easy to implement.
+    * Cons: Filetype is not user editable as it is written by the java serializer.
+* Alternative 3: Use a proprietary file format designed specifically for CCA Manager
+    * Pros: Able to tailor the design of the file format to suit the requirements of the program.
+    * Cons: May not be editable by the user with a text editor. Does not offer compatability with any existing programs.
+    
 ## 4. Product scope
 ### 4.1. Target user profile
 

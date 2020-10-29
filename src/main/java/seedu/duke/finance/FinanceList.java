@@ -19,9 +19,9 @@ public class FinanceList {
         String output1 = fl.toString();
         String output2;
         if (fl.getSize() > 1) {
-            output2 = "There are " + fl.getSize() + " logs in the list now.\n";
+            output2 = "There are " + fl.getSize() + " log entries in the list now.\n";
         } else {
-            output2 = "There is " + fl.getSize() + " log in the list now.\n";
+            output2 = "There is " + fl.getSize() + " log entry in the list now.\n";
         }
         output = output + output1 + output2;
         return output;
@@ -41,9 +41,9 @@ public class FinanceList {
             FinanceLog.finSize--;
             String output2;
             if (FinanceLog.finSize > 1) {
-                output2 = "There are " + FinanceLog.finSize + " logs in the list now.\n";
+                output2 = "There are " + FinanceLog.finSize + " log entries in the list now.\n";
             } else {
-                output2 = "There is " + FinanceLog.finSize + " log in the list now.\n";
+                output2 = "There is " + FinanceLog.finSize + " log entry in the list now.\n";
             }
             String output1 = "Got it! I've removed this from list.\n";
             String output = output1 + output2;
@@ -74,5 +74,27 @@ public class FinanceList {
         output = output.concat("Total budget: $" + String.format("%.2f",FinanceLog.getSum()) + "\n");
         logger.info("End processing...");
         return output;
+    }
+
+    /**
+     * Change the financeLog's finLog and finLogVal of index provided by the user.
+     * @param index the index of financeLog
+     * @param newLog new finLog for the financeLog
+     * @param newVal new finLogVal for the financeLog
+     * @return the information of change financeLog
+     */
+    public static String changeFinanceLog(int index, String newLog, double newVal) {
+        try {
+            String output = "Got it! I will change:\n" + index + "." + financeLogs.get(index - 1).getLog()
+                    + " $" + financeLogs.get(index - 1).getLogVal() + "\n\n";
+            FinanceLog fl = financeLogs.get(index - 1);
+            fl.setFinLog(newLog);
+            fl.setFinLogVal(newVal);
+            output = output + "Now the new finance log entry is:\n" + index + "." + financeLogs.get(index - 1).getLog()
+                    + " $" + financeLogs.get(index - 1).getLogVal() + "\n";
+            return output;
+        } catch (IndexOutOfBoundsException e) {
+            return "Your input index does not exist in the list.";
+        }
     }
 }

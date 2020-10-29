@@ -1,0 +1,54 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command" {
+}
+
+Rectangle EventCommands {
+"{abstract} \n Command" <|-- CommandEventAdd
+"{abstract} \n Command" <|-- CommandEventDel
+"{abstract} \n Command" <|-- CommandEventList
+"{abstract} \n Command" <|-- CommandSearchEvent
+"{abstract} \n Command" <|-- CommandEventStatus
+"{abstract} \n Command" <|-- CommandEventCountdown
+}
+
+
+
+CommandEventAdd <-- EventList
+EventList <-down- CommandEventAdd
+
+CommandEventDel <-- EventList
+EventList <-down- CommandEventDel
+
+CommandEventList <-- EventList
+EventList <-down- CommandEventList
+
+CommandSearchEvent <-- EventList
+EventList <-down- CommandSearchEvent
+
+CommandEventStatus <-- EventList
+EventList <-down- CommandEventStatus
+
+CommandEventCountdown <-- EventList
+EventList <-down- CommandEventCountdown
+
+
+
+FileManager -> EventList
+
+
+CommandEventAdd -down> Event
+CommandEventCountdown -down> Event
+CommandEventStatus -down> Event
+CommandSearchEvent -down> Event
+CommandEventDel -down> Event
+CommandEventList -down> Event
+
+
+
+Duke -> Ui
+Ui -> "{abstract} \n Command"
+
+@enduml

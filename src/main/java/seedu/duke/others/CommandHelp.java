@@ -13,10 +13,13 @@ public class CommandHelp extends Command {
                 + "\t4. Add events: event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME\n"
                 + "\t5. Delete event: event delEvent EVENT_INDEX\n"
                 + "\t6. View event list: event listEvent\n"
-                + "\t7. Add financial log: finance addLog ITEM_NAME ITEM_VALUE\n"
-                + "\t8. Delete financial log:  finance delLog ITEM_INDEX\n"
-                + "\t9. View financial summary: finance summary\n"
-                + "\t10. Exit the program: bye\n";
+                + "\t7. View countdown to events: event countdown\n"
+                + "\t8. Search for an event by name or date(YYYY-MM-DD): event search /s KEYWORD\n"
+                + "\t9. Mark an event as done: event done EVENT_INDEX\n"
+                + "\t10. Add financial log: finance addLog ITEM_NAME ITEM_VALUE\n"
+                + "\t11. Delete financial log:  finance delLog ITEM_INDEX\n"
+                + "\t12. View financial summary: finance summary\n"
+                + "\t13. Exit the program: bye\n";
     }
 
     @Override
