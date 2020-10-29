@@ -5,6 +5,7 @@ import anichan.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class ViewWatchlistParserTest {
     protected static final String EMPTY_DESCRIPTION = "";
     protected static final String EMPTY_FIELD = "-v";
