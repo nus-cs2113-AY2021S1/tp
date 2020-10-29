@@ -4,8 +4,8 @@
 
 1. [Introduction](#1-introduction)<br>
 &nbsp;&nbsp;1.1. [Purpose](#11-purpose)<br>
-&nbsp;&nbsp;1.2. [Overview](#12-Overview)<br>
-&nbsp;&nbsp;1.3. [Features](#13-Features)<br>
+&nbsp;&nbsp;1.2. [Overview](#12-overview)<br>
+&nbsp;&nbsp;1.3. [Features](#13-features)<br>
 1. [Quick Start](#2-quick-start)<br>
 1. [Commands](#3-commands)<br>
 &nbsp;&nbsp;3.1. [Project `project`](#31-project-project)<br> 
@@ -29,7 +29,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Add tasks to the sprint](#344-add-tasks-to-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Delete tasks from the sprint](#345-remove-tasks-from-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.6. [Allocate tasks to team members](#346-allocate-tasks-to-team-members)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate tasks from team members](#347-deallocate-tasks-from-team-members)<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate tasks from team members](#347-deallocate-tasks-from-team-members)<br>
+&nbsp;&nbsp;3.5. [Storage `storage`](#35-storage-storage)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Clear Storage](#351-clear-storage)<br>
 1. [Command Summary](#4-command-summary)
 
 
@@ -460,11 +462,31 @@ Deallocate a task from team member(s).
 [Sprint ID: 1]                                                                                                                         
 DummyTask1 is removed to [johntan, mary, jane]                                                                                        
 DummyTask2 is removed to [johntan, mary, jane]                                                                                        
+```  
+  
+### 3.5. Storage `storage`
+
+#### 3.5.1. Clear Storage  
+Clear all the data from the program and the persistent storage.  
+You will be prompted to confirm your decision by giving an input. Data will be cleared only when `y` (case-insensitive) is provided.  
+**[WARNING]** This action will delete **ALL** the data and is **irreversible**!  
+
+##### Format: `storage /clear`
+
+##### Example: `storage /clear`
+##### Expected Outcome:
+_Clear data_  
 ```
-
-
-
-
+command> storage /clear
+[!WARNING!] Are you sure? This command is irreversible! (y/N) y
+All data has been cleared!
+```    
+_Abort clear data_  
+```
+command> storage /clear
+[!WARNING!] Are you sure? This command is irreversible! (y/N) N
+Data clear aborted.
+```    
 
 ## 4. Command Summary
 
