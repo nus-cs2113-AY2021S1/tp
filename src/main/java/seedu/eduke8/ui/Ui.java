@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
+    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
@@ -79,6 +80,7 @@ public class Ui {
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String SPACE = " ";
     private static final String MESSAGE_SHOW_POINTS = "You have earned ";
     private static final String MESSAGE_SHOW_POINTS_SECOND = " points out of a total of ";
     private static final String MESSAGE_SHOW_POINTS_THIRD = " points available!";
@@ -97,8 +99,6 @@ public class Ui {
     private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer!";
-    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
-
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
@@ -147,7 +147,7 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(questionNumber + ". " + question.getDescription() + System.lineSeparator());
+        System.out.println(questionNumber + DOT_SPACE + question.getDescription() + System.lineSeparator());
     }
 
     public void printHint(Hint hint) {
@@ -329,7 +329,7 @@ public class Ui {
                         + ((j == optionsAvailable.size()) ? "\n" : "");
                 j++;
             }
-            output += i + DOT_SPACE + question.getDescription() + optionOutput + " "
+            output += i + DOT_SPACE + question.getDescription() + optionOutput + SPACE
                     + ((i == allBookmarks.size()) ? "" : "\n");
             i++;
         }

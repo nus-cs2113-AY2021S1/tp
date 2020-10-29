@@ -4,7 +4,7 @@ public class ExceptionMessages {
     public static final String ERROR_STORAGE_FAIL = "Oh no! An error has occurred when accessing the file."
             + "Please check again!";
     public static final String ERROR_UNRECOGNIZED_COMMAND = "Oops! The command cannot be understood."
-            + System.lineSeparator() + "Please enter in \"help\" to get the list of available commands. ";
+            + System.lineSeparator() + "Please enter in \"help\" to get the list of available commands.";
     public static final String ERROR_QUIZ_WRONG_FORMAT = "Invalid command! The command for quiz is as follows:"
             + System.lineSeparator() + "quiz t/<topic> n/<number of questions>" + System.lineSeparator()
             + "(Topics available can be found using the \"topics\" command)";

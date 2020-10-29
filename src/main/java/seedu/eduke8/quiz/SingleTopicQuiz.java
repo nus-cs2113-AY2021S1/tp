@@ -107,7 +107,7 @@ public class SingleTopicQuiz implements Quiz {
                 }
             }
 
-            LOGGER.log(Level.INFO, "Question answered");
+            LOGGER.log(Level.INFO, "Question answered or time's up");
 
             command.execute(optionList, ui);
         }

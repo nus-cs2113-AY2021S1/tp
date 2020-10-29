@@ -62,6 +62,7 @@ public class QuizParser implements Parser {
 
         try {
             if (userInput == null) {
+                LOGGER.log(Level.INFO, "Timer's up.");
                 return new IncompleteCommand(question, timer);
             }
             ArrayList<Displayable> options = optionList.getInnerList();
