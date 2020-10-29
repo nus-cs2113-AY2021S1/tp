@@ -277,6 +277,7 @@ public class EventList {
         return hasExist;
     }
 
+    /*
     public static String addAttendance(String eventName, String memberName) {
         String output = "";
         if (checkEventExistence(eventName)) {
@@ -300,6 +301,31 @@ public class EventList {
             output = output.concat("Event does not exist!\n");
         }
         return output;
+    }*/
+
+    public static String addAttendance(String eventName, String memberName) {
+        String output = "";
+        if (!checkEventExistence(eventName)) {
+            output = output.concat("Event does not exist!\n");
+            return output;
+        }
+        if (!MemberList.checkMemberExistence(MemberList.members, memberName)) {
+            output = output.concat("Member does not exist!\n");
+            return output;
+        }
+        Event e = findEventByName(eventName);
+        if (MemberList.checkMemberExistence(e.getEventParticipants(), memberName)) {
+            output = output.concat("Member attendance had already been taken!\n");
+            return output;
+        }
+        Member m = MemberList.findMemberByName(memberName);
+        e.setEventParticipants(m);
+        output = "Noted. I have added this participant to this event:\n";
+        output = output.concat(m.getMemberName() + "\n");
+        output = output.concat("Now you have " + e.eventParticipants.size() + " member"
+                + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in "
+                + e.eventName + ".\n");
+        return output;
     }
 
 
@@ -309,7 +335,7 @@ public class EventList {
             Event e = findEventByName(eventName);
             output = "The following " + ((e.getEventParticipants().size() > 1) ? "members have" : "member has")
                     + " participated in this event:\n";
-            for (int i = 0; i < e.getEventParticipants().size(); i ++) {
+            for (int i = 0; i < e.getEventParticipants().size(); i++) {
                 int index = i + 1;
                 output = output.concat(index + ". " + e.getEventParticipants().get(i).getMemberName() + "\n");
             }
@@ -319,6 +345,12 @@ public class EventList {
         } else {
             output = output.concat("Event does not exist!\n");
         }
+        return output;
+    }
+
+    public static String deleteAttendance(String n, String m) {
+        String output = "";
+
         return output;
     }
 }
