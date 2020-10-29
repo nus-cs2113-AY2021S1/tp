@@ -235,12 +235,70 @@ Implementation:
     .showToUserLn()`
 
 #### List Project
-All the projects added by the user are shown
+All the projects added by the user are shown as an output.
+Before execution:
+1. Parse user input `project /list` into Command
 
+    SCRUMptious will receive user input using the `Ui` class and parse it into `ListProjectCommand` with `Parser` and
+     `ProjectParser`.
+     
+1. Execute ListProjectCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command as mentioned in the implementation.
+
+Implementation:
+
+1. The program iterates through `projectManager.getProjectList()` to get a list of all the projects stored in
+ `ProjectManager`.
+    
+1. Output to User
+    
+    `proj.getTitle()` and `proj.getDescription()` is then called to output all the projects in `ProjectManager` via
+     `Ui.showToUserLn()`.
 
 #### Select Project
+Select the project on which all the commands are executed.
+
+Before execution:
+1. Parse user input `project /select <id>` into Command
+
+    SCRUMptious will receive user input using the `Ui` class and parse it into `SelectProjectCommand` with `Parser` and
+     `ProjectParser`.
+     
+1. Execute SelectProjectCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command as mentioned in the implementation. The
+     required project will then be chosen as reference and stored in `ProjectManager`.
+
+Implementation:
+
+1. The input `id` is used to access the corresponding project stored in a hashtable in the `projectManager`.
+    
+1. Output to User
+    
+    `parameters.get('0')` is used to get the selected id and generate output  via
+     `Ui.showToUserLn()`.
+
 
 #### View Project
+View the details of the project on which the user is currently working on.
+Before execution:
+1. Parse user input `project /vuew` into Command
+
+    SCRUMptious will receive user input using the `Ui` class and parse it into `ViewProjectCommand` with `Parser` and
+     `ProjectParser`.
+     
+1. Execute ViewProjectCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command as mentioned in the implementation.
+
+Implementation:
+
+1. The selected project is accessed by using `projectManager.getSelectedProject()`.
+    
+1. Output to User
+    
+    The project is shown to the user by `proj.toString()` via `Ui.showToUserLn()`
 
 ### Task
 #### Add Task
@@ -345,7 +403,8 @@ Implementation:
    
 1. Output to User
     
-    `printCreatedSprint()` is then called to output the newly created Sprint in `createdSprint.toString` via `Ui.showToUserLn()`
+    `printCreatedSprint()` is then called to output the newly created Sprint in `createdSprint.toString()` via `Ui
+    .showToUserLn()`
 
 #### View Sprint
 
