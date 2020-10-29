@@ -75,20 +75,15 @@ If you plan to use Intellij IDEA:
 ### Before writing code
 1. **Configuring the coding style**
 
-    If using IDEA, follow this guide 
-    [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
-    to setup IDEA’s coding style to match ours.
+    If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
 2. **Set up CI**
     
-    There is no set up required as the project comes with a GitHub Actions config files, 
-    located in `.github/workflows` folder. When GitHub detects these files, 
-    it will run the CI for the project automatically at each push to the master branch or to any PR.
+    There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
     
 3. **Learn the design**
     
-    When you are ready to start writing codes, we recommended that you have a look at AniChan's 
-    overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+    When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
@@ -941,12 +936,12 @@ There are primarily 2 ways to run the tests.
 
 ## Appendix A: Product Scope
 
-# 5.1 Target User Profile*
-* Professional anime translators.
-* Works on multiple projects and with various companies.
-* Has difficulty managing their time and information.
-* Prefers command-line desktop applications.
-* Able to type fast.
+### 5.1 Target User Profile*
+*   Professional anime translators.
+*   Works on multiple projects and with various companies.
+*   Has difficulty managing their time and information.
+*   Prefers command-line desktop applications.
+*   Able to type fast.
 
 {*More coming soon*}
 
@@ -964,6 +959,6 @@ There are primarily 2 ways to run the tests.
 
 ## Appendix C: Non-Functional Requirements
 
-1. It should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
-2. Users with fast typing speed should be able to accomplish tasks easily and faster than when they were using mouse.
-3. Each command should be processed within 2 seconds.
+1.  It should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
+2.  Users with fast typing speed should be able to accomplish tasks easily and faster than when they were using mouse.
+3.  Each command should be processed within 2 seconds.
