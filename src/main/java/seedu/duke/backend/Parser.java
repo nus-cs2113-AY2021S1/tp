@@ -62,7 +62,6 @@ public class Parser {
                     val = "";
                     key = tmp;
                 }
-
                 map.put(key.trim().toLowerCase(), val.trim());
             }
             ui = new UserInput(base, map);

@@ -1,6 +1,9 @@
 
 package seedu.duke.event;
 
+import seedu.duke.hr.Member;
+import seedu.duke.hr.MemberList;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -263,6 +266,120 @@ public class EventList {
         return output;
     }
 
+    /**
+     * Used to find Event with the given event name.
+     *
+     * @param eventName The event name used for search.
+     * @return returns Event if it exists in the event list, else return null.
+     */
+    public static Event findEventByName(String eventName) {
+        for (Event event : events) {
+            if (event.getEventName().equalsIgnoreCase(eventName)) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Check if Event with the given member name exists.
+     *
+     * @param eventName The event name used for search.
+     * @return returns true if it exists in the event list, else return false.
+     */
+    public static boolean checkEventExistence(String eventName) {
+        boolean hasExist = false;
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getEventName().equalsIgnoreCase(eventName)) {
+                hasExist = true;
+            }
+        }
+        return hasExist;
+    }
+
+    /**
+     * Adds Member with the given member name into participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @param memberName The member name.
+     * @return returns user output.
+     */
+    public static String addAttendance(String eventName, String memberName) {
+        String output = "";
+        if (!checkEventExistence(eventName)) {
+            output = output.concat(COMMAND_EVENT_NOT_EXIST);
+            return output;
+        }
+        if (!MemberList.checkMemberExistence(MemberList.members, memberName)) {
+            output = output.concat("Member does not exist!\n");
+            return output;
+        }
+        Event e = findEventByName(eventName);
+        if (MemberList.checkMemberExistence(e.getEventParticipants(), memberName)) {
+            output = output.concat("Member attendance had already been taken!\n");
+            return output;
+        }
+        Member m = MemberList.findMemberByName(memberName);
+        e.setEventParticipants(m);
+        output = "Noted. I have added this participant to this event:\n";
+        output = output.concat(m.getMemberName() + "\n");
+        output = output.concat("Now you have " + e.eventParticipants.size() + " member"
+                + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in "
+                + e.eventName + ".\n");
+        return output;
+    }
+
+    /**
+     * Displays participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @return returns user output.
+     */
+    public static String listAttendance(String eventName) {
+        String output = "";
+        if (checkEventExistence(eventName)) {
+            Event e = findEventByName(eventName);
+            output = output.concat(e.printEventParticipant());
+            output = output.concat("Now you have " + e.eventParticipants.size() + " member"
+                    + ((e.eventParticipants.size() == 1) ? "" : "s") + " attended "
+                    + e.eventName + ".\n");
+        } else {
+            output = COMMAND_EVENT_NOT_EXIST;
+        }
+        return output;
+    }
+
+    /**
+     * Deletes Member with the given member name from participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @param memberName The member name.
+     * @return returns user output.
+     */
+    public static String deleteAttendance(String eventName, String memberName) {
+        String output = "";
+        if (!checkEventExistence(eventName)) {
+            output = COMMAND_EVENT_NOT_EXIST;
+            return output;
+        }
+        Event event = findEventByName(eventName);
+        if (!MemberList.checkMemberExistence(event.getEventParticipants(), memberName)) {
+            output = "Member attendance for this event has not been taken!\n";
+            return output;
+        }
+        int index = MemberList.findMemberIndex(event.getEventParticipants(), memberName);
+        try {
+            output = "Got it! I'll remove this member from the event attendance:\n";
+            output = output.concat(event.getEventParticipants().get(index).getMemberName() + "\n");
+            event.getEventParticipants().remove(index);
+            output = output.concat("Now you have " + event.eventParticipants.size() + " member"
+                    + ((event.eventParticipants.size() == 1) ? "" : "s") + " attended "
+                    + event.eventName + ".\n");
+        } catch (IndexOutOfBoundsException e) {
+            output = COMMAND_EVENT_NOT_EXIST;
+        }
+        return output;
+    }
 }
 
 

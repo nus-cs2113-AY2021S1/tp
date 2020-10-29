@@ -27,7 +27,7 @@ public class FileManager {
     // Todo support RFC 4180 CSV standard and handle rogue characters
     private static final String HEADERS_MEMBERS = "Name,Phone,Email,Role";
     private static final String HEADERS_FINANCE = "Name,Value";
-    private static final String HEADERS_EVENT = "Name,Date,Time";
+    private static final String HEADERS_EVENT = "Name,Date,Time,Participant";
     private static Logger logger = Logger.getLogger("FileLog");
     private String path; // if not the working directory, path should end with a slash
 
@@ -64,12 +64,6 @@ public class FileManager {
         logger.log(Level.INFO, "Begin Loading All");
         int ret = 0;
         try {
-            readEvents(path + "events.csv");
-        } catch (FileNotFoundException fe) {
-            ret++;
-            logger.log(Level.INFO, "Failed to load events");
-        }
-        try {
             readFinance(path + "finance.csv");
         } catch (FileNotFoundException fe) {
             ret++;
@@ -80,6 +74,12 @@ public class FileManager {
         } catch (FileNotFoundException fe) {
             ret++;
             logger.log(Level.INFO, "Failed to load members");
+        }
+        try {
+            readEvents(path + "events.csv");
+        } catch (FileNotFoundException fe) {
+            ret++;
+            logger.log(Level.INFO, "Failed to load events");
         }
         logger.log(Level.INFO, "Finished loading all");
         return ret;
@@ -95,7 +95,8 @@ public class FileManager {
         for (Event e : EventList.events) {
             writeOutput += e.getEventName() + ",";
             writeOutput += e.getEventDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ",";
-            writeOutput += e.getEventTime() + "\n";
+            writeOutput += e.getEventTime() + ",";
+            writeOutput += e.getStringParticipants() + "\n";
         }
         saveFile(fileName, writeOutput);
     }
@@ -209,9 +210,16 @@ public class FileManager {
         HashMap<String, ArrayList<String>> data = readFile(filename);
         // Validate size of any column
         int rows = data.get("Name").size();
+
         for (int i = 0; i < rows; i++) {
             Event tmp = new Event(data.get("Name").get(i), data.get("Date").get(i), data.get("Time").get(i));
             EventList.events.add(tmp);
+            String participantList = data.get("Participant").get(i);
+            String trimmedParticipants = participantList.substring(1, (participantList.length() - 1));
+            String[] participants = trimmedParticipants.split(" & ");
+            for (int j = 0; j < participants.length; j++) {
+                tmp.setEventParticipants(MemberList.findMemberByName(participants[j]));
+            }
         }
     }
 

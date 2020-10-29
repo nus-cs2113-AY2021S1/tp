@@ -1,11 +1,14 @@
 package seedu.duke.event;
 
+import seedu.duke.hr.Member;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
@@ -15,6 +18,7 @@ public class Event {
     protected LocalDate date;
     protected String symbol;
     protected boolean isDone;
+    public ArrayList<Member> eventParticipants = new ArrayList<>();
 
 
     public Event(String name, String date, String time) {
@@ -136,6 +140,30 @@ public class Event {
         }
     }
 
+    public void setEventParticipants(Member m) {
+        if (m != null) {
+            this.eventParticipants.add(m);
+        }
+    }
+
+    public ArrayList<Member> getEventParticipants() {
+        return eventParticipants;
+    }
+
+    public String getStringParticipants() {
+        String output = "[";
+        if (eventParticipants.get(0) != null) {
+            for (int i = 0; i < eventParticipants.size(); i++) {
+                output = output.concat(eventParticipants.get(i).getMemberName());
+                if (i < (eventParticipants.size() - 1)) {
+                    output = output.concat(" & ");
+                }
+            }
+        }
+        output = output.concat("]");
+        return output;
+    }
+
     /**
     * Used to identify if the string contains the keyword specified in its description.
     *
@@ -150,6 +178,16 @@ public class Event {
     public boolean containsDateKeyword(LocalDate localDate) {
         boolean containsKeyword = date.equals(localDate);
         return containsKeyword;
+    }
+
+    public String printEventParticipant() {
+        String output = "The following " + ((this.getEventParticipants().size() > 1) ? "members have" : "member has")
+                + " participated in this event:\n";
+        for (int i = 0; i < this.getEventParticipants().size(); i++) {
+            int index = i + 1;
+            output = output.concat(index + ". " + this.getEventParticipants().get(i).getMemberName() + "\n");
+        }
+        return output;
     }
 }
 

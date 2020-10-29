@@ -107,6 +107,37 @@ public class MemberList {
     }
 
     /**
+     * Finds the index of member with given member name in the arraylist.
+     * @param list array list of members.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns its index, else returns -1.
+     */
+    public static int findMemberIndex(ArrayList<Member> list, String memberName) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Checks if member with given member name exists in the arraylist.
+     * @param list array list of members.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns true, else returns false.
+     */
+    public static boolean checkMemberExistence(ArrayList<Member> list, String memberName) {
+        boolean hasExist = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                hasExist = true;
+            }
+        }
+        return hasExist;
+    }
+
+    /**
      * Changes the contact information and role of the member in the arraylist.
      * @param m member whose information is to be modified.
      * @param newPhone new phone number to replace the original phone number.
