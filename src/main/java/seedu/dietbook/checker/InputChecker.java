@@ -3,6 +3,8 @@ package seedu.dietbook.checker;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
 
+import java.time.LocalDateTime;
+
 /**
  * InputChecker class of the program.
  * This class checks the validity of the user input and throws an exception if input is not as intended/expected.
@@ -74,6 +76,35 @@ public class InputChecker {
             if (countOccurrence > 2) {
                 throw new DietException("There are repeated options!");
             }
+        }
+    }
+
+    /**
+     * Takes in user input to check if date format is present.
+     *
+     * @param userInput user input.
+     * @return boolean whereby true if date present, false otherwise.
+     */
+    public static boolean checkDate(String userInput) throws DietException {
+        String[] processedInput = userInput.split("\\s+");
+        if (processedInput[processedInput.length - 1].contains("T")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Takes in string format of date time to check if date format is correct.
+     *
+     * @param dateString string form of a potential date time.
+     * @throws DietException if date format is wrong.
+     */
+    public static void checkDateValidity(String dateString) throws DietException {
+        try {
+            LocalDateTime.parse(dateString);
+        } catch (Exception e) {
+            throw new DietException("Wrong date time format!");
         }
     }
 

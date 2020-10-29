@@ -111,8 +111,11 @@ public class Parser {
                 processedParam = getCommandParam(userInput).split(param);
                 InputChecker.checkEmptyOption(processedParam);
                 trimmedParam = processedParam[1].trim();
+
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
+                } else if (trimmedParam.split("\\s+").length == 2) {
+                    trimmedParam = trimmedParam.split("\\s+")[0];
                 }
                 switch (param) {
                 case "x/":
@@ -140,6 +143,12 @@ public class Parser {
                     break;
                 }
             }
+        }
+        if (InputChecker.checkDate(userInput)) {
+            processedParam = userInput.split("\\s+");
+            InputChecker.checkDateValidity(processedParam[processedParam.length - 1]);
+            LocalDateTime time = LocalDateTime.parse(processedParam[processedParam.length - 1]);
+            return foodList.addFoodAtDateTime(portionSize, foodName, calorie, carb, protein, fat, time);
         }
         //if (databaseCheck.length == 3) {
         //    DataBase dataBase = new DataBase();
