@@ -436,12 +436,118 @@ Given below is an example of the usage scenario of view information command and 
 <br/>
 
 ### 4.4 Workspace Feature
-Similar to a desktop, AniChan has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
 
 <br/>
 
-#### 4.4.1 Add new workspace 
-WIP.
+`Workspace` is primarily the layer of code that sits between the user, and the rest of AniChan data management features (i.e., `Watchlist`, `Bookmark`). 
+
+As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
+and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
+
+> :memo: Upon running the program for the first time, a workspace named `Default` is created. A similarly named folder will also be created in `/data` directory, managed by our `Storage` class.
+
+<br/>
+
+#### 4.4.1 Current Implementation
+
+| Command Option        | Workspace Command                      | Description field |
+|---|---|---|
+| `-n`       | `WorkspaceCommand#createWorkspace()`              | Creates new workspace |
+| `-s`       | `WorkspaceCommand#switchWorkspace()`              | Switches to specified workspace |
+| `-l`       | `WorkspaceCommand#listWorkspace()`                | Lists existing workspace(s)           |
+| `-d`       | `WorkspaceCommand#deleteWorkspace()`              | Deletes specified workspace |
+
+The `WorkspaceCommand` is instantiated by `WorkspaceParser`, and it requires 2 parameters: 
+*   `commandOption` (mandatory).
+*   `workspaceName` (mandatory unless option `-l` is specified).
+
+<br/>
+
+Given below is an example usage scenario showing how the command behaves at each step when the user tries 
+to **create new** `Workspace`:
+
+**Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
+
+![Workspace Command Initial State Diagram](images/WorkspaceCommand-Initial-State.png) <br/>
+*Figure 14: Workspace Command Initial State*
+
+<br/>
+
+**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser.java` and then further parsed by `WorkspaceParser.java`.
+
+**Step 3:** Upon completion of parsing and input validation, `WorkspaceParser.java` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
+
+**Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` before running `WorkspaceCommand#createWorkspace()` accordingly.
+
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
+Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
+
+![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
+*Figure 15: Workspace Command After New Workspace Creation*
+
+<br/>
+
+**Step 6:** If successful, `WorkspaceCommand` returns the successfully created workspace message to `Main`.
+
+<br/>
+
+Likewise, the operations to switch, list, and delete follows a similar execution process. 
+The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
+
+**Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
+
+![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
+*Figure 16: Workspace Command After Workspace Switch*
+
+<br/>
+
+**Step 8:** User keys in `workspace -d Default` to delete the workspace named `Default`.
+
+![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
+*Figure 17: Workspace Command After New Workspace Delete*
+
+<br/>
+
+The following sequence diagram illustrates how `Workspace` creation in the example above works:
+
+> :memo: The other options (`-s`, `-l`, `-d`) follows a similar process, only the list and switch option does not interact with `StorageManager` and `Watchlist`.
+
+![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
+*Figure 18: Workspace Command After New Workspace Delete*
+
+<br/>
+
+#### 4.4.2 Design Consideration
+
+This section shows some design considerations taken when implementing the `Workspace` feature.
+
+Aspect: **How can `Workspace` be identified?**
+
+As most commands in `WorkspaceCommand` operates on an individual `Workspace`, there needs to be some way to identify each of them uniquely. 
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| Identify using a number ID | Users can quickly `switch` and `delete` `Workspace` just by keying in a number | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic |
+| Identify using name  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first | User may waste time typing long workspace names |
+
+We have decided to use `name` to identify `Workspace` as it is more intuitive for the end-user. 
+This also avoids the need to maintain an integer `ID` for each `Workspace`.
+
+<br/>
+
+Aspect: **`Workspace` name restrictions**
+
+As `Workspace` is identified by their names, and other classes like Storage relies on the name to make folders for data storage purposes.
+Should we allow the user full discretion to naming `Workspace`?
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
+| No   | No unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
+
+For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
+all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented.
 
 <br/>
 
@@ -470,7 +576,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-*Figure 14: WatchlistCommand Initial State*
+*Figure 19: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
 
@@ -492,7 +598,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand After Step 6 State](images/WatchlistCommand-After-Step-6-State.png)
 
-*Figure 15: WatchlistCommand After Step 6 State*
+*Figure 20: WatchlistCommand After Step 6 State*
 
 <br/>
 
@@ -503,7 +609,7 @@ The user executes `watchlist -s 2` to change his active watchlist to the second 
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-*Figure 16: WatchlistCommand After Select State*
+*Figure 21: WatchlistCommand After Select State*
 
 <br/>
 
@@ -511,7 +617,7 @@ The user executes `watchlist -d 2` to delete the second watchlist (“NewAnime�
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
-*Figure 17: WatchlistCommand After Delete State*
+*Figure 22: WatchlistCommand After Delete State*
 
 <br/>
 
@@ -522,7 +628,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
-*Figure 18: Sequence Diagram for `watchlist -n NewAnime`*
+*Figure 23: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
 
@@ -633,7 +739,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
-*Figure 19: Bookmark Class Diagram*
+*Figure 24: Bookmark Class Diagram*
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
 
@@ -675,19 +781,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 20: Bookmark Entry After Add*
+*Figure 25: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 21: Bookmark Entries with more Add*
+*Figure 26: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 22: Bookmark Add Command Sequence Diagram*
+*Figure 27: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -701,19 +807,19 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 23: Bookmark Entries After Delete*
+*Figure 28: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 24: Bookmark Entries After Edit Episode*
+*Figure 29: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
-*Figure 25: Bookmark Entries After Add Note*
+*Figure 30: Bookmark Entries After Add Note*
 
 **Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime id at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
@@ -735,7 +841,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 26: Bookmark Entries After Edit Episode*
+*Figure 31: Bookmark Entries After Edit Episode*
 
 <br/>
 
