@@ -166,6 +166,9 @@ Step 1. The user launches the application and wants to delete everything previou
 
 Step 2. If there is no information stored before the user input the `clear` command, the user will be reminded about 
 that the list is already empty. 
+
+The sequence diagram below shows the process of clearing all events.
+![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)
  
 ### 4.3 Edit events
 This feature allows users to edit the information of events that was previously added. 
@@ -229,6 +232,10 @@ Step 2. The user enters `sort time`, which will call the `sortCommand()` functio
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
+
+### 4.8 Help
+This feature allows users to view a summary of all the features available for the current version of NUSchedule. 
+When the user inputs `help`, all available commands and a simple description for each of them will be printed.
 
 ## 5. Documentation
 This section provides information 
