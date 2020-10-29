@@ -31,33 +31,50 @@ around NUS's Kent Ridge Campus via the school's shuttle service.<br>
 - [6. Glossary](#6-glossary)
 
 ## 1. What is Nav@NUS?
+Are you new to NUS? <br>
+Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
+We have just the right solution for you!<br><br>
+Introducing **Nav@NUS**, you new navigation assistant!
 Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
-hassle of physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in
-NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of
+hassle of physically checking the bus stop's notice board.Nav@NUS is a tool tailor made for anyone unfamiliar to 
+NUS Kent Ridge campus,students,professors and visitors included. Nav@NUS brings convenience to you and wishes your 
+commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
 Nav@NUS consists of 3 main features:
 
-* *Route*: Searches for bus routes from your location to your intended destination.
-* *Dine*: Seeks dining options for you to explore culinary world of NUS.
-* *Fav*: Saves your commands for you to have a personalised user experience catered to your needs.
+* **Route**: Searches for bus routes from your location to your intended destination.
+* **Dine**: Seeks dining options for you to explore culinary world of NUS.
+* **Fav**: Saves your commands for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
 
 ## 2. Quick Start
-The following steps will guide you through the process of running Nav@NUS.
+The following steps will guide you through the process of running **Nav@NUS**.
 
-1. Ensure that you have Java `11` or above installed in your computer.
-2. Download the latest `duke.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for duke.jar bus application.
-4. In command prompt, `cd` to the directory of the _home folder_.
-5. Run the .jar file in the command prompt as follows: `java -jar duke.jar`.
-6. Type `help` to view commands available.
-7. Refer to [Features](#features) below for details of each command.
+1. Ensure that you have Java `11` or above installed in your computer. If you do not have it installed,
+follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA).
+2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
+3. Open command prompt on your computer.
+Orientate yourself to the command line interface. As seen in the figure below, the red arrow points to
+where you have to type in commands.
+![Windows CLI](UG_Figures/windowsCLI.png)
+Figure 1.1 Windows CLI
+
+3. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
+shown in Figure 1.3, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".
+![Windows CLI](UG_Figures/windowsPath.png)
+Figure 1.3 Path of home folder
+4. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+5. Run the .jar file in the command prompt as follows by typing `java -jar duke.jar` and press <kbd>Enter</kbd>.
+6. Your screen should show the start screen of Nav@NUS.
+![Start Screen](UG_Figures/Nav@NUSstartScreen.png)
+Figure 1.4 Start screen of Nav@NUS
+7. Try keying in `/help` and press <kbd>Enter</kbd>!
 
 ## 3. Features 
-There are 11 features available in Nav@NUS. The following are instructions for using the features.
+There are 17 features available in Nav@NUS. The following are instructions for using the features.
 
 >Notes about command format:  
 >
