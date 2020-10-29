@@ -8,6 +8,7 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.note.Note;
 import seedu.eduke8.note.NoteList;
+import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.stats.TopicalStatsCalculator;
@@ -90,11 +91,6 @@ public class UserStorage extends LocalStorage {
         return topicList.getInnerList();
     }
 
-    private void parseToBookmarkJson (Question bookmarkedQuestionObject,)
-
-    private void parseFromBookmarkJson(BookmarkList bookmarks, JSONObject bookmark) {
-        String bookmarkDescription = (String) bookmark.get()
-    }
 
     private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
         String topicDescription = (String) topic.get(KEY_TOPIC);
@@ -107,11 +103,19 @@ public class UserStorage extends LocalStorage {
         loadNotes(notes, topicObject);
     }
 
-    private void loadNotes(JSONArray notes, Topic topicObject) {
+    private void loadNotes(JSONArray notes, Topic topicObject) throws Eduke8Exception {
         NoteList noteList = topicObject.getNoteList();
         for (Object note : notes) {
-            noteList.add((Note) note);
+            parseFromNoteJson((JSONObject) note, noteList);
         }
+    }
+
+    private void parseFromNoteJson(JSONObject note, NoteList noteList) throws Eduke8Exception {
+        String noteDescription = (String) note.get("description");
+        String text = (String) note.get("text");
+        Note noteObject = new Note(noteDescription, text);
+
+        noteList.add(noteObject);
     }
 
     private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
@@ -153,10 +157,21 @@ public class UserStorage extends LocalStorage {
     private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
         for (Displayable noteObject : noteList.getInnerList()) {
-            notes.add(noteObject.getDescription());
+            JSONObject note = parseToNoteJson((Note) noteObject);
+            notes.add(note);
         }
         return notes;
     }
+
+    private JSONObject parseToNoteJson(Note noteObject) {
+        JSONObject note = new JSONObject();
+
+        note.put("description", noteObject.getDescription());
+        note.put("text", noteObject.getNoteText());
+
+        return note;
+    }
+
 
     @SuppressWarnings("unchecked")
     private JSONArray getQuestionsJsonArray(Topic topicObject) {

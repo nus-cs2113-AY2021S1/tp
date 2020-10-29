@@ -13,9 +13,12 @@ Table of contents:
     - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
     - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
     - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-    - [3.9. Displaying stats: `stats`](#39-displaying-stats-stats)
-    - [3.10. Exiting the program: `exit`](#310-exiting-the-program-exit)
-    - [3.11. Saving user data](#311-saving-user-data)
+    - [3.9. Adding a note: `note add`](#39-adding-a-note-note)
+    - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note)
+    - [3.11. Listing out notes: `note add`](#311-listing-out-notes-notes)
+    - [3.12. Displaying stats: `stats`](#312-displaying-stats-stats)
+    - [3.13. Exiting the program: `exit`](#313-exiting-the-program-exit)
+    - [3.14. Saving user data](#314-saving-user-data)
   - [4. FAQ](#4-faq)
   - [5. Command summary](#5-command-summary)
   - [6. Glossary](#6-glossary)
@@ -188,7 +191,41 @@ What you should see:
 
 ![hint](./images/hint.png)
 
-### 3.9. Displaying stats: `stats`
+
+### 3.9. Adding a note: `note add`
+
+Adds a note to a specified topic.
+
+Note:
+- There can be many notes under each topic
+- The UI will guide you through the note-adding process
+
+Example of usage:
+```
+note add
+```
+
+What you should see:
+
+### 3.10. Deleting a note: `note delete`
+
+Deletes a note from a specific topic.
+
+Example of usage:
+```
+note delete
+```
+
+### 3.11. Listing out notes: `note list`
+
+Lists out all notes belonging to a specific topic.
+
+Example of usage:
+```
+note list
+```
+
+### 3.12. Displaying stats: `stats`
 
 Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -210,7 +247,7 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 
-### 3.10. Exiting the program: `exit`
+### 3.13. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -224,7 +261,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.11. Saving user data
+### 3.14. Saving user data
 
 User data is only saved upon successful exit of the application through the `exit` command. This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your quiz history.
 

@@ -14,6 +14,7 @@ public class NoteListTest {
     private static final String NOTE_ONE = "First Note";
     private static final String NOTE_TWO = "Second Note";
     private static final String NOTE_THREE = "Third Note";
+    private static final String DESCRIPTION = "Test";
     private static final int DEFAULT_NOTE_COUNT = 2;
 
     @Test
@@ -26,7 +27,7 @@ public class NoteListTest {
     @Test
     void add_thirdNoteToNoteList_returnsCountOfThree() throws Eduke8Exception {
         NoteList noteList = createTestNoteList();
-        Note note3 = new Note(NOTE_THREE);
+        Note note3 = new Note(NOTE_THREE, DESCRIPTION);
         noteList.add(note3);
 
         assertEquals(DEFAULT_NOTE_COUNT + 1, noteList.getCount());
@@ -41,8 +42,8 @@ public class NoteListTest {
     }
 
     private NoteList createTestNoteList() throws Eduke8Exception {
-        Note note1 = new Note(NOTE_ONE);
-        Note note2 = new Note(NOTE_TWO);
+        Note note1 = new Note(NOTE_ONE, DESCRIPTION);
+        Note note2 = new Note(NOTE_TWO, DESCRIPTION);
 
         ArrayList<Displayable> noteArrayList = new ArrayList<>(
                 Arrays.asList(note1, note2)
