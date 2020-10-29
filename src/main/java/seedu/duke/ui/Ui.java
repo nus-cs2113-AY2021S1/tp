@@ -48,15 +48,22 @@ public class Ui {
     public static void printHelp() {
         printLine();
         System.out.println("Here are the range of commands:\n"
-                + "1./route : Displays possible direct bus from point to point\n"
-                + "2./routemap: Displays the route map with its intermediate bus stops\n"
-                + "3./bus: Displays buses available at each bus stop\n"
-                + "4./allbus: Lists all buses available in NUS Zone a\n"
-                + "5./liststops: Lists all bus stops in NUS Zone a\n"
-                + "6./dine: Search for dining options within a faculty\n"
-                + "7./dineinfo: Search for a specific dining outlet\n"
-                + "8./exit: Exit program\n"
-                + "9./help: List all available commands");
+                + "1. /route : Displays possible direct bus from point to point\n"
+                + "2. /routemap: Displays the route map with its intermediate bus stops\n"
+                + "3. /bus: Displays buses available at each bus stop\n"
+                + "4. /allbus: Lists all buses available in NUS Zone a\n"
+                + "5. /liststops: Lists all bus stops in NUS Zone a\n"
+                + "6. /dine: Search for dining options within a faculty\n"
+                + "7. /dineinfo: Search for a specific dining outlet\n"
+                + "8. /addfav: Add a favourite command\n"
+                + "9. /deletefav: Delete a favourite command\n"
+                + "10. /execfav: Execute a favourite command\n"
+                + "11. /descfav: Change the description for a favourite command\n"
+                + "12. /listfav: List all favourite commands\n"
+                + "13. /clearfav: Clear the list of favourite commands\n"
+                + "14. /exit: Exit program\n"
+                + "15. /reset: Reset frequent search data\n"
+                + "16. /help: List all available commands");
         System.out.println("https://ay2021s1-cs2113t-f14-3.github.io/tp/UserGuide.html#1-what-is-navnus");
         printLine();
     }
