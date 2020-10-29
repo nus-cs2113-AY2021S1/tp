@@ -47,6 +47,7 @@
     * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
     * [Finding an existing book rating](#finding-an-existing-book-rating-find--r)
 - [Getting Help in Quotesify](#getting-help-in-quotesify)
+- [Terminating the program](#terminating-the-program)
 - [FAQs](#faqs)
 - [Command Summary](#command-summary)
   
@@ -64,8 +65,22 @@ Before you begin, here's what you need to do:
 2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
 3. Open your command line or terminal and navigate into the file directory where you saved the application.
 4. Run `java -jar Quotesify.jar` to launch Quotesify.
-5. Type a command in the command line and press `ENTER` to execute it.
+5. Type a command in the command line and press `ENTER` to execute it. You should see the following:
 6. Refer to Features below for details of each command.
+
+```
+________                __                .__  _____       
+\_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.
+ /  / \  \|  |  \/  _ \   __\/ __ \ /  ___/  \   __<   |  |
+/   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
+\_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
+       \__>                      \/     \/          \/    
+Welcome to Quotesify v2.0!
+Before you continue, here's something:
+Better days are coming, they are called Saturday and Sunday.
+```
+
+*`Note: If you have added a quote before, the quote printed will be randomized.`*
 
 ## Features 
 
@@ -935,6 +950,23 @@ Hope this helps!
 
 ~ Your friends from Quotesify
 ```
+
+### Terminating the program
+
+Done what you wished to do? Here's how to say goodbye and hope to see you soon!
+
+Format: `bye`
+
+Example of usage: `bye`
+
+Expected outcome:
+```
+Before you continue, here's something:
+Better days are coming, they are called Saturday and Sunday.
+Alright, have a nice day!
+```
+
+*`Note: If you have added a quote before, the quote printed will be randomized.`*
 
 ## FAQs
 

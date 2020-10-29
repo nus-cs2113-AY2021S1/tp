@@ -98,9 +98,13 @@ ________                __                .__  _____
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
 Welcome to Quotesify v2.0!
+Before you continue, here's something:
+Better days are coming, they are called Saturday and Sunday.
 
 What would you like to do with Quotesify?
 ```
+
+*`Note: If you have added a quote before, the quote printed will be randomized.`*
 
 ## 3.0 Design
 *`Note: All UML diagrams in this guide are stored in the images/ directory.`*
@@ -500,9 +504,16 @@ quote management, progress tracker, category management and a rating system for 
    5. Run `java -jar Quotesify.jar` to launch Quotesify.
    
 #### Shutdown
-   1. To terminate Quotesify, enter the `bye` command.
+   1. To terminate Quotesify, enter the `bye` command. You should see the following:
    2. Data will be automatically saved into a data file.
-   
+```
+Before you continue, here's something:
+Better days are coming, they are called Saturday and Sunday.
+Alright, have a nice day!
+```
+
+*`Note: If you have added a quote before, the quote printed will be randomized.`*
+
 #### Subsequent launch
    1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
    2. Run `java -jar Quotesify.jar` to launch Quotesify.
