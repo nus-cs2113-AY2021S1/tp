@@ -274,11 +274,87 @@ Typing in the wrong format for date or time will cause the event to not be made.
 
 ### List events: `list` (Marcus Ng)
 
-#### List all events
+After you have added your events, it is essential that you can view the events you have added.
+You can do so using the list command to print out a list of your events in the order it was added in. 
+
+Format: ```list [EVENT_TYPE]```
+
+- ```EVENT_TYPE``` specify what kind of event you would like to list.
+The accepted arguments for this are “personal”, “timetable” and “zoom”.
+
+When the optional argument `[EVENT_TYPE]` is omitted,
+list will print a list of available event types.
 
 #### List all events of a type
 
+Example: ```list Zoom```
+
+Expected output:
+
+```
+list zoom
+_________________________________
+Here is a list of your Zoom events:
+1. [Z][X] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+_________________________________
+```
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+* You do not need to type the exact event type, it is case-insensitive. In other words,
+`list Zoom` is the same as `list zoom`
+
+{{box op="end"}}
+
+#### List all events
+
+You can print a list of all events by executing the following command: ```list all```
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+* Events will be listed in the order: Personal, Timetable, Zoom.
+
+{{box op="end"}}
+
 ### Calendar format list: `calendar` (Marcus Ng)
+
+If you feel that the list command does not print the events in a format that you like,
+you can use the calendar command to sort everything by date and time and view your events by date.
+
+Format: ```calendar```
+
+This brings you into calendar printing mode.
+- To print the next date, simply press enter.
+- To exit the calendar printing mode, simply type in ```q```.
+- This mode is exited once you see ```End of calendar``` on pressing enter.
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+* Events without date or time are not printed in the calendar
+* In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until
+you exit this mode
+
+{{box op="end"}}
+
+Expected output:
+
+```
+calendar
+_________________________________
+Calendar has 2 dates to display
+1 event not on the calendar because it has no date and time
+---------------------------------------------------------------------------------------
+16 Sep 2020
+---------------------------------------------------------------------------------------
+Z | 9:00 PM | X | CS2113T Meeting | zoom.com.sg
+---------------------------------------------------------------------------------------
+q
+End of calendar
+_________________________________
+```
 
 ### Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
@@ -450,6 +526,37 @@ _________________________________
 
 
 ### Goal setting and viewing: `goal` (Marcus Ng)
+
+Have a long term or short-term goal? The goal command helps you to keep track of it. 
+You can use the goal command to print, set, remove or change your goal. 
+
+Format: ```goal [GOAL]```
+
+- `[GOAL]` specify the new goal you want to set.
+
+When the optional argument `[GOAL]` is omitted, the current goal will be displayed.
+
+When `[GOAL]` is specified as `delete`, the current goal will be removed.
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+* You can use `na` or `nil` instead of `delete` to remove goal.
+
+{{box op="end"}}
+
+Examples:
+- ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
+- ```goal save up $100``` after executing the above command will change your current goal to “save up $100”. 
+
+Expected output:
+
+```
+goal save up $100
+_________________________________
+Goal changed to: save up $100
+_________________________________
+```
 
 ### Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
