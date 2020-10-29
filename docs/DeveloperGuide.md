@@ -22,45 +22,53 @@
   * [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and Shutdown](#launch-and-shutdown)
-  * [Adding a book](#adding-a-book)
-  * [List all existing books](#list-all-existing-books)
-  * [List book details](#list-book-details)
-  * [List books by author](#list-books-by-author)
-  * [Find books by keyword](#find-books-by-keyword)
-  * [Delete books](#delete-books)
-  * [Edit book](#edit-book)
-  * [Adding a quote](#adding-a-quote)
-  * [Listing all quotes](#listing-all-quotes)
-  * [Listing quotes by a specific author](#listing-quotes-by-a-specific-author)
-  * [Listing quotes from a specific reference](#listing-quotes-from-a-specific-reference)
-  * [Listing quotes from a specific reference and by a specific author](#listing-quotes-from-a-specific-reference-and-by-a-specific-author)
-  * [Editing a quote](#editing-a-quote)
-  * [Deleting a quote](#deleting-a-quote)
-  * [Finding a quote](#finding-a-quote)
-  * [Adding reflection to quote](#adding-reflection-to-a-quote)
-  * [Listing reflection of a quote](#listing-reflection-of-a-quote)
-  * [Editing reflection of a quote](#editing-reflection-of-a-quote)
-  * [Deleting reflection of a quote](#deleting-reflection-of-a-quote)
-  * [Adding a bookmark to book](#adding-a-bookmark-to-book)
-  * [List all existing bookmarks](#list-all-existing-bookmarks)
-  * [Deleting an existing bookmark](#deleting-an-existing-bookmark)
-  * [Editing an existing bookmark](#edit-an-existing-bookmark)
-  * [Adding a task to todo list](#adding-a-task-to-todo-list)
-  * [Listing all existing tasks](#listing-all-existing-tasks)
-  * [Marking an existing task as done](#marking-an-existing-task-as-done)
-  * [Deleting an existing task](#deleting-an-existing-task)
-  * [Adding categories](#adding-categories)
-  * [Listing all categories](#listing-all-categories)
-  * [Listing a specific category](#listing-a-specific-category)
-  * [Deleting existing categories](#deleting-existing-categories)
-  * [Editing an existing category](#editing-an-existing-category)
-  * [Finding an existing category](#finding-an-existing-category)
-  * [Adding a book rating](#adding-a-book-rating)
-  * [Listing all existing book ratings](#listing-all-existing-book-ratings)
-  * [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
-  * [Deleting a book rating](#deleting-a-book-rating)
-  * [Editing a book rating](#editing-a-book-rating)
-  * [Finding a book rating](#finding-a-book-rating)
+    + [Initial Launch](#initial-launch)
+    + [Subsequent Launch](#subsequent-launch)
+    + [Shutdown](#shutdown)
+  * [Testing for Book Management](#testing-for-book-management)
+    + [Adding a book](#adding-a-book)
+    + [List all existing books](#list-all-existing-books)
+    + [List book details](#list-book-details)
+    + [List books by author](#list-books-by-author)
+    + [Find books by keyword](#find-books-by-keyword)
+    + [Delete books](#delete-books)
+    + [Edit book](#edit-book)
+  * [Testing for Quote Management](#testing-for-quote-management)
+    + [Adding a quote](#adding-a-quote)
+    + [Listing all quotes](#listing-all-quotes)
+    + [Listing quotes by a specific author](#listing-quotes-by-a-specific-author)
+    + [Listing quotes from a specific reference](#listing-quotes-from-a-specific-reference)
+    + [Listing quotes from a specific reference and by a specific author](#listing-quotes-from-a-specific-reference-and-by-a-specific-author)
+    + [Editing a quote](#editing-a-quote)
+    + [Deleting a quote](#deleting-a-quote)
+    + [Finding a quote](#finding-a-quote)
+    + [Adding reflection to quote](#adding-reflection-to-a-quote)
+    + [Listing reflection of a quote](#listing-reflection-of-a-quote)
+    + [Editing reflection of a quote](#editing-reflection-of-a-quote)
+    + [Deleting reflection of a quote](#deleting-reflection-of-a-quote)
+  * [Testing for Progress Tracker](#testing-for-progress-tracker)
+    + [Adding a bookmark to book](#adding-a-bookmark-to-book)
+    + [List all existing bookmarks](#list-all-existing-bookmarks)
+    + [Deleting an existing bookmark](#deleting-an-existing-bookmark)
+    + [Editing an existing bookmark](#edit-an-existing-bookmark)
+    + [Adding a task to todo list](#adding-a-task-to-todo-list)
+    + [Listing all existing tasks](#listing-all-existing-tasks)
+    + [Marking an existing task as done](#marking-an-existing-task-as-done)
+    + [Deleting an existing task](#deleting-an-existing-task)
+  * [Testing for Category Management](#testing-for-category-management)
+    + [Adding categories](#adding-categories)
+    + [Listing all categories](#listing-all-categories)
+    + [Listing a specific category](#listing-a-specific-category)
+    + [Deleting existing categories](#deleting-existing-categories)
+    + [Editing an existing category](#editing-an-existing-category)
+    + [Finding an existing category](#finding-an-existing-category)
+  * [Testing for Rating System for Books](#testing-for-rating-system-for-books)
+    + [Adding a book rating](#adding-a-book-rating)
+    + [Listing all existing book ratings](#listing-all-existing-book-ratings)
+    + [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
+    + [Deleting a book rating](#deleting-a-book-rating)
+    + [Editing a book rating](#editing-a-book-rating)
+    + [Finding a book rating](#finding-a-book-rating)
 
 ## 1.0 Introduction
 **Welcome to Quotesify!**
@@ -501,7 +509,12 @@ quote management, progress tracker, category management and a rating system for 
    2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
    3. Save the jar file in a desired file directory.
    4. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   5. Run `java -jar Quotesify.jar` to launch Quotesify.
+   5. Run `java -jar quotesify.jar` to launch Quotesify.
+   
+#### Subsequent launch
+   1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
+   2. Run `java -jar quotesify.jar` to launch Quotesify.
+   3. Data will be automatically loaded from the data file upon launch.
    
 #### Shutdown
    1. To terminate Quotesify, enter the `bye` command. You should see the following:
@@ -514,12 +527,9 @@ Alright, have a nice day!
 
 *`Note: If you have added a quote before, the quote printed will be randomized.`*
 
-#### Subsequent launch
-   1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   2. Run `java -jar Quotesify.jar` to launch Quotesify.
-   3. Data will be automatically loaded from the data file upon launch.
-   
-### Adding a book
+### Testing for Book Management
+
+#### Adding a book
 1. Test case: `add -b Harry Potter /by JK Rowling`
     
    Expected: Book is added to Quotesify. A message will be prompted to indicate that
@@ -533,12 +543,12 @@ Alright, have a nice day!
     
     Expected: Book will not be added. An error message will by printed.
     
-### List all existing books
+#### List all existing books
 1. Test case: `list -b`
 
    Expected: All existing books in booklist will be listed.
    
-### List book details
+#### List book details
 1. Test case: `list -b 2`
 
    Expected: Book details of book with the book index 2 from list of all books will be printed.
@@ -549,7 +559,7 @@ Alright, have a nice day!
    
    Expected: Book details will not be printed. An error message will be printed instead.
    
-### List books by author
+#### List books by author
 1. Test case: `list -b /by JK Rowling`
 
    Expected: Books with the author JK Rowling will be listed. 
@@ -559,7 +569,7 @@ Alright, have a nice day!
    
    Expected: Books will not be listed. An error message will be printed.
    
-### Find books by keyword
+#### Find books by keyword
 1. Test case: `find -b Harry`
 
    Expected: Books with the title or author name containing Harry will be listed. 
@@ -569,7 +579,7 @@ Alright, have a nice day!
    
    Expected: Books will not be listed. An error message will be printed.
 
-### Delete books
+#### Delete books
 1. Test case: `delete -b 3`
 
    Expected: Book with the book index of 3 in booklist will be deleted from list.
@@ -581,7 +591,7 @@ Alright, have a nice day!
    
    Expected: Book will not be deleted. An error message will be printed.
 
-### Edit book
+#### Edit book
 1. Test case: `edit -b 3 /to Harry Potterrrrr`
 
    Expected: Book title of book with the book index of 3 will be changed to Harry Potterrrrr.
@@ -593,7 +603,9 @@ Alright, have a nice day!
    
    Expected: Book title will not be edited. An error message will be printed. 
    
-### Adding a quote
+### Testing for Quote Management
+   
+#### Adding a quote
 
 1. Add a quote without author and reference to Quotesify
 
@@ -628,13 +640,13 @@ Alright, have a nice day!
    
    Expected: Quote will not be added. A message with error details will be shown.
    
-### Listing all quotes
+#### Listing all quotes
 
 1. Test case: `list -q`
 
    Expected: The entire list of quotes with reference and author name (if present) in Quotesify will be displayed.
    
-### Listing quotes by a specific author
+#### Listing quotes by a specific author
 
 1. Test case: `list -q /by rick`
 
@@ -645,7 +657,7 @@ Alright, have a nice day!
    
    Expected: No quotes are listed. A message with error details will be shown.
    
-### Listing quotes from a specific reference
+#### Listing quotes from a specific reference
 
 1. Test case: `list -q /from rick and morty`
 
@@ -656,7 +668,7 @@ Alright, have a nice day!
    
    Expected: No quotes are listed. A message with error details will be shown.
    
-### Listing quotes from a specific reference and by a specific author
+#### Listing quotes from a specific reference and by a specific author
 
 1. Test case: `list -q /from rick and morty /by rick`
 
@@ -669,7 +681,7 @@ Alright, have a nice day!
    
    Expected: No quotes are listed. A message with error details will be shown.
    
-### Editing a quote
+#### Editing a quote
 
 1. Test case: `edit -q 2 /to No, I am your mummy /by Darth Vader`
    
@@ -683,7 +695,7 @@ Alright, have a nice day!
    
    Expected: Quote will not be updated. A message with error details will be shown.
    
-### Deleting a quote
+#### Deleting a quote
 
 1. Test case: `delete -q 1`
 
@@ -697,7 +709,7 @@ Alright, have a nice day!
    
    Expected: No quote is deleted. A message with error details will be shown.
    
-### Finding a quote
+#### Finding a quote
 
 1. Test case: `find -q sleep`
 
@@ -709,7 +721,7 @@ Alright, have a nice day!
    
    Expected: No quotes will be found and listed. A message with error details will be shown.
    
-### Adding reflection to a quote
+#### Adding reflection to a quote
 
 1. Test case: `add -qr 1 /reflect No, that's not true. It's impossible!`
     
@@ -723,7 +735,7 @@ Alright, have a nice day!
    
    Expected: Reflection will not be added. A message with error details will be shown.
    
-### Listing reflection of a quote
+#### Listing reflection of a quote
 
 1. Test case: `list -qr 1`
 
@@ -735,7 +747,7 @@ Alright, have a nice day!
    
    Expected: Reflection is not listed. A message with error details will be shown.
    
-### Editing reflection of a quote
+#### Editing reflection of a quote
 
 1. Test case: `edit -qr 1 /to Who is Yoda’s daddy?`
    
@@ -749,7 +761,7 @@ Alright, have a nice day!
    
    Expected: Reflection will not be updated. A message with error details will be shown.
    
-### Deleting reflection of a quote
+#### Deleting reflection of a quote
 
 1. Test case: `delete -qr 1`
 
@@ -763,7 +775,9 @@ Alright, have a nice day!
    
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
    
-### Adding a bookmark to book
+### Testing for Progress Tracker
+   
+#### Adding a bookmark to book
 1. Test case: `bookmark -b 1 /pg 123`
 
    Expected: a page number will be marked at the book. A message will be prompted to indicate that 
@@ -775,13 +789,13 @@ Alright, have a nice day!
    
    Expected: Bookmark will not be added to any book. A message will error details will be shown.
 
-### List all existing bookmarks
+#### List all existing bookmarks
 1. Test case: `list -bm`
 
    Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
     its book’s information, and a page number marked by the bookmark. 
 
-### Deleting an existing bookmark
+#### Deleting an existing bookmark
 1. Test case: `delete -bm 1`
 
    Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
@@ -793,7 +807,7 @@ Alright, have a nice day!
    
    Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
 
-### Edit an existing bookmark
+#### Edit an existing bookmark
 1. Test case: `bookmark -b 1 /pg 123`
 
    Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
@@ -805,7 +819,7 @@ Alright, have a nice day!
    
    Expected: Bookmark will not be updated to any book. A message will error details will be shown.
 
-### Adding a task to todo list
+#### Adding a task to todo list
 1. Adding a task without deadline
    - Test case: `add -t return Harry Potter`
    
@@ -824,23 +838,25 @@ Alright, have a nice day!
      Expected: A message will be prompted to indicate that the task has been added to the todo list successfully, 
      and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
 
-### Listing all existing tasks
+#### Listing all existing tasks
 1. Test case: `list -t`
 
    Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
    and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
 
-### Marking an existing task as done
+#### Marking an existing task as done
 1. Test case: `done -t 1`
    
    Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
 
-### Deleting an existing task
+#### Deleting an existing task
 1. Test case: `delete -t 1`
 
    Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
    
-### Adding categories
+### Testing for Category Management
+   
+#### Adding categories
 1. Add one or more category to a book
    - Prerequisites: A book should exist in Quotesify.
    - Assume that the book "Harry Potter" is added into Quotesify assigned to index 1.
@@ -879,13 +895,13 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No changes will be made.
    
-### Listing all categories
+#### Listing all categories
 1. List all existing categories
    - Test case: `list -c`
      
      Expected: A list of categories with the total number of items tagged under each category will be displayed.
 
-### Listing a specific category
+#### Listing a specific category
 1. List all books and quotes tagged by a specific category
    - Test case: `list -c action`
      
@@ -896,7 +912,7 @@ Alright, have a nice day!
    
    Expected: An error message will be displayed indicating that no such category exists.
    
-### Deleting existing categories
+#### Deleting existing categories
 1. Remove one or more category from a book
    - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
    - Assume the book "Harry Potter" is tagged with [action, fantasy] category and assigned with index 1.
@@ -942,7 +958,7 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No changes will be made.
          
-### Editing an existing category
+#### Editing an existing category
 1. Edit an existing category name
    - Test case: `edit -c love /to romance`
      
@@ -954,7 +970,7 @@ Alright, have a nice day!
    
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
-### Finding an existing category
+#### Finding an existing category
 1. Find existing categories related to a keyword.
    - Test case: `find -c man`
    
@@ -966,7 +982,9 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No categories will be listed.
 
-### Adding a book rating
+### Testing for Rating System for Books
+
+#### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
 
@@ -981,14 +999,14 @@ Alright, have a nice day!
    
    Expected: No rating is added. A message with error details will be prompted.
     
-### Listing all existing book ratings
+#### Listing all existing book ratings
 
 1. Test case: `list -r`
 
    Expected: The entire list of books and their ratings will be shown. Rating of books are sorted
    in descending order, with the highest rating at the top.
 
-### Listing books of a specific book rating
+#### Listing books of a specific book rating
 
 1. Test case: `list -r 5`
 
@@ -1000,7 +1018,7 @@ Alright, have a nice day!
    
    Expected: No rating is listed. A message with error details will be prompted.
    
-### Deleting a book rating
+#### Deleting a book rating
 
 1. Test case: `delete -r Harry Potter /by JK Rowling`
 
@@ -1013,7 +1031,7 @@ Alright, have a nice day!
    
    Expected: No rating is deleted. A message with error details will be prompted.
    
-### Editing a book rating
+#### Editing a book rating
 
 1. Test case: `edit -r 4 Harry Potter /by JK Rowling`
 
@@ -1027,7 +1045,7 @@ Alright, have a nice day!
    
    Expected: No rating is edited. A message with error details will be prompted.
    
-### Finding a book rating
+#### Finding a book rating
 
 1. Test case: `find -r Harry Potter /by JK Rowling`
 
