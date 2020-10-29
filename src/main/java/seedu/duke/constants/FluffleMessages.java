@@ -78,7 +78,7 @@ public class FluffleMessages {
     public static final String TYPE_COMMAND_INSTRUCTION = "Please indicate your type by typing in \"type\" command";
     public static final String ASKING_FOR_TITLE = "Please let us know the title of your writing";
     public static final String ASKING_FOR_TYPE = "Please let us know your type of writings, either poem or essay";
-    public static final String ASKING_FOR_TOPIC = "Please indicate your topic by typing in \"topic\" command";
+    public static final String ASKING_FOR_TOPIC = "Please indicate your topic below";
     public static final String ASKING_FOR_REMINDER = "Please indicate the date you want to continue with this writing "
             + "by keying the date in the format \"dd/MM/yyyy\"";
     public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
