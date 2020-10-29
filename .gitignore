@@ -15,14 +15,11 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
-logger.log.10
-logger.log.10.lck
-logger.log.11
-logger.log.11.lck
-logger.log.12
-logger.log.12.lck
-logger.log.13
-logger.log.13.lck
+logger.log
+logger.log.lck
+*.log.*
+logger.log.1
+logger.log.2
 logger.log.3
 logger.log.3.lck
 logger.log.4
