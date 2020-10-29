@@ -29,6 +29,7 @@ public abstract class Eduke8Test {
     protected static final String PLACEHOLDER_EXPLANATION_DESCRIPTION =
             "Option A gives the best explanation out of all.";
     protected static final String NONSENSE_DESCRIPTION = "Nonsense";
+    protected static final int TIMER = 5;
 
     protected static final int POINTS_PER_QUESTION = 2;
     protected static final int POINTS_FOR_CORRECT_ANSWER_WITHOUT_HINT_SHOWN = 2;

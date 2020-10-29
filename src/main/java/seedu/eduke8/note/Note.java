@@ -4,10 +4,14 @@ import seedu.eduke8.common.Displayable;
 
 public class Note implements Displayable {
     private String description;
+    private String noteText;
     private boolean wasShown;
 
-    public Note(String description) {
+    public Note(String description, String noteText) {
+        assert (description != null);
+        assert (noteText != null);
         this.description = description;
+        this.noteText = noteText;
         wasShown = false;
     }
 
@@ -25,5 +29,9 @@ public class Note implements Displayable {
     @Override
     public boolean wasShown() {
         return this.wasShown;
+    }
+
+    public String getNoteText() {
+        return this.noteText;
     }
 }
