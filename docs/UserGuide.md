@@ -37,29 +37,112 @@ Scheduler--; Does the job
 [Command Summary](#command-summary)
 
 ## About Scheduler--;
+Hello! Welcome to scheduler--;
+
+Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
 ### What can it do?
 
+Scheduler--; comes with the following list of features to help you keep organised of your schedule.  
+- Check if your schedule is free between a certain date and time period
+- Prioritize important task on your schedule
+- Categorise your events into personal events, zoom meetings or school timetable events. 
+- Be reminded on the important tasks and expected deadlines 
+- Set certain events to occur repeatedly throughout your schedule 
+- Set personal daily goals for yourself 
+- And many more... 
+
 ### About this guide
+This user guide is for your reference on how to set up the Scheduler--; program on your computer. It provides you with information on how to get things done with scheduler--; and how to use the commands in the program. 
 
 ### How to use this document?
+To get started, take a look at the section labelled “Quick Start” to set up the application to run on your computer.  
 
+Once you have set up the application, you may use the table of contents present in this document to help find the correct command, learn how to use it and what it does.  
 ### Conventions used in this document
+Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
+
+- Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
+
+- Words that are highlighted in grey and are in upper case indicates command arguments or parameters that are to be provided by the user. For instance, if the usage instruction informs you to type `delete EVENT_INDEX` and you know that the EVENT_INDEX is 2, type into the computer program “delete 2”. 
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+This is a note textbox. Additional information about the command will be written in boxes such as this one. 
+{{box op="end"}}
+
+Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
+
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
+
+This is a warning textbox. Any user interaction with the program that may result in issues or unintended results will be written in boxes such as this one. 
+{{box op="end"}}
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Notes about the command format**
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Items in square brackets are optional
+  e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items with ... after them can be used multiple times including zero times.
+  e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+{{box op="end"}}
 
 ## Quick Start
 
 ### System Requirements
+To run Scheduler--;, your computer must meet these minimum system requirements 
+
+- Operating System: Windows 7 and above, Mac OS X or Linux 
+- Java 11 installed on computer 
 
 ### Setup Instructions
 
 #### Windows
 
+1. Install Java 11 or above in your computer if you have not done so 
+1. Download the latest scheduler.jar from here 
+1. Copy the file to the folder you want to use as the folder for the Scheduler— 
+1. open the command prompt by entering `cmd` into the search bar and press enter 
+1. type `chcp 65001` into the command prompt and press enter 
+1. navigate to the folder `C:\Duke` in the command prompt 
+1. type `java -Dfile.encoding=UTF-8 -jar duke.jar` into the command prompt and press enter. 
+1. The welcome message for the program should appear. 
+
 #### Mac OS X
+
+1. Install Java 11 or above in your computer if you have not done so 
+1. Download the latest scheduler.jar from here 
+1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
+1. Open the terminal by clicking on Launchpad->Utilities->Terminal 
+1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Type `java -jar duke.jar` into the terminal and press enter. 
+1. The welcome message for the program should appear. 
 
 #### Linux
 
-### Test run
+1. Install Java 11 or above in your computer if you have not done so 
+1. Download the latest scheduler.jar from here 
+1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
+1. Open the terminal in your linux distribution
+1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Type `java -jar duke.jar` into the terminal and press enter. 
+1. The welcome message for the program should appear. 
 
+### Test run
+1. Type the command in the command box and press Enter to execute. 
+
+Some examples you can try: 
+    - `list`: List all events 
+    - `add EVENT_TYPE EVENT_NAME at DD/MM/YY HHMM`: Add an event to the scheduler 
+    - `bye`: exit the program 
+    
+1. Refer to Features section for details of each command 
+
+Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 ## Features
 
 
@@ -327,7 +410,6 @@ Example of usage:
    scheduler says hi:)
    _________________________________
    ```
-
 
 
 {{box op="start" cssClass="boxed warningBox"}}
