@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SearchParserTest {
     private static final String VALID_ANIME = "-n fate";
     private static final String VALID_GENRE = "-g Music";
+    private static final String MULTIPLE_MUTUALLY_EXCLUSIVE_PARAM = "search -n Fate -g Action";
     private static AnimeData animeData;
     private static StorageManager storageManager;
     private User user;
@@ -54,9 +55,15 @@ class SearchParserTest {
         SearchParser testParse = new SearchParser();
         SearchCommand testSearch = testParse.parse(VALID_GENRE);
         String result = testSearch.execute(animeData, storageManager, user);
-        System.out.println(result);
         result = result.substring(0,34);
         assertEquals(OUTPUT_ANIME_2, result);
     }
 
+    @Test
+    void parse_multipleMutuallyExclusiveParam_throwsAniException() {
+        SearchParser testParse = new SearchParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(MULTIPLE_MUTUALLY_EXCLUSIVE_PARAM);
+        });
+    }
 }

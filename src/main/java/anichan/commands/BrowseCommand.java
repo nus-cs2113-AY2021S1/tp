@@ -12,6 +12,9 @@ import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command that allows the user to browse through all anime series.
+ */
 public class BrowseCommand extends Command {
     protected static final String ID_HEADER = " [Id: ";
     private static final String ID_CLOSER = "]";
@@ -53,6 +56,16 @@ public class BrowseCommand extends Command {
         animePerPage = ANIME_PER_PAGE;
     }
 
+    /**
+     * Handles the main execution of browse command with calls to two core operations buildBrowseOutput() and
+     * sortBrowseList().
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return a printable string that contains the browse output
+     * @throws AniException when an error occurred while executing the command
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
@@ -65,6 +78,13 @@ public class BrowseCommand extends Command {
         return result;
     }
 
+    /**
+     * Called by execute to build a printable output in browse format.
+     *
+     * @param usableList used to retrieve the Anime object within the browse window
+     * @return printable string that is formatted for browse output
+     * @throws AniException if the starting index of the page supplied exceeds total number of anime
+     */
     private String buildBrowseOutput(ArrayList<Anime> usableList) throws AniException {
         if (indexToPrint >= usableList.size()) {
             LOGGER.log(Level.WARNING, OUT_OF_BOUND_PAGE_WARNING + indexToPrint);
@@ -85,6 +105,12 @@ public class BrowseCommand extends Command {
         return result.toString();
     }
 
+    /**
+     * Called by execute to sort the list depending on the optional parameters supplied. May also be called to
+     * reset the list back to its original state.
+     *
+     * @param usableList the list containing Anime objects to be sorted
+     */
     private void sortBrowseList(ArrayList<Anime> usableList) {
         if (sortType == ID_SORT && order == ORDER_DESCENDING) {
             LOGGER.log(Level.INFO, SORT_ID_DESCENDING);
@@ -108,6 +134,11 @@ public class BrowseCommand extends Command {
         }
     }
 
+    /**
+     * Sets the page to the supplied parameter unless it is a negative value.
+     *
+     * @param page the page that was requested
+     */
     public void setPage(int page) {
         this.page = Math.max(page, 1);
         indexToPrint = (page - 1) * getAnimePerPage();
