@@ -489,7 +489,7 @@ public class Storage {
     public void saveHistory(ArrayList<History> histories, String date) throws IOException {
         FileWriter fw = new FileWriter("data/history/" + date + ".txt");
         for (History h : histories) {
-            fw.write(h.toString());
+            fw.write(h.toString() + "\n");
         }
         fw.close();
     }
