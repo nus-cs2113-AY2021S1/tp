@@ -1,4 +1,3 @@
-
 # AniChan
 
 ![AniChan Logo](docs/images/AniChan-Logo.png)

@@ -971,6 +971,8 @@ These checks include files from the entire repository and are useful in checking
 These checks are POSIX shell scripts (i.e. platform dependent to Linux and macOS). 
 To run all checks, execute the following at project root `./config/travis/run-checks.sh`.
 
+If you wish to add new checks, simply add the check file with a filename `check-*` to the `./config/travis/` and the `run-checks.sh` script will automatically run it.
+
 ## Appendix A: Product Scope
 
 ### 5.1 Target User Profile*

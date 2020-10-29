@@ -1,4 +1,3 @@
-
 # AniChan
 
 AniChan is an all-rounded tool for Anime translators and professionals. 
