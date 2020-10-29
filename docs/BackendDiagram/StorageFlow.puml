@@ -1,0 +1,34 @@
+@startuml
+participant ":Duke" as duke
+participant ":FileManager" as fm
+activate duke
+duke -> fm : readAll()
+activate fm
+fm -> fm : readEvents()
+activate fm
+return
+fm-> fm : readFinance()
+activate fm
+return
+fm->fm : readMembers()
+activate fm
+return
+return
+loop
+duke -> : Ui:run()
+duke <-[dotted]-
+duke -> fm : saveAll()
+activate fm
+fm -> fm :saveEvents()
+activate fm
+return
+fm -> fm :saveFinance()
+activate fm
+return
+fm -> fm :saveMembers()
+activate fm
+return
+
+return
+end
+@enduml
