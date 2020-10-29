@@ -32,7 +32,7 @@ public class Api {
         // Creating a Request
         URL url = new URL(request.toString());
         URLConnection con = url.openConnection();
-        HttpURLConnection http = (HttpURLConnection)con;
+        HttpURLConnection http = (HttpURLConnection) con;
         http.setRequestMethod("GET");
 
         // Prints response from API call
@@ -52,7 +52,7 @@ public class Api {
             result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
             result.append("&");
         }
-        
+
         result.append("apikey=" + API_KEY);
 
         String resultString = result.toString();

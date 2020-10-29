@@ -3,6 +3,7 @@ package seedu.duke.model;
 import org.junit.jupiter.api.Test;
 import seedu.duke.api.StockPriceFetcher;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InsufficientQtyException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -38,7 +39,7 @@ class PortfolioTest {
         int sellQuantity = 2;
 
         // Use a lambda
-        assertThrows(DukeException.class, () -> {
+        assertThrows(InsufficientQtyException.class, () -> {
             // buy 1 aapl stock
             portfolio.buyStock(symbol, buyQuantity, stockPriceFetcher.fetchLatestPrice(symbol));
             // attempt to sell 2 aapl stock

@@ -11,11 +11,14 @@ title State after Step 3
 
 package States {
     class State1 as "__:PortfolioManager__"
-    class State2 as "__:Wallet__"
+    class State2 as "__:Ui__"
     class State3 as "__buyCommand:BuyCommand__"
     class State4 as "__portfolio:Portfolio__"
     class State5 as "__stockPriceFetcher:StockPriceFetcher__"
+    class State6 as "__:Wallet__"
+
 }
+hide State6
 State1 -down-> State4
 
 class Pointer as "Controller" #FFFFF

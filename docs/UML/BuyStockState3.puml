@@ -10,15 +10,11 @@ skinparam ClassBorderColor #000000
 title Final State
 
 package States {
-    class State1 as "__:PortfolioManager__"
-    class State2 as "__:Wallet__"
-    class State4 as "__portfolio:Portfolio__"
+
+    class State3 as "__buyCommand:BuyCommand__"
 }
-State1 -down-> State4
 
-class Pointer as "Controller" #FFFFF
-Pointer -down-> State1
-Pointer -down-> State2
-
+class Pointer2 as "Parser" #FFFFF
+Pointer2 -down-> State3
 
 @enduml

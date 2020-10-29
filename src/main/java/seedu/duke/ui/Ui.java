@@ -28,7 +28,7 @@ public class Ui {
 
     public void printWithDivider(String... messages) {
         print(dividerLine);
-        for (String message: messages) {
+        for (String message : messages) {
             print(message);
         }
         print(dividerLine);
@@ -50,7 +50,7 @@ public class Ui {
             print((i + 1) + ". " + stocks.get(i).toString());
             int totalStocksBought = 0;
             double totalCost = 0;
-            for (Transaction t: stocks.get(i).getTransactions()) {
+            for (Transaction t : stocks.get(i).getTransactions()) {
                 print("\t" + t.toString());
                 if (t.getTransactionType() == TransactionType.BUY) {
                     totalCost += t.getUnitPrice() * t.getQuantity();
@@ -73,11 +73,12 @@ public class Ui {
         print(dividerLine);
     }
 
-    public void viewWallet(double amount, double allStocksPrice) {
+    public void viewWallet(double currentAmount, double initialAmount, double allStocksPrice) {
         print(dividerLine);
-        System.out.println("You currently have $" + String.format("%.02f", amount) + " in your wallet.");
-        System.out.println("Allocated: $" + String.format("%.02f", allStocksPrice));
-        double difference = (amount + allStocksPrice) - 10000;
+        System.out.println("You currently have $" + String.format("%.02f", currentAmount) + " in your wallet.");
+        System.out.println("Current market value of all your equities owned: $"
+                + String.format("%.02f", allStocksPrice));
+        double difference = (currentAmount + allStocksPrice) - initialAmount;
         if (difference >= 0) {
             System.out.println("Profit of: +$" + String.format("%.02f", difference));
         } else {
