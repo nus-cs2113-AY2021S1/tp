@@ -258,6 +258,8 @@ public class Parser {
                     InputChecker.checkGender(processGender);
                     if (processGender.equals("F")) {
                         gender = Gender.FEMALE;
+                    } else if (processGender.equals("M")) {
+                        gender = Gender.MALE;
                     } else {
                         gender = Gender.OTHERS;
                     }
