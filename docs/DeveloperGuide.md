@@ -155,7 +155,7 @@ Step 3. `addCommand()` is then called with the above parameters, and adds it to 
 
 The sequence diagram below shows the process of adding a new event.
 ![AddCommand Sequence Diagram](diagrams/AddCommand.png)
-*Figure 4.1.1 Sequence Diagram for add function*
+*Figure 4.1 Sequence Diagram for add function*
 
 ### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
@@ -169,6 +169,7 @@ that the list is already empty.
 
 The sequence diagram below shows the process of clearing all events.
 ![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)
+*Figure 4.2 Sequence Diagram for clear function*
  
 ### 4.3 Edit events
 This feature allows users to edit the information of events that was previously added. 
@@ -213,7 +214,7 @@ Step 4. If conversion is not possible, then it will check if the given string is
 
 The sequence diagram below shows exactly which methods, from which classes, are called to obtain the required location. 
 ![locate sequence diagram](diagrams/LocateSequence.png) <br>
-*Figure 4.4.1 Sequence diagram for locate function*
+*Figure 4.4 Sequence diagram for locate function*
 
 ### 4.5 Reminders
 [Proposed] This feature will be able to remind users of the events that will occur today when they open the application.
@@ -236,6 +237,10 @@ Step 2. The user enters `sort time`, which will call the `sortCommand()` functio
 ### 4.8 Help
 This feature allows users to view a summary of all the features available for the current version of NUSchedule. 
 When the user inputs `help`, all available commands and a simple description for each of them will be printed.
+
+The sequence diagram below shows what happens when user enters `help`:
+![HelpCommand Sequence Diagram](diagrams/HelpCommand.png)
+*Figure 4.8 Sequence Diagram for help function*
 
 ## 5. Documentation
 This section provides information 
