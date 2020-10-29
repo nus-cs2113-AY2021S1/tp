@@ -24,7 +24,6 @@ public class InfoParser extends CommandParser {
      */
     public InfoParser() {
         infoCommand = new InfoCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**

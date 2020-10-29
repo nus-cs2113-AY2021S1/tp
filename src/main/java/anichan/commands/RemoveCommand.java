@@ -26,13 +26,6 @@ public class RemoveCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommand.class.getName());
 
     /**
-     * Creates a new instance of RemoveCommand.
-     */
-    public RemoveCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
-    /**
      * Executes removing of anime from active Watchlist.
      *
      * @param animeData used to retrieve anime information

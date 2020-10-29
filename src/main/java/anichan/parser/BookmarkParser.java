@@ -32,7 +32,6 @@ public class BookmarkParser extends CommandParser {
 
     public BookmarkParser() {
         bookmarkCommand = new BookmarkCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     public BookmarkCommand parse(String description) throws AniException {

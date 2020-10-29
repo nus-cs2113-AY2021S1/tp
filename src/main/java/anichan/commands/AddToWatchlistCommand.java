@@ -25,13 +25,6 @@ public class AddToWatchlistCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
     /**
-     * Creates a new instance of AddToWatchlistCommand.
-     */
-    public AddToWatchlistCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
-    /**
      * Executes addition of anime into active Watchlist.
      * 
      * @param animeData used to retrieve anime information

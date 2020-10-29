@@ -24,7 +24,6 @@ public class RemoveCommandParser extends CommandParser {
      */
     public RemoveCommandParser() {
         removeCommand = new RemoveCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**
