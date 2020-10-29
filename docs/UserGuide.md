@@ -64,9 +64,15 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 
 ### 3.1. Loading Data 
 
-Data is automatically loaded from the files in the **data** folder for use in quizzes and notes.
+Data will be automatically loaded from the files in the **data** folder for use in quizzes and notes.
+You will see this message while the data loads:
+
+![data loading](./images/data_loading.png)
 
 To ensure that data could be loaded successfully, ensure that the data folder that comes along with the eduke8.jar file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
+If the data has been loaded successfully you should see this message:
+
+![data loaded](./images/data_loaded.png)
 
 ### 3.2. Welcome Page
 
@@ -263,8 +269,16 @@ exit
 
 ### 3.14. Saving user data
 
-User data is only saved upon successful exit of the application through the `exit` command. This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your quiz history.
+User data will only be saved upon successful exit of the application through the `exit` command.
+You will see this message while the data saves:
 
+![data saving](./images/data_saving.png)
+
+If the data has been saved successfully you should see this message:
+
+![data saved](./images/data_saved.png)
+
+This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your own history.
 
 ## 4. FAQ
 
