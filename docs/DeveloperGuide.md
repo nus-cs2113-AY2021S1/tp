@@ -156,11 +156,23 @@ contains the `filterBunny` function which can filter through the list and obtain
 idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
 or the `GENRE` when running the command. 
 
+The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, 
+saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then 
+be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done 
+by calling the `loadBunnyFile` method.
+
+The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly 
+generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the 
+`bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
 
-The user may call upon the `bunny` command to add bunnies to the list. The command executor would 
+The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
+the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
+method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments 
+from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called
+to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 ## Names class family
 
