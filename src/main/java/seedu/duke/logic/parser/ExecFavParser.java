@@ -19,7 +19,7 @@ public class ExecFavParser extends Parser {
     }
 
     private void setIndex() throws CustomException {
-        assert ! (userInput ==null) : "userInput not declared";
+        assert ! (userInput == null) : "userInput not declared";
         if (userInput.isBlank()) {
             throw new CustomException(ExceptionType.EMPTY_INDEX);
         }
