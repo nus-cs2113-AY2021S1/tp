@@ -47,6 +47,12 @@ Format: `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /NUMBER_OF
 
 For example, you can enter `food apple /50` and this will be the result after the application records the food entry:
 
+```
+The following food has been added:
+Name of Food: apple
+Calorie Consumed: 50
+```
+
 ### 2.1.2 Adding an exercise entry
 You can add an exercise entry to keep track of what exercise you have done, as well as the calories burnt from that exercise.
 
@@ -54,12 +60,23 @@ Format: `exercise NAME_OF_EXERCISE /CALORIES_BURNT`
 
 For example, you can enter `exercise push ups /500` and this will be the result after the application records the exercise entry:
 
+```
+The following exercise has been added:
+Name of Exercise: push ups
+Burnt Cal: 500
+```
+
 ### 2.1.3 Adding a food goal
 You can add a food goal to the application to encourage yourself to eat more or less. 
 
 Format: `goal food GOAL_DESCRIPTION`
 
 For example, you can enter `goal food eat less food than yesterday` and this will be the result after the application records the food goal entry:
+
+```
+Okay! The following goal has been added:
+        [F] eat less food than yesterday
+```
 
 Fitr also understands particular keywords. For example, if you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
@@ -144,6 +161,12 @@ Format: `edit name/age/gender/height/weight/fitness`
 
 For example, if you want to change your height to be 1.9 m. You can use edit height command and type 1.9 as shown below.
 
+```
+Change your height (in m) to:
+1.9
+Height (in m) changed to: 1.9
+```
+
 ### 2.3.2 Editing a food entry
 You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
 
@@ -190,20 +213,40 @@ If you wish to clear all your previous food entries, you can do so with this com
 
 Format: `clear food`
 
+Expected outcome:
+```
+Food list is cleared!
+```
+
 ### 2.5.2 Clearing all exercise entries
 If you wish to clear all your previous exercise entries, you can do so with this command.
 
 Format: `clear exercise`
+
+Expected outcome:
+```
+Exercise list is cleared!
+```
 
 ### 2.5.3 Clearing all goal entries
 If you do decide to reset your whole goal list (i.e. removing all goal entries stored), you can utilise this command.
 
 Format: `clear goal`
 
+Expected outcome:
+```
+Goal list is cleared!
+```
+
 ### 2.5.4 Clearing all entries
 If you decide to clear all past entries made, regardless of the type (food, exercise or goal), you can utilise this command.
 
 Format: `clear`
+
+Expected outcome:
+```
+Food, exercise and goal lists are all cleared!
+```
 
 ## 2.6 Other Commands
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
