@@ -248,6 +248,14 @@ The following sequence diagram shows how the `execute()` operation works when th
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
 
+
+### Saving data feature
+
+When you close the program, or you make some changes to the program such as adding an event, the data for the tasks and events 
+are automatically saved locally into file `tasks.txt`. So there is no need for users to save manually.
+
+Next time when you open the program, all the data will automatically be loaded from the local file `tasks.txt` to the program.
+
 ### Check the validity of a module code
 This feature is facilitated by `ModuleChecker` class and `NusModule` class.
 
