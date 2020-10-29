@@ -84,8 +84,7 @@ There are 17 features available in Nav@NUS. The following are instructions for u
 ### 3.1. List available help: ```/help```
 This command lists a set of features along with their respective commands available to users.
 
-The format of this command is as follows:<br> 
-<code>/help</code>
+Format: <code>/help</code>
 
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
@@ -102,7 +101,7 @@ Let's say you are currently at **PGP** and want to find out the buses you can bo
 
 To find all such bus routes:
 
-1. Type <code>/route <strong>PGP</strong> /to <strong>NUS IT</strong></code> into the CLI and press enter 
+1. Type <code>/route <strong>PGP</strong> /to <strong>NUS IT</strong></code> into the CLI and press <kbd>Enter</kbd> 
 to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/routeInput1.png" alt="inputCommand" width=450><br>
 
@@ -116,7 +115,7 @@ Health Center"** instead.
 These are the steps to follow: 
 
 1. You type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press enter to execute the command as done in example 1.
+press <kbd>Enter</kbd> to execute the command as done in example 1.
 
 2. The result will be a message displaying suggestions for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
@@ -131,8 +130,7 @@ below.<br><br>
 ### 3.3. Check bus route: ```/routemap```
 This command displays the full route of the bus that you have specified.
 
-The format for this command is as follows:<br> 
-<code>/routemap <strong>bus code</strong></code> <br>
+Format: <code>/routemap <strong>bus code</strong></code> <br>
 
 #### Examples of Usage
 **<u>Example 1</u>**<br>
@@ -141,9 +139,9 @@ Let us suppose that you are at **Raffles Hall** with only bus AA2 available and 
 You would notice that there is no direct bus to **University Town**. You could use the <code>/routemap</code> to find
 indirect routes to your intended destination. 
 
-These are the steps to follow:
+To find indirect bus routes:
 
-1. You key in <code>/routemap <strong> AA2 </strong></code> into the CLI and press enter.<br><br>
+1. You type <code>/routemap <strong> AA2 </strong></code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=650><br>
 
 2. The result will display the whole bus route of bus AA2.<br><br>
@@ -160,7 +158,7 @@ Let us suppose that you are at **Raffles Hall** intending to board AA2.
 
 These are the steps to follow:
 
-1. You key in <code>/routemap <strong> AA2 </strong></code> into the CLI and press enter.<br><br>
+1. You type in <code>/routemap <strong> AA2 </strong></code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=650><br>
 
 2. The result will display the whole bus route of bus AA2. You will observe that the bus passes through **University Town**
@@ -181,7 +179,7 @@ Let's say that you are at <strong>University Town</strong> bus stop, and you wan
 
 To search for available buses at University Town:
 
-1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/bus4.png" width=600><br>
 
 2. The result will be a message displaying the buses available at University Town. <br><br>
@@ -211,7 +209,7 @@ Let's say you want to see a list of all bus routes so that you can plan your tri
 
 To see the complete list of buses:
 
-1. Type <code>/allbus</code> into the CLI and press enter.<br><br>
+1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 
 ### 3.6. List all bus stops in NUS: ```/liststops```
@@ -225,7 +223,7 @@ Let's say you want to know more about the bus stops in NUS.
 
 To see the description of each location:
 
-1. Type <code>/liststops</code> into the CLI and press enter.<br><br>
+1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 
 ### 3.7. Search for dining options within a faculty: ```/dine```
@@ -240,7 +238,7 @@ Let's say you want to know all the dining options available in <strong>School of
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>business</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
 
@@ -256,7 +254,7 @@ Let's say you want to find information of the dining outlet <strong>Arise & Shin
 
 These are the steps to follow:
 
-1. Type <code>/dineinfo <strong>arise</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/dineinfo <strong>arise</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
 
 ### 3.9. Add a favourite command: `/addfav`
@@ -290,10 +288,9 @@ as shown in the figure below.<br><br>
 ><code>/route</code> command or a <code>/bus</code> command. 
 
 ### 3.16. Reset frequent search data: ```/reset```
-This command resets the data set used to display most frequently search bus stop.
+This command resets the data set used to display most frequently search bus stop on application start-up.
 
-The format for this command is as follows:<br> 
-<code>/reset</code>
+Format:<code>/reset</code>
 
 #### Examples of usage
 **<u>Example 1</u>**<br>
@@ -344,6 +341,6 @@ Command | Format | Example
 /reset | `/reset` | `/reset`
 
 ## 6. Glossary
-
+This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
