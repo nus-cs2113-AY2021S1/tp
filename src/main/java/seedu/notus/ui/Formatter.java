@@ -113,7 +113,6 @@ public class Formatter {
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
-        header = colorize(header, Attribute.GREEN_TEXT());
         header = header.concat(note.getTitle() + " " + note.getTagsName());
 
         formattedString = formattedString.concat(generatesHeader(header));
