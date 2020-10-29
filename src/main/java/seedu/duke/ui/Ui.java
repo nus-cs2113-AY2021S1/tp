@@ -1,8 +1,10 @@
 package seedu.duke.ui;
 
+import seedu.duke.exceptions.CustomException;
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusStops;
 import seedu.duke.model.favorite.Fav;
+import seedu.duke.model.favorite.FavList;
 import seedu.duke.model.foodoptions.DiningOptions;
 
 import java.util.ArrayList;
@@ -178,6 +180,12 @@ public class Ui {
             index++;
             System.out.println(index + ". " + item.toString());
         }
+        printLine();
+    }
+
+    public static void printDeleteFavMessage(int favCommandIndex) throws CustomException {
+        printLine();
+        System.out.println("Got it! I've removed the favourite command: \n " + FavList.getFav(favCommandIndex - 1));
         printLine();
     }
 
