@@ -294,12 +294,12 @@ public class BookmarkCommand extends Command {
      */
     private void checkBookmarkIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
-        if (bookmarkIndex > bookmark.getBookmarkSize() ) {
+        if (bookmarkIndex > bookmark.getBookmarkSize()) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
-        } else if (bookmarkIndex == ZERO_PARAM){
+        } else if (bookmarkIndex == ZERO_PARAM) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ZERO_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
