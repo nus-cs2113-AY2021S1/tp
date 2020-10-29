@@ -2,9 +2,8 @@
 actor User
 activate NuSchedule
 
-User -> UI ++ : add
-UI --> NuSchedule -- : fullCommand
-NuSchedule --> Parser ++ : parse(fullCommand)
+User -> NuSchedule : add
+NuSchedule --> Parser ++ : parse()
 Parser --> NuSchedule -- : parsed command
 NuSchedule --> AddCommand ++ : execute()
 AddCommand --> EventList ++ : events.addEvent()
