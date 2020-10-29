@@ -70,15 +70,8 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
 4. Storage: Reads data from and writes data to the hard disk.
 5. Model: Stores the data the app uses in memory.
 
-<<<<<<< HEAD
-=======
-__How the architecture components interact with each other__  
-The sequence diagram below shows how each individual component interacts with each other when the user inputs a command.
-![sequence](diagrams/ArchitectureSequence.png)
-
 ### 3.2 UI
 ![UI Class Diagram](diagrams/Ui.png)
->>>>>>> 477de15f21f2965297834b7a4b41ddc5e1ac458d
 
 *Figure 3.2.1 Class diagram for UI component*
 
