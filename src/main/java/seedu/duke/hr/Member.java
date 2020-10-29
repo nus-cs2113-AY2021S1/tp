@@ -6,6 +6,7 @@ public class Member {
     protected long memberPhone;
     protected String memberEmail;
     protected String memberRole;
+    protected String attendanceRate;
 
     public Member(String name, long phone, String email, String role) {
         this.memberName = name;
@@ -50,17 +51,20 @@ public class Member {
         this.memberEmail = newEmail;
     }
 
+    public void setAttendanceRate(String attendanceRate) {
+        this.attendanceRate = attendanceRate;
+    }
+
+    public String getAttendanceRate() {
+        return this.attendanceRate;
+    }
+
     /**
      * Prints task data in the desired form to be printed for user interaction.
      * */
     public String toString() {
+        MemberList.updateAttendanceRate(memberName);
         return "name: " + this.memberName + " |phone: " + this.getMemberPhone() + " |email: " + this.getMemberEmail()
-                + " |role: " + this.getMemberRole();
+                + " |role: " + this.getMemberRole() + " |attendance rate: " + this.getAttendanceRate() + "%";
     }
-
-    public boolean containsNameKeyword(String keyword) {
-        boolean containsKeyword = memberName.toLowerCase().contains(keyword.toLowerCase());
-        return containsKeyword;
-    }
-
 }
