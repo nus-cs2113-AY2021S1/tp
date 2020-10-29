@@ -8,8 +8,10 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for bookmark command.
+ */
 public class BookmarkParser extends CommandParser {
-
     public static final String ADD_PARAM = "a";
     public static final String DELETE_PARAM = "d";
     public static final String EPISODE_PARAM = "e";
@@ -35,6 +37,14 @@ public class BookmarkParser extends CommandParser {
         // LOGGER.setLevel(Level.WARNING);
     }
 
+    /**
+     * Parses the string parameters and creates an executable bookmarkCommand according to the parameters.
+     * All command require 2 parameter except for bookmark info e.g bookmark <bookmark_id>
+     *
+     * @param description is the parameters portion of the user input
+     * @return and executable BookmarkCommand object
+     * @throws AniException if an error is encountered while parsing
+     */
     public BookmarkCommand parse(String description) throws AniException {
         String[] paramGiven = getSplitDescription(description);
         if (paramGiven.length > 1) {
@@ -47,6 +57,14 @@ public class BookmarkParser extends CommandParser {
         return bookmarkCommand;
     }
 
+    /**
+     * Bookmark commands only allow one dash parameter e.g "-a" or "-d".
+     * The method based on the dach parameter will determine the checks to do
+     * and the values to set for Bookmark Command.
+     *
+     * @param paramGiven is the string containing the processed parameters with field
+     * @throws AniException if invalid parameters are parsed in
+     */
     private void parameterParser(String paramGiven) throws AniException {
         String[] paramParts = paramGiven.split(" ");
         paramEmptyCheck(paramGiven, paramParts);
@@ -95,8 +113,17 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
-    private void checkIsInteger(String paramGiven, String paramParts, String bookmarkType) throws AniException {
-        if (!isInt(paramParts.trim())) {
+    /**
+     * Check that part of the parameter (the field) is integer.
+     * Else, throw a custom error message based on the command type and the param given.
+     *
+     * @param paramGiven the input with processed parameter and its field
+     * @param paramPart the field to check
+     * @param bookmarkType
+     * @throws AniException
+     */
+    private void checkIsInteger(String paramGiven, String paramPart, String bookmarkType) throws AniException {
+        if (!isInt(paramPart.trim())) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + " Bookmark " + bookmarkType + " param requires integer.";
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
@@ -104,6 +131,13 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
+    /**
+     * Check that the field of parameters are not empty.
+     *
+     * @param paramGiven the parameter with its field
+     * @param paramParts array of parameter parts
+     * @throws AniException if the parameter provided is empty
+     */
     private void paramEmptyCheck(String paramGiven, String[] paramParts) throws AniException {
         if (paramParts.length == 0) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
@@ -113,6 +147,12 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
+    /**
+     * Check that bookmark list command does not contain a field
+     *
+     * @param paramParts the processed parameter
+     * @throws AniException if the list field provided is not empty
+     */
     private void listFieldCheck(String[] paramParts) throws AniException {
         if (paramParts.length > 1) {
             String invalidExtraField = PARAMETER_ERROR_HEADER + paramParts[1] + NOT_RECOGNISED
@@ -122,6 +162,13 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
+    /**
+     * Set the first parameter field, for commands that require two different variable.
+     * It includes the bookmark edit episode, bookmark note and bookmark remove note command.
+     *
+     * @param paramGiven the first field not accompanied by parameter
+     * @throws AniException if the first field is required but empty, or the first field is not required but not empty
+     */
     private void setFirstParameter(String paramGiven) throws AniException {
         //Action edit(e), note(n), remove note(r) requires first parameter as bookmarkIndex
         if (bookmarkCommand.getBookmarkAction().equals("e")
@@ -140,6 +187,12 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
+    /**
+     * This indicate that it is a bookmark info command.
+     *
+     * @param paramGiven the processed parameter
+     * @throws AniException if the only field is not integer or empty
+     */
     private void setSingleParameter(String paramGiven) throws AniException {
         if (!isInt(paramGiven.trim())) {
             String invalidBookmarkIndex = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
@@ -151,6 +204,14 @@ public class BookmarkParser extends CommandParser {
         bookmarkCommand.setBookmarkIndex(paramGiven.trim());
     }
 
+    /**
+     * Split the input provided by - to recognise the number of parameter.
+     * The string array will be returned for further processing.
+     *
+     * @param description is the parameters portion of the user input
+     * @return the individual parameter with its field
+     * @throws AniException if there is more than 2 parameter provided
+     */
     private String[] getSplitDescription(String description) throws AniException {
         String[] paramGiven = description.split(DASH_PARAM);
         if (paramGiven.length > 2) {

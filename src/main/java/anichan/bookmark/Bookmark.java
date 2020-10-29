@@ -2,10 +2,12 @@ package anichan.bookmark;
 
 import anichan.anime.Anime;
 import anichan.anime.AnimeData;
-import anichan.exception.AniException;
 
 import java.util.ArrayList;
 
+/**
+ * Represent the bookmark of a workspace
+ */
 public class Bookmark {
     private ArrayList<Integer> animeBookmarkList;
     private ArrayList<Integer> animeEpisode;
@@ -71,6 +73,12 @@ public class Bookmark {
         this.noteList.get(bookmarkIndex).addNote(note);
     }
 
+    /**
+     * Retrieve all notes of a bookmark entry.
+     *
+     * @param bookmarkIndex the bookmark entry id
+     * @return list of all notes or "notes is empty" string
+     */
     public String getNoteInString(int bookmarkIndex) {
         StringBuilder sbNoteList = new StringBuilder(System.lineSeparator());
         if (noteList.get(bookmarkIndex).getSize() == 0) {
@@ -91,6 +99,13 @@ public class Bookmark {
         return removeNote;
     }
 
+    /**
+     * Construct the list of bookmark into a string which consist of the bookmark id with the anime name.
+     * Animedata is used to retrieve the anime name of the anime id each bookmark id keeps.
+     *
+     * @param animeData anime data source
+     * @return List of the bookmark
+     */
     public String getListInString(AnimeData animeData) {
         StringBuilder sbAnimeList = new StringBuilder(System.lineSeparator());
         if (animeBookmarkList.size() == 0) {
@@ -102,7 +117,7 @@ public class Bookmark {
             sbAnimeList.append(i + 1);
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
-            sbAnimeList.append(animeData.getAnime(animeIndex));
+            sbAnimeList.append(animeData.getAnime(animeIndex).getAnimeName());
             sbAnimeList.append(System.lineSeparator());
         }
         return sbAnimeList.toString();
@@ -112,6 +127,12 @@ public class Bookmark {
         return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
     }
 
+    /**
+     * Check if anime id already exist within the bookmark
+     *
+     * @param animeIndex anime id to be added
+     * @return true if already exit, else otherwise
+     */
     public boolean checkExist(int animeIndex) {
         boolean alreadyExist = false;
         for (Integer animeID : animeBookmarkList) {
