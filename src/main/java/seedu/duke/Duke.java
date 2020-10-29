@@ -31,7 +31,7 @@ public class Duke {
         } catch (DukeFileFormatException e) {
             ui.printError("Oops it appears your saved data was corrupted!");
             e.printStackTrace();
-        } catch (DukeFileHeaderException e) {
+        } catch (DukeFileHeaderException | ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
             ui.printError("Oops it appears your saved data was corrupted!");
         } catch (IOException e) {
