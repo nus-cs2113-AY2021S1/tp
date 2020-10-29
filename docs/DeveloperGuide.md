@@ -513,4 +513,35 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 
 ## 8. Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+This section contains information on how to test CCA Manager to ensure that the basic functionalities are working.
+
+1. Start the application from a terminal window by using `java -jar CCAManager.jar`
+2. Add some entries with commands
+    * Use `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member` to add a new member 
+    * Use `finance addLog iPhone 12 Pro 1800` to add a new finance entry
+    * Use `event addEvent /n Autodesk course /d 2020-12-20 /t 8-10.30pm` to add a new event
+3. Check that the items have been added with the respective list commands
+    * Use `hr listmember` to show all the HR entries 
+    * Use `event listEvent` to list all the events
+    * Use `finance summary` to show a summary of all finance entries
+4. Type `bye` to exit the program
+5. Launch the application again.
+6. Repeat step 3 to verify that all the information entered has been saved 
+7. Type `event search /s course` to search for the event that you have entered
+8. Type `event countdown` to see a list of events sorted by days in increasing order
+9. Type `hr search /r member` to search for all members with the role of member
+10. Type `finance changeLog /i 1 /n buy cake 5.5` to modify the finance entry that you have entered
+11. Type `hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r admin` to modify the member entry entered earlier
+12. Type `event done 1` to set the status of the event to completed
+13. Type `hr list prof&admin` to show a list of members with the role prof or admin
+14. Type `event addAttendance /n Autodesk course /m Harry Potter` to add the member to the list of attendees
+15. Repeat step 3 to verify that all the information has been modified successfully
+16. Type `event listAttendance /n Autodesk course` to view the event attendance
+17. Type `event delAttendance /n Autodesk course /m Harry Potter` to delete the attendance record
+17. Clean up the entries by deleting them
+    * Use `event delEvent 1` to remove the event
+    * Use `finance dellog 1` to remove the finance log
+    * Use `hr delMember 1` to remove the member
+18. Type `bye` to exit the program
+19. Launch the application again and repeat step 3 to verify that all the entries have been deleted.
+
