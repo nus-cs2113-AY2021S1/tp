@@ -69,17 +69,17 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ####  2.2.1. Design of TopicList
 
-1. Listing topics in TopicList
-2. Finding a topic in TopicList
-3. Adding a new note
-4. Deleting an existing note
-5. Listing out all notes in a topic
-
-![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
-
 TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
 in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
-use of the package java.util.ArrayList. The TopicList is used to store Topics.
+use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
+each topic stores a NoteList, which contains Notes.
+
+1. Listing topics in TopicList
+2. Adding a new note
+3. Deleting an existing note
+4. Listing out all notes in a topic
+
+![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
 
 #### 2.2.2. Implementation of TopicList
 
@@ -95,20 +95,6 @@ Step 2: The `TopicList.showTopics()` method then calls the method `Ui.printTopic
         current `TopicList` is passed into the called method.
 Step 3: The `Ui.printTopicList()` method then prints out the description of each topic in the 
         `TopicList`. 
-
-**Finding a topic in TopicList:**
-
-This task is performed by the `TopicList.find()` method. 
-
-Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the `TopicList.find()` 
-        method. A String object derived from the user's input is passed into this method.
-
-Step 2: The `TopicList.find()` method checks if any `Topic` object in the `TopicList` has a description that contains 
-        the `String` object passed into the method. Such `Topic` objects are stored in a new `TopicList`.
-
-Step 3: The `TopicList.find()` method then calls the `TopicList.showTopics()` method, passing in the new TopicList. The 
-        `Ui.printTopicList()` method is called within the `TopicList.showTopics()` method, printing out topic 
-        descriptions containing the user's input.
 
 `NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
 E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
@@ -128,23 +114,25 @@ Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically t
 
 **Deleting a note:**
 
-This task is performed by the `NoteList.add()` method.
+This task is performed by the `NoteList.delete()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
         An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
         this method.
 
-Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
+Step 2: The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
         delete the `Note` object in `NoteList`.
 
 **Listing out all notes in a topic**
 
-This task is performed by the `Topic.showNotes()` method.
+This task is performed by the `Ui.printNoteList()` method.
 
-Step 1: The `parseCommand()` method instantiates a `TopicCommand` object which then calls the `Topic.showNotes()` method. 
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
+and calls the `Ui.listInteraction` method. 
 
-Step 2: The `Topic.showNotes()` method calls the `Ui.printNoteList()` method. The topic's `NoteList` into this method. 
-        `Ui.printNoteList()` prints out all the descriptions of the `Note` objects in the `NoteList`.
+Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
+this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
+topic's `NoteList`.
 
 #### 2.2.4. Design of Option and OptionList 
 
