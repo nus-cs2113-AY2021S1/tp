@@ -21,15 +21,16 @@ public class EditNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-n";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits a note in the notebook. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_LINE + " LINE_INDEX CONTENTS]"
-            + "[" + PREFIX_DELIMITER + PREFIX_CONTENT + " CONTENT]"
-            + "[" + PREFIX_DELIMITER + PREFIX_DELETE_LINE + " INDEX]"
-            + "[" + PREFIX_DELIMITER + PREFIX_ADD_LINE + " INDEX STRING]"
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR"
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
+            + "([" + PREFIX_DELIMITER + PREFIX_ADD_LINE + " INDEX STRING] OR "
+            + "[" + PREFIX_DELIMITER + PREFIX_LINE + " LINE_INDEX CONTENTS] OR "
+            + "[" + PREFIX_DELIMITER + PREFIX_DELETE_LINE + " INDEX]) "
+            + "[" + PREFIX_DELIMITER + PREFIX_CONTENT + " CONTENT] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
+            + "Only use one type of /add, /ln or /del per edit.";
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Edit note successfully: ";
     public static final String COMMAND_UNSUCCESSFUL_NOTE_DOES_NOT_EXIST = "This note does not exist in the notebook! ";
