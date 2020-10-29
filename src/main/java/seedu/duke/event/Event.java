@@ -152,7 +152,7 @@ public class Event {
 
     public String getStringParticipants() {
         String output = "[";
-        if (eventParticipants.get(0) != null) {
+        if (eventParticipants.size() != 0) {
             for (int i = 0; i < eventParticipants.size(); i++) {
                 output = output.concat(eventParticipants.get(i).getMemberName());
                 if (i < (eventParticipants.size() - 1)) {
