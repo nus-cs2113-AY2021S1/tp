@@ -913,10 +913,32 @@ The following sequence diagram shows how the list chapters feature works:
 
 ### 5.2. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+| Version | As a ... | I want to ... | So that I can ... |
 |--------|----------|---------------|------------------|
-|v1.0|user|revise the flashcards by chapter|do my revision|
-|v1.0|user|remove modules/chapters/flashcard|remove modules/chapters/flashcards that I no longer need from the scheduler|
+| v1.0 | student | add modules | study based on modules |
+| v1.0 | student | add chapters for each module | study based on chapters for a certain module |
+| v1.0 | student | add flashcards inside each chapter for the content of each chapter | study the content of each chapter |
+| v1.0 | student | list my modules | have an overview of what modules I have |
+| v1.0 | student | list my chapters in each module | have an overview of what chapters I have for a module |
+| v1.0 | student | list my flashcards in each chapter | have an overview of the content I have for a chapter |
+| v1.0 | student | modify the module name | correct the module name if it is incorrect |
+| v1.0 | student | modify the chapter name | correct the chapter name if it is incorrect |
+| v1.0 | student | modify the content of the flashcards | correct the content if it is incorrect |
+| v1.0 | student | remove modules/chapters/flashcard | remove modules/chapters/flashcards that I no longer need |
+| v1.0 | student | access my module | revise based on module |
+| v1.0 | student | access my chapters for a module | revise based on chapter for a certain module |
+| v1.0 | student | revise the flashcards by chapter | do my revision |
+| v1.0 | student | set a rating for a newly created chapter | rate a chapter without going through a revision session |
+| v1.0 | student | state whether a flashcard is easy, medium or hard | revise the flashcards based of the difficulty of it |
+| v1.0 | student | check the scheduled tasks daily | plan my schedule accordingly |
+| v1.0 | student | rely entirely on the application to implement spaced repetition for me | enjoy the benefits of spaced repetition without having to implement it myself |
+| v1.0 | student | have a help command | have an overview of how the application works |
+| v1.0 | student | terminate the program | exit the application when I am done using it |
+| v2.0 | student | see a forecast of the my revision schedule | plan ahead and make time to accommodate the revision of the corresponding number of chapters |
+| v2.0 | student | reschedule a chapter | change the schedule according to my situation |
+| v2.0 | student | view the module and chapters I have completed in a session/in a day | track my progress |
+| v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
+| v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
 ### 5.3. Use Cases
 
