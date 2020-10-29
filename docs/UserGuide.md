@@ -15,10 +15,10 @@ Wan Shi Jie Brendan
 
 ## Introduction
 
-NuSchedule is a straightforward but sophisticated application that helps you manage your events. It allows you 
-and students to not only keep track of your school events or activities (eg. lectures, tutorials, assignments), but 
-also monitor your personal businesses. Its command line interface (CLI) would also mean simplicity and speed, 
-which sets itself apart from other apps such as NUSMods and Luminus. 
+NuSchedule is a straightforward yet sophisticated application that helps you manage your events. It allows you 
+ to keep track of not only your school events or activities (eg. lectures, tutorials, assignments), but 
+also your personal activities. It utilises a command line interface (CLI), which accepts user input in the form of text. 
+This gives the application both simplicity and speed, setting it apart from other apps such as NUSMods and Luminus. 
 
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -53,7 +53,7 @@ Format: `help`
 
 
 ### Add an event
-Adds events/tasks to your schedule. Can support various types of tasks: 
+Adds events/tasks to the schedule. Can support various types of tasks: 
 
 * Personal events  
   Format: `personalEvent EVENTNAME /t DATE TIME /l LOCATION`
@@ -98,7 +98,7 @@ Shows you a list of all events.
 Format: `list`  
 
 ### Clear events
-Deletes events based on their number on the list.  
+Deletes events based on their index in the list.  
 
 Format: `clear NUMBER` OR `clear ALL`  
 
@@ -106,14 +106,17 @@ Example: `clear 3`
 
 
 ### Mark event as done
-Mark a event that is completed with `DONE`.  
+Mark an event that has been completed with `DONE`.  
 
 Format: `done INDEX`  
 
 Example: `done 1`  
 
 ### Reminder of deadlines
-No command required. Automatically sends notifications 24 hours before the event occurs. 
+Shows a list of all events for today's date.
+
+Format: `reminder`
+
 
 ## FAQ
 
