@@ -293,7 +293,7 @@ After reviewing your list of favourite commands, you do not want to have this co
 To delete this command from your favourites list:
 1. Type <code>/deletefav <strong>index</strong></code> into the CLI and 
 press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
-
+<img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 
 ### 3.12. Execute a favourite command: `/execfav`
 This command executes the specific command in your list of favourite commands.
