@@ -10,6 +10,7 @@ import anichan.storage.StorageManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
  * Represents the command to estimate the time needed to translate a script.
  */

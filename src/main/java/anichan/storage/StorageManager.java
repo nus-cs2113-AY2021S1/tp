@@ -30,6 +30,7 @@ public class StorageManager {
     private final BookmarkStorage bookmarkStorage;
     private final ScriptStorage scriptStorage;
 
+    //@@author OngDeZhi
     /**
      * Creates a new instance of StorageManager with the specified storage directory.
      *
@@ -62,6 +63,7 @@ public class StorageManager {
 
     // ========================== Workspace Saving ==========================
 
+    //@@author
     public void saveWorkspace(Workspace workspace) throws AniException {
         new File(storageDirectory + workspace.getName()).mkdirs();
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
@@ -95,6 +97,7 @@ public class StorageManager {
 
     // ========================== User Saving and Loading ==========================
 
+    //@@author OngDeZhi
     /**
      * Invokes the save method in UserStorage to save the user data.
      *
@@ -142,6 +145,7 @@ public class StorageManager {
 
     // ========================== Bookmark Saving and Loading ==========================
 
+    //@@author
     public void saveBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         bookmarkStorage.save(workspaceName, bookmark);
     }
@@ -152,6 +156,7 @@ public class StorageManager {
 
     // ========================== Script Loading ==========================
 
+    //@@author OngDeZhi
     /**
      * Loads the script file.
      *

@@ -7,6 +7,7 @@ import anichan.exception.AniException;
 import java.io.File;
 import java.util.ArrayList;
 
+//@@author OngXinBin
 /**
  * Manages the storage of bookmark data.
  */

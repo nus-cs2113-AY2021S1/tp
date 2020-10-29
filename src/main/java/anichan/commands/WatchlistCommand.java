@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
  * Represents the command to manage the watchlist(s) in AniChan.
  */

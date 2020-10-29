@@ -72,9 +72,9 @@ public class BookmarkCommand extends Command {
      *     <li>r: remove a note from bookmark entry</li>
      * </ul>
      *
-     * @param animeData used to retrieve anime information
+     * @param animeData      used to retrieve anime information
      * @param storageManager used to save or read AniChan data
-     * @param user used to modify user data
+     * @param user           used to modify user data
      * @return a printable string that contains the bookmark output message
      * @throws AniException when an error occurred while executing the command
      */
@@ -132,7 +132,7 @@ public class BookmarkCommand extends Command {
      * Information retrieve is anime info, episode info and anime notes.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return a printable string that contain information of bookmark entry
      * @throws AniException when an error occurred while executing the command
      */
@@ -187,7 +187,7 @@ public class BookmarkCommand extends Command {
      * Add a note to a bookmark entry.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return message of adding note
      * @throws AniException
      */
@@ -206,7 +206,7 @@ public class BookmarkCommand extends Command {
      * Retrieve anime info from bookmark entry.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return the anime information in string
      * @throws AniException
      */
@@ -220,7 +220,7 @@ public class BookmarkCommand extends Command {
      * Delete a bookmark entry.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return delete bookmark entry message
      * @throws AniException
      */
@@ -237,7 +237,7 @@ public class BookmarkCommand extends Command {
      * Add a bookmark entry.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return add bookmark entry message
      * @throws AniException
      */
@@ -270,7 +270,7 @@ public class BookmarkCommand extends Command {
      * Edit bookmark episode.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return edit bookmark episode message
      * @throws AniException
      */
@@ -363,11 +363,11 @@ public class BookmarkCommand extends Command {
      * Retrieve bookmark list from bookmark.
      *
      * @param animeData used to retrieve anime information
-     * @param bookmark used to manage bookmark entries
+     * @param bookmark  used to manage bookmark entries
      * @return the bookmark list in string
      * @throws AniException
      */
-    private String listBookmark(AnimeData animeData, Bookmark bookmark){
+    private String listBookmark(AnimeData animeData, Bookmark bookmark) {
         return bookmark.getListInString(animeData);
     }
 

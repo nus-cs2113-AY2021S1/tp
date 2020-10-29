@@ -13,19 +13,33 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
+/**
+ * Represents the command to view all anime in a certain Watchlist.
+ */
 public class ViewWatchlistCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
     protected static final String EMPTY_WATCHLIST_ERROR = "There are no watchlists in your workspace!";
     
     private Integer watchlistIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());
-    
+
+    /**
+     * Creates a new instance of ViewWatchlistCommand.
+     */
     public ViewWatchlistCommand() {
         // LOGGER.setLevel(Level.WARNING);
     }
 
     /**
-     * View all anime in specific watchlist.
+     * Returns a string representation of all the anime in the
+     * specified Watchlist.
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
@@ -48,7 +62,15 @@ public class ViewWatchlistCommand extends Command {
         
         return result;
     }
-    
+
+    /**
+     * Builds and returns a string representation of all the anime
+     * in the specific Watchlist.
+     * 
+     * @param animeData used to retrieve anime information
+     * @param watchlistList list of all the Watchlists
+     * @return a string representation of all the anime in the specific Watchlist
+     */
     private String buildAnimeInWatchlist(AnimeData animeData, ArrayList<Watchlist> watchlistList) {
         Watchlist selectedWatchlist = watchlistList.get(watchlistIndex);
         ArrayList<Integer> animeInWatchlist = selectedWatchlist.getAnimeList();
