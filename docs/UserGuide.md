@@ -117,6 +117,18 @@ You have successfully added this event to your list!
 [T][✕] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
 _________________________________
 ```
+Note: <br>
+•	When giving the event type, take note that it is case-insensitive:
+`add Zoom` is the same as `add zoom`
+
+•	Only the full word will be recognized as the event type:
+
+`add z` will NOT add a zoom event
+
+Warning!<br>
+Typing in the wrong format for date or time will cause the event to not be made. 
+
+
 ### List events: list (Marcus Ng)
 
 #### List all events
@@ -179,8 +191,7 @@ As shown above, the user can choose the date/time they want for the event as lon
  In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
  
  
- Note:
- 
+ Note:<br>
  •	The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
 
 
