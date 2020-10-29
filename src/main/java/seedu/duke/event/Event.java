@@ -54,21 +54,28 @@ public class Event {
     }
 
     /**
-    * Returns a tick or cross depending on whether a event is marked done.
-    *
-    * @return done or upcoming command
-    */
+     * Returns a tick or cross depending on whether a event is marked done.
+     *
+     * @return done or upcoming command
+     */
     public String getStatusIcon() {
         return isDone ? "[Done]" : "[Up-coming]";
 
     }
 
+    public boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean d) {
+        isDone = d;
+    }
 
     /**
-    * Returns the string format of the event.
-    *
-    * @return String format of event.
-    */
+     * Returns the string format of the event.
+     *
+     * @return String format of event.
+     */
     public String printEvent() {
         return symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
@@ -80,11 +87,11 @@ public class Event {
     }
 
     /**
-    * Attempts to read the date time. If it fails, uses relative timing to try again.
-    *
-    * @param dateStr The Date to be processed
-    * @param timeStr The time to be processed
-    */
+     * Attempts to read the date time. If it fails, uses relative timing to try again.
+     *
+     * @param dateStr The Date to be processed
+     * @param timeStr The time to be processed
+     */
     public void setDateTime(String dateStr, String timeStr) {
         eventTime = timeStr;
         try {
@@ -165,11 +172,11 @@ public class Event {
     }
 
     /**
-    * Used to identify if the string contains the keyword specified in its description.
-    *
-    * @param keyword The keyword to be matched with the description.
-    * @return true if list contains the keyword
-    */
+     * Used to identify if the string contains the keyword specified in its description.
+     *
+     * @param keyword The keyword to be matched with the description.
+     * @return true if list contains the keyword
+     */
     public boolean containsNameKeyword(String keyword) {
         boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
         return containsKeyword;

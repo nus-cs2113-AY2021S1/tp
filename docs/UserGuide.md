@@ -140,11 +140,12 @@ Search the members whose information matches user input.
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`   
 
 Example of usage:  
-`hr search peter`  
-`hr search /n peter /r president`  
+`hr search Peter`  
+`hr search /n Peter /r President`  
 
 
 #### view contacts of prof/admin: `list prof&admin`  
+You can search for members in the list with the role professors or admin with this quick command.
 List the contacts of the professors and administrators.  
 Format: `hr list prof&admin`  
 
@@ -153,6 +154,7 @@ Example of usage:
 
 
 #### view contacts of connections: `list connections`  
+You can search for members with the role of alumni or speaker with this quick command.
 List the contacts of connections(alumni, speakers).  
 Format: `hr list connections`  
 
@@ -168,7 +170,7 @@ Shorthand: `e a /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
+ `event addEvent /n Autodesk course /d 2020-12-20 /t 8-10.30pm`<br/>
  
 Expected Outcome:
 
