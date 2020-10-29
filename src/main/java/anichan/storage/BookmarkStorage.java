@@ -7,6 +7,7 @@ import anichan.exception.AniException;
 import java.io.File;
 import java.util.ArrayList;
 
+//@@author
 public class BookmarkStorage extends Storage {
     private static final String BOOKMARK_FILE_NAME = "bookmark.txt";
     private static final String BOOKMARK_LINE_DELIMITER = "~";

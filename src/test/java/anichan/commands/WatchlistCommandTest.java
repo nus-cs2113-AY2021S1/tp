@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class WatchlistCommandTest {
     private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
                                                     + File.separator + "data" + File.separator;

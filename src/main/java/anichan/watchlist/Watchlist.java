@@ -10,6 +10,7 @@ public class Watchlist {
     private final ArrayList<Integer> animeList;
     private static final String EMPTY_WATCHLIST_MESSAGE = "Uhh.. It's empty.. :(";
 
+    //@@author OngDeZhi
     /**
      * Creates a new instance of Watchlist with the specified name.
      *
@@ -87,7 +88,7 @@ public class Watchlist {
         return this.animeList.get(animeIndexInWatchlist);
     }
 
-    //@@author
+    //@@author OngDeZhi
     /**
      * Returns a string representation of the anime list in this Watchlist.
      *
