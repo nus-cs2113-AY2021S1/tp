@@ -6,6 +6,7 @@ import exception.EmptyEventListException;
 import location.BusStop;
 import location.Location;
 import locationlist.LocationList;
+import usercommunication.UserInfo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -45,9 +46,13 @@ public class UI {
     /**
      * Prints the logo of DUKE and greet the user.
      */
-    public void printGreetingMessage() {
+    public void printGreetingMessage(UserInfo userInfo) {
         printLine();
-
+        try {
+            helloWithName(userInfo.getName());
+        } catch (NullPointerException e) {
+            System.out.println("I am NUSchedule! What's your name?");
+        }
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
     }
@@ -280,6 +285,10 @@ public class UI {
             System.out.println(numPrintedEvents + ". " + event.toString());
         }
         System.out.println("\nBut nonetheless...");
+    }
+
+    public void helloWithName(String name) {
+        System.out.println("Hi " + name + ", nice to see you.");
     }
 }
 

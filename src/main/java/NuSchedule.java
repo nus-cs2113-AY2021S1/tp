@@ -7,6 +7,7 @@ import locationlist.LocationList;
 import parser.Parser;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 /**
  * Main entry-point for the NUSchedule application.
@@ -18,9 +19,9 @@ public class NuSchedule {
     private static BusStopList busStops;
     private static LocationList locations;
     private final UI ui;
+    private UserInfo userInfo=new UserInfo("","");
 
-
-    public NuSchedule(String filePath) {
+    public NuSchedule(String ...filePaths) {
         ui = new UI();
 
         busStops = new BusStopList();
@@ -29,12 +30,13 @@ public class NuSchedule {
         //locations.loadLocationData();
 
         try {
-            storage = new Storage(filePath);
+            storage = new Storage(filePaths);
         } catch (CreatingFileException e) {
             ui.showError(e.getMessage());
         }
         try {
             events = new EventList(storage.loadEvents(locations));
+            userInfo= storage.loadUserInfo();
         } catch (NuScheduleException e) {
             ui.showLoadingError();
             events = new EventList();
@@ -52,7 +54,7 @@ public class NuSchedule {
      * Runs the program until termination.
      */
     public void run() {
-        ui.printGreetingMessage();
+        ui.printGreetingMessage(userInfo);
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -71,6 +73,6 @@ public class NuSchedule {
 
 
     public static void main(String[] args) {
-        new NuSchedule("data/events.txt").run();
+        new NuSchedule("data/events.txt","data/UserInfo.txt").run();
     }
 }

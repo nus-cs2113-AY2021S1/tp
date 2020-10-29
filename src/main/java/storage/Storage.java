@@ -13,12 +13,12 @@ import location.BusStop;
 import location.Hostel;
 import location.LectureTheatre;
 import location.Location;
-import location.LocationType;
 
 import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
 import parser.Parser;
+import usercommunication.UserInfo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,16 +36,18 @@ import java.util.Scanner;
 public class Storage {
     public static final String REGEX_IN_FILE = "//";
     public static final String ONLINE = "online";
-    private final String filePath;
+    private final String[] filePaths;
+    //filePaths[0] will be the events data file. filePath[1] will be the user info file
 
     /**
      * Set the <code>filepath </code> according to the user input.
      *
-     * @param filePath is the path of the file
+     * @param filePaths is the paths of the files
      */
-    public Storage(String filePath) throws CreatingFileException {
-        this.filePath = filePath;
-        createFolderAndFIle(filePath);
+    public Storage(String... filePaths) throws CreatingFileException {
+        this.filePaths = filePaths;
+        createFolderAndFIle(this.filePaths[0]);
+        createFolderAndFIle(this.filePaths[1]);
     }
 
     /**
@@ -76,7 +78,7 @@ public class Storage {
      */
     public void writeFile(ArrayList<Event> events) throws WritingFileException {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(filePaths[0]);
             for (Event event : events) {
                 fw.write(event.fileString());
                 fw.write(System.lineSeparator());
@@ -85,6 +87,44 @@ public class Storage {
         } catch (IOException e) {
             throw new WritingFileException();
         }
+    }
+
+    /**
+     * Save the data of the user info.
+     *
+     * @param userInfo name and type of the user
+     * @throws WritingFileException Represents the exception when the file is not correctly written.
+     */
+    public void writeUserInfo(UserInfo userInfo) throws WritingFileException {
+        try {
+            FileWriter fw = new FileWriter(filePaths[1]);
+            fw.write(userInfo.fileString());
+            fw.close();
+        } catch (IOException e) {
+            throw new WritingFileException();
+        }
+    }
+
+    /**
+     * Prepares the data in the file as an UserInfo, which is used to construct the userInfo.
+     *
+     * @return the name and type of the user
+     * @throws LoadingException represents the Events is not correctly created
+     */
+    public UserInfo loadUserInfo() throws LoadingException {
+        UserInfo userInfo = null;
+        try {
+            Scanner s = new Scanner(new File(filePaths[1]));
+            if (s.hasNext()) {
+                String[] words = s.nextLine().split(REGEX_IN_FILE);
+                userInfo = new UserInfo(words[0], words[1]);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        } catch (IndexOutOfBoundsException e) {
+            throw new LoadingException();
+        }
+        return userInfo;
     }
 
     /**
@@ -97,7 +137,7 @@ public class Storage {
      */
     public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException, EndBeforeStartEventException {
         ArrayList<Event> events = new ArrayList<>();
-        File dataFile = new File(filePath);
+        File dataFile = new File(filePaths[0]);
         try {
             Scanner s = new Scanner(dataFile);
             while (s.hasNext()) {
