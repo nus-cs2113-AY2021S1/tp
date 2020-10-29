@@ -8,6 +8,9 @@ import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -98,9 +101,24 @@ public class Ui {
         return SCANNER.nextLine();
     }
 
-    public String getQuizInputFromUser() {
+    public void printQuizInputMessage() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
-        return SCANNER.nextLine();
+    }
+
+    public String getQuizInputFromUser() throws IOException {
+        int x = 5; // wait 2 seconds at most
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        long startTime = System.currentTimeMillis();
+        while ((System.currentTimeMillis() - startTime) < x * 1000 && !in.ready()) {
+        }
+
+        if (in.ready()) {
+            return in.readLine();
+        } else {
+            return null;
+        }
+
     }
 
     private static void printMessage(String message) {
@@ -164,6 +182,15 @@ public class Ui {
     public void printAnswerIsCorrect(String explanation) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(MESSAGE_ANSWER_CORRECT);
+        System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printIncompleteAnswer(int correctAnswer, String explanation) {
+        System.out.println(System.lineSeparator() + HORIZONTAL_LINE);
+        System.out.println("Oops! You took more than 10 seconds to answer!");
+        System.out.println("The correct answer is " + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
         System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
         System.out.println(HORIZONTAL_LINE);

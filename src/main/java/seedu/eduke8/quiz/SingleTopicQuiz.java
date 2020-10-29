@@ -1,11 +1,12 @@
 package seedu.eduke8.quiz;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.Command;
 import seedu.eduke8.command.AnswerCommand;
-import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
+import seedu.eduke8.command.IncompleteCommand;
+import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
@@ -17,6 +18,7 @@ import seedu.eduke8.question.QuizQuestionsManager;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.ui.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +30,8 @@ public class SingleTopicQuiz implements Quiz {
     private int numberOfQuestions;
     private QuizParser quizParser;
     private BookmarkList bookmarks;
+
+    long startTime;
 
     public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks) {
         assert topic != null;
@@ -83,19 +87,22 @@ public class SingleTopicQuiz implements Quiz {
 
             quizParser.setQuestion(question);
 
+            ui.printQuizInputMessage();
+
             Command command = getCommand(ui, optionList);
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand
-                    || command instanceof BookmarkCommand);
+                    || command instanceof BookmarkCommand || command instanceof IncompleteCommand);
 
-            while (!(command instanceof AnswerCommand)) {
+            while (!(command instanceof AnswerCommand || command instanceof IncompleteCommand)) {
                 command.execute(optionList, ui);
+                ui.printQuizInputMessage();
                 command = getCommand(ui, optionList);
                 if (command instanceof IncorrectCommand) {
                     LOGGER.log(Level.INFO, "Invalid answer given for question");
                 } else if (command instanceof HintCommand) {
                     LOGGER.log(Level.INFO, "Hint shown");
-                } else {
+                } else if (command instanceof BookmarkCommand) {
                     LOGGER.log(Level.INFO, "Question bookmarked");
                 }
             }
@@ -107,7 +114,12 @@ public class SingleTopicQuiz implements Quiz {
     }
 
     private Command getCommand(Ui ui, OptionList optionList) {
-        String userInput = ui.getQuizInputFromUser();
-        return quizParser.parseCommand(optionList, userInput);
+        try {
+            String userInput = ui.getQuizInputFromUser();
+            return quizParser.parseCommand(optionList, userInput);
+        } catch (IOException e) {
+            return quizParser.parseCommand(optionList, "exception from getCommand " + e);
+        }
+
     }
 }
