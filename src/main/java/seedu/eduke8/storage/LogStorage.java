@@ -18,7 +18,7 @@ public class LogStorage extends LocalStorage {
      * Returns file where the logs are saved.
      *
      * @return Log file.
-     * @throws IOException  If the file is not found or cannot be written.
+     * @throws IOException If the file is not found or cannot be written.
      */
     @Override
     public File save() throws IOException {

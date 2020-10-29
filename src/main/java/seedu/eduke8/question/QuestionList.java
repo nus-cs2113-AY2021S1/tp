@@ -13,22 +13,36 @@ public class QuestionList implements DisplayableList {
     private ArrayList<Displayable> questions;  // List of questions for a particular topic
 
     public QuestionList(ArrayList<Displayable> questions) {
-        // The question list for topics must contain some questions about the topic
         assert questions.size() > 0;
 
         this.questions = questions;
     }
 
+    /**
+     * Returns the number of questions in the QuestionList object.
+     *
+     * @return Number of questions in the QuestionList object.
+     */
     @Override
     public int getCount() {
         return questions.size();
     }
 
+    /**
+     * Returns all of the questions in the QuestionList object.
+     *
+     * @return ArrayList of questions in the QuestionList object.
+     */
     @Override
     public ArrayList<Displayable> getInnerList() {
         return questions;
     }
 
+    /**
+     * Finds the question with the specified description in the QuestionList object.
+     *
+     * @param description Description of the question to be found.
+     */
     @Override
     public Displayable find(String description) throws Eduke8Exception {
         for (Displayable question : questions) {
