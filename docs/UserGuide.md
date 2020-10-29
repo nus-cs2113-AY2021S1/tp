@@ -371,7 +371,7 @@ Format: `finance summary`
 Example of usage:  
 `finance summary`  
 
-Expected outcome:  
+Expected utcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
 
@@ -411,6 +411,7 @@ The expected outcome is as follows:
 ## 5. FAQ
 
 ## 6. Command Summary
+
 Command | Format | Example
 ------- | ---------- | ------------
 addAttendance  | `event addAttendance /n EVENT_NAME /p MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
