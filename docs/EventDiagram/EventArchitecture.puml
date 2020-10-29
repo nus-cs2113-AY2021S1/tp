@@ -1,4 +1,6 @@
+
 @startuml
+scale max 1024 width
 hide circle
 skinparam classAttributeIconSize 0
 
@@ -12,6 +14,9 @@ Rectangle EventCommands {
 "{abstract} \n Command" <|-- CommandSearchEvent
 "{abstract} \n Command" <|-- CommandEventStatus
 "{abstract} \n Command" <|-- CommandEventCountdown
+"{abstract} \n Command" <|-- CommandAddEventAttendance
+"{abstract} \n Command" <|-- CommandDelEventAttendance
+"{abstract} \n Command" <|-- CommandViewEventAttendance
 }
 
 
@@ -34,7 +39,14 @@ EventList <-down- CommandEventStatus
 CommandEventCountdown <-- EventList
 EventList <-down- CommandEventCountdown
 
+CommandAddEventAttendance <-- EventList
+EventList <-down- CommandAddEventAttendance
 
+CommandDelEventAttendance <-- EventList
+EventList <-down- CommandDelEventAttendance
+
+CommandViewEventAttendance <-- EventList
+EventList <-down- CommandViewEventAttendance
 
 FileManager -> EventList
 
@@ -45,7 +57,9 @@ CommandEventStatus -down> Event
 CommandSearchEvent -down> Event
 CommandEventDel -down> Event
 CommandEventList -down> Event
-
+CommandAddEventAttendance -down> Event
+CommandDelEventAttendance -down> Event
+CommandViewEventAttendance -down> Event
 
 
 Duke -> Ui
