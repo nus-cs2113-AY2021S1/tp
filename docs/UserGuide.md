@@ -276,6 +276,9 @@ Expected outcomes:
 
 ![Example of usage 2](userGuidePic/addlog%20outcome2.png)  
 
+[Return to the top](#user-guide)  
+
+
 #### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
@@ -288,6 +291,9 @@ Expected outcomes:
 ![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
 
 ![Example of usage 2](userGuidePic/dellog%20outcome2.png)  
+
+[Return to the top](#user-guide)  
+
 
 #### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
@@ -317,6 +323,9 @@ You can use the command `import sample.csv /c hr /name Member /phone Contact /em
 The expected outcome is as follows:  
 
 ![Outcome](userGuidePic/import3.png)  
+
+
+[Return to the top](#user-guide)
 
 ## 5. FAQ
 
