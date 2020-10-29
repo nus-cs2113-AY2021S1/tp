@@ -605,9 +605,9 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 6:** `WatchlistCommand` is terminated.
 
-![WatchlistCommand After Step 6 State](images/WatchlistCommand-After-Step-6-State.png)
+![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
 
-*Figure 20: WatchlistCommand After Step 6 State*
+*Figure 20: WatchlistCommand After Create State*
 
 <br/>
 
@@ -622,7 +622,7 @@ All the other options in the watchlist command also follows a similar execution 
 
 <br/>
 
-**Step 8:** User decides to execute `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
+**Step 8:** The user now decides that the "NewAnime" watchlist is no longer needed and decides to execute `watchlist -d 2` to delete it.
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
