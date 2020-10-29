@@ -1,0 +1,14 @@
+@startuml
+actor user
+
+user --> NuSchedule : list
+NuSchedule --> Parser ++ : parse()
+Parser --> NuSchedule -- : PrintFullListCommand
+NuSchedule --> PrintFullListCommand ++ : execute()
+PrintFullListCommand --> UI ++ : PrintEventList()
+UI --> EventList ++: getEventList()
+EventList --> UI -- : eventList
+UI --> PrintFullListCommand --
+PrintFullListCommand --> NuSchedule --
+
+@enduml
