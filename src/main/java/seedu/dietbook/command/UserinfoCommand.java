@@ -4,7 +4,6 @@ import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
 import seedu.dietbook.exception.DietException;
 
-import java.io.DataInput;
 
 public class UserinfoCommand extends Command {
     @Override

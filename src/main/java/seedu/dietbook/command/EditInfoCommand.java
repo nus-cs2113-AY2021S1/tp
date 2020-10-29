@@ -3,8 +3,14 @@ package seedu.dietbook.command;
 import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.parser.Parser;
 
-public class DataCommand extends Command {
+public class EditInfoCommand extends Command {
+    String userInput;
+
+    public EditInfoCommand(String userInput) {
+        this.userInput = userInput;
+    }
 
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
@@ -13,7 +19,7 @@ public class DataCommand extends Command {
         } else if (commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
-        manager.getDataBase().init();
-        ui.printDatabase(manager.getDataBase().getFoodListString());
+        Parser.executeEditInfo(this.userInput, manager);
+        ui.printEditedPersonInfo(manager.getPerson().toString());
     }
 }
