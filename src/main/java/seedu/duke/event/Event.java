@@ -181,10 +181,11 @@ public class Event {
     }
 
     public String printEventParticipant() {
-        String output = "The following member" + ((eventParticipants.size() == 1) ? "" : "s") + " had participated in "
-                + eventName + " :\n";
-        for (int i = 0; i < eventParticipants.size(); i++) {
-            output = output.concat(eventParticipants.get(i).getMemberName() + "\n");
+        String output = "The following " + ((this.getEventParticipants().size() > 1) ? "members have" : "member has")
+                + " participated in this event:\n";
+        for (int i = 0; i < this.getEventParticipants().size(); i++) {
+            int index = i + 1;
+            output = output.concat(index + ". " + this.getEventParticipants().get(i).getMemberName() + "\n");
         }
         return output;
     }

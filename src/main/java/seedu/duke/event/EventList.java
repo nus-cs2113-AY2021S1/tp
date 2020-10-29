@@ -258,6 +258,12 @@ public class EventList {
         return output;
     }
 
+    /**
+     * Used to find Event with the given event name.
+     *
+     * @param eventName The event name used for search.
+     * @return returns Event if it exists in the event list, else return null.
+     */
     public static Event findEventByName(String eventName) {
         for (Event event : events) {
             if (event.getEventName().equalsIgnoreCase(eventName)) {
@@ -267,16 +273,29 @@ public class EventList {
         return null;
     }
 
-    public static boolean checkEventExistence(String memberName) {
+    /**
+     * Check if Event with the given member name exists.
+     *
+     * @param eventName The event name used for search.
+     * @return returns true if it exists in the event list, else return false.
+     */
+    public static boolean checkEventExistence(String eventName) {
         boolean hasExist = false;
         for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getEventName().equalsIgnoreCase(memberName)) {
+            if (events.get(i).getEventName().equalsIgnoreCase(eventName)) {
                 hasExist = true;
             }
         }
         return hasExist;
     }
 
+    /**
+     * Adds Member with the given member name into participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @param memberName The member name.
+     * @return returns user output.
+     */
     public static String addAttendance(String eventName, String memberName) {
         String output = "";
         if (!checkEventExistence(eventName)) {
@@ -302,17 +321,17 @@ public class EventList {
         return output;
     }
 
-
+    /**
+     * Displays participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @return returns user output.
+     */
     public static String listAttendance(String eventName) {
         String output = "";
         if (checkEventExistence(eventName)) {
             Event e = findEventByName(eventName);
-            output = "The following " + ((e.getEventParticipants().size() > 1) ? "members have" : "member has")
-                    + " participated in this event:\n";
-            for (int i = 0; i < e.getEventParticipants().size(); i++) {
-                int index = i + 1;
-                output = output.concat(index + ". " + e.getEventParticipants().get(i).getMemberName() + "\n");
-            }
+            output = output.concat(e.printEventParticipant());
             output = output.concat("Now you have " + e.eventParticipants.size() + " member"
                     + ((e.eventParticipants.size() == 1) ? "" : "s") + " attended "
                     + e.eventName + ".\n");
@@ -322,6 +341,13 @@ public class EventList {
         return output;
     }
 
+    /**
+     * Deletes Member with the given member name from participant list of event with the given event name.
+     *
+     * @param eventName The event name.
+     * @param memberName The member name.
+     * @return returns user output.
+     */
     public static String deleteAttendance(String eventName, String memberName) {
         String output = "";
         if (!checkEventExistence(eventName)) {
