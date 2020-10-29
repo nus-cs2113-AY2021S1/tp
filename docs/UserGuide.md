@@ -8,7 +8,7 @@
   - [2. Quick Start](#2-quick-start)
   - [3. Command Format](#3-command-format)
   - [4. Features](#4-features-br)
-      - [4.a. `help` - Views help](#4a-help---views-help)
+      - [4.a. `help` and `example` - Provides a condensed help list](#4a-help-and-example---provides-a-condensed-help-list)
       - [4.b. `add` - Adds a show](#4b-add---adds-a-show)
       - [4.c. `edit` - Edits your show details](#4c-edit---edits-your-show-details)
     - [4.d. `addreview` - Adding a review](#4d-addreview---adding-a-review)
@@ -80,6 +80,7 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 &nbsp;  
 
 If you are unfamilar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
+
 ## 3. Command Format
 
 * Words in `UPPER_CASE` and within the `<>` field are the inputs that need to be supplied by the user e.g. rating `<SCORE>`.
@@ -91,20 +92,40 @@ If you are unfamilar with the CLI (Command Line Interface), do give this helpful
 
 ## 4. Features <br>
 
-#### 4.a. `help` - Views help
- The help list contains information about all the possible accepted commands.
+#### 4.a. `help` and `example` - Provides a condensed help list
+
+ The `help` command provides a list which contains information about all the possible accepted commands.
  
  Format:
   `help`
   
- Example of usage:
- `help`
+ Example of usage: Let's say you want a quick description of each available command in **WatchNext**. Simply typing `help`
+ will display a condensed list of each command and description to you.
   
 Expected outcome:
  
 <img src = "images/help.PNG" width = "500">
  
 &nbsp;
+
+ >  **[NOTE]**
+ >
+ >  * The `help` command does not provide the correct format. The `example` command below provides the correct format for each command.
+
+To supplement the `help` command, The `example` command provides the correct format for every command available in **WatchNext**.
+ 
+ Format:
+  `example`
+
+Expected outcome:
+ 
+<img src = "images/example.PNG" width = "500">
+
+&nbsp;
+
+ >  **[NOTE]**
+ >  * The command format listed by the `example` command adheres to the same rules as the [command format in this user guide](#3-command-format).
+ >  * The `example` command is meant to be a quick refresher on the correct format, and is in no way meant to replace the user guide.Please refer to the user guide if you want a better understanding of each command.
 
 #### 4.b. `add` - Adds a show
  The `add` command adds a show into your existing watchlist.
@@ -377,7 +398,7 @@ The `season` command updates the current season of an existing show in your watc
  
 ### 4.m.a. `watch` - Watch a show in your watchlist
 
-The `watch` command increments the current episode that you are on, and automatically updates your watch time limit.
+The `watch` command updates the watching progress for your show, and automatically updates your watch time limit.
 
  Format:
   `watch <SHOWNAME> `
@@ -385,12 +406,31 @@ The `watch` command increments the current episode that you are on, and automati
  Example of usage:
  `watch friends`
  
+  > **[NOTE]**
+  > * The show name must have already been added into the list.
+  > * Refer to our section on [adding a show](#4b-add---adds-a-show) if you need help with adding a show into your watch list. 
+ 
+ Explanation of input: Assuming `friends` has already been added into the watch list, we use the example input `watch friends`. 
+ 
+ Before input:
+ 
+ <img src = "images/watch_before.PNG" width = "800">
+ &nbsp;
+ To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
+ The duration of the show friends is 60 minutes. the change in time limit can be seen in the expected outcome below. 
+ 
+ 
  Expected outcome:
   
- <img src = "images/watch.PNG" width = "800">
+ <img src = "images/watch_after.PNG" width = "800">
   
  &nbsp;
-
+ 
+ Note from the expected outcome that the show WatchHistory has been updated from S1E1 to S1E2. That is because you have told the program that you have watched S1E1 of friends, and 
+ are now watching S1E2 of friends!<br>
+ 
+ In addition, the previously set time limit of 120 minutes has been reduced to 60 minutes.
+ 
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
 The `updatetimelimit` command updates your current watch time limit.

@@ -56,12 +56,12 @@ This section will show you the requirements that you need to fulfill in order to
 ### 2.a Prerequisites
 
 1. **JDK `11`**  
-<br>   <br> 
+<br>   
 > **[NOTE]**
 > The `WatchNext.jar` file is compiled using the Java version mentioned above.
 
 2. **IntelliJ IDEA IDE**
- <br>  <br> 
+ <br>  
 > **[NOTE]**
 > IntelliJ has Gradle and JavaFx plugins installed by default.
 > Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
