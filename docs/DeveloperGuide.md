@@ -243,7 +243,7 @@ If no corresponding items, the functions will return null.
 This feature is facilitated by `CountdownCommand`.
 
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
-![countdown_command_sd](../images/countdown_command_SD.jpg)
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
 
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
