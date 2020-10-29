@@ -29,7 +29,7 @@ deactivate ShowList
 WatchCommand -> UI : printChangeEpisode()
 activate UI
 UI -> WatchCommand : printChangeEpisode()
-deactivate UI
+
 
 else Finished season
 WatchCommand -> ShowList : increment currentEpisode
@@ -40,18 +40,18 @@ ShowList--> WatchCommand
 deactivate ShowList
 
 WatchCommand -> UI : printChangeEpisode()
-activate UI
+
 UI --> WatchCommand :
 WatchCommand -> UI : printWatchingNewSeason()
 UI --> WatchCommand :
-deactivate UI
+
 
 else Finished series
 
 WatchCommand -> UI : printFinishedAllSeasons()
-activate UI
+
 [<--UI :
-deactivate UI
+
 end
 
 WatchCommand -> WatchTime : watchDurationUpdate(showDuration)
@@ -64,7 +64,9 @@ deactivate WatchCommand
 
 
 WatchTime -> UI : printDailyWatchTimeLeft()
+
 [<--UI :
+deactivate UI
 
 deactivate UI
 
