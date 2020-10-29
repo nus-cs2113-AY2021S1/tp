@@ -91,9 +91,9 @@ Adds a new note to the list of note items (think of it as a notebook).
 
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
-💡 Each note has to have a unique title and it is case-insensitive.
-💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
-💡 Set `ISPIN` to true if you want the note to be pinned.  
+💡 Each note has to have a unique title and it is case-insensitive. <br>
+💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional. <br>
+💡 Set `ISPIN` to true if you want the note to be pinned. <br>
 💡 Set `ISARHCIVE` to true if you want the note to be archived.
 
 Subsequently, the application prompts the user to enter the content of the note. 
@@ -143,8 +143,8 @@ Example of usage:
 `list-n /archive`
 
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
-💡 Use `/sort down` to display the list of notes in descending order (Z-A).
-💡 The archived notes will **ONLY** be listed in chronological order.
+💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
+💡 The archived notes will **ONLY** be listed in chronological order. <br>
 💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
 
 Expected output:
