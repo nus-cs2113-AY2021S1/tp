@@ -17,9 +17,9 @@ public class SaveManagerTest {
         File goalTracker = new File(path + "_gt.txt");
         File manualTracker = new File(path + "_mt.txt");
         File autoTracker = new File(path + "_at.txt");
-        File saveTxtMt = new File(ManualTrackerSaver.getInstance().fullPath);
-        File saveTxtGt = new File(GoalTrackerSaver.getInstance().fullPath);
-        File saveTxtAt = new File(AutoTrackerSaver.getInstance().fullPath);
+        File saveTxtMt = new File("./data/save.txt");
+        File saveTxtGt = new File("./data/save1.txt");
+        File saveTxtAt = new File("./data/save2.txt");
         assertEquals(saveTxtMt, manualTracker);
         assertEquals(saveTxtGt, goalTracker);
         assertEquals(saveTxtAt, autoTracker);
