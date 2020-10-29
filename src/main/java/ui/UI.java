@@ -237,7 +237,8 @@ public class UI {
      */
     public void printHelp() {
         System.out.println("Current version: v2.0");
-        System.out.println("Below are all the commands and brief descriptions of their functions in the form of command - function: ");
+        System.out.println("Below are all the commands and brief descriptions of their functions in the form of "
+               + "command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("assignment - add an assignment event with content, deadline and location");
         System.out.println("class - add a class event with content, deadline and location");
@@ -247,7 +248,8 @@ public class UI {
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
         System.out.println("There will be more upcoming features in later versions.");
-        System.out.println("For more information, please refer to detailed user guide: https://ay2021s1-cs2113t-f14-4.github.io/tp/");
+        System.out.println("For more information, please refer to detailed user guide: "
+               + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");
     }
 
     /**
