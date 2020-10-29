@@ -4,6 +4,7 @@ import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.Constants;
 import seedu.financeit.data.DateTimeItem;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
+import seedu.financeit.utils.ParamChecker;
 
 public class Entry extends DateTimeItem {
     private String description = " ";

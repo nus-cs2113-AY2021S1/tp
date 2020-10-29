@@ -65,7 +65,8 @@ public class CreateEntryCommand extends ParamHandler {
             this.entry.setEntryType(Constants.EntryType.EXP);
             break;
         case ParamChecker.PARAM_DESCRIPTION:
-            this.entry.setDescription(packet.getParam(paramType));
+            String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);
+            this.entry.setDescription(description);
             break;
         case ParamChecker.PARAM_CATEGORY:
             String category = ParamChecker.getInstance().checkAndReturnCategory(paramType);
