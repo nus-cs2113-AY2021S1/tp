@@ -1,16 +1,17 @@
 package anichan.parser;
 
 import anichan.exception.AniException;
-import anichan.command.BrowseCommand;
+import anichan.commands.BrowseCommand;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
+/**
+ * Handles parsing for browse command.
+ */
 public class BrowseParser extends CommandParser {
     private static final String SORT_PARAM = "s";
-    private static final String FILTER_PARAM = "f";
     private static final String ORDER_PARAM = "o";
     private static final String PAGE_PARAM = "p";
     private static final String ASCENDING_FIELD = "asc";
@@ -22,15 +23,21 @@ public class BrowseParser extends CommandParser {
     private static final String NOT_RECOGNISED = " is not recognised!";
     private static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
     private static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
-    private static final Logger LOGGER = getAniLogger(BrowseParser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(BrowseParser.class.getName());
 
     private BrowseCommand browseCommand;
 
     public BrowseParser() {
         browseCommand = new BrowseCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
+    /**
+     * Parses the string parameters and creates an executable browseCommand according to the parameters.
+     *
+     * @param description is the parameters portion of the user input
+     * @return an executable BrowseCommand object
+     * @throws AniException if an error is encountered while parsing
+     */
     public BrowseCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
         if (paramGiven.length > 1) {
@@ -40,6 +47,12 @@ public class BrowseParser extends CommandParser {
         return browseCommand;
     }
 
+    /**
+     * Loops through each parameter and sets the option specified by each parameter.
+     *
+     * @param paramGiven is a String Array containing the processed parameters
+     * @throws AniException if invalid parameters are parsed in
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(SPLIT_WHITESPACE);
@@ -53,11 +66,6 @@ public class BrowseParser extends CommandParser {
                 paramFieldCheck(paramParts);
                 paramExtraFieldCheck(paramParts);
                 checkSortType(paramParts);
-                break;
-            case FILTER_PARAM:
-                paramFieldCheck(paramParts);
-                paramExtraFieldCheck(paramParts);
-                browseCommand.setFilter(paramParts[1]);
                 break;
             case ORDER_PARAM:
                 paramFieldCheck(paramParts);
@@ -79,6 +87,12 @@ public class BrowseParser extends CommandParser {
         }
     }
 
+    /**
+     * Performs input validation of the order parameter and its field.
+     *
+     * @param paramField the field of the order parameter.
+     * @throws AniException if the field is invalid
+     */
     private void checkOrderType(String paramField) throws AniException {
         switch (paramField.trim()) {
         case ASCENDING_FIELD:
@@ -93,6 +107,12 @@ public class BrowseParser extends CommandParser {
         }
     }
 
+    /**
+     * Performs input validation of the sortType parameter and its field.
+     *
+     * @param paramParts the field of the sortType parameter.
+     * @throws AniException if the field is invalid
+     */
     private void checkSortType(String[] paramParts) throws AniException {
         switch (paramParts[1].trim()) {
         case NAME_FIELD:

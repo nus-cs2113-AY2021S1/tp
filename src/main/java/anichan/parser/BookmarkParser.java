@@ -1,8 +1,10 @@
 package anichan.parser;
 
-import anichan.command.BookmarkAnimeCommand;
+import anichan.commands.BookmarkCommand;
 import anichan.exception.AniException;
-import static anichan.logger.AniLogger.getAniLogger;
+
+import anichan.logger.AniLogger;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,20 +16,26 @@ public class BookmarkParser extends CommandParser {
     public static final String LIST_PARAM = "l";
     public static final String INFO_PARAM = "i";
     public static final String ADD_NOTE_PARAM = "n";
+    public static final String REMOVE_NOTE_PARAM = "r";
     public static final String DASH_PARAM = "-";
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
     private static final String DESCRIPTION_ERROR_HEADER = "Description :";
     private static final String BOOKMARK_LOAD_ERROR_HEADER = "Could not load bookmark command :";
-    private static final Logger LOGGER = getAniLogger(BookmarkParser.class.getName());
+    private static final String BOOKMARK_EPISODE = "edit episode";
+    private static final String BOOKMARK_DELETE = "delete";
+    private static final String BOOKMARK_ADD = "add";
+    private static final String BOOKMARK_REMOVE_NOTE = "remove note";
+    private static final String BOOKMARK_INDEX = "index";
+    private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
 
-    private BookmarkAnimeCommand bookmarkAnimeCommand;
+    private BookmarkCommand bookmarkCommand;
 
     public BookmarkParser() {
-        bookmarkAnimeCommand = new BookmarkAnimeCommand();
+        bookmarkCommand = new BookmarkCommand();
         // LOGGER.setLevel(Level.WARNING);
     }
 
-    public BookmarkAnimeCommand parse(String description) throws AniException {
+    public BookmarkCommand parse(String description) throws AniException {
         String[] paramGiven = getSplitDescription(description);
         if (paramGiven.length > 1) {
             parameterParser(paramGiven[1]);
@@ -36,56 +44,50 @@ public class BookmarkParser extends CommandParser {
             setSingleParameter(description);
         }
 
-        return bookmarkAnimeCommand;
+        return bookmarkCommand;
     }
 
     private void parameterParser(String paramGiven) throws AniException {
         String[] paramParts = paramGiven.split(" ");
+        paramEmptyCheck(paramGiven, paramParts);
         switch (paramParts[0].trim()) {
         case EPISODE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
-            if (!isInt(paramParts[1].trim())) {
-                String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Bookmark edit episode param requires integer.";
-                LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
-                throw new AniException(invalidParameter);
-            }
-            bookmarkAnimeCommand.setBookmarkEpisode(paramParts[1].trim());
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            checkIsInteger(paramGiven, paramParts[1], BOOKMARK_EPISODE);
+            bookmarkCommand.setBookmarkEpisode(paramParts[1].trim());
             break;
         case ADD_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
-            if (!isInt(paramParts[1].trim())) {
-                String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Bookmark Add param requires integer.";
-                LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
-                throw new AniException(invalidParameter);
-            }
-            bookmarkAnimeCommand.setAnimeIndex(paramParts[1].trim());
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            checkIsInteger(paramGiven, paramParts[1], BOOKMARK_ADD);
+            bookmarkCommand.setAnimeIndex(paramParts[1].trim());
             break;
         case DELETE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
-            if (!isInt(paramParts[1].trim())) {
-                String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Bookmark delete param requires integer.";
-                LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
-                throw new AniException(invalidParameter);
-            }
-            bookmarkAnimeCommand.setBookmarkIndex(paramParts[1].trim());
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            checkIsInteger(paramGiven, paramParts[1], BOOKMARK_DELETE);
+            bookmarkCommand.setBookmarkIndex(paramParts[1].trim());
             break;
         case LIST_PARAM:
-            bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            listFieldCheck(paramParts);
             break;
         case ADD_NOTE_PARAM:
             paramFieldCheck(paramParts);
+            paramParts = paramGiven.split(" ", 2);
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            bookmarkCommand.setBookmarkNote(paramParts[1].trim());
+            break;
+        case REMOVE_NOTE_PARAM:
+            paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
-            bookmarkAnimeCommand.setBookmarkNote(paramParts[1].trim());
+            bookmarkCommand.setBookmarkAction(paramParts[0]);
+            checkIsInteger(paramGiven, paramParts[1], BOOKMARK_REMOVE_NOTE);
+            bookmarkCommand.setNoteIndex(paramParts[1]);
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
@@ -93,22 +95,45 @@ public class BookmarkParser extends CommandParser {
         }
     }
 
+    private void checkIsInteger(String paramGiven, String paramParts, String bookmarkType) throws AniException {
+        if (!isInt(paramParts.trim())) {
+            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
+                    + System.lineSeparator() + " Bookmark " + bookmarkType + " param requires integer.";
+            LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
+            throw new AniException(invalidParameter);
+        }
+    }
+
+    private void paramEmptyCheck(String paramGiven, String[] paramParts) throws AniException {
+        if (paramParts.length == 0) {
+            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
+                    + System.lineSeparator() + " The parameter is empty";
+            LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
+            throw new AniException(invalidParameter);
+        }
+    }
+
+    private void listFieldCheck(String[] paramParts) throws AniException {
+        if (paramParts.length > 1) {
+            String invalidExtraField = PARAMETER_ERROR_HEADER + paramParts[1] + NOT_RECOGNISED
+                    + System.lineSeparator() + " Bookmark list should not have extra field.";
+            LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidExtraField);
+            throw new AniException(invalidExtraField);
+        }
+    }
+
     private void setFirstParameter(String paramGiven) throws AniException {
-        //Action edit(e) requires first parameter as bookmarkIndex
-        if (bookmarkAnimeCommand.getBookmarkAction().equals("e")
-                || bookmarkAnimeCommand.getBookmarkAction().equals("n")) {
-            if (!isInt(paramGiven.trim())) {
-                String invalidBookmarkIndex = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Bookmark index for edit episode requires integer.";
-                LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidBookmarkIndex);
-                throw new AniException(invalidBookmarkIndex);
-            }
-            bookmarkAnimeCommand.setBookmarkIndex(paramGiven.trim());
+        //Action edit(e), note(n), remove note(r) requires first parameter as bookmarkIndex
+        if (bookmarkCommand.getBookmarkAction().equals("e")
+                || bookmarkCommand.getBookmarkAction().equals("n")
+                || bookmarkCommand.getBookmarkAction().equals("r")) {
+            checkIsInteger(paramGiven, paramGiven, BOOKMARK_INDEX);
+            bookmarkCommand.setBookmarkIndex(paramGiven.trim());
         } else {
             boolean isEmpty = paramGiven.trim().equals("");
             if (!isEmpty) {
                 String invalidFirstParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                        + System.lineSeparator() + " Add or Delete should not have extra param.";
+                        + System.lineSeparator() + " Add/Delete/List should not have extra first param.";
                 LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidFirstParameter);
                 throw new AniException(invalidFirstParameter);
             }
@@ -122,8 +147,8 @@ public class BookmarkParser extends CommandParser {
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
-        bookmarkAnimeCommand.setBookmarkAction(INFO_PARAM);
-        bookmarkAnimeCommand.setBookmarkIndex(paramGiven.trim());
+        bookmarkCommand.setBookmarkAction(INFO_PARAM);
+        bookmarkCommand.setBookmarkIndex(paramGiven.trim());
     }
 
     private String[] getSplitDescription(String description) throws AniException {
@@ -133,11 +158,6 @@ public class BookmarkParser extends CommandParser {
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidDescription);
             throw new AniException(invalidDescription);
         }
-        //        else if (paramGiven.length < 2) {
-        //            String invalidDescription = DESCRIPTION_ERROR_HEADER + description + REQUIRE_ADDITIONAL_FIELD;
-        //            LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidDescription);
-        //            throw new AniException(invalidDescription);
-        //        }
         return paramGiven;
     }
 }

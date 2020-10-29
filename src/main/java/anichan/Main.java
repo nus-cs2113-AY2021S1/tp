@@ -1,29 +1,25 @@
 package anichan;
 
 import anichan.anime.AnimeData;
-import anichan.anime.AnimeStorage;
 import anichan.bookmark.Bookmark;
-import anichan.command.Command;
+import anichan.commands.Command;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.parser.Parser;
 import anichan.ui.Ui;
 import anichan.watchlist.Watchlist;
 import anichan.storage.StorageManager;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    private static final String ANIME_DATA_SOURCE_DIRECTORY = "/AniListData";
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
-    private static final Logger LOGGER = getAniLogger(Main.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
 
     private final Ui ui;
     private final Parser parser;
@@ -107,16 +103,16 @@ public class Main {
 
         user.setWorkspaceList(workspaceList);
         if (user.getTotalWorkspaces() == 0) {
-            Workspace newWorkspace = user.addWorkspace("Default");
-            ArrayList<Watchlist> watchlistList = new ArrayList<>();
-            watchlistList.add(new Watchlist("Default"));
-            newWorkspace.setWatchlistList(watchlistList);
-            user.setActiveWorkspace(newWorkspace);
-            LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
-
             try {
+                Workspace newWorkspace = user.addWorkspace("Default");
+                ArrayList<Watchlist> watchlistList = new ArrayList<>();
+                watchlistList.add(new Watchlist("Default"));
+                newWorkspace.setWatchlistList(watchlistList);
+                user.setActiveWorkspace(newWorkspace);
+                LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
+
                 storageManager.saveWorkspace(newWorkspace);
-                LOGGER.log(Level.INFO, "Workspace saved to storage: ");
+                LOGGER.log(Level.INFO, "Workspace saved to storage: " + newWorkspace.getName());
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
@@ -132,13 +128,12 @@ public class Main {
         }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
-        // ========================== Anime Data Setup ==========================
-
+        // ========================== AnimeDate Setup ==========================
         try {
-            AnimeStorage animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_DIRECTORY);
-            animeData = new AnimeData(animeStorage.readAnimeDatabase());
-        } catch (IOException e) {
-            ui.printErrorMessage(e.getMessage());
+            animeData = new AnimeData();
+        } catch (AniException exception) {
+            ui.printMessage("\tAnimeData: " + exception.getMessage());
+            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
         }
     }
 

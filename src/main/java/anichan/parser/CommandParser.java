@@ -2,6 +2,11 @@ package anichan.parser;
 
 import anichan.exception.AniException;
 
+import java.math.BigInteger;
+
+/**
+ * Represents an abstract class which each command parser will inherit from.
+ */
 public abstract class CommandParser {
     //Shared Constants by Parsers
     protected static final String NAME_PARAM = "n";
@@ -13,6 +18,10 @@ public abstract class CommandParser {
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
     protected static final String TOO_MUCH_FIELDS = " has too much fields";
     protected static final String NO_PARAMETER_PROVIDED = "No parameter provided";
+    protected static final String DESCRIPTION_CANNOT_BE_NULL = "description should not be null.";
+    protected static final String NOT_INTEGER = "Please provide an integer instead!";
+    protected static final String INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE = "Please ensure the integer is not larger"
+                                                                            + " than " + Integer.MAX_VALUE + ".";
 
     private static final String INTEGER_REGEX = "^\\d+$";
 
@@ -76,5 +85,21 @@ public abstract class CommandParser {
      */
     protected boolean isInt(String checkStr) {
         return checkStr.matches(INTEGER_REGEX);
+    }
+
+    protected int parseStringToInteger(String stringInteger) throws AniException {
+        try {
+            return Integer.parseInt(stringInteger);
+        } catch (NumberFormatException exception) {
+            try {
+                new BigInteger(stringInteger);
+            } catch (NumberFormatException sameException) {
+                throw new AniException(NOT_INTEGER);
+            }
+
+            // Thrown when stringInteger represents a valid integer that is outside
+            // of java.lang.Integer range (overflow).
+            throw new AniException(INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE);
+        }
     }
 }

@@ -1,46 +1,30 @@
 package anichan.anime;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
+import anichan.exception.AniException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static anichan.logger.AniLogger.getAniLogger;
+
 public class AnimeStorage {
 
-    /* Files */
     //private static final String RELATIVE_DIR = System.getProperty("user.dir");
-    //private static final String FILE_SEPARATOR = File.separator;
-    //private File dataFile;
-    //private String[] pathnames;
+    private static final String FILE_RESOURCE_ERROR = "File within resource stream could not be found!";
+
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
 
-    //public static void main(String[] args) throws IOException {
-    //    AnimeStorage  animeStorage = new AnimeStorage("/data/AniListData");
-    //    AnimeData animeList = new AnimeData(animeStorage.readAnimeDatabase());
-    //    animeList.printAll();
-    //}
-
-    public AnimeStorage(String fileFolder) {
-        // Set log levels
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
-    //private String prepareFile(String fileFolder) {
-    //return fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
-    //}
-
-    public ArrayList<Anime> readAnimeDatabase() throws IOException {
+    public ArrayList<Anime> readAnimeDatabase() throws AniException {
         LOGGER.log(Level.INFO, "Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
         for (int i = 1; i < 6; i++) {
@@ -55,7 +39,7 @@ public class AnimeStorage {
         return animeDataList;
     }
 
-    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) {
+    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) throws AniException {
         JSONParser parser = new JSONParser();
         JSONArray jsonList = new JSONArray();
         try {
@@ -130,7 +114,7 @@ public class AnimeStorage {
     }
 
 
-    public  String getDataFromJarFile(String filename) throws IOException {
+    public  String getDataFromJarFile(String filename) throws AniException {
         assert filename != null : "Filename should not be null.";
         try {
             InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
@@ -147,7 +131,8 @@ public class AnimeStorage {
             inputStream.close();
             return fileData;
         } catch (IOException e) {
-            throw e;
+            LOGGER.log(Level.SEVERE, FILE_RESOURCE_ERROR);
+            throw new AniException(FILE_RESOURCE_ERROR);
         }
 
     }

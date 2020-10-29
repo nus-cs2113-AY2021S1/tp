@@ -5,6 +5,8 @@ a | [[[]]]
 duplicate | []
 duplicate | []
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+s | [ 1 , 2 , 3 ]
+c | [0, 511]
 hello /|\ []
 a | [testing, this, thing]
 a | [1, 2, test?]

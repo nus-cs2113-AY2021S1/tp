@@ -17,26 +17,16 @@ public class Bookmark {
         this.noteList = new ArrayList<>();
     }
 
-    public Bookmark(ArrayList<Integer> animeBookmarkList, ArrayList<Integer> animeEpisode) {
-        this.animeBookmarkList = animeBookmarkList;
-        this.animeEpisode = animeEpisode;
-        //temp
-        this.noteList = new ArrayList<>();
-        for (int i : animeBookmarkList) {
-            noteList.add(new Note());
-        }
-    }
-
-    public void addAnimeBookmark(Integer animeIndex) {
+    public void addAnimeBookmark(int animeIndex) {
         this.animeBookmarkList.add(animeIndex);
-        this.animeEpisode.add(-1);
+        this.animeEpisode.add(0);
         this.noteList.add(new Note());
     }
 
-    public void addAnimeBookmarkEpisode(Integer animeIndex, Integer episodeNumber) {
+    public void addAnimeBookmarkEpisode(int animeIndex, int episodeNumber, Note note) {
         this.animeBookmarkList.add(animeIndex);
         this.animeEpisode.add(episodeNumber);
-        this.noteList.add(new Note());
+        this.noteList.add(note);
     }
 
     public void removeAnimeBookmark(int bookmarkIndex) {
@@ -56,24 +46,32 @@ public class Bookmark {
         return animeEpisode;
     }
 
-    public Anime getAnimeBookmarkByIndex(AnimeData animeData, Integer bookmarkIndex) {
+    public ArrayList<Note> getAnimeNote() {
+        return noteList;
+    }
+
+    public int getBookmarkEpisode(int bookmarkIndex) {
+        return animeEpisode.get(bookmarkIndex);
+    }
+
+    public Anime getAnimeBookmarkByIndex(AnimeData animeData, int bookmarkIndex) {
         int animeIndex = this.animeBookmarkList.get(bookmarkIndex);
-        return animeData.getAnimeByID(animeIndex);
+        return animeData.getAnime(animeIndex);
     }
 
     public int getBookmarkSize() {
         return animeBookmarkList.size();
     }
 
-    public void addNote(Integer bookmarkIndex, String note) {
+    public int getNotesSize(int bookmarkIndex) {
+        return  this.noteList.get(bookmarkIndex).getSize();
+    }
+
+    public void addNote(int bookmarkIndex, String note) {
         this.noteList.get(bookmarkIndex).addNote(note);
     }
 
-    public void addNote(Integer bookmarkIndex, String note, String date) throws AniException {
-        this.noteList.get(bookmarkIndex).addNote(note, date);
-    }
-
-    public String getNoteInString(Integer bookmarkIndex) {
+    public String getNoteInString(int bookmarkIndex) {
         StringBuilder sbNoteList = new StringBuilder(System.lineSeparator());
         if (noteList.get(bookmarkIndex).getSize() == 0) {
             sbNoteList.append("\tNotes is empty.. :(");
@@ -88,6 +86,11 @@ public class Bookmark {
         return sbNoteList.toString();
     }
 
+    public String removeNote(int bookmarkIndex, int noteIndex) {
+        String removeNote = noteList.get(bookmarkIndex).removeNote(noteIndex);
+        return removeNote;
+    }
+
     public String getListInString(AnimeData animeData) {
         StringBuilder sbAnimeList = new StringBuilder(System.lineSeparator());
         if (animeBookmarkList.size() == 0) {
@@ -99,17 +102,23 @@ public class Bookmark {
             sbAnimeList.append(i + 1);
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
-            sbAnimeList.append(animeData.getAnimeByID(animeIndex));
-            if (animeEpisode.get(i) != -1) {
-                sbAnimeList.append(" Ep: ");
-                sbAnimeList.append(animeEpisode.get(i));
-            }
+            sbAnimeList.append(animeData.getAnime(animeIndex));
             sbAnimeList.append(System.lineSeparator());
         }
         return sbAnimeList.toString();
     }
 
-    public String getAnimeBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
+    public String getAnimeBookmarkInfo(AnimeData animeData, int bookmarkIndex) {
         return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
+    }
+
+    public boolean checkExist(int animeIndex) {
+        boolean alreadyExist = false;
+        for (Integer animeID : animeBookmarkList) {
+            if (animeID.equals(animeIndex)) {
+                alreadyExist = true;
+            }
+        }
+        return alreadyExist;
     }
 }

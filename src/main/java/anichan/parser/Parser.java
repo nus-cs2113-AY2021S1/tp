@@ -1,16 +1,16 @@
 package anichan.parser;
 
-import anichan.command.HelpCommand;
-import anichan.command.Command;
-import anichan.command.ExitCommand;
+import anichan.commands.HelpCommand;
+import anichan.commands.Command;
+import anichan.commands.ExitCommand;
 import anichan.exception.AniException;
-import static anichan.logger.AniLogger.getAniLogger;
+import anichan.logger.AniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Parser {
-    private static final Logger LOGGER = getAniLogger(Parser.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(Parser.class.getName());
 
     /**
      * Prints the main menu of the application
@@ -29,11 +29,8 @@ public class Parser {
         }
 
         switch (command) {
-        case "addws":
-            return new AddWorkspaceParser().parse(description);
-
-        case "switchws":
-            return new SwitchWorkspaceParser().parse(description);
+        case "workspace":
+            return new WorkspaceParser().parse(description);
 
         case "browse":
             return new BrowseParser().parse(description);
