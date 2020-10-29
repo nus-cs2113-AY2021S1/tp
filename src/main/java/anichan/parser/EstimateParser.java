@@ -7,8 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
- * Handles parsing for estimate command.
+ * Represents the class to handle parsing for estimate command.
  */
 public class EstimateParser extends CommandParser {
     private static final String WORDS_PER_HOUR_OPTION = "wph";

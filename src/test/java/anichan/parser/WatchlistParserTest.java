@@ -6,6 +6,7 @@ import anichan.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class WatchlistParserTest {
     private WatchlistParser watchlistParser;
 

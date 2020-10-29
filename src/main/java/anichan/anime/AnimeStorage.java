@@ -1,30 +1,28 @@
 package anichan.anime;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 import anichan.exception.AniException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AnimeStorage {
+import static anichan.logger.AniLogger.getAniLogger;
 
+public class AnimeStorage {
 
     //private static final String RELATIVE_DIR = System.getProperty("user.dir");
     private static final String FILE_RESOURCE_ERROR = "File within resource stream could not be found!";
 
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
-
 
     public ArrayList<Anime> readAnimeDatabase() throws AniException {
         LOGGER.log(Level.INFO, "Retrieving information from DataSource.");
@@ -41,7 +39,7 @@ public class AnimeStorage {
         return animeDataList;
     }
 
-    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) {
+    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) throws AniException {
         JSONParser parser = new JSONParser();
         JSONArray jsonList = new JSONArray();
         try {

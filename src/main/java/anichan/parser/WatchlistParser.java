@@ -7,6 +7,10 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
+/**
+ * Represents the class to handle parsing for watchlist command.
+ */
 public class WatchlistParser extends CommandParser {
     private static final String CREATE_OPTION = "n";
     private static final String LIST_OPTION = "l";

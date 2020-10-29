@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Manages the storage of AniChan's data.
+ * Represents the class to manage all of AniChan's data.
  */
 public class StorageManager {
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
@@ -30,6 +30,7 @@ public class StorageManager {
     private final BookmarkStorage bookmarkStorage;
     private final ScriptStorage scriptStorage;
 
+    //@@author OngDeZhi
     /**
      * Creates a new instance of StorageManager with the specified storage directory.
      *
@@ -62,6 +63,12 @@ public class StorageManager {
 
     // ========================== Workspace Saving ==========================
 
+    /**
+     * Saves the workspace.
+     *
+     * @param workspace the name of workspace
+     * @throws AniException when an error occurred while trying to save the workspace
+     */
     public void saveWorkspace(Workspace workspace) throws AniException {
         new File(storageDirectory + workspace.getName()).mkdirs();
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
@@ -69,6 +76,13 @@ public class StorageManager {
 
     // ========================== Workspace Deletion ==========================
 
+    //@@author
+    /**
+     * Deletes directory containing specified workspace.
+     *
+     * @param name name of workspace
+     * @throws AniException when an error occurred while trying to delete directory
+     */
     public void deleteWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
@@ -89,6 +103,7 @@ public class StorageManager {
 
     // ========================== User Saving and Loading ==========================
 
+    //@@author OngDeZhi
     /**
      * Invokes the save method in UserStorage to save the user data.
      *
@@ -136,6 +151,7 @@ public class StorageManager {
 
     // ========================== Bookmark Saving and Loading ==========================
 
+    //@@author
     public void saveBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         bookmarkStorage.save(workspaceName, bookmark);
     }
@@ -146,11 +162,12 @@ public class StorageManager {
 
     // ========================== Script Loading ==========================
 
+    //@@author OngDeZhi
     /**
      * Loads the script file.
      *
      * @param workspaceName the name of the workspace where the script can be found
-     * @param fileName the file name of the script file
+     * @param fileName      the file name of the script file
      * @return the content of the script file
      * @throws AniException when an error occurred while loading the script data
      */

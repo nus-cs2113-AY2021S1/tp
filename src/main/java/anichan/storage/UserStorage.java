@@ -8,8 +8,9 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
- * Manages the storage of AniChan's user data.
+ * Represents the class to manage user data.
  */
 public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";

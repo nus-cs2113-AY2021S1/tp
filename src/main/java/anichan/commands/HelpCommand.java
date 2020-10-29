@@ -1,5 +1,6 @@
 package anichan.commands;
 
+import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.anime.AnimeData;
 import anichan.logger.AniLogger;
@@ -8,23 +9,41 @@ import anichan.storage.StorageManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
+/**
+ * Represents the command to show the full command list of the program.
+ */
 public class HelpCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(HelpCommand.class.getName());
     private static String output;
-    
+
+    /**
+     * Creates a new instance of HelpCommand.
+     */
     public HelpCommand() {
         // LOGGER.setLevel(Level.WARNING);
         this.output = buildHelpOutput();
     }
-    
+
     /**
-     * Shows help function.
+     * Returns a string representation of the full command list of the program.
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) {
         return output;
     }
-    
+
+    /**
+     * Builds and returns a string representation of the full command list of the program.
+     * 
+     * @return a string representation of the full command list of the program.
+     */
     private String buildHelpOutput() {
         StringBuilder result = new StringBuilder();
         LOGGER.log(Level.INFO, "Start of build help output");
