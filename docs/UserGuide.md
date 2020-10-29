@@ -60,7 +60,6 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 Orientate yourself to the command line interface. As seen in the figure below, the red arrow points to
 where you have to type in commands.
 ![Windows CLI](UG_Figures/windowsCLI.png)
-Figure 1.1 Windows CLI
 
 3. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
 shown in Figure 1.3, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".
