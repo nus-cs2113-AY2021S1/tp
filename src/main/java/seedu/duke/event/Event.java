@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
@@ -19,7 +18,7 @@ public class Event {
     protected LocalDate date;
     protected String symbol;
     protected boolean isDone;
-    public ArrayList<Member> attendance = new ArrayList<>();
+    public ArrayList<Member> eventParticipants = new ArrayList<>();
 
 
     public Event(String name, String date, String time) {
@@ -141,12 +140,28 @@ public class Event {
         }
     }
 
-    public void setAttendance(Member m) {
-        this.attendance.add(m);
+    public void setEventParticipants(Member m) {
+        if (m != null) {
+            this.eventParticipants.add(m);
+        }
     }
 
-    public ArrayList<Member> getAttendance() {
-        return attendance;
+    public ArrayList<Member> getEventParticipants() {
+        return eventParticipants;
+    }
+
+    public String getStringParticipants() {
+        String output = "[";
+        if (eventParticipants.get(0) != null) {
+            for (int i = 0; i < eventParticipants.size(); i++) {
+                output = output.concat(eventParticipants.get(i).getMemberName());
+                if (i < (eventParticipants.size() - 1)) {
+                    output = output.concat(" & ");
+                }
+            }
+        }
+        output = output.concat("]");
+        return output;
     }
 
     /**
@@ -163,6 +178,14 @@ public class Event {
     public boolean containsDateKeyword(LocalDate localDate) {
         boolean containsKeyword = date.equals(localDate);
         return containsKeyword;
+    }
+
+    public String printEventParticipant() {
+        String output = "The following member" + ((eventParticipants.size() == 1) ? "" : "s") + " had participated in " + eventName + " :\n";
+        for (int i = 0; i < eventParticipants.size(); i++) {
+            output = output.concat(eventParticipants.get(i).getMemberName() + "\n");
+        }
+        return output;
     }
 }
 

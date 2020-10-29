@@ -3,32 +3,25 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
-import static seedu.duke.hr.MemberList.isNumber;
-
 public class CommandAddEventAttendance extends Command {
     private UserInput savedInput;
-    private int index;
 
     @Override
     public String execute() {
-        String output = "";
-        index = Integer.parseInt(savedInput.getArg(""));
-        String memberName = savedInput.getArg("n");
-        //output = EventList.addAttendance(index, memberName);
+        String output;
+        output = EventList.addAttendance(savedInput.getArg("n"), savedInput.getArg("m"));
         return output;
     }
 
     @Override
-    public int validate(UserInput userInput) {
-        userInput = savedInput;
-        if (userInput.getCategory().equals("event") && (userInput.getCommand().equalsIgnoreCase("addAttendance")
-                || userInput.getCommand().equalsIgnoreCase("addAttend")
-                || userInput.getCommand().equalsIgnoreCase("aa"))) {
-            if (userInput.getNumArgs() >= 2) {
-                if (userInput.getArg("") == null || userInput.getArg("n") == null || !isNumber(userInput.getArg(""))) {
-                    return ARGUMENT_ERR;
-                }
-                if (userInput.getArg("").equals("") || userInput.getArg("n").equals("")) {
+    public int validate(UserInput input) {
+        savedInput = input;
+        if (input.getCategory().equals("event") && (input.getCommand().equalsIgnoreCase("addAttendance")
+                || input.getCommand().equalsIgnoreCase("addAttend")
+                || input.getCommand().equalsIgnoreCase("aa"))) {
+            if (input.getNumArgs() >= 2) {
+                if (input.getArg("n") == null || input.getArg("m") == null
+                        || input.getArg("n").equals("") || input.getArg("m").equals("")) {
                     return ARGUMENT_ERR;
                 }
                 return ACCEPT;
@@ -42,6 +35,6 @@ public class CommandAddEventAttendance extends Command {
 
     @Override
     public String help() {
-        return "Syntax: event addEvent /n <Name> /d <Date YYYY-MM-DD> /t <Time>";
+        return "Syntax: event addAttendance /n <Event Name> /m <Participant Name>";
     }
 }

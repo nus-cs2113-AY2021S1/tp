@@ -2,13 +2,13 @@
 package seedu.duke.event;
 
 import seedu.duke.hr.Member;
+import seedu.duke.hr.MemberList;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -257,6 +257,49 @@ public class EventList {
         }
         return output;
     }
+
+    public static Event findEventByName(String eventName) {
+        for (Event event : events) {
+            if (event.getEventName().equalsIgnoreCase(eventName)) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+    public static boolean checkEventExistence(String memberName) {
+        boolean hasExist = false;
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getEventName().equalsIgnoreCase(memberName)) {
+                hasExist = true;
+            }
+        }
+        return hasExist;
+    }
+
+    public static String addAttendance(String eventName, String memberName) {
+        String output = "";
+        if (checkEventExistence(eventName)) {
+            Event e = findEventByName(eventName);
+            if (MemberList.checkMemberExistence(MemberList.members, memberName)) {
+                if (!MemberList.checkMemberExistence(e.getEventParticipants(), memberName)) {
+                    Member m = MemberList.findMemberByName(memberName);
+                    e.setEventParticipants(m);
+                    output = "Noted. I have added this participant to this event:\n";
+                    output = output.concat(m.getMemberName() + "\n");
+                    output = output.concat("Now you have " + e.eventParticipants.size() + " member" + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in " + e.eventName + ".\n");
+                } else {
+                    output = output.concat("Member attendance had already been taken!\n");
+                }
+            } else {
+                output = output.concat("Member does not exist!\n");
+            }
+        } else {
+            output = output.concat("Event does not exist!\n");
+        }
+        return output;
+    }
+
 
 }
 
