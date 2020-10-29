@@ -3,14 +3,17 @@ google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFX
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Setting Up](#2-setting-up)
+2. [Getting Started](#2-getting-started) <br>
+2.1 [Prerequisites](#21-prerequisites) <br>
+2.2 [Setting Up](#22-setting-up)
 3. [Design](#3-design) <br>
 3.1 [Architecture](#31-architecture) <br>
 3.2 [UI](#32-ui) <br>
 3.3 [Storage](#33-storage) <br>
 3.4 [Logic](#34-logic) <br>
 3.5 [Model](#35-model) <br>
-3.6 [Location](#36-location) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5.1 [Event](#351-event) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5.2 [Location](#352-location) <br>
 4. [Implementation](#4-implementation) <br>
 4.1 [Add events](#41-add-events) <br>
 4.2 [Clear events](#42-clear-events) <br>
@@ -21,7 +24,8 @@ google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFX
 4.7 [View events](#47-view-events) <br>
 5. [Documentation](#5-documentation) <br>
 5.1 [Product scope](#51-product-scope) <br>
-5.2 [User stories](#52-user-stories) <br>
+5.2 [Value proposition](#52-value-proposition) <br>
+5.3 [User stories](#53-user-stories) <br>
 
 ## 1. Introduction
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
@@ -30,7 +34,7 @@ NUSchedule will prove itself to be the most efficient way to manage your commitm
   
 This developer guide provides information on the architecture and design of the application, NUSchedule. This guide
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
-to refer to even if you are already a contributor
+to refer to even if you are already a contributor. 
 
 ## 2. Getting Started
 This section provides information to help you get NUSchedule up and running on your own computers.
@@ -89,14 +93,16 @@ The `logic` component parses the user input and executes commands based on the g
  3.	The result passes back to the UI, which then displays relevant feedback to the user.  
 
 ### 3.5 Model
-__API__:`EventList.java`   
-The `Model` component stores an ArrayList, events, that represents the current list of events.
+The `Model` component stores an ArrayList, events, that represents the current list of events and available locations.
 
-### 3.6 Location
-![Location class diagram](diagrams/Location.jpeg)
+#### 3.5.1 Event
+__API__:`EventList.java`   
+
+### 3.5.2 Location
+![location class diagram](diagrams/Location.jpeg) <br>
 *Figure 3.6.1 Class diagram for location component*
 
-__API:__ `LocationList.java` <br>
+__API:__ `LocationList.java`  
 
 The `LocationList` is made up of an ArrayList of Locations, which is a type of variable that stores different information 
 for different types of location (eg. `Building`, `Hostel`, etc.). However, do note that any place that is 
@@ -105,7 +111,7 @@ file. The location will still be part of the location list before the app closes
 saved as part of the Event information.
 
 <br>There is a separate api for bus stops (`BusStopList.java`), which stores all available bus stops 
-and their information. Although the variable is declared in the main NUScheule class, it is only referenced 
+and their information. Although the variable is declared in the main NUSchedule class, it is only referenced 
 and not edited in any part of the program.
 
 <br>The `Location` component 
@@ -183,16 +189,19 @@ Step 4. If conversion is not possible, then it will check if the given string is
 * Prints an error message if invalid   
 
 The sequence diagram below shows exactly which methods, from which classes, are called to obtain the required location. 
-![](diagrams/Locate.jpg)
+![locate sequence diagram](diagrams/LocateSequence.png) <br>
 *Figure 4.4.1 Sequence diagram for locate function*
 
 ### 4.5 Reminders
+[Proposed] This feature will be able to remind users of the events that will occur today when they open the application.
+
 
 ### 4.6 Sort events
 
 ### 4.7 View events
 
 ## 5. Documentation
+This section provides information 
 
 ### 5.1 Product scope
 __Target user profile:__
@@ -204,10 +213,11 @@ __Target user profile:__
 * prefers typing instead of mouse interactions
 
 ### 5.2 Value proposition
+NUSchedule aims to assist the target audience with:  
+* managing all their events in one application (personal or work)
+* 
 
-{Describe the value proposition: what problem does it solve?}
-
-### 5.3 User Stories
+### 5.3 User stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -215,7 +225,7 @@ __Target user profile:__
 |1.0|freshman|know module details and lesson venues|be on time for my activities
 |1.0|forgetful person|be reminded of the deadlines for my assignments|submit on time
 |1.0|tutor|know the estimated time for my students to travel to their next class|pace my lesson suitably
-|1.0|hardworking student|track how much time I have spent studying\allocate my time efficiently
+|1.0|hardworking student|track how much time I have spent studying|allocate my time efficiently
 |2.0|exchange student|know the optimal path to reach my next destination|avoid getting lost
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
