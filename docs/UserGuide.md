@@ -481,6 +481,7 @@ Format: `bye`
 
 
 ## Command Summary
+
 | Action | Format, Examples |
 |--------|------------------|
 |Add|add EVENT_TYPE EVENT_DESCRIPTION; DD/MM/YY <br> Eg: add personal Family Meeting; 18/09/20 <br> <br> add EVENT_TYPE EVENT_DESCRIPTION; LINK; DD/MM/YY; HH:MM <br> Eg: add Zoom CS2113T Meeting; zoom.com.sg;  16/09/20 2100 <br> <br> add EVENT_TYPE EVENT_DESCRIPTION; LOCATION; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
