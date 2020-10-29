@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Manages the storage of AniChan's watchlist data.
+ */
 public class WatchlistStorage extends Storage {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_DECODE = " \\| ";
@@ -28,12 +31,24 @@ public class WatchlistStorage extends Storage {
 
     private final String storageDirectory;
 
+    /**
+     * Creates a new instance of WatchlistStorage with the specified storage directory.
+     *
+     * @param storageDirectory the specified path to storage directory in hard disk
+     */
     public WatchlistStorage(String storageDirectory) {
         this.storageDirectory = storageDirectory;
     }
 
     // ========================== Save and Load ==========================
 
+    /**
+     * Saves the watchlist list at the specified workspace folder.
+     *
+     * @param workspaceName the name of the workspace to save the list under
+     * @param watchlistList the watchlist list to save
+     * @throws AniException when an error occurred while saving the watchlist list data
+     */
     public void save(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
         String watchlistDirectory = storageDirectory + workspaceName + File.separator;
         String watchlistFilePath = watchlistDirectory + WATCHLIST_FILE_NAME;
@@ -43,6 +58,14 @@ public class WatchlistStorage extends Storage {
         writeFile(watchlistFilePath, encodedWatchlistString);
     }
 
+    /**
+     * Loads the watchlist list from the specified workspace.
+     *
+     * @param workspaceName the name of the workspace to load the list from
+     * @param watchlistList the watchlist list to load the data into
+     * @return the load result message
+     * @throws AniException when an error occurred while loading the watchlist list data
+     */
     public String load(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
         String watchlistFilePath = storageDirectory + workspaceName + File.separator + WATCHLIST_FILE_NAME;
         String fileContent = readFile(watchlistFilePath);
@@ -79,6 +102,12 @@ public class WatchlistStorage extends Storage {
 
     // ========================== Encode and Decode ==========================
 
+    /**
+     * Encodes the watchlistList object into a readable string representation for saving in file.
+     *
+     * @param watchlistList the arraylist of watchlist object to be encoded
+     * @return the readable string representation of the arraylist of watchlist object
+     */
     private String encode(ArrayList<Watchlist> watchlistList) {
         StringBuilder sbWatchlist = new StringBuilder();
         for (Watchlist watchlist : watchlistList) {
@@ -91,6 +120,12 @@ public class WatchlistStorage extends Storage {
         return sbWatchlist.toString();
     }
 
+    /**
+     * Decodes the readable string representation of the watchlist object.
+     *
+     * @param line the readable string representation of the watchlist object
+     * @return the decoded watchlist object
+     */
     private Watchlist decode(String line) {
         String[] lineSplit = line.split(WATCHLIST_LINE_DELIMITER_FOR_DECODE, 2);
         if (!isValidWatchlistString(lineSplit)) {
@@ -125,6 +160,12 @@ public class WatchlistStorage extends Storage {
 
     // ========================== Validation ==========================
 
+    /**
+     * Validates the string representation of the watchlist object.
+     *
+     * @param lineSplit the string representation of the watchlist object
+     * @return {@code true} if the string representation is valid; false otherwise
+     */
     private boolean isValidWatchlistString(String[] lineSplit) {
         boolean isValidSplitLength = (lineSplit.length == 2);
         if (!isValidSplitLength) {
@@ -140,6 +181,12 @@ public class WatchlistStorage extends Storage {
                 && (lineSplit[1].endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
     }
 
+    /**
+     * Validates the anime index read from the string representation of the watchlist object.
+     *
+     * @param animeIndex the index of an anime series
+     * @return {@code true} if the index is valid; false otherwise
+     */
     private boolean isValidAnimeIndex(String animeIndex) {
         boolean isAnimeIndexBlank = animeIndex.isBlank();
         if (isAnimeIndexBlank) {
