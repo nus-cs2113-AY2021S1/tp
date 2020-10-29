@@ -181,6 +181,92 @@ If you encounter any errors, take note of the following warnings. If problems st
 * Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to 1.1) 
 * Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
 
+##2. Timetable
+Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
+Do you wish there was a simple, visual way to organise your day and foresee any clashes in your schedule?
+The timetable mode intends to address these issues, helping you keep track of your work and helping you achieve
+purposeful productivity.
+
+This section contains 5 commands to navigate the Timetable mode —
+* 2.1. Entering timetable mode
+* 2.2. Adding classes
+* 2.3. Adding activities
+* 2.4. Showing links
+* 2.5. Showing schedule
+
+###2.1 Entering timetable mode:
+`cd 3` / `cd timetable`
+
+If you find it difficult to make plans due to uncertainties in your schedule, this timetable mode presents your upcoming
+events at a glance to know what to expect and stay on track. This command brings you to enter the timetable mode.
+
+Instruction:
+
+1. `cd 3` / `cd timetable`
+
+Expected output:
+![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
+
+**Useful information:**
+* You can use this command from any mode to access the timetable mode easily and quickly!
+
+###2.2 Adding classes: 
+`add class`
+
+If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
+arrange your classes in a systematic manner with this feature. Make sure that you are currently in the timetable mode
+(refer to 2.1).
+
+Instruction:
+
+1. `add class`
+2. Answer the questions as prompted
+
+Expected output:
+![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
+
+If you encounter any errors, take note of the following warning.
+
+**Warning:**
+* Ensure that you follow the format for answering the questions.
+Error will be shown if the questions are not answered in a suitable format.
+
+###2.3 Adding activities:
+`add activity`
+
+It can be hard to view your upcoming events at a glance.
+Similar to the previous feature, this command allows you to add activities outside of classes to your schedule.
+
+Instruction:
+
+1. `add activity`
+2. Answer the questions as prompted
+
+Expected output:
+![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
+
+###2.4 Showing links:
+`show link`
+
+If you find it hard to keep track of all your conference links for your classes or activities, this command will present
+all links relevant to you for the next 2 hours.
+
+Instruction:
+1. `show link`
+
+Expected output:
+![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
+
+###2.5 Showing schedule:
+`show schedule`
+
+If you wish to view your schedule for the next seven days with all the activities, use this command.
+
+Instruction:
+1. `show schedule`
+
+Expected output:
+![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
 
 ## 3. Academic
 Have you ever had to dig through tons of emails to look for the contact of a particular TA 
@@ -369,8 +455,114 @@ Instruction:
 Expected output:
 ![Academic_3_12](Images/AcademicUG/Academic_3_12.png)
 
+##4. Flashcard
 
+Do you wish you had a quick way to refer to the content that will be tested in your upcoming tests?
+Or a more efficient way to verify your knowledge?
+Perhaps it is also difficult to scour your handwritten notes to find a particular piece of information.
+The flashcard mode aims to tackle these aspects that may hinder your learning process.
 
+This section contains 6 commands to navigate the Flashcard mode —
+* 4.1. Entering flashcard mode
+* 4.2. Adding flashcards
+* 4.3. Listing flashcards
+* 4.4. Deleting flashcards
+* 4.5. Testing content
+* 4.6. Finding relevant flashcards
+
+###4.1 Entering flashcard mode:
+`cd 5` / `cd flashcard`
+
+If you find it hard to be fully proficient in your study topics, this flashcard mode is a medium for you to actively
+learn and memorise. This enables you to learn effectively through repetition, helping you to remember information better
+in the long-term. This command allows you to enter the flashcard mode.
+
+Instruction:
+1. `cd 5` / `cd flashcard`
+
+Expected output:
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
+
+**Useful information:**
+* You can use this command from any mode to access the flashcard mode easily and quickly!
+
+###4.2 Adding flashcards:
+`add`
+
+To assist you in your studies, there needs to be a knowledge base of content to be revised.
+You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
+(refer to 5.1).
+
+Instruction:
+1. `add`
+2. Enter the question and answer as prompted e.g. `4+4`, `8`
+
+Expected output:
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
+
+If you encounter any errors, take note of the following warning.
+
+**Warning:**
+* “back” cannot be added as an answer for the flashcard.
+This is because “back” is used as a command to exit the test mode later on.
+If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+
+###4.3 Listing flashcards:
+`list`
+
+If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
+have been added.
+
+Instruction:
+1. `list`
+
+Expected output:
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
+
+###4.4 Deleting flashcards:
+`delete`
+
+When you have a flashcard that is no longer relevant to you or contains wrong information, you can delete the flashcard
+from the flashcard deck.
+
+Instruction:
+1. `delete`
+2. Enter the card index of the flashcard to be deleted as prompted, e.g. `3`
+
+Expected output:
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
+
+**Useful information:**
+* You can use the `list` command to check the card index.
+
+###4.5 Testing content:
+`test`
+
+Grading your own work is one of the best ways to revise as it helps you effectively retain information.
+After adding the flashcards, you may wish to revise the content by testing yourself. 
+
+When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
+
+Instruction:
+1. `test`
+2. Answer the questions as prompted
+3. `back`
+
+Expected ouput:
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+###4.6 Finding relevant flashcards:
+`find`
+
+If you wish to look through the flashcards containing only a particular search term, use this command.
+
+Instruction:
+1. `find`
+2. Enter the desired search term as prompted
+
+Expected output:
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
 
 ### Adding a todo: `todo`
 Adds a new item to the list of todo items.
