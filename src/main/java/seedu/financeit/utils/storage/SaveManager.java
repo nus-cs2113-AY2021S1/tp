@@ -212,20 +212,20 @@ public class SaveManager {
     }
 
     @Test
-    public void Test() {
+    public void test() {
         InputParser parser = InputParser.getInstance();
         CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
         addSave(packet);
         String path = dirPath + "/testcase2149855246427094876";
-        File GoalTracker = new File(path + "_gt.txt");
-        File ManualTracker = new File(path + "_mt.txt");
-        File AutoTracker = new File(path + "_at.txt");
+        File goalTracker = new File(path + "_gt.txt");
+        File manualTracker = new File(path + "_mt.txt");
+        File autoTracker = new File(path + "_at.txt");
         File saveTxtMt = new File(ManualTrackerSaver.getInstance().fullPath);
         File saveTxtGt = new File(GoalTrackerSaver.getInstance().fullPath);
         File saveTxtAt = new File(AutoTrackerSaver.getInstance().fullPath);
-        Assert.assertEquals(saveTxtMt, ManualTracker);
-        Assert.assertEquals(saveTxtGt, GoalTracker);
-        Assert.assertEquals(saveTxtAt, AutoTracker);
+        Assert.assertEquals(saveTxtMt, manualTracker);
+        Assert.assertEquals(saveTxtGt, goalTracker);
+        Assert.assertEquals(saveTxtAt, autoTracker);
         deleteSave(packet);
     }
 }
