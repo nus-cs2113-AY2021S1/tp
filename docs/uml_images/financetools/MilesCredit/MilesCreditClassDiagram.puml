@@ -1,6 +1,7 @@
 @startuml
+hide circle
 skinparam classAttributeIconSize 0
-class Handler {
+class "{abstract} \nHandler" {
  +handleMilesCredit(:CommandPacket)
 }
 
@@ -8,5 +9,5 @@ class MilesCredit {
  +calculateMiles()
 }
 
-Handler --> MilesCredit : Calculates miles
+"{abstract} \nHandler" --> MilesCredit : Calculates miles
 @enduml

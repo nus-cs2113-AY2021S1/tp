@@ -89,7 +89,7 @@ Add a ledger to the record, representing a date.
 
 >Syntax
 
-    ledger add <param type> <parameter> 
+    ledger new <param type> <parameter> 
         <param type> @ /date: Date of the ledger, and all the entries under that ledger.
             <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
 
@@ -101,19 +101,58 @@ Add a ledger to the record, representing a date.
 Remove a specified ledger from the record, referenced by date or id on the list.
 
 >Syntax
-
+ 
     ledger delete <param type> <parameter> 
         <param type> @ /date: Date of the ledger, and all the entries under that ledger.
             <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
         <param type> @ /id: Index of the ledger on the ledger list.
             <parameter:Integer>: Input number that is between 1 and the last index in the ledger list.
+        Note that either /date or /id is supplied.
 
 > Example: 
 
-    example
+    ==================================
+    = List of Ledgers                =
+    ==================================
+    | Ledger Number  | Ledger Date    |
+    ----------------------------------
+    | 1              | 2020-04-04     |
+     - - - - - - - - - - - - - - - - -
+    | 2              | 2020-05-04     |
+     - - - - - - - - - - - - - - - - -
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger delete /id 2
+
+
+
+    [ SYSTEM MESSAGE ]: Ledger 2 : [ May 4 2020 ] deleted!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger list
+
+
+    ==================================
+    = List of Ledgers                =
+    ==================================
+    | Ledger Number  | Ledger Date    |
+    ----------------------------------
+    | 1              | 2020-04-04     |
+     - - - - - - - - - - - - - - - - -
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
     
 ## Manual Tracker 3: Open ledger
 Users will gain access into the entries associated with the specified ledger.
+If the ledger do not exist, it will be created only if the param type supplied is "/date". This results in creation of the ledger instance
+in accordance to the date supplied.
 Tracker switches mode to track entries in the ledger that has been opened.
 Refer to Feature Entry Tracker onwards for instructions concerned with the 
 state of the application following this command.
@@ -128,7 +167,21 @@ state of the application following this command.
 
 > Example: 
 
-    example
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger open /date 200404
+
+
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
     
 ## Manual Tracker 4: Show ledger list
 Shows the record of ledgers that has been added.
@@ -139,9 +192,58 @@ Shows the record of ledgers that has been added.
 
 > Example: 
 
-    example
+    [ SYSTEM MESSAGE ]: Ledger 2 : [ May 4 2020 ] created!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger list
+
+
+    ==================================
+    = List of Ledgers                =
+    ==================================
+    | Ledger Number  | Ledger Date    |
+    ----------------------------------
+    | 1              | 2020-04-04     |
+    - - - - - - - - - - - - - - - - -
+    | 2              | 2020-05-04     |
+    - - - - - - - - - - - - - - - - -
+
+## Manual Tracker 4: Print command list
+Prints available commands that users can enter in for manualTracker.
+
+>Syntax
+
+    commands
+
+> Example: 
+
+    [ SYSTEM MESSAGE ]: Welcome to Manual Tracker!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> commands
+
+
+    ======================================================================
+    = List of Commands                                                   =
+    ======================================================================
+    | No.            | Command            | Input Format                  |
+    ----------------------------------------------------------------------
+    | 1.             | Open ledger        | ledger open /date {YYMMDD}    |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 2.             | New ledger         | ledger new /date {YYMMDD}     |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 3.             | list ledgers       | ledger list                   |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 4.             | delete ledgers     | ledger delete /date {YYMMDD}  |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 5.             | exit to main menu  | exit                          |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-## Manual Tracker 4: Exit to Main Menu
+## Manual Tracker 5: Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
 
 >Syntax
@@ -149,8 +251,66 @@ Exit to main menu where users can choose another feature to use.
     exit
 
 > Example: 
+    
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> exit
 
-    example
+
+    [ SYSTEM MESSAGE ]: Exiting from ManualTracker
+
+
+       ||====================================================================||
+       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+       ||(100)==================|     Welcome to       |================(100)||
+       ||||$||        ~         '------========--------'                ||$||||
+       ||<< |        |$|              || ____ ||                         | >>||
+       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+       ||<<|        || ||           || <||  >)  ||                        |>>||
+       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||====================================================================||>||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+    ||(100)==================|     FinanceIt!       |================(100)||>||
+    ||||$||        ~         '------========--------'                ||$||||>||
+    ||<< |        |$|              || ____ ||                         | >>||)||
+    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+    ||<<|        || ||           || <||  >)  ||                        |>>||=||
+    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+    ||>>|  12                     *||(___)_||*   1989                  |<<||
+    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+    ||||$|                 ~| A finanace tracking app |~               |$||||
+    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+    ||====================================================================||
+    Status: 
+    =====================================================================================================
+    = Welcome to Main Menu                                                                              =
+    =====================================================================================================
+    | No.            |  Feature                                           |  Commands                    |
+    -----------------------------------------------------------------------------------------------------
+    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [3]            |  Account Summary                                   |  acc                         |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [4]            |  Goals Tracker                                     |  goal                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [5]            |  Financial Calculator                              |  financial                   |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [6]            |  Save Manager                                      |  saver                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [7]            |  Toggle Log On or Off                              |  logger                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [8]            |  Quit The Program                                  |  exit                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ____________________________________________________________
+    >>>
+
+
     
 # Features : Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
@@ -176,8 +336,26 @@ Add an entry to the ledger record.
         <param type> @ -i/-e: Represents income and expenses for the entry type.
 > Example: 
 
-    example
-    
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1501
+
+
+
+
+
+
+    [ SYSTEM MESSAGE ]: Entry 2 : [ 15:00 ] [ Go to the poll ] created!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
+
 ## Entry Tracker 2: Edit entry
 Add an entry to the ledger record.
 Users only need specify the param to edit, there is no need to fill out all params.
@@ -200,9 +378,44 @@ Parameter 1 is however compulsory, as there is a need to reference a particular 
                                 They represent shortcuts to recognised entry categories that were specified 
                                 within the application.
         <param type> @ -i/-e: Represents income and expenses for the entry type.
+        
 > Example: 
 
-    example
+    ======================================================================================================================
+    = List of Entries for Ledger [2020-04-04]                                                                            =
+    ======================================================================================================================
+    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+    ----------------------------------------------------------------------------------------------------------------------
+    | 1              | Income         | TRANSPORT      | $1500.00       | 15:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry edit /id 1 /time 1600
+
+
+
+
+    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] edited!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry list
+    
+    ======================================================================================================================
+    = List of Entries for Ledger [2020-04-04]                                                                            =
+    ======================================================================================================================
+    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+    ----------------------------------------------------------------------------------------------------------------------
+    | 1              | Income         | TRANSPORT      | $1500.00       | 16:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     
 ## Entry Tracker 3: Remove entry
 Remove a specified entry from the record, referenced by id on the list.
@@ -215,7 +428,53 @@ Remove a specified entry from the record, referenced by id on the list.
 
 > Example: 
 
-    example
+    ======================================================================================================================
+    = List of Entries for Ledger [2020-04-04]                                                                            =
+    ======================================================================================================================
+    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+    ----------------------------------------------------------------------------------------------------------------------
+    | 1              | Income         | TRANSPORT      | $1500.00       | 16:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 2              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 3              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
+    |                |                |                |                |                | 1.the rainbow used to be nice  |
+    |                |                |                |                |                | 2. and colorful, haha          |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 4              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry delete /id 1
+
+
+
+    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] deleted!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry list
+
+
+    ======================================================================================================================
+    = List of Entries for Ledger [2020-04-04]                                                                            =
+    ======================================================================================================================
+    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+    ----------------------------------------------------------------------------------------------------------------------
+    | 1              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 2              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
+    |                |                |                |                |                | 1.the rainbow used to be nice  |
+    |                |                |                |                |                | 2. and colorful, haha          |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     
 ## Entry Tracker 4: Show entry list
 Shows the record of entries that has been added.
@@ -226,9 +485,105 @@ Shows the record of entries that has been added.
 
 > Example: 
 
-    example
+    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] deleted!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> entry list
+
+
+    ======================================================================================================================
+    = List of Entries for Ledger [2020-04-04]                                                                            =
+    ======================================================================================================================
+    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+    ----------------------------------------------------------------------------------------------------------------------
+    | 1              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 2              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
+    |                |                |                |                |                | 1.the rainbow used to be nice  |
+    |                |                |                |                |                | 2. and colorful, haha          |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+## Entry Tracker 5: Print command list
+Prints available commands that users can enter in for manualTracker.
+
+>Syntax
+
+    commands
+
+> Example: 
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> commands
+
+
+    ========================================================================================================
+    = List of Commands                                                                                     =
+    ========================================================================================================
+    | No.            | Command                 | Input Format                                               |
+    --------------------------------------------------------------------------------------------------------
+    | 1.             | New entry               | entry new /time {HHMM} /desc {string} /cat {category}      |
+    |                |                         | -[i/e]                                                     |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 2.             | Edit entry              | entry edit /id {integer} {param-type/parameter to edit}    |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 3.             | list entries            | entry list                                                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 4.             | delete entry            | entry delete /id {integer}                                 |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 5.             | list transaction        | cat                                                        |
+    |                | categories              |                                                            |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | 6.             | exit to manual tracker  | exit                                                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+## Entry Tracker 6: Print categories
+Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
+
+>Syntax
+
+    cat
+
+> Example: 
+
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> cat
+
+
+    ==================================
+    = List of Valid Categories       =
+    ==================================
+    | Category       | Input          |
+    ----------------------------------
+    | bll            | BILLS          |
+     - - - - - - - - - - - - - - - - -
+    | slr            | SALARY         |
+     - - - - - - - - - - - - - - - - -
+    | tpt            | TRANSPORT      |
+     - - - - - - - - - - - - - - - - -
+    | shp            | SHOPPING       |
+     - - - - - - - - - - - - - - - - -
+    | tvl            | TRAVEL         |
+     - - - - - - - - - - - - - - - - -
+    | alw            | ALLOWANCE      |
+     - - - - - - - - - - - - - - - - -
+    | fd             | FOOD           |
+     - - - - - - - - - - - - - - - - -
     
-## Entry Tracker 5: Exit to Manual Tracker main routine
+## Entry Tracker 7: Exit to Manual Tracker main routine
 Exit to Manual tracker where users can choose another ledger.
 
 >Syntax
@@ -237,7 +592,20 @@ Exit to Manual tracker where users can choose another ledger.
 
 > Example: 
 
-    example
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> exit
+
+
+    Exiting subroutine...
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
     
 # Features : FinanceTools
 FinanceTools contains tools related to financial calculations.
@@ -406,418 +774,92 @@ Exit FinanceTools to Main Menu.
 
     exit
 ![Example](screenshots/financetools/Exit(1).PNG)
-## 2. List
-Shows full list of appended tasks. You may modify the output format for each task with the appropriate arguements. 
 
->Syntax
+# Features : Goal Tracker
+Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
-    list <parameter type> <parameter 1> 
-        @ <parameter type>:     /format , this parameter is optional.
-            # <parameter 1>:        {datetime, day, month, week, year}. 
-                                    (You may string these keywords in a single entry for your viewing preferences.)
+## Goal Tracker 1 : Set Goal
+### Goal Tracker 1.1 : Set Income Goal
+Setting of income goal for respective months.
+
+>syntax
+
+    income *amount* for *month in int form*
+    
+ 
 >Example:
 
-   ```
-   >>> list
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: FRIDAY SEPTEMBER 2020)
-   3. [E][X] run the cat (at: FRIDAY SEPTEMBER 2020 to FRIDAY SEPTEMBER 2020)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   >>> list /format datetime
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: 2020/09/18 20:00:00)
-   3. [E][X] run the cat (at: 2020/09/18 15:00:00 to 2020/09/18 16:00:00)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   >>> list /format day year
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: FRIDAY 2020)
-   3. [E][X] run the cat (at: FRIDAY 2020 to FRIDAY 2020)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   >>>
-   ```
+    income 5000 for 08
+![Example](screenshots/goaltracker/setincomegoal.png)
 
+### Goal Tracker 1.2 : Set Expense Goal
+Setting of expense goal for respective months.
 
-## 3. Commands/ Command
-Displays all outstanding commands executable by the user, with guidance on acceptable syntaxes.
+>syntax
 
->Syntax
-
-    command
-    commands
-
->Example
-
-   ```
-   >>> command
-
-   These are implemented commands that you can use.
-
-   1. bye
-           < Exit the program >
-
-   2. list <parameter type> <parameter 1>
-           < Show full list of appended tasks. >
-           @ <parameter type>:      /format , this parameter is optional.
-                   # <parameter 1>:         {datetime, day, month, week, year}. You may string these keywords in a single entry for your viewing preferences.
-
-   3. commands
-           < Show full list of commands >
-
-   4. done <integer>
-           < Mark a task by number <integer> as done. >
-           @ <integer>:     Task number on the list. Out-of-bounds and negative inputs are not allowed.
-
-   5. todo <string>
-           < Will be interpreted as input tasks. Input task will then be added to the list. >
-           <!> Tasks added this way are assumed to not be done and recorded accordingly.
-
-   6. event <string> <parameter type> <parameter 1> <parameter 2> to <parameter 3> <parameter 4>
-           < Add a task which is happening in the future with specific date and time >
-           @ <string>:      Task name.
-           @ <parameter type>:      /at
-                   # <parameter 1>:         Date in this format: YYMMDD or YYYY/M/D.
-                   # <parameter 2>:         Start time
-                   # <parameter 3>:         Date in this format: YYMMDD or YYYY/M/D. Feel free to omit this if the event starts and ends on the same day.
-                   # <parameter 4>:         End time
-
-   7. deadline <string> <parameter type> <parameter 1> <parameter 2>
-           < Add a task with a specific deadline>
-           @ <string>:      Task name.
-           @ <parameter type>:      /by
-                   # <parameter 1>:         Date in this format: YYMMDD or YYYY/M/D.
-                   # <parameter 2>:         Deadline time
-
-      Note that commands 6 and 7 accepts the following date and time formats:
-           @Date: YYYY*MM*DD or YYMMDD or YY/M/D or YY/MM/D
-           @Time: HH*MM*SS or HH*MM or HHMM or H
-           Note that * represents any non-numeric symbol.
-
-   8. remove <integer>
-           < Remove task by number <integer> from list. >
-      @ <integer>:  Task number on the list. Out-of-bounds and negative inputs are not allowed.
-
-   9. save <parameter type 1> <parameter 1> <parameter type 2> <parameter 1>
-           < Saves current task to local disk. A default folder is: >
-           [~\savestates\]
-           @ <parameter type 1>:    /name
-                   # <parameter 1>:         File name, with or without extension. Only .txt files accepted.
-           @ <parameter type 2>:    /dir
-                   # <parameter 1>:         Specify a custom save folder path.
-
-   10. load <parameter type 1> <parameter 1> <parameter type 2> <parameter 1>
-           < Loads saved task from local disk. A default folder is: >
-           [~\savestates\]
-           @ <parameter type 1>:    /name
-                   # <parameter 1>:         File name, with or without extension. Only .txt files accepted.
-           @ <parameter type 2>:    /dir
-                   # <parameter 1>:         Specify a custom save folder path.
-
-   11. saves
-           < Show full list of save states in default directory >
-
-   12. find <string>
-           < Conducts 1-to-1 search over all tasks for the string match. >
-   ```
-
-
-## 4. Done
-Marks a task with index number specified as done. The index number starts from 1.
-   
->Syntax
-
-   done <integer>
-      @ <integer>:     Task number on the list. Out-of-bounds and negative inputs are not allowed.
+    expense *amount* for *month in int form*
    
 >Example
-   
-   ```
-   >>> list
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: FRIDAY 2020)
-   3. [E][X] run the cat (at: FRIDAY 2020 to FRIDAY 2020)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   >>> done 1
-   Nice! I've marked this task as done:
-     [T][O] run the dog
-   ____________________________________________________________________________________________________
-   ```
-## 5. Todo
-Adds a Todo task to the list. 
-* Contains only the task name. 
-* Does not take in datetime inputs.   
 
->Syntax
+    expense 2000 for 07
+![Example](screenshots/goaltracker/setexpensegoal.png)
+
+## Goal Tracker 2 : Display Goal
+Display income and expense goal for the individual month.
+
+>syntax
+
+    display income/expense for *month in int form*
+   
+>Example
+
+    display income for 08
+    display expense for 07
+![IncomeExample](screenshots/goaltracker/displayincome.png)
+![ExpenseExample](screenshots/goaltracker/displayexpense.png)
+
+## Goal Tracker 3 : Edit Goal
+Edit income and expense goal for the individual month.
+
+>syntax
+
+    edit income/expense *amount* for *month in int form*
  
-   todo <string>
-        @ <string>:      Task name.
-        <!> Tasks added this way are assumed to not be done and recorded accordingly.
-
 >Example
+    
+    edit income 2000 for 08
+    edit expense 1000 for 07
+![EditIncome](screenshots/goaltracker/editincome.png)
+![EditExpense](screenshots/goaltracker/editexpense.png)
 
-   ```
-   >>> todo this is a todo
-   Got it! I've added this task:
-     [T][X] this is a todo
-   Now, you have 1 task  in the list.
-   ____________________________________________________________________________________________________
-   ```
+## Goal Tracker 4 : Exit Goal Tracker
+Exit Goal Tracker program and return to FinanceIt main UI.
 
-## 6. Event
-Adds an Event task to the list. 
-* Contains the task name, the start datetime and the end datetime. 
-* The start and end datetimes can be registered via a myriad of input formats.
+>syntax
 
->Syntax  
+    exit
+    
+>Example 
 
-    event <string> <parameter type> <parameter 1> <parameter 2> to <parameter 3> <parameter 4>
-        @ <string>:      Task name.
-        @ <parameter type>:      /at
-                # <parameter 1>:         Date in this format: YYMMDD or YYYY/M/D.
-                # <parameter 2>:         Start time
-                # <parameter 3>:         Date in this format: YYMMDD or YYYY/M/D. 
-                                         (Feel free to omit this if the event starts and ends on the same day.)
-                # <parameter 4>:         End time
-
-
->Example
-
-   ```
-   >>> event this is an event /at 200919 1222 thisseperatorcanbeanythingsolongitdoesnotcontainnumbers 1300
-   Got it! I've added this task:
-     [E][X] this is an event (at: SATURDAY SEPTEMBER 2020 to SATURDAY SEPTEMBER 2020)
-   Now, you have 2 tasks in the list.
-   ____________________________________________________________________________________________________
-   ```
-   >Note that commands 6 and 7 accepts the following date and time formats:
-        <br>@Date: YYYY*MM*DD or YYMMDD or YY/M/D or YY/MM/D
-        <br>@Time: HH*MM*SS or HH*MM or HHMM or H
-        <br>Note that * represents any non-numeric symbol.
-
-
-## 7. Deadline 
-Adds an Event task to the list. 
-* Contains the task name and a deadline datetime. 
-* The deadline datetime can be registered via a myriad of input formats.
-
->Syntax
-
-    deadline <string> <parameter type> <parameter 1> <parameter 2>
-        < Add a task with a specific deadline>
-        @ <string>:      Task name.
-        @ <parameter type>:      /by
-                # <parameter 1>:         Date in this format: YYMMDD or YYYY/M/D.
-                # <parameter 2>:         Deadline time
->Example
-
-   ```
-   >>> deadline this is a deadline /by 200919 1222
-   Got it! I've added this task:
-     [D][X] this is a deadline (by: SATURDAY SEPTEMBER 2020)
-   Now, you have 3 tasks in the list.
-   ____________________________________________________________________________________________________
-   ```
-   
-   >Note that commands 6 and 7 accepts the following date and time formats:
-        <br>@Date: YYYY\*MM\*DD or YYMMDD or YY/M/D or YY/MM/D
-        <br>@Time: HH\*MM\*SS or HH*MM or HHMM or H
-        <br>Note that * represents any non-numeric symbol.
-
-## 8. Remove task 
-Removes a task with index number specified from the list. The index number starts from 1.
-
->Syntax
-
-    remove <integer>
-        @ <integer>:  Task number on the list. 
-                      (Out-of-bounds and negative inputs are not allowed.)
->Example
-
-   ```
-   >>> list
-   1. [T][X] this is a todo
-   2. [E][X] this is an event (at: SATURDAY 2020 to SATURDAY 2020)
-   3. [D][X] this is a deadline (by: SATURDAY 2020)
-   ____________________________________________________________________________________________________
-   >>> remove 1
-   Process completed successfully!
-           [NOTE]: You have 2 task/s left.
-   Noted! I've removed this task:
-     [T][X] this is a todo
-   ____________________________________________________________________________________________________
-   >>> list
-   1. [E][X] this is an event (at: SATURDAY 2020 to SATURDAY 2020)
-   2. [D][X] this is a deadline (by: SATURDAY 2020)
-   ____________________________________________________________________________________________________
-   ```
-   
-## 9. Manual save 
-Saves current list of tasks onto local disk as a save state. 
-* Users can specify the save directory, and the name of the save state.
-* Should a save state with the same input name already exists, the user will be prompted on whether they wish for the save file to be overwritten or not.
-
->Syntax
-
-    save <parameter type 1> <parameter 1> <parameter type 2> <parameter 1>
-        @ <parameter type 1>:    /name
-                # <parameter 1>:         File name, with or without extension. Only .txt files accepted.
-        @ <parameter type 2>:    /dir
-                # <parameter 1>:         Specify a custom save folder path.
-
->Example
-
-   ```
-   >>> saves
-   Save states in [~\savestates\]:
-   1.      lastSave.txt
-   2.      test.txt
-   ____________________________________________________________________________________________________
-   >>> save /name test.txt
-   The file name supplied already exists in the directory. Are you sure you want to override it? [Y\N]
-   ____________________________________________________________________________________________________
-   >>> y
-   Process completed successfully!
-           [NOTE]: Alright, save state below will be overwritten:  [~\savestates\test.txt\]
-   Noted! I've saved the list to the following directory: [~\savestates\]
-
-   1. [E][X] this is an event (at: SATURDAY 2020 to SATURDAY 2020)
-   2. [D][X] this is a deadline (by: SATURDAY 2020)
-   ____________________________________________________________________________________________________
-   ```
-
-## 10. Manual load
-Loads an existing save state from local disk into the program as a list of tasks. 
-* Users can specify the save directory, and the name of the save state.
-* Should there be an open list in the program, the user will be prompted on whether they wish for the list to be overwritten or save onto local disk first.
-
->Syntax
-
-    load <parameter type 1> <parameter 1> <parameter type 2> <parameter 1>
-        @ <parameter type 1>:    /name
-                # <parameter 1>:         File name, with or without extension. Only .txt files accepted.
-        @ <parameter type 2>:    /dir
-                # <parameter 1>:         Specify a custom save folder path.
-                
->Example
-
-   ```
-   >>> list
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: FRIDAY 2020)
-   3. [E][X] run the cat (at: FRIDAY 2020 to FRIDAY 2020)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   >>> load /name test
-   There is a list currently being constructed. Would you like to save it first? [Y\N]
-   ____________________________________________________________________________________________________
-   >>> y
-   Process completed successfully!
-           [NOTE]: Alright, Enter the save command now:
-   >>> save /name anothersave
-   Noted! I've saved the list to the following directory: [~\savestates\]
-
-   1. [T][X] run the dog
-   2. [D][O] walk the park (by: FRIDAY 2020)
-   3. [E][X] run the cat (at: FRIDAY 2020 to FRIDAY 2020)
-   4. [T][X] asad
-   ____________________________________________________________________________________________________
-   Noted! I've loaded the list from the following directory: [~\savestates\]
-
-   1. [E][X] this is an event (at: SATURDAY 2020 to SATURDAY 2020)
-   2. [D][X] this is a deadline (by: SATURDAY 2020)
-   ____________________________________________________________________________________________________
-   ```
-
-## 11. Show save states
-Show full list of save states in the default directory.
-
->Syntax
-
-    saves
-
->Example
-
-   ```
-   >>> saves
-   Save states in [~\savestates\]:
-   1.      anothersave.txt
-   2.      lastSave.txt
-   3.      test.txt
-   ____________________________________________________________________________________________________
-   ```
-
-## 12. Find 
-Conducts 1-to-1 word search over all tasks in their task name.
-
->Syntax
-
-    find <string>
-
->Example
-
-  ```
-  >>> list
-  1. [T][X] run the dog
-  2. [D][O] walk the park (by: FRIDAY 2020)
-  3. [E][X] run the cat (at: FRIDAY 2020 to FRIDAY 2020)
-  4. [T][X] asad
-  ____________________________________________________________________________________________________
-  >>> find the
-  0. [T][X] run the dog
-  1. [D][O] walk the park (by: FRIDAY SEPTEMBER 2020)
-  2. [E][X] run the cat (at: FRIDAY SEPTEMBER 2020 to FRIDAY SEPTEMBER 2020)
-  Total number of results: 3!
-  ____________________________________________________________________________________________________
-  ```        
-
-# Summary of Commands
-## Main menu
-No. | Command | Purpose | Syntax
-----|---------|---------|-------
-1|bye|Exit the program|_bye_ 
-2|list | Lists all tasks|_list /format \<format\>_
-3|command/s|Lists all commands|_command_, _commands_
-4|done|Mark task as done|_done \<index\>_
-5|todo|Add todo to list|_todo \<task name\>_
-6|event|Add event to list|_event \<task name\> /at \<start datetime\> to \<end datetime\>_
-7|deadline|Add deadline to list|_deadline \<taskname\> /by \<deadline datetime\>_  
-8|remove|Remove task from list|_remove \<index\>_
-9|save|Manually saves list to save state|_save /name \<name\> /dir \<path\>_
-10|load|Manually loads save state to list|_load /name \<name\> /dir \<path\>_
-11|saves|Shows all save states|_saves_
-12|find|Search task by string|_find \<word\>_
+    exit
+    
 
 ## Manual Tracker
-No. | Command | Purpose | Syntax
-----|---------|---------|-------
-1|bye|Exit the program|_bye_ 
-2|list | Lists all tasks|_list /format \<format\>_
-3|command/s|Lists all commands|_command_, _commands_
-4|done|Mark task as done|_done \<index\>_
-5|todo|Add todo to list|_todo \<task name\>_
-6|event|Add event to list|_event \<task name\> /at \<start datetime\> to \<end datetime\>_
-7|deadline|Add deadline to list|_deadline \<taskname\> /by \<deadline datetime\>_  
-8|remove|Remove task from list|_remove \<index\>_
-9|save|Manually saves list to save state|_save /name \<name\> /dir \<path\>_
-10|load|Manually loads save state to list|_load /name \<name\> /dir \<path\>_
-11|saves|Shows all save states|_saves_
-12|find|Search task by string|_find \<word\>_
+No. | Command | Syntax | 
+----|---------|---------|
+1.|Open ledger|_ledger open /date {YYMMDD}_|
+2.|New ledger|_ledger new /date {YYMMDD}_|
+3.|list ledgers|_ledger list_|
+4.|delete ledgers|_ledger delete /date {YYMMDD}_|;
+5.|exit to main menu|_exit_|
 
 ## Entry tracker
-No. | Command | Purpose | Syntax
-----|---------|---------|-------
-1|bye|Exit the program|_bye_ 
-2|list | Lists all tasks|_list /format \<format\>_
-3|command/s|Lists all commands|_command_, _commands_
-4|done|Mark task as done|_done \<index\>_
-5|todo|Add todo to list|_todo \<task name\>_
-6|event|Add event to list|_event \<task name\> /at \<start datetime\> to \<end datetime\>_
-7|deadline|Add deadline to list|_deadline \<taskname\> /by \<deadline datetime\>_  
-8|remove|Remove task from list|_remove \<index\>_
-9|save|Manually saves list to save state|_save /name \<name\> /dir \<path\>_
-10|load|Manually loads save state to list|_load /name \<name\> /dir \<path\>_
-11|saves|Shows all save states|_saves_
-12|find|Search task by string|_find \<word\>_
+No. | Command | Syntax |
+----|---------|---------|
+1.|New entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
+2.|Edit entry|_entry edit /id {integer} {param-type/parameter to edit}_|
+3.|list entries|_entry list_|
+4.|delete entry|_entry delete /id {integer}_|
+5.|list transaction categories|_cat_|
+6.|exit to manual tracker|_exit_|
+
