@@ -65,7 +65,58 @@ Scheduler--; Does the job
 ### Viewing help: help (Colin Ng)
 
 ### Adding an event: add (Matthew Gani)
+New to creating your events using Scheduler--;?
+Utilize our simple to use yet effective add feature which comprises of 3 different event types. 
+You can add dates and times to these events and even website links and locations to some of them! 
 
+Format: `add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATON]; DD/MM/YY; HH:MM AM/PM`
+
+•	Types of events:
+1.	Zoom Meetings: Zoom
+2.	NUS timetable/lessons: Timetable
+3.	Personal Events: Personal 
+
+•	Only the full word will be recognized as a valid event type. (E.g persona will not match Personal)
+
+•	Time can be in the format of HHMM(24-hour) or HH:MM AM/PM (12-hour)
+
+•	Timetable events can contain: <br>
+a.	Description, date and time <br>
+b.	Description, location, date and time
+
+•	Zoom events can contain: <br>
+a.	Description and link <br>
+b.	Description, link, date and time
+
+•	Personal events can contain: <br>
+a.	Description <br>
+b.	Description and date <br>
+c.	Description, date and time
+
+Examples: <br>
+•	`add Zoom CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
+•	`add personal Family Meeting; 18/09/20`  <br>
+•	`add Timetable CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`
+
+Expected Output:
+```
+_________________________________
+You have successfully added this event to your list!
+[Z][✕] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+_________________________________
+```
+```
+_________________________________
+You have successfully added this event to your list!
+[P][✕] Family Meeting on 2020-09-18
+_________________________________
+```
+```
+_________________________________
+You have successfully added this event to your list!
+[T][✕] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
+_________________________________
+```
 ### List events: list (Marcus Ng)
 
 #### List all events
@@ -93,6 +144,46 @@ Scheduler--; Does the job
 ### Reminder: reminder (Qing Ning)
 
 ### Extracting events from texts: extract (Matthew Gani)
+Ever feel tired of reading long emails everyday? 
+You can use our extract function which will help you read any text and extract out possible dates and times. 
+You’ll be able to choose the dates and times detected and create a Personal event. 
+
+The extract feature detects dates in the DD/Month name/YYYY format or the Month name/ DD/YYYY format which is used the most in emails. 
+
+Format: `extract TEXT SUBJECT; TEXT BODY`
+
+Example: `extract CG2271 Quiz 2; Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.`
+
+Expected Output:
+````
+_________________________________
+We have detected 2 dates in this text body!
+Please select the date you want for this event from the list below!
+_________________________________
+1. 2020-10-04
+2. 2020-10-15
+_________________________________
+2
+We have detected 2 time slots in this text body!
+Please select the time you want for this event from the list below!
+_________________________________
+1. 15:00
+2. 15:30
+_________________________________
+2
+You have successfully added this event to your list!
+[P][✕] CG2271 Quiz 2 on 2020-10-15, 15:30
+_________________________________
+````
+As shown above, the user can choose the date/time they want for the event as long as it is a valid number in the list.
+ In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
+ 
+ 
+ Note:
+ 
+ •	The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
+
+
 
 ### Save events: events (Colin)
 
