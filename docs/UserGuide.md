@@ -194,8 +194,7 @@ This section contains 5 commands to navigate the Timetable mode —
 * 2.4. Showing links
 * 2.5. Showing schedule
 
-### 2.1 Entering timetable mode:
-`cd 3` / `cd timetable`
+### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
 If you find it difficult to make plans due to uncertainties in your schedule, this timetable mode presents your upcoming
 events at a glance to know what to expect and stay on track. This command brings you to enter the timetable mode.
@@ -210,8 +209,7 @@ Expected output:
 **Useful information:**
 * You can use this command from any mode to access the timetable mode easily and quickly!
 
-### 2.2 Adding classes: 
-`add class`
+### 2.2 Adding classes: `add class`
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
 arrange your classes in a systematic manner with this feature. Make sure that you are currently in the timetable mode
@@ -231,8 +229,7 @@ If you encounter any errors, take note of the following warning.
 * Ensure that you follow the format for answering the questions.
 Error will be shown if the questions are not answered in a suitable format.
 
-### 2.3 Adding activities:
-`add activity`
+### 2.3 Adding activities: `add activity`
 
 It can be hard to view your upcoming events at a glance.
 Similar to the previous feature, this command allows you to add activities outside of classes to your schedule.
@@ -245,8 +242,7 @@ Instruction:
 Expected output:
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
-### 2.4 Showing links:
-`show link`
+### 2.4 Showing links: `show link`
 
 If you find it hard to keep track of all your conference links for your classes or activities, this command will present
 all links relevant to you for the next 2 hours.
@@ -257,8 +253,7 @@ Instruction:
 Expected output:
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
-### 2.5 Showing schedule:
-`show schedule`
+### 2.5 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
 
@@ -470,8 +465,7 @@ This section contains 6 commands to navigate the Flashcard mode —
 * 4.5. Testing content
 * 4.6. Finding relevant flashcards
 
-### 4.1 Entering flashcard mode:
-`cd 5` / `cd flashcard`
+### 4.1 Entering flashcard mode: `cd 5` / `cd flashcard`
 
 If you find it hard to be fully proficient in your study topics, this flashcard mode is a medium for you to actively
 learn and memorise. This enables you to learn effectively through repetition, helping you to remember information better
@@ -486,8 +480,7 @@ Expected output:
 **Useful information:**
 * You can use this command from any mode to access the flashcard mode easily and quickly!
 
-### 4.2 Adding flashcards:
-`add`
+### 4.2 Adding flashcards: `add`
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
 You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
@@ -508,8 +501,7 @@ This is because “back” is used as a command to exit the test mode later on.
 If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 ![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
-### 4.3 Listing flashcards:
-`list`
+### 4.3 Listing flashcards: `list`
 
 If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
 have been added.
@@ -520,8 +512,7 @@ Instruction:
 Expected output:
 ![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
 
-### 4.4 Deleting flashcards:
-`delete`
+### 4.4 Deleting flashcards: `delete`
 
 When you have a flashcard that is no longer relevant to you or contains wrong information, you can delete the flashcard
 from the flashcard deck.
@@ -536,8 +527,7 @@ Expected output:
 **Useful information:**
 * You can use the `list` command to check the card index.
 
-### 4.5 Testing content:
-`test`
+### 4.5 Testing content:`test`
 
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
@@ -552,8 +542,7 @@ Instruction:
 Expected ouput:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
-### 4.6 Finding relevant flashcards:
-`find`
+### 4.6 Finding relevant flashcards: `find`
 
 If you wish to look through the flashcards containing only a particular search term, use this command.
 
