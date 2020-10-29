@@ -19,10 +19,10 @@ want to save your time finding your zoom links in your email inbox and save all 
 links in the bookmark feature to access them easily! The bookmark mode enables you to 
 compile all your links in one destination and even categorise them into different groups. 
 After entering the bookmark mode (refer to General Command 2), use the following commands to 
-navigate around bookmark mode. This section contains 8 commands : 1.1, 1.2, 1.3, 1.4, 1.5, 
+navigate around bookmark mode. This section contains 8 commands: 1.1, 1.2, 1.3, 1.4, 1.5, 
 1.6, 1.7 and 1.8. 
 
-###1.1 Viewing bookmarks in each category : 
+###1.1 Viewing bookmarks in each category: 
 `bm NUMBER`   
 
 Managing so many links can be a hassle! However, categorising the links into different 
@@ -49,7 +49,7 @@ If you encounter any errors, take note of the following warnings. If problems st
 **Warning:**
 * Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.6)
 
-###1.2 Viewing all the bookmarks links : 
+###1.2 Viewing all the bookmarks links: 
 `list`   
 
 Are you trying to find your links by entering into each category to view the links? You might want to have an easy way to view the overview of the entire list of links in each category. You can now view the entire list of links using the following commands. 
@@ -63,7 +63,7 @@ Expected output:
 * You can only use this command anywhere after entering the bookmark mode.  (Refer to General Command 2)
 * If your category does not have any links, it will indicate that the list is empty.
 
-###1.3 Adding category :  
+###1.3 Adding category:  
 `cat CATEGORY_NAME `
 
 If you cannot find the perfect category to place your bookmark, why not create your own category! In addition to the default categories that are added (Zoom, NUS, Internship, Hackathon, Career Talks), create your own category to add your bookmark links. Use the following commands to add a category and navigate it (Refer to 1.1) the same way as the rest of your categories.
@@ -85,7 +85,7 @@ If you encounter any errors, take note of the following warnings. If problems st
 **Warning:** 
 * Ensure that the category name is not empty. Error will be shown if the category name is empty. 
 
-###1.4 Deleting a category :  
+###1.4 Deleting a category:  
 `delete CATEGORY_NUMBER`  
 
 When you have a category, but you have no important links related to the category, take it out of your bookmark list! Organise and design your bookmark categories to your own personal needs by adding your own category (refer to 1.3) and deleting unnecessary categories using these following commands.
@@ -107,7 +107,7 @@ Before deleting a category, take note of the following warnings. If you encounte
 * Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.5)
 * CAUTION: Deleting a category will delete all the bookmarks in the category! 
 
-###1.5 Going back to bookmark main : 
+###1.5 Going back to bookmark main: 
 `back` 
 There are two modes in bookmark feature: the main bookmark mode (refer to General Command 2) and the category mode (refer to 1.1). To navigate freely from mode to mode, use the following command. This command goes back to the previous mode depending on which mode you are in. 
  
@@ -122,7 +122,7 @@ Expected output:
 * When you input back in any bookmark category, you are brought back to the bookmark main. 
 * When you input back in the bookmark main, you will be prompted to type “exit” to exit bookmark mode. 
 
-###1.6 Adding a link to your chosen category : 
+###1.6 Adding a link to your chosen category: 
 `add LINK` 
 If you have a link to add to your bookmark category, follow these commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not add an invalid link or an empty link to your bookmark.
 
@@ -189,7 +189,7 @@ Academic tracker provides a convenient experience where you can store
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
 
-###3.1 Entering Academic Mode : Entering Academic Mode : 
+###3.1 Entering Academic Mode:
 `cd 4` / `cd academic`
 
 This command allows you to enter academic tracker mode from the main menu or from the other modes.
@@ -202,7 +202,7 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
-### 3.2 Adding a contact : 
+### 3.2 Adding a contact: 
 `add contact c/CONTACT DETAILS m/MOBILE NUMBER  e/EMAIL`
 
 In academic mode, you can add a contact to the current list of contacts, following the instructions below. 
@@ -266,7 +266,7 @@ Example of usage:
 Expected output:
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
-### 3.6 Adding a grade : 
+### 3.6 Adding a grade: 
 `add grade n/MODULE NAME  m/MC  g/GRADE`
 
 In academic mode, you can add a grade to the current list of grades, following the instructions below. 
@@ -296,7 +296,7 @@ Instruction:
 Expected output:
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
-### 3.8 Checking current cap : 
+### 3.8 Checking current cap: 
 `check cap`
 
 To calculate your current CAP based on the grades you have entered previously, 
