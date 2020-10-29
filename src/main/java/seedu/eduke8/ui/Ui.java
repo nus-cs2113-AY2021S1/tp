@@ -49,7 +49,7 @@ public class Ui {
             + System.lineSeparator() + "2) help"
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
-            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> timer/<time to complete one question>"
+            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
             + System.lineSeparator() + "6) bookmark"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) exit";
@@ -66,7 +66,7 @@ public class Ui {
             + "you earn 2 points if you did not request for hint, "
             + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
-    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
+    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark':";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "
             + "available questions in each:";
     private static final String MESSAGE_EXPLANATION = "Explanation:";
@@ -209,11 +209,10 @@ public class Ui {
     }
 
     public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
-        System.out.println(System.lineSeparator() + HORIZONTAL_LINE);
-        System.out.println(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND);
-        System.out.println(MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
-        System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
-        System.out.println(HORIZONTAL_LINE);
+        System.out.println();
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+                + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
+                + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 

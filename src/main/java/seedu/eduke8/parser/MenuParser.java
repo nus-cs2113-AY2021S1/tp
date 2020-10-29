@@ -29,11 +29,11 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAN
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String TOPIC_INDICATOR = "t/";
-    private static final String TIMER_INDICATOR = "timer/";
+    private static final String TIMER_INDICATOR = "s/";
     private static final String NUMBER_OF_QUESTIONS_INDICATOR = "n/";
     private static final int LENGTH_OF_QUESTIONS_INDICATOR = 2;
     private static final int LENGTH_OF_TOPIC_INDICATOR = 2;
-    private static final int LENGTH_OF_TIMER_INDICATOR = 6;
+    private static final int LENGTH_OF_TIMER_INDICATOR = 2;
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";

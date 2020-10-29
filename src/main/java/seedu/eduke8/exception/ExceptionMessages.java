@@ -6,8 +6,8 @@ public class ExceptionMessages {
     public static final String ERROR_UNRECOGNIZED_COMMAND = "Oops! The command cannot be understood."
             + System.lineSeparator() + "Please enter in \"help\" to get the list of available commands.";
     public static final String ERROR_QUIZ_WRONG_FORMAT = "Invalid command! The command for quiz is as follows:"
-            + System.lineSeparator() + "quiz t/<topic> n/<number of questions>" + System.lineSeparator()
-            + "(Topics available can be found using the \"topics\" command)";
+            + System.lineSeparator() + "quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
+            + System.lineSeparator() + "(Topics available can be found using the \"topics\" command)";
     public static final String ERROR_QUIZ_ANSWER_NOT_INDEX = "Please choose the answer using its index (1,2,3 or 4)!";
     public static final String ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS =
             "Please choose only options 1, 2, 3 or 4";

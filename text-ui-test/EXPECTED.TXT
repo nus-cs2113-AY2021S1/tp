@@ -14,7 +14,7 @@ These are the commands that you can use:
 2) help
 3) topics
 4) textbook
-5) quiz t/<topic> n/<number of questions> timer/<time to complete one question>
+5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>
 6) bookmark
 7) stats
 8) exit
@@ -28,9 +28,26 @@ These are the available topics and the number of available questions in each:
 [1] OOP
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+Start of quiz:
+You have chosen to complete 1 question.
+The chosen topic is: OOP
+------------------------------------------------------------------------------------------------------------------------
+1. What is encapsulation?
+
+1) A
+2) B
+3) C
+4) D
+------------------------------------------------------------------------------------------------------------------------
+Enter your answer, 'hint' or 'bookmark':
+------------------------------------------------------------------------------------------------------------------------
+Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Explanation:
+because option A is the best answer
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+This is the end of the quiz!
+Hope you have learnt something new!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Oops! The command cannot be understood.
@@ -41,28 +58,58 @@ Oops! The command cannot be understood.
 Please enter in "help" to get the list of available commands.
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+Start of quiz:
+You have chosen to complete 1 question.
+The chosen topic is: OOP
+------------------------------------------------------------------------------------------------------------------------
+1. What is encapsulation?
+
+1) A
+2) B
+3) C
+4) D
+------------------------------------------------------------------------------------------------------------------------
+Enter your answer, 'hint' or 'bookmark':
+------------------------------------------------------------------------------------------------------------------------
+Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Explanation:
+because option A is the best answer
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+This is the end of the quiz!
+Hope you have learnt something new!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Oops! The command cannot be understood.
 Please enter in "help" to get the list of available commands.
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+The number of quiz questions must be more than 0!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+There is not enough questions in the topic for the quiz!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+Start of quiz:
+You have chosen to complete 1 question.
+The chosen topic is: OOP
+------------------------------------------------------------------------------------------------------------------------
+1. What is encapsulation?
+
+1) A
+2) B
+3) C
+4) D
+------------------------------------------------------------------------------------------------------------------------
+Enter your answer, 'hint' or 'bookmark':
+------------------------------------------------------------------------------------------------------------------------
+Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Explanation:
+because option A is the best answer
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+This is the end of the quiz!
+Hope you have learnt something new!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Oops! The command cannot be understood.
@@ -77,43 +124,36 @@ Oops! The command cannot be understood.
 Please enter in "help" to get the list of available commands.
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
+There is not enough questions in the topic for the quiz!
+------------------------------------------------------------------------------------------------------------------------
+Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
+quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>
 (Topics available can be found using the "topics" command)
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
+quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>
 (Topics available can be found using the "topics" command)
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
+No such topic exists, did you spell it correctly?
+------------------------------------------------------------------------------------------------------------------------
+Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
+No such topic exists, did you spell it correctly?
+------------------------------------------------------------------------------------------------------------------------
+Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
+No such topic exists, did you spell it correctly?
+------------------------------------------------------------------------------------------------------------------------
+Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
+No such topic exists, did you spell it correctly?
+------------------------------------------------------------------------------------------------------------------------
+Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
+No such topic exists, did you spell it correctly?
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
-------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
-------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
-------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
-(Topics available can be found using the "topics" command)
-------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-Invalid command! The command for quiz is as follows:
-quiz t/<topic> n/<number of questions>
+quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>
 (Topics available can be found using the "topics" command)
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
