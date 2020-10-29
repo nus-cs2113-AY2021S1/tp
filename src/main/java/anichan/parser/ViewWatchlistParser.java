@@ -42,7 +42,7 @@ public class ViewWatchlistParser extends CommandParser {
             throw new AniException(NO_PARAMETER_PROVIDED);
         }
         
-        parameterParser(paramGiven);
+        parameterParser(paramGiven[1]);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
         return viewWatchlistCommand;
@@ -54,28 +54,23 @@ public class ViewWatchlistParser extends CommandParser {
      * @param paramGiven a String Array containing the parameters and the value
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String[] paramGiven) throws AniException {
-        for (String param : paramGiven) {
-            String[] paramParts = param.split(" ");
-            if (paramParts.length == 0) {
-                break;
-            }
+    private void parameterParser(String paramGiven) throws AniException {
+        String[] paramParts = paramGiven.split(" ");
 
-            switch (paramParts[0].trim()) {
-            case "": // skip empty param
-                break;
-            case VIEW_PARAM:
-                paramFieldCheck(paramParts);
-                paramExtraFieldCheck(paramParts);
-                if (!isInt(paramParts[1].trim())) {
-                    throw new AniException(NON_INTEGER_PROVIDED);
-                }
-                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
-                break;
-            default:
-                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                throw new AniException(invalidParameter);
+        switch (paramParts[0].trim()) {
+        case "": // skip empty param
+            break;
+        case VIEW_PARAM:
+            paramFieldCheck(paramParts);
+            paramExtraFieldCheck(paramParts);
+            if (!isInt(paramParts[1].trim())) {
+                throw new AniException(NON_INTEGER_PROVIDED);
             }
+            viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+            break;
+        default:
+            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
+            throw new AniException(invalidParameter);
         }
     }
 }
