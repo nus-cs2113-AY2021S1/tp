@@ -11,23 +11,23 @@
 &nbsp;&nbsp;3.1. [Project `project`](#project-project)<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1. [Create a New Project](#create-project)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2. [View Project Information](#view-project-information)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3. [List All Projects](#list-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3. [List All Projects](#list-all-projects)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.4. [Select Project](#select-project)<br>
 &nbsp;&nbsp;3.2. [Project Member `member`](#project-member-member)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add Team Members](#add-team-members-into-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove Team Members](#remove-team-members-from-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add Team Members](#add-team-members)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove Team Members](#remove-team-members)<br>
 &nbsp;&nbsp;3.3. [Project Backlog `task`](#project-backlog-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Add Tasks](#add-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [View Tasks](#view-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete Tasks](#delete-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the Priority of Tasks](#change-the-priority-of-a-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete Tasks](#delete-tasks)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the Priority of Tasks](#change-the-priority-of-a-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark Tasks as Complete](#mark-task-as-complete)<br>
 &nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a New Sprint](#create-a-new-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View Sprint Information](#view-current-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View Sprint Information](#view-sprint-information)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Edit Sprint Goal](#edit-sprint-goal)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Add Tasks to the Sprint](#add-tasks-to-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Delete Tasks from the Sprint](#remove-tasks-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Add Tasks to the Sprint](#add-tasks-to-the-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Delete Tasks from the Sprint](#delete-tasks-from-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.6. [Allocate Tasks to Team Members](#allocate-tasks-to-team-members)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate Tasks from Team Members](#deallocate-tasks-from-team-members)<br>
 &nbsp;&nbsp;3.5. [Storage `storage`](#storage-storage)<br>
@@ -134,7 +134,7 @@ View project information which includes title, description, time-period and team
 =====================================================
 ```
   
-#### 3.1.3. List All Project
+#### 3.1.3. List All Projects
 Outputs a list of all projects added by the user. A summary page which shows the project `id`, project `description` and project `title`.
 ##### Format: `project /list`
 ##### Example: `project /list`
@@ -354,7 +354,7 @@ Display the information of the current or specified sprint.
 [No allocated tasks]
 =================================================================
 ```
-#### 3.4.3. Edit sprint goal                                                                                                       
+#### 3.4.3. Edit Sprint Goal                                                                                                       
 Edit the Sprint goal of the selected sprint.                                                                                                  
 ##### Format: `sprint /edit -goal <goal_input> [optional tags]`                                                                     
 ##### Constraints:                                                                                                                    
@@ -386,7 +386,7 @@ Edit the Sprint goal of the selected sprint.
 
 
   
-#### 3.4.4. Add tasks to sprint
+#### 3.4.4. Add Tasks to the Sprint
 Add task(s) from the project backlog to the current sprint.
 ##### Format: `sprint /addtask <task_id> [<task_id> ...] [optional tags]`
 ##### Constraints:
@@ -420,7 +420,7 @@ Add task(s) from the project backlog to the current sprint.
     DummyTask4 added to sprint 1.
 ```
   
-#### 3.4.5. Remove tasks from sprint
+#### 3.4.5. Delete Tasks from Sprint
 Remove task(s) from the current sprint.
 ##### Format: `sprint /removetask <task_id> [<task_id> ...] [optional tags]`
 ##### Constraints:                              
@@ -454,7 +454,7 @@ Remove task(s) from the current sprint.
     DummyTask4 removed from sprint 1.
 ```
   
-#### 3.4.6. Allocate tasks to team members
+#### 3.4.6. Allocate Tasks to Team Members
 Assign task(s) to team member(s).
 ##### Format: `sprint /allocate  -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`
 ##### Constraints:                        
@@ -485,7 +485,7 @@ DummyTask1 is assigned to [johntan, mary, jane]
 DummyTask2 is assigned to [johntan, mary, jane]  
 ```       
 
-#### 3.4.7. Deallocate tasks from team members                                                                                             
+#### 3.4.7. Deallocate Tasks from Team Members                                                                                             
 Deallocate a task from team member(s).                                                                                                     
 ##### Format: `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`                                      
 ##### Constraints:                                                                                                                     
@@ -679,20 +679,24 @@ Shows the storage command, and an example of how to use it.
 | **Action** | **Format** | **Examples** |
 | --- | --- | --- |
 | Create Project | `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>` | `project /create -title MeTube -desc video streaming software -dur 90 -sd 10` |
-| View project information | `project /view` | `project /view` |
-| Select project | `project /select <id>` | `project /select 2`|
-| List projects | `project /list` | `project /list`|
-| Add members | `member /add <username> [<username> ...]` | `member /add john mary` |
-| Remove members | `member /del <username> [<username> ...]` | `member /del john mary` |
-| Add tasks | `task /add -title <title> -desc <description> -priority <category>` | `task /add -title Add UI -desc add an interactive UI -priority HIGH` |
-| View task | `task /view <taskid>` | `task /view 3` |
-| Delete task | `task /del <taskid> [<taskid>...]` | `task /del 5 7 9` |
-| Change task priority | `task /priority -priority <category> -id <taskid>` | `task /priority -priority HIGH -id 1` |
-| Mark task as complete | `task /done <taskid>` | `task /done 1` |
-| Create sprint | `sprint /create -goal <goal_input> -start <start_date>` | `sprint /create Shopping Cart -start 20201010` |
-| View sprint  | `sprint /view` | `sprint /view` |
-| Add tasks to sprint | `sprint /addtask <task_id> [<task_id> ...]` | `sprint /addtask 1 3 4` |
-| Delete tasks from sprint | `sprint /deltask <task_id> [<task_id> ...]` | `sprint /deltask 1 3 4` |
-| Allocate tasks to team members | `sprint /assign -task <task_id> -user <user_id> [<user_id> ...]` | `sprint /assign -task 1 -user johntan mary jane` |
+| View Project Information | `project /view` | `project /view` |
+| List All Projects | `project /list` | `project /list` |
+| Select Project | `project /select <id>` | `project /select 2`|
+| Add Team Members | `member /add <username> [<username> ...]` | `member /add john mary` |
+| Remove Team Members | `member /del <username> [<username> ...]` | `member /del john mary` |
+| Add Tasks | `task /add -title <title> -desc <description> -priority <category>` | `task /add -title Add UI -desc add an interactive UI -priority HIGH` |
+| View Task | `task /view <taskid> [<taskid>...]` | `task /view 3 6 9` |
+| Delete Tasks | `task /del <taskid> [<taskid>...]` | `task /del 5 7 9` |
+| Change the Priority of a Tasks | `task /priority -priority <category> -id <taskid>` | `task /priority -priority HIGH -id 1` |
+| Mark Task as Complete | `task /done <taskid> [<taskid>...]` | `task /done 1 2 3` |
+| Create Sprint | `sprint /create -goal <goal_input> [-start YYYYMMDD] [-project <id>]` | `sprint /create -goal UI -start 20201010` |
+| View Sprint  | `sprint /view [optional tags]` | `sprint /view` |
+| Edit Sprint Goal | `sprint /edit -goal <goal_input> [optional tags]` | `sprint /edit -goal Add Documentation` |
+| Add Tasks to the Sprint | `sprint /addtask <task_id> [<task_id> ...] [optional tags]` | `sprint /addtask 1 3 4` |
+| Delete Tasks from Sprint | `sprint /removetask <task_id> [<task_id> ...] [optional tags]` | `sprint /removetask 1 3 4` |
+| Allocate Tasks to Team Members | `sprint /allocate  -task <task_id> -user <user_id> [<user_id> ...] [optional tags]` | `sprint /allocate -project 2 -task 1 -user mary` |
+| Deallocate Tasks from Team Members | `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]` | `sprint /deallocate -project 2 -sprint 3 -task 1 -user mary` |
+| Clear Storage | `storage /clear` | `storage /clear` |
 | Exit program | `bye` | `bye` |
+| Help Menu | `help` | `help 1` |
 
