@@ -112,11 +112,12 @@ Format: `list`
 
 Here are some key points:
 * Do not need to add `admin` after `list`.
-* All list commands have the same command word `list` 
+* All list commands have the same command word `list`. 
 
 Example of usage: 
-* At Admin Level: enter the command `list`
+* At Admin Level: enter the command `list`.
 * Here is the expected output:
+![List Modules](UG_Images/list_module.png)
 * After listing all modules, you can try all commands available in **Admin Level**.
 
 #### 3.1.3. Editing a module name: `edit` 
@@ -127,14 +128,15 @@ This command modifies the module name you want to change.
 Format: `edit INDEX MODULE_NAME`
 
 Here are some key points:
-* You can only edit content on the level below the one you are on
-* Edit the name / content at the specified `INDEX`
-* The index refers to the index number shown in the displayed content list
+* You can only edit content on the level below the one you are on.
+* Edit the name / content at the specified `INDEX`.
+* The index refers to the index number shown in the displayed content list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Example of usage: 
-* At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T
+* At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T.
 * Here is the expected output:
+![Edit Module Name](UG_Images/edit_module.png)
 * After editing the module name, you can try all commands available in **Admin Level**.
 
 #### 3.1.4. Removing a module: `remove` 
@@ -157,11 +159,13 @@ Format: `list`
 
 Here are some key points:
 * Do not need to add `module_name` after `list`.
-* All list commands have the same command word `list` 
+* All list commands have the same command word `list`.
 
 Example of usage: 
-* At Module Level: enter the command `list`
+* At Module Level: enter the command `list`.
 * Here is the expected output:
+![List Chapters](UG_Images/list_chapter.png)
+* The date in the bracket is the due date for each chapter.
 * After listing all chapters, you can try all commands available in **Module Level**.
 
 #### 3.2.3. Editing a chapter name: `edit`
@@ -215,11 +219,13 @@ This command shows a list of commands available.
 Format: `help`
 
 Here is a key point:
-* This command can be **called from any Level**
+* This command can be **called from any Level**.
 
 Example of usage: 
-* At Any Level: enter the command `help`
+* At Any Level: enter the command `help`.
 * Here is part of the expected output, the whole output is a list of all commands useage:
+![Help List Beginning](UG_Images/help1.png)
+![Help list Ending](UG_Images/help2.png)
 * After knowing waht are the commands, you can try any commands on the correct level.
 
 
@@ -233,17 +239,19 @@ Format:<br>
 `history DATE`<br>
 
 Here are some key points:
-* This command can be **called from any Level**
+* This command can be **called from any Level**.
 * If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
 * If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
 
 Example of usage (`history` format): 
-* At Any Level: enter the command `history`
+* At Any Level: enter the command `history`.
 * Here is the expected output:
+![History List](UG_Images/history.png)
 
 Example of usage (`history DATE` format): 
-* At Any Level: enter the command `history 2020-10-30`
+* At Any Level: enter the command `history 2020-10-30`.
 * Here is the expected output:
+![History List](UG_Images/history_Date.png)
 * After knowing the revision you have completed, you can try any commands on the correct level.
 
 #### 3.4.6. Exiting the program: `exit`
@@ -256,6 +264,7 @@ Format: `exit`
 Example of usage: 
 * At Any Level: enter the command `exit`
 * Here is the expected output:
+![Exit Kaji](UG_Images/exit.png)
 
 ### 4.5 Scheduling In KAJI
 (by Yan An)
