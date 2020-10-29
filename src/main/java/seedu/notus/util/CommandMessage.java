@@ -210,7 +210,7 @@ public class CommandMessage {
             + "No changes are made to it's recurrence type.", RED);
     public static final String EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = colorize("You attempted to put a "
             + "recurrence date on a non-recurring event. No recurrence date was set.", RED);
-    public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events stored in the timetable!",
+    public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events in the timetable!",
             RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = colorize("Failed to find any events "
             + "in the specified time period.", RED);

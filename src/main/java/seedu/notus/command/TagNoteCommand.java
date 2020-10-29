@@ -11,6 +11,7 @@ import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 import static seedu.notus.util.CommandMessage.TAG_HEADER;
 import static seedu.notus.util.CommandMessage.TAG_MESSAGE;
 import static seedu.notus.util.CommandMessage.UNTAG_MESSAGE;
+
 //@@author Chongjx
 /**
  * Tags or untags a Note.
