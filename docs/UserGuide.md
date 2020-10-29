@@ -1,8 +1,8 @@
 # SmartHomeBot User Guide
 
-SmartHomeBot is a **desktop application that consolidates all of the home appliance’s control into a 
+SmartHomeBot is a **desktop application that consolidates all home appliance’s control into a 
 centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances using this application
-and also review and monitor electricity usage; having a clearer picture of their electrical usage patterns.
+and review and monitor electricity usage; having a clearer picture of their electrical usage patterns.
 SmartHomeBot has an auto-save feature that will automatically save all the appliances' data
 and export it to a text file. Upon the start of the application, it will import the data 
 from the text file and loads the appliances' data back.
@@ -39,10 +39,10 @@ file title of the Jar. The display similar to the below should appear in a few s
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `exit` and pressing Enter, it will exit the program.
 Some example commands you can try:
-    *   `create Bedroom 1`: 
+    *   `create Bedroom1`: 
          Creates a 'location' named "Bedroom 1" in SmartHomeBot. 
          
-    *   `remove Bedroom 1`: 
+    *   `remove Bedroom1`: 
          Remove a 'location' named "Bedroom 1" in SmartHomeBot.
             
     *   `list location`: 
@@ -54,10 +54,12 @@ Some example commands you can try:
 
    **Notes about the command format**
     
-   * Words in [UPPER_CASE] are the parameters to be supplied by the user.
-    <br>e.g. `create LOCATION_NAME`, LOCATION_NAME is a parameter which can be used as 
-   `create Bedroom 1`.
-   * Words in [UPPER_CASE] are case-sensitive.
+   * Words in **[UPPER_CASE]** are the parameters to be supplied by the user.
+    <br>e.g. `create [LOCATION_NAME]`, LOCATION_NAME is a parameter which can be used as 
+   `create Bedroom1`.
+   * Words in **[UPPER_CASE]** are case-sensitive.
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** has to be unique and not duplicate of each other. 
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` \ `.
 
 ### Viewing help: `help`
 Shows all available commands to the user
@@ -119,7 +121,7 @@ Output:
 Removing LOCATION "Bedroom1"......REMOVED!
 ```
 
-> Note: If there are appliances added to the 'LOCATION_NAME' when removing, it will be deleted as well. 
+> Note: If there are appliances in the Location of 'LOCATION_NAME' when removing, it will be deleted as well. 
 
 <br/><br/>
 ### Adding an appliance: `add`
@@ -135,13 +137,13 @@ List of `TYPE_OF_APPLIANCE`
 1. `fan`
 2. `light`
 2. `aircon`
-3. `plugs`
+3. `smartplug`
 
 Example: `add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 
 Output: 
 ```
-ADDING AIRCON1(3500W) in Bedroom1......ADDED
+ADDING AIRCON1(3500W) in Bedroom1 ......ADDED
 ```
 
 <br/><br/>
@@ -154,7 +156,7 @@ Example: `delete AIRCON1`
 
 Output: 
 ```
-Deleting AIRCON1(3500W) in Bedroom1.......DELETED.
+Deleting AIRCON1(3500W) in Bedroom1 .......DELETED.
 ```
    
 <br/><br/>
@@ -169,16 +171,32 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 4. `on [LOCATION]`: Switch ON every appliance in the location. 
 
 
-Example: `on AIRCON1` or `off BR1`
+Example: `on AIRCON1`
 
 Output: 
 ```
-Switching on AIRCON1 in Bedroom 1 ......ON!
+Switching AIRCON1(3500W) in Bedroom1 @ 25 Degrees.....ON
 ```
+
+Example: `on AIRCON1 p/27`
 
 Output: 
 ```
-All appliance in BR1 are turned on.
+Switching AIRCON1(3500W) in Bedroom1 @ 27 Degrees.....ON
+```
+
+Example: `on FAN1 p/3`
+
+Output: 
+```
+Switching FAN1(3500W) in Bedroom1  @ Speed 3.....ON
+```
+
+Example: `on Bedroom1`
+
+Output: 
+```
+All appliance in "Bedroom1" are turned on 
 ```
 
 <br/><br/> 
@@ -187,16 +205,18 @@ Switches OFF an appliance base on its name in the list.
 
 Format: `off [APPLIANCE_NAME]` or `off [LOCATION]`
 
-Example: `off AIRCON1` or `off BR1`
+Example: `off AIRCON1`
 
 Output: 
 ```
-Switching off AIRCON1 in Bedroom 1 ......OFF!
+Switching: AIRCON1(3500W) in Bedroom1 ......OFF
 ```
+
+Example: `off Bedroom1`
 
 Output: 
 ```
-All appliance in BR1 are turned off.
+All appliance in "Bedroom1" are turned off 
 ```
    
 <br/><br/> 
@@ -212,16 +232,30 @@ Example: `list location`
 
 Output: 
 ```
-Here are the location you have entered.
-1: Bedroom 1
+Here are the location you have entered:
+1: Bedroom1
+2: Bedroom2
 ```
 
 Example: `list appliance`
 
 Output: 
 ```
-Here are the appliances in your list.
-1. AIRCON1 | Location: Bedroom 1 | Status: Off | Watt: 3500W | Type: AirConditioner
+Here are the appliances in your list:
+1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: aircon | Parameter: 27 Degrees
+2 . FAN1    | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: fan    | Parameter: Speed 3
+3 . FAN2    | Location: Bedroom1 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
+4 . FAN3    | Location: Bedroom2 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
+```
+
+Example: `list appliance l/Bedroom1`
+
+Output: 
+```
+Here are the appliances in "Bedroom1"
+1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: aircon | Parameter: 27 Degrees
+2 . FAN1    | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: fan    | Parameter: Speed 3
+3 . FAN2    | Location: Bedroom1 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
 ```
 
 <br/><br/> 
@@ -232,12 +266,11 @@ Format: `usage`
 
 Output: 
 ```
-Here are the power usage consumption.
+Here are the power usage consumption:
+1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Usage: 0.27 kWh
+2 . FAN1    | Location: Bedroom1 | Status: OFF   | Usage: 0.12 kWh
 
-1. AIRCON1     | Location: Bedroom 1      | Status: Off | Usage: 371.00 kWh
-2. Cooling Fan | Location: Master Bedroom | Status: Off | Usage: 93.58 kWh
-
-Total power consumption: 464.58 kWh
+Total power consumption: 0.39 kWh
 ```
 
 <br/><br/> 
