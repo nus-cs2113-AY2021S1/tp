@@ -53,7 +53,7 @@ This guide provides you with in-depth information on setting up AniChan and how 
 
 ## 2. Quick Start
 1.  Ensure that you have Java 11 or above installed.
-2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
+2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **Command Prompt** and change directory into the folder. Run `java -jar anichan.jar`. 
 5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
