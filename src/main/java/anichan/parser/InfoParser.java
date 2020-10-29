@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class InfoParser extends CommandParser {
     protected static final String ANIME_ID_PARAM = "a";
+    protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "Info command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
@@ -34,15 +35,12 @@ public class InfoParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public InfoCommand parse(String description) throws AniException {
-        String[] paramGiven = parameterSplitter(description);
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
-        if (paramGiven.length > 2) {
-            throw new AniException(TOO_MUCH_ARGUMENTS);
-        } else {
-            parameterParser(paramGiven);
-            LOGGER.log(Level.INFO, "Parameter parsed properly");
-        }
+        parameterParser(paramGiven);
+        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        
         return infoCommand;
     }
 

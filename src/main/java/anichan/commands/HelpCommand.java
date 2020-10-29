@@ -15,7 +15,6 @@ import java.util.logging.Logger;
  */
 public class HelpCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(HelpCommand.class.getName());
-    private static String output;
 
     /**
      * Returns a string representation of the full command list of the program.
@@ -28,7 +27,7 @@ public class HelpCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) {
-        return output;
+        return buildHelpOutput();
     }
 
     /**
