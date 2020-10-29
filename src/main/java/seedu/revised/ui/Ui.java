@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class Ui {
     public static final String DIVIDER = "____________________________________________________________";
     public static final String LONG_DIVIDER = "_______________________________________________________________________"
-            + "_________________________________________________";
+            + "___________________________________________________";
     public static final String LOGO =
             "                                    ___________\n"
                     + "                                    |  __ |  _ \\\n"
@@ -503,26 +503,28 @@ public class Ui {
     public static void printTopicHelp() {
         System.out.println(LONG_DIVIDER);
         System.out.println(
-                "help:                shows the list of commands available at the subject level\n"
-                        + "add abc:             adds a topic called 'abc' in the current subject\n"
-                        + "todo abc:            adds a todo type task with the description 'abc'\n"
-                        + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
-                        + "date/time of deadline as 1\n"
-                        + "event abc /at 1:     adds an event type task with description 'abc' "
-                        + "and date/time of event as 1\n"
-                        + "find abc:            finds all topics and tasks containing 'abc' in the current subject\n"
-                        + "list:                shows the list of all topics and tasks in the current subject\n"
-                        + "list all:            shows the tree of all subjects, topics, tasks and flashcards\n"
-                        + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
-                        + "delete task 1:       deletes the 1st task in the list of tasks.\n"
-                        + "done 1:              marks the 1st task in the list of tasks as done\n"
-                        + "topic abc:           enters the topic called abc, now you can create, find, list "
-                        + "and delete the flashcards of topic abc\n"
-                        + "quiz abc:            starts a quiz for all the flashcards of the topic abc,\n"
-                        + "                     answer the questions of the prompted flashcards "
+                "help:                              shows the list of commands available at the subject level\n"
+                        + "add abc:                           adds a topic called 'abc' in the current subject\n"
+                        + "todo abc:                          adds a todo type task with the description 'abc'\n"
+                        + "deadline abc /by 12:00 13-11-2020: adds a deadline type task with description 'abc' with "
+                        + "date/time of deadline\n"
+                        + "                                   as 12:00 AM 13 Nov 2020\n"
+                        + "event abc /at 01:00 21-11-2020:    adds an event type task with description 'abc' "
+                        + "with date/time of event\n"
+                        + "                                   as 1:00 AM 21 Nov 2020\n"
+                        + "find abc:                          finds all topics and tasks containing 'abc' in the current subject\n"
+                        + "list:                              shows the list of all topics and tasks in the current subject\n"
+                        + "list all:                          shows the tree of all subjects, topics, tasks and flashcards\n"
+                        + "delete topic 1:                    deletes the 1st topic in the list of topics.\n"
+                        + "delete task 1:                     deletes the 1st task in the list of tasks.\n"
+                        + "done 1:                            marks the 1st task in the list of tasks as done\n"
+                        + "topic abc:                         enters the topic abc, now you can add, find, list "
+                        + "and delete flashcards of topic abc\n"
+                        + "quiz abc:                          starts a quiz for all the flashcards of the topic abc,\n"
+                        + "                                   answer the questions of the prompted flashcards "
                         + "to test your knowledge\n"
-                        + "results abc:         gives you the results of all attempted quizzes for abc topic\n"
-                        + "exit:                exits the subject to return to the main screen, "
+                        + "results abc:                       gives you the results of all attempted quizzes for abc topic\n"
+                        + "exit:                              exits the subject to return to the main screen, "
                         + "where you can work with subjects"
         );
         System.out.println(LONG_DIVIDER);
