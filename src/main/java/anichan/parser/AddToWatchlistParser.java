@@ -37,6 +37,10 @@ public class AddToWatchlistParser extends CommandParser {
     public AddToWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = description.split(SPLIT_DASH, 2);
 
+        if(paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
+            throw new AniException(NO_PARAMETER_PROVIDED);
+        }
+
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
