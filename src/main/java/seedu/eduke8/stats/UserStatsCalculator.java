@@ -16,6 +16,12 @@ public class UserStatsCalculator extends StatsCalculator {
     }
 
 
+    /**
+     * Iterates through the attempted questions in all topics and calculate the points earned by the user
+     * based on the scoring system of E-Duke-8.
+     *
+     * @return Points earned, from all topics, by the user from correct answers in past quiz attempts.
+     */
     public int calculateTotalPointsEarned() {
         int totalPointsGained = 0;
 
@@ -29,23 +35,32 @@ public class UserStatsCalculator extends StatsCalculator {
                 totalPointsGained += calculatePointsEarnedForQuestion(question);
             }
         }
-
         return totalPointsGained;
     }
 
-    // Gets the count of the questionList * 2
+    /**
+     * Calculates the total possible amount of points that the user can earn from all of the questions available
+     * in all of the topics available in E-Duke-8, based on the scoring system.
+     *
+     * @return Total available points the user can earn from all of the questions from all topics.
+     */
     public int calculateTotalPointsAvailable() {
         int totalPointsAvailable = calculateTotalQuestionCount() * POINTS_PER_QUESTION;
 
         return totalPointsAvailable;
     }
 
+    /**
+     * Calculates the percentage of progress in E-Duke-8 based on the points earned by the user and
+     * the total possible amount of points he / she could have earned from all the questions in E-Duke-8.
+     *
+     * @return A percentage indicating user's progress in E-Duke-8.
+     */
     public int calculateOverallProgressionPercentage() {
         return calculateProgressionPercentage(calculateTotalPointsEarned(),
                 calculateTotalPointsAvailable());
     }
 
-    // Determines if progression is over 50%, print diff messages for each section
     public boolean isProgressionOverHalf() {
         return calculateOverallProgressionPercentage() >= 50;
     }
