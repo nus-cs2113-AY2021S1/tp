@@ -32,9 +32,8 @@ public class LocateCommand extends Command {
         int eventNum;
         try {
             eventNum = Integer.parseInt(input) - 1;
-            Event event = events.get(eventNum);
-            Location location = event.getLocation();
-            System.out.println(event.getDescription() + " is located at:");
+            Location location = events.get(eventNum).getLocation();
+            System.out.println(events.get(eventNum).getDescription() + " is located at:");
             System.out.println(location);
         } catch (NumberFormatException e) {
             if (locations.checkValidLocation(input)) {
@@ -44,6 +43,8 @@ public class LocateCommand extends Command {
             } else {
                 System.out.println("Please input a valid location or event number.");
             }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please input an event number that is within the event list.");
         }
     }
 }

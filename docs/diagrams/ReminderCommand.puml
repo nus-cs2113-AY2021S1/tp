@@ -1,0 +1,14 @@
+@startuml
+actor User
+activate NuSchedule
+
+User --> NuSchedule : reminder
+NuSchedule --> Parser ++ : parse()
+Parser --> NuSchedule -- : ReminderCommand
+NuSchedule --> ReminderCommand ++ : execute()
+ReminderCommand --> EventList ++ : filterDateWith()
+EventList --> ReminderCommand -- : FilteredList
+ReminderCommand --> UI ++ : printFilteredList()
+UI --> ReminderCommand --
+ReminderCommand --> NuSchedule --
+@enduml

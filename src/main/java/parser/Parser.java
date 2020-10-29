@@ -1,6 +1,5 @@
 package parser;
 
-
 import command.AddCommand;
 import command.ClearCommand;
 import command.Command;
@@ -14,7 +13,11 @@ import command.HelpCommand;
 import command.LocateCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
+import command.ReminderCommand;
 import command.SortCommand;
+
+import event.Assignment;
+import event.PersonalEvent;
 import event.Assignment;
 import event.Class;
 import event.PersonalEvent;
@@ -29,6 +32,8 @@ import exception.EmptyFindDateException;
 import exception.EmptyFindException;
 import exception.InvalidSortCriteriaException;
 import exception.NoEndTimeClassException;
+import exception.NoEditEventDescriptionException;
+
 import exception.NoEventLocationException;
 import exception.NoEventTimeException;
 import exception.NoEventTimeMarkerException;
@@ -76,6 +81,7 @@ public abstract class Parser {
     public static final String END_TIME_MARKER = "/e";
     public static final String ONLINE_LOCATION_MARKER = "/o";
     public static final String PASSWORD_MARKER = "/p";
+    public static final String REMIND = "reminder";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -130,6 +136,10 @@ public abstract class Parser {
             } catch (DateTimeParseException e) {
                 throw new DateFormatException();
             }
+        }
+
+        if (words[0].equals(REMIND)) {
+            return new ReminderCommand();
         }
 
         int eventIndex;//to indicate what is the Event we are dealing with. may not be used.
@@ -216,22 +226,23 @@ public abstract class Parser {
             }
 
             //the following part is almost the same as AddCommand, but returns EditCommand
+            if (words.length == 2) {
+                throw new NoEditEventDescriptionException();
+            }
+
+            if (startTimeDividerPosition == -1) {
+                throw new NoEventTimeMarkerException();
+            }
+
 
             if (words[2].equals(ASSIGNMENT) || words[2].equals(CLASS) || words[2].equals(PERSONAL_EVENT)) {
-
-                if (fullCommand.substring(words[0].length()).isBlank()) {
-                    throw new EmptyEventException();
-                }
-
-                if (startTimeDividerPosition == -1) {
-                    throw new NoEventTimeMarkerException();
-                }
 
                 if (locationDividerPosition == -1 && onlineLocationDividerPosition == -1) {
                     throw new NoEventLocationException();
                 }
 
                 int prefixLength = words[0].length() + words[1].length() + words[2].length();
+
 
                 if (fullCommand.substring(prefixLength, startTimeDividerPosition).isBlank()) {
                     throw new EmptyEventException();
@@ -253,6 +264,7 @@ public abstract class Parser {
                         throw new NoEventLocationException();
                     }
                 }
+
                 //this deals with the event holding offline
                 if (locationDividerPosition != -1) {
                     try {
@@ -430,8 +442,12 @@ public abstract class Parser {
                 }
             }
 
+
             //this deals with the event holding offline
             if (locationDividerPosition != -1) {
+                if (fullCommand.substring(locationDividerPosition + 3).isBlank()) {
+                    throw new NoEventLocationException();
+                }
                 try {
                     timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
@@ -489,6 +505,7 @@ public abstract class Parser {
                     }
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
+
                 }
             } else { //this deals with the event holding online
                 try {

@@ -1,0 +1,15 @@
+@startuml
+actor User
+activate NuSchedule
+
+User -> NuSchedule : add
+NuSchedule --> Parser ++ : parse()
+Parser --> NuSchedule -- : parsed command
+NuSchedule --> AddCommand ++ : execute()
+AddCommand --> EventList ++ : events.addEvent()
+EventList --> AddCommand -- : event
+AddCommand --> UI ++ : ui.printMessage()
+UI --> AddCommand -- : message
+AddCommand --> NuSchedule -- : return
+
+@enduml

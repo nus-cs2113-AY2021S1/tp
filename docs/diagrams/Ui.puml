@@ -1,0 +1,14 @@
+@startuml
+
+package ui{
+class UI {
++printGreetingMessage()
++printLine()
++printEventList()
++printLocationList()
++printHelp()
++showError()
++printExitMessage()
+}
+
+@enduml
