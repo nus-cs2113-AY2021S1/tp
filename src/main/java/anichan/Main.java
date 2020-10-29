@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author
 public class Main {
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
@@ -147,7 +148,6 @@ public class Main {
 
                 if (command.getShouldExit()) {
                     ui.printGoodbyeMessage(user.getHonorificName());
-                    ui.shutdownUi();
                     break;
                 }
             } catch (AniException exception) {

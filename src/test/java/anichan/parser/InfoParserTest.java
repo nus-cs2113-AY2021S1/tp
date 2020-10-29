@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class InfoParserTest {
     protected static final String INVALID_PARAMETERS_TEST1 = "";
     protected static final String INVALID_PARAMETERS_TEST2 = "-a";

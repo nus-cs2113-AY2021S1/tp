@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class WatchlistCommandTest {
     private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
                                                     + File.separator + "data" + File.separator;
@@ -81,33 +82,33 @@ class WatchlistCommandTest {
 
     @Test
     void execute_notUniqueWatchlistNameForCreateWatchlist_throwsAniException() {
-        WatchlistCommand watchlistCommand = new WatchlistCommand("n", "First", 0);
-        assertThrows(AniException.class, () -> watchlistCommand.execute(animeData, storageManager, user));
+        WatchlistCommand createWatchlist = new WatchlistCommand("n", "First", 0);
+        assertThrows(AniException.class, () -> createWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_watchlistNameMoreThan30CharactersForCreateWatchlist_throwsAniException() {
-        WatchlistCommand watchlistCommand = new WatchlistCommand("n",
-                "averylongwatchnamethatwouldfail",
-                0);
-        assertThrows(AniException.class, () -> watchlistCommand.execute(animeData, storageManager, user));
+        WatchlistCommand createWatchlist = new WatchlistCommand("n",
+                                                                "averylongwatchnamethatwouldfail",
+                                                                0);
+        assertThrows(AniException.class, () -> createWatchlist.execute(animeData, storageManager, user));
     }
 
     // ========================== List ==========================
 
     @Test
-    void execute_validParametersForListWatchlistList_success() throws AniException {
-        WatchlistCommand listWatchlistList = new WatchlistCommand("l", "", 0);
+    void execute_validParametersForListAllWatchlist_success() throws AniException {
+        WatchlistCommand listAllWatchlist = new WatchlistCommand("l", "", 0);
         String emptyListMessage = "Uhh.. You have no watchlist to list..";
-        assertNotEquals(emptyListMessage, listWatchlistList.execute(animeData, storageManager, user));
+        assertNotEquals(emptyListMessage, listAllWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
-    void execute_emptyWatchlistListForListWatchlistList_emptyListMessage() throws AniException {
-        WatchlistCommand watchlistCommand = new WatchlistCommand("l", "", 0);
+    void execute_emptyWatchlistListForListAllWatchlist_emptyListMessage() throws AniException {
+        WatchlistCommand listAllWatchlist = new WatchlistCommand("l", "", 0);
         activeWorkspace.setWatchlistList(new ArrayList<>());
         String expected = "Uhh.. You have no watchlist..";
-        assertEquals(expected, watchlistCommand.execute(animeData, storageManager, user));
+        assertEquals(expected, listAllWatchlist.execute(animeData, storageManager, user));
     }
 
     // ========================== Select ==========================
