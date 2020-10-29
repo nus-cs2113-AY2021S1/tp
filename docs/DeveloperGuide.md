@@ -957,8 +957,19 @@ If you wish to modify these tools, you may find their configuration at:
 *   **GitHub Workflow:** `.github/workflows`
 *   **Travis CI:** `.travis.yml`
 
+##### 5.4.2.1 Code Coverage
 
+As part of CI, this project uses Codecov to generate coverage reports. 
 
+If you wish to configure Codecov for your fork, you may refer to [Codecov Docs](https://docs.codecov.io/docs).
+
+##### 5.4.2.2 Repository-wide checks
+
+In addition to running Gradle checks, CI includes some repository-wide checks. 
+These checks include files from the entire repository and are useful in checking for rules which are hard to enforce on development machines such as line ending requirements.
+
+These checks are POSIX shell scripts (i.e. platform dependent to Linux and macOS). 
+To run all checks, execute the following at project root `./config/travis/run-checks.sh`.
 
 ## Appendix A: Product Scope
 
