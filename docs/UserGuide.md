@@ -254,7 +254,7 @@ Format: `back`
 Example: <br>
 For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
 * Step 1: Ensure you are at the chapter level: <br>
-![Back Module 1](images/BackMod1.PNG)
+![Back Module 1](images/ReturnMod1.PNG)
 * Step 2: Enter the command `back` to return to the previous level which is the module level: <br>
 ![Back Module 2](images/BackMod2.PNG)
 * Step 3: You should return to the module level as shown below: <br>
