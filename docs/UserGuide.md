@@ -144,10 +144,68 @@ Some examples you can try:
 
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 ## Features
-
+This section introduces and explains the features of Scheduler--;!
 
 ### Viewing help: help (Colin Ng)
+If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler--; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
+Format: `help [COMMAND]`
+
+#### How to use? 
+
+When you type in `help`, a generic help screen will be printed as shown below 
+
+```
+help
+_________________________________
+Here is a summary of all the commands that the program can run
+help - Provides more information on how to use the commands available in the program
+add - Records a personal, timetable or zoom event into the program
+deadline - Sets or change a deadline for a personal event
+repeat - repeat an event for a specified amount of times every day, week or month
+goal - Sets up a goal for the user
+done - mark the event as completed
+delete - remove a personal, timetable or zoom event permamently from the program
+note - Add in additional notes associate to the personal, timetable or zoom event
+reminder - prints out events that will be occuring on the present day
+extract - extracts out important event information from text to be recorded as events in the program
+save - save current changes made to the program
+bye - exits the program 
+
+To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
+_________________________________
+```
+
+If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
+```
+help add
+_________________________________
+add - Records a personal, timetable or zoom event into the program
+Format: add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
+EVENT_DESCRIPTION is the name of the event
+[LINK/LOCATION] is an optional argument. provide a zoom link if your event is a zoom conference and provide a location if your event is a timetable event
+DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
+[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format.
+
+_________________________________
+```
+
+You can even et help on how to use the help command by typing in `help help` as shown in the following screenshot
+```
+help help
+_________________________________
+help - Provides more information on how to use the commands available in the program
+Format: help [COMMAND]
+
+[COMMAND] - command which you would like to find out more information about. 
+
+text in lowercase indicates that you should type it exactly like this when you type the command in the terminal
+text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
+text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
+_________________________________
+```
 
 ### Adding an event: `add` (Matthew Gani)
 New to creating your events using Scheduler--;?
@@ -263,6 +321,93 @@ The event index keyed in have to be valid so that deadline can be created for th
 
 
 ### Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
+Sets a specific event to be repeated either weekly or monthly in the calendar. 
+
+Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler--; will record down the event for you.  
+
+Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+
+- `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
+- `EVENT_INDEX` is an number. It contains the index of the event that is to be repeated 
+- `[UNIT]` can either take the word “Weekly” or “Monthly”. It tells the program to repeat the event either every week or every month. 
+- `[COUNT]` takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks. 
+
+When the optional arguments of `[UNIT]` and `[COUNT]` are omitted in the code, repeat will instead display the repeat status of the event.  
+
+#### How to use? 
+
+We will use the example of repeating a personal event named “Dental Appointment” for 3 months from the start date. 
+
+##### Step 1: Find the index number of the event to be repeated. 
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
+
+```
+_________________________________
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][✕] party on 2000-10-09, 13:00
+2. [P][✕] surprise on 2020-09-14, 08:00
+3. [P][✕] hello there on 2002-02-02, 07:00
+4. [P][✕] dental appointment on 2020-03-02, 15:00
+_________________________________
+```
+In this case, the index number of our dental appointment is 4.
+
+##### Step 2: Type the command into the terminal
+
+In our example, the arguments are set as such:
+
+- EVENT_TYPE is set to personal
+- EVENT_INDEX is set to 4
+- UNIT is set to monthly
+- COUNT is set to 3
+
+When you type in the command repeat personal 4 monthly 3, the program automatically notes that this event will repeat for three subsequent months at the same timing. The program reports that it has set the event to repeat as shown in the following image. 
+
+```
+repeat personal 4 monthly 3
+_________________________________
+[P][✕] dental appointment on 2020-03-02, 15:00
+is now repeating monthly for 3 times
+_________________________________
+```
+
+##### Step 3: Verify the dates that the event occurs
+To check the status of the repeated event, simply key in repeat personal 4 in this case and you will obtain the status as shown in the following picture. 
+
+```
+repeat personal 4
+_________________________________
+[P][✕] dental appointment on 2020-03-02, 15:00 is also on:
+02 Apr 2020 3:00 PM [✕]
+02 May 2020 3:00 PM [✕]
+02 Jun 2020 3:00 PM [✕]
+_________________________________
+```
+
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
+
+When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
+{{box op="end"}}
+
+Examples:
+
+- `repeat personal 4 weekly 2` will repeat the personal event numbered 4 for another 2 weeks. Personal event 4 will app ear on the same day of the week for the next 2 weeks.  
+- `repeat zoom 5 monthly 3` will repeat the zoom event numbered 5 for another 3 months. Zoom event 5 will appear on the same day of the month for the next 3 months.  
+- `repeat personal 4` will show the repeat status of the event. In the following screenshot, running this command in the terminal reveals that the personal event will be repeated for 3 more times on a daily basis.  
+
+```
+repeat personal 4
+_________________________________
+[P][✕] eat dinner on 2020-01-09, 18:00 is also on:
+10 Jan 2020 6:00 PM [✕]
+10 Jan 2020 6:00 PM [✕]
+10 Jan 2020 6:00 PM [✕]
+_________________________________
+```
 
 ### Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
