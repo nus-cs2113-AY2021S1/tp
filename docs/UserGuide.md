@@ -32,6 +32,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate tasks from team members](#347-deallocate-tasks-from-team-members)<br>
 &nbsp;&nbsp;3.5. [Storage `storage`](#35-storage-storage)<br>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Clear Storage](#351-clear-storage)<br>
+&nbsp;&nbsp;3.6. [Help `help`](#36-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.1. [Help Menu](#361-help-menu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.2. [Project Help](#362-project-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.3. [Member Help](#363-member-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4. [Task Help](#364-task-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.5. [Sprint Help](#365-sprint-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.6. [Storage Help](#366-storage-help)<br>
 1. [Command Summary](#4-command-summary)
 
 
@@ -524,6 +531,7 @@ Shows a list of project commands and examples of how to use them.
 ```
 
 #### 3.6.3 Member Help
+Shows a list of member commands and examples of how to use them.
 
 #### Format: `help /2`
 #### Example: `help /2`
@@ -538,6 +546,7 @@ Shows a list of project commands and examples of how to use them.
 ```
 
 #### 3.6.4 Task Help
+Shows a list of task commands and examples of how to use them.
 
 #### Format: `help /3`
 #### Example: `help /3`
@@ -561,6 +570,7 @@ Shows a list of project commands and examples of how to use them.
 ```
 
 #### 3.6.5 Sprint Help
+Shows a list of sprint commands and examples of how to use them.
 
 #### Format: `help /4`
 #### Example: `help /4`
@@ -604,6 +614,7 @@ Shows a list of project commands and examples of how to use them.
 ```
 
 #### 3.6.6 Storage Help
+Shows the storage command, and an example of how to use it.
 
 #### Format: `help /5`
 #### Example: `help /5`
