@@ -1,5 +1,8 @@
 package seedu.duke.hr;
 
+import seedu.duke.event.EventList;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MemberList {
@@ -334,4 +337,38 @@ public class MemberList {
         }
         return output;
     }
+
+    /**
+     * Update attendance rate of member.
+     * @param memberName member name.
+     */
+    public static void updateAttendanceRate(String memberName) {
+        int attended = 0;
+        for (int i = 0; i < EventList.events.size(); i++) {
+            if (checkMemberExistence(EventList.events.get(i).getEventParticipants(), memberName)) {
+                attended++;
+            }
+        }
+        String attendanceRate = calculateAttendanceRate(attended, EventList.events.size());
+        Member m = findMemberByName(memberName);
+        m.setAttendanceRate(attendanceRate);
+    }
+
+    /**
+     * Calculate attendance rate of member.
+     * @param attended number of events attended.
+     * @param shouldAttend total number of events that exists.
+     * @return attendance rate which is formatted into 2 decimal places.
+     */
+    public static String calculateAttendanceRate(double attended, double shouldAttend) {
+        if (shouldAttend == 0) {
+            return "0";
+        }
+        double attendanceRate = (attended / shouldAttend) * 100;
+        DecimalFormat df = new DecimalFormat("###.##");
+        String formattedAttendanceRate = df.format(attendanceRate);
+        return formattedAttendanceRate;
+    }
+
+
 }
