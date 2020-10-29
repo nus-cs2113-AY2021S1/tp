@@ -19,6 +19,9 @@ What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
 What's your name?
+Hello King                                  1! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
 Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
 
 Default (Default) #> OOPS!!! Unknown command
@@ -57,6 +60,27 @@ WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CR
 WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 1. Default
@@ -183,6 +207,89 @@ COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
 19. Yakitate!! Japan [Id: 19]
 20. Zipang [Id: 20]
 Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -   requires an additional field
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 1. Default
