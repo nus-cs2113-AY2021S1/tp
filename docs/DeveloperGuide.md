@@ -31,6 +31,12 @@
 <br/>&nbsp;5.3 [Testing](#53-testing)
 <br/>&nbsp;5.4 [DevOps](#54-devops)
 
+[Appendix A: Product Scope](#appendix-a-product-scope)
+
+[Appendix B: User Stories](#appendix-b-user-stories)
+
+[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+
 <br/>
 
 ## 1. Introduction
@@ -43,7 +49,7 @@ This document is meant for new and current developers of AniChan. It describes t
 <br/>
 
 ## 2. Setting Up
-### Setting up the project in your computer
+### 2.1 Setting up the project in your computer
 
 Ensure that you have the following installed: 
 *   JDK 11.
@@ -66,20 +72,19 @@ If you plan to use Intellij IDEA:
 
 ----
 
-### Before writing code
-1. **Configuring the coding style**
+### 2.2 Before writing code
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
-    
-2. **Set up CI**
-    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder.
+#### 2.2.1 Configuring the Coding Style
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
+If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
-3. **Learn the design**
+#### 2.2.2 Set up CI
     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
+    
+#### 2.2.3 Learn the Design
+    
+When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
@@ -228,11 +233,11 @@ The estimate feature is facilitated by `EstimateCommand`. By running the command
 
 Given below is an example usage scenario showing how the `EstimateCommand` behaves at each step.
 
-**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is `estimate`, `Parser` will invoke `EstimateParser#parse()` to parse, validate, and construct `EstimateCommand` with the arguments "script.txt" and "300".
+**Step 1:** User executes the command `estimate script.txt -wph 300`. The application invokes `Parser#getCommand()` and because the command type is "estimate", `EstimateParser#parse()` is invoked to parse, validate, and construct `EstimateCommand` with "script.txt" and "300". The created object is then returned to `Main`.
 
-**Step 2:** `EstimateParser` is terminated at this point, and the application invokes `EstimateCommand#execute()` to execute the user's instruction.
+**Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace containing the file, then it invokes `StorageManager#loadScriptFile()`, passing in the arguments `activeWorkspace.getName()` and `scriptFileName`, to read the content of `scriptFileName` in the workspace into the variable `fileContent`.
+**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read and store the content of `scriptFileName` in the active workspace folder in `fileContent`.
 
 > :memo: Every workspace is actually a folder in the system.
 
@@ -240,7 +245,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 
 <br/>
 
-**Step 4:** If the file has been read successfully, then `EstimateCommand` calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` with the estimated time to convert it into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+**Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
@@ -266,8 +271,8 @@ Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Failing file validation during command execution would have wasted some memory resources. |
-| During parsing. | No memory resource wasted as the command will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
+| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if file validation fails during the execution. |
+| During parsing. | No memory resource wasted as it will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
 Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
@@ -561,7 +566,7 @@ The watchlist management feature is facilitated by `WatchlistCommand`. By runnin
 *   `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
 
 Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
-> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by the variable `activeWatchlist` in `Workspace`.
+> :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by `activeWatchlist` in `Workspace`.
 
 | Option | Method | Description |
 | --- | --- | --- |
@@ -572,21 +577,21 @@ Below is a table describing the 4 options supported by the `watchlist` command, 
 
 <br/>
 
-Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the watchlist creation process.
+Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the **watchlist creation process**.
 
 ![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
 *Figure 19: WatchlistCommand Initial State*
 
-**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is `watchlist`, `Parser` will invoke `WatchlistParser#parse()` to parse, validate, and construct `WatchlistCommand` with the arguments "-n" and "NewAnime".
+**Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
 
-**Step 2:** `WatchlistParser` is terminated at this point, and the application invokes `WatchlistCommand#execute()` to execute the user's instruction.
+**Step 2:** `WatchlistParser` is terminated at this point. The application invokes `WatchlistCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist. The `Workspace` instance retrieved is used to initialise the variable `activeWorkspace`.
+**Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist, and according to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked.
 
-**Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. Then, `activeWorkspace.getWatchlistList()` is invoked to initialise the variable `watchlistList`. 
+**Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
 
-**Step 5:** A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. It is then validated, and if no exception was thrown, it is added to `watchlistList`, and `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`.
+**Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
@@ -596,16 +601,16 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 6:** `WatchlistCommand` is terminated.
 
-![WatchlistCommand After Step 6 State](images/WatchlistCommand-After-Step-6-State.png)
+![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
 
-*Figure 20: WatchlistCommand After Step 6 State*
+*Figure 20: WatchlistCommand After Create State*
 
 <br/>
 
-All the other options in the watchlist command also follows a similar execution process. The following diagrams will continue from step 6, and it will show you how the state of the application changes as it continues to execute the select and delete option.
+All the other options in the watchlist command also follows a similar execution process. The following diagrams will **continue from step 6**, and it will show you how the state of the application changes as it continues to execute the select and delete option.
 > :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
-The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
+**Step 7:** The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
@@ -613,7 +618,7 @@ The user executes `watchlist -s 2` to change his active watchlist to the second 
 
 <br/>
 
-The user executes `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
+**Step 8:** The user now decides that the "NewAnime" watchlist is no longer needed and decides to execute `watchlist -d 2` to delete it.
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
@@ -639,10 +644,21 @@ Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution **(current design)**. | User don't have to worry about lost data if their application or system crashes midway. | Application might slow down when the data grows large. |
+| After each command execution **(current design)**. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
 | When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
 Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
+
+<br/>
+
+Aspect: **Length of watchlist name**
+
+| Approach | Pros | Cons |
+| --- | --- | --- |
+| No restriction | Users have more flexibility | This may hinder user's vision of the input prompt |
+| Restricted to 30 characters **(current design)** | Ensures users have proper view of the input prompt | Users have less flexibility in naming |
+
+While both alternatives are valid in their own ways, we have decided to **restrict the length of watchlist name to 30 characters** because we find that long names can muddle up the readability. We also believe that most users would probably prefer to use short names as that makes it easier for them to identify what the watchlist is.
 
 <br/>
 
@@ -917,4 +933,33 @@ There are primarily 2 ways to run the tests.
 
 ### 5.4 DevOps
 
-`Coming soon`
+{*Coming soon*}
+
+## Appendix A: Product Scope
+
+### 5.1 Target User Profile*
+*   Professional anime translators.
+*   Works on multiple projects and with various companies.
+*   Has difficulty managing their time and information.
+*   Prefers command-line desktop applications.
+*   Able to type fast.
+
+{*More coming soon*}
+
+## Appendix B: User Stories
+
+| Version | As a ... | I want to ... | So that I ... |
+| --- | --- | --- | --- |
+| v1.0 | user | create new watchlist | can keep track of animes easily based on my defined criteria |
+| v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
+| v1.0 | user | I want to save the data I have created | can remember what I have done |
+| v1.0 | user | I want to load the data I created previously | can continue to work on these data |
+| v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
+| v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
+| v2.0 | translator | estimate the time needed to translate a script | better manage my time |
+
+## Appendix C: Non-Functional Requirements
+
+1.  It should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
+2.  Users with fast typing speed should be able to accomplish tasks easily and faster than when they were using mouse.
+3.  Each command should be processed within 2 seconds.
