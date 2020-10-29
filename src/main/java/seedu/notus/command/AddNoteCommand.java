@@ -47,7 +47,7 @@ public class AddNoteCommand extends Command {
         ArrayList<String> content = note.getContent();
 
         // Search for duplicates
-        if (notebook.getNote(note.getTitle())) {
+        if (notebook.getNote(note.getTitle()) || notebook.getArchiveNote(note.getTitle()))  {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
