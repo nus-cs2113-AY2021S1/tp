@@ -308,7 +308,7 @@ Example of ***`exclude more`***
         
 <p align="center">
   <img src="UG_Images/excludeMore2Chapter.png" alt="Exclude Command more Chapter"/>
-  <br/>Figure <>. 
+  <br/>Figure <>. Example of "exclude more" with Chapter as the Secondary Option 
 </p>
 
 * ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to exclude from your schedule
@@ -345,6 +345,12 @@ Example of ***`exclude more`***
 </p>
 
 * ***`exclude more`*** + ***module***
+        
+<p align="center">
+  <img src="UG_Images/excludeMore2Module.png" alt="Exclude Command more Chapter"/>
+  <br/>Figure <>. Example of "exclude more" with Module as the Secondary Option
+</p>
+
 * ***Step 3***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown
  below and **press *[Enter]***
 
@@ -382,6 +388,12 @@ Example of ***`exclude less`***
 </p>
 
 * ***`exclude less`*** + ***chapter***
+        
+<p align="center">
+  <img src="UG_Images/excludeLess2Chapter.png" alt="Exclude Command more Chapter"/>
+  <br/>Figure <>. Example of "exclude less" with Chapter as the Secondary Option
+</p>
+
 * ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to include back into your schedule
      belongs to **into the prompt** as shown below and **press *[Enter]***
 
@@ -416,6 +428,12 @@ Example of ***`exclude less`***
 </p>
 
 * ***`exclude less`*** + ***module***
+        
+<p align="center">
+  <img src="UG_Images/excludeLess2Module.png" alt="Exclude Command more Chapter"/>
+  <br/>Figure <>. Example of "exclude less" with Module as the Secondary Option
+</p>
+
 * ***Step 3***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown
  below and **press *[Enter]***
 
