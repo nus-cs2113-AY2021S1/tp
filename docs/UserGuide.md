@@ -578,7 +578,9 @@ Shows a list of sprint commands and examples of how to use them.
 ```
 1. Create sprint
    Format: sprint /create -goal <goal_input> [optional tags]
-   Example: sprint /create Shopping Cart -start 20201010
+   Example 1: sprint /create Shopping Cart -start 20201010
+   Example 2: sprint /create -goal UI -start 20201010
+   Example 3: sprint /create -goal UI -start 20201010 -project 3
 2. View sprint
    Format: sprint /view [optional tags]
    Example 1: sprint /view
@@ -587,30 +589,30 @@ Shows a list of sprint commands and examples of how to use them.
    Example 4: sprint /view -project 2 -sprint 3
 3. Edit sprint
    Format: sprint /edit -goal <goal_input> [optional tags]
-   Example: sprint /edit -goal Add Documentation
-   Example: sprint /edit -project 2 -goal Add Documentation
-   Example: sprint /edit -project 2 -sprint 3 -goal Add Documentation
+   Example 1: sprint /edit -goal Add Documentation
+   Example 2: sprint /edit -project 2 -goal Add Documentation
+   Example 3: sprint /edit -project 2 -sprint 3 -goal Add Documentation
 4. Add tasks to sprint
    Format: sprint /addtask <task_id> [<task_id> ...] [optional tags]
-   Example: sprint /addtask 1 2
-   Example: sprint /addtask -task 1 2
-   Example: sprint /addtask -project 2 -task 1 2
-   Example: sprint /addtask -project 2 -sprint 3 -task 1 2
+   Example 1: sprint /addtask 1 2
+   Example 2: sprint /addtask -task 1 2
+   Example 3: sprint /addtask -project 2 -task 1 2
+   Example 4: sprint /addtask -project 2 -sprint 3 -task 1 2
 5. Delete tasks from sprint
    Format: sprint /removetask <task_id> [<task_id> ...] [optional tags]
-   Example: sprint /removetask 1 2
-   Example: sprint /removetask -project 2 -task 1 2
-   Example: sprint /removetask -project 2 -sprint 3 -task 1 2
+   Example 1: sprint /removetask 1 2
+   Example 2: sprint /removetask -project 2 -task 1 2
+   Example 3: sprint /removetask -project 2 -sprint 3 -task 1 2
 6. Allocate task to team members
    Format: sprint /allocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
-   Example: sprint /allocate -task 1 2 -user johntan mary jane
-   Example: sprint /allocate -project 2 -task 1 -user mary
-   Example: sprint /allocate -project 2 -sprint 3 -task 1 -user mary
+   Example 1: sprint /allocate -task 1 2 -user johntan mary jane
+   Example 2: sprint /allocate -project 2 -task 1 -user mary
+   Example 3: sprint /allocate -project 2 -sprint 3 -task 1 -user mary
 7. Deallocate tasks from team members
    Format: sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
-   Example: sprint /deallocate -task 1 2 -user johntan mary jane
-   Example: sprint /deallocate -project 2 -task 1 -user mary
-   Example: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary
+   Example 1: sprint /deallocate -task 1 2 -user johntan mary jane
+   Example 2: sprint /deallocate -project 2 -task 1 -user mary
+   Example 3: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary
 ```
 
 #### 3.6.6 Storage Help
