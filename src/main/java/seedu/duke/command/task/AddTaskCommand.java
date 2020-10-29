@@ -34,7 +34,7 @@ public class AddTaskCommand extends Command {
 
         title = parameters.get(TITLE);
         description = parameters.get(DESCRIPTION);
-        priority = parameters.get(PRIORITY);
+        priority = parameters.get(PRIORITY).toUpperCase();
 
 
         Project proj = projectListManager.getSelectedProject();

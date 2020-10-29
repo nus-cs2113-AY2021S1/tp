@@ -36,6 +36,7 @@ public class CreateSprintCommand extends SprintCommand {
             checkAllSprintCreated();
 
             //Valid Command
+            System.out.println(this.projOwner.toIdString());
             Ui.showToUser(this.projOwner.toIdString());
             updateProjectDates();
             sprintList.addSprint(this.projOwner, sprintGoal, sprintStart, sprintEnd);
@@ -58,7 +59,9 @@ public class CreateSprintCommand extends SprintCommand {
             throw new DukeException("Goal cannot be empty.");
         }
         if (checkIsFirstSprint()) {
-            this.sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
+            if (this.parameters.containsKey("start")) {
+                this.sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
+            }
         } else {
             Sprint prevSprint = sprintList.getSprint(sprintList.size());
             this.sprintStart = prevSprint.getEndDate().plusDays(1);
@@ -91,6 +94,7 @@ public class CreateSprintCommand extends SprintCommand {
     /**
      * Check if there is room for new sprints.
      * Not executed for first sprint
+     *
      * @throws DukeException if all sprints are created
      */
     private void checkAllSprintCreated() throws DukeException {
