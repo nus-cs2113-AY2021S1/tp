@@ -88,8 +88,13 @@ public class ParserManager {
         return new EmptyCommand(parameters);
     }
 
-    public static boolean isStringContainsNumber(String s) {
-        return Pattern.compile("[0-9]").matcher(s).find();
+    public static boolean isStringIntParsable(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public boolean isExit() {

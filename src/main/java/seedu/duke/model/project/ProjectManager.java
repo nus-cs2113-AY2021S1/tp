@@ -58,6 +58,10 @@ public class ProjectManager implements JsonableObject {
         selectedProject = -1;
     }
 
+    public boolean checkExist(int projID) {
+        return projectList.containsKey(projID);
+    }
+
     @Override
     public String toJson() {
         final StringWriter writeable = new StringWriter();

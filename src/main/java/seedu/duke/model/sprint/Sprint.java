@@ -110,8 +110,8 @@ public class Sprint implements JsonableObject {
     public String toSimplifiedString() {
         StringBuilder sprintInString = new StringBuilder();
         sprintInString.append(String.format("[Sprint ID: %d]", this.id));
-        sprintInString.append(String.format("%t[Goal: %s]", this.goal));
-        sprintInString.append(String.format("%t[Period: %s - %s]%n", this.startDate, this.endDate));
+        sprintInString.append(String.format("\t[Goal: %s]", this.goal));
+        sprintInString.append(String.format("\t[Period: %s - %s]%n", this.startDate, this.endDate));
         return sprintInString.toString();
     }
 

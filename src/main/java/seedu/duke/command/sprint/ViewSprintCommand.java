@@ -14,7 +14,7 @@ public class ViewSprintCommand extends SprintCommand {
 
     public void execute() {
         try {
-            checkProjectExist();
+            checkProjectExist(-1);
             chooseProject();
             checkSprintExist();
             chooseSprint();
