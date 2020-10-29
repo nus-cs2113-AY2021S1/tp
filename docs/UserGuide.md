@@ -33,6 +33,14 @@
     * [Edit an existing quote reflection](#editing-reflection-of-a-quote-edit--qr)
     * [Delete a quote reflection](#deleting-reflection-of-a-quote-delete--qr)
   * [Progress Tracker](#progress-tracker)
+    * [Add bookmarks](#add-bookmarks-bookmark--b-pg)
+    * [List bookmarks](#list-bookmarks-list--bm)
+    * [Delete bookmarks](#delete-bookmarks-delete--bm)
+    * [Edit bookmarks](#edit-bookmarks-bookmark--b)
+    * [Add tasks](#add-tasks-add--t-by)
+    * [List tasks](#list-tasks-list--t)
+    * [Mark tasks as done](#mark-tasks-as-done-done--t)
+    * [Delete tasks](#delete-tasks-delete--t)
   * [Category Management](#category-management)
     * [Add categories](#add-categories-add--c)
     * [List categories](#list-categories-list--c)
@@ -540,7 +548,6 @@ Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been delet
 If you want to save your reading progress, you can do so by adding bookmarks to the books you read.
 If you want to set a goal on reading, you can do so by adding tasks (with deadlines) to your todo list. 
 
-
 #### Add bookmarks: `bookmark -b /pg`
 Add the only one bookmark to any book that has been already added.
 
@@ -570,7 +577,6 @@ Here is the lsit of all bookmark(s) recorded:
 2. "Harry Potter" at page: 56
 ```
 
-
 #### Delete bookmarks: `delete -bm`
 Delete the bookmark that you have already added.
 
@@ -583,7 +589,6 @@ Expected outcome:
 ```
 The bookmark ["hp" at page: 123] has been removed!
 ```
-
 
 #### Edit bookmarks: `bookmark -b`
 Update the bookmark that you have already added. 
@@ -599,7 +604,6 @@ Expected outcome:
 ```
 The bookmark ["Harry Potter" at page: 185] has been updated!
 ```
-
 
 #### Add tasks: `add -t /by`
 
@@ -633,7 +637,6 @@ Expected outcome:
 The task [[x] return Harry Potter (by: not specified)] has been added!
 ```
 
-
 #### List tasks: `list -t`
 If successful, you will see a full list of todo tasks added by you.
 If some tasks have formatted deadlines (YYYY-MM-DD), they will be arranged in ascending order of date 
@@ -652,7 +655,6 @@ Here is the list of all task(s) recorded:
 4.[x] task 1 (by: 1908008)
 5.[x] task 2 (by: 1999-12-34)
 ```
-
 
 #### Mark tasks as Done: `done -t`
 
@@ -677,7 +679,6 @@ Expected outcome:
 ```
 The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
 ```
-
 
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
@@ -753,7 +754,6 @@ Example of usage:
 1. `delete -c fantasy`
 2. `delete -c fantasy -b 1`
 3. `delete -c inspirational -q 1`
-
 
 Expected outcome 1:
 ```
