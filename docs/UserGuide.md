@@ -29,7 +29,6 @@
     - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
     - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
   - [4.6 Importing features](#46-import)
-  - [4.7 Upload feature](#47-export-data-coming-soon) [Coming Soon]
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
@@ -78,7 +77,7 @@ to see the commands of all features at a glance.
 Words in UPPER CASE are the parameters to be supplies by user.
 > :information_source: Our program also supports shorthand commands. 
 
-This means that commands and categories can be shortened to one or two characters in length. You will find the shorthand commands listed under the format for the actual commands.
+(elaborate)
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -96,30 +95,27 @@ Format: `bye`
 #### Add members: `addMember`
 Adds a member to the list of members.<br/>
 
-Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>  
-Shorthand: `h a /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`
+Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
 
 Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
  `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  
-#### Delete members: `delMember`
-Deletes a member from the list of members. <br/>
-Format: `hr delMember MEMBER_INDEX` <br/>  
-Shorthand: `h d MEMBER_INDEX`  
-Deletes the member at the specified MEMBER_INDEX.<br/>
-
-The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
-The MEMBER_INDEX must be an integer greater than 0. <br/>
-
-Example of usage: 
-`hr delMember 1` <br/>
-`hr delMember 19` <br/>
+ #### Delete members: `delMember`
+ Deletes a member from the list of members. <br/>
+ Format: `hr delMember MEMBER_INDEX` <br/>
+ Deletes the member at the specified MEMBER_INDEX.<br/>
+ 
+ The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
+ The MEMBER_INDEX must be an integer greater than 0. <br/>
+ 
+ Example of usage: 
+ `hr delMember 1` <br/>
+ `hr delMember 19` <br/>
 
 #### list members: `listMember`
 Prints the list of members, based on the order in which they are added into the list. 
-Format: `hr listMember` <br/>  
-Shorthand: `h l`  
+Format: `hr listMember` <br/>
 
 Example of usage:
 `hr listMember`  
@@ -127,7 +123,6 @@ Example of usage:
 #### change member information: `changeInfo`
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
-Shorthand: `h c /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)`
 
 MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be provided. 
 
@@ -137,15 +132,14 @@ Example of usage: <br/>
 
 #### search members: `search`  
 Search the members whose information matches user input.  
-Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`   
+Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
 Example of usage:  
-`hr search Peter`  
-`hr search /n Peter /r President`  
+`hr search peter`  
+`hr search /n peter /r president`  
 
 
 #### view contacts of prof/admin: `list prof&admin`  
-You can search for members in the list with the role professors or admin with this quick command.
 List the contacts of the professors and administrators.  
 Format: `hr list prof&admin`  
 
@@ -154,7 +148,6 @@ Example of usage:
 
 
 #### view contacts of connections: `list connections`  
-You can search for members with the role of alumni or speaker with this quick command.
 List the contacts of connections(alumni, speakers).  
 Format: `hr list connections`  
 
@@ -165,12 +158,11 @@ Example of usage:
 ### 4.4 Event features`event` 
 #### Add an event: `addEvent`
 Adds an event to the list of events.<br/>
-Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>  
-Shorthand: `e a /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`
+Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `event addEvent /n Autodesk course /d 2020-12-20 /t 8-10.30pm`<br/>
+ `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
  
 Expected Outcome:
 
@@ -179,28 +171,26 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
-Deletes an event from the list of events  <br/>
-Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
-Shorthand: `e d EVENT_INDEX`  
-Deletes the event at the specified EVENT_INDEX.<br/>
-
-> :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
-> :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
-
-Example of usage: 
-`event delEvent 1` <br/>
-`event delEvent 19` <br/>
-
-Expected Outcome: 
-
-![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
-
-[Return to the top](#user-guide)
+ Deletes an event from the list of events  <br/>
+ Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
+ Deletes the event at the specified EVENT_INDEX.<br/>
+ 
+ > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+ 
+ Example of usage: 
+ `event delEvent 1` <br/>
+ `event delEvent 19` <br/>
+ 
+ Expected Outcome: 
+ 
+ ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
+ 
+ [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
 Clear all events from the list of events <br/>
-Format to clear all events in the list: `event delEvent all`  
-Shorthand: `e d all`  
+Format to clear all events in the list: `event delEvent all`
 
 Example of usage:
 `event delEvent all` <br/>
@@ -215,8 +205,7 @@ Expected Outcome:
 
 #### List events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
-Format: `event listEvent` <br/>  
-Format: `e l`  
+Format: `event listEvent` <br/>
 
 Example of usage: 
 `event listEvent`
@@ -276,8 +265,7 @@ Expected Outcome:
 ### 4.5 Finance features `finance`  
 #### 4.5.1 Add finance log entry: `addLog`  
 Adds an entry into the finance log.  
-Format: `finance addLog ITEM_NAME ITEM_VALUE`   
-Shorthand: `f a ITEM_NAME ITEM_VALUE` 
+Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
 Example of usage:  
 `finance addLog have lunch 4.5`  
@@ -294,7 +282,6 @@ Expected outcomes:
 #### 4.5.2 Delete finance log entry: `delLog`  
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
-Shorthand: `f d ITEM_INDEX` 
 
 Example of usage:  
 `finance dellog 3`  
@@ -311,7 +298,6 @@ Expected outcomes:
 #### 4.5.3 View financial summary: `summary`  
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
-Shorthand: `f s`  
 
 Example of usage:  
 `finance summary`  
@@ -330,7 +316,6 @@ Example of usage:
 Expected outcome:  
 ![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
 
-[Return to the top](#user-guide)
 
 ### 4.6 Import
 
@@ -354,41 +339,34 @@ The expected outcome is as follows:
 
 [Return to the top](#user-guide)
 
-### 4.7 Export Data [Coming Soon]
-
-You can upload your data as a zip file to save your data at a remote site as a backup. This is handy when you want to keep multiple backups of your data, or if you suffer a ransomware attack, and you are no longer able to save files to the hard disk.
-Format: `upload /w WEB_SERVER /u USERNAME /p PASSWORD `
-
-[Return to the top](#user-guide)
-
 ## 5. FAQ
 
 ## 6. Command Summary
 
-|      Command     |                                   Format                                   |                                   Example                                   |
-|:----------------:|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
-| addMember        | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`                      | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`                 |
-| addEvent         | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`                   | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`                       |
-| addLog           | `finance addLog ITEM_NAME ITEM_VALUE`                                        | `finance addLog have lunch 4.5`                                               |
-| bye              | `bye`                                                                        | -                                                                           |
-| changeInfo       | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president`                              |
-| changeLog        | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`                         | `finance changeLog /i 1 /n buy cake 5.5`                                      |
-| delMember        | `hr delMember MEMBER_INDEX`                                                  | `hr delMember 1`                                                              |
-| delEvent         | `event delEvent EVENT_INDEX`                                                 | `event delEvent 1`                                                            |
-| delEvent all     | `event delEvent all`                                                         | -                                                                           |
-| delLog           | `finance delLog ITEM_INDEX`                                                  | `finance delLog 3`                                                            |
-| event done       | `event done EVENT_INDEX`                                                     | `event done 2`                                                                |
-| event search     | `event search /s <KEYWORD>`                                                  | `event search /s arduino`                                                     |
-| event countdown  | `event countdown`                                                            | -                                                                           |
-| help             | `help`                                                                       | -                                                                           |
-| hr search        | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`                     | `hr search /n Peter /r president`                                             |
-| import           | `import FILENAME /c CATEGORY (...)`                                          | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` |
-| listMember       | `hr listMember`                                                              | -                                                                           |
-| listEvent        | `event listEvent`                                                            | -                                                                           |
-| list prof&admin  | `hr list prof&admin`                                                         | -                                                                           |
-| list connections | `hr list connections`                                                        | -                                                                           |
-| summary          | `finance summary`      
-                                                      | -                                                                           |
+Command | Format | Example
+------- | ---------- | ------------
+addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
+addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
+addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
+bye | `bye` | -
+changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
+changeLog | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE` | `finance changeLog /i 1 /n buy cake 5.5`
+delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
+delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
+delEvent all | `event delEvent all` | -
+delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
+event done   | `event done EVENT_INDEX`| `event done 2`
+event search | `event search /s <KEYWORD>` | `event search /s arduino` 
+event countdown | `event countdown` | -
+help | `help` | -
+hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
+import  | `import FILENAME /c CATEGORY (...)` | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role`
+listMember  | `hr listMember` | -
+listEvent | `event listEvent` | -
+list prof&admin | `hr list prof&admin` | -
+list connections | `hr list connections` | -
+summary | `finance summary` |   -
+
 [Return to the top](#user-guide)
 
 ## 7. Glossary
