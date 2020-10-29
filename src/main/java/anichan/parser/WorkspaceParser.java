@@ -19,7 +19,6 @@ public class WorkspaceParser extends CommandParser {
     public static final String COMMAND_LIST = COMMAND_list;
     public static final String COMMAND_DELETE = "d";
     public static final String REGEX_SPACE_CHARACTER = " ";
-    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
 
     private String commandOption;
     private String commandDescription;
