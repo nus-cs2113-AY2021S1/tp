@@ -39,7 +39,7 @@ public class Formatter {
     /**
      * Maximum number of characters within a row.
      */
-    private static final int MAX_ROW_LENGTH = 150;
+    private static final int MAX_ROW_LENGTH = 100;
     /**
      * Maximum length of message to within a row, minus the start and end formatting.
      */
@@ -78,14 +78,13 @@ public class Formatter {
      */
     public static String formatNotes(String header, ArrayList<Note> notes, Notebook notebook) {
         String formattedString = "";
-        int colorGold = 94;
-        int colorBrown = 95;
 
         formattedString = formattedString.concat(generatesHeader(header));
 
         for (Note note: notes) {
-            String colorIndex = colorize("Note Index: " + notebook.getNoteIndex(note),
-                    Attribute.TEXT_COLOR(colorBrown));
+            String colorIndex;
+            String colorTitle;
+
             int noteIndex = notebook.getNoteIndex(note);
 
             if (noteIndex == 0) {
@@ -93,9 +92,6 @@ public class Formatter {
             }
 
             colorIndex = colorize(NOTE_INDEX + noteIndex, Attribute.CYAN_TEXT());
-
-            String colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE
-                    + note.getTagsName(), Attribute.TEXT_COLOR(colorGold));
             colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE + note.getTagsName(),
                     Attribute.YELLOW_TEXT());
 

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.command.DeleteTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
-import static seedu.notus.command.DeleteTagCommand.HEADER_DELETE_TAG;
+import static seedu.notus.util.CommandMessage.DELETE_TAG_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.HEADER_DELETE_TAG;
 
 //@@author Chongjx
 class DeleteTagCommandTest {
@@ -55,9 +55,9 @@ class DeleteTagCommandTest {
 
         ArrayList<String> expectedResult = new ArrayList<>();
         expectedResult.add(HEADER_DELETE_TAG);
-        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed);
-        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen);
-        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue);
+        expectedResult.add(DELETE_TAG_UNSUCCESSFUL_MESSAGE + tagRed);
+        expectedResult.add(DELETE_TAG_UNSUCCESSFUL_MESSAGE + tagGreen);
+        expectedResult.add(DELETE_TAG_UNSUCCESSFUL_MESSAGE + tagBlue);
 
         /*String result = getCommandExecutionString(tagManager, tags);
 

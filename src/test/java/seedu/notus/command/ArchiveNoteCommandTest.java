@@ -16,9 +16,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.command.ArchiveNoteCommand.COMMAND_SUCCESSFUL_MESSAGE;
-import static seedu.notus.command.ArchiveNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
-import static seedu.notus.command.ArchiveNoteCommand.INDEX_OUT_OF_RANGE_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 class ArchiveNoteCommandTest {
     int maxRowLength = 100;
@@ -106,7 +104,7 @@ class ArchiveNoteCommandTest {
     void execute_invalidTitle_returnsNoNotes() {
         String title = "rando";
 
-        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String expected = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         String result = getCommandExecutionString(notebook, title);
 
         assertEquals(expected, result);

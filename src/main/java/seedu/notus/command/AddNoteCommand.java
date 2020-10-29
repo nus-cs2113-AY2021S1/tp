@@ -1,17 +1,16 @@
 package seedu.notus.command;
 
-import seedu.notus.data.notebook.Note;
 import seedu.notus.data.exception.SystemException;
+import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
-
-import static seedu.notus.util.parser.Parser.inputContent;
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
-import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static seedu.notus.util.CommandMessage.ADD_NOTE_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.parser.Parser.inputContent;
 
 //@@author Nazryl
 /**
@@ -20,16 +19,6 @@ import java.util.ArrayList;
 public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "add-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Adds a note to notebook. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
-            + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
-
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
-    public static final String COMMAND_UNSUCCESSFUL_FILE_CREATION = "Unable to create and save details in a file";
 
     private Note note;
 
@@ -48,7 +37,7 @@ public class AddNoteCommand extends Command {
 
         // Search for duplicates
         if (notebook.getNote(note.getTitle())) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NOTE_UNSUCCESSFUL_MESSAGE);
         }
 
         // Get Content
@@ -74,9 +63,9 @@ public class AddNoteCommand extends Command {
         try {
             storageManager.saveNote(note, note.getIsArchived());
         } catch (IOException exception) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_FILE_CREATION);
+            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }
 
-        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, note);
+        return Formatter.formatNote(ADD_NOTE_SUCCESSFUL_MESSAGE, note);
     }
 }

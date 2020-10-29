@@ -3,9 +3,8 @@ package seedu.notus.command;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
+import static seedu.notus.util.CommandMessage.VIEW_NOTE_SUCCESSFUL_MESSAGE;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -22,13 +21,6 @@ public class ViewNoteCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger("ViewNoteCommand");
 
     public static final String COMMAND_WORD = "view-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: "
-            + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
-            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
-
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here's the note you're looking for: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
 
     private int index;
     private String title;
@@ -70,7 +62,7 @@ public class ViewNoteCommand extends Command {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
-                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
             }
             LOGGER.log(Level.INFO, "Note found using index");
             noteExists = true;
@@ -85,10 +77,10 @@ public class ViewNoteCommand extends Command {
         }
         if (!noteExists) {
             LOGGER.log(Level.INFO, "Note does not exist.");
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         }
 
-        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, note);
+        return Formatter.formatNote(VIEW_NOTE_SUCCESSFUL_MESSAGE, note);
     }
 
     private void setupLogger() {

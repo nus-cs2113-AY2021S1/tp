@@ -4,9 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.command.PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.storage.StorageManager.FOLDER_DIR;
 import static seedu.notus.storage.StorageManager.NOTES_DIR;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 
 import seedu.notus.data.exception.SystemException;
@@ -31,7 +31,7 @@ class PinCommandTest {
     private static final String NOTE1_TITLE = "TestNote1";
     private static final String NOTE2_TITLE = "TestNote2";
 
-    private static final String UNSUCCESFUL_MESSAGE = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+    private static final String UNSUCCESFUL_MESSAGE = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
     @BeforeEach
     void setUp() {
@@ -75,7 +75,7 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String expected = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
         assertEquals(expected, getExecutionStringInputIndex(notebook, 5));
         assertEquals(expected, getExecutionStringInputIndex(notebook, 3));
@@ -84,7 +84,7 @@ class PinCommandTest {
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
 
-        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String expected = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
         assertEquals(expected, getExecutionStringInputTitle(notebook, "Title"));
         assertEquals(expected, getExecutionStringInputTitle(notebook, "Random"));
