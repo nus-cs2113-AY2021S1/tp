@@ -196,24 +196,48 @@ Add a task to the project backlog.
 * Tasks can only be created if a project has been created.
 ##### Example: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
 * Adds a task of title `Add UI`, description `add an interactive UI` and priority `HIGH` into the backlog.
-##### Expected Outcome:
-`Add UI has been added.`
+##### Expected Outcome
+(Assuming there are no prior tasks created)
+```
+Task successfully created.
+[Task]
+        ID: 1
+        Title: Add UI
+        Description: add an interactive UI
+        Priority: High priority
+        Completion: Incomplete
+        Task have yet to be assigned to anyone
+```
 
 #### 3.3.2. View Task
 Display the information of the specified task.
-##### Format: `task /view <taskid>`
+##### Format: `task /view <taskid> [<taskid>...]`
 ##### Constraints:
 * The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
-##### Example: `task /view 3`
-* Views the third task.
+##### Example: `task /view 3 6 9`
+* Views the third, sixth and ninth task.
 ##### Expected Outcome:
-(Assuming the third task have the following attributes: Title: `Add parser`, Description: `add UI`, Priority: `HIGH`, Done: `false`)
+(Assuming the tasks have the following attributes respectively:
+Title: `Foo`,`Bar`,`FooBar` , Description: `one`,`two`,`three`, Priority: `HIGH`,`MEDIUM`,`LOW`, Done: `false`,`false`,`true`)
 ```
+The details of the tasks are as follows:
 [Task]
-    ID: 1
-    Add parser 
-    Description: add an interactive UI 
+    ID: 3
+    Foo
+    Description: one
     Priority: High priority
+    Completion: Incomplete
+[Task]
+    ID: 6
+    Bar
+    Description: two
+    Priority: Medium priority
+    Completion: Incomplete
+[Task]
+    ID: 9
+    FooBar
+    Description: three
+    Priority: Low priority
     Completion: Completed
  ```
 
@@ -222,7 +246,7 @@ Delete the specified task from the project backlog.
 ##### Format: `task /del <taskid> [<taskid>...]`
 ##### Constraints:
 * There must be at least one supplied task ID for deletion.
-* All task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
+* Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
 ##### Example: `task /del 5 7 9`
 * Deletes the fifth, seventh and ninth task.
 ##### Expected Outcome:
@@ -245,19 +269,23 @@ Change the priority of the specified task.
 ##### Expected Outcome: (Assuming task 1 has title `Add parser`)
 ```
 The task Add parser has its priority changed to:
-High priority
+        High priority
 ```
 
 #### 3.3.5. Mark Task as Complete
 Mark specified task as complete.
-##### Format: `task /done <taskid>`
-##### Constraints:
-* The Task ID must be entered.
-* The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
-##### Example: `task /done 1`
+##### Format: `task /done <taskid> [<taskid>...]`
+##### Example: `task /done 1 2 3`
 * Marks the first task as done.
-##### Expected Outcome: (Assuming task 1 has title `Add parser`)
-`Add parser has been marked as done.`
+##### Constraints:
+* There must be at least one supplied task ID for marking of completion.
+* Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
+##### Expected outcome: (Assuming task 1 has title `Add parser`)
+```
+Add parser has been marked as done.
+Foo has been marked as done.
+Bar has been marked as done.
+```
 
 ### 3.4. Sprint `sprint`
 In SCRUMptious, a project will be broken down into smaller iterations known as **sprints**. After planning and creating the sprints, you can allocate tasks to these iterations and assign them to members of the project later on.
