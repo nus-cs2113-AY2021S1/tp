@@ -17,6 +17,9 @@ import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Manages the storage of AniChan's data.
+ */
 public class StorageManager {
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
     public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
@@ -27,6 +30,11 @@ public class StorageManager {
     private final BookmarkStorage bookmarkStorage;
     private final ScriptStorage scriptStorage;
 
+    /**
+     * Creates a new instance of StorageManager with the specified storage directory.
+     *
+     * @param storageDirectory the specified path to storage directory in hard disk
+     */
     public StorageManager(String storageDirectory) {
         this.storageDirectory = storageDirectory;
         userStorage = new UserStorage(this.storageDirectory);
@@ -35,6 +43,11 @@ public class StorageManager {
         scriptStorage = new ScriptStorage(this.storageDirectory);
     }
 
+    /**
+     * Retrieves the list of workspace found in the storage directory.
+     *
+     * @return the list of workspace found in the storage directory
+     */
     public String[] retrieveWorkspaceList() {
         File file = new File(storageDirectory);
         String[] workspaceList = file.list((current, name) -> new File(current, name).isDirectory());
@@ -56,6 +69,12 @@ public class StorageManager {
 
     // ========================== Workspace Deletion ==========================
 
+    /**
+     * Deletes directory containing specified workspace.
+     *
+     * @param name name of workspace
+     * @throws AniException when an error occurred while trying to delete directory
+     */
     public void deleteWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
@@ -76,20 +95,47 @@ public class StorageManager {
 
     // ========================== User Saving and Loading ==========================
 
+    /**
+     * Invokes the save method in UserStorage to save the user data.
+     *
+     * @param user the user object to save
+     * @throws AniException when an error occurred while saving the user data
+     */
     public void saveUser(User user) throws AniException {
         userStorage.save(user);
     }
 
+    /**
+     * Invokes the load method in UserStorage to load the user data.
+     *
+     * @return the user object loaded
+     * @throws AniException when an error occurred while loading the user data
+     */
     public User loadUser() throws AniException {
         return userStorage.load();
     }
 
     // ========================== Watchlist Saving and Loading ==========================
 
+    /**
+     * Invokes the save method in WatchlistStorage to save the watchlist data.
+     *
+     * @param workspaceName the name of the workspace to save the list under
+     * @param watchlistList the watchlist list to save
+     * @throws AniException when an error occurred while saving the watchlist list data
+     */
     public void saveWatchlistList(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
         watchlistStorage.save(workspaceName, watchlistList);
     }
 
+    /**
+     * Invokes the load method in WatchlistStorage to save the watchlist data.
+     *
+     * @param workspaceName the name of the workspace to load the list from
+     * @param watchlistList the watchlist list to load the data into
+     * @return the load result message
+     * @throws AniException when an error occurred while loading the watchlist list data
+     */
     public String loadWatchlistList(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
         return watchlistStorage.load(workspaceName, watchlistList);
     }
@@ -106,6 +152,14 @@ public class StorageManager {
 
     // ========================== Script Loading ==========================
 
+    /**
+     * Loads the script file.
+     *
+     * @param workspaceName the name of the workspace where the script can be found
+     * @param fileName      the file name of the script file
+     * @return the content of the script file
+     * @throws AniException when an error occurred while loading the script data
+     */
     public String loadScript(String workspaceName, String fileName) throws AniException {
         return scriptStorage.readScript(workspaceName, fileName);
     }

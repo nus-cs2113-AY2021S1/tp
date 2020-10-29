@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for estimate command.
+ */
 public class EstimateParser extends CommandParser {
     private static final String WORDS_PER_HOUR_OPTION = "wph";
     private static final String VALID_SCRIPT_FILE_FORMAT = ".txt";
@@ -25,6 +28,13 @@ public class EstimateParser extends CommandParser {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
     private static final Logger LOGGER = AniLogger.getAniLogger(EstimateParser.class.getName());
 
+    /**
+     * Parses the specified command description.
+     *
+     * @param description the specified command description
+     * @return initialised {@code EstimateCommand} object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public EstimateCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
         String[] paramGiven = parameterSplitter(description);
@@ -49,6 +59,13 @@ public class EstimateParser extends CommandParser {
         return new EstimateCommand(fileName, wordsPerHour);
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven an String Array containing the parameters and the value
+     * @return the parsed words per hour specified in the parameter
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     private int parameterParser(String[] paramGiven) throws AniException {
         String[] parsedParts = paramGiven[1].split(SPLIT_WHITESPACE);
         String option = parsedParts[0].trim();
@@ -71,6 +88,13 @@ public class EstimateParser extends CommandParser {
         return wordsPerHour;
     }
 
+    /**
+     * Check to ensure the user specified a valid script file.
+     *
+     * @param fileName script file name
+     * @return {@code true} if the file name is valid; false otherwise
+     * @throws AniException when the file name is invalid
+     */
     private boolean isValidFileName(String fileName) throws AniException {
         if (fileName.split(SPLIT_WHITESPACE).length != 1) {
             throw new AniException(TOO_MANY_SCRIPT_FILE);
