@@ -484,7 +484,7 @@ Expected output:
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
 You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
-(refer to 5.1).
+(refer to 4.1).
 
 Instruction:
 1. `add`
