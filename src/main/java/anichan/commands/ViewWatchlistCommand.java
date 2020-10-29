@@ -25,13 +25,6 @@ public class ViewWatchlistCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());
 
     /**
-     * Creates a new instance of ViewWatchlistCommand.
-     */
-    public ViewWatchlistCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
-    /**
      * Returns a string representation of all the anime in the
      * specified Watchlist.
      *

@@ -18,14 +18,6 @@ public class HelpCommand extends Command {
     private static String output;
 
     /**
-     * Creates a new instance of HelpCommand.
-     */
-    public HelpCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-        this.output = buildHelpOutput();
-    }
-
-    /**
      * Returns a string representation of the full command list of the program.
      *
      * @param animeData used to retrieve anime information

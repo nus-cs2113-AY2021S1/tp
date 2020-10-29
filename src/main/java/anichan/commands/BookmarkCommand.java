@@ -54,8 +54,6 @@ public class BookmarkCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
     public BookmarkCommand() {
-        // Set log levels
-        // LOGGER.setLevel(Level.WARNING);
         bookmarkAction = null;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
