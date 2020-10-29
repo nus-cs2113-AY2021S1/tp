@@ -33,9 +33,9 @@ public class AddFavCommand extends Command {
 
     private void createFav() {
         if (description.equals(" ")) {
-            item = new Fav(input, input);
+            item = new Fav(input.trim(), "No description");
         } else {
-            item = new Fav(input, description);
+            item = new Fav(input.trim(), description.trim());
         }
     }
 
