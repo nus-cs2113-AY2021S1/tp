@@ -116,11 +116,14 @@ The rest of the App consists of 8 components:
 ### 3.1. Ui Component 
 (Jia Ern)
 
-![Class Diagram of Ui Component](DG_Images/ui_component.PNG)
+<p align="center">
+  <img src="DG_Images/ui_component.PNG" width="600" alt="Class Diagram of Ui Component"/>
+  <br/>Figure <>. Class diagram of Ui component 
+</p>
 
-The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
+The Ui component consists of a main class — `Ui.java`. While `Kaji` has `Ui` as its class variable so that it can instantiate a `Ui` object at each run of the program, the `Model`, `Logic` and `Storage` components have a dependency on the Ui component due to the need to take in user input and show the results of execution.
 
-The UI component is responsible for:
+The Ui component is responsible for:
 * Taking in user input.
 * Printing result of execution for the different commands. 
 * Printing error messages when certain exceptions occur. 
@@ -164,7 +167,10 @@ The Model,
 * contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
 * contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
 
-![Architecture Diagram of Model](UML/model.png)
+<p align="center">
+  <img src="UML/model.png" width="800" alt="Architecture Diagram of Model"/>
+  <br/>Figure <>. Architecture Diagram of Model
+</p>
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -186,7 +192,10 @@ The Model,
 
 Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddModuleCommand`, `Kaji` is able to execute the operation `AddModuleCommand#excute()`. 
 
-![Class Diagram of add module command](UML/AddModuleCommandClass.png)
+<p align="center">
+  <img src="UML/AddModuleCommandClass.png" width="800" alt="Class Diagram of add module command"/>
+  <br/>Figure <>. Class Diagram of add module command
+</p>
 
 Given below is an example usage scenario at Admin level and how the add module feature behaves at each step:
 
@@ -208,11 +217,15 @@ Step 8: The new `Admin` object with the `CS2113: Module` object is updated to `A
 
 Step 9: The new `Module` is updated in the folder by executing the `Storage#createModule()`. A 'CS2113' folder is created under the 'data/admin' folder.
 
-Step 10: A result message is returned from `AddModuleCommand#addModule()` method to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+Step 10: The `AddModuleCommand#addModule()` method returns a result message to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
 
-The following diagam shows how the add module command feature works:
+The following diagram shows how the add module command feature works:
 
-![Sequence Diagram of add module command](UML/AddModuleCommand.png)
+<p align="center">
+  <img src="UML/AddModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
+  <br/>Figure <>. Sequence Diagram of add module command 
+</p>
+
 
 #### 4.1.2. List Modules Feature
 (Zeyu)
@@ -292,7 +305,11 @@ Step 2: The user enters `remove 1` command to delete the first module in the lis
 Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
 The following sequence diagram shows how the remove module feature works:
-![Sequence Diagram of Remove Module](DG_Images/removemod_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removemod_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
+  <br/>Figure <>. Sequence diagram of remove module  
+</p>
 
 #### 4.1.5. Access Module Level Feature
 (Jiayi)
@@ -305,7 +322,10 @@ It implements the following operations:
 
 Shown as the class diagram below, with the inheritance of `GoCommand` and `Command`, `Kaji` is able to execute the operation `GoModuleCommand#execute()` directly. 
 
-![Class Diagram of go module command](UML/GoModuleCommandClass.png)
+<p align="center">
+  <img src="UML/GoModuleCommandClass.png" width="800" alt="Class Diagram of go module command"/>
+  <br/>Figure <>. Class Diagram of go module command
+</p>
 
 Given below is an example usage scenario at Admin level and how the access module level feature behaves at each step:
 
@@ -329,7 +349,10 @@ Step 9: `GoModuleCommand#execute()` prints the successful message to the user vi
 
 The following diagam shows how the add chapter command feature works:
 
-![Sequence Diagram of add chapter command](UML/AddChapterCommand.png)
+<p align="center">
+  <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
+  <br/>Figure <>. Sequence Diagram of add chapter command 
+</p>
 
 #### 4.1.6. Example of the Admin Feature
 
@@ -340,12 +363,16 @@ The following diagam shows how the add chapter command feature works:
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
+
 ##### Implementation
 `AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
 
 Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddChapterCommand`, `Kaji` is able to execute the operation `AddChapterCommand#excute()`. 
 
-![Class Diagram of add chapter command](UML/AddChapterCommandClass.png)
+<p align="center">
+  <img src="UML/AddChapterCommandClass.png" width="800" alt="Class Diagram of add chapter command"/>
+  <br/>Figure <>. Class Diagram of add chapter command  
+</p>
 
 Given below is an example usage scenario at Module level and how the add chapter feature behaves at each step:
 
@@ -365,13 +392,16 @@ Step 7: The `AddChapterCommand#addChapter()` gets the current `Module` object vi
 
 Step 8: The new `Module` object with the `chapter1: Chapter` object is updated to `Access` via the method `Access#setModule(Module)`.
 
-Step 9: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is created under the 'data/module' folder.
+Step 9: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is being created under the 'data/module' folder.
 
-Step 10: A result message is returned from `AddChapterCommand#addChapter()` method to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+Step 10: The `AddChapterCommand#addChapter()` method returns a result message to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
 
-The following diagam shows how the add chapter command feature works:
+The following diagram shows how the add chapter command feature works:
 
-![Sequence Diagram of add chapter command](UML/AddChapterCommand.png)
+<p align="center">
+  <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
+  <br/>Figure <>. Sequence Diagram of add chapter command  
+</p>
 
 #### 4.2.2. List Chapters Feature
 (Zeyu)
@@ -450,7 +480,11 @@ Step 2: The user enters `remove 1` command to delete the first chapter in the li
 Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
 The following sequence diagram shows how the remove chapter feature works:
-![Sequence Diagram of Remove Chapter](DG_Images/removechap_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removechap_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
+  <br/>Figure <>. Sequence diagram of remove chapter
+</p>
 
 #### 4.2.5. Access Chapter Level Feature
 (Lucas)
@@ -583,7 +617,11 @@ Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index prov
 Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
 The following sequence diagram shows how the remove flashcard feature works:
-![Sequence Diagram of Remove Flashcard](DG_Images/removecard_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removecard_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
+  <br/>Figure <>. Sequence diagram of remove flashcard
+</p>
 
 #### 4.3.5. Return to Module Level Feature
 (Jia Ern)
@@ -603,21 +641,29 @@ Step 2: The user enters `back` command to return to `CS2113T`. The `back` comman
 Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
 The following sequence diagram shows how the return to module level feature works:
-![Sequence Diagram of Return to Module](DG_Images/returnmod_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/returnmod_seq_diagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <br/>Figure <>. Sequence diagram of return to module
+</p>
 
 #### 4.3.6. Check Overall Performance for a Chapter Feature
 (Jiayi)
+
 ##### Implementation
 `ShowRateCommand` facilitates the proposed check overall performance feature. It extends an abstract `Command` class with the abstract `Command#execute()` and `Command#isExit()`.
 
 It implements the following operations:
-* `ShowRateCommand#execute()` -- Inherites from the abstract `Command`. It is overrided to calls `ShowRateCommand#computePercentage()` and print message that specific to performance checking feature.
+* `ShowRateCommand#execute()` -- Inherits from the abstract `Command`. It is an override to calls `ShowRateCommand#computePercentage()` and print message that specific to performance checking feature.
 * `ShowRateCommand#computePercentage()` -- Computes the overall performance by master levels and updates the `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage`, then it returns number of cards in the `Chapter`.
-* `ShowRateCommand#isExit()` -- Inherites from the abstract `Command`. It is overrided to return `false`.
+* `ShowRateCommand#isExit()` -- Inherits from the abstract `Command`. It is an override to return `false`.
 
 Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is able to execute the operation `ShowRateCommand#execute()` directly. 
 
-![Class Diagram of show overall performance command](UML/ShowRateCommandClass.png)
+<p align="center">
+  <img src="UML/ShowRateCommandClass.png" width="800" alt="Class Diagram of show overall performance command"/>
+  <br/>Figure <>. Class Diagram of show overall performance command  
+</p>
 
 Given below is an example usage scenario at Chapter level and how the show overall performance feature behaves at each step:
 
@@ -641,7 +687,12 @@ Step 9: `ShowRateCommand#computePercentage()` updates the variables `ShowRateCom
 
 Step 10: `GoModuleCommand#execute()` prints the performance message to the user via `Ui#showToUser` if the `ShowRateCommand#computePercentage()` is greater than int `0`.
 
-The following diagam shows how the show overall performance feature works:
+The following diagram shows how the show overall performance feature works:
+
+<p align="center">
+  <img src="UML/ShowRateCommand.png" width="800" alt="Sequence Diagram of show overall performance command"/>
+  <br/>Figure <>. Sequence Diagram of show overall performance command 
+</p>
 
 ![Sequence Diagram of show overall performance command](UML/ShowRateCommand.png)
 
@@ -687,7 +738,11 @@ Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on card
 Step 7: Lastly, `ReviseCommand#execute()` calls `HistoryCommand#addHistory()` to keep a record of the chapter revised so that the user can review what revision has been completed.
 
 The following sequence diagram shows how the revise feature works:
-![Sequence Diagram of Revise](DG_Images/revise_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/revise_seq_diagram.png" width="800" alt="Sequence Diagram of Revise"/>
+  <br/>Figure <>. Sequence diagram of revise
+</p>
 
 #### 4.4.2. Scheduling The Chapters Feature
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
