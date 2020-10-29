@@ -461,11 +461,11 @@ command calls `CommandDelMember#execute()`, causing the `Member` of index 1 remo
 
 The sequence diagram for adding a member is as shown below:
 
-![CommandEventAdd](hrDiagramPic/CommandAddMember.png)
+![CommandAddMember](hrDiagramPic/CommandAddMember.png)
 
 The sequence diagram for deleting a member is as shown below:
 
-![CommandEventAdd](hrDiagramPic/CommandDelMember.png)
+![CommandDelMember](hrDiagramPic/CommandDelMember.png)
 
 
 **3.5.2. List the members**  
@@ -493,7 +493,7 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
  
  The sequence diagram for listing the members is as shown below:
  
- ![CommandEventAdd](hrDiagramPic/CommandViewMember.png)
+ ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
 
 **3.5.3. Change member information**  
 3.5.3.1. Current Implementation  
@@ -520,7 +520,7 @@ The following shortcut commands can achieve the same result: <br/>
 
 The sequence diagram for changing contacts and role information of a member is as shown below:
 
-![CommandEventAdd](hrDiagramPic/CommandChangeMemberInfo.png)
+![CommandChangeMemberInfo](hrDiagramPic/CommandChangeMemberInfo.png)
 
 **3.5.4. Design Considerations**  
 Aspect: Changing member information 
