@@ -32,7 +32,7 @@ public class Messages {
             + WELCOME_PREFIX + ANSI_CYAN + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + " / ____/ / /_/ / /|  / /_/ /___/ / " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
-            + ANSI_CYAN + "v1.0" + ANSI_RESET + "        ||" + LS
+            + ANSI_CYAN + "v2.0" + ANSI_RESET + "        ||" + LS
             + WELCOME_BORDER_SPACE;
 
     public static final String HELP_MESSAGE = HELP_BORDER + LS
