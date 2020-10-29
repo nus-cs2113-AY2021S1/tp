@@ -595,7 +595,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 4:** According to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked. Then it invokes `activeWorkspace.getWatchlistList()` to initialise the variable `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and an empty `ArrayList<Integer>` object. It is then validated before it is added to `watchlistList`.
 
-**Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
+**Step 5:** Finally, `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
 
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
 
@@ -614,7 +614,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 All the other options in the watchlist command also follows a similar execution process. The following diagrams will **continue from step 6**, and it will show you how the state of the application changes as it continues to execute the select and delete option.
 > :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
-The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
+**Step 7:** The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
@@ -622,7 +622,7 @@ The user executes `watchlist -s 2` to change his active watchlist to the second 
 
 <br/>
 
-Next, the user decides to executes `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
+**Step 8:** User decides to execute `watchlist -d 2` to delete the second watchlist (“NewAnime”) in the list.
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
