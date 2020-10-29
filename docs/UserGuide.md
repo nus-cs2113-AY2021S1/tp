@@ -244,8 +244,53 @@ For instance, you are currently at the module level `CS2113T` and want to remove
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
 
+Proceeds to the Chapter Level with reference to one of the Chapters within the module.
+
+Format: `go CHAPTER_NAME`
+ 
+Example: <br>
+For instance, you are currently in Module level `Module` and want to head to Chapter level `Chapter1` , the steps to
+ do so are shown below:
+
+* Step 1: Enter the command `go Chapter1` to head down to the Chapter level below: <br>
+
+<p align="center">
+  <img src="UG_Images/moduleGo.png" alt="Go Command"/>
+  <br/>Figure <>. Example of the "go" command 
+</p>
+
+* Step 2: You should return to the Admin level as shown below: <br>
+
+<p align="center">
+  <img src="UG_Images/moduleGoResult.png" alt="Go Result"/>
+  <br/>Figure <>. Example of the "go" command Result
+</p>
+
+
 #### 3.2.6. Returning to admin level: `back`
 (by Yan An)
+
+Returns to the Admin level.
+
+Format: `back`
+ 
+Example: <br>
+For instance, you are currently in Module level `Module` and want to return to the Admin level, the steps to do so
+ are shown below:
+
+* Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
+
+<p align="center">
+  <img src="UG_Images/back.png" alt="Back Command"/>
+  <br/>Figure <>. Example of the "back" command 
+</p>
+
+* Step 2: You should return to the Admin level as shown below: <br>
+
+<p align="center">
+  <img src="UG_Images/backComplete.png" alt="Back Result"/>
+  <br/>Figure <>. Example of the "back" command Result
+</p>
 
 #### 3.2.7. Starting a revision session: `revise`
 (by Jia Ern)
