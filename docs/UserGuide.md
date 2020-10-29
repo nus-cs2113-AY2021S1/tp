@@ -100,6 +100,15 @@ their authors or completion and even find any book you want by just typing in ke
 What are you waiting for? If you've struggled with keeping up with your long booklist, Quotesify is here to help! 
 
 ### 2. Quote Management
+The quote management system in Quotesify allows you to add your quotes, list, edit and delete them acting as
+a log to keep track of all your favourite quotes. You can also store additional information such as the author of the 
+quote and reference from where it was taken. As the list may get large over time, you can find specific quotes from 
+keywords with the search feature. Last but not least, you can add your thoughts to quotes stored in Quotesify by adding
+a reflection to it allowing you to expand and note down important ideas or why this quote resonated with you.
+
+If you are someone trying to remember and apply productivity tips from a book you just read, or someone trying to 
+track those all inspiring quotes to come back to, Quotesify's quote management system is the perfect fit for you!
+
 ### 3. Progress Tracker
 Progress Tracker in Quotesify allows you to add, update, list and delete bookmarks for the books you add. 
 It also allows you to add, mark as done, list and delete tasks in the todo list. 
