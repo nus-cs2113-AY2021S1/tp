@@ -123,7 +123,7 @@ public class RecurringEntry extends Item {
             duration = start + " to " + end;
         }
         String payment = this.isAuto ? "Auto deduction" : "Manual payment";
-        return String.format("%s&@#%s&@#%s&@#%s&@#%s&@#%s&@#%s", this.day, this.description,
+        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", this.day, this.description,
                 expenditureAmount, incomeAmount, duration, payment, this.notes);
     }
 

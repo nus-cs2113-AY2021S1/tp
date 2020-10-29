@@ -18,8 +18,8 @@ import java.util.Scanner;
 
 
 public class SaveManager {
-    private static final String fullPath = "./data/backup/names.txt";
-    private static final String dirPath = "./data/backup";
+    public static final String fullPath = "./data/backup/names.txt";
+    public static final String dirPath = "./data/backup";
     private static String prompt = "";
     private static boolean menu = true;
     private static boolean load = false;
@@ -115,7 +115,7 @@ public class SaveManager {
         }
     }
 
-    private static void addSave(CommandPacket packet) {
+    public static void addSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
@@ -142,7 +142,7 @@ public class SaveManager {
         }
     }
 
-    private static void loadSave(CommandPacket packet) {
+    public static void loadSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
@@ -179,7 +179,7 @@ public class SaveManager {
         }
     }
 
-    private static void deleteSave(CommandPacket packet) {
+    public static void deleteSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
             StringBuilder nameList = new StringBuilder();
@@ -205,23 +205,5 @@ public class SaveManager {
         } catch (Exception e) {
             prompt = e.toString();
         }
-    }
-
-    @Test
-    public void test() {
-        InputParser parser = InputParser.getInstance();
-        CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
-        addSave(packet);
-        String path = dirPath + "/testcase2149855246427094876";
-        File goalTracker = new File(path + "_gt.txt");
-        File manualTracker = new File(path + "_mt.txt");
-        File autoTracker = new File(path + "_at.txt");
-        File saveTxtMt = new File(ManualTrackerSaver.getInstance().fullPath);
-        File saveTxtGt = new File(GoalTrackerSaver.getInstance().fullPath);
-        File saveTxtAt = new File(AutoTrackerSaver.getInstance().fullPath);
-        Assert.assertEquals(saveTxtMt, manualTracker);
-        Assert.assertEquals(saveTxtGt, goalTracker);
-        Assert.assertEquals(saveTxtAt, autoTracker);
-        deleteSave(packet);
     }
 }

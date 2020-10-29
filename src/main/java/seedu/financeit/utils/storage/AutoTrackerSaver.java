@@ -65,7 +65,7 @@ public class AutoTrackerSaver extends SaveHandler {
         String incomeExpense;
         while (scanner.hasNext()) {
             String saveString = scanner.nextLine();
-            classContents = saveString.split("&@#");
+            classContents = saveString.split(">&@#<");
             if (!classContents[2].equals("")) {
                 classContents[2] = classContents[2].substring(2, classContents[2].length() - 2);
                 incomeExpense = "-e ";
