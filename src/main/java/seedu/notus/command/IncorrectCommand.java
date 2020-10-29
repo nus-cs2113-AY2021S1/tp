@@ -1,6 +1,9 @@
 package seedu.notus.command;
 
+import com.diogonunes.jcolor.Attribute;
 import seedu.notus.ui.Formatter;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 //@@author Chongjx
 /**
@@ -16,7 +19,6 @@ public class IncorrectCommand extends Command {
 
     @Override
     public String execute() {
-        return Formatter.formatString(message);
+        return Formatter.formatString(colorize(message, Attribute.RED_TEXT()));
     }
-
 }
