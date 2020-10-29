@@ -161,28 +161,21 @@ Expected output:
 You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
-<div class="panel panel-info">
 
+---
 **Note**
-
-<div class="panel-body">
 
 * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 * AM/PM is required for 12 hour format
+---
 
-</div>
-</div>
-
-<div class="panel panel-danger">
-
+---
 **Warning**
-<div class="panel-body">
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-</div>
-</div>
+---
 
 
 ### Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
@@ -333,15 +326,13 @@ Example of usage:
    scheduler says hi:)
    _________________________________
    ```
-<div class="panel panel-danger">
 
+---
 **Warning**
-<div class="panel-body">
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-</div>
-</div>
+---
 
 ### Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
