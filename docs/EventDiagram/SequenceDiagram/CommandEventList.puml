@@ -2,9 +2,9 @@
  -> ":CommandEventList" : execute()
 
 activate ":CommandEventList"
-activate ":EventList"
-activate ":EventList" #DarkSalmon
+
 ":CommandEventList"  -> ":EventList":printEventList()
+activate ":EventList" #DarkSalmon
 alt empty ArrayList
     ":EventList" --> ":CommandEventList"
 else else
@@ -14,7 +14,8 @@ else else
         ":Event" --> ":EventList"
         deactivate ":Event"
         ":EventList" --> ":CommandEventList" : output
-        return output5
+        deactivate ":EventList"
+        return output
     end
     deactivate ":EventList"
     deactivate ":EventList"

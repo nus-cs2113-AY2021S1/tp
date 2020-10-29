@@ -302,7 +302,7 @@ Format: `finance summary`
 Example of usage:  
 `finance summary`  
 
-Expected outcome:  
+Expected utcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
 
