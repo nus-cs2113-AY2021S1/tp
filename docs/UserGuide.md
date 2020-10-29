@@ -91,7 +91,7 @@ Adds a new note to the list of note items (think of it as a notebook).
 
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
-💡 Each note has to have a unique title and it is case-insensitive.
+💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**.
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
 💡 Set `ISPIN` to true if you want the note to be pinned.  
 💡 Set `ISARHCIVE` to true if you want the note to be archived.
