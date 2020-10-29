@@ -1,5 +1,8 @@
 # CCA Manager Developer Guide
 
+![](CCAManager_logo.png)
+
+# Table of Contents
 
 - [1. Introduction](#1-introduction)
 - [2. Setting up](#2-setting-up)
