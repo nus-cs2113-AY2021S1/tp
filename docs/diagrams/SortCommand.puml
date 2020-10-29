@@ -1,0 +1,36 @@
+@startuml
+actor User
+
+box Logic
+participant ":NuSchedule" as NuSchedule
+participant ":Parser" as Parser
+participant ":SortCommand" as SortCommand
+end box
+
+box Model
+participant ":EventList" as EventList
+end box
+
+User -> NuSchedule : sort
+activate NuSchedule
+
+NuSchedule -> Parser : parse(sort)
+activate  Parser
+
+Parser --> NuSchedule : command to execute
+deactivate Parser
+
+NuSchedule -> SortCommand : execute(sort)
+activate SortCommand
+
+SortCommand -> EventList : SortCommand(sort type)
+activate EventList
+
+EventList --> SortCommand : event
+deactivate EventList
+
+SortCommand --> NuSchedule
+deactivate SortCommand
+
+deactivate NuSchedule
+@enduml
