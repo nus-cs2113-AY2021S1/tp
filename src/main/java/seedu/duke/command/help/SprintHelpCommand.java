@@ -40,12 +40,14 @@ public class SprintHelpCommand extends Command {
         Ui.showToUserLn("   Example 2: sprint /removetask -project 2 -task 1 2");
         Ui.showToUserLn("   Example 3: sprint /removetask -project 2 -sprint 3 -task 1 2");
         Ui.showToUserLn("6. Allocate task to team members");
-        Ui.showToUserLn("   Format: sprint /allocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]");
+        Ui.showToUserLn("   Format: sprint /allocate -task <task_id> "
+                + "-user <user_id> [<user_id> ...] [optional tags]");
         Ui.showToUserLn("   Example 1: sprint /allocate -task 1 2 -user johntan mary jane");
         Ui.showToUserLn("   Example 2: sprint /allocate -project 2 -task 1 -user mary");
         Ui.showToUserLn("   Example 3: sprint /allocate -project 2 -sprint 3 -task 1 -user mary");
         Ui.showToUserLn("7. Deallocate tasks from team members");
-        Ui.showToUserLn("   Format: sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]");
+        Ui.showToUserLn("   Format: sprint /deallocate -task <task_id> "
+                + "-user <user_id> [<user_id> ...] [optional tags]");
         Ui.showToUserLn("   Example 1: sprint /deallocate -task 1 2 -user johntan mary jane");
         Ui.showToUserLn("   Example 2: sprint /deallocate -project 2 -task 1 -user mary");
         Ui.showToUserLn("   Example 3: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary");
