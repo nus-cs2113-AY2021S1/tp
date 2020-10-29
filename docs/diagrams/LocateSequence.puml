@@ -1,0 +1,36 @@
+@startuml
+Actor User
+
+box Logic
+User -> Parser: locate [input]
+activate Parser
+Parser -> LocateCommand: LocateCommand(input)
+activate LocateCommand
+LocateCommand -> LocateCommand: execute()
+activate LocateCommand
+end box
+
+box Model
+alt input is an integer
+    LocateCommand -> EventList: getLocation(input)
+    activate EventList
+    return location
+else input is a String
+    alt valid location
+        LocateCommand -> LocationList: findLocation(input)
+        activate LocationList
+        return location
+    else invalid location
+        LocateCommand -> LocationList: checkValidLocation(input)
+        activate LocationList
+        return false
+note left: prints error message
+    end
+end
+
+deactivate LocateCommand
+destroy LocateCommand
+
+deactivate Parser
+return
+@enduml
