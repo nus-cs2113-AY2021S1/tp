@@ -8,13 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NoteTest {
 
-    private static final String NOTE_TEST = "Test Note";
+    private static final String TEST_NAME = "Note name";
+    private static final String TEST = "Test";
 
     @Test
-    void getsTopicDescription_topicDescription_returnsTopicDescription() throws Eduke8Exception {
-        String input = NOTE_TEST;
-        Note note = new Note(input);
+    void getsNoteDescription_returnsNoteDescription() throws Eduke8Exception {
+        Note note = new Note(TEST_NAME, TEST);
 
-        assertEquals(input, note.getDescription());
+        assertEquals(TEST_NAME, note.getDescription());
+    }
+
+    @Test
+    void getsNoteName_returnsNoteName() throws Eduke8Exception {
+        Note note = new Note(TEST_NAME, TEST);
+
+        assertEquals(TEST, note.getNoteText());
     }
 }
