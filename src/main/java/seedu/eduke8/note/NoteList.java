@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class NoteList implements DisplayableList, EditableList {
     private ArrayList<Displayable> notes;
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static String INVALID_INT = "Invalid index";
 
     public NoteList(ArrayList<Displayable> notes) {
         this.notes = notes;
@@ -33,13 +34,17 @@ public class NoteList implements DisplayableList, EditableList {
     }
 
     @Override
-    public Displayable find(String description) throws Eduke8Exception {
+    public Displayable find(String input) throws Eduke8Exception {
         for (Displayable note : notes) {
-            if (description.equalsIgnoreCase(note.getDescription())) {
+            if (input.equalsIgnoreCase(note.getDescription())) {
                 return note;
             }
         }
         return null;
+    }
+
+    public Note get(int index) {
+        return (Note) notes.get(index);
     }
 
     public int getCount() {

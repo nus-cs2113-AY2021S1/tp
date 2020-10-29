@@ -101,11 +101,19 @@ public class UserStorage extends LocalStorage {
         loadNotes(notes, topicObject);
     }
 
-    private void loadNotes(JSONArray notes, Topic topicObject) {
+    private void loadNotes(JSONArray notes, Topic topicObject) throws Eduke8Exception {
         NoteList noteList = topicObject.getNoteList();
         for (Object note: notes) {
-            noteList.add((Note) note);
+            parseFromNoteJson((JSONObject) note, noteList);
         }
+    }
+
+    private void parseFromNoteJson(JSONObject note, NoteList noteList) throws Eduke8Exception {
+        String noteDescription = (String) note.get("description");
+        String text = (String) note.get("text");
+        Note noteObject = new Note(noteDescription, text);
+
+        noteList.add(noteObject);
     }
 
     private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
@@ -147,10 +155,21 @@ public class UserStorage extends LocalStorage {
     private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
         for (Displayable noteObject: noteList.getInnerList()) {
-            notes.add(noteObject.getDescription());
+            JSONObject note = parseToNoteJson((Note) noteObject);
+            notes.add(note);
         }
         return notes;
     }
+
+    private JSONObject parseToNoteJson(Note noteObject) {
+        JSONObject note = new JSONObject();
+
+        note.put("description", noteObject.getDescription());
+        note.put("text", noteObject.getNoteText());
+
+        return note;
+    }
+
 
     @SuppressWarnings("unchecked")
     private JSONArray getQuestionsJsonArray(Topic topicObject) {
