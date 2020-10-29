@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Event;
 import exception.EmptyEventListException;
 import exception.UndefinedEventException;
+import ui.UI;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -206,7 +207,7 @@ public class EventList {
             filteredEventList2.removeAll(filteredEventList);
             filteredEventList.addAll(filteredEventList2);
         }
-
+        filteredEventList.remove(event);
         return filteredEventList;
     }
 }

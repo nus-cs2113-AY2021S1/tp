@@ -176,7 +176,7 @@ public class UI {
      * @param eventEdited the Event being edited
      */
     public void printEditEventMessage(Event eventEdited) {
-        System.out.println("Got it. I've edited this Event: ");
+        System.out.println("I've edited this Event: ");
         System.out.println(eventEdited.toString());
     }
 
@@ -269,7 +269,7 @@ public class UI {
         int numPrintedEvents = 0;
         System.out.println("You have some events that happen concurrently. Please prepared for multi-thread. "
                 + "\n"
-                + "Here are the Events in your list that have overlaps with your newly added event:");
+                + "Here are the Events in your list that have overlaps with your newly added/edited event:");
         for (Event event : conflictEvents) {
             numPrintedEvents++;
             System.out.println(numPrintedEvents + ". " + event.toString());

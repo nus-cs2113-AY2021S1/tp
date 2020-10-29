@@ -1,6 +1,7 @@
 package event;
 
 
+import exception.EndBeforeStartEventException;
 import location.Location;
 import location.OnlineLocation;
 
@@ -15,16 +16,24 @@ public class Class extends Event {
     protected LocalDateTime at;
     protected LocalDateTime end;
 
-    public Class(String description, Location location, LocalDateTime at, LocalDateTime end) {
+    public Class(String description, Location location, LocalDateTime at, LocalDateTime end)
+            throws EndBeforeStartEventException {
         super(description, location);
         this.at = at;
         this.end = end;
+        if (!end.isAfter(at)) {
+            throw new EndBeforeStartEventException();
+        }
     }
 
-    public Class(String description, OnlineLocation meeting, LocalDateTime at, LocalDateTime end) {
+    public Class(String description, OnlineLocation meeting, LocalDateTime at, LocalDateTime end)
+            throws EndBeforeStartEventException {
         super(description, meeting);
         this.at = at;
         this.end = end;
+        if (!end.isAfter(at)) {
+            throw new EndBeforeStartEventException();
+        }
     }
 
     /**

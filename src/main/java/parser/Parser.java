@@ -86,8 +86,11 @@ public abstract class Parser {
      */
 
     public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
-        // this block deals with exit and list command
-        switch (fullCommand.trim()) {
+
+        //deletes all the starting and ending spaces
+        fullCommand = fullCommand.trim();
+        // this block deals with single word command
+        switch (fullCommand) {
         case EXIT:
             return new ExitCommand();
         case PRINT_EVENT_LIST:
@@ -178,7 +181,6 @@ public abstract class Parser {
         //the position of /t
         int startTimeDividerPosition;
         //the position of the space when the user enters a date time in the format yyyy-mm-dd HH:mm
-        //may use twice if the end time is needed
         int timeDivider;
         //the position of /et
         int endTimeDividerPosition;
@@ -191,7 +193,8 @@ public abstract class Parser {
         String startDateTime;
         Location location;
         String endDateTime;
-
+        //the position of the space when the user enters an ending date time in the format yyyy-mm-dd HH:mm
+        int endingTimeDivider;
         startTimeDividerPosition = fullCommand.indexOf(TIME_MARKER);
         endTimeDividerPosition = fullCommand.indexOf(END_TIME_MARKER);
         locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
@@ -256,11 +259,8 @@ public abstract class Parser {
 
                         switch (words[2]) {
                         case ASSIGNMENT:
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    locationDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    locationDividerPosition);
 
                             return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
                                     startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)),
@@ -269,19 +269,16 @@ public abstract class Parser {
                             if (endTimeDividerPosition == -1) {
                                 throw new NoEndTimeClassException();
                             }
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    endTimeDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition);
 
-                            timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                            endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                    locationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                            endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                    endTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                    locationDividerPosition - 1);
+                            //if the user does not input the date of the ending time, by default it ends at the same
+                            // day as the starting time
+                            endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition, locationDividerPosition, endingTimeDivider);
 
                             return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
                                     startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
@@ -289,28 +286,22 @@ public abstract class Parser {
                                     eventIndex);
                         case PERSONAL_EVENT:
                             if (endTimeDividerPosition == -1) {
-                                startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                        startTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                        locationDividerPosition - 1);
+                                startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        locationDividerPosition);
                                 return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
                                         startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)),
                                         eventIndex);
                             } else {
-                                startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                        startTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                        endTimeDividerPosition - 1);
+                                startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        endTimeDividerPosition);
 
-                                timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                                endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                        locationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                                endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                        endTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                        locationDividerPosition - 1);
+                                //if the user does not input the date of the ending time, by default it ends at the
+                                // same day as the starting time
+                                endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        endTimeDividerPosition, locationDividerPosition, endingTimeDivider);
 
                                 return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
                                         startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
@@ -340,11 +331,8 @@ public abstract class Parser {
 
                         switch (words[2]) {
                         case ASSIGNMENT:
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    onlineLocationDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    onlineLocationDividerPosition);
 
                             return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
                                     startTimeDividerPosition - 1), virtualLocation, LocalDateTime.parse(startDateTime)),
@@ -353,19 +341,14 @@ public abstract class Parser {
                             if (endTimeDividerPosition == -1) {
                                 throw new NoEndTimeClassException();
                             }
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    endTimeDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition);
 
-                            timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                            endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                    onlineLocationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                            endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                    endTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                    onlineLocationDividerPosition - 1);
+                            endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition, onlineLocationDividerPosition, endingTimeDivider);
 
                             return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
                                     startTimeDividerPosition - 1), virtualLocation, LocalDateTime.parse(startDateTime),
@@ -373,30 +356,21 @@ public abstract class Parser {
                                     eventIndex);
                         case PERSONAL_EVENT:
                             if (endTimeDividerPosition == -1) {
-                                startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                        startTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                        onlineLocationDividerPosition - 1);
+                                startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        onlineLocationDividerPosition);
                                 return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
                                         startTimeDividerPosition - 1), virtualLocation,
                                         LocalDateTime.parse(startDateTime)),
                                         eventIndex);
                             } else {
-                                startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                        startTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                        endTimeDividerPosition - 1);
+                                startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        endTimeDividerPosition);
 
-                                timeDivider =
-                                        fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                                endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                        onlineLocationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                                endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                        endTimeDividerPosition + 3 + timeDivider)
-                                        + "T"
-                                        + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                        onlineLocationDividerPosition - 1);
+                                endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                        endTimeDividerPosition, onlineLocationDividerPosition, endingTimeDivider);
 
                                 return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
                                         startTimeDividerPosition - 1), virtualLocation,
@@ -458,11 +432,8 @@ public abstract class Parser {
 
                     switch (words[0]) {
                     case ASSIGNMENT:
-                        startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                startTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                locationDividerPosition - 1);
+                        startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                locationDividerPosition);
 
                         return new AddCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
                                 startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)));
@@ -470,46 +441,38 @@ public abstract class Parser {
                         if (endTimeDividerPosition == -1) {
                             throw new NoEndTimeClassException();
                         }
-                        startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                startTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                endTimeDividerPosition - 1);
 
-                        timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                        startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                endTimeDividerPosition);
 
-                        endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                endTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                locationDividerPosition - 1);
+                        endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                locationDividerPosition - 1).indexOf(SINGLE_SPACE);
+
+                        //if the user does not input the date of the ending time, by default it ends at the same
+                        // day as the starting time
+                        endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                endTimeDividerPosition, locationDividerPosition, endingTimeDivider);
 
                         return new AddCommand(new Class(fullCommand.substring(words[0].length() + 1,
                                 startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
                                 LocalDateTime.parse(endDateTime)));
                     case PERSONAL_EVENT:
                         if (endTimeDividerPosition == -1) {
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    locationDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    locationDividerPosition);
                             return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
                                     startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)));
                         } else {
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    endTimeDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition);
 
-                            timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                            endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                    locationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                            endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                    endTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                    locationDividerPosition - 1);
+                            //if the user does not input the date of the ending time, by default it ends at the same
+                            // day as the starting time
+                            endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition, locationDividerPosition, endingTimeDivider);
 
                             return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
                                     startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
@@ -538,11 +501,8 @@ public abstract class Parser {
 
                     switch (words[0]) {
                     case ASSIGNMENT:
-                        startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                startTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                onlineLocationDividerPosition - 1);
+                        startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                onlineLocationDividerPosition);
 
                         return new AddCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
                                 startTimeDividerPosition - 1), virtualLocation, LocalDateTime.parse(startDateTime)));
@@ -550,47 +510,34 @@ public abstract class Parser {
                         if (endTimeDividerPosition == -1) {
                             throw new NoEndTimeClassException();
                         }
-                        startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                startTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                endTimeDividerPosition - 1);
+                        startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                endTimeDividerPosition);
 
-                        timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                        endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                onlineLocationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                        endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                endTimeDividerPosition + 3 + timeDivider)
-                                + "T"
-                                + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                onlineLocationDividerPosition - 1);
+                        endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                endTimeDividerPosition, onlineLocationDividerPosition, endingTimeDivider);
 
                         return new AddCommand(new Class(fullCommand.substring(words[0].length() + 1,
                                 startTimeDividerPosition - 1), virtualLocation, LocalDateTime.parse(startDateTime),
                                 LocalDateTime.parse(endDateTime)));
                     case PERSONAL_EVENT:
                         if (endTimeDividerPosition == -1) {
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    onlineLocationDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    onlineLocationDividerPosition);
                             return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
                                     startTimeDividerPosition - 1), virtualLocation,
                                     LocalDateTime.parse(startDateTime)));
                         } else {
-                            startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
-                                    startTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
-                                    endTimeDividerPosition - 1);
+                            startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition);
 
-                            timeDivider = fullCommand.substring(endTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
+                            endingTimeDivider = fullCommand.substring(endTimeDividerPosition + 3,
+                                    onlineLocationDividerPosition - 1).indexOf(SINGLE_SPACE);
 
-                            endDateTime = fullCommand.substring(endTimeDividerPosition + 3,
-                                    endTimeDividerPosition + 3 + timeDivider)
-                                    + "T"
-                                    + fullCommand.substring(endTimeDividerPosition + 3 + timeDivider + 1,
-                                    onlineLocationDividerPosition - 1);
+                            endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
+                                    endTimeDividerPosition, onlineLocationDividerPosition, endingTimeDivider);
 
                             return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
                                     startTimeDividerPosition - 1), virtualLocation,
@@ -609,6 +556,48 @@ public abstract class Parser {
 
         assert false;//nothing should reach here
         throw new UnknownErrorException();
+    }
+
+    /**
+     * return the EndDateTime. if the date is not specified, by default, it ends at the same date as the starting date.
+     *
+     * @param fullCommand              the full command provided by user
+     * @param startTimeDividerPosition index of "/t"
+     * @param timeDivider              index of " " in the start time
+     * @param endTimeDividerPosition   index of "/e"
+     * @param locationDividerPosition  index of "/o" or "/l"
+     * @param endingTimeDivider        index of " " in the end date time, may be -1
+     * @return a string in the format "yyyy-MM-dd HH:mm" that can be parsed into a LocalDateTime object
+     */
+    private static String getEndDateTime(String fullCommand, int startTimeDividerPosition, int timeDivider,
+                                         int endTimeDividerPosition, int locationDividerPosition,
+                                         int endingTimeDivider) {
+        return (endingTimeDivider != -1 ? fullCommand.substring(endTimeDividerPosition + 3,
+                endTimeDividerPosition + 3 + endingTimeDivider) :
+                fullCommand.substring(startTimeDividerPosition + 3,
+                        startTimeDividerPosition + 3 + timeDivider))
+                + "T"
+                + (endingTimeDivider != -1 ? fullCommand.substring(endTimeDividerPosition + 3 + endingTimeDivider + 1,
+                locationDividerPosition - 1) : fullCommand.substring(endTimeDividerPosition + 3,
+                locationDividerPosition - 1));
+    }
+
+    /**
+     * return the StartDateTime.
+     *
+     * @param fullCommand              the full command provided by user
+     * @param startTimeDividerPosition index of "/t"
+     * @param timeDivider              index of " " in the start time
+     * @param endTimeDividerPosition   index of "/e"
+     * @return a string in the format "yyyy-MM-dd HH:mm" that can be parsed into a LocalDateTime object
+     */
+    private static String getStartDateTime(String fullCommand, int startTimeDividerPosition, int timeDivider,
+                                           int endTimeDividerPosition) {
+        return fullCommand.substring(startTimeDividerPosition + 3,
+                startTimeDividerPosition + 3 + timeDivider)
+                + "T"
+                + fullCommand.substring(startTimeDividerPosition + 3 + timeDivider + 1,
+                endTimeDividerPosition - 1);
     }
 
     /**

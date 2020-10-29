@@ -1,6 +1,7 @@
 package event;
 
 
+import exception.EndBeforeStartEventException;
 import location.Location;
 import location.OnlineLocation;
 
@@ -43,10 +44,14 @@ public class PersonalEvent extends Event {
         this.at = at;
     }
 
-    public PersonalEvent(String description, Location location, LocalDateTime at, LocalDateTime end) {
+    public PersonalEvent(String description, Location location, LocalDateTime at, LocalDateTime end)
+            throws EndBeforeStartEventException {
         super(description, location);
         this.at = at;
         this.end = end;
+        if (!end.isAfter(at)) {
+            throw new EndBeforeStartEventException();
+        }
     }
 
     public PersonalEvent(String description, OnlineLocation location, LocalDateTime at) {
@@ -54,10 +59,14 @@ public class PersonalEvent extends Event {
         this.at = at;
     }
 
-    public PersonalEvent(String description, OnlineLocation location, LocalDateTime at, LocalDateTime end) {
+    public PersonalEvent(String description, OnlineLocation location, LocalDateTime at, LocalDateTime end)
+            throws EndBeforeStartEventException {
         super(description, location);
         this.at = at;
         this.end = end;
+        if (!end.isAfter(at)) {
+            throw new EndBeforeStartEventException();
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.PersonalEvent;
 import exception.CreatingFileException;
+import exception.EndBeforeStartEventException;
 import exception.LoadingException;
 import exception.WritingFileException;
 import location.Building;
@@ -90,9 +91,11 @@ public class Storage {
      * Prepares the data in the file as an ArrayList, which is used to construct the EventList.
      *
      * @return the Events in an ArrayList
-     * @throws LoadingException represents the <code>Events</code> is not correctly created
+     * @throws LoadingException             represents the Events is not correctly created
+     * @throws EndBeforeStartEventException Represents the case when the user want to create an Event that ends
+     * before it starts.
      */
-    public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException {
+    public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException, EndBeforeStartEventException {
         ArrayList<Event> events = new ArrayList<>();
         File dataFile = new File(filePath);
         try {
