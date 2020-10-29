@@ -29,7 +29,7 @@
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
 <br/>&nbsp;5.2 [Logging](#52-logging)
 <br/>&nbsp;5.3 [Testing](#53-testing)
-<br/>&nbsp;5.4 [DevOps](#54-devops)
+<br/>&nbsp;5.4 [DevOps](#54-development-and-operations-devops)
 
 [Appendix A: Product Scope](#appendix-a-product-scope)
 
@@ -982,6 +982,8 @@ There are primarily 2 ways to run the tests.
 We employ DevOps to ensure consistent release of good quality code and write-ups. 
 These tools allow us to detect and mitigate bugs before they are merged to the repository.
 
+<br/>
+
 #### 5.4.1 Build Automation
 
 This project uses Gradle for build automation and dependency management.
@@ -993,6 +995,8 @@ It automates tasks such as:
 
 The gradle configuration file can be located in `build.gradle`.
 
+<br/>
+
 #### 5.4.2 Continuous integration (CI)
 
 We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](https://travis-ci.org/) as our tool for Continuous integration.
@@ -1003,11 +1007,15 @@ If you wish to modify these tools, you may find their configuration at:
 *   **GitHub Workflow:** `.github/workflows`
 *   **Travis CI:** `.travis.yml`
 
+<br/>
+
 ##### 5.4.2.1 Code Coverage
 
-As part of CI, this project uses Codecov to generate coverage reports. 
+As part of CI, this project uses [Codecov](https://codecov.io/) to generate coverage reports. 
 
 If you wish to configure Codecov for your fork, you may refer to [Codecov Docs](https://docs.codecov.io/docs).
+
+<br/>
 
 ##### 5.4.2.2 Repository-wide checks
 
@@ -1018,6 +1026,8 @@ These checks are POSIX shell scripts (i.e. platform dependent to Linux and macOS
 To run all checks, execute the following at project root `./config/travis/run-checks.sh`.
 
 If you wish to add new checks, simply add the check file with a filename `check-*` to the `./config/travis/` and the `run-checks.sh` script will automatically run it.
+
+<br/>
 
 ## Appendix A: Product Scope
 
