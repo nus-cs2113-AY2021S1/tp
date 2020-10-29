@@ -30,9 +30,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Remove Chapter Feature](#424-remove-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Access Chapter Level Feature](#425-access-chapter-level-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.6. [Return to Admin Level Feature](#426-return-to-admin-level-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.7. [Rate Chapter Feature](#427-rate-chapter-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.8. [Example of the Module Feature](#428-example-of-the-module-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.9. [Conclusion](#429-conclusion)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.7. [Example of the Module Feature](#427-example-of-the-module-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.8. [Conclusion](#428-conclusion)<br>
 4.3. [Chapter Features](#43-chapter-features)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Add Flashcard Feature](#431-add-flashcard-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [List Flashcards Feature](#432-list-flashcards-feature)<br>
@@ -95,6 +94,8 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
+![Architecture Diagram of Design Component](UML/Architecture.png)
+
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 The main class is `Kaji.java`. It is responsible for:
@@ -115,11 +116,14 @@ The rest of the App consists of 8 components:
 ### 3.1. Ui Component 
 (Jia Ern)
 
-![Class Diagram of Ui Component](UML/ui_component.PNG)
+<p align="center">
+  <img src="DG_Images/ui_component.PNG" width="600" alt="Class Diagram of Ui Component"/>
+  <br/>Figure <>. Class diagram of Ui component 
+</p>
 
-The UI component consists of a main class — Ui.java. The Kaji, Logic and Storage components have a dependency on the UI component due to the need to take in user input and show the results of execution.
+The Ui component consists of a main class — `Ui.java`. While `Kaji` has `Ui` as its class variable so that it can instantiate a `Ui` object at each run of the program, the `Model`, `Logic` and `Storage` components have a dependency on the Ui component due to the need to take in user input and show the results of execution.
 
-The UI component is responsible for:
+The Ui component is responsible for:
 * Taking in user input.
 * Printing result of execution for the different commands. 
 * Printing error messages when certain exceptions occur. 
@@ -136,7 +140,7 @@ The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
 
 1. `Kaji` uses the `Parser` class to parse the user command.
 2. This results in a `Command` object which is executed by `Kaji`.
-3. The command execution can affect the `Model` (e.g. adding a module).
+3. The command execution can affect the `Model` and `Storage` (e.g. adding a module).
 4. The `Scheduler` is used in some command execution to schedule the due date of a chapter.
 5. The result of the command execution is passed to the `Ui`.
 
@@ -151,6 +155,22 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.3. Model Component
 (Jiayi)
+API: Model.java
+
+The Model,
+
+* stores a Access object that holds temporary data for user's access level and contents of level being accessed.
+* stores a History object that saves revision history of current day.
+* stores a DueChapter object that manages due chapter data.
+* contains an Admin class that can be created and accessed by Access object. The Admin class contains a ModuleList object to manage data for modules.
+* contains a Module class that can be created and accessed by Access object. The Module class contains a ChapterList object to manage data for chapters.
+* contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
+* contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
+
+<p align="center">
+  <img src="UML/model.png" width="800" alt="Architecture Diagram of Model"/>
+  <br/>Figure <>. Architecture Diagram of Model
+</p>
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -167,9 +187,65 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
+##### Implementation
+`AddModuleCommand` facilitates the proposed add module feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
+
+Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddModuleCommand`, `Kaji` is able to execute the operation `AddModuleCommand#excute()`. 
+
+<p align="center">
+  <img src="UML/AddModuleCommandClass.png" width="800" alt="Class Diagram of add module command"/>
+  <br/>Figure <>. Class Diagram of add module command
+</p>
+
+Given below is an example usage scenario at Admin level and how the add module feature behaves at each step:
+
+Step 1: The user is currently in admin level.
+
+Step 2: The user want to add a new module CS2113 and enters `add CS2113` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddModuleCommand` object and return the `AddModuleCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `AddModuleCommand#excute()` to add new modules into Kaji application.
+
+Step 5: The `AddModuleCommand` object creates a new `Module` object with the `Module#moduleName` of CS2113. 
+
+Step 6: The new `CS2113 : Module` object will be passed into the `AddModuleCommand#addModule()` with `Access` and `Storage`.
+
+Step 7: The `AddModuleCommand#addModule()` gets the current `Admin` object via `Access#getAdmin()` method, then it adds the new `CS2113: Module` object into the `Admin#ModuleList`. 
+
+Step 8: The new `Admin` object with the `CS2113: Module` object is updated to `Access` via the method `Access#setAdmin(Admin)`.
+
+Step 9: The new `Module` is updated in the folder by executing the `Storage#createModule()`. A 'CS2113' folder is created under the 'data/admin' folder.
+
+Step 10: The `AddModuleCommand#addModule()` method returns a result message to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+
+The following diagram shows how the add module command feature works:
+
+<p align="center">
+  <img src="UML/AddModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
+  <br/>Figure <>. Sequence Diagram of add module command 
+</p>
+
 
 #### 4.1.2. List Modules Feature
 (Zeyu)
+
+The list modules feature allows the user to list all modules in admin level 
+
+The list modules mechanism is facilitated by `ListModulesCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListModulesCommand#execute()` — oversees entire execution for listing modules.
+* `ListModulesCommand#listModules()` — gets and lists all modules in admin level.
+
+For instance, the user wants to list all modules available in `admin`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `admin` level. 
+
+* Step 2: The user enters `list` command to list all modules in `admin` level. 
+
+The following sequence diagram shows how the list modules feature works:
+![Sequence Diagram of List Modules](UML/listmod_seq_diagram.png)
 
 #### 4.1.3. Edit Module Name Feature
 (Jane)
@@ -178,24 +254,32 @@ The edit module name feature allows the user to edit the name of any existing mo
 
 The user can edit the name of an existing module with the `edit` command, which follows the following format: `edit MODULE_INDEX MODULE_NAME`.
 
-The edit module name feature is facilitated by `ModuleList` and `Module`.
+The edit module name feature is facilitated by `ModuleList` and `Module`. The list of user's modules are stored internally as `ModuleList`.
 In addition, it implements the following operations:
-* `ModuleList#getModule()` - Returns a module based on the specified index from the list of modules.
+* `ModuleList#getModule()` - Gets a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
  
-For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:<br><br>
-Step 1: The user is currently in `admin` level.<br><br>
-Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.<br><br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.<br><br>
-Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.<br><br>
-Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.<br><br>
-Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.<br><br>
+For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `admin` level.
+
+Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.
+
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.
+
+Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.
+
+Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.
+
+Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.
+
+Step 7: The result message from `EditModuleCommand#editModule()` is returned to `EditModuleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditModuleSequenceDiagram.png" width="600" alt="Edit Module Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit chapter name feature  
+  <img src="DG_Images/EditModuleSequenceDiagram.png" width="800" alt="Edit Module Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of edit module name feature  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -204,6 +288,7 @@ The following sequence diagram shows how the edit module name feature works:
 (Jia Ern)
 
 The remove module feature allows the user to remove a module by specifying the index of the module in the list. 
+
 The remove module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
 
 In addition, it implements the following operations:
@@ -213,17 +298,61 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
 
-* Step 1: The user is currently in `admin` level. 
+Step 1: The user is currently in `admin` level. 
 
-* Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
+Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
 
-* Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
+Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
 The following sequence diagram shows how the remove module feature works:
-![Sequence Diagram of Remove Module](UML/removemod_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removemod_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
+  <br/>Figure <>. Sequence diagram of remove module  
+</p>
 
 #### 4.1.5. Access Module Level Feature
 (Jiayi)
+
+`GoModuleCommand` class facilitates the proposed access module level feature. It extends `GoCommand` class. 
+
+It implements the following operations:
+* `GoModuleCommand#execute()` -- Inherites from the abstract `GoCommand`. It is overrided to calls `GoModuleCommand#goModule()` and print message to user.
+* `GoModuleCommand#goModule()` -- Accesses a new module level from admin level based on the module name entered by user. If the module name does not match with any of the existing module, it returns a error message. Otherwise, this operation returns a successful message to the `GoModuleCommand#execute` operation.
+
+Shown as the class diagram below, with the inheritance of `GoCommand` and `Command`, `Kaji` is able to execute the operation `GoModuleCommand#execute()` directly. 
+
+<p align="center">
+  <img src="UML/GoModuleCommandClass.png" width="800" alt="Class Diagram of go module command"/>
+  <br/>Figure <>. Class Diagram of go module command
+</p>
+
+Given below is an example usage scenario at Admin level and how the access module level feature behaves at each step:
+
+Step 1: The user is currently in admin level.
+
+Step 2: The user want to access a module level named 'CS2113' and enters `go CS2113` command. This example is based on the assumption that the module 'CS2113' already has been added.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. The `Parser` creates a new `GoModuleCommand` object if the user's current access level is admin level. Then `Parser` returns the `GoModuleCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `GoModuleCommand#execute()` to access module level 'CS2113'.
+
+Step 5: The `GoModuleCommand#execute()` object calls its own private operation `GoModuleCommand#goModule()` to check the existence of the module level entered by user and modify the user's access level if the module level exists. 
+
+Step 6: The reference of both the `Access` and `Storage` objects is passed into `GoModuleCommand#goModule()`.
+
+Step 7: The `GoModuleCommand#goModule()` gets all the `Module` objects in the `Access#Admin` via the methods `Access#getAdmin()`, `Admin#getModules()` and `ModuleList#getAllModules()` respectively. 
+
+Step 8: A for loop is used to check the existence of module entered by user. If there is an existing module with same `Module#moduleName` as the module code entered by user, the `GoModuleCommand#goModule()` operation returns an successful message.
+
+Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
+
+The following diagam shows how the add chapter command feature works:
+
+<p align="center">
+  <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
+  <br/>Figure <>. Sequence Diagram of add chapter command 
+</p>
 
 #### 4.1.6. Example of the Admin Feature
 
@@ -235,8 +364,64 @@ The following sequence diagram shows how the remove module feature works:
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
 
+##### Implementation
+`AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
+
+Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddChapterCommand`, `Kaji` is able to execute the operation `AddChapterCommand#excute()`. 
+
+<p align="center">
+  <img src="UML/AddChapterCommandClass.png" width="800" alt="Class Diagram of add chapter command"/>
+  <br/>Figure <>. Class Diagram of add chapter command  
+</p>
+
+Given below is an example usage scenario at Module level and how the add chapter feature behaves at each step:
+
+Step 1: The user is currently in module level.
+
+Step 2: The user want to add a new chapter chapter1 and enters `add chapter1` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddChapterCommand` object and return the `AddChapterCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `AddChapterCommand#excute()` to add new chapters into Kaji application.
+
+Step 5: The `AddChapterCommand` object creates a new `Chapter` object with the `Chapter#chapterName` of chapter1. 
+
+Step 6: The new `chapter1 : Chapter` object will be passed into the `AddChapterCommand#addChapter()` with `Access` and `Storage`.
+
+Step 7: The `AddChapterCommand#addChapter()` gets the current `Module` object via `Access#getModule()` method, then it adds the new `chapter1: Chapter` object into the `Module#ChapterList`. 
+
+Step 8: The new `Module` object with the `chapter1: Chapter` object is updated to `Access` via the method `Access#setModule(Module)`.
+
+Step 9: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is being created under the 'data/module' folder.
+
+Step 10: The `AddChapterCommand#addChapter()` method returns a result message to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+
+The following diagram shows how the add chapter command feature works:
+
+<p align="center">
+  <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
+  <br/>Figure <>. Sequence Diagram of add chapter command  
+</p>
+
 #### 4.2.2. List Chapters Feature
 (Zeyu)
+
+The list chapters feature allows the user to list all chapters in module level 
+
+The list chapters mechanism is facilitated by `ListChaptersCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListChaptersCommand#execute()` — oversees entire execution for listing chapters.
+* `ListChaptersCommand#listChapters()` — gets and lists all chapters in module level.
+
+For instance, the user wants to list all chapters available in `CS2113T` (module name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `CS2113T` level. 
+
+* Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
+
+The following sequence diagram shows how the list chapters feature works:
+![Sequence Diagram of List Chapters](UML/listchap_seq_diagram.png)
 
 #### 4.2.3. Edit Chapter Name Feature
 (Jane)
@@ -245,27 +430,35 @@ The edit chapter name feature allows the user to edit the name of any existing c
 
 The user can edit the name of an existing chapter with the `edit` command, which follows the following format: `edit CHAPTER_INDEX CHAPTER_NAME`.
 
-The edit module name feature is facilitated by `ChapterList` and `Chapter`.
+The edit module name feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
 In addition, it implements the following operations:
-* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
  
-For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:<br><br>
-Step 1: The user is currently in `CS2113T` at the module level.<br><br>
-Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.<br><br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.<br><br>
-Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.<br><br>
-Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.<br><br>
-Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.<br><br>
+For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `CS2113T` at the module level.
+
+Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.
+
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.
+
+Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.
+
+Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
+
+Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.
+
+Step 7: The result message from `EditChapterCommand#editChapter()` is returned to `EditChapterCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit chapter name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditChapterSequenceDiagram.png" width="600" alt="Edit Chapter Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit flashcard content feature  
+  <img src="DG_Images/EditChapterSequenceDiagram.png" width="800" alt="Edit Chapter Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.2.4. Remove Chapter Feature
 (Jia Ern)
@@ -280,14 +473,18 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
-* Step 1: The user is currently in `CS2113T` at the module level. 
+Step 1: The user is currently in `CS2113T` at the module level. 
 
-* Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
+Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
 
-* Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
+Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
 The following sequence diagram shows how the remove chapter feature works:
-![Sequence Diagram of Remove Chapter](UML/removechap_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removechap_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
+  <br/>Figure <>. Sequence diagram of remove chapter
+</p>
 
 #### 4.2.5. Access Chapter Level Feature
 (Lucas)
@@ -295,51 +492,108 @@ The following sequence diagram shows how the remove chapter feature works:
 #### 4.2.6. Return to Admin Level Feature
 (Lucas)
 
-#### 4.2.7. Rate Chapter Feature
-(Jiayi) 
+#### 4.2.7. Example of the Module Feature
 
-#### 4.2.8. Example of the Module Feature
-
-#### 4.2.9. Conclusion
+#### 4.2.8. Conclusion
 
 ### 4.3. Chapter Features
 [summary + scenario]
 
 #### 4.3.1. Add Flashcard Feature
 (Jane)
+##### Implementation
+The add flashcard feature allows the user to add a flashcard to a chapter.
+
+The user can add a flashcard with the `add` command, which follows the following format: `add q:QUESTION | a: ANSWER`.
+
+The add flashcard feature is facilitated by `CardList`. The list of user's flashcards are stored internally as `CardList`.
+In addition, it implements the following operation:
+* `CardList#addCard()` - Adds a flashcard to the list of flashcards.
+ 
+For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
+
+Step 2: The user enters `add q:1+1 | a:2` command to add a flashcard to the list of flashcards.
+
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `AddCardCommand` object.
+
+Step 4: A `Card` object is created within `AddCardCommand`.
+
+Step 5: `AddCardCommand` is executed and calls the method `AddCardCommand#addCard()`.
+
+Step 6: `AddCardCommand#addCard()` adds a flashcard to the list of flashcards by calling the method `CardList#addCard()`.
+
+Step 7: The result message from `AddCardCommand#addCard()` is returned to `AddCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+
+The following sequence diagram shows how the add flashcard feature works:
+
+<p align="center">
+  <img src="DG_Images/AddCardSequenceDiagram.png" width="800" alt="Add Card Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of add flashcard feature  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.2. List Flashcards Feature
 (Zeyu)
 
+The list flashcards feature allows the user to list all flashcards in chapter level 
+
+The list flashcards mechanism is facilitated by `ListCardsCommand`. It extends from the abstract class `ListCommand`. 
+
+In addition, it implements the following operations:
+* `ListCardsCommand#execute()` — oversees entire execution for listing flashcards.
+* `ListCardsCommand#listCards()` — gets and lists all flashcards in chapter level.
+
+For instance, the user wants to list all flashcards available in `Chapter 1` (chapter name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `Chapter 1` level. 
+
+* Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
+
+The following sequence diagram shows how the list flashcards feature works:
+![Sequence Diagram of List Cards](UML/listcard_seq_diagram.png)
+
 #### 4.3.3. Edit Flashcard Content Feature
 (Jane)
+##### Implementation
 The edit flashcard content feature allows the user to edit the content of any existing flashcard.
 
 The user can edit the content of an existing flashcard with the `edit` command, which follows the following format: `edit FLASHCARD_INDEX q:QUESTION | a: ANSWER`.
 
-The edit flashcard content feature is facilitated by `CardList` and `Card`.
+The edit flashcard content feature is facilitated by `CardList` and `Card`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operations:
-* `CardList#getCard()` - Returns a flashcard based on the specified index from the list of flashcards.
+* `CardList#getCard()` - Gets a flashcard based on the specified index from the list of flashcards.
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
  
-For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:<br><br>
-Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.<br><br>
-Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.<br><br>
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.<br><br>
-Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.<br><br>
-Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.<br><br>
-Step 6: The question is edited to `1+1` by the method `Card#setQuestion()`.<br><br>
-Step 7: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.<br><br>
+For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
+
+Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.
+
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.
+
+Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.
+
+Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.
+
+Step 6: The question is edited to `1+1` by the method `Card#setQuestion()`.
+
+Step 7: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.
+
+Step 7: The result message from `EditCardCommand#editCard()` is returned to `EditCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit flashcard content feature works:
 
 <p align="center">
-  <img src="DG_Images/EditCardSequenceDiagram.png" width="600" alt="Edit Card Sequence Diagram"/>
+  <img src="DG_Images/EditCardSequenceDiagram.png" width="800" alt="Edit Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.4. Remove Flashcard Feature
 (Jia Ern)
@@ -354,16 +608,20 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
 
-* Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
+Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
 
-* Step 2: The user enters `remove 1` command to delete the first flashcard in the list of flashcards — which in this case is `[Q] 1+1 | [A] 2`. The `remove` command creates `RemoveCardCommand` which will then be executed. 
+Step 2: The user enters `remove 1` command to delete the first flashcard in the list of flashcards — which in this case is `[Q] 1+1 | [A] 2`. The `remove` command creates `RemoveCardCommand` which will then be executed. 
 
-* Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
+Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
 
-* Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
+Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
 The following sequence diagram shows how the remove flashcard feature works:
-![Sequence Diagram of Remove Flashcard](UML/removecard_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/removecard_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
+  <br/>Figure <>. Sequence diagram of remove flashcard
+</p>
 
 #### 4.3.5. Return to Module Level Feature
 (Jia Ern)
@@ -376,17 +634,67 @@ In addition, it implements the following operation:
 
 For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
 
-* Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
+Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
 
-* Step 2: The user enters `back` command to return to `CS2113T`. The `back` command creates `BackModuleCommand` which will then be executed.
+Step 2: The user enters `back` command to return to `CS2113T`. The `back` command creates `BackModuleCommand` which will then be executed.
 
-* Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
+Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
 The following sequence diagram shows how the return to module level feature works:
-![Sequence Diagram of Return to Module](UML/returnmod_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/returnmod_seq_diagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <br/>Figure <>. Sequence diagram of return to module
+</p>
 
 #### 4.3.6. Check Overall Performance for a Chapter Feature
 (Jiayi)
+
+##### Implementation
+`ShowRateCommand` facilitates the proposed check overall performance feature. It extends an abstract `Command` class with the abstract `Command#execute()` and `Command#isExit()`.
+
+It implements the following operations:
+* `ShowRateCommand#execute()` -- Inherits from the abstract `Command`. It is an override to calls `ShowRateCommand#computePercentage()` and print message that specific to performance checking feature.
+* `ShowRateCommand#computePercentage()` -- Computes the overall performance by master levels and updates the `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage`, then it returns number of cards in the `Chapter`.
+* `ShowRateCommand#isExit()` -- Inherits from the abstract `Command`. It is an override to return `false`.
+
+Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is able to execute the operation `ShowRateCommand#execute()` directly. 
+
+<p align="center">
+  <img src="UML/ShowRateCommandClass.png" width="800" alt="Class Diagram of show overall performance command"/>
+  <br/>Figure <>. Class Diagram of show overall performance command  
+</p>
+
+Given below is an example usage scenario at Chapter level and how the show overall performance feature behaves at each step:
+
+Step 1: The user is currently in chapter level.
+
+Step 2: The user want to check overall performance of the current chapter level and enters `showrate` command.
+
+Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `ShowRateCommand` object and return the `ShowRateCommand` object to `Kaji`.
+
+Step 4: The `Kaji` object uses the public `ShowRateCommand#excute()` to compute overall performance and print relevant message to user.
+
+Step 5: The `ShowRateCommand` object gets the reference of current chapter level via the `Access#getChapter()` and stores the reference as a `Chapter` object. 
+
+Step 6: The `Chapter` object will be passed into the operation `ShowRateCommand#computePercentage()`.
+
+Step 7: The `ShowRateCommand#computePercentage()` gets all the `Card` objects in the current `Chapter` object via the methods `Chapter#getCards()` and `CardList#getAllCards()` respectively. 
+
+Step 8: If there is no `Card` object in the current `Chapter`, the `ShowRateCommand#computePercentage()` operation returns int `0` after checking the `ArrayList<Card>` size. If there are `Card` objects, a 'for' loop is used to check the `Card#rating` of every `Card` objects and compute the overall performance. 
+
+Step 9: `ShowRateCommand#computePercentage()` updates the variables `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage` at the end and returns the number of cards in the chapter
+
+Step 10: `GoModuleCommand#execute()` prints the performance message to the user via `Ui#showToUser` if the `ShowRateCommand#computePercentage()` is greater than int `0`.
+
+The following diagram shows how the show overall performance feature works:
+
+<p align="center">
+  <img src="UML/ShowRateCommand.png" width="800" alt="Sequence Diagram of show overall performance command"/>
+  <br/>Figure <>. Sequence Diagram of show overall performance command 
+</p>
+
+![Sequence Diagram of show overall performance command](UML/ShowRateCommand.png)
 
 #### 4.3.7. Example of the Chapter Feature
 
@@ -406,28 +714,35 @@ In addition, it implements the following operations:
 * `ReviseCommand#getCards()` — gets a list of `card` in `chapter`.
 * `ReviseCommand#promptNotDue()` — prompts user if he still wants to revise a `chapter` that is not due.
 * `ReviseCommand#reviseCard()` — makes use of `ui` to show the contents of each card to the user and gets rating input for the particular card.
-* `ReviseCommand#addHistory()` — adds the `chapter` to storage to track past revisions.
 * `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
 * `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
 
 For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
 
-* Step 1: The user is currently in `CS2113T` at the module level.
+Step 1: The user is currently in `CS2113T` at the module level.
 
-* Step 2: The user enters `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
+Step 2: The user enters `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
 
-* Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
+Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
 
-* Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
+Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
 
-* Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
+Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
 
-* Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
+Step 6: A success message of completeing the revision will be shown to the user through `Ui#showToUser()`.
 
-* Step 7: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
+Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
+
+Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
+
+Step 7: Lastly, `ReviseCommand#execute()` calls `HistoryCommand#addHistory()` to keep a record of the chapter revised so that the user can review what revision has been completed.
 
 The following sequence diagram shows how the revise feature works:
-![Sequence Diagram of Revise](UML/revise_seq_diagram.png)
+
+<p align="center">
+  <img src="DG_Images/revise_seq_diagram.png" width="800" alt="Sequence Diagram of Revise"/>
+  <br/>Figure <>. Sequence diagram of revise
+</p>
 
 #### 4.4.2. Scheduling The Chapters Feature
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
@@ -581,10 +896,61 @@ The following sequence Diagrams illustrates how the Exclusion Process is execute
 
 #### 4.5.4. Reschedule Chapter Feature
 (Jane)
+##### Implementation
+The reschedule chapter feature allows the user to reschedule the due date of any existing chapter.
+
+The user can reschedule the due date of an existing chapter with the `reschedule` command, which follows the following format: `reschedule CHAPTER_INDEX DATE(yyyy-MM-dd)`.
+
+The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
+In addition, it implements the following operations:
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
+* `Chapter#setDueBy()` — Sets the due date of the chapter.
+ 
+For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
+
+Step 1: The user is currently in `CS2113T` at the module level.
+
+Step 2: The user enters `reschedule 1 2020-12-20` command to reschedule the first chapter in the list of chapters — which in this case is `Chapter 1`.
+
+Step 3: The user input is parsed by `Parser`, and `Parser` creates a `RescheduleCommand` object.
+
+Step 4: `RescheduleCommand` is executed and calls the method `RescheduleCommand#reschedule()`.
+
+Step 5: `RescheduleCommand#reschedule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
+
+Step 6: The due date of the chapter is rescheduled to `2020-12-20` by the method `Chapter#setDueBy()`.
+
+Step 7: The result message from `RescheduleCommand#reschedule()` is returned to `RescheduleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+
+The following sequence diagram shows how the reschedule chapter feature works:
+
+<p align="center">
+  <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="800" alt="Reschedule Chapter Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of reschedule chapter feature  
+</p>
+
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.5.5. View Revision History Feature
 (Zeyu)
 
+The view revision history feature allows the user to list the revision completed in the session/in a day. In case the user enters `history` follow by a `date(example: 2020-10-10)`, `Kaji` will list the revision completed in `October 10, 2020`. Otherwise, `Kaji` will list the revision completed in the day the user uses `HelpCommand`. This feature can be accessed at any level.
+
+The history mechanism is facilitated by `HistoryCommand`. It extends from the abstract class `Command`. 
+
+In addition, it implements the following operations:
+
+* `HistoryCommand#execute()` — calls the list method to list the history. 
+* `HistoryCommand#listHistory()` — lists the revision completed in the session/in a day.
+
+Given below is an example usage scenario and how the history mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the admin level. 
+
+Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
+
+The following sequence diagram shows how the list chapters feature works:
+![Sequence Diagram of List History](UML/listhistory_seq_diagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -592,20 +958,42 @@ The following sequence Diagrams illustrates how the Exclusion Process is execute
 ### 5.1. Product Scope
 #### 5.1.1. Target User Profile
 
-* needs to have an effective study schedule
-* prefers typing to mouse interactions
-* is comfortable with the usage of CLI applications
+* Needs to have an effective study schedule
+* Prefers typing to mouse interactions
+* Is comfortable with the usage of CLI applications
 
 #### 5.1.2. Value Proposition
 
-* implements Spaced Repetition for the user 
+* Implements Spaced Repetition for the user 
 
 ### 5.2. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+| Version | As a ... | I want to ... | So that I can ... |
 |--------|----------|---------------|------------------|
-|v1.0|user|revise the flashcards by chapter|do my revision|
-|v1.0|user|remove modules/chapters/flashcard|remove modules/chapters/flashcards that I no longer need from the scheduler|
+| v1.0 | student | add modules | study based on modules |
+| v1.0 | student | add chapters for each module | study based on chapters for a certain module |
+| v1.0 | student | add flashcards inside each chapter for the content of each chapter | study the content of each chapter |
+| v1.0 | student | list my modules | have an overview of what modules I have |
+| v1.0 | student | list my chapters in each module | have an overview of what chapters I have for a module |
+| v1.0 | student | list my flashcards in each chapter | have an overview of the content I have for a chapter |
+| v1.0 | student | modify the module name | correct the module name if it is incorrect |
+| v1.0 | student | modify the chapter name | correct the chapter name if it is incorrect |
+| v1.0 | student | modify the content of the flashcards | correct the content if it is incorrect |
+| v1.0 | student | remove modules/chapters/flashcard | remove modules/chapters/flashcards that I no longer need |
+| v1.0 | student | access my module | revise based on module |
+| v1.0 | student | access my chapters for a module | revise based on chapter for a certain module |
+| v1.0 | student | revise the flashcards by chapter | do my revision |
+| v1.0 | student | set a rating for a newly created chapter | rate a chapter without going through a revision session |
+| v1.0 | student | state whether a flashcard is easy, medium or hard | revise the flashcards based of the difficulty of it |
+| v1.0 | student | check the scheduled tasks daily | plan my schedule accordingly |
+| v1.0 | student | rely entirely on the application to implement spaced repetition for me | enjoy the benefits of spaced repetition without having to implement it myself |
+| v1.0 | student | have a help command | have an overview of how the application works |
+| v1.0 | student | terminate the program | exit the application when I am done using it |
+| v2.0 | student | see a forecast of the my revision schedule | plan ahead and make time to accommodate the revision of the corresponding number of chapters |
+| v2.0 | student | reschedule a chapter | change the schedule according to my situation |
+| v2.0 | student | view the module and chapters I have completed in a session/in a day | track my progress |
+| v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
+| v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
 ### 5.3. Use Cases
 

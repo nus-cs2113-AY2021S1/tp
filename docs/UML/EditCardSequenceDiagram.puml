@@ -17,6 +17,10 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
 [-> Parser : parse("edit 1 q:1+1 | a:")
 activate Parser
 
@@ -33,10 +37,10 @@ deactivate Parser
 [<-[hidden]- Parser
 destroy Parser
 
-[-> EditCardCommand : execute()
+[-> EditCardCommand : execute(Ui, Access, Storage)
 activate EditCardCommand
 
-EditCardCommand -> EditCardCommand : editCard()
+EditCardCommand -> EditCardCommand : editCard(Access, Storage)
 activate EditCardCommand
 
 EditCardCommand -> Access : getChapter()
@@ -84,6 +88,12 @@ deactivate Storage
 
 EditCardCommand --> EditCardCommand : result
 deactivate EditCardCommand
+
+EditCardCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> EditCardCommand
+deactivate Ui
 
 [<-- EditCardCommand
 deactivate EditCardCommand

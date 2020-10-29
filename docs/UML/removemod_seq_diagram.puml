@@ -1,30 +1,83 @@
 @startuml
--> ":RemoveModuleCommand" : execute(ui, access, storage)
-activate ":RemoveModuleCommand"
-":RemoveModuleCommand" -> ":RemoveModuleCommand" : removeModule(access, storage)
-activate ":RemoveModuleCommand"
-":RemoveModuleCommand" -> ":Access" : getAdmin()
-":RemoveModuleCommand" <-- ":Access"
-destroy ":Access"
-":RemoveModuleCommand" -> ":Admin" : getModules()
-":RemoveModuleCommand" <-- ":Admin" : getModules
-destroy ":Admin"
-":RemoveModuleCommand" -> ":ModuleList" : getAllModules()
-":RemoveModuleCommand" <-- ":ModuleList" : allModules
-destroy ":ModuleList"
-":RemoveModuleCommand" -> ":Storage" : deleteDirectory(directory)
-":RemoveModuleCommand" <-- ":Storage" : isRemoved
-destroy ":Storage"
-opt not removed
-    <-- ":RemoveModuleCommand" : IOException
-end
-":RemoveModuleCommand" -> ":RemoveCommand" : prepareResult(type, module, count)
-":RemoveModuleCommand" <-- ":RemoveCommand" : result
-destroy ":RemoveCommand"
-":RemoveModuleCommand" --> ":RemoveModuleCommand" : result
-deactivate ":RemoveModuleCommand"
-":RemoveModuleCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":RemoveModuleCommand"
-deactivate ":RemoveModuleCommand"
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":RemoveModuleCommand" as RemoveModuleCommand LOGIC_COLOR
+participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Admin" as Admin MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Parser : parse("remove 1")
+activate Parser
+
+create RemoveModuleCommand
+Parser -> RemoveModuleCommand : RemoveModuleCommand(1)
+activate RemoveModuleCommand
+
+RemoveModuleCommand --> Parser : command
+deactivate RemoveModuleCommand
+
+[<-- Parser : command
+deactivate Parser
+[<-[hidden]- Parser
+destroy Parser
+
+-> RemoveModuleCommand : execute(ui, access, storage)
+activate RemoveModuleCommand
+RemoveModuleCommand -> RemoveModuleCommand : removeModule(access, storage)
+activate RemoveModuleCommand
+RemoveModuleCommand -> Access : getAdmin()
+activate Access
+RemoveModuleCommand <-- Access
+deactivate Access
+[<-[hidden]- Access
+destroy Access
+RemoveModuleCommand -> Admin : getModules()
+activate Admin
+RemoveModuleCommand <-- Admin : getModules
+deactivate Admin
+[<-[hidden]- Admin
+destroy Admin
+RemoveModuleCommand -> ModuleList : getAllModules()
+activate ModuleList
+RemoveModuleCommand <-- ModuleList : allModules
+deactivate ModuleList
+[<-[hidden]- ModuleList
+destroy ModuleList
+RemoveModuleCommand -> Storage : deleteDirectory(directory)
+activate Storage
+RemoveModuleCommand <-- Storage : isRemoved
+deactivate Storage
+[<-[hidden]- Storage
+destroy Storage
+RemoveModuleCommand -> RemoveCommand : prepareResult(type, module, count)
+activate RemoveCommand
+RemoveModuleCommand <-- RemoveCommand : result
+deactivate RemoveCommand
+[<-[hidden]- RemoveCommand
+destroy RemoveCommand
+RemoveModuleCommand --> RemoveModuleCommand : result
+deactivate RemoveModuleCommand
+RemoveModuleCommand -> Ui : showToUser(result)
+activate Ui
+RemoveModuleCommand <-- Ui
+deactivate Ui
+[<-[hidden]- Ui
+destroy Ui
+<-- RemoveModuleCommand
+deactivate RemoveModuleCommand
 @enduml

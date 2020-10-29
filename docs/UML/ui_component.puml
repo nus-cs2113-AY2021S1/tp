@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Class Kaji
+
+package Model <<Rectangle>> {
+Class HiddenModel MODEL_COLOR
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic LOGIC_COLOR
+}
+
+package Storage <<Rectangle>> {
+Class HiddenLogic STORAGE_COLOR
+}
+
+package Ui <<Rectangle>> {
+Class HiddenLogic UI_COLOR
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+Model -up-> Ui
+Storage -up-> Ui
+Logic -up-> Ui
+Kaji .up.> Ui
+
+Storage -[hidden]left- Model
+Model -[hidden]left- Logic
+Logic -[hidden]left- Kaji
+
+@enduml

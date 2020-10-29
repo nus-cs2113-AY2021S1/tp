@@ -1,0 +1,31 @@
+@startuml
+Kaji -> Parser ++ : parse(userCommand)
+Parser -> Parser ++ : prepareAddCommand
+Parser -> Access ++ : isAdminLevel()
+return True
+return
+create AddModuleCommand
+Parser -> AddModuleCommand ++ : new()
+return
+return AddModuleCommand
+Kaji -> AddModuleCommand ++ : execute
+
+create Module
+AddModuleCommand -> Module ++ : new()
+return
+AddModuleCommand -> AddModuleCommand ++ : addModule()
+AddModuleCommand -> Access ++ : getAdmin()
+return admin
+create ModuleList
+AddModuleCommand -> ModuleList ++ : addModules()
+return newAdmin
+AddModuleCommand -> Access ++ : setAdmin(newAdmin)
+return
+AddModuleCommand -> Storage ++: createModule(String)
+return
+return result
+AddModuleCommand -> Ui ++ : showToUser(result)
+return
+return
+
+@enduml

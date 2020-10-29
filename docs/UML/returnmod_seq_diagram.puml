@@ -1,16 +1,45 @@
 @startuml
--> ":BackModuleCommand" : execute(ui, access, storage)
-activate ":BackModuleCommand"
-":BackModuleCommand" -> ":Access" : setChapterLevel(chapterLevel)
-activate ":Access"
-":Access" -> ":Access" : setBackModuleLevel(chapterLevel)
-activate ":Access"
-":Access" -> ":Access" : setIsModuleLevel()
-activate ":Access"
-deactivate ":Access"
-deactivate ":Access"
-deactivate ":Access"
-destroy ":Access"
-<-- ":BackModuleCommand"
-deactivate ":BackModuleCommand"
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":BackModuleCommand" as BackModuleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+end box
+
+[-> Parser : parse("back")
+activate Parser
+
+create BackModuleCommand
+Parser -> BackModuleCommand : BackModuleCommand()
+activate BackModuleCommand
+
+BackModuleCommand --> Parser : command
+deactivate BackModuleCommand
+
+[<-- Parser : command
+deactivate Parser
+[<-[hidden]- Parser
+destroy Parser
+
+-> BackModuleCommand : execute(ui, access, storage)
+activate BackModuleCommand
+BackModuleCommand -> Access : setChapterLevel(chapterLevel)
+activate Access
+Access -> Access : setBackModuleLevel(chapterLevel)
+activate Access
+Access -> Access : setIsModuleLevel()
+activate Access
+deactivate Access
+[<-[hidden]- Access
+deactivate Access
+BackModuleCommand <-- Access
+deactivate Access
+[<-[hidden]- Access
+destroy Access
+<-- BackModuleCommand
+deactivate BackModuleCommand
 @enduml

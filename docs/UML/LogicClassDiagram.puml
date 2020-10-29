@@ -24,6 +24,10 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside .right.> Parser
 
@@ -33,8 +37,11 @@ HiddenOutside .right.> Command : executes >
 
 XYZCommand -up-|> Command
 
-Command .right.> Model
+Command .right.> Storage
+
+Command .up.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nEditCommand, etc
 Command .up.> Scheduler
+
 
 @enduml

@@ -49,25 +49,26 @@ By: `Team F11-3` Since: `August 2020`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Overview
+This section gives an overview about Kaji and the purpose of this user guide.
 
-In the past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
+### 1.1. About Kaji
+In your past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, 
+and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have 
+forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
 
 Don't worry! <strong>Kaji</strong> will help you solve all these problems!
 
-
-### 1.1. About Kaji
 KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
-This User GUide is divided into four sections, Overview, Quik Start, Features, and Command Summary.
+This User Guide explains how to use Kaji. It provides an understanding of the features and commands, as well as some common use cases of this application.
 
-<b>Overview section</b> will briefly introduce Kaji and its User Guide, also the Command Line Interface to you.
+In this guide, we cover:
+* How to use the Command Line Interface (CLI)
+* Syntax of the commands available in different levels in Kaji
+* Common use cases for each command
+* Summary of all the commands
 
-<b>Quik Start section</b> will guide you to make some preparations in advance and teach you how to run Kaji.
-
-<b>Features section</b> will introduce all features of Kaji according to different levels, you can learn features in details in this section.
-
-<b>Command summary section</b> will sum up different command type in a table.
 
 ### 1.3. Understanding the Command Line Interface (CLI)
 A <b>command line interface (CLI)</b> is a text-based user interface (UI) used to view and manage computer files. Command line interfaces are also called command-line user interfaces, console user interfaces and character user interfaces.
@@ -86,17 +87,25 @@ To get started on this application, please perform the following steps:
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Kaji` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
 1. Copy the file to the folder you want to use as the <I>home folder</I> for your Kaji.
-1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should see the welcome message `Welcome to Kaji` as well as a list of commands available.
+1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
+![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
    * `help` : List commands available
    * `exit` : Exits the app.
-1. Refer to [Features](#4-features) below for details of each command.
+1. Refer to [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
+This section introduces the syntax and usages of the commands for the features available in Kaji. 
+In explaining the syntax, do take note of the following command format which applies to all Kaji commands:
+* Words in `UPPER_CASE` are the parameters that you need to provide.
+    * <b>Example:</b> In `add MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add CS2113`.
+* Parameters cannot be given in any order.
+    * <b>Example:</b> In `edit MODULE_INDEX MODULE_NAME`, entering `edit CS2113 1` will result in an error as 
+      the `MODULE_INDEX` and `MODULE_NAME` parameters are in the wrong order.
 
 ### 3.1. Admin Level
 
@@ -106,11 +115,59 @@ To get started on this application, please perform the following steps:
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
 
+This command shows a list of modules on the admin level.
+
+Format: `list`
+
+Here are some key points:
+* Do not need to add `admin` after `list`.
+* All list commands have the same command word `list`. 
+
+Example of usage: 
+* At Admin Level: enter the command `list`.
+* Here is the expected output:
+![List Modules](UG_Images/list_module.png)
+* After listing all modules, you can try all commands available in **Admin Level**.
+
 #### 3.1.3. Editing a module name: `edit` 
 (by Zeyu)
 
+This command modifies the module name you want to change.
+
+Format: `edit INDEX MODULE_NAME`
+
+Here are some key points:
+* You can only edit content on the level below the one you are on.
+* Edit the name / content at the specified `INDEX`.
+* The index refers to the index number shown in the displayed content list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example of usage: 
+* At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T.
+* Here is the expected output:
+![Edit Module Name](UG_Images/edit_module.png)
+* After editing the module name, you can try all commands available in **Admin Level**.
+
 #### 3.1.4. Removing a module: `remove` 
 (by Jia Ern)
+
+Removes a module from Kaji.
+
+Format: `remove MODULE_INDEX`
+
+Here are some key pointers:
+* Removes the module based on the index provided.
+* `MODULE_INDEX` refers to the index number shown in the current module list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
+* Step 1: Ensure you are at the admin level: <br>
+![Remove Module 1](images/RemoveMod1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
+![Remove Module 2](images/RemoveMod2.PNG)
+* Step 3: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
+![Remove Module 3](images/RemoveMod3.PNG)
 
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
@@ -123,11 +180,66 @@ To get started on this application, please perform the following steps:
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
 
+This command shows a list of chapters on the module level.
+
+Format: `list`
+
+Here are some key points:
+* Do not need to add `module_name` after `list`.
+* All list commands have the same command word `list`.
+
+Example of usage: 
+* At Module Level: enter the command `list`.
+* Here is the expected output:
+![List Chapters](UG_Images/list_chapter.png)
+* The date in the bracket is the due date for each chapter.
+* After listing all chapters, you can try all commands available in **Module Level**.
+
 #### 3.2.3. Editing a chapter name: `edit`
 (by Jane)
 
+You can edit the name of an existing chapter from the list of chapters.
+You can do so by using the `edit` command, followed by the edited name of the chapter.
+
+**Format:** `edit CHAPTER_INDEX CHAPTER_NAME`
+
+Here are some key pointers:
+* `CHAPTER_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a chapter as displayed from the list of chapters.
+* `CHAPTER_NAME` is the edited name of your chapter.
+
+**Example:**
+
+Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+<img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
+3. Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
+4. After the chapter name has been successfully edited, the result will be displayed as shown.<br>
+<img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
+
 #### 3.2.4. Removing a chapter: `remove`
 (by Jia Ern)
+
+Removes a chapter from Kaji.
+
+Format: `remove CHAPTER_INDEX`
+
+Here are some key pointers:
+* Removes the chapter based on the index provided.
+* `CHAPTER_INDEX` refers to the index number shown in the current chapter list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the module level `CS2113T` and want to remove the chapter `Chapter 1`, the steps to do so are shown below:
+* Step 1: Ensure you are at the module level: <br>
+![Remove Chapter 1](images/BackMod1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`: <br>
+![Remove Chapter 2](images/RemoveChap2.PNG)
+* Step 3: The chapter and the flashcards in it are removed, and the output message below will be shown: <br>
+![Remove Chapter 3](images/RemoveChap3.PNG)
 
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
@@ -138,28 +250,178 @@ To get started on this application, please perform the following steps:
 #### 3.2.7. Starting a revision session: `revise`
 (by Jia Ern)
 
+Starts a revision session for a chapter.
+
+Format: `revise CHAPTER_INDEX` 
+
+Here are some key pointers: 
+* Revision can only be done at module level. 
+* Starts a revision based on the index provided. 
+* The index refers to the index number shown in the chapter list for the module level you are currently in.  
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently in the module level `CS2113T` and want to start a revision for `Chapter 1`, the steps to do so are shown below:
+* Step 1: Ensure you are at the module level: <br>
+![Revise 1](images/BackMod1.PNG)
+* Step 2: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`: <br>
+![Revise 2](images/Revise2.PNG)
+* Step 3: If the chapter is not due for revision yet, you will be shown the below message: <br>
+![Revise 3](images/Revise3.PNG)
+* Step 4: Enter `Y` to start the revision.
+* Step 5: The message below will be shown at the start of the revision: <br>
+![Revise 4](images/Revise4.PNG)
+* Step 6: The question of the flashcard will be shown: <br>
+![Revise 5](images/Revise5.PNG)
+* Step 7: Enter `s` to see the answer for the flashcard: <br>
+![Revise 6](images/Revise6.PNG)
+* Step 8: Based on the difficulty of the flashcard, you may enter either `e`/`m`/`h`/`c` to rate the flashcard as shown below: <br>
+![Revise 7](images/Revise7.PNG)
+* Step 9: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for.  
+* Step 10: Once all the flashcards have been revised, the output message below will be shown: <br>
+![Revise 8](images/Revise8.PNG)
+
 #### 3.2.8. Rating a chapter: `rate`
 (by Jiayi)
 
 #### 3.2.9. Rescheduling a chapter: `reschedule`
 (by Jane)
 
+You can reschedule the due date of an existing chapter from the list of chapters.
+Rescheduling a chapter allows you to reschedule a chapter to an earlier or later date than the specified due date.
+You can do so by using the `reschedule` command, followed by the due date that you want to reschedule the chapter to.
+
+**Format:** `reschedule CHAPTER_INDEX DATE`
+
+Here are some key pointers:
+* `CHAPTER_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a chapter as displayed from the list of chapters.
+* `DATE` is the rescheduled due date of your chapter.
+* `DATE` should be in the format `yyyy-MM-dd`.
+
+**Example:**
+
+Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/>
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+<img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/>
+3. Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/>
+4. After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
+<img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/>
+
 ### 3.3. Chapter Level
 
 #### 3.3.1. Adding a flashcard: `add`
 (by Jane)
 
+After adding a new chapter, the first thing you might want to do is to add a flashcard to the chapter.
+You can do so by using the `add` command, followed by the details of the flashcard.
+
+**Format:** `add q:QUESTION | a:ANSWER`
+
+Here are some key pointers:
+* `QUESTION` is the question of your flashcard.
+* `ANSWER` is the answer of your flashcard.
+* You need to type `q:` before the `QUESTION` parameter. 
+* You need to type `a:` before the `ANSWER` parameter.
+* Having `|` between `q:QUESTION` and `a:ANSWER` is required.
+
+**Example:**
+
+Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
+1. Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/>
+2. After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
+<img src="UG_Images/AddCard2.png" width="600" alt="Add Card 2"/>
+
 #### 3.3.2. Listing flashcards available: `list`
 (by Jane)
+
+After adding flashcards to the chapter, you can view the list of flashcards that you have for the chapter.
+You can do so by using the `list` command.
+
+**Format:** `list`
+
+Here are some key pointers:
+* You cannot type in any parameters after the `list` command.
+
+**Example:**
+
+Let's say you want to view all the flashcards for a chapter:
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/>
+2. The result for the list of flashcards will be displayed as shown.<br>
+<img src="UG_Images/ListCard2.png" width="600" alt="List Card 2"/>
 
 #### 3.3.3. Editing a flashcard content: `edit`
 (by Jane)
 
+You can edit the question and/or answer of an existing flashcard from the list of flashcards.
+You can do so by using the `edit` command, followed by the details of the flashcard.
+
+**Format:** `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`
+
+Here are some key pointers:
+* `FLASHCARD_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a flashcard as displayed from the list of flashcards.
+* `QUESTION` is the edited question of your flashcard.
+* `ANSWER` is the edited answer of your flashcard.
+* You need to type `q:` before the `QUESTION` parameter. 
+* You need to type `a:` before the `ANSWER` parameter.
+* Having `|` between `q:QUESTION` and `a:ANSWER` is required.
+* If the question or answer of your flashcard does not need to be edited,
+you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
+
+**Example:**
+
+Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/>
+2. From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
+<img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/>
+3. Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/>
+4. After the flashcard has been successfully edited, the result will be displayed as shown.<br>
+<img src="UG_Images/EditCard4.png" width="600" alt="Edit Card 4"/>
+
 #### 3.3.4. Removing a flashcard: `remove`
 (by Jia Ern)
 
+Removes a flashcard from Kaji.
+
+Format: `remove FLASHCARD_INDEX`
+
+Here are some key pointers:
+* Removes the flashcard based on the index provided.
+* `FLASHCARD_INDEX` refers to the index number shown in the current flashcard list. 
+* Index provided **must be a positive integer** 1, 2, 3, ...
+
+Example: <br>
+For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1= | [A] 2`, the steps to do so are shown below:
+* Step 1: Ensure you are at the chapter level: <br>
+![Remove Card 1](images/RemoveCard1.PNG)
+* Step 2: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1= | [A] 2`: <br>
+![Remove Card 2](images/RemoveCard2.PNG)
+* Step 3: The flashcard is removed, and the output message below will be shown: <br>
+![Remove Card 3](images/RemoveCard3.PNG)
+
 #### 3.3.5. Returning to module level: `back`
 (by Jia Ern)
+
+Returns to the module level.
+
+Format: `back`
+ 
+Example: <br>
+For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
+* Step 1: Ensure you are at the chapter level: <br>
+![Back Module 1](images/ReturnMod1.PNG)
+* Step 2: Enter the command `back` to return to the previous level which is the module level: <br>
+![Back Module 2](images/BackMod2.PNG)
+* Step 3: You should return to the module level as shown below: <br>
+![Back Module 3](images/BackMod3.PNG)
 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
@@ -169,11 +431,57 @@ To get started on this application, please perform the following steps:
 #### 3.4.1. Showing a list of commands available: `help`
 (by Zeyu)
 
+This command shows a list of commands available.
+
+Format: `help`
+
+Here is a key point:
+* This command can be **called from any Level**.
+
+Example of usage: 
+* At Any Level: enter the command `help`.
+* Here is part of the expected output, the whole output is a list of all commands useage:
+![Help List Beginning](UG_Images/help1.png)
+![Help list Ending](UG_Images/help2.png)
+* After knowing waht are the commands, you can try any commands on the correct level.
+
+
 #### 3.4.4. Viewing the revision history: `history`
 (by Zeyu)
 
+You can view the revision completed in the session/in a day by using this command.
+
+Format:<br>
+`history`<br>
+`history DATE`<br>
+
+Here are some key points:
+* This command can be **called from any Level**.
+* If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
+* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
+
+Example of usage (`history` format): 
+* At Any Level: enter the command `history`.
+* Here is the expected output:
+![History List](UG_Images/history.png)
+
+Example of usage (`history DATE` format): 
+* At Any Level: enter the command `history 2020-10-30`.
+* Here is the expected output:
+![History List](UG_Images/history_Date.png)
+* After knowing the revision you have completed, you can try any commands on the correct level.
+
 #### 3.4.6. Exiting the program: `exit`
 (by Zeyu)
+
+You can exit Kaji by using this command.
+
+Format: `exit`
+
+Example of usage: 
+* At Any Level: enter the command `exit`
+* Here is the expected output:
+![Exit Kaji](UG_Images/exit.png)
 
 ### 4.5 Scheduling In KAJI
 (by Yan An)

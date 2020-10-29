@@ -1,29 +1,80 @@
 @startuml
--> ":RemoveChapterCommand" : execute(ui, access, storage)
-activate ":RemoveChapterCommand"
-":RemoveChapterCommand" -> ":RemoveChapterCommand" : removeChapter(access, storage)
-activate ":RemoveChapterCommand"
-":RemoveChapterCommand" -> ":Admin" : getModules()
-":RemoveChapterCommand" <-- ":Admin"
-destroy ":Admin"
-":RemoveChapterCommand" -> ":Module" : getChapters()
-":RemoveChapterCommand" <-- ":Module" : chapters
-destroy ":Module"
-":RemoveChapterCommand" -> ":Storage" : deleteDirectory(directory)
-":RemoveChapterCommand" <-- ":Storage" : isRemoved
-":RemoveChapterCommand" -> ":Storage" : removeChapterFromDue(module, chapter)
-":RemoveChapterCommand" <-- ":Storage" : isRemovedFromDue
-destroy ":Storage"
-opt not removed && not removed from due
-    <-- ":RemoveChapterCommand" : IOException
-end
-":RemoveChapterCommand" -> ":RemoveCommand" : prepareResult(type, module, count)
-":RemoveChapterCommand" <-- ":RemoveCommand" : result
-destroy ":RemoveCommand"
-":RemoveChapterCommand" --> ":RemoveChapterCommand" : result
-deactivate ":RemoveChapterCommand"
-":RemoveChapterCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":RemoveChapterCommand"
-deactivate ":RemoveChapterCommand"
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":RemoveChapterCommand" as RemoveChapterCommand LOGIC_COLOR
+participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Admin" as Admin MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> Parser : parse("remove 1")
+activate Parser
+
+create RemoveChapterCommand
+Parser -> RemoveChapterCommand : RemoveChapterCommand(1)
+activate RemoveChapterCommand
+
+RemoveChapterCommand --> Parser : command
+deactivate RemoveChapterCommand
+
+[<-- Parser : command
+deactivate Parser
+[<-[hidden]- Parser
+destroy Parser
+
+-> RemoveChapterCommand : execute(ui, access, storage)
+activate RemoveChapterCommand
+RemoveChapterCommand -> RemoveChapterCommand : removeChapter(access, storage)
+activate RemoveChapterCommand
+RemoveChapterCommand -> Admin : getModules()
+activate Admin
+RemoveChapterCommand <-- Admin
+deactivate Admin
+[<-[hidden]- Admin
+destroy Admin
+RemoveChapterCommand -> Module : getChapters()
+activate Module
+RemoveChapterCommand <-- Module : chapters
+deactivate Module
+[<-[hidden]- Module
+destroy Module
+RemoveChapterCommand -> Storage : deleteDirectory(directory)
+activate Storage
+RemoveChapterCommand <-- Storage : isRemoved
+deactivate Storage
+RemoveChapterCommand -> Storage : removeChapterFromDue(module, chapter)
+activate Storage
+RemoveChapterCommand <-- Storage : isRemovedFromDue
+deactivate Storage
+[<-[hidden]- Storage
+destroy Storage
+RemoveChapterCommand -> RemoveCommand : prepareResult(type, module, count)
+activate RemoveCommand
+RemoveChapterCommand <-- RemoveCommand : result
+deactivate RemoveCommand
+[<-[hidden]- RemoveCommand
+destroy RemoveCommand
+RemoveChapterCommand --> RemoveChapterCommand : result
+deactivate RemoveChapterCommand
+RemoveChapterCommand -> Ui : showToUser(result)
+activate Ui
+RemoveChapterCommand <-- Ui
+deactivate Ui
+[<-[hidden]- Ui
+destroy Ui
+<-- RemoveChapterCommand
+deactivate RemoveChapterCommand
 @enduml
