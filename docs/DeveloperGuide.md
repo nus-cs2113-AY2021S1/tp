@@ -241,9 +241,9 @@ The edit module name feature allows the user to edit the name of any existing mo
 
 The user can edit the name of an existing module with the `edit` command, which follows the following format: `edit MODULE_INDEX MODULE_NAME`.
 
-The edit module name feature is facilitated by `ModuleList` and `Module`.
+The edit module name feature is facilitated by `ModuleList` and `Module`. The list of user's modules are stored internally as `ModuleList`.
 In addition, it implements the following operations:
-* `ModuleList#getModule()` - Returns a module based on the specified index from the list of modules.
+* `ModuleList#getModule()` - Gets a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
  
 For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
@@ -400,9 +400,9 @@ The edit chapter name feature allows the user to edit the name of any existing c
 
 The user can edit the name of an existing chapter with the `edit` command, which follows the following format: `edit CHAPTER_INDEX CHAPTER_NAME`.
 
-The edit module name feature is facilitated by `ChapterList` and `Chapter`.
+The edit module name feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
 In addition, it implements the following operations:
-* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
  
 For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -472,7 +472,7 @@ The add flashcard feature allows the user to add a flashcard to a chapter.
 
 The user can add a flashcard with the `add` command, which follows the following format: `add q:QUESTION | a: ANSWER`.
 
-The add flashcard feature is facilitated by `CardList`.
+The add flashcard feature is facilitated by `CardList`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operation:
 * `CardList#addCard()` - Adds a flashcard to the list of flashcards.
  
@@ -528,9 +528,9 @@ The edit flashcard content feature allows the user to edit the content of any ex
 
 The user can edit the content of an existing flashcard with the `edit` command, which follows the following format: `edit FLASHCARD_INDEX q:QUESTION | a: ANSWER`.
 
-The edit flashcard content feature is facilitated by `CardList` and `Card`.
+The edit flashcard content feature is facilitated by `CardList` and `Card`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operations:
-* `CardList#getCard()` - Returns a flashcard based on the specified index from the list of flashcards.
+* `CardList#getCard()` - Gets a flashcard based on the specified index from the list of flashcards.
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
  
@@ -846,9 +846,9 @@ The reschedule chapter feature allows the user to reschedule the due date of any
 
 The user can reschedule the due date of an existing chapter with the `reschedule` command, which follows the following format: `reschedule CHAPTER_INDEX DATE(yyyy-MM-dd)`.
 
-The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`.
+The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
 In addition, it implements the following operations:
-* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setDueBy()` — Sets the due date of the chapter.
  
 For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
