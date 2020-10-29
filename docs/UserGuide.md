@@ -495,15 +495,15 @@ command> storage /clear
 Data clear aborted.
 ```    
 
-## 3.6 Help `help`
+### 3.6 Help `help`
 
-### 3.6.1 Help Menu
+#### 3.6.1 Help Menu
 Shows a list of commands needed to use SCRUMptious. You can then type in the command number
 to receive more information about that specific command.
 
-#### Format: `help`
-#### Example: `help`
-#### Expected outcome:
+##### Format: `help`
+##### Example: `help`
+##### Expected outcome:
 ```
 Here is the list of commands used in SCRUMptious. Type "help /*", where * is the command number for more information on that specific command.
 1. Project
@@ -513,12 +513,12 @@ Here is the list of commands used in SCRUMptious. Type "help /*", where * is the
 5. Storage
 ```
 
-### 3.6.2 Project Help
+#### 3.6.2 Project Help
 Shows a list of project commands and examples of how to use them.
 
-#### Format: `help /1`
-#### Example: `help /1`
-#### Expected outcome:
+##### Format: `help /1`
+##### Example: `help /1`
+##### Expected outcome:
 ```
 1. Create project
    Format: project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>
@@ -533,9 +533,9 @@ Shows a list of project commands and examples of how to use them.
 #### 3.6.3 Member Help
 Shows a list of member commands and examples of how to use them.
 
-#### Format: `help /2`
-#### Example: `help /2`
-#### Expected outcome:
+##### Format: `help /2`
+##### Example: `help /2`
+##### Expected outcome:
 ```
 1. Add members
    Format: member /add <username> [<username> ...]
@@ -548,9 +548,9 @@ Shows a list of member commands and examples of how to use them.
 #### 3.6.4 Task Help
 Shows a list of task commands and examples of how to use them.
 
-#### Format: `help /3`
-#### Example: `help /3`
-#### Expected outcome:
+##### Format: `help /3`
+##### Example: `help /3`
+##### Expected outcome:
 ```
 1. Add tasks 
    Format: task /add -title <title> -desc <description> -priority <category>
@@ -572,9 +572,9 @@ Shows a list of task commands and examples of how to use them.
 #### 3.6.5 Sprint Help
 Shows a list of sprint commands and examples of how to use them.
 
-#### Format: `help /4`
-#### Example: `help /4`
-#### Expected outcome:
+##### Format: `help /4`
+##### Example: `help /4`
+##### Expected outcome:
 ```
 1. Create sprint
    Format: sprint /create -goal <goal_input> [optional tags]
@@ -618,9 +618,9 @@ Shows a list of sprint commands and examples of how to use them.
 #### 3.6.6 Storage Help
 Shows the storage command, and an example of how to use it.
 
-#### Format: `help /5`
-#### Example: `help /5`
-#### Expected outcome:
+##### Format: `help /5`
+##### Example: `help /5`
+##### Expected outcome:
 ```
 1. Clear all data. You will be prompted to confirm the decision.
    Data will be cleared if "y" (case-insensitive) is provided.
