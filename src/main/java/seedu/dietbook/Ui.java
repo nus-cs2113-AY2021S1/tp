@@ -112,6 +112,13 @@ public class Ui {
         print("Thank you! DietBook has been initialised " + getStartMessage());
     }
 
+    /**
+     * Prints a message informing the user that DietBook has successfully saved all their data.
+     */
+    public void dataSuccessfullySavedMessage() {
+        print("Your data has been saved successfully.");
+    }
+
 
     /**
      * Prints the welcome back message when user reboots up DietBook after the first initialisation.
@@ -792,8 +799,11 @@ public class Ui {
      * @return A string representation of a list of food list related commands that users can input.
      */
     private String getFoodListRelatedCommands() {
-        return "  To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
-                + "[p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
+        return "  To add a food not in the database that was just consumed: add x/PORTION_SIZE n/FOOD_NAME "
+                + "k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
+                + "  To add a food not in the database consumed at a certain time: add x/PORTION_SIZE "
+                + "n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] yyyy-mm-ddTHH:mm"
+                + LINE_SEPARATOR
                 + "  To view all food in DietBook: list" + LINE_SEPARATOR
                 + "  To view all food in DietBook recorded within a time period: list yyyy-mm-ddTHH:mm "
                 + "yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
@@ -809,7 +819,9 @@ public class Ui {
      * @return A string representation of a list of database related commands that users can input.
      */
     private String getDatabaseRelatedCommands() {
-        return "  To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
+        return "  [Coming Soon] To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
+                + "  [Coming Soon] To add a food from the database consumed at a certain time: add "
+                + "n/FOOD_NAME x/PORTION_SIZE yyyy-mm-ddTHH:mm" + LINE_SEPARATOR
                 + "  To view all food in the database: data" + LINE_SEPARATOR;
     }
 

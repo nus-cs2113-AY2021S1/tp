@@ -3,8 +3,14 @@ package seedu.dietbook.command;
 import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.person.Person;
 
-public class DataCommand extends Command {
+public class RecommendCommand extends Command {
+    Person person;
+
+    public RecommendCommand(Person person) {
+        this.person = person;
+    }
 
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
@@ -13,6 +19,7 @@ public class DataCommand extends Command {
         } else if (commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
-        ui.printDatabase(manager.getDataBase().getFoodListString());
+        int recommendation = manager.getCalculator().calculateRecomendation(this.person);
+        ui.printCalorieRecommendation(this.person.getName(), recommendation);
     }
 }
