@@ -75,7 +75,7 @@ public class RecurringEntry extends Item {
      * Remember to do appropriate downcasting when accessing attributes.
      *
      * @return HashMap of details, with key being the attribute name and value
-     * being the attribute itself, upcasted to Object.
+     *         being the attribute itself, upcasted to Object.
      */
     public HashMap<String, Object> getDetailsForReminder() {
         HashMap<String, Object> details = new HashMap<>();
@@ -92,7 +92,7 @@ public class RecurringEntry extends Item {
      * Used for JUnit testing
      *
      * @return HashMap of all attributes, with key being the paramType that
-     * would have added that attribute and value being the attribute value in String form.
+     *         would have added that attribute and value being the attribute value in String form.
      */
     public HashMap<String, Object> getAllDetailsAsParamMap() {
         HashMap<String, Object> details = getDetailsForReminder();
