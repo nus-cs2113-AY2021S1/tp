@@ -125,36 +125,10 @@ which has an execute function.
 
 The `ParserManager` then returns the command back to `SCRUMptious`, which then executes the command.
 
-A detailed list of the subcommand classes is as follows:
-* Project Commands:  
-    * `CreateProjectCommand`
-    * `ListProjectCommand`
-    * `SelectProjectCommand`
-    * `ViewProjectCommand`
-* Member Commands:
-    * `AddMemberCommand`
-    * `DeleteMemberCommand`
-* Task Commands:
-    * `AddTaskCommand`
-    * `ChangeTaskPriorityCommand`
-    * `DeleteTaskCommand`
-    * `DoneTaskCommand`
-    * `ViewTaskCommand`
-* Sprint Commands:
-    * `AddSprintTaskCommand`
-    * `AllocateSprintTaskCommand`
-    * `CreateSprintCommand`
-    * `DeallocateSprintTaskCommand`
-    * `EditSprintCommand`
-    * `RemoveSprintTaskCommand`
-    * `ViewSprintCommand`
-* Help Commands:
-    * `HelpCommand`
-    * `MemberHelpCommand`
-    * `ProjectHelpCommand`
-    * `SprintHelpCommand`
-    * `StorageHelpCommand`
-    * `TaskHelpCommand`
+![Figure X: Simplified class diagram for Command Component](./image/developerguide/commandClassDiagram.png "Command
+ Class Diagram")  
+A detailed list of the subcommand classes is described in the diagram above.
+
 ### Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
 [Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
