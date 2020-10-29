@@ -58,8 +58,6 @@ public class RemoveCommandParser extends CommandParser {
         String[] paramParts = paramGiven.split(" ");
 
         switch (paramParts[0].trim()) {
-        case "": // skip empty param
-            break;
         case REMOVE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);

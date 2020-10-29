@@ -59,8 +59,6 @@ public class AddToWatchlistParser extends CommandParser {
         String[] paramParts = paramGiven.split(" ");
 
         switch (paramParts[0].trim()) {
-        case "": // skip empty param
-            break;
         case ADD_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
