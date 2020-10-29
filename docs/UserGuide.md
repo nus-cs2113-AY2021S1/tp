@@ -1,5 +1,5 @@
 # User Guide
-![](CCAManager_logo.png)
+![](CCAManager_logo.png) 
 # Table of contents
 - [1. Introduction](#1introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
