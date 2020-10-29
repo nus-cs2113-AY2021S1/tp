@@ -78,6 +78,7 @@ public class Messages {
             + " which contain the word/letters:";
     public static final String NO_PREV_MODIFICATION = "There's nothing to undo.";
     public static final String UNDO_MESSAGE = "Previous modification has been undone.";
+    public static final String REMINDER_MESSAGE = "A reminder has been set";
 
     private static String padString(char letter, int length) {
         return Util.generatePadStringWithCharAndLength(letter, length);

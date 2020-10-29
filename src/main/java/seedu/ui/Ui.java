@@ -66,28 +66,40 @@ public class Ui {
         }
     }
 
-    public void displayTasks(TaskMap tasks) {
-        // Header
+    public void printHeader() {
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
-        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
         out.println("   " + Util.generatePadStringWithCharAndLength('_', 93));
         out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
         out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+    }
+
+    public void printContentFormat(Task task) {
+        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
+        out.format(contentFormat,"#" + task.getTaskID(),
+                Util.limitStringWithDots(task.getDescription(), 20),
+                task.getDate(),
+                task.getStartTime() == null ? "" : task.getStartTime(),
+                task.getEndTime() == null ? "" : task.getEndTime(),
+                task.getPriority());
+    }
+
+    public void displaySingleTask(Task task) {
+        printHeader();
+        printContentFormat(task);
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+        out.println();
+    }
+
+    public void displayTasks(TaskMap tasks) {
+        printHeader();
 
         if (tasks.size() == 0) {
             out.println("  |" + Util.generatePadStringWithCharAndLength(' ', 93) + "|");
         } else {
             for (Task task : tasks.getValues()) {
-                out.format(contentFormat,
-                    "#" + task.getTaskID(),
-                    Util.limitStringWithDots(task.getDescription(), 20),
-                    task.getDate(),
-                    task.getStartTime() == null ? "" : task.getStartTime(),
-                    task.getEndTime() == null ? "" : task.getEndTime(),
-                    task.getPriority());
+                printContentFormat(task);
             }
         }
-
         out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
         out.println();
     }
@@ -166,6 +178,8 @@ public class Ui {
                 }
                 displayByDateStructure(result.getTasks());
             }
+        } else if (result.getTask() != null) {
+            displaySingleTask(result.getTask());
         }
     }
 }

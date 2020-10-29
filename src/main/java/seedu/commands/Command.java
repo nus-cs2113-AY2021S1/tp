@@ -13,7 +13,7 @@ public class Command {
         return new CommandResult("");
     }
 
-    public CommandResult execute(TaskMap taskMap) {
+    public CommandResult execute(TaskMap taskMap) throws InvalidTaskNumberException {
         return new CommandResult("");
     }
 

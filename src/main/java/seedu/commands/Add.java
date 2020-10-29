@@ -55,6 +55,6 @@ public class Add extends ModificationCommand {
         tasks.addTask(task);
         // update stack
         model.pushAndUpdate(tasks);
-        return new CommandResult(ADD_MESSAGE);
+        return new CommandResult(ADD_MESSAGE,task);
     }
 }
