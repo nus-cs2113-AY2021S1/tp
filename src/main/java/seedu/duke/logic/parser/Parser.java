@@ -48,7 +48,7 @@ public class Parser {
     public boolean extractType() throws CustomException {
 
         String[] parts = splitCommands(2, "\\s+");
-        String command = parts[0];
+        String command = parts[0].toLowerCase();
         Command com;
         boolean isVoidFunction = false;
         switch (command) {
