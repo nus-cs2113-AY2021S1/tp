@@ -65,15 +65,31 @@ Words that are highlighted in grey, for instance, list, indicate that the words 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
 
 - Words that are highlighted in grey and are in upper case indicates command arguments or parameters that are to be provided by the user. For instance, if the usage instruction informs you to type `delete EVENT_INDEX` and you know that the EVENT_INDEX is 2, type into the computer program “delete 2”. 
-***
-put note box here
-***
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+
+This is a note textbox. Additional information about the command will be written in boxes such as this one. 
+{{box op="end"}}
 
 Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
 
-put warning box here
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 
-put notes on command box here
+This is a warning textbox. Any user interaction with the program that may result in issues or unintended results will be written in boxes such as this one. 
+{{box op="end"}}
+
+{{box op="start" cssClass="boxed noteBox"}}
+**Notes about the command format**
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Items in square brackets are optional
+  e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items with ... after them can be used multiple times including zero times.
+  e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+{{box op="end"}}
 
 ## Quick Start
 
@@ -229,20 +245,20 @@ You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
 
----
-**Note**
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
 
 * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 * AM/PM is required for 12 hour format
----
+{{box op="end"}}
 
----
-**Warning**
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
----
+{{box op="end"}}
 
 
 ### Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
@@ -394,12 +410,12 @@ Example of usage:
    _________________________________
    ```
 
----
-**Warning**
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 
 The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
----
+{{box op="end"}}
 
 ### Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
