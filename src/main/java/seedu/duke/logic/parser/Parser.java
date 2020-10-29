@@ -25,7 +25,7 @@ import seedu.duke.logic.commands.buscommand.ResetSearchFreqCommand;
 public class Parser {
 
     private String userInput;
-    private String previousInput;
+    private String previousInput = null;
 
     public Parser(String userInput) {
         this.userInput = userInput;
@@ -50,6 +50,7 @@ public class Parser {
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
         Command com;
+        boolean isVoidFunction = false;
         switch (command) {
         case "/route":
             com = new RouteCommand(parts[1]);
@@ -61,9 +62,11 @@ public class Parser {
             com = new BusCommand(parts[1]);
             break;
         case "/allbus":
+            isVoidFunction = true;
             com = new AllBusCommand();
             break;
         case "/liststops":
+            isVoidFunction = true;
             com = new ListStopsCommand();
             break;
         case "/dine":
@@ -73,18 +76,22 @@ public class Parser {
             com = new DineInfoCommand(parts[1]);
             break;
         case "/help":
+            isVoidFunction = true;
             com = new HelpCommand();
             break;
         case "/reset":
+            isVoidFunction = true;
             com = new ResetSearchFreqCommand();
             break;
         case "/exit":
+            isVoidFunction = true;
             com = new ExitCommand();
             break;
         case "/addfav":
             com = new AddFavCommand(previousInput, parts[1]);
             break;
         case "/listfav":
+            isVoidFunction = true;
             com = new ListFavCommand();
             break;
         case "/deletefav":
@@ -97,16 +104,22 @@ public class Parser {
             com = new ExecFavCommand(parts[1]);
             break;
         case "/clearfav":
+            isVoidFunction = true;
             com = new ClearFavCommand();
             break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
 
+        if (isVoidFunction && !parts[1].equals(" ")) {
+            throw new CustomException(ExceptionType.EXTRA_PARAMETERS);
+        }
         com.executeCommand();
 
-        if (!command.equals("/addfav")) {
+        if (!command.equals("/addfav") && !command.equals("/execfav")) {
             previousInput = userInput;
+        } else {
+            previousInput = null;
         }
 
         return com.isOngoing();
