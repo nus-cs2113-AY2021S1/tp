@@ -1,4 +1,6 @@
+
 @startuml
+scale max 1024 width
 hide circle
 skinparam classAttributeIconSize 0
 
