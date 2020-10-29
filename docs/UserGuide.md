@@ -233,7 +233,7 @@ The format of this command is as follows:<br>
 <code>/dine <strong>faculty</strong></code> <br>
 
 #### Examples of Usage
-**<u>Example 1</u>**
+**<u>Example 1</u>**<br>
 Let's say you want to know all the dining options available in <strong>School of Business</strong>.
 
 These are the steps to follow:
@@ -249,7 +249,7 @@ The format of this command is as follows:<br>
 <code>/dineinfo <strong>outlet</strong></code>
 
 #### Examples of Usage
-**<u>Example 1</u>**
+**<u>Example 1</u>**<br>
 Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.
 
 These are the steps to follow:
@@ -266,6 +266,25 @@ These are the steps to follow:
 ### 3.12. Execute a favourite command: `/execfav`
 
 ### 3.13. Change the description for a favourite command: `/descfav`
+This command helps you change the description of a command in your list of favourites.
+
+Format:<br>
+<code>/descfav <strong>index</strong> /to <strong>new description</strong></code>
+
+#### Examples of Usage
+**<u>Example 1</u>**<br>
+Let's say you have the following list of commands:<br>
+<img src="UG_Figures/beforedescfav.PNG" alt="original list of commands" width=550>
+
+You want to change the description for `/dineinfo Pines` from "No description" to **"Get dinner @7:30PM every Tuesday"**.
+To do so:
+
+1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
+shown in the figure below and press enter. <br>
+<img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
+
+2. Type <code>/listfav</code> to see the changed description.<br>
+<img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 
 ### 3.14. Clear the list of favourite commands: `/clearfav`
 
@@ -333,7 +352,7 @@ Command | Format | Example
 /addfav | | 
 /deletefav | |
 /execfav | |
-/descfav | |
+/descfav | `/descfav` **index** /to **new description** | `/descfav` **5** /to **Get dinner @7:30PM every Tuesday**
 /listfav | |
 /clearfav | |
 /exit | `/exit` | `/exit`
