@@ -245,8 +245,10 @@ public class UI {
         System.out.println("personalEvent - add a personal event with content, deadline and location");
         System.out.println("edit - edit event information");
         System.out.println("locate - find location information");
+        System.out.println("locations - view all the locations available");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
+        System.out.println("reminder - show events of the day");
         System.out.println("There will be more upcoming features in later versions.");
         System.out.println("For more information, please refer to detailed user guide: "
                + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");

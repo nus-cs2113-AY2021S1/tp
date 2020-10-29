@@ -1,17 +1,14 @@
 # Developer Guide
 
-![](diagrams/Logo.png)
+<br><br>
+![](diagrams/Logo.png)<br>
 
-Yang Jiaqi
-
-Zhuang Mengjin
-
-Xu Che
-
-Wu Nan
-
-Wan Shi Jie Brendan
-
+Yang Jiaqi<br>
+Zhuang Mengjin<br>
+Xu Che<br>
+Wu Nan<br>
+Wan Shi Jie Brendan<br>
+<br><br>
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
@@ -74,7 +71,7 @@ This section describes the different components of the application and how each 
 each other to run the program. 
 
 ### 3.1 Architecture
-![architecture](diagrams/architecture.png)
+![architecture](diagrams/architecture.png)<br>
 
 The Architecture Diagram above provides a high-level view of the design of NUSchedule. The app can be broken down into 
 5 different components:  
@@ -85,7 +82,7 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
 5. Model: Stores the data the app uses in memory.
 
 ### 3.2 UI
-![UI Class Diagram](diagrams/Ui.png)
+![UI Class Diagram](diagrams/Ui.png)<br>
 
 *Figure 3.2.1 Class diagram for UI component*
 
@@ -100,7 +97,7 @@ The `Storage` component can save the list of event data in .txt format and read 
 ### 3.4 Logic
 __API__:`Parser.java`  
 
-![Logic Class Diagram](diagrams/LogicClass.png)
+![Logic Class Diagram](diagrams/LogicClass.png)<br>
 
 *Figure 3.4.1 Class diagram for Logic component*
 
@@ -154,8 +151,9 @@ and location ‘LT27’.
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
 The sequence diagram below shows the process of adding a new event.
-![AddCommand Sequence Diagram](diagrams/AddCommand.png)
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
 *Figure 4.1 Sequence Diagram for add function*
+
 
 ### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
@@ -168,7 +166,7 @@ Step 2. If there is no information stored before the user input the `clear` comm
 that the list is already empty. 
 
 The sequence diagram below shows the process of clearing all events.
-![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)
+![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)<br>
 *Figure 4.2 Sequence Diagram for clear function*
  
 ### 4.3 Edit events
@@ -182,7 +180,7 @@ Step 2. The user realises that there was a mistake in the event added and decide
 entering `edit 1 class <new event description>` to edit the one existing event.
 
 Step 3. `editCommand()` function replaces the original event with the edited one. 
-![EditCommand Sequence Diagram](diagrams/EditCommand.png)
+![EditCommand Sequence Diagram](diagrams/EditCommand.png)<br>
 *Figure 4.3 Sequence Diagram for EditCommand()*
 
 ### 4.4 Locate
@@ -213,7 +211,7 @@ Step 4. If conversion is not possible, then it will check if the given string is
 * Prints an error message if invalid   
 
 The sequence diagram below shows exactly which methods, from which classes, are called to obtain the required location. 
-![locate sequence diagram](diagrams/LocateSequence.png) <br>
+![locate sequence diagram](diagrams/LocateSequence.png)<br>
 *Figure 4.4 Sequence diagram for locate function*
 
 ### 4.5 Reminder
@@ -240,7 +238,7 @@ Given below is an example usage scenario:
 Step 1. The user wants to view the events in a chronological order. 
 
 Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
-![](diagrams/SortCommand.png)
+![](diagrams/SortCommand.png)<br>
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
@@ -255,15 +253,16 @@ Step 2. The command calls the `printEventList` function from `UI`, which then pr
 
 The sequence diagram below shows what happens when the list command is executed
 ![ListCommand Sequence Diagram](diagrams/ListCommand.png)
-*Figure 4.7 Sequence Diagram for help function*
+*Figure 4.7 Sequence Diagram for list function*
 
 ### 4.8 Help
 This feature allows users to view a summary of all the features available for the current version of NUSchedule. 
 When the user inputs `help`, all available commands and a simple description for each of them will be printed.
 
 The sequence diagram below shows what happens when user enters `help`:
-![HelpCommand Sequence Diagram](diagrams/HelpCommand.png)
-*Figure 4.8 Sequence Diagram for list function*
+
+![HelpCommand Sequence Diagram](diagrams/HelpCommand.png)<br>
+*Figure 4.8 Sequence Diagram for help function*
 
 ## 5. Documentation
 This section provides other relevant information about the application.
@@ -280,10 +279,9 @@ __Target user profile:__
 ### 5.2 Value proposition
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
-* 
+* easily finding out about the location of their events 
 
 ### 5.3 User stories
-
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
