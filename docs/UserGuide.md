@@ -99,7 +99,6 @@ To get started on this application, please perform the following steps:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
-
 This section introduces the syntax and usages of the commands for the features available in Kaji. 
 In explaining the syntax, do take note of the following command format which applies to all Kaji commands:
 * Words in `UPPER_CASE` are the parameters that you need to provide.
@@ -167,10 +166,14 @@ and must be a valid index number for a chapter as displayed from the list of cha
 **Example:**
 
 Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
-1. Type `list` into the command prompt and press `Enter` to execute it.
-2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.
-3. Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.
-4. After the chapter name has been successfully edited, the result will be displayed as shown.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditChapter1.png" width="400" alt="Edit Chapter 1"/>
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+<img src="UG_Images/EditChapter2.png" width="400" alt="Edit Chapter 2"/>
+3. Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditChapter3.png" width="400" alt="Edit Chapter 3"/>
+4. After the chapter name has been successfully edited, the result will be displayed as shown.<br>
+<img src="UG_Images/EditChapter4.png" width="400" alt="Edit Chapter 4"/>
 
 #### 3.2.4. Removing a chapter: `remove`
 (by Jia Ern)
@@ -254,10 +257,14 @@ and must be a valid index number for a chapter as displayed from the list of cha
 **Example:**
 
 Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
-1. Type `list` into the command prompt and press `Enter` to execute it.
-2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.
-3. Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.
-4. After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown. 
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/RescheduleChapter1.png" width="400" alt="Reschedule Chapter 1"/>
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+<img src="UG_Images/RescheduleChapter2.png" width="400" alt="Reschedule Chapter 2"/>
+3. Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/RescheduleChapter3.png" width="400" alt="Reschedule Chapter 3"/>
+4. After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
+<img src="UG_Images/RescheduleChapter4.png" width="400" alt="Reschedule Chapter 4"/>
 
 ### 3.3. Chapter Level
 
@@ -279,8 +286,10 @@ Here are some key pointers:
 **Example:**
 
 Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
-1. Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.
-2. After the flashcard has been successfully added to the chapter, the result will be displayed as shown.
+1. Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/AddCard1.png" width="400" alt="Add Card 1"/>
+2. After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
+<img src="UG_Images/AddCard2.png" width="400" alt="Add Card 2"/>
 
 #### 3.3.2. Listing flashcards available: `list`
 (by Jane)
@@ -296,8 +305,10 @@ Here are some key pointers:
 **Example:**
 
 Let's say you want to view all the flashcards for a chapter:
-1. Type `list` into the command prompt and press `Enter` to execute it.
-2. The result for the list of flashcards will be displayed as shown.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/ListCard1.png" width="400" alt="List Card 1"/>
+2. The result for the list of flashcards will be displayed as shown.<br>
+<img src="UG_Images/ListCard2.png" width="400" alt="List Card 2"/>
 
 #### 3.3.3. Editing a flashcard content: `edit`
 (by Jane)
@@ -321,10 +332,14 @@ you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 **Example:**
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
-1. Type `list` into the command prompt and press `Enter` to execute it.
-2. From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.
-3. Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.
-4. After the flashcard has been successfully edited, the result will be displayed as shown.
+1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditCard1.png" width="400" alt="Edit Card 1"/>
+2. From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
+<img src="UG_Images/EditCard2.png" width="400" alt="Edit Card 2"/>
+3. Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditCard3.png" width="400" alt="Edit Card 3"/>
+4. After the flashcard has been successfully edited, the result will be displayed as shown.<br>
+<img src="UG_Images/EditCard4.png" width="400" alt="Edit Card 4"/>
 
 #### 3.3.4. Removing a flashcard: `remove`
 (by Jia Ern)
