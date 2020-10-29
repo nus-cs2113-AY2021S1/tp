@@ -21,5 +21,6 @@ The latest release of **AniChan** can be found [here](https://github.com/AY2021S
 
 All forms of support and contribution are welcomed! You can join us in developing this tool by making a fork of this project and making a pull request with your changes. 
 
+## Acknowledgement
 
-
+*   [AniList](https://anilist.co/) for providing us anime information
