@@ -1,1 +1,69 @@
-James Gosling
+
+
+random name 123
+monster
+
+Other
+Abec Steiner 33rd
+Female
+addws -n
+addws  - 
+addws
+workspace -n Crunchy Cinnamon
+workspace -n CrispyDonut
+workspace -n RED VELVET Crumblesss 
+workspace -n RED VELVET Crumblesss 
+workspace -n RED VELVET Crumblesss
+workspace -n WHITE CHoC MACADAMIA
+workspace -s WHITE CHoC MACADAMIA
+workspace -l
+workspace -d WHITE CHoC MACADAMIA
+workspace -d non existing workspace
+workspace -n COOKIES N CREME CH33SECAKE
+workspace -s COOKIES N CREME CH33SECAKE
+workspace -d WHITE CHoC MACADAMIA
+workspace -l
+watchlist -n a
+watchlist -n b
+watchlist -n ops
+watchlist -s 4
+watchlist -d 4
+watchlist -l
+add -a 1
+add -a 3
+bookmark -a 1
+bookmark -a 410
+bookmark -a 2
+bookmark -a 500
+bookmark -a 3
+bookmark -a 430
+bookmark 1 -e 5
+bookmark 2 -e 1
+bookmark 3 -e 1
+bookmark 4 -e 8
+bookmark 1 -n test
+bookmark 1 -n test 2 withspace
+bookmark 1 -n testing 123
+bookmark 2 -n testing on 2
+bookmark 1
+bookmark 1 -r 2
+bookmark 1
+bookmark -l
+add -a 1
+search -n cowboy
+browse -p 1
+workspace -l
+workspace -d Default
+workspace -d Crunchy Cinnamon
+workspace -d CrispyDonut
+workspace -d CrispyDonut
+workspace -d ED VELVET Crumblesss
+workspace -d COOKIES N CREME CH33SECAKE 
+workspace -d COOKIES N CREME CH33SECAKE  
+workspace -d COOKIES N CREME CH33SECAKE   
+workspace -d  COOKIES N CREME CH33SECAKE   
+workspace -d  COOKIES N CREME CH33SECAKE 
+workspace -d  COOKIES N CREME CH33SECAKE
+workspace -d Default
+workspace -l
+exit

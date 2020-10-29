@@ -1,9 +1,222 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Welcome to AniChan!
+                  _  _____ _
+      /\         (_)/ ____| |
+     /  \   _ __  _| |    | |__   __ _ _ __
+    / /\ \ | '_ \| | |    | '_ \ / _` | '_ \
+   / ____ \| | | | | |____| | | | (_| | | | |
+  /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
-What is your name?
-Hello James Gosling
+-------------------------------------------------------------
+User: File does not exist.
+-------------------------------------------------------------
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello random name 123! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+
+Default (Default) #> OOPS!!! Unknown command
+
+Default (Default) #> OOPS!!! Unknown command
+
+Default (Default) #> OOPS!!! Unknown command
+
+Default (Default) #> Successfully added new workspace: Crunchy Cinnamon
+
+Default (Default) #> Successfully added new workspace: CrispyDonut
+
+Default (Default) #> Successfully added new workspace: RED VELVET Crumblesss
+
+Default (Default) #> OOPS!!! Workspace already exist!
+
+Default (Default) #> OOPS!!! Workspace already exist!
+
+Default (Default) #> Successfully added new workspace: WHITE CHoC MACADAMIA
+
+Default (Default) #> Workspace switched to WHITE CHoC MACADAMIA
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
+
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
+
+WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "a" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "b" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "ops" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> "ops" is now your active watchlist!
+
+COOKIES N CREME CH33SECAKE (ops) #> Watchlist "ops" has been deleted successfully!
+Changed active watchlist to: "Default".
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
+	1. Default
+	2. a
+	3. b
+
+COOKIES N CREME CH33SECAKE (Default) #> Cowboy Bebop added to watchlist!
+
+COOKIES N CREME CH33SECAKE (Default) #> Trigun added to watchlist!
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 1. Cowboy Bebop to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 500. Wind: A Breath of Heart (2004) to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 3. Trigun to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Saving 430. To Heart 2 to bookmark.
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode(s).
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 1 episode(s).
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 1 episode(s).
+
+COOKIES N CREME CH33SECAKE (Default) #> Editing Wind: A Breath of Heart (2004) to have 8 episode(s).
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"test 2 withspace" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing 123" to Cowboy Bebop!
+
+COOKIES N CREME CH33SECAKE (Default) #> Adding note:"testing on 2" to InuYasha the Movie 2: The Castle Beyond the Looking Glass!
+
+COOKIES N CREME CH33SECAKE (Default) #> Here is the information for that anime.
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. test
+2. test 2 withspace
+3. testing 123
+
+
+COOKIES N CREME CH33SECAKE (Default) #> Deleting note: test 2 withspace
+From: Cowboy Bebop.
+
+COOKIES N CREME CH33SECAKE (Default) #> Here is the information for that anime.
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+
+Current Episode: 5
+
+Notes for anime:
+1. test
+2. testing 123
+
+
+COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
+	1. Cowboy Bebop
+	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
+	3. Cowboy Bebop: The Movie - Knockin' on Heaven's Door
+	4. Wind: A Breath of Heart (2004)
+	5. Trigun
+	6. To Heart 2
+
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Anime is already in this watchlist!
+
+COOKIES N CREME CH33SECAKE (Default) #> [ID:1] Cowboy Bebop
+[ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
+
+
+COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
+2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door [Id: 2]
+3. Trigun [Id: 3]
+4. Witch Hunter Robin [Id: 4]
+5. Beet the Vandel Buster [Id: 5]
+6. Eyeshield 21 [Id: 6]
+7. Honey and Clover [Id: 7]
+8. Hungry Heart: Wild Striker [Id: 8]
+9. Initial D Fourth Stage [Id: 9]
+10. Monster [Id: 10]
+11. Naruto [Id: 11]
+12. One Piece [Id: 12]
+13. The Prince of Tennis [Id: 13]
+14. Ring ni Kakero 1 [Id: 14]
+15. School Rumble [Id: 15]
+16. Desert Punk [Id: 16]
+17. Texhnolyze [Id: 17]
+18. Trinity Blood [Id: 18]
+19. Yakitate!! Japan [Id: 19]
+20. Zipang [Id: 20]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Default
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Crunchy Cinnamon
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: CrispyDonut
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 33rd-chan!
