@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for view watchlist command.
+ */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
     protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
@@ -15,10 +18,20 @@ public class ViewWatchlistParser extends CommandParser {
 
     private ViewWatchlistCommand viewWatchlistCommand;
 
+    /**
+     * Creates a new instance of ViewWatchlistParser.
+     */
     public ViewWatchlistParser() {
         viewWatchlistCommand = new ViewWatchlistCommand();
     }
 
+    /**
+     * Parses the specified command description
+     *
+     * @param description the specified command description
+     * @return initialised {@code RemoveCommand} object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public ViewWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
@@ -32,6 +45,12 @@ public class ViewWatchlistParser extends CommandParser {
         return viewWatchlistCommand;
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven a String Array containing the parameters and the value
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");

@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for add to watchlist command.
+ */
 public class AddToWatchlistParser extends CommandParser {
     protected static final String ADD_PARAM = "a";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
@@ -14,12 +17,22 @@ public class AddToWatchlistParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
     
     private AddToWatchlistCommand addToWatchlistCommand;
-    
+
+    /**
+     * Creates a new instance of AddToWatchlistParser.
+     */
     public AddToWatchlistParser() {
         addToWatchlistCommand = new AddToWatchlistCommand();
         // LOGGER.setLevel(Level.WARNING);
     }
-    
+
+    /**
+     * Parses the specified command description
+     * 
+     * @param description the specified command description
+     * @return initialised {@code AddToWatchlistCommand} object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public AddToWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
@@ -33,6 +46,12 @@ public class AddToWatchlistParser extends CommandParser {
         return addToWatchlistCommand;
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven a String Array containing the parameters and the value
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");

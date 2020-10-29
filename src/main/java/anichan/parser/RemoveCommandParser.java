@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for remove command.
+ */
 public class RemoveCommandParser extends CommandParser {
     protected static final String REMOVE_PARAM = "d";
     protected static final String TOO_MUCH_ARGUMENTS = "Remove command " + TOO_MUCH_FIELDS;
@@ -15,11 +18,21 @@ public class RemoveCommandParser extends CommandParser {
 
     private RemoveCommand removeCommand;
 
+    /**
+     * Creates a new instance of RemoveCommandParser.
+     */
     public RemoveCommandParser() {
         removeCommand = new RemoveCommand();
         // LOGGER.setLevel(Level.WARNING);
     }
 
+    /**
+     * Parses the specified command description
+     *
+     * @param description the specified command description
+     * @return initialised {@code RemoveCommand} object
+     * @throws AniException when an error occurred while parsing the command description
+     */
     public RemoveCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
 
@@ -33,6 +46,12 @@ public class RemoveCommandParser extends CommandParser {
         return removeCommand;
     }
 
+    /**
+     * Parses the parameter provided in the command description.
+     *
+     * @param paramGiven a String Array containing the parameters and the value
+     * @throws AniException when an error occurred while parsing the parameters
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");
