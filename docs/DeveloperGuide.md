@@ -157,25 +157,61 @@ A detailed list of the subcommand classes is as follows:
     * `TaskHelpCommand`
 ### Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
-Link: [Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
-The Model
-* Includes four packages namely, Project, Task, Member and Sprint.
+[Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
+The Model package defines all the object classes that are used by SCRUMptious and this section will explain how these objects interact with other components and each other.
 
-Project package
-* Includes a ProjectList to manage the multiple instances of Project created by the user
-* Each instance of Project stores one instance of ProjectBacklog, ProjectMembers and SprintList.
+#### Initialisation
+* Upon starting the program, SCRUMptious will initialise one instance of `ProjectManager` which will be used to facilitate all the operation in the program.
 
-Task  package
-* Includes a ProjectBacklog to manage every Tasks created by the user
-* Task can be allocated to Sprints and can be assigned to Members, 
+#### Operation - Command Execution
+When a `Command` from the [Logic component](#logic-component) is executed, it will work on the same `ProjectManager` initialised previously and will branch down to the necessary packages as required.
 
-Member package
-* Includes a ProjectMembers to manage every Members created by the user
-* Member can be assigned with Tasks and can be allocated to Sprints holding those Tasks
- 
-Sprint package
-* Includes a SprintList to manage every Sprints created by the user
-* Sprint can contain Tasks and Members allocated to those Tasks
+##### Project Operations
+* `ProjectManager` facilitate the management of multiple `Project` instances.
+    * Creation of `Project` adds an entry to `ProjectManager`.
+    * Deletion of `Project` removes an entry from `ProjectManager`.
+* `Project` contain necessary information about the project such as:
+    * Project ID
+    * Project Title
+    * Project Description
+    * Project Duration
+    * Sprint Length
+    * Project Start Date
+    * Project End Date
+* `Project` hold three additional object that are initialise upon its creation:
+    * `ProjectMembers` to facilitate the management of `Members` that are working on the `Project`.
+    * `SprintManager` to facilitate the management of `Sprint` iterations that belongs to the `Project`.
+    * `TaskManager` to facilitate the management of `Tasks` that are broken down from the `Project`.
+##### Members Operations
+* `ProjectMembers` facilitate the management of multiple `Members` instances and is dependant on the `Project` that initialises it.
+    * Creation of `Member` adds an entry to `ProjectMembers`.
+    * Deletion of `Member` removes an entry from `ProjectMembers`.
+* `Member` contain the Member's user ID.
+
+##### Task Operations
+* `TaskManager` facilitate the management of multiple `Task` instances and is dependant on the `Project` that initialises it.
+    * Creation of `Task` adds an entry to `TaskManager`.
+    * Deletion of `Task` removes an entry from `TaskManager`.
+* `Task` contain necessary information about the task such as:
+    * Task ID
+    * Task Title
+    * Task Description
+    * Task Priority
+    * Task Completion Status
+* `Task` contain two additional ArrayList that are initialise upon its creation:
+    * ArrayList of Member's user ID to keep track `Members` who are assigned to work on the task.
+    * ArrayList of Sprint ID to keep track `Sprints` that the task are allocated to.
+
+##### Sprint Operations
+* `SprintManager` will facilitate the management of multiple `Sprint` instances and is dependant on the `Project` that initialises it.
+    * Creation of `Sprint` adds an entry to `SprintManager`.
+* `Sprint` contain necessary information about the iteration such as:
+    * Sprint ID
+    * Sprint Goal
+    * Sprint Start Date
+    * Sprint End Date
+* `Sprint` contain one additional ArrayList that are initialise upon its creation:
+    * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
 ### Storage Component
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
 API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  

@@ -6,7 +6,6 @@ import seedu.duke.command.project.ListProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -39,11 +38,11 @@ public class ProjectParser implements ExceptionsParser {
             if (parameters.get(DESCRIPTION).isBlank()) {
                 throw new DukeException("No description.");
             }
-            if (parameters.get(DURATION).isBlank() || !ParserManager.isStringContainsNumber(parameters.get(DURATION))) {
+            if (parameters.get(DURATION).isBlank() || !ParserManager.isStringIntParsable(parameters.get(DURATION))) {
                 throw new DukeException("Please give a number for duration.");
             }
             if (parameters.get(SPRINT_DURATION).isBlank()
-                    || !ParserManager.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
+                    || !ParserManager.isStringIntParsable(parameters.get(SPRINT_DURATION))) {
                 throw new DukeException("Please give a number for sprint duration.");
             } else {
                 return new CreateProjectCommand(parameters, projectListManager);
@@ -60,18 +59,23 @@ public class ProjectParser implements ExceptionsParser {
         case SELECT:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
-                Ui.showError("Please do not enter dashes.");
+                throw new DukeException("Please do not enter dashes.");
             }
-            if (!ParserManager.isStringContainsNumber(parameters.get("0"))) {
+            if (!ParserManager.isStringIntParsable(parameters.get("0"))) {
                 throw new DukeException("Please give a project number.");
             }
             // Get index of the project to select
-            int index = Integer.parseInt(parameters.get("0"));
-            if (index <= projectListManager.size() && index > 0) {
-                return new SelectProjectCommand(parameters, projectListManager);
-            } else {
-                throw new DukeException("Invalid index, no corresponding project exists.");
+            try {
+                int index = Integer.parseInt(parameters.get("0"));
+                if (index <= projectListManager.size() && index > 0) {
+                    return new SelectProjectCommand(parameters, projectListManager);
+                } else {
+                    throw new DukeException("Invalid index, no corresponding project exists.");
+                }
+            } catch (NumberFormatException e) {
+                throw new DukeException("Invalid input.");
             }
+
             // Show a list of all projects added, with id to select it.
         case LIST:
             assert projectListManager.size() != 0 : "Invalid Input";
