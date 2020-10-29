@@ -420,8 +420,6 @@ public abstract class Parser {
         //we shall check that the user input is not meant for any other command beforehand
         //because the default block will throw an exception.
         // i.e. when this block is entered, the parser will not go to any other blocks
-
-
         if (words[0].equals(ASSIGNMENT) || words[0].equals(CLASS) || words[0].equals(PERSONAL_EVENT)) {
             if (startTimeDividerPosition == -1) {
                 throw new NoEventTimeMarkerException();
@@ -524,7 +522,7 @@ public abstract class Parser {
                     throw new TimeFormatException();
                 }
             }
-            //this deals with the event holding offline
+            //this deals with the event holding online
             else {
                 try {
                     timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
@@ -538,7 +536,7 @@ public abstract class Parser {
                                         pwdDividerPosition - 1), fullCommand.substring(pwdDividerPosition + 3));
                     }
 
-                    switch (words[2]) {
+                    switch (words[0]) {
                     case ASSIGNMENT:
                         startDateTime = fullCommand.substring(startTimeDividerPosition + 3,
                                 startTimeDividerPosition + 3 + timeDivider)

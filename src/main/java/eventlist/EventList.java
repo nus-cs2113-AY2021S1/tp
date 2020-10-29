@@ -177,7 +177,12 @@ public class EventList {
      */
     public ArrayList<Event> checkConflictTiming(Event event) {
         LocalDateTime eventStartDateTime = event.getStartDateTime();
-        LocalDateTime eventEndDateTime = event.getEndDateTime();
+        LocalDateTime eventEndDateTime;
+        try {
+            eventEndDateTime = event.getEndDateTime();
+        } catch (NullPointerException e) {
+            eventEndDateTime = null;
+        }
         ArrayList<Event> filteredEventList;
 
         filteredEventList = (ArrayList<Event>) events.stream()
@@ -190,13 +195,15 @@ public class EventList {
                 .collect(toList());
         if (eventEndDateTime != null) {
             //this considers when the events already in the list lie in the duration of the new event
+            LocalDateTime finalEventEndDateTime = eventEndDateTime;
             ArrayList<Event> filteredEventList2 = (ArrayList<Event>) events.stream()
                     .filter(s -> ((!(s instanceof Assignment))
                             && (s.getStartDateTime().isAfter(eventStartDateTime)
                             || s.getStartDateTime().isEqual(eventStartDateTime))
-                            && (s.getStartDateTime().isBefore(eventEndDateTime)
-                            || s.getStartDateTime().isEqual(eventEndDateTime))))
+                            && (s.getStartDateTime().isBefore(finalEventEndDateTime)
+                            || s.getStartDateTime().isEqual(finalEventEndDateTime))))
                     .collect(toList());
+            filteredEventList2.removeAll(filteredEventList);
             filteredEventList.addAll(filteredEventList2);
         }
 

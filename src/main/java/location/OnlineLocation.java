@@ -40,7 +40,7 @@ public class OnlineLocation {
      * @return the link of the location. If there is password, return the password also.
      */
     public String toString() {
-        return "\nmeeting link:" + link + (password != null ? " password: " + password : null);
+        return "link:" + link + (password != null ? " password: " + password : "");
     }
 
     /**
@@ -49,6 +49,6 @@ public class OnlineLocation {
      * @return the link of the meeting. If there is password, return the password also.
      */
     public String fileString() {
-        return "online//"+link + (password != null ? "//" + password : null);
+        return "online//"+link + (password != null ? "//" + password : "");
     }
 }

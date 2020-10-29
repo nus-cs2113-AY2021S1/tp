@@ -75,18 +75,22 @@ public class PersonalEvent extends Event {
      * @return the LocalDateTime get from LocalDateTime.
      */
     public LocalDateTime getEndDateTime() {
-        return LocalDateTime.from(end);
+        try {
+            return LocalDateTime.from(end);
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     /**
      * Prepare the string to be printed in the list.
      *
-     * @return the string required in a certain format。
+     * @return the string required in a certain format.
      */
     public String toString() {
         return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
                 + (end != null ? "\n(end at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")" :
-                null)
+                "")
                 + "\n" + (location != null ? location : link);
     }
 }

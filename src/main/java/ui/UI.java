@@ -166,7 +166,7 @@ public class UI {
      * @param eventAdded the Event being added
      */
     public void printAddEventMessage(Event eventAdded) {
-        System.out.println("Got it. I've added this Event: ");
+        System.out.println("I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
 
@@ -263,7 +263,7 @@ public class UI {
      * @param conflictEvents an ArrayList of Events to be printed one by one.
      */
     public void printConflictEvents(ArrayList<Event> conflictEvents) {
-        if (conflictEvents == null) {
+        if (conflictEvents.size() == 0) {
             return;
         }
         int numPrintedEvents = 0;
@@ -274,6 +274,7 @@ public class UI {
             numPrintedEvents++;
             System.out.println(numPrintedEvents + ". " + event.toString());
         }
+        System.out.println("\nBut nonetheless...");
     }
 }
 
