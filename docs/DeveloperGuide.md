@@ -118,7 +118,7 @@ What would you like to do with Quotesify?
 *`Note: All UML diagrams in this guide are stored in the images/ directory.`*
 
 ### 3.1 Architecture
-![Sequence Diagram for Architecture](images/SeqDiagram_Architecture.png)
+![Architecture Diagram](images/Architecture_Diagram.png)
 
 The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief
 description of each component shown.
@@ -496,9 +496,11 @@ quote management, progress tracker, category management and a rating system for 
 #### Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
+3. Users should prefer typing to GUI.
+4. Data should be stored locally inside the device's hard disk.
 
 #### Glossary
-* *glossary item* - Definition
+* *GUI* - Graphical User Interface
 
 ## Appendix: Instructions for manual testing
 
