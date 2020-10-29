@@ -158,7 +158,7 @@ mary has been removed from the project.
 ```
 
 ### 3.3. Project Backlog `task`
-#### 3.3.1. Add tasks
+#### 3.3.1. Add task
 Add a task to the project backlog.
 ##### Format: `task /add -title <title> -desc <description> -priority <category>`
 ##### Example: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
@@ -168,24 +168,49 @@ Add a task to the project backlog.
 * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
 * The task will be added as "not done" status. Users need to manually mark a task as done after creation.
 * Tasks can only be created if a project has been created.
-##### Expected outcome:
-`Add UI has been added.`
+##### Expected outcome
+(Assuming there are no prior tasks created)
+```
+Task successfully created.
+[Task]
+        ID: 1
+        Title: Add UI
+        Description: add an interactive UI
+        Priority: High priority
+        Completion: Incomplete
+        Task have yet to be assigned to anyone
+```
 
 #### 3.3.2. View task
 Display the information of the specified task.
-##### Format: `task /view <taskid>`
-##### Example: `task /view 3`
-* Views the third task.
+##### Format: `task /view <taskid> [<taskid>...]`
+##### Example: `task /view 3 6 9`
+* Views the third, sixth and ninth task.
 ##### Constraints:
-* The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
+* There must be at least one supplied task ID for viewing.
+* Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
 ##### Expected outcome:
-(Assuming the third task have the following attributes: Title: `Add parser`, Description: `add UI`, Priority: `HIGH`, Done: `false`)
+(Assuming the tasks have the following attributes respectively:
+Title: `Foo`,`Bar`,`FooBar` , Description: `one`,`two`,`three`, Priority: `HIGH`,`MEDIUM`,`LOW`, Done: `false`,`false`,`true`)
 ```
+The details of the tasks are as follows:
 [Task]
-    ID: 1
-    Add parser 
-    Description: add an interactive UI 
+    ID: 3
+    Foo
+    Description: one
     Priority: High priority
+    Completion: Incomplete
+[Task]
+    ID: 6
+    Bar
+    Description: two
+    Priority: Medium priority
+    Completion: Incomplete
+[Task]
+    ID: 9
+    FooBar
+    Description: three
+    Priority: Low priority
     Completion: Completed
  ```
 
@@ -196,7 +221,7 @@ Delete the specified task from the project backlog.
 * Deletes the fifth, seventh and ninth task.
 ##### Constraints:
 * There must be at least one supplied task ID for deletion.
-* All task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
+* Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
 ##### Expected outcome:
 (Assuming the tasks have the following titles, respectively: `Add parser`, `Del UI` and `UI`)
 ```
@@ -217,19 +242,23 @@ Change the priority of the specified task.
 ##### Expected outcome: (Assuming task 1 has title `Add parser`)
 ```
 The task Add parser has its priority changed to:
-High priority
+        High priority
 ```
 
 #### 3.3.5. Mark task as complete
 Mark specified task as complete.
-##### Format: `task /done <taskid>`
-##### Example: `task /done 1`
+##### Format: `task /done <taskid> [<taskid>...]`
+##### Example: `task /done 1 2 3`
 * Marks the first task as done.
 ##### Constraints:
-* The Task ID must be entered.
-* The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
-##### Expected outcome: (Assuming task 1 has title `Add parser`)
+* There must be at least one supplied task ID for marking of completion.
+* Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
+##### Expected outcome: (Assuming the tasks have title `Add parser`, `Foo` and `Bar` respectively)
 `Add parser has been marked as done.`
+
+`Foo has been marked as done.`
+
+`Bar has been marked as done.`
 
 ### 3.4. Sprint `sprint`
 In SCRUMptious, a `Project` will be broken down into smaller iterations known as Sprints.
