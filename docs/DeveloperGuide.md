@@ -32,19 +32,8 @@ are interested in learning more about the technical details of the various featu
 Refer to the guide here.
 
 ## 3. Design and Implementation
-
-![Architecture](BackendDiagram/Architecture.png)
-
-The **Architecture Design** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-**`Duke`** is the main class of the application, and handles the app launch, initializing the appropriate classes to be used.
-
-The rest of the app consists of the below:
-
-* [**`UI`**] : The UI of the App.
-* [**`Logic`**] : The command executor.
-* [**`Model`**] : Holds the data of the App in memory.
-* [**`Storage`**] : Reads data from, and writes data to, the hard disk.
+This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. 
+Diagrams found in our documentation were generated using PlantUML and references were made to addressbook-level2 for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 
 ### 3.1. Input Parsing
 ![Parser](BackendDiagram/ParserFlow.png)
@@ -250,17 +239,19 @@ Aspect: User input format
 
 
 ### 3.4. Event
-The diagram below shows the architecture for Event feature.
+The diagram below shows the architecture for Event feature. (Coming soon)
 
 ![](EventDiagram/EventArchitecture.png)
 
 
 There are a total of 6 commands under Event feature.
- `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`. 
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`(coming soon),`CommandDelEventAttendance`(coming soon), `CommandViewEventAttendence`(coming soon). 
+ 
  The implementation for each command is described in detail below.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
-3.4.1.1. Current Implementation  
+
+**3.4.1.1. Current Implementation**
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
@@ -290,13 +281,20 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
+**3.4.1.2. Design Considerations**
+Aspect : User adds the same event multiple times
+Alternative(current choice) : The program will remind user that the event has already been added.
+
+Aspect : User adds an event with a past date
+Alternative(current choice) : The program will remind user that the date is past.
+
 The sequence diagram for deleting a particular event or all events is as shown below:
 
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
-**3.5.2. Listing Events** `CommandEventList`
+**3.4.2. Listing Events** `CommandEventList`
 
-3.5.2.1 Current implementation
+3.4.2.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
 It implements the following operation:  
