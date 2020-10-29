@@ -143,12 +143,13 @@ This feature allows users to add events and relevant information about them (des
 Given below is an example usage scenario:
 
 Step 1. The user launches the application to add a class to his schedule. The user executes 
-`class CS1010 Lecture /t 2020-05-05 10:00 /l LT27` to add a new class to the list.  
+`class CS1010 Lecture /t 2020-05-05 10:00 /e 2020-05-05 12:00 /l LT27` to add a new class to the list.  
 
-Step 2. The Parser class parses the input as a new class with description ‘CS1010 Lecture’, time ‘2020-05-05 at 10:00’, 
-and location ‘LT27’.  
+Step 2. The Parser class parses the input as a new class with description ‘CS1010 Lecture’,
+starting time ‘2020-05-05 at 10:00’, ending time ’2020-05-05 at 12:00’, and location ‘LT27’.  
 
-Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
+Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events. This also checks 
+whether there is any event has overlap timing with the newly added event.
 
 The sequence diagram below shows the process of adding a new event.
 ![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
@@ -293,6 +294,7 @@ NUSchedule aims to assist the target audience with:
 |2.0|exchange student|know the optimal path to reach my next destination|avoid getting lost
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
+|2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
@@ -303,4 +305,7 @@ NUSchedule aims to assist the target audience with:
 
 ## Instructions for manual testing
 
+Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.  
+Also edit the stored data of events.txt to see whether the reaction is correct. Do not touch bus_stops.txt and 
+locations.txt for test purposes as they form the data base.
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
