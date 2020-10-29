@@ -4,6 +4,7 @@ package event;
 import location.Location;
 import location.OnlineLocation;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -34,6 +35,33 @@ public class Class extends Event {
     public String fileString() {
         return "C//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + end + "//" + (location != null ?
                 location.fileString() : link.fileString());
+    }
+
+    /**
+     * Provides the date of the class.
+     *
+     * @return the LocalDate get from LocalDateTime.
+     */
+    public LocalDate getDate() {
+        return LocalDate.from(at);
+    }
+
+    /**
+     * Provides the date time of the class.
+     *
+     * @return the LocalDateTime get from LocalDateTime.
+     */
+    public LocalDateTime getStartDateTime() {
+        return LocalDateTime.from(at);
+    }
+
+    /**
+     * Provides the end date time of the class.
+     *
+     * @return the LocalDateTime get from LocalDateTime.
+     */
+    public LocalDateTime getEndDateTime() {
+        return LocalDateTime.from(end);
     }
 
     /**

@@ -3,6 +3,7 @@ package event;
 import location.Location;
 import location.OnlineLocation;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import java.time.LocalDate;
@@ -67,6 +68,14 @@ public abstract class Event {
      * @return the LocalDate get from LocalDateTime.
      */
     public LocalDate getDate() {
+        return null;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return null;
+    }
+
+    public LocalDateTime getEndDateTime() {
         return null;
     }
 

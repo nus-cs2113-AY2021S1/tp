@@ -245,7 +245,8 @@ public class UI {
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
         System.out.println("There will be more upcoming features in later versions.");
-        System.out.println("For more information, please refer to detailed user guide: https://ay2021s1-cs2113t-f14-4.github.io/tp/");
+        System.out.println("For more information, please refer to detailed user guide: https://ay2021s1-cs2113t-f14-4" +
+                ".github.io/tp/");
     }
 
     /**
@@ -253,6 +254,26 @@ public class UI {
      */
     public void printClearEventsSuccessful() {
         System.out.println("Clear successful. The list is now empty.");
+    }
+
+    /**
+     * Prints all the Events of the filtered list with labels, based on the input list.
+     * Called for printing the events that having conflict timing with the new event added.
+     *
+     * @param conflictEvents an ArrayList of Events to be printed one by one.
+     */
+    public void printConflictEvents(ArrayList<Event> conflictEvents) {
+        if (conflictEvents == null) {
+            return;
+        }
+        int numPrintedEvents = 0;
+        System.out.println("You have some events that happen concurrently. Please prepared for multi-thread. "
+                + "\n"
+                + "Here are the Events in your list that have overlaps with your newly added event:");
+        for (Event event : conflictEvents) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + event.toString());
+        }
     }
 }
 

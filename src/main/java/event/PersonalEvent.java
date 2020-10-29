@@ -61,6 +61,24 @@ public class PersonalEvent extends Event {
     }
 
     /**
+     * Provides the date time of the personal event.
+     *
+     * @return the LocalDateTime get from LocalDateTime.
+     */
+    public LocalDateTime getStartDateTime() {
+        return LocalDateTime.from(at);
+    }
+
+    /**
+     * Provides the end date time of the personal event.
+     *
+     * @return the LocalDateTime get from LocalDateTime.
+     */
+    public LocalDateTime getEndDateTime() {
+        return LocalDateTime.from(end);
+    }
+
+    /**
      * Prepare the string to be printed in the list.
      *
      * @return the string required in a certain format。
