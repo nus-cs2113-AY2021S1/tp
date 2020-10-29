@@ -20,24 +20,27 @@ activate ":DineCommand"
 deactivate ":DineCommand"
 ":Parser" -> ":DineCommand": executeCommand()
 activate ":DineCommand"
-alt user input empty
-    ":DineCommand" --> ":Parser": invalid input
-else user input not empty
-    ":DineCommand" -> ":DineCommand": checkFaculty()
-    activate ":DineCommand"
-    alt displaycount = 0
-        ":DineCommand" --> ":DineCommand": no match found
-    else displaycount > 0
-        ":DineCommand" -> "<<class>>\n:Ui" : printDineResult()
-        activate "<<class>>\n:Ui"
-        "<<class>>\n:Ui" --> ":DineCommand"
-        deactivate "<<class>>\n:Ui"
-        ":DineCommand" --> ":DineCommand": results
-    deactivate ":DineCommand"
-    end
-    ":DineCommand" --> ":Parser": list of dining options
+
+opt user input empty
+    ":DineCommand" --> ":Parser"
+end
+
+":DineCommand" -> ":DineCommand": checkFaculty()
+activate ":DineCommand"
+
+alt displaycount = 0
+    ":DineCommand" --> ":DineCommand": no match found
+else displaycount > 0
+    ":DineCommand" -> "<<class>>\n:Ui" : printDineResult()
+    activate "<<class>>\n:Ui"
+    "<<class>>\n:Ui" --> ":DineCommand"
+    deactivate "<<class>>\n:Ui"
+    ":DineCommand" --> ":DineCommand": results
 deactivate ":DineCommand"
 end
+
+":DineCommand" --> ":Parser": list of dining options
+deactivate ":DineCommand"
 ":Parser" --> ":Duke"
 deactivate ":Parser"
 ":Duke" --> user
