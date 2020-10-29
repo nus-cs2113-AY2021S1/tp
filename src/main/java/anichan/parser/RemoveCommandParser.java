@@ -38,6 +38,10 @@ public class RemoveCommandParser extends CommandParser {
         String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
+        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
+            throw new AniException(NO_PARAMETER_PROVIDED);
+        }
+        
         parameterParser(paramGiven);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
         
