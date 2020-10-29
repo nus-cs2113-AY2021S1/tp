@@ -38,10 +38,8 @@ public class EstimateParser extends CommandParser {
      */
     public EstimateCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
-        String[] paramGiven = parameterSplitter(description);
-        if (paramGiven.length > 2) {
-            throw new AniException(TOO_MUCH_ARGUMENTS);
-        } else if (paramGiven[0].isBlank()) {
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
+        if (paramGiven[0].isBlank()) {
             throw new AniException(NO_SCRIPT_FILE_SPECIFIED);
         }
 
