@@ -49,17 +49,19 @@ as well as a summary of commands for quick reference at the bottom of the docume
 open command prompt by pressing `Windows key + R` and type `cmd`, then type `java -version` in the command prompt
 and press `Enter`.
 
-2. For first time Windows user, open command prompt and run the following line to enable color display of command prompt:
+2. If you do not have Java 11 installed, go [here](#java-11-installation-guide).
+
+3. For first time Windows user, open command prompt and run the following line to enable color display of command prompt:
 
     `reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1`
     
-3. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/tag/v2.0).
+4. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/tag/v2.0).
     
-4. Open a **new** command prompt in the folder where "planus.jar" is located at.
+5. Open a **new** command prompt in the folder where "planus.jar" is located at.
 For Windows user, you can do so by going to the folder in file explorer,
 and at the location bar type `cmd` and press `Enter`.
 
-5. Run "planus.jar" with the following command:
+6. Run "planus.jar" with the following command:
 
     `java -jar planus.jar`
     
@@ -70,11 +72,11 @@ and at the location bar type `cmd` and press `Enter`.
     *Figure 2. The first thing you will see upon opening the application.*
     
     
-6. **Maximise** the command prompt window to get a full display of the contents.
+7. **Maximise** the command prompt window to get a full display of the contents.
 
-7. Type a command in command prompt and press `Enter` to execute it.
+8. Type a command in command prompt and press `Enter` to execute it.
 
-8. Refer to the [Features](#features) below for details of each command.
+9. Refer to the [Features](#features) below for details of each command.
 
 
 <div style="page-break-after: always; visibility: hidden"> 
