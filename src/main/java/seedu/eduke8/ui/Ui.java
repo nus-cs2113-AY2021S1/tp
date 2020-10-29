@@ -52,7 +52,8 @@ public class Ui {
             + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
             + System.lineSeparator() + "6) bookmark"
             + System.lineSeparator() + "7) stats"
-            + System.lineSeparator() + "8) exit";
+            + System.lineSeparator() + "8) note add / note delete / note list"
+            + System.lineSeparator() + "9) exit (saves your data too!)";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!";
@@ -117,7 +118,7 @@ public class Ui {
     private static final String MESSAGE_AVAILABLE_WORD = " available ";
     private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
-    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer!";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer! ";
     public static final String DATA_LOADING = "Please wait while data is loading...";
     public static final String DATA_LOADED = "Data loaded successfully!";
     public static final String DATA_SAVING = "Please wait while data is saving...";
@@ -289,7 +290,7 @@ public class Ui {
                     topic.getNoteList().delete(index - 1);
                     System.out.println(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    System.out.println(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                    System.out.println(INVALID_TOPIC_NAME + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
             } else {
                 System.out.println(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);

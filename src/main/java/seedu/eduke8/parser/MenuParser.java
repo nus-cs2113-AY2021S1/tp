@@ -13,6 +13,7 @@ import seedu.eduke8.command.TextbookCommand;
 import seedu.eduke8.command.NoteCommand;
 import seedu.eduke8.command.QuizCommand;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
@@ -20,6 +21,7 @@ import seedu.eduke8.ui.Ui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
 
@@ -149,12 +151,16 @@ public class MenuParser implements Parser {
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
-            if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
-                    .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
-                LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
-                return new NoteCommand(commandArr[1], (TopicList) topicList);
-            } else {
-                break;
+            try {
+                if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
+                        .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                    LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
+                    return new NoteCommand(commandArr[1], (TopicList) topicList);
+                } else {
+                    throw new Eduke8Exception(ERROR_NOTE_WRONG_FORMAT);
+                }
+            } catch (IndexOutOfBoundsException | Eduke8Exception e) {
+                return new IncorrectCommand(ERROR_NOTE_WRONG_FORMAT);
             }
         case COMMAND_EXIT:
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");

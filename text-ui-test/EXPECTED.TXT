@@ -23,7 +23,8 @@ These are the commands that you can use:
 5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>
 6) bookmark
 7) stats
-8) exit
+8) note add / note delete / note list
+9) exit (saves your data too!)
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 The textbook for this module is available at:
@@ -47,7 +48,7 @@ The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 Enter your answer, 'hint' or 'bookmark':
 ------------------------------------------------------------------------------------------------------------------------
-Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Oops! You took more than 2 seconds to answer! The correct answer is 1! Do visit the textbook to read up more.
 Explanation:
 because option A is the best answer
 ------------------------------------------------------------------------------------------------------------------------
@@ -78,7 +79,7 @@ The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 Enter your answer, 'hint' or 'bookmark':
 ------------------------------------------------------------------------------------------------------------------------
-Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Oops! You took more than 2 seconds to answer! The correct answer is 1! Do visit the textbook to read up more.
 Explanation:
 because option A is the best answer
 ------------------------------------------------------------------------------------------------------------------------
@@ -111,7 +112,7 @@ The chosen topic is: OOP
 ------------------------------------------------------------------------------------------------------------------------
 Enter your answer, 'hint' or 'bookmark':
 ------------------------------------------------------------------------------------------------------------------------
-Oops! You took more than 2 seconds to answer!The correct answer is 1! Do visit the textbook to read up more.
+Oops! You took more than 2 seconds to answer! The correct answer is 1! Do visit the textbook to read up more.
 Explanation:
 because option A is the best answer
 ------------------------------------------------------------------------------------------------------------------------

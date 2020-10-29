@@ -19,6 +19,17 @@ public class QuizQuestionsManager {
     private int currentQuestionNumber;
 
 
+    /**
+     * Constructs a QuizQuestionsManager object with the user's desired number of questions in the quiz
+     * and his / her choice of topic.
+     * If the inputs are valid, the questions for the quiz will be selected at random from all of the questions
+     * in the specified topic.
+     *
+     * @param numberOfQuestionsForQuiz User's desired number of questions for the quiz attempt.
+     * @param questionsInTopic An ArrayList of all of the questions from the topic the user has chosen for the quiz
+     * @throws Eduke8Exception If the number of questions specified for the quiz is more than the number of
+     *     questions in the topic, or zero or less.
+     */
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
         assert questionsInTopic != null;
@@ -46,15 +57,33 @@ public class QuizQuestionsManager {
     }
 
 
+    /**
+     * Returns the next question in the quiz and indicates that another question has been shown to the user by
+     * incrementing the current question number of the quiz.
+     *
+     * @return Next question in the quiz.
+     */
     public Question getNextQuestion() {
         // Automatically increases question count when a question is shown to the user
         return quizQuestions.get(currentQuestionNumber++);
     }
 
+    /**
+     * Returns the current question number as an indication of how many questions have been done by the user in
+     * the current quiz instance.
+     *
+     * @return Current question number.
+     */
     public int getCurrentQuestionNumber() {
         return currentQuestionNumber;
     }
 
+    /**
+     * Returns an indication of whether the user has attempted all the questions in the quiz.
+     * The boolean variable returned is used to determine if the quiz should end.
+     *
+     * @return Boolean variable indicating if user has attempted all the questions in the quiz.
+     */
     public boolean areAllQuestionsAnswered() {
         return currentQuestionNumber == quizQuestions.size();
     }
