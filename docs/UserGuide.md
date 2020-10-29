@@ -406,6 +406,75 @@ Exit FinanceTools to Main Menu.
 
     exit
 ![Example](screenshots/financetools/Exit(1).PNG)
+
+# Features : Goal Tracker
+Goal Tracker that helps user to track their monthly incomes and expenses goal.
+
+## Goal Tracker 1 : Set Goal
+### Goal Tracker 1.1 : Set Income Goal
+Setting of income goal for respective months.
+
+>syntax
+
+    income *amount* for *month in int form*
+    
+ 
+>Example:
+
+    income 5000 for 08
+![Example](screenshots/goaltracker/setincomegoal.png)
+
+### Goal Tracker 1.2 : Set Expense Goal
+Setting of expense goal for respective months.
+
+>syntax
+
+    expense *amount* for *month in int form*
+   
+>Example
+
+    expense 2000 for 07
+![Example](screenshots/goaltracker/setexpensegoal.png)
+
+## Goal Tracker 2 : Display Goal
+Display income and expense goal for the individual month.
+
+>syntax
+
+    display income/expense for *month in int form*
+   
+>Example
+
+    display income for 08
+    display expense for 07
+![IncomeExample](screenshots/goaltracker/displayincome.png)
+![ExpenseExample](screenshots/goaltracker/displayexpense.png)
+
+## Goal Tracker 3 : Edit Goal
+Edit income and expense goal for the individual month.
+
+>syntax
+
+    edit income/expense *amount* for *month in int form*
+ 
+>Example
+    
+    edit income 2000 for 08
+    edit expense 1000 for 07
+![EditIncome](screenshots/goaltracker/editincome.png)
+![EditExpense](screenshots/goaltracker/editexpense.png)
+
+## Goal Tracker 4 : Exit Goal Tracker
+Exit Goal Tracker program and return to FinanceIt main UI.
+
+>syntax
+
+    exit
+    
+>Example 
+
+    exit
+    
 ## 2. List
 Shows full list of appended tasks. You may modify the output format for each task with the appropriate arguements. 
 
