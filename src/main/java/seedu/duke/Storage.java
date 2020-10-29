@@ -99,53 +99,76 @@ public class Storage {
      *
      * @param calendarList A taskList that store the data read from file.
      */
-    public static void readFromFile(CalendarList calendarList) throws FileNotFoundException {
+    public static void readFromFile(CalendarList calendarList) {
         LocalDate date;
         LocalTime time;
         File input = new File(filePath);
         createFile(input);
-        Scanner sc = new Scanner(input);
-        CalendarItem item = null;
+        Scanner sc = null;
+        try {
+            sc = new Scanner(input);
+        } catch (FileNotFoundException e) {
+            Ui.printFileNotFoundMessage();
+        }
         while (sc.hasNext()) {
+            CalendarItem item = null;
             String[] taskInFile = sc.nextLine().split("\\|");
+            int num = taskInFile.length;
             assert taskInFile[TYPE] != null : "the type of the task should not be null";
             switch (taskInFile[TYPE]) {
             case "T":
-                item = new Todo(taskInFile[TASK_DESCRIPTION]);
+                if (num == 4) {
+                    item = new Todo(taskInFile[TASK_DESCRIPTION]);
+                }
                 break;
             case "D":
-                date = LocalDate.parse(taskInFile[TASK_DATE].trim());
-                item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
+                if (num == 5) {
+                    date = LocalDate.parse(taskInFile[TASK_DATE].trim());
+                    item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
+                }
                 break;
             case "ACT":
-                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
+                if (num >= 7) {
+                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                    item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
+                }
                 break;
             case "LEC":
-                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                if (num >= 7) {
+                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                    item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                }
                 break;
             case "TUT":
-                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                if (num >= 7) {
+                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                    item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                }
                 break;
             case "LAB":
-                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                if (num >= 7) {
+                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                    item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                }
                 break;
             case "EXAM":
-                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                if (num >= 7) {
+                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                    item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                }
                 break;
             default:
-                Ui.printInvalidFileCommandMessage();
+                Ui.printWrongStorageInput();
+                break;
             }
+
             countFileTasks++;
+
             if (item instanceof Task) {
                 if (taskInFile[TASK_IS_DONE].equals("true")) {
                     ((Task) item).markAsDone();
@@ -161,11 +184,13 @@ public class Storage {
                     ((Task) item).markAsImportant();
                 }
             }
+
             if (item instanceof Task) {
                 calendarList.addTask((Task) item);
             } else if (item instanceof Event) {
                 calendarList.addEvent((Event) item);
             }
+
             if (item instanceof Event) {
                 if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
                     int numberInfo = Integer.parseInt(taskInFile[EVENT_ADDITION_INFO]);
@@ -175,6 +200,7 @@ public class Storage {
                     }
                 }
             }
+
         }
     }
 }
