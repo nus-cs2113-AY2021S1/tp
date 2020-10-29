@@ -1,9 +1,10 @@
 # Developer Guide
-google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFXK3VgL6807x5ivZ5yJk/edit)
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Setting Up](#2-setting-up)
+2. [Getting Started](#2-getting-started)<br>
+2.1 [Prerequisites](#21-prerequisites)<br>
+2.2 [Setting Up](#22-setting-up)<br>
 3. [Design](#3-design) <br>
 3.1 [Architecture](#31-architecture) <br>
 3.2 [UI](#32-ui) <br>
@@ -21,7 +22,8 @@ google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFX
 4.7 [View events](#47-view-events) <br>
 5. [Documentation](#5-documentation) <br>
 5.1 [Product scope](#51-product-scope) <br>
-5.2 [User stories](#52-user-stories) <br>
+5.2 [Value Proposition](#52-value-proposition) <br>
+5.3 [User Stories](#53-user-stories)<br>
 
 ## 1. Introduction
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
@@ -30,7 +32,7 @@ NUSchedule will prove itself to be the most efficient way to manage your commitm
   
 This developer guide provides information on the architecture and design of the application, NUSchedule. This guide
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
-to refer to even if you are already a contributor
+to refer to even if you are already a contributor.
 
 ## 2. Getting Started
 This section provides information to help you get NUSchedule up and running on your own computers.
@@ -58,7 +60,7 @@ This section describes the different components of the application and how each 
 each other to run the program. 
 
 ### 3.1 Architecture
-![architecture](../diagrams/architecture.png)
+![architecture](diagrams/architecture.png)
 
 The Architecture Diagram above provides a high-level view of the design of NUSchedule. The app can be broken down into 
 5 different components:  
@@ -70,7 +72,7 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
 
 __How the architecture components interact with each other__  
 The sequence diagram below shows how each individual component interacts with each other when the user inputs a command.
-![sequence](../diagrams/ArchitectureSequence.png)
+![sequence](diagrams/ArchitectureSequence.png)
 
 ### 3.2 UI
 ![UI Class Diagram](diagrams/Ui.png)
@@ -221,6 +223,7 @@ __Target user profile:__
 {Describe the value proposition: what problem does it solve?}
 
 ### 5.3 User Stories
+
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
