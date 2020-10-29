@@ -267,7 +267,7 @@ To do so:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
 shown in the figure below and press enter. <br>
-<img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=550>
+<img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
 
 2. Type <code>/listfav</code> to see the changed description.<br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
