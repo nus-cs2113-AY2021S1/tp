@@ -229,7 +229,7 @@ These are the steps to follow:
 
 
 ### 3.8. Search for specific dining outlet: ```/dineinfo```
-Search for all dining outlets that contains the keyword, and display their location and operating hours.
+This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
 The format of this command is as follows:<br>
 <code>/dineinfo <strong>outlet</strong></code>
@@ -240,12 +240,33 @@ Let's say you want to find information of the dining outlet <strong>Arise & Shin
 
 These are the steps to follow:
 
+1. Type <code>/dineinfo <strong>arise & shine</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/dineinfo2.png" alt="output" width=600><br>
+
+**<u>Example 2</u>**<br>
+Let's say you cannot remember the full name of the outlet that you are searching for. You can simply enter a keyword instead.
+
+To find the information about a dining outlet with the name containing <strong>Arise</strong>:
+
 1. Type <code>/dineinfo <strong>arise</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
 
 ### 3.9. Add a favourite command: `/addfav`
 
 ### 3.10. List all favourite commands: `/listfav`
+This command displays all the commands in your list of favourite commands, along with their index and description.
+
+The format of this command is as follows:<br>
+<code>/listfav</code>
+
+#### Examples of Usage
+**<u>Example 1</u>**<br>
+Let's say you want to take a look at all the commands that was previously added to your list of favourite commands.
+
+These are the steps to follow:
+
+1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 
 ### 3.11. Delete a favourite command: `/deletefav`
 
@@ -290,6 +311,22 @@ shown in the figure below and press enter. <br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 
 ### 3.14. Clear the list of favourite commands: `/clearfav`
+This command clears all the commands stored in your list of favourite commands.
+
+The format of this command is as follows:<br>
+<code>/clearfav</code>
+
+#### Examples of Usage
+**<u>Example 1</u>**<br>
+Let's say you no longer need any of the commands in your list of favourite commands. Instead of using 
+<code>/deletefav</code> to remove the commands one by one, you can use the <code>/clearfav</code> feature to clear 
+your favourites list at one go.
+
+These are the steps to follow:
+
+1. Type <code>/clearfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
+
 
 ### 3.15. Similarity Checks
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
