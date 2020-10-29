@@ -5,6 +5,7 @@ import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.hint.Hint;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QuestionTest extends Eduke8Test {
@@ -17,25 +18,34 @@ class QuestionTest extends Eduke8Test {
 
     @Test
     void getDescription_placeholderQuestionDescription_returnsQuestionDescription() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         assertEquals(PLACEHOLDER_QUESTION_DESCRIPTION, question.getDescription());
     }
 
+
     @Test
     void wasShown_questionThatWasShownToUser_expectsTrue() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
-        // When question is being shown to user, it is marked as shown automatically.
         question.markAsShown();
         assertTrue(question.wasShown());
     }
 
     @Test
+    void wasShown_questionNotShownToUser_expectsFalse() {
+        // Creates a question object with description, 2 options, explanation and a hint
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
+
+        assertFalse(question.wasShown());
+    }
+
+
+    @Test
     void getOptionList_optionListWithTwoOptions_returnsCountOfTwoOptions() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         assertEquals(OPTIONLIST_OPTIONS_COUNT, question.getOptionList().getCount());
@@ -43,7 +53,7 @@ class QuestionTest extends Eduke8Test {
 
     @Test
     void getHint_hintObject_returnsHintDescription() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         assertEquals(PLACEHOLDER_HINT_DESCRIPTION, question.getHint().getDescription());
@@ -51,7 +61,7 @@ class QuestionTest extends Eduke8Test {
 
     @Test
     void wasHintShown_questionWithHintShown_expectsTrue() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         Hint hintThatWasShownToUser = question.getHint();
@@ -63,8 +73,16 @@ class QuestionTest extends Eduke8Test {
     }
 
     @Test
+    void wasHintShown_questionWithoutHintShown_expectsFalse() {
+        // Creates a question object with description, 2 options, explanation and a hint
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
+
+        assertFalse(question.wasHintShown());
+    }
+
+    @Test
     void getExplanation_explanationObject_returnsExplanationDescription() {
-        //Creates a question object with description, 2 options, explanation and a hint
+        // Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         assertEquals(PLACEHOLDER_EXPLANATION_DESCRIPTION, question.getExplanation().getDescription());
@@ -77,5 +95,16 @@ class QuestionTest extends Eduke8Test {
 
         question.markAsAnsweredCorrectly();
         assertTrue(question.wasAnsweredCorrectly());
+    }
+
+    @Test
+    void wasAnsweredCorrectly_attemptedQuestionNotCorrectlyAnswered_expectsFalse() {
+        //Creates a question object with description, 2 options, explanation and a hint
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
+
+        question.markAsShown();
+        assertTrue(question.wasShown());
+
+        assertFalse(question.wasAnsweredCorrectly());
     }
 }

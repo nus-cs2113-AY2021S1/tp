@@ -40,6 +40,9 @@ public class Question implements Displayable {
         return description;
     }
 
+    /**
+     * Marks this question as shown, in other words, attempted by user.
+     */
     @Override
     public void markAsShown() {
         wasShown = true;
@@ -55,11 +58,10 @@ public class Question implements Displayable {
         return this.wasShown;
     }
 
-
     /**
      * Returns the multiple options of the question.
      *
-     * @return An  arraylist of options pertaining to this question.
+     * @return An arraylist of options pertaining to this question.
      */
     public OptionList getOptionList() {
         return optionList;
@@ -86,7 +88,7 @@ public class Question implements Displayable {
     /**
      * Returns a boolean variable indicating if the user had requested for a hint for this question.
      *
-     * @return Indication of whether the hint for this question was shown before,
+     * @return Indication of whether the hint for this question was shown before.
      */
     public boolean wasHintShown() {
         return hint.wasShown();

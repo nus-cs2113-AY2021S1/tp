@@ -21,6 +21,7 @@ public class QuizQuestionsManager {
 
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
+        assert questionsInTopic.size() > 0;
         currentQuestionNumber = 0;
         quizQuestions = new ArrayList<>();
         setQuizQuestions(numberOfQuestionsForQuiz, questionsInTopic);
@@ -38,6 +39,8 @@ public class QuizQuestionsManager {
         }
 
         setRandomQuestions(numberOfQuestionsForQuiz, questionsInTopic);
+        LOGGER.log(Level.INFO, numberOfQuestionsForQuiz + " questions out of "
+                + questionsInTopic.size() + " topic questions have been selected for the quiz");
     }
 
 
@@ -68,7 +71,7 @@ public class QuizQuestionsManager {
 
             // To ensure we do not pick the same question again
             if (integersChosen.contains(randomQuestionIndex)) {
-                LOGGER.log(Level.INFO, "Chosen a repeated question");
+                LOGGER.log(Level.INFO, "QuizQuestionsManager has chosen a repeated question");
                 continue;
             }
 
