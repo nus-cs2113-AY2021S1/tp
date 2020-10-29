@@ -143,16 +143,21 @@ public class WatchlistStorage extends Storage {
         String[] animes = animeListString.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
             String trimmedIndex = animeIndex.trim();
-            if (!isValidAnimeIndex(trimmedIndex)) {
+            if (!isValidAnimeIndexString(trimmedIndex)) {
                 return null;
             }
 
-            int parsedInteger = Integer.parseInt(trimmedIndex);
-            if (parsedInteger > MAX_ANIME_INDEX) {
+            int parsedAnimeIndex = Integer.parseInt(trimmedIndex);
+            if (parsedAnimeIndex > MAX_ANIME_INDEX) {
                 return null;
             }
 
-            animeList.add(parsedInteger);
+            // Checks for duplicate anime index
+            if (animeList.contains(parsedAnimeIndex)) {
+                return null;
+            }
+
+            animeList.add(parsedAnimeIndex);
         }
 
         return new Watchlist(watchlistName, animeList);
@@ -187,7 +192,7 @@ public class WatchlistStorage extends Storage {
      * @param animeIndex the index of an anime series
      * @return {@code true} if the index is valid; false otherwise
      */
-    private boolean isValidAnimeIndex(String animeIndex) {
+    private boolean isValidAnimeIndexString(String animeIndex) {
         boolean isAnimeIndexBlank = animeIndex.isBlank();
         if (isAnimeIndexBlank) {
             return false;

@@ -155,5 +155,4 @@ class StorageManagerTest {
             emptySM.loadScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
         });
     }
-
 }
