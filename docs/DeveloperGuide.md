@@ -241,9 +241,9 @@ The edit module name feature allows the user to edit the name of any existing mo
 
 The user can edit the name of an existing module with the `edit` command, which follows the following format: `edit MODULE_INDEX MODULE_NAME`.
 
-The edit module name feature is facilitated by `ModuleList` and `Module`.
+The edit module name feature is facilitated by `ModuleList` and `Module`. The list of user's modules are stored internally as `ModuleList`.
 In addition, it implements the following operations:
-* `ModuleList#getModule()` - Returns a module based on the specified index from the list of modules.
+* `ModuleList#getModule()` - Gets a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
  
 For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
@@ -400,9 +400,9 @@ The edit chapter name feature allows the user to edit the name of any existing c
 
 The user can edit the name of an existing chapter with the `edit` command, which follows the following format: `edit CHAPTER_INDEX CHAPTER_NAME`.
 
-The edit module name feature is facilitated by `ChapterList` and `Chapter`.
+The edit module name feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
 In addition, it implements the following operations:
-* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
  
 For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -472,7 +472,7 @@ The add flashcard feature allows the user to add a flashcard to a chapter.
 
 The user can add a flashcard with the `add` command, which follows the following format: `add q:QUESTION | a: ANSWER`.
 
-The add flashcard feature is facilitated by `CardList`.
+The add flashcard feature is facilitated by `CardList`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operation:
 * `CardList#addCard()` - Adds a flashcard to the list of flashcards.
  
@@ -528,9 +528,9 @@ The edit flashcard content feature allows the user to edit the content of any ex
 
 The user can edit the content of an existing flashcard with the `edit` command, which follows the following format: `edit FLASHCARD_INDEX q:QUESTION | a: ANSWER`.
 
-The edit flashcard content feature is facilitated by `CardList` and `Card`.
+The edit flashcard content feature is facilitated by `CardList` and `Card`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operations:
-* `CardList#getCard()` - Returns a flashcard based on the specified index from the list of flashcards.
+* `CardList#getCard()` - Gets a flashcard based on the specified index from the list of flashcards.
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
  
@@ -846,9 +846,9 @@ The reschedule chapter feature allows the user to reschedule the due date of any
 
 The user can reschedule the due date of an existing chapter with the `reschedule` command, which follows the following format: `reschedule CHAPTER_INDEX DATE(yyyy-MM-dd)`.
 
-The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`.
+The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`. The list of user's chapters are stored internally as `ChapterList`.
 In addition, it implements the following operations:
-* `ChapterList#getChapter()` - Returns a chapter based on the specified index from the list of chapters.
+* `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setDueBy()` — Sets the due date of the chapter.
  
 For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -913,10 +913,32 @@ The following sequence diagram shows how the list chapters feature works:
 
 ### 5.2. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+| Version | As a ... | I want to ... | So that I can ... |
 |--------|----------|---------------|------------------|
-|v1.0|user|revise the flashcards by chapter|do my revision|
-|v1.0|user|remove modules/chapters/flashcard|remove modules/chapters/flashcards that I no longer need from the scheduler|
+| v1.0 | student | add modules | study based on modules |
+| v1.0 | student | add chapters for each module | study based on chapters for a certain module |
+| v1.0 | student | add flashcards inside each chapter for the content of each chapter | study the content of each chapter |
+| v1.0 | student | list my modules | have an overview of what modules I have |
+| v1.0 | student | list my chapters in each module | have an overview of what chapters I have for a module |
+| v1.0 | student | list my flashcards in each chapter | have an overview of the content I have for a chapter |
+| v1.0 | student | modify the module name | correct the module name if it is incorrect |
+| v1.0 | student | modify the chapter name | correct the chapter name if it is incorrect |
+| v1.0 | student | modify the content of the flashcards | correct the content if it is incorrect |
+| v1.0 | student | remove modules/chapters/flashcard | remove modules/chapters/flashcards that I no longer need |
+| v1.0 | student | access my module | revise based on module |
+| v1.0 | student | access my chapters for a module | revise based on chapter for a certain module |
+| v1.0 | student | revise the flashcards by chapter | do my revision |
+| v1.0 | student | set a rating for a newly created chapter | rate a chapter without going through a revision session |
+| v1.0 | student | state whether a flashcard is easy, medium or hard | revise the flashcards based of the difficulty of it |
+| v1.0 | student | check the scheduled tasks daily | plan my schedule accordingly |
+| v1.0 | student | rely entirely on the application to implement spaced repetition for me | enjoy the benefits of spaced repetition without having to implement it myself |
+| v1.0 | student | have a help command | have an overview of how the application works |
+| v1.0 | student | terminate the program | exit the application when I am done using it |
+| v2.0 | student | see a forecast of the my revision schedule | plan ahead and make time to accommodate the revision of the corresponding number of chapters |
+| v2.0 | student | reschedule a chapter | change the schedule according to my situation |
+| v2.0 | student | view the module and chapters I have completed in a session/in a day | track my progress |
+| v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
+| v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
 ### 5.3. Use Cases
 
