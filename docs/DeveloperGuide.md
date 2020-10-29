@@ -31,7 +31,8 @@
   - [4. User Stories](#4-user-stories)
   - [5. Non-Functional Requirements](#5-non-functional-requirements)
   - [6. Glossary](#6-glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+  - [7. Appendix](#7-appendix)
+    - [7.1. Instructions for manual testing](#71-instructions-for-manual-testing)
 
 ## 1. Introduction
 
@@ -405,6 +406,8 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 
 - **Mainstream Operating Systems (OS)**: Windows, Linux, Unix, OS-X
 
-## Instructions for manual testing
+## 7. Appendix
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### 7.1. Instructions for manual testing
+
+To test the product please refer to the E-Duke-8 [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html).
