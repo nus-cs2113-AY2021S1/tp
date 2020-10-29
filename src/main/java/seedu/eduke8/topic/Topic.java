@@ -56,8 +56,4 @@ public class Topic implements Displayable {
     public NoteList getNoteList() {
         return noteList;
     }
-
-    public void showNotes(Ui ui) {
-        ui.printNoteList(noteList.getInnerList());
-    }
 }
