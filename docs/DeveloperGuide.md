@@ -214,9 +214,20 @@ The sequence diagram below shows exactly which methods, from which classes, are 
 ![locate sequence diagram](diagrams/LocateSequence.png)<br>
 *Figure 4.4 Sequence diagram for locate function*
 
-### 4.5 Reminders
-[Proposed] This feature will be able to remind users of the events that will occur today when they open the application.
+### 4.5 Reminder
+This feature allows users to get a reminder of the events that will occur today.
 
+Given below is an example usage scenario:
+
+Step 1. The user wants to see all the events that are happening today. He inputs the command `reminder`.
+
+Step 2. The command filters the list of all events based on the current date.
+
+Step 3. It then calls `UI` to print the filtered list.
+
+The sequence diagram belows shows the process of executing the reminder command.
+![ReminderCommand Sequence Diagram](diagrams/ReminderCommand.png)
+*Figure 4.5 Sequence Diagram for reminder function*
 
 ### 4.6 Sort events
 This feature allows users to sort the available task by a sorting criteria. Currently, the sorting criteria available
@@ -224,24 +235,37 @@ are sorting by time, description and location.
 
 Given below is an example usage scenario:
 
-Step 1. The user wants to see view the events in a chronological order. 
+Step 1. The user wants to view the events in a chronological order. 
 
 Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
 ![](diagrams/SortCommand.png)<br>
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
+This feature allows users to view a numbered list of all the events/tasks they have added so far,
+in the order which they were added.
+
+Given below is an example usage scenario:
+
+Step 1. The user wants to see a list of all the events he has added so far, and executes the command `list`.
+
+Step 2. The command calls the `printEventList` function from `UI`, which then prints the list of events.
+
+The sequence diagram below shows what happens when the list command is executed
+![ListCommand Sequence Diagram](diagrams/ListCommand.png)
+*Figure 4.7 Sequence Diagram for list function*
 
 ### 4.8 Help
 This feature allows users to view a summary of all the features available for the current version of NUSchedule. 
 When the user inputs `help`, all available commands and a simple description for each of them will be printed.
 
 The sequence diagram below shows what happens when user enters `help`:
+
 ![HelpCommand Sequence Diagram](diagrams/HelpCommand.png)<br>
 *Figure 4.8 Sequence Diagram for help function*
 
 ## 5. Documentation
-This section provides information 
+This section provides other relevant information about the application.
 
 ### 5.1 Product scope
 __Target user profile:__
