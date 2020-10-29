@@ -21,3 +21,5 @@ data/
 export/
 *.log
 *.log.lck
+
+*.puml
