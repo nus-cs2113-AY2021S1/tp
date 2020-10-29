@@ -17,7 +17,7 @@
 4. [Implementation](#4-implementation)
 <br/>&nbsp;4.1 [Estimation Feature](#41-estimation-feature)
 <br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
-<br/>&nbsp;4.3 [View Information Feature](#43-view-information-feature)
+<br/>&nbsp;4.3 [View Anime Information Feature](#43-view-anime-information-feature)
 <br/>&nbsp;4.4 [Workspace Feature](#44-workspace-feature)
 <br/>&nbsp;4.5 [Watchlist Management Feature](#45-watchlist-management-feature)
 <br/>&nbsp;4.6 [Add To Watchlist Feature](#46-add-to-watchlist-feature)
@@ -422,7 +422,7 @@ and in favour of having an application that is highly object-oriented.
 
 <br/>
 
-### 4.3 View Anime Information
+### 4.3 View Anime Information Feature
 The `info` command allows the user to view all the relevant information regarding a specific anime that the user specifies. This allows them to know more about a particular anime.
 
 #### 4.3.1 Current Implementation
@@ -430,19 +430,41 @@ The view information command is currently implemented by the `InfoCommand`. The 
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
 
-**Step 1:** `Ui` would receive input in the `Main` class and pass it into `Parser` class
+**Step 1:** `Ui` would receive input in form of `info -a <ANIME_ID>` in the `Main` class and pass it into `Parser` class
+
+> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object, in which `InfoCommand` object is constructed as well.
 
-**Step3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`.
+**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
+
+Figure X below shows the sequence diagram for steps 1 to 3 of the Information feature
+
+![Info Command Step 1 to 3 Sequence Diagram](images/InfoCommand-Step1-3-Sequence-Diagram.png) <br/>
+*Figure X: Info feature steps 1 to 3 sequence diagram*
 
 **Step 4:** `Main` will then call `InfoCommand#execute()`. In here the ANIME_ID will be validated and `AnimeData#returnAnimeInfo()` method is invoked, returning a string containing information regarding that particular ANIME_ID.
 
 **Step 5:** The string is returned all the way back to `Main` and printed out by `Ui`.
 
-**Step 6:** `InfoParser`, `InfoCommand`, `Parser` and `Command` are finally terminated
+**Step 6:** `InfoCommand` is terminated
 
-> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
+The diagram below is the sequence diagram from steps 4 onward.
+
+![Info Command Step 4 to 6 Sequence Diagram](images/InfoCommand-Step4-6-Sequence-Diagram.png) <br/>
+*Figure X: Info feature steps 4 to 6 sequence diagram*
+
+#### 4.3.2 Design Consideration
+This section shows the considerations taken when designing this feature.
+
+Aspect: **Using anime title or Anime ID as the field for input**
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
+| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
+
+We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime title. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
 
 <br/>
 
@@ -579,16 +601,18 @@ For better illustration, Figure X below shows the sequence diagram of steps 4 to
 *Figure X: Sequence diagram for AddToWatchlistCommand steps 4 to 6*
 
 #### 4.6.2 Design consideration
-Below shows the considerations taken when implementing the `AddToWatchlist` feature
+Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
 
-Aspect: **whether to use name of anime as input, or use anime ID**
+Aspect: **Using anime title or anime ID as the field for input**
+
+This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` deature section.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime name as input | Easier for users who remember anime names | Users will have to input the full anime name  |
+| 1. Use anime title as input | Easier for users who remember anime titles | Users will have to input the full anime title  |
 | 2. Use anime ID as input | Users will only need to input one single integer | Users will have to search for the anime ID if they do not know the ID |
 
-We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime name. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a name to search against the whole data of anime to retrieve information.
+Similarly, we decided to go with the second approach as this would be much easier for users to key in, and also faster for the program to find the anime the user wants to add into the watchlist.
 
 <br/>
 
@@ -609,8 +633,8 @@ Aspect: **which index to use when removing an anime**
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime ID itself | Users who remember the anime ID will be able to remove the anime quicker | The program will have to search through the entire list of anime in the watchlist for that particular anime ID  |
-| 2. Use index of anime in the watchlist | Faster for the program to delete a particular index | User will have to view the watchlist to check which index the anime is at |
+| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
+| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
 
 We have decided to use approach 2 instead of 1, as it will not only will it be much faster for the program to delete one particular index instead of having to search through the whole list, it would be provide better user experience as the user will not need to search for the anime ID that he wants to remove in the case that he does not know the anime ID.
 
