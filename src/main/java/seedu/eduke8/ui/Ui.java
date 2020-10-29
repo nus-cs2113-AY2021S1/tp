@@ -131,6 +131,8 @@ public class Ui {
     private static final String DATA_SAVING = "Please wait while data is saving...";
     private static final String DATA_SAVED = "Data saved successfully!";
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
+    public static final String ERROR_READING_INPUT = "Error reading input.";
+    public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
@@ -138,7 +140,7 @@ public class Ui {
         try {
             return userInputFuture.get();
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            printError(ERROR_READING_INPUT);
         }
         return SCANNER.nextLine();
     }
@@ -172,7 +174,7 @@ public class Ui {
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
             } catch (AWTException awtException) {
-                awtException.printStackTrace();
+                printError(ERROR_USING_ROBOT);
             }
             return null;
         }
