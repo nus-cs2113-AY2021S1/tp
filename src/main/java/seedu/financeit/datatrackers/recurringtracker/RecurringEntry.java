@@ -110,6 +110,21 @@ public class RecurringEntry extends Item {
         return details;
     }
 
+    public String toSave() {
+
+        //One string is filled and the other is left blank, based on whether the entry is income or expenditure
+        String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
+        String duration;
+        if (this.start.getValue() == 1 && this.end.getValue() == 12) {
+            duration = "Every month";
+        } else {
+            duration = start + " to " + end;
+        }
+        String payment = this.isAuto ? "Auto deduction" : "Manual payment";
+        return String.format("%s&@#%s&@#%s&@#%s&@#%s&@#%s&@#%s", this.day, this.description, expenditureAmount, incomeAmount,
+                duration, payment, this.notes);
+    }
 
     @Override
     public String toString() {

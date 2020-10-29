@@ -45,7 +45,7 @@ public class AutoTrackerSaver extends SaveHandler {
         int size = entries.getItemsSize();
         for (int i = 0; i < size; i++) {
             RecurringEntry entry = (RecurringEntry) entries.getItemAtCurrIndex(i);
-            saveString.append(entry.toString() + System.lineSeparator());
+            saveString.append(entry.toSave() + System.lineSeparator());
         }
         FileWriter fileWriter = new FileWriter(paths.length == 2 ? paths[1] : fullPath);
         fileWriter.write(String.valueOf(saveString));
@@ -65,7 +65,7 @@ public class AutoTrackerSaver extends SaveHandler {
         String incomeExpense;
         while (scanner.hasNext()) {
             String saveString = scanner.nextLine();
-            classContents = saveString.split(";");
+            classContents = saveString.split("&@#");
             if (!classContents[2].equals("")) {
                 classContents[2] = classContents[2].substring(2, classContents[2].length() - 2);
                 incomeExpense = "-e ";
@@ -80,8 +80,11 @@ public class AutoTrackerSaver extends SaveHandler {
                 classContents[5] = "";
             }
             inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
-                    + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0]
-                    + " /notes " + classContents[6];
+                    + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0];
+
+            if (classContents.length == 7) {
+                inputString += " /notes " + classContents[6];
+            }
             RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
         }
     }
