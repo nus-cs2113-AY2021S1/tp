@@ -181,7 +181,8 @@ public class Event {
     }
 
     public String printEventParticipant() {
-        String output = "The following member" + ((eventParticipants.size() == 1) ? "" : "s") + " had participated in " + eventName + " :\n";
+        String output = "The following member" + ((eventParticipants.size() == 1) ? "" : "s") + " had participated in "
+                + eventName + " :\n";
         for (int i = 0; i < eventParticipants.size(); i++) {
             output = output.concat(eventParticipants.get(i).getMemberName() + "\n");
         }

@@ -315,15 +315,4 @@ public class MemberList {
         }
         return output;
     }
-
-    public static boolean checkIfMemberNameMatch(String keyword) {
-        boolean hasMatchedName = false;
-        for (Member member : members) {
-            if (member.containsNameKeyword(keyword)) {
-                hasMatchedName = true;
-                break;
-            }
-        }
-        return hasMatchedName;
-    }
 }

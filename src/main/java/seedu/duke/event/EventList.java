@@ -287,7 +287,9 @@ public class EventList {
                     e.setEventParticipants(m);
                     output = "Noted. I have added this participant to this event:\n";
                     output = output.concat(m.getMemberName() + "\n");
-                    output = output.concat("Now you have " + e.eventParticipants.size() + " member" + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in " + e.eventName + ".\n");
+                    output = output.concat("Now you have " + e.eventParticipants.size() + " member"
+                            + ((e.eventParticipants.size() == 1) ? "" : "s") + " participated in "
+                            + e.eventName + ".\n");
                 } else {
                     output = output.concat("Member attendance had already been taken!\n");
                 }
@@ -301,6 +303,24 @@ public class EventList {
     }
 
 
+    public static String listAttendance(String eventName) {
+        String output = "";
+        if (checkEventExistence(eventName)) {
+            Event e = findEventByName(eventName);
+            output = "The following " + ((e.getEventParticipants().size() > 1) ? "members have" : "member has")
+                    + " participated in this event:\n";
+            for (int i = 0; i < e.getEventParticipants().size(); i ++) {
+                int index = i + 1;
+                output = output.concat(index + ". " + e.getEventParticipants().get(i).getMemberName() + "\n");
+            }
+            output = output.concat("Now you have " + e.eventParticipants.size() + " member"
+                    + ((e.eventParticipants.size() == 1) ? "" : "s") + " attended "
+                    + e.eventName + ".\n");
+        } else {
+            output = output.concat("Event does not exist!\n");
+        }
+        return output;
+    }
 }
 
 
