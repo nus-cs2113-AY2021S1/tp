@@ -59,13 +59,13 @@ Don't worry! <strong>Kaji</strong> will help you solve all these problems!
 KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
-This User Guide is divided into four sections, Overview, Quik Start, Features, and Command Summary.
+This User Guide is divided into four sections, Overview, Quick Start, Features, and Command Summary.
 
 <b>Overview section</b> will briefly introduce Kaji and its User Guide, also the Command Line Interface to you.
 
 <b>Quick Start section</b> will guide you to make some preparations in advance and teach you how to run Kaji.
 
-<b>Features section</b> will introduce all features of Kaji according to different levels, you can learn features in details in this section.
+<b>Features section</b> will introduce all features of Kaji according to different levels, you can learn features in detail in this section.
 
 <b>Command summary section</b> will sum up different command type in a table.
 
