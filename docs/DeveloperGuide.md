@@ -296,7 +296,7 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 ![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
 
 ### Feature 2: Recurring Tracker
-####Overview
+##### Overview
 ##### Recurring Tracker
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
@@ -358,7 +358,8 @@ The sequence diagram below shows how it works:
 
 
 
-#### Feature 2: FinanceTools
+#### Feature 3: FinanceTools
+##### Overview
 FinanceTools consists of the following features
 1. Simple Interest Calculator
 2. Yearly/Monthly Compound Interest Calculator
@@ -400,18 +401,12 @@ is done by ```YearlyCompoundInterest``` / ```MonthlyCompoundInterest``` class. T
 ```FinanceTools.main()```.
 <br />
 
-__Parameters (Yearly Compound Interest Calculator)__
+__Parameters (Yearly/Monthly Compound Interest Calculator)__
 
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
-* ```/p``` - Number of Years (Mandatory)
-* ```/d``` - Yearly Deposit (Optional)
-
-__Parameters (Monthly Compound Interest Calculator)__
-* ```/a``` - Amount (Mandatory)
-* ```/r``` - Interest Rate (Mandatory)
-* ```/p``` - Number of Months (Mandatory)
-* ```/d``` - Monthly Deposit (Optional)
+* ```/p``` - Number of Years/Months (Mandatory)
+* ```/d``` - Yearly/Monthly Deposit (Optional)
 
 The following class diagram shows how the Yearly/Monthly Compound Interest Calculator feature works:
 <br />
@@ -535,7 +530,7 @@ To store the commands inputted by user and results from calculations in FinanceT
 The commands are stored before the params are handled and implementation is executed. The results from calculation
 is stored when the implementation has finished executed.
 
-#### Feature 3: Goal Tracker
+#### Feature 4: Goal Tracker
 ##### Set Expense Goal Feature
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -563,7 +558,7 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-#### Feature 4: Save Manager
+#### Feature 5: Save Manager
 ##### What it does
 Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.
