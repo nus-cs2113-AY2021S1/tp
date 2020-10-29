@@ -32,7 +32,6 @@ public class ApplianceList {
     }
 
     public Appliance getAppliance(int index) {
-        assert index < 0 : "Index should be positive.";
         return applianceList.get(index);
     }
 

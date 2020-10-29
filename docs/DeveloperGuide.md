@@ -13,12 +13,13 @@
   * [Command Component](#command-component)
   * [Storage Component](#storage-component)
   * [Parser Component](#parser-component)
-* [Product scope](#implementation)
+* [Appendix A: Product scope](#appendix-a-product-scope)
   * [Target user profile](#target-user-profile)
   * [Value proposition](#value-proposition) 
-* [User Stories](#user-stories)
-* [Non Functional Requirements](#non-functional-requirements)
-* [Instructions for manual testing](#instructions-for-manual-testing)
+* [Appendix B: User Stories](#appendix-b-user-stories)
+* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
+* [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## **Introduction**
 
@@ -48,17 +49,18 @@ Intellij IDEA User (highly recommended):
 
 ## Design
 ### Project overview
+
 SmartHomeBot is built using java. SmartHomeBot can be built on any platform including Windows, MAC-OS and Linux. When 
 running locally on these systems, SmartHomeBot has the ability to keep track of all the appliances registered into the 
 program and control their operating systems through the program. SmartHomeBot also has a storage file that allows the 
 saving and loading of data. This allows the SmartHomeBot to keep the information of the appliance and its parameters 
-even after the program is turned off.
+even after the program is turned off. 
 
 ### Architecture
 
-![Architecture](images/diagrams/ArchitectureDiagram.JPG)
+![Architecture](images/diagrams/Architecture.png)  <br>
 
-The *Architecture Diagram* shown above explains the high-level design of the SmortHomeBot Application. Given below is a brief overview of each component.
+The *Architecture Diagram* shown above explains the high-level design of SmortHomeBot Application. Given below is a brief overview of each component.
 
 `Main` is responsible for initializing other components in correct sequence, and connects them up with each other.
 
@@ -69,22 +71,72 @@ The rest of the App consists of four components.
 * `Logic` The command executor which consists of,
    * `Paser`: Extract the keyword from user input
    * `Commands`: Execute the specific command according to the keyword
-* `Model` Holds the data in-app-memory while program is running. Consists of ...
-
+* `Data` Holds the data in-app-memory while the program is running. 
 * `Storage` Reads and writes data from and to a text file.
 
+How the architecture components interact with each other
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `create br1`.
+
+![UI Class](images/diagrams/Sequence_overview.png)  <br>
+
+The sections below give more details of each component.
+
+### Ui Component
+
+The class diagram of `TextUi` is shown below together with `Main`:
+
+![UI Class](images/diagrams/ClassDiagram_UI.png)  <br>
+
+The sequence diagram of `TextUi` is shown below:
+
+![UI Sequence](images/diagrams/Sequence_TextUi.png)  <br>
+
+**API** : [TextUI.java](https://github.com/AY2021S1-CS2113-T14-1/tp/blob/master/src/main/java/seedu/smarthomebot/ui/TextUi.java)
+
+The UI component which consists of TextUi,
+* Prompt commands from the user.
+* Execute user commands using the *Logic component*.
+* Displays information based on changes to *Data*.
+* Prints the SmartHomeBot appliance in a well-formatted form.
+
+### Logic Component
+
+The class diagram of `Logic Component` is shown below together with an example:
+
+![Logic Component](images/diagrams/Sequence_LogicComponent.png)  <br>
+
+**API** : [Logic](https://github.com/AY2021S1-CS2113-T14-1/tp/tree/master/src/main/java/seedu/smarthomebot/logic)
+
+1. Logic uses the **Parser class** to parse the user command.
+2. This results in a **Command object**.
+3. The command execution can affect the *Data* (e.g. adding a new location “br1” into its **LocationList**).
+4. The result of the command execution is encapsulated as a **CommandResult object** which is passed back to the Ui.
+5. In addition, the **CommandResult object** can also instruct the *Ui* to perform certain actions, such as displaying help to the user.
+6. Shown above is the Sequence Diagram for interactions within the *Logic component* for the when user enter "create br1" and how the API call.
 
 ### Data Component
-![Data Component](images/diagrams/ClassDiagram_DataOverview.png)
 
- 
+The class diagram of `Data Component` is shown below:
+
+![Data Component](images/diagrams/ClassDiagram_DataOverview.png)  <br>
+
+**API** : [Data](https://github.com/AY2021S1-CS2113-T14-1/tp/blob/master/src/main/java/seedu/smarthomebot/data)
+
+
+The *Data Component Diagram* shown above explains the high-level design of the Data which consists of `LocationList` which stores all the locations created by user, `ApplianceList` stores all the appliance which can be created from one of the types - `Fan`, `AirConditioner`,`Light`, or `SmartPlug`. Each appliance creates `Power` which used for computation of power usage. 
+
+---
+<br>
+
 ## Implementation
 
 ### Detailed Data Component 
+
 The *Detailed Data Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
 from the abstract appliance class. 
 
-![Detailed Data Component](images/diagrams/ClassDiagram_DetailedData.png)
+![Detailed Data Component](images/diagrams/ClassDiagram_DetailedData.png)  <br>
 
 To create an Appliance, we pass the name, location, wattage, power and the entire locationList. We first check from the 
 locationList if the name of the appliance is inside the locationList, and the location exists within the locationList. 
@@ -96,7 +148,6 @@ The Power class is responsible for computing the appliance’s power consumption
 The public methods in the Appliances accessible via the ApplianceList are used to manipulate the appliances such as
 turning `ON` and `OFF`. From the appliance class, the program will be able to retrieving the name, location, statuses of
 the appliances. 
-
 
 ### Parser Component
 
@@ -309,6 +360,7 @@ The first condition checks the index of the tagged appliance in the applianceLis
 signifies that that key does not exist in the location or appliance list. Else, we will call the `offAppliance` method.
 
 #### List Command 
+
 To list appliances or locations, the `ListCommand` class is used. This class' object is first created by the `Parser` class, 
 where it is then returned to the `Main` class to have its `execute()` function be called.When the Main class calls the `execute()` 
 function, ListCommand will call upon the function “list appliance” or  “list location”  in `ListCommand` class to 
@@ -316,7 +368,9 @@ determine whether to list the appliances or location, then return a new `Command
 
 The sequence diagram for `ListCommand` is shown below:
 
-![Sequence of List Command](images/diagrams/Sequence_ListCommand.png) <br><br>
+![Sequence of List Command](images/diagrams/Sequence_ListCommand.png) 
+
+<br><br>
 
 As depicted from the diagram, there are 
 2 cases for `ListCommand`:
@@ -332,30 +386,26 @@ just create a list of all the appliances in filteredLocation.
 This method creates a list of all the locations that stores in the locationList.
 
 #### Usage Command
-To find out the power consumption of each appliance and total power usage. This class object is first created by the 
-`Parser` class, where it is then returned back to the `Main` class to have its `execute()` method called. 
-When the `Main` class calls the `execute()` function, `UsageCommand` will get the appliance’s details such as name, 
-location, status and power usage as shown in the sequence diagram. Power consumption will be computed based on the 
-appliance usage time with respect to the system time. If the appliance status is **on** it will get its time used with 
-respect to the current system time. Thus, the power consumption will be calculated and displayed autofomarted content 
-to the user which returns a new `CommandResults` class.
 
-The sequence diagram of `UsageCommand` is shown below:
+To find out the power consumption of each appliance and total power usage. This class object is first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` method called. 
+When the `Main` class calls the `execute()` function, `UsageCommand` will get the appliance’s details such as name, location, status and power usage as shown in the sequence diagram. Power consumption will be computed based on the appliance usage time with respect to the system time. If the appliance status is **on** it will get its time used with respect to the current system time. Thus, the power consumption will be calculated and displayed auto-formatted content to the user which returns a new `CommandResults` class.
+
+The sequence diagram of `UsageCommand` is shown below when user enters *usage*:
 
 ![Sequence of Usage Command](images/diagrams/Sequence_UsageCommand.png) <br>
 
 #### Reset Command 
 
-To reset the power consumption of each appliance and total power usage of SmartHomeBot back to zero. This class object 
-is first created by the `Parser` class, where it is then returned back to the `Main` class to have its `execute()` 
+To reset the power consumption of each appliance and total power usage of SmartHomeBot back to zero. This class object is first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` 
 method called. When the `Main` class calls the `execute()` function, `ResetCommand` will then access the power class 
-and reset the appliance power. A new CommandResults class will be returned back to the main with a feedback message.
+and reset the appliance power. A new CommandResults class will be returned to the main with a feedback message.
 
-The sequence diagram of `ResetCommand` is shown below:
+The sequence diagram of `ResetCommand` is shown below when user enters *p_reset*:
 
 ![Sequence of Reset Command](images/diagrams/Sequence_ResetCommand.png) <br>
 
 #### Invalid Command
+
 If users key in the wrong command, the `InvalidCommand` class is used.This class' object is 
 first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()`  
 function be called. When the `Main` class calls the `execute()` function, `InvalidCommand` will 
@@ -425,7 +475,7 @@ The sequence diagram for `ReadStorageFile` is shown below:
 ![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
 
-## Product scope
+## Appendix A: Product scope
 
 ### Target user profile
 
@@ -437,7 +487,7 @@ This program consolidates all the home appliance’s control into a centralised 
 monitor electricity usage; having a clearer picture of their electrical usage patterns. We can extract the latest 
 electricity price to calculate users’ utility bills. A backlog of the usage can also be recorded. 
 
-## User Stories
+## Appendix B: User Stories
 
 |Version| As a(n) ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -450,14 +500,45 @@ electricity price to calculate users’ utility bills. A backlog of the usage ca
 |v2.0|Lazy user|Change the temperature of the air-conditioner and the speed of the fan from SmartHomeBot|Monitor his smart home appliances|
 |v2.0|Experienced SmartHomeBot user|On/OFF appliances by location and list appliances by location|Easily view and manipulate appliances by location|
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 
-## Glossary
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 
-* *glossary item* - Definition
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Instructions for manual testing
+## Appendix D: Glossary
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+*Mainstream OS*
+
+  **Windows, Linux, Unix, OS-X**
+
+*Home appliance details*
+
+  **House appliance that meant to be recorded and use with SmartHomeBot**
+
+
+## Appendix E: Instructions for Manual Testing
+
+*Launch and Shutdown*
+**Initial launch**
+    i. Download the jar file from the latest release and copy into an empty folder
+    ii. Double-click the jar file
+        Expected: Shows the GUI with some welcome messages. The window size may not be optimum.
+
+*Creating a room and adds a new appliance*
+Creating a new location while it is not existed in the locations list
+Prerequisites: List all locations using the `list location` command. Making sure the name of the new location is not found in the list.
+
+Test case: `create bedroom`
+Expected-printout: Creating Location "bedroom".....CREATED!
+
+Test case: `add coolx l/bedroom w/550 t/fan`
+Expected-printout: ADDING coolx(550W) in bedroom ......ADDED
+
+Test case: `add coolx l/other_room w/550 t/fan`
+Expected-printout: Location does not exist.
+
+Other incorrect wattage value used to try: `add coolx l/bedroom w/xyz t/fan` (where wattage has to be in valid integer value)
+Expected-printout: Please enter a valid numerical value.
