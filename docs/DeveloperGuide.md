@@ -478,10 +478,10 @@ to **create new** `Workspace`:
 
 **Step 3:** Upon completion of parsing and input validation, `WorkspaceParser.java` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
 
-**Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` and before running `WorkspaceCommand#createWorkspace()` accordingly.
+**Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` before running `WorkspaceCommand#createWorkspace()` accordingly.
 
-**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new workspace to User, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
-Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
+Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
 *Figure 15: Workspace Command After New Workspace Creation*
@@ -495,14 +495,14 @@ Finally, it uses `storageManager#saveWorkspace()` to save the Workspace to disk.
 Likewise, the operations to switch, list, and delete follows a similar execution process. 
 The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
 
-User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
+**Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
-*Figure 16: Workspace Command After New Workspace Switch*
+*Figure 16: Workspace Command After Workspace Switch*
 
 <br/>
 
-User keys in `workspace -d Default` to delete the workspace named `Default`.
+**Step 8:** User keys in `workspace -d Default` to delete the workspace named `Default`.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
 *Figure 17: Workspace Command After New Workspace Delete*
@@ -528,10 +528,10 @@ As most commands in `WorkspaceCommand` operates on an individual `Workspace`, th
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Identify using an number ID | Users can quickly `switch` and `delete` `Workspace` just by keying in a number | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic |
+| Identify using a number ID | Users can quickly `switch` and `delete` `Workspace` just by keying in a number | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic |
 | Identify using name  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first | User may waste time typing long workspace names |
 
-We have decided to use `name` to identify `Workspace` as it is more intuitive for end-user. 
+We have decided to use `name` to identify `Workspace` as it is more intuitive for the end-user. 
 This also avoids the need to maintain an integer `ID` for each `Workspace`.
 
 <br/>
