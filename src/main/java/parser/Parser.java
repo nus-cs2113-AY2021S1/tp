@@ -31,6 +31,7 @@ import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
 import exception.InvalidSortCriteriaException;
+import exception.NoEditEventDescriptionException;
 import exception.NoEventLocationException;
 import exception.NoEventLocationMarkerException;
 import exception.NoSortCriteriaException;
@@ -213,6 +214,10 @@ public abstract class Parser {
             timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
 
+            if (words.length == 2) {
+                throw new NoEditEventDescriptionException();
+            }
+
             switch (words[2]) {
             case ASSIGNMENT:
             case CLASS:
@@ -248,13 +253,13 @@ public abstract class Parser {
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
                     switch (words[2]) {
                     case ASSIGNMENT:
-                        return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case CLASS:
-                        return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new Class(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case PERSONAL_EVENT:
-                        return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     default:
                         break;

@@ -4,6 +4,7 @@ import eventlist.EventList;
 import exception.CreatingFileException;
 import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
+import exception.NoEditEventDescriptionException;
 import exception.UndefinedEventException;
 import exception.WrongEditFormatException;
 import locationlist.BusStopList;
@@ -20,7 +21,7 @@ import ui.UI;
 class EditCommandTest {
 
     @Test
-    void execute_noIndexSpecified_emptyEventIndexException() throws NuScheduleException {
+    void execute_NoIndexSpecified_emptyEventIndexException() throws NuScheduleException {
 
         Assertions.assertThrows(EmptyEventIndexException.class, () -> {
             Command d = Parser.parse("edit", null);
@@ -29,14 +30,14 @@ class EditCommandTest {
     }
 
     @Test
-    void execute_inputIsNotInteger_WrongEditFormatException() {
+    void execute_InputIsNotInteger_WrongEditFormatException() {
         Assertions.assertThrows(WrongEditFormatException.class, () -> {
             Command c = Parser.parse("edit c", null);
         });
     }
 
     @Test
-    void execute_indexOutOfBounds_UndefinedEventException() throws CreatingFileException {
+    void execute_IndexOutOfBounds_UndefinedEventException() throws CreatingFileException {
         Storage storage = new Storage("data/events.txt");
         LocationList locations = new LocationList();
         storage.loadLocationData(locations.getLocationList());
@@ -46,5 +47,10 @@ class EditCommandTest {
         });
     }
 
-
+    @Test
+    void execute_NoEditDescriptionProvided_NoEditEventDescriptionException() {
+        Assertions.assertThrows(NoEditEventDescriptionException.class, () -> {
+            Command c = Parser.parse("edit 1", null);
+        });
+    }
 }
