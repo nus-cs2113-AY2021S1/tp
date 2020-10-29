@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 //@@author OngDeZhi
 /**
- * Manages the storage of AniChan's watchlist data.
+ * Represents the class to manage watchlist data.
  */
 public class WatchlistStorage extends Storage {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";

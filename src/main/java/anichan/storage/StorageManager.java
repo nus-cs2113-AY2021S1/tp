@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Manages the storage of AniChan's data.
+ * Represents the class to manage all of AniChan's data.
  */
 public class StorageManager {
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
