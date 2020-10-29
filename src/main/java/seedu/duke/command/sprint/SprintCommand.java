@@ -30,11 +30,12 @@ public abstract class SprintCommand extends Command {
      * Choose the project to execute command.
      * Validation completed at SprintParser
      */
-    protected void chooseProject() {
+    protected void chooseProject() throws DukeException {
         int selectedProg;
         if (parameters.containsKey("project")) {
             //select specified project
             selectedProg = Integer.parseInt(parameters.get("project"));
+            checkProjectExist(selectedProg);
         } else {
             //select default project
             selectedProg = projectList.getSelectedProjectIndex();
@@ -53,13 +54,13 @@ public abstract class SprintCommand extends Command {
         int selectedSprint;
         if (this.parameters.containsKey("sprint")) {
             selectedSprint = Integer.parseInt(this.parameters.get("sprint"));
-            if (selectedSprint > this.projOwner.getSprintList().size()) {
-                throw new DukeException("Sprint not found.");
+            if (selectedSprint < 1 || selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found: " + selectedSprint);
             }
         } else if (this.parameters.containsKey("0")) {
             selectedSprint = Integer.parseInt(this.parameters.get("0"));
-            if (selectedSprint > this.projOwner.getSprintList().size()) {
-                throw new DukeException("Sprint not found.");
+            if (selectedSprint < 1 || selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found: " + selectedSprint);
             }
         } else {
             if (this.projOwner.getSprintList().updateCurrentSprint()) {
@@ -85,9 +86,15 @@ public abstract class SprintCommand extends Command {
     /**
      * Check if Project Manager contain any project.
      */
-    protected void checkProjectExist() throws DukeException {
-        if (this.projectList.size() == 0) {
-            throw new DukeException("Please create a project first.");
+    protected void checkProjectExist(int projId) throws DukeException {
+        if (projId != -1) {
+            if (!this.projectList.checkExist(projId)) {
+                throw new DukeException("Project do not exist:" + projId);
+            }
+        } else {
+            if (this.projectList.size() == 0) {
+                throw new DukeException("Please create a project first.");
+            }
         }
     }
 
@@ -136,7 +143,7 @@ public abstract class SprintCommand extends Command {
 
             if (isAdd == this.sprintOwner.checkTaskExist(taskId)) {
                 throw new DukeException(isAdd
-                        ? "Task(s) already exist" + taskId
+                        ? "Task(s) already exist: " + taskId
                         : "Task not found in sprint: " + taskId);
             }
 
