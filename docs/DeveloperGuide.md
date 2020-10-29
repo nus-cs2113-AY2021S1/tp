@@ -518,8 +518,6 @@ The following sequence diagram illustrates how `Workspace` creation in the examp
 ![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
 *Figure 18: Workspace Command After New Workspace Delete*
 
-
-
 <br/>
 
 #### 4.4.2 Design Consideration

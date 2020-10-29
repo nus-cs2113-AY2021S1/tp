@@ -19,6 +19,7 @@ public class WorkspaceParser extends CommandParser {
     public static final String COMMAND_LIST = COMMAND_list;
     public static final String COMMAND_DELETE = "d";
     public static final String REGEX_SPACE_CHARACTER = " ";
+    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
 
     private String commandOption;
     private String commandDescription;
@@ -82,10 +83,28 @@ public class WorkspaceParser extends CommandParser {
 
             if (!commandOption.equals(COMMAND_LIST)) {
                 commandDescription = givenOption[1].trim();
+                checkName(commandDescription);
             }
         } catch (IndexOutOfBoundsException exception) {
             LOGGER.log(Level.WARNING, EXCEPTION_INVALID_PARAMETERS);
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
+        }
+    }
+
+    /**
+     * Checks if workspace name is valid.
+     *
+     * @param workspaceName name of workspace
+     * @throws AniException when name is not of valid format
+     */
+    private void checkName(String workspaceName) throws AniException {
+        if (workspaceName != null) {
+            boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
+
+            if (!isValid) {
+                LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
+                throw new AniException(EXCEPTION_INVALID_PARAMETERS);
+            }
         }
     }
 

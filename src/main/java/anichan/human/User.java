@@ -19,7 +19,6 @@ public class User extends Human {
     public static final String HONORIFIC_FEMALE = "-chan";
     public static final String HONORIFIC_NEUTRAL = "-san";
     public static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
-    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
 
     protected Gender gender;
     protected Workspace activeWorkspace;
@@ -136,30 +135,12 @@ public class User extends Human {
         if (doesWorkplaceExist(name)) {
             throw new AniException("Workspace already exist!");
         } else {
-            checkName(name);
             Workspace newWorkspace = new Workspace(name);
 
             workspaceList.add(newWorkspace);
             LOGGER.log(Level.INFO, "Workspace created: " + name);
             return newWorkspace;
 
-        }
-    }
-
-    /**
-     * Checks if workspace name is valid.
-     *
-     * @param workspaceName name of workspace
-     * @throws AniException when name is not of valid format
-     */
-    private void checkName(String workspaceName) throws AniException {
-        if (workspaceName != null) {
-            boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
-
-            if (!isValid) {
-                LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
-                throw new AniException("Invalid parameters detected!");
-            }
         }
     }
 
