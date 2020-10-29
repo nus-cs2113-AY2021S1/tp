@@ -6,19 +6,18 @@ import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.DukeNoMatchException;
 import seedu.duke.DukeNotNumberException;
-import seedu.duke.event.CommandEventCountdown;
 import seedu.duke.event.CommandEventAdd;
+import seedu.duke.event.CommandEventCountdown;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
-import seedu.duke.event.CommandSearchEvent;
 import seedu.duke.event.CommandEventStatus;
+import seedu.duke.event.CommandSearchEvent;
 import seedu.duke.finance.CommandFinanceAdd;
+import seedu.duke.finance.CommandFinanceChange;
 import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
 import seedu.duke.hr.CommandAddMember;
 import seedu.duke.hr.CommandChangeMemberInfo;
-import seedu.duke.hr.CommandSearchMember;
-import seedu.duke.hr.CommandViewMember;
 import seedu.duke.hr.CommandDelMember;
 import seedu.duke.hr.CommandListConnection;
 import seedu.duke.hr.CommandListProfAdmin;
@@ -162,6 +161,7 @@ public class Ui {
         commandList.add(new CommandEventCountdown());
         commandList.add(new CommandSearchEvent());
         commandList.add(new CommandImportCsv());
+        commandList.add(new CommandFinanceChange());
     }
 }
 
