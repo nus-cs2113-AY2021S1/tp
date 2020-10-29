@@ -111,4 +111,10 @@ public abstract class Writings {
                 + getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println(PLAIN_TEXT_DIVIDER);
     }
+
+    public void printWritingsReminder() {
+        System.out.println("  Id: " + getId());
+        System.out.println("  Title: " + getTitle().toUpperCase());
+        System.out.println(PLAIN_TEXT_DIVIDER);
+    }
 }
