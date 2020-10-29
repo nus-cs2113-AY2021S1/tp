@@ -15,62 +15,60 @@ testing and development sections to help developers better understand the applic
 
 ## Design & implementation
 
-The application has been broken down into different segments so that users would find it easy to navigate from one
-segment to the next one. There are three segments within the application:
-* Subjects: This segment edits the list of all the subjects present within the application and takes care of relevant
-commands such as add subject, delete subject or find subject.
-* Subject: This segment is accessed through the `subject NAMEOFSUBJECT` command. The user would then look at the individual 
-subjects and then would be able to add either tasks or topics.
-* Topic : This segment is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or find flashcards
-in this segment.
+The application has been broken down into different segments so that users would find it easy to navigate from one segment 
+to the next one. There are three segments within the application:
+* Main: This segment edits the list of all the subjects present within the application and takes care of relevant commands 
+such as add subject, delete subject or find subject.
+* Subject: This segment is accessed through the `subject NAMEOFSUBJECT` command. The user would then look at the individual
+ subjects and then would be able to add either tasks or topics.
+* Topic : This segment is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or find flashcards in 
+this segment.
 
-The code is broken down into different packages, which combine classes that perform a similar functionality. Here
-are the list of packages:
+The code contains the main class Revised, as well as different packages, which combine classes that perform a similar 
+functionality. Here are the list of packages:
 * Card: In charge of classes related to the subject, topic, flashcard and quiz functionalities
-    - Quiz
-        * Quiz
-        * Result
-        * ResultList
-        * TopicQuiz
-        * SubjectQuiz
-    - Flashcard
-    - Subject
-    - SubjectList
-    - Topic
-    - TopicList
-    
-
 * Command: In charge of reading the command and calling the relevant methods. The package itself holds
 the following packages.
-    - Flashcard
-    - Subject
-    - Topic
-    - Task
-    
 * Exceptions: Deals with the various exceptions which are thrown in the application.
-    -flashcard
-    - storage
-    - subject
-    - task
-    - topic
 * Parser: Parses the commands and instantiates the relevant command classes.
 * Storage: Stores the data in an external folder
 * Task: Contains the classes for the different types of tasks.
 * Ui: In charge of interaction with the user.
 
-### Quiz package
-The `Storage` package holds the necessary classes for the quiz functionality of this application. The following are
-the classes in the package:an abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
+### Card Package
+The Card package consists of different classes that holds information on the main functionalities of the application,
+and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
+- Quiz Package
+    * Quiz class
+    * Result class
+    * TopicQuiz class
+    * SubjectQuiz class
+- Task Package
+    * Deadline class
+    * Event class
+    * Task class
+    * Todo class
+- Flashcard class
+- Subject class
+- Topic class
 
-#### Quiz class
+Each of the classes in the card package contains:
+* Getters and Setters of its own attributes
+* methods that alter an instance of its own class
+
+#### Quiz package
+The `Quiz` package holds the necessary classes for the quiz functionality of this application. The following are
+the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
+
+##### Quiz Class
 `Quiz` class is an abstract class in the `Quiz` package. It is holds the result of a quiz class and the list of flashcards
 from any subject or topic classes which the user calls the quiz for. Furthermore, it contains a checkAnswer() method the
 checks the answer that the user had given with the correct answer of the quiz. If the user enters the correct answer, the 
 existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
-the user is transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
+the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
 questions that the users did not answer correctly, along the the answer that was provided by the user. 
 
-#### SubjectQuiz
+##### SubjectQuiz class
 `SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz. The `startQuiz` method calls for the  `setupQuiz` method checks for the presence
 of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
 `NoFlashcardException` for the latter. If the topics have flashcards, then these are transferred to the 
@@ -85,20 +83,96 @@ then the application not only prints the score, but it also prints the incorrect
 The following diagram shows how you can initiate the quiz for a subject.
 ![first](https://user-images.githubusercontent.com/46095141/97313097-3866e200-18a1-11eb-9525-73e38ceb7cbe.png)
 
-
-#### TopicQuiz
+##### TopicQuiz class
 `TopicQuiz` class is similar to the `SubjectQuiz` class, except for the fact that it initiates the quiz
 only for the specific topic. Furthermore, this class only throws the `NoFlashcardException` for when the topic does not 
 have any flashcards, which is detected by the `setupQuiz` method. The implementation of the `startQuiz` method is similar
 to that of the SubjectQuiz class.
 
-#### Result
-`Result` class stores the stores the result of a quiz . It has three instance variables, namely the `score` variable
+##### Result
+`Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
 which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
 quiz, while the  `description` variable will be a grade given to you depending on your performance.
 The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
-### Storage package
+#### Task Package
+The `Task` package holds the necessary classes for the Task functionality of this application. The following are
+the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
+
+##### Task class
+The `Task` class is the super class of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
+and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
+status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
+ a toString methods to print the Task.
+ 
+###### Todo Class
+The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
+ones found in its super class `Task`. It has an additional Override toString method, to differentiate between itself and other
+tasks, such as Deadline and Event.
+
+An example of how a Todo task "return books" will look like in the command line for user intepretation is shown below.
+```
+____________________________________________________________
+Got it. I've added this task:
+ [T][✘] return books
+Now you have 1 task in the list.
+____________________________________________________________
+```
+
+###### Deadline Class
+The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
+ones found in its super class `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
+to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
+and Event.
+
+An example of how a Deadline task "return books /by 23:59 10-11-2020" will look like in the command line for user intepretation is shown 
+below.
+```
+____________________________________________________________
+Got it. I've added this task:
+  [D][✘] return books (by: 11:59 PM 10 Nov 2020)
+Now you have 2 tasks in the list.
+____________________________________________________________
+```
+
+###### Event Class
+The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
+It contains methods and attributes similar to the ones found in its super class `Task`, and additional attributes to make it a `Deadline`
+Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
+to differentiate between itself and other tasks, such as `Todo` and `Deadline`.
+
+An example of how an Event task "event CS2113T meeting /at 12:00 10-11-2020" will look like in the command line for user intepretation is shown 
+below.
+```
+____________________________________________________________
+Got it. I've added this task:
+  [E][✘] CS2113T meeting (at: 12:00 PM 10 Nov 2020)
+Now you have 3 tasks in the list.
+____________________________________________________________
+```
+
+#### Flashcard Class
+The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
+and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
+
+
+#### Subject Class
+The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
+subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
+and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
+attributes in the `Subject` class and a toString method to return the title of the subject.
+
+An example of how classes in the card package interact with each other is shown in the figure below. 
+In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
+
+* Command: In charge of reading the command and calling the relevant methods. The package itself holds
+the following packages.
+    - Flashcard
+    - Subject
+    - Topic
+    - Task
+
+### Storage Package
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
 relationship between the two classes.
 
