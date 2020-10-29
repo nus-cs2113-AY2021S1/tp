@@ -1,5 +1,7 @@
 package seedu.financeit.utils.storage;
 
+import org.junit.Assert;
+import org.junit.Test;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -10,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 
@@ -48,7 +52,6 @@ public class SaveManager {
                 }
                 break;
             case "help":
-                menu = true;
                 break;
             case "exit":
                 return load;
@@ -130,7 +133,11 @@ public class SaveManager {
                 }
             }
             FileWriter fileWriter = new FileWriter(fullPath, true);
-            fileWriter.write("\n" + name);
+            if (file.length() == 0) {
+                fileWriter.write(name);
+            } else {
+                fileWriter.write("\n" + name);
+            }
             fileWriter.close();
             prompt = name + " has been added!";
 
@@ -177,6 +184,48 @@ public class SaveManager {
     }
 
     private static void deleteSave(CommandPacket packet) {
+        try {
+            String name = packet.getParam("/name");
+            StringBuilder nameList = new StringBuilder();
+            File file = new File(fullPath);
+            Scanner scanner = new Scanner(file);
+            prompt = name + " is not found!";
+            while (scanner.hasNext()) {
+                String saveString = scanner.nextLine();
+                if (!saveString.equals(name)) {
+                    nameList.append(saveString + "\n");
+                } else {
+                    String path = dirPath + "/" + name;
+                    Files.deleteIfExists(Paths.get(path + "_gt.txt"));
+                    Files.deleteIfExists(Paths.get(path + "_mt.txt"));
+                    Files.deleteIfExists(Paths.get(path + "_at.txt"));
+                    prompt = name + " has been removed!";
+                }
+            }
+            FileWriter fileWriter = new FileWriter(fullPath, false);
+            fileWriter.write(nameList.toString());
+            fileWriter.close();
 
+        } catch (Exception e) {
+            prompt = e.toString();
+        }
+    }
+
+    @Test
+    public void Test() {
+        InputParser parser = InputParser.getInstance();
+        CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
+        addSave(packet);
+        String path = dirPath + "/testcase2149855246427094876";
+        File GoalTracker = new File(path + "_gt.txt");
+        File ManualTracker = new File(path + "_mt.txt");
+        File AutoTracker = new File(path + "_at.txt");
+        File saveTxtMt = new File(ManualTrackerSaver.getInstance().fullPath);
+        File saveTxtGt = new File(GoalTrackerSaver.getInstance().fullPath);
+        File saveTxtAt = new File(AutoTrackerSaver.getInstance().fullPath);
+        Assert.assertEquals(saveTxtMt, ManualTracker);
+        Assert.assertEquals(saveTxtGt, GoalTracker);
+        Assert.assertEquals(saveTxtAt, AutoTracker);
+        deleteSave(packet);
     }
 }
