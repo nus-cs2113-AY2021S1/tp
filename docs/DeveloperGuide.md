@@ -509,11 +509,11 @@ quote management, progress tracker, category management and a rating system for 
    2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
    3. Save the jar file in a desired file directory.
    4. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   5. Run `java -jar Quotesify.jar` to launch Quotesify.
+   5. Run `java -jar quotesify.jar` to launch Quotesify.
    
 #### Subsequent launch
    1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   2. Run `java -jar Quotesify.jar` to launch Quotesify.
+   2. Run `java -jar quotesify.jar` to launch Quotesify.
    3. Data will be automatically loaded from the data file upon launch.
    
 #### Shutdown

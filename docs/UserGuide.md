@@ -72,7 +72,7 @@ Before you begin, here's what you need to do:
 1. Ensure you have at least `Java 11` installed on your system.
 2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
 3. Open your command line or terminal and navigate into the file directory where you saved the application.
-4. Run `java -jar Quotesify.jar` to launch Quotesify.
+4. Run `java -jar quotesify.jar` to launch Quotesify.
 5. Type a command in the command line and press `ENTER` to execute it. You should see the following:
 6. Refer to Features below for details of each command.
 
