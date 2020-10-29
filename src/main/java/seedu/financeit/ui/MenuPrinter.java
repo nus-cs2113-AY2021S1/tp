@@ -1,5 +1,6 @@
 package seedu.financeit.ui;
 
+
 public class MenuPrinter {
     public static String prompt = "";
 
@@ -22,4 +23,5 @@ public class MenuPrinter {
         System.out.println("Status: " + prompt);
         prompt = "";
     }
+
 }

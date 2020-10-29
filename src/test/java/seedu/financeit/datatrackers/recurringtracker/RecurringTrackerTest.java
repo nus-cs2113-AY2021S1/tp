@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class RecurringTrackerTest {
 
@@ -26,5 +28,22 @@ public class RecurringTrackerTest {
         assertEquals(3490.34, entry.amount);
         assertFalse(entry.isAuto);
         assertEquals("OIYH(*^(*ot9w3848(*&(*~~||///", entry.notes);
+    }
+
+    private static final int ENTRIES_TO_CREATE = 15;
+
+    @Test
+    public void handleNewEntry_validInputs_validEntriesCreated() {
+        for (int i = 0; i < ENTRIES_TO_CREATE; i++) {
+            CommandPacket testPacket = TestCommands.generateCreateCorrectEntryCommandAutoIncome();
+            RecurringEntry entryCreated = RecurringTracker.handleNewEntry(testPacket);
+            for (String paramType: testPacket.getParamTypes()) {
+                Object paramFromPacket = testPacket.getParam(paramType);
+                HashMap<String,Object> paramMapFromEntryCreated =
+                        entryCreated.getAllDetailsAsParamMap();
+                Object paramFromEntryCreated = paramMapFromEntryCreated.get(paramType);
+                assertTrue(paramFromPacket.equals(paramFromEntryCreated));
+            }
+        }
     }
 }

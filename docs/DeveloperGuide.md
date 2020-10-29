@@ -1,9 +1,9 @@
 # Developer Guide
 
-### Overview of architecture
+## Overview of architecture
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
-##### Architecture
+### Architecture
 ![](.DeveloperGuide_images/Overall%20Architecture.png)
 * __Feature modules__: Modules implementing the features of the application as follows:
 
@@ -27,13 +27,7 @@ interface facilitated in FinanceIt.java.
 
 ## Design & implementation
 
-### Logic
-
-#### Param Handling
-
-##### UML Class Diagram
-
-##### Summary
+### Summary
 * Classes which require input parameters by users require the collection of
 helper classes to handle the parsing, checking and organisation of the input string.
 * The handling of parameter input is isolated into an abstract class, whereby classes which requires a param handling
@@ -41,7 +35,7 @@ feature will inherit from the abstract class.
 * Specific behavior towards different ```param type```-```parameter``` pairs  will be defined within their 
 own class declarations.
 
-##### Architecture
+### Architecture
 * The initialisation of ```Ledger``` and ```Entry``` instances can be
 performed with reference to input parameters supplied from the user input.
 * For ledger creation operations, the input from the user is parsed and passed into an initialized ledger instance
@@ -57,6 +51,8 @@ attribute.
 <br>After which, an operation of edit/open would be performed upon the ledger referenced from 
 ```currLedger``` in ```ledgerList```.
 
+
+### Logic
 
 #### Input Parsing
 
@@ -116,9 +112,9 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
-#### Param Handling
+### Param Handling
 
-##### ParamHandler
+#### ParamHandler
 * An abstract class that defines all param handling behavior. 
     * Handling of params via```handleParams(packet)```:
         * Initialize the state of the handler 
@@ -133,15 +129,15 @@ and ```param``` indicates the parameter that is associated with the ```param typ
             1. All ```param``` in ```createLedgerCommand.requiredParams``` string array are parsed with no exceptions thrown.
         1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
 
-### Main Menu
+### Features
+#### Main Menu
 - Loading up user data
 - Access to various features
 - Saving outstanding user data to respective save files
 
-### Feature 1: Manual Tracker & Entry Tracker
-#### Overview
-
-##### Ledgers and Entries
+#### Feature 1: Manual Tracker & Entry Tracker
+##### Overview
+__Ledgers and Entries__
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
 Instances of ```Entry``` class are categorised by the date of origin, which is represented by
@@ -197,7 +193,6 @@ The Manual Tracker is capable of executing the following states of operation:
 | ```Logic``` |Outlines the abstract behavior of commands, as well as handle verification of params with appropriate error handling.
 
 
-##### Handler and Command
 
 ##### Command and Logic
 
@@ -212,6 +207,8 @@ The Manual Tracker is capable of executing the following states of operation:
 |```editEntryCommand```| Omitted for brevity.
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
+##### Handler and Command
 
 ![](uml_images/manualTracker/images/Handler_Commands.png)
 
@@ -298,8 +295,70 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
 ![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
 
+### Feature 2: Recurring Tracker
+####Overview
+##### Recurring Tracker
+Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
-### FinanceTools
+Entries use the class ```RecurringEntry```, and are stored in the ```RecurringEntryList``` class.
+
+`RecurringEntry` has the following attributes:
+* `day` - The day which the transaction occurs
+* `description`
+* `entryType` - Can be `Constants.EntryType.INC` or `Constants.EntryType.INC` 
+depending on whether the entry is an income or expenditure respectively.
+* `amount`
+* `start` and `end` - Which months does the entry apply to. Set to 1 and 12 by 
+default (i.e. occurs every month)
+* `isAuto` - Indicates whether the entry is automatically deducted/credited from/to account, 
+or manually deducted/credited from/to account
+* `notes` - Any user-specified notes
+
+`RecurringTrackerList` extends ItemList, and supports the following methods on top of inherited methods
+* `addItem(Item)` - Override. Adds item and sorts according to the day in ascending order
+* `getEntriesFromDayXtoY` - Returns an ArrayList of all entries that fall between day X and Y 
+(provided by developer in the code, not by user). Mainly used for reminders
+
+##### Reminders
+Upon launching the program, the system date and time is recorded in `RunHistory`.
+
+The program then checks if there are any entries upcoming within 5 days from the current date, and prints the entries out
+as reminders.
+
+1. Main code calls `MenuPrinter#printReminders()`, which in turn calls 
+`ReminderListGenerator#generateListOfRemindersAsStrings()`. 
+1. `ReminderListGenerator` checks the current date, and calculates the day of month which is 5 days from current date.
+This is stored in `dayToRemindUntil`.
+1. `ReminderListGenerator` then checks if `dayToRemindUntil` is after the last day of the current month. If it is,
+then the reminder timeframe will overflow to the next month. 
+    
+    For example:
+    * Current date is 29th October. There are 31 days in October. 5 days after today is 34th, 
+    which is beyond last day of October.
+    * Reminder timeframe will overflow to next month, until 3rd of November
+
+1. If it has overflown, set `isOverflowToNextMonth` to true. Subtract the last day of month from `dayToRemindUntil`.
+The new value of `dayToRemindUntil` is the day of next month that the reminder timeframe extends to.
+
+    For example:
+    * Continuing from example earlier, `dayToRemindUntil = 34`.
+    * `dayToRemindUntil -= NUM_DAYS_IN_OCT`, i.e. 34 - 31
+    * `dayToRemindUntil = 3`, representing that the reminder timeframe extends to 3rd of November
+1. `ReminderListGenerator` then grabs the entries within the reminder timeframe from the list of all recurring entries.
+    * If `isOverflowToNextMonth == true`, it will grab all entries from `currentDay` to `lastDayOfMonth` 
+    and all entries from `1` (1st day of next month) to `dayToRemindUntil`
+    * Else, it will simply grab all entries from `currentDay` to `dayToRemindUntil`
+
+1. Lastly, the list of entries will be converted to a formatted String to be displayed as reminders, and passed back
+to `MenuPrinter`, who will pass it to `UiManager` to print.
+
+The sequence diagram below shows how it works:
+
+![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
+
+
+
+#### Feature 2: FinanceTools
 FinanceTools consists of the following features
 1. Simple Interest Calculator
 2. Yearly/Monthly Compound Interest Calculator
@@ -308,13 +367,14 @@ FinanceTools consists of the following features
 6. Account Storage
 7. Command and Calculation History
 
-### Simple Interest Calculator
+##### Simple Interest Calculator
 Simple Interest Calculator is facilitated by ```SimpleIntest``` class. It allows user to calculate interest earned.
 When user inputs ```simple``` as a command, ```handleSimpleInterest``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```SimpleInterest``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-### Parameters
+
+__Parameters__
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 
@@ -331,7 +391,7 @@ The following sequence diagram shows how the Simple Interest Calculator feature 
 <br />
 ![SequenceDiagram2](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(2).png)
 
-### Yearly/Monthly Compound Interest Calculator
+##### Yearly/Monthly Compound Interest Calculator
 Yearly/Monthly Compound Interest Calculator is facilitated by ```YearlyCompoundInterest``` /
 ```MonthlyCompoundInterest``` class. It allows user to calculate interest earned.
 When user inputs ```cyearly``` / ```cmonthly``` as a command, ```handleYearlyCompoundInterest``` /
@@ -339,13 +399,15 @@ When user inputs ```cyearly``` / ```cmonthly``` as a command, ```handleYearlyCom
 is done by ```YearlyCompoundInterest``` / ```MonthlyCompoundInterest``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-### Parameters (Yearly Compound Interest Calculator)
+
+__Parameters (Yearly Compound Interest Calculator)__
+
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 * ```/p``` - Number of Years (Mandatory)
 * ```/d``` - Yearly Deposit (Optional)
 
-### Parameters (Monthly Compound Interest Calculator)
+__Parameters (Monthly Compound Interest Calculator)__
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 * ```/p``` - Number of Months (Mandatory)
@@ -371,13 +433,13 @@ The following sequence diagram shows how the Yearly/Monthly Compound Interest Ca
 <br />
 ![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/MonthlyCompoundInterestSequenceDiagram(2).png)
 
-### Cashback Calculator
+##### Cashback Calculator
 Cashback Calculator is facilitated by ```Cashback``` class. It allows user to calculate cashback earned.
 When user inputs ```cashb``` as a command, ```handleCashback``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```Cashback``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-### Parameters
+__Parameters__
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Cashback Rate (Mandatory)
 * ```/c``` - Cashback Cap (Mandatory)
@@ -395,13 +457,13 @@ The following sequence diagram shows how the Cashback Calculator feature works:
 <br />
 ![SequenceDiagram2](uml_images/financetools/Cashback/CashbackSequenceDiagram(2).png)
 
-### Miles Credit Calculator
+##### Miles Credit Calculator
 Miles Credit Calculator is facilitated by ```MilesCredit``` class. It allows user to calculate miles credit earned.
 When user inputs ```miles``` as a command, ```handleMilesCredit``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```MilesCredit``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-### Parameters
+__Parameters__
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Miles Rate (Mandatory)
 
@@ -418,7 +480,7 @@ The following sequence diagram shows how the Miles Creidt Calculator feature wor
 <br />
 ![SequenceDiagram2](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(2).png)
 
-### Account Storage 
+##### Account Storage 
 Account Storage feature is facilitated by ```AccountStorage``` class. It allows user to store account
 information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
 ```handleAccountStorage``` from ```Handler``` class will handle user inputted parameters and store information 
@@ -431,7 +493,7 @@ Additionally, it implements the following operations:
 * ```clearinfo``` - clear all information
 * ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
 
-### Parameters
+__Parameters__
 * ```/n``` - Account Name (Optional)
 * ```/ir``` - Interest Rate (Optional)
 * ```/r``` - Cashback Rate (Optional)
@@ -439,7 +501,7 @@ Additionally, it implements the following operations:
 * ```/o``` - Other Notes (Optional)
 * ```/rm``` - Account Number (Optional)
 
-#### Details
+###### Details
 ```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
 ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
 program again, the information is retained, and the user does not have to re-enter the account information(s) again.
@@ -468,13 +530,13 @@ The following sequence diagram shows how the Account Storage feature works:
 <br />
 ![SequenceDiagram3](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(3).png)
  
-### Command and Calculation History
+#### Command and Calculation History
 To store the commands inputted by user and results from calculations in FinanceTools, an ArrayList is used.
 The commands are stored before the params are handled and implementation is executed. The results from calculation
 is stored when the implementation has finished executed.
 
-### Goal Tracker
-### Set Expense Goal Feature
+#### Feature 3: Goal Tracker
+##### Set Expense Goal Feature
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
 When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
@@ -488,7 +550,7 @@ set expense goal feature with just slight command difference.
 * setExpenseGoal: expense 5000 for 08
 * setIncomeGoal: income 5000 for 08
  
-### How it works?
+##### How it works?
 Firstly, user will input the command based on the `Format`.
 Secondly, the input command will be sent to InputParser to parse.
 Thirdly, the parsed information will be sent to class `Goal` to store the individual information
@@ -501,17 +563,17 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-## Save Manager
-### What it does
+#### Feature 4: Save Manager
+##### What it does
 Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.
 
-### Overview
+##### Overview
 Save Manager is the backup storage and Ui program for the various save handler subclasses. Without Save Manager, save handler alone
 will only save one copy of goal tracker, manual tracker and auto tracker information upon exiting the program and load them upon
 start up.
 
-### Save Manager Sequence Diagram
+##### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
 ## Product scope

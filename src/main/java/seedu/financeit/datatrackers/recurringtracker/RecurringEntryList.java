@@ -5,6 +5,8 @@ import seedu.financeit.data.ItemList;
 import seedu.financeit.datatrackers.recurringtracker.comparators.SortByDay;
 import seedu.financeit.ui.TablePrinter;
 
+import java.util.ArrayList;
+
 //@@author Artemis-Hunt
 public class RecurringEntryList extends ItemList {
 
@@ -27,6 +29,27 @@ public class RecurringEntryList extends ItemList {
             }
         }
         TablePrinter.printList();
+    }
+
+    /**
+     * Returns an ArrayList of all RecurringEntry with
+     * day of month between X and Y  (both inclusive)
+     * i.e. Y >= day >= X (inequality)
+     *
+     * @param startDay - X
+     * @param endDay - Y
+     * @return ArrayList of RecurringEntry
+     */
+    public ArrayList<RecurringEntry> getEntriesFromDayXtoY(int startDay, int endDay) {
+        ArrayList<RecurringEntry> entries = new ArrayList<>();
+        for (Item item : super.items) {
+            RecurringEntry entry = (RecurringEntry) item;
+            int dayOfEntry = entry.getDay();
+            if (dayOfEntry >= startDay && dayOfEntry <= endDay) {
+                entries.add(entry);
+            }
+        }
+        return entries;
     }
 
 }

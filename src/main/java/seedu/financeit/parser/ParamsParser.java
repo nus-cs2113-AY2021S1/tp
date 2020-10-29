@@ -1,5 +1,7 @@
 package seedu.financeit.parser;
 
+import seedu.financeit.common.exceptions.ParseFailParamException;
+import seedu.financeit.utils.ParamChecker;
 import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
@@ -7,11 +9,17 @@ import java.util.regex.Matcher;
 
 //@@author Artemis-Hunt
 public class ParamsParser {
-    protected String paramSubstring;
     protected Matcher matcher;
+    private static ParamsParser paramsParser;
 
-    public ParamsParser(String paramSubstring) {
-        this.paramSubstring = paramSubstring;
+    private ParamsParser() {
+    }
+
+    public static ParamsParser getInstance() {
+        if (paramsParser == null) {
+            paramsParser = new ParamsParser();
+        }
+        return paramsParser;
     }
 
     public String getSeparator(String input) {
@@ -36,8 +44,8 @@ public class ParamsParser {
      * paramArgument: "skip page 70"
      * etc.
      */
-    public HashMap<String, String> parseParams() {
-        HashMap<String, String> params = new HashMap<>();
+    public HashMap<String, String> parseParams(String paramSubstring) {
+        HashMap<String, String> paramMap = new HashMap<>();
         String[] buffer;
         String paramArgument = "";
         boolean paramArgumentExist;
@@ -58,7 +66,7 @@ public class ParamsParser {
             boolean isRestOfStringEmpty = buffer[1].length() == 0;
             if (isRestOfStringEmpty) {
                 //No param argument, no further params
-                params.put(paramType, paramArgument);
+                putParamIntoParamMap(paramType, buffer[1], paramMap);
                 break;
             }
 
@@ -67,19 +75,22 @@ public class ParamsParser {
             matcher = RegexMatcher.paramMatcher(paramSubstring);
 
             try {
-                //Throws IllegalStateException if no more params are present after current param
+                //Attempts to look for the start of the next param. If found, everything before start of next
+                //param is the paramArgument belonging to the current param.
                 paramArgumentExist = matcher.start() > 0;
             } catch (java.lang.IllegalStateException e) {
-                //No further params
+                //If no more params are present after current param
+                //Only thing in paramSubstring is the paramArgument
                 paramArgument = paramSubstring.trim();
-                params.put(paramType, paramArgument);
+                putParamIntoParamMap(paramType, paramArgument, paramMap);
                 break;
             }
 
             if (paramArgumentExist) {
                 //Split into [paramArgument, rest of string]
+                //Separator character = '/' or '-'
                 String separator = getSeparator(paramSubstring);
-                buffer = paramSubstring.trim().split(separator, 2);
+                buffer = paramSubstring.split(separator, 2);
                 buffer[1] = separator + buffer[1];
                 paramArgument = buffer[0].trim();
                 paramSubstring = buffer[1].trim();
@@ -87,8 +98,19 @@ public class ParamsParser {
                 //Nothing more to process for current param
                 paramSubstring = paramSubstring.trim();
             }
-            params.put(paramType, paramArgument);
+            putParamIntoParamMap(paramType, paramArgument, paramMap);
+
         } while (true);
-        return params;
+        return paramMap;
     }
+
+    public void putParamIntoParamMap(String paramType, String param, HashMap paramMap) {
+        try {
+            ParamChecker.getInstance().checkAndReturnDuplicateParamTypes(paramType, paramMap);
+            paramMap.put(paramType, param);
+        } catch (ParseFailParamException exception) {
+            // Fall through
+        }
+    }
+
 }
