@@ -36,7 +36,7 @@ public class Duke {
             favFile.readFile();
             freqFile.readFile();
         } catch (CustomException e) {
-            Ui.showError(e);
+            System.out.println(e);
         }
 
         Ui.printWelcomeMessage();
