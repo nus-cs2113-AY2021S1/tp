@@ -13,12 +13,13 @@
   * [Command Component](#command-component)
   * [Storage Component](#storage-component)
   * [Parser Component](#parser-component)
-* [Product scope](#implementation)
+* [Appendix A: Product scope](#Appendix-A:-Product-scope)
   * [Target user profile](#target-user-profile)
   * [Value proposition](#value-proposition) 
-* [User Stories](#user-stories)
-* [Non Functional Requirements](#non-functional-requirements)
-* [Instructions for manual testing](#instructions-for-manual-testing)
+* [Appendix B: User Stories](#Appendix-B:-User-Stories)
+* [Appendix C: Non Functional Requirements](#Appendix-C:-Non-Functional-Requirements)
+* [Appendix D: Glossary](#Appendix-D:-Glossary)
+* [Appendix E: Instructions for manual testing](#Appendix-E:-instructions-for-manual-testing)
 
 ## **Introduction**
 
@@ -115,10 +116,19 @@ The class diagram of `Logic Component` is shown below together with an example:
 6. Shown above is the Sequence Diagram for interactions within the *Logic component* for the when user enter "create br1" and how the API call.
 
 ### Data Component
+
+The class diagram of `Data Component` is shown below:
+
 ![Data Component](images/diagrams/ClassDiagram_DataOverview.png)  <br>
 
+**API** : [Data](https://github.com/AY2021S1-CS2113-T14-1/tp/blob/master/src/main/java/seedu/smarthomebot/data)
+
+
 The *Data Component Diagram* shown above explains the high-level design of the Data which consists of `LocationList` which stores all the locations created by user, `ApplianceList` stores all the appliance which can be created from one of the types - `Fan`, `AirConditioner`,`Light`, or `SmartPlug`. Each appliance creates `Power` which used for computation of power usage. 
- 
+
+---
+<br>
+
 ## Implementation
 
 ### Detailed Data Component 
@@ -358,7 +368,9 @@ determine whether to list the appliances or location, then return a new `Command
 
 The sequence diagram for `ListCommand` is shown below:
 
-![Sequence of List Command](images/diagrams/Sequence_ListCommand.png) <br><br>
+![Sequence of List Command](images/diagrams/Sequence_ListCommand.png) 
+
+<br><br>
 
 As depicted from the diagram, there are 
 2 cases for `ListCommand`:
@@ -463,7 +475,7 @@ The sequence diagram for `ReadStorageFile` is shown below:
 ![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
 
-## Product scope
+## Appendix A: Product scope
 
 ### Target user profile
 
@@ -475,7 +487,7 @@ This program consolidates all the home appliance’s control into a centralised 
 monitor electricity usage; having a clearer picture of their electrical usage patterns. We can extract the latest 
 electricity price to calculate users’ utility bills. A backlog of the usage can also be recorded. 
 
-## User Stories
+## Appendix B: User Stories
 
 |Version| As a(n) ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -488,14 +500,45 @@ electricity price to calculate users’ utility bills. A backlog of the usage ca
 |v2.0|Lazy user|Change the temperature of the air-conditioner and the speed of the fan from SmartHomeBot|Monitor his smart home appliances|
 |v2.0|Experienced SmartHomeBot user|On/OFF appliances by location and list appliances by location|Easily view and manipulate appliances by location|
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 
-## Glossary
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 
-* *glossary item* - Definition
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Instructions for manual testing
+## Appendix D: Glossary
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+*Mainstream OS*
+
+  **Windows, Linux, Unix, OS-X**
+
+*Home appliance details*
+
+  **House appliance that meant to be recorded and use with SmartHomeBot**
+
+
+## Appendix E: Instructions for Manual Testing
+
+*Launch and Shutdown*
+**Initial launch**
+    i. Download the jar file from the latest release and copy into an empty folder
+    ii. Double-click the jar file
+        Expected: Shows the GUI with some welcome messages. The window size may not be optimum.
+
+*Creating a room and adds a new appliance*
+Creating a new location while it is not existed in the locations list
+Prerequisites: List all locations using the `list location` command. Making sure the name of the new location is not found in the list.
+
+Test case: `create bedroom`
+Expected-printout: Creating Location "bedroom".....CREATED!
+
+Test case: `add coolx l/bedroom w/550 t/fan`
+Expected-printout: ADDING coolx(550W) in bedroom ......ADDED
+
+Test case: `add coolx l/other_room w/550 t/fan`
+Expected-printout: Location does not exist.
+
+Other incorrect wattage value used to try: `add coolx l/bedroom w/xyz t/fan` (where wattage has to be in valid integer value)
+Expected-printout: Please enter a valid numerical value.
