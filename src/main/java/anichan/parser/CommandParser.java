@@ -4,6 +4,9 @@ import anichan.exception.AniException;
 
 import java.math.BigInteger;
 
+/**
+ * Represents an abstract class which each command parser will inherit from.
+ */
 public abstract class CommandParser {
     //Shared Constants by Parsers
     protected static final String NAME_PARAM = "n";
