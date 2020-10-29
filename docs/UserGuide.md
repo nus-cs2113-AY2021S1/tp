@@ -246,10 +246,10 @@ These are the steps to follow:
 **<u>Example 2</u>**<br>
 Let's say you cannot remember the full name of the outlet that you are searching for. You can simply enter a keyword instead.
 
-To find the information about a dining outlet with the name containing <strong>Arise</strong>:
+To find the information of a dining outlet with the name containing <strong>Jewel</strong>:
 
-1. Type <code>/dineinfo <strong>arise</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
-<img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
+1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
 
 ### 3.9. Add a favourite command: `/addfav`
 
