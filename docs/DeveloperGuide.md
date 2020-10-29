@@ -203,6 +203,39 @@ Aspect: Repeated items
     *Pros: The user do not have to calculate the total budget for repeated items by himself.  
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
+    
+
+**3.3.3. Change the information of a finance log entry**  
+**3.3.3.1. Current Implementation**
+The `CommandFinanceChange` class in `seedu.duke.finance` handles changing a particular `FinanceLog`'s `finLog` and 
+`finLogVal` in `FinanceList` whose index is provided by the user.  
+It implements the following operation:  
+* `CommandFinanceChange#execute()` - Change the `FinanceLog`'s `finLog` and `finLogVal` whose index is provided by the user.  
+
+Given below is an example usage scenario and how the program change the information of a `FinanceLog`.  
+
+Step 1. After some `finance addLog` commands, the user created a `FinanceList` with two `FinanceLog`. The first is 
+"iphone12 $1299", the second is "rent room $40".  
+
+![](financeDiagramPic/1-3S1.png)  
+
+Step 2. The user executes `finance changeLog /i 2 /n rent field 50` to change the second `FinanceLog`'s information. 
+The `finance changeLog` command calls `CommandFinanceChnage#execute()`, then the second `FinanceLog`'s `finLog` is changed 
+to "rent field" and its `finLogVal` is changed to "$50".  
+
+![](financeDiagramPic/1-3S2.png)  
+
+
+**3.3.3.2. Design Considerations**  
+Aspect: User input format  
+*Alternative 1(Current Choice): It changes both `finLog` and `finLogVal` together at the same time.  
+    *Pros: The user does not need to remember two different command formats and the current format can increase the 
+    efficiency of the program.  
+    *Cons: Every time the user has to type in both ITEM_NAME and ITEM_VALUE, it may waste some time for the user.  
+*Alternative 2: Split the command into changeName and changeNum.  
+    *Pros: The user can choose whether just change only `finLog` or `finLogVal` and it is easier to debug.  
+    *Cons: If the user want to change both `finLog` and `finLogVal`, it will waste more time on typing commands. Also, 
+    it takes longer time to execute the commands, including others.  
 
 
 ### 3.4. Event
