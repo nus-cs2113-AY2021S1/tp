@@ -368,6 +368,9 @@ public class Ui {
         System.out.println(WatchTime.userReportString());
     }
 
+    public static void printEpisodeLargerThanExpected() {
+        System.out.println(ExceptionResponse.EXCEPTION_EPISODE_LARGER_THAN_EXPECTED);
+    }
 
 }
 
