@@ -283,11 +283,20 @@ The rating of your show will also be shown if you have added it using the [addre
   `delete <SHOWNAME>`
   
  Example of usage:
- `delete Friends`
  
- Expected outcome:
+ If you want to delete the show named friends, you can input the command: `delete friends`.
+ 
+ Input:
+ 
+ <img src = "images/delete/input.png" width = "400">  
+ 
+  &nbsp;
+
+ The show friends will be deleted from the list ,and a success message will be printed.
+
+ Expected outcome :
   
- <img src = "images/delete.PNG" width = "350">
+ <img src = "images/delete/delete.PNG" width = "400">
 
  &nbsp;
   
@@ -328,28 +337,8 @@ The `changerating` command changes the rating for an existing show which already
   
  &nbsp;
 
-### 4.k. `episode` - Changes the episode of the show you are currently watching
 
-The `episode` command updates the current episode of an existing show in your watchlist.
-
-> **[NOTE]**
-> 
-> * This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
-
-
- Format:
-  `episode <SHOWNAME> <EPISODE>`
-  
- Example of usage:
- `episode Friends 10`
- 
- Expected outcome:
-  
- <img src = "images/episode.PNG" width = "800">
-  
- &nbsp;
- 
-### 4.l. `season` - Changes the season of the show you are currently watching
+### 4.k. `season` - Changes the season of the show you are currently watching
 
 The `season` command updates the current season of an existing show in your watchlist.
 
@@ -362,14 +351,62 @@ The `season` command updates the current season of an existing show in your watc
   `season <SHOWNAME> <SEASON>`
   
  Example of usage:
- `season Friends 3`
  
- Expected outcome:
+ If your are going to watch the third season of a show named friends, you can input `season friends 3`.
+ 
+ Input:
+ 
+   <img src = "images/season/input.png" width = "400">
+    
+   &nbsp;
+ 
+ The current season you are watching of friends will be updated to season 3.
+ 
+ Expected outcome :
   
- <img src = "images/season.PNG" width = "800">
+ <img src = "images/season/output.png" width = "400">
   
  &nbsp;
 
+
+### 4.l. `episode` - Changes the episode of the show you are currently watching
+
+The `episode` command updates the current episode of an existing show in your watchlist.
+
+> **[NOTE]**
+> 
+> * This command changes the current episode that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
+
+
+ Format:
+  `episode <SHOWNAME> <EPISODE>`
+  
+ Example of usage:
+ 
+ In the current season, If your are going to watch the 10th episode of the show named friends, you can input a command: `episode friends 10`.
+ 
+ Input: 
+ 
+  <img src = "images/episode/input.png" width = "400">
+   
+  &nbsp;
+ 
+ The current episode you are watch of the show friends will be updated to 10.
+ 
+ > **[NOTE]**
+ 
+ > * In the example, the current season that you are watching is season 1
+ 
+ > * If you are going to watch other episodes of other seasons, Please change the current season first using [season](#4k-season---Changes-the-season-of-the-show-you-are-currently-watching) command.
+ 
+ 
+ Expected outcome for the example:
+  
+ <img src = "images/episode/output.png" width = "400">
+  
+ &nbsp;
+ 
+ 
 
 ### 4.m. Managing your watch time limit
 
@@ -421,15 +458,25 @@ The `search` command helps you search for a specific show in the watchlist and p
  `search <SHOWNAME>`  
  
  Example of usage:
- `search Friends`  
+ 
+ If you want to search a show named friends in the list, you can use the command: `search friends`.
  
  > **[NOTE]**
  >
  > * The `<SHOWNAME>` is case-sensitive.
-  
+
+ Input:
+   
+ <img src = "images/search/search_input.png" width = "400"> 
+ 
+ &nbsp
+ 
+ If the show is exist in the list, the details of the show will be printed out.  
+ 
+   
  Expected output:
  
- <img src = "images/searchshows.png" width = "550">  
+ <img src = "images/searchshows.png" width = "400">  
  
  &nbsp;
   
