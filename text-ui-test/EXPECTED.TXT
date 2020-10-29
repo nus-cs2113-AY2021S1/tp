@@ -10,6 +10,15 @@ Welcome to AniChan!
 User: File does not exist.
 -------------------------------------------------------------
 What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello random name 123! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
 Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
 
 Default (Default) #> OOPS!!! Unknown command
@@ -90,9 +99,9 @@ COOKIES N CREME CH33SECAKE (Default) #> Saving 430. To Heart 2 to bookmark.
 
 COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode(s).
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 4 episode(s).
+COOKIES N CREME CH33SECAKE (Default) #> Editing InuYasha the Movie 2: The Castle Beyond the Looking Glass to have 1 episode(s).
 
-COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 6 episode(s).
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 1 episode(s).
 
 COOKIES N CREME CH33SECAKE (Default) #> Editing Wind: A Breath of Heart (2004) to have 8 episode(s).
 
@@ -181,5 +190,33 @@ COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Default
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Crunchy Cinnamon
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: CrispyDonut
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 33rd-chan!

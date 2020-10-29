@@ -11,8 +11,10 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command that allows the user to search for a specific anime series.
+ */
 public class SearchCommand extends Command {
-    private static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
     private static final String ID_HEADER = "[ID:";
     private static final String ID_CLOSER = "] ";
     private static final String NO_RESULTS_FOUND = "No results found!";
@@ -38,6 +40,15 @@ public class SearchCommand extends Command {
         searchType = NO_SEARCH_SELECTED;
     }
 
+    /**
+     * Handles the execution of the search and the returning of a printable result.
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return a printable string that contains the browse output
+     * @throws AniException when an invalid searchType is being executed
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         switch (searchType) {
@@ -58,6 +69,11 @@ public class SearchCommand extends Command {
         return result;
     }
 
+    /**
+     * Finds all anime that contains the genre that is within the search term.
+     *
+     * @param animeData the data to search from
+     */
     private void searchForGenre(AnimeData animeData) {
         LOGGER.log(Level.INFO, SEARCHING_BY_GENRE);
         for (Anime anime : animeData.getAnimeDataList()) {
@@ -67,6 +83,11 @@ public class SearchCommand extends Command {
         }
     }
 
+    /**
+     * Finds all anime that contains the keyword or matches the keyword exactly.
+     *
+     * @param animeData the data to search from
+     */
     private void searchForAnime(AnimeData animeData) {
         LOGGER.log(Level.INFO, SEARCHING_BY_ANIME_NAME);
         for (Anime anime : animeData.getAnimeDataList()) {
@@ -78,15 +99,19 @@ public class SearchCommand extends Command {
 
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm.toLowerCase();
-        this.searchType = SEARCH_BY_NAME;
+        setSearchType(SEARCH_BY_NAME);
     }
 
     public void setSearchGenre(String searchGenre) {
         this.searchGenre = searchGenre;
-        this.searchType = SEARCH_BY_GENRE;
+        setSearchType(SEARCH_BY_GENRE);
     }
 
     public void setSearchType(int searchType) {
         this.searchType = searchType;
+    }
+
+    public int getSearchType() {
+        return searchType;
     }
 }

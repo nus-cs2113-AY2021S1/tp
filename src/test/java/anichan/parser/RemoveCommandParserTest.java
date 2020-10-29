@@ -5,6 +5,7 @@ import anichan.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class RemoveCommandParserTest {
     protected static final String INVALID_PARAMETERS_TEST1 = "";
     protected static final String INVALID_PARAMETERS_TEST2 = "-d";
