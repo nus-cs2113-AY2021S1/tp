@@ -12,6 +12,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static seedu.notus.util.CommandMessage.FIND_NOTE_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FIND_NOTE_UNSUCCESSFUL_MESSAGE;
+
 //@@author R-Ramana
 /**
  * Finds Notes in the Notebook.(Possible to add find in event too)
@@ -20,12 +23,6 @@ public class FindCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger("FindCommand");
 
     public static final String COMMAND_WORD = "find-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
-
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
-            + "Please try another search query.";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the matching notes in your list:";
 
     private String keywords;
 
@@ -56,10 +53,10 @@ public class FindCommand extends Command {
 
         if (filteredNotes.isEmpty()) {
             LOGGER.log(Level.INFO, "Filtered notes is empty.");
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(FIND_NOTE_UNSUCCESSFUL_MESSAGE);
         }
         LOGGER.log(Level.INFO, "Filtered notes will be returned.");
-        return Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, filteredNotes, notebook);
+        return Formatter.formatNotes(FIND_NOTE_SUCCESSFUL_MESSAGE, filteredNotes, notebook);
     }
 
     public void setupLogger() {

@@ -1,5 +1,6 @@
 package seedu.notus.command;
 
+import com.diogonunes.jcolor.Attribute;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.Timetable;

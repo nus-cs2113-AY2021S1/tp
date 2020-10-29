@@ -4,11 +4,12 @@ import seedu.notus.data.timetable.Event;
 import seedu.notus.ui.Formatter;
 
 import java.io.IOException;
-
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-
 import java.util.ArrayList;
+
+import static seedu.notus.util.CommandMessage.DELETE_EVENT_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.DELETE_EVENT_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 
 //@@author brandonywl
 /**
@@ -18,15 +19,6 @@ import java.util.ArrayList;
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-e";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete";
-    public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
-            + "Please specify the index that is indicated when you print the event list";
-    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
 
@@ -44,7 +36,7 @@ public class DeleteEventCommand extends Command {
         ArrayList<String> returnMessages;
         if (index < 0 || index >= timetable.getEvents().size()) {
             returnMessages = new ArrayList<>();
-            returnMessages.add(COMMAND_UNSUCCESSFUL_MESSAGE);
+            returnMessages.add(DELETE_EVENT_UNSUCCESSFUL_MESSAGE);
             returnMessages.add(INDEX_OUT_OF_RANGE_MESSAGE);
             return Formatter.formatString(returnMessages, true);
         }
@@ -57,6 +49,6 @@ public class DeleteEventCommand extends Command {
             return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }
 
-        return Formatter.formatEventString(COMMAND_SUCCESSFUL_MESSAGE, event);
+        return Formatter.formatEventString(DELETE_EVENT_SUCCESSFUL_MESSAGE, event);
     }
 }

@@ -3,13 +3,13 @@ package seedu.notus.command;
 import seedu.notus.data.exception.SystemException;
 import seedu.notus.ui.Formatter;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.NoSuchElementException;
+
+import static seedu.notus.util.CommandMessage.ARCHIVE_NOTE_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 //@@author R-Ramana
 /**
@@ -18,16 +18,6 @@ import java.util.NoSuchElementException;
 public class ArchiveNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "archive-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Archives a note. Parameters: "
-            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX]";
-
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "The following note has been archived: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
-    public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
-            + "Please check and specify a valid index value.";
-    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
     private String title = "";
@@ -66,7 +56,7 @@ public class ArchiveNoteCommand extends Command {
                 try {
                     notebook.archiveNotes(title);
                 } catch (NoSuchElementException e) {
-                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                    return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
                 }
             }
 
@@ -83,9 +73,9 @@ public class ArchiveNoteCommand extends Command {
                 return Formatter.formatString(exception.getMessage());
             }
 
-            return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
+            return Formatter.formatString(ARCHIVE_NOTE_SUCCESSFUL_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         }
     }
 }
