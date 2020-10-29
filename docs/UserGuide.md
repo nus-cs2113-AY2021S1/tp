@@ -305,7 +305,7 @@ Example of usage:
 
 `note personal; 1 `
 
-####How to use?
+#### How to use?
 
 1. Find the index number of the event to write the note for 
     You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
