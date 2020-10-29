@@ -49,6 +49,7 @@ public class Watchlist {
         return animeList;
     }
 
+    //@@author michaeldinata
     /**
      * Adds an anime into this Watchlist.
      * 
@@ -86,6 +87,7 @@ public class Watchlist {
         return this.animeList.get(animeIndexInWatchlist);
     }
 
+    //@@author
     /**
      * Returns a string representation of the anime list in this Watchlist.
      *

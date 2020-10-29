@@ -4,6 +4,7 @@ import anichan.human.User;
 import anichan.anime.AnimeData;
 import anichan.storage.StorageManager;
 
+//@@author michaeldinata
 /**
  * Represents the command to exit the program.
  */
