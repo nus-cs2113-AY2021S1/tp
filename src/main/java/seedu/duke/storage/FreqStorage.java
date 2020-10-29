@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.Duke;
 import seedu.duke.model.bus.BusData;
 import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
@@ -49,12 +50,20 @@ public class FreqStorage extends Storage {
         writer.close();
     }
 
-    private void loadFile() throws FileNotFoundException {
+    private void loadFile() throws FileNotFoundException, CustomException {
         File savedFile = new File(dir);
         Scanner fileScanner = new Scanner(savedFile);
         int index = 0;
         while (fileScanner.hasNext()) {
-            int currInt = Integer.parseInt(fileScanner.nextLine());
+            int currInt = 0;
+            try {
+                currInt = Integer.parseInt(fileScanner.nextLine());
+            } catch (NumberFormatException e) {
+                BusStops.resetSearchFrequency();
+                Duke.freqFile.updateFile();
+                Duke.freqFile.loadFile();
+                throw new CustomException(ExceptionType.READ_FILE_FAIL);
+            }
             BusStops.values()[index].setCount(currInt);
             index++;
         }
