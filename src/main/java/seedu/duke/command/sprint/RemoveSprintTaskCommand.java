@@ -21,7 +21,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
 
     public void execute() {
         try {
-            checkProjectExist();
+            checkProjectExist(-1);
             chooseProject();
             checkSprintExist();
             prepareParameters();
