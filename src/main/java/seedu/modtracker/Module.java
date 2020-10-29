@@ -64,11 +64,16 @@ public class Module {
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
+        double timeDifference = 99 - this.actualTime[i - INDEX_OFFSET];
+        if (timeDifference < d) {
+            throw new IllegalArgumentException("Total workload cannot be more than 99 hours.");
+        }
         if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
             this.actualTime[i - INDEX_OFFSET] = d;
         } else {
             this.actualTime[i - INDEX_OFFSET] += d;
         }
+
     }
 
     public void minusActualTime(String time, String week) {

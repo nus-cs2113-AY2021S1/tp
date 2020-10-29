@@ -13,14 +13,16 @@ public class ModuleList {
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
-    private static final String INVALID_HOURS = "Please input a whole number between 1 and 24 for the "
-        + "expected workload.";
+    private static final String INVALID_EXP_HOURS = "Please input a whole number between 1 and 24 for the "
+            + "expected workload.";
+    private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
+    private static final String INVALID_TIME_ERROR = "Please input a number between 0 and 99 for time.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
     private static final String NO_WORKLOAD_ERROR = "Cannot minus actual time as there is no actual time inputted.";
-    private static final String HOURS_EXCEED_ERROR = "Sorry you are trying to remove too many hours";
+    private static final String HOURS_EXCEED_ERROR = "Sorry you are trying to remove too many hours.";
     private static final String HOURS_REMOVAL = " hours have been removed from ";
     private static final String HOUR_REMOVAL = " hour has been removed from ";
     private static final String HOURS_ADD = " hours have been added to ";
@@ -28,7 +30,9 @@ public class ModuleList {
     private static final String HOUR_EDIT = " hour is the new actual workload for the module ";
     private static final String HOURS_EDIT = " hours is the new actual workload for the module ";
     private static final String SUMMARY = " hours have been spent on this module in week ";
-    private static final int MAX_HOURS = 24;
+    private static final String FULL_STOP = ".";
+    private static final int MAX_EXP_HOURS = 24;
+    private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -112,10 +116,33 @@ public class ModuleList {
      * @param toPrint whether the UI should print the output.
      * @return true if number of hours is valid, false otherwise.
      */
-    public boolean checkIfTimeValid(double hours, boolean toPrint) {
-        if (hours < 1 || hours > MAX_HOURS) {
+    public boolean checkIfExpTimeValid(double hours, boolean toPrint) {
+        if (hours < 1 || hours > MAX_EXP_HOURS) {
             if (toPrint) {
-                System.out.println(INVALID_HOURS + System.lineSeparator());
+                System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if the time is valid when using add time, minus time and edit time functions.
+     *
+     * @param hours   number of hours typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if number of hours is valid, false otherwise.
+     */
+    public boolean checkIfTimeValid(double hours, boolean toPrint) {
+        if (hours < 0) {
+            if (toPrint) {
+                System.out.println(NEGATIVE_TIME_ERROR + System.lineSeparator());
+            }
+            return false;
+        } else if (hours > MAX_TIME_HOURS) {
+            if (toPrint) {
+                System.out.println(INVALID_TIME_ERROR + System.lineSeparator());
             }
             return false;
         } else {
@@ -180,7 +207,7 @@ public class ModuleList {
                 return;
             }
             int expectedTime = Integer.parseInt(expTime);
-            if (!checkIfTimeValid(expectedTime, toPrint)) {
+            if (!checkIfExpTimeValid(expectedTime, toPrint)) {
                 return;
             }
             assert expectedTime >= 0 : "The expected time should be positive";
@@ -202,7 +229,7 @@ public class ModuleList {
         } catch (NumberFormatException nfe) {
             if (toPrint) {
                 System.out.println(ERROR_ADDEXP);
-                System.out.println(INVALID_HOURS + System.lineSeparator());
+                System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
             }
         }
     }
@@ -334,6 +361,11 @@ public class ModuleList {
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+
+        if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        }
+
         if (!checkIfModuleExist(modCode)) {
             if (toPrint) {
                 ui.printNotExist(modCode);
@@ -344,13 +376,13 @@ public class ModuleList {
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_ADD + modCode);
+                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + System.lineSeparator());
+                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_ADD + modCode);
+                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + System.lineSeparator());
+                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
                 storage.appendToFile(input);
             }
@@ -377,6 +409,11 @@ public class ModuleList {
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+
+        if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        }
+
         if (!checkIfModuleExist(modCode)) {
             if (toPrint) {
                 ui.printNotExist(modCode);
@@ -391,15 +428,15 @@ public class ModuleList {
                     if (toPrint) {
                         if (hours > 1) {
                             System.out.println(commandInfo[2] + HOURS_REMOVAL
-                                    + modCode);
+                                    + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                                    + SUMMARY + commandInfo[3] + System.lineSeparator());
+                                    + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
 
                         } else {
                             System.out.println(commandInfo[2] + HOUR_REMOVAL
-                                    + modCode);
+                                    + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                                    + SUMMARY + commandInfo[3] + System.lineSeparator());
+                                    + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                         }
                         storage.appendToFile(input);
                     }
@@ -436,6 +473,11 @@ public class ModuleList {
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+
+        if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        }
+
         if (!checkIfModuleExist(modCode)) {
             if (toPrint) {
                 ui.printNotExist(modCode);
@@ -446,13 +488,13 @@ public class ModuleList {
             modList.get(index).editsActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode);
+                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + System.lineSeparator());
+                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode);
+                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + System.lineSeparator());
+                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
                 storage.appendToFile(input);
             }

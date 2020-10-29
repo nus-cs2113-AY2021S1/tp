@@ -24,8 +24,8 @@ CS3200, Expected Workload: 8h is added.
 
 CS1000, Expected Workload: 8h is added.
 
-7 hours have been added to CS1000
-7.0 hours have been spent on this module in week 1
+7 hours have been added to CS1000.
+7.0 hours have been spent on this module in week 1.
 
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
