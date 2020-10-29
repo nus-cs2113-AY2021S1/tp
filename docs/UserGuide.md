@@ -24,6 +24,9 @@
     - [Countdown events `countdown`](#countdown-events-countdown)
     - [Mark an event as completed `done`](#mark-an-event-as-completed-done)
     - [Search for an Event `search`](#search-for-an-event-search)
+    - [Add a participant to an event: `addAttendance`](#add-a-participant-to-an-event-addattendance)
+    - [Delete a participant from an event: `delAttendance`](#delete-a-participant-from-an-event-delattendance)
+    - [List events: `listAttendance`](#list-participants-in-an-event-listattendance)
   - [4.5 Finance features `finance`](#45-finance-features-finance)
     - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
     - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
@@ -101,6 +104,12 @@ Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
  `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  
+ Expected Outcome:
+ 
+ ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand.PNG)
+ 
+ [Return to the top](#user-guide)
+ 
  #### Delete members: `delMember`
  Deletes a member from the list of members. <br/>
  Format: `hr delMember MEMBER_INDEX` <br/>
@@ -112,6 +121,12 @@ Example of usage: <br/>
  Example of usage: 
  `hr delMember 1` <br/>
  `hr delMember 19` <br/>
+ 
+  Expected Outcome:
+  
+  ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
+  
+  [Return to the top](#user-guide)
 
 #### list members: `listMember`
 Prints the list of members, based on the order in which they are added into the list. 
@@ -120,6 +135,12 @@ Format: `hr listMember` <br/>
 Example of usage:
 `hr listMember`  
 
+ Expected Outcome:
+ 
+ ![HrListMemberCommand](userGuidePic/hrListMemberCommand.PNG)
+ 
+ [Return to the top](#user-guide)
+
 #### change member information: `changeInfo`
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
@@ -127,8 +148,14 @@ Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_RO
 MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be provided. 
 
 Example of usage: <br/>
-`hr changeInfo /n jack sterling /p 12345678` <br/>
+`hr changeInfo /n john sterling /p 12345678` <br/>
 `hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r President`
+
+ Expected Outcome:
+ 
+ ![HrChangeInfoCommand](userGuidePic/hrChangeInfoCommand.PNG)
+ 
+ [Return to the top](#user-guide)
 
 #### search members: `search`  
 Search the members whose information matches user input.  
@@ -262,6 +289,48 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+#### Add a participant to an event: `addAttendance`
+Adds an event to the list of events.<br/>
+Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
+> :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+
+Example of usage: <br/>
+ `event addAttendance /n arduino course /m peter`<br/>
+ `event addAttendance /n Autodesk course /m John`<br/>
+ 
+Expected Outcome:
+
+![EventAddAttendanceCommand](userGuidePic/eventAddAttendanceCommand.PNG)
+
+[Return to the top](#user-guide)
+ 
+#### Delete a participant from an event: `delAttendance`
+ Deletes a participant from an event in the list of events. <br/>
+ Format: `event delAttendance /n EVENT_NAME /m MEMBER_NAME` <br/>
+ 
+ Example of usage: 
+ `event delAttendance /n arduino course /m peter`<br/>
+ `event delAttendance /n Autodesk course /m John`<br/>
+ 
+ Expected Outcome: 
+ 
+ ![EventDeleteAttendanceCommand](userGuidePic/eventDeleteAttendanceCommand.PNG)
+ 
+ [Return to the top](#user-guide)
+
+#### List participants in an event: `listAttendance`
+Prints the list of participants in an event, based on the order in which they are added into the list. 
+Format: `event listAttendance /n EVENT_NAME` <br/>
+
+Example of usage: 
+`event listAttendance /n arduino course`
+
+Expected Outcome:
+
+![EventListAttendanceCommand](userGuidePic/eventListAttendanceCommand.PNG)
+
+[Return to the top](#user-guide)
+
 ### 4.5 Finance features `finance`  
 #### 4.5.1 Add finance log entry: `addLog`  
 Adds an entry into the finance log.  
@@ -345,12 +414,14 @@ The expected outcome is as follows:
 
 Command | Format | Example
 ------- | ---------- | ------------
+addAttendance  | `event addAttendance /n EVENT_NAME /p MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
 addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
 bye | `bye` | -
 changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
 changeLog | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE` | `finance changeLog /i 1 /n buy cake 5.5`
+delAttendance  | `event delAttendance /n EVENT_NAME /p MEMBER_NAME` | `event delAttendance /n arduino course /m Peter`<br/>
 delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
@@ -361,6 +432,7 @@ event countdown | `event countdown` | -
 help | `help` | -
 hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
 import  | `import FILENAME /c CATEGORY (...)` | `import sample.csv /c hr /name Member /phone Contact /email Email /role Role`
+listAttendance | `event listAttendance /n EVENT_NAME` | `event listAttendance /n arduino course`
 listMember  | `hr listMember` | -
 listEvent | `event listEvent` | -
 list prof&admin | `hr list prof&admin` | -
