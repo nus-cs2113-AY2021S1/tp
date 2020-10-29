@@ -211,6 +211,13 @@ Aspect: Repeated items
     *Pros: The user do not have to calculate the total budget for repeated items by himself.  
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
+    
+
+**3.3.3. Change the information of a finance log entry**  
+**3.3.3.1 Current Implementation**
+The `CommandFinanceChange` class in `seedu.duke.finance` handles changing a particular `FinanceLog`'s `finLog` and 
+`finLogVal` in `FinanceList` whose index is provided by the user.  
+
 
 
 ### 3.4. Event
