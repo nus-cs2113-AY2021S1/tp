@@ -38,13 +38,13 @@ public class Chapter {
     public void setNewDeckRating(String rating, Storage storage, Access access) {
         switch (rating) {
         case EASY:
-            setDueBy(Scheduler.getCurrentDate().plusDays(1), storage, access);
+            setDueBy(Scheduler.getCurrentDate().plusDays(Scheduler.computeEasyInterval(1)), storage, access);
             break;
         case MEDIUM:
-            setDueBy(Scheduler.getCurrentDate().plusDays(2), storage, access);
+            setDueBy(Scheduler.getCurrentDate().plusDays(Scheduler.computeMediumInterval(1)), storage, access);
             break;
         case HARD:
-            setDueBy(Scheduler.getCurrentDate().plusDays(4), storage, access);
+            setDueBy(Scheduler.getCurrentDate().plusDays(Scheduler.computeHardInterval(1)), storage, access);
             break;
         default:
             setDueBy(Scheduler.getCurrentDate(), storage, access);

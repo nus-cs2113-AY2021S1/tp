@@ -247,15 +247,23 @@ public class Storage {
                 return dueChapters;
             }
             for (String chapter : chapters) {
-                String target = chapter.replace(".txt", "");
-                String entry = "Module: " + module + "; Chapter: " + target;
-                if (excludedChapters.contains(entry)) {
-                    continue;
-                }
-                checkChapterDeadline(ui, dueChapters, module, target);
+                processChapterForDue(ui, excludedChapters, dueChapters, module, chapter);
             }
         }
         return dueChapters;
+    }
+
+    private void processChapterForDue(Ui ui, ArrayList<String> excludedChapters, ArrayList<DueChapter> dueChapters,
+                                      String module, String chapter) {
+        if (chapter.equals("dues")) {
+            return;
+        }
+        String target = chapter.replace(".txt", "");
+        String entry = "Module: " + module + "; Chapter: " + target;
+        if (excludedChapters.contains(entry)) {
+            return;
+        }
+        checkChapterDeadline(ui, dueChapters, module, target);
     }
 
     private void checkChapterDeadline(Ui ui, ArrayList<DueChapter> dueChapters, String module, String target) {
