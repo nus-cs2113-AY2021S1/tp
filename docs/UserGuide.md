@@ -273,7 +273,7 @@ There is no need to save manually. All your data will be saved in the same locat
 ## 2.8 Tip of the Day
 Fitr will tell you a fun fact every time when you open the application. It can be an exercise tip or an interesting trivia, which can give you some motivation to do exercise! An example is shown below:
 
-<p align="center"><img src="images/WelcomeScreen.png" width="600"></p>
+<p align="center"><img src="images/WelcomeScreen.png" width="800"></p>
 
 # 3. FAQ
 In this section, you can find answers to some of the frequently asked questions (FAQs).
