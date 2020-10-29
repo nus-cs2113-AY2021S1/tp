@@ -114,6 +114,7 @@ public class Parser {
         if (isVoidFunction && !parts[1].equals(" ")) {
             throw new CustomException(ExceptionType.EXTRA_PARAMETERS);
         }
+
         com.executeCommand();
 
         if (!command.equals("/addfav") && !command.equals("/execfav")) {

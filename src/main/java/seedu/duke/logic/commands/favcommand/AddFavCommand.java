@@ -18,8 +18,8 @@ public class AddFavCommand extends Command {
     private Fav item;
 
     public AddFavCommand(String input, String description) {
-            this.input = input;
-            this.description = description;
+        this.input = input;
+        this.description = description;
     }
 
     @Override
