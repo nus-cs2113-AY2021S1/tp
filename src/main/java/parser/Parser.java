@@ -16,6 +16,7 @@ import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.SortCommand;
 
+import command.UserInfoCommand;
 import event.Assignment;
 import event.PersonalEvent;
 import event.Assignment;
@@ -50,6 +51,7 @@ import location.Location;
 import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
+import usercommunication.UserInfo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -112,6 +114,15 @@ public abstract class Parser {
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
+
+        //this block deals with user info
+        switch (words[0]) {
+        case "student":
+        case "professor":
+            return new UserInfoCommand(new UserInfo(fullCommand.substring(words[0].length() + 1), words[0]));
+        default:
+            break;
+        }
 
         //this block deals with locate command
         if (words[0].equals(LOCATE_EVENT)) {

@@ -6,6 +6,9 @@ import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
+/**
+ * Represents the command call when the user wants to sort the list.
+ */
 public class SortCommand extends Command {
     private final String type;
 

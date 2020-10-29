@@ -36,6 +36,7 @@ This gives the application both simplicity and speed, setting it apart from othe
 
 
 ## Quick Start
+
 1. Ensure that you have Java 11 or above installed in your Computer.
 2. Download the latest `nuschedule.jar` from here.
 3. Copy the file into a new folder, which will serve as the home folder for NuSchedule. 
@@ -48,33 +49,48 @@ This gives the application both simplicity and speed, setting it apart from othe
 ## Features 
 
 ### View available commands
+
 Shows list of commands and provides a link to the user guide for more details. 
 
 Format: `help`
 
 
 ### Add an event
+
 Adds events/tasks to the schedule. Can support various types of tasks: 
 
+In the following description, `DATE` refers to the date in the format yyyy-MM-dd. e.g. `2020-10-31` 
+`TIME` refers to the time in the format HH:mm. e.g. `10:00`  
+
 * Personal events  
-  Format: `personalEvent EVENTNAME /t DATE TIME /l LOCATION`
+  Format: `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for underline event.  
+  OR `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD` for online events.  
+  Note that `/e DATE TIME` is optional. You have a personal event without an ending time.  
+  In `/e DATE TIME`, `DATE` is optional. If you enter `/e TIME`, the default date will be the same 
+  as the date that the event starts.  
+  For online events, `/p MEETING_PASSWORD` is optional, since not all online events require a password.
 
 * Assignments  
-  Format: `assignment EVENTNAME /t DATE TIME /l LOCATION`
+  Format: `assignment EVENTNAME /t DATE TIME /l LOCATION`  
+  OR `assignment EVENTNAME /t DATE TIME /o SUBMISSION_LINK`  
 
 * Classes  
-  Format: `class EVENTNAME /t DATE TIME /l LOCATION`
+  Format: `class CLASSNAME /t DATE TIME /e DATE TIME /l LOCATION`  
+  OR `class CLASSNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD`  
+  Same as in personal events, in `/e DATE TIME`, `DATE` is optional. For online events,`/p MEETING_PASSWORD` is optional.  
+  However, `/e DATE TIME` or `/e TIME` is required, since any class should end at some time. 
 
 
 Example of usage: 
 
 `personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`  
-`class CS2113 Lecture /t 2020-09-23 10:00 /l LT27`
+`class CS2113 Lecture /t 2020-09-23 10:00 /e 12:00 /l LT27`
 
 ### Edit an event
 Edits existing events/tasks.  
 
 Format: `edit INDEX EVENT_TYPE DESCRIPTION /t YYYY-MM-DD HH:MM /l LOCATION`  
+`edit INDEX ` the later part of the format is the same as adding an event. 
 
 Example: `edit 1 assignment cs2113t homework /t 2020-02-02 20:00 /l home`
 
@@ -130,7 +146,7 @@ the data of your previous AddressBook home folder.
 
 |Action|Command|Example|
 |------|-------|-------|
-|add|`EVENTTYPE EVENTNAME /t DATE TIME /l LOCATION`|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
+|add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
 |clear|`clear NUMBER` OR `clear ALL` |`clear 3`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit INDEX EVENT_TYPE DESCRIPTION /t YYYY-MM-DD HH:MM /l LOCATION`|`edit 1 assignment cs2113t homework /t 2020-02-02 20:00 /l home`|
@@ -138,3 +154,4 @@ the data of your previous AddressBook home folder.
 |list|`list`||
 |locate|`locate n/EVENTNAME` |`locate n/CS2113t Tutorial`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
+|delete|`delete INDEX`|`delete 1`|
