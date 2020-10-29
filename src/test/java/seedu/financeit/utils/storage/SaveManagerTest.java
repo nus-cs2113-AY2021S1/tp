@@ -1,9 +1,9 @@
 package seedu.financeit.utils.storage;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 
@@ -20,9 +20,9 @@ public class SaveManagerTest {
         File saveTxtMt = new File(ManualTrackerSaver.getInstance().fullPath);
         File saveTxtGt = new File(GoalTrackerSaver.getInstance().fullPath);
         File saveTxtAt = new File(AutoTrackerSaver.getInstance().fullPath);
-        Assert.assertEquals(saveTxtMt, manualTracker);
-        Assert.assertEquals(saveTxtGt, goalTracker);
-        Assert.assertEquals(saveTxtAt, autoTracker);
+        assertEquals(saveTxtMt, manualTracker);
+        assertEquals(saveTxtGt, goalTracker);
+        assertEquals(saveTxtAt, autoTracker);
         SaveManager.deleteSave(packet);
     }
 }
