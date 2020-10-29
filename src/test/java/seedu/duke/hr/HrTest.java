@@ -15,11 +15,13 @@ public class HrTest {
                 + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%\n"
                 + "Now you have 1 member in the list.\n";
 
-        String actual1 = MemberList.addToList(new Member("James Gosling", 11111111, "111111@gmail.com", "member"));
+        String actual1 = MemberList.addToList(new Member("James Gosling", 11111111,
+                "111111@gmail.com", "member"));
         assertEquals(expected1, actual1);
 
         String expected2 = "Here is the list of members in your CCA:\n"
-                + "1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%\n";
+                + "1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member "
+                + "|attendance rate: 0%\n";
         String actual2 = MemberList.listMembers();
         assertEquals(expected2, actual2);
 
