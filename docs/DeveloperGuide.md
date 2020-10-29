@@ -329,7 +329,7 @@ It implements the following operation:
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
  
-**3.4.4: Displaying countdown to upcoming events** `CommandEventCountdown`
+**3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
 Current Implementation
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
@@ -341,7 +341,7 @@ The sequence diagram for displaying countdown is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
 
-**3.4.5: Mark an event as completed** `CommandEventStatus`
+**3.4.5. Mark an event as completed** `CommandEventStatus`
 
 Current Implementation
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
@@ -382,9 +382,9 @@ The sequence diagram for deleting a particular event or all events is as shown b
 
 ![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandAddEventAttendance.png)
 
-**3.5.2. Listing Events** `CommandEventList`
+**3.4.7. Listing Events** `CommandEventList`
 
-3.5.2.1 Current implementation
+3.4.7.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
 It implements the following operation:  
@@ -407,7 +407,14 @@ The sequence diagram for listing events is as shown below:
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
 ### 3.5. HR
-This section describes some noteworthy details on how features under HR are implemented. <br/>
+The diagram below shows the architecture for HR feature.<br/>
+
+![](hrDiagramPic/HrArchitecture.png)
+
+There are a total of 7 commands under HR feature.
+ `CommandAddMember`, `CommandDelMember`, `CommandViewMember`  ,`CommandListConnection`, `CommandSearchMember` , `CommandListProfAdmin` and `CommandChangeMemberInfo`. 
+ 
+The implementation for each command is described in detail below.
 
 **3.5.1. Add/delete member feature**  
 3.5.1.1. Current Implementation  
@@ -446,7 +453,20 @@ The following shortcut commands can achieve the same result: <br/>
 Step 3. The user executes `hr delMember 1` command to delete the member in the member list. The `hr delMember`
 command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`.  
 
+ The following shortcut commands can achieve the same result: <br/>
+ `hr delete 1`<br/>
+ `hr d 1`<br/>
+
 ![](hrDiagramPic/2-1S3.png)
+
+The sequence diagram for adding a member is as shown below:
+
+![CommandAddMember](hrDiagramPic/CommandAddMember.png)
+
+The sequence diagram for deleting a member is as shown below:
+
+![CommandDelMember](hrDiagramPic/CommandDelMember.png)
+
 
 **3.5.2. List the members**  
 3.5.2.1. Current Implementation  
@@ -457,15 +477,23 @@ It implements the following operation:
 
 Given below is an example usage scenario and how the program list the information of members.  
 
-Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
-"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
-"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".  
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. <br/>
+The first `Member` is "John Sterling" with phone number "12345678", email "123@gmail.com", role "member". <br/>
+The second `Member` is "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
 
 ![](hrDiagramPic/2-2S1.png)
 
 Step 2. The user executes `hr listMember` command to list the summary of `MemberList`. The `hr listMember` command calls 
 `CommandViewMember#execute()`, then every `Member` in `MemberList` and the contacts and roles will be printed out within
  the same line, separated by "|". Nothing will be changed in `MemberList`.  
+ 
+ The following shortcut commands can achieve the same result: <br/>
+ `hr list`<br/>
+ `hr l`<br/>
+ 
+ The sequence diagram for listing the members is as shown below:
+ 
+ ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
 
 **3.5.3. Change member information**  
 3.5.3.1. Current Implementation  
@@ -477,9 +505,9 @@ modified member information.
 
 Given below is an example usage scenario and how the program list the information of members.  
 
-Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
-"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
-"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. <br/>
+The first `Member` is "John Sterling" with phone number "12345678", email "123@gmail.com", role "member". <br/>
+The second `Member` is "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
 
 Step 2. The user executes `hr changeInfo /n john sterling /p 11111111 /r publicity director` command to change the phone
  number and role of the member with name "John Sterling" in the list. The `hr changeInfo` command calls 
@@ -490,6 +518,9 @@ sensitive.
 The following shortcut commands can achieve the same result: <br/>
 `hr c /n john Sterling /p 11111111 /r publicity director`<br/>
 
+The sequence diagram for changing contacts and role information of a member is as shown below:
+
+![CommandChangeMemberInfo](hrDiagramPic/CommandChangeMemberInfo.png)
 
 **3.5.4. Design Considerations**  
 Aspect: Changing member information 
