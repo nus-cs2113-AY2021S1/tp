@@ -5,6 +5,8 @@
 
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) ![Support OS](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-blue)
 
+## Introduction
+
 **AniChan** is an all-rounded tool for Anime translators and professionals. It features a suite of functionality that can help reduce administration workload, as well as improve translation efficiency and accuracy.
 
 ## Useful Links
@@ -19,7 +21,9 @@ The latest release of **AniChan** can be found [here](https://github.com/AY2021S
 
 ## Support & Contribution
 
-All forms of support and contribution are welcomed! You can join us in developing this tool by making a fork of this project and making a pull request with your changes. 
+We welcome all forms of contributions to **AniChan** and appreciate for your feedback very much! 
+
+You can join us in developing this tool by making a fork of this project and making a pull request with your changes. 
 
 ## Acknowledgement
 
