@@ -38,9 +38,10 @@ This gives the application both simplicity and speed, setting it apart from othe
 ## Quick Start
 1. Ensure that you have Java 11 or above installed in your Computer.
 2. Download the latest `nuschedule.jar` from here.
-3. Copy the file into a new folder, which will serve as the home folder for NuSchedule
-4. Open the command prompt and navigate to the home folder.
-5. Run `nuschedule.jar` using the following command: `java -jar nuschedule.jar`
+3. Copy the file into a new folder, which will serve as the home folder for NuSchedule. 
+4. Copy the latest `location.txt` and `bus_stops.txt` files into a directory named `data` in the home folder.
+5. Open the command prompt and navigate to the home folder.
+6. Run `nuschedule.jar` using the following command: `java -jar nuschedule.jar`
 
 
 
