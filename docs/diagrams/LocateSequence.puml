@@ -1,15 +1,16 @@
 @startuml
 Actor User
 
+box Logic
 User -> Parser: locate [input]
 activate Parser
-
 Parser -> LocateCommand: LocateCommand(input)
 activate LocateCommand
-
 LocateCommand -> LocateCommand: execute()
 activate LocateCommand
+end box
 
+box Model
 alt input is an integer
     LocateCommand -> EventList: getLocation(input)
     activate EventList

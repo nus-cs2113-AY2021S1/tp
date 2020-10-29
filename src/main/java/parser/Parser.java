@@ -1,6 +1,5 @@
 package parser;
 
-
 import command.AddCommand;
 import command.ClearCommand;
 import command.Command;
@@ -14,7 +13,11 @@ import command.HelpCommand;
 import command.LocateCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
+import command.ReminderCommand;
 import command.SortCommand;
+
+import event.Assignment;
+import event.PersonalEvent;
 import event.Assignment;
 import event.PersonalEvent;
 
@@ -28,6 +31,7 @@ import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
 import exception.InvalidSortCriteriaException;
+import exception.NoEditEventDescriptionException;
 import exception.NoEventLocationException;
 import exception.NoEventLocationMarkerException;
 import exception.NoSortCriteriaException;
@@ -77,6 +81,7 @@ public abstract class Parser {
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
     public static final String SORT = "sort";
+    public static final String REMIND = "reminder";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -127,6 +132,10 @@ public abstract class Parser {
             } catch (DateTimeParseException e) {
                 throw new DateFormatException();
             }
+        }
+
+        if (words[0].equals(REMIND)) {
+            return new ReminderCommand();
         }
 
         int eventIndex;//to indicate what is the Event we are dealing with. may not be used.
@@ -205,6 +214,10 @@ public abstract class Parser {
             timeDividerPosition = fullCommand.indexOf(TIME_MARKER);
             locationDividerPosition = fullCommand.indexOf(LOCATION_MARKER);
 
+            if (words.length == 2) {
+                throw new NoEditEventDescriptionException();
+            }
+
             switch (words[2]) {
             case ASSIGNMENT:
             case CLASS:
@@ -240,13 +253,13 @@ public abstract class Parser {
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
                     switch (words[2]) {
                     case ASSIGNMENT:
-                        return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new Assignment(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case CLASS:
-                        return new EditCommand(new Class(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new Class(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case PERSONAL_EVENT:
-                        return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 1,
+                        return new EditCommand(new PersonalEvent(fullCommand.substring(prefixLength + 3,
                                 timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     default:
                         break;
@@ -293,7 +306,7 @@ public abstract class Parser {
             if (fullCommand.substring(locationDividerPosition + 3).isBlank()) {
                 throw new NoEventLocationException();
             }
-
+            
             try {
                 timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
                 dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)

@@ -1,0 +1,36 @@
+@startuml
+actor User
+
+box Logic
+participant ":NuSchedule" as NuSchedule
+participant ":Parser" as Parser
+participant ":EditCommand" as EditCommand
+end box
+
+box Model
+participant ":EventList" as EventList
+end box
+
+User -> NuSchedule : edit
+activate NuSchedule
+
+NuSchedule -> Parser : parse(edit)
+activate  Parser
+
+Parser --> NuSchedule : command to execute
+deactivate Parser
+
+NuSchedule -> EditCommand : execute(edit)
+activate EditCommand
+
+EditCommand -> EventList : editCommand(event)
+activate EventList
+
+EventList --> EditCommand : event
+deactivate EventList
+
+EditCommand --> NuSchedule
+deactivate EditCommand
+
+deactivate NuSchedule
+@enduml

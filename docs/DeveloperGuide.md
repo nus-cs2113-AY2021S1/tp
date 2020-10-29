@@ -1,11 +1,10 @@
 # Developer Guide
-google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFXK3VgL6807x5ivZ5yJk/edit)
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Getting Started](#2-getting-started) <br>
-2.1 [Prerequisites](#21-prerequisites) <br>
-2.2 [Setting Up](#22-setting-up)
+2. [Getting Started](#2-getting-started)<br>
+2.1 [Prerequisites](#21-prerequisites)<br>
+2.2 [Setting Up](#22-setting-up)<br>
 3. [Design](#3-design) <br>
 3.1 [Architecture](#31-architecture) <br>
 3.2 [UI](#32-ui) <br>
@@ -24,8 +23,8 @@ google docs [link](https://docs.google.com/document/d/1dGM1DYHVXxqUM8RPfAPs6MuFX
 4.7 [View events](#47-view-events) <br>
 5. [Documentation](#5-documentation) <br>
 5.1 [Product scope](#51-product-scope) <br>
-5.2 [Value proposition](#52-value-proposition) <br>
-5.3 [User stories](#53-user-stories) <br>
+5.2 [Value Proposition](#52-value-proposition) <br>
+5.3 [User Stories](#53-user-stories)<br>
 
 ## 1. Introduction
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
@@ -34,7 +33,7 @@ NUSchedule will prove itself to be the most efficient way to manage your commitm
   
 This developer guide provides information on the architecture and design of the application, NUSchedule. This guide
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
-to refer to even if you are already a contributor. 
+to refer to even if you are already a contributor.
 
 ## 2. Getting Started
 This section provides information to help you get NUSchedule up and running on your own computers.
@@ -62,7 +61,7 @@ This section describes the different components of the application and how each 
 each other to run the program. 
 
 ### 3.1 Architecture
-![architecture](../diagrams/architecture.png)
+![architecture](diagrams/architecture.png)
 
 The Architecture Diagram above provides a high-level view of the design of NUSchedule. The app can be broken down into 
 5 different components:  
@@ -72,23 +71,28 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
 4. Storage: Reads data from and writes data to the hard disk.
 5. Model: Stores the data the app uses in memory.
 
-__How the architecture components interact with each other__  
-The sequence diagram below shows how each individual component interacts with each other when the user inputs a command.
-![sequence](../diagrams/ArchitectureSequence.png)
-
 ### 3.2 UI
+![UI Class Diagram](diagrams/Ui.png)
+
+*Figure 3.2.1 Class diagram for UI component*
+
  __API__:`UI.java`  
 The UI consists of various parts, e.g. `printGreetingMessage`, `printEventList`, `showError`, `printNumEvent`, etc.
  
-The `UI` component executes user commands according to the Logic component.
+The `UI` component reads user input using readCommand() and executes user commands according to the Logic component.
 
 ### 3.3 Storage
 __API__:`Storage.java`
 The `Storage` component can save the list of event data in .txt format and read it back.   
 ### 3.4 Logic
 __API__:`Parser.java`  
+
+![Logic Class Diagram](diagrams/LogicClass.png)
+
+*Figure 3.4.1 Class diagram for Logic component*
+
 The `logic` component parses the user input and executes commands based on the given input.
- 1.	Parser reads the user input and returns a command to be executed.
+ 1.	Parser reads the user input and returns a command to be executed by `NuSchedule`.
  2.	The command execution affects the EventList (e.g. clearing the list).
  3.	The result passes back to the UI, which then displays relevant feedback to the user.  
 
@@ -99,7 +103,7 @@ The `Model` component stores an ArrayList, events, that represents the current l
 __API__:`EventList.java`   
 
 ### 3.5.2 Location
-![location class diagram](diagrams/Location.jpeg) <br>
+![location class diagram](diagrams/LocationClass.png) <br>
 *Figure 3.6.1 Class diagram for location component*
 
 __API:__ `LocationList.java`  
@@ -136,6 +140,10 @@ and location ‘LT27’.
 
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
+The sequence diagram below shows the process of adding a new event.
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)
+*Figure 4.1.1 Sequence Diagram for add function*
+
 ### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
 
@@ -153,13 +161,12 @@ Given below is an example usage scenario:
 
 Step 1. The user launches the application and inputs a command to add one event.  
 
-Step 2. The user realises that there was a mistake in the event added and decides to edit the task information using the 
-edit 1 command to edit the event that was added (index = 1 as it is the one and only event currently).  
+Step 2. The user realises that there was a mistake in the event added and decides to edit the task information by 
+entering `edit 1 class <new event description>` to edit the one existing event.
 
-Step 3. The Parser class parses the 'edit 1' command. The user enters a new event.  
-
-Step 4. 'editCommand()' function replaces the original event with the edited one. 
-
+Step 3. `editCommand()` function replaces the original event with the edited one. 
+![EditCommand Sequence Diagram](diagrams/EditCommand.png)
+*Figure 4.3 Sequence Diagram for EditCommand()*
 
 ### 4.4 Locate
 This feature allows users to add locations as part of the event information. If the place is located within the school, 
@@ -197,6 +204,16 @@ The sequence diagram below shows exactly which methods, from which classes, are 
 
 
 ### 4.6 Sort events
+This feature allows users to sort the available task by a sorting criteria. Currently, the sorting criteria available
+are sorting by time, description and location.  
+
+Given below is an example usage scenario:
+
+Step 1. The user wants to see view the events in a chronological order. 
+
+Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
+![](diagrams/SortCommand.png)
+*Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
 
@@ -218,6 +235,7 @@ NUSchedule aims to assist the target audience with:
 * 
 
 ### 5.3 User stories
+
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
