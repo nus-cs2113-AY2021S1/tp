@@ -37,7 +37,7 @@ public class InfoParser extends CommandParser {
     public InfoCommand parse(String description) throws AniException {
         String[] paramGiven = description.split(SPLIT_DASH, 2);
         
-        if(paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
+        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
             throw new AniException(NO_PARAMETER_PROVIDED);
         }
         
