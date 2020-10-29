@@ -7,6 +7,9 @@ import anichan.logger.AniLogger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles parsing for browse command.
+ */
 public class BrowseParser extends CommandParser {
     private static final String SORT_PARAM = "s";
     private static final String ORDER_PARAM = "o";
@@ -26,9 +29,15 @@ public class BrowseParser extends CommandParser {
 
     public BrowseParser() {
         browseCommand = new BrowseCommand();
-        // LOGGER.setLevel(Level.WARNING);
     }
 
+    /**
+     * Parses the string parameters and creates an executable browseCommand according to the parameters.
+     *
+     * @param description is the parameters portion of the user input
+     * @return an executable BrowseCommand object
+     * @throws AniException if an error is encountered while parsing
+     */
     public BrowseCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
         if (paramGiven.length > 1) {
@@ -38,6 +47,12 @@ public class BrowseParser extends CommandParser {
         return browseCommand;
     }
 
+    /**
+     * Loops through each parameter and sets the option specified by each parameter.
+     *
+     * @param paramGiven is a String Array containing the processed parameters
+     * @throws AniException if invalid parameters are parsed in
+     */
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(SPLIT_WHITESPACE);
@@ -72,6 +87,12 @@ public class BrowseParser extends CommandParser {
         }
     }
 
+    /**
+     * Performs input validation of the order parameter and its field.
+     *
+     * @param paramField the field of the order parameter.
+     * @throws AniException if the field is invalid
+     */
     private void checkOrderType(String paramField) throws AniException {
         switch (paramField.trim()) {
         case ASCENDING_FIELD:
@@ -86,6 +107,12 @@ public class BrowseParser extends CommandParser {
         }
     }
 
+    /**
+     * Performs input validation of the sortType parameter and its field.
+     *
+     * @param paramParts the field of the sortType parameter.
+     * @throws AniException if the field is invalid
+     */
     private void checkSortType(String[] paramParts) throws AniException {
         switch (paramParts[1].trim()) {
         case NAME_FIELD:

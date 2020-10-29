@@ -1021,12 +1021,20 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ## Appendix A: Product Scope
 
-### 5.1 Target User Profile*
+### A.1 Target User Profile
 *   Professional anime translators.
 *   Works on multiple projects and with various companies.
 *   Has difficulty managing their time and information.
 *   Prefers command-line desktop applications.
 *   Able to type fast.
+
+### A.2 Value Proposition
+*   Helps the target user estimate the time needed to translate their scripts.
+*   Allows the user to organise work from different projects and companies into workspaces.
+*   Allows the user to write and refer to notes on different anime series while translating.
+*   Find relevant information regarding an anime series quickly.
+*   Organize anime into different watchlists for different genres.
+*   Portable and works offline.
 
 {*More coming soon*}
 
@@ -1040,10 +1048,14 @@ If you wish to add new checks, simply add the check file with a filename `check-
 | v1.0 | user | save the data I have created | can remember what I have done |
 | v1.0 | user | load the data I created previously | can continue to work on these data |
 | v1.0 | new user | view all available commands | can easily find a specific command and its usage |
+| v1.0 | user | be able to browse through all anime series | can see easily what anime are available  |
+| v1.0 | user | be able to sort my browsing session | will only browse through relevant data |
 | v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
 | v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
 | v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
 | v2.0 | translator | estimate the time needed to translate a script | better manage my time |
+| v2.0 | user | search for a specific anime with a keyword | find an anime series without remember its full title |
+| v2.0 | user | search for all anime in a genre | can find all similar types anime  |
 
 ## Appendix C: Non-Functional Requirements
 
