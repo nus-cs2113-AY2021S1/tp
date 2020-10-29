@@ -169,7 +169,7 @@ public class WritingList {
             String content = "";
             String contentUserInput = getUserInput(scanner);
             while (!contentUserInput.equals("end")) {
-                content = content.concat(newUserInput + "\n");
+                content = content.concat(contentUserInput + "\n");
                 contentUserInput = getUserInput(scanner);
             }
             WritingList.printAskForReminderDate();

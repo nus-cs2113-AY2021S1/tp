@@ -24,11 +24,14 @@ public class WritingReminder {
         if (writingsOnThisDate.size() == 0) {
             System.out.println("You don't have any writings due that day!!!");
         } else {
-            System.out.println("You should continue the following writings on this day:");
+            System.out.printf("On %s, you should continue on the following writing(s):\n",
+                    date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
+        int filterCount = 1;
         for (Writings w : writingsOnThisDate) {
-            w.printWritingsProperties();
-            UI.printDivider();
+            System.out.println(filterCount + ".");
+            w.printWritingsReminder();
+            filterCount++;
         }
     }
 }

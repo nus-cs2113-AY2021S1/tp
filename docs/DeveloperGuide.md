@@ -1,5 +1,31 @@
 # Developer Guide
 
+## Table of Contents
+
+[Introduction](#introduction) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Design Goals](#design-goals) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Maintainability](#maintainability) <br>
+[Definitions](#definitions) <br>
+[Setting up the project in your computer](#setting-up-the-project-in-your-computer) <br>
+[System Overview](#system-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-view) <br>
+[Architecture](#architecture) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Project Overview](#project-overview) <br>
+[Writings class family](#writings-class-family) <br>
+[Filter words class family](#filter-words-class-family) <br>
+[Bunny class family](#bunny-class-family) <br>
+[Names class family](#names-class-family) <br>
+[Design and Implementation](#design-and-implementation) <br>
+[Product scope](#product-scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Target user profile](#target-user-profile) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#value-proposition) <br>
+[User Stories](#user-stories) <br>
+[Non-Functional Requirements](#non-functional-requirements) <br>
+[Glossary](#glossary) <br>
+[Instruction for manual testing](#instructions-for-manual-testing) <br>
+
 ## Introduction
 
 ### Purpose
@@ -57,6 +83,8 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## System Overview
 
+The following sections describe the high level overview of our application, Fluffle.
+
 ### Technological view
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, 
 and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported 
@@ -95,7 +123,7 @@ either poem or essay at this stage)
 ![UML WritingList family sequence diagram](graphics/diagrams/UML_Writing_Sequence_diagram.png)
 <p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
 
-### Filter words class family
+## Filter words class family
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <p align = "center"><i><b>Figure 4: Filter word UML Class Diagram</b></i></p>
 
@@ -128,11 +156,23 @@ contains the `filterBunny` function which can filter through the list and obtain
 idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
 or the `GENRE` when running the command. 
 
+The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, 
+saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then 
+be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done 
+by calling the `loadBunnyFile` method.
+
+The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly 
+generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the 
+`bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
 
-The user may call upon the `bunny` command to add bunnies to the list. The command executor would 
+The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
+the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
+method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments 
+from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called
+to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 ## Names class family
 
@@ -161,7 +201,7 @@ As shown in Figure 8, both the NamesDB class and the Names class will create the
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
-## Design & implementation
+## Design and implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 

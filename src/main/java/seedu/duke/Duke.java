@@ -6,6 +6,7 @@ import seedu.duke.database.FileFunctions;
 import seedu.duke.database.WordsLoader;
 import seedu.duke.database.WritingsLoader;
 import seedu.duke.user.User;
+import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
 
 import java.io.File;
@@ -48,7 +49,6 @@ public class Duke {
     public static void main(String[] args) {
         setUserSettingsArrayList(savedSettings, username);
         loadUserSettings(savedSettings);
-        WordsLoader.loadWordsFile();
         loadBunnyFile(bunniesList);
         loadWritings(writings);
         loadWordsFile();
