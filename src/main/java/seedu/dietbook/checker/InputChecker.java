@@ -109,6 +109,18 @@ public class InputChecker {
     }
 
     /**
+     * Takes in a date time object and see if it is a future date.
+     *
+     * @param time a date time class object.
+     * @throws DietException if date is in the future.
+     */
+    public static void checkFutureDate(LocalDateTime time) throws DietException {
+        if (time.isAfter(LocalDateTime.now())) {
+            throw new DietException("The date cannot be in the future!");
+        }
+    }
+
+    /**
      * Takes in user input to check if the expected number and type of parameter for the add command is present.
      *
      * @param userInput user input.

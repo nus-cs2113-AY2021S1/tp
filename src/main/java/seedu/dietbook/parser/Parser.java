@@ -148,6 +148,7 @@ public class Parser {
             processedParam = userInput.split("\\s+");
             InputChecker.checkDateValidity(processedParam[processedParam.length - 1]);
             LocalDateTime time = LocalDateTime.parse(processedParam[processedParam.length - 1]);
+            InputChecker.checkFutureDate(time);
             return foodList.addFoodAtDateTime(portionSize, foodName, calorie, carb, protein, fat, time);
         }
         //if (databaseCheck.length == 3) {

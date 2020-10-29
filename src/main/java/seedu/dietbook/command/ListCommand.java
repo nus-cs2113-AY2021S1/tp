@@ -33,14 +33,16 @@ public class ListCommand extends Command {
             try {
                 if (processedInput.length == 2) {
                     startTime = LocalDateTime.parse(processedInput[1]);
+                    InputChecker.checkFutureDate(startTime);
                     ui.printFoodList(foodList.getAfterDateTimeToString(startTime), startTime);
                 } else if (processedInput.length == 3) {
                     startTime = LocalDateTime.parse(processedInput[1]);
                     endTime = LocalDateTime.parse(processedInput[2]);
+                    InputChecker.checkFutureDate(startTime);
                     ui.printFoodList(foodList.getInDateTimeRangeToString(startTime,endTime), startTime, endTime);
                 }
             } catch (Exception e) {
-                throw new DietException("Wrong date time format! (Format: yyyy-mm-ddTHH:mm)");
+                throw new DietException("Wrong date time format (Format: yyyy-mm-ddTHH:mm) or future date entered!");
             }
         }
     }

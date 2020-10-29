@@ -2,7 +2,6 @@ package seedu.dietbook.command;
 
 import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
-import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.exception.DietException;
 
@@ -46,6 +45,7 @@ public class CalculateCommand extends Command {
                     ui.printAllIntake(this.calorie, this.carb, this.protein, this.fat);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
                     protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
@@ -53,6 +53,7 @@ public class CalculateCommand extends Command {
                     ui.printAllIntake(calorie, carb, protein, fat, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
@@ -66,10 +67,12 @@ public class CalculateCommand extends Command {
                     ui.printCalorieIntake(this.calorie);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
                     ui.printCalorieIntake(calorie, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
                     ui.printCalorieIntake(calorie, startTime, endTime);
@@ -80,10 +83,12 @@ public class CalculateCommand extends Command {
                     ui.printCarbIntake(this.carb);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
                     ui.printCarbIntake(carb, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
                     ui.printCarbIntake(carb, startTime, endTime);
@@ -94,10 +99,12 @@ public class CalculateCommand extends Command {
                     ui.printProteinIntake(this.protein);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
                     ui.printProteinIntake(protein, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
                     protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
                     ui.printProteinIntake(protein, startTime, endTime);
@@ -108,17 +115,19 @@ public class CalculateCommand extends Command {
                     ui.printFatIntake(this.fat);
                 } else if (processedParam.length == 2) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime);
                     ui.printFatIntake(fat, startTime);
                 } else if (processedParam.length == 3) {
                     startTime = LocalDateTime.parse(processedParam[1]);
+                    InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
                     fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                     ui.printFatIntake(fat, startTime, endTime);
                 }
             }
         } catch (Exception e) {
-            throw new DietException("Wrong date time format! (Format: yyyy-mm-ddTHH:mm)");
+            throw new DietException("Wrong date time format (Format: yyyy-mm-ddTHH:mm) or future date entered!");
         }
     }
 }
