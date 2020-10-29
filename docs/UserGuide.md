@@ -62,7 +62,7 @@ where you have to type in commands.<br>
 ![Windows CLI](UG_Figures/windowsCLI.png)
 
 3. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
-shown in Figure 1.3, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".
+shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
 ![Windows CLI](UG_Figures/windowsPath.png)
 4. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
 5. Run the .jar file in the command prompt as follows by typing `java -jar duke.jar` and press <kbd>Enter</kbd>.
