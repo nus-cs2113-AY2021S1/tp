@@ -206,9 +206,17 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 
 * ***Step 1***: Key the **`due`** command **into the prompt** as shown below and **press *[Enter]***
 
-[Show welcome prompt, and label where to put in command]
+<p align="center">
+  <img src="UG_Images/due.png" alt="Due Command"/>
+  <br/>Figure <>. Example of the "due" command 
+</p>
 
 * ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/dueComplete.png" alt="Due Command Result"/>
+  <br/>Figure <>. Example of the "due" result
+</p>
 
 [Labeled expected output]
 
@@ -234,9 +242,17 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 * ***Step 1***: Key the **`preview`** command **into the prompt** as shown below and **press *[Enter]***
 
-[Show welcome prompt, and label where to put in command]
+<p align="center">
+  <img src="UG_Images/preview.png" alt="Preview Command"/>
+  <br/>Figure <>. Example of the "preview" command  
+</p>
 
 * ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/previewComplete.png" alt="Preview Command Result"/>
+  <br/>Figure <>. Example of the "preview" result
+</p>
 
 [Labeled expected output]
 
@@ -261,43 +277,164 @@ The `exclude` command allows you to **add or remove** a single Chapter or an ent
 
 #### Key Pointers:
 * This command can be **called from any Level**
-* This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will not be filled with non-existing exclusions.
-* After calling the command with either "more" or "less", there will be **a guided secondary option** on whether you would like to add/remove **a single Chapter** or **an entire Module**
+* This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will
+ not be filled with non-existing exclusions.
+* After calling the command with either "more" or "less", there will be **a guided secondary option** on whether you
+ would like to add/remove **a single Chapter** or **an entire Module**
 * The name entry of the Chapter/Module to be operated on is **case-sensitive**
 
 
 #### Example
-At any point, if you **customise your Exclusion List**, all you have to do is enter the `exclude` command with the choice of "more" or "less" in the format specified above. Below are examples of the execution of the `exclude` command using both options.
+At any point, if you **customise your Exclusion List**, all you have to do is enter the `exclude` command with the
+ choice of "more" or "less" in the format specified above. Below are examples of the execution of the `exclude` command using both options.
 
 Example of ***`exclude more`***
 * ***Step 1***: Key the **`exclude more`** command **into the prompt** as shown below and **press *[Enter]***
 
-* ***Step 2***: Key either **"chapter"**, to exclude a new Chapter, or **"module"**, to exclude an entire Module, **into the prompt** as shown below and **press *[Enter]***
+<p align="center">
+  <img src="UG_Images/excludeMore.png" alt="Exclude Command more"/>
+  <br/>Figure <>. Example of the "exclude more" command  
+</p>
 
-* ***`exclude more`*** + ***chapter***
-    * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
+* ***Step 2***: Key either **"chapter"**, to exclude a new Chapter, or **"module"**, to exclude an entire Module
+, **into the prompt** as shown below and **press *[Enter]***
 
-    * ***Upon completion***: This is what you will see:
+<p align="center">
+  <img src="UG_Images/excludeMore2.png" alt="Exclude Command more Secondary Option"/>
+  <br/>Figure <>. Example of "exclude more" Secondary Option 
+</p>
+
+* ***`exclude more`*** + ***chapter***    
+        
+<p align="center">
+  <img src="UG_Images/excludeMore2Chapter.png" alt="Exclude Command more Chapter"/>
+  <br/>Figure <>. 
+</p>
+
+* ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to exclude from your schedule
+     belongs to **into the prompt** as shown below and **press *[Enter]***
+        
+<p align="center">
+  <img src="UG_Images/excludeMore2ChapterModuleName.png" alt="Exclude Command more Chapter: ModuleName prompt"/>
+  <br/>Figure <>. Example of "exclude more" + ModuleName prompt 
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeMore2ChapterModuleName2.png" alt="Exclude Command more Chapter: ModuleName filled"/>
+  <br/>Figure <>. Example of "exclude more" + ModuleName filled 
+</p>
+
+* ***Step 4***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown
+ below and **press *[Enter]***
+        
+<p align="center">
+  <img src="UG_Images/excludeMore2ChapterChapterName.png" alt="Exclude Command more Chapter: ChapterName prompt"/>
+  <br/>Figure <>. Example of "exclude more" + ChapterName prompt 
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeMore2ChapterChapterName2.png" alt="Exclude Command more Chapter: ChapterName filled"/>
+  <br/>Figure <>. Example of "exclude more" + ChapterName result
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/excludeMore2ChapterComplete.png" alt="Exclude Command more Chapter: Result"/>
+  <br/>Figure <>. Example of "exclude more" + chapter Result
+</p>
 
 * ***`exclude more`*** + ***module***
-    * ***Step 3***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
+* ***Step 3***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown
+ below and **press *[Enter]***
 
-    * ***Upon completion***: This is what you will see:
+<p align="center">
+  <img src="UG_Images/excludeMore2ModuleModuleName.png" alt="Exclude Command more Module: ModuleName prompt"/>
+  <br/>Figure <>. Example of "exclude more" + module prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeMore2ModuleModuleName2.png" alt="Exclude Command more Module: ModuleName filled"/>
+  <br/>Figure <>. Example of "exclude more" + module filled  
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/excludeMore2ModuleComplete.png" alt="Exclude Command more Module: Result"/>
+  <br/>Figure <>. Example of "exclude more" + module Result 
+</p>
 
 Example of ***`exclude less`***
 * ***Step 1***: Key the **`exclude less`** command **into the prompt** as shown below and **press *[Enter]***
 
-* ***Step 2***: Key either **"chapter"**, to include a excluded Chapter, or **"module"**, to include a excluded Module, **into the prompt** as shown below and **press *[Enter]***
+<p align="center">
+  <img src="UG_Images/excludeLess.png" alt="Exclude Command less"/>
+  <br/>Figure <>. Example of "exclude less" command  
+</p>
+
+* ***Step 2***: Key either **"chapter"**, to include a excluded Chapter, or **"module"**, to include a excluded
+ Module, **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/excludeLess2.png" alt="Exclude Command Secondary Option"/>
+  <br/>Figure <>. Example of "exclude less" Secondary Option
+</p>
 
 * ***`exclude less`*** + ***chapter***
-    * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+* ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to include back into your schedule
+     belongs to **into the prompt** as shown below and **press *[Enter]***
 
-    * ***Upon completion***: This is what you will see:
+<p align="center">
+  <img src="UG_Images/excludeLess2ChapterModuleName.png" alt="Exclude Command less Chapter: ModuleName prompt"/>
+  <br/>Figure <>. Example of "exclude less" + chapter ModuleName prompt 
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ChapterModuleName2.png" alt="Exclude Command less Chapter: ModuleName filled"/>
+  <br/>Figure <>. Example of "exclude less" + chapter ModuleName filled
+</p>
+
+* ***Step 4***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown
+ below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ChapterModuleName.png" alt="Exclude Command less Chapter: ChapterName prompt"/>
+  <br/>Figure <>. Example of "exclude less" + chapter ChapterName prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ChapterModuleName2.png" alt="Exclude Command less Chapter: ChapterName filled"/>
+  <br/>Figure <>. Example of "exclude less" + chapter ChapterName filled
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ChapterComplete.png" alt="Exclude Command less Chapter: Result"/>
+  <br/>Figure <>. Example of "exclude less" + chapter Result 
+</p>
 
 * ***`exclude less`*** + ***module***
-    * ***Step 3***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+* ***Step 3***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown
+ below and **press *[Enter]***
 
-    * ***Upon completion***: This is what you will see:
+<p align="center">
+  <img src="UG_Images/excludeLess2ModuleModuleName.png" alt="Exclude Command less Module: ModuleName prompt"/>
+  <br/>Figure <>. Example of "exclude less" + module ModuleName prompt 
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ModuleModuleName2.png" alt="Exclude Command less Module: ModuleName filled"/>
+  <br/>Figure <>. Example of "exclude less" + module ModuleName filled 
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/excludeLess2ModuleComplete.png" alt="Exclude Command less Module: Result"/>
+  <br/>Figure <>. Example of "exclude less" + module Result
+</p>
 
 <br>
 
