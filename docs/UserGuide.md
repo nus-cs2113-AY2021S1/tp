@@ -290,9 +290,9 @@ These are the steps to follow:
 1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. 
 <img src="UG_Figures/routeOutput1.png" alt="output" width=600><br>
 
-2. Type <code>/addfav </code> into the CLI and press <kbd>Enter</kbd> to execute the command 
+2. Type <code>/addfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command 
 to store the command in to your list of favourites with no description  as shown in the figure below .
-<img src="UG_Figures/addfav2png" alt="output" width=600><br>
+<img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 
 ### 3.10. List all favourite commands: `/listfav`
 This command displays all the commands in your list of favourite commands, along with their index and description.
