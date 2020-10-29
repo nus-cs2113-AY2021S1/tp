@@ -60,14 +60,25 @@ public class SystemException extends Exception {
                 + "Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\" in 24-Hour Clock format"),
         EXCEPTION_INVALID_LIST_TIMING_FORMAT("Your input list timing query has a wrong format. "
                 + "Try YYYY-MM or YYYY"),
+        EXCEPTION_INVALID_END_RECURRENCE_TIMING_FORMAT("Your end recurrence date has a wrong format. "
+                + "Try yyyy-MM-dd HH:mm format while following the 24-Hour Clock format"),
         EXCEPTION_INVALID_REMINDER_FORMAT("Your input has a wrong format for the time before reminder. "
                 + "Please follow [NumberOfUnits-Units] format where NumberOfUnits > 0 and units = "
                 + Event.REMINDER_DAY + " or " + Event.REMINDER_WEEK + "."),
+        EXCEPTION_MISSING_EDIT_REMINDERS("Please specify what reminder you would like to edit!"
+                + "Please follow [NumberOfUnits-Units] format where NumberOfUnits > 0 and units = "
+                + Event.REMINDER_DAY + " or " + Event.REMINDER_WEEK + "."),
+        EXCEPTION_EDIT_REMINDER_SET("Please indicate only one edit type for reminder!"
+                + " Either add, drop or clear."),
         EXCEPTION_SEARCH_DATE_OUT_OF_RANGE("Your query is out of range for our system."),
         EXCEPTION_MISSING_RECURRING_TYPE("Please indicate whether you would like to have the event "
                 + "repeat daily, weekly, monthly or yearly"),
+        EXCEPTION_MISSING_EDIT_RECURRING_TYPE("Please indicate whether you would like to have the event "
+                + "repeat none, daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_RECURRING_TYPE("There are only the following recurring types: "
                 + "daily, weekly, monthly or yearly"),
+        EXCEPTION_INVALID_EDIT_RECURRING_TYPE("There are only the following recurring types: "
+                + "none, daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
 
         // Storage related exceptions

@@ -1,8 +1,11 @@
 package seedu.notus.data.timetable;
 
+import seedu.notus.data.tag.Tag;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //@@author brandonywl
 /**
@@ -18,13 +21,13 @@ public class WeeklyEvent extends RecurringEvent {
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
-     * @param timePeriods Number of units of time before an event for a reminder.
-     * @param timeUnits Units of time before an event for a reminder. (Day, Week)
+     * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to this event.
      */
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                       ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
         super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.WEEKLY_RECURRENCE_TYPE,
-                timePeriods, timeUnits);
+                reminderSchedule, tags);
     }
 
     /**
@@ -33,12 +36,12 @@ public class WeeklyEvent extends RecurringEvent {
      * @param title Title of Event
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
-     * @param timePeriods Number of units of time before an event for a reminder.
-     * @param timeUnits Units of time before an event for a reminder. (Day, Week)
+     * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags related to this event.
      */
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
-                       ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
-        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, timePeriods, timeUnits);
+                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
     @Override

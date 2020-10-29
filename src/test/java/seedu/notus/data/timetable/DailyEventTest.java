@@ -1,10 +1,12 @@
 package seedu.notus.data.timetable;
 
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.tag.Tag;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,16 +21,17 @@ class DailyEventTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
-    private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
-    private final DailyEvent event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME,
-            TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
+    private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
+    private static final ArrayList<Tag> tags = new ArrayList<>();
+    private DailyEvent event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME,
+            TEST_REMINDER, reminderSchedule, tags);
 
     /**
      * Tests if the time-step for DailyEvent is still correct (1 day).
      */
     @Test
     void timeStep_singleDay_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusDays(1), event.timeStep(dateTime));
     }
@@ -38,6 +41,7 @@ class DailyEventTest {
      */
     @Test
     void toReoccur_twoTimeSteps_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -50,6 +54,7 @@ class DailyEventTest {
      */
     @Test
     void getRecurrences_oneWeek_success() {
+        reminderSchedule.put("day", TEST_TIME_PERIODS);
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusWeeks(1);
         assertEquals(8, (event.getRecurrences(startDate, endDate).size()));
