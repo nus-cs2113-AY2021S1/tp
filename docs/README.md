@@ -7,6 +7,6 @@ as well as improve translation efficiency and accuracy.
 
 
 Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](DeveloperGuide.md)
-* [About Us](AboutUs.md)
+*   [User Guide](UserGuide.md)
+*   [Developer Guide](DeveloperGuide.md)
+*   [About Us](AboutUs.md)
