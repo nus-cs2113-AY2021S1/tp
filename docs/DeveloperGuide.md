@@ -251,7 +251,7 @@ exams or deadlines will be sorted in ascending sequence by function `sortDeadlin
 
 ### Saving data feature
 
-This feature is facilitated by `Storage` class and saves the data  input by the users automatically into file `tasks.txt` in `/data` directory. 
+This feature is facilitated by `Storage` class and saves the data input by the users automatically into file `tasks.txt` in `/data` directory. 
 
 The file `tasks.txt` is loaded when initializing the program by calling the function `readFromFile()`.
 
