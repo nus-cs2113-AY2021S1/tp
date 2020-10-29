@@ -41,7 +41,7 @@ public class EventList {
         logger.setLevel(Level.OFF);
         logger.info("Adding event to list\n");
         String userOutput;
-
+        //User does not accidentally add an event with a past date.
         LocalDate date = event.getEventDate();
         if (date.isBefore(LocalDate.now())) {
             return COMMAND_NOT_VALID_DATE;
