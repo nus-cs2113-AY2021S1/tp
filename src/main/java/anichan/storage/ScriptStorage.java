@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
  * Manages the storage of script data.
  */
