@@ -241,7 +241,7 @@ Given below is the class diagram for classes related to the Quote Management Sys
 
 ![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
 
-* The `XRatingCommand` class represents `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, `DeleteQuoteCommand`,
+* The `XQuoteCommand` class represents `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, `DeleteQuoteCommand`,
 `FindQuoteCommand`, `AddQuoteReflectionCommand`, `ListQuoteReflectionCommand`, `EditQuoteReflectionCommand`,
 `DeleteQuoteReflectionCommand`.
 
