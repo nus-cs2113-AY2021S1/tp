@@ -16,16 +16,16 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
   Got it. I've added this member:
-  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%
   Now you have 1 member in the list.
 ____________________________________________________________
 ____________________________________________________________
   Here is the list of members in your CCA:
-  1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%
 ____________________________________________________________
 ____________________________________________________________
   Noted. I'll remove this member:
-  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%
   Now you have 0 member in the list.
 ____________________________________________________________
 ____________________________________________________________
