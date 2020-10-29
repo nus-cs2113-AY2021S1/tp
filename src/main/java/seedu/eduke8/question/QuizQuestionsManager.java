@@ -30,7 +30,7 @@ public class QuizQuestionsManager {
     }
 
     private void setQuizQuestions(int numberOfQuestionsForQuiz,
-                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
+                                  ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
 
         if (numberOfQuestionsForQuiz <= 0) {
             throw new Eduke8Exception(ERROR_QUIZ_INVALID_QUESTION_NUMBER);

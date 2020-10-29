@@ -16,18 +16,21 @@ public class Question implements Displayable {
     private Explanation explanation;
     private boolean wasAnsweredCorrectly;
     private boolean wasShown;
+    private boolean isBookmarked;
+
 
     public Question(String description, OptionList optionList, Hint hint, Explanation explanation) {
-        assert description != null;     // A question must have its description
+        assert description != null;     //A question must have its description
         this.description = description;
 
-        assert optionList != null;       // A question must have some options
+        assert optionList != null;       //A question must have some options
         this.optionList = optionList;
 
         this.explanation = explanation;
         this.hint = hint;
         wasAnsweredCorrectly = false;
         wasShown = false;
+        isBookmarked = false;
     }
 
     /**
@@ -108,5 +111,13 @@ public class Question implements Displayable {
      */
     public void markAsAnsweredCorrectly() {
         wasAnsweredCorrectly = true;
+    }
+
+    public boolean isBookmarked() {
+        return isBookmarked;
+    }
+
+    public boolean markAsBookmarked() {
+        return isBookmarked = true;
     }
 }
