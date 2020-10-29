@@ -1,5 +1,7 @@
 package seedu.duke.hr;
 
+import seedu.duke.event.Event;
+
 import java.util.ArrayList;
 
 public class MemberList {
@@ -104,6 +106,16 @@ public class MemberList {
             }
         }
         return null;
+    }
+
+    public static boolean checkMemberExistence(ArrayList<Member> list, String memberName) {
+        boolean hasExist = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                hasExist = true;
+            }
+        }
+        return hasExist;
     }
 
     /**

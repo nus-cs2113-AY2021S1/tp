@@ -58,4 +58,9 @@ public class Member {
                 + " |role: " + this.getMemberRole();
     }
 
+    public boolean containsNameKeyword(String keyword) {
+        boolean containsKeyword = memberName.toLowerCase().contains(keyword.toLowerCase());
+        return containsKeyword;
+    }
+
 }
