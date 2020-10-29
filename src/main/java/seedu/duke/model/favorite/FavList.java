@@ -73,9 +73,13 @@ public class FavList {
         return false;
     }
 
-    public static Fav getFav(int index) {
-        Fav fav = favList.get(index);
-        return fav;
+    public static Fav getFav(int index) throws CustomException {
+        try {
+            Fav fav = favList.get(index);
+            return fav;
+        } catch (IndexOutOfBoundsException e) {
+            throw new CustomException(ExceptionType.INVALID_INDEX);
+        }
     }
 
 }
