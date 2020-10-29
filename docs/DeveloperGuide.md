@@ -140,14 +140,14 @@ The `Task` package holds the necessary classes for the Task functionality of thi
 the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
 
 ##### Task class <a name = "Ttask"> </a>
-The `Task` class is the super class of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
+The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
 and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
 status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
  a toString methods to print the Task.
  
 ###### Todo Class <a name = "Ttodo"> </a>
 The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
-ones found in its super class `Task`. It has an additional Override toString method, to differentiate between itself and other
+ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
 tasks, such as Deadline and Event.
 
 An example of how a Todo task "return books" will look like in the command line for user intepretation is shown below.
@@ -161,7 +161,7 @@ ____________________________________________________________
 
 ###### Deadline Class <a name = "Tdeadline"> </a>
 The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
-ones found in its super class `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
+ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
 to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
 and Event.
 
@@ -177,7 +177,7 @@ ____________________________________________________________
 
 ###### Event Class <a name = "Tevent"> </a>
 The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
-It contains methods and attributes similar to the ones found in its super class `Task`, and additional attributes to make it a `Deadline`
+It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
 Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
 to differentiate between itself and other tasks, such as `Todo` and `Deadline`.
 
@@ -202,8 +202,17 @@ subject-`String`, a list of various topics in a subject-`TopicList`, a list of v
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
+####  Topic Class <a name = "topic"> </a>
+The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
+a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
+contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
+
 An example of how classes in the card package interact with each other is shown in the figure below. 
 In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
+
+### Command Package
+The Command package consists of different classes that executes the various commands of the application due to user input,
+and is split into 4 packages, flashcard, subject, task and topic, as well as a abstract command class, that is a superclass of the various classes in the different packages.
 
 * Command: In charge of reading the command and calling the relevant methods. The package itself holds
 the following packages.
