@@ -6,7 +6,6 @@
 [About this document](#about-this-document) <br>
 [Quick start](#quick-start) <br>
 [Features](#features) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Features overview](#features-overview) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Basic CLI commands](#basic-cli-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
@@ -43,11 +42,15 @@
 [Glossary](#glossary) <br>
 [Command summary](#command-summary) <br>
 
+[Jump to top](#fluffle-user-guide)
+
 ## Introduction
 
 Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). 
 It aids users in creating and managing their writings and ideas. 
 As a fast-typing writer, this CLI app is highly suitable for you.
+
+[Jump to top](#fluffle-user-guide)
 
 This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
 
@@ -56,10 +59,12 @@ This User Guide aims at providing you with the best way to utilize Fluffle for y
 This document aims to provide you with the best way to utilize Fluffle for your own writing experience. 
 You may want to first have a look at the glossary to be clear on the terminology used in the document.
 
+[Jump to top](#fluffle-user-guide)
+
 ## Quick start
 
 1. Check that your computer has `Java 11` installed.
-1. Get the latest **Fluffle** from [here](https ://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
+1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
 1. Type in a command prompt ./duke.jar and press Enter.
 1. Type the `help` command and press Enter to get started.
@@ -73,10 +78,12 @@ You may want to first have a look at the glossary to be clear on the terminology
 
 ## Features 
 
-### Features overview
 This section includes five subsections which will guide you through all the commands in five main components of Fluffle: 
 `Basic CLI`, `Words list`, `Bunnies list`, `Names list` and `Writings list`. We will adhere to the following format in 
-explaining the syntax of the commands in Fluffle:
+explaining the syntax of the commands in Fluffle.
+
+***
+**Command format**
 
 * Words that are in `UPPER_CASE` are the compulsory parameters that you should provide for the command.
   
@@ -88,8 +95,13 @@ explaining the syntax of the commands in Fluffle:
   
   Example: in the command `filter words by\START -TARGET_STRING…`, you can provide as many target strings as you wish. 
   For more examples, please refer to the [filter words](#filtering-words-in-word-list-filter-words) command below.
+***
+
+[Jump to top](#fluffle-user-guide)
 
 ### Basic CLI commands
+
+<<Some overview of basic cli commands here>>
 
 #### Viewing help: `help`
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
@@ -123,6 +135,8 @@ Example of usage:
 
 `help filter name`
 
+[Jump to top](#fluffle-user-guide)
+
 #### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
@@ -149,6 +163,8 @@ Changing line divider...
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
 
+[Jump to top](#fluffle-user-guide)
+
 #### Clearing certain object in the database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
 
@@ -158,6 +174,8 @@ Example usage:
 Example Output:  
 `Are you sure you want to delete this item grass? Yes/no`
 
+[Jump to top](#fluffle-user-guide)
+
 #### Closing the program: `exit`
 Exits the program. All data is auto-saved.  
 
@@ -166,23 +184,36 @@ Format: `exit`
 [Jump to top](#fluffle-user-guide)
 
 ### Words list commands
+
+<<Some overview of words list commands here>>
+
 #### Adding a noun: `noun`
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun [WORD] \d[DESCRIPTION]`
+
+[Jump to top](#fluffle-user-guide)
 
 #### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb [WORD] \d[DESCRIPTION]`
 
+[Jump to top](#fluffle-user-guide)
+
 #### Adding an adjective: `adj`
 Adds an adjective, together with its meaning, into the word bank in the program.  
 Format: `adj [WORD] \d[DESCRIPTION]`
+
+[Jump to top](#fluffle-user-guide)
 
 #### Listing words: `list words`
 List all words stored in the program.  
 Format: `list words`
 
+[Jump to top](#fluffle-user-guide)
+
 #### Generating three random words: `three words`
+
+[Jump to top](#fluffle-user-guide)
 
 #### Filtering words in word list: `filter words`
 Suppose you need to list out all the nouns in your words list, or you want to find out the words starting with the 
@@ -248,6 +279,8 @@ Printing all 1 word(s) from your filter list:
 - grass: a common wild plant with narrow green leaves and stems
 ```
 
+[Jump to top](#fluffle-user-guide)
+
 #### Listing your filter list: `list filter words`
 Suppose you want to refer back to the words that have just been filtered recently. 
 In this scenario, you can use the command `list filter words` to print out the filter list.
@@ -279,6 +312,8 @@ Printing 3 out of 5 word(s) from your filter list:
 
 ### Bunnies list commands
 
+<<Preface here>>
+
 #### Adding a bunny idea: `bunny`
 
 Add a bunny idea to the list of bunny ideas in the current run of the program.
@@ -298,6 +333,9 @@ bunny i\test idea 2 g\ fantasy
    genre:  fantasy
  ---------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
+
 #### Listing bunny ideas: `list bunny`
 List all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
@@ -320,6 +358,8 @@ Here are the bunnies stored in the program:
   genre: none
 ------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Filtering bunny ideas: `filter bunny`
 Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
@@ -344,6 +384,8 @@ number bunny filter: 2
 -------------------------------------------------------
 ```
 
+[Jump to top](#fluffle-user-guide)
+
 #### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. 
 The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
@@ -359,6 +401,9 @@ save bunny
 Bunny list saved!
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
+
 #### Deleting a bunny idea: `delete bunny`
 Delete a selected bunny from the list of bunny ideas.
 Format: `delete bunny BUNNY_INDEX`
@@ -376,6 +421,8 @@ Bunny deleted:
   genre: none
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Generating a random bunny idea: `random bunny`
 The app will pick a random bunny from your list of plot bunnies for you to work on.
@@ -398,6 +445,8 @@ Random Bunny:
 
 ### Names list commands
 
+<<Preface here>>
+
 #### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
 Format: `name`
@@ -412,6 +461,8 @@ name
 name 2
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Listing names from name database: `list name`
 Displays all the names currently stored in the names database.  
@@ -429,6 +480,8 @@ list name
 3. name 3
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Finding names from name database: `filter name`
 Gets the list of names after filtering from the stored list of names.  
@@ -458,6 +511,8 @@ filter name name
 --------------------------------------------------------------
 ```
 
+[Jump to top](#fluffle-user-guide)
+
 #### Adding names from name database: `add name`
 Adds a name to the list of names currently stored in the names database.
 Format: `add name <NAME>`
@@ -472,6 +527,8 @@ add name name 3
 name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
 Removes a name from the list of names currently stored in the names database.
@@ -492,6 +549,8 @@ name 3 has been deleted from the Names list!
 
 ### Writings list commands
 
+<<Preface here>>
+
 #### Beginning your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
 - `type`
@@ -499,8 +558,12 @@ Requires you to type the following commands for your writings’ configurations:
 
 After choosing the “type” and the “topic” configuration, we can start writing our poems and essays.
 
+[Jump to top](#fluffle-user-guide)
+
 #### Choosing the “type” of your writing: `type`
 Currently, our application offers you with 2 options of “type”, which are “poem” or “essay”.
+
+[Jump to top](#fluffle-user-guide)
 
 #### Choosing the “topic” of your writing: `topic`
 Listing the available topic in the list and pop out the relevant keywords for your writing.
@@ -531,6 +594,8 @@ This Poem, Der Erlkönig has been added
 Done! We have added your writing to our storage! You can type "stats" for future reference!
 ```
 
+[Jump to top](#fluffle-user-guide)
+
 #### Tracking your past writings: `stats`
 Inform the user detailed specifications like ids, authors, contents, and other attributes of the writings stored in database. 
  
@@ -555,6 +620,8 @@ In seinen Armen das Kind war tot.
 This writing was created on 2020-10-18
 --------------------------------------------------------------
 ```
+
+[Jump to top](#fluffle-user-guide)
 
 #### Getting reminders for your writings scheduled for a specific day: `remind`
 Let’s say you are an inconsistent person and you would like the program to remind you which writings you are about to 
@@ -594,11 +661,14 @@ still some features that need you to type in the command in the exact order for 
 [Jump to top](#fluffle-user-guide)
 
 ## Glossary
+
 **Bunny** is a short form for the slang term plot bunny, often used in creative writing, which refers to short writing ideas that have yet to be written.
 
 [Jump to top](#fluffle-user-guide)
 
 ## Command Summary
+
+The following table summarize all the commands that you need to know when using Fluffle.
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
