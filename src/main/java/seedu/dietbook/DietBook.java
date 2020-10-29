@@ -37,6 +37,7 @@ public class DietBook {
         loadPerson = new PersonSaveLoadManager();
         foodList = new FoodList();
         dataBase = new DataBase();
+        dataBase.init();
         manager = new Manager(foodList, dataBase);
     }
 
