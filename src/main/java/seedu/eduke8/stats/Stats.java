@@ -20,6 +20,10 @@ public class Stats {
         userStatsCalculator = new UserStatsCalculator(topics);
     }
 
+    /**
+     * Displays user's statistics for past quiz attempts. Overall statistics for all the past quiz
+     * attempts will be printed out first, followed by topic-level statistics.
+     */
     public void showStatsToUser(Ui ui) {
         ui.printPointSystemRules();
         showPointsEarned(ui);
