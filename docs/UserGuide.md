@@ -305,6 +305,18 @@ Example of usage:
 Expected outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
+
+#### 4.5.4 Change finance log entry information: `changeLog`  
+Change the finance log entry's name and budget amount.  
+Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
+
+Example of usage:  
+`finance changeLog /i 1 /n buy cake 5.5`  
+
+Expected outcome:  
+![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
+
+
 ### 4.6 Import
 
 You can import data from other existing CSVs quickly with the import command  
@@ -323,6 +335,7 @@ addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event a
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
 bye | `bye` | -
 changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
+changeLog | `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE` | `finance changeLog /i 1 /n buy cake 5.5`
 delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
