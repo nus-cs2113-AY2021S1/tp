@@ -151,8 +151,9 @@ and location ‘LT27’.
 Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events, events.
 
 The sequence diagram below shows the process of adding a new event.
-![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
+![AddCommand Sequence Diagram](diagrams/AddCommand.png)  
 *Figure 4.1 Sequence Diagram for add function*
+
 
 ### 4.2 Clear events
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
@@ -226,7 +227,7 @@ Given below is an example usage scenario:
 Step 1. The user wants to see view the events in a chronological order. 
 
 Step 2. The user enters `sort time`, which will call the `sortCommand()` function which will sort all events.  
-![](diagrams/SortCommand.png)<br>
+![](diagrams/SortCommand.png)  
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events
@@ -254,10 +255,9 @@ __Target user profile:__
 ### 5.2 Value proposition
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
-* 
+* easily finding out about the location of their events 
 
 ### 5.3 User stories
-
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
