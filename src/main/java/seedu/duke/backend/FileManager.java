@@ -32,6 +32,7 @@ public class FileManager {
     private String path; // if not the working directory, path should end with a slash
 
     public FileManager(String path) {
+        logger.setLevel(Level.OFF);
         this.path = path;
         try {
             Files.createDirectories(Paths.get(path));
