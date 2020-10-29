@@ -27,13 +27,12 @@ This quick start section provides a step-by-step procedure to get you started wi
 2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
 3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
-5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1.
+5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+6. Follow the setup process by entering your name, age, height, weight, gender and your fitness level. Note that the height is in metres and weight is in kilograms.
+7. Once done, you are ready to use Fitr. You can type help to find out what commands are supported in Fitr.
 
 <p align="center"><img src="images/Figure1.png" width="350"></p>
 <p align="center">Figure 1: Welcome screen of Fitr for new users</p>
-
-6. Follow the setup process by entering your name, age, height, weight, gender and your fitness level. Note that the height is in metres and weight is in kilograms.
-7. Once done, you are ready to use Fitr. You can type help to find out what commands are supported in Fitr.
    
 # 2. Features
 This section introduces the features available in Fitr, explaining how you can use each feature and its expected outcomes.
@@ -42,293 +41,147 @@ This section introduces the features available in Fitr, explaining how you can u
 You can add various types of entries to Fitr, such as your food intake, exercise completed and goals you wish to achieve. These features are documented below.
 
 ### 2.1.1 Adding a food entry
+You can add a food entry to keep track of what you have eaten and the calories consumed from that food.
+
+Format: `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /NUMBER_OF_CALORIES AMOUNT_OF_FOOD`
+
+For example, you can enter `food apple /50` and this will be the result after the application records the food entry:
+
+```
+The following food has been added:
+Name of Food: apple
+Calorie Consumed: 50
+```
 
 ### 2.1.2 Adding an exercise entry
+You can add an exercise entry to keep track of what exercise you have done, as well as the calories burnt from that exercise.
+
+Format: `exercise NAME_OF_EXERCISE /CALORIES_BURNT`
+
+For example, you can enter `exercise push ups /500` and this will be the result after the application records the exercise entry:
+
+```
+The following exercise has been added:
+Name of Exercise: push ups
+Burnt Cal: 500
+```
 
 ### 2.1.3 Adding a food goal
+You can add a food goal to the application to encourage yourself to eat more or less. 
+
+Format: `goal food GOAL_DESCRIPTION`
+
+For example, you can enter `goal food eat less food than yesterday` and this will be the result after the application records the food goal entry:
+
+```
+Okay! The following goal has been added:
+        [F] eat less food than yesterday
+```
+
+Fitr also understands particular keywords. For example, if you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
+
+Format: `goal food > NUMBER_OF_CALORIES` or `goal food < NUMBER_OF_CALORIES`
 
 ### 2.1.4 Adding an exercise goal
+You can add an exercise goal to the application to encourage yourself to exercise more or less. 
+
+Format: `goal exercise GOAL_DESCRIPTION`
+
+Fitr also understands particular keywords. For example, if you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
+
+Format: `goal exercise > NUMBER_OF_CALORIES` or `goal exercise < NUMBER_OF_CALORIES`
 
 ## 2.2 Viewing Commands
 You can view various aspects of Fitr, such as commands the application supports and its usages, your profile details, previous food and exercise entries, and your goals. These features are documented below.
 
 ### 2.2.1 Viewing help
+If you are unsure of what commands the application supports or the format and usage of them, you can use this command.
+
+Format: `help`
 
 ### 2.2.2 Viewing your profile
+If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.
+
+Format: `view profile`
 
 ### 2.2.3 Viewing your BMI
+Body mass index (BMI) is a value derived from the mass and height of a person (BMI = mass (kg) / height^2 (m^2)). The BMI is a convenient rule of thumb used to broadly categorize a person as underweight, normal weight, overweight, or obese. You can view your BMI using this command.
+
+Format: `view bmi`
 
 ### 2.2.4 Viewing food entries
+You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the food entries or only food entries for a specific date.
+
+To view all food entries, you may use the view food command.
+
+Format: `view food`
+
+To view food entries for a specific day, you may enter the date at the back of the view food command. 
+
+Format: `view food DD/MM/YYYY`
+
+For example, if you would like to view your food entries on 26/10/2020, you may key in `view food 26/10/2020`.
 
 ### 2.2.5 Viewing exercise entries
+You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
+
+To view all exercise entries, you may use the view exercise command.
+
+Format: `view exercise`
+
+To view exercises for a specific day, you may enter the date at the back of the view exercise command. 
+
+Format: `view exercise DD/MM/YYYY`
+
+For example, if you would like to view your exercises on 22/10/2020, you may key in `view exercise 22/10/2020`.
 
 ### 2.2.6 Viewing goal entries
+You can view the goals you have previously set for yourself and track your progress using this command. 
+
+Format: `view goal`
 
 ### 2.2.7 Viewing calorie summary
+If you want to see the calories you consumed from food or burnt from exercise, you can use this command. Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from being alive into account and you actually burn much more calories from being alive than doing workout.
+
+Format: `view summary`
+
+You may also choose to view the summary for a specific day by specifying a date at the back of view summary.
+
+Format: `view summary DD/MM/YYYY`
+
+For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 22/10/2020`.
 
 ## 2.3 Editing Commands
 You can edit various aspects of Fitr, such as your profile, previous food and exercise entries, and your goals. These features are documented below.
 
 ### 2.3.1 Editing your profile
+You can edit your name, age, gender, height, weight, and fitness level in your profile by using this command.
 
-### 2.3.2 Editing a food entry
+Format: `edit name/age/gender/height/weight/fitness`
 
-### 2.3.3 Editing an exercise entry
-
-### 2.3.4 Editing a goal entry
-
-Adding an exercise: `exercise`
-Adds a new exercise to the list of exercises you have done.
-
-Format: `exercise NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
-
-- The `NAME_OF_EXERCISE` can be in a natural language format.
-- The `AMOUNT_OF_CALORIES_BURNT` has to be a positive number.  
-
-Example of usage: 
-- `exercise Pushups /500`
-- `exercise 5km run /1000`
-
-Expected outcome:
-- `The following exercise has been added: Pushups`
-- `The following exercise has been added: 5km run`
-
-Adding a food item: `food`
-Adds a new food to the list of foods you have eaten.
-
-Format: `food NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED`
-
-- The `NAME_OF_FOOD` can be in a natural language format.
-- The `AMOUNT_OF_CALORIES_CONSUMED` has to be a positive number.  
-
-Example of usage: 
-- `food chicken rice /500`
-- `food Mcspicy /600`
-
-Expected outcome:
-- `The following food has been added: chicken rice`
-- `The following food has been added: Mcspicy`
-
-Deleting an item: `delete`
-Deletes a particular item at a specified index in a specified list.
-
-Format: `delete LIST INDEX`
-
-- The `LIST` has to be either `food` or `exercise`, otherwise an exception will be thrown.
-- The `INDEX` has to be a positive number smaller than or equals to the size of the list.
-
-Example of usage: 
-- `delete food 1`
-- `delete exercise 2`
-
-Viewing the exercise list: `view exercise`
-Displays the user's exercise entries from the exercise list.
-
-Format: `view exercise`
-
-Expected outcome:
-```
-Here is the list of your exercises:
-
-Date: 05/10/2020
-[1] Exercise: Thigh stretch
-    Burnt Cal: 6
-
-Date: 23/10/2020
-[1] Exercise: Thigh stretch
-    Burnt Cal: 6
-
-Date: 24/10/2020
-[1] Exercise: Triceps dips
-    Burnt Cal: 7
-[2] Exercise: Cossack Squat
-    Burnt Cal: 20
-[3] Exercise: Russian Twists
-    Burnt Cal: 15
-[4] Exercise: Thigh stretch
-    Burnt Cal: 6
-```
-
-Viewing the food list: `view food`
-Displays the user's food entries from the food list.
-
-Format: `view food`
-
-Expected outcome:
-```
-Here is the list of your food:
-
-Date: 22/10/2020
-[1] Food: chicken
-    Cal: 10
-[2] Food: chicken
-    Cal: 10
-
-Date: 23/10/2020
-[1] Food: chicken
-    Cal: 10
-[2] Food: chicken
-    Cal: 10
-```
-
-Viewing the user profile: `view profile`
-Displays the user's profile: name, age, gender, height (in m), weight (in kg).
-
-Format: `view profile`
-
-Expected outcome:
-```
-User profile:
-Name: John Doe
-Age: 22
-Gender: Male
-Height (in m): 1.8
-Weight (in kg): 80.0
-Your fitness level: Fit
-```
-
-Viewing the user's BMI: `view bmi`
-Displays the user's BMI (body mass index) based on the user's height and weight in the user profile.
-
-Format: `view bmi`
-
-Expected outcome:
-```
-Your BMI is: 
-24.69
-```
-
-Viewing the user's caloric summary: `view summary`
-Displays a summary of the calories consumed, calories burnt, and net calories based on the entries in the exercise and food list.
-
-Format: `view summary`
-
-Expected outcome:
-```
-Date: 05/10/2020
-Total calorie consumed:
-0
-Total calorie burnt:
--6
-Net calorie:
--6
-
-Date: 22/10/2020
-Total calorie consumed:
-2
-Total calorie burnt:
-0
-Net calorie:
-2
+For example, if you want to change your height to be 1.9 m. You can use edit height command and type 1.9 as shown below.
 
 ```
-
-Editing the user's profile: `edit`
-Changes the user's name, age, gender, height (in m), or weight (in kg).
-
-Format: `edit TYPE`
-
-Type | Format | Description | Notes for input
------ | ------ | -------- | ------
-name | `edit name` | Changes name in user profile | Not case-sensitive
-age | `edit age` | Changes age in user profile | Only number inputs allowed, decimal number is not allowed
-gender | `edit gender` | Changes gender in user profile | Not case-sensitive, only takes in `m` or `f` input.
-height | `edit height` | Changes height in user profile | Only number inputs allowed, decimal number is allowed
-weight | `edit weight` | Changes weight in user profile | Only number inputs allowed, decimal number is allowed
-fitness | `edit fitness` | Changes fitness level in user profile | Only number inputs 0,1 or 2 is allowed
-
-Examples of usage:
-
-Edit name
-```
-edit name
-Change your name to: 
-Tom
-Name changed to: Tom
-```
-Edit age
-```
-edit age
-Change your age to: 
-20
-Age changed to: 20
-```
-Edit gender
-```
-edit gender
-Change your gender (M|F) to: 
-f
-Gender changed to: Female
-```
-Edit height
-```
-edit height
-Change your height (in m) to: 
+Change your height (in m) to:
 1.9
 Height (in m) changed to: 1.9
 ```
-Edit weight
-```
-edit weight
-Change your weight (in kg) to: 
-90
-Weight (in kg) changed to: 90.0
-```
-Edit fitness
-```
-edit fitness
-Please indicate your fitness level to be used for determining intensity of exercises.
-(0 for Unfit; 1 for Normal; 2 for Fit): 
-2
-Fitness level changed to: Fit
-```
-Editing previous exercise entry: `edit exercise`
-Edits a previous exercise entry in the exercise list.
 
-Format: `edit exercise INDEX NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
-- `INDEX` and `AMOUNT_OF_CALORIES_BURNT` must be a positive integer: 1, 2, 3, ...
+### 2.3.2 Editing a food entry
+You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
 
-Example of usage: `edit exercise 1 Push ups /500`
+Format: `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
-Expected outcome:
-```
-Successfully edited exercise to: Push ups
-```
+### 2.3.3 Editing an exercise entry
+You can edit your previous exercise entries, for example, if you previously made a mistake when entering an exercise that you performed.
 
-Editing previous food entry: `edit food`
-Edits a previous food entry in the food list.
+Format: `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
 
-Format: `edit food INDEX NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED QUANTITY`
-- `INDEX`, `AMOUNT_OF_CALORIES_CONSUMED` and `QUANTITY` must be a positive integer: 1, 2, 3, ...
+### 2.3.4 Editing a goal entry
+You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
+By editing the goal entry, it will reset the status of the goal to zero unless it is a smart goal.
 
-Example of usage: `edit food 1 Rice /2000`
-
-Expected outcome:
-```
-Successfully edited food to: rice
-```
-
-Viewing help: `help`
-Show help messages with all the valid commands supported by Fitr.
-
-Format: `help`
-
-Expected outcome:
-```
-These are commands Fitr understands:
-food              Adds food entry to Fitr program
-                  Format: food <Name of food> / <Number of Calories> <Quantity (Optional)>
-exercise          Adds exercise entry to Fitr program
-                  Format: exercise <Name of exercise> / <Number of Calories> <Quantity (Optional)>
-view profile      View your profile information
-view bmi          View your BMI
-view food         View food entries
-view exercise     View exercise entries
-view summary      View calorie summary
-delete            Deletes selected entry
-                  Format: delete food <Index from Food List> or delete exercise <Index from Exercise List>
-bye               Exits the program
-```
+Format: `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION`
 
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
@@ -336,10 +189,19 @@ If you would like to delete a particular entry, you can utilise the various dele
 > :warning: **Warning:** The delete action is irreversible.
 
 ### 2.4.1 Deleting a food entry
+You can delete a food entry using this command. You would need to know the index of that particular food entry as well as the date in which you wish to delete. You can try to use the view food command to find the index of the food before deleting.
+
+Format: `delete food DATE_OF_ENTRY INDEX_OF_FOOD`
 
 ### 2.4.2 Deleting an exercise entry
+You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of it’s entry. You can try to use the view exercise command to find the index of the exercise before deleting.
+
+Format: `delete exercise DATE_OF_ENTRY INDEX_OF_EXERCISE`
 
 ### 2.4.3 Deleting a goal entry
+To delete a particular goal entry, you can use this command. However, you would need to know the index of that particular goal entry to utilise this command.
+
+Format: `delete goal INDEX`
 
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
@@ -349,29 +211,69 @@ Want to start anew? Instead of deleting entries one by one, you can clear all yo
 ### 2.5.1 Clearing all food entries
 If you wish to clear all your previous food entries, you can do so with this command.
 
+Format: `clear food`
+
+Expected outcome:
+```
+Food list is cleared!
+```
+
 ### 2.5.2 Clearing all exercise entries
 If you wish to clear all your previous exercise entries, you can do so with this command.
+
+Format: `clear exercise`
+
+Expected outcome:
+```
+Exercise list is cleared!
+```
 
 ### 2.5.3 Clearing all goal entries
 If you do decide to reset your whole goal list (i.e. removing all goal entries stored), you can utilise this command.
 
+Format: `clear goal`
+
+Expected outcome:
+```
+Goal list is cleared!
+```
+
 ### 2.5.4 Clearing all entries
 If you decide to clear all past entries made, regardless of the type (food, exercise or goal), you can utilise this command.
+
+Format: `clear`
+
+Expected outcome:
+```
+Food, exercise and goal lists are all cleared!
+```
 
 ## 2.6 Other Commands
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
 
 ### 2.6.1 Getting a recommended workout
+If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. If you do accept it, It will automatically be added into your exercise entries.
+
+Format: `recommend`
 
 ### 2.6.2 Marking a goal as complete
+After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
+
+Format: `complete goal INDEX`
 
 ### 2.6.3 Exiting the application
+Once you are done with Fitr, you can exit the application by running the command below.
+
+Format: `bye`
 
 ## 2.7 Saving your Data
 Your profile, food consumed and exercises done are saved automatically after any command that changes the data.
 There is no need to save manually. All your data will be saved in the same location as `fitr.jar`.
 
 ## 2.8 Tip of the Day
+Fitr will tell you a fun fact every time when you open the application. It can be an exercise tip or an interesting trivia, which can give you some motivation to do exercise! An example is shown below:
+
+<p align="center"><img src="images/WelcomeScreen.png" width="600"></p>
 
 # 3. FAQ
 In this section, you can find answers to some of the frequently asked questions (FAQs).
@@ -393,13 +295,27 @@ Add food goal | `goal food GOAL_DESCRIPTION` | `goal food eat more`
 Add smart food goal | `goal food < NUMBER_OF_CALORIES` or `goal food > NUMBER_OF_CALORIES` | `goal food < 2000` or `goal food > 3800`
 Add exercise goal | `goal exercise GOAL_DESCRIPTION` | `goal exercise run more`
 Add smart exercise goal | `goal exercise < CALORIES_BURNT` or `goal exercise > CALORIES_BURNT` | `goal exercise < 4000` or `goal exercise > 3800`
-delete food entry | `delete food <Index from Food List>` | `delete food 3`
-delete exercise entry | `delete exercise <Index from Exercise List>"` | `delete exercise 5`
-view help | `help` 
-view bmi | `view bmi`
-view profile | `view profile`
-view food entries | `view food`
-view exercise entries | `view exercise`
-view calorie summary | `view summary`
-clear | `clear` | `clear`, `clear exercise`, `clear food`
-Exit Fitr | `bye`
+View Help | `help` |
+View User Profile | `view profile` |
+View User BMI | `view bmi` |
+View Food Entry | `view food` |
+View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/20/2020`
+View Exercise Entry | `view exercise` | 
+View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/20/2020`
+View Goal Entry | `view goal` | 
+View Calorie Summary | `view summary` |
+View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` |
+Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
+Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 1 green apple /50 1`
+Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 1 5km run /360`
+Edit Goal Entry | `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION` | `edit goal 1 food eat healthier`
+Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/20 3`
+Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/20 3`
+Delete a Goal Entry | `delete goal INDEX` | `delete goal 5`
+Clear All Food Entries | `clear food` |
+Clear All Exercise Entries | `clear exercise` | 
+Clear All Goal Entries | `clear goal` | 
+Clear All Entries | `clear` |
+Get a Recommended Workout | `recommend` |
+Mark a Goal Entry as Completed | `complete goal INDEX` | `complete goal 4`
+Exit Fitr | `bye` | 
