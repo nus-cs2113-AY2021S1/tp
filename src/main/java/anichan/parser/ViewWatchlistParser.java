@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
+    protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
@@ -34,7 +35,7 @@ public class ViewWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public ViewWatchlistCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split("-", 2);
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);

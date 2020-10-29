@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class AddToWatchlistParser extends CommandParser {
     protected static final String ADD_PARAM = "a";
+    protected static final String SPLIT_DASH = "-";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command " + TOO_MUCH_FIELDS;
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
@@ -34,7 +35,7 @@ public class AddToWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public AddToWatchlistCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split("-", 2);
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
