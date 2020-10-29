@@ -3,10 +3,7 @@ package seedu.eduke8.parser;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.AnswerCommand;
-import seedu.eduke8.command.Command;
-import seedu.eduke8.command.HintCommand;
-import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.*;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 
@@ -26,6 +23,9 @@ public class QuizParserTest extends Eduke8Test {
 
         badCommand = quizParser.parseCommand(optionList, "back");
         assertTrue(badCommand instanceof IncorrectCommand);
+
+        badCommand = quizParser.parseCommand(optionList, null);
+        assertTrue(badCommand instanceof IncompleteCommand);
     }
 
     @Test
