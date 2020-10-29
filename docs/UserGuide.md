@@ -248,11 +248,54 @@ Got it! I've updated your personal information:
 ### Features related to nutritional intake and recommendation
 
 To get recommended calorie intake: recommend
+    * Example of usage :
+    * Output : 
+    ```
+    Hi Jack!
+    Here is your daily recommended calorie intake: 2607kcal
+    ```
+
+We use the following list as an example, to set up the list we have the following sequence of inputs
+
+add x/1 n/Salty Chicken Rice k/300 c/10 p/20 f/50
+add x/2 n/Chilli Pepper Crab k/400 c/10 p/10 f/20
+add x/1 n/Steak Buns k/500 c/20 p/50 f/10
+add x/3 n/Sweat potato tea k/300 c/30 p/0 f/0
+add x/1 n/Chicken Wing Noodles k/400 c/10 p/30 f/10
+list
+
+```
+Here are the food items in DietBook:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+  3. Steak Buns | calorie : 500 | protein : 50 | carbohydrate : 20 | fats : 10 -- (1)
+  4. Sweat potato tea | calorie : 300 | protein : 0 | carbohydrate : 30 | fats : 0 -- (3)
+  5. Chicken Wing Noodles | calorie : 400 | protein : 30 | carbohydrate : 10 | fats : 10 -- (1)
+```
 
  * To calculate carbohydrate intake: calculate carbohydrate
+    Input : calculate carbohydrate
+    Output : 
+ ```
+ Total carbohydrate intake: 80g
+ ```
  * To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
- * To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
+    Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
+    Output : 
+ ```
+ Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
 
+ Total carbohydrate intake: 80g
+ ```
+ * To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
+    Input : calculate carbohydrate 2020-10-29T08:00
+    Output : 
+ ```
+ Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1340
+ 
+ Total carbohydrate intake: 80g
+ ```
+Similar Inputs and outputs for the following 
  * To calculate calorie intake: calculate calorie
  * To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
  * To calculate calorie intake from a certain date until now: calculate calorie yyyy-mm-ddTHH:mm
@@ -266,8 +309,36 @@ To get recommended calorie intake: recommend
  * To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
 
  * To calculate all nutritional intake: calculate all
+    Input : calculate all
+    OutPut : 
+    ```
+    Total calorie intake: 1900kcal
+    Total carbohydrate intake: 80g
+    Total protein intake: 110g
+    Total fat intake: 90g
+    ```
  * To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+     Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
+     OutPut : 
+     ```
+     Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
+     
+     Total calorie intake: 1900kcal
+     Total carbohydrate intake: 80g
+     Total protein intake: 110g
+     Total fat intake: 90g
+     ```
  * To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
+     Input : calculate all 2020-10-29T08:00
+     OutPut : 
+     ```
+     Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
+     
+     Total calorie intake: 1900kcal
+     Total carbohydrate intake: 80g
+     Total protein intake: 110g
+     Total fat intake: 90g
+     ```
  
 ### Other features
 
