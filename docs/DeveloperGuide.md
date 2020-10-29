@@ -2,7 +2,9 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Setting Up](#2-setting-up)
+2. [Getting Started](#2-getting-started)<br>
+2.1 [Prerequisites](#21-prerequisites)<br>
+2.2 [Setting Up](#22-setting-up)<br>
 3. [Design](#3-design) <br>
 3.1 [Architecture](#31-architecture) <br>
 3.2 [UI](#32-ui) <br>
@@ -20,7 +22,8 @@
 4.7 [View events](#47-view-events) <br>
 5. [Documentation](#5-documentation) <br>
 5.1 [Product scope](#51-product-scope) <br>
-5.2 [User stories](#52-user-stories) <br>
+5.2 [Value Proposition](#52-value-proposition) <br>
+5.3 [User Stories](#53-user-stories)<br>
 
 ## 1. Introduction
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
@@ -29,7 +32,7 @@ NUSchedule will prove itself to be the most efficient way to manage your commitm
   
 This developer guide provides information on the architecture and design of the application, NUSchedule. This guide
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
-to refer to even if you are already a contributor
+to refer to even if you are already a contributor.
 
 ## 2. Getting Started
 This section provides information to help you get NUSchedule up and running on your own computers.
@@ -67,6 +70,15 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
 4. Storage: Reads data from and writes data to the hard disk.
 5. Model: Stores the data the app uses in memory.
 
+<<<<<<< HEAD
+=======
+__How the architecture components interact with each other__  
+The sequence diagram below shows how each individual component interacts with each other when the user inputs a command.
+![sequence](diagrams/ArchitectureSequence.png)
+
+### 3.2 UI
+![UI Class Diagram](diagrams/Ui.png)
+>>>>>>> 477de15f21f2965297834b7a4b41ddc5e1ac458d
 
 *Figure 3.2.1 Class diagram for UI component*
 
@@ -223,6 +235,7 @@ __Target user profile:__
 {Describe the value proposition: what problem does it solve?}
 
 ### 5.3 User Stories
+
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
