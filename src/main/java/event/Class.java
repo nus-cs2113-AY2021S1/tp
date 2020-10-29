@@ -37,16 +37,6 @@ public class Class extends Event {
     }
 
     /**
-     * Provides the date of the Class.
-     *
-     * @return the LocalDate get from LocalDateTime.
-     */
-    @Override
-    public LocalDate getDate() {
-        return LocalDate.from(at);
-    }
-
-    /**
      * Convert the information about this class to a string that is to be stored in a file.
      *
      * @return the result string to be stored.
