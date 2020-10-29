@@ -2,6 +2,7 @@ package command;
 
 import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
+import exception.NoEventLocationException;
 import exception.NoEventLocationMarkerException;
 import exception.NoEventTimeMarkerException;
 import org.junit.jupiter.api.Assertions;
@@ -26,8 +27,8 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_NoLocationMarkerGiven_NoEventLocationMarkerException() {
-        Assertions.assertThrows(NoEventLocationMarkerException.class, () -> {
+    void execute_NoLocationMarkerGiven_NoEventLocationException() {
+        Assertions.assertThrows(NoEventLocationException.class, () -> {
             Command d = Parser.parse("class something /t 2020-02-02 20:00",  null);
         });
     }

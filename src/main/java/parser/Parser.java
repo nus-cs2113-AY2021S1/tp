@@ -218,6 +218,11 @@ public abstract class Parser {
             //the following part is almost the same as AddCommand, but returns EditCommand
 
             if (words[2].equals(ASSIGNMENT) || words[2].equals(CLASS) || words[2].equals(PERSONAL_EVENT)) {
+
+                if (fullCommand.substring(words[0].length()).isBlank()) {
+                    throw new EmptyEventException();
+                }
+
                 if (startTimeDividerPosition == -1) {
                     throw new NoEventTimeMarkerException();
                 }
@@ -392,6 +397,10 @@ public abstract class Parser {
         //because the default block will throw an exception.
         // i.e. when this block is entered, the parser will not go to any other blocks
         if (words[0].equals(ASSIGNMENT) || words[0].equals(CLASS) || words[0].equals(PERSONAL_EVENT)) {
+            if (fullCommand.substring(words[0].length()).isBlank()) {
+                throw new EmptyEventException();
+            }
+
             if (startTimeDividerPosition == -1) {
                 throw new NoEventTimeMarkerException();
             }
