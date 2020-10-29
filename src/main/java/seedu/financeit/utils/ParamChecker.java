@@ -304,6 +304,10 @@ public class ParamChecker {
         return output;
     }
 
+    public String checkAndReturnDescription(String paramType) {
+        return packet.getParam(paramType).replaceAll(";", " ");
+    }
+
     public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {
         String input = packet.getParam(paramType);
         boolean parseSuccess = false;
