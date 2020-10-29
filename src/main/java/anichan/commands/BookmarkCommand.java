@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Represents the command that allows the user to bookmark an anime or add additional information
+ * Represents the command that allows the user to bookmark an anime or add additional information.
  */
 public class BookmarkCommand extends Command {
 
@@ -171,7 +171,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return message of removing note
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String removeNoteFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -189,7 +189,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return message of adding note
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String addNoteToBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -208,7 +208,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return the anime information in string
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String getAnimeInfoFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -222,7 +222,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return delete bookmark entry message
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String deleteBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -239,7 +239,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return add bookmark entry message
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String addBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkAnimeIndex(animeData);
@@ -272,7 +272,7 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return edit bookmark episode message
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
@@ -288,7 +288,7 @@ public class BookmarkCommand extends Command {
      * Check that the bookmark index is valid.
      *
      * @param bookmark used to manage bookmark entries
-     * @throws AniException
+     * @throws AniException if bookmark id is outside the number of bookmark
      */
     private void checkBookmarkIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
@@ -328,7 +328,7 @@ public class BookmarkCommand extends Command {
     }
 
     /**
-     * Check that note id is valid
+     * Check that note id is valid.
      *
      * @param bookmark used to manage bookmark entries
      * @throws AniException if the note does not exist
@@ -344,7 +344,7 @@ public class BookmarkCommand extends Command {
     }
 
     /**
-     * Check that the anime id is valid
+     * Check that the anime id is valid.
      *
      * @param animeData used to retrieve anime information
      * @throws AniException if the anime id is outside the range of our anime data source
@@ -365,7 +365,6 @@ public class BookmarkCommand extends Command {
      * @param animeData used to retrieve anime information
      * @param bookmark  used to manage bookmark entries
      * @return the bookmark list in string
-     * @throws AniException
      */
     private String listBookmark(AnimeData animeData, Bookmark bookmark) {
         return bookmark.getListInString(animeData);

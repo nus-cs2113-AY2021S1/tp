@@ -45,7 +45,7 @@ public class BookmarkParser extends CommandParser {
 
     /**
      * Parses the string parameters and creates an executable bookmarkCommand according to the parameters.
-     * All command require 2 parameter except for bookmark info e.g bookmark <bookmark_id>
+     * All command require 2 parameter except for bookmark info e.g bookmark bookmark_id.
      *
      * @param description is the parameters portion of the user input
      * @return and executable BookmarkCommand object
@@ -123,10 +123,10 @@ public class BookmarkParser extends CommandParser {
      * Check that part of the parameter (the field) is integer.
      * Else, throw a custom error message based on the command type and the param given.
      *
-     * @param paramGiven the input with processed parameter and its field
-     * @param paramPart the field to check
-     * @param bookmarkType
-     * @throws AniException
+     * @param paramGiven   the input with processed parameter and its field
+     * @param paramPart    the field to check
+     * @param bookmarkType the type of bookmark command for error message
+     * @throws AniException when an error occurred while executing the command
      */
     private void checkIsInteger(String paramGiven, String paramPart, String bookmarkType) throws AniException {
         if (!isInt(paramPart.trim())) {
@@ -154,7 +154,7 @@ public class BookmarkParser extends CommandParser {
     }
 
     /**
-     * Check that bookmark list command does not contain a field
+     * Check that bookmark list command does not contain a field.
      *
      * @param paramParts the processed parameter
      * @throws AniException if the list field provided is not empty

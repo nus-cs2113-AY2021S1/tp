@@ -8,6 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 //@@author OngXinBin
+
 /**
  * Manages the storage of bookmark data.
  */
@@ -32,7 +33,7 @@ public class BookmarkStorage extends Storage {
      * Saves the bookmark data.
      *
      * @param workspaceName the active workspace name which house the bookmark to be saved
-     * @param bookmark the bookmark object to be saved
+     * @param bookmark      the bookmark object to be saved
      * @throws AniException when an error occurred while saving user data
      */
     public void save(String workspaceName, Bookmark bookmark) throws AniException {
@@ -47,9 +48,9 @@ public class BookmarkStorage extends Storage {
      * Loads the user data.
      *
      * @param workspaceName the workspace name determine the folder which contains the bookmark file
-     * @param bookmark the bookmark to load the bookmark object
+     * @param bookmark      the bookmark to load the bookmark object
      * @return the bookmark object that was loaded
-     * @throws AniException
+     * @throws AniException when an error occurred while executing the command
      */
     public String load(String workspaceName, Bookmark bookmark) throws AniException {
         String bookmarkFilePath = storageDirectory + workspaceName + File.separator + BOOKMARK_FILE_NAME;
@@ -100,7 +101,7 @@ public class BookmarkStorage extends Storage {
      * Decodes the readable string representation of bookmark object.
      *
      * @param fileLines readable string representation of the user object
-     * @param bookmark the bookmark to load bookmark object
+     * @param bookmark  the bookmark to load bookmark object
      * @return the result of loading the bookmark object (Successful or not successful)
      */
     private String decode(String[] fileLines, Bookmark bookmark) {
@@ -135,7 +136,7 @@ public class BookmarkStorage extends Storage {
     // ========================== Validation ==========================
 
     /**
-     * Validates the string representation of the bookmark object
+     * Validates the string representation of the bookmark object.
      *
      * @param lineSplit the string representation of the bookmark object
      * @return {@code true} if the string representation is valid; false otherwise

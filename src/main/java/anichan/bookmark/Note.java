@@ -3,7 +3,7 @@ package anichan.bookmark;
 import java.util.ArrayList;
 
 /**
- * Represents a note for a bookmark entry
+ * Represents a note for a bookmark entry.
  */
 public class Note {
 

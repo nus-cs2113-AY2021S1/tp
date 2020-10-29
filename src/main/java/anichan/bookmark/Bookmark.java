@@ -6,7 +6,7 @@ import anichan.anime.AnimeData;
 import java.util.ArrayList;
 
 /**
- * Represent the bookmark of a workspace
+ * Represent the bookmark of a workspace.
  */
 public class Bookmark {
     private ArrayList<Integer> animeBookmarkList;
@@ -66,7 +66,7 @@ public class Bookmark {
     }
 
     public int getNotesSize(int bookmarkIndex) {
-        return  this.noteList.get(bookmarkIndex).getSize();
+        return this.noteList.get(bookmarkIndex).getSize();
     }
 
     public void addNote(int bookmarkIndex, String note) {
@@ -128,7 +128,7 @@ public class Bookmark {
     }
 
     /**
-     * Check if anime id already exist within the bookmark
+     * Check if anime id already exist within the bookmark.
      *
      * @param animeIndex anime id to be added
      * @return true if already exit, else otherwise

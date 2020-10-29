@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import static anichan.logger.AniLogger.getAniLogger;
 
 /**
- * Manages the storage of anime data
+ * Manages the storage of anime data.
  */
 public class AnimeStorage {
 
@@ -47,10 +47,10 @@ public class AnimeStorage {
     }
 
     /**
-     * Parse the json file into anime object
+     * Parse the json file into anime object.
      *
      * @param animeDataList the list to keep anime object data
-     * @param fileData the json filedata to be parse into anime object
+     * @param fileData      the json filedata to be parse into anime object
      * @throws AniException if error parsing string into json object
      */
     private void parseJson(ArrayList<Anime> animeDataList, String fileData) throws AniException {
@@ -128,9 +128,9 @@ public class AnimeStorage {
     }
 
     /**
-     * Read file from resource stream. (Files embedded within the program)
+     * Read file from resource stream. (Files embedded within the program).
      *
-     * @param filename
+     * @param filename name of the resource stream file
      * @return file read in string
      * @throws AniException if error reading resourse stream file
      */

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Manages the all anime data
+ * Manages the all anime data.
  */
 public class AnimeData {
     private ArrayList<Anime> animeDataList;
