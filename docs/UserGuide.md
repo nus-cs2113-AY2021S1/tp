@@ -106,8 +106,36 @@ To get started on this application, please perform the following steps:
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
 
+This command shows a list of modules on the admin level.
+
+Format: `list`
+
+Here are some key points:
+* Do not need to add `admin` after `list`.
+* All list commands have the same command word `list` 
+
+Example of usage: 
+* At Admin Level: enter the command `list`
+* Here is the expected output:
+* After listing all modules, you can try all commands available in **Admin Level**.
+
 #### 3.1.3. Editing a module name: `edit` 
 (by Zeyu)
+
+This command modifies the module name you want to change.
+
+Format: `edit INDEX MODULE_NAME`
+
+Here are some key points:
+* You can only edit content on the level below the one you are on
+* Edit the name / content at the specified `INDEX`
+* The index refers to the index number shown in the displayed content list
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example of usage: 
+* At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T
+* Here is the expected output:
+* After editing the module name, you can try all commands available in **Admin Level**.
 
 #### 3.1.4. Removing a module: `remove` 
 (by Jia Ern)
@@ -122,6 +150,19 @@ To get started on this application, please perform the following steps:
 
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
+
+This command shows a list of chapters on the module level.
+
+Format: `list`
+
+Here are some key points:
+* Do not need to add `module_name` after `list`.
+* All list commands have the same command word `list` 
+
+Example of usage: 
+* At Module Level: enter the command `list`
+* Here is the expected output:
+* After listing all chapters, you can try all commands available in **Module Level**.
 
 #### 3.2.3. Editing a chapter name: `edit`
 (by Jane)
@@ -169,11 +210,52 @@ To get started on this application, please perform the following steps:
 #### 3.4.1. Showing a list of commands available: `help`
 (by Zeyu)
 
+This command shows a list of commands available.
+
+Format: `help`
+
+Here is a key point:
+* This command can be **called from any Level**
+
+Example of usage: 
+* At Any Level: enter the command `help`
+* Here is part of the expected output, the whole output is a list of all commands useage:
+* After knowing waht are the commands, you can try any commands on the correct level.
+
+
 #### 3.4.4. Viewing the revision history: `history`
 (by Zeyu)
 
+You can view the revision completed in the session/in a day by using this command.
+
+Format:<br>
+`history`<br>
+`history DATE`<br>
+
+Here are some key points:
+* This command can be **called from any Level**
+* If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
+* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
+
+Example of usage (`history` format): 
+* At Any Level: enter the command `history`
+* Here is the expected output:
+
+Example of usage (`history DATE` format): 
+* At Any Level: enter the command `history 2020-10-30`
+* Here is the expected output:
+* After knowing the revision you have completed, you can try any commands on the correct level.
+
 #### 3.4.6. Exiting the program: `exit`
 (by Zeyu)
+
+You can exit Kaji by using this command.
+
+Format: `exit`
+
+Example of usage: 
+* At Any Level: enter the command `exit`
+* Here is the expected output:
 
 ### 4.5 Scheduling In KAJI
 (by Yan An)
