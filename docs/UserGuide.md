@@ -364,6 +364,7 @@ Format: `upload /w WEB_SERVER /u USERNAME /p PASSWORD `
 ## 5. FAQ
 
 ## 6. Command Summary
+
 | Command          | Format                                                                     | Example                                                                     |
 |------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | addMember        | hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE                      | hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member                 |
