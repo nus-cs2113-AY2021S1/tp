@@ -50,24 +50,25 @@ By: `Team F11-3` Since: `August 2020`
 
 ## 1. Overview
 
-In the past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
+This section gives an overview about Kaji and the purpose of this user guide.
+
+### 1.1. About Kaji
+In your past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, 
+and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have 
+forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
 
 Don't worry! <strong>Kaji</strong> will help you solve all these problems!
 
-
-### 1.1. About Kaji
 KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
-This User GUide is divided into four sections, Overview, Quik Start, Features, and Command Summary.
+This User Guide explains how to use Kaji. It provides an understanding of the features and commands, as well as some common use cases of this application.
 
-<b>Overview section</b> will briefly introduce Kaji and its User Guide, also the Command Line Interface to you.
-
-<b>Quik Start section</b> will guide you to make some preparations in advance and teach you how to run Kaji.
-
-<b>Features section</b> will introduce all features of Kaji according to different levels, you can learn features in details in this section.
-
-<b>Command summary section</b> will sum up different command type in a table.
+In this guide, we cover:
+* How to use the Command Line Interface (CLI)
+* Syntax of the commands available in different levels in Kaji
+* Common use cases for each command
+* Summary of all the commands
 
 ### 1.3. Understanding the Command Line Interface (CLI)
 A <b>command line interface (CLI)</b> is a text-based user interface (UI) used to view and manage computer files. Command line interfaces are also called command-line user interfaces, console user interfaces and character user interfaces.
@@ -92,11 +93,19 @@ To get started on this application, please perform the following steps:
    Some example commands you can try:
    * `help` : List commands available
    * `exit` : Exits the app.
-1. Refer to [Features](#4-features) below for details of each command.
+1. Refer to [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
+
+This section introduces the syntax and usages of the commands for the features available in Kaji. 
+In explaining the syntax, do take note of the following command format which applies to all Kaji commands:
+* Words in `UPPER_CASE` are the parameters that you need to provide.
+    * <b>Example:</b> In `add MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add CS2113`.
+* Parameters cannot be given in any order.
+    * <b>Example:</b> In `edit MODULE_INDEX MODULE_NAME`, entering `edit CS2113 1` will result in an error as 
+      the `MODULE_INDEX` and `MODULE_NAME` parameters are in the wrong order.
 
 ### 3.1. Admin Level
 
@@ -126,6 +135,24 @@ To get started on this application, please perform the following steps:
 #### 3.2.3. Editing a chapter name: `edit`
 (by Jane)
 
+You can edit the name of an existing chapter from the list of chapters.
+You can do so by using the `edit` command, followed by the edited name of the chapter.
+
+**Format:** `edit CHAPTER_INDEX CHAPTER_NAME`
+
+Here are some key pointers:
+* `CHAPTER_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a chapter as displayed from the list of chapters.
+* `CHAPTER_NAME` is the edited name of your chapter.
+
+**Example:**
+
+Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
+1. Type `list` into the command prompt and press `Enter` to execute it.
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.
+3. Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.
+4. After the chapter name has been successfully edited, the result will be displayed as shown.
+
 #### 3.2.4. Removing a chapter: `remove`
 (by Jia Ern)
 
@@ -144,16 +171,92 @@ To get started on this application, please perform the following steps:
 #### 3.2.9. Rescheduling a chapter: `reschedule`
 (by Jane)
 
+You can reschedule the due date of an existing chapter from the list of chapters.
+Rescheduling a chapter allows you to reschedule a chapter to an earlier or later date than the specified due date.
+You can do so by using the `reschedule` command, followed by the due date that you want to reschedule the chapter to.
+
+**Format:** `reschedule CHAPTER_INDEX DATE`
+
+Here are some key pointers:
+* `CHAPTER_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a chapter as displayed from the list of chapters.
+* `DATE` is the rescheduled due date of your chapter.
+* `DATE` should be in the format `yyyy-MM-dd`.
+
+**Example:**
+
+Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
+1. Type `list` into the command prompt and press `Enter` to execute it.
+2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.
+3. Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.
+4. After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown. 
+
 ### 3.3. Chapter Level
 
 #### 3.3.1. Adding a flashcard: `add`
 (by Jane)
 
+After adding a new chapter, the first thing you might want to do is to add a flashcard to the chapter.
+You can do so by using the `add` command, followed by the details of the flashcard.
+
+**Format:** `add q:QUESTION | a:ANSWER`
+
+Here are some key pointers:
+* `QUESTION` is the question of your flashcard.
+* `ANSWER` is the answer of your flashcard.
+* You need to type `q:` before the `QUESTION` parameter. 
+* You need to type `a:` before the `ANSWER` parameter.
+* Having `|` between `q:QUESTION` and `a:ANSWER` is required.
+
+**Example:**
+
+Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
+1. Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.
+2. After the flashcard has been successfully added to the chapter, the result will be displayed as shown.
+
 #### 3.3.2. Listing flashcards available: `list`
 (by Jane)
 
+After adding flashcards to the chapter, you can view the list of flashcards that you have for the chapter.
+You can do so by using the `list` command.
+
+**Format:** `list`
+
+Here are some key pointers:
+* You cannot type in any parameters after the `list` command.
+
+**Example:**
+
+Let's say you want to view all the flashcards for a chapter:
+1. Type `list` into the command prompt and press `Enter` to execute it.
+2. The result for the list of flashcards will be displayed as shown.
+
 #### 3.3.3. Editing a flashcard content: `edit`
 (by Jane)
+
+You can edit the question and/or answer of an existing flashcard from the list of flashcards.
+You can do so by using the `edit` command, followed by the details of the flashcard.
+
+**Format:** `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`
+
+Here are some key pointers:
+* `FLASHCARD_INDEX` **must be a positive integer** 1, 2, 3, ...,
+and must be a valid index number for a flashcard as displayed from the list of flashcards.
+* `QUESTION` is the edited question of your flashcard.
+* `ANSWER` is the edited answer of your flashcard.
+* You need to type `q:` before the `QUESTION` parameter. 
+* You need to type `a:` before the `ANSWER` parameter.
+* Having `|` between `q:QUESTION` and `a:ANSWER` is required.
+* If the question or answer of your flashcard does not need to be edited,
+you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
+
+**Example:**
+
+Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
+1. Type `list` into the command prompt and press `Enter` to execute it.
+2. From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.
+3. Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.
+4. After the flashcard has been successfully edited, the result will be displayed as shown.
 
 #### 3.3.4. Removing a flashcard: `remove`
 (by Jia Ern)
