@@ -49,7 +49,7 @@ public class Watchlist {
     public ArrayList<Integer> getAnimeList() {
         return animeList;
     }
-    
+
     //@@author michaeldinata
     /**
      * Adds an anime into this Watchlist.
