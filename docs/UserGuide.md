@@ -9,7 +9,7 @@ Fitr is targeted at university students, who want a comprehensive application to
 You can enter your food intake and the exercises that you have done for the day, and track your net calories along the way. 
 If you are unsure of what exercises to do, you can also ask for recommendations from Fitr.
 
-This user guide provides a detailed documentation on how to use Fitr, and also shows you how to get started using Fitr.
+This user guide provides a detailed documentation on how to use Fitr and shows you how to get started using Fitr.
 
 ## 1.1 Prerequisites
 You must have **Java 11** or above installed on your computer. You must also be comfortable using the command line or the terminal.
@@ -28,8 +28,8 @@ This quick start section provides a step-by-step procedure to get you started wi
 3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
-6. Follow the setup process by entering your name, age, height, weight, gender and your fitness level. Note that the height is in metres and weight is in kilograms.
-7. Once done, you are ready to use Fitr. You can type help to find out what commands are supported in Fitr.
+6. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
+7. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
 <p align="center"><img src="images/Figure1.png" width="350"></p>
 <p align="center">Figure 1: Welcome screen of Fitr for new users</p>
@@ -41,7 +41,7 @@ This section introduces the features available in Fitr, explaining how you can u
 You can add various types of entries to Fitr, such as your food intake, exercise completed and goals you wish to achieve. These features are documented below.
 
 ### 2.1.1 Adding a food entry
-You can add a food entry to keep track of what you have eaten and the calories consumed from that food.
+You can add a food entry to keep track of what you have eaten, and the calories consumed from that food.
 
 Format: `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /NUMBER_OF_CALORIES AMOUNT_OF_FOOD`
 
@@ -129,11 +129,37 @@ To view all exercise entries, you may use the view exercise command.
 
 Format: `view exercise`
 
+Expected outcome:
+```
+Here is the list of your exercises:
+Date: 21/10/2020
+[1] Exercise: Standard Pushups
+    Burnt Cal: 17
+
+Date: 22/10/2020
+[1] Exercise: Side Lying Leg lifts
+    Burnt Cal: 23
+
+Date: 23/10/2020
+[1] Exercise: Bicycle crunches
+    Burnt Cal: 17
+
+Date: 24/10/2020
+[1] Exercise: Mountain stretch
+    Burnt Cal: 5
+```
+
 To view exercises for a specific day, you may enter the date at the back of the view exercise command. 
 
 Format: `view exercise DD/MM/YYYY`
 
-For example, if you would like to view your exercises on 22/10/2020, you may key in `view exercise 22/10/2020`.
+For example, if you would like to view your exercises on 22/10/2020, you may key in `view exercise 22/10/2020`. The expected outcome should be similar to below:
+```
+Here is the list of your exercises:
+Date: 22/10/2020
+[1] Exercise: Side Lying Leg lifts
+    Burnt Cal: 23
+```
 
 ### 2.2.6 Viewing goal entries
 You can view the goals you have previously set for yourself and track your progress using this command. 
@@ -141,7 +167,7 @@ You can view the goals you have previously set for yourself and track your progr
 Format: `view goal`
 
 ### 2.2.7 Viewing calorie summary
-If you want to see the calories you consumed from food or burnt from exercise, you can use this command. Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from being alive into account and you actually burn much more calories from being alive than doing workout.
+If you want to see the calories you consumed from food or burnt from exercise, you can use this command. Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from performing everyday tasks into account and you may actually burn much more calories from performing everyday tasks than doing a workout.
 
 Format: `view summary`
 
@@ -149,7 +175,16 @@ You may also choose to view the summary for a specific day by specifying a date 
 
 Format: `view summary DD/MM/YYYY`
 
-For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 22/10/2020`.
+For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 22/10/2020`, and you should get an output similar to below:
+```
+Date: 22/10/2020
+Total calorie consumed:
+0
+Total calorie burnt:
+23
+Net calorie:
+-23
+```
 
 ## 2.3 Editing Commands
 You can edit various aspects of Fitr, such as your profile, previous food and exercise entries, and your goals. These features are documented below.
@@ -159,7 +194,7 @@ You can edit your name, age, gender, height, weight, and fitness level in your p
 
 Format: `edit name/age/gender/height/weight/fitness`
 
-For example, if you want to change your height to be 1.9 m. You can use edit height command and type 1.9 as shown below.
+For example, if you want to change your height to be 1.9 m. You can use `edit height` command and type `1.9` as shown below.
 
 ```
 Change your height (in m) to:
@@ -172,16 +207,31 @@ You can edit your previous food entries, for example, if you previously made a m
 
 Format: `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
+For example, you can enter `edit food 25/10/2020 1 apple /100 1`, and you should expect to see the following output:
+```
+Successfully edited food to: apple
+```
+
 ### 2.3.3 Editing an exercise entry
 You can edit your previous exercise entries, for example, if you previously made a mistake when entering an exercise that you performed.
 
 Format: `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
+
+For example, you can enter `edit exercise 25/10/2020 1 Push ups /500`, and you should expect to see the following output:
+```
+Successfully edited exercise to: Push ups
+```
 
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
 By editing the goal entry, it will reset the status of the goal to zero unless it is a smart goal.
 
 Format: `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION`
+
+For example, you can enter `edit goal 1 exercise run 2.4km`, and you should expect to see the following output:
+```
+Successfully edited goal to: [E] run 2.4km
+```
 
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
@@ -194,7 +244,7 @@ You can delete a food entry using this command. You would need to know the index
 Format: `delete food DATE_OF_ENTRY INDEX_OF_FOOD`
 
 ### 2.4.2 Deleting an exercise entry
-You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of it’s entry. You can try to use the view exercise command to find the index of the exercise before deleting.
+You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of its entry. You can try to use the view exercise command to find the index of the exercise before deleting.
 
 Format: `delete exercise DATE_OF_ENTRY INDEX_OF_EXERCISE`
 
