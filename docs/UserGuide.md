@@ -279,22 +279,24 @@ Here are the food items in DietBook:
  ```
  Total carbohydrate intake: 80g
  ```
- * To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-    * Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
-    * Output : 
+* To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+   * Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
+   * Output : 
  ```
  Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
 
  Total carbohydrate intake: 80g
  ```
- * To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
-    * Input : calculate carbohydrate 2020-10-29T08:00
-    * Output : 
+
+* To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
+   * Input : calculate carbohydrate 2020-10-29T08:00
+   * Output : 
  ```
  Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1340
  
  Total carbohydrate intake: 80g
  ```
+
 Similar Inputs and outputs for the following 
  * To calculate calorie intake: calculate calorie
  * To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
@@ -413,6 +415,7 @@ For other system related commands
  Saves the DietBook data when the exit command have been input. The saved data is in 2 files: UserInfo.txt and FoodList.txt.
  
  Output example:
+ 
   ```
   Your data has been saved successfully.
   ```
