@@ -997,9 +997,12 @@ There are primarily 2 ways to run the tests.
 | Version | As a ... | I want to ... | So that I ... |
 | --- | --- | --- | --- |
 | v1.0 | user | create new watchlist | can keep track of animes easily based on my defined criteria |
+| v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterias |
 | v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
-| v1.0 | user | I want to save the data I have created | can remember what I have done |
-| v1.0 | user | I want to load the data I created previously | can continue to work on these data |
+| v1.0 | user | save the data I have created | can remember what I have done |
+| v1.0 | user | load the data I created previously | can continue to work on these data |
+| v1.0 | new user | view all available commands | can easily find a specific command and its usage |
+| v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
 | v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
 | v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
 | v2.0 | translator | estimate the time needed to translate a script | better manage my time |
