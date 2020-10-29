@@ -76,6 +76,7 @@ public class MenuParser implements Parser {
         case COMMAND_QUIZ:
             int numOfQuestions = 0;
             String topicName = "";
+            int timer = 0; 
             try {
                 if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
                     numOfQuestions = Integer.parseInt(

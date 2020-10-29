@@ -31,8 +31,6 @@ public class SingleTopicQuiz implements Quiz {
     private QuizParser quizParser;
     private BookmarkList bookmarks;
 
-    long startTime;
-
     public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks) {
         assert topic != null;
 
@@ -89,7 +87,7 @@ public class SingleTopicQuiz implements Quiz {
 
             ui.printQuizInputMessage();
 
-            Command command = getCommand(ui, optionList);
+            Command command = getCommand(ui, optionList, timer);
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand
                     || command instanceof BookmarkCommand || command instanceof IncompleteCommand);
@@ -97,7 +95,7 @@ public class SingleTopicQuiz implements Quiz {
             while (!(command instanceof AnswerCommand || command instanceof IncompleteCommand)) {
                 command.execute(optionList, ui);
                 ui.printQuizInputMessage();
-                command = getCommand(ui, optionList);
+                command = getCommand(ui, optionList, timer);
                 if (command instanceof IncorrectCommand) {
                     LOGGER.log(Level.INFO, "Invalid answer given for question");
                 } else if (command instanceof HintCommand) {
@@ -113,9 +111,9 @@ public class SingleTopicQuiz implements Quiz {
         }
     }
 
-    private Command getCommand(Ui ui, OptionList optionList) {
+    private Command getCommand(Ui ui, OptionList optionList, int timer) {
         try {
-            String userInput = ui.getQuizInputFromUser();
+            String userInput = ui.getQuizInputFromUser(timer);
             return quizParser.parseCommand(optionList, userInput);
         } catch (IOException e) {
             return quizParser.parseCommand(optionList, "exception from getCommand " + e);

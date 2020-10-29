@@ -20,10 +20,9 @@ public class IncompleteCommand extends Command {
         String explanation = question.getExplanation().getDescription();
         try {
             int correctOptionNumber = ((OptionList) optionList).findCorrectOptionIndex() + 1;
-            ui.printIncompleteAnswer(correctOptionNumber, explanation);
+            ui.printIncompleteAnswer(correctOptionNumber, explanation, timer);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
         }
-
     }
 }

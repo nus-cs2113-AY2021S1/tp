@@ -94,6 +94,10 @@ public class Ui {
     private static final String MESSAGE_POINTS_EARNED_OUT_OF = " points earned / ";
     private static final String PERCENTAGE_SIGN = "%";
     private static final String MESSAGE_AVAILABLE_WORD = " available ";
+    private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer!";
+    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
 
 
     public String getInputFromUser() {
@@ -105,12 +109,10 @@ public class Ui {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
     }
 
-    public String getQuizInputFromUser() throws IOException {
-        int x = 5; // wait 2 seconds at most
-
+    public String getQuizInputFromUser(int timer) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         long startTime = System.currentTimeMillis();
-        while ((System.currentTimeMillis() - startTime) < x * 1000 && !in.ready()) {
+        while (((System.currentTimeMillis() - startTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS) && !in.ready()) {
         }
 
         if (in.ready()) {
@@ -118,7 +120,6 @@ public class Ui {
         } else {
             return null;
         }
-
     }
 
     private static void printMessage(String message) {
@@ -187,10 +188,10 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printIncompleteAnswer(int correctAnswer, String explanation) {
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
         System.out.println(System.lineSeparator() + HORIZONTAL_LINE);
-        System.out.println("Oops! You took more than 10 seconds to answer!");
-        System.out.println("The correct answer is " + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
+        System.out.println(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND);
+        System.out.println(MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
         System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
         System.out.println(HORIZONTAL_LINE);
