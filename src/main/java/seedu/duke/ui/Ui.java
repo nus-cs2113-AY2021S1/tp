@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import seedu.duke.exceptions.CustomException;
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusStops;
 import seedu.duke.model.favorite.Fav;
@@ -181,9 +182,10 @@ public class Ui {
         }
         printLine();
     }
-    public static void printDeleteFavMessage(int favCommandIndex) {
+
+    public static void printDeleteFavMessage(int favCommandIndex) throws CustomException {
         printLine();
-        System.out.println("Got it! I've removed the favourite command: \n " + FavList.getFav(favCommandIndex-1));
+        System.out.println("Got it! I've removed the favourite command: \n " + FavList.getFav(favCommandIndex - 1));
         printLine();
     }
 
