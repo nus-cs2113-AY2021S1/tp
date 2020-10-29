@@ -76,12 +76,33 @@ public class Timetable {
     }
 
     /**
-     * Adds an event into the timetable.
+     * Method to allow a new event to be set at a specific index.
+     *
+     * @param index Index to set at.
+     * @param event Event to set.
+     */
+    public void setEvent(int index, Event event) {
+        deleteEvent(index);
+        addEvent(index, event);
+    }
+
+    /**
+     * Adds an event into the timetable at the last index.
      *
      * @param event to be added.
      */
     public void addEvent(Event event) {
-        events.add(event);
+        addEvent(events.size(), event);
+    }
+
+    /**
+     * Adds an event into the timetable at a specified index.
+     *
+     * @param index Index to add the event.
+     * @param event to be added.
+     */
+    public void addEvent(int index, Event event) {
+        events.add(index, event);
         if (!event.getRecurring()) {
             nonRecurringEvents.add(event);
         } else {
@@ -165,8 +186,8 @@ public class Timetable {
 
         // Map all events to their relevant date and month. Sort by startTime.
         for (Event event : eventSet) {
-            Month month = event.getDate().getMonth();
-            int date = event.getDate().getDayOfMonth();
+            Month month = event.getStartDate().getMonth();
+            int date = event.getStartDate().getDayOfMonth();
             // Get a HashMap for the specified month. If it has not been initialized, initialize one.
             HashMap<Integer, ArrayList<Event>> monthEvents = calendar.get(month);
             if (monthEvents == null) {
@@ -215,7 +236,7 @@ public class Timetable {
                                                    ArrayList<Event> nonRecurringSet) {
         ArrayList<Event> eventSet = new ArrayList<>();
         for (Event event : nonRecurringSet) {
-            LocalDate eventDate = event.getDate();
+            LocalDate eventDate = event.getStartDate();
             if (eventDate.compareTo(startDate) >= 0 && eventDate.compareTo(endDate) <= 0) {
                 eventSet.add(event);
             }

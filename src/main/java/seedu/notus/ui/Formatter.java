@@ -32,6 +32,8 @@ public class Formatter {
     private static final String EMPTY_SPACE = " ";
     private static final String CONTINUATION = "...";
     private static final String TITLE = "Title: ";
+    private static final String NOTE_INDEX = "Note index: ";
+    private static final String CONTENT = "Content: ";
     private static final char EMPTY_CHAR = ' ';
 
     /**
@@ -74,41 +76,8 @@ public class Formatter {
      * @param notes ArrayList of notes to obtain note title/tags from
      * @return noteString StringBuilder containing the notes ready to be printed
      */
-    public static String formatNotes(String header, ArrayList<Note> notes) {
-        String formattedString = "";
-        int i = 1;
-
-        formattedString = formattedString.concat(generatesHeader(header));
-
-        for (Note note: notes) {
-            String colorText = colorize("Note Index: " + i + ". " + TITLE + note.getTitle() + EMPTY_SPACE
-                    + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
-            formattedString = formattedString.concat(encloseRow(colorText));
-
-            int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
-
-            String truncatedContent = note.getContent()
-                    .get(0)
-                    .substring(0, truncatedContentLength)
-                    .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
-            formattedString = formattedString.concat(generatesRowSplit());
-
-            i++;
-        }
-        return encloseTopAndBottom(formattedString);
-    }
-
-    //@@author R-Ramana
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     *
-     * @param notes ArrayList of notes to obtain note title/tags from
-     * @return noteString StringBuilder containing the notes ready to be printed
-     */
     public static String formatNotes(String header, ArrayList<Note> notes, Notebook notebook) {
         String formattedString = "";
-        int i = 1;
         int colorGold = 94;
         int colorBrown = 95;
 
@@ -117,8 +86,19 @@ public class Formatter {
         for (Note note: notes) {
             String colorIndex = colorize("Note Index: " + notebook.getNoteIndex(note),
                     Attribute.TEXT_COLOR(colorBrown));
+            int noteIndex = notebook.getNoteIndex(note);
+
+            if (noteIndex == 0) {
+                noteIndex = notebook.getArchiveNoteIndex(note);
+            }
+
+            colorIndex = colorize(NOTE_INDEX + noteIndex, Attribute.CYAN_TEXT());
+
             String colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE
                     + note.getTagsName(), Attribute.TEXT_COLOR(colorGold));
+            colorTitle = colorize(TITLE + note.getTitle() + EMPTY_SPACE + note.getTagsName(),
+                    Attribute.YELLOW_TEXT());
+
             formattedString = formattedString.concat(encloseRow(colorIndex)).concat(encloseRow(colorTitle));
 
             int truncatedContentLength = Math.min(note.getContent().get(0).length(), CONTENT_CUTOFF);
@@ -127,10 +107,8 @@ public class Formatter {
                     .get(0)
                     .substring(0, truncatedContentLength)
                     .concat(CONTINUATION);
-            formattedString = formattedString.concat(encloseRow(EMPTY_SPACE + truncatedContent));
-            formattedString = formattedString.concat(generatesRowSplit());
-
-            i++;
+            formattedString = formattedString.concat(encloseRow(CONTENT + truncatedContent))
+                    .concat(generatesRowSplit());
         }
         return encloseTopAndBottom(formattedString);
     }
@@ -139,6 +117,7 @@ public class Formatter {
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
+        header = colorize(header, Attribute.GREEN_TEXT());
         header = header.concat(note.getTitle() + " " + note.getTagsName());
 
         formattedString = formattedString.concat(generatesHeader(header));
@@ -146,6 +125,26 @@ public class Formatter {
             formattedString = formattedString.concat(encloseRow(line));
         }
         return encloseTopAndBottom(formattedString);
+    }
+
+
+    public static ArrayList<String> formatMonthTimetable(String month, HashMap<Integer, ArrayList<Event>> timetable) {
+        ArrayList<String> results = new ArrayList<>();
+        results.add(month);
+        ArrayList<Integer> days = new ArrayList<>(timetable.keySet());
+        days.sort(Integer::compareTo);
+        for (Integer day : days) {
+            ArrayList<Event> dailyEvents = timetable.get(day);
+            for (Event event : dailyEvents) {
+                ArrayList<String> tempResults = formatEvent(event);
+                String title = tempResults.get(0).concat(event.getTagsName());
+                tempResults.set(0, title);
+                results.addAll(tempResults);
+                results.add(" ");
+            }
+        }
+        results.remove(results.size() - 1);
+        return results;
     }
 
     /**
@@ -159,18 +158,26 @@ public class Formatter {
      */
     public static String formatTimetable(String header, int year, int month,
                                          HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
-        String formattedString;
+        ArrayList<String> eventsStrings = new ArrayList<>();
+
         if (month != 0) {
-            formattedString = generatesHeader(header + String.format(" %d-%d", year, month));
+            eventsStrings.add(header + String.format(" %d-%d", year, month));
+            Month currMonth = Month.of(month);
+            HashMap<Integer, ArrayList<Event>> monthEvents = timetable.get(currMonth);
+            assert monthEvents != null;
+            eventsStrings.addAll(formatMonthTimetable(currMonth.name(), monthEvents));
         } else {
-            formattedString = generatesHeader(header + " " + year);
-        }
-        ArrayList<String> unformattedEvents = Event.yearCalendarToString(timetable);
-        for (String event : unformattedEvents) {
-            formattedString = formattedString.concat(encloseRow(event));
+            eventsStrings.add(header + " " + year);
+            ArrayList<Month> months = new ArrayList<>(timetable.keySet());
+            months.sort(Month::compareTo);
+            for (Month currMonth : months) {
+                eventsStrings.addAll(formatMonthTimetable(currMonth.name(), timetable.get(currMonth)));
+                eventsStrings.add(" ");
+            }
+            eventsStrings.remove(eventsStrings.size() - 1);
         }
 
-        return encloseTopAndBottom(formattedString);
+        return formatString(eventsStrings, true);
     }
 
     /**
@@ -181,17 +188,17 @@ public class Formatter {
      * @return Formatted string of indexed events in timetable
      */
     public static String formatTimetable(String header, ArrayList<Event> events) {
-        String formattedString = generatesHeader(header);
-        ArrayList<String> eventStrings = Event.calendarToString(events);
-        for (String event : eventStrings) {
-            formattedString = formattedString.concat(encloseRow(event));
+        ArrayList<String> eventsStrings = new ArrayList<>();
+        eventsStrings.add(header);
+        ArrayList<String> eventStringRepresentation;
+        int i = 1;
+        for (Event event : events) {
+            eventStringRepresentation = formatEvent(event);
+            String title = String.format("%d. %s %s", i++, eventStringRepresentation.get(0), event.getTagsName());
+            eventStringRepresentation.set(0, title);
+            eventsStrings.addAll(eventStringRepresentation);
         }
-        return encloseTopAndBottom(formattedString);
-    }
-
-    public static String formatEvent(String header, Event event) {
-        String formattedString = "";
-        return formattedString;
+        return formatString(eventsStrings, true);
     }
 
     //@@author brandonywl
@@ -204,20 +211,20 @@ public class Formatter {
     public static ArrayList<String> formatEvent(Event event) {
         ArrayList<String> result = new ArrayList<>();
         result.add("Event: " + event.getTitle());
-        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
-        result.add("Reminder: " + event.getToRemind());
-        String repeatingString = "Repeating: " + event.getRecurring();
+        result.add("Date: " + event.getStartDate().toString()
+                + EMPTY_SPACE.repeat(4) + "Time: " + event.getStartTime().toString());
+        result.add("Reminder: " + event.getIsToRemind());
+        String repeatingString = "Repeating: ";
         String endRecurrenceDateString = "";
         if (event instanceof RecurringEvent) {
+            String recurrenceType = ((RecurringEvent) event).getRecurrenceType();
             RecurringEvent recurringEvent = (RecurringEvent) event;
-            endRecurrenceDateString = recurringEvent.getEndRecurrenceString();
+            endRecurrenceDateString = recurrenceType.concat(recurringEvent.getEndRecurrenceString());
+        } else {
+            endRecurrenceDateString = "False";
         }
         result.add(repeatingString + endRecurrenceDateString);
         return result;
-    }
-
-    public static String formatEventString(Event event) {
-        return formatString(formatEvent(event), false);
     }
 
     //@@author brandonywl
@@ -266,7 +273,8 @@ public class Formatter {
         Event event = reminder.getEvent();
         ArrayList<String> result = new ArrayList<>();
         result.add("Event: " + event.getTitle());
-        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
+        result.add("Date: " + event.getStartDate().toString()
+                + EMPTY_SPACE.repeat(4) + "Time: " + event.getStartTime().toString());
         return result;
     }
 

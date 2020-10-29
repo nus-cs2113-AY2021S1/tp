@@ -1,15 +1,15 @@
 @startuml
 
-TaggableObject <|- Note
-Event -|> TaggableObject
+hide circle
+skinparam classAttributeIconSize 0
 
-TaggableObject }o== Tag
-
-TagManager }o== TaggableObject
-TagManager -> Tag
+class "{abstract} \n TaggableObject" {
+-tags: ArrayList<Tag>
++getTagsName(): String
+}
 
 class TagManager {
--Map<Tag, ArrayList<TaggableObject>>
+-tagMap: Map<Tag, ArrayList<TaggableObject>>
 +createTag(Tag, boolean): boolean
 +createTag(ArrayList<Tag>, String, String): ArrayList<String>
 +tagNote(TaggableObject, Tag): void
@@ -21,18 +21,20 @@ class TagManager {
 +tagAndUntag(TaggableObject, ArrayList<Tag>, String, String): ArrayList<String>
 }
 
-abstract class TaggableObject {
--ArrayList<Tag>
-+getTagsName(): String
-}
-
 class Tag {
--name
--attribute
+-tagName: String
+-tagAttribute: Attribute
 +Tag(String, String)
 +Tag(String, int)
 +setTagColor(String): void
 +toSaveString(): String
 }
+
+Event -left-|> "{abstract} \n TaggableObject"
+Note -|> "{abstract} \n TaggableObject"
+
+"{abstract} \n TaggableObject" "*" -down-> Tag
+Tag <-"*" TagManager
+TagManager "*"-> "{abstract} \n TaggableObject"
 
 @enduml

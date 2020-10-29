@@ -24,8 +24,10 @@ public class PrefixSyntax {
     public static final String PREFIX_TIMING = "timing";
     public static final String PREFIX_RECURRING = "repeat";
     public static final String PREFIX_REMIND = "remind";
+    public static final String PREFIX_REMIND_ADD = "remind-add";
+    public static final String PREFIX_REMIND_DROP = "remind-drop";
+    public static final String PREFIX_REMIND_CLEAR = "remind-clear";
     public static final String PREFIX_STOP_RECURRING = "stop";
-    public static final String PREFIX_DATETIME = "d";
 
     public static final String STRING_SPLIT_DELIMITER = " ";
     public static final String STRING_SORT_ASCENDING = "up";

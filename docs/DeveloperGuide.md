@@ -13,7 +13,8 @@
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 Usage of External Libraries](#color)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 System Exception](#exception)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Usage of External Libraries](#color)
 #### [3. Product Scope](#scope)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
@@ -61,11 +62,11 @@ The architecture design is given in the diagram above. The main components of No
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
 1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
-1. `Command`: Executes the necessary tasks, depending on the respective command calls .
+1. `Command`: Executes the necessary tasks, depending on the respective command calls.
 1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
 1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
-1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
+1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
 
 A Program Evaluation Review Technique (PERT) Chart was created prior to the start of developing NotUS and was constantly updated based on progress and updates from the development team's weekly meetings. A PERT chart is a project management tool that provides a visual representation of a project's timeline. The chart breaks down the individual tasks and aids in identifying task dependencies. A diagram of the PERT chart used for this application is shown below.
 
@@ -85,55 +86,65 @@ NotUS manages the flow of the application. On launch, it will create the necessa
 
 #### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
 
-The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action.
+The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
-1. Receives the user input message as a whole.
-1. Interprets the type of command and creates the respective parser for each command.
-1. The parser then splits the message to identify all the parameters provided.
-1. Creates and returns the Command class respectively.
- 
 <p align="center">
-  <img alt="Parser" src="diagrams/out/Parser.png" />
+  <img alt="ParserManagerClass" src="diagrams/out/ParserManagerClass.png" />
   <br><em>Figure 4</em>
 </p>
 
-💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are too many paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
- 
+💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+
+1. The ParserManager receives the user input message as a whole.
+1. Interprets the type of command and creates the respective parser for each command.
+1. The parser then splits the message to identify all the parameters provided.
+1. Creates and returns the Command class respectively.
+
+The sequence diagram is as follows.
+
+<p align="center">
+  <img alt="Parser" src="diagrams/out/Parser.png" />
+  <br><em>Figure 5</em>
+</p>
+
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
+
  <p align="center">
-   <img alt="Parser" src="diagrams/out/AddNoteParser.png" />
-   <br><em>Figure 5</em>
+   <img alt="AddNoteParser" src="diagrams/out/AddNoteParser.png" />
+   <br><em>Figure 6</em>
  </p>
 
 Based on the user input, the Parser handles and creates the corresponding Command object.
 
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
+The following are some examples of the different type of Command Objects.
+
 **AddNoteCommand**
 
-1. Created by the parser function
+1. Created by the parserManager.
 1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
 1. Obtain content input into note.
-1. Process and stores tags into TagsManager.
+1. Process and stores tags into TagManager.
 1. Handle saving of notes.
 1. Returns the title, tags as well as the contents of the note. 
 
 <p align="center">
-   <img alt="Parser" src="diagrams/out/AddNote_Sequence.png"/>
-   <br><em>Figure 6</em>
+   <img alt="AddNote_Sequence" src="diagrams/out/AddNote_Sequence.png"/>
+   <br><em>Figure 7</em>
 </p>
 
 **PinCommand**
 
-1. Created by the parser function
-1. Gets the note that is referenced too either by title or index 
+1. Created by the parserManager.
+1. Gets the note that is referenced either by title or index.
 1. Toggles the pinned status of the specified note. 
 1. Returns the title as well as the pinned status of the note. 
 
 <p align="center"> 
    <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
-   <br><em>Figure 7</em>
+   <br><em>Figure 8</em>
 </p>
-
 
 <br>
 
@@ -142,22 +153,28 @@ Based on the user input, the Parser handles and creates the corresponding Comman
 The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user. The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
 
 <p align="center">
-   <img alt="Parser" src="diagrams/out/NotebookObject.png"/>
-   <br><em>Figure 8</em>
+   <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
+   <br><em>Figure 9</em>
 </p>
 
 Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
+The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
+
+Timetable handles adding, deleting and getting all instances of stored events in a given time period.
+
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
 The class diagram below denotes the relationship between the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
-   <img alt="Parser" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 9</em>
+   <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
+   <br><em>Figure 10</em>
 </p>
+ 
+💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
  
 Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
@@ -166,19 +183,38 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 11</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure #</em>
+   <br><em>Figure 12</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
-#### <a id="color"><ins>2.10 Usage of External Libraries</ins></a>
+The Formatter class handles the formatting of the Note(s), Event(s) and message(s) which is then displayed to the user. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
+
+<p align="center">
+   <img alt="Formatter" src="diagrams/out/Formatter.png"/>
+   <br><em>Figure 13</em>
+</p>
+
+#### <a id="exception"><ins>2.10 System Exception</ins></a>
+
+The System Exception Enumeration contains all the possible types of exception with specific messages.
+
+<p align="center">
+   <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
+   <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
+   <br><em>Figure 14</em>
+</p>
+
+💡 As there are various types of exception, the class diagram is split into two.
+
+#### <a id="color"><ins>2.11 Usage of External Libraries</ins></a>
 
 This application uses 2 color libraries, <a href="https://github.com/dialex/JColor">JColor</a> and <a href="https://fusesource.github.io/jansi/">Jansi</a>, to print colored messages on the terminals using ANSI escape codes. While JColor itself is sufficient to colorize the strings, Windows 10 terminal, by default, **does NOT support** ANSI escape code. Hence, there was a need for the Jansi library to support ANSI escape codes on Windows.
   
@@ -192,7 +228,7 @@ The figure below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 10</em>
+ <br><em>Figure 15</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>

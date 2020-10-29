@@ -344,7 +344,7 @@ public class StorageManager {
             eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
                         + " " + event.getRecurrenceType() + " "
                         + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
-                        + " " + event.getEndRecurrenceDate() + " "
+                        + " " + event.getEndRecurrenceDateTime() + " "
                         + LS;
             fwAppend.write(eventDetails);
         }

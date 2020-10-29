@@ -64,7 +64,7 @@ class FindCommandTest {
         notes.add(testNote1);
         notes.add(testNote2);
 
-        String expected = Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes);
+        String expected = Formatter.formatNotes(COMMAND_SUCCESSFUL_MESSAGE, notes, notebook);
         String result = getCommandExecutionString(notebook, keyword);
 
         assertEquals(expected, result);

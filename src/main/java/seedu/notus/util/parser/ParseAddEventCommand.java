@@ -17,6 +17,8 @@ import seedu.notus.util.DateTimeManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
@@ -24,8 +26,6 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.notus.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 /**
  * Represents a parser object specifically to parse message for AddEventCommand.
@@ -51,12 +51,12 @@ public class ParseAddEventCommand extends Parser {
         // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
         String title = "";
         LocalDateTime dateTime = null;
+        // Not set yet. Has no prefix for this.
         LocalDateTime recurringEndTime = null;
         boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
-        ArrayList<Integer> timePeriods = new ArrayList<>();
-        ArrayList<String> timeUnits = new ArrayList<>();
+        HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -81,38 +81,11 @@ public class ParseAddEventCommand extends Parser {
                 case PREFIX_REMIND:
                     toRemind = true;
                     if (infoDetails.length == 1 || infoDetails[1].isBlank()) {
-                        timeUnits.add(Event.REMINDER_DAY);
-                        timePeriods.add(1);
+                        reminderSchedule = new HashMap<>();
+                        reminderSchedule.put(Event.REMINDER_DAY, new ArrayList<>(List.of(1)));
                         break;
                     }
-                    String[] reminderDetails = infoDetails[1].split(STRING_SPLIT_DELIMITER);
-                    for (String reminderDetail : reminderDetails) {
-                        String[] timeStrings = reminderDetail.split(TIMING_SPLIT_DELIMITER);
-                        if (timeStrings.length != 2) {
-                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-                        }
-                        int timePeriod;
-                        String timeUnit;
-                        try {
-                            timePeriod = Integer.parseInt(timeStrings[0]);
-                            timeUnit = timeStrings[1];
-                            if ((!timeUnit.equalsIgnoreCase(Event.REMINDER_DAY)
-                                    && !timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK)) || timePeriod < 1) {
-                                throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-                            }
-
-                            exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
-                            if (timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK) && timePeriod > 1) {
-                                throw new SystemException(exception);
-                            } else if (timeUnit.equalsIgnoreCase(Event.REMINDER_DAY) && timePeriod > 7) {
-                                throw new SystemException(exception);
-                            }
-                        } catch (NumberFormatException exceptionNumFormat) {
-                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
-                        }
-                        timeUnits.add(timeUnit);
-                        timePeriods.add(timePeriod);
-                    }
+                    reminderSchedule = handleReminderParsing(infoDetails[1]);
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;
@@ -147,22 +120,22 @@ public class ParseAddEventCommand extends Parser {
             LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
-                event = new DailyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
+                event = new DailyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
-                event = new WeeklyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
+                event = new WeeklyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
-                event = new MonthlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
+                event = new MonthlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
-                event = new YearlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
+                event = new YearlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
-            event = new Event(title, dateTime, toRemind, false, timePeriods, timeUnits);
+            event = new Event(title, dateTime, toRemind, false, reminderSchedule, tags);
         }
         return new AddEventCommand(event);
     }
