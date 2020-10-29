@@ -4,9 +4,9 @@ It includes 5 different finance tools, all of which take in typed commands from 
 ## Setting up for Testers (IMPORTANT)
 
 Prerequisites: A computer
-1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/)
-1. Save the executable file in your preferred folder
-1. Run the program via the command line. The command is: ```java -jar financeit.jar```
+1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
+1. Save the executable file in your preferred folder.
+1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 ## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
