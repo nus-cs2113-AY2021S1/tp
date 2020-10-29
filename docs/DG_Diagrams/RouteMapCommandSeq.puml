@@ -27,12 +27,8 @@ activate ":RouteMapCommand"
 deactivate ":RouteMapCommand"
 ":Parser" -> ":RouteMapCommand" : executeCommand()
 activate ":RouteMapCommand"
-opt empty command
-    ":RouteMapCommand" --> ":Parser" : MISSING_BUS_CODE
-    ":Parser" --> ":Duke"
-end
-
 ":RouteMapCommand" -> ":BusData" : selectBus();
+activate ":BusData"
 loop number of bus routes
     ":BusData" -> ":Bus" : equals()
      activate ":Bus"
@@ -41,7 +37,6 @@ loop number of bus routes
 end
 
 alt Bus object found
-activate ":BusData"
 ":BusData" --> ":RouteMapCommand" : Bus object
 else Bus object not found
 ":BusData" --> ":RouteMapCommand" : null
