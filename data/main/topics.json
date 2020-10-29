@@ -365,7 +365,7 @@
       {
         "description": "Which of these is not considered a benefit of a typical RCS?",
         "hint": "Typical RCS may not use any graphics",
-        "explanation": "",
+        "explanation": "Option 2 describes Work Breakdown Structure (WBS)",
         "options": [
           {
             "description": "Help a single user manage revisions of a single file",
@@ -388,7 +388,7 @@
       {
         "description": "Merge conflicts can occur when:",
         "hint": "Conflicts can normally occur when different developer change the same line of code",
-        "explanation": "",
+        "explanation": "This is the only case where developers change the same line of code",
         "options": [
           {
             "description": "team members don't like each other",
@@ -411,7 +411,7 @@
       {
         "description": "Git:",
         "hint": "Git can be quite flexible in its use",
-        "explanation": "",
+        "explanation": "Git can support both centralized and distributed revision control",
         "options": [
           {
             "description": "supports distributed revision control",
@@ -434,7 +434,7 @@
       {
         "description": "Your local repository can communicate with ___ remote repositories:",
         "hint": "Recall adding remote repositories through git",
-        "explanation": "",
+        "explanation": "There is no limit to the number of remote repositories you can communicate with",
         "options": [
           {
             "description": "zero",
@@ -457,7 +457,7 @@
       {
         "description": "What is branching?",
         "hint": "Think about the use of branching for your team project",
-        "explanation": "",
+        "explanation": "Option 1 is called a checkout, option 2 is called committing and option 4 is making a fork",
         "options": [
           {
             "description": "Restoring the state of the working directory at a point in the past",
