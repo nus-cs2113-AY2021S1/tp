@@ -133,11 +133,7 @@ public class SaveManager {
                 }
             }
             FileWriter fileWriter = new FileWriter(fullPath, true);
-            if (file.length() == 0) {
-                fileWriter.write(name);
-            } else {
-                fileWriter.write("\n" + name);
-            }
+            fileWriter.write(name + "\n");
             fileWriter.close();
             prompt = name + " has been added!";
 
