@@ -169,27 +169,9 @@ This is the end of the quiz!
 Hope you have learnt something new!
 ------------------------------------------------------------------------------------------------------------------------
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
-This is your list of bookmarks:
-1. What is encapsulation?
-    1) A
-    2) B
-    3) C
-    4) D
-
+These are the available topics and the number of available questions in each:
+[1] OOP
 ------------------------------------------------------------------------------------------------------------------------
-Enter your command or 'help': Point system in E-Duke-8: For correct answers, you earn 2 points if you did not request for hint,
-and 1 point if you did. No point is awarded for wrong answers.
-
-You have earned 1 points out of a total of 2 points available!
-Therefore, your E-Duke-8 progress is 50%. Good job! Keep it up!
-
-Topics' Progression
-------------------------------------------------------------------------------------------------------------------------
-OOP
-------------------------------------------  1/1 questions done
-------------------------------------------  1/1 questions correctly answered
-------------------------------------------  1 hint used
-------------------------------------------  1 points earned / 2 available [50%]
 Enter your command or 'help': ------------------------------------------------------------------------------------------------------------------------
 Please wait while data is saving...
 ------------------------------------------------------------------------------------------------------------------------
