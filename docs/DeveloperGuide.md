@@ -239,7 +239,7 @@ Aspect: User input format
 
 
 ### 3.4. Event
-The diagram below shows the architecture for Event feature.
+The diagram below shows the architecture for Event feature. (Coming soon)
 
 ![](EventDiagram/EventArchitecture.png)
 
