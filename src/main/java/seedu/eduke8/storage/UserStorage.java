@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class UserStorage extends LocalStorage {
+    public static final String KEY_TEXT = "text";
     private BookmarkList bookmarkList;
     private TopicList topicList;
 
@@ -109,8 +110,8 @@ public class UserStorage extends LocalStorage {
     }
 
     private void parseFromNoteJson(JSONObject note, NoteList noteList) throws Eduke8Exception {
-        String noteDescription = (String) note.get("description");
-        String text = (String) note.get("text");
+        String noteDescription = (String) note.get(KEY_DESCRIPTION);
+        String text = (String) note.get(KEY_TEXT);
         Note noteObject = new Note(noteDescription, text);
 
         noteList.add(noteObject);
@@ -161,11 +162,12 @@ public class UserStorage extends LocalStorage {
         return notes;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject parseToNoteJson(Note noteObject) {
         JSONObject note = new JSONObject();
 
-        note.put("description", noteObject.getDescription());
-        note.put("text", noteObject.getNoteText());
+        note.put(KEY_DESCRIPTION, noteObject.getDescription());
+        note.put(KEY_TEXT, noteObject.getNoteText());
 
         return note;
     }
