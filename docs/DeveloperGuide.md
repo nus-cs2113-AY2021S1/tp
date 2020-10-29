@@ -62,10 +62,16 @@ The rest of the App consists of four components.
 * `Storage` Reads and writes data from and to a text file.
 
 
-### Model Component
-![Model Component](images/diagrams/ClassDiagram_DataOverview.png)
+### Data Component
+![Data Component](images/diagrams/ClassDiagram_DataOverview.png)
 
- 
+The `Data`,
+- Stores of `ApplianceList` containing `Appliance`(s) & `LocationList` containing `String` of locations.
+- In order to add create an `Appliance` into `ApplianceList`, we will need the following:
+    - name 
+    - location
+    - wattage
+    - `LocationList`
 ## Implementation
 
 ### Data Component
@@ -75,15 +81,15 @@ from the abstract appliance class.
 
 ![Detailed Model Component](images/diagrams/ClassDiagram_DetailedData.png)
 
-To create an Appliance, we pass the name, location, wattage, power and the entire locationList. We first check from the 
-locationList if the name of the appliance is inside the locationList, and the location exists within the locationList. 
-If all these conditions are met, the Appliance will be created. It will be appended into the ApplianceList with the 
+To create an `Appliance`, we pass the name, location, wattage, power and the entire `LocationList`. We first check from the 
+`LocationList` if the name of the appliance is inside the `LocationList`, and the location exists within the `LocationList`. 
+If all these conditions are met, the `Appliance` will be created. It will be appended into the `ApplianceList` with the 
 `addAppliance()` method. 
 
 The Power class is responsible for computing the appliance’s power consumption.
 
-The public methods in the Appliances accessible via the ApplianceList are used to manipulate the appliances such as
-turning `ON` and `OFF`. From the appliance class, the program will be able to retrieving the name, location, statuses of
+The public methods in the `Appliance` accessible via the `ApplianceList` are used to manipulate the appliances such as
+turning `ON` and `OFF`. From the `Appliance` class, the program will be able to retrieving the name, location, statuses of
 the appliances. 
 
 ### Command Component
