@@ -156,7 +156,7 @@ which is relatively more crowded than other bus stops.<br><br>
 ### 3.4. Check for buses at a bus stop: ```/bus```
 This command displays all buses available at a specific bus stop.
 
-The format of this command is as follows: <br>
+Format: <br>
 <code>/bus<strong> bus stop</strong></code> <br>
 
 #### Examples of Usage
@@ -250,6 +250,23 @@ These are the steps to follow:
 ### 3.11. Delete a favourite command: `/deletefav`
 
 ### 3.12. Execute a favourite command: `/execfav`
+This command executes the specific command in your list of favourite commands.
+
+Format: <br>
+<code>/execfav<strong> index in list</strong></code> <br>
+
+#### Examples of Usage
+**<u>Example 1</u>**<br>
+Let's say that you have stored the command <code>/route <strong>Opp University Health Centre</strong> /to <strong>Opp Kent Ridge MRT station</strong></code> in your list of favourite commands. Instead of typing the long command using `/route`, you can now conveniently use the `/execfav` command.
+
+Given you have the list of favourite commands:<br>
+<img src="UG_Figures/execfav1.png"><br>
+
+
+To execute the command with the 2nd index in your list of favourite commands:
+
+1. Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+<img src="UG_Figures/execfav2.png" width=600><br>
 
 ### 3.13. Change the description for a favourite command: `/descfav`
 This command helps you change the description of a command in your list of favourites.
@@ -338,7 +355,7 @@ Command | Format | Example
 /dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise**
 /addfav | | 
 /deletefav | |
-/execfav | |
+/execfav | `/execfav` **index** | `/execfav` **5**
 /descfav | `/descfav` **index** /to **new description** | `/descfav` **5** /to **Get dinner @7:30PM every Tuesday**
 /listfav | |
 /clearfav | |
