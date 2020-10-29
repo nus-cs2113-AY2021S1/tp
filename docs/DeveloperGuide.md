@@ -1,5 +1,18 @@
 # Developer Guide
 
+![](diagrams/Logo.png)
+
+Yang Jiaqi
+
+Zhuang Mengjin
+
+Xu Che
+
+Wu Nan
+
+Wan Shi Jie Brendan
+
+
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Getting Started](#2-getting-started)<br>

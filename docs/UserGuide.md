@@ -1,5 +1,18 @@
 # User Guide
 
+![](diagrams/Logo.png)
+
+Yang Jiaqi
+
+Zhuang Mengjin
+
+Xu Che
+
+Wu Nan
+
+Wan Shi Jie Brendan
+
+
 ## Introduction
 
 NuSchedule is a straightforward but sophisticated application that helps you manage your events. It allows you 
