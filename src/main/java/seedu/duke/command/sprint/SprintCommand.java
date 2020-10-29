@@ -54,13 +54,13 @@ public abstract class SprintCommand extends Command {
         int selectedSprint;
         if (this.parameters.containsKey("sprint")) {
             selectedSprint = Integer.parseInt(this.parameters.get("sprint"));
-            if (selectedSprint > this.projOwner.getSprintList().size()) {
-                throw new DukeException("Sprint not found.");
+            if (selectedSprint < 1 || selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found: " + selectedSprint);
             }
         } else if (this.parameters.containsKey("0")) {
             selectedSprint = Integer.parseInt(this.parameters.get("0"));
-            if (selectedSprint > this.projOwner.getSprintList().size()) {
-                throw new DukeException("Sprint not found.");
+            if (selectedSprint < 1 || selectedSprint > this.projOwner.getSprintList().size()) {
+                throw new DukeException("Sprint not found: " + selectedSprint);
             }
         } else {
             if (this.projOwner.getSprintList().updateCurrentSprint()) {
@@ -89,7 +89,7 @@ public abstract class SprintCommand extends Command {
     protected void checkProjectExist(int projId) throws DukeException {
         if (projId != -1) {
             if (!this.projectList.checkExist(projId)) {
-                throw new DukeException("Project specified do not exist.");
+                throw new DukeException("Project do not exist:" + projId);
             }
         } else {
             if (this.projectList.size() == 0) {
@@ -143,7 +143,7 @@ public abstract class SprintCommand extends Command {
 
             if (isAdd == this.sprintOwner.checkTaskExist(taskId)) {
                 throw new DukeException(isAdd
-                        ? "Task(s) already exist" + taskId
+                        ? "Task(s) already exist: " + taskId
                         : "Task not found in sprint: " + taskId);
             }
 

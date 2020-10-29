@@ -36,7 +36,6 @@ public class CreateSprintCommand extends SprintCommand {
             checkAllSprintCreated();
 
             //Valid Command
-            System.out.println(this.projOwner.toIdString());
             Ui.showToUser(this.projOwner.toIdString());
             updateProjectDates();
             sprintList.addSprint(this.projOwner, sprintGoal, sprintStart, sprintEnd);
