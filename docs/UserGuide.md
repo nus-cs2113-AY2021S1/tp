@@ -58,7 +58,7 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
 Orientate yourself to the command line interface. As seen in the figure below, the red arrow points to
-where you have to type in commands.
+where you have to type in commands.<br>
 ![Windows CLI](UG_Figures/windowsCLI.png)
 
 3. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
