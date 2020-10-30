@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 //@@author OngDeZhi
 /**
- * Represents the class to handle parsing for watchlist command.
+ * Handles parsing for watchlist command.
  */
 public class WatchlistParser extends CommandParser {
     private static final String CREATE_OPTION = "n";
@@ -21,6 +21,7 @@ public class WatchlistParser extends CommandParser {
     private static final String TOO_MUCH_ARGUMENTS = "Watchlist command" + TOO_MUCH_FIELDS;
     private static final String INVALID_OPTION = "Watchlist command only accepts the options: -n, -l, -s, and -d.";
     private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
+    private static final String WATCHLIST_NAME_IS_INVALID = "Watchlist name must be alphanumeric!";
     private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
     private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index cannot be zero!";
     private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
@@ -40,11 +41,9 @@ public class WatchlistParser extends CommandParser {
      */
     public WatchlistCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
-        String[] paramGiven = parameterSplitter(description);
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
         paramIsSetCheck(paramGiven);
-        if (paramGiven.length > 2) {
-            throw new AniException(TOO_MUCH_ARGUMENTS);
-        } else if (!paramGiven[0].isBlank()) {
+        if (!paramGiven[0].isBlank()) {
             throw new AniException(paramGiven[0] + NOT_RECOGNISED);
         }
 
@@ -106,6 +105,10 @@ public class WatchlistParser extends CommandParser {
     private void checkCreationParameters(String[] parsedParts) throws AniException {
         if (parsedParts.length != CREATION_REQUIRED_PARAMETER_COUNT) {
             throw new AniException(WATCHLIST_NAME_IS_EMPTY);
+        }
+
+        if (!parsedParts[1].matches(REGEX_ALPHANUMERIC)) {
+            throw new AniException(WATCHLIST_NAME_IS_INVALID);
         }
     }
 

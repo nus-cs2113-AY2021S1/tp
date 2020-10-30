@@ -11,7 +11,7 @@ public abstract class CommandParser {
     //Shared Constants by Parsers
     protected static final String NAME_PARAM = "n";
     protected static final String GENRE_PARAM = "g";
-    protected static final int FIELD_SPLIT_LIMIT = 2;
+    protected static final String SPLIT_DASH = "-";
     protected static final String SPLIT_WHITESPACE = " ";
     protected static final String NOT_RECOGNISED = " is not recognised!";
     protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
@@ -22,6 +22,8 @@ public abstract class CommandParser {
     protected static final String NOT_INTEGER = "Please provide an integer instead!";
     protected static final String INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE = "Please ensure the integer is not larger"
                                                                             + " than " + Integer.MAX_VALUE + ".";
+    protected static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
+    protected static final int FIELD_SPLIT_LIMIT = 2;
 
     private static final String INTEGER_REGEX = "^\\d+$";
 

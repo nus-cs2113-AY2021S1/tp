@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
+    protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
@@ -34,15 +35,16 @@ public class ViewWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public ViewWatchlistCommand parse(String description) throws AniException {
-        String[] paramGiven = parameterSplitter(description);
+        String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
-        if (paramGiven.length > 2) {
-            throw new AniException(TOO_MUCH_ARGUMENTS);
-        } else {
-            parameterParser(paramGiven);
-            LOGGER.log(Level.INFO, "Parameter parsed properly");
+        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
+            throw new AniException(NO_PARAMETER_PROVIDED);
         }
+        
+        parameterParser(paramGiven[1]);
+        LOGGER.log(Level.INFO, "Parameter parsed properly");
+
         return viewWatchlistCommand;
     }
 
@@ -52,28 +54,23 @@ public class ViewWatchlistParser extends CommandParser {
      * @param paramGiven a String Array containing the parameters and the value
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String[] paramGiven) throws AniException {
-        for (String param : paramGiven) {
-            String[] paramParts = param.split(" ");
-            if (paramParts.length == 0) {
-                break;
-            }
+    private void parameterParser(String paramGiven) throws AniException {
+        String[] paramParts = paramGiven.split(" ");
 
-            switch (paramParts[0].trim()) {
-            case "": // skip empty param
-                break;
-            case VIEW_PARAM:
-                paramFieldCheck(paramParts);
-                paramExtraFieldCheck(paramParts);
-                if (!isInt(paramParts[1].trim())) {
-                    throw new AniException(NON_INTEGER_PROVIDED);
-                }
-                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
-                break;
-            default:
-                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                throw new AniException(invalidParameter);
+        switch (paramParts[0].trim()) {
+        case "": // skip empty param
+            break;
+        case VIEW_PARAM:
+            paramFieldCheck(paramParts);
+            paramExtraFieldCheck(paramParts);
+            if (!isInt(paramParts[1].trim())) {
+                throw new AniException(NON_INTEGER_PROVIDED);
             }
+            viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+            break;
+        default:
+            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
+            throw new AniException(invalidParameter);
         }
     }
 }
