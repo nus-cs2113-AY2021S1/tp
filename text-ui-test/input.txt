@@ -10,4 +10,11 @@ list -c action
 delete -c motivational -q 1
 list -c motivational
 list -c nice
+add -r 3 book1 /by me
+list -r
+edit -r 5 book1 /by me
+list -r 3
+list -r 5
+find -r book1 /by me
+delete -r book1 /by me
 delete -b 1
