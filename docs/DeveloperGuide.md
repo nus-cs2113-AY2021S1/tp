@@ -485,7 +485,8 @@ Implementation:
 
 
 ### Storage
-To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
+To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. 
+This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
 #### Location
 ![Figure X: Running the Jar](image/developerguide/savingdata1.png "Running the Jar")  
