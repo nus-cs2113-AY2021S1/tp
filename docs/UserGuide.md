@@ -191,19 +191,19 @@ Fluffle has a word list which stores the words that you wish to store. It can be
 
 #### Adding a noun: `noun`
 Adds a noun, together with its meaning, into the word bank in the program.  
-Format: `noun WORD \dDESCRIPTION`
+Format: `noun WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
-Format: `verb WORD \dDESCRIPTION`
+Format: `verb WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding an adjective: `adj`
 Adds an adjective, together with its meaning, into the word bank in the program.  
-Format: `adj WORD \dDESCRIPTION`
+Format: `adj WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
