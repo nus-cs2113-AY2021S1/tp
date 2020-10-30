@@ -219,6 +219,10 @@ The `delete` command takes in 1 parameter, the show to be deleted. Following tha
 
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
 
+<img src = "images/DeleteCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for Delete Command*
+
 **Step 1**
 
 * The user types in `delete friends` , assuming that friends has been added by the user beforehand.
@@ -280,7 +284,7 @@ Given below is an example usage scenario and how the `ChangeRatingCommand` Class
 
 <img src = "images/ChangeRatingCommand.png" width = "700">
 
-*Figure 1: Sequence Diagram for Edit Command*
+*Figure 1: Sequence Diagram for ChangeRating Command*
 
 **Step 1**
 
@@ -319,11 +323,12 @@ The `deleterating` command deletes the rating of the desired show.
 The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
 proceeds to delete the rating of the show that was inputted by the user.
 
-<<<<<<< HEAD
-Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
-=======
+
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
+
+<img src = "images/DeleteRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for DeleteRating Command*
 
 **Step 1**
 
@@ -341,11 +346,8 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 3**
 
-<<<<<<< HEAD
-The deleteRating method starts with retrieving the show from the ShowList
-=======
+
 * The `deleteRating` method starts with retrieving the `Show` from the `ShowList`
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
 
 **Step 4**
 
@@ -383,10 +385,9 @@ The review of the rating is added to the show.
 
 **Step 5**
 
-Reflect the changes back to the user. At the same time, changes are saved into the showList.txt file.
-=======
+
 * The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
+
 
 ### ChangeReviewCommand
 
