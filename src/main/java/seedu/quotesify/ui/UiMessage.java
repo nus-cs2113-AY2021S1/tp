@@ -10,7 +10,7 @@ public class UiMessage {
             + "\\_____\\ \\_/____/ \\____/|__|  \\___  >____  >__||__|  / ____|\n"
             + "       \\__>                      \\/     \\/          \\/    ";
 
-    public static final String WELCOME_MESSAGE = "Welcome to Quotesify v2.0!";
+    public static final String WELCOME_MESSAGE = "Welcome to Quotesify v2.1!";
     public static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
     public static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
     public static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
