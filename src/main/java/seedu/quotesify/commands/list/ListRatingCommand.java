@@ -17,6 +17,7 @@ public class ListRatingCommand extends ListCommand {
         super(arguments);
     }
 
+    @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         listRatings(ratings, ui);
@@ -41,7 +42,7 @@ public class ListRatingCommand extends ListCommand {
         assert !information.isEmpty() : "Rating details should not be empty";
         int ratingToPrint = RatingParser.checkValidityOfRatingScore(information);
 
-        if (ratingToPrint == 0) {
+        if (ratingToPrint == RatingParser.INVALID_RATING) {
             return;
         }
 

@@ -16,14 +16,16 @@ public class DeleteRatingCommand extends DeleteCommand {
         super(arguments);
     }
 
+    @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         deleteRating(ratings, ui);
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-        if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
+
+        boolean hasMissingInput = RatingParser.checkUserInput(information);
+        if (hasMissingInput) {
             return;
         }
 
@@ -39,29 +41,23 @@ public class DeleteRatingCommand extends DeleteCommand {
             return;
         }
 
-        Rating ratingToBeDeleted = null;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(title)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                ratingToBeDeleted = rating;
-                break;
-            }
-        }
-
-        if (ratingToBeDeleted == null) {
-            System.out.println(ERROR_RATING_NOT_FOUND);
-            return;
-        }
-
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         for (Book book : books.getList()) {
             if (book.getTitle().equals(title) && book.getAuthor().getName().equals(author)) {
-                book.setRating(0);
+                book.setRating(RatingParser.UNRATED);
                 break;
             }
         }
 
-        ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
-        ui.printDeleteRating(title, author);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(title)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
+                ratings.delete(ratings.getList().indexOf(rating));
+                ui.printDeleteRating(title, author);
+                return;
+            }
+        }
+
+        System.out.println(ERROR_RATING_NOT_FOUND);
     }
 }

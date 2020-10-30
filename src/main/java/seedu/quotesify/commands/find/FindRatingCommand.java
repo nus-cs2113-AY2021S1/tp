@@ -14,14 +14,16 @@ public class FindRatingCommand extends FindCommand {
         super(arguments);
     }
 
+    @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         findRating(ratings, ui);
     }
 
     private void findRating(RatingList ratings, TextUi ui) {
-        if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
+
+        boolean hasMissingInput = RatingParser.checkUserInput(information);
+        if (hasMissingInput) {
             return;
         }
 

@@ -19,14 +19,16 @@ public class AddRatingCommand extends AddCommand {
         super(arguments);
     }
 
+    @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         addRating(ratings, ui);
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
-        if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
+
+        boolean hasMissingInput = RatingParser.checkUserInput(information);
+        if (hasMissingInput) {
             return;
         }
 
@@ -46,16 +48,16 @@ public class AddRatingCommand extends AddCommand {
         int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
         Book bookToRate = checkBookExists(title, author);
         boolean isRated = isRated(bookToRate);
-        boolean isValid = (ratingScore != 0) && (bookToRate != null) && (!isRated);
+        boolean isValid = (ratingScore != RatingParser.INVALID_RATING) && (bookToRate != null) && (!isRated);
         if (isValid) {
             bookToRate.setRating(ratingScore);
             ratings.add(new Rating(bookToRate, ratingScore));
-            ui.printAddRatingToBook(ratingScore, title, author);
+            ui.printAddRating(ratingScore, title, author);
         }
     }
 
     private boolean isRated(Book bookToRate) {
-        if (bookToRate != null && bookToRate.getRating() != 0) {
+        if (bookToRate != null && bookToRate.getRating() != RatingParser.UNRATED) {
             addLogger.log(Level.INFO, "book has been rated");
             System.out.println(ERROR_RATING_EXIST);
             return true;
