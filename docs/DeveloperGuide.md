@@ -12,11 +12,11 @@ Wan Shi Jie Brendan<br>
 
 ## Table of Contents
 1. [Introduction](#intro)
-2. [Getting Started](#2-getting-started)<br>
-2.1 [Prerequisites](#21-prerequisites)<br>
-2.2 [Setting Up](#22-setting-up)<br>
-3. [Design](#3-design) <br>
-3.1 [Architecture](#31-architecture) <br>
+2. [Getting Started](#getting-started)<br>
+2.1 [Prerequisites](#prerequisites)<br>
+2.2 [Setting Up](#setting-up)<br>
+3. [Design](#design) <br>
+3.1 [Architecture](#architecture) <br>
 3.2 [UI](#32-ui) <br>
 3.3 [Storage](#33-storage) <br>
 3.4 [Logic](#34-logic) <br>
@@ -36,7 +36,7 @@ Wan Shi Jie Brendan<br>
 5.2 [Value Proposition](#52-value-proposition) <br>
 5.3 [User Stories](#53-user-stories)<br>
 
-## <a id="intro">1. Introduction</a>
+## 1. Introduction<a id="intro"></a>
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
 interface, NUSchedule will help you manage your commitments without any hassle. If you are a proficient in typing, 
 NUSchedule will prove itself to be the most efficient way to manage your commitments.  
@@ -45,14 +45,14 @@ This developer guide provides information on the architecture and design of the 
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
 to refer to even if you are already a contributor.
 
-## 2. Getting Started
+## 2. Getting Started <a id="getting started"></a>
 This section provides information to help you get NUSchedule up and running on your own computers.
 
-### 2.1 Prerequisites
+### <a id="prerequisites">2.1 Prerequisites</a>
 1. JDK 11
 2. Intellij IDEA
 
-### 2.2 Setting Up
+### <a id="setting-up">2.2 Setting Up</a>
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-F14-4/tp), and clone the fork onto your computer.   
 2. Open IntelliJ (if you are not in the welcome screen, click File > Close Project
 to close the existing project dialog 
@@ -66,7 +66,7 @@ first).
 6. Click OK to accept the default settings but do ensure that the selected version of Gradle JVM matches the JDK 
    being used for the project.
 
-## 3. Design
+## <a id="design">3. Design</a>
 This section describes the different components of the application and how each component interact with
 each other to run the program. 
 
