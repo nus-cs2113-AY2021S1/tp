@@ -2,8 +2,10 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 import seedu.financeit.common.Constants;
 import seedu.financeit.data.Item;
+import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
+import java.util.HashMap;
 
 //@@author Artemis-Hunt
 public class RecurringEntry extends Item {
@@ -66,6 +68,46 @@ public class RecurringEntry extends Item {
                 && (this.amount == entry.amount)
                 && (this.isAuto == entry.isAuto)
                 && (this.notes.equals(entry.notes));
+    }
+
+    /**
+     * Get entry details necessary for printing a reminder.
+     * Remember to do appropriate downcasting when accessing attributes.
+     *
+     * @return HashMap of details, with key being the attribute name and value
+     *         being the attribute itself, upcasted to Object.
+     */
+    public HashMap<String,Object> getDetailsForReminder() {
+        HashMap<String,Object> details = new HashMap<>();
+        details.put("day", day);
+        details.put("description", description);
+        details.put("entryType", entryType);
+        details.put("isAuto", isAuto);
+
+        return details;
+    }
+
+    /**
+     * Gets all entry details as paramMap format.
+     * Used for JUnit testing
+     * @return HashMap of all attributes, with key being the paramType that
+     *         would have added that attribute and value being the attribute value in String form.
+     */
+    public HashMap<String, Object> getAllDetailsAsParamMap() {
+        HashMap<String,Object> details = getDetailsForReminder();
+        details.put(ParamChecker.PARAM_DAY, String.valueOf(day));
+        details.put(ParamChecker.PARAM_DESCRIPTION, description);
+        if (entryType == Constants.EntryType.EXP) {
+            details.put(ParamChecker.PARAM_EXP, "");
+        } else {
+            details.put(ParamChecker.PARAM_INC, "");
+        }
+        details.put(ParamChecker.PARAM_AMOUNT, String.valueOf(amount));
+        if (isAuto) {
+            details.put(ParamChecker.PARAM_AUTO, "");
+        }
+        details.put(ParamChecker.PARAM_NOTES, notes);
+        return details;
     }
 
 

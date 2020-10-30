@@ -1,6 +1,7 @@
 @startuml
+hide circle
 skinparam classAttributeIconSize 0
-class Handler {
+class "{abstract} \nHandler" {
  +handleCashback(:CommandPacket)
 }
 
@@ -8,5 +9,5 @@ class Cashback {
  +calculateCashback()
 }
 
-Handler --> Cashback : Calculates cashback
+"{abstract} \nHandler" --> Cashback : Calculates cashback
 @enduml

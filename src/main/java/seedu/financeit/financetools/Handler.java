@@ -9,7 +9,7 @@ import seedu.financeit.ui.UiManager;
 
 import java.util.ArrayList;
 
-public class Handler {
+public abstract class Handler {
     public static double handleSimpleInterest(CommandPacket packet) {
         SimpleInterest tool = new SimpleInterest();
         tool.setRequiredParams(
