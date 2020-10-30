@@ -160,7 +160,7 @@ Expected outcome:
  
  If you replied `y`:
 
-`________________________________________________________________________________
+`________________________________________________________________________________`<br>
  friends was added to your watchlist.`
  
  If you replied `n`:
@@ -337,7 +337,7 @@ The rating of your show will also be shown if you have added it using the [addre
 
  Expected outcome :
   
- <img src = "images/delete/delete.PNG" width = "400">
+ <img src = "images/delete/delete.PNG" width = "350">
 
  &nbsp;
   
