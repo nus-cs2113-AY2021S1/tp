@@ -121,6 +121,9 @@ public class ParseEditNoteCommand extends Parser {
                 throw new SystemException(ExceptionType.EXCEPTION_MISSING_PREFIX);
             }
 
+            if (index <= NULL_INDEX) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            }
             note = tags.isEmpty() ? new Note(title, content, null, isArchived) :
                     new Note(title, content, null, isArchived, tags);
 

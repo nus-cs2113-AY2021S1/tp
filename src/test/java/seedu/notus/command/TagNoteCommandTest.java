@@ -10,12 +10,11 @@ import seedu.notus.data.tag.Tag;
 import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
 
-import static seedu.notus.command.TagNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 
 //@@author Chongjx
 class TagNoteCommandTest {
@@ -63,7 +62,7 @@ class TagNoteCommandTest {
         tags = new ArrayList<>();
 
         String result = getCommandExecutionString(notebook, tagManager, storageManager, 3, tags);
-        assertEquals(Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE), result);
+        assertEquals(Formatter.formatString(INDEX_OUT_OF_RANGE_MESSAGE), result);
     }
 
     @Test

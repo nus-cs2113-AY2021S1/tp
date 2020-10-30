@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.notus.command.ViewNoteCommand.COMMAND_SUCCESSFUL_MESSAGE;
-import static seedu.notus.command.ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
+import static seedu.notus.util.CommandMessage.VIEW_NOTE_SUCCESSFUL_MESSAGE;
 
 //@@author prachi2023
 class ViewNoteCommandTest {
@@ -56,8 +56,8 @@ class ViewNoteCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_returnsContent() {
-        String note1ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithoutTags);
-        String note2ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithTags);
+        String note1ExpectedOutput = Formatter.formatNote(VIEW_NOTE_SUCCESSFUL_MESSAGE, noteWithoutTags);
+        String note2ExpectedOutput = Formatter.formatNote(VIEW_NOTE_SUCCESSFUL_MESSAGE, noteWithTags);
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputIndex(notebook, 0));
         assertEquals(note2ExpectedOutput, getExecutionStringInputIndex(notebook, 1));
@@ -65,8 +65,8 @@ class ViewNoteCommandTest {
 
     @Test
     void execute_inputTitle_NoteExists_returnsContent() {
-        String note1ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithoutTags);
-        String note2ExpectedOutput = Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE, noteWithTags);
+        String note1ExpectedOutput = Formatter.formatNote(VIEW_NOTE_SUCCESSFUL_MESSAGE, noteWithoutTags);
+        String note2ExpectedOutput = Formatter.formatNote(VIEW_NOTE_SUCCESSFUL_MESSAGE, noteWithTags);
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
         assertEquals(note2ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
@@ -75,7 +75,7 @@ class ViewNoteCommandTest {
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
 
-        String unsuccessfulMessage = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String unsuccessfulMessage = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
         assertEquals(unsuccessfulMessage, getExecutionStringInputIndex(notebook, 5));
         assertEquals(unsuccessfulMessage, getExecutionStringInputIndex(notebook, 3));
@@ -84,7 +84,7 @@ class ViewNoteCommandTest {
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
 
-        String unsuccessfulMessage = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String unsuccessfulMessage = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
         assertEquals(unsuccessfulMessage, getExecutionStringInputTitle(notebook, "Title"));
         assertEquals(unsuccessfulMessage, getExecutionStringInputTitle(notebook, "Random"));

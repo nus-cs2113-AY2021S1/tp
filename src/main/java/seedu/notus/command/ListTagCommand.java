@@ -4,6 +4,9 @@ import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
 
+import static seedu.notus.util.CommandMessage.LIST_TAG_MESSAGE;
+import static seedu.notus.util.CommandMessage.NO_TAG_MESSAGE;
+
 //@@author Chongjx
 /**
  * Lists all the Tags.
@@ -12,19 +15,14 @@ public class ListTagCommand extends Command {
 
     public static final String COMMAND_WORD = "list-t";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the tags.";
-
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no tags!";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of tags!";
-
     @Override
     public String execute() {
         ArrayList<String> executedResult = tagManager.getAllTagsName();
 
         if (executedResult == null) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NO_TAG_MESSAGE);
         } else {
-            executedResult.add(0, COMMAND_SUCCESSFUL_MESSAGE);
+            executedResult.add(0, LIST_TAG_MESSAGE);
         }
         return Formatter.formatString(executedResult, true);
     }

@@ -2,15 +2,14 @@ package seedu.notus.command;
 
 //@@author Nazryl
 
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.ui.Formatter;
 
-import seedu.notus.data.exception.SystemException;
-
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-
 import java.io.IOException;
+
+import static seedu.notus.util.CommandMessage.DELETE_NOTE_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 //@@author Nazryl
 /**
@@ -19,14 +18,6 @@ import java.io.IOException;
 public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-n";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a note. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
-            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
-    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     private int index;
     private String title = "";
@@ -67,16 +58,16 @@ public class DeleteNoteCommand extends Command {
             if (isDeleted &&  title.isBlank()) {
                 storageManager.deleteNoteContentFile(deletedTitle, false);
                 storageManager.saveAllNoteDetails(false);
-                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
+                return Formatter.formatString(DELETE_NOTE_SUCCESSFUL_MESSAGE + deletedTitle);
             } else if (isDeleted) {
                 storageManager.deleteNoteContentFile(title, false);
                 storageManager.saveAllNoteDetails(false);
-                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
+                return Formatter.formatString(DELETE_NOTE_SUCCESSFUL_MESSAGE + title);
             } else {
-                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
             }
         } catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         } catch (IOException e) {
             return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         } catch (SystemException exception) {

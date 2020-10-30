@@ -15,15 +15,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
-import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_ADD;
-import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_CLEAR;
-import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_DROP;
-import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TIMING;
-import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.notus.util.CommandMessage.EDIT_EVENT_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_RECURRENCE_DATE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_RECURRENCE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_REMINDER_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_START_DATE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_TITLE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_WARNING_RECURRENCE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_WARNING_REMINDER_MESSAGE;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.PROCESSING_EDIT_MESSAGE;
 
 //@@author brandonywl
 /**
@@ -32,35 +34,6 @@ import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 public class EditEventCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-e";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits an event in the timetable. "
-            + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
-            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_TIMING + " DATE_TIME] "
-            + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
-            + "[" + PREFIX_DELIMITER + PREFIX_REMIND_ADD + " REMIND]"
-            + "[" + PREFIX_DELIMITER + PREFIX_REMIND_DROP + " REMIND]"
-            + "[" + PREFIX_DELIMITER + PREFIX_REMIND_CLEAR + "]"
-            + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + "]"
-            + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + "](Only works when event is / set to a recurring type.)";
-
-
-    private static final String COMMAND_PROCESSING_MESSAGE = "Editing event:";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Perhaps try editing something!";
-    private static final String COMMAND_SUCCESSFUL_TITLE_MESSAGE = "Title edited!";
-    private static final String COMMAND_SUCCESSFUL_START_DATE_MESSAGE = "Start Date edited!";
-    private static final String COMMAND_SUCCESSFUL_REMINDER_MESSAGE = "Reminders edited!";
-    private static final String COMMAND_WARNING_REMINDER_MESSAGE = "There was no changes made to the stored reminders. "
-            + "Perhaps you tried to add a reminder that already exists or delete reminders that do not exist.";
-    private static final String COMMAND_SUCCESSFUL_RECURRENCE_MESSAGE = "Recurrence type edited!";
-    private static final String COMMAND_WARNING_RECURRENCE_MESSAGE = "The event is currently of this recurrence type. "
-            + "No changes are made to it's recurrence type.";
-    private static final String COMMAND_SUCCESSFUL_RECURRENCE_DATE_MESSAGE = "End recurrence date edited!";
-    private static final String COMMAND_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = "You attempted to put a "
-            + "recurrence date on a non-recurring event. No recurrence date was set.";
-
-
-    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = "Unable to write to file";
 
     public static final String REMINDER_TYPE_ADD = "add";
     public static final String REMINDER_TYPE_DROP = "drop";
@@ -100,19 +73,19 @@ public class EditEventCommand extends Command {
     @Override
     public String execute() {
         ArrayList<String> results = new ArrayList<>();
-        results.add(COMMAND_PROCESSING_MESSAGE);
+        results.add(PROCESSING_EDIT_MESSAGE);
         Event event = timetable.getEvent(index);
 
         // Edit title is indicated
         if (!newTitle.isBlank()) {
             event.setTitle(newTitle);
-            results.add(COMMAND_SUCCESSFUL_TITLE_MESSAGE);
+            results.add(EDIT_TITLE_MESSAGE);
         }
 
         // Edit startDate is indicated
         if (newStartDate != null) {
             event.setStartDateTime(newStartDate);
-            results.add(COMMAND_SUCCESSFUL_START_DATE_MESSAGE);
+            results.add(EDIT_START_DATE_MESSAGE);
         }
 
         // Edit a reminder is indicated
@@ -181,9 +154,9 @@ public class EditEventCommand extends Command {
                 break;
             }
             if (warningSignalReminders) {
-                results.add(COMMAND_WARNING_REMINDER_MESSAGE);
+                results.add(EDIT_WARNING_REMINDER_MESSAGE);
             } else {
-                results.add(COMMAND_SUCCESSFUL_REMINDER_MESSAGE);
+                results.add(EDIT_REMINDER_MESSAGE);
             }
         }
 
@@ -255,9 +228,9 @@ public class EditEventCommand extends Command {
                 break;
             }
             if (warningSignalRecurrence) {
-                results.add(COMMAND_WARNING_RECURRENCE_MESSAGE);
+                results.add(EDIT_WARNING_RECURRENCE_MESSAGE);
             } else {
-                results.add(COMMAND_SUCCESSFUL_RECURRENCE_MESSAGE);
+                results.add(EDIT_RECURRENCE_MESSAGE);
                 timetable.setEvent(index, newEvent);
             }
 
@@ -267,17 +240,17 @@ public class EditEventCommand extends Command {
         if (endRecurrenceDate != null) {
             Event currEvent = timetable.getEvent(index);
             if (currEvent instanceof RecurringEvent) {
-                results.add(COMMAND_SUCCESSFUL_RECURRENCE_DATE_MESSAGE);
+                results.add(EDIT_RECURRENCE_DATE_MESSAGE);
                 ((RecurringEvent) currEvent).setEndRecurrenceDate(endRecurrenceDate);
             } else {
                 // Throw warnings
-                results.add(COMMAND_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE);
+                results.add(EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE);
             }
         }
 
 
         if (results.size() == 1) {
-            results.add(COMMAND_UNSUCCESSFUL_MESSAGE);
+            results.add(EDIT_EVENT_UNSUCCESSFUL_MESSAGE);
         } else {
             try {
                 storageManager.saveTimetable(timetable);

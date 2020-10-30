@@ -5,6 +5,9 @@ import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
 
+import static seedu.notus.util.CommandMessage.NO_REMINDERS_MESSAGE;
+import static seedu.notus.util.CommandMessage.REMINDERS_MESSAGE;
+
 //@@author prachi2023
 /**
  * Returns all the reminders that should occur today.
@@ -12,12 +15,6 @@ import java.util.ArrayList;
 public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind-e";
-
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Shows the reminders for today.";
-
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the reminders for today!";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "No reminders today!";
-
 
     /**
      * Default constructor of RemindEvent. No arguments are expected as we are only looking at reminders today.
@@ -30,9 +27,9 @@ public class RemindCommand extends Command {
     public String execute() {
         ArrayList<Reminder> reminders = timetable.getReminders();
         if (reminders.size() == 0) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(REMINDERS_MESSAGE);
         } else {
-            return Formatter.formatReminders(COMMAND_SUCCESSFUL_MESSAGE, reminders);
+            return Formatter.formatReminders(NO_REMINDERS_MESSAGE, reminders);
         }
     }
 }

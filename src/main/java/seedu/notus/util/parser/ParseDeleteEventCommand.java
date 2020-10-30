@@ -7,6 +7,8 @@ import seedu.notus.command.DeleteEventCommand;
 import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.exception.SystemException.ExceptionType;
 
+import java.util.ArrayList;
+
 /**
  * Represents a parser object specifically to parse message for DeleteEventCommand.
  */
@@ -25,6 +27,9 @@ public class ParseDeleteEventCommand extends Parser {
     @Override
     public Command parse() throws SystemException {
         int index;
+
+        splitInfoDetails(userMessage);
+
         try {
             index = Integer.parseInt(checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_INDEX));
         } catch (NumberFormatException exception) {
