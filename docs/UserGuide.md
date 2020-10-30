@@ -101,7 +101,7 @@ explaining the syntax of the commands in Fluffle.
 
 ### Basic CLI commands
 
-<<Some overview of basic cli commands here>>
+Basic CLI commands consist of commands that are standard CLI application commands such as help and exit, as well as an aesthetic option to change the line divider.
 
 #### Viewing help: `help`
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
@@ -312,7 +312,7 @@ Printing 3 out of 5 word(s) from your filter list:
 
 ### Bunnies list commands
 
-<<Preface here>>
+Bunnies List commands allows you to collate your list of ideas in one place, making it easy for you to find specific ideas. It can randomly pick one for you to work on so you don’t have to waste time deciding on one on your own.
 
 #### Adding a bunny idea: `bunny`
 
@@ -445,7 +445,7 @@ Random Bunny:
 
 ### Names list commands
 
-<<Preface here>>
+Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list and the program can help you pick one out at random so you can start writing right away.
 
 #### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
@@ -549,7 +549,7 @@ name 3 has been deleted from the Names list!
 
 ### Writings list commands
 
-<<Preface here>>
+Writings List allows you to keep a collection of short pieces within the program, and can help you track your writing statistics as motivation to consistently practice writing.
 
 #### Beginning your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
