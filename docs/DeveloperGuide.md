@@ -359,58 +359,76 @@ The sequence diagram for marking an event as done is as shown below:
 
 ![CommandEventStatus](EventDiagram/SequenceDiagram/CommandEventStatus.png)
 
-**3.4.6. Add/delete event participants feature** `CommandEventAdd` , `CommandEventDel` 
+**3.4.6. Add/delete event participants feature** `CommandAddEventAttendance` , `CommandDelEventAttendance` 
 3.4.6.1. Current Implementation  
-The `CommandAddEventAttendance` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
-The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
+The `CommandAddEventAttendance` class in `seedu.duke.event` handles the adding of event participants. According to the `userInput`, it adds a new participant to the specified event in the `EventList`. 
+The `CommandDelEventAttendance` class in the same package handles deleting of an event participant. It deletes a `Member` instance from the event participants list of the specified `Event`.  
 They implement the following operations:  
-* `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
-* `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
-To delete a particular event, enter the index of the event.
-To delete all the events in the list, enter `all` instead of the index of the event.
+* `CommandAddEventAttendance#execute()` - Adds a new participant into the event participant list of the `Event`, according to `userInput`.  
+* `CommandDelEventAttendance#execute()` - Deletes a participant from the event participant list of the `Event`, according to `userInput`.
 
-Given below is an example usage scenario and how add/delete event function behaves at each step.  
+Given below is an example usage scenario and how add/delete event participants function behaves at each step.  
 
-Step 1. The user launches the application for the first time.   
+Step 1. After a `event addEvent` command, the user has created a `EventList` with some `Event`. Assuming there is an `Event` in the list, 
+with the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+        
+![](EventDiagram/6Step1.png)
 
-Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 8pm` command to add a new event with the name "arduino course", 
-the date of the event "2020-12-30" and the time "8pm" into event list. 
-The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `iphone12`, date as `2020-12030` and time as `8pm`.  
+Step 2. After a `hr addMember` command, the user created a `MemberList` with some `Member`. Assuming there is 1 `Member` in the list, 
+with the name "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
+        
+![](EventDiagram/6Step2.png)
 
-Step 3. The user executes `event delEvent 1` command to delete the 1st event in the event list. The `event delEvent`
-command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be removed from `EventList`.  
+Step 3. The user executes `event addAttendance /n arduino course /m harry potter` command to add a new participant with the name "Harry Potter" to the event with the name "arduino course", 
+into eventParticipants list. 
+The `event addAttendance` command calls `CommandAddEventAttendance#execute()`, then `EventList` will add a `Member` with the member name `Harry Potter` in the `MemberList`, to the `Event` with event name `arduino course` in the `EventList`.  
 
-The sequence diagram for adding an event is as shown below:
+![](EventDiagram/6Step3.png)
+
+Step 4. The user executes `event delAttendance /n arduino course /m harry potter` command to delete `Member` with the member name `Harry Potter` from the event participants list. 
+The `event delAttendance` command calls `CommandDelEventAttendance#execute()`, causing the specified `Member` to be removed from the event participants list of the specified `Event`.  
+
+![](EventDiagram/6Step4.png)
+
+The sequence diagram for adding a participant into a particular event is as shown below:
 
 ![CommandAddEventAttendance](EventDiagram/SequenceDiagram/CommandAddEventAttendance.png)
 
-The sequence diagram for deleting a particular event or all events is as shown below:
+The sequence diagram for deleting a participant from a particular event is as shown below:
 
-![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandAddEventAttendance.png)
+![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandDelEventAttendance.png)
 
-**3.4.7. Listing Events** `CommandEventList`
+**3.4.7. Listing event participants** `CommandViewEventAttendance`
 
 3.4.7.1 Current implementation
-The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
+The `CommandViewEventAttendance` class in `seedu.duke.event` handles listing all the participants of the given event in the event participants list.
 
 It implements the following operation:  
-* `CommandEventList#execute()` - Lists all `Event` in `EventList`.  
+* `CommandViewEventAttendance#execute()` - Lists all `Member` of the given `Event` the event participants list.  
 
-Given below is an example usage scenario and how the program list the events.  
+Given below is an example usage scenario and how the program list the participants.  
 
-Step 1. After some `Event addEvent` commands, the user has created a `EventList` with some `Event`. Assuming there are 2 events in the list.
-The first `Event` has the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+Step 1. After a `event addEvent` commands, the user has created a `EventList` with a `Event`. 
+        The`Event` has the name arduino course on 30 December 2020 at 8pm.
+        
+![](EventDiagramPic/7Step1.png)
 
-![](EventDiagram/2Step1.png)
+Step 2. After some `hr addMember` commands, the user created a `MemberList` with some `Member`. Assuming there are 2 members in the list.
+        The first `Member` has the name "John Sterling" with phone number "12345678", email "123@gmail.com", role "member".
+        The second `Member` has the name "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
+        
+![](EventDiagramPic/7Step2.png)
 
-Step 2.The user executes `event listEvent` command to list the `EventList`. The `event listEvent` command calls 
-`CommandEventList#execute()`, then every `Event` in `EventList` will be printed out. Nothing will be changed in `EventList`.  
+Step 3. After some `event addAttendance` commands, the user created a `MemberList` with some `Member`. Assuming the 2 participants in the event participants list are the 2 members in the `MemberList`.
+        
+![](EventDiagramPic/7Step3.png)
 
-![](EventDiagram/Step2.png)
+Step 4.The user executes `event listAttendance` command to list the event participants list. The `event listAttendance` command calls 
+`CommandViewEventAttendance#execute()`, then every `Member` in event participants list of the `Event` will be printed out. Nothing will be changed in the event participants list.  
 
-The sequence diagram for listing events is as shown below:
+The sequence diagram for listing participants in an event is as shown below:
 
-![](EventDiagram/SequenceDiagram/CommandEventList.png)
+![](EventDiagram/SequenceDiagram/CommandViewEventAttendance.png)
 
 ### 3.5. HR
 The diagram below shows the architecture for HR feature.<br/>

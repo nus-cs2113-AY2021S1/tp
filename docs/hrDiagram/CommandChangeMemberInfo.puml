@@ -14,7 +14,9 @@ end
 activate ":MemberList"
 ":MemberList" -> ":Member" : toString()
 activate ":Member"
-return
+":Member" --> ":MemberList" : updateAttendanceRate()
+":MemberList" --> ":MemberList" : calculateAttendanceRate()
+return output
 return output
 return output
 
