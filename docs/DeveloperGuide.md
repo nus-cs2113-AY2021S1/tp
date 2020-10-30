@@ -11,7 +11,7 @@ Wan Shi Jie Brendan<br>
 <br><br>
 
 ## Table of Contents
-1. [Introduction](#1.-introduction)
+1. [Introduction](#intro)
 2. [Getting Started](#2-getting-started)<br>
 2.1 [Prerequisites](#21-prerequisites)<br>
 2.2 [Setting Up](#22-setting-up)<br>
@@ -28,7 +28,7 @@ Wan Shi Jie Brendan<br>
 4.2 [Clear events](#42-clear-events) <br>
 4.3 [Edit events](#43-edit-events) <br>
 4.4 [Locate](#44-locate) <br> 
-4.5 [Reminders](#45-reminders) <br>
+4.5 [Reminders](#45-reminder) <br>
 4.6 [Sort events](#46-sort-events) <br>
 4.7 [View events](#47-view-events) <br>
 5. [Documentation](#5-documentation) <br>
@@ -36,7 +36,7 @@ Wan Shi Jie Brendan<br>
 5.2 [Value Proposition](#52-value-proposition) <br>
 5.3 [User Stories](#53-user-stories)<br>
 
-## 1. Introduction
+## 1. <a id="intro">Introduction</a>
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
 interface, NUSchedule will help you manage your commitments without any hassle. If you are a proficient in typing, 
 NUSchedule will prove itself to be the most efficient way to manage your commitments.  
