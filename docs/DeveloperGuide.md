@@ -11,7 +11,7 @@ Wan Shi Jie Brendan<br>
 <br><br>
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
+1. [Introduction](#1.-introduction)
 2. [Getting Started](#2-getting-started)<br>
 2.1 [Prerequisites](#21-prerequisites)<br>
 2.2 [Setting Up](#22-setting-up)<br>
