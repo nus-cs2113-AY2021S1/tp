@@ -192,7 +192,9 @@ Default/no suffix: display **all** tasks in the **order of their addition**.
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
 Regarding the format, '|' means "or", thus the suffix can either be `-d`, `-p`, `-w`, `-m`, or `d/DATE`.
-It can also be nothing since square brackets denote optional.
+It can also be nothing since square brackets denote optional.  
+Under partial display modes like daily, weekly and monthly view, 
+you could enter `q`, `w` and `e` to quit, view previous and next period respectively.
 
 Example of usage: 
 
