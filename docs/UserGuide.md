@@ -171,7 +171,7 @@ Expected outcome:
   Example of usage:
       `edit friends`
     
-     <img src = "images/edit_step_1.PNG" width = "400">
+     <img src = "images/edit_step_1.PNG" width = "550">
      
 [Output](Insert picture here)
 
@@ -377,7 +377,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Input:
  
-   <img src = "images/season/input.png" width = "400">
+   <img src = "images/season/input.png" width = "550">
     
    &nbsp;
  
@@ -385,7 +385,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Expected outcome :
   
- <img src = "images/season/output.png" width = "400">
+ <img src = "images/season/output.png" width = "550">
   
  &nbsp;
 
@@ -408,7 +408,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Input: 
  
-  <img src = "images/episode/input.png" width = "400">
+  <img src = "images/episode/input.png" width = "550">
    
   &nbsp;
  
@@ -423,7 +423,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Expected outcome for the example:
   
- <img src = "images/episode/output.png" width = "400">
+ <img src = "images/episode/output.png" width = "550">
   
  &nbsp;
  
@@ -569,6 +569,7 @@ This section showcases the list of available features and usage examples for you
 |Action|Format|Example|
 |--------|----------|---------------|
 |Display help| `help`| `help`|
+|Display command format| `example`| `example`|
 |Add show|`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
 |Edit show |`edit <SHOWNAME>`| `edit Friends`|
 |Add review |`addreview <SHOWNAME> <RATING> / <REVIEW>`| `addreview Friends 9 / very funny`|
