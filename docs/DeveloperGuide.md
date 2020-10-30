@@ -54,7 +54,7 @@ This section provides an overview of the design of the Fitr application.
 
 This section illustrates the high-level architecture of Fitr, as well as an illustration of the components used in Fitr.
 
-![Main class diagram](images/MainClassDiagram.png)
+![Main class diagram](images/ArchitectureDiagram.png)
 
 _Figure 1: Architecture diagram of Fitr_
 
