@@ -38,7 +38,7 @@ class EditCommandTest {
 
     @Test
     void execute_IndexOutOfBounds_UndefinedEventException() throws CreatingFileException {
-        Storage storage = new Storage("data/events.txt");
+        Storage storage = new Storage("data/events.txt","data/UserInfo.txt");
         LocationList locations = new LocationList();
         storage.loadLocationData(locations.getLocationList());
         Assertions.assertThrows(UndefinedEventException.class, () -> {
