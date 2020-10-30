@@ -1,16 +1,12 @@
 package seedu.financeit.utils.storage;
 
-import org.junit.Assert;
-import org.junit.Test;
+
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.*;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;

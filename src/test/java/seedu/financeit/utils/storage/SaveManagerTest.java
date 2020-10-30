@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,12 +16,9 @@ public class SaveManagerTest {
 
     private static boolean isEqual(Path firstFile, Path secondFile) {
         try {
-            if (Files.size(firstFile) != Files.size(secondFile)) {
-                return false;
-            }
-            byte[] first = Files.readAllBytes(firstFile);
-            byte[] second = Files.readAllBytes(secondFile);
-            return Arrays.equals(first, second);
+            List<String> first = Files.readAllLines(firstFile);
+            List<String> second = Files.readAllLines(secondFile);
+            return first.equals(second);
         } catch (IOException e) {
             e.printStackTrace();
         }
