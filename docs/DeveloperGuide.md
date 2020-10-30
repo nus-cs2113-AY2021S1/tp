@@ -54,9 +54,8 @@ This section provides an overview of the design of the Fitr application.
 
 This section illustrates the high-level architecture of Fitr, as well as an illustration of the components used in Fitr.
 
-![Main class diagram](images/ArchitectureDiagram.png)
-
-_Figure 1: Architecture diagram of Fitr_
+<p align="center"><img src="images/ArchitectureDiagram.png"></p>
+<p align="center">Figure 1: Architecture diagram of Fitr</p>
 
 Figure 1 above explains the high-level design of Fitr. Given below is a quick overview of each component.
 
@@ -125,9 +124,8 @@ running session.
 
 Under the storage component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
 
-![StorageManager class diagram](images/StorageClassDiagram.png)
-
-_Figure 3: `StorageManager` class diagram_
+<p align="center"><img src="images/StorageClassDiagram.png"></p>
+<p align="center">Figure 3: <code>StorageManager</code> class diagram</p>
 
 Figure 3 above shows the associations and dependencies present with the `StorageManager` class.
 
