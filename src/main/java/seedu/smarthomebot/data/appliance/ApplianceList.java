@@ -6,7 +6,7 @@ import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import java.util.ArrayList;
 
 /**
- * Represents the ApplianceList of SmartHomeBot.
+ * Represents the Appliances of SmartHomeBot.
  */
 public class ApplianceList {
 

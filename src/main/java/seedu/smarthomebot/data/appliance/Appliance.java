@@ -20,7 +20,7 @@ public abstract class Appliance {
     protected Power appliancePower;
 
     /**
-     * Constructor for Appliance
+     * Constructor for Appliance.
      *
      * @param name         name of appliance.
      * @param location     location of appliance.

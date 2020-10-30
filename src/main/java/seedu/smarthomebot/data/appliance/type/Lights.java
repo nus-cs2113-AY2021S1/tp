@@ -13,7 +13,7 @@ public class Lights extends Appliance {
     public static final String TYPE_WORD = "light";
 
     /**
-     * Constructor for light type
+     * Constructor for light type.
      *
      * @param name         name of appliance.
      * @param location     location of appliance.

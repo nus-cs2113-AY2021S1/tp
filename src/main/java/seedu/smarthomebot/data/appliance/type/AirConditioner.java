@@ -18,7 +18,7 @@ public class AirConditioner extends Appliance {
     private String temperature;
 
     /**
-     * Constructor for Air Conditioner type
+     * Constructor for Air Conditioner type.
      *
      * @param name         name of appliance.
      * @param location     location of appliance.

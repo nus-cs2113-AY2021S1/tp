@@ -18,7 +18,7 @@ public class Fan extends Appliance {
     private String speed;
 
     /**
-     * Constructor for Fan type
+     * Constructor for Fan type.
      *
      * @param name         name of appliance.
      * @param location     location of appliance.

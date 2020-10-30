@@ -13,7 +13,7 @@ public class SmartPlug extends Appliance {
     public static final String TYPE_WORD = "smartplug";
 
     /**
-     * Constructor for SmartPlug type
+     * Constructor for SmartPlug type.
      *
      * @param name         name of appliance.
      * @param location     location of appliance.

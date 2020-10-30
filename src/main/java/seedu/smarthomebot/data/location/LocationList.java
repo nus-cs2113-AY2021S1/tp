@@ -5,6 +5,9 @@ import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the locations in SmartHomeBot.
+ */
 public class LocationList {
 
     private static ArrayList<String> locationList;
@@ -85,8 +88,7 @@ public class LocationList {
      * Returns the index of selected Location to remove.
      *
      * @param toRemoveLocation name of Location to remove.
-     * @return the index of selected location in integer,
-     * if integer is not found, method will return -1.
+     * @return the index of selected location in integer, if integer is not found, method will return -1.
      */
     private int getRemoveLocationIndex(String toRemoveLocation) {
         int removeIndex = -1;
