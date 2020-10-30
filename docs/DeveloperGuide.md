@@ -157,6 +157,8 @@ episodes for each season respectively,Duration of an episode)
 
 **Step 5**
 
+* AddCommand checks the `ShowList` for duplicates. If there are duplicates, the user is prompted if they would like to
+overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
 
 
@@ -177,14 +179,19 @@ illustrate the steps in a visual form.
 >
 > `NullPointerException` will be thrown when show entered by user is not found in the showlist.
 
+<img src = "images/programFlowUG.png" width = "450">
+ 
+ <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
+
+ &nbsp;
+   
+*Figure 1: Program Flow for Edit Command*
+
 <img src = "images/EditCommand.png" width = "700">
  
  <br> 
-*Figure 1: Sequence Diagram for Edit Command*
+*Figure 2: Sequence Diagram for Edit Command*
 
-<img src = "images/edit_step_1.PNG" width = "400">
-   
-*Figure 2: Program FLow for Edit Command*
 
 **Step 1**
 
