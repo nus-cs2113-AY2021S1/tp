@@ -454,7 +454,7 @@ to be printed.
 
 The following sequence diagram shows how the view module command works. 
 
-![view-module](diagrams/ModViewSequence.png)
+![view-module](diagrams/ModViewSequence.jpg)
 
 
 ### 4.6 Breakdown and Analysis <a name="4.6"></a>
@@ -492,7 +492,7 @@ of the analysis.
 
 The following sequence diagram shows how the analysis command works. 
 
-![analysis](diagrams/AnalysisSequence.png)
+![analysis](diagrams/AnalysisSequence.jpg)
 
 #### Design Considerations
 
