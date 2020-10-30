@@ -36,7 +36,7 @@ Wan Shi Jie Brendan<br>
 5.2 [Value Proposition](#52-value-proposition) <br>
 5.3 [User Stories](#53-user-stories)<br>
 
-## 1. <a id="intro">Introduction</a>
+## <a id="intro">1. Introduction</a>
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
 interface, NUSchedule will help you manage your commitments without any hassle. If you are a proficient in typing, 
 NUSchedule will prove itself to be the most efficient way to manage your commitments.  
