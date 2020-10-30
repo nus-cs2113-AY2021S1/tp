@@ -2,8 +2,8 @@ package seedu.messages;
 
 import seedu.commons.Util;
 
+import static seedu.font.Colors.ANSI_BRIGHT_GREEN;
 import static seedu.font.Colors.ANSI_CYAN;
-import static seedu.font.Colors.ANSI_PURPLE;
 import static seedu.font.Colors.ANSI_RESET;
 import static seedu.font.Colors.ANSI_YELLOW;
 
@@ -32,7 +32,7 @@ public class Messages {
             + WELCOME_PREFIX + ANSI_CYAN + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + " / ____/ / /_/ / /|  / /_/ /___/ / " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
-            + ANSI_CYAN + "v1.0" + ANSI_RESET + "        ||" + LS
+            + ANSI_CYAN + "v2.0" + ANSI_RESET + "        ||" + LS
             + WELCOME_BORDER_SPACE;
 
     public static final String HELP_MESSAGE = HELP_BORDER + LS
@@ -41,30 +41,30 @@ public class Messages {
             + HELP_PREFIX + "Note:" + padString(' ', 84) + "||" + LS
             + HELP_PREFIX + "1. Square bracket input is optional." + padString(' ', 53) + "||" + LS
             + HELP_PREFIX + "- help: show list of available commands" + padString(' ', 50) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "help" + ANSI_RESET + padString(' ', 77) + "||" + LS
-            + HELP_PREFIX + "- add: add a task" + padString(' ', 71) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE
-                    + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
-                    + ANSI_RESET + "                    ||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "help" + ANSI_RESET + padString(' ', 77)
+            + "||" + LS + HELP_PREFIX + "- add: add a task" + padString(' ', 72) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN
+            + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
+            + ANSI_RESET + "                    ||" + LS
             + HELP_PREFIX + "- edit: edit a task" + padString(' ', 70) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE
-                    + "edit INDEX [des/DESCRIPTION] [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
-                    + ANSI_RESET + "       ||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN
+            + "edit INDEX [des/DESCRIPTION] [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
+            + ANSI_RESET + "       ||" + LS
             + HELP_PREFIX + "- list: show list of tasks" + padString(' ', 63) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "list [-d|-p|-w|-m|d/DATE]" + ANSI_RESET
-                    + padString(' ', 56) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "list [-d|-p|-w|-m|d/DATE]" + ANSI_RESET
+            + padString(' ', 56) + "||" + LS
             + HELP_PREFIX + "- search: find task(s) with keyword in description"
-                    + padString(' ', 39) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "search KEYWORD(S)" + ANSI_RESET
-                    + padString(' ', 64) + "||" + LS
+            + padString(' ', 39) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "search KEYWORD(S)" + ANSI_RESET
+            + padString(' ', 64) + "||" + LS
             + HELP_PREFIX + "- delete remove particular task by index" + padString(' ', 49) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "delete INDEX" + ANSI_RESET
-                    + padString(' ', 69) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "delete INDEX" + ANSI_RESET
+            + padString(' ', 69) + "||" + LS
             + HELP_PREFIX + "- clear: remove all tasks" + padString(' ', 64) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "clear" + ANSI_RESET + padString(' ', 76) + "||" + LS
-            + HELP_PREFIX + "- bye: exit the program" + padString(' ', 66) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_PURPLE + "bye" + ANSI_RESET + padString(' ', 78) + "||" + LS
-            + HELP_BORDER_SPACE + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "clear" + ANSI_RESET + padString(' ', 76)
+            + "||" + LS + HELP_PREFIX + "- bye: exit the program" + padString(' ', 66) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "bye" + ANSI_RESET + padString(' ', 78)
+            + "||" + LS + HELP_BORDER_SPACE + LS
             + HELP_BORDER + LS;
 
     public static final String BYE_MESSAGE = "Bye! See you again!";

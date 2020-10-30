@@ -3,17 +3,22 @@
 - [About this document](#about-this-document)
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Showing commands](#showing-all-commands--help)
-    - [Adding task](#adding-a-task--add)
-    - [Editing task](#editing-a-task--edit)
-    - [Displaying tasks](#displaying-tasks--list)
-    - [Searching task](#searching-relevant-tasks--search)
-    - [Removing task](#removing-a-task--delete)
-    - [Clearing task](#clearing-tasks--clear)
-    - [Exiting program](#exiting-program--bye)
+    - [Showing commands](#span-stylecolorredshowing-all-commandsspan--help)
+    - [Adding task](#span-stylecolorredadding-a-taskspan--add)
+    - [Editing task](#span-stylecolorredediting-a-taskspan--edit)
+    - [Displaying tasks](#span-stylecolorreddisplaying-tasksspan--list)
+    - [Searching task](#span-stylecolorredsearching-relevant-tasksspan--search)
+    - [Removing task](#span-stylecolorredremoving-a-taskspan--delete)
+    - [Clearing task](#span-stylecolorredclearing-tasksspan--clear)
+    - [Exiting program](#span-stylecolorredexiting-programspan--bye)
 - [FAQ](#faq)
 - [Java 11 Installation Guide](#java-11-installation-guide)
 - [Command summary](#command-summary)
+
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ## What is PlaNUS
 PlaNUS is a desktop application for NUS students to manage their tasks and schedule.
@@ -32,7 +37,7 @@ This is what **PlaNUS** looks like:
 \pagebreak 
 </div>
 
-##About this document
+## About this document
 This user guide is a document aiming to help users in understanding the features
 provided by PlaNUS and the instructions required for each step.
 
@@ -185,7 +190,9 @@ Default/no suffix: display **all** tasks in the **order of their addition**.
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
 Regarding the format, '|' means "or", thus the suffix can either be `-d`, `-p`, `-w`, `-m`, or `d/DATE`.
-It can also be nothing since square brackets denote optional.
+It can also be nothing since square brackets denote optional.  
+Under partial display modes like daily, weekly and monthly view, 
+you could enter `q`, `w` and `e` to quit, view previous and next period respectively.
 
 Example of usage: 
 
