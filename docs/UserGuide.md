@@ -448,8 +448,8 @@ Command | Format | Example
 /liststops | `/liststops`| `/liststops`
 /dine | `/dine` **faculty** | `/dine` **business**
 /dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise & shine**
-/addfav | | 
-/deletefav | |
+/addfav | `/addfav` **[description]** | 1. `/addfav` <br> 2.`/addfav` **dining options in business**  
+/deletefav | `/deletefav` **index**| `/deletefav` **1**
 /execfav | `/execfav` **index** | `/execfav` **5**
 /descfav | `/descfav` **index** `/to` **new description** | `/descfav` **5** `/to` **Get dinner @7:30PM every Tuesday**
 /listfav | `/listfav` | `/listfav`
