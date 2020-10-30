@@ -488,7 +488,11 @@ You can do this by adding new flashcards to the flashcard deck with this command
 
 Instruction:
 1. `add`
-2. Enter the question and answer as prompted e.g. `4+4`, `8`
+2. Enter the question and answer as prompted
+ 
+Example of usage:
+
+`4+4` followed by `8` will create a flashcard with question 4+4 and answer 8.
 
 Expected output:
 ![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
@@ -519,7 +523,11 @@ from the flashcard deck.
 
 Instruction:
 1. `delete`
-2. Enter the card index of the flashcard to be deleted as prompted, e.g. `3`
+2. Enter the card index of the flashcard to be deleted as prompted
+
+Example of usage:
+
+`3` will delete the 3rd flashcard in the list.
 
 Expected output:
 ![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
