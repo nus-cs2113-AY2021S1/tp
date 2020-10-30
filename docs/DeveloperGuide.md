@@ -154,7 +154,6 @@ A new Show instance is created with the 4 parameters created in step 3.
 
 The Show is added to the Showlist.
 
-
 **Step 6** 
 
 The changes will be reflected to the user. At the same time, the changes will be saved into the showList.txt file.
@@ -197,13 +196,10 @@ duration (of an episode) respectively.
 
 * The user inputs `done`, and the copy of the show object is inserted into the showlist, replacing the old object.
 
-
-
 ### DeleteCommand
   
 The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the
 show from the Showlist. The 'delete' is invoked by the InputParser Method parseDeleteCommand.
-
 
 Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
 
@@ -304,7 +300,6 @@ The changes are reflected back to the user. At the same time, saving the changes
 The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
 proceeds to delete the rating of the show that was inputted by the user.
 
-
 Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
 
 **Step 1**
@@ -323,7 +318,6 @@ The deleteRating method in DeleteRatingCommand class is called.
 
 **Step 3**
 
-
 The deleteRating method starts with retrieving the show from the ShowList
 
 **Step 4**
@@ -337,7 +331,6 @@ The show is updated back into the Showlist
 **Step 6**
 
 The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
-
 
 ### Add Review Command
 
@@ -364,14 +357,12 @@ The review of the rating is added to the show.
 
 Reflect the changes back to the user. At the same time, changes are saved into the showList.txt file.
 
-
 ### ChangeReviewCommand
 
 The `changereview` command takes in 2 parameters, the show which review is to be changed and the new updated review.
 The command is then invoked by the inputParser method parseChangeReview.
 
 **Step 1**
-
 
 * The user types in `changereview friends / This show is great` , assuming that friends has been added by the user beforehand.
 The parseChangeReviewCommand method in InputParser class is called to parse the command.
@@ -477,6 +468,8 @@ The following sequence diagram summarises what happens when a user executes a `W
  *Sequence diagram for Watch Command*
 
 ### UpdateShowEpisodeProgressCommand
+
+The UpdateShowEpisodeProgressCommand extends by providing 
 
 ### UpdateShowSeasonCommand
 
