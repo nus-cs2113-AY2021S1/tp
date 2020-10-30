@@ -1,0 +1,17 @@
+@startuml
+participant ":CommandFinanceChange" as CommandFinanceChange
+participant ":FinanceList" as FinanceList
+participant ":FinanceLog" as FinanceLog
+->CommandFinanceChange:execute()
+activate CommandFinanceChange
+CommandFinanceChange -> FinanceList : changeLog()
+activate FinanceList
+FinanceList -> FinanceLog: setFinLog()
+activate FinanceLog
+return
+FinanceList -> FinanceLog:setFinLogVal()
+activate FinanceLog
+return
+return output
+return output
+@enduml

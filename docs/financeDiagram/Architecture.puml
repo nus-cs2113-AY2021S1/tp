@@ -14,6 +14,7 @@ class FinanceLog {
 command <|-right-CommandFinanceAdd
 command <|-up-CommandFinanceDel
 command <|-down-CommandFinanceSummary
+command <|-down-CommandFinanceChange
 FinanceList <-left-FinanceLog
 FinanceLog <--FinanceList
 FinanceList <-right-CommandFinanceAdd
@@ -23,6 +24,8 @@ CommandFinanceDel <-- FinanceList
 FinanceList <--CommandFinanceSummary
 CommandFinanceSummary <-- FinanceList
 FinanceLog <-right- CommandFinanceAdd
+FinanceList <--CommandFinanceChange
+CommandFinanceChange <-- FinanceList
 class Ui
 class FileMananger
 FinanceList <-- FileMananger
