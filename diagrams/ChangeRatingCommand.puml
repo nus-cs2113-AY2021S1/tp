@@ -1,0 +1,42 @@
+@startuml
+
+!include style.puml
+box
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":ChangeRatingCommand" as ChangeRatingCommand LOGIC_COLOR
+participant ":Ui" as Ui LOGIC_COLOR
+participant ":ShowList" as ShowList LOGIC_COLOR
+end box
+
+[-> InputParser : changeRating("friends",10)
+activate InputParser
+
+InputParser -> ChangeRatingCommand: changeShowRating("friends")
+activate ChangeRatingCommand
+
+ChangeRatingCommand -> ChangeRatingCommand : changeRating("friends",10)
+activate ChangeRatingCommand
+
+ChangeRatingCommand -> ShowList: getShow("friends")
+activate ShowList
+ShowList --> ChangeRatingCommand
+deactivate ShowList
+
+ChangeRatingCommand -> ShowList: setRating(10)
+activate ShowList
+ShowList --> ChangeRatingCommand
+deactivate ShowList
+
+ChangeRatingCommand -> ShowList: setShow("friends",10)
+activate ShowList
+ShowList --> ChangeRatingCommand
+deactivate ShowList
+
+ChangeRatingCommand -> Ui : printChangeRating()
+activate Ui
+Ui --> ChangeRatingCommand
+deactivate Ui
+
+[<-- ChangeRatingCommand :
+
+@enduml

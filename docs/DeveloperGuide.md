@@ -217,12 +217,7 @@ duration (of an episode) respectively.
 The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the
 `Show` from the `ShowList`. The `delete` command is invoked by the `InputParser` Method `parseDeleteCommand`.
 
-<<<<<<< HEAD
-Given below is an example usage scenario and how the DeleteCommand Class behaves at each step.
-=======
-
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
 
 **Step 1**
 
@@ -282,6 +277,10 @@ The `changerating` command takes in 2 parameters, the show for which the rating 
 updated to.
 
 Given below is an example usage scenario and how the `ChangeRatingCommand` Class behaves at each step.
+
+<img src = "images/ChangeRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for Edit Command*
 
 **Step 1**
 
