@@ -17,6 +17,7 @@ public class User extends Human {
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
     public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
+    public static final String EXCEPTION_SIMILAR_WORKPLACE_FOUND = "Workspace with similar name found!";
     public static final String HONORIFIC_FEMALE = "-chan";
     public static final String HONORIFIC_NEUTRAL = "-san";
     public static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
@@ -181,6 +182,7 @@ public class User extends Human {
         if (findWorkspace(name) != null) {
             throw new AniException("Workspace already exist!");
         } else {
+            checkWorkspaceName(name.toLowerCase());
             Workspace newWorkspace = new Workspace(name);
 
             workspaceList.add(newWorkspace);
@@ -225,6 +227,24 @@ public class User extends Human {
         }
 
         return null;
+    }
+
+    /**
+     * Checks if there exist a workspace with same name (regardless of case sensitivity).
+     *
+     * @param name of new workspace to be checked
+     * @throws AniException if a workspace with same name is found
+     */
+    public void checkWorkspaceName(String name) throws AniException {
+        assert (name != null) : ASSERTION_INVALID_MESSAGE;
+
+        for (Workspace tempWorkspace : workspaceList) {
+            String workspaceLowercaseName = tempWorkspace.getName().toLowerCase();
+
+            if (workspaceLowercaseName.equals(name)) {
+                throw new AniException(EXCEPTION_SIMILAR_WORKPLACE_FOUND);
+            }
+        }
     }
 
 }
