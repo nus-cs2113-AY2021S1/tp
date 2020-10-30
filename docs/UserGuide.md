@@ -95,9 +95,9 @@ This command allows you to figure out the amount of time needed to finish transl
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   If the option `-wph` is not specified, the average translator's translation speed will be used to produce three estimation timings for you to consider.
 
-> :bulb: You have to specify the file extension too! E.g. `script.txt`.
+> :bulb: You have to specify the file extension too. For example, `script.txt`.
 
-> :memo: Ensure the script file is in your workspace folder! E.g. it should be in `data/Default/script.txt` if your workspace name is "Default".
+> :bulb: Ensure the script file is in your workspace folder. For example, from the folder where `AniChan.jar` is located, if your current workspace name is "Default" (indicated in the input prompt), place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`).
 
 <br/>
 
