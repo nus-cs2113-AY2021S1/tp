@@ -47,9 +47,9 @@ public class FlashcardRun {
             break;
         default:
             Ui.printDivider();
-            System.out.println("Invalid command. Valid commands are 'add', 'delete', 'list',"
-                    + "\n'test' and 'find'."
-                    + "\nUse 'exit' to exit the flashcard mode.");
+            System.out.println("Invalid command. Valid commands are \"add\", \"delete\", \"list\","
+                    + "\"test\" and \"find\"."
+                    + "\nUse \"exit\" to exit the flashcard mode.");
             Ui.printDivider();
             StudyItLog.logger.warning("Invalid flashcard command: Command unidentifiable");
         }
