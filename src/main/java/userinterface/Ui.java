@@ -125,9 +125,11 @@ public class Ui {
     }
 
     public static void printHighlight(BookmarkRun bookmarkRun, AcademicRun academicRun) {
+        printDivider();
         System.out.println("Here are your starred items:");
         bookmarkRun.run("list star");
         System.out.println();
         academicRun.run("list star");
+        printDivider();
     }
 }
