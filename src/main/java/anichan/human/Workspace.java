@@ -5,6 +5,9 @@ import anichan.watchlist.Watchlist;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the Workspace of User.
+ */
 public class Workspace {
 
     // ========================== Workspace Initialization ==========================
@@ -14,6 +17,11 @@ public class Workspace {
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 
+    /**
+     * Creates an instance of a Workspace.
+     *
+     * @param workspaceName name of new Workspace
+     */
     public Workspace(String workspaceName) {
         this.workspaceName = workspaceName;
 
@@ -21,16 +29,22 @@ public class Workspace {
         watchlistList = new ArrayList<>();
     }
 
+    /**
+     * Creates an instance of a Workspace.
+     *
+     * @param workspaceName name of new Workspace
+     */
     public Workspace(String workspaceName, ArrayList<Watchlist> watchlistList, Bookmark bookmark) {
         this.workspaceName = workspaceName;
         this.watchlistList = watchlistList;
         this.bookmark = bookmark;
     }
 
-    public Bookmark getBookmark() {
-        return bookmark;
-    }
-
+    /**
+     * Gets name of the Workspace.
+     *
+     * @return name of Workspace
+     */
     public String getName() {
         return workspaceName;
     }
@@ -41,6 +55,10 @@ public class Workspace {
     }
 
     // ========================== Watchlist & Bookmark ==========================
+
+    public Bookmark getBookmark() {
+        return bookmark;
+    }
 
     public void setActiveWatchlist(Watchlist activeWatchlist) {
         this.activeWatchlist = activeWatchlist;

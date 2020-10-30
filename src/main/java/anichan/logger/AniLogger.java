@@ -9,7 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * Represents the Logger used in this project.
+ */
 public class AniLogger {
+    // Settings used by AniLogger
     private static final int MAX_LOG_COUNT = 1;
     private static final int MAX_LOG_SIZE = (int) (Math.pow(1024, 3) * 5); // 5 Megabytes
     private static final String LOG_FILE = "data/AniChan.log";
@@ -20,6 +24,12 @@ public class AniLogger {
     private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
 
+    /**
+     * Returns the logger when provided a class name.
+     *
+     * @param className name of class requesting for logger
+     * @return logger object
+     */
     public static Logger getAniLogger(String className) {
         Logger logger = Logger.getLogger(className);
         logger.setUseParentHandlers(false);
@@ -31,7 +41,11 @@ public class AniLogger {
         return Logger.getLogger(className);
     }
 
-
+    /**
+     * Adds Handler for console logging.
+     *
+     * @param logger logger object with console handler
+     */
     private static void addConsoleHandler(Logger logger) {
         assert logger != null : "Logger is null!";
 
@@ -42,13 +56,22 @@ public class AniLogger {
         logger.addHandler(consoleHandler);
     }
 
+    /**
+     * Returns a console handler for logger.
+     *
+     * @return console handler
+     */
     private static ConsoleHandler createConsoleHandler() {
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(CONSOLE_LEVEL);
         return consoleHandler;
     }
 
-
+    /**
+     * Adds Handler for file logging.
+     *
+     * @param logger logger object with file handler
+     */
     private static void addFileHandler(Logger logger) {
         assert logger != null : "Logger is null!";
 
@@ -63,11 +86,26 @@ public class AniLogger {
         }
     }
 
-
+    /**
+     * Returns a file handler for logger.
+     *
+     * @return file handler
+     * @throws IOException when unable to initialise file handler
+     */
     private static FileHandler createFileHandler() throws IOException {
         File file = new File(LOG_FILE);
-        file.getParentFile().mkdirs();
-        file.createNewFile();
+
+        // Checks to ensure log file and folder creation is done correctly
+        boolean isFolderCreated = file.getParentFile().mkdirs();
+        boolean isFileCreated = false;
+
+        if (isFolderCreated) {
+            isFileCreated = file.createNewFile();
+        }
+
+        if (!isFileCreated) {
+            throw new IOException("Failed to create log file/folder.");
+        }
 
         SimpleFormatter formatter = new SimpleFormatter();
 
@@ -79,6 +117,11 @@ public class AniLogger {
         return fileHandler;
     }
 
+    /**
+     * Clears the existing handlers from logger.
+     *
+     * @param logger logger object
+     */
     private static void clearHandlers(Logger logger) {
         assert logger != null : "Logger is null!";
 

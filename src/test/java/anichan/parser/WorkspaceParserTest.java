@@ -33,8 +33,25 @@ class WorkspaceParserTest {
 
     @Test
     void parser_legitimateNameComplex_success() {
-        WorkspaceParser testParse2 = new WorkspaceParser();
+        WorkspaceParser testParse = new WorkspaceParser();
 
-        assertDoesNotThrow(() -> testParse2.parse("-n Crunchy OREO c00k!3s"));
+        assertDoesNotThrow(() -> testParse.parse("-n Crunchy OREO c00ki3s"));
+    }
+
+    @Test
+    void parser_illegalNameComplex_throwsAniException() {
+        WorkspaceParser testParse = new WorkspaceParser();
+
+        assertThrows(AniException.class, () -> testParse.parse("-n ."));
+        assertThrows(AniException.class, () -> testParse.parse("-n /"));
+        assertThrows(AniException.class, () -> testParse.parse("-n .hello"));
+        assertThrows(AniException.class, () -> testParse.parse("-n /hello_world"));
+        assertThrows(AniException.class, () -> testParse.parse("-n /test"));
+        assertThrows(AniException.class, () -> testParse.parse("-n /more/tests"));
+        assertThrows(AniException.class, () -> testParse.parse("-n !"));
+        assertThrows(AniException.class, () -> testParse.parse("-n how about this?"));
+        assertThrows(AniException.class, () -> testParse.parse("-n and this%"));
+        assertThrows(AniException.class, () -> testParse.parse("-n ["));
+        assertThrows(AniException.class, () -> testParse.parse("-n ;"));
     }
 }

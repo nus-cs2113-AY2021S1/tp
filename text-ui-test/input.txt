@@ -4,6 +4,8 @@ random name 123
 monster
 
 Other
+King                                  1
+Elf
 Abec Steiner 33rd
 Female
 addws -n
@@ -22,6 +24,14 @@ workspace -d non existing workspace
 workspace -n COOKIES N CREME CH33SECAKE
 workspace -s COOKIES N CREME CH33SECAKE
 workspace -d WHITE CHoC MACADAMIA
+workspace 1
+workspace -l 1
+workspace -a -999
+workspace -a 0
+workspace -a -999999999999999
+workspace -d 0
+workspace -d -99999999999999
+workspace -d -999999999999999
 workspace -l
 watchlist -n a
 watchlist -n b
@@ -38,8 +48,8 @@ bookmark -a 500
 bookmark -a 3
 bookmark -a 430
 bookmark 1 -e 5
-bookmark 2 -e 4
-bookmark 3 -e 6
+bookmark 2 -e 1
+bookmark 3 -e 1
 bookmark 4 -e 8
 bookmark 1 -n test
 bookmark 1 -n test 2 withspace
@@ -52,6 +62,59 @@ bookmark -l
 add -a 1
 search -n cowboy
 browse -p 1
+workspace
+workspace 
+workspace  
+workspace   
+workspace  -
+workspace -
+workspace   - - 
+workspace --
+workspace ?
+workspace /
+workspace /n
+workspace -d
+workspace -d 
+workspace -d  
+workspace -d  '
+workspace -d  a
+workspace -d  -a
+workspace -d -a
+workspace -d -a name
+workspace -a Fried Oreo Cookies
+workspace -a Fried Oreo Cookies
+workspace -a Fried Oreo Cookies 
+workspace -a Fried Oreo Cookies  
+workspace -a Fried Oreo Cookies/
+workspace -a Fried Oreo Cookies[
+workspace -a Fried Oreo Cookies.
+workspace -a /
+workspace -a .fried
+workspace -a ?fried
+workspace -a !fried
+workspace -a @fried
+workspace -a -fried
+workspace -a /hey/there
+workspace -a ./hey/there
+workspace -a ../hey/there
+workspace -a ..//hey//there
+workspace -a ..///hey///there
+workspace -a \
+workspace -a \a
+workspace -a \\a
+workspace -s //
+workspace -a /hello
+workspace -a OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+workspace -l
+workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 
+workspace -d  OOOOOWUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU  
+workspace -l
+workspace -l aaa
+blah blah
+blah -e
+blah -e 4234
+blah la
 workspace -l
 workspace -d Default
 workspace -d Crunchy Cinnamon
