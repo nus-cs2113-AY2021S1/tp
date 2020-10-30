@@ -19,7 +19,7 @@ from the text file and loads the appliances' data back.
   * [Switching off an appliance: `off`](#switching-off-an-appliance-off)
   * [Listing all the locations/appliances: `list`](#listing-all-the-locations-or-appliances-list)
   * [Displaying the usage of appliance: `usage`](#displaying-the-usage-of-appliance-usage)
-  * [Resetting all power usage in application: `p_reset`](#resetting-all-power-usage-in-application)
+  * [Resetting all power usage in application: `p_reset`](#resetting-all-power-usage-in-application-p_reset)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Saving the data](#saving-the-data)
 * [Command summary](#command-summary)
@@ -35,7 +35,9 @@ from the text file and loads the appliances' data back.
 4.  Open your command prompt as administrator. Then input java -jar **c:pathtojarfile.jar** in 
 Command Prompt and press ENTER. Replace the **c:pathtojarfile.jar** with the actual path and 
 file title of the Jar. The display similar to the below should appear in a few seconds.
-
+    
+    ![](images/user_guide/start_image.PNG)
+     
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `exit` and pressing Enter, it will exit the program.
 Some example commands you can try:
@@ -66,34 +68,9 @@ Shows all available commands to the user
 
 Format: `help`
 
-**Example output:** 
-```
-----------------------------------------------------
-Here is the list of commands available:
-----------------------------------------------------
-	1. Help: help
-	2. Create location: create [LOCATION_NAME]
-	3. Remove location: remove [LOCATION_NAME]
-	4. Add Appliance: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]
-	5. Delete Appliance: delete [APPLIANCE_NAME]
-	6. Switch ON Appliance: 
-		 a. on [APPLIANCE_NAME] 
-		 b. on [APPLIANCE_NAME] p/[PARAMETER] 
-		 c. on [LOCATION_NAME]
-	7. Switch OFF Appliance: 
-		 a. off [APPLIANCE_NAME] 
-		 b. off [LOCATION_NAME]
-	8. List: 
-		 a. list appliance 
-		 b. list location 
-		 c. listappliance l/[LOCATION_NAME]
-	9. Usage of Appliance: usage
-	10. Resetting usage of appliances: p_reset
-	11. Exiting the application: exit
+Example: `help`
 
-====================================================
-```
-   
+   ![](images/user_guide/help_image.PNG)   
 <br/><br/>
 ### Creating a location: `create`
 Adds a new location with a name. 
@@ -103,10 +80,7 @@ Format: `create [LOCATION_NAME]`
 
 Example: `create Bedroom1`
 
-Output: 
-```
-Creating Location "Bedroom1".....CREATED!
-```
+   ![](images/user_guide/create_image.PNG) 
 
 <br/><br/>
 ### Removing a location: `remove`
