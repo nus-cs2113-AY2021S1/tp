@@ -497,7 +497,7 @@ Random Bunny:
 Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random, so you can start writing right away.
 
 #### Generating names from name database: `name`
-Generates a name randomly from the stored database of names.  
+You can generate a name randomly from the stored database of names.
 Format: `name`
 
 Example output:  
@@ -511,7 +511,7 @@ name 2
 [Jump to top](#fluffle-user-guide)
 
 #### Listing names from name database: `list name`
-Displays all the names currently stored in the names database.  
+You can display all the names currently stored in the names database. 
 Format: `list name`
 
 Example usages:
@@ -530,7 +530,7 @@ list name
 [Jump to top](#fluffle-user-guide)
 
 #### Finding names from name database: `filter name`
-Gets the list of names after filtering from the stored list of names.  
+You can get the list of names after filtering from the stored list of names. 
 Format: `filter name NAME`
 
 Example usage:
@@ -560,7 +560,7 @@ filter name name
 [Jump to top](#fluffle-user-guide)
 
 #### Adding names from name database: `add name`
-Adds a name to the list of names currently stored in the names database.
+You can add a name to the list of names currently stored in the names database.
 Format: `add name NAME`
 
 Example usages:
@@ -577,7 +577,7 @@ name 3 has been added to the Names list!
 [Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
-Removes a name from the list of names currently stored in the names database.
+You can remove a name from the list of names currently stored in the names database.
 Format: `delete name INDEX`
 
 Example usages:
