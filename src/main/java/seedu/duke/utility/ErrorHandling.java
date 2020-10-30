@@ -24,7 +24,7 @@ public class ErrorHandling extends Exception {
                 + "than one word you will need to input the name with no spaces.\n\tExample: For show name "
                 + "'Running Man' try `RunningMan` or `Running_Man`."),
         EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!"),
-        EXCEPTION_EPISODE_LARGER_THAN_EXPECTED("\tSorry! It seems like you have entered the wrong number! Try again!");
+        EXCEPTION_INPUT_LARGER_THAN_EXPECTED("\tSorry! It seems like you have entered the wrong number! Try again!");
 
 
         private String exception;
