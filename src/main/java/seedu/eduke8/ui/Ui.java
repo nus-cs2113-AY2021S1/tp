@@ -11,11 +11,18 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 
-import java.io.BufferedReader;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
@@ -119,13 +126,22 @@ public class Ui {
     private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
     private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer! ";
-    public static final String DATA_LOADING = "Please wait while data is loading...";
-    public static final String DATA_LOADED = "Data loaded successfully!";
-    public static final String DATA_SAVING = "Please wait while data is saving...";
-    public static final String DATA_SAVED = "Data saved successfully!";
+    private static final String DATA_LOADING = "Please wait while data is loading...";
+    private static final String DATA_LOADED = "Data loaded successfully!";
+    private static final String DATA_SAVING = "Please wait while data is saving...";
+    private static final String DATA_SAVED = "Data saved successfully!";
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
+    public static final String ERROR_READING_INPUT = "Error reading input.";
+    public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        try {
+            return userInputFuture.get();
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
+        }
         return SCANNER.nextLine();
     }
 
@@ -134,18 +150,36 @@ public class Ui {
     }
 
     public String getQuizInputFromUser(int timer) throws IOException {
-        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-        long startingTime = System.currentTimeMillis();
+        // May have to use this portion for Linux because Robot doesn't work on WSL
+        //        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        //        long startingTime = System.currentTimeMillis();
+        //
+        //        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
+        //                && System.in.available() ==  0) {
+        //        }
 
-        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
-                && !userInput.ready()) {
-        }
+        //        if (userInput.ready()) {
+        //            return userInput.readLine();
+        //        } else {
+        //            return null;
+        //        }
 
-        if (userInput.ready()) {
-            return userInput.readLine();
-        } else {
+        String userInput;
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        try {
+            userInput = userInputFuture.get(timer, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
+            try {
+                Robot robot = new Robot();
+                robot.keyPress(KeyEvent.VK_ENTER);
+                robot.keyRelease(KeyEvent.VK_ENTER);
+            } catch (AWTException awtException) {
+                printError(ERROR_USING_ROBOT);
+            }
             return null;
         }
+
+        return userInput;
     }
 
     private static void printMessage(String message) {
