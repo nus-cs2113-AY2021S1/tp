@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.PersonalEvent;
 import exception.CreatingFileException;
+import exception.DataFileNotFoundException;
 import exception.EndBeforeStartEventException;
 import exception.LoadingException;
 import exception.WritingFileException;
@@ -240,14 +241,13 @@ public class Storage {
      *
      * @param busStopList ArrayList of BusStops in BusStopList
      */
-    public void loadBusStopData(ArrayList<BusStop> busStopList) {
+    public void loadBusStopData(ArrayList<BusStop> busStopList) throws DataFileNotFoundException {
         File f = new File("./data/bus_stops.txt");
         Scanner s;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
-            System.out.println(f.getName() + " not found: " + e.getMessage());
-            return;
+            throw new DataFileNotFoundException(f.getName());
         }
 
         while (s.hasNext()) {
@@ -265,14 +265,13 @@ public class Storage {
      *
      * @param locationList ArrayList of Locations in LocationList
      */
-    public void loadLocationData(ArrayList<Location> locationList) {
+    public void loadLocationData(ArrayList<Location> locationList) throws DataFileNotFoundException {
         File f = new File("./data/locations.txt");
         Scanner s;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
-            System.out.println(f.getName() + " not found: " + e.getMessage());
-            return;
+            throw new DataFileNotFoundException(f.getName());
         }
 
         while (s.hasNext()) {
