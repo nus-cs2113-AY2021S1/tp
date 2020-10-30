@@ -23,7 +23,8 @@ public class ErrorHandling extends Exception {
         EXCEPTION_INVALID_ADDING_NAME_FORMAT_EXCEPTION("\tIf the name of your show contains more "
                 + "than one word you will need to input the name with no spaces.\n\tExample: For show name "
                 + "'Running Man' try `RunningMan` or `Running_Man`."),
-        EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!");
+        EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!"),
+        EXCEPTION_EPISODE_LARGER_THAN_EXPECTED("\tSorry! It seems like you have entered the wrong number! Try again!");
 
 
         private String exception;
