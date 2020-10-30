@@ -159,9 +159,12 @@ Expected outcome:
  After this, the program will carry on based on your reply. 
  
  If you replied `y`:
-
-`________________________________________________________________________________`<br>
- `friends was added to your watchlist.`
+ 
+ ```
+________________________________________________________________________________
+friends was added to your watchlist.
+```
+<br>
  
  If you replied `n`:
  
