@@ -18,8 +18,8 @@
     - [4.h. `delete` - Deletes your show](#4h-delete---deletes-your-show)
     - [4.i. `deleterating` - Deletes rating of your show](#4i-deleterating---deletes-rating-of-your-show)
     - [4.j. `changerating` - Changes rating of your show](#4j-changerating---changes-rating-of-your-show)
-    - [4.k. `episode` - Changes the episode of the show you are currently watching](#4k-episode---changes-the-episode-of-the-show-you-are-currently-watching)
-    - [4.l. `season` - Changes the season of the show you are currently watching](#4l-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.k. `season` - Changes the season of the show you are currently watching](#4k-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.l. `episode` - Changes the episode of the show you are currently watching](#4l-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     - [4.m. Managing your watch time limit](#4m-managing-your-watch-time-limit)
     - [4.m.a. `watch` - Watch a show in your watchlist](#4ma-watch---watch-a-show-in-your-watchlist)
     - [4.m.b. `updatetimelimit` - update your watch time limit](#4mb-updatetimelimit---update-your-watch-time-limit)
@@ -141,10 +141,10 @@ Expected outcome:
   <br>_Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "400">
-  &nbsp;
- After keying in the input as shown in the image above, the next image shows the expected output.
+  &nbsp;<br>
+ After keying in the input as shown in the image above, the next image shows the expected output.<br>
  <img src = "images/addCommandUG/addResponse.PNG" width = "400">
-  &nbsp;
+  &nbsp;<br>
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
 
  >  **[NOTE]**
@@ -418,7 +418,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  > * In the example, the current season that you are watching is season 1
  
- > * If you are going to watch other episodes of other seasons, Please change the current season first using [season](#4k-season---Changes-the-season-of-the-show-you-are-currently-watching) command.
+ > * If you are going to watch other episodes of other seasons, Please change the current season first using [season](#4k-season---changes-the-season-of-the-show-you-are-currently-watching) command.
  
  
  Expected outcome for the example:
