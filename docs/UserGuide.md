@@ -71,7 +71,7 @@ E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will no
 *   Words in UPPERCASE are values that can be supplied to the command. <br/>
 E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
 
-*   Angle brackets (`<MANDATORY>`) indicates a mandatory parameter, while square brackets (`[OPTIONAL]`) indicates an optional parameter. <br/>
+*   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
 E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
 *   Order of parameters (`-n`, `-l`, etc.) are not important. <br/>
