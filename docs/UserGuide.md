@@ -161,7 +161,7 @@ Expected outcome:
  If you replied `y`:
 
 `________________________________________________________________________________`<br>
- friends was added to your watchlist.`
+ `friends was added to your watchlist.`
  
  If you replied `n`:
  
