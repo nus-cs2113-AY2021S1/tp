@@ -28,7 +28,7 @@ deactivate ShowList
 
 WatchCommand -> UI : printChangeEpisode()
 activate UI
-UI -> WatchCommand : printChangeEpisode()
+UI --> WatchCommand :
 
 
 else Finished season
