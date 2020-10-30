@@ -11,6 +11,7 @@
       - [2.2.2. Implementation of TopicList](#222-implementation-of-topiclist)
       - [2.2.3. Implementation of Notes](#223-implementation-of-notes)
       - [2.2.4. Design of Option and OptionList](#224-design-of-option-and-optionlist)
+      - [2.2.5. Implementation of Option and OptionList](#225-implementation-of-option-and-optionlist)
     - [2.3. Logic Component](#23-logic-component)
       - [2.3.1. Design of Parser](#231-design-of-parser)
       - [2.3.2. Implementation of MenuParser](#232-implementation-of-menuparser)
@@ -73,7 +74,7 @@ The data model is centered around `DisplayableList` objects which hold `Displaya
 ####  2.2.1. Design of TopicList
 
 TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
-in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+in the code for E-Duke-8. As such, many of the commands that manipulate the TopicList make 
 use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
 each topic stores a NoteList, which contains Notes.
 
@@ -92,11 +93,13 @@ each topic stores a NoteList, which contains Notes.
 
 This task is performed by the `TopicList.showTopics()` method.
 
-Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+Step 1. The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
         `TopicList.showTopics()` method.
-Step 2: The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
+        
+Step 2. The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
         current `TopicList` is passed into the called method.
-Step 3: The `Ui.printTopicList()` method then prints out the description of each topic in the 
+        
+Step 3. The `Ui.printTopicList()` method then prints out the description of each topic in the 
         `TopicList`. 
 
 `NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
@@ -109,31 +112,31 @@ The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`.
 
 This task is performed by the `NoteList.add()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
         A new `Note` object is passed into its parameter.
 
-Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
+Step 2. The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
         the `Note` object into `NoteList`.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
         An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
         this method.
 
-Step 2: The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
+Step 2. The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
         delete the `Note` object in `NoteList`.
 
 **Listing out all notes in a topic**
 
 This task is performed by the `Ui.printNoteList()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
 and calls the `Ui.listInteraction` method. 
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
+Step 2. The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
 this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
 topic's `NoteList`.
 
@@ -143,7 +146,25 @@ The `Option` and `OptionList` classes implements the `Displayable` and `Displaya
 The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
 question. The class diagram below illustrates the structure of both classes. 
 
+The `Option` class implements the `Displayable` interface while the `OptionList` class implements the `DisplayableList` interface. The illustration below shows the class diagram of `Option` and `OptionList`. 
+
 ![Option_and_OptionList_Class](./images/Option.png)
+
+The `Option` object stores the description of one option from a question. It also indicates if the option is the correct answer for the question by using the `isCorrectAnswer` boolean. 
+The `OptionList` object stores all 4 options of the same question. 
+
+#### 2.2.5. Implementation of Option and OptionList
+
+An example of when the `Option` and `OptionList` classes are used is when the quiz mode is activated. The quiz requires all the options of a particular question to be printed out. 
+
+![Option_and_OptionList_Sequence](./images/OptionSequence.png)
+
+Step 1. When a quiz is started, the `SingleTopicQuiz()` method will instantiate a `SingleTopicQuiz` object which calls the `getOptionList()` method. 
+
+Step 2. The `OptionList` object then calls the `getInnerList()` method, a getter method, to get the list of options for the same question. 
+
+Step 3. The `printOption()` method is then called to print out all the options for the user to see. The `options.get(i)` parameter will get the description of the specific option and the `i+1` parameter 
+will handle the numbering of the options. The printing out of the options will be handled by the `Ui` class. 
 
 ### 2.3. Logic Component
 
@@ -249,7 +270,7 @@ The sequence diagram below shows the interactions between the different objects 
 
 Through the logic in the object of `UserStatsCalculator`, necessary information regarding the user’s statistics, such as the `totalPointsGained` integer value and `totalPointsAvailable` integer value, are calculated, and then passed to the `Ui` object to print them to the user. This same concept and procedure are applied to the display the other aggregate results.
 
-A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the ` TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
+A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the `TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
 
 
 ### 2.4. Storage Component
@@ -389,7 +410,7 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 |v1.0|new user|answer given questions|start testing myself immediately|
 |v1.0|long-time user|get different questions each time|repeatedly test my understanding for the particular topic|
 |v1.0|busy user|test myself on concepts using short, targeted quizzes|confirm my understanding of concepts|
-|v1.0|user|get a hint for the question in the quiz|I can think about the question from a different angle|
+|v1.0|user|get a hint for the question in the quiz|think about the question from a different angle|
 |v1.0|user|see what the available topics are|navigate around the app effectively|
 |v1.0|user|select the number of questions to do in the quiz|manage the workload and time spent on the quiz|
 |v2.0|slow but hardworking user|see the explanations provided in the quiz|learn from my mistakes and revise|
