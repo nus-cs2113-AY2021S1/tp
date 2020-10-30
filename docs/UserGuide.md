@@ -101,7 +101,7 @@ explaining the syntax of the commands in Fluffle.
 
 ### Basic CLI commands
 
-Basic CLI commands consist of commands that are standard CLI application commands such as help and exit, as well as an aesthetic option to change the line divider.
+<<Some overview of basic cli commands here>>
 
 #### Viewing help: `help`
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
@@ -170,9 +170,33 @@ Deletes all items from a list in Fluffle. A warning prompt will be generated bef
 
 Format: `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT`  
 Example usage:  
-`clear type\word item\grass`  
+`clear type\word item\-noungrass`  
 Example Output:  
 `Are you sure you want to delete this item grass? Yes/no`
+There are two major types of clearing:
+**Clearing a writing: **
+
+* Clear a writing with respective order in the arraylist (in which the counter starts from 0)
+Format: `clear type\writing item\0`
+Expected effect: clear the first writing stored in the database (the writing stays on the top expected to see when use command `stats` before apply command `clear`)
+
+* Clear a writing with respective ID number in the arraylist (in which the counter starts from 0)
+Format: `clear type\writing item\-id5`
+Expected effect: clear the writing(s) with ID 5 in the database
+
+**Clearing a word: **
+
+* Remove a noun from the database
+Format: `clear type\word item\-noungrass`
+Expected effect: Check the existence of word "grass" with type "noun" in the database and then remove it
+
+* Remove an adjective from the database
+Format: `clear type\word item\-adjbeautiful`
+Expected effect: Check the existence of word "beautiful" with type "adj" in the database and then remove it
+
+* Remove a verb from the database
+Format: `clear type\word item\-verbkill`
+Expected effect: Check the existence of word "kill" with type "verb" in the database and then remove it
 
 [Jump to top](#fluffle-user-guide)
 
@@ -312,7 +336,7 @@ Printing 3 out of 5 word(s) from your filter list:
 
 ### Bunnies list commands
 
-Bunnies List commands allows you to collate your list of ideas in one place, making it easy for you to find specific ideas. It can randomly pick one for you to work on so you don’t have to waste time deciding on one on your own.
+<<Preface here>>
 
 #### Adding a bunny idea: `bunny`
 
@@ -445,7 +469,7 @@ Random Bunny:
 
 ### Names list commands
 
-Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list and the program can help you pick one out at random so you can start writing right away.
+<<Preface here>>
 
 #### Generating names from name database: `name`
 Generate a name randomly from the stored database of names.  
@@ -549,7 +573,7 @@ name 3 has been deleted from the Names list!
 
 ### Writings list commands
 
-Writings List allows you to keep a collection of short pieces within the program, and can help you track your writing statistics as motivation to consistently practice writing.
+<<Preface here>>
 
 #### Beginning your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
@@ -565,7 +589,7 @@ Currently, our application offers you with 2 options of “type”, which are �
 
 [Jump to top](#fluffle-user-guide)
 
-#### Choosing the “topic” of your writing: `topic`
+#### Choosing the “topic” of your writing: `topic` (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
 Listing the available topic in the list and pop out the relevant keywords for your writing.
 ```
 start
