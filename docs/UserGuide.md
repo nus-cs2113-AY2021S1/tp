@@ -37,7 +37,10 @@ This user guide would help you walkthrough the features of Zoomaster and ways to
     * [Edit slot's module, title, time:](#edittimeslot)  **edit**
     * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
   * [5.4 Planner mode](#plannermode)
-    * a
+    * [Load planner:](#loadplanner) **load**
+    * [Show planner:](#showplanner) **show**
+    * [Add meeting:](#addmeeting) **add**
+    * [Save planner:](#saveplanner) **save**
 * [6.0 FAQ](#faq)
 * [7.0 Command Summary](#command-summary)
   
@@ -482,11 +485,57 @@ Example of usage:
 
 
 <a name="plannermode"></a>  
-### 5.4 Planner mode    
+<a name="plannermode"></a>  
+### 5.4. Planner Mode  
 
-<a name="XXXXXXXXXX"></a>
-#### XXXXXXXXXXXXX: `XXXXXXXX`  
-XXXXXXXXXXXXXXXXX
+<a name="loadplanner"></a>  
+#### 5.4.1. Load planner: `load`  
+Loads all the timetables from the `planner` folder and helps you find some common empty slots.
+> [i] Notes:
+> - You need to copy the different .txt files manually to the planner folder.
+> - This command only displays the common empty time slots.
+```
+Format: load
+```
+
+<br/><br/> 
+<a name="addmeeting"></a>  
+#### 5.4.2. Add meeting: `add`  
+You can add modules, time slots and bookmarks using this feature.
+You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
+
+> [i] Notes:
+> - You can only add a new meeting to empty time slots.
+> - Note that this command does not automatically store the newly added meeting to the .txt files.
+> You will need to type `save` to save it.
+
+Format: same as [add time slots](#addtimeslot) command.
+
+<br/><br/> 
+<a name="showplanner"></a>  
+#### 5.4.3. Show planner: `show`
+You will be able to see the empty time slots for a certain day or the whole week.  
+**today** can also be a `DAY` input to show the timetable for the current day based on system time.  
+If your selected timetable is the current day, you should be able to see a
+"current time" indicator with your system local time. 
+Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
+around your current lesson.  
+
+```
+Format: show {DAY(optional)}
+```
+Example of usage:   
+* `show`
+* `show wed`
+* `show today`
+
+<br/><br/> 
+<a name="saveplanner"></a>  
+#### 5.4.4. Save planner: `save`  
+Saves the newly added slot(s) to each individual timetables.
+```
+Format: save
+```
 
 <br/><br/> 
 ## 6.0 FAQ  
