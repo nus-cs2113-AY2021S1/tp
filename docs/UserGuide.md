@@ -197,7 +197,7 @@ friends was added to your watchlist.
     
      <img src = "images/edit_step_1.PNG" width = "550">
      
-[Output](Insert picture here)
+
 
  * You will be prompted thereafter to enter the fields you want to change such as:
  name, season, episode, duration (of an episode).
