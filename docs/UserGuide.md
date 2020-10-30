@@ -43,10 +43,11 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 3. Copy the files to the folder you want to use for the application.
-4. Double click on eduke8.jar to start up the program. If the program does not start up, continue to steps 5 and 6, otherwise skip to step 7.
-5. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
-6. Enter the following command `java -jar eduke8.jar`.
-7. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. Here is a list of commands you can try:
+4. If you download the jar file by itself, you will also need the question , `topics.json`, found in `data.zip`. After extracting, include the `data` folder and the `eduke8.jar` file in the same folder for E-Duke-8 to run smoothly. Alternatively, you can simply download `eduke8.zip` which includes both the jar file along with the data folder.
+5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to steps 5 and 6, otherwise skip to step 7.
+6. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
+7. Enter the following command `java -jar eduke8.jar`.
+8. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. Here is a list of commands you can try:
    - about : Provides information about E-Duke-8.
    - topics : Lists CS2113/T topics that E-Duke-8 knows.
    - textbook : Provides you with a link to the CS2113/T website.
@@ -54,7 +55,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
    - hint	  :   Shows a hint to the current question.
    - exit : Exits the app.
 
-8. Refer to the section on **Features** below for details of each command.
+9. Refer to the section on **Features** below for details of each command.
 
 ## 3. Features 
 

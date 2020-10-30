@@ -51,8 +51,8 @@ public class Eduke8 {
             userStorage = new UserStorage(userPath, topicList, bookmarkList);
             userStorage.load();
         } catch (ParseException | IOException | ClassCastException e) {
-            ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            ui.printError(ERROR_STORAGE_LOAD_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_LOAD_FAIL);
             System.exit(1);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -90,8 +90,8 @@ public class Eduke8 {
         try {
             userStorage.save();
         } catch (IOException e) {
-            ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            ui.printError(ERROR_STORAGE_SAVE_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_SAVE_FAIL);
             System.exit(1);
         }
         ui.printDataSaved();

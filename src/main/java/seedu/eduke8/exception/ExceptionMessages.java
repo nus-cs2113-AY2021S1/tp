@@ -1,8 +1,10 @@
 package seedu.eduke8.exception;
 
 public class ExceptionMessages {
-    public static final String ERROR_STORAGE_FAIL = "Oh no! An error has occurred when accessing the file."
-            + "Please check again!";
+    public static final String ERROR_STORAGE_LOAD_FAIL = "Oh no! An error has occurred when accessing the file. "
+            + "Please check that you have have topics.json in the main folder of the data folder! "
+            + "If issues persist please download the data again from the release page and follow the instructions in the user guide."
+    public static final String ERROR_STORAGE_SAVE_FAIL = "Error writing to user data file, user data was not saved."
     public static final String ERROR_UNRECOGNIZED_COMMAND = "Oops! The command cannot be understood."
             + System.lineSeparator() + "Please enter in \"help\" to get the list of available commands.";
     public static final String ERROR_QUIZ_WRONG_FORMAT = "Invalid command! The command for quiz is as follows:"
