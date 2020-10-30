@@ -59,13 +59,15 @@ public class CreateEntryCommand extends ParamHandler {
             this.recurringEntry.setEntryType(Constants.EntryType.EXP);
             break;
         case ParamChecker.PARAM_DESCRIPTION:
-            this.recurringEntry.setDescription(packet.getParam(paramType));
+            String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);
+            this.recurringEntry.setDescription(description);
             break;
         case ParamChecker.PARAM_AUTO:
             this.recurringEntry.setAuto(true);
             break;
         case ParamChecker.PARAM_NOTES:
-            this.recurringEntry.setNotes(packet.getParam(paramType));
+            String notes = ParamChecker.getInstance().checkAndReturnDescription(paramType);
+            this.recurringEntry.setNotes(notes);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
