@@ -98,11 +98,12 @@ Format: `bye`
 #### Add members: `addMember`
 Adds a member to the list of members.<br/>
 
-Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
+Format: `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
 
 Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
- `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
+ `hr add /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
+ `hr a /n sakata Gintoki /p 999999999 /e Ginsan@gmail.com /r member`<br/>
  
  Expected Outcome:
  
@@ -118,9 +119,10 @@ Example of usage: <br/>
  The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
  The MEMBER_INDEX must be an integer greater than 0. <br/>
  
- Example of usage: 
+ Example of usage: <br/>
  `hr delMember 1` <br/>
- `hr delMember 19` <br/>
+ `hr delete 19` <br/>
+ `hr d 5` <br/>
  
   Expected Outcome:
   
@@ -132,8 +134,10 @@ Example of usage: <br/>
 Prints the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
 
-Example of usage:
-`hr listMember`  
+Example of usage: <br/>
+`hr listMember`<br/>
+`hr list`<br/>
+`hr l`<br/>
 
  Expected Outcome:
  
@@ -149,7 +153,7 @@ MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be prov
 
 Example of usage: <br/>
 `hr changeInfo /n john sterling /p 12345678` <br/>
-`hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r President`
+`hr c /n Harry Potter /p 12345678 /e 123@gmail.com /r President` <br/>
 
  Expected Outcome:
  
@@ -296,7 +300,8 @@ Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>
- `event addAttendance /n Autodesk course /m John`<br/>
+ `event addAttend /n Autodesk course /m John`<br/>
+ `event aa /n Machine Learning course /m John`<br/>
  
 Expected Outcome:
 
@@ -310,7 +315,8 @@ Expected Outcome:
  
  Example of usage: 
  `event delAttendance /n arduino course /m peter`<br/>
- `event delAttendance /n Autodesk course /m John`<br/>
+ `event delAttend /n Autodesk course /m John`<br/>
+ `event da /n Machine Learning course /m John`<br/>
  
  Expected Outcome: 
  
@@ -324,6 +330,8 @@ Format: `event listAttendance /n EVENT_NAME` <br/>
 
 Example of usage: 
 `event listAttendance /n arduino course`
+`event listAttend /n Autodesk course`
+`event la /n Machine Learning course`
 
 Expected Outcome:
 
