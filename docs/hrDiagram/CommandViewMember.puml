@@ -11,7 +11,9 @@ else else
     loop until end of ArrayList
         ":MemberList" -> ":Member" : toString()
         activate ":Member"
-        ":Member" --> ":MemberList"
+        ":Member" --> ":MemberList" : updateAttendanceRate()
+        ":MemberList" --> ":MemberList" : calculateAttendanceRate()
+        return output
         deactivate ":Member"
         ":MemberList" --> ":CommandViewMember" : output
         deactivate ":MemberList"
