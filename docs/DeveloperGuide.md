@@ -62,7 +62,7 @@
     + [Deleting existing categories](#deleting-existing-categories)
     + [Editing an existing category](#editing-an-existing-category)
     + [Finding an existing category](#finding-an-existing-category)
-  * [Testing for Rating System for Books](#testing-for-rating-system-for-books)
+  * [Testing for Rating System for books](#testing-for-rating-system-for-books)
     + [Adding a book rating](#adding-a-book-rating)
     + [Listing all existing book ratings](#listing-all-existing-book-ratings)
     + [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
@@ -984,7 +984,7 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No categories will be listed.
 
-### Testing for Rating System for Books
+### Testing for Rating System for books
 
 #### Adding a book rating
 

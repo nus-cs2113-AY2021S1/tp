@@ -48,7 +48,7 @@
     * [Delete categories](#delete-categories-delete--c)
     * [Edit an existing category](#edit-an-existing-category-edit--c)
     * [Find an existing category](#find-an-existing-category-find--c)
-  * [Rating System for Books](#rating-system)
+  * [Rating System for books](#rating-system)
     * [Adding a book rating](#adding-a-book-rating-add--r)
     * [Listing book ratings](#listing-book-ratings-list--r)
     * [Deleting a book rating](#deleting-a-book-rating-delete--r)
@@ -804,7 +804,7 @@ Here is a list of categories with the keyword "man":
 1. romance - (1 items)
 ```
 
-### Rating System
+### Rating System for books
 Are you having your own opinions about the books you read? You might want to record down your favorites,
 so that you can recommend the best books to your friends and fellow book readers.
 
