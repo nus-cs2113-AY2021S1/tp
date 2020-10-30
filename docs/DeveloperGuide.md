@@ -74,8 +74,8 @@ The **Architecture Diagram** shown above describes the high level association op
 A quick overview of the components is as follows:
 
 `Main` is single-class component of `SCRUMptious`. It is responsible for:
-    1. At app launch: Initializes the components in the correct sequence(Storage, UI, Parser), and links them together where appropriate.
-    1. At program exit: Invokes Storage component to save all unsaved data.
+1. At app launch: Initializes the components in the correct sequence(Storage, UI, Parser), and links them together where appropriate.
+1. At program exit: Invokes Storage component to save all unsaved data.
 
 The other packages are described below: 
 1. `UI` : The user interface of the app, reads user input and is visible to the user.
@@ -92,6 +92,7 @@ Each of the modules listed above are a collection of constituent classes, with e
 
 ### UI Component
 ![Figure X: Simplified class diagram for UI Component](./image/developerguide/UI.png "User Interface")  
+
 ### Logic Component
 ![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserandcommand.png)
 
@@ -306,10 +307,10 @@ A task is created following the creation of a project, with a clear title, descr
 and priority of the task.
 Command executed by user `task /add -title <title> -desc <description> -priority <priority>`
 is passed, the following operations are implemented:
-    * UI receives user input and passes it to Parser class.
-    * Parser checks if the input format is valid and if a project exists, and executes a corresponding AddTaskCommand 
-    object.
-    * A new task is created, and added to project manager.
+* UI receives user input and passes it to Parser class.
+* Parser checks if the input format is valid and if a project exists, and executes a corresponding AddTaskCommand 
+object.
+* A new task is created, and added to project manager.
     
 #### View Task
 #### Delete Task
@@ -317,30 +318,30 @@ An existing task is deleted when the user wishes to remove a completed or unnece
 ID is provided.
 Command executed by user `task /del -id`
 is passed, the following operations are implemented:
-    * UI receives user input and passes it to Parser class.
-    * Parser checks if the id entered is valid, and executes a corresponding DeleteTaskCommand 
+* UI receives user input and passes it to Parser class.
+* Parser checks if the id entered is valid, and executes a corresponding DeleteTaskCommand 
     object.
-    * The corresponding task is deleted from the program.
+* The corresponding task is deleted from the program.
     
 #### Change Task Priority
 An existing task can have its priority changed when the user wishes to re-rank the urgency of the task. The task
 ID and the new priority are provided.
 Command executed by user `task /priority -priority HIGH -id 1`
 is passed, the following operations are implemented:
-    * UI receives user input and passes it to Parser class.
-    * Parser checks if the id and priority entered is valid, and executes a corresponding ChangeTaskPriorityCommand 
+* UI receives user input and passes it to Parser class.
+* Parser checks if the id and priority entered is valid, and executes a corresponding ChangeTaskPriorityCommand 
     object.
-    * The corresponding task will have its priority updated in the program.
+* The corresponding task will have its priority updated in the program.
     
 #### Mark Task as Complete    
 An existing task can be marked as complete when the user completes the task. The task
 ID is provided.
 Command executed by user `task /done -id`
 is passed, the following operations are implemented:
-    * UI receives user input and passes it to Parser class.
-    * Parser checks if the id entered is valid, and executes a corresponding DoneTaskCommand 
+* UI receives user input and passes it to Parser class.
+* Parser checks if the id entered is valid, and executes a corresponding DoneTaskCommand 
     object.
-    * The corresponding task is marked as done in the program.
+* The corresponding task is marked as done in the program.
     
 ### Sprint
 In SCRUMptious, a Project will be broken down into smaller iterations known as Sprints. The Sprint will contain information about the Tasks allocated for that iteration and Members that are assigned to complete the Tasks.
@@ -562,8 +563,18 @@ When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize(
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|Project Manager|Specify the goal for new sprint|Be clear about the main objective to be achieved.|
+|v1.0|Project Manager|Want to pre plan future sprints |Have a clear structure regarding project progress.|
+|v1.0|New user|Have access to a help menu|Learn to use the program easily|
+|v1.0|Project Manager|Want to add and remove tasks from future sprints|Pre-plan the development phase|
+|v1.0|Project Manager|Be able to manage many projects simultaneously|Work on different projects at the same time|
+|v1.0|Student/User|Be able to create a new project and give it a name|Identify the project I am working on|
+|v2.0|User/Manager|Clear data stored from previous sessions.|Start fresh when previous projects have finished|
+|v2.0|User/Team Lead|Be able to add and delete members associated with a project|Effectively keep track of everyone working on a project|
+|v2.0|Team Lead|Be able to assign tasks to team members|Keep track of who is working on which feature|
+|v2.0|Team member|Add tasks with specific priority|Understand what features/tasks are of greater urgency|
+|v2.0|Team member|Change the priority of added task|Update the task urgency depending on the feedback achieved after every sprint|
+
 
 ## Non-Functional Requirements
 
