@@ -193,7 +193,10 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
+ `event add /n arduino course /d 2020-12-30 /t 8pm`<br/>
+ `event a /n arduino course /d 2020-12-30 /t 8pm`<br/>
+ `e a /n arduino course /d 2020-12-30 /t 8pm`<br/>
+ `e a /n arduino course /d next friday /t 8pm`<br/>
  
 Expected Outcome:
 
@@ -211,7 +214,9 @@ Expected Outcome:
  
  Example of usage: 
  `event delEvent 1` <br/>
- `event delEvent 19` <br/>
+ `event del 1` <br/>
+ `event d 19` <br/>
+ `e d 1` <br/>
  
  Expected Outcome: 
  
@@ -239,7 +244,9 @@ Prints the list of events, based on the order in which they are added into the l
 Format: `event listEvent` <br/>
 
 Example of usage: 
-`event listEvent`
+`event listEvent` <br/>
+`event l` <br/>
+`e l` <br/>
 
 Expected Outcome:
 
@@ -252,7 +259,8 @@ lists the events with the number of days left. It also sorts them so that the ev
 Format: `event countdown` <br/>
 
 Example of usage: 
-`event countdown`
+`event countdown` <br/>
+`e countdown` <br/>
 
 Expected Outcome:
 
@@ -268,7 +276,8 @@ The EVENT_INDEX refers to the index number of the event that is to be marked as 
 The EVENT_INDEX must be an integer greater than 0. <br/>
 
 Example of usage:
-`event done 1`
+`event done 1` <br/>
+`e done 1` <br/>
 
 Expected Outcome:
 Before and the after marking event as done
@@ -282,8 +291,9 @@ Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
 Example of usage:
-`event search /s arduino course`
-`event search /s 2000-12-16`
+`event search /s arduino course` <br/>
+`event search /s 2000-12-16` <br/>
+`e search /s 2000-12-16` <br/>
 
 Expected Outcome:
 
@@ -379,7 +389,7 @@ Format: `finance summary`
 Example of usage:  
 `finance summary`  
 
-Expected utcome:  
+Expected Outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
 
