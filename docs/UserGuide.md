@@ -547,7 +547,7 @@ Instruction:
 2. Answer the questions as prompted
 3. `back`
 
-Expected ouput:
+Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 ### 4.6 Finding relevant flashcards: `find`
