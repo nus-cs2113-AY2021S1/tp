@@ -377,7 +377,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Input:
  
-   <img src = "images/season/input.png" width = "550">
+   <img src = "images/season/input.png" width = "450">
     
    &nbsp;
  
@@ -385,7 +385,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Expected outcome :
   
- <img src = "images/season/output.png" width = "550">
+ <img src = "images/season/output.png" width = "650">
   
  &nbsp;
 
@@ -408,7 +408,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Input: 
  
-  <img src = "images/episode/input.png" width = "550">
+  <img src = "images/episode/input.png" width = "450">
    
   &nbsp;
  
@@ -423,7 +423,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Expected outcome for the example:
   
- <img src = "images/episode/output.png" width = "550">
+ <img src = "images/episode/output.png" width = "650">
   
  &nbsp;
  
@@ -507,16 +507,16 @@ The `search` command helps you search for a specific show in the watchlist and p
 
  Input:
    
- <img src = "images/search/search_input.png" width = "400"> 
+ <img src = "images/search/search_input.png" width = "550"> 
  
- &nbsp
+ &nbsp;
  
  If the show is exist in the list, the details of the show will be printed out.  
  
    
  Expected output:
  
- <img src = "images/searchshows.png" width = "400">  
+ <img src = "images/searchshows.png" width = "600">  
  
  &nbsp;
   
