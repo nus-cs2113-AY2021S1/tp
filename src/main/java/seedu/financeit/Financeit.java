@@ -36,7 +36,6 @@ public class Financeit {
         load(gt, mt, at);
         loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
         saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
-
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
