@@ -149,6 +149,9 @@ public class SaveManager {
             String desAuto = AutoTrackerSaver.getInstance().fullPath;
             String desGoal = GoalTrackerSaver.getInstance().fullPath;
             String desManual = ManualTrackerSaver.getInstance().fullPath;
+            AutoTrackerSaver.getInstance().buildFile();
+            GoalTrackerSaver.getInstance().buildFile();
+            ManualTrackerSaver.getInstance().buildFile();
             File file = new File(fullPath);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
