@@ -19,53 +19,41 @@ class TopicalStatsCalculatorTest extends Eduke8Test {
     private static final int NUMBER_OF_QUESTIONS_CORRECTLY_ANSWERED = 2;
     private static final int NUMBER_OF_QUESTIONS_WITH_HINT_USED = 1;
 
+    private Topic topic;
+    private TopicalStatsCalculator topicalStatsCalculator;
+
+    TopicalStatsCalculatorTest() {
+        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
+        topic = createAttemptedTopic();
+        topicalStatsCalculator = new TopicalStatsCalculator(topic);
+    }
 
     @Test
     void topicalStatsCalculatorConstructor_nullTopicArgument_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(null);
+            new TopicalStatsCalculator(null);
         });
     }
 
     @Test
     void calculateTopicalQuestionsAttemptCount_threeAttemptedQuestions_returnsCountOfThree() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         assertEquals(NUMBER_OF_QUESTIONS_ATTEMPTED, topicalStatsCalculator.calculateTopicalQuestionsAttemptCount());
     }
 
     @Test
     void calculateTopicalQuestionsCorrectCount_twoCorrectlyAnsweredQuestions_returnsCountOfTwo() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         assertEquals(NUMBER_OF_QUESTIONS_CORRECTLY_ANSWERED,
                 topicalStatsCalculator.calculateTopicalQuestionsCorrectCount());
     }
 
     @Test
     void calculateTopicalHintUsage_oneHintUsed_returnsCountOfOne() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         assertEquals(NUMBER_OF_QUESTIONS_WITH_HINT_USED,
                 topicalStatsCalculator.calculateTopicalHintUsage());
     }
 
     @Test
     void calculateTopicalPointsEarned_twoCorrectlyAnsweredQuestionsWithOneHintUsed_returnsCorrectCount() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         // Points for one correct question without hint shown and one correct question with hint shown
         int pointsForTwoCorrectQuestionsOneHintUsed = calculatePointsForTwoCorrectQuestionsOneHintUsed();
 
@@ -74,22 +62,12 @@ class TopicalStatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculateTopicalPointsAvailable_fiveQuestions_returnsCorrectCount() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         assertEquals(NUMBER_OF_QUESTIONS_IN_TEST_TOPIC * POINTS_PER_QUESTION,
                 topicalStatsCalculator.calculateTopicalPointsAvailable());
     }
 
     @Test
     void calculateTopicalProgressionPercentage_inputTestTopic_returnsCorrectPercentage() {
-        // 5 questions with three attempted, two correct, one correct question had hint shown, a total of 3 points
-        Topic topic = createAttemptedTopic();
-
-        TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topic);
-
         // Points for one correct question without hint shown and one correct question with hint shown
         int pointsForTwoCorrectQuestionsOneHintUsed = calculatePointsForTwoCorrectQuestionsOneHintUsed();
 
@@ -106,7 +84,7 @@ class TopicalStatsCalculatorTest extends Eduke8Test {
 
     // Creates one topic with 5 questions, three questions attempted, two questions correctly answered,
     // where one of the two correctly answered questions is with hint shown, totalling to 3 points earned.
-    private Topic createAttemptedTopic() {
+    Topic createAttemptedTopic() {
         Question question1 = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
         Question question2 = createTestQuestion(PLACEHOLDER_QUESTION_TWO_DESCRIPTION);
         Question question3 = createTestQuestion(PLACEHOLDER_QUESTION_THREE_DESCRIPTION);
@@ -127,12 +105,11 @@ class TopicalStatsCalculatorTest extends Eduke8Test {
                 Arrays.asList(question1, question2, question3, question4, question5)
         );
         QuestionList questionList = new QuestionList(questions);
-        Topic topic1 = new Topic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION, questionList);
 
-        return topic1;
+        return new Topic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION, questionList);
     }
 
-    private int calculatePointsForTwoCorrectQuestionsOneHintUsed() {
+    int calculatePointsForTwoCorrectQuestionsOneHintUsed() {
         return POINTS_FOR_CORRECT_ANSWER_WITHOUT_HINT_SHOWN + POINTS_FOR_CORRECT_ANSWER_WITH_HINT_SHOWN;
     }
 }

@@ -8,9 +8,9 @@ import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
-import seedu.eduke8.stats.StatsCalculator;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
+import seedu.eduke8.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +40,12 @@ public abstract class Eduke8Test {
     protected static final String DATA_TEST_EMPTY_JSON = "data/test/empty.json";
     protected static final String DATA_TEST_WRONG_FORMAT_JSON = "data/test/wrong_format.json";
     protected static final String DATA_TEST_MISSING_KEY_JSON = "data/test/missing_key.json";
+
+    protected Ui ui;
+
+    public Eduke8Test() {
+        ui = new Ui();
+    }
 
     // Creates a TopicList object with two topics that have 3 questions each
     protected TopicList createTestTopicList() {

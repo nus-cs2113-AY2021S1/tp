@@ -16,14 +16,16 @@ class UserStatsCalculatorTest extends Eduke8Test {
     private static final int NUMBER_OF_TEST_TOPICS = 2;
     private static final int NUMBER_OF_QUESTIONS_IN_TEST_TOPIC = 3;
 
+    private ArrayList<Displayable> topics;
+    private UserStatsCalculator userStatsCalculator;
+
+    UserStatsCalculatorTest() {
+        topics = createTwoTopicsWithTwoOfSixQuestionsAnsweredCorrectly();
+        userStatsCalculator = new UserStatsCalculator(topics);
+    }
 
     @Test
     void calculateTotalPointsEarned_twoCorrectlyAnsweredQuestionsAmongTopics_returnsCorrectScore() {
-
-        ArrayList<Displayable> topics = createTwoTopicsWithTwoOfSixQuestionsAnsweredCorrectly();
-
-        UserStatsCalculator userStatsCalculator = new UserStatsCalculator(topics);
-
         int pointsForTwoCorrectAnswersWithoutHint = calculatePointsForTwoCorrectAnswersWithoutHint();
 
         assertEquals(pointsForTwoCorrectAnswersWithoutHint, userStatsCalculator.calculateTotalPointsEarned());
@@ -32,11 +34,6 @@ class UserStatsCalculatorTest extends Eduke8Test {
     // Tests calculateTotalPointsAvailable() as well
     @Test
     void calculateOverallProgressionPercentage_twoCorrectlyAnsweredQuestionsOutOfSix_returnsCorrectPercentage() {
-
-        ArrayList<Displayable> topics = createTwoTopicsWithTwoOfSixQuestionsAnsweredCorrectly();
-
-        UserStatsCalculator userStatsCalculator = new UserStatsCalculator(topics);
-
         int pointsForTwoCorrectAnswersWithoutHint = calculatePointsForTwoCorrectAnswersWithoutHint();
 
         // Total points the user can earn from two topics of three questions each
@@ -47,13 +44,12 @@ class UserStatsCalculatorTest extends Eduke8Test {
                 / totalPointsAvailable) * 100);
 
         assertEquals(expectedPercentage, userStatsCalculator.calculateOverallProgressionPercentage());
-
     }
 
 
     // Creates two topics with 3 questions each, but with only one topic
     // having 2 questions correctly answered without hint, totalling to 4 points
-    private ArrayList<Displayable> createTwoTopicsWithTwoOfSixQuestionsAnsweredCorrectly() {
+    ArrayList<Displayable> createTwoTopicsWithTwoOfSixQuestionsAnsweredCorrectly() {
         Question question1 = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
         Question question2 = createTestQuestion(PLACEHOLDER_QUESTION_TWO_DESCRIPTION);
         Question question3 = createTestQuestion(PLACEHOLDER_QUESTION_THREE_DESCRIPTION);
@@ -70,14 +66,12 @@ class UserStatsCalculatorTest extends Eduke8Test {
         // Creates another topic with 3 unanswered questions
         Topic topic2 = createTestTopic(PLACEHOLDER_TOPIC_TWO_DESCRIPTION);
 
-        ArrayList<Displayable> topics = new ArrayList<>(
+        return new ArrayList<>(
                 Arrays.asList(topic1, topic2)
         );
-
-        return topics;
     }
 
-    private int calculatePointsForTwoCorrectAnswersWithoutHint() {
+    int calculatePointsForTwoCorrectAnswersWithoutHint() {
         return 2 * POINTS_FOR_CORRECT_ANSWER_WITHOUT_HINT_SHOWN;
     }
 }

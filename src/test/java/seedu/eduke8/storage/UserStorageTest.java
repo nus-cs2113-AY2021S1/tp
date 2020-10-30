@@ -22,18 +22,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserStorageTest extends Eduke8Test {
-    public static final String DATA_TEST_USER_JSON = "data/test/user.json";
-    public static final String DATA_TEST_SAVE_JSON = "data/test/save.json";
+    private static final String DATA_TEST_USER_JSON = "data/test/user.json";
+    private static final String DATA_TEST_SAVE_JSON = "data/test/save.json";
     private final TopicList topicList;
     private final BookmarkList bookmarkList;
 
-    public UserStorageTest() {
+    UserStorageTest() {
         topicList = createTestTopicList();
         bookmarkList = new BookmarkList(new ArrayList<>());
     }
 
     @Test
-    public void save_newPath_returnsCreatedFile() throws IOException {
+    void save_newPath_returnsCreatedFile() throws IOException {
         UserStorage userStorage = new UserStorage(DATA_TEST_SAVE_JSON, topicList, bookmarkList);
         File returnedFile = userStorage.save();
         assertTrue(returnedFile.exists());
@@ -44,32 +44,32 @@ public class UserStorageTest extends Eduke8Test {
     }
 
     @Test
-    public void load_invalidPath_returnsEmptyArrayList() throws ParseException, Eduke8Exception, IOException {
+    void load_invalidPath_returnsEmptyArrayList() throws ParseException, Eduke8Exception, IOException {
         UserStorage userStorage = new UserStorage(DATA_TEST_INVALID_PATH, topicList, bookmarkList);
         ArrayList<Displayable> topics = userStorage.load();
         assertEquals(topics.size(), 0);
     }
 
     @Test
-    public void load_emptyJson_expectParseException() {
+    void load_emptyJson_expectParseException() {
         UserStorage userStorage = new UserStorage(DATA_TEST_EMPTY_JSON, topicList, bookmarkList);
         assertThrows(ParseException.class, userStorage::load);
     }
 
     @Test
-    public void load_wrongFormatJson_expectClassCastException() {
+    void load_wrongFormatJson_expectClassCastException() {
         UserStorage userStorage = new UserStorage(DATA_TEST_WRONG_FORMAT_JSON, topicList, bookmarkList);
         assertThrows(ClassCastException.class, userStorage::load);
     }
 
     @Test
-    public void load_missingKeyJson_expectNullPointerException() {
+    void load_missingKeyJson_expectNullPointerException() {
         UserStorage userStorage = new UserStorage(DATA_TEST_MISSING_KEY_JSON, topicList, bookmarkList);
         assertThrows(NullPointerException.class, userStorage::load);
     }
 
     @Test
-    public void load_exampleJson_returnsUserAttributesFromJson() throws ParseException, Eduke8Exception, IOException {
+    void load_exampleJson_returnsUserAttributesFromJson() throws ParseException, Eduke8Exception, IOException {
         UserStorage userStorage = new UserStorage(DATA_TEST_USER_JSON, topicList, bookmarkList);
 
         userStorage.load();
@@ -86,7 +86,7 @@ public class UserStorageTest extends Eduke8Test {
         assertNull(bookmarkList.find(PLACEHOLDER_QUESTION_TWO_DESCRIPTION));
     }
 
-    private String getSaveTestPath() {
+    String getSaveTestPath() {
         String fullPath = new File("").getAbsolutePath();
         String[] relativePathSplit = UserStorageTest.DATA_TEST_SAVE_JSON.split("/");
         for (String path: relativePathSplit) {
