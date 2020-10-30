@@ -339,7 +339,7 @@ Printing 3 out of 5 word(s) from your filter list:
 
 ### Bunnies List Commands
 
-<<Preface here>>
+Bunnies List commands allows you to collate your list of ideas in one place, making it easy for you to find specific ideas. It can randomly pick one for you to work on so you don’t have to waste time deciding on one on your own.
 
 #### Adding a bunny idea: `bunny`
 
