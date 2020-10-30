@@ -1,17 +1,23 @@
 package seedu.duke.commands;
 
+import java.util.Scanner;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
 
 public class AddCommand extends Command {
-    String[] description;
+    static String[] input;
+
+    public AddCommand(String[] input) {
+        this.input = input;
+    }
 
     /**
      * Add a new show.
      *
-     * @param input the user input
+     *
      */
-    public AddCommand(String[] input) throws NullPointerException, ArrayIndexOutOfBoundsException {
+    public static void processCommand() throws NullPointerException, ArrayIndexOutOfBoundsException {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -28,7 +34,30 @@ public class AddCommand extends Command {
         }
         String name = input[1];
         int duration = Integer.parseInt(input[4]);
-        Show show = new Show(input[1], numSeasons, seasonEpisodes, duration);
-        ShowList.setShow(name, show);
+        Show show = new Show(name, numSeasons, seasonEpisodes, duration);
+        boolean isGoingToBeAdded = false;
+        try {
+            isGoingToBeAdded = checkExisting(name);
+        } catch (NullPointerException e) {
+            isGoingToBeAdded = true;
+        }
+        if (isGoingToBeAdded) {
+            ShowList.setShow(name, show);
+        }
+    }
+
+    private static boolean checkExisting(String name) throws NullPointerException {
+        boolean exists = ShowList.doesShowExist(name);
+        if (!exists) {
+            return true;
+        }
+        Ui.promptOverwrite();
+        Scanner in = new Scanner(System.in);
+        String answer = in.nextLine();
+        if (answer.equals("y") || answer.equals("yes")) {
+            DeleteCommand.delete(name);
+            return true;
+        }
+        return false;
     }
 }

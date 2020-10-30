@@ -117,7 +117,10 @@ Expected outcome:
      `add Friends 3 10,20,30 25` <br><br>
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
-  <br>_Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
+>**[NOTE]**
+>Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
+>
+
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "400">
   &nbsp;
