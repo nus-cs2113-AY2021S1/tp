@@ -5,6 +5,7 @@ import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+
 /**
  * Represents the command call when the user wants to sort the list.
  */

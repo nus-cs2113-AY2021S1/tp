@@ -19,9 +19,9 @@ public class NuSchedule {
     private static BusStopList busStops;
     private static LocationList locations;
     private final UI ui;
-    private UserInfo userInfo=new UserInfo("","");
+    private UserInfo userInfo = new UserInfo("", "");
 
-    public NuSchedule(String ...filePaths) {
+    public NuSchedule(String... filePaths) {
         ui = new UI();
 
         busStops = new BusStopList();
@@ -36,7 +36,7 @@ public class NuSchedule {
         }
         try {
             events = new EventList(storage.loadEvents(locations));
-            userInfo= storage.loadUserInfo();
+            userInfo = storage.loadUserInfo();
         } catch (NuScheduleException e) {
             ui.showLoadingError();
             events = new EventList();
@@ -73,6 +73,6 @@ public class NuSchedule {
 
 
     public static void main(String[] args) {
-        new NuSchedule("data/events.txt","data/UserInfo.txt").run();
+        new NuSchedule("data/events.txt", "data/UserInfo.txt").run();
     }
 }
