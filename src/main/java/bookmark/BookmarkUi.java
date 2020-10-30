@@ -8,11 +8,11 @@ public class BookmarkUi {
 
     }
 
-    //TODO: make this print the list when entering
     public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to bookmark mode!");
-        System.out.println("Choose your category by typing \"bm <category index>!\"");
-        // showBookmarkCategoryList();
+        System.out.println("You can use this mode to bookmark your links for easier access!");
+        System.out.println("\nChoose your category by typing \"bm <category index>!\"");
+        System.out.println("Otherwise, insert \"help\" to find the list of commands available");
     }
 
     public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
@@ -31,7 +31,7 @@ public class BookmarkUi {
         } else {
             int i = 1;
             for (BookmarkList link: links) {
-                System.out.println(i + "." + link);
+                System.out.println("\t" + i + "." + link);
                 i++;
             }
         }
@@ -45,7 +45,7 @@ public class BookmarkUi {
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
         System.out.println("Here is the list");
         for (int i = 0; i < categories.size(); i++) {
-            System.out.println("Category: " + categories.get(i).getName());
+            System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
             showBookmarkLinkList(categories.get(i).getLinks());
         }
     }

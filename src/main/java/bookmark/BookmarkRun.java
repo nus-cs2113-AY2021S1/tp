@@ -5,20 +5,26 @@ import exceptions.InvalidCommandException;
 import studyit.StudyItLog;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BookmarkRun {
-    private ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
+    private ArrayList<BookmarkCategory> bookmarkCategories;
     private BookmarkUi bookmarkUi;
     private BookmarkParser bookmarkParser;
     private BookmarkStorage bookmarkStorage;
-    private int mode;
+    private int mode = 0;
 
     public BookmarkRun() {
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
         bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
-        bookmarkCategories = bookmarkStorage.loadFile();
+        try {
+            bookmarkCategories = bookmarkStorage.loadFile();
+        } catch (IOException e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
+
         StudyItLog.logger.info("Bookmark mode initialized");
     }
 

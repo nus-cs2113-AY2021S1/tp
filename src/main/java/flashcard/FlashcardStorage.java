@@ -41,7 +41,7 @@ public class FlashcardStorage {
         }
     }
 
-    public void readFromFile(FlashcardDeck flashcardDeck) {
+    public void readFromFile(FlashcardDeck flashcardDeck) throws IOException {
         try {
             Scanner s = new Scanner(file);
             Flashcard flashcard;
@@ -54,6 +54,9 @@ public class FlashcardStorage {
             }
         } catch (FileNotFoundException e) {
             System.out.println("data/flashcard.txt is not found, creating a new file now!");
+
+            file.createNewFile();
+
             StudyItLog.logger.info(e + "\nflashcard storage file created");
         }
     }
