@@ -12,7 +12,7 @@ Wan Shi Jie Brendan<br>
 
 ## Table of Contents
 1. [Introduction](#intro)
-2. [Getting Started](#getting-started)<br>
+2. [Getting Started](#getting_started)<br>
 2.1 [Prerequisites](#prerequisites)<br>
 2.2 [Setting Up](#setting-up)<br>
 3. [Design](#design) <br>
@@ -45,7 +45,7 @@ This developer guide provides information on the architecture and design of the 
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
 to refer to even if you are already a contributor.
 
-## 2. Getting Started <a id="getting started"></a>
+## 2. Getting Started <a id="getting_started"></a>
 This section provides information to help you get NUSchedule up and running on your own computers.
 
 ### <a id="prerequisites">2.1 Prerequisites</a>
