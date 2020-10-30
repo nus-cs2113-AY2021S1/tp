@@ -67,7 +67,7 @@ This program can be run once it is compiled. If you have built its artifacts (.j
 
 ## Design
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
-NotUS is the main class of the application, and handles the initializing and execution of the appropriate classes.
+SCRUMptious is the main class of the application, and handles the initializing and execution of the appropriate classes.
 ### Architecture
 ![Figure X: Architecture Diagram](./image/developerguide/architecturediagram.png "Architecture Diagram UML")  
 The **Architecture Diagram** shown above describes the high level association operations of the application. 
