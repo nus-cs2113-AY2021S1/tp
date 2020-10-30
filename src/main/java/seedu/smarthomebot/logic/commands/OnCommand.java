@@ -10,6 +10,7 @@ import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
 
 public class OnCommand extends Command {
 
@@ -74,8 +75,8 @@ public class OnCommand extends Command {
 
     private CommandResult onByLocation() {
         if (!parameter.isEmpty()) {
-            return new CommandResult("There should be no parameter for on by location.");
-        }  else {
+            return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
+        } else {
             String outputResults = LINE;
             outputResults = onApplianceByLoop(outputResults);
             return new CommandResult(outputResults);

@@ -5,43 +5,74 @@ import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the ApplianceList of SmartHomeBot.
+ */
 public class ApplianceList {
 
     private static ArrayList<Appliance> applianceList;
 
+    /**
+     * Constructor of ApplianceList.
+     */
     public ApplianceList() {
-        applianceList = new ArrayList<>();
+        this.applianceList = new ArrayList<>();
     }
 
+    /**
+     * Method to add a new Appliance to the ApplianceList.
+     *
+     * @param appliance Appliance to add.
+     */
     public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
-            applianceList.add(appliance);
+            this.applianceList.add(appliance);
         } else {
             throw new DuplicateDataException();
         }
     }
 
+    /**
+     * Method to delete a Appliance from the ApplianceList.
+     *
+     * @param userEnteredName Appliance to remove.
+     */
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
         for (Appliance appliance : this.getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
-                applianceList.remove(appliance);
+                this.applianceList.remove(appliance);
                 return appliance;
             }
         }
         throw new ApplianceNotFoundException();
     }
 
+    /**
+     * Method to retrieve the Appliance from the ApplianceList.
+     *
+     * @param index Appliance to retrieve.
+     */
     public Appliance getAppliance(int index) {
-        return applianceList.get(index);
+        return this.applianceList.get(index);
     }
 
+    /**
+     * Method to retrieve all of the Appliances from the ApplianceList.
+     *
+     * @return the full list of the Appliances.
+     */
     public ArrayList<Appliance> getAllAppliance() {
-        return applianceList;
+        return this.applianceList;
     }
 
+    /**
+     * Method to check if the Appliance exists in the ApplianceList.
+     *
+     * @param toAddApplianceName Appliance to check.
+     */
     public Boolean isApplianceExist(String toAddApplianceName) {
         boolean isExist = false;
-        for (Appliance a : applianceList) {
+        for (Appliance a : this.applianceList) {
             if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
                 break;
@@ -50,6 +81,11 @@ public class ApplianceList {
         return isExist;
     }
 
+    /**
+     * Method to remove Appliances located in the user selected location in the ApplianceList.
+     *
+     * @param usersEnteredLocation Appliance to check.
+     */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
         for (int x = this.getAllAppliance().size() - 1; x >= 0; x--) {
             if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
@@ -57,5 +93,5 @@ public class ApplianceList {
             }
         }
     }
-    
+
 }

@@ -15,7 +15,6 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_TIME_FORMAT_ERROR;
 /**
  * Class representing the power consumption of appliances.
  */
-
 public class Power {
 
     private static final String DATE_TIME_FORMAT = "dd/MM/yyyy-HH:mm:ss";
@@ -26,6 +25,11 @@ public class Power {
     private double powerUsed;
     private double totalPowerConsumption;
 
+    /**
+     * Constructor for Power Class.
+     *
+     * @param wattage Wattage of appliance.
+     */
     public Power(String wattage) {
         this.wattage = Integer.parseInt(wattage);
         this.status = false;
@@ -146,6 +150,9 @@ public class Power {
         return totalHours;
     }
 
+    /**
+     * Computes power of Appliance to latest instance of duration where Appliance is on.
+     */
     private void computePower() {
         try {
             double totalTimeUsed = calculateTimeUsed();
@@ -158,6 +165,9 @@ public class Power {
         assert this.powerUsed >= 0 : "Power usage cannot be negative! " + this.powerUsed;
     }
 
+    /**
+     * Increment the total Power consumption of the Appliance.
+     */
     private void computeTotalPower() {
         computePower();
         this.totalPowerConsumption += Math.round(this.powerUsed * 100.0) / 100.0;

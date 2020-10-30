@@ -43,6 +43,8 @@ public class Messages {
     public static final String MESSAGE_TIME_FORMAT_ERROR = "Time format is wrong.";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = "The appliance is already ON. ";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = "The appliance is already OFF. ";
+    public static final String MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION =
+            "There should be no parameter for on by location.";
     public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data will not be entered";
     public static final String MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST =
             "Appliance or Location does not exist in the list.";
