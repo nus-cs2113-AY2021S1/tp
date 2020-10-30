@@ -356,7 +356,10 @@ Bunnies List commands allows you to collate your list of ideas in one place, mak
 
 Adds a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
+
 Format: `bunny i\IDEA g\[GENRE]`  
+
+Note: If you add a bunny with no genre then the genre will be left blank
 
 Example usages:
 - `bunny i\test idea 1`
@@ -375,9 +378,13 @@ bunny i\test idea 2 g\ fantasy
 [Jump to top](#fluffle-user-guide)
 
 #### Listing bunny ideas: `list bunny`
-Lists all available quizzes numbered by BUNNY_INDEX numbers.  
+
+If you want to view the list of bunnies you have collected, you can use the `list bunny` command to print the full list of bunnies.
+
 Format: `list bunny`  
+
 Example usage: `list bunny`  
+
 Example output:  
 ```
 list bunny
@@ -401,7 +408,9 @@ Here are the bunnies stored in the program:
 
 #### Filtering bunny ideas: `filter bunny`
 Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
+
 Format: `filter bunny i\IDEA g\[GENRE]`  
+
 Example usages:
 - filter bunny i\test idea 1  
 - filter bunny i\test idea 2 g\ fantasy
@@ -425,8 +434,8 @@ number bunny filter: 2
 [Jump to top](#fluffle-user-guide)
 
 #### Saving bunny ideas: `save bunny`
-Save the current list of bunnies in the program into the designated text file. 
-The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
+Save the current list of bunnies in the program into the designated text file. The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.
+
 Format: `save bunny`  
 
 Example usages:
@@ -443,7 +452,8 @@ Bunny list saved!
 [Jump to top](#fluffle-user-guide)
 
 #### Deleting a bunny idea: `delete bunny`
-Delete a selected bunny from the list of bunny ideas.
+You can delete a selected bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
+
 Format: `delete bunny BUNNY_INDEX`
 * `BUNNY_INDEX` is the index of the bunny you want to delete from the list
 
@@ -463,7 +473,8 @@ Bunny deleted:
 [Jump to top](#fluffle-user-guide)
 
 #### Generating a random bunny idea: `random bunny`
-The app will pick a random bunny from your list of plot bunnies for you to work on.
+The app can pick a random bunny from your list of plot bunnies for you to work on.
+
 Format: `random bunny`
 
 Example usages:
@@ -486,7 +497,7 @@ Random Bunny:
 Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random, so you can start writing right away.
 
 #### Generating names from name database: `name`
-You can generate a name randomly from the stored database of names.  
+Generates a name randomly from the stored database of names.  
 Format: `name`
 
 Example output:  
@@ -500,7 +511,7 @@ name 2
 [Jump to top](#fluffle-user-guide)
 
 #### Listing names from name database: `list name`
-You can display all the names currently stored in the names database.  
+Displays all the names currently stored in the names database.  
 Format: `list name`
 
 Example usages:
@@ -519,7 +530,7 @@ list name
 [Jump to top](#fluffle-user-guide)
 
 #### Finding names from name database: `filter name`
-You can get the list of names after filtering from the stored list of names.  
+Gets the list of names after filtering from the stored list of names.  
 Format: `filter name NAME`
 
 Example usage:
@@ -549,7 +560,7 @@ filter name name
 [Jump to top](#fluffle-user-guide)
 
 #### Adding names from name database: `add name`
-You can add a name to the list of names currently stored in the names database.
+Adds a name to the list of names currently stored in the names database.
 Format: `add name NAME`
 
 Example usages:
@@ -566,7 +577,7 @@ name 3 has been added to the Names list!
 [Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
-You can remove a name from the list of names currently stored in the names database.
+Removes a name from the list of names currently stored in the names database.
 Format: `delete name INDEX`
 
 Example usages:
