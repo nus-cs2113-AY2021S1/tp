@@ -34,7 +34,7 @@
     1. [Storage](#storage)
         1. [Location](#location)
         1. [Loading Data](#loading-data)
-            1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)
+        1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)
         1. [Saving Data](#saving-data)
             1. [When the Program Exits](#when-the-program-exits)
             1. [Changes Made to the Data](#changes-made-to-the-data)
@@ -509,7 +509,7 @@ The program will exit immediately with an **exit code 1** if any of the conditio
 - Conversion error due to missing properties.
 - Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
-##### Converting and Mapping of JSON to Objects
+#### Converting and Mapping of JSON to Objects
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
   
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
@@ -525,12 +525,15 @@ As explained in [Storage Component](#storage-component), each model class except
       3. Call `fromJson()` of the newly created object, passing the property as the parameter (e.g. `Sprint.fromJson()`).
       4. New object's `fromJson()` will **repeat the same process again under Step 4** for its own properties.  
       
-*`Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
+* `Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
+ the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
 #### Saving Data
 ![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
 
-Data will be saved under two scenarios: 1. When the program exits. 2. Changes made to the data. 
+Data will be saved under two scenarios: 
+1. When the program exits. 
+1. Changes made to the data. 
 
 ##### When the Program Exits
 `Scrumptious` will call `destroy()` which calls `save()` before it returns.
@@ -546,18 +549,24 @@ After executing the command by calling `execute()`, the program will call `save(
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
- 2. **\*Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
+ 2. **Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
     
-*`Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String` representation.
+* `Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
+` representation.
     
 
 ### Target user profile
 
-{Describe the target user profile}
+**_SCRUMptious_** is a command-line software targeted to project managers, team leaders and enterprises using the
+SCRUM methodology (agile) for product and project development. It is primarily catered to users who wish to
+develop a product in team using an organized framework. 
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+**_SCRUMptious_** solves the problem faced by teams during development. 
+It helps teams to keep up with rapid change and innovations that come in the course of development,
+mainly due to change in requirements by the customer. It is suitable for teams with clear focus, and limits
+distractions whilst promoting teamwork and collaboration.
 
 ## User Stories
 
@@ -581,7 +590,7 @@ When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize(
 {Give non-functional requirements}
 
 ## Glossary
-
+The terms listed in this glossary are in alphabetical order.
 * *glossary item* - Definition
 
 ## Instructions for manual testing
