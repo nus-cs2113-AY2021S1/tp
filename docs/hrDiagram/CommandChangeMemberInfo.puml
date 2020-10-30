@@ -1,0 +1,21 @@
+@startuml
+
+ -> ":CommandChangeMemberInfo": execute()
+activate ":CommandChangeMemberInfo"
+activate ":MemberList"
+activate ":MemberList" #DarkSalmon
+":CommandChangeMemberInfo" -> ":MemberList" : findMemberByName()
+activate ":MemberList"
+":MemberList" --> ":CommandChangeMemberInfo" : m=findMemberByName()
+deactivate ":MemberList"
+opt m == null
+end
+":CommandChangeMemberInfo" -> ":MemberList" : changeMemberInfo()
+activate ":MemberList"
+":MemberList" -> ":Member" : toString()
+activate ":Member"
+return
+return output
+return output
+
+@enduml

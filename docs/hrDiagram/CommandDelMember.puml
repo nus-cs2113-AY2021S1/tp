@@ -1,0 +1,18 @@
+@startuml
+
+ -> ":CommandDelMember": execute()
+activate ":CommandDelMember"
+activate ":MemberList"
+activate ":MemberList" #DarkSalmon
+":CommandDelMember" -> ":MemberList" : deleteFromList()
+activate ":MemberList"
+":MemberList" -> ":Member" : toString()
+activate ":Member"
+return
+":MemberList" -> ":Member": remove()
+activate ":Member"
+return output
+return output
+return output
+
+@enduml

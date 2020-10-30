@@ -5,7 +5,7 @@ activate ":CommandEventDel"
 activate ":EventList"
 activate ":EventList" #DarkSalmon
 alt isInteger
-    ":CommandEventDel" -> ":EventList" : deleteEvent()
+   ":CommandEventDel" -> ":EventList" : deleteEvent()
     activate ":EventList"
     ":EventList" -> ":Event": remove()
     activate ":Event"
@@ -19,9 +19,11 @@ else else
 ":CommandEventDel" -> ":EventList" : clearEvents()
  activate ":EventList"
  activate ":CommandEventDel"
- ":EventList" -> ":Event": clear()
-
- return
+ ":EventList" -> ":Event":  clear()
+ activate ":Event"
+ destroy ":Event"
+ deactivate ":Event"
+ deactivate ":EventList"
  return output
  deactivate ":EventList"
  return output

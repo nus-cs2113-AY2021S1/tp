@@ -32,19 +32,8 @@ are interested in learning more about the technical details of the various featu
 Refer to the guide here.
 
 ## 3. Design and Implementation
-
-![Architecture](BackendDiagram/Architecture.png)
-
-The **Architecture Design** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-**`Duke`** is the main class of the application, and handles the app launch, initializing the appropriate classes to be used.
-
-The rest of the app consists of the below:
-
-* [**`UI`**] : The UI of the App.
-* [**`Logic`**] : The command executor.
-* [**`Model`**] : Holds the data of the App in memory.
-* [**`Storage`**] : Reads data from, and writes data to, the hard disk.
+This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. 
+Diagrams found in our documentation were generated using PlantUML and references were made to addressbook-level2 for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 
 ### 3.1. Input Parsing
 ![Parser](BackendDiagram/ParserFlow.png)
@@ -256,17 +245,19 @@ The sequence diagram of changing information of a finance log entry is shown bel
 
 
 ### 3.4. Event
-The diagram below shows the architecture for Event feature.
+The diagram below shows the architecture for Event feature. (Coming soon)
 
 ![](EventDiagram/EventArchitecture.png)
 
 
 There are a total of 6 commands under Event feature.
- `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`. 
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`(coming soon),`CommandDelEventAttendance`(coming soon), `CommandViewEventAttendence`(coming soon). 
+ 
  The implementation for each command is described in detail below.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
-3.4.1.1. Current Implementation  
+
+**3.4.1.1. Current Implementation**
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
@@ -296,13 +287,20 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
+**3.4.1.2. Design Considerations**
+Aspect : User adds the same event multiple times
+Alternative(current choice) : The program will remind user that the event has already been added.
+
+Aspect : User adds an event with a past date
+Alternative(current choice) : The program will remind user that the date is past.
+
 The sequence diagram for deleting a particular event or all events is as shown below:
 
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
-**3.5.2. Listing Events** `CommandEventList`
+**3.4.2. Listing Events** `CommandEventList`
 
-3.5.2.1 Current implementation
+3.4.2.1 Current implementation
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
 It implements the following operation:  
@@ -337,7 +335,7 @@ It implements the following operation:
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
  
-**3.4.4: Displaying countdown to upcoming events** `CommandEventCountdown`
+**3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
 Current Implementation
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
@@ -349,7 +347,7 @@ The sequence diagram for displaying countdown is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
 
-**3.4.5: Mark an event as completed** `CommandEventStatus`
+**3.4.5. Mark an event as completed** `CommandEventStatus`
 
 Current Implementation
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
@@ -361,8 +359,68 @@ The sequence diagram for marking an event as done is as shown below:
 
 ![CommandEventStatus](EventDiagram/SequenceDiagram/CommandEventStatus.png)
 
+**3.4.6. Add/delete event participants feature** `CommandEventAdd` , `CommandEventDel` 
+3.4.6.1. Current Implementation  
+The `CommandAddEventAttendance` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
+The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
+They implement the following operations:  
+* `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
+* `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
+To delete a particular event, enter the index of the event.
+To delete all the events in the list, enter `all` instead of the index of the event.
+
+Given below is an example usage scenario and how add/delete event function behaves at each step.  
+
+Step 1. The user launches the application for the first time.   
+
+Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 8pm` command to add a new event with the name "arduino course", 
+the date of the event "2020-12-30" and the time "8pm" into event list. 
+The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `iphone12`, date as `2020-12030` and time as `8pm`.  
+
+Step 3. The user executes `event delEvent 1` command to delete the 1st event in the event list. The `event delEvent`
+command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be removed from `EventList`.  
+
+The sequence diagram for adding an event is as shown below:
+
+![CommandAddEventAttendance](EventDiagram/SequenceDiagram/CommandAddEventAttendance.png)
+
+The sequence diagram for deleting a particular event or all events is as shown below:
+
+![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandAddEventAttendance.png)
+
+**3.4.7. Listing Events** `CommandEventList`
+
+3.4.7.1 Current implementation
+The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
+
+It implements the following operation:  
+* `CommandEventList#execute()` - Lists all `Event` in `EventList`.  
+
+Given below is an example usage scenario and how the program list the events.  
+
+Step 1. After some `Event addEvent` commands, the user has created a `EventList` with some `Event`. Assuming there are 2 events in the list.
+The first `Event` has the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+
+![](EventDiagram/2Step1.png)
+
+Step 2.The user executes `event listEvent` command to list the `EventList`. The `event listEvent` command calls 
+`CommandEventList#execute()`, then every `Event` in `EventList` will be printed out. Nothing will be changed in `EventList`.  
+
+![](EventDiagram/Step2.png)
+
+The sequence diagram for listing events is as shown below:
+
+![](EventDiagram/SequenceDiagram/CommandEventList.png)
+
 ### 3.5. HR
-This section describes some noteworthy details on how features under HR are implemented. <br/>
+The diagram below shows the architecture for HR feature.<br/>
+
+![](hrDiagramPic/HrArchitecture.png)
+
+There are a total of 7 commands under HR feature.
+ `CommandAddMember`, `CommandDelMember`, `CommandViewMember`  ,`CommandListConnection`, `CommandSearchMember` , `CommandListProfAdmin` and `CommandChangeMemberInfo`. 
+ 
+The implementation for each command is described in detail below.
 
 **3.5.1. Add/delete member feature**  
 3.5.1.1. Current Implementation  
@@ -401,7 +459,20 @@ The following shortcut commands can achieve the same result: <br/>
 Step 3. The user executes `hr delMember 1` command to delete the member in the member list. The `hr delMember`
 command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`.  
 
+ The following shortcut commands can achieve the same result: <br/>
+ `hr delete 1`<br/>
+ `hr d 1`<br/>
+
 ![](hrDiagramPic/2-1S3.png)
+
+The sequence diagram for adding a member is as shown below:
+
+![CommandAddMember](hrDiagramPic/CommandAddMember.png)
+
+The sequence diagram for deleting a member is as shown below:
+
+![CommandDelMember](hrDiagramPic/CommandDelMember.png)
+
 
 **3.5.2. List the members**  
 3.5.2.1. Current Implementation  
@@ -412,15 +483,23 @@ It implements the following operation:
 
 Given below is an example usage scenario and how the program list the information of members.  
 
-Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
-"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
-"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".  
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. <br/>
+The first `Member` is "John Sterling" with phone number "12345678", email "123@gmail.com", role "member". <br/>
+The second `Member` is "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
 
 ![](hrDiagramPic/2-2S1.png)
 
 Step 2. The user executes `hr listMember` command to list the summary of `MemberList`. The `hr listMember` command calls 
 `CommandViewMember#execute()`, then every `Member` in `MemberList` and the contacts and roles will be printed out within
  the same line, separated by "|". Nothing will be changed in `MemberList`.  
+ 
+ The following shortcut commands can achieve the same result: <br/>
+ `hr list`<br/>
+ `hr l`<br/>
+ 
+ The sequence diagram for listing the members is as shown below:
+ 
+ ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
 
 **3.5.3. Change member information**  
 3.5.3.1. Current Implementation  
@@ -432,9 +511,9 @@ modified member information.
 
 Given below is an example usage scenario and how the program list the information of members.  
 
-Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
-"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
-"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. <br/>
+The first `Member` is "John Sterling" with phone number "12345678", email "123@gmail.com", role "member". <br/>
+The second `Member` is "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
 
 Step 2. The user executes `hr changeInfo /n john sterling /p 11111111 /r publicity director` command to change the phone
  number and role of the member with name "John Sterling" in the list. The `hr changeInfo` command calls 
@@ -445,6 +524,9 @@ sensitive.
 The following shortcut commands can achieve the same result: <br/>
 `hr c /n john Sterling /p 11111111 /r publicity director`<br/>
 
+The sequence diagram for changing contacts and role information of a member is as shown below:
+
+![CommandChangeMemberInfo](hrDiagramPic/CommandChangeMemberInfo.png)
 
 **3.5.4. Design Considerations**  
 Aspect: Changing member information 
@@ -552,4 +634,35 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 
 ## 8. Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+This section contains information on how to test CCA Manager to ensure that the basic functionalities are working.
+
+1. Start the application from a terminal window by using `java -jar CCAManager.jar`
+2. Add some entries with commands
+    * Use `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member` to add a new member 
+    * Use `finance addLog iPhone 12 Pro 1800` to add a new finance entry
+    * Use `event addEvent /n Autodesk course /d 2020-12-20 /t 8-10.30pm` to add a new event
+3. Check that the items have been added with the respective list commands
+    * Use `hr listmember` to show all the HR entries 
+    * Use `event listEvent` to list all the events
+    * Use `finance summary` to show a summary of all finance entries
+4. Type `bye` to exit the program
+5. Launch the application again.
+6. Repeat step 3 to verify that all the information entered has been saved 
+7. Type `event search /s course` to search for the event that you have entered
+8. Type `event countdown` to see a list of events sorted by days in increasing order
+9. Type `hr search /r member` to search for all members with the role of member
+10. Type `finance changeLog /i 1 /n buy cake 5.5` to modify the finance entry that you have entered
+11. Type `hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r admin` to modify the member entry entered earlier
+12. Type `event done 1` to set the status of the event to completed
+13. Type `hr list prof&admin` to show a list of members with the role prof or admin
+14. Type `event addAttendance /n Autodesk course /m Harry Potter` to add the member to the list of attendees
+15. Repeat step 3 to verify that all the information has been modified successfully
+16. Type `event listAttendance /n Autodesk course` to view the event attendance
+17. Type `event delAttendance /n Autodesk course /m Harry Potter` to delete the attendance record
+17. Clean up the entries by deleting them
+    * Use `event delEvent 1` to remove the event
+    * Use `finance dellog 1` to remove the finance log
+    * Use `hr delMember 1` to remove the member
+18. Type `bye` to exit the program
+19. Launch the application again and repeat step 3 to verify that all the entries have been deleted.
+
