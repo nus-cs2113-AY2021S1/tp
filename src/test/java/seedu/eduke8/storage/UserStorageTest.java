@@ -7,6 +7,7 @@ import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.Question;
+import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 
@@ -14,12 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserStorageTest extends Eduke8Test {
     private static final String DATA_TEST_USER_JSON = "data/test/user.json";
@@ -27,9 +23,18 @@ public class UserStorageTest extends Eduke8Test {
     private final TopicList topicList;
     private final BookmarkList bookmarkList;
 
-    UserStorageTest() {
+    UserStorageTest() throws Eduke8Exception {
         topicList = createTestTopicList();
-        bookmarkList = new BookmarkList(new ArrayList<>());
+        Topic topic = (Topic) topicList.find(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
+        QuestionList questionList = topic.getQuestionList();
+        bookmarkList = new BookmarkList();
+        Question questionOne = (Question) questionList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
+        questionOne.markAsShown();
+        bookmarkList.add(questionOne);
+        questionOne.markAsAnsweredCorrectly();
+        questionOne.getHint().markAsShown();
+        Displayable questionTwo = questionList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
+        questionTwo.markAsShown();
     }
 
     @Test
@@ -70,20 +75,22 @@ public class UserStorageTest extends Eduke8Test {
 
     @Test
     void load_exampleJson_returnsUserAttributesFromJson() throws ParseException, Eduke8Exception, IOException {
-        UserStorage userStorage = new UserStorage(DATA_TEST_USER_JSON, topicList, bookmarkList);
+        TopicList newTopicList = createTestTopicList();
+        BookmarkList newBookmarkList = new BookmarkList();
+        UserStorage userStorage = new UserStorage(DATA_TEST_USER_JSON, newTopicList, newBookmarkList);
 
         userStorage.load();
-        Topic topic = (Topic) topicList.find(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
+        Topic topic = (Topic) newTopicList.find(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
 
         Question questionOne = (Question) topic.getQuestionList().find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
         assertTrue(questionOne.wasAnsweredCorrectly());
         assertTrue(questionOne.wasHintShown());
-        assertNotNull(bookmarkList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION));
+        assertNotNull(newBookmarkList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION));
 
         Question questionTwo = (Question) topic.getQuestionList().find(PLACEHOLDER_QUESTION_TWO_DESCRIPTION);
         assertFalse(questionTwo.wasAnsweredCorrectly());
         assertFalse(questionTwo.wasHintShown());
-        assertNull(bookmarkList.find(PLACEHOLDER_QUESTION_TWO_DESCRIPTION));
+        assertNull(newBookmarkList.find(PLACEHOLDER_QUESTION_TWO_DESCRIPTION));
     }
 
     String getSaveTestPath() {

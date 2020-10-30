@@ -3,7 +3,9 @@ package seedu.eduke8.option;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OptionTest extends Eduke8Test {
     @Test
