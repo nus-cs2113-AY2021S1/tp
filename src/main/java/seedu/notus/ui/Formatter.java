@@ -205,10 +205,22 @@ public class Formatter {
      */
     public static ArrayList<String> formatEvent(Event event) {
         ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> reminders = event.getReminderPeriodsString();
+
+        if (reminders.size() == 0) {
+            reminders.add("None");
+        }
+
+        String reminderString = "Reminders:";
+        for (String reminder : reminders) {
+            reminderString = reminderString.concat(" " + reminder);
+        }
+
         result.add("Event: " + event.getTitle());
         result.add("Date: " + event.getStartDate().toString()
                 + EMPTY_SPACE.repeat(4) + "Time: " + event.getStartTime().toString());
-        result.add("Reminder: " + event.getIsToRemind());
+
+        result.add(reminderString);
         String repeatingString = "Repeating: ";
         String endRecurrenceDateString = "";
         if (event instanceof RecurringEvent) {

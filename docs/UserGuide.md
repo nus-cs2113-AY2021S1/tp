@@ -411,9 +411,13 @@ Adds an event to the list.
 
 Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss” <br>
-💡 Specifying [/repeat RECURRING] will set the event as a recurring event. <br>
-💡 Specifying [/remind REMIND] will set the program to remind the event.
+- Specifying [/repeat RECURRING] will set the event as a recurring event.
+- Specifying [/remind REMIND] will set the program to remind the event.
+
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 Repeat inputs can be `daily`, `weekly`, `monthly`, `yearly`<br>
+💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
+💡 Remind inputs can be chained to indicate multiple reminders
 
 Example of usage: 
 
@@ -433,6 +437,16 @@ Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop R
 - Edits the event at the specified INDEX. The index refers to the index number shown in the displayed events list. The index must be a **positive integer** (1, 2, 3, …).​
 - At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
+
+- Specifying [/repeat RECURRING] will set the event that type of event.
+- Specifying [/remind-add REMIND] will add that reminder to the event if it does not exist.
+- Specifying [/remind-drop REMIND] will delete that reminder from the event if it exists.
+- Specifying [/remind-add REMIND] will remove all reminders in the event if any exists.
+
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 Repeat inputs can be `none`, `daily`, `weekly`, `monthly`, `yearly`<br>
+💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
+💡 Remind inputs can be chained to indicate multiple reminders
 
 Example of usage: 
 
