@@ -181,7 +181,17 @@ Figure 7 below shows the sequence diagram when the user inputs the `clear` comma
 ![Sequence diagram for clear command](images/ClearCommandSequenceDiagram.png)
 
 _Figure 7: Sequence diagram for `clear` command_
+### 4.5 Delete command
 
+The `delete` command allows the user to delete an entry from either the exercise list, food list or goal list. The user can only delete one entry each time.
+
+The user's input is first parsed by the `Parser` class, which returns a `DeleteCommand` to `Fitr`. Then `DeleteCommand` is executed to delete the entry in the list (i.e. food list, exercise list or goal list) by calling `ListManager` and update the corresponding local data file by calling `StorageManager`.
+
+Figure 8 below shows the sequence diagram when the user inputs the `delete` command.
+
+![Sequence diagram for delete command](images/DeleteCommandSequenceDiagram.png)
+
+_Figure 8: Sequence diagram for `delete` command_
 ## Appendix A: Product Scope
 ### Target user profile
 
