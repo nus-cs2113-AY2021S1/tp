@@ -74,8 +74,8 @@ E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.
 *   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
 E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
-*   Order of parameters (`-n`, `-l`, etc.) are not important. <br/>
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not a parameter.
+*   Order of options (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-option fields. <br/>
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an option.
 
 > :bulb: This is what your input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
@@ -122,13 +122,13 @@ You would need 2 hour(s) 58 minute(s).
 ### 3.3 Browse through anime
 This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
 
-`browse` will also has various options to customise each browsing session by being able to sort the anime list. This can be done through the use of its optional parameters.
+`browse` will also has various options to customise each browsing session by being able to sort the anime list.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 *   `-s` will indicate how the list is sorted and will accept the values `name` or `rating` 
 *   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`
-*   The order of the parameter does not matter
-*   If no parameters or only `-o` is specified then it will display anime in no particular order.
+*   The order of the options does not matter
+*   If no option or only `-o` is specified then it will display anime in no particular order.
 
 <br/>
 
