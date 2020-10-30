@@ -118,16 +118,22 @@ Expected outcome:
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
 >**[NOTE]**
->Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
+>Note how the `10`,`20` and `30` are separated by commas without spaces in between.
 >
 
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "400">
   &nbsp;
- After keying in the input as shown in the image above, the next image shows the expected output.
+ If all things goes well, after keying in the input as shown in the image above, the next image shows the expected output.
  <img src = "images/addCommandUG/addResponse.PNG" width = "400">
   &nbsp;
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
+ 
+ If you already have an entry with the same name in your list, the program will prompt you as follows:
+ 
+ `This action will overwrite your existing data. Continue? (y/n)`
+ 
+ If you want to replace your current entry, enter `y`. If you would like to keep your current entry, enter `n`.
 
  >  **[NOTE]**
  >
