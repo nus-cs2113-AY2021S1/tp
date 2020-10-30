@@ -69,8 +69,8 @@ Shows all available commands to the user
 Format: `help`
 
 Example: `help`
-
-   ![](images/user_guide/help_image.PNG)   
+Output: 
+   ![](images/user_guide/helpCommand.png)   
 <br/><br/>
 ### Creating a location: `create`
 Adds a new location with a name. 
@@ -80,7 +80,9 @@ Format: `create [LOCATION_NAME]`
 
 Example: `create Bedroom1`
 
-   ![](images/user_guide/create_image.PNG) 
+Output: 
+
+   ![](images/user_guide/createCommand.png) 
 
 <br/><br/>
 ### Removing a location: `remove`
@@ -116,6 +118,7 @@ List of `TYPE_OF_APPLIANCE`
 Example: `add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 
 Output: 
+
 ```
 ADDING AIRCON1(3500W) in Bedroom1 ......ADDED
 ```
@@ -148,30 +151,26 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 Example: `on AIRCON1`
 
 Output: 
-```
-Switching AIRCON1(3500W) in Bedroom1 @ 25 Degrees.....ON
-```
-
+   
+   ![](images/user_guide/onCommand1.png) 
+   
 Example: `on AIRCON1 p/27`
 
 Output: 
-```
-Switching AIRCON1(3500W) in Bedroom1 @ 27 Degrees.....ON
-```
+   
+   ![](images/user_guide/onCommand2.png) 
 
 Example: `on FAN1 p/3`
 
 Output: 
-```
-Switching FAN1(3500W) in Bedroom1  @ Speed 3.....ON
-```
+   
+   ![](images/user_guide/onCommand3.png) 
 
-Example: `on Bedroom1`
+Example: `on bedroom1`
 
 Output: 
-```
-All appliance in "Bedroom1" are turned on 
-```
+   
+   ![](images/user_guide/onCommand4.png) 
 
 <br/><br/> 
 ### Switching off an appliance: `off`
@@ -186,7 +185,7 @@ Output:
 Switching: AIRCON1(3500W) in Bedroom1 ......OFF
 ```
 
-Example: `off Bedroom1`
+Example: `off bedroom1`
 
 Output: 
 ```
@@ -222,7 +221,7 @@ Here are the appliances in your list:
 4 . FAN3    | Location: Bedroom2 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
 ```
 
-Example: `list appliance l/Bedroom1`
+Example: `list appliance l/bedroom1`
 
 Output: 
 ```
