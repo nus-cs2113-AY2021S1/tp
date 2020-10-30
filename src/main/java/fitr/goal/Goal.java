@@ -1,10 +1,8 @@
-package fitr;
+package fitr.goal;
 
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
-
-import java.util.Objects;
 
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
@@ -51,7 +49,7 @@ public class Goal {
     }
 
     public void markAsCompleted() {
-        this.goalStatus = "100.0";
+        this.goalStatus = "✓";
     }
 
     public void setGoal(Goal goal, String goalStatus) {

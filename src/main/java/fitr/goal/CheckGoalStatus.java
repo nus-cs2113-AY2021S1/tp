@@ -1,13 +1,11 @@
 package fitr.goal;
 
-import fitr.Goal;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Calendar;
 
 public class CheckGoalStatus {
 
@@ -20,6 +18,9 @@ public class CheckGoalStatus {
         NumberFormat formatter = new DecimalFormat("#0.0");
 
         try {
+            if (status.equals("✓")) {
+                return status;
+            }
             if (goal.getDescription().contains("Burn less than ")) {
                 targetCalorie = Integer.parseInt(goal.getDescription().split(" ")[3]);
                 calorieDifference = targetCalorie - userBurntCalorie;

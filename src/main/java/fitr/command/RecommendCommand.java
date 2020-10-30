@@ -1,15 +1,14 @@
 package fitr.command;
 
-import fitr.Calorie;
-import fitr.Recommender;
-import fitr.StandardExercise;
+import fitr.calorie.Calorie;
+import fitr.exercise.Recommender;
+import fitr.exercise.StandardExercise;
 import fitr.list.StandardExerciseList;
-import fitr.exception.FitrException;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
-import fitr.Exercise;
+import fitr.exercise.Exercise;
 
 import java.io.IOException;
 
@@ -42,7 +41,7 @@ public class RecommendCommand extends Command {
         }
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
-                + "type y for yes or n for no!");
+                + "type y for yes");
 
         String checker = Ui.read();
         try {
@@ -62,13 +61,9 @@ public class RecommendCommand extends Command {
                     listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
                     storageManager.writeExerciseList(listManager.getExerciseList());
                 }
-            } else if (checker.toLowerCase().equals("n")) {
-                Ui.printCustomError("Okay! Next time then.");
             } else {
-                throw new FitrException();
+                Ui.printCustomError("Okay! Next time then.");
             }
-        } catch (FitrException e) {
-            Ui.printCustomError("Sorry, that is an invalid command");
         } catch (IOException e) {
             Ui.printCustomError("Sorry there is an error with the file");
         }

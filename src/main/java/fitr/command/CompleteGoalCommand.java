@@ -1,11 +1,8 @@
 package fitr.command;
 
-import fitr.Goal;
-import fitr.Recommender;
+import fitr.goal.Goal;
+import fitr.exercise.Recommender;
 import fitr.exception.FitrException;
-import fitr.list.ExerciseList;
-import fitr.list.FoodList;
-import fitr.list.GoalList;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;
@@ -13,7 +10,6 @@ import fitr.user.User;
 
 import java.io.IOException;
 
-import static fitr.common.Commands.COMMAND_COMPLETE;
 import static fitr.common.Commands.COMMAND_GOAL;
 
 /**

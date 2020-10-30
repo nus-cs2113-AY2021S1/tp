@@ -1,0 +1,52 @@
+@startuml
+skinparam Shadowing false
+
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+participant ":ClearCommand"
+participant ":ListManager"
+participant ":StorageManager"
+
+activate ":Fitr"
+":Fitr" -> "<<class>>\n:Parser" ++ : parse("clear ...")
+
+create ":ClearCommand"
+"<<class>>\n:Parser" -> ":ClearCommand" ++
+return
+return
+
+":Fitr" -> ":ClearCommand" ++ : execute()
+
+alt no arguments
+    ":ClearCommand" -> ":ListManager" ++ : clearExerciseList()
+    return
+    ":ClearCommand" -> ":ListManager" ++ : clearFoodList()
+    return
+    ":ClearCommand" -> ":ListManager" ++ : clearGoalList()
+    return
+else "exercise"
+    ":ClearCommand" -> ":ListManager" ++ : clearExerciseList()
+    return
+else "food"
+    ":ClearCommand" -> ":ListManager" ++ : clearFoodList()
+    return
+else "goal"
+    ":ClearCommand" -> ":ListManager" ++ : clearGoalList()
+    return
+end
+
+":ClearCommand" -> ":StorageManager" ++ : writeExerciseList(exerciseList)
+return
+":ClearCommand" -> ":StorageManager" ++ : writeFoodList(foodList)
+return
+":ClearCommand" -> ":StorageManager" ++ : writeGoalList(goalList)
+return
+
+":ClearCommand" --> ":Fitr"
+deactivate ":ClearCommand"
+'To position the delete symbol below activation bar
+":ClearCommand" -[hidden]-> ":Fitr"
+destroy ":ClearCommand"
+
+hide footbox
+@enduml

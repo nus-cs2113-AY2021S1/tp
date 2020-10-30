@@ -1,7 +1,7 @@
 package fitr.command;
 
-import fitr.Goal;
-import fitr.Recommender;
+import fitr.goal.Goal;
+import fitr.exercise.Recommender;
 import fitr.list.ListManager;
 import fitr.storage.StorageManager;
 import fitr.ui.Ui;

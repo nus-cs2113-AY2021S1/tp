@@ -1,0 +1,37 @@
+@startuml
+skinparam Shadowing false
+
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+participant ":HelpCommand"
+
+activate ":Fitr"
+":Fitr" -> ":Ui" : read()
+activate ":Ui"
+":Fitr" <-- ":Ui"
+deactivate ":Ui"
+
+":Fitr" -> "<<class>>\n:Parser" : parse("help")
+activate "<<class>>\n:Parser"
+create ":HelpCommand"
+"<<class>>\n:Parser" -> ":HelpCommand" ++
+return
+":Fitr" <-- "<<class>>\n:Parser"
+deactivate "<<class>>\n:Parser"
+
+
+":Fitr" -> ":HelpCommand" : execute()
+activate ":HelpCommand"
+":HelpCommand" -> ":Ui" : printHelpMessage()
+activate ":Ui"
+return
+
+":HelpCommand" --> ":Fitr"
+deactivate ":HelpCommand"
+'To position the delete symbol below activation bar
+":HelpCommand" -[hidden]-> ":Fitr"
+destroy ":HelpCommand"
+deactivate ":Fitr"
+
+hide footbox
+@enduml
