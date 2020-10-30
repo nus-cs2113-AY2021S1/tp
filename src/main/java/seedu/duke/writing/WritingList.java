@@ -69,7 +69,7 @@ public class WritingList {
                 System.out.println("This writing: " + writinglist.get(i).getTitle() + " has been deleted");
                 writinglist.remove(i);
                 idExists = 1;
-                System.out.println("You have " + writinglist.size() + "items remain");
+                System.out.println("You have " + writinglist.size() + " items remain");
                 countWritings--;
             }
         }

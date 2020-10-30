@@ -12,12 +12,13 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.duke.filters.WordsFilterTest.initializeTestDatabase;
 
 public class ClearLoaderTest {
     private static WritingList writings;
     private static ArrayList<Words> wordList;
 
-    private static void initializeTestDatabase() {
+    private static void initializeTestDatabaseForWriting() {
         LocalDate date = LocalDate.parse("28/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
         WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
@@ -29,7 +30,7 @@ public class ClearLoaderTest {
     @Test
     public void clearAll_getWritingSize() {
         WritingList.clearAll(writings);
-        initializeTestDatabase();
+        initializeTestDatabaseForWriting();
         assertEquals(5, WritingList.getWritingSize());
         WritingList.clearAll(writings);
         assertEquals(0, WritingList.getWritingSize());
@@ -38,7 +39,7 @@ public class ClearLoaderTest {
     @Test
     public void removeID_removeAll_noneOfWritingLeft() {
         WritingList.clearAll(writings);
-        initializeTestDatabase();
+        initializeTestDatabaseForWriting();
         assertEquals(5, WritingList.getWritingSize());
         writings.removeID(12);
         assertEquals(0, writings.getWritingSize());
@@ -47,7 +48,7 @@ public class ClearLoaderTest {
     @Test
     public void clearItems_clearThirdWriting() {
         WritingList.clearAll(writings);
-        initializeTestDatabase();
+        initializeTestDatabaseForWriting();
         String userInput1 = "clear type\\writing item\\3";
         /*try {
             ClearLoader.clearItems(userInput1, writings, wordList);
@@ -63,5 +64,12 @@ public class ClearLoaderTest {
     public void clearAnItem_InvalidClearCommand_WrongClearCommandFormatThrown() {
         String userInput2 = "clear type\\";
         assertThrows(WrongClearCommandFormat.class, () -> ClearLoader.clearItems(userInput2, writings, wordList));
+    }
+
+    @Test
+    public void clearByWronglyFormattedCommand_WrongCommandFormatThrown() {
+        initializeTestDatabase();
+        String userInput = "clear type\\word item\\-non dfad";
+        assertThrows(WrongClearCommandFormat.class, () -> ClearLoader.clearItems(userInput, writings, wordList));
     }
 }
