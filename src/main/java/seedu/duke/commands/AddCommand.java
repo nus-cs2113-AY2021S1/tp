@@ -13,7 +13,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Add a new show.
+     * Adds a new show.
      *
      *
      */
@@ -43,9 +43,18 @@ public class AddCommand extends Command {
         }
         if (isGoingToBeAdded) {
             ShowList.setShow(name, show);
+            Ui.printShowAdded(name);
+        } else {
+            Ui.printTerminated();
         }
     }
 
+    /**
+     * Check for conflict with existing shows.
+     * @param name Show Name
+     * @return true if we overwrite, false if we keep existing show
+     * @throws NullPointerException when there is no existing show with the same name
+     */
     private static boolean checkExisting(String name) throws NullPointerException {
         boolean exists = ShowList.doesShowExist(name);
         if (!exists) {

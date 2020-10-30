@@ -134,7 +134,18 @@ Expected outcome:
  `This action will overwrite your existing data. Continue? (y/n)`
  
  If you want to replace your current entry, enter `y`. If you would like to keep your current entry, enter `n`.
+ 
+ After this, the program will carry on based on your reply. 
+ 
+ If you replied `y`:
 
+`________________________________________________________________________________
+ friends was added to your watchlist.`
+ 
+ If you replied `n`:
+ 
+ `The process is terminated. Your existing data is kept`
+ 
  >  **[NOTE]**
  >
  >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.

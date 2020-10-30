@@ -323,6 +323,10 @@ public class Ui {
         System.out.println("This action will overwrite your existing data. Continue? (y/n)");
     }
 
+    public static void printTerminated() {
+        System.out.println("The process is terminated. Your existing data is kept");
+    }
+
     public static void printInvalidEpisodesInputException() {
         System.out.println(ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }

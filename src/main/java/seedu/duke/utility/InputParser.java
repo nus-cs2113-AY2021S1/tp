@@ -318,7 +318,7 @@ public class InputParser {
             Ui.printAddNameFormatException();
             return;
         }
-        Ui.printShowAdded(tokenizedInput[1]);
+
     }
 
     /**
