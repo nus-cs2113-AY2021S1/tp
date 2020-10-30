@@ -4,7 +4,7 @@ participant ":FinanceList" as FinanceList
 participant ":FinanceLog" as FinanceLog
 ->CommandFinanceChange:execute()
 activate CommandFinanceChange
-CommandFinanceChange -> FinanceList : changeLog()
+CommandFinanceChange -> FinanceList : changeFinanceLog()
 activate FinanceList
 FinanceList -> FinanceLog: setFinLog()
 activate FinanceLog
