@@ -319,6 +319,14 @@ public class Ui {
         System.out.println(ShowList.getShowList().get(name).toString());
     }
 
+    public static void promptOverwrite() {
+        System.out.println("This action will overwrite your existing data. Continue? (y/n)");
+    }
+
+    public static void printTerminated() {
+        System.out.println("The process is terminated. Your existing data is kept");
+    }
+
     public static void printInvalidEpisodesInputException() {
         System.out.println(ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
@@ -368,8 +376,8 @@ public class Ui {
         System.out.println(WatchTime.userReportString());
     }
 
-    public static void printEpisodeLargerThanExpected() {
-        System.out.println(ExceptionResponse.EXCEPTION_EPISODE_LARGER_THAN_EXPECTED);
+    public static void printInputLargerThanExpected() {
+        System.out.println(ExceptionResponse.EXCEPTION_INPUT_LARGER_THAN_EXPECTED);
     }
 
 }

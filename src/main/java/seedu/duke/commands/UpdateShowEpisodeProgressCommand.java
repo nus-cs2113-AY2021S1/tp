@@ -34,7 +34,7 @@ public class UpdateShowEpisodeProgressCommand extends Command {
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
         } catch (RuntimeException e) {
-            Ui.printEpisodeLargerThanExpected();
+            Ui.printInputLargerThanExpected();
         }
     }
 

@@ -182,6 +182,10 @@ illustrate the steps in a visual form.
  <br> 
 *Figure 1: Sequence Diagram for Edit Command*
 
+<img src = "images/edit_step_1.PNG" width = "400">
+   
+*Figure 2: Program FLow for Edit Command*
+
 **Step 1**
 
 * The user types in `edit friends` , where the show `friends` already exists in the showlist.
