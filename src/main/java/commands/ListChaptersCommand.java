@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.EmptyFileException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import storage.Storage;
@@ -10,26 +9,25 @@ import ui.Ui;
 import java.util.ArrayList;
 
 import static common.Messages.CHAPTER;
-import static common.Messages.MODULE;
 
 public class ListChaptersCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of chapters available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws EmptyFileException {
+    public void execute(Ui ui, Access access, Storage storage) {
         String result = listChapters(access);
         ui.showToUser(result);
     }
 
-    private String listChapters(Access access) throws EmptyFileException {
+    private String listChapters(Access access) {
         assert access.isModuleLevel() : "Not module level";
         ChapterList chapters = access.getModule().getChapters();
         ArrayList<Chapter> allChapters = chapters.getAllChapters();
         int chapterCount = chapters.getChapterCount();
 
         if (chapterCount == 0) {
-            throw new EmptyFileException(String.format(MESSAGE_DOES_NOT_EXIST, CHAPTER));
+            return String.format(MESSAGE_DOES_NOT_EXIST, CHAPTER);
         }
 
         StringBuilder result = new StringBuilder();

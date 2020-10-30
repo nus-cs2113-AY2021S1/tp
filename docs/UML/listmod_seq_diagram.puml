@@ -1,28 +1,92 @@
 @startuml
--> ":ListModulesCommand" : execute(ui, access, storage)
-activate ":ListModulesCommand"
-":ListModulesCommand" -> ":ListModulesCommand" : listModules(access, storage)
-activate ":ListModulesCommand"
-":ListModulesCommand" -> ":Access" : getAdmin()
-":ListModulesCommand" <-- ":Access"
-destroy ":Access"
-":ListModulesCommand" -> ":Admin" : getModules()
-":ListModulesCommand" <-- ":Admin" : modules
-destroy ":Admin"
-":ListModulesCommand" -> ":ModuleList" : getAllModules()
-":ListModulesCommand" <-- ":ModuleList" : allModules
-":ListModulesCommand" -> ":ModuleList" : getModuleCount()
-":ListModulesCommand" <-- ":ModuleList" : moduleCount
-destroy ":ModuleList"
-opt moduleCount = 0
-    <-- ":ListModulesCommand" : EmptyFileException
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":ListModulesCommand" as ListModulesCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Admin" as Admin MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> Parser : parse("list")
+activate Parser
+
+create ListModulesCommand
+Parser -> ListModulesCommand : ListModulesCommand()
+activate ListModulesCommand
+
+ListModulesCommand --> Parser : c
+deactivate ListModulesCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> ListModulesCommand : execute(Ui, Access, Storage)
+activate ListModulesCommand
+
+ListModulesCommand -> ListModulesCommand : listModules(Access, Storage)
+activate ListModulesCommand
+
+ListModulesCommand -> Access : getAdmin()
+activate Access
+
+Access --> ListModulesCommand : Admin
+deactivate Access
+
+ListModulesCommand -> Admin : getModules()
+activate Admin
+
+Admin--> ListModulesCommand : ModuleList
+deactivate Admin
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- ListModulesCommand
+destroy Admin
+
+ListModulesCommand -> ModuleList : getAllModules()
+activate ModuleList
+
+ModuleList --> ListModulesCommand : allModules
+deactivate ModuleList
+
+ListModulesCommand -> ModuleList : getModuleCount()
+activate ModuleList
+
+ModuleList --> ListModulesCommand : moduleCount
+deactivate ModuleList
+
+ref over ListModulesCommand
+when moduleCount == 0
 end
-loop go through all modules
-":ListModulesCommand" --> ":ListModulesCommand" : result
+
+loop go through all allModules
+ListModulesCommand -[hidden]-> ListModulesCommand
 end
-deactivate ":ListModulesCommand"
-":ListModulesCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":ListModulesCommand"
-deactivate ":ListModulesCommand"
+
+activate ListModulesCommand
+ListModulesCommand --> ListModulesCommand : result
+deactivate ListModulesCommand
+
+ListModulesCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> ListModulesCommand
+deactivate Ui
+
+[<-- ListModulesCommand
+deactivate ListModulesCommand
+
+destroy ModuleList
+destroy Module
 @enduml

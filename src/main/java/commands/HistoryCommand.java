@@ -56,11 +56,7 @@ public class HistoryCommand extends Command {
 
         result.append(MESSAGE_EXIST);
         for (History h : histories) {
-            if (histories.indexOf(h) == count - 1) {
-                result.append(histories.indexOf(h) + 1).append(".").append(h);
-            } else {
-                result.append(histories.indexOf(h) + 1).append(".").append(h).append("\n");
-            }
+            result.append("\n").append(histories.indexOf(h) + 1).append(".").append(h);
         }
         return result.toString();
     }
