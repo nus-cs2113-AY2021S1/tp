@@ -176,28 +176,39 @@ Example usage:
 Example Output:  
 `Are you sure you want to delete this item grass? Yes/no`
 There are two major types of clearing:
-**Clearing a writing: **
 
-* Clear a writing with respective order in the arraylist (in which the counter starts from 0)
+**Clearing a writing:**
+
+* <strong>Clear a writing with respective order in the arraylist (in which the counter starts from 0)</strong>
+
 Format: `clear type\writing item\0`
+
 Expected effect: clear the first writing stored in the database (the writing stays on the top expected to see when use command `stats` before apply command `clear`)
 
-* Clear a writing with respective ID number in the arraylist (in which the counter starts from 0)
+* <strong>Clear a writing with respective ID number in the arraylist</strong>
+
 Format: `clear type\writing item\-id5`
+
 Expected effect: clear the writing(s) with ID 5 in the database
 
-**Clearing a word: **
+**Clearing a word:**
 
-* Remove a noun from the database
+* <strong>Remove a noun from the database</strong>
+
 Format: `clear type\word item\-noungrass`
+
 Expected effect: Check the existence of word "grass" with type "noun" in the database and then remove it
 
-* Remove an adjective from the database
+* <strong>Remove an adjective from the database</strong>
+
 Format: `clear type\word item\-adjbeautiful`
+
 Expected effect: Check the existence of word "beautiful" with type "adj" in the database and then remove it
 
-* Remove a verb from the database
+* <strong>Remove a verb from the database</strong>
+
 Format: `clear type\word item\-verbkill`
+
 Expected effect: Check the existence of word "kill" with type "verb" in the database and then remove it
 
 [Jump to top](#fluffle-user-guide)
@@ -589,7 +600,8 @@ Currently, our application offers you with 2 options of “type”, which are �
 
 [Jump to top](#fluffle-user-guide)
 
-#### Choosing the “topic” of your writing: `topic` (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
+#### Choosing the “topic” of your writing: `topic` 
+#### (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
 Listing the available topic in the list and pop out the relevant keywords for your writing.
 ```
 start
