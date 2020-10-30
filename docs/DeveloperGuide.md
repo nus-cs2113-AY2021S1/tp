@@ -238,6 +238,12 @@ Aspect: User input format
     it takes longer time to execute the commands, including others.  
 
 
+The sequence diagram of changing information of a finance log entry is shown below:  
+
+![](financeDiagramPic/CommandFinanceChange.png)
+
+
+
 ### 3.4. Event
 The diagram below shows the architecture for Event feature. (Coming soon)
 
