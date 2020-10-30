@@ -1,29 +1,6 @@
 # User Guide for E-Duke-8
-
-Table of contents:
-- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
-  - [1. Introduction](#1-introduction)
-  - [2. Quick Start](#2-quick-start)
-  - [3. Features](#3-features)
-    - [3.1. Loading Data](#31-loading-data)
-    - [3.2. Welcome Page](#32-welcome-page)
-    - [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
-    - [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
-    - [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
-    - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
-    - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
-    - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-    - [3.9. Adding a note: `note add`](#39-adding-a-note-note-add)
-    - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note-delete)
-    - [3.11. Listing out notes: `note list`](#311-listing-out-notes-note-list)
-    - [3.12. Displaying stats: `stats`](#312-displaying-stats-stats)
-    - [3.13. Exiting the program: `exit`](#313-exiting-the-program-exit)
-    - [3.14. Saving user data](#314-saving-user-data)
-  - [4. FAQ](#4-faq)
-  - [5. Command summary](#5-command-summary)
-  - [6. Glossary](#6-glossary)
-        - [1. Command Line Interface (CLI)](#1-command-line-interface-cli)
-        - [2. Object-oriented Programming (OOP)](#2-object-oriented-programming-oop)
+* Table of Contents
+{:toc}
 
 ## 1. Introduction
 
@@ -231,7 +208,31 @@ Example of usage:
 note list
 ```
 
-### 3.12. Displaying stats: `stats`
+### 3.12. Bookmarking a question: `bookmark`
+
+Stores any question encountered in a quiz in a list.
+
+Note: 
+- Bookmarking a question can only be done during a quiz
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.13. Listing out all bookmarked questions: `bookmark`
+
+Lists out all the bookmarked questions and each of their four options.
+
+Note:
+- Listing out all bookmarked questions can only be done in the main menu
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.14. Displaying stats: `stats`
 
 Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -253,7 +254,7 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 
-### 3.13. Exiting the program: `exit`
+### 3.15. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -267,7 +268,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.14. Saving user data
+### 3.16. Saving user data
 
 User data will only be saved upon successful exit of the application through the `exit` command.
 You will see this message while the data saves:
