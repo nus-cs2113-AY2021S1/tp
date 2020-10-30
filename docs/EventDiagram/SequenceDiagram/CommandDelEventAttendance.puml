@@ -1,0 +1,56 @@
+@startuml
+ -> ":CommandDelEventAttendance": execute()
+
+activate ":CommandDelEventAttendance"
+":CommandDelEventAttendance" -> ":EventList" : deleteAttendance()
+activate ":EventList"
+
+opt event does not exist
+":EventList" -> ":EventList" : checkEventExistence()
+":EventList" --> ":CommandDelEventAttendance" : output
+end
+
+":EventList" -> ":EventList" : findEventByName()
+
+opt member does not exist
+activate ":MemberList"
+":EventList" -> ":MemberList" : checkMemberExistence()
+":MemberList" -> ":Event" : getEventParticipants()
+activate ":Event"
+return
+":MemberList" --> ":EventList"
+end
+
+activate ":MemberList"
+":EventList" -> ":MemberList" : findMemberIndex()
+":MemberList" -> ":Event" : getEventParticipants()
+activate ":Event"
+return index
+":MemberList" --> ":EventList" :index
+
+":EventList" -> ":Event" : getEventParticipants()
+activate ":Event"
+":Event" -> ":Event" : get()
+return getMemberName()
+
+":EventList" -> ":Event" : getEventParticipants()
+activate ":Event"
+":Event" -> ":Event" : remove()
+return output
+
+":EventList" -> ":Event" : eventParticipants
+activate ":Event"
+":Event" -> ":Event" : size()
+return output
+
+deactivate ":Event"
+deactivate ":MemberList"
+
+":EventList" --> ":CommandDelEventAttendance" : output
+deactivate ":EventList"
+deactivate ":CommandDelEventAttendance"
+
+
+
+
+@enduml
