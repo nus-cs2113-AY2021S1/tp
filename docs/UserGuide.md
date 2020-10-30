@@ -158,16 +158,20 @@ Expected outcome:
  
  After this, the program will carry on based on your reply. 
  
- If you replied `y`:
-
-`________________________________________________________________________________
- friends was added to your watchlist.`
+ If you replied `y` you should see this:
+ 
+ ```
+________________________________________________________________________________
+friends was added to your watchlist.
+```
+<br>
  
  If you replied `n`:
  
  `The process is terminated. Your existing data is kept`
  
  >  **[NOTE]**
+ >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
  >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.
  >
@@ -337,7 +341,7 @@ The rating of your show will also be shown if you have added it using the [addre
 
  Expected outcome :
   
- <img src = "images/delete/delete.PNG" width = "400">
+ <img src = "images/delete/delete.PNG" width = "350">
 
  &nbsp;
   
