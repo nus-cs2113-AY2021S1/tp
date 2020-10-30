@@ -19,7 +19,7 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.3 [List workspaces](#363-list-workspaces)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4 [Delete workspace](#364-delete-workspace)
 <br/>&nbsp;3.7 [Watchlist management](#37-watchlist-management)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create a new watchlist](#371-create-a-new-watchlist)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create a new watchlist](#371-create-new-watchlist)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.2 [List all created watchlist(s)](#372-list-all-created-watchlists)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.3 [Select a watchlist to use](#373-select-a-watchlist-to-use)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.4 [Delete a watchlist](#374-delete-a-watchlist)
@@ -39,6 +39,8 @@
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
+<br/>
+
 ## 1. Introduction
 **Welcome to AniChan!**
 
@@ -47,7 +49,7 @@ AniChan is a free desktop command-line application aimed to improve the efficien
 AniChan can also be used on all major operating systems such as Windows and Linux. You can refer to the [Quick Start](#2-quick-start) guide located below for more information on getting your journey started with AniChan!
 
 ### 1.1 Purpose
-This guide provides you with in-depth information on setting up AniChan and how to use the various features offered. 
+This guide provides you with in-depth information on setting up AniChan and how to use the various features offered.
 
 <br/>
 
@@ -55,27 +57,27 @@ This guide provides you with in-depth information on setting up AniChan and how 
 1.  Ensure that you have Java 11 or above installed.
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
-4.  Open **Command Prompt** and change directory into the folder. Run `java -jar anichan.jar`. 
+4.  Open **Command Prompt** and change directory into the folder. Run `java -jar AniChan.jar`.
 5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
 
 <br/>
 
 ## 3. Features 
-**Some useful notes on the Command Format**
+**Some useful notes on the command format of AniChan**
 
-*   Commands are case-sensitive.
+*   Commands are case-sensitive. <br/>
 E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
 
-*   In this guide words in UPPERCASE are values that can be supplied to the command.
-E.g. in `browse -s SORT_CATEGORY -p PAGE_NO.` where SORT_CATEGORY and PAGE_NO. are parameters that can be used with `browse -s name -o asc`.
+*   Words in UPPERCASE are values that can be supplied to the command. <br/>
+E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
 
-*   Square brackets indicate optional parameters.
-E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s name`.
-  
-*   The order of parameters are not important.
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` are both acceptable and will give you the same result.
+*   Angle brackets (`<MANDATORY>`) indicates a mandatory parameter, while square brackets (`[OPTIONAL]`) indicates an optional parameter. <br/>
+E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
-> :bulb: You would have an input prompt like the following: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
+*   Order of parameters (`-n`, `-l`, etc.) are not important. <br/>
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not a parameter.
+
+> :bulb: This is what your input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
 <br/>
 
@@ -94,6 +96,8 @@ Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   If the option `-wph` is not specified, the average translator's translation speed will be used to produce three estimation timings for you to consider.
 
 > :bulb: You have to specify the file extension too! E.g. `script.txt`.
+
+> :memo: Ensure the script file is in your workspace folder! E.g. it should be in `data/Default/script.txt` if your workspace name is "Default".
 
 <br/>
 
