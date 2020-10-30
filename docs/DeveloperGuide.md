@@ -161,7 +161,6 @@ episodes for each season respectively,Duration of an episode)
 overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
 
-
 **Step 6** 
 
 * The changes will be reflected to the user. Concurrently, the changes will be saved into the showList.txt file.
@@ -213,15 +212,16 @@ duration (of an episode) respectively.
 
 * The user inputs `done`, and the copy of the `Show` object is inserted into the `ShowList`, replacing the old object.
 
-
-
 ### DeleteCommand
   
 The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the
 `Show` from the `ShowList`. The `delete` command is invoked by the `InputParser` Method `parseDeleteCommand`.
 
-
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
+
+<img src = "images/DeleteCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for Delete Command*
 
 **Step 1**
 
@@ -282,6 +282,10 @@ updated to.
 
 Given below is an example usage scenario and how the `ChangeRatingCommand` Class behaves at each step.
 
+<img src = "images/ChangeRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for ChangeRating Command*
+
 **Step 1**
 
 * The user types in `changerating friends 3` , assuming that friends has been added by the user beforehand.
@@ -319,7 +323,12 @@ The `deleterating` command deletes the rating of the desired show.
 The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
 proceeds to delete the rating of the show that was inputted by the user.
 
+
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
+
+<img src = "images/DeleteRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for DeleteRating Command*
 
 **Step 1**
 
@@ -337,6 +346,7 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 3**
 
+
 * The `deleteRating` method starts with retrieving the `Show` from the `ShowList`
 
 **Step 4**
@@ -349,7 +359,35 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 6**
 
+<<<<<<< HEAD
+The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
+
+### Add Review Command
+
+The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
+Within the AddReview class
+
+**Step 1**
+
+The string is tokenised into separate words.
+
+**Step 2**
+
+The corresponding show is retrieved from the show list.
+
+**Step 3**
+
+The rating of the show is updated.
+
+**Step 4**
+
+The review of the rating is added to the show.
+
+**Step 5**
+
+
 * The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
+
 
 ### ChangeReviewCommand
 
@@ -463,6 +501,9 @@ The following sequence diagram summarises what happens when a user executes a `W
 
 ### UpdateShowEpisodeProgressCommand
 
+<<<<<<< HEAD
+The UpdateShowEpisodeProgressCommand extends by providing 
+=======
 The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing methods to change
  the current episode in the persistent watch history of the user. 
 
@@ -474,6 +515,7 @@ The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing meth
 **Step 2**
 
 *  `processCommand()` is called and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
+>>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
 
 ### UpdateShowSeasonCommand
 
