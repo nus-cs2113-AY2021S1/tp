@@ -71,11 +71,11 @@ public class ListCommand extends Command {
     }
 
     private CommandResult listLocation(int index) {
-        if (locationList.getLocations().size() == 0) {
+        if (locationList.getAllLocations().size() == 0) {
             return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
         }
         String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
-        for (String location : locationList.getLocations()) {
+        for (String location : locationList.getAllLocations()) {
             outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }

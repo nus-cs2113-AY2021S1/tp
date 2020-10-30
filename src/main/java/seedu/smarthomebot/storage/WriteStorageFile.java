@@ -26,7 +26,7 @@ public class WriteStorageFile extends StorageFile {
             createFile();
             clearFile();
             FileWriter myWriter = new FileWriter(FILE_PATH);
-            myWriter.write(locationList.getLocations().toString() + "\n");
+            myWriter.write(locationList.getAllLocations().toString() + "\n");
             for (int i = 0; i < applianceList.getAllAppliance().size(); i++) {
                 myWriter.write(applianceList.getAppliance(i).writeFileFormat() + System.lineSeparator());
             }

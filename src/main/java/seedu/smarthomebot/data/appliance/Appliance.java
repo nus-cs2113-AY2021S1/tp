@@ -19,6 +19,18 @@ public abstract class Appliance {
     protected String wattage;
     protected Power appliancePower;
 
+    /**
+     * Constructor for Appliance.
+     *
+     * @param name         name of appliance.
+     * @param location     location of appliance.
+     * @param wattage      wattage of appliance.
+     * @param locationList locations available in SmartHomeBot, appliance will only be created:
+     *                     Appliance will only be created when:
+     *                     1. location inputted is present in the locationList.
+     *                     2. User inputted name does not exist in locationList.
+     *
+     */
     public Appliance(String name, String location, String wattage, LocationList locationList)
             throws LocationNotFoundException, InvalidApplianceNameException {
 
@@ -60,6 +72,20 @@ public abstract class Appliance {
      */
     public static int getMaxLocationLength() {
         return maxLocationLength;
+    }
+
+    /**
+     * Converts String value into integer.
+     *
+     * @return the parameter in integer.
+     */
+    private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
+        try {
+            return Integer.parseInt(parameter);
+        } catch (NumberFormatException e) {
+            throw new InvalidNumericalValueException();
+        }
+
     }
 
     /**
@@ -195,19 +221,5 @@ public abstract class Appliance {
             return false;
         }
         return false;
-    }
-
-    /**
-     * Converts String value into integer.
-     *
-     * @return the parameter in integer.
-     */
-    private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
-        try {
-            return Integer.parseInt(parameter);
-        } catch (NumberFormatException e) {
-            throw new InvalidNumericalValueException();
-        }
-
     }
 }
