@@ -167,9 +167,43 @@ Got it! I've updated your personal information:
 
 ### Features related to the food database
 
-* To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE
-* To view all food in the database: data
- 
+#### To view all food in the database: `data`
+
+Displays a list of provided food database.
+
+Format: `data`
+
+Output example:
+```
+Here are the food items in the database:
+  1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0
+  2. Prawn Mee Soup(Dry)(Small) | calorie : 390 | protein : 0 | carbohydrate : 0 | fats : 0
+  3. Fried Hokkien Prawn Mee(Large) | calorie : 470 | protein : 0 | carbohydrate : 0 | fats : 0
+  4. Fried Hokkien Prawn Mee(Small) | calorie : 350 | protein : 0 | carbohydrate : 0 | fats : 0
+  5. Clay Pot Chicken | calorie : 440 | protein : 0 | carbohydrate : 0 | fats : 0
+  6. Black Pepper Chicken | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0
+  7. Ayam Penyet Set | calorie : 699 | protein : 0 | carbohydrate : 0 | fats : 0
+  8. Steamed Chicken Set  | calorie : 475 | protein : 0 | carbohydrate : 0 | fats : 0
+  9. Ikan Grouper Penyet Set | calorie : 669 | protein : 0 | carbohydrate : 0 | fats : 0
+  10. Bouillabaisse with cock crab and poached lobster | calorie : 520 | protein : 35 | carbohydrate : 45 | fats : 56
+  11. Chicken wings with Reblochon pomme pur??e | calorie : 450 | protein : 32 | carbohydrate : 25 | fats : 66
+  12. Sea bass with prawn tortellini, fennel pur??e and white wine sauce | calorie : 530 | protein : 25 | carbohydrate : 76 | fats : 43
+```
+
+#### To add a food from the database: `add` `Coming Soon!`
+
+Adds a desired food in the database into the DietBook.
+
+Format: `add n/FOOD_NAME x/PORTION_SIZE`
+
+Example of Usage:
+* `add n/Prawn Mee x/1` adds the first instance of food with a name that contains Prawn Mee with a portion of 1.
+
+Output example:
+```Here are the food items in DietBook:
+   1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0 -- (1)
+```
+
 ### Features related to the food list
 
 * To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]
