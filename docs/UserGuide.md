@@ -1,3 +1,4 @@
+
 # User Guide  
   
 ## 1.0 Introduction  
@@ -5,9 +6,6 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
-<br>
-
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 
 <br/><br/> 
@@ -155,16 +153,16 @@ Example of usage:
 * `mode planner`
 
 >Here are some examples of switching from the main menu of Zoomaster to the various modes.
->* When you are switching to the bookmark mode you would see the message shown below.
+>* When you are switching to the bookmark mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/><br/> 
->* When you are switching to the timetable mode you would see the message shown below.
+>* When you are switching to the timetable mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/><br/> 
->* When you are switching to the planner mode you would see the message shown below.
+>* When you are switching to the planner mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
 <a name="clear"></a>  
-#### Switch mode: `clear` (Zhan Hao)
+#### Clear screen: `clear` (Zhan Hao)
 This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
 ```
 Format: clear
@@ -181,14 +179,6 @@ Format: launch now
 ```
 
 <br/><br/> 
-<a name="clear"></a>  
-#### 2.1.4. Clear screen: `clear`
-This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
-```
-Format: clear
-```
-
-<br/><br/> 
 <a name="exit"></a>  
 #### Exit the app: `exit`  
 You can exit the application by using the exit command.
@@ -200,9 +190,9 @@ Format: exit
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
-
 ---
 <br/> 
+
 
 <a name="bookmarkmode"></a>  
 ### 5.2 Bookmark Mode  
@@ -215,7 +205,7 @@ Format: show
 ```
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### 2.2.2. Add bookmark: `add`  
+#### Add bookmark: `add`  
 Adds a URL bookmark with a description.  
 ```
 Format: add {DESCRIPTON} {URL}
@@ -230,7 +220,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### 2.2.3. Delete bookmarks: `delete`  
+#### Delete bookmarks: `delete`  
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -245,7 +235,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="findbookmark"></a>  
-#### 2.2.4. Find bookmarks: `find`  
+#### Find bookmarks: `find`  
 Finds bookmarks with matching description and prints them.
 ```
 Format: find {DESCRIPTION}
@@ -260,7 +250,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### 2.2.5. Launch bookmarks: `launch`  
+#### Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
 * Index
 * Matching description
@@ -278,7 +268,6 @@ Example of usage:
 * `launch cs2113t-website`  
   
 <br/>
-
 ---
 <br/> 
 
@@ -379,36 +368,38 @@ Example of usage:
 
 * Adding a module  
 input:  
-![](./images/addmoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addmoduleinput.PNG?raw=true)  
 output:  
-![](./images/addmoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
 
 
 * Adding a slot to a module  
 input:  
-![](./images/addslottomoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleinput.PNG?raw=true)  
 output:  
-![](./images/addslottomoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleoutput.PNG?raw=true)  
 
 * Adding a bookmark to a module  
 input:  
-![](./images/addbookmarktomoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleinput.PNG?raw=true)  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
 
 * Adding a bookmark to a slot  
 input:  
-![](./images/addbookmarktoslotinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotinput.PNG?raw=true)  
 output:  
-![](./images/addbookmarktoslotoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotoutput.PNG?raw=true)  
 
 * Chaining commands  
 input:  
-![](./images/addchaincommandinputnew.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandinputnew.PNG?raw=true)  
 output:  
-![](./images/addchaincommandoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandoutput.PNG?raw=true)  
 result:  
-![](./images/addresult.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addresult.PNG?raw=true)
+)  
+
 
 
 More examples:
@@ -524,7 +515,7 @@ and save the txt file. You can now add the module in Zoomaster.
 **clear**|`launch now`
 **launch now**|`clear`
 **exit**|`exit`
-***Bookmark Mode***|
+**Bookmark Mode**|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
