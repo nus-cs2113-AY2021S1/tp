@@ -1,4 +1,6 @@
 @startuml
+skinparam Shadowing false
+
 participant ":Fitr"
 participant "<<class>>\n:Parser"
 participant ":HelpCommand"
@@ -23,7 +25,11 @@ activate ":HelpCommand"
 ":HelpCommand" -> ":Ui" : printHelpMessage()
 activate ":Ui"
 return
-return
+
+":HelpCommand" --> ":Fitr"
+deactivate ":HelpCommand"
+'To position the delete symbol below activation bar
+":HelpCommand" -[hidden]-> ":Fitr"
 destroy ":HelpCommand"
 deactivate ":Fitr"
 

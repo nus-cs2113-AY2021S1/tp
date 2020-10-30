@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 85
+skinparam packageStyle Rectangle
+
+hide circle
+hide empty members
+
+skinparam Class {
+    BorderThickness 1
+    BorderColor #000000
+}
+
+class "Main user" #lightblue
+class "Local storage" #lightgreen
+
+package "" {
+    class Fitr
+    class Parser
+    class Ui
+    class User
+    class StorageManager
+    class ListManager
+    class Command
+    class Common #silver
+}
+
+"Main user" ..> Ui
+Fitr -d-> User
+Fitr -d-> Parser
+Ui -d-> Fitr
+Fitr -l-> Command
+Fitr --> StorageManager
+Fitr -> ListManager
+
+StorageManager ..> "Local storage"
+@enduml

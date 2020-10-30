@@ -1,4 +1,6 @@
 @startuml
+skinparam Shadowing false
+
 participant ":Fitr"
 participant "<<class>>\n:Ui"
 participant "<<class>>\n:Parser"
@@ -38,11 +40,12 @@ return
 
 ":AddFoodCommand" -> ":StorageManager" : writeFoodList()
 activate ":StorageManager"
-":StorageManager" ->] : Saved to local storage
 |||
 return
 |||
-return
+":AddFoodCommand" --> ":Fitr"
+deactivate ":AddFoodCommand"
+":AddFoodCommand" -[hidden]-> ":Fitr"
 destroy ":AddFoodCommand"
 
 hide footbox

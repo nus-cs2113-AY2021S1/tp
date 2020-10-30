@@ -1,4 +1,6 @@
 @startuml
+skinparam Shadowing false
+
 participant ":Fitr"
 participant "<<class>>\n:Parser"
 participant ":ViewCommand"
@@ -25,7 +27,10 @@ activate ":ViewCommand"
 activate ":Ui"
 return
 return
-return
+
+":ViewCommand" --> ":Fitr"
+deactivate ":ViewCommand"
+":ViewCommand" -[hidden]-> ":Fitr"
 destroy ":ViewCommand"
 
 hide footbox

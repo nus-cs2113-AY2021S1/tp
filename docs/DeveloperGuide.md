@@ -54,7 +54,7 @@ This section provides an overview of the design of the Fitr application.
 
 This section illustrates the high-level architecture of Fitr, as well as an illustration of the components used in Fitr.
 
-![Main class diagram](images/MainClassDiagram.png)
+![Main class diagram](images/ArchitectureDiagram.png)
 
 _Figure 1: Architecture diagram of Fitr_
 
@@ -77,6 +77,8 @@ Figure 2 below shows how the components work with one another, when a user enter
 ![Add food sequence diagram](images/AddFoodSequenceDiagram.png)
 
 _Figure 2: Sequence diagram when adding a food into Fitr_
+
+> :information_source: **Note**: Take note that the lifeline should end at the destroy symbol. Due to a limitation of PlantUML, the lifeline continues after the delete symbol.
 
 In Figure 2 above, the `Ui` class reads the user's input, which is then parsed by the `Parser` class. Once parsed, it creates a new `AddFoodCommand` class, which is then returned to the `Fitr` class to be executed. The `Food` object is created, then added into `FoodList`. The `FoodList` is then saved to local storage by the `StorageManager` class.
  

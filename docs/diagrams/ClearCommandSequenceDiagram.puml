@@ -42,7 +42,10 @@ return
 ":ClearCommand" -> ":StorageManager" ++ : writeGoalList(goalList)
 return
 
-return
+":ClearCommand" --> ":Fitr"
+deactivate ":ClearCommand"
+'To position the delete symbol below activation bar
+":ClearCommand" -[hidden]-> ":Fitr"
 destroy ":ClearCommand"
 
 hide footbox

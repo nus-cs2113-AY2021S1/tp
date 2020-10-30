@@ -1,4 +1,6 @@
 @startuml
+skinparam Shadowing false
+
 participant ":Fitr"
 participant "<<class>>\n:Parser"
 
@@ -15,15 +17,22 @@ return
 create ":EditEntryCommand"
 ":EditCommandParser" -> ":EditEntryCommand" ++
 return
-return
+
+":EditCommandParser" --> "<<class>>\n:Parser"
+deactivate ":EditCommandParser"
+'To position the delete symbol below activation bar
+":EditCommandParser" -[hidden]-> "<<class>>\n:Parser"
+destroy ":EditCommandParser"
 return
 
 ":Fitr" -> ":EditEntryCommand" : execute()
 activate ":EditEntryCommand"
 ":EditEntryCommand" -> ":EditEntryCommand" ++ : editExercise()
 return
-":EditEntryCommand" ->] : Saved to local storage
-return
+":EditEntryCommand" --> ":Fitr"
+deactivate ":EditEntryCommand"
+'To position the delete symbol below activation bar
+":EditEntryCommand" -[hidden]-> ":Fitr"
 destroy ":EditEntryCommand"
 deactivate ":Fitr"
 
