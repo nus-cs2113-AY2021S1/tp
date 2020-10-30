@@ -27,7 +27,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
    - about : Provides information about E-Duke-8.
    - topics : Lists CS2113/T topics that E-Duke-8 knows.
    - textbook : Provides you with a link to the CS2113/T website.
-   - quiz : Starts a quiz. Eg. `quiz t/OOP n/5` will start a quiz with five questions based on OOP concepts.
+   - quiz : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
    - hint	  :   Shows a hint to the current question.
    - exit : Exits the app.
 
@@ -37,7 +37,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 
 ℹ️ Notes about the command format:
 - Words in UPPER_CASE are the parameters that you can specify for your usage.
-- e.g. in `quiz t/TOPIC n/NUM_QUESTIONS`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, and 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz. 
+- e.g. in `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz, and 'TIMER' specifies the number of seconds given to complete each question. 
 
 ### 3.1. Loading Data 
 
@@ -117,9 +117,11 @@ What you should see:
 
 ### 3.7. Starting a quiz: `quiz`
 
-By following a specific input format for your command (seen below), you can start a quiz with the number of questions and topic as specified by you.
+By following a specific input format for your command (shown below), you can start a quiz with the number of questions, topic and time to complete each question as specified by you.
 
 While on a question, you can choose to answer it, ask for a hint if you are unsure of the answer or bookmark it for future reference!
+
+You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then proceed to the next question where the timer will restart. 
 
 A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. No point will be awarded for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a later section of this guide.
 
@@ -132,13 +134,13 @@ Note:
 - The first question will be immediately displayed to you once the quiz starts.
 - The quiz will only end when you have attempted all of the questions in the it.
 
-Input format: `quiz t/TOPIC n/NUM_QUESTIONS`
+Input format: `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`
 
 Example of usage:
 ```
-quiz t/OOP n/5
+quiz t/OOP n/5 s/10
 ```
-- This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP.
+- This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP. Each question will have to be completed within 10 seconds. 
 
 What you should see:
 
@@ -156,13 +158,16 @@ If you have entered the correct answer, this is what you will see:
 If you have entered the wrong answer, this is what you will see:
 ![quiz](./images/quiz_wrong.png)
 
+If you did not answer the question within the specified time, this is what you will see: 
+![quiz](./images/quiz_times_up.png)
+
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
 
 After the quiz ends, you will be prompted to enter in a new command. At this point, you are free to choose any feature of E-Duke-8 you want to access, or you can also start a new quiz!
 
 ### 3.8. Showing a hint: `hint`
-
+``
 Shows a hint to the current question.
 
 Example of usage:
@@ -295,8 +300,12 @@ This is store in the `user.json` file in the `data` folder and can be transferre
 | Viewing available commands    | `help`                                              |
 | Listing all topics        | `topics`  |
 | Accessing the CS2113T textbook content        | `textbook`                                                 |
-| Starting a quiz |  `quiz t/TOPIC n/QUESTIONS` <br/> e.g. `quiz t/OOP n/5`                                              |
+| Starting a quiz |  `quiz t/TOPIC n/QUESTIONS s/TIMER` <br/> e.g. `quiz t/OOP n/5 s/10`                                              |
 | Showing a hint        |           `hint`                                      |
+| Adding a note | `note add` | 
+| Deleting a note | `note delete` | 
+| Listing out notes | `note list` | 
+| Displaying statistics | `stats` | 
 | Exit        | `exit`                                                 |
 
 ## 6. Glossary
