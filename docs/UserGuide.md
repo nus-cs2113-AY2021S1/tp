@@ -75,21 +75,44 @@ For example, you can enter `goal food eat less food than yesterday` and this wil
 
 ```
 Okay! The following goal has been added:
-        [F] eat less food than yesterday
+    [F] eat less food than yesterday
 ```
 
-Fitr also understands particular keywords. For example, if you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
+#### 2.1.3.1 Adding a smart food goal
+Fitr also understands particular keywords. If you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
 Format: `goal food > NUMBER_OF_CALORIES` or `goal food < NUMBER_OF_CALORIES`
+
+For example, if your goal is to consume less than 800 calories, you can enter `goal food <800` and the expected result after the application records the smart food goal entry should be as follows:
+
+```
+Okay! The following goal has been added:
+    [F] Eat less than 800 calories
+```
 
 ### 2.1.4 Adding an exercise goal
 You can add an exercise goal to the application to encourage yourself to exercise more or less. 
 
 Format: `goal exercise GOAL_DESCRIPTION`
 
-Fitr also understands particular keywords. For example, if you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
+For example, you can enter `goal exercise do 50 push ups` and below shows the expected result after the application records the exercise goal entry:
+
+```
+Okay! The following goal has been added:
+    [E] do 50 push ups 
+```
+
+#### 2.1.4.1 Adding a smart exercise goal
+Fitr also understands particular keywords. If you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
 Format: `goal exercise > NUMBER_OF_CALORIES` or `goal exercise < NUMBER_OF_CALORIES`
+
+For example, you can enter `goal exercise >3800` and you should expect the following:
+
+```
+Okay! The following goal has been added:
+    [E] Burn more than 3000 calories
+```
 
 ## 2.2 Viewing Commands
 You can view various aspects of Fitr, such as commands the application supports and its usages, your profile details, previous food and exercise entries, and your goals. These features are documented below.
@@ -98,6 +121,64 @@ You can view various aspects of Fitr, such as commands the application supports 
 If you are unsure of what commands the application supports or the format and usage of them, you can use this command.
 
 Format: `help`
+
+Expected outcome:
+
+```
+These are commands Fitr understands:
+Do note that:
+ * On the left shows the command format while the right shows its usage
+ * Words formatted as UPPER_CASE are to be supplied by you
+ * Items in square brackets are [optional]
+ * Items in brackets are (additional information)
+
+------------------------------------------------------Profile-------------------------------------------------------
+view profile                                                          View your profile information
+view bmi                                                              View your BMI
+edit name                                                             Edit your profile name
+edit age                                                              Edit your profile age
+edit gender                                                           Edit your profile gender
+edit height                                                           Edit your profile height
+edit weight                                                           Edit your profile weight
+edit fitness                                                          Edit your profile fitness
+
+--------------------------------------------------------Food--------------------------------------------------------
+food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                      Add a food entry
+view food                                                             View your food entries
+view food DATE/MONTH/YEAR (dd/MM/yyyy)                                View your food entries on a specified date
+edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY
+                                                                      Edit your previous food entry
+delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                        Delete a food entry
+clear food                                                            Clear all your food entries
+
+------------------------------------------------------Exercise------------------------------------------------------
+recommend                                                             Get a recommended workout
+exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
+view exercise                                                         View your exercise entries
+view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
+edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT
+                                                                      Edit your previous exercise entry
+delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                    Delete an exercise entry
+clear exercise                                                        Clear all your exercise entries
+
+--------------------------------------------------------Goal--------------------------------------------------------
+goal food GOAL_DESCRIPTION                                            Add a food goal
+goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES      Add a smart food goal
+goal exercise GOAL_DESCRIPTION                                        Add an exercise goal
+goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT      Add a smart exercise goal
+view goal                                                             View your goals
+edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                         Edit your previous goal entry
+complete goal INDEX                                                   Mark your goal entry as complete
+delete goal INDEX                                                     Delete a goal entry
+clear goal                                                            Clear all your goal entries
+
+-------------------------------------------------------Other--------------------------------------------------------
+help                                                                  Display available commands
+view summary                                                          View calorie summary
+view summary DATE/MONTH/YEAR (dd/MM/yyyy)                             View calorie summary on a specified date
+clear                                                                 Clear all food, exercise and goal entries
+bye                                                                   Exit the application
+```
 
 ### 2.2.2 Viewing your profile
 If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.
@@ -112,24 +193,55 @@ Format: `view bmi`
 ### 2.2.4 Viewing food entries
 You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the food entries or only food entries for a specific date.
 
-To view all food entries, you may use the view food command.
+To view all food entries, you may use the `view food` command.
 
 Format: `view food`
 
-To view food entries for a specific day, you may enter the date at the back of the view food command. 
+Example of an expected outcome is as follows:
 
-Format: `view food DD/MM/YYYY`
+```
+Here is the list of your food:
+Date: 21/10/2020
+[1] Food: chicken rice
+    Cal: 807
+
+Date: 23/10/2020
+[1] Food: duck rice
+    Cal: 500
+
+Date: 25/10/2020
+[1] Food: ice chendol
+    Cal: 302
+
+Date: 30/10/2020
+[1] Food: apple
+    Cal: 50
+```
+
+#### 2.2.4.1 Viewing food entries on a specific date
+To view food entries for a specific day, you may enter the date at the back of the `view food` command. 
+
+Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
+
+For example, if you would like to view your exercises on 22/10/2020, you may key in `view food 23/10/2020`. The expected outcome should be similar to below:
+
+```
+Here is the list of your food:
+Date: 23/10/2020
+[1] Food: duck rice
+    Cal: 500
+```
 
 For example, if you would like to view your food entries on 26/10/2020, you may key in `view food 26/10/2020`.
 
 ### 2.2.5 Viewing exercise entries
 You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
 
-To view all exercise entries, you may use the view exercise command.
+To view all exercise entries, you may use the `view exercise` command.
 
 Format: `view exercise`
 
-Expected outcome:
+Example of an expected outcome is as follows:
 ```
 Here is the list of your exercises:
 Date: 21/10/2020
@@ -149,7 +261,8 @@ Date: 24/10/2020
     Burnt Cal: 5
 ```
 
-To view exercises for a specific day, you may enter the date at the back of the view exercise command. 
+#### 2.2.5.1 Viewing exercise entries on a specific date
+To view exercises for a specific day, you may enter the date at the back of the `view exercise` command. 
 
 Format: `view exercise DD/MM/YYYY`
 
@@ -171,19 +284,20 @@ If you want to see the calories you consumed from food or burnt from exercise, y
 
 Format: `view summary`
 
-You may also choose to view the summary for a specific day by specifying a date at the back of view summary.
+#### 2.2.7.1 Viewing calorie summary of a specific date
+You may also choose to view the summary for a specific day by specifying a date at the back of `view summary`.
 
-Format: `view summary DD/MM/YYYY`
+Format: `view summary DATE/MONTH/YEAR (dd/MM/yyyy)`
 
-For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 22/10/2020`, and you should get an output similar to below:
+For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 25/10/2020`, and you should get an output similar to below:
 ```
-Date: 22/10/2020
+Date: 25/10/2020
 Total calorie consumed:
-0
+382
 Total calorie burnt:
-23
+74
 Net calorie:
--23
+308
 ```
 
 ## 2.3 Editing Commands
@@ -192,14 +306,14 @@ You can edit various aspects of Fitr, such as your profile, previous food and ex
 ### 2.3.1 Editing your profile
 You can edit your name, age, gender, height, weight, and fitness level in your profile by using this command.
 
-Format: `edit name/age/gender/height/weight/fitness`
+Format: `edit name` or `edit age` or `edit gender` or `edit height` or `edit weight` or `edit fitness`
 
-For example, if you want to change your height to be 1.9 m. You can use `edit height` command and type `1.9` as shown below.
+For example, if you want to change your height to be 1.95 m. You can use `edit height` command and type `1.95` as shown below.
 
 ```
 Change your height (in m) to:
-1.9
-Height (in m) changed to: 1.9
+1.95
+Height (in m) changed to: 1.95
 ```
 
 ### 2.3.2 Editing a food entry
