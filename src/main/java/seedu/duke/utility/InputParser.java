@@ -307,6 +307,7 @@ public class InputParser {
         String[] tokenizedInput = input.split(" ");
         try {
             new AddCommand(tokenizedInput);
+            AddCommand.processCommand();
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
@@ -317,7 +318,7 @@ public class InputParser {
             Ui.printAddNameFormatException();
             return;
         }
-        Ui.printShowAdded(tokenizedInput[1]);
+
     }
 
     /**

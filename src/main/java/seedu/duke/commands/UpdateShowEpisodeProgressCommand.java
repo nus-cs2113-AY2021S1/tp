@@ -23,11 +23,18 @@ public class UpdateShowEpisodeProgressCommand extends Command {
         int episode = Integer.parseInt(inputs.get(2));
         try {
             Show show = ShowList.getShow(showName);
+            int currentSeason = show.getCurrentSeason();
+            int[] episodesForSeasons = show.getNumEpisodesForSeasons();
+            if (episode > episodesForSeasons[currentSeason]) {
+                throw new RuntimeException();
+            }
             show.setEpisodeWatched(episode);
             ShowList.setShow(showName, show);
             Ui.printChangeEpisode(showName);
         } catch (NullPointerException e) {
-            Ui.printBadInputException();
+            Ui.printNotFoundException();
+        } catch (RuntimeException e) {
+            Ui.printInputLargerThanExpected();
         }
     }
 

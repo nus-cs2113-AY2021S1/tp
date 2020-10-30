@@ -298,6 +298,15 @@ public class Ui {
         System.out.println("The show that you have specified is not in the list.");
     }
 
+    public static void printExceededWatchTimeLimit() {
+        System.out.println("You have exceeded your allocated watch time today!");
+        System.out.println("Your watch time deficit will be highlighted below :(");
+    }
+
+    public static void printUsedUpWatchTimeLimit() {
+        System.out.println("You have used up your allocated watch time today!");
+    }
+
     public static void printUpdatedTimeLimit(Integer newTime) {
         printLine();
         System.out.println("Your watch time limit has been updated to " + newTime + " minutes."
@@ -308,6 +317,14 @@ public class Ui {
         printLine();
         System.out.println("The show: " + name + " is found, here is the detailed information: ");
         System.out.println(ShowList.getShowList().get(name).toString());
+    }
+
+    public static void promptOverwrite() {
+        System.out.println("This action will overwrite your existing data. Continue? (y/n)");
+    }
+
+    public static void printTerminated() {
+        System.out.println("The process is terminated. Your existing data is kept");
     }
 
     public static void printInvalidEpisodesInputException() {
@@ -359,6 +376,9 @@ public class Ui {
         System.out.println(WatchTime.userReportString());
     }
 
+    public static void printInputLargerThanExpected() {
+        System.out.println(ExceptionResponse.EXCEPTION_INPUT_LARGER_THAN_EXPECTED);
+    }
 
 }
 

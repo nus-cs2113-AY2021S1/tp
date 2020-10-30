@@ -26,6 +26,8 @@ public class EditCommand {
         int initialNumSeasons = show.getNumSeasons();
         show.setNumSeasons(numSeasons);
         int[] episodes;
+        //when the updated number of seasons exceed current number of season, initialise the number of episodes of the
+        // new season to 1, otherwise remove the episodes for the extra seasons
         if (numSeasons > initialNumSeasons) {
             episodes = new int[numSeasons];
             for (int i = 0; i < initialNumSeasons; i++) {
@@ -63,9 +65,10 @@ public class EditCommand {
      * @param input number of episodes comma separated
      * @throws NullPointerException when input is empty
      */
-    public static void editEpisode(String input) throws NullPointerException {
+    public static void editEpisodes(String input) throws NullPointerException {
         String[] numOfEpisodes = input.split(",");
         int i = 0;
+        assert numOfEpisodes.length == show.getNumSeasons();
         int[] intNumOfEpisodes = new int[show.getNumSeasons()];
         for (String s : numOfEpisodes) {
             try {
@@ -80,6 +83,16 @@ public class EditCommand {
             throw new NullPointerException();
         }
         show.setNumEpisodesForSeasons(intNumOfEpisodes);
+    }
+
+    /**
+     * Changes the name of current show and add the update show into ShowList.
+     * @param newName the updated name
+     */
+    public static void editName(String newName) {
+        show.setName(newName);
+        DeleteCommand.delete(showName);
+        showName = newName;
     }
 
     /**
@@ -98,17 +111,18 @@ public class EditCommand {
         while (true) {
             String editCommand = in.nextLine();
             if (editCommand.startsWith("name")) {
-                show.setName(editCommand.substring(5));
+                editName(editCommand.substring(5));
             } else if (editCommand.startsWith("episode")) {
-                editEpisode(editCommand.substring(8));
+                editEpisodes(editCommand.substring(8));
             } else if (editCommand.startsWith("season")) {
                 editSeasons(editCommand);
             } else if (editCommand.startsWith("duration")) {
                 editDuration(editCommand);
             } else if (editCommand.equals("done")) {
+                ShowList.setShow(showName, show);
                 break;
             }
-            ShowList.setShow(showName, show);
+
         }
         Ui.printEditShow(showName);
     }

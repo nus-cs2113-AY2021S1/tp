@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 class AddCommandTest {
 
     public static AddCommand updateObject;
@@ -15,16 +18,21 @@ class AddCommandTest {
     public static void main() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes,29);
-        ShowList.setShow("friends", show);
-        assertEquals(show, ShowList.getShow("friends"));
-        String[] inputExample = {"add", "friends",  "3", "21,10,12","20"};
+        Show show = new Show("example", 3, episodes,29);
+        ShowList.setShow("example", show);
+        assertEquals(show, ShowList.getShow("example"));
+        String[] inputExample = {"add", "example",  "3", "21,10,12","20"};
         updateObject = new AddCommand(inputExample);
     }
 
     @Test
     public void processCommand() {
-        assertEquals(21, ShowList.getShow("friends").getEpisodesForSeason(1));
+        final InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("yes".getBytes());
+        System.setIn(in);
+        AddCommand.processCommand();
+        System.setIn(sysInBackup);
+        assertEquals(21, ShowList.getShow("example").getEpisodesForSeason(1));
 
     }
 }
