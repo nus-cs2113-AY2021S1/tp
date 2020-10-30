@@ -1,3 +1,4 @@
+
 # User Guide  
   
 ## 1.0 Introduction  
@@ -5,9 +6,6 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
-<br>
-
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 
 <br/><br/> 
@@ -86,7 +84,7 @@ These commands can be used by you in every mode of the app.
 
 
 <a name="help"></a>  
-#### Show help information: `help` (Yu Shing + Zhan Hao)
+#### 5.1.1 Show help information: `help` (Yu Shing + Zhan Hao)
 You can see the list of commands available in mode you are currently in.
 ```
 Format: help {COMMAND(optional)}
@@ -140,7 +138,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="mode"></a>  
-#### Switch mode: `mode` (Yu Shing)
+#### 5.1.2 Switch mode: `mode` (Yu Shing)
 You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
 
 There are three modes for Zoomaster, Bookmark, Timetable and Planner modes.
@@ -155,16 +153,16 @@ Example of usage:
 * `mode planner`
 
 >Here are some examples of switching from the main menu of Zoomaster to the various modes.
->* When you are switching to the bookmark mode you would see the message shown below.
+>* When you are switching to the bookmark mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/><br/> 
->* When you are switching to the timetable mode you would see the message shown below.
+>* When you are switching to the timetable mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/><br/> 
->* When you are switching to the planner mode you would see the message shown below.
+>* When you are switching to the planner mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
 <a name="clear"></a>  
-#### Switch mode: `clear` (Zhan Hao)
+#### 5.1.3 Clear screen: `clear` (Zhan Hao)
 This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
 ```
 Format: clear
@@ -172,7 +170,7 @@ Format: clear
 
 <br/><br/> 
 <a name="launchnow"></a>  
-#### Launch bookmarks of current lesson: `launch now` (Xing Rong)
+#### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
 You can launches the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, allowing you to launch your zoom session ahead of time.
   
@@ -181,16 +179,8 @@ Format: launch now
 ```
 
 <br/><br/> 
-<a name="clear"></a>  
-#### 2.1.4. Clear screen: `clear`
-This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
-```
-Format: clear
-```
-
-<br/><br/> 
 <a name="exit"></a>  
-#### Exit the app: `exit`  
+#### 5.1.5 Exit the app: `exit`  
 You can exit the application by using the exit command.
   
 ```
@@ -200,22 +190,22 @@ Format: exit
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
-
 ---
 <br/> 
+
 
 <a name="bookmarkmode"></a>  
 ### 5.2 Bookmark Mode  
 
 <a name="showbookmark"></a>  
-#### Show bookmarks: `show`  
+#### 5.2.1 Show bookmarks: `show`  
 It prints all bookmark in your bookmark list  
 ```
 Format: show
 ```
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### 2.2.2. Add bookmark: `add`  
+#### 5.2.2 Add bookmark: `add`  
 Adds a URL bookmark with a description.  
 ```
 Format: add {DESCRIPTON} {URL}
@@ -230,7 +220,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### 2.2.3. Delete bookmarks: `delete`  
+#### 5.2.3 Delete bookmarks: `delete`  
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -245,7 +235,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="findbookmark"></a>  
-#### 2.2.4. Find bookmarks: `find`  
+#### 5.2.4 Find bookmarks: `find`  
 Finds bookmarks with matching description and prints them.
 ```
 Format: find {DESCRIPTION}
@@ -260,7 +250,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### 2.2.5. Launch bookmarks: `launch`  
+#### 5.2.5 Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
 * Index
 * Matching description
@@ -278,7 +268,6 @@ Example of usage:
 * `launch cs2113t-website`  
   
 <br/>
-
 ---
 <br/> 
 
@@ -286,7 +275,7 @@ Example of usage:
 ### 5.3 Timetable mode    
 
 <a name="showtimetable"></a>
-#### Show timetable: `show` (Yu Shing)
+#### 5.3.1 Show timetable: `show` (Yu Shing)
 You will be able to see the timetable for a certain day or the whole week.  
 **today** can also be a `DAY` input to show the timetable for the current day based on system time.  
 If your selected timetable is the current day, you should be able to see a
@@ -319,7 +308,7 @@ Example of usage:
 
 <br/><br/>
 <a name="showmoduledetails"></a>
-#### Show module and slot details: `show` (Xing Rong)
+#### 5.3.2 Show module and slot details: `show` (Xing Rong)
 Shows the details of a module or slot that has been added.  
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
@@ -339,7 +328,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="addtimeslot"></a>
-#### Add module, time slot and bookmark: `add` (Xing Rong)
+#### 5.3.3 Add module, time slot and bookmark: `add` (Xing Rong)
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
   
@@ -379,36 +368,38 @@ Example of usage:
 
 * Adding a module  
 input:  
-![](./images/addmoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addmoduleinput.PNG?raw=true)  
 output:  
-![](./images/addmoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
 
 
 * Adding a slot to a module  
 input:  
-![](./images/addslottomoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleinput.PNG?raw=true)  
 output:  
-![](./images/addslottomoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleoutput.PNG?raw=true)  
 
 * Adding a bookmark to a module  
 input:  
-![](./images/addbookmarktomoduleinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleinput.PNG?raw=true)  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
 
 * Adding a bookmark to a slot  
 input:  
-![](./images/addbookmarktoslotinput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotinput.PNG?raw=true)  
 output:  
-![](./images/addbookmarktoslotoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotoutput.PNG?raw=true)  
 
 * Chaining commands  
 input:  
-![](./images/addchaincommandinputnew.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandinputnew.PNG?raw=true)  
 output:  
-![](./images/addchaincommandoutput.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandoutput.PNG?raw=true)  
 result:  
-![](./images/addresult.PNG)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addresult.PNG?raw=true)
+  
+
 
 
 More examples:
@@ -422,7 +413,7 @@ More examples:
 
 <br/><br/> 
 <a name="deletetimeslot"></a>
-#### Delete module, time slot and bookmarks: `delete`   (Xing Rong)
+#### 5.3.4 Delete module, time slot and bookmarks: `delete`   (Xing Rong)
 Deletes module, time slot or bookmarks.
 ```
 Format (deleting a module): 
@@ -448,7 +439,7 @@ Example of usage:
 <br/><br/> 
 
 <a name="edittimeslot"></a>
-#### Edit slot's module, title, time: `edit`  (Francisco) 
+#### 5.3.5 Edit slot's module, title, time: `edit`  (Francisco) 
 Edits the module, title or time for a specific slot.
 ```
 Format (editing the module of a slot): 
@@ -470,7 +461,7 @@ Example of usage:
 <br/><br/> 
 
 <a name="launchtimeslot"></a>
-#### Launch bookmarks from module, slot: `launch`  
+#### 5.3.6 Launch bookmarks from module, slot: `launch`  
 Launches the bookmarks of slots or the bookmarks of the module
 ```
 Format: (launch module bookmarks) 
@@ -524,7 +515,7 @@ and save the txt file. You can now add the module in Zoomaster.
 **clear**|`launch now`
 **launch now**|`clear`
 **exit**|`exit`
-***Bookmark Mode***|
+**Bookmark Mode**|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
