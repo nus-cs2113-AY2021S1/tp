@@ -2,6 +2,7 @@ package command;
 
 import eventlist.EventList;
 import exception.CreatingFileException;
+import exception.DataFileNotFoundException;
 import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
 import exception.NoEditEventDescriptionException;
@@ -37,7 +38,7 @@ class EditCommandTest {
     }
 
     @Test
-    void execute_IndexOutOfBounds_UndefinedEventException() throws CreatingFileException {
+    void execute_IndexOutOfBounds_UndefinedEventException() throws CreatingFileException, DataFileNotFoundException {
         Storage storage = new Storage("data/events.txt","data/UserInfo.txt");
         LocationList locations = new LocationList();
         storage.loadLocationData(locations.getLocationList());
