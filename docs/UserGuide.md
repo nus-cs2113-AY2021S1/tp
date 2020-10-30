@@ -177,17 +177,16 @@ Format: `off [APPLIANCE_NAME]` or `off [LOCATION]`
 Example: `off AIRCON1`
 
 Output: 
-```
-Switching: AIRCON1(3500W) in Bedroom1 ......OFF
-```
+   
+   ![](images/user_guide/offCommand1.png) 
+
 
 Example: `off bedroom1`
 
 Output: 
-```
-All appliance in "Bedroom1" are turned off 
-```
    
+   ![](images/user_guide/offCommand2.png) 
+
 <br/><br/> 
 ### Listing all the locations OR appliances: `list`
 List out all the appliances or all the location currently stored.
@@ -200,32 +199,22 @@ Format: `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]
 Example: `list location`
 
 Output: 
-```
-Here are the location you have entered:
-1: Bedroom1
-2: Bedroom2
-```
+   
+   ![](images/user_guide/listCommand1.png) 
+
 
 Example: `list appliance`
 
 Output: 
-```
-Here are the appliances in your list:
-1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: aircon | Parameter: 27 Degrees
-2 . FAN1    | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: fan    | Parameter: Speed 3
-3 . FAN2    | Location: Bedroom1 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
-4 . FAN3    | Location: Bedroom2 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
-```
+   
+   ![](images/user_guide/listCommand2.png) 
 
 Example: `list appliance l/bedroom1`
 
 Output: 
-```
-Here are the appliances in "Bedroom1"
-1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: aircon | Parameter: 27 Degrees
-2 . FAN1    | Location: Bedroom1 | Status: OFF   | Watt: 3500W | Type: fan    | Parameter: Speed 3
-3 . FAN2    | Location: Bedroom1 | Status: OFF   | Watt: 100 W | Type: fan    | Parameter: Speed 1
-```
+   
+   ![](images/user_guide/listCommand3.png) 
+
 
 <br/><br/> 
 ### Displaying the usage of appliance: `usage`
@@ -234,13 +223,9 @@ Display the current power usage of all appliances and total power consumption.
 Format: `usage`
 
 Output: 
-```
-Here are the power usage consumption:
-1 . AIRCON1 | Location: Bedroom1 | Status: OFF   | Usage: 0.27 kWh
-2 . FAN1    | Location: Bedroom1 | Status: OFF   | Usage: 0.12 kWh
+   
+   ![](images/user_guide/usageCommand.png) 
 
-Total power consumption: 0.39 kWh
-```
 
 <br/><br/> 
 ### Resetting all power usage in application: `p_reset`
@@ -248,18 +233,18 @@ Reset the current power usage of all appliances and total power consumption to z
 Format: `p_reset`
 
 Output: 
-```
-Power usage has been reset!
-```
+   
+   ![](images/user_guide/p_resetCommand.png) 
+
 
 <br/><br/> 
 ### Exiting the application: `exit`
 Exits the application.
 
 Format: `exit`
-
    
 <br/><br/>
+
 ### Saving the data
 SmartHomeBot will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
@@ -271,6 +256,7 @@ any command that changes the data. There is no need to save manually.
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
 that contains the data of your previous SmartHomeBot folder.
+
 
 ## Command summary
 
