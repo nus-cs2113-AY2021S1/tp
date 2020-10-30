@@ -1,23 +1,27 @@
 package anichan.human;
 
-import anichan.anime.Anime;
-import anichan.anime.AnimeData;
 import anichan.bookmark.Bookmark;
 import anichan.watchlist.Watchlist;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the Workspace of User.
+ */
 public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    public Bookmark bookmark;
-
+    private Bookmark bookmark;
     protected String workspaceName;
-
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 
+    /**
+     * Creates an instance of a Workspace.
+     *
+     * @param workspaceName name of new Workspace
+     */
     public Workspace(String workspaceName) {
         this.workspaceName = workspaceName;
 
@@ -25,12 +29,22 @@ public class Workspace {
         watchlistList = new ArrayList<>();
     }
 
+    /**
+     * Creates an instance of a Workspace.
+     *
+     * @param workspaceName name of new Workspace
+     */
     public Workspace(String workspaceName, ArrayList<Watchlist> watchlistList, Bookmark bookmark) {
         this.workspaceName = workspaceName;
         this.watchlistList = watchlistList;
         this.bookmark = bookmark;
     }
 
+    /**
+     * Gets name of the Workspace.
+     *
+     * @return name of Workspace
+     */
     public String getName() {
         return workspaceName;
     }
@@ -41,6 +55,10 @@ public class Workspace {
     }
 
     // ========================== Watchlist & Bookmark ==========================
+
+    public Bookmark getBookmark() {
+        return bookmark;
+    }
 
     public void setActiveWatchlist(Watchlist activeWatchlist) {
         this.activeWatchlist = activeWatchlist;
@@ -61,42 +79,4 @@ public class Workspace {
     public ArrayList<Watchlist> getWatchlistList() {
         return watchlistList;
     }
-
-    public String getBookmarkListInString(AnimeData animeData) {
-        return bookmark.getListInString(animeData);
-    }
-
-    public void removeBookmarkEntry(Integer bookmarkIndex) {
-        bookmark.removeAnimeBookmark(bookmarkIndex);
-    }
-
-    public void addBookmarkEntry(Integer animeIndex) {
-        bookmark.addAnimeBookmark(animeIndex);
-    }
-
-    public Integer getBookmarkSize() {
-        return bookmark.getBookmarkSize();
-    }
-
-    public Anime getAnimeFromBookmark(AnimeData animeData, Integer bookmarkIndex) {
-        return bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex);
-    }
-
-    public void editBookmarkEpisode(Integer bookmarkIndex, Integer bookmarkEpisode) {
-        bookmark.editAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode);
-    }
-
-    public String getBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
-        return bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex);
-    }
-
-    public void addBookmarkNote(Integer bookmarkIndex, String note) {
-        bookmark.addNote(bookmarkIndex, note);
-    }
-
-    public String getBookmarkNote(Integer bookmarkIndex) {
-        return bookmark.getNoteInString(bookmarkIndex);
-
-    }
-
 }

@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class InfoParserTest {
     protected static final String INVALID_PARAMETERS_TEST1 = "";
     protected static final String INVALID_PARAMETERS_TEST2 = "-a";
     protected static final String INVALID_PARAMETERS_TEST3 = "-n 1";
     protected static final String INVALID_FIELD_TEST1 = "-a Gundam";
+    protected static final String TOO_MANY_PARAMETERS = "-a 1 -a 2";
 
     @Test
     void parse_emptyDescription_throwsAniException() {
@@ -40,6 +42,14 @@ class InfoParserTest {
         InfoParser testParse = new InfoParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_FIELD_TEST1);
+        });
+    }
+
+    @Test
+    void parse_tooManyParameters_throwsAniException() {
+        InfoParser testParse = new InfoParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(TOO_MANY_PARAMETERS);
         });
     }
 }

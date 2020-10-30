@@ -13,6 +13,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class StorageManagerTest {
     private static final String VALID_WORKSPACE = "ValidWorkspace";
     private static final String EMPTY_FILE_WORKSPACE = "EmptyFileWorkspace";
@@ -38,7 +39,6 @@ class StorageManagerTest {
     private User userToSave;
     private User userToLoad;
     private ArrayList<Watchlist> watchlistListForLoad;
-    private ArrayList<Watchlist> watchlistListForSave;
 
     @BeforeEach
     public void setUp() throws AniException {
@@ -51,7 +51,6 @@ class StorageManagerTest {
         userToSave = new User("Testing", "Male");
 
         watchlistListForLoad = new ArrayList<>();
-        watchlistListForSave = new ArrayList<>();
 
         Watchlist firstWatchlist = new Watchlist("a");
         firstWatchlist.addAnimeToList(1);
@@ -62,9 +61,6 @@ class StorageManagerTest {
         secondWatchlist.addAnimeToList(2);
         secondWatchlist.addAnimeToList(3);
         secondWatchlist.addAnimeToList(4);
-
-        watchlistListForSave.add(firstWatchlist);
-        watchlistListForSave.add(secondWatchlist);
     }
 
     @Test
