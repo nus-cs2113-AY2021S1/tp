@@ -93,9 +93,8 @@ Format: `remove [LOCATION_NAME]`
 Example: `remove Bedroom1`
 
 Output: 
-```
-Removing LOCATION "Bedroom1"......REMOVED!
-```
+
+   ![](images/user_guide/removeCommand.png) 
 
 > Note: If there are appliances in the Location of 'LOCATION_NAME' when removing, it will be deleted as well. 
 
@@ -119,9 +118,7 @@ Example: `add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 
 Output: 
 
-```
-ADDING AIRCON1(3500W) in Bedroom1 ......ADDED
-```
+  ![](images/user_guide/addCommand.png) 
 
 <br/><br/>
 ### Deleting an appliance: `delete`
@@ -132,9 +129,8 @@ Format: `delete [APPLIANCE_NAME]`
 Example: `delete AIRCON1`
 
 Output: 
-```
-Deleting AIRCON1(3500W) in Bedroom1 .......DELETED.
-```
+
+  ![](images/user_guide/deleteCommand.png) 
    
 <br/><br/>
 ### Switching on an appliance: `on` 
