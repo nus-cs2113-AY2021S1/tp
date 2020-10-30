@@ -54,14 +54,14 @@ As a fast-typing writer, this CLI app is highly suitable for you.
 
 This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
 
-## About this document
+## About This Document
 
 This document aims to provide you with the best way to utilize Fluffle for your own writing experience. 
 You may want to first have a look at the glossary to be clear on the terminology used in the document.
 
 [Jump to top](#fluffle-user-guide)
 
-## Quick start
+## Quick Start
 
 1. Check that your computer has `Java 11` installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
@@ -99,13 +99,13 @@ explaining the syntax of the commands in Fluffle.
 
 [Jump to top](#fluffle-user-guide)
 
-### Basic CLI commands
-
-<<Some overview of basic cli commands here>>
+### Basic CLI Commands
+Basic CLI commands consist of commands that are standard CLI application commands such as help and exit, as well as an aesthetic option to change the line divider.
 
 #### Viewing help: `help`
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
+```
 Type “help COMMAND_NAME” to figure out how to use the particular command.  
 - help
 - divider
@@ -127,7 +127,7 @@ Type “help COMMAND_NAME” to figure out how to use the particular command.
 - remind
 - clear
 - exit
-
+```
 
 Format: `help [COMMAND_NAME]`
 
@@ -138,9 +138,9 @@ Example of usage:
 [Jump to top](#fluffle-user-guide)
 
 #### Changing line divider in Fluffle: `divider`
-Allows the user to change the line divider divider used in Fluffle.
+Allows the user to change the line divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
-The `DIVIDER_OPTION` is an parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
+The `DIVIDER_OPTION` is a parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
 
 1. \----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
@@ -168,7 +168,9 @@ Changing line divider...
 #### Clearing certain object in the database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
 
-Format: `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT`  
+Format: 
+- `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT` 
+
 Example usage:  
 `clear type\word item\-noungrass`  
 Example Output:  
@@ -207,25 +209,24 @@ Format: `exit`
 
 [Jump to top](#fluffle-user-guide)
 
-### Words list commands
-
-<<Some overview of words list commands here>>
+### Words List Commands
+Fluffle has a word list which stores the words that you wish to store. It can be used to store words that you wish to research more on, or words that you find interesting and may add value to your stories. The more words you add to it, the more useful it becomes.
 
 #### Adding a noun: `noun`
 Adds a noun, together with its meaning, into the word bank in the program.  
-Format: `noun [WORD] \d[DESCRIPTION]`
+Format: `noun WORD \dDESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
-Format: `verb [WORD] \d[DESCRIPTION]`
+Format: `verb WORD \dDESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding an adjective: `adj`
 Adds an adjective, together with its meaning, into the word bank in the program.  
-Format: `adj [WORD] \d[DESCRIPTION]`
+Format: `adj WORD \dDESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
@@ -236,21 +237,23 @@ Format: `list words`
 [Jump to top](#fluffle-user-guide)
 
 #### Generating three random words: `three words`
+Generates three random words from the Fluffle word bank. You may use this function when you need inspiration for story ideas.  
+Format: `three words`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Filtering words in word list: `filter words`
-Suppose you need to list out all the nouns in your words list, or you want to find out the words starting with the 
+Suppose you need to list out all the nouns in your word bank, or you want to find out the words starting with the 
 string “st” and “cg”. In such cases, you can use the filter words command to achieve your goal.
 
 **Note**: You must key in the parameters in order for the application to work properly.
 
-**Format**: `filter words [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...`: 
+Format: `filter words [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...`: 
 - `-continue` is an optional parameter. You can use this tag to tell the program to continue filtering on the last filter list. 
 Without this tag, the previous filter list would be cleared, and the program will filter on the entire words list. 
 - `limit\PRINT_LIMIT` is an optional parameter. You can use this tag to indicate the number of words that you want to print 
-from your filter list. If your filter list has more words than the expected limit, the program will ask again whether 
-you want to print out all the words in the list or you only want to print out the first PRINT_LIMIT words.
+from your filter list. If your filter list has more words than the expected limit, the program will ask whether 
+you want to print out all the words in the list, or you only want to print out the first PRINT_LIMIT words.
 - `by\TYPE_OF_FILTER`: 
     1. If your `TYPE_OF_FILTER` is `type`, the next `TARGET_STRING` should be some combination of `-verb`, `-noun` and `-adjective`.
     2. If your `TYPE_OF_FILTER` is `start`, the next `-TARGET_STRING` can be one or many strings. 
@@ -283,12 +286,12 @@ Printing all 7 word(s) from your filter list:
 - meaningful : important and serious
 ```
 * Next, you want to get 3 words starting with “h”, “gr”, “co”, “ni”. You can use the command `filter words -continue limit\3 by\start -h -gr -co -ni`. 
-After filtering, you get a total of 4 words, but your limit is 3. The program will ask again whether you would like to print all 4 words or not:
+After filtering, you get a total of 4 words, but your limit is 3. The program will ask again whether you would like to print all 4 words:
 ```
 Your filter list has more than 3 word(s)
 Do you want to print all the words in the filter list? y/n
 ```
-* You want to print all the words so you key in `y` or `yes`. The expected output is:
+* You want to print all the words, so you key in `y` or `yes`. The expected output is:
 ```
 Printing all 4 word(s) from your filter list:
 - house: a building for people to live in, usually for one family
@@ -296,8 +299,8 @@ Printing all 4 word(s) from your filter list:
 - computer: an electronic machine that can store, organize and find information
 - nice: pleasant or attractive
 ```
-* Now you want to get all the words that include an “a”. You use the command `filter words -continue limit\1 by\include -a`. 
-Since there is only one words, the program will just print it out:
+* Now you want to get all the words that include the letter “a”. You use the command `filter words -continue limit\1 by\include -a`. 
+Since there is only one word, the program will just print it out:
 ```
 Printing all 1 word(s) from your filter list:
 - grass: a common wild plant with narrow green leaves and stems
@@ -307,24 +310,24 @@ Printing all 1 word(s) from your filter list:
 
 #### Listing your filter list: `list filter words`
 Suppose you want to refer back to the words that have just been filtered recently. 
-In this scenario, you can use the command `list filter words` to print out the filter list.
+In this scenario, you can use the command `list filter words` to print out the filtered list.
 
 **Note**: You must key in the parameters in order for the application to work properly.
 
-**Format**: `list filter words [limit\PRINT_LIMIT]`
+Format: `list filter words [limit\PRINT_LIMIT]`
 - `limit\PRINT_LIMIT` is an optional parameter. You can use this tag to indicate the number of words that you want
- to print from your filter list. If your filter list has more words than the expected limit, the program will ask 
- again whether you want to print out all the words in the list or you only want to print out the first PRINT_LIMIT words.
+ to print from your filtered list. If your filtered list has more words than the expected limit, the program will ask 
+ again whether you want to print out all the words in the list, or you only want to print out the first PRINT_LIMIT words.
 
 
 **Example of usage and example outputs:**
-* In this example, suppose you have a filter list of 5 words. If you want to print the first three words from your 
-filter list, you can use the command `list filter words limit\3`. Since the list has 5 words, the program will ask for your confirmation.
+* In this example, suppose you have a filtered list of 5 words. If you want to print the first three words from your 
+filtered list, you can use the command `list filter words limit\3`. Since the list has 5 words, the program will ask for your confirmation.
 ```
 Your filter list has more than 3 words
 Do you want to print all the words in the filter list? y/n
 ```
-* Now that you don’t want to see all the list, your input is `n` or `no`.
+* Now that you don’t want to see the whole list, your input is `n` or `no`.
 ```
 Printing 3 out of 5 word(s) from your filter list:
 - house: a building for people to live in, usually for one family
@@ -334,13 +337,13 @@ Printing 3 out of 5 word(s) from your filter list:
 
 [Jump to top](#fluffle-user-guide)
 
-### Bunnies list commands
+### Bunnies List Commands
 
 <<Preface here>>
 
 #### Adding a bunny idea: `bunny`
 
-Add a bunny idea to the list of bunny ideas in the current run of the program.
+Adds a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
 Format: `bunny i\IDEA g\[GENRE]`  
 
@@ -361,7 +364,7 @@ bunny i\test idea 2 g\ fantasy
 [Jump to top](#fluffle-user-guide)
 
 #### Listing bunny ideas: `list bunny`
-List all available quizzes numbered by BUNNY_INDEX numbers.  
+Lists all available quizzes numbered by BUNNY_INDEX numbers.  
 Format: `list bunny`  
 Example usage: `list bunny`  
 Example output:  
@@ -386,7 +389,7 @@ Here are the bunnies stored in the program:
 [Jump to top](#fluffle-user-guide)
 
 #### Filtering bunny ideas: `filter bunny`
-Filter specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
+Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 Format: `filter bunny i\IDEA g\[GENRE]`  
 Example usages:
 - filter bunny i\test idea 1  
@@ -469,14 +472,11 @@ Random Bunny:
 
 ### Names list commands
 
-<<Preface here>>
+Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random, so you can start writing right away.
 
 #### Generating names from name database: `name`
-Generate a name randomly from the stored database of names.  
+Generates a name randomly from the stored database of names.  
 Format: `name`
-
-Example usages:
-- `name`
 
 Example output:  
 ```
@@ -509,9 +509,9 @@ list name
 
 #### Finding names from name database: `filter name`
 Gets the list of names after filtering from the stored list of names.  
-Format: `filter name <NAME>`
+Format: `filter name NAME`
 
-Example usages:
+Example usage:
 - `filter name 2`
 
 Example output:  
@@ -522,7 +522,7 @@ name 2
 --------------------------------------------------------------
 ```
 
-Example usages:
+Example usage:
 - `filter name name`
 
 Example output:  
@@ -539,7 +539,7 @@ filter name name
 
 #### Adding names from name database: `add name`
 Adds a name to the list of names currently stored in the names database.
-Format: `add name <NAME>`
+Format: `add name NAME`
 
 Example usages:
 - `add name name 3`
@@ -556,7 +556,7 @@ name 3 has been added to the Names list!
 
 #### Removing names from name database: `delete name`
 Removes a name from the list of names currently stored in the names database.
-Format: `delete name <INDEX>`
+Format: `delete name INDEX`
 
 Example usages:
 - `delete name 3`
@@ -571,9 +571,9 @@ name 3 has been deleted from the Names list!
 
 [Jump to top](#fluffle-user-guide)
 
-### Writings list commands
+### Writings List Commands
 
-<<Preface here>>
+Writings List allows you to keep a collection of short pieces within the program, and can help you track your writing statistics as motivation to consistently practice writing.
 
 #### Beginning your writing session: `start`
 Requires you to type the following commands for your writings’ configurations:
@@ -621,7 +621,7 @@ Done! We have added your writing to our storage! You can type "stats" for future
 [Jump to top](#fluffle-user-guide)
 
 #### Tracking your past writings: `stats`
-Inform the user detailed specifications like ids, authors, contents, and other attributes of the writings stored in database. 
+Informs the user detailed specifications like IDs, authors, contents, and other attributes of the writings stored in database. 
  
 ```
 stats
@@ -648,7 +648,7 @@ This writing was created on 2020-10-18
 [Jump to top](#fluffle-user-guide)
 
 #### Getting reminders for your writings scheduled for a specific day: `remind`
-Let’s say you are an inconsistent person and you would like the program to remind you which writings you are about to 
+Let’s say you are a forgetful person, and you would like the program to remind you which writings you are about to 
 continue on a specific day. In this scenario, you can use the `remind` command.
 
 **Format**: `remind DATE`
@@ -656,8 +656,8 @@ continue on a specific day. In this scenario, you can use the `remind` command.
 dd/MM/yyyy, where dd is the 2-digit day, MM is the 2-digit month, and yyyy is a 4-digit year.
 
 **Example usage and example output:**
-* You want to know which writings you want to continue on 01/11/2020 so that you use the command `remind 01/11/2020`. 
-The output is as following:
+* You want to know which writings you want to continue on 01/11/2020, so you use the command `remind 01/11/2020`. 
+The output is as follows:
 ```
 On 01/11/2020, you should continue on the following writing(s):
 1.
@@ -692,34 +692,35 @@ still some features that need you to type in the command in the exact order for 
 
 ## Command Summary
 
-The following table summarize all the commands that you need to know when using Fluffle.
+The following table summarizes all the commands that you need to know when using Fluffle.
 
 | Command      | Format, Examples                                                                                      |
 |--------------|-------------------------------------------------------------------------------------------------------|
-| divider      | `divider DIVIDER_OPTION` </br>Example: `divider 2` </br> The list of dividers is: </br>   1. -------------------------------------------------------------- </br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= </br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
-| help         | `help` </br> Look through help guide
-| clear        | `clear`</br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  |
-| exit         | `exit`</br>Exits the program.  
-| noun         | `noun [WORD] d\[DESCRIPTION]`</br>Example: `noun bus d\vehicle`                                       |
-| verb         | `verb [WORD] d\[DESCRIPTION]`</br>Example: `verb eat d\to consume`                                    |
-| adjective    | `adj [WORD] d\[DESCRIPTION]`</br>Example: `adj hungry d\having the desire to consume food`            |
-| list words   | `list words`</br>Lists all the words stored in the program.
+| divider      | `divider DIVIDER_OPTION` <br>Example: `divider 2` <br> The list of dividers is: <br>   1. -------------------------------------------------------------- <br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= <br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
+| help         | `help` <br> Look through help guide
+| clear        | `clear`<br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  |
+| exit         | `exit`<br>Exits the program.  
+| noun         | `noun [WORD] d\[DESCRIPTION]`<br>Example: `noun bus d\vehicle`                                       |
+| verb         | `verb [WORD] d\[DESCRIPTION]`<br>Example: `verb eat d\to consume`                                    |
+| adjective    | `adj [WORD] d\[DESCRIPTION]`<br>Example: `adj hungry d\having the desire to consume food`            |
+| three words  | `three words`<br>Generates three random words from the word list in the program.                     |
+| list words   | `list words`<br>Lists all the words stored in the program.
 | filter words | `filter [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...  `<br>`-continue` (optional): If you want to continue with your last filter list, provide this argument in your command.</br><br>`limit\PRINT_LIMIT` (optional): indicate number of words that you want to print from your filter list</br><br>`by\TYPE_OF_FILTER`:<br>- type: arguments can be `-verb`, `-noun` and `-adjective`<br>- start: arguments can be -STRING<br>- include: arguments can be -STRING|
 | list filter words  | `list filter [limit\PRINT_LIMIT]`<br>Print the filter list with a limited number of words indicated by `PRINT_LIMIT` (optional parameter)</br>|
-| bunny        | `bunny i\IDEA g\[GENRE]`</br>Adds a bunny idea to the list of bunnies in the current run.             |
-| list bunny   | `list bunny`</br>Lists all the bunny ideas                                                            |
-| filter bunny | `filter bunny i\IDEA g\[GENRE]`</br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
-| save bunny   | `save bunny`</br>Saves all the bunny ideas into a text file                                           |
+| bunny        | `bunny i\IDEA g\[GENRE]`<br>Adds a bunny idea to the list of bunnies in the current run.             |
+| list bunny   | `list bunny`<br>Lists all the bunny ideas.                                                           |
+| filter bunny | `filter bunny i\IDEA g\[GENRE]`<br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
+| save bunny   | `save bunny`<br>Saves all the bunny ideas into a text file.                                          |
 | delete bunny | `delete bunny BUNNY_INDEX` </br>Deletes a selected bunny from the list. <\br>`BUNNY_INDEX` is the index of the bunny in the list|
-| random bunny | `random bunny` </br>Selects a random bunny from the list.|
-| name         | `name`</br>Generates a random name                                                                    |
-| list name    | `list name`</br>List all the stored names                                                             |
-| filter name  | `filter name <NAME>`</br>Gets the list of names after filtering                                       |
-| add name     | `add name <NAME>`</br>Adds a name to the list of stored names                                         |
-| delete name  | `delete name <INDEX>`</br>Removes a name from the list of stored names given the index                |
-| stats        | `stats`</br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..</br>This is a poem  <br>Written by Goethe</br>Id: 5 <br> DER ERLKÖNIG</br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.</br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
-| remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day </br><br> Example usage: `remind 30/10/2020`|
+| random bunny | `random bunny` <br>Selects a random bunny from the list.|
+| name         | `name`<br>Generates a random name.                                                                   |
+| list name    | `list name`<br>List all the stored names.                                                            |
+| filter name  | `filter name <NAME>`<br>Gets the list of names after filtering.                                      |
+| add name     | `add name <NAME>`<br>Adds a name to the list of stored names.                                        |
+| delete name  | `delete name <INDEX>`<br>Removes a name from the list of stored names given the index.               |
+| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..</br>This is a poem  <br>Written by Goethe</br>Id: 5 <br> DER ERLKÖNIG</br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.</br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
+| remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day.</br><br> Example usage: `remind 30/10/2020`|
 | list         | `list`                                                                                                |
-| reset        | `reset <NAME_OF_CATEGORY>`</br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |                                                                                  |    
+| reset        | `reset <NAME_OF_CATEGORY>`<br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |                                                                                  |    
 
 [Jump to top](#fluffle-user-guide)
