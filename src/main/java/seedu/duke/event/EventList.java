@@ -337,7 +337,8 @@ public class EventList {
      */
     public static String listAttendance(String eventName) {
         String output = "";
-        if (checkEventExistence(eventName)) {
+        boolean isEventExists = checkEventExistence(eventName);
+        if (isEventExists) {
             Event e = findEventByName(eventName);
             output = output.concat(e.printEventParticipant());
             output = output.concat("Now you have " + e.eventParticipants.size() + " member"
