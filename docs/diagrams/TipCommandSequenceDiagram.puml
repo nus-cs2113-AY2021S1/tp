@@ -1,0 +1,28 @@
+@startuml
+participant ":Fitr" as Fitr
+participant ":TipList" as TipList
+participant ":StorageManager" as StorageManager
+participant ":TipManager" as TipManager
+activate Fitr
+create TipList
+Fitr -> TipList++
+TipList -> StorageManager++ : loadTipList()
+return tipList
+deactivate StorageManager
+TipList --> Fitr: tipList
+deactivate TipList
+
+create TipManager
+Fitr -> TipManager++: tipList
+return
+Fitr -> TipManager++: execute()
+TipManager -> TipManager++: getTip(totalNumberOfTips)
+return tip
+TipManager -> Ui++: printMessageInYellow(tip)
+return
+return
+TipManager -[hidden]-> Fitr
+destroy TipManager
+destroy TipList
+hide footbox
+@enduml

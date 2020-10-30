@@ -181,6 +181,7 @@ Figure 7 below shows the sequence diagram when the user inputs the `clear` comma
 ![Sequence diagram for clear command](images/ClearCommandSequenceDiagram.png)
 
 _Figure 7: Sequence diagram for `clear` command_
+
 ### 4.5 Delete command
 
 The `delete` command allows the user to delete an entry from either the exercise list, food list or goal list. The user can only delete one entry each time.
@@ -192,6 +193,19 @@ Figure 8 below shows the sequence diagram when the user inputs the `delete` comm
 ![Sequence diagram for delete command](images/DeleteCommandSequenceDiagram.png)
 
 _Figure 8: Sequence diagram for `delete` command_
+
+### 4.6 Tip of the day
+
+Fitr can give an interesting fact or a tip of exercise every time the user opens the app.
+
+When the user opens the program, a `TipList` is automatically created by `Fitr`, which loads the tipList from `StorageManger` and passes it to `Fitr`. Then `Fitr` creates a `TipManager` and passes the tipList to `TipManager` to generate a random tip. Finally, the tip is passed to `Ui` and printed in yellow using `printMessageInYellow()`.
+
+Figure 9 below shows the sequence diagram for giving a tip.
+
+![Sequence diagram for delete command](images/TipCommandSequenceDiagram.png)
+
+_Figure 9: Sequence diagram for giving a tip_
+
 ## Appendix A: Product Scope
 ### Target user profile
 
