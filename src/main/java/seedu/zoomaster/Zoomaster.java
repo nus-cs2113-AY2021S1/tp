@@ -21,7 +21,7 @@ public class Zoomaster {
     private Ui ui;
 
     /**
-     * Constructs a new Duke instance.
+     * Constructs a new Zoomaster instance.
      * Pass the filepath of the txt file to set up storage.
      *
      * @param bookmarkFilePath The filepath of the bookmark txt file.

@@ -25,6 +25,7 @@ import java.util.Scanner;
 import static org.fusesource.jansi.Ansi.Color.BLACK;
 import static org.fusesource.jansi.Ansi.Color.BLUE;
 import static org.fusesource.jansi.Ansi.Color.CYAN;
+import static org.fusesource.jansi.Ansi.Color.MAGENTA;
 import static org.fusesource.jansi.Ansi.Color.GREEN;
 import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.Color.WHITE;
@@ -80,11 +81,11 @@ public class Ui {
         if (Parser.getProgramMode() == 0) {
             System.out.print(ansi().fg(GREEN).a("[Main Menu] Input: ").reset());
         } else if (Parser.getProgramMode() == 1) {
-            System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
+            System.out.print(ansi().fg(CYAN).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 3) {
-            System.out.print(ansi().fg(WHITE).a("[Planner mode] Input: ").reset());
+            System.out.print(ansi().fg(MAGENTA).a("[Planner mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
@@ -303,7 +304,7 @@ public class Ui {
         if (Parser.programMode == 0) {
             System.out.println(LINE);
             printYellowWithBorder("Available inputs in Main menu are" + NEW_LINE
-                    + "1) mode {bookmark/timetable}" + NEW_LINE
+                    + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
                     + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
