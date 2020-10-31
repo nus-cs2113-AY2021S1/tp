@@ -1,34 +1,34 @@
 package anichan.parser;
 
-import anichan.commands.HelpCommand;
+import anichan.commands.ExitCommand;
 import anichan.exception.AniException;
 
 /**
  * Handles parsing for Help command.
  */
-public class HelpParser extends CommandParser {
+public class ExitParser extends CommandParser {
     protected static final String DESCRIPTION_NOT_REQUIRED = "Please ensure there is no description after the command!";
-    
-    private HelpCommand helpCommand;
+
+    private ExitCommand exitCommand;
 
     /**
      * Creates a new instance of HelpParser.
      */
-    public HelpParser() {
-        helpCommand = new HelpCommand();
+    public ExitParser() {
+        exitCommand = new ExitCommand();
     }
 
     /**
      * Parses the specified command description
-     * 
+     *
      * @param description the specified command description
-     * @return initialised {@HelpCommand} object
+     * @return initialised {@ExitCommand} object
      * @throws AniException when an error occurred while parsing the command description
      */
-    public HelpCommand parse(String description) throws AniException {
+    public ExitCommand parse(String description) throws AniException {
         if (!description.isBlank()) {
             throw new AniException(DESCRIPTION_NOT_REQUIRED);
         }
-        return helpCommand;
+        return exitCommand;
     }
 }
