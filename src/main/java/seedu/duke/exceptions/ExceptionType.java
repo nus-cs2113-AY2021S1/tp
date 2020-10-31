@@ -3,7 +3,10 @@ package seedu.duke.exceptions;
 public enum ExceptionType {
     INVALID_COMMAND("I do not understand!!"),
     INVALID_BUS("Sorry,there is no such bus in our database!"),
-    NO_DELIMITER("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
+    NO_DELIMITER_ROUTE("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
+            + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
+            + "bus stops in NUS."),
+    MANY_DELIMITERS_ROUTE("Oops! You have too many delimiters!\nThe format for this command is as follows:"
             + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
             + "bus stops in NUS."),
     NO_LOCATIONS("Oh dear! I don't have all locations."),
