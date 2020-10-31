@@ -127,9 +127,10 @@ public class BookmarkList {
         String message = "Here are the bookmarks in your list:" + lineSeparator;
         if (bookmarks.isEmpty()) {
             message = message + "Bookmark list is empty" + lineSeparator;
-        }
-        else for (int i = 0; i < bookmarks.size(); i++) {
-            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
+        } else {
+            for (int i = 0; i < bookmarks.size(); i++) {
+                message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
+            }
         }
         return message + lineSeparator;
     }

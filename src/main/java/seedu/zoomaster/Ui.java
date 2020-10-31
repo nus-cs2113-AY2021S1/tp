@@ -289,7 +289,7 @@ public class Ui {
     }
 
     private void printInvalidUrl() {
-        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.'. 'http://'"
+        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.', 'http://'"
                 + " or 'https://' and have no spaces" + NEW_LINE);
     }
 
@@ -352,7 +352,7 @@ public class Ui {
     public void printHelpMessage(String input) {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (input.equals(ClearCommand.CLEAR_KW)) {
-            printYellowWithBorder("Clears the command line screen" + NEW_LINE);
+            printYellowWithBorder("Clears the visible command line screen" + NEW_LINE);
         } else if (input.equals(ExitCommand.EXIT_KW)) {
             printYellowWithBorder("Exits the application. What else did you expect ^_^" + NEW_LINE);
         } else if (input.equals(ChangeModeCommand.MODE_KW)) {

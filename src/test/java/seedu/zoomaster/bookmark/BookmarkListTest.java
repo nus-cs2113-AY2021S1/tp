@@ -24,7 +24,8 @@ class BookmarkListTest {
     }
 
     @Test
-    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() throws IndexOutOfBoundsException, ZoomasterException {
+    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() throws IndexOutOfBoundsException,
+            ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("tutorial | www.google.com");
         input.add("lecture | www.yahoo.com");
@@ -165,7 +166,8 @@ class BookmarkListTest {
     }
 
     @Test
-    void launchBookmark_emptyBookmarkList_returnEmptyListMessage() throws IndexOutOfBoundsException, ZoomasterException {
+    void launchBookmark_emptyBookmarkList_returnEmptyListMessage() throws IndexOutOfBoundsException,
+            ZoomasterException {
         BookmarkList bookmarks = new BookmarkList();
         assertEquals("Empty List" + lineSeparator,
                 bookmarks.launchBookmarks("lecture"));
