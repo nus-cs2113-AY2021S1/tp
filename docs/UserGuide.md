@@ -516,7 +516,9 @@ Expected output:
 </p>
 
 ### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
-Exits the program..
+Exits the program.
+
+💡 Even if you input anything beyond exit, the program will terminate. For example, `exit the program` will still result in the program being terminated.
 
 Example of usage: 
 
