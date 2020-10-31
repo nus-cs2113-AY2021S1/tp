@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Storage {
     private final File baseDir;
@@ -204,12 +205,17 @@ public class Storage {
 
     /**
      * Saves the subjects along with all the contents into the storage. Quiz results under the subject will
-     * also be saved.
+     * also be saved. Note that all of the storage content will be cleared before storing of data happens so that
+     * deletion of subjects and topics will be reflected.
      *
      * @param subjects subjects to be saved
      * @throws IOException if fails to save to the storage
      */
     public void saveSubjects(List<Subject> subjects) throws IOException {
+        logger.info("Clearing old data.");
+        clearData();
+        logger.info("Finish clearing old data.");
+
         logger.info("Saving the subject data to the disk.");
         logger.fine(String.format("Subjects: %s.", subjects));
 
@@ -268,6 +274,37 @@ public class Storage {
             fileWriter.flush();  // flush to actually write the content
         }
         logger.info("Finish saving the list of data.");
+    }
+
+    /**
+     * Delete the directory and all its content.
+     *
+     * @param directory the directory to be deleted
+     * @throws IOException if any of the file fails to be deleted
+     */
+    public static void deleteDirectory(Path directory) throws IOException {
+        logger.info(String.format("Deleting directory: %s.", directory.toString()));
+        try (Stream<Path> fileStream = Files.walk(directory)) {
+            fileStream
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
+        logger.info("Finish deleting the directory.");
+    }
+
+    /**
+     * Delete baseDir and its contents.
+     *
+     * @throws IOException if any of the file fails to be deleted
+     */
+    private void clearData() throws IOException {
+        logger.fine(String.format("Clearing the directory %s.", getBaseDir().getAbsolutePath()));
+        if (getBaseDir().exists()) {  // only delete if the folder exists to avoid error
+            Path dataFolder = Paths.get(getBaseDir().toString());
+            deleteDirectory(dataFolder);
+        }
+        logger.fine("Finish clearing the directory.");
     }
 
     /**

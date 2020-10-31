@@ -33,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 class StorageTest {
@@ -91,6 +92,37 @@ class StorageTest {
                 "E | 1 | eventTask | 6:00 PM 10 Oct 2019",
                 "D | 0 | deadlineTask | 6:00 PM 10 Oct 2019"
         ));
+    }
+
+    /**
+     * Create a valid data directory with populated subjects and topics.
+     *
+     * @return root directory of the directory created
+     */
+    private File createValidDataDirectory() throws IOException {
+        // create valid directory structure
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        for (Subject subject : subjects) {
+            for (Topic topic : topics) {
+                Path topicPath = Paths.get(storage.getBaseDir().toString(), subject.getTitle(), topic.getTitle());
+                Files.createDirectories(topicPath);
+                File flashcardFile = new File(topicPath.toString(), storage.getFlashcardFilename());
+                File resultFile = new File(topicPath.toString(), storage.getTopicResultFilename());
+
+                // write flashcards to file
+                try (FileWriter fileWriter = new FileWriter(flashcardFile)) {
+                    gson.toJson(flashcards, fileWriter);  // store the json to file
+                    fileWriter.flush();  // flush to actually write the content
+                }
+
+                // write results to file
+                try (FileWriter fileWriter = new FileWriter(resultFile)) {
+                    gson.toJson(results, fileWriter);  // store the json to file
+                    fileWriter.flush();  // flush to actually write the content
+                }
+            }
+        }
+        return storage.getBaseDir();
     }
 
     @Test
@@ -221,28 +253,7 @@ class StorageTest {
 
     @Test
     void loadSubjects_validStructure_populatedSubjects() throws IOException, DataLoadingException {
-        // create valid directory structure
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        for (Subject subject : subjects) {
-            for (Topic topic : topics) {
-                Path topicPath = Paths.get(storage.getBaseDir().toString(), subject.getTitle(), topic.getTitle());
-                Files.createDirectories(topicPath);
-                File flashcardFile = new File(topicPath.toString(), storage.getFlashcardFilename());
-                File resultFile = new File(topicPath.toString(), storage.getTopicResultFilename());
-
-                // write flashcards to file
-                try (FileWriter fileWriter = new FileWriter(flashcardFile)) {
-                    gson.toJson(flashcards, fileWriter);  // store the json to file
-                    fileWriter.flush();  // flush to actually write the content
-                }
-
-                // write results to file
-                try (FileWriter fileWriter = new FileWriter(resultFile)) {
-                    gson.toJson(results, fileWriter);  // store the json to file
-                    fileWriter.flush();  // flush to actually write the content
-                }
-            }
-        }
+        createValidDataDirectory();
 
         List<Subject> loadedSubjects = storage.loadSubjects();
         assertEquals(loadedSubjects.size(), subjects.size());
@@ -293,6 +304,15 @@ class StorageTest {
                 assertEquals(((Deadline) t1).getDateTimeDescription(), ((Deadline) t2).getDateTimeDescription());
             }
         }
+    }
+
+    @Test
+    void deleteDirectory_directoryWithContent_directoryIsDeleted() throws IOException {
+        File dir = createValidDataDirectory();
+        assertTrue(dir.exists());
+        assertTrue(dir.isDirectory());
+        Storage.deleteDirectory(Paths.get(dir.toString()));
+        assertFalse(dir.exists());
     }
 
     @Test
