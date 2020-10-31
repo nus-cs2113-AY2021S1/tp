@@ -23,6 +23,7 @@ import java.util.Scanner;
 public class Storage {
     private static final String DIRECTORY_NAME = "data";
     private static final String FILE_NAME = "data.json";
+    private static final String TIMETABLE = "nusmods_calendar.ics";
     private final Gson gson = new Gson();
 
     /**
@@ -85,14 +86,14 @@ public class Storage {
 
 
     private void readTasksFromTimetable(TaskMap taskMap) throws FileNotFoundException, ParseException {
-        File file = new File("data/nusmods_calendar.ics");
+        File file = new File(DIRECTORY_NAME + "/" + TIMETABLE);
         if (file.exists()) {
             Task task;
             String description;
             LocalDate localDate = LocalDate.now();
             LocalTime startTime = LocalTime.now();
             LocalTime endTime = LocalTime.now();
-            Priority priority = Priority.LOW;
+            Priority priority;
 
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -110,6 +111,7 @@ public class Storage {
                     Date date = df.parse(temp);
                     endTime = date.toInstant().atZone(ZoneId.of("+16")).toLocalTime();
                 } else if (currentLine.startsWith("SUMMARY:")) {
+                    priority = Priority.LOW;
                     description = currentLine.replace("SUMMARY:", "");
                     if (description.contains("Exam")) {
                         priority = Priority.HIGH;
@@ -122,14 +124,17 @@ public class Storage {
     }
 
     private void addTaskToTaskmap(TaskMap taskMap, Task task) {
+        int WEEKS_PER_SEM = 13;
+        int RECESS_WEEK = 7;
+        int DAYS_PER_WEEK = 7;
         if (task.getDescription().contains("Exam")) {
             taskMap.addTask(task);
         } else {
-            for (int i = 0; i < 14; i++) {
-                if (i == 6) {
+            for (int i = 0; i <= WEEKS_PER_SEM; i++) {
+                if (i == RECESS_WEEK - 1) {
                     continue;
                 }
-                LocalDate date = task.getDate().plusDays(i * 7);
+                LocalDate date = task.getDate().plusDays(i * DAYS_PER_WEEK);
                 Task tempTask = new Task(task.getDescription(), date,
                         task.getStartTime(), task.getEndTime(), task.getPriority());
                 taskMap.addTask(tempTask);
