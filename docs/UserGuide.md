@@ -801,6 +801,7 @@ Calculate simple interest earned.
 > Example: 
 
     simple /a 1000 /r 5
+
 ![Example](screenshots/financetools/SimpleInterest(1).PNG)
 ## FinanceTools 2: Yearly Compound Interest Calculator
 Calculate yearly compound interest earned with optional yearly deposit.
@@ -819,6 +820,7 @@ Calculate yearly compound interest earned with optional yearly deposit.
 
     cyearly /a 1000 /r 3 /p 2
     cyearly /a 1000 /r 3 /p 2 /d 1200
+
 ![Example](screenshots/financetools/YearlyCompoundInterest(1).PNG)
 <br />
 <br />
@@ -840,6 +842,7 @@ Calculate monthly compound interest earned with optional monthly deposit.
 
     cmonthly /a 1000 /r 3 /p 2
     cmonthly /a 1000 /r 3 /p 2 /d 100
+
 ![Example](screenshots/financetools/MonthlyCompoundInterest(1).PNG)
 <br />
 <br />
@@ -860,6 +863,7 @@ Calculate cashback earned.
 
     cashb /a 1000 /r 5 /c 1000
     cashb /a 1000 /r 5 /c 10
+
 ![Example](screenshots/financetools/Cashback(1).PNG)
 <br />
 <br />
@@ -878,6 +882,7 @@ Calculate cashback earned.
 > Example: 
 
     miles /a 1000 /r 5
+
 ![Example](screenshots/financetools/Miles(1).PNG)
 ## FinanceTools 6: Account Storage
 Store account information.
@@ -909,6 +914,7 @@ Additionally, it implements the following operations:
     store /n myaccount /ir 2 /r 2 /c 100
     store /n myaccount /ir 2 /r 2 /c 100 /o main account
     store /rm 1
+
 ![Example](screenshots/financetools/AccountStorage(1).PNG)
 <br />
 <br />
@@ -939,6 +945,7 @@ Store the commands inputted and results from calculations in FinanceTools.
 > Example: 
 
     history
+
 ![Example](screenshots/financetools/History(1).PNG)
 ## FinanceTools 8: Exit FinanceTools
 Exit FinanceTools to Main Menu.
@@ -950,6 +957,7 @@ Exit FinanceTools to Main Menu.
 > Example: 
 
     exit
+
 ![Example](screenshots/financetools/Exit(1).PNG)
 
 # Features : Goal Tracker
@@ -967,6 +975,7 @@ Setting of income goal for respective months.
 >Example:
 
     income 5000 for 08
+
 ![Example](screenshots/goaltracker/setincomegoal.png)
 
 ### Goal Tracker 1.2 : Set Expense Goal
@@ -979,6 +988,7 @@ Setting of expense goal for respective months.
 >Example
 
     expense 2000 for 07
+
 ![Example](screenshots/goaltracker/setexpensegoal.png)
 
 ## Goal Tracker 2 : Display Goal
@@ -992,6 +1002,7 @@ Display income and expense goal for the individual month.
 
     display income for 08
     display expense for 07
+
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
@@ -1020,6 +1031,7 @@ Edit income and expense goal for the individual month.
     
     edit income 2000 for 08
     edit expense 1000 for 07
+
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
