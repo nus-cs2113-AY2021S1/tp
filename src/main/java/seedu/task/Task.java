@@ -7,6 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
@@ -39,6 +40,14 @@ public class Task {
         this.endTime = endTime;
         this.priority = priority;
         this.taskID = taskID;
+    }
+    public Task(LocalDate date, LocalTime startTime, LocalTime endTime, String description, Priority priority) {
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
+        taskID = generateHashValue();
     }
 
     public Task(String taskID, String description, String dateString,

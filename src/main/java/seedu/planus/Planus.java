@@ -4,10 +4,8 @@ import seedu.commands.LogicManager;
 import seedu.data.Model;
 import seedu.storage.Storage;
 import seedu.ui.Ui;
-
+import java.text.ParseException;
 import java.io.IOException;
-
-
 public class Planus {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -32,7 +30,7 @@ public class Planus {
         }
     }
 
-    private void initProgram() throws IOException {
+    private void initProgram() throws IOException, ParseException {
         storage = new Storage();
         model = new Model(storage.loadTasks());
         ui = new Ui();
