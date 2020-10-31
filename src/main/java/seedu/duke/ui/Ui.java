@@ -59,7 +59,7 @@ public class Ui {
         ArrayList<Event> repeatEventList = event.getRepeatEventList();
         for (Event e : repeatEventList) {
             System.out.printf("%s ", e.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
-            if (e.getTime() != null){
+            if (e.getTime() != null) {
                 System.out.printf("%s ", e.getTime().format(DateTimeFormatter.ofPattern("K:mm a")));
             }
             System.out.printf("[%s]", e.getStatus());

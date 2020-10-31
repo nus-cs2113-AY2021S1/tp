@@ -8,6 +8,7 @@ import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.InvalidListException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.MissingRepeatListException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -18,6 +19,8 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class RepeatCommandTest {
 
@@ -39,7 +42,14 @@ class RepeatCommandTest {
         addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
-        //Add Zoom event to data
+        personalInput = "personal hello; 29/02/2020";
+        addCommand = new AddCommand(personalInput);
+        addCommand.execute(data, ui, storage);
+
+        personalInput = "personal leap ahead; 31/01/2019";
+        addCommand = new AddCommand(personalInput);
+        addCommand.execute(data, ui, storage);
+
         // Add zoom event to data
         String zoomInput = "zoom Math class; zoom.com; 09/10/2000; 1300";
         addCommand = new AddCommand(zoomInput);
@@ -84,6 +94,110 @@ class RepeatCommandTest {
                         + "09 Feb 2001 1:00 PM [✕]" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
+    }
+
+    @Test
+    void repeat_personalEventMonthlyNoTime_personalEventRepeatedMonthly() throws DukeException {
+
+
+        // Create Repeat Command
+        String inputString = "personal 3 monthly 4";
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("[P][✕] hello on 2020-02-29" + System.lineSeparator()
+                        + "is now repeating monthly for 4 times." + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+        //check the dates reported and erase previous output
+        inputString = "personal 3";
+        outputStreamCaptor.reset();
+
+        repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+
+        assertEquals("[P][✕] hello on 2020-02-29 is also on:"
+                        + System.lineSeparator()
+                        + "29 Mar 2020 [✕]" + System.lineSeparator()
+                        + "29 Apr 2020 [✕]" + System.lineSeparator()
+                        + "29 May 2020 [✕]" + System.lineSeparator()
+                        + "29 Jun 2020 [✕]" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+    }
+
+    @Test
+    void repeat_personalEventMonthlyLeapYearFinalDay_personalEventRepeatedMonthly() throws DukeException {
+
+
+        // Create Repeat Command
+        String inputString = "personal 4 monthly 24";
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("[P][✕] leap ahead on 2019-01-31" + System.lineSeparator()
+                        + "is now repeating monthly for 24 times." + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+        //check the dates reported and erase previous output
+        inputString = "personal 4";
+        outputStreamCaptor.reset();
+
+        repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+
+        assertEquals("[P][✕] leap ahead on 2019-01-31 is also on:"
+                        + System.lineSeparator()
+                        + "28 Feb 2019 [✕]" + System.lineSeparator()
+                        + "31 Mar 2019 [✕]" + System.lineSeparator()
+                        + "30 Apr 2019 [✕]" + System.lineSeparator()
+                        + "31 May 2019 [✕]" + System.lineSeparator()
+                        + "30 Jun 2019 [✕]" + System.lineSeparator()
+                        + "31 Jul 2019 [✕]" + System.lineSeparator()
+                        + "31 Aug 2019 [✕]" + System.lineSeparator()
+                        + "30 Sep 2019 [✕]" + System.lineSeparator()
+                        + "31 Oct 2019 [✕]" + System.lineSeparator()
+                        + "30 Nov 2019 [✕]" + System.lineSeparator()
+                        + "31 Dec 2019 [✕]" + System.lineSeparator()
+                        + "31 Jan 2020 [✕]" + System.lineSeparator()
+                        + "29 Feb 2020 [✕]" + System.lineSeparator()
+                        + "31 Mar 2020 [✕]" + System.lineSeparator()
+                        + "30 Apr 2020 [✕]" + System.lineSeparator()
+                        + "31 May 2020 [✕]" + System.lineSeparator()
+                        + "30 Jun 2020 [✕]" + System.lineSeparator()
+                        + "31 Jul 2020 [✕]" + System.lineSeparator()
+                        + "31 Aug 2020 [✕]" + System.lineSeparator()
+                        + "30 Sep 2020 [✕]" + System.lineSeparator()
+                        + "31 Oct 2020 [✕]" + System.lineSeparator()
+                        + "30 Nov 2020 [✕]" + System.lineSeparator()
+                        + "31 Dec 2020 [✕]" + System.lineSeparator()
+                        + "31 Jan 2021 [✕]" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+    }
+
+    @Test
+    void repeat_personalPrintRepeatNoExist_MissingRepeatListExceptionThrown() throws DukeException {
+
+
+        try {
+            // Create Repeat Command
+            String inputString = "personal 4";
+            System.setOut(new PrintStream(outputStreamCaptor));
+
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+            fail("This command should have thrown an exception");
+        } catch (MissingRepeatListException e) {
+            assertTrue(true);
+        } catch (Exception e) {
+            fail("The wrong exception type was thrown");
+        }
+
     }
 
     @Test
