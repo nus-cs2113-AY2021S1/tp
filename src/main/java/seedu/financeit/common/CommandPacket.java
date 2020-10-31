@@ -3,6 +3,7 @@ package seedu.financeit.common;
 import java.util.HashMap;
 import java.util.Set;
 
+//@@author Artemis-Hunt
 /**
  * Organises data from input string into distinct data types and structure.
  * For scalability purposes, a hashmap is implemented to map param type to its corresponding params.
