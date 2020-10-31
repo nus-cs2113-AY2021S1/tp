@@ -7,6 +7,7 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
+import seedu.quotesify.ui.UiMessage;
 
 public class DeleteRatingCommand extends DeleteCommand {
 
@@ -21,9 +22,10 @@ public class DeleteRatingCommand extends DeleteCommand {
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-
+        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
+            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -31,6 +33,7 @@ public class DeleteRatingCommand extends DeleteCommand {
         Book bookToDeleteRating = RatingParser.checkBookExists(bookIndex);
 
         if (bookToDeleteRating == null) {
+            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -46,5 +49,6 @@ public class DeleteRatingCommand extends DeleteCommand {
             }
         }
         System.out.println(ERROR_RATING_DO_NOT_EXIST);
+        System.out.println(UiMessage.DIVIDER_LINE);
     }
 }

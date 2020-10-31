@@ -6,6 +6,7 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
+import seedu.quotesify.ui.UiMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class ListRatingCommand extends ListCommand {
     }
 
     private void listRatings(RatingList ratingList, TextUi ui) {
+        System.out.println(UiMessage.DIVIDER_LINE);
         ArrayList<Rating> ratings = ratingList.getList();
         ratings.sort(Comparator.comparing(Rating::getRating));
         Collections.reverse(ratings);
@@ -32,6 +34,7 @@ public class ListRatingCommand extends ListCommand {
         } else {
             listSpecifiedRating(ratingList, ui);
         }
+        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     private void listAllRatings(RatingList ratingList, TextUi ui) {
