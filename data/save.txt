@@ -1,1 +1,2 @@
-Ledger;2020-05-05
+Ledger;2020-04-04
+Entry;Expense;FOOD;$400.00;15:00;asdsdas

@@ -75,7 +75,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * Reserved for param types which are used to specify a property to be true/false
         * Eg. ```-auto```, to specify if an entry has automatic deduction. 
         
-##### <a name="commandPacket"></a> Command Packet 
+##### Command Packet
 * A helper class. Contains two particular attributes to store the user input in an organised fashion.
     * ```commandString``` :  ```String``` Store the command string from the input.
     * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
@@ -83,7 +83,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * Value:  ```param```
 
 ##### InputParser
-* A helper class. Parses the input string and returns a corresponding [```commandPacket```](#commandPacket).
+* A helper class. Parses the input string and returns a corresponding ```commandPacket```.
     * ```parseInput()```: 
         * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
         * Calls ParamParser instance to parse the segment of the input string
@@ -112,7 +112,7 @@ and ```param``` indicates the parameter that is associated with the ```param typ
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
-### <a name="paramHandling"></a> Param Handling
+### Param Handling
 
 #### ParamHandler
 * An abstract class that defines all param handling behavior. 
@@ -194,7 +194,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 
 
-##### <a name="commandAndLogic"></a> Command and Logic
+##### Command and Logic
 
 ![](uml_images/manualTracker/images/Commands_Logic_edited.png)
 
@@ -208,14 +208,14 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
-##### <a name="handlerAndCommand"></a> Handler and Command
+##### Handler and Command
 
 ![](uml_images/manualTracker/images/Handler_Commands.png)
 
 |Class| Function |
 |--------|----------|
-|```retrieveLedgerCommand```| [Refer to section above](#commandAndLogic).
-|```createLedgerCommand```| [Refer to section above](#commandAndLogic).
+|```retrieveLedgerCommand```| Refer to section above.
+|```createLedgerCommand```| Refer to section above.
 |```retrieveEntryCommand```| Omitted for brevity.
 |```createEntryCommand```| Omitted for brevity.
 |```editEntryCommand```| Omitted for brevity.
@@ -230,7 +230,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |--------|----------|
 |```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.
 |```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.
-|```ManualTracker```| [Refer to section above](#handlerAndCommand).
+|```ManualTracker```| Refer to section above.
 |```EntryTracker```| Omitted for brevity.
 
 ##### Handler and Data
@@ -239,7 +239,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 |Class| Function |
 |--------|--------|
-|```ManualTracker```| [Refer to section above](#handlerAndCommand).
+|```ManualTracker```| Refer to section above.
 |```EntryTracker```| Omitted for brevity.
 |```EntryList```| Omitted for brevity.
 |```Entry```| Omitted for brevity.
@@ -261,7 +261,7 @@ In this case, ```handleCreateLedger()``` will be called.
     ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
     1. A new instance of ```Ledger``` will be instantiated and set to ```createLedgerCommand.currLedger```.
     1. ```createLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the [section on Param Handling](#paramHandling) for more details pertaining to general param handling. 
+        1. Refer to the section on Param Parsing for more details pertaining to general param handling. 
         1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
         
             |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -283,7 +283,7 @@ In this case, ```handleCreateLedger()``` will be called.
     ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
     1. A new instance of ```Ledger``` will be instantiated and set to ```createLedgerCommand.currLedger```.
     1. ```createLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
+        1. Refer to the section on Param Parsing for more details pertaining to general param handling. 
         1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
         
             |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -295,71 +295,8 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
 ![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
 
-### Feature 2: Recurring Tracker
-##### Overview
-##### Recurring Tracker
-Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
-Entries use the class ```RecurringEntry```, and are stored in the ```RecurringEntryList``` class.
-
-`RecurringEntry` has the following attributes:
-* `day` - The day which the transaction occurs
-* `description`
-* `entryType` - Can be `Constants.EntryType.INC` or `Constants.EntryType.INC` 
-depending on whether the entry is an income or expenditure respectively.
-* `amount`
-* `start` and `end` - Which months does the entry apply to. Set to 1 and 12 by 
-default (i.e. occurs every month)
-* `isAuto` - Indicates whether the entry is automatically deducted/credited from/to account, 
-or manually deducted/credited from/to account
-* `notes` - Any user-specified notes
-
-`RecurringTrackerList` extends ItemList, and supports the following methods on top of inherited methods
-* `addItem(Item)` - Override. Adds item and sorts according to the day in ascending order
-* `getEntriesFromDayXtoY` - Returns an ArrayList of all entries that fall between day X and Y 
-(provided by developer in the code, not by user). Mainly used for reminders
-
-##### Reminders
-Upon launching the program, the system date and time is recorded in `RunHistory`.
-
-The program then checks if there are any entries upcoming within 5 days from the current date, and prints the entries out
-as reminders.
-
-1. Main code calls `MenuPrinter#printReminders()`, which in turn calls 
-`ReminderListGenerator#generateListOfRemindersAsStrings()`. 
-1. `ReminderListGenerator` checks the current date, and calculates the day of month which is 5 days from current date.
-This is stored in `dayToRemindUntil`.
-1. `ReminderListGenerator` then checks if `dayToRemindUntil` is after the last day of the current month. If it is,
-then the reminder timeframe will overflow to the next month. 
-    
-    For example:
-    * Current date is 29th October. There are 31 days in October. 5 days after today is 34th, 
-    which is beyond last day of October.
-    * Reminder timeframe will overflow to next month, until 3rd of November
-
-1. If it has overflown, set `isOverflowToNextMonth` to true. Subtract the last day of month from `dayToRemindUntil`.
-The new value of `dayToRemindUntil` is the day of next month that the reminder timeframe extends to.
-
-    For example:
-    * Continuing from example earlier, `dayToRemindUntil = 34`.
-    * `dayToRemindUntil -= NUM_DAYS_IN_OCT`, i.e. 34 - 31
-    * `dayToRemindUntil = 3`, representing that the reminder timeframe extends to 3rd of November
-1. `ReminderListGenerator` then grabs the entries within the reminder timeframe from the list of all recurring entries.
-    * If `isOverflowToNextMonth == true`, it will grab all entries from `currentDay` to `lastDayOfMonth` 
-    and all entries from `1` (1st day of next month) to `dayToRemindUntil`
-    * Else, it will simply grab all entries from `currentDay` to `dayToRemindUntil`
-
-1. Lastly, the list of entries will be converted to a formatted String to be displayed as reminders, and passed back
-to `MenuPrinter`, who will pass it to `UiManager` to print.
-
-The sequence diagram below shows how it works:
-
-![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
-
-
-
-#### Feature 3: FinanceTools
-##### Overview
+#### Feature 2: FinanceTools
 FinanceTools consists of the following features
 1. Simple Interest Calculator
 2. Yearly/Monthly Compound Interest Calculator
@@ -401,12 +338,18 @@ is done by ```YearlyCompoundInterest``` / ```MonthlyCompoundInterest``` class. T
 ```FinanceTools.main()```.
 <br />
 
-__Parameters (Yearly/Monthly Compound Interest Calculator)__
+__Parameters (Yearly Compound Interest Calculator)__
 
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
-* ```/p``` - Number of Years/Months (Mandatory)
-* ```/d``` - Yearly/Monthly Deposit (Optional)
+* ```/p``` - Number of Years (Mandatory)
+* ```/d``` - Yearly Deposit (Optional)
+
+__Parameters (Monthly Compound Interest Calculator)__
+* ```/a``` - Amount (Mandatory)
+* ```/r``` - Interest Rate (Mandatory)
+* ```/p``` - Number of Months (Mandatory)
+* ```/d``` - Monthly Deposit (Optional)
 
 The following class diagram shows how the Yearly/Monthly Compound Interest Calculator feature works:
 <br />
@@ -530,7 +473,7 @@ To store the commands inputted by user and results from calculations in FinanceT
 The commands are stored before the params are handled and implementation is executed. The results from calculation
 is stored when the implementation has finished executed.
 
-#### Feature 4: Goal Tracker
+#### Feature 3: Goal Tracker
 ##### Set Expense Goal Feature
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -558,7 +501,7 @@ This class diagram will show how the setting of expense goal works:
 This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-#### Feature 5: Save Manager
+#### Feature 4: Save Manager
 ##### What it does
 Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.

@@ -65,7 +65,7 @@ public class GoalTracker {
                 handleDisplayGoal();
                 break;
             case "edit":
-                editGoal(editPacket);
+                editGoal();
                 break;
             case "exit":
                 exitTracker = true;
@@ -97,38 +97,33 @@ public class GoalTracker {
      * This function will allow user to edit their respective goal
      * for respective months.
      */
-    public static void editGoal(String[] userInput) {
-        isExist = false;
+    public static void editGoal() {
         try {
-            month = Month.of(Integer.parseInt(userInput[4]));
-            if (userInput[1].equals("expense")) {
-                expenseGoal = Integer.parseInt(userInput[2]);
+            month = Month.of(Integer.parseInt(editPacket[4]));
+            if (editPacket[1].equals("expense")) {
+                expenseGoal = Integer.parseInt(editPacket[2]);
                 for (int i = 0; i < totalGoalList.getListSize(); i++) {
                     try {
                         if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
-                            isExist = true;
                             goalToSet = new Goal(expenseGoal, "Expense", month);
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have successfully"
                                     + " edited your expense goal for " + month);
-
                         }
-
                     } catch (NullPointerException e) { // This NullPointerException occurs when the first object in the
                         continue;                      // arraylist is not expense so it will continue the for loop.
                     }
                 }
-                if (!isExist) {
-                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not have "
-                            + "any existing goal for " + month);
-                }
 
-            } else if (userInput[1].equals("income")) {
-                incomeGoal = Integer.parseInt(userInput[2]);
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not have "
+                        + "any existing goal for " + month);
+                main();
+
+            } else if (editPacket[1].equals("income")) {
+                incomeGoal = Integer.parseInt(editPacket[2]);
                 for (int i = 0; i < totalGoalList.getListSize(); i++) {
                     try {
                         if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
-                            isExist = true;
                             goalToSet = new Goal(incomeGoal, "Income", month);
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have successfully"
@@ -139,14 +134,14 @@ public class GoalTracker {
                         continue;
                     }
                 }
-                if (!isExist) {
-                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not have "
-                            + "any existing goal for " + month);
-                }
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not have "
+                        + "any existing goal for " + month);
+                main();
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Please enter either expense "
                     + "or income");
+            main();
         }
     }
 

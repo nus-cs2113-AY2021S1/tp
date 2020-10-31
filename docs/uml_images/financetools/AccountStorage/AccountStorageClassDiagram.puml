@@ -1,7 +1,6 @@
 @startuml
-hide circle
 skinparam classAttributeIconSize 0
-class "{abstract} \nHandler" {
+class Handler {
  +handleAccountStorage(:CommandPacket, :String, :ArrayList<String>)
 }
 
@@ -9,10 +8,10 @@ class AccountStorage {
  +handleInfoStorage(:String, :ArrayList<String>)
 }
 
-class "{abstract} \nAccountSaver" {
+class AccountSaver {
  +updateFile(:String, :ArrayList<String>)
 }
 
-"{abstract} \nHandler" --> AccountStorage : Stores account information >
-AccountStorage --> "{abstract} \nAccountSaver" : Stores account information into txt >
+Handler --> AccountStorage : Stores account information >
+AccountStorage --> AccountSaver : Stores account information into txt >
 @enduml

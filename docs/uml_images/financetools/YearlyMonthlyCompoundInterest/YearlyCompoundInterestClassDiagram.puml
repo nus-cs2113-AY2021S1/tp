@@ -1,8 +1,7 @@
 @startuml
-hide circle
 title Yearly Compound Interest Calculator
 skinparam classAttributeIconSize 0
-class "{abstract} \nHandler" {
+class Handler {
  +handleYearlyCompoundInterest(:CommandPacket)
 }
 
@@ -10,5 +9,5 @@ class YearlyCompoundInterest {
  +calculateCompoundInterest()
 }
 
-"{abstract} \nHandler" --> YearlyCompoundInterest : Calculates interest
+Handler --> YearlyCompoundInterest : Calculates interest
 @enduml

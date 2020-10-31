@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
-public abstract class AccountSaver {
+public class AccountSaver {
     private static final int LINES_IN_AN_ACCOUNT = 5;
     private static final int LAST_LINE_IN_AN_ACCOUNT = 4;
 

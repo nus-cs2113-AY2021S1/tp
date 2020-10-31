@@ -75,7 +75,7 @@ public class DateTimeOutputManager {
             break;
         default:
             // Show all information
-            output = this.time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+            output = this.time.format(DateTimeFormatter.ofPattern("HH:mm"));
             break;
         }
         return output;
