@@ -31,10 +31,8 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        String[] arguments = command.split(";", 2);
-        if (arguments.length == 2) {
-            textSubject = arguments[0];
-            textBody = arguments[1].trim();
+        if (command.endsWith(";")) {
+            textSubject = command.split(";", 2)[0];
         }
     }
 
@@ -47,8 +45,13 @@ public class ExtractCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        if (textSubject == null || textBody == null) {
-            throw new InvalidExtractCommandException("Incorrect format for extract command!");
+        if (textSubject == null) {
+            throw new InvalidExtractCommandException("Text subject was not entered correctly!");
+        }
+        ui.printExtractTextBodyRequestMessage();
+        textBody = receiveTextBody(ui);
+        if (textBody == null) {
+            throw new InvalidExtractCommandException("Text body was not entered correctly!");
         }
         if (textSubject.equals("")) {
             throw new InvalidExtractCommandException("There is no text subject entered!");
@@ -78,6 +81,16 @@ public class ExtractCommand extends Command {
         }
         ui.printEventAddedMessage(data.getEventList("Personal").getNewestEvent());
         storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
+    }
+
+    private String receiveTextBody(Ui ui) {
+        String bodyLine = "";
+        String fullTextBody = "";
+        while (!bodyLine.equals("extractend")) {
+            bodyLine = ui.receiveCommand();
+            fullTextBody = fullTextBody.concat(" " + bodyLine);
+        }
+        return fullTextBody;
     }
 
     /**
@@ -127,7 +140,7 @@ public class ExtractCommand extends Command {
 
         for (String timeInString : timeListInString) {
             try {
-                LocalTime localTime = DateTimeParser.timeParser(timeInString);
+                LocalTime localTime = DateTimeParser.timeParser(timeInString.trim());
                 timeList.add(localTime);
             } catch (TimeErrorException e) {
                 // something went wrong with date parsing
