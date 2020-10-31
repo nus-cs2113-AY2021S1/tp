@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 
@@ -180,10 +182,6 @@ public class SaveManager {
         }
     }
 
-<<<<<<< HEAD
-    private static void deleteSave(CommandPacket packet) {
-
-=======
     public static void clear() {
         GoalTrackerSaver.clear();
         AutoTrackerSaver.clear();
@@ -216,6 +214,5 @@ public class SaveManager {
         } catch (Exception e) {
             prompt = e.toString();
         }
->>>>>>> upstream/master
     }
 }
