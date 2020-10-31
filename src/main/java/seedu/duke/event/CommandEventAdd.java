@@ -3,8 +3,6 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
