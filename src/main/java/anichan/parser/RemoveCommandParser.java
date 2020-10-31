@@ -16,6 +16,8 @@ public class RemoveCommandParser extends CommandParser {
     protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "Remove command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
+    protected static final int MAX_INDEX_DIGITS = 4;
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
 
     private RemoveCommand removeCommand;

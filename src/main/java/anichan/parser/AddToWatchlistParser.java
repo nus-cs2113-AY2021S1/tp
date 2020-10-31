@@ -16,6 +16,8 @@ public class AddToWatchlistParser extends CommandParser {
     protected static final String SPLIT_DASH = "-";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command " + TOO_MUCH_FIELDS;
+    protected static final int MAX_INDEX_DIGITS = 4;
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
     
     private AddToWatchlistCommand addToWatchlistCommand;
@@ -64,6 +66,9 @@ public class AddToWatchlistParser extends CommandParser {
             paramExtraFieldCheck(paramParts);
             if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
+            }
+            if (paramParts[1].length() >= MAX_INDEX_DIGITS) {
+                throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
             }
             addToWatchlistCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
             break;
