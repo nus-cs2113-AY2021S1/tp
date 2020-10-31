@@ -5,6 +5,7 @@ import anichan.exception.AniException;
 import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +34,7 @@ public class User extends Human {
      *
      * @param name   name of User
      * @param gender gender of User
-     * @throws AniException if an error occured while creating User
+     * @throws AniException if an error occurred while creating User
      */
     public User(String name, String gender) throws AniException {
         super(name);
@@ -50,9 +51,9 @@ public class User extends Human {
      */
     public void setGender(String genderString) throws AniException {
         assert genderString != null : ASSERTION_INVALID_MESSAGE;
-        genderString = genderString.toLowerCase();
+        String genderStringLowered = genderString.toLowerCase(Locale.ROOT);
 
-        switch (genderString) {
+        switch (genderStringLowered) {
         case GENDER_MALE:
             gender = Gender.Male;
             break;

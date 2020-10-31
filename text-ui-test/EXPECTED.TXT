@@ -10,7 +10,43 @@ Welcome to AniChan!
 User: File does not exist.
 -------------------------------------------------------------
 What's your name?
+Hello Friendly cat! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Dog 12345! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello   ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello   -! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello イングランド王! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello    ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Duuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuududududu12381828182! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello ?????????????????????``````````````````! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
 What's your name?
 Hello random name 123! What might your gender be? (Male/Female/Other)
@@ -22,13 +58,24 @@ What's your name?
 Hello King                                  1! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
 What's your name?
-Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+Hello Queen! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
 
 Default (Default) #> OOPS!!! Unknown command
 
 Default (Default) #> OOPS!!! Unknown command
 
 Default (Default) #> OOPS!!! Unknown command
+
+Default (Default) #> OOPS!!! Unknown command
+
+Default (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+Default (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+Default (Default) #> OOPS!!! Invalid parameters detected!
 
 Default (Default) #> Successfully added new workspace: Crunchy Cinnamon
 
@@ -186,26 +233,26 @@ COOKIES N CREME CH33SECAKE (Default) #> [ID:1] Cowboy Bebop
 [ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
 
 
-COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
-2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door [Id: 2]
-3. Trigun [Id: 3]
-4. Witch Hunter Robin [Id: 4]
-5. Beet the Vandel Buster [Id: 5]
-6. Eyeshield 21 [Id: 6]
-7. Honey and Clover [Id: 7]
-8. Hungry Heart: Wild Striker [Id: 8]
-9. Initial D Fourth Stage [Id: 9]
-10. Monster [Id: 10]
-11. Naruto [Id: 11]
-12. One Piece [Id: 12]
-13. The Prince of Tennis [Id: 13]
-14. Ring ni Kakero 1 [Id: 14]
-15. School Rumble [Id: 15]
-16. Desert Punk [Id: 16]
-17. Texhnolyze [Id: 17]
-18. Trinity Blood [Id: 18]
-19. Yakitate!! Japan [Id: 19]
-20. Zipang [Id: 20]
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Cowboy Bebop                                        [Id: 1  ]
+2.   Cowboy Bebop: The Movie - Knockin' on Heaven's D... [Id: 2  ]
+3.   Trigun                                              [Id: 3  ]
+4.   Witch Hunter Robin                                  [Id: 4  ]
+5.   Beet the Vandel Buster                              [Id: 5  ]
+6.   Eyeshield 21                                        [Id: 6  ]
+7.   Honey and Clover                                    [Id: 7  ]
+8.   Hungry Heart: Wild Striker                          [Id: 8  ]
+9.   Initial D Fourth Stage                              [Id: 9  ]
+10.  Monster                                             [Id: 10 ]
+11.  Naruto                                              [Id: 11 ]
+12.  One Piece                                           [Id: 12 ]
+13.  The Prince of Tennis                                [Id: 13 ]
+14.  Ring ni Kakero 1                                    [Id: 14 ]
+15.  School Rumble                                       [Id: 15 ]
+16.  Desert Punk                                         [Id: 16 ]
+17.  Texhnolyze                                          [Id: 17 ]
+18.  Trinity Blood                                       [Id: 18 ]
+19.  Yakitate!! Japan                                    [Id: 19 ]
+20.  Zipang                                              [Id: 20 ]
 Browsing Page: 1
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
@@ -329,6 +376,12 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Unknown command
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Unknown command
 
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
+
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 1. Default
 2. Crunchy Cinnamon
@@ -364,4 +417,4 @@ COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
 1. RED VELVET Crumblesss
 2. COOKIES N CREME CH33SECAKE
 
-COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 33rd-chan!
+COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 77th-chan!

@@ -2,7 +2,7 @@
 
 ![AniChan Logo](images/AniChan-Logo.png)
 
-[![Build Status](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp.svg?branch=master)](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp) ![Open Issues](https://img.shields.io/github/issues-raw/AY2021S1-CS2113T-F12-2/tp) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) ![Last Commit](https://img.shields.io/github/last-commit/AY2021S1-CS2113T-F12-2/tp) [![codecov](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp/branch/master/graph/badge.svg?token=2H6O4KMWRA)](Codecov) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fac33332a53745f990829c425c499621)](https://www.codacy.com/gh/AY2021S1-CS2113T-F12-2/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2113T-F12-2/tp&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp.svg?branch=master)](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp) [![Open Issues](https://img.shields.io/github/issues-raw/AY2021S1-CS2113T-F12-2/tp)](https://github.com/AY2021S1-CS2113T-F12-2/tp/issues) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Last Commit](https://img.shields.io/github/last-commit/AY2021S1-CS2113T-F12-2/tp)](https://github.com/AY2021S1-CS2113T-F12-2/tp/commits/master) [![Codecov](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp/branch/master/graph/badge.svg?token=2H6O4KMWRA)](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fac33332a53745f990829c425c499621)](https://www.codacy.com/gh/AY2021S1-CS2113T-F12-2/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2113T-F12-2/tp&amp;utm_campaign=Badge_Grade)
 
 <br/>
 
@@ -583,6 +583,19 @@ For example, a user may provide `new workspace__` as a `Workspace` name, this ma
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
 
 In addition, we also prevent case-insensitive `Workspace` creation and the use of special characters, as they may cause issues when creating folders on certain file systems.
+
+<br/>
+
+Aspect: **Loading `Workspace` on program start**
+
+As there needs to be an `activeWorkspace` set at all times for operations such as adding `Watchlist`. How do we determine which `Workspace` should be chosen if the `User` owns multiple `Workspaces`?
+
+| Approach | Pros | Cons  |
+| --- | --- | --- |
+| Scan from data folder and pick first result  | Able to adapt to changes even if malicious edits were made to file system | User may need to switch to his favourite `Workspace` on each startup, if any |
+| Store last used `Workspace`                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace` | Prone to potential issues from the file system |
+
+We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
 
 <br/>
 

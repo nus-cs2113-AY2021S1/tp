@@ -82,43 +82,12 @@ public class Main {
         // ========================== New User Setup ==========================
 
         if (user == null) {
-            LOGGER.log(Level.INFO, "Creating new user..");
-
-            while (true) {
-                try {
-                    String[] userDialogueInput = ui.createUserDialogue();
-                    user = new User(userDialogueInput[0], userDialogueInput[1]);
-                    LOGGER.log(Level.INFO, "Created: " + user);
-                    storageManager.saveUser(user);
-                    break;
-                } catch (AniException exception) {
-                    ui.printErrorMessage("Invalid input detected!");
-                    LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
-                }
-            }
+            newUserSetup();
         }
 
         // ========================== Workspace Setup ==========================
 
-        LOGGER.log(Level.INFO, "Workspace setup..");
-
-        user.setWorkspaceList(workspaceList);
-        if (user.getTotalWorkspaces() == 0) {
-            try {
-                Workspace newWorkspace = user.addWorkspace("Default");
-                ArrayList<Watchlist> watchlistList = new ArrayList<>();
-                watchlistList.add(new Watchlist("Default"));
-                newWorkspace.setWatchlistList(watchlistList);
-                user.setActiveWorkspace(newWorkspace);
-                LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
-
-                storageManager.saveWorkspace(newWorkspace);
-                LOGGER.log(Level.INFO, "Workspace saved to storage: " + newWorkspace.getName());
-            } catch (AniException exception) {
-                ui.printErrorMessage(exception.getMessage());
-                LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
-            }
-        }
+        workspaceSetup(workspaceList);
 
         // ========================== Watchlist Setup ==========================
 
@@ -135,6 +104,54 @@ public class Main {
         } catch (AniException exception) {
             ui.printMessage("\tAnimeData: " + exception.getMessage());
             LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+        }
+    }
+
+    /**
+     * Setups the Workspace for User.
+     *
+     * @param workspaceList ArrayList of Workspaces the User manages
+     */
+    private void workspaceSetup(ArrayList<Workspace> workspaceList) {
+        LOGGER.log(Level.INFO, "Workspace setup..");
+
+        user.setWorkspaceList(workspaceList);
+
+        if (user.getTotalWorkspaces() == 0) {
+            try {
+                Workspace newWorkspace = user.addWorkspace("Default");
+                ArrayList<Watchlist> watchlistList = new ArrayList<>();
+                watchlistList.add(new Watchlist("Default"));
+                newWorkspace.setWatchlistList(watchlistList);
+                user.setActiveWorkspace(newWorkspace);
+                LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
+
+                storageManager.saveWorkspace(newWorkspace);
+                LOGGER.log(Level.INFO, "Workspace saved to storage: " + newWorkspace.getName());
+            } catch (AniException exception) {
+                ui.printErrorMessage(exception.getMessage());
+                LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Setups a new User for program.
+     */
+    private void newUserSetup() {
+        LOGGER.log(Level.INFO, "Creating new user..");
+
+        while (true) {
+            try {
+                String[] userDialogueInput = ui.createUserDialogue();
+                user = new User(userDialogueInput[0], userDialogueInput[1]);
+                LOGGER.log(Level.INFO, "Created: " + user);
+                storageManager.saveUser(user);
+                break;
+            } catch (AniException exception) {
+                ui.printErrorMessage("Invalid input detected!");
+                LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+            }
         }
     }
 
