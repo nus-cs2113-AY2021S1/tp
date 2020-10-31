@@ -2,7 +2,6 @@ package seedu.duke.logic.commands.buscommand;
 
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusData;
-import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.similaritycheck.SimilarityCheck;
@@ -11,7 +10,8 @@ import seedu.duke.logic.parser.RouteParser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
+
+import static seedu.duke.model.bus.BusStops.isValidBusStop;
 
 public class RouteCommand extends Command {
 
@@ -21,6 +21,7 @@ public class RouteCommand extends Command {
     public RouteCommand(String rawMessage) {
         this.rawMessage = rawMessage;
         parser = new RouteParser(rawMessage);
+        super.isValid = false;
     }
 
     @Override
@@ -29,10 +30,29 @@ public class RouteCommand extends Command {
         checkLocations(locations);
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(locations));
         if (possibleLocs.isEmpty()) {
-            ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
-            Ui.printRouteMessage(busOptions);
+            if (areValidLocations(locations)) {
+                ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
+                Ui.printRouteMessage(busOptions);
+                isValid = true;
+            }
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
+        }
+    }
+
+    private boolean areValidLocations(String[] locations) throws CustomException {
+        if (isValidBusStop(locations[0].trim())) {
+            if (isValidBusStop(locations[1].trim())) {
+                return true;
+            } else {
+                throw new CustomException(ExceptionType.INVALID_DEST);
+            }
+        } else {
+            if (isValidBusStop(locations[1].trim())) {
+                throw new CustomException(ExceptionType.INVALID_START_LOC);
+            } else {
+                throw new CustomException(ExceptionType.INVALID_LOCATIONS);
+            }
         }
     }
 
@@ -52,13 +72,9 @@ public class RouteCommand extends Command {
 
     private ArrayList<String> similarLocations(String[] locations) {
         ArrayList<String> possibleLocs = new ArrayList<>();
-        ArrayList<String> routeNames = new ArrayList<>();
-        for (BusStops info: EnumSet.allOf(BusStops.class)) {
-            routeNames.add(info.getName().toLowerCase());
-        }
-        if (!routeNames.contains(locations[0].trim().toLowerCase())) {
+        if (!isValidBusStop(locations[0].trim())) {
             possibleLocs = SimilarityCheck.similarLoc(locations[0]);
-        } else if (!routeNames.contains(locations[1].trim().toLowerCase())) {
+        } else if (!isValidBusStop(locations[1].trim())) {
             possibleLocs = SimilarityCheck.similarLoc(locations[1]);
         }
         return possibleLocs;
