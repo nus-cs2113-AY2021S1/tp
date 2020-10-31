@@ -140,6 +140,8 @@ The Sequence Diagram below shows an example of how the components work together 
 ![Sequence Diagram for Components](images/SeqDiagram_Components.png)
 
 ### 3.2 UI Component
+The class diagram below shows the association between classes that make up the UI component.
+
 ![Class Diagram for UI Component](images/ClassDiagram_UI.png)
 
 The UI component is made up of main 2 classes:
@@ -150,24 +152,34 @@ In essence, the UI is responsible for the majority display of all successful com
 , as well as user interaction by prompting for the next command.
 
 ### 3.3 Logic Component
+The class diagram below shows the association between classes that make up the Logic component.
+
+Note: **Model** and **Storage** in this diagram represent components, not classes.
+
 ![Class Diagram for Logic Component](images/ClassDiagram_Logic.png)
 
 The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence
 flow from the time a user input is read till command execution ends.
 
 1. User input is fetched from the UI and passed into the Parser for parsing.
-2. A Command object is returned and subsequently executed in the Main class.
+2. A Command object is returned and subsequently executed.
 3. The command execution outcome may affect Quotesify’s model objects. (e.g. adding a book)
 4. Command instructs the UI component to print out relevant output messages depending on command type.
 Also, Command may invoke saving of data via Storage at a given point in time.
-5. Finally, Command will then inspect the exit status after command execution.
-6. Control is handed back over to the UI.
+5. Finally, Command will then inspect the exit status after command execution to verify if the program should exit.
+6. Control is handed back over to the UI, either for processing of program exit or the next user input command.
 
+* `X` represents the execution type such as `Add`, `Delete`, `Edit`, etc.
+* `Y` represents the model type such as `Book`, `Quote`, `Category`, etc.
+
+Therefore,
 * `XCommand` class represents the command type such as `AddCommand`, `FindCommand`, `DeleteCommand`, etc.
-* `XYCommand` class represents the command to execute from a specific object. Such as `AddBookCommand`
+* `XYCommand` class represents the command to execute from a specific model type. Such as `AddBookCommand`
 , `FindBookCommand`, `DeleteQuoteCommand`, etc.
 
 ### 3.4 Model Component
+The class diagram below shows the association between classes that make up the Model component.
+
 ![Class Diagram for Model Component](images/ClassDiagram_Model.png)
 
 The model component consists of several classes that make up the main features of Quotesify.
@@ -391,14 +403,17 @@ The sequence diagram below demonstrates the command execution process when addin
   * The book will be added into the category's *bookList* attribute for record keeping.
 
 ##### Design Consideration
-* Allowing users to specify multiple categories at once.
+* **(Current)** Allowing users to specify multiple categories at once.
   * Pros: Increases efficiency for users
-* Giving users an option to specify a book, quote, or both to be tagged with a category.
+* **(Current)** Giving users an option to specify a book, quote, or both to be tagged with a category.
   * Pros: Increases efficiency for users.
   * Cons: Difficult to implement.
 * Giving users an option to specify *multiple* books, quotes, or both to be tagged with a category:
   * Pros: Further increases efficiency for users.
   * Cons: Increased complexity in implementation. 
+  
+With the addition of new categories, users can perform several commands that makes use of them. Such as editing of category name, finding a category, deleting a category,
+listing all categories, or adding the same category to other books and quotes.
 
 ### 4.5 Feature: Rating system for books
 Given below is the class diagram for classes related to the Rating System in Quotesify:

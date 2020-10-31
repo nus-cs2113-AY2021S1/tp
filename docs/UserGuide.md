@@ -699,7 +699,7 @@ Add one or more categories to a specified book or quote.
 
 Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
 * `[-b BOOK_NUMBER]` tag is optional. Use it to specify an existing book.
-* `[-b QUOTE_NUMBER]` tag is optional. Use it to specify an existing quote.
+* `[-q QUOTE_NUMBER]` tag is optional. Use it to specify an existing quote.
 * You must specify either a book, quote, or both.
 * The specified book or quote should exist in Quotesify.
 * Multiple categories should be **space separated**.
