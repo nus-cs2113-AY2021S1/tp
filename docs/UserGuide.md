@@ -21,42 +21,42 @@ After familiarizing with all the functionalities, you will definitely be able to
 * [Important Notes](#important-notes)
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [View available commands](#viewing-available-commands-help)
+    * [View available commands](#viewing-available-commands)
     * [Add a task](#adding-a-task)
-        * add a todo task
+        * [add a todo task](#adding-a-todo-task)
         * [add a deadline task](#adding-a-deadline-task)
-    * [Mark a task as done](#marking-a-task-as-done-done)
+    * [Mark a task as done](#marking-a-task-as-done)
     * [Add an event](#adding-an-event)
-        * [add an activity event](#adding-an-activity-event-act)
-        * [add an exam event](#adding-an-examination-event-exam)
-        * [add a lab event](#adding-a-laboratory-session-event-lab)
-        * [add a lecture event](#adding-a-lecture-event-lect)
-        * [add a tutorial event](#adding-a-tutorial-event-tut)
-    * [Add additional information of an event](#adding-additional-information-to-an-event-a)
-    * [View additional information of an event](#viewing-the-additional-information-of-an-event-v)
+        * [add an activity event](#adding-an-activity-event)
+        * [add an exam event](#adding-an-examination-event)
+        * [add a lab event](#adding-recurring-laboratory-session-events)
+        * [add a lecture event](#adding-recurring-lecture-events)
+        * [add a tutorial event](#adding-recurring-tutorial-events)
+    * [Add additional information of an event](#adding-additional-information-to-an-event)
+    * [View additional information of an event](#viewing-the-additional-information-of-an-event)
     * [Delete a calendar item](#deleting-a-calendar-item)
-        * [delete a task](#deleting-a-task--t)
-        * [delete an event](#deleting-an-event--e)
+        * [delete a task](#deleting-a-task)
+        * [delete an event](#deleting-an-event)
     * [Find a calendar item](#finding-a-calendar-item)
-        * [find any item available](#finding-an-item-from-the-calendar-list-f)
-        * [find a task](#finding-an-item-from-the-task-list-ft)
-        * [find an event](#finding-an-item-from-the-event-list-fe)
-    * [Prioritize task](#prioritizing-a-task-t)
-    * [Print tasks](#printing-tasks-print-tasks)
-    * [Print events](#printing-events-print-events)
-    * [Print progress](#printing-progress-print-progress)
-    * [Give suggestion](#giving-suggestion-suggestion)
+        * [find any item available](#finding-an-item-from-the-calendar-list)
+        * [find a task](#finding-an-item-from-the-task-list)
+        * [find an event](#finding-an-item-from-the-event-list)
+    * [Prioritize task](#prioritizing-a-task)
+    * [Print tasks](#printing-tasks)
+    * [Print events](#printing-events)
+    * [Print progress](#printing-progress)
+    * [Give suggestion](#giving-suggestion)
     * [Print time line](#printing-timeline)
-        * [print default timeline](#printing-default-calendar-print-timeline)
-        * [print weekly timeline](#printing-calendar-for-the-current-week-print-timeline-week)
-        * [print monthly timeline](#printing-calendar-for-current-month-print-timeline-month)
-        * [print specific timeline of a day](#printing-calendar-before-a-specific-date-print-timeline-date)
+        * [print default timeline](#printing-default-calendar)
+        * [print weekly timeline](#printing-calendar-for-the-current-week)
+        * [print monthly timeline](#printing-calendar-for-the-current-month)
+        * [print specific timeline of a day](#printing-calendar-before-a-specific-date)
     * [Print countdown](#printing-countdown)
-        * [print countdown for all items with due date](#printing-countdown-of-both-deadline-and-exam-events-countdown)
-        * [print countdown for deadlines](#printing-countdown-for-deadline-tasks-only-countdown-deadlines)
-        * [print countdown for exams](#printing-countdown-for-exam-events-only-countdown-exams)
+        * [print countdown for all items with due date](#printing-countdown-of-both-deadline-and-exam-events)
+        * [print countdown for deadlines](#printing-countdown-for-deadline-tasks-only)
+        * [print countdown for exams](#printing-countdown-for-exam-events-only)
     * [Save the data](#saving-the-data)
-    * [Exit the program](#exiting-the-program-bye)
+    * [Exit the program](#exiting-the-program)
 * [Frequently Asked Questions (FAQ)](#faq)
 * [Command summary](#command-summary)
 
@@ -99,7 +99,7 @@ The following table displays the list of terminologies used in this document:
 
 This section provides the features **_25 hours a day_** has to offer. It entails a brief description of what it does and how to use it.
 
-### Viewing available commands: `help`
+### Viewing available commands:
 
 As a first-time user you can always type help in the terminal to view the list of available commands. 
 
@@ -116,12 +116,12 @@ Are you sometimes overwhelmed by different tasks and not sure how to document th
 
 The following 2 sub-sections will provide you with the guide on how to add a task to the calendar list.  
 
-#### Adding a todo task: `todo`
+#### Adding a todo task:
 
 This function allows you to add a todo task, such as exercise plans or small reminders for your day to day matters 
 which can be a great help if you are a forgetful person.
 
-Format: `todo <task_description`
+Format: `todo <task_description>`
 
 Example: 
 
@@ -130,7 +130,7 @@ Example:
 
 ![tips_todo](images/tip_for_todo.PNG)
 
-#### Adding a deadline task: `deadline`
+#### Adding a deadline task:
 
 This function allows you to add a deadline task, such as project submission or assignment submission and the program 
 will keep track of the due date which will definitely make your study life more manageable!
@@ -147,7 +147,7 @@ as illustrated by the figure below.
 
 ![warning_dadline](images/warning_deadline.PNG)
 
-### Marking a task as done: `done`
+### Marking a task as done:
 
 To help manage your tasks better, you can mark a task on your calendar list as completed by using the `done` command. 
 If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task
@@ -173,7 +173,7 @@ When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `ac
 
 ![warning_event](images/warning_event.PNG)
 
-#### Adding an activity event: `act`
+#### Adding an activity event:
 
 This function allows you to add school activities, such as interview workshops or Co-Curriculum Activities (CCAs). 
 This definitely the best way to keep track of your commitments and will surely make your student life more colourful and gain the most out of it! 
@@ -188,7 +188,7 @@ Example:
 
 ![warning_act](images/warning_act.PNG)
 
-#### Adding an examination event: `exam`
+#### Adding an examination event:
 
 You can add an examination event to the calendar list by using the following format.
 
@@ -200,7 +200,7 @@ Example of usage:
 
 `exam CS1221 @MPSH2 / 221120 1100` - adds CS1221 exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
 
-#### Adding recurring laboratory session events: `lab`
+#### Adding recurring laboratory session events:
 
 When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
 
@@ -212,7 +212,7 @@ Example of usage:
 
 `lab CS2100 @com2-2112 -9 / 220920 1300` - adds CS2100 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
 
-#### Adding recurring lecture events: `lect`
+#### Adding recurring lecture events:
 
 When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
 
@@ -224,7 +224,7 @@ Example of usage:
 
 `lect CS2100 @lt11 -r 5 / 101020 1300` - adds CS2100 lecture at 2020-10-10 1p.m. to the event list, the venue is lt11 and the lecture will happen for the next 5 weeks.
 
-#### Adding recurring tutorial events: `tut`
+#### Adding recurring tutorial events:
 
 When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
 
@@ -240,11 +240,11 @@ Example of usage:
 
 ### Additional information of an event
 
-#### Adding additional information to an event: `/a`
+#### Adding additional information to an event:
 
 You can add additional information pertaining to an event in your calendar list.
 
-Format: `/a <event_number? - <additional information>`
+Format: `/a <event_number> - <additional information>`
 
 Example of usage:
 
@@ -252,7 +252,7 @@ Example of usage:
 
 ![tip_addtional_info](images/tip_additional_info.PNG)
 
-#### Viewing the additional information of an event: `/v`
+#### Viewing the additional information of an event:
 
 You can view the additional information pertaining to an event in your calendar list.
 
@@ -262,7 +262,7 @@ Example of usage:
 
 `/v 1` - This lists the additional information that you have added for event number 1.
 
-#### Deleting the additional information of an event: `/-`
+#### Deleting the additional information of an event:
 
 You can view the additional information pertaining to an event in your calendar list.
 
@@ -276,7 +276,7 @@ Example of usage:
 
 You may delete any calendar item that you deem unnecessary by using the following command:
 
-#### Deleting a task: `-t`
+#### Deleting a task:
 
 You can delete a task from your calendar list.
 
@@ -286,7 +286,7 @@ Example of usage:
  
  `-t 1` - This removes task number 1 from your calendar.
 
-#### Deleting an event: `-e`
+#### Deleting an event:
 
 You can delete an event from your calendar list.
 
@@ -300,7 +300,7 @@ Example of usage:
 
 You can find a calendar item based on a specific keyword. Additionally, you may filter the search based on whether it is a task or an event. 
 
-#### Finding an item from the calendar list: `/f`
+#### Finding an item from the calendar list:
 
 You can search the entire calendar based on a keyword.
 
@@ -312,7 +312,7 @@ Example of usage:
 
 ![tip_find](images/tip_find.PNG)
 
-#### Finding an item from the task list: `/ft`
+#### Finding an item from the task list: 
 
 You can search the task list based on a keyword.
 
@@ -322,7 +322,7 @@ Example of usage:
 
 `/ft Tuition` - the lists of tasks containing the keyword “Tuition” will appear.
 
-#### Finding an item from the event list: `/fe`
+#### Finding an item from the event list: 
 
 You can search the event list based on a keyword.
 
@@ -334,7 +334,7 @@ Example of usage:
 
 ![tip_find_event](images/tip_find_event.PNG)
 
-### Prioritizing a task: `*t`                                                                                                    
+### Prioritizing a task:                                                                                                
 
 When you have important tasks, you can prioritize them in the task list to distinguish from ordinary tasks.
 If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. 
@@ -347,7 +347,7 @@ Example of usage:
 
 ![warning_prioritizing](images/warning_prioritizing.PNG)
 
-### Printing tasks: `print tasks`
+### Printing tasks:
 
 If you want to prioritize or delete some of the tasks on hand but cannot recall the task number as there are simply 
 too many tasks, you can always ask the program to print out all tasks saved in the program. 
@@ -359,7 +359,7 @@ Format: `print tasks`
 
 ![tips_printtask](images/tip_printTasks.PNG)
 
-### Printing events: `print events`
+### Printing events:
 
 If you want to delete past events or to add additional information to a certain event, you can always ask the program 
 to display all events saved in the program. This feature will definitely save your brain space wated on memorising them.
@@ -370,7 +370,7 @@ Format: `print events`
 
 ![tips_printevents](images/tip_printEvents.PNG)
 
-### Printing important tasks: `print *`
+### Printing important tasks:
     
 If you just want to view all the important tasks instead of all the tasks in the calendar list now, 
 you can type `print *` command to view the list of important tasks together with their information.                           
@@ -379,7 +379,7 @@ Format: `print *`
 
 ![print*](images/printImportant_command..PNG)
 
-### Printing progress: `print progress`
+### Printing progress: 
 
 If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, 
 you can type  `print progress` command to see the fraction and percentage proportion of the finished tasks among all the tasks.
@@ -388,7 +388,7 @@ Format: `print progress`
 
 ![print_progress](images/printProgress_command.PNG)
 
-### Giving suggestion: `suggestion`
+### Giving suggestion: 
 
 When you have a lot of tasks and do not know preparing for which several tasks first, you can get some simple suggestions from the 25HoursADay. 
 This application can select several important and urgent tasks in the task list for you. If you want to view the suggestions, 
@@ -404,7 +404,7 @@ If you want to see your calendar items in a timeline format, you can always use 
 There are four kinds of personalised calendar that you can print: default calendar, weekly calendar, monthly calendar, 
 and calendar before a specific date you choose.
 
-#### Printing default calendar: `print timeline`
+#### Printing default calendar: 
 
 Print the personal calendar including all calendar items, with todo items (which do not have a specific date) printed as a list at the bottom of the timeline.
 
@@ -412,13 +412,13 @@ Format: `print timeline`
 
 ![print_timeline](images/printTimeline_command.PNG)
 
-#### Printing calendar for the current week: `print timeline week`
+#### Printing calendar for the current week: 
 
 Print the personal calendar for the current week.
 
 Format: `print timeline week`
 
-#### Printing calendar for current month: `print timeline month`
+#### Printing calendar for the current month: 
 
 Print the personal calendar for the current month.
 
@@ -426,7 +426,7 @@ Format: `print timeline month`
 
 ![tip_timeline_month](images/warning_timeline_month.PNG)
 
-#### Printing calendar before a specific date: `print timeline date`
+#### Printing calendar before a specific date:
 
 Print the calendar before a specific date.
 
@@ -439,7 +439,7 @@ Format: `print timeline date <DATE>`
 If you want to see the countdown of all the upcoming exams and know how much time you still have to review, or you want to 
 double check how many days you still have before the deadline, you can type the `countdown`, `countdown exams`, or `countdown deadlines` command.
 
-#### Printing countdown of both deadline and exam events: `countdown`
+#### Printing countdown of both deadline and exam events: 
 
 If you type `countdown`, you can see the countdown of all the unfinished deadlines tasks and all the upcoming exam events.
 
@@ -451,7 +451,7 @@ Format: `countdown`
  
  ![countdown](images/countdown_command.PNG)
 
-#### Printing countdown for exam events only: `countdown exams`
+#### Printing countdown for exam events only: 
 
 If you type `countdown exams`, you can see the countdown of all upcoming exams.
 
@@ -461,7 +461,7 @@ Format: `countdown exams`
 
 ![warning_countdown](images/warning_countdown.PNG)
 
-#### Printing countdown for deadline tasks only: `countdown deadlines`
+#### Printing countdown for deadline tasks only: 
 
 If you type `countdown deadlines`, you can see the countdown of all unfinished deadlines.
 
@@ -476,7 +476,7 @@ When you close the program or you make some changes to the program such as addin
 are automatically saved locally. So, there is no need for users to save manually.
 Next time when you open the program, all the data will automatically be loaded from the local file to the program.
 
-### Exiting the program: `bye`
+### Exiting the program: 
 
 If you want to exit the program, you can always type `bye` in the terminal to quit and all the data entered will be saved 
 automatically for your future use. 
