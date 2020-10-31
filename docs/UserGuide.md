@@ -6,31 +6,6 @@
 [About this document](#about-this-document) <br>
 [Quick start](#quick-start) <br>
 [Features](#features) <br>
-<<<<<<< HEAD
-&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding a noun: `noun`](#adding-a-noun-noun) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding a verb: `verb`](#adding-a-verb-verb) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding an adjective: `adj`](#adding-an-adjective-adj) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Listing words: `list words`](#listing-words-list-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding bunny idea: `bunny`](#adding-bunny-idea-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Listing bunny ideas: `list bunny`](#listing-bunny-ideas-list-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Finding names from name database: `filter name`](#finding-names-from-name-database-filter-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Adding name to the name database: `add name`](#adding-name-to-the-name-database-add-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Removing a name from the name database: `delete name`](#removing-a-name-from-the-name-database-delete-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word bank: `filter`](#filtering-words-in-word-bank-filter) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter`](#listing-your-filter-list-list-filter) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Beginning your writing session: `start`](#beginning-your-writing-session-start) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “type” of your writing: `type`](#choosing-the-type-of-your-writing-type) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “topic” of your writing: `topic`](#choosing-the-topic-of-your-writing-topic) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Tracking your past writings: `stats`](#tracking-your-past-writings-stats) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Clearing certain object in database: `clear`](#clearing-certain-object-in-database-clear) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Closing the program: `exit`](#closing-the-program-exit) <br>
-=======
 &nbsp;&nbsp;&nbsp;&nbsp;[Basic CLI commands](#basic-cli-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
@@ -63,7 +38,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “topic” of your writing: `topic`](#choosing-the-topic-of-your-writing-topic) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Tracking your past writings: `stats`](#tracking-your-past-writings-stats) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Getting reminders for your writings scheduled for a specific day: `remind`](#getting-reminders-for-your-writings-scheduled-for-a-specific-day-remind) <br>
->>>>>>> 7533dc6bfcabef10a97f72a84520384c59f3226f
 [FAQ](#FAQ) <br>
 [Glossary](#glossary) <br>
 [Command summary](#command-summary) <br>
@@ -92,7 +66,7 @@ You may want to first have a look at the glossary to be clear on the terminology
 1. Check that your computer has `Java 11` installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
-1. Type in a command prompt ./duke.jar and press Enter.
+1. Type in a command prompt `java -jar duke.jar` and press Enter.
 1. Type the `help` command and press Enter to get started.
 1. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
@@ -524,6 +498,7 @@ Names List commands allow you to look through a pre-built list of character name
 
 #### Generating names from name database: `name`
 You can generate a name randomly from the stored database of names.
+
 Format: `name`
 
 Example output:  
@@ -534,15 +509,11 @@ name 2
 --------------------------------------------------------------
 ```
 
-<<<<<<< HEAD
-### Listing names from name database: `list name`
-Displays all the names currently stored in the names database.  
-=======
 [Jump to top](#fluffle-user-guide)
 
 #### Listing names from name database: `list name`
 You can display all the names currently stored in the names database. 
->>>>>>> 7533dc6bfcabef10a97f72a84520384c59f3226f
+
 Format: `list name`
 
 Example usages:
@@ -558,16 +529,11 @@ list name
 --------------------------------------------------------------
 ```
 
-<<<<<<< HEAD
-### Finding names from name database: `filter name`
-Gets the list of names after filtering from the stored list of names.  
-Format: `filter name <NAME>`
-=======
 [Jump to top](#fluffle-user-guide)
->>>>>>> 7533dc6bfcabef10a97f72a84520384c59f3226f
 
 #### Finding names from name database: `filter name`
 You can get the list of names after filtering from the stored list of names. 
+
 Format: `filter name NAME`
 
 Example usage:
@@ -594,17 +560,13 @@ filter name name
 --------------------------------------------------------------
 ```
 
-<<<<<<< HEAD
-### Adding name to the name database: `add name`
-Adds a name to the list of names currently stored in the names database.
-Format: `add name <NAME>`
-=======
+
 [Jump to top](#fluffle-user-guide)
 
 #### Adding names from name database: `add name`
 You can add a name to the list of names currently stored in the names database.
+
 Format: `add name NAME`
->>>>>>> 7533dc6bfcabef10a97f72a84520384c59f3226f
 
 Example usages:
 - `add name name 3`
@@ -617,17 +579,13 @@ name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
 
-<<<<<<< HEAD
-### Removing a name from the name database: `delete name`
-Removes a name from the list of names currently stored in the names database.
-Format: `delete name <INDEX>`
-=======
+
 [Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
 You can remove a name from the list of names currently stored in the names database.
+
 Format: `delete name INDEX`
->>>>>>> 7533dc6bfcabef10a97f72a84520384c59f3226f
 
 Example usages:
 - `delete name 3`
