@@ -86,9 +86,11 @@ public class Parser {
         String trimmedCommand = fullCommand.trim().toLowerCase();
         Command command;
         String[] words = trimmedCommand.split(" ");
+        int length = 2;
         switch (words[0]) {
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
+            length = 1;
             break;
         case AddPatientCommand.COMMAND_WORD:
             command = new AddPatientCommand(trimmedCommand);
@@ -98,6 +100,7 @@ public class Parser {
             break;
         case CreateApptCommand.COMMAND_WORD:
             command = new CreateApptCommand();
+            length = 1;
             break;
         case EditPatientCommand.COMMAND_WORD:
             command = new EditPatientCommand(trimmedCommand);
@@ -110,6 +113,7 @@ public class Parser {
             break;
         case ListPatientCommand.COMMAND_WORD:
             command = new ListPatientCommand();
+            length = 1;
             break;
         case RetrievePatientCommand.COMMAND_WORD:
             command = new RetrievePatientCommand(trimmedCommand);
@@ -128,6 +132,9 @@ public class Parser {
             break;
         default:
             throw new RexException(Command.COMMAND_ERROR);
+        }
+        if (!(command instanceof ExitCommand) && words.length < length) {
+            throw new RexException("Invalid input!");
         }
         return command;
     }
