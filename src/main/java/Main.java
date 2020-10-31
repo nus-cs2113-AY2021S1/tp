@@ -250,4 +250,15 @@ public class Main {
         System.out.println("____________________________________________________________\n");
     }
 
+    public static void help() {
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Hello! Here is a list of commands you can try:");
+        System.out.println("1. Order dish: 'order'");
+        System.out.println("2. Delete order: 'delete [order number]'");
+        System.out.println("3. Find order: 'find [keyword]'");
+        System.out.println("4. List order: 'list'");
+        System.out.println("5. Exit program: 'bye' ");
+        System.out.println("____________________________________________________________\n");
+    }
+
 }
