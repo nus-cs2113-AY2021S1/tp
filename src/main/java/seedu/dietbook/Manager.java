@@ -1,5 +1,7 @@
 package seedu.dietbook;
 
+import seedu.dietbook.calculator.Calculator;
+import seedu.dietbook.calculator.CalculatorData;
 import seedu.dietbook.command.AddCommand;
 import seedu.dietbook.command.CalculateCommand;
 import seedu.dietbook.command.ClearCommand;
@@ -14,16 +16,14 @@ import seedu.dietbook.command.ListCommand;
 import seedu.dietbook.command.NameCommand;
 import seedu.dietbook.command.RecommendCommand;
 import seedu.dietbook.command.UserinfoCommand;
-import seedu.dietbook.list.FoodList;
-import seedu.dietbook.person.ActivityLevel;
-import seedu.dietbook.person.Person;
-import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.database.DataBase;
-import seedu.dietbook.person.Gender;
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.list.FoodList;
 import seedu.dietbook.parser.Parser;
+import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.Gender;
+import seedu.dietbook.person.Person;
 
-import java.util.ArrayList;
 
 /**
  * Manager class of the program.
@@ -39,6 +39,7 @@ public class Manager {
     private String name;
     private int commandCount = 1;
     private DataBase dataBase;
+    private CalculatorData data;
     private Calculator calculator;
 
     public static final String COMMAND_ADD = "add";
@@ -61,7 +62,8 @@ public class Manager {
                 1, ActivityLevel.LOW);
         this.foodList = foodlist;
         this.dataBase = dataBase;
-        this.calculator = new Calculator(foodList.getFoods());
+        this.data.inputData(this.foodList);
+        this.calculator = new Calculator(this.data);
     }
 
     public FoodList getFoodList() {
@@ -83,10 +85,6 @@ public class Manager {
 
     public Calculator getCalculator() {
         return this.calculator;
-    }
-
-    public void setCalculator() {
-        this.calculator = new Calculator(foodList.getFoods());
     }
 
     public DataBase getDataBase() {

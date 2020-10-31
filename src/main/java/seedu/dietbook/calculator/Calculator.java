@@ -1,7 +1,5 @@
 package seedu.dietbook.calculator;
 
-import seedu.dietbook.food.Food;
-import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.Person;
 
@@ -13,27 +11,20 @@ import java.util.List;
  */
 public class Calculator {
     private int totalCalorie = 0;
-    private int totalCarbohydrate = 0;
+    private int totalCarb = 0;
     private int totalProtein = 0;
     private int totalFat = 0;
-
+    CalculatorData data = null;
     /**
      * Construct a calculator taking in a foodList. Add up calories,
      * carbs, protein, and fats in each food item.
      *
-     * @param foodList foodList containing food items to calculate.
+     * @param data a CalculatorData class instance containing data
+     *             of food items to calculate.
      */
-    public Calculator(List<Food> foodList) {
-        assert foodList != null : "The foodList should not be null.";
-
-        for (int i = 0; i < foodList.size(); i++) {
-            assert foodList.get(i).getName().trim().length() != 0 : "Food names should not be empty.";
-
-            totalCalorie += foodList.get(i).getCalorie();
-            totalCarbohydrate += foodList.get(i).getCarbohydrate();
-            totalProtein += foodList.get(i).getProtein();
-            totalFat += foodList.get(i).getFat();
-        }
+    public Calculator(CalculatorData data) {
+        assert data != null : "The foodList should not be null.";
+        this.data = data;
     }
 
     /**
@@ -42,6 +33,11 @@ public class Calculator {
      * @return the value of total calorie of food items in foodList.
      */
     public int calculateCalorie() {
+        totalCalorie = 0;
+        List<Integer> calories = data.getTotalCalorie();
+        for (int calorie : calories) {
+            totalCalorie += calorie;
+        }
         return totalCalorie;
     }
 
@@ -54,12 +50,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateCalorie(FoodList foodList, LocalDateTime startTime) {
-        int calorie = 0;
-        for (int i = 0; i < foodList.getFoodsAfterDateTime(startTime).size(); i++) {
-            calorie += foodList.getFoodsAfterDateTime(startTime).get(i).getCalorie();
+    public int calculateCalorie(LocalDateTime startTime) {
+        totalCalorie = 0;
+        List<Integer> calories = data.getTotalCalorie(startTime);
+        for (int calorie : calories) {
+            totalCalorie += calorie;
         }
-        return calorie;
+        return totalCalorie;
     }
 
     /**
@@ -72,12 +69,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateCalorie(FoodList foodList, LocalDateTime startTime, LocalDateTime endTime) {
-        int calorie = 0;
-        for (int i = 0; i < foodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            calorie += foodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getCalorie();
+    public int calculateCalorie(LocalDateTime startTime, LocalDateTime endTime) {
+        totalCalorie = 0;
+        List<Integer> calories = data.getTotalCalorie(startTime, endTime);
+        for (int calorie : calories) {
+            totalCalorie += calorie;
         }
-        return calorie;
+        return totalCalorie;
     }
 
     /**
@@ -86,7 +84,12 @@ public class Calculator {
      * @return the value of total carbs of food items in foodList.
      */
     public int calculateCarb() {
-        return totalCarbohydrate;
+        totalCarb = 0;
+        List<Integer> carbs = data.getTotalCarb();
+        for (int carb : carbs) {
+            totalCarb += carb;
+        }
+        return totalCarb;
     }
 
     /**
@@ -98,12 +101,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateCarb(FoodList foodList, LocalDateTime startTime) {
-        int carb = 0;
-        for (int i = 0; i < foodList.getFoodsAfterDateTime(startTime).size(); i++) {
-            carb += foodList.getFoodsAfterDateTime(startTime).get(i).getCarbohydrate();
+    public int calculateCarb(LocalDateTime startTime) {
+        totalCarb = 0;
+        List<Integer> carbs = data.getTotalCarb(startTime);
+        for (int carb : carbs) {
+            totalCarb += carb;
         }
-        return carb;
+        return totalCarb;
     }
 
     /**
@@ -116,12 +120,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateCarb(FoodList foodList, LocalDateTime startTime, LocalDateTime endTime) {
-        int carb = 0;
-        for (int i = 0; i < foodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            carb += foodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getCarbohydrate();
+    public int calculateCarb(LocalDateTime startTime, LocalDateTime endTime) {
+        totalCarb = 0;
+        List<Integer> carbs = data.getTotalCarb(startTime, endTime);
+        for (int carb : carbs) {
+            totalCarb += carb;
         }
-        return carb;
+        return totalCarb;
     }
 
     /**
@@ -130,6 +135,11 @@ public class Calculator {
      * @return the value of total protein of food items in foodList.
      */
     public int calculateProtein() {
+        totalProtein = 0;
+        List<Integer> proteins = data.getTotalProtein();
+        for (int protein : proteins) {
+            totalProtein += protein;
+        }
         return totalProtein;
     }
 
@@ -142,12 +152,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateProtein(FoodList foodList, LocalDateTime startTime) {
-        int protein = 0;
-        for (int i = 0; i < foodList.getFoodsAfterDateTime(startTime).size(); i++) {
-            protein += foodList.getFoodsAfterDateTime(startTime).get(i).getProtein();
+    public int calculateProtein(LocalDateTime startTime) {
+        totalProtein = 0;
+        List<Integer> proteins = data.getTotalProtein(startTime);
+        for (int protein : proteins) {
+            totalProtein += protein;
         }
-        return protein;
+        return totalProtein;
     }
 
     /**
@@ -160,12 +171,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateProtein(FoodList foodList, LocalDateTime startTime, LocalDateTime endTime) {
-        int protein = 0;
-        for (int i = 0; i < foodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            protein += foodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getProtein();
+    public int calculateProtein(LocalDateTime startTime, LocalDateTime endTime) {
+        totalProtein = 0;
+        List<Integer> proteins = data.getTotalProtein(startTime, endTime);
+        for (int protein : proteins) {
+            totalProtein += protein;
         }
-        return protein;
+        return totalProtein;
     }
 
     /**
@@ -174,6 +186,11 @@ public class Calculator {
      * @return the value of total fats of food items in foodList.
      */
     public int calculateFat() {
+        totalFat = 0;
+        List<Integer> fats = data.getTotalFat();
+        for (int fat : fats) {
+            totalFat += fat;
+        }
         return totalFat;
     }
 
@@ -186,12 +203,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateFat(FoodList foodList, LocalDateTime startTime) {
-        int fat = 0;
-        for (int i = 0; i < foodList.getFoodsAfterDateTime(startTime).size(); i++) {
-            fat += foodList.getFoodsAfterDateTime(startTime).get(i).getFat();
+    public int calculateFat(LocalDateTime startTime) {
+        totalFat = 0;
+        List<Integer> fats = data.getTotalFat(startTime);
+        for (int fat : fats) {
+            totalFat += fat;
         }
-        return fat;
+        return totalFat;
     }
 
     /**
@@ -204,12 +222,13 @@ public class Calculator {
      * @return the value of total calorie of food items with time after
      *         startTime in foodList.
      */
-    public int calculateFat(FoodList foodList, LocalDateTime startTime, LocalDateTime endTime) {
-        int fat = 0;
-        for (int i = 0; i < foodList.getFoodsInDateTimeRange(startTime, endTime).size(); i++) {
-            fat += foodList.getFoodsInDateTimeRange(startTime, endTime).get(i).getFat();
+    public int calculateFat(LocalDateTime startTime, LocalDateTime endTime) {
+        totalFat = 0;
+        List<Integer> fats = data.getTotalFat(startTime, endTime);
+        for (int fat : fats) {
+            totalFat += fat;
         }
-        return fat;
+        return totalFat;
     }
 
     /**
