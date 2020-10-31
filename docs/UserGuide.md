@@ -23,7 +23,7 @@ After familiarizing with all the functionalities, you will definitely be able to
 * [Features](#features)
     * [View available commands](#viewing-available-commands-help)
     * [Add a task](#adding-a-task)
-        * [add a todo task](#adding-a-todo-task-todo)
+        * add a todo task
         * [add a deadline task](#adding-a-deadline-task-deadline)
     * [Mark a task as done](#marking-a-task-as-done-done)
     * [Add an event](#adding-an-event)
