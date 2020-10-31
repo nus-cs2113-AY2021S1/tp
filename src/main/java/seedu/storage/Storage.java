@@ -124,17 +124,17 @@ public class Storage {
     }
 
     private void addTaskToTaskmap(TaskMap taskMap, Task task) {
-        int WEEKS_PER_SEM = 13;
-        int RECESS_WEEK = 7;
-        int DAYS_PER_WEEK = 7;
+        int weeksPerSem = 13;
+        int recessWeek = 7;
+        int daysPerWeek = 7;
         if (task.getDescription().contains("Exam")) {
             taskMap.addTask(task);
         } else {
-            for (int i = 0; i <= WEEKS_PER_SEM; i++) {
-                if (i == RECESS_WEEK - 1) {
+            for (int i = 0; i <= weeksPerSem; i++) {
+                if (i == recessWeek - 1) {
                     continue;
                 }
-                LocalDate date = task.getDate().plusDays(i * DAYS_PER_WEEK);
+                LocalDate date = task.getDate().plusDays(i * daysPerWeek);
                 Task tempTask = new Task(task.getDescription(), date,
                         task.getStartTime(), task.getEndTime(), task.getPriority());
                 taskMap.addTask(tempTask);
