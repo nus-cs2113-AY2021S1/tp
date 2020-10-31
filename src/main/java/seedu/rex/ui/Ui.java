@@ -413,6 +413,7 @@ public class Ui {
 
     /**
      * Checks if a user's input is blank.
+     *
      * @param userInput The user's input.
      * @throws RexException If a user's input is blank.
      */

@@ -23,13 +23,13 @@ class UiTest {
     }
 
     @Test
-    void checkInputNotBlank_blankInput_expectException()  {
+    void checkInputNotBlank_blankInput_expectException() {
 
         assertThrows(RexException.class, () -> new Ui().checkInputNotBlank(""));
     }
 
     @Test
-    void checkInputNotBlank_string_expectNoException()  {
+    void checkInputNotBlank_string_expectNoException() {
 
         assertDoesNotThrow(() -> new Ui().checkInputNotBlank("a"));
     }
