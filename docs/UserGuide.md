@@ -88,7 +88,38 @@ Format: `help`
 
 Expected output:
 ````
-<A list of available commands will be shown here>
+Available Commands:
+1. addmod <module code>
+   example: addmod CS2113T
+2. addexp <module code> <expected workload>
+   example: addexp CS2113T 5
+3. addtime <module code> <actual time spent> <week number>
+   example: addtime CS2113T 2 1
+4. list <week number>
+   example: list 2
+5. deletemod <module code>
+   example: deletemod CS2113T
+6. deleteexp <module code>
+   example: deleteexp CS2113T
+7. minustime <module code> <time> <week number>
+   example: minustime CS2113T 2 1
+8. edittime <module code> <actual time spent> <week number>
+   example: edittime CS2113T 8 1
+9. deletetime <module code> <week number>
+   example: deletetime CS2113T 1
+10.analyse <week number>
+   example: analyse 1
+11.addtask <module code> <task description>
+   example: addtask CS2113T revise for exam
+12.deletetask <task number>
+   example: deletetask 1
+13.done <task number>
+   example: done 1
+14.listtask
+15.open
+16.exit
+17.clear
+18.reset
 ````
 
 ### 2.2 Add a module: `addmod` <a name="addmod"></a>
