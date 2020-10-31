@@ -100,9 +100,9 @@ Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   It only accepts one `.txt` file (other file extensions will be supported in a future version).
 *   If the option `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
 
-> :bulb: Remember to specify the script file extension. For example, `script.txt` and not `script`.
+> :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
 
-> :bulb: Ensure the script file has been placed in your workspace folder as indicated in the diagram below.
+> :bulb: Ensure the script file has been placed in the current workspace folder as indicated in the diagram below.
 <br/><br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
