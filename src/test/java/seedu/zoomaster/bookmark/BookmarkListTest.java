@@ -2,6 +2,7 @@ package seedu.zoomaster.bookmark;
 
 import org.junit.jupiter.api.Test;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.util.ArrayList;
 
@@ -169,8 +170,9 @@ class BookmarkListTest {
     void launchBookmark_emptyBookmarkList_returnEmptyListMessage() throws IndexOutOfBoundsException,
             ZoomasterException {
         BookmarkList bookmarks = new BookmarkList();
-        assertEquals("Empty List" + lineSeparator,
-                bookmarks.launchBookmarks("lecture"));
+        ZoomasterException e = assertThrows(ZoomasterException.class, () -> bookmarks.launchBookmarks("lecture"));
+        assertEquals(ZoomasterExceptionType.EMPTY_BOOKMARK_LIST, e.getError());
+
     }
 
 
