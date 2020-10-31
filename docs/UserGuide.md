@@ -1,13 +1,16 @@
 # FinanceIt: A finance management application with a CLI Interface.
 FinanceIt is an all-in-one desktop application that handles the finance tracking needs of university students who are comfortable with a CLI interface.
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
-## Setting up for Testers (IMPORTANT)
+
+# 1. Set-up
+## 1.1 Setting up for Testers (IMPORTANT)
 
 Prerequisites: A computer
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
-## Setting up in Intellij
+
+## 1.2 Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 1. Download the latest release from the release page.
@@ -21,7 +24,9 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. Select the project directory, and click `OK`
    1. If there are any further prompts, accept the defaults.
 1. After the importing is complete, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
+
+> Output:
+
     Status: 
     =====================================================================================================
     = Welcome to Main Menu                                                                              =
@@ -44,13 +49,45 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ____________________________________________________________
     >>> 
-   ```
-   
-# Features : Main Menu
-Gateway to the various other features of the application. 
-Users can enter an input to access the application they wish to use.
 
-## Main Menu 1: Exit
+# 2. Features overview
+## 2.1 Main features
+
+Feature|Command|Description|
+-------|-------|-----------|
+Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, the user manages daily lists of entries called Ledgers. 
+Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
+Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
+Goal Tracker|```goal```| fillme
+Save Manager|```saver```| fillme
+Finance Tools|```finance```| fillme
+
+## 2.2 Auxillary features
+
+These commands are not part of the main features, but are helpful for other functions of the program:
+
+Feature|Command|Description|
+-------|-------|-----------|
+Logger|```logger```| Toggles logger visibility. If toggled on, log information will be displayed on the console.
+  
+# 3. Main Features
+# 3.1 Main Menu
+Gateway to the various other features of the application. 
+Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
+
+Feature|Command|
+-------|-------|-----------|
+Manual Tracker|```manual```| 
+Entry Tracker|```entry```| 
+Recurring Tracker|```recur```| 
+Goal Tracker|```goal```| 
+Save Manager|```saver```| 
+Finance Tools|```finance```| 
+Logger|```logger```| 
+Quit|```quit```|
+
+
+## 3.1.1 Main Menu 1: Exit
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
@@ -109,8 +146,8 @@ the saveStates folder. This folder will be automatically created when you first 
     >>> exit
     exit
 
-## Main Menu 2: Logger
-Toggle Logger mode. Developers can toggle it on view more system messages and logs that are otherwise hidden from view.
+## 3.1.2 Main Menu 2: Logger
+Toggle Logger mode. Developers can toggle it, and more system messages and logs will be printed onto the console.
 
 >Syntax
 
@@ -172,33 +209,68 @@ Toggle Logger mode. Developers can toggle it on view more system messages and lo
     ____________________________________________________________
     >>>
     
-# Features : Manual Tracker
-Users can manage their daily entries of expenses/ income, which is organised in ledgers representing each day of transactions.
+# 3.2 Features : Manual Tracker
+Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
+> Example
+    If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
+    1. Use Manual Tracker to create a ledger of date 20-10-03
+    2. Open the ledger of date 20-10-03 
+    3. Use Entry Tracker to create entries to record the transactions for that particular date.
 
-## Manual Tracker 1: Add ledger
+## 3.2.1 Manual Tracker 1: Add ledger
 Add a ledger to the record, representing a date.
 
 >Syntax
 
     ledger new <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
+    
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
 
 > Example: 
 
-    example
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger new /date 200504
+
+
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ May 4 2020 ] created!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger list
+
+
+    ==================================
+    = List of Ledgers                =
+    ==================================
+    | Ledger Number  | Ledger Date    |
+    ----------------------------------
+    | 1              | 2020-05-04     |
+     - - - - - - - - - - - - - - - - -
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
     
-## Manual Tracker 2: Remove ledger
+## 3.2.2 Manual Tracker 2: Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
+This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
 >Syntax
  
     ledger delete <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
-        <param type> @ /id: Index of the ledger on the ledger list.
-            <parameter:Integer>: Input number that is between 1 and the last index in the ledger list.
-        Note that either /date or /id is supplied.
+    
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
@@ -240,21 +312,27 @@ Remove a specified ledger from the record, referenced by date or id on the list.
     ____________________________________________________________
     >>>
     
-## Manual Tracker 3: Open ledger
-Users will gain access into the entries associated with the specified ledger.
-If the ledger do not exist, it will be created only if the param type supplied is "/date". This results in creation of the ledger instance
-in accordance to the date supplied.
-Tracker switches mode to track entries in the ledger that has been opened.
-Refer to Feature Entry Tracker onwards for instructions concerned with the 
-state of the application following this command.
+## 3.2.3 Manual Tracker 3: Open ledger
+Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
+This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
+
+* Automatic creation of non-existing ledgers 
+    * If the ledger specified do not exist and if the param type supplied is "/date", the program will create a new ledger
+    in accordance to the date supplied.
+    * If the user specifies a non-existing index, then the program will not have enough information to create the new ledger instance. Automatic creation
+    will not apply in this particular case.
+    
+Refer to Feature Entry Tracker onwards for further instructions.
 
 >Syntax
 
     ledger open <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
-        <param type> @ /id: Index of the ledger on the ledger list.
-            <parameter:Integer>: Input number that is between 1 and the last index in the ledger list.
+
+
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
@@ -274,7 +352,7 @@ state of the application following this command.
     ____________________________________________________________
     >>>
     
-## Manual Tracker 4: Show ledger list
+## 3.2.4 Manual Tracker 4: Show ledger list
 Shows the record of ledgers that has been added.
 
 >Syntax
@@ -301,7 +379,7 @@ Shows the record of ledgers that has been added.
     | 2              | 2020-05-04     |
     - - - - - - - - - - - - - - - - -
 
-## Manual Tracker 4: Print command list
+## 3.2.5 Manual Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -334,7 +412,7 @@ Prints available commands that users can enter in for manualTracker.
     | 5.             | exit to main menu  | exit                          |
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-## Manual Tracker 5: Exit to Main Menu
+## 3.2.6 Manual Tracker 5: Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
 
 >Syntax
