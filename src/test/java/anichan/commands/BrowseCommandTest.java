@@ -57,8 +57,7 @@ public class BrowseCommandTest {
         BrowseCommand testBrowse = testParse.parse(NORM_PAGE_NUM);
         testBrowse.setAnimePerPage(2);
         String result = testBrowse.execute(animeData, storageManager, user);
-        System.out.println(result);
-        assertEquals( LONG_RESULT + System.lineSeparator() + OUTPUT_PAGE_1, result);
+        assertEquals(LONG_RESULT + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
 
     @Test
