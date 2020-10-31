@@ -203,8 +203,8 @@ public class Ui {
     }
 
     public static void printCorruptedDataRead() {
-        System.out.println("Oh no! Some of the data in FavList.txt seem to have been corrupted.\n"
-                + "Most corrupted data have been removed :)");
+        System.out.println("Oh no! Some of the data in FavList.txt are corrupted.\n"
+                + "Most of the corrupted data has been removed :)");
     }
 
 }
