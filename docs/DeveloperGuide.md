@@ -255,8 +255,12 @@ This feature is facilitated by `Storage` class and saves the data input by the u
 
 The file `tasks.txt` is loaded when initializing the program by calling the function `readFromFile()`.
 
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_load_data_SD.jpg" alt="" width="500"/><br/>
+
 The local file is updated every time when the user adds or deletes and item, 
 or changes the attributes of the item by calling the function `writeToFile()`.
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_store_data_SD.jpg" alt="" width="500"/><br/>
 
 Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
 directory, and a new text file.
