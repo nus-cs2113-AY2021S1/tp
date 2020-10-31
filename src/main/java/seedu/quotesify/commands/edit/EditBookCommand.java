@@ -54,18 +54,13 @@ public class EditBookCommand extends EditCommand {
     private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
         // check ratings in rating list before editing the title.
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-        int currentRatingOfBook = 0;
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(oldTitle)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                currentRatingOfBook = rating.getRating();
+            if (rating.getTitle().equals(oldTitle) && rating.getAuthor().equals(author)) {
+                int currentRatingOfBook = rating.getRating();
                 ratings.delete(ratings.getList().indexOf(rating));
+                ratings.add(new Rating(book, currentRatingOfBook));
                 break;
             }
-        }
-
-        if (currentRatingOfBook != 0) {
-            ratings.add(new Rating(book, currentRatingOfBook));
         }
     }
 }

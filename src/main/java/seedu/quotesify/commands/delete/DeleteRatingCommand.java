@@ -1,8 +1,6 @@
 package seedu.quotesify.commands.delete;
 
 import seedu.quotesify.book.Book;
-import seedu.quotesify.book.BookList;
-import seedu.quotesify.commands.Command;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -29,35 +27,23 @@ public class DeleteRatingCommand extends DeleteCommand {
             return;
         }
 
-        String[] titleAndAuthor;
-        String title;
-        String author;
-        try {
-            titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
-            title = titleAndAuthor[0].trim();
-            author = titleAndAuthor[1].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
+        String bookIndex = information.trim();
+        Book bookToDeleteRating = RatingParser.checkBookExists(bookIndex);
+
+        if (bookToDeleteRating == null) {
             return;
         }
 
-        BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-        for (Book book : books.getList()) {
-            if (book.getTitle().equals(title) && book.getAuthor().getName().equals(author)) {
-                book.setRating(RatingParser.UNRATED);
-                break;
-            }
-        }
+        bookToDeleteRating.setRating(RatingParser.UNRATED);
+        String title = bookToDeleteRating.getTitle();
+        String author = bookToDeleteRating.getAuthor().getName();
 
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(title)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
+            if (rating.getTitle().equals(title) && rating.getAuthor().equals(author)) {
                 ratings.delete(ratings.getList().indexOf(rating));
                 ui.printDeleteRating(title, author);
                 return;
             }
         }
-
-        System.out.println(ERROR_RATING_NOT_FOUND);
     }
 }

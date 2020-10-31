@@ -303,9 +303,13 @@ public class TextUi {
         System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", title, author, ratingScore);
     }
 
-    public void printFoundRating(Rating rating, String title, String author) {
-        System.out.printf((UiMessage.FIND_RATING_MESSAGE) + "\n", title, author);
-        System.out.println(rating.toString());
+    public void printFoundRating(RatingList ratings, String keyword) {
+        System.out.println(UiMessage.FIND_RATING_MESSAGE);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitle().toLowerCase().contains(keyword)) {
+                System.out.println(rating.toString());
+            }
+        }
     }
 
     public void printAddToDo(ToDo toDo) {

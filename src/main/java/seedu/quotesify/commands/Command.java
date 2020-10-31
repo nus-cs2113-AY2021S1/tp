@@ -37,9 +37,7 @@ public abstract class Command {
     public static final String ERROR_NO_PAGE_NUM = "There is no page number provided!";
     public static final String ERROR_NO_TASK_NAME = "There is no task name provided!";
     public static final String ERROR_RATING_EXIST = "This book has already been rated!";
-    public static final String ERROR_BOOK_TO_RATE_NOT_FOUND = "I can't find this book to rate!";
-    public static final String ERROR_RATING_NOT_FOUND = "I can't find ratings for this book!";
-    public static final String ERROR_RATING_MISSING_INPUTS = "I need more details from you!";
+    public static final String ERROR_RATING_NOT_FOUND = "I can't find any ratings related to [%s]!";
     public static final String ERROR_TODO_NOT_FOUND = "There is no such task!";
     public static final String ERROR_BOOKMARK_NOT_FOUND = "There is no such bookmark!";
     public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
