@@ -106,7 +106,7 @@ and at the location bar type `cmd` and press `Enter`.
     The content in the square brackets can either be `-d`, `-p`, `-w`, or `-m`
     
 - Input date format is dd-MM-yyyy.
-    - e.g. 20/02/2020 means 20th February 2020
+    - e.g. 20-02-2020 means 20th February 2020
       
 - Input time format is HHmm in 24-hrs.
     - e.g. 1830 means 6.30pm
