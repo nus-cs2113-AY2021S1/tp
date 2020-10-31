@@ -30,14 +30,12 @@ public class SaveManagerTest {
         try {
             SaveManager.clear();
 
-            InputParser parser = InputParser.getInstance();
-            CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
-            SaveManager.deleteSave(packet);
-
             GoalTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_gt.txt");
             AutoTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_at.txt");
             ManualTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_mt.txt");
 
+            InputParser parser = InputParser.getInstance();
+            CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
             SaveManager.addSave(packet);
 
             String path = SaveManager.dirPath + "/testcase2149855246427094876";
