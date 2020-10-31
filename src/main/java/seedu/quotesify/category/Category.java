@@ -5,9 +5,6 @@ import seedu.quotesify.book.BookList;
 import seedu.quotesify.parser.JsonSerializer;
 import seedu.quotesify.quote.QuoteList;
 
-/**
- * 
- */
 public class Category implements JsonSerializer {
     private String category;
     private BookList bookList;
