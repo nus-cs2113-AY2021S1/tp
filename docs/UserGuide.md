@@ -27,10 +27,10 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.14 [Mark task as done: `done`](#done)
     <br/>&nbsp;2.15 [Delete a task: `deletetask`](#deletetask)
     <br/>&nbsp;2.16 [Open notification: `open`](#open)
-    <br/>&nbsp;2.17 [Exit the program : `exit`](#exit)
-    <br/>&nbsp;2.18 [Save user data](#save)
-    <br/>&nbsp;2.19 [Clear module and task data: `clear`](#clear)
-    <br/>&nbsp;2.20 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.17 [Save user data](#save)
+    <br/>&nbsp;2.18 [Clear module and task data: `clear`](#clear)
+    <br/>&nbsp;2.19 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.20 [Exit the program : `exit`](#exit)
 1. [FAQ](#faq)
 1. [Command Summary](#summary)
 
@@ -412,24 +412,8 @@ The harder you work, the closer you are to success!
 
 Note: The actual output may differ as the encouraging message is randomised.
 
-### 2.17 Exit the program : `exit` <a name="exit"></a>
-Exits the program.
 
-Format: `exit`
-
-Expected output:
-````
-All changes saved.
-_______    _______
-||   \\\  //||
-||___//\\// ||___
-||   \\ ||  ||
-||___// ||  ||____
-
-Bye <username>. Hope to see you again soon!
-````
-
-### 2.18 Save user data <a name="save"></a>
+### 2.17 Save user data <a name="save"></a>
 The program will save your data such as your name, modules, time spent and tasks
 to the hard disk automatically. There is no need to save these manually. 
 
@@ -440,7 +424,7 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 2.19 Clear module and task data: `clear` <a name="clear"></a>
+### 2.18 Clear module and task data: `clear` <a name="clear"></a>
 Deletes all module and tasks data.
 The program will also prompt the user to confirm this action.
 
@@ -472,7 +456,7 @@ Expected output:
 Clearing of data not confirmed. Your data is safe :)
 ````
  
-### 2.20 Delete user data: `reset` <a name="reset"></a>
+### 2.19 Delete user data: `reset` <a name="reset"></a>
 Deletes all module and tasks data, and the username.
 The program will also prompt the user to confirm this action.
 If confirmed, the program will restart and prompt for a new username.
@@ -519,6 +503,23 @@ Expected output:
 Reset not confirmed. Your data is safe :)
 ````
 
+### 2.20 Exit the program : `exit` <a name="exit"></a>
+Exits the program.
+
+Format: `exit`
+
+Expected output:
+````
+All changes saved.
+_______    _______
+||   \\\  //||
+||___//\\// ||___
+||   \\ ||  ||
+||___// ||  ||____
+
+Bye <username>. Hope to see you again soon!
+````
+
 ## 3. FAQ <a name="faq"></a>
 
 **Q**: Are the commands case-sensitive? 
@@ -543,7 +544,8 @@ Reset not confirmed. Your data is safe :)
 |Mark task as done|`done <task number>`|
 |Delete a task|`deletetask <task number>`|
 |Open notification|`open`|
-|Exiting the program|`exit`|
+|Clear module and task data|`clear`|
 |Deleting module and task data|`reset`|
+|Exiting the program|`exit`|
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
