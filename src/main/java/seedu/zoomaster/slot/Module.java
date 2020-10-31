@@ -13,6 +13,7 @@ public class Module {
     private String moduleCode;
     private BookmarkList bookmarks;
     private List<Slot> slots;
+    private static ArrayList<String> moduleList; //List of all NUS module codes
 
     public static ArrayList<String> getModuleList() {
         return moduleList;
@@ -21,9 +22,6 @@ public class Module {
     public static void setModuleList(ArrayList<String> moduleList) {
         Module.moduleList = moduleList;
     }
-
-    private static ArrayList<String> moduleList;
-
 
     public Module(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
@@ -67,8 +65,7 @@ public class Module {
         return slot;
     }
 
-    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) 
-        throws ZoomasterException {
+    public Slot createSlotNew(String lesson, String day, LocalTime startTime, LocalTime endTime) {
         Slot slot = new Slot(startTime, endTime, day, lesson);
         return slot;
     }
@@ -100,55 +97,40 @@ public class Module {
 
     public String getBookmarks() {
         String message = "";
-        List<Bookmark> bookmarkList = bookmarks.getBookmarkList();
+        List<Bookmark> bookmarkList = bookmarks.getBookmarks();
         for (Bookmark bookmark : bookmarkList) {
-            message += bookmark.getBookmarkAsString() + "\n";
+            message += bookmark.getBookmarkAsString();
+        }
+        if (!message.isBlank()) {
+            message += System.lineSeparator();
         }
         if (bookmarkList.isEmpty()) {
-            message += "no bookmarks found in module\n\n";
+            message += "no bookmarks found in module itself" + System.lineSeparator() + System.lineSeparator();
         }
-        for (Slot slot : slots) {
-            message += slot.toString() + "\n";
-            List<Bookmark> slotBookmarkList = slot.getBookmarkList();
+        for (int i = 0; i < slots.size(); i++) {
+            Slot slot = slots.get(i);
+            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + System.lineSeparator();
+            List<Bookmark> slotBookmarkList = slot.getBookmarkList().getBookmarks();
             for (Bookmark bookmark : slotBookmarkList) {
-                message += "  " + bookmark.getBookmarkAsString() + "\n";
+                message += "  " + bookmark.getBookmarkAsString();
             }
             if (slotBookmarkList.isEmpty()) {
-                message += "  no bookmarks found in slot\n";
+                message += "  no bookmarks found in slot" + System.lineSeparator();
             }
+            message += System.lineSeparator();
         }
         if (message.isBlank()) {
-            message += "no bookmarks found in " + moduleCode + "\n";
+            message += "no bookmarks found in " + moduleCode + System.lineSeparator();
         }
+        return message;
+    }
+
+    public String launchBookmarks() {
+        String message = bookmarks.launchAllBookmarks();
         return message;
     }
 
     public String getModuleCode() {
         return moduleCode;
-    }
-
-    public boolean isOverlapTimeSlot(String day, LocalTime startTime, LocalTime endTime) {
-        boolean isOverlap = false;
-        for (Slot slot : slots) {
-            if (slot.getDay().equals(day)) {
-                if ((isTimeAGreaterEqualsTimeB(startTime, slot.getEndTime())
-                        && isTimeAGreaterEqualsTimeB(endTime, slot.getEndTime()))
-                        || (isTimeAGreaterEqualsTimeB(slot.getStartTime(), startTime)
-                        && isTimeAGreaterEqualsTimeB(slot.getStartTime(), endTime))) {
-                    continue;
-                }
-                isOverlap = true;
-                break;
-            }
-        }
-        return isOverlap;
-    }
-
-    public boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
-        boolean isGreaterEquals = false;
-        if (timeA.isAfter(timeB) || timeA.equals(timeB)) {
-            isGreaterEquals = true;
-        }
-        return isGreaterEquals;
     }
 }

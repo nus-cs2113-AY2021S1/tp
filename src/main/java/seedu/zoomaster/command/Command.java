@@ -6,6 +6,7 @@ import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.slot.Timetable;
 
+
 public abstract class Command {
 
     protected boolean isExitCommand = false;

@@ -80,7 +80,7 @@ class BookmarkListTest {
         bookmarks.addBookmark(bookmarkTest);
         ArrayList<Bookmark> bookmarksExpected = new ArrayList<>();
         bookmarksExpected.add(bookmarkTest);
-        assertEquals(bookmarksExpected, bookmarks.getBookmarkList());
+        assertEquals(bookmarksExpected, bookmarks.getBookmarks());
     }
 
     /**
@@ -116,9 +116,10 @@ class BookmarkListTest {
         input.add("CS2113T | www.yahoo.com");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.showBookmarks(), "Here are the bookmarks in your list:" + lineSeparator
-                + "  " + (1) + "." + "[CS2113T] www.google.com" + System.lineSeparator() + lineSeparator
-                + "  " + (2) + "." + "[CS2113T] www.yahoo.com" + System.lineSeparator() + lineSeparator);
+        assertEquals("Here are the bookmarks in your list:" + lineSeparator
+                + "  " + (1) + "." + "[CS2113T] www.google.com" + lineSeparator
+                + "  " + (2) + "." + "[CS2113T] www.yahoo.com" + lineSeparator + lineSeparator,
+                bookmarks.showBookmarks());
     }
 
     @Test

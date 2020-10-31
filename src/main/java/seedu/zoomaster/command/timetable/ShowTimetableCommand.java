@@ -3,14 +3,14 @@ package seedu.zoomaster.command.timetable;
 import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
+import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
+import seedu.zoomaster.slot.Day;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
-import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.slot.SlotContainer;
 import seedu.zoomaster.slot.Timetable;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,14 +31,14 @@ public class ShowTimetableCommand extends Command {
             day = "ALL";
         } else {
             if (command.charAt(SHOW_KW.length()) != ' ') {
-                throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
+                throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
             }
             String details = command.substring(SHOW_KW.length() + 1).trim();
             if (details.toLowerCase().equals("today")) {
-                day = getDayToday();
+                day = Day.getDayToday();
             }
-            if (isDay(details)) {
-                day = getDayFromCommand(details);
+            if (Day.isDay(details)) {
+                day = Day.getDayFromCommand(details);
             } else {
                 String[] something = details.split(" ", 2);
                 module = something[0];
@@ -46,7 +46,7 @@ public class ShowTimetableCommand extends Command {
                     if (something[1].compareTo("bookmarks") == 0) {
                         showBookmarks = true;
                     } else {
-                        throw new ZoomasterException(ZoomasterExceptionType.INVALID_COMMAND_FORMAT);
+                        throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
                     }
                 }
             }
@@ -60,13 +60,13 @@ public class ShowTimetableCommand extends Command {
         if (day != null) { // "show" and "show day" and "show today"
             List<Slot> list = new ArrayList<>(timetable.getFullSlotList());
             message += getMessageLessonAtTime(modules, list, day);
-        } else if (module != null && !showBookmarks) {
+        } else if (isShowModule()) {
             if (!timetable.moduleExists(module)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
             message += getMessageForModule(matchedModule);
-        } else if (module != null && showBookmarks) {
+        } else if (isShowModuleBookmarks()) {
             if (!timetable.moduleExists(module)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
             }
@@ -76,53 +76,11 @@ public class ShowTimetableCommand extends Command {
         ui.print(message);
     }
 
-    private boolean isDay(String input) {
-        boolean isDay = false;
-        if (input.compareToIgnoreCase(Slot.MON) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
-            isDay = true;
-        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
-            isDay = true;
-        }
-        return isDay;
-    }
-
-    private String getDayFromCommand(String input) {
-        String outputData;
-        if (input.compareToIgnoreCase(Slot.MON) == 0) {
-            outputData = Slot.MON;
-        } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
-            outputData = Slot.TUE;
-        } else if (input.compareToIgnoreCase(Slot.WED) == 0) {
-            outputData = Slot.WED;
-        } else if (input.compareToIgnoreCase(Slot.THU) == 0) {
-            outputData = Slot.THU;
-        } else if (input.compareToIgnoreCase(Slot.FRI) == 0) {
-            outputData = Slot.FRI;
-        } else if (input.compareToIgnoreCase(Slot.SAT) == 0) {
-            outputData = Slot.SAT;
-        } else if (input.compareToIgnoreCase(Slot.SUN) == 0) {
-            outputData = Slot.SUN;
-        } else {
-            outputData = null;
-        }
-        return outputData;
-    }
-
     private String getMessageSlotsInADay(List<Module> modules, List<Slot> slots, String day) {
         StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
         boolean hasIndicatorOnDay = false;
-        if (day.equals(getDayToday())) {
+        if (day.equals(Day.getDayToday())) {
             hasIndicatorOnDay = true;
         }
 
@@ -137,24 +95,26 @@ public class ShowTimetableCommand extends Command {
             }
         }
         SlotContainer slotContainer = new SlotContainer(thisDaySlots, thisDayModuleCodesList);
-        SlotContainer sortedSlotContainer = sortSlotsByTime(slotContainer);
+        SlotContainer sortedSlotContainer = SlotContainer.sortSlotsByTime(slotContainer);
         ArrayList<Slot> sortedSlots = sortedSlotContainer.getSlotList();
         ArrayList<String> sortedModuleCodes = sortedSlotContainer.getModuleCodesList();
 
         for (int i = 0; i < sortedSlots.size(); i++) {
-            if (hasLessonNow(sortedSlots.get(i))) {
+            if (hasLessonNow(sortedSlots.get(i)) && !sortedSlots.get(i).getTitle().equals("<empty slot>")) {
                 message.append(getHighlighBoxUpperMessage());
-                message.append(sortedSlots.get(i).toString()).append(" ")
+                message.append(i + 1).append(". ")
+                        .append(sortedSlots.get(i).toString()).append(" ")
                         .append(sortedModuleCodes.get(i)).append("\n");
                 message.append(getHighlighBoxLowerMessage());
                 hasIndicatorOnDay = false;
             } else {
                 if (sortedSlots.get(i).getStartTime().isAfter(LocalTime.now())
-                        && hasIndicatorOnDay == true) {
+                        && hasIndicatorOnDay) {
                     message.append(getIndicatorMessage());
                     hasIndicatorOnDay = false;
                 }
-                message.append(sortedSlots.get(i).toString()).append(" ")
+                message.append(i + 1).append(". ")
+                        .append(sortedSlots.get(i).toString()).append(" ")
                         .append(sortedModuleCodes.get(i)).append("\n");
             }
             hasSlotOnDay = true;
@@ -164,47 +124,19 @@ public class ShowTimetableCommand extends Command {
             message.append("No lessons" + "\n");
         }
 
-        if (hasIndicatorOnDay == true) {
+        if (hasIndicatorOnDay) {
             message.append(getIndicatorMessage());
-            hasIndicatorOnDay = false;
         }
 
         message.append("\n");
         return message.toString();
     }
 
-    private SlotContainer sortSlotsByTime(SlotContainer slotContainer) {
-        ArrayList<Slot> thisDaySlots = slotContainer.getSlotList();
-        ArrayList<String> thisDayModuleCodesList = slotContainer.getModuleCodesList();
-        ArrayList<Slot> sortedThisDaySlots = new ArrayList<>();
-        ArrayList<String> sortedThisDayModuleCodesList = new ArrayList<>();
-        int indextEarlistTimeSlot;
-        Slot earlistTimeSlot;
-
-        while (thisDaySlots.size() != 0) {
-            earlistTimeSlot = thisDaySlots.get(0);
-            indextEarlistTimeSlot = 0;
-            for (int i = 1; i < thisDaySlots.size(); i++) {
-                if (earlistTimeSlot.getStartTime().isAfter(thisDaySlots.get(i).getStartTime())) {
-                    earlistTimeSlot = thisDaySlots.get(i);
-                    indextEarlistTimeSlot = i;
-                }
-            }
-            sortedThisDaySlots.add(thisDaySlots.get(indextEarlistTimeSlot));
-            sortedThisDayModuleCodesList.add(thisDayModuleCodesList.get(indextEarlistTimeSlot));
-            thisDaySlots.remove(indextEarlistTimeSlot);
-            thisDayModuleCodesList.remove(indextEarlistTimeSlot);
-        }
-
-
-        return new SlotContainer(sortedThisDaySlots, sortedThisDayModuleCodesList);
-    }
-
     private String getMessageTimetable(List<Module> modules, List<Slot> slots) {
         StringBuilder message = new StringBuilder();
-        for (String d: Slot.days) {
-            message.append(d).append("\n");
-            message.append(getMessageSlotsInADay(modules, slots, d));
+        for (Day day: Day.values()) {
+            message.append(day.toString()).append("\n");
+            message.append(getMessageSlotsInADay(modules, slots, day.toString()));
         }
         return message.toString();
     }
@@ -230,7 +162,9 @@ public class ShowTimetableCommand extends Command {
         if (!slots.isEmpty()) {
             message += module.getModuleCode() + "\n";
             for (int i = 0; i < slots.size(); i++) {
-                message += "  " + (i + 1) + ". " + slots.get(i).toString() + "\n";
+                Slot slot = slots.get(i);
+                String dayString = (isShowModule() ? slot.getDay() + " " : "");
+                message += "  " + (i + 1) + ". " + dayString + slot.toString() + "\n";
             }
         } else {
             message += "no slots for " + module.getModuleCode() + "\n";
@@ -238,51 +172,11 @@ public class ShowTimetableCommand extends Command {
         return message;
     }
 
-    /**
-     * Returns String of today's day of the week.
-     *
-     * @return outputDay String of today's day of the week readable by Slot class.
-     */
-    public static String getDayToday() {
-        String outputDay;
-
-        assert (LocalDate.now().getDayOfWeek().getValue() <= 7) && (LocalDate.now().getDayOfWeek().getValue() >= 1) :
-                "LocalDate.now().getDayOfWeek().getValue() only returns value within range 1 to 7";
-        switch (LocalDate.now().getDayOfWeek().getValue()) {
-        case 1:
-            outputDay = "mon";
-            break;
-        case 2:
-            outputDay = "tue";
-            break;
-        case 3:
-            outputDay = "wed";
-            break;
-        case 4:
-            outputDay = "thu";
-            break;
-        case 5:
-            outputDay = "fri";
-            break;
-        case 6:
-            outputDay = "sat";
-            break;
-        case 7:
-            outputDay = "sun";
-            break;
-        default:
-            outputDay = "mon";
-            break;
-        }
-
-        return outputDay;
-    }
-
     public static boolean hasLessonNow(Slot slot) {
         boolean isOverlap = false;
         LocalTime timeNow = LocalTime.now();
         if (slot.getStartTime().isBefore(timeNow) && slot.getEndTime().isAfter(timeNow)
-                && getDayToday().equals(slot.getDay())) {
+                && Day.getDayToday().equals(slot.getDay())) {
             isOverlap = true;
         }
         return isOverlap;
@@ -306,5 +200,13 @@ public class ShowTimetableCommand extends Command {
         String message = "[==================]" + "\n";
 
         return "\u001b[32m" + message + "\u001b[0m";
+    }
+
+    private boolean isShowModuleBookmarks() {
+        return module != null && showBookmarks;
+    }
+
+    private boolean isShowModule() {
+        return module != null && !showBookmarks;
     }
 }

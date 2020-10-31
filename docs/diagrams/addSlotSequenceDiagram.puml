@@ -1,13 +1,15 @@
 @startuml
+hide footbox
+skinparam ParticipantPadding 20
 
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Timetable" as Timetable
 participant ":Module" as Module
-participant ":Module" as ModuleNew
-participant ":Slot" as Slot
+'participant ":Module" as ModuleNew
+'participant ":Slot" as Slot
 participant ":Slot" as SlotNew
-participant ":Bookmark" as BookmarkSlot
-participant ":Bookmark" as BookmarkModule
+'participant ":Bookmark" as BookmarkSlot
+'participant ":Bookmark" as BookmarkModule
 participant ":Ui" as Ui
 
 
@@ -39,11 +41,13 @@ else module does not exist
     AddSlotCommand -> Timetable : addModule(moduleCode)
     activate Timetable
 
-    Timetable -> ModuleNew ** : create(moduleCode)
-    activate ModuleNew
+    note right of Timetable : creates new module
 
-    ModuleNew --> Timetable
-    deactivate ModuleNew
+'    Timetable -> ModuleNew ** : create(moduleCode)
+'    activate ModuleNew
+'
+'    ModuleNew --> Timetable
+'    deactivate ModuleNew
 
     Timetable --> AddSlotCommand : module
     deactivate Timetable
@@ -67,11 +71,13 @@ opt commands is not null
             AddSlotCommand -> AddSlotCommand : addBookmarkToModule(module, slotAndBookmark)
             activate AddSlotCommand
 
-            AddSlotCommand -> BookmarkModule ** : create(description, url)
-            activate BookmarkModule
+            note right of AddSlotCommand : create bookmark
 
-            BookmarkModule --> AddSlotCommand
-            deactivate BookmarkModule
+'            AddSlotCommand -> BookmarkModule ** : create(description, url)
+'            activate BookmarkModule
+'
+'            BookmarkModule --> AddSlotCommand
+'            deactivate BookmarkModule
 
             AddSlotCommand -> Module : addBookmark(bookmark)
             activate Module
@@ -95,11 +101,13 @@ opt commands is not null
                 AddSlotCommand -> Module : getSlot(lesson, day, startTime, endTime)
                 activate Module
 
-                Module -> Slot : match(lesson, day, startTime, endTime)
-                activate Slot
+                note right of Module : get existing slot
 
-                Slot --> Module : true
-                deactivate Slot
+'                Module -> Slot : match(lesson, day, startTime, endTime)
+'                activate Slot
+'
+'                Slot --> Module : true
+'                deactivate Slot
 
                 Module --> AddSlotCommand : slot
                 deactivate Module
@@ -107,7 +115,7 @@ opt commands is not null
                 AddSlotCommand -> Module : createSlotNew(lesson, day, startTime, endTime)
                 activate Module
 
-                Module -> SlotNew ** : create(lesson, day, startTime, endTime)
+                Module -> SlotNew ** : new Slot(lesson, day, startTime, endTime)
                 activate SlotNew
 
                 SlotNew --> Module
@@ -134,17 +142,19 @@ opt commands is not null
                     note right of AddSlotCommand : throw exception
                 end
 
-                AddSlotCommand -> BookmarkSlot ** : create(lesson, url)
-                activate BookmarkSlot
+                note right of AddSlotCommand : create bookmark
 
-                BookmarkSlot --> AddSlotCommand
-                deactivate BookmarkSlot
+'                AddSlotCommand -> BookmarkSlot ** : create(lesson, url)
+'                activate BookmarkSlot
+'
+'                BookmarkSlot --> AddSlotCommand
+'                deactivate BookmarkSlot
 
-                AddSlotCommand -> Slot : addBookmark(bookmark)
-                activate Slot
+                AddSlotCommand -> SlotNew : addBookmark(bookmark)
+                activate SlotNew
 
-                Slot --> AddSlotCommand
-                deactivate Slot
+                SlotNew --> AddSlotCommand
+                deactivate SlotNew
 
                 AddSlotCommand --> AddSlotCommand
                 deactivate AddSlotCommand

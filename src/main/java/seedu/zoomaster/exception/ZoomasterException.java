@@ -11,20 +11,20 @@ public class ZoomasterException extends Exception {
     /**
      * Constructs a new DukeException instance by storing the given DukeExceptionType.
      *
-     * @param dukeExceptionType The type of dukeException.
+     * @param zoomasterExceptionType The type of dukeException.
      */
-    public ZoomasterException(ZoomasterExceptionType dukeExceptionType) {
-        this.zoomasterExceptionType = dukeExceptionType;
+    public ZoomasterException(ZoomasterExceptionType zoomasterExceptionType) {
+        this.zoomasterExceptionType = zoomasterExceptionType;
     }
 
     /**
      * Constructs a new DukeException instance by storing the given DukeExceptionType and message.
      *
-     * @param dukeExceptionType The type of dukeException.
+     * @param zoomasterExceptionType The type of dukeException.
      * @param info Additional information of the exception.
      */
-    public ZoomasterException(ZoomasterExceptionType dukeExceptionType, String info) {
-        this.zoomasterExceptionType = dukeExceptionType;
+    public ZoomasterException(ZoomasterExceptionType zoomasterExceptionType, String info) {
+        this.zoomasterExceptionType = zoomasterExceptionType;
         this.info = info;
     }
 

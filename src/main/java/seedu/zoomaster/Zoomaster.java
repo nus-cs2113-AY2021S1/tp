@@ -86,7 +86,7 @@ public class Zoomaster {
      * Returns path of jar file during execution to allow
      * app to create txt file in the same location.
      */
-    private static String getJarFilepath() {
+    public static String getJarFilepath() {
         return new File(Zoomaster.class.getProtectionDomain().getCodeSource().getLocation()
                 .getPath()).getParent().replace("%20", " ");
     }

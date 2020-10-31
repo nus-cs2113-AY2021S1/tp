@@ -38,13 +38,16 @@ public class DeleteSlotCommand extends Command {
             String something = deleteCommands[1];
             if (something.trim().compareTo("bookmarks") == 0) {
                 deleteBookmarks = true;
+            } else {
+                slotIndex = Integer.parseInt(something) - 1;
+                if (deleteCommands[2].trim().compareTo("bookmarks") == 0) {
+                    deleteBookmarks = true;
+                }
             }
-            slotIndex = Integer.parseInt(something) - 1;
-            if (deleteCommands[2].trim().compareTo("bookmarks") == 0) {
-                deleteBookmarks = true;
-            }
-        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             // No slot index or delete bookmark keyword provided.
+        } catch (NumberFormatException e) {
+            throw new ZoomasterException(ZoomasterExceptionType.NON_INTEGER_INPUT);
         }
 
     }
@@ -75,12 +78,13 @@ public class DeleteSlotCommand extends Command {
                 message += "deleted " + slot + " from " + moduleCode + "\n";
             } else if (slotIndex == null && deleteBookmarks) { // delete module bookmark
                 module.removeAllBookmarks();
-                message += "deleted bookmark from " + moduleCode + "\n";
+                message += "deleted bookmarks from " + moduleCode + "\n";
             } else if (slotIndex != null && deleteBookmarks) { // delete slot bookmark
                 Slot slot = module.getSlot(slotIndex);
                 slot.removeAllBookmarks();
-                message += "deleted bookmarks from " + slot + " from " + moduleCode + "\n";
+                message += "deleted bookmarks from " + slot.getDay() + " " + slot + " from " + moduleCode + "\n";
             }
+
         }
         ui.print(message);
     }

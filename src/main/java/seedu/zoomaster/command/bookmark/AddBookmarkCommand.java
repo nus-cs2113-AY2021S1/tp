@@ -15,17 +15,17 @@ import java.util.List;
  */
 public class AddBookmarkCommand extends Command {
     public static final String ADD_KW = "add";
-    public String description;
-    public String url;
+    private final String description;
+    private final String url;
 
     /**
      * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
      *
      * @throws ZoomasterException if input command is invalid, if the description is empty or if the url is invalid.
      */
-    public AddBookmarkCommand(String input) throws ZoomasterException {
-        assert input.startsWith(AddBookmarkCommand.ADD_KW) : "input should always start with \"add\"";
-        String command = input.substring(AddBookmarkCommand.ADD_KW.length());
+    public AddBookmarkCommand(String command) throws ZoomasterException {
+        assert command.startsWith(ADD_KW) : "input should always start with \"add\"";
+        command = command.substring(AddBookmarkCommand.ADD_KW.length());
         if (command.isBlank()) {
             throw new ZoomasterException(ZoomasterExceptionType.EMPTY_COMMAND, ADD_KW);
         }

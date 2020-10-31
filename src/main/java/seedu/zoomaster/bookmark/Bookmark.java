@@ -53,7 +53,7 @@ public class Bookmark {
         if (url.contains(" ")) {
             return false;
         }
-        return url.startsWith("www.") || url.startsWith("https://");
+        return url.startsWith("www.") || url.startsWith("https://") || url.startsWith("http://");
     }
 
     /**
@@ -68,7 +68,7 @@ public class Bookmark {
         } catch (IOException e) {
             throw new ZoomasterException(ZoomasterExceptionType.ERROR_LAUNCHING_URL);
         }
-        return "  [" + description + "] " + url + "\n";
+        return "  [" + description + "] " + url;
     }
 
     private void launchUrl() throws IOException {

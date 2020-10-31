@@ -11,16 +11,6 @@ import java.util.List;
 
 public class Slot {
 
-    public static final String MON = "mon";
-    public static final String TUE = "tue";
-    public static final String WED = "wed";
-    public static final String THU = "thu";
-    public static final String FRI = "fri";
-    public static final String SAT = "sat";
-    public static final String SUN = "sun";
-
-    public static final String[] days = { MON, TUE, WED, THU, FRI, SAT, SUN };
-
     private static final String SEPARATOR = " | ";
     private LocalTime startTime;
     private LocalTime endTime;
@@ -57,8 +47,8 @@ public class Slot {
         return bookmark;
     }
 
-    public List<Bookmark> getBookmarkList() {
-        return bookmarks.getBookmarkList();
+    public BookmarkList getBookmarkList() {
+        return bookmarks;
     }
 
     public void removeBookmark(Bookmark bookmark) {

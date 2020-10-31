@@ -1,3 +1,5 @@
+//@@author jusufnathanael
+
 package seedu.zoomaster.command.planner;
 
 import seedu.zoomaster.Ui;
@@ -11,7 +13,6 @@ import seedu.zoomaster.slot.Timetable;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class AddMeetingCommand extends AddSlotCommand {
     }
 
     @Override
-    protected String create(String command, Module module) throws ZoomasterException {
+    protected String create(String command, Module module, Timetable timetable) throws ZoomasterException {
         String message = "";
         List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
         if (isAddModuleBookmark(slotAndBookmark)) {
@@ -65,17 +66,13 @@ public class AddMeetingCommand extends AddSlotCommand {
                         + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ") Please check format.");
             }
             Slot newSlot;
-            if (module.slotExists(lesson, day, startTime, endTime)) {
-                newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message +=  "  " + lesson + " slot already exists\n";
-                message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
-            } else if (isAvailable(day, startTime, endTime)) {
+            if (isAvailable(day, startTime, endTime)) {
                 newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                 module.addSlot(newSlot);
                 message +=  "  " + lesson + " slot added\n";
                 message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
             } else {
-                message +=  "  " + "slot is full" + System.lineSeparator();
+                message +=  "  " + "This slot is already filled." + System.lineSeparator();
             }
         }
         return message;
@@ -93,10 +90,14 @@ public class AddMeetingCommand extends AddSlotCommand {
     }
 
     private void updateEmptySlot(Slot slot, LocalTime startTime, LocalTime endTime) {
+        Slot slot1;
+        Slot slot2;
         if (slot.getStartTime().compareTo(startTime) != 0) {
-            Slot slot1 = new Slot(slot.getStartTime(), startTime, slot.getDay(), slot.getTitle());
-            Slot slot2 = new Slot(endTime, slot.getEndTime(), slot.getDay(), slot.getTitle());
+            slot1 = new Slot(slot.getStartTime(), startTime, slot.getDay(), slot.getTitle());
             localTimetable.getModule("EMPTY").addSlot(slot1);
+        }
+        if (slot.getEndTime().compareTo(endTime) != 0) {
+            slot2 = new Slot(endTime, slot.getEndTime(), slot.getDay(), slot.getTitle());
             localTimetable.getModule("EMPTY").addSlot(slot2);
         }
         localTimetable.getModule("EMPTY").removeSlot(slot);

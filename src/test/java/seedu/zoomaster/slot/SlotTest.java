@@ -35,7 +35,7 @@ class SlotTest {
 
     @Test
     void getBookmarkList() {
-        assertEquals(new ArrayList<Bookmark>(), slotTest.getBookmarkList());
+        assertEquals(new ArrayList<Bookmark>(), slotTest.getBookmarkList().getBookmarks());
     }
 
     @Test
