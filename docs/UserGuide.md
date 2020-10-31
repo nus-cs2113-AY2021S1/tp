@@ -179,7 +179,7 @@ When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `ac
 #### Adding an activity event:
 
 This function allows you to add school activities, such as interview workshops or Co-Curriculum Activities (CCAs). 
-This definitely the best way to keep track of your commitments and will surely make your student life more colourful and gain the most out of it! 
+This is definitely the best way to keep track of your commitments and will surely make your student life more colourful and gain the most out of it! 
 
 Format: `act <activity_description> @<venue> / <date> <time>`
 
