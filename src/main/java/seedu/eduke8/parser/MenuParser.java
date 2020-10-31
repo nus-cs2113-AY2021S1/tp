@@ -141,8 +141,13 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
                 }
+                if (userTimer < 1) {
+                    throw new Eduke8Exception("Oops please choose a time where it is more than 0!");
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
+            } catch (Eduke8Exception e) {
+                return new IncorrectCommand("Oops more than 0 please!");
             }
 
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
