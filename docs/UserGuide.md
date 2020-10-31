@@ -80,7 +80,7 @@ The following table displays the list of terminologies used in this document:
 |Task number|Refers to the index of the task in the task list|
 |Event number|Refers to the index of the event in the event list|
 
-*You may view your task list and event list using the `print task` and `print events` feature respectively.
+*You may view your task list and event list using the `print tasks` and `print events` feature respectively.
 
 ## Quick Start
 
