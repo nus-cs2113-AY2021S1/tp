@@ -80,13 +80,14 @@ public class Main {
                 "Hall of Residence 1, 21 Nanyang Cir, Singapore 639778",800,2000,
                 Arrays.asList(3,4,5,6,7),Arrays.asList(sweetNSourPorkRice,curryChickenRice,friedRiceWithBeef),1);
 
-        Canteen canteen1 = new Canteen("Canteen 1", Arrays.asList(westernStall,starbucks,claypotRice),Arrays.asList(900,900,800),Arrays.asList(1800,1830,2000));
+        Canteen canteen1 = new Canteen("Canteen 1", Arrays.asList(westernStall,starbucks,claypotRice),
+                Arrays.asList(900,900,800,800,800,800,800),Arrays.asList(1800,1830,2000,2000,2000,2000,2000));
 
         Dish kimchiFriedRice = new Dish("Kimchi Fried Rice", 3.50, "As a korean, I find the taste in my home country.");
         Dish spicyChickenSet = new Dish("Spicy Chicken Set", 5.00, "The chicken tastes good but it is too spicy for me.");
         Dish kimchiRamen = new Dish("Kimchi Ramen", 4.00, "The kimchi is really delicious as this is my first time to eat this.");
         Stall koreanStall = new Stall("KoreanStall", 4, "35 Students Walk", 830, 1730,
-                Arrays.asList(1,2,3,4,7),Arrays.asList(kimchiFriedRice, spicyChickenSet, kimchiRamen), 2);
+                Arrays.asList(1,2,3,4),Arrays.asList(kimchiFriedRice, spicyChickenSet, kimchiRamen), 2);
 
         Dish pepperoni = new Dish("Pepperoni", 8.50,
                 "This dish made me feel like diving in the sea.");
@@ -102,10 +103,10 @@ public class Main {
         Dish mcNuggets = new Dish("Mc Nuggets", 4,"This is really my favorite among all fast food.");
         Dish applePie = new Dish("Apple Pie", 2,"this one is good but i prefer the other flavor's pie :)");
         Stall macDonalds = new Stall("MacDonalds",6, "35 Students Walk", 930, 1830,
-                Arrays.asList(1,2,3,4,5,7), Arrays.asList(mcChicken, mcNuggets, applePie),2);
-        
+                Arrays.asList(2,3,4,7), Arrays.asList(mcChicken, mcNuggets, applePie),2);
+
         Canteen canteen2 =new Canteen("Canteen 2",Arrays.asList(koreanStall,pizzaHut,macDonalds),
-                Arrays.asList(830,900,930), Arrays.asList(1730,1800,1830));
+                Arrays.asList(830,830,830,830,900,900,930), Arrays.asList(1730,1830,1830,1830,1800,1800,1830));
 
 
         List<Canteen> canteens = new ArrayList<Canteen>();
