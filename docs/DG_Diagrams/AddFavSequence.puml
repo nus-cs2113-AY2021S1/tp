@@ -49,12 +49,15 @@ activate ":AddFavCommand"
 deactivate ":AddFavCommand"
 ":AddFavCommand" -> ":FavList" : contains(Fav)
 activate ":FavList"
-
+note right
+the loop is not
+affiliated with UI
+end note
 loop size of FavList times
     ":FavList" -> ":Fav" : equals()
      activate ":Fav" 
     ":Fav" --> ":FavList"
-    deactivate ":Fav" 
+    deactivate ":Fav"
 end
 
 ":FavList" --> ":AddFavCommand"
