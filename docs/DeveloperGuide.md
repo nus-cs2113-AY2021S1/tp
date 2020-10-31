@@ -2,8 +2,6 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 The app was mainly inspired by [addressbook-level2](https://github.com/se-edu/addressbook-level2).
 
 ### Design
