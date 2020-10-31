@@ -60,18 +60,19 @@ public class ArchiveNoteCommand extends Command {
                 }
             }
 
-//            try {
-//                storageManager.saveAllNoteDetails(false);
-//                storageManager.saveAllNoteDetails(true);
-//
-//                // delete the content file from unarchived notes and add it to archived
-//                storageManager.deleteNoteContentFile(title, false);
-//                storageManager.saveNoteContent(notebook.getNote(title, true), true);
-//            } catch (IOException exception) {
-//                return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
-//            } catch (SystemException exception) {
-//                return Formatter.formatString(exception.getMessage());
-//            }
+            /*
+            try {
+                storageManager.saveAllNoteDetails(false);
+                storageManager.saveAllNoteDetails(true);
+
+                // delete the content file from unarchived notes and add it to archived
+                storageManager.deleteNoteContentFile(title, false);
+                storageManager.saveNoteContent(notebook.getNote(title, true), true);
+            } catch (IOException exception) {
+                return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+            } catch (SystemException exception) {
+                return Formatter.formatString(exception.getMessage());
+            }*/
 
             return Formatter.formatString(ARCHIVE_NOTE_SUCCESSFUL_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
