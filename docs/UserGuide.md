@@ -10,7 +10,8 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 
 <br/><br/> 
 ## 2.0 Preface
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
+This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to 
+access these features.
 
 
 <br/><br/> 
@@ -48,23 +49,32 @@ This user guide would help you walkthrough the features of Zoomaster and ways to
 ## 4.0 Quick Start  
   
 1. Ensure that you have Java 11 or above installed.  
-2. You can download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases) if you are running a older version.
+2. You can download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases)
+ if you are running a older version.
 3. Now move the **zoomaster.jar** file into your desired home folder for Zoomaster. <br/><br/> 
 4. Copy the absolute path of your **zoomaster.jar** file by first highlighting your file, then while
-holding the <kbd>Shift</kbd> key on your keyboard, right click on that file and select the option "Copy as path". <br/><br/> 
-5. Afterwards, start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> on the keyboard, then type in "cmd" and hit the <kbd>Enter</kbd> key. <br/><br/> 
-6. In the Command Prompt, type in "java -jar", then paste the absolute path you copied previously in step 4. It should look similar to the picture below:  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png)<br/><br/> 
-7. Finally, press <kbd>Enter</kbd>. You should see this Zoomaster logo indicating that you have successfully started your Zoomaster program. <br/><br/> 
+holding the <kbd>Shift</kbd> key on your keyboard, right click on that file and select the option "Copy as path". 
+<br/><br/> 
+5. Afterwards, start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> on the keyboard, 
+then type in "cmd" and hit the <kbd>Enter</kbd> key. <br/><br/> 
+6. In the Command Prompt, type in "java -jar", then paste the absolute path you copied previously in step 4. 
+It should look similar to the picture below:  
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png) <br/><br/> 
+7. Finally, press <kbd>Enter</kbd>. You should should see something similar to this Zoomaster logo indicating 
+that you have successfully started your Zoomaster program. <br/><br/> 
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/startscreen.png)
 
-8. The app is now ready to go! Go ahead and test it out with a `help` command. The app should print out a list of different commands. <br/><br/> 
+8. The app is now ready to go! Go ahead and test it out with a `help` command. 
+The app should print out a list of different commands. <br/><br/> 
 
 9. You can now refer to the section below to explore the different features of the Zoomaster app.
   
 ## 5.0 Features   
 
-This section will explain to you the different features of Zoomaster and how you can interact with it. Zoomaster has three different modes you can use to interact with different features in each mode.
+This section will explain to you the different features of Zoomaster and how you can interact with it. 
+Zoomaster has three different modes you can use to interact with different features in each mode.
 
+<a name="command_format"></a>
 >[i] Notes on command format:
 >* Word contained in `{curly brackets}` are parameters to be supplied by the user. 
 >eg. in `delete {BOOKMARK_NUMBER}`, `BOOKMARK_NUMBER` is a parameter which can be used as `delete 1`.
@@ -73,9 +83,11 @@ This section will explain to you the different features of Zoomaster and how you
 >* Parameters with `(optional)` are optional inputs. 
 >eg. `show {DAY(optional)}` can be used as `show` or as `show mon`.
 >* Parameter `DAY` takes three letter abbreviations of days in a week
->The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**
+>The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**.
+>Your inputs need not be case sensitive.
 >eg. `show {DAY(optional)}` can be used as `show mon`, `show tue` etc.
->* Parameter `MODULE` has to be an NUS module recognised by NUSMods
+>* Parameter `MODULE` has to be an NUS module recognised by NUSMods. 
+>You can go to https://nusmods.com/ to get the full list of NUS modules available.
 >eg. `CS2113`, `CS2101`  
 >* Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours.
 >eg. `12:00`, `14:00`, `00:00`
@@ -92,7 +104,8 @@ You can see the list of commands available in mode you are currently in.
 ```
 Format: help {COMMAND(optional)}
 ```
->Let's say you require help to see the commands you can access the main menu mode. You will first enter `help` into the console.
+>Let's say you require help to see the commands you can access the main menu mode. 
+>You will first enter `help` into the console.
 >
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20main.png?raw=true)
 >
@@ -100,7 +113,8 @@ Format: help {COMMAND(optional)}
 >
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
 
->Similarly, you require help to see the commands you can access in the bookmark mode. You will first enter `help` into the console.
+>Similarly, you require help to see the commands you can access in the bookmark mode. 
+>You will first enter `help` into the console.
 >
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20bkmrk.png?raw=true)
 >
@@ -108,7 +122,8 @@ Format: help {COMMAND(optional)}
 >
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
 
->Alternatively, you require help to see the commands you can access in the timetable mode. You will first enter `help` into the console.
+>Alternatively, you require help to see the commands you can access in the timetable mode. 
+>You will first enter `help` into the console.
 >
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20time.png?raw=true)
 >
@@ -116,7 +131,8 @@ Format: help {COMMAND(optional)}
 >
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
 
->Else, you require help to see the commands you can access in the planner mode. You will first enter `help` into the console.
+>Else, you require help to see the commands you can access in the planner mode. 
+>You will first enter `help` into the console.
 >
 >![]()
 >
@@ -126,12 +142,14 @@ Format: help {COMMAND(optional)}
 
 <br/><br/> 
 
-If you require additional information about a command, you can insert the optional parameter of `{COMMAND}` after `help` show you additional information about the commands and how to format the command properly.
+If you require additional information about a command, you can insert the optional parameter of `{COMMAND}` 
+after `help` show you additional information about the commands and how to format the command properly.
 
 Example of usage:   
 * `help add`
 * `help delete`
->The following example represents the case if you require help about the `add` command in timetable mode. First you type the command `help add`.
+>The following example represents the case if you require help about the `add` command in timetable mode. 
+>First you type the command `help add`.
 >
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20add.png?raw=true)
 >
@@ -166,7 +184,10 @@ Example of usage:
 <br/><br/> 
 <a name="clear"></a>  
 #### 5.1.3 Clear screen: `clear` (Zhan Hao)
-This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
+This feature helps you clear the screen in the command prompt. 
+It is useful if the screen gets too cluttered with past commands. <br></br>
+Note that if your monitor screen has high dimensions, you might need multiple calls of this command to fully
+clear your screen.
 ```
 Format: clear
 ```
@@ -175,7 +196,8 @@ Format: clear
 <a name="launchnow"></a>  
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
 You can launches the bookmarks of a current lesson slot in your timetable. 
-The time depends on the system time of your machine with an additional 5 minutes of buffer, allowing you to launch your zoom session ahead of time.
+The time depends on the system time of your machine with an additional 5 minutes of buffer, 
+allowing you to launch your zoom session ahead of time.
   
 ```
 Format: launch now    
@@ -284,7 +306,13 @@ You will be able to see the timetable for a certain day or the whole week.
 If your selected timetable is the current day, you should be able to see a
 "current time" indicator with your system local time. 
 Else if you have a lesson ongoing currently, it will instead show a "lesson now" indicator.
-around your current lesson.
+*around* your current lesson.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+>The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
+>You can see the [command format](#command_format) for more information.
+
 ```
 Format: show {DAY(optional)}
 ```
@@ -294,18 +322,20 @@ Example of usage:
 * `show wed`
 * `show today`
 
->You will see an empty list message if your timetable is empty
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true)
->You will see your entire timetable if you use `show` input
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)
->You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)
->You will see the timetable for today if you use `show today` input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)
->Example of "current time" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)
->Example of "lesson now" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)
+>You will see an empty list message if your timetable is empty. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true) <br></br><br></br>
+>You will see your entire timetable if you use `show` input. <br></br>
+![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png) <br></br><br></br>
+>You will see the timetable of your selected day if you use `show {day}` input. 
+>This example uses wednesday as its selected day input. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true) <br></br><br></br>
+>You will see the timetable for today if you use `show today` input. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true) <br></br><br></br>
+>Example of "current time" indicator showing the current time <br></br>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true) 
+><br></br><br></br>
+>Example of "lesson now" indicator hightlighting the current lesson <br></br>
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 
 
@@ -315,12 +345,15 @@ Example of usage:
 Shows the details of a module or slot that has been added.  
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
-```
-Format (show module details): 
-* show {MODULE} bookmarks(optional)
 
-Format (show slot details):
-* show {MODULE} {INDEX} bookmarks(optional)
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You can only see modules that are listed on the NUSMods website. 
+>You can see the [command format](#command_format) for more information.
+>
+```
+Format (show module details): show {MODULE} bookmarks(optional)
+
+Format (show slot details): show {MODULE} {INDEX} bookmarks(optional)
 ```
 
 Example of usage:   
@@ -334,26 +367,26 @@ Example of usage:
 #### 5.3.3 Add module, time slot and bookmark: `add` (Xing Rong)
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You are required to insert **a space** between each parameter.
+>* The chaining of commands only performs on **one module** which is `{MODULE}`.    
+>* You can only add a module that is listed on the NUSMods website. 
+>You can see the [command format](#command_format) for more information.
   
 ```
-Format (adding a module): 
-* add {MODULE}
+Format (adding a module): add {MODULE}
 
-Format (adding a slot to a module): 
-* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} 
+Format (adding a slot to a module): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} 
 
-Format (adding a bookmark to a module): 
-* add {MODULE} {DESCRIPTION} {URL}
+Format (adding a bookmark to a module): add {MODULE} {DESCRIPTION} {URL}
 
-Format (adding a bookmark to a slot): 
-* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}
-* add {MODULE} {INDEX} {URL}
+Format (adding a bookmark to a slot): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}
+                                      add {MODULE} {INDEX} {URL}
 
-Format (chaining commands): 
-* add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}, {DESCRIPTION} {URL}, ...
+Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}, {DESCRIPTION} {URL}, ...
 ```  
 
-* You must insert **a space** between each parameter.
 * Multiple bookmarks can be added to a module and a slot.
   * To add another bookmark to an existing module, you have to enter the module code of the 
     existing module in the timetable. 
@@ -365,7 +398,6 @@ Format (chaining commands):
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
     which is valid and not a duplicate will then be added to the existing `cs2113t` module.
-* The chaining of commands only performs on one module which is {MODULE}.    
   
 Example of usage:   
 
@@ -418,18 +450,19 @@ More examples:
 <a name="deletetimeslot"></a>
 #### 5.3.4 Delete module, time slot and bookmarks: `delete`   (Xing Rong)
 Deletes module, time slot or bookmarks.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You can only delete a module that is listed on the NUSMods website. 
+>You can see the [command format](#command_format) for more information.
+
 ```
-Format (deleting a module): 
-* delete {MODULE}
+Format (deleting a module): delete {MODULE}
 
-Format (deleting a slot of a module): 
-* delete {MODULE} {INDEX} 
+Format (deleting a slot of a module): delete {MODULE} {INDEX} 
 
-Format (deleting bookmarks of a module): 
-* delete {MODULE} bookmarks 
+Format (deleting bookmarks of a module): delete {MODULE} bookmarks 
 
-Format (deleting bookmarks of a slot of a module): 
-* delete {MODULE} {INDEX} bookmarks 
+Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookmarks 
 ```
 
 * Deleting bookmarks will delete all bookmarks associated with the module or slot.
@@ -444,15 +477,17 @@ Example of usage:
 <a name="edittimeslot"></a>
 #### 5.3.5 Edit slot's module, title, time: `edit`  (Francisco) 
 Edits the module, title or time for a specific slot.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You can only edit a module that is listed on the NUSMods website. 
+>You can see the [command format](#command_format) for more information.
+
 ```
-Format (editing the module of a slot): 
-* edit module {DAY} {INDEX} {new MODULE}
+Format (editing the module of a slot): edit module {DAY} {INDEX} {new MODULE}
 
-Format (editing the title of a slot): 
-* edit title {DAY} {INDEX} {new TITLE}
+Format (editing the title of a slot): edit title {DAY} {INDEX} {new TITLE}
 
-Format (editing the time of a slot): 
-* edit time {DAY} {INDEX} {new START_TIME} {new END_TIME}
+Format (editing the time of a slot): edit time {DAY} {INDEX} {new START_TIME} {new END_TIME}
 ```
 
 * Obtain the `DAY` and `INDEX` of the slot to be edited using the `show` command.
@@ -465,18 +500,22 @@ Example of usage:
 
 <a name="launchtimeslot"></a>
 #### 5.3.6 Launch bookmarks from module, slot: `launch`  
-Launches the bookmarks of slots or the bookmarks of the module
-```
-Format: (launch module bookmarks) 
-* launch {MODULE}
+Launches the bookmarks of slots or the bookmarks of a module
 
-Format: (launch slot bookmarks) 
-* launch {MODULE} {INDEX}
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You can only launch a module that is listed on the NUSMods website. 
+>You can see the [command format](#command_format) for more information.
+
+```
+Format (launch module bookmarks): launch {MODULE}
+
+Format (launch slot bookmarks): launch {MODULE} {INDEX}
 ```
 
 * Obtain the `INDEX` of the slot to be launched using the `show {MODULE}` command.
 * `launch {MODULE}` launches the bookmarks tagged to the module itself, for example the module website
-* `launch {MODULE} {INDEX}` launches the bookmarks tagged to the second slot of the module, for example the zoom link for tutorial
+* `launch {MODULE} {INDEX}` launches the bookmarks tagged to the second slot of the module, 
+for example the zoom link for tutorial
 <br/><br/> 
 
 Example of usage:   
@@ -491,12 +530,14 @@ Example of usage:
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
 Loads all the timetables from the `planner` folder and helps you find some common empty slots.
-> [i] Notes:
-> - You need to copy the different .txt files manually to the planner folder.
-> - This command only displays the common empty time slots.
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> * You need to copy the different .txt files manually to the planner folder.
+
 ```
 Format: load
 ```
+
+* This command only displays the common empty time slots.
 
 <br/><br/> 
 <a name="addmeeting"></a>  
@@ -504,12 +545,13 @@ Format: load
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
-> [i] Notes:
-> - You can only add a new meeting to empty time slots.
-> - Note that this command does not automatically store the newly added meeting to the .txt files.
-> You will need to type `save` to save it.
-
+```
 Format: same as [add time slots](#addtimeslot) command.
+```
+
+* You can only add a new meeting to empty time slots.
+* Note that this command does not automatically store the newly added meeting to the .txt files. 
+* You will need to type `save` to save your changes.
 
 <br/><br/> 
 <a name="showplanner"></a>  
@@ -519,7 +561,12 @@ You will be able to see the empty time slots for a certain day or the whole week
 If your selected timetable is the current day, you should be able to see a
 "current time" indicator with your system local time. 
 Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
-around your current lesson.  
+*around* your current lesson.  
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+>The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
+>You can see the [command format](#command_format) for more information.
 
 ```
 Format: show {DAY(optional)}
