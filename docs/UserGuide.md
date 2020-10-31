@@ -94,14 +94,16 @@ Format: `help`
 <br/>
 
 ### 3.2 Estimate time needed to translate the script
-This command allows you to figure out the amount of time needed to finish translating a script. It allows you to estimate based on the amount of words you can translate in an hour, or by using the average translators’ speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time and also to not promise your clients with inaccurate timings.
+This command allows you to figure out the amount of time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators' speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
-*   If the option `-wph` is not specified, the average translator's translation speed will be used to produce three estimation timings for you to consider.
+*   It only accepts one `.txt` file (other file extensions will be supported in a future version).
+*   If the option `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
 
-> :bulb: You have to specify the file extension too. For example, `script.txt`.
+> :bulb: Remember to specify the script file extension. For example, `script.txt` and not `script`.
 
-> :bulb: Ensure the script file is in your workspace folder. For example, from the folder where `AniChan.jar` is located, if your current workspace name is "Default" (indicated in the input prompt), place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`).
+> :bulb: Ensure the script file has been placed in your workspace folder as indicated in the diagram below.
+<br/><br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
 
