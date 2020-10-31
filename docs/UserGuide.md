@@ -668,9 +668,9 @@ revised.jar                     <em>--> <b>revisED</b> Application</em>
 data                            <em>--> Data main folder</em>
 └── Maths                       <em>--> Maths subject folder</em>
     ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
-    │   ├── results.json
+    │   ├── topicResults.json
     │   └── flashcards.json
-    ├── results.json
+    ├── subjectResults.json
     └── tasks.txt
 </pre>
 <sup>***Figure 4.7.1*** Sample directory structure created</sup>
@@ -701,9 +701,12 @@ a deadline or event task.
 > you are not advised to do so because a mismatch in the format will corrupt the data. 
 > Make a copy of the file before making changes if you have to do so manually.
 
-#### 4.7.2 results.json
-You can find this file under each subject and topic folder. It stores the quiz results you have obtained from attempting
-the quiz under a specific subject or topic. An example of the file content is shown below.
+#### 4.7.2 subjectResults.json / topicResults.json
+One `subjectResults.json` will be created under each subject folder, and one `topicResults.json` will be created 
+under each topic folder. `subjectResults.json` stores the quiz results you have obtained from doing quizzes under 
+a subject, while `topicResults.json` stores the quiz results you have obtained from doing quizzes under a topic. 
+Both of the files have the same content format, and an example of 
+the file content is shown below.
 
 <pre>
 [
@@ -718,9 +721,8 @@ the quiz under a specific subject or topic. An example of the file content is sh
   ...
 ]
 </pre>
-<sup>***Figure 4.7.3*** Sample results.json content</sup>
+<sup>***Figure 4.7.3*** Sample subjectResults.json content</sup>
 
-Each entry enclosed with the curly braces ({}) corresponds to one quiz result.
 
 #### 4.7.3 flashcards.json
 One `flashcards.json` file will be created under each topic folder. This file stores all the flashcard data you 
@@ -779,7 +781,7 @@ below.
           "title": "Algebra",                                        
           "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
           "results": {
-            "resultList": <em>[same as the content of results.json]</em>      <em>--> Results under Algebra topic</em>
+            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Algebra topic</em>
           }
         },
         ...
@@ -812,7 +814,7 @@ below.
       ]
     },                            
     "results": {
-      "resultList": <em>[same as the content of results.json]</em>           <em>--> Results under Maths subject</em>
+      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under Maths subject</em>
     }
   },
   ...                                                               <em>--> More subjects</em>
