@@ -4,13 +4,13 @@ import anichan.commands.ExitCommand;
 import anichan.exception.AniException;
 
 /**
- * Handles parsing for Help command.
+ * Handles parsing for Exit command.
  */
 public class ExitParser extends CommandParser {
     private ExitCommand exitCommand;
 
     /**
-     * Creates a new instance of HelpParser.
+     * Creates a new instance of ExitParser.
      */
     public ExitParser() {
         exitCommand = new ExitCommand();
