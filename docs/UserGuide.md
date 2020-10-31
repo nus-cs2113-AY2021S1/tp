@@ -57,7 +57,9 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 ## 3. <a id="features">Features</a>
 
-Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. When listing the optional entries, the brackets, '[ ]', should be omitted. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+
+The following example shows how responses from the console will be displayed in this User Guide.
 
 ```css
 Example message as seen on the console
