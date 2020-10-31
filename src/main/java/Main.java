@@ -26,6 +26,9 @@ public class Main {
             if (input.equals("list")) {
                 printOrder();
             }
+            else if (input.equals("help")) {
+                help();
+            }
             /** mark one task as done */
             /** delete one task */
             else if (input.startsWith("delete")) {
@@ -192,6 +195,7 @@ public class Main {
     }
 
     public static void printOrder() {
+        System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
             System.out.println("____________________________________________________________\n");
             if (Order.get(i) instanceof dineInOrder) {
@@ -206,6 +210,7 @@ public class Main {
             System.out.println("____________________________________________________________\n");
 
         }
+        System.out.println("____________________________________________________________\n");
 
 
 

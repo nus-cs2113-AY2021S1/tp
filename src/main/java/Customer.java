@@ -66,16 +66,16 @@ public class Customer {
     }
     public Order order(Canteen canteen,Stall stall,List<Dish> dish, String typeOfOrder) {
 
-        if(typeOfOrder.compareTo("delivery")==0){
+        if(typeOfOrder.compareTo("Delivery")==0){
             Scanner s = new Scanner(System.in);
             int phoneNum = s.nextInt();
             String address = s.nextLine();
             return new deliveryOrder(canteen,stall,dish,this,true,address,phoneNum);
         }
-        if(typeOfOrder.compareTo("dine in")==0){
+        if(typeOfOrder.compareTo("Dine in")==0){
             return new dineInOrder(canteen,stall,dish,this,true);
         }
-        if(typeOfOrder.compareTo("take away")==0){
+        if(typeOfOrder.compareTo("Take away")==0){
             return new takeAwayOrder(canteen,stall,dish,this,true);
         }
         return  null;
@@ -83,7 +83,7 @@ public class Customer {
 
     @Override
     public String toString(){
-        return this.name + "arrives at " +this.arriveTime ;
+        return this.name + " arrives at " +this.arriveTime ;
     }
 }
 
