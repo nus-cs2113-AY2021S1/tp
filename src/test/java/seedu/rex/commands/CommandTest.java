@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rex.data.exception.RexException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,6 +14,12 @@ class CommandTest {
     void isInteger_456456_returnsTrue() {
         RetrievePatientCommand retrievePatientCommand = new RetrievePatientCommand("");
         assertTrue(retrievePatientCommand.isInteger("456456"));
+    }
+
+    @Test
+    void isInteger_string_returnsFalse() {
+        RetrievePatientCommand retrievePatientCommand = new RetrievePatientCommand("");
+        assertFalse(retrievePatientCommand.isInteger("string"));
     }
 
     @Test

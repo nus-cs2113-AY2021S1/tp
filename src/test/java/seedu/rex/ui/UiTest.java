@@ -6,7 +6,9 @@ import seedu.rex.data.exception.RexException;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UiTest {
 
@@ -18,5 +20,17 @@ class UiTest {
         System.setIn(in);
 
         assertEquals("hello", new Ui().readCommand());
+    }
+
+    @Test
+    void checkInputNotBlank_blankInput_expectException()  {
+
+        assertThrows(RexException.class, () -> new Ui().checkInputNotBlank(""));
+    }
+
+    @Test
+    void checkInputNotBlank_string_expectNoException()  {
+
+        assertDoesNotThrow(() -> new Ui().checkInputNotBlank("a"));
     }
 }

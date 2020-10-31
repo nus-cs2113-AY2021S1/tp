@@ -1,5 +1,6 @@
 package seedu.rex.data;
 
+import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Doctor;
 
 import java.util.ArrayList;
@@ -112,13 +113,16 @@ public class DoctorList {
      * @param doctorName Name of doctor.
      * @return Removed doctor.
      */
-    public Doctor deleteDoctor(String doctorName) {
+    public Doctor deleteDoctor(String doctorName) throws RexException {
+        if (doctors.size() == 0) {
+            throw new RexException("No doctors!");
+        }
         int i;
         for (i = 0; i < getSize(); i++) {
             if (getDoctorUsingIndex(i).getName().equals(doctorName)) {
-                break;
+                return doctors.remove(i);
             }
         }
-        return doctors.remove(i);
+        throw new RexException("Doctor not found!");
     }
 }

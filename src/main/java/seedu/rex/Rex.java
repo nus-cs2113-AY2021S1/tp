@@ -99,7 +99,7 @@ public class Rex {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(patients, doctors, appointments, ui, storage);
                 isExit = c.isExit();
