@@ -103,7 +103,7 @@ class StorageTest {
             assertTrue(subjectDir.isDirectory());
 
             File taskFile = new File(subjectDir, storage.getTaskFilename());
-            File resultFile = new File(subjectDir, storage.getResultFilename());
+            File resultFile = new File(subjectDir, storage.getSubjectResultFilename());
             assertTrue(taskFile.exists());
             assertTrue(resultFile.exists());
         }
@@ -125,7 +125,7 @@ class StorageTest {
             assertTrue(subjectDir.exists());
             assertTrue(subjectDir.isDirectory());
 
-            File resultFile = new File(subjectDir, storage.getResultFilename());
+            File resultFile = new File(subjectDir, storage.getSubjectResultFilename());
             File taskFile = new File(subjectDir, storage.getTaskFilename());
             assertTrue(taskFile.exists());
             assertTrue(resultFile.exists());
@@ -150,7 +150,7 @@ class StorageTest {
             assertTrue(flashcardFile.exists());
             assertEquals("[]", Files.readString(flashcardFile.toPath()));
 
-            File resultFile = new File(topicDir, storage.getResultFilename());
+            File resultFile = new File(topicDir, storage.getTopicResultFilename());
             assertTrue(resultFile.exists());
             assertEquals("[]", Files.readString(resultFile.toPath()));
         }
@@ -177,7 +177,7 @@ class StorageTest {
             assertTrue(flashcardFile.exists());
             assertNotEquals("[]", Files.readString(flashcardFile.toPath()));
 
-            File resultFile = new File(topicDir, storage.getResultFilename());
+            File resultFile = new File(topicDir, storage.getTopicResultFilename());
             assertTrue(resultFile.exists());
             assertNotEquals("[]", Files.readString(resultFile.toPath()));
         }
@@ -228,7 +228,7 @@ class StorageTest {
                 Path topicPath = Paths.get(storage.getBaseDir().toString(), subject.getTitle(), topic.getTitle());
                 Files.createDirectories(topicPath);
                 File flashcardFile = new File(topicPath.toString(), storage.getFlashcardFilename());
-                File resultFile = new File(topicPath.toString(), storage.getResultFilename());
+                File resultFile = new File(topicPath.toString(), storage.getTopicResultFilename());
 
                 // write flashcards to file
                 try (FileWriter fileWriter = new FileWriter(flashcardFile)) {

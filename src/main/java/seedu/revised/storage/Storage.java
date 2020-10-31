@@ -41,6 +41,8 @@ public class Storage {
     private final String taskFilename;
     private final String resultFilename;
     private final String exportFilename;
+    private final String topicResultFilename;
+    private final String subjectResultFilename;
 
     private static final Logger logger = Logger.getLogger(Storage.class.getName());
 
@@ -51,6 +53,11 @@ public class Storage {
         this.taskFilename = builder.taskFilename;
         this.resultFilename = builder.resultFilename;
         this.exportFilename = builder.exportFilename;
+
+        this.topicResultFilename = "topic" + resultFilename.substring(0, 1).toUpperCase()
+                + resultFilename.substring(1);  // prepend topic to resultFilename
+        this.subjectResultFilename = "subject" + resultFilename.substring(0, 1).toUpperCase()
+                + resultFilename.substring(1);  // prepend subject to resultFilename
     }
 
     /**
@@ -103,7 +110,7 @@ public class Storage {
                 logger.log(Level.INFO, "Task file is not found under %s, proceeding with an empty task list.", e);
                 tasks = new ArrayList<>();  // task file may have been deleted by the user
             }
-            File resultFile = new File(subjectDir.toString(), getResultFilename());
+            File resultFile = new File(subjectDir.toString(), getSubjectResultFilename());
             List<Result> results = loadResults(resultFile);
             Subject subject = new Subject(subjectDir.getName(), topics, tasks, results);
             subjects.add(subject);
@@ -126,7 +133,7 @@ public class Storage {
         List<Topic> topics = new ArrayList<>();
         for (File topicDir : topicDirs) {
             File flashcardFile = new File(topicDir, getFlashcardFilename());
-            File resultFile = new File(topicDir, getResultFilename());
+            File resultFile = new File(topicDir, getTopicResultFilename());
             List<Flashcard> flashcards = loadFlashcards(flashcardFile);
             List<Result> results = loadResults(resultFile);
 
@@ -211,7 +218,7 @@ public class Storage {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
             Files.createDirectories(subjectPath);
 
-            File resultFile = new File(subjectPath.toString(), getResultFilename());
+            File resultFile = new File(subjectPath.toString(), getSubjectResultFilename());
             saveToJson(resultFile, subject.getResults().getList());
             saveTasks(subjectPath, subject.getTasks().getList());
             saveTopics(subjectPath, subject.getTopics().getList());
@@ -222,7 +229,7 @@ public class Storage {
     /**
      * Saves the topics along with all the contents into the storage. If the topic has no flashcards in it, the file
      * with name {@link Storage#getFlashcardFilename()} with an empty square bracket will be created under it. Similarly
-     * , the quiz result will be stored under the path with name {@link Storage#getResultFilename()}.
+     * , the quiz result will be stored under the path with name {@link Storage#getTopicResultFilename()}.
      *
      * @param subjectPath subject directory where topics will be stored under
      * @param topics      topics to be saved
@@ -237,7 +244,7 @@ public class Storage {
             Files.createDirectories(topicPath);
 
             File flashcardFile = new File(topicPath.toString(), getFlashcardFilename());
-            File resultFile = new File(topicPath.toString(), getResultFilename());
+            File resultFile = new File(topicPath.toString(), getTopicResultFilename());
             saveToJson(flashcardFile, topic.getFlashcards());
             saveToJson(resultFile, topic.getResults().getList());
         }
@@ -390,6 +397,14 @@ public class Storage {
 
     public String getExportFilename() {
         return exportFilename;
+    }
+
+    public String getTopicResultFilename() {
+        return topicResultFilename;
+    }
+
+    public String getSubjectResultFilename() {
+        return subjectResultFilename;
     }
 
     public static class StorageBuilder {
