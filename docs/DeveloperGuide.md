@@ -139,6 +139,9 @@ The Sequence Diagram below shows an example of how the components work together 
 
 ![Sequence Diagram for Components](images/SeqDiagram_Components.png)
 
+* The user command `add -b Harry Potter /by JK Rowling` will be converted into a String object named `userCommandText`, which is then
+passed into the Logic component for parsing and execution of the command.
+
 ### 3.2 UI Component
 The class diagram below shows the association between classes that make up the UI component.
 
@@ -403,15 +406,22 @@ The sequence diagram below demonstrates the command execution process when addin
   * The book will be added into the category's *bookList* attribute for record keeping.
 
 ##### Design Consideration
-* **(Current)** Allowing users to specify multiple categories at once.
-  * Pros: Increases efficiency for users
-* **(Current)** Giving users an option to specify a book, quote, or both to be tagged with a category.
-  * Pros: Increases efficiency for users.
-  * Cons: Difficult to implement.
-* Giving users an option to specify *multiple* books, quotes, or both to be tagged with a category:
-  * Pros: Further increases efficiency for users.
-  * Cons: Increased complexity in implementation. 
-  
+* Aspect: Allowing users to specify only a single, or multiple categories at once.
+  * Alternative 1 (current choice): Allowing users to specify multiple categories at once.
+    * Pros: Increases efficiency for users as they could add multiple categories to a book/quote in a single command.
+    * Cons: Increased complexity in implementation.
+  * Alternative 2: Allowing users to specify only a single category at any time.
+    * Pros: Easier to implement.
+    * Cons: Inefficient for users who wish to add multiple categories to a book/quote.
+
+* Aspect: Whether to give users an option to specify both books and quotes to be tagged with a category.
+  * Alternative 1 (current choice): Giving users an option to specify a book, quote, or both to be tagged with a category.
+    * Pros: Increases efficiency for users as they could add the same category to a book and quote in a single command.
+    * Cons: Difficult to implement.
+  * Alternative 2: Users can only specify a book or quote, but not both to be tagged with a category:
+    * Pros: Easier to implement.
+    * Cons: Inefficient for users who wish to add a category to a book and quote at the same time. 
+
 With the addition of new categories, users can perform several commands that makes use of them. Such as editing of category name, finding a category, deleting a category,
 listing all categories, or adding the same category to other books and quotes.
 
