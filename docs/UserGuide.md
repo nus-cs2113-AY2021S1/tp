@@ -66,7 +66,7 @@ You may want to first have a look at the glossary to be clear on the terminology
 1. Check that your computer has `Java 11` installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
-1. Type in a command prompt ./duke.jar and press Enter.
+1. Type in a command prompt `java -jar duke.jar` and press Enter.
 1. Type the `help` command and press Enter to get started.
 1. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
@@ -498,6 +498,7 @@ Names List commands allow you to look through a pre-built list of character name
 
 #### Generating names from name database: `name`
 You can generate a name randomly from the stored database of names.
+
 Format: `name`
 
 Example output:  
@@ -512,6 +513,7 @@ name 2
 
 #### Listing names from name database: `list name`
 You can display all the names currently stored in the names database. 
+
 Format: `list name`
 
 Example usages:
@@ -531,6 +533,7 @@ list name
 
 #### Finding names from name database: `filter name`
 You can get the list of names after filtering from the stored list of names. 
+
 Format: `filter name NAME`
 
 Example usage:
@@ -557,10 +560,12 @@ filter name name
 --------------------------------------------------------------
 ```
 
+
 [Jump to top](#fluffle-user-guide)
 
 #### Adding names from name database: `add name`
 You can add a name to the list of names currently stored in the names database.
+
 Format: `add name NAME`
 
 Example usages:
@@ -574,10 +579,12 @@ name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
 
+
 [Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
 You can remove a name from the list of names currently stored in the names database.
+
 Format: `delete name INDEX`
 
 Example usages:
