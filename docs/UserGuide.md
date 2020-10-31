@@ -205,6 +205,14 @@ Format: `search -g <SEARCH_TERM>`
 
 <br/>
 
+Here are some common genres that you can try:
+*   Action
+*   Music
+*   Mecha
+*   Sci-Fi
+
+<br/>
+
 Example of usage: `search -g Slice of Life`
 
 The expected outcome:
