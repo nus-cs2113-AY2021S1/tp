@@ -16,7 +16,6 @@ public class EstimateParser extends CommandParser {
     private static final String VALID_SCRIPT_FILE_FORMAT = ".txt";
     private static final String SLASH = "/";
 
-    private static final String TOO_MUCH_ARGUMENTS = "Estimate command" + TOO_MUCH_FIELDS;
     private static final String NO_SCRIPT_FILE_SPECIFIED = "No script file specified!";
     private static final String TOO_MANY_SCRIPT_FILE = "AniChan can only process one script file at a time!";
     private static final String SPECIFIED_PATH_TO_SCRIPT_FILE = "Only specify the script file name!";
@@ -95,12 +94,20 @@ public class EstimateParser extends CommandParser {
      * @throws AniException when the file name is invalid
      */
     private boolean isValidFileName(String fileName) throws AniException {
-        if (fileName.split(SPLIT_WHITESPACE).length != 1) {
-            throw new AniException(TOO_MANY_SCRIPT_FILE);
-        }
-
         if (fileName.contains(SLASH)) {
             throw new AniException(SPECIFIED_PATH_TO_SCRIPT_FILE);
+        }
+
+        String[] fileNameSplit = fileName.split(SPLIT_WHITESPACE);
+        int numberOfTextFiles = 0;
+        for (String fileNameParts : fileNameSplit) {
+            if (fileNameParts.contains(VALID_SCRIPT_FILE_FORMAT)) {
+                numberOfTextFiles++;
+            }
+        }
+
+        if (numberOfTextFiles > 1) {
+            throw new AniException(TOO_MANY_SCRIPT_FILE);
         }
 
         return fileName.trim().endsWith(VALID_SCRIPT_FILE_FORMAT);
