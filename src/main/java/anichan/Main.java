@@ -116,6 +116,7 @@ public class Main {
         LOGGER.log(Level.INFO, "Workspace setup..");
 
         user.setWorkspaceList(workspaceList);
+
         if (user.getTotalWorkspaces() == 0) {
             try {
                 Workspace newWorkspace = user.addWorkspace("Default");
