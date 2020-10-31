@@ -210,7 +210,7 @@ Example of usage:
 
 `lab CS1000 @com1-b1-14 -r 9 / 200920 1600` - adds CS1000 lab at 2020-09-20 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
 
-`lab CS2100 @com2-2112 -9 / 220920 1300` - adds CS2100 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
+`lab CG2028 @com2-2112 -r 9 / 220920 1300` - adds CG2028 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
 
 #### Adding recurring lecture events:
 
