@@ -12,7 +12,7 @@ interface facilitated in FinanceIt.java.
     |Manual Tracker| User can manually record daily transactions into the program
     |Recurring Tracker|
     |Goal Tracker|
-    |Finance Tools|
+    |Finance Tools| User can compute various finance-related calculations
     
 * __Helper modules__: Modules that serve auxillary purposes to the program
 
@@ -574,7 +574,6 @@ start up.
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}  
 Fresh computing graduates who are just starting to enter the workforce.
 * Have limited income/budget
 * Little experience in personal financial management
@@ -583,8 +582,7 @@ bill payments
 * First time drawing salary and lack experience in income tax filling
 
 ### Value proposition
-
-{Describe the value proposition: what problem does it solve?}  
+ 
 **Expenditure Tracker**
 * Input itemised spending on a daily basis
 * Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
@@ -611,17 +609,30 @@ bill payments
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
+|v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
+|v1.0|user|calculate cashback earned|know how much cashback I can earn|
+|v1.0|user|calculate miles credit earned|know how much miles credit I can earn|
+|v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
+|v2.0|user|store account or card information|refer to account features such as interest rate any time|
+|v2.0|user|compare my calculations with different interest rate|decide which account is better|
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+* _Constraint_ - Single User Product
+* _Performance_ - JAR file does not exceed 100Mb
+* _User_ - Users should prefer typing on CLI
+* _Program_ - Platform independent (Windows/Mac/Linux)
+* _Program_ - Works without needing an installer
 
 ## Glossary
 
-* *glossary item* - Definition
+* _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt.
+* _CLI_ - Command Line Interface
+* _UML_ - Unified Modeling Language
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
+1. Save the executable file in your preferred folder.
+1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
