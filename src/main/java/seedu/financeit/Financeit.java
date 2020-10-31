@@ -11,11 +11,11 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.ManualTrackerSaver;
-import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.AutoTrackerSaver;
-import seedu.financeit.utils.storage.SaveHandler;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.SaveManager;
+import seedu.financeit.utils.storage.SaveHandler;
 
 import java.util.logging.Level;
 
@@ -25,18 +25,16 @@ public class Financeit {
 
     public static void main(String[] args) {
         String input = "";
-        Boolean load = false;
         CommandPacket packet = null;
         Level mode = Level.OFF;
         LoggerCentre.getInstance().setLevel(mode);
         RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
-        ManualTrackerSaver mt = ManualTrackerSaver.getInstance("./data", "./data/save.txt");
-        GoalTrackerSaver gt = GoalTrackerSaver.getInstance("./data", "./data/save1.txt");
-        AutoTrackerSaver at = AutoTrackerSaver.getInstance("./data", "./data/save2.txt");
-        load(gt, mt, at);
+        ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
+        GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
+        AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
+        load();
         loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
         saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
-
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
@@ -61,7 +59,7 @@ public class Financeit {
                 FinanceTools.main();
                 break;
             case "saver":
-                load = SaveManager.main();
+                SaveManager.main();
                 break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
@@ -71,9 +69,7 @@ public class Financeit {
                 LoggerCentre.getInstance().setLevel(mode);
                 break;
             case "exit":
-                if (load == false) {
-                    save(gt, mt, at);
-                }
+                save();
                 return;
             default:
                 prompt = "Invalid Command";
@@ -102,43 +98,43 @@ public class Financeit {
         TablePrinter.printList();
     }
 
-    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
+    public static void load() {
 
         try {
-            gt.load();
+            GoalTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Goal Tracker failed to load: " + m);
         }
 
         try {
-            mt.load();
+            ManualTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Manual Tracker failed to load: " + m);
         }
 
         try {
-            at.load();
+            AutoTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to load: " + m);
         }
     }
 
-    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, AutoTrackerSaver at) {
+    public static void save() {
 
         try {
-            gt.save();
+            GoalTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Goal Tracker failed to save: " + m);
         }
 
         try {
-            mt.save();
+            ManualTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Manual Tracker failed to save: " + m);
         }
 
         try {
-            at.save();
+            AutoTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to save: " + m);
         }
