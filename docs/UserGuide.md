@@ -85,7 +85,11 @@ Example of usage:
 Expected output: 
 
 <p align="center">
-   <img alt="help" src="screenshots/help.png"/>
+   <img alt="help" src="screenshots/help_1.png"/>
+</p>
+
+<p align="center">
+   <img alt="help" src="screenshots/help_2.png"/>
 </p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
