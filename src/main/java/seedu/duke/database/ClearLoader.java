@@ -11,6 +11,7 @@ import java.util.Scanner;
 import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.InvalidClearFormat;
 import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.wordlist.WordList.listWords;
 
 public class ClearLoader {
     private static Scanner scanner = new Scanner(System.in);
@@ -150,7 +151,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("noun") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("noun")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {
@@ -168,7 +170,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("adj") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("adj")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {
@@ -186,7 +189,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("verb") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("verb")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {

@@ -28,10 +28,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Names list commands](#names-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `filter name`](#finding-names-from-name-database-filter-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `add name`](#adding-names-from-name-database-add-name) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `delete name`](#removing-names-from-name-database-delete-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Finding names from name database: `filter name`](#finding-names-from-name-database-filter-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Adding name to the name database: `add name`](#adding-names-from-name-database-add-name) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Removing a name from the name database: `delete name`](#removing-names-from-name-database-delete-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Writings list commands](#writings-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Beginning your writing session: `start`](#beginning-your-writing-session-start) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “type” of your writing: `type`](#choosing-the-type-of-your-writing-type) <br>
@@ -225,19 +225,19 @@ Fluffle has a word list which stores the words that you wish to store. It can be
 
 #### Adding a noun: `noun`
 Adds a noun, together with its meaning, into the word bank in the program.  
-Format: `noun WORD \dDESCRIPTION`
+Format: `noun WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
-Format: `verb WORD \dDESCRIPTION`
+Format: `verb WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
 #### Adding an adjective: `adj`
 Adds an adjective, together with its meaning, into the word bank in the program.  
-Format: `adj WORD \dDESCRIPTION`
+Format: `adj WORD d\DESCRIPTION`
 
 [Jump to top](#fluffle-user-guide)
 
@@ -356,7 +356,10 @@ Bunnies List commands allows you to collate your list of ideas in one place, mak
 
 Adds a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
+
 Format: `bunny i\IDEA g\[GENRE]`  
+
+Note: If you add a bunny with no genre then the genre will be left blank
 
 Example usages:
 - `bunny i\test idea 1`
@@ -375,9 +378,13 @@ bunny i\test idea 2 g\ fantasy
 [Jump to top](#fluffle-user-guide)
 
 #### Listing bunny ideas: `list bunny`
-Lists all available quizzes numbered by BUNNY_INDEX numbers.  
+
+If you want to view the list of bunnies you have collected, you can use the `list bunny` command to print the full list of bunnies.
+
 Format: `list bunny`  
+
 Example usage: `list bunny`  
+
 Example output:  
 ```
 list bunny
@@ -401,7 +408,9 @@ Here are the bunnies stored in the program:
 
 #### Filtering bunny ideas: `filter bunny`
 Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
+
 Format: `filter bunny i\IDEA g\[GENRE]`  
+
 Example usages:
 - filter bunny i\test idea 1  
 - filter bunny i\test idea 2 g\ fantasy
@@ -425,8 +434,8 @@ number bunny filter: 2
 [Jump to top](#fluffle-user-guide)
 
 #### Saving bunny ideas: `save bunny`
-Save the current list of bunnies in the program into the designated text file. 
-The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.  
+Save the current list of bunnies in the program into the designated text file. The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.
+
 Format: `save bunny`  
 
 Example usages:
@@ -443,7 +452,8 @@ Bunny list saved!
 [Jump to top](#fluffle-user-guide)
 
 #### Deleting a bunny idea: `delete bunny`
-Delete a selected bunny from the list of bunny ideas.
+You can delete a selected bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
+
 Format: `delete bunny BUNNY_INDEX`
 * `BUNNY_INDEX` is the index of the bunny you want to delete from the list
 
@@ -463,7 +473,8 @@ Bunny deleted:
 [Jump to top](#fluffle-user-guide)
 
 #### Generating a random bunny idea: `random bunny`
-The app will pick a random bunny from your list of plot bunnies for you to work on.
+The app can pick a random bunny from your list of plot bunnies for you to work on.
+
 Format: `random bunny`
 
 Example usages:
@@ -486,7 +497,7 @@ Random Bunny:
 Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random, so you can start writing right away.
 
 #### Generating names from name database: `name`
-Generates a name randomly from the stored database of names.  
+You can generate a name randomly from the stored database of names.
 Format: `name`
 
 Example output:  
@@ -500,7 +511,7 @@ name 2
 [Jump to top](#fluffle-user-guide)
 
 #### Listing names from name database: `list name`
-Displays all the names currently stored in the names database.  
+You can display all the names currently stored in the names database. 
 Format: `list name`
 
 Example usages:
@@ -519,7 +530,7 @@ list name
 [Jump to top](#fluffle-user-guide)
 
 #### Finding names from name database: `filter name`
-Gets the list of names after filtering from the stored list of names.  
+You can get the list of names after filtering from the stored list of names. 
 Format: `filter name NAME`
 
 Example usage:
@@ -549,7 +560,7 @@ filter name name
 [Jump to top](#fluffle-user-guide)
 
 #### Adding names from name database: `add name`
-Adds a name to the list of names currently stored in the names database.
+You can add a name to the list of names currently stored in the names database.
 Format: `add name NAME`
 
 Example usages:
@@ -566,7 +577,7 @@ name 3 has been added to the Names list!
 [Jump to top](#fluffle-user-guide)
 
 #### Removing names from name database: `delete name`
-Removes a name from the list of names currently stored in the names database.
+You can remove a name from the list of names currently stored in the names database.
 Format: `delete name INDEX`
 
 Example usages:
