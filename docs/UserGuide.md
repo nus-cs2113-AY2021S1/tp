@@ -994,7 +994,21 @@ Display income and expense goal for the individual month.
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
-## Goal Tracker 3 : Edit Goal
+## Goal Tracker 3 : Exit Display Goal 
+The system will auto prompt the user whether they want to exit DisplayGoal and return to Goal tracker main menu.
+
+>syntax 
+
+    enter *y* to exit
+
+>Example
+
+    y
+    
+![PromptExitDisplay](screenshots/goaltracker/PromptExitDisplay.png)
+![ReturnMain](screenshots/goaltracker/returnmainmenu.png)
+
+## Goal Tracker 4 : Edit Goal
 Edit income and expense goal for the individual month.
 
 >syntax
@@ -1008,7 +1022,7 @@ Edit income and expense goal for the individual month.
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
-## Goal Tracker 4 : Exit Goal Tracker
+## Goal Tracker 5 : Exit Goal Tracker
 Exit Goal Tracker program and return to FinanceIt main UI.
 
 >syntax
