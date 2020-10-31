@@ -420,6 +420,12 @@ Format: `exit`
 Expected output:
 ````
 All changes saved.
+_______    _______
+||   \\\  //||
+||___//\\// ||___
+||   \\ ||  ||
+||___// ||  ||____
+
 Bye <username>. Hope to see you again soon!
 ````
 
