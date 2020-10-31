@@ -36,7 +36,7 @@ public class FinanceList {
         try {
             logger.setLevel(Level.OFF);
             logger.info("Start deleting...\n");
-            FinanceLog.sum -= financeLogs.get(index-1).getLogVal();
+            FinanceLog.sum -= financeLogs.get(index - 1).getLogVal();
             financeLogs.remove(index - 1);
             FinanceLog.finSize--;
             String output2;
