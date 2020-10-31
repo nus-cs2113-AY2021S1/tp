@@ -90,6 +90,21 @@ public class UI {
         case "exit":
             printHelpExit();
             break;
+        case "name":
+            printHelpName();
+            break;
+        case "list name":
+            printHelpListName();
+            break;
+        case "filter name":
+            printHelpFilterName();
+            break;
+        case "add name":
+            printHelpAddName();
+            break;
+        case "delete name":
+            printHelpDeleteName();
+            break;
         default:
             printHelp();
             break;
@@ -105,6 +120,31 @@ public class UI {
         for (String listCommand : listCommands) {
             System.out.println(listCommand);
         }
+    }
+
+    private static void printHelpDeleteName() {
+        System.out.println("Removes a name from the list of names");
+        System.out.println("Format: delete name <INDEX>");
+    }
+
+    private static void printHelpAddName() {
+        System.out.println("Add a name to the list of names");
+        System.out.println("Format: add name <NAME>");
+    }
+
+    private static void printHelpFilterName() {
+        System.out.println("Find all the names from the list of names");
+        System.out.println("Format: filter name <NAME>");
+    }
+
+    private static void printHelpListName() {
+        System.out.println("List all the names from the list of names");
+        System.out.println("Format: list name");
+    }
+
+    private static void printHelpName() {
+        System.out.println("Gets a random name from the list of names");
+        System.out.println("Format: name");
     }
 
     public static void printHelpSettings() {
