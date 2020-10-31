@@ -121,6 +121,7 @@ public class ClearLoader {
     public static void clearingWord(String item, ArrayList<Words> wordList) throws InvalidClearFormat {
         if (item.contains("-noun")) {
             String word = item.substring("-noun".length());
+            //System.out.println(word);
             try {
                 clearingWordNoun(word, wordList);
             } catch (InvalidClearFormat e) {
@@ -131,14 +132,14 @@ public class ClearLoader {
             try {
                 clearingWordAdjective(word, wordList);
             } catch (InvalidClearFormat e) {
-                System.out.println("This noun is not founded!");
+                System.out.println("This adjective is not founded!");
             }
         } else if (item.contains("-verb")) {
             String word = item.substring("-verb".length());
             try {
                 clearingWordVerb(word, wordList);
             } catch (InvalidClearFormat e) {
-                System.out.println("This noun is not founded!");
+                System.out.println("This verb is not founded!");
             }
         } else {
             throw new InvalidClearFormat();
