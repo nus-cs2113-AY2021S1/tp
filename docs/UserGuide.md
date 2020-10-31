@@ -15,17 +15,18 @@ around NUS campus via the school's shuttle service.<br>
   * [3.4. Check for buses at a bus stop: ```/bus```](#34-check-for-buses-at-a-bus-stop-bus)
   * [3.5. List all bus available in NUS ```/allbus```](#35-list-all-bus-available-in-nus-allbus)
   * [3.6. List all bus stops in NUS: ```/liststops```](#36-list-all-bus-stops-in-nus-liststops)
-  * [3.7. Search for dining options within a faculty: ```/dine```](#37-search-for-dining-options-within-a-faculty-dine)
-  * [3.8. Search for specific dining outlet: ```/dineinfo```](#38-search-for-specific-dining-outlet-dineinfo)
-  * [3.9. Add a favourite command: `/addfav`](#39-add-a-favourite-command-addfav)
-  * [3.10. List all favourite commands: `/listfav`](#310-list-all-favourite-commands-listfav)
-  * [3.11. Delete a favourite command: `/deletefav`](#311-delete-a-favourite-command-deletefav)
-  * [3.12. Execute a favourite command: `/execfav`](#312-execute-a-favourite-command-execfav)
-  * [3.13. Change the description for a favourite command: `/descfav`](#313-change-the-description-for-a-favourite-command-descfav)
-  * [3.14. Clear the list of favourite commands: `/clearfav`](#314-clear-the-list-of-favourite-commands-clearfav)
-  * [3.15. Similarity Checks](#315-similarity-checks)
-  * [3.16. Reset frequent search data: ```/reset```](#316-reset-frequent-search-data-reset)
-  * [3.17. Exit the program: ```/exit```](#317-exit-the-program-exit)
+  * [3.7. List all faculties in NUS: ```/faculty```](#37-list-all-faculties-in-nus-faculty)
+  * [3.8. Search for dining options within a faculty: ```/dine```](#38-search-for-dining-options-within-a-faculty-dine)
+  * [3.9. Search for specific dining outlet: ```/dineinfo```](#39-search-for-specific-dining-outlet-dineinfo)
+  * [3.10. Add a favourite command: `/addfav`](#310-add-a-favourite-command-addfav)
+  * [3.11. List all favourite commands: `/listfav`](#311-list-all-favourite-commands-listfav)
+  * [3.12. Delete a favourite command: `/deletefav`](#312-delete-a-favourite-command-deletefav)
+  * [3.13. Execute a favourite command: `/execfav`](#313-execute-a-favourite-command-execfav)
+  * [3.14. Change the description for a favourite command: `/descfav`](#314-change-the-description-for-a-favourite-command-descfav)
+  * [3.15. Clear the list of favourite commands: `/clearfav`](#315-clear-the-list-of-favourite-commands-clearfav)
+  * [3.16. Similarity Checks](#316-similarity-checks)
+  * [3.17. Reset frequent search data: ```/reset```](#317-reset-frequent-search-data-reset)
+  * [3.18. Exit the program: ```/exit```](#318-exit-the-program-exit)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
@@ -223,7 +224,22 @@ To see the description of each location:
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 
-### 3.7. Search for dining options within a faculty: ```/dine```
+### 3.7. List all faculties in NUS: ```/faculty```
+This command lists out all faculties in NUS.
+
+The format of this command is as follows:<br> 
+<code>/faculty</code> <br>
+
+#### Examples of Usage
+**<u>Example 1</u>**<br>
+Let's say you want to know the names of all faculties in NUS.
+
+These are the steps to follow:
+
+1. Type <code>/faculty</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/faculty1.png" alt="output" width=600><br>
+
+### 3.8. Search for dining options within a faculty: ```/dine```
 This command lists out all dining outlets available within a chosen faculty.
 
 The format of this command is as follows:<br> 
@@ -238,8 +254,16 @@ These are the steps to follow:
 1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
+**<u>Example 2</u>**<br>
+Let's say you want to know the available dining options in the <strong>Science</strong> faculty, but you are feeling a little lazy to type out the full name of the faculty.
 
-### 3.8. Search for specific dining outlet: ```/dineinfo```
+You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
+
+1. Type <code>/dine <strong>sci</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/dine2.png" alt="output" width=600><br>
+
+
+### 3.9. Search for specific dining outlet: ```/dineinfo```
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
 The format of this command is as follows:<br>
@@ -262,7 +286,7 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
 
-### 3.9. Add a favourite command: `/addfav`
+### 3.10. Add a favourite command: `/addfav`
 This command adds a valid command with an optional description to your list of favourites
 
 The format of this command is as follows:<br>
@@ -298,7 +322,7 @@ to store the command in to your list of favourites with no description  as shown
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 
-### 3.10. List all favourite commands: `/listfav`
+### 3.11. List all favourite commands: `/listfav`
 This command displays all the commands in your list of favourite commands, along with their index and description.
 
 The format of this command is as follows:<br>
@@ -313,7 +337,7 @@ These are the steps to follow:
 1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 
-### 3.11. Delete a favourite command: `/deletefav`
+### 3.12. Delete a favourite command: `/deletefav`
 This command deletes the command that you have specified from the list of favourite commands.
 
 Format: <br>
@@ -329,7 +353,7 @@ To delete this command from your favourites list:
 press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 
-### 3.12. Execute a favourite command: `/execfav`
+### 3.13. Execute a favourite command: `/execfav`
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
@@ -348,7 +372,7 @@ To execute the command with the 2nd index in your list of favourite commands:
 1. Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
 
-### 3.13. Change the description for a favourite command: `/descfav`
+### 3.14. Change the description for a favourite command: `/descfav`
 This command helps you change the description of a command in your list of favourites.
 
 Format:<br>
@@ -369,7 +393,7 @@ shown in the figure below and press enter. <br>
 2. Type <code>/listfav</code> to see the changed description.<br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 
-### 3.14. Clear the list of favourite commands: `/clearfav`
+### 3.15. Clear the list of favourite commands: `/clearfav`
 This command clears all the commands stored in your list of favourite commands.
 
 The format of this command is as follows:<br>
@@ -387,7 +411,7 @@ These are the steps to follow:
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 
 
-### 3.15. Similarity Checks
+### 3.16. Similarity Checks
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
@@ -405,7 +429,7 @@ as shown in the figure below.<br><br>
 >Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
 ><code>/route</code> command or a <code>/bus</code> command. 
 
-### 3.16. Reset frequent search data: ```/reset```
+### 3.17. Reset frequent search data: ```/reset```
 This command resets the data set used to display most frequently search bus stop on application start-up.
 
 Format:<code>/reset</code>
@@ -417,7 +441,7 @@ application changes. To create a new data set that will cater to your needs in t
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
 <img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
 
-### 3.17. Exit the program: ```/exit```
+### 3.18. Exit the program: ```/exit```
 This command helps you exit the application.
 
 The format of this command is as follows:<br>
