@@ -588,12 +588,19 @@ distractions whilst promoting teamwork and collaboration.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+* Should work on any _OS_ as long as it has Java 11 installed.
+* The average user is someone who manages teams in development phases, and takes responsibility of 
+delivering the product (eg: Team leader in University projects, Project Manager in enterprises etc).
+* The user prefers typing instructions and commands rather than using a GUI for management purposes.
 
 ## Glossary
 The terms listed in this glossary are in alphabetical order.
-* *glossary item* - Definition
+* _GUI_ - Graphical User Interface
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Download the jar file and copy it into an empty folder.
+1. Open a new terminal window and navigate to the same directory where the SCRUMptious.jar is located.
+1. Enter the command `java -jar SCRUMptious.jar` into the terminal window to launch the application. The application
+ should now be running.
+1. 

@@ -80,14 +80,16 @@ SCRUMptious is a command-line project management software, designed for project 
     WELCOME TO SCRUMPTIOUS
     command>
     ```
-1. Type the command `project /create -title Scrumptious -desc A java project -end 30 -sd 10` 
+1. Type the command `project /create -title Scrumptious -desc A java project -dur 30 -sd 10` 
 into the command line and press `Enter` to execute it.
-1. If the setup is correct, you can view the project by executing `project /view`:
+1. If the setup is correct, you will be able to view the project by executing `project /view`:
    ```
-   command> project /create -title Scrumptious -desc A java project -end 30 -sd 10
+   command> project /create -title Scrumptious -desc A java project -dur 30 -sd 10
    Project successfully created.
+       Title: Scrumptious
    command> project /view
    ====================== PROJECT ======================
+   [ID: 1]
    [Title: Scrumptious ]
    [Description: A java project ]
    [No members added]
@@ -116,6 +118,7 @@ Create a new project.
 ##### Expected Outcome:
 ```
 Project successfully created.
+    Title: MeTube
 ```
 
 #### 3.1.2. View Project Information
@@ -126,6 +129,7 @@ View project information which includes title, description, time-period and team
  ```
 ====================== PROJECT ======================
 [Title: MeTube ]
+[ID: 1]
 [Description: video streaming software ]
 [No members added]
 [Project will start along with the first sprint]
@@ -147,7 +151,8 @@ Following are the added projects:
 ```
 
 #### 3.1.4. Select Project 
-Select the project that will be referenced to for any other commands. To get the `id` of all the projects added by the user, you can execute `project \list`.
+Select the project that will be referenced to for any other commands. To get the `id` of all the projects added by
+ the user, you can execute `project /list`.
 ##### Format: `project /select <id>`
 ##### Constraints: 
 * A project corresponding to `id` exists.
@@ -698,5 +703,5 @@ Shows the storage command, and an example of how to use it.
 | Deallocate Tasks from Team Members | `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]` | `sprint /deallocate -project 2 -sprint 3 -task 1 -user mary` |
 | Clear Storage | `storage /clear` | `storage /clear` |
 | Exit program | `bye` | `bye` |
-| Help Menu | `help` | `help 1` |
+| Help Menu | `help` | `help /1` |
 
