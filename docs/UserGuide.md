@@ -9,12 +9,13 @@ No. |Content|
 1.|[Set-up](#setUp)
 2.|[Features Overview](#featuresOverview)
 3.|[Features Documentation](featuresDoc)
-3.1|    &emsp;[Manual Tracker](#manualTracker)
-3.2|    &emsp;[Entry Tracker](#entryTracker)
-3.3|    &emsp;[Recurring Tracker](#recurringTracker)
-3.4|    &emsp;[Finance Tools](#financeTools)
-3.5|    &emsp;[Goal Tracker](#goalTracker)
-3.6|    &emsp;[Save Manager]()
+3.1|    &emsp;[Main Menu](#mainMenu)
+3.2|    &emsp;[Manual Tracker](#manualTracker)
+3.3|    &emsp;[Entry Tracker](#entryTracker)
+3.4|    &emsp;[Recurring Tracker](#recurringTracker)
+3.5|    &emsp;[Finance Tools](#financeTools)
+3.6|    &emsp;[Goal Tracker](#goalTracker)
+3.7|    &emsp;[Save Manager]()
 4.|[Commands Summary](#commandsSummary)
 
 # 1. <a name = setUp> </a> Set-up
@@ -89,7 +90,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
     >>> 
 
 # 2. <a name = featuresOverview> </a>Features overview
-## 2.1 Main features
+## <a name = mainMenu> </a>2.1 Main features
 
 Feature|Command|Description|
 -------|-------|-----------|
