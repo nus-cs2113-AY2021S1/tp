@@ -39,7 +39,7 @@ public class Manager {
     private String name;
     private int commandCount = 1;
     private DataBase dataBase;
-    private CalculatorData data;
+    private CalculatorData data = new CalculatorData();
     private Calculator calculator;
 
     public static final String COMMAND_ADD = "add";
