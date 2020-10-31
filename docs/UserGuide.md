@@ -35,11 +35,11 @@ around NUS campus via the school's shuttle service.<br>
 Are you new to NUS? <br>
 Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
-Introducing **Nav@NUS**, you new navigation assistant!
+Introducing **Nav@NUS**, your new navigation assistant!
 Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
-hassle of physically checking the bus stop's notice board.Nav@NUS is a tool tailor made for anyone unfamiliar to 
-NUS  campus,students,professors and visitors included. Nav@NUS brings convenience to you and wishes your 
+hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
+NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
 commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
@@ -66,7 +66,7 @@ where you have to type in commands.<br>
 shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
 ![Windows CLI](UG_Figures/windowsPath.png)
 4. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
-5. Run the .jar file in the command prompt as follows by typing `java -jar duke.jar` and press <kbd>Enter</kbd>.
+5. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 6. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
 7. Try keying in `/help` and press <kbd>Enter</kbd>!
