@@ -78,8 +78,8 @@ E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.
 *   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
 E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
-*   Order of options (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-option fields. <br/>
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an option.
+*   Order of parameters (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-parameter fields. <br/>
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an parameter.
 
 > :bulb: This is what your input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
@@ -98,7 +98,7 @@ This command allows you to figure out the amount of time needed to translate a s
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   It only accepts one `.txt` file (other file extensions will be supported in a future version).
-*   If the option `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
+*   If the parameter `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
 
 > :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
 
