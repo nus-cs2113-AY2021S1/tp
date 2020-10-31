@@ -789,6 +789,8 @@ FinanceTools contains tools related to financial calculations.
 
 ## FinanceTools 1: Simple Interest Calculator
 Calculate simple interest earned.
+<br />
+Simple interest is based on the principal amount of a deposit.
 
 ## Parameters
 * ```/a``` - Amount (Mandatory)
@@ -805,6 +807,8 @@ Calculate simple interest earned.
 ![Example](screenshots/financetools/SimpleInterest(1).PNG)
 ## FinanceTools 2: Yearly Compound Interest Calculator
 Calculate yearly compound interest earned with optional yearly deposit.
+<br />
+Compound interest is based on the principal amount and the interest that accumulates on it every period.
 
 ### Parameters
 * ```/a``` - Amount (Mandatory)
@@ -827,6 +831,8 @@ Calculate yearly compound interest earned with optional yearly deposit.
 ![Example](screenshots/financetools/YearlyCompoundInterest(2).PNG)
 ## FinanceTools 3: Monthly Compound Interest Calculator
 Calculate monthly compound interest earned with optional monthly deposit.
+<br />
+Compound interest is based on the principal amount and the interest that accumulates on it every period.
 
 ### Parameters
 * ```/a``` - Amount (Mandatory)
