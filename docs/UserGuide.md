@@ -16,13 +16,13 @@
 &nbsp;&nbsp;3.2. [Project Member `member`](#project-member-member)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add Team Members](#add-team-members)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove Team Members](#remove-team-members)<br>
-&nbsp;&nbsp;3.3. [Project Backlog `task`](#project-backlog-task)<br>
+&nbsp;&nbsp;3.3. [Project Backlog `task`](#project-backlog-`task`)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Add Tasks](#add-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [View Tasks](#view-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete Tasks](#delete-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the Priority of Tasks](#change-the-priority-of-a-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark Tasks as Complete](#mark-task-as-complete)<br>
-&nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint-sprint)<br>
+&nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a New Sprint](#create-a-new-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View Sprint Information](#view-sprint-information)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Edit Sprint Goal](#edit-sprint-goal)<br>
