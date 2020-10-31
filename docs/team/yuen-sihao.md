@@ -24,7 +24,7 @@ What it does:
 * The user will be able to use `add -r` command to add rating to a book that exists in Quotesify.
 * The user may use `edit -r` or `delete -r` commands to edit and delete their existing ratings respectively.
 * The user can use `list -r` to list all their existing ratings or to list books of a specific rating value.
-* The user may also use `find -r` to find the rating of a specific book.
+* The user may also use `find -r` to find ratings of books with title that contains the specified keyword.
 
 **Justification:**
 This feature is designed to allow users to rate the books that they have read, as a record of how they feel
