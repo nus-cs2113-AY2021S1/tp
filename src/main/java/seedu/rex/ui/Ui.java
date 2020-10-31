@@ -1,5 +1,6 @@
 package seedu.rex.ui;
 
+import seedu.rex.Rex;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.data.AppointmentList;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * Interacts with user.
@@ -339,6 +341,7 @@ public class Ui {
      * @return Object in ArrayList
      */
     public <T> int displayArrayList(ArrayList<T> list) {
+        Rex.logger.log(Level.INFO, "display array list");
         int i;
         for (i = 0; i < list.size(); i++) {
             printWithIndent((i + 1) + ". " + list.get(i));
@@ -410,6 +413,7 @@ public class Ui {
 
     /**
      * Checks if a user's input is blank.
+     *
      * @param userInput The user's input.
      * @throws RexException If a user's input is blank.
      */

@@ -11,6 +11,9 @@ import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
+/**
+ * List appointments of patient.
+ */
 public class ListApptCommand extends Command {
 
     public static final String COMMAND_WORD = "appointments";

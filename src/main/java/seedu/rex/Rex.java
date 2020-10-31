@@ -35,6 +35,7 @@ public class Rex {
         ui = new Ui();
         storage = new Storage(filePath);
         logger = Logger.getLogger("Rex");
+        logger.setLevel(Level.WARNING);
 
         try {
             logger.log(Level.INFO, "going to load patients");
@@ -98,7 +99,7 @@ public class Rex {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(patients, doctors, appointments, ui, storage);
                 isExit = c.isExit();

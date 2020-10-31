@@ -46,6 +46,8 @@ public class RetrievePatientCommand extends Command {
         if (index < 0) {
             throw new RexException("No such patient!");
         }
+        Rex.logger.log(Level.INFO, "going to show patients");
         ui.showPatient(patients.getPatientUsingIndex(index));
+        Rex.logger.log(Level.INFO, "end of retrieve command");
     }
 }

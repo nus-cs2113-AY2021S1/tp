@@ -1,5 +1,6 @@
 package seedu.rex.data;
 
+import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 
 import java.util.ArrayList;
@@ -53,7 +54,10 @@ public class AppointmentList {
      * @param index Index of appointment.
      * @return Appointment at that index.
      */
-    public Appointment getAppointmentByIndex(int index) {
+    public Appointment getAppointmentByIndex(int index) throws RexException {
+        if (index >= getSize()) {
+            throw new RexException("Invalid index!");
+        }
         return appointments.get(index);
     }
 
