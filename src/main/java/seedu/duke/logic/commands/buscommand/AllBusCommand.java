@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 public class AllBusCommand extends Command {
 
+    public AllBusCommand() {
+        super.isValid = true;
+    }
+
     @Override
     public void executeCommand() {
         ArrayList<Bus> allBuses = BusData.listOfAllBuses();

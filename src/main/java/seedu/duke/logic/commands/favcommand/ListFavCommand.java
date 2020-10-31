@@ -6,6 +6,10 @@ import seedu.duke.logic.commands.commons.Command;
 
 public class ListFavCommand extends Command {
 
+    public ListFavCommand() {
+        super.isValid = false;
+    }
+
     @Override
     public void executeCommand() throws CustomException {
         FavList.listFav();
