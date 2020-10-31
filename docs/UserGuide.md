@@ -25,7 +25,6 @@ After familiarizing with all the functionalities, you will definitely be able to
     * [Adding a task](#adding-a-task)
         * [Adding a todo task](#adding-a-todo-task)
         * [Adding a deadline task](#adding-a-deadline-task)
-    * [Marking a task as done](#marking-a-task-as-done)
     * [Adding an event](#adding-an-event)
         * [Adding an activity event](#adding-an-activity-event)
         * [Adding an examination event](#adding-an-examination-event)
@@ -34,6 +33,7 @@ After familiarizing with all the functionalities, you will definitely be able to
         * [Adding recurring tutorial event](#adding-recurring-tutorial-events)
     * [Adding additional information of an event](#adding-additional-information-to-an-event)
     * [Viewing additional information of an event](#viewing-the-additional-information-of-an-event)
+    * [Marking a task as done](#marking-a-task-as-done)
     * [Deleting a calendar item](#deleting-a-calendar-item)
         * [Deleting a task](#deleting-a-task)
         * [Deleting an event](#deleting-an-event)
@@ -147,24 +147,6 @@ as illustrated by the figure below.
 
 ![warning_dadline](images/warning_deadline.PNG)
 
-### Marking a task as done:
-
-To help manage your tasks better, you can mark a task on your calendar list as completed by using the `done` command. 
-If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task
-
-Format: `done <task_number>`
-
-Example:
-
-`done 1` - By using this command, you will mark the first task on your task list as done! 
-
-![done_command](images/done_command.PNG)
-
-Note: The above figure is for illustration purpose only. The desired output will
-differ if you have a different task stored in the task index number 1.
-
-![warning_done](images/warning_done.PNG)
-
 ### Adding an event:
 
 When you have new events, you can add them to the calendar list in different types, including school events, 
@@ -268,6 +250,24 @@ Format: `/v <event_number>`
 Example of usage:
 
 `/v 1` - This lists the additional information that you have added for event number 1.
+
+### Marking a task as done:
+
+To help manage your tasks better, you can mark a task on your calendar list as completed by using the `done` command. 
+If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task
+
+Format: `done <task_number>`
+
+Example:
+
+`done 1` - By using this command, you will mark the first task on your task list as done! 
+
+![done_command](images/done_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have a different task stored in the task index number 1.
+
+![warning_done](images/warning_done.PNG)
 
 #### Deleting the additional information of an event:
 
