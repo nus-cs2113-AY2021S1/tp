@@ -25,30 +25,28 @@ public class SaveManagerTest {
         return false;
     }
 
-    private static void clear() {
-        GoalTrackerSaver.clear();
-        AutoTrackerSaver.clear();
-        ManualTrackerSaver.clear();
-    }
-
     @Test
     public void loadSaveTest() {
         try {
-            clear();
+            SaveManager.clear();
+
+            InputParser parser = InputParser.getInstance();
+            CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
+            SaveManager.deleteSave(packet);
+
             GoalTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_gt.txt");
             AutoTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_at.txt");
             ManualTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_mt.txt");
 
-            InputParser parser = InputParser.getInstance();
-            CommandPacket packet = parser.parseInput("add /name testcase2149855246427094876");
             SaveManager.addSave(packet);
 
             String path = SaveManager.dirPath + "/testcase2149855246427094876";
             assertTrue(isEqual(Paths.get(path + "_gt.txt"), Paths.get("./data/tests/JunitTestCase_gt.txt")));
             assertTrue(isEqual(Paths.get(path + "_mt.txt"), Paths.get("./data/tests/JunitTestCase_mt.txt")));
             assertTrue(isEqual(Paths.get(path + "_at.txt"), Paths.get("./data/tests/JunitTestCase_at.txt")));
+
             SaveManager.deleteSave(packet);
-            clear();
+            SaveManager.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package seedu.financeit.utils.storage;
 
-import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;

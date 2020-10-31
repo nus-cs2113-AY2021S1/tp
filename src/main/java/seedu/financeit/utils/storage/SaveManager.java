@@ -1,6 +1,7 @@
 package seedu.financeit.utils.storage;
 
 
+import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -21,9 +22,8 @@ public class SaveManager {
     public static final String dirPath = "./data/backup";
     private static String prompt = "";
     private static boolean menu = true;
-    private static boolean load = false;
 
-    public static boolean main() {
+    public static void main() {
         while (true) {
             if (menu == true) {
                 helpMenu();
@@ -53,7 +53,7 @@ public class SaveManager {
             case "help":
                 break;
             case "exit":
-                return load;
+                return;
             default:
                 prompt = "Invalid Command";
             }
@@ -170,8 +170,9 @@ public class SaveManager {
 
                     sourceChannel.close();
                     destChannel.close();
-                    load = true;
-                    prompt = name + " has been loaded, restart for changes to take effect!";
+                    clear();
+                    Financeit.load();
+                    prompt = name + " has been loaded!";
                     return;
                 }
             }
@@ -179,6 +180,12 @@ public class SaveManager {
         } catch (Exception e) {
             prompt = e.toString();
         }
+    }
+
+    public static void clear() {
+        GoalTrackerSaver.clear();
+        AutoTrackerSaver.clear();
+        ManualTrackerSaver.clear();
     }
 
     public static void deleteSave(CommandPacket packet) {
