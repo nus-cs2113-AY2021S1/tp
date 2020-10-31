@@ -96,7 +96,7 @@ public class SearchCommand extends Command {
      */
     private boolean doesAnimeContainThatGenre(Anime anime) {
         for (String genre: anime.getGenre()) {
-            if (genre.toLowerCase().trim().equals(searchGenre)) {
+            if (genre.equalsIgnoreCase(searchGenre)) {
                 return true;
             }
         }

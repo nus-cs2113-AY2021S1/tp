@@ -205,8 +205,9 @@ Format: `search -g <SEARCH_TERM>`
 
 <br/>
 
-Here are some common genres that you can try:
+Here are some of the popular genres that you can try:
 *   Action
+*   Adventure
 *   Music
 *   Mecha
 *   Sci-Fi
