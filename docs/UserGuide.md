@@ -13,7 +13,8 @@
    <a href =#takeQuiz>4.5 Taking Quizzes </a>
    <a href =#result>4.6 Viewing quiz results </a>
    <a href =#store>4.7 Storing data </a>
-   <a href =#export>4.8 Exporting data </a>
+   <a href =#load>4.8 Loading data </a>
+   <a href =#export>4.9 Exporting data </a>
 <a href =#faq>5. FAQ </a>
 <a href =#summary>6. Command Summary </a>
 </pre>
@@ -130,7 +131,7 @@ Now you have 5 subjects in the list.
 ____________________________________________________________
 ```
 
-#### 4.1.3 `list` - List all subjects
+#### 4.1.3 `list` - List all subjects <a name="list"></a>
 
 Prints a list of all subjects stored
 
@@ -652,11 +653,11 @@ Quiz 2: 0/1 -- Fail
 >️ ℹ️ **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
 
 ### 4.7 Storing data <a name="store"> </a>
-When you exit the application, the data you have added to the program is automatically saved to the disk. Similarly, 
-when you launch the application, the saved data is automatically loaded from the disk. The data is stored under the 
-`data/` folder in the same folder where you run the application. 
+When you exit the application, the data you have added to the program is automatically saved to the disk. 
+The data is stored under the `data/` folder in the same folder where you run the application. 
 
-> ⚠️ **_WARNING:_** The data is not saved if the application is closed abnormally.
+> ⚠️ **_WARNING:_** The data (or any changes to the data) are not saved if the application is closed abnormally 
+> (i.e. not via `bye` command).
 
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
@@ -699,6 +700,7 @@ a deadline or event task.
 
 > ⚠️ **_WARNING:_** Although you can change the content of this file manually, 
 > you are not advised to do so because a mismatch in the format will corrupt the data. 
+> **If the data is corrupted, it will not be loaded by the application.**
 > Make a copy of the file before making changes if you have to do so manually.
 
 #### 4.7.2 subjectResults.json / topicResults.json
@@ -745,10 +747,20 @@ have added under a specific subject and topic. An example of the file content is
 Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 
 > ⚠️ **_WARNING:_** Although you can change the content of this file manually, 
-> a mismatch in the format will corrupt the data. Therefore, make a copy of the file 
-> before making changes if you have to do so.
+> a mismatch in the format will corrupt the data. **If the data is corrupted, it will not be loaded by the application.** 
+> Therefore, make a copy of the file before making changes if you have to do so.
 
-### 4.8 Exporting data <a name= "export"> </a>
+### 4.8 Loading data <a name="load"> </a>
+Similar to <a href =#store>storing data</a>,
+when you launch the application, the saved data is automatically loaded from the disk.
+
+> ℹ️ **_NOTE:_** Loaded subjects and topics will be sorted in alphabetical order, which can be seen when running
+> <a href=#list>list</a> command.
+
+> ⚠️ **_WARNING:_** If you have manually modified the contents of the files stored with wrong syntax, the files affected 
+> will not be loaded (and, instead, empty data will be loaded) when the application launches. 
+
+### 4.9 Exporting data <a name= "export"> </a>
 You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
 other applications that understand the data. To export the data, run the following command when you are in the main 
 level of the application.
@@ -820,10 +832,13 @@ below.
   ...                                                               <em>--> More subjects</em>
 ]
 </pre>
-<sup>***Figure 4.8.1*** Sample data.json content</sup>
+<sup>***Figure 4.9.1*** Sample data.json content</sup>
 
 Note that the content of the file follows the same logical structure as that
 in the `data/` folder.
+
+> ℹ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
+> applications. Nevertheless, the feature may be implemented in the future versions if it is highly requested.
 
 ## 5. FAQ <a name = "faq"> </a>
 Commonly asked questions from users.
