@@ -117,9 +117,9 @@ Available Commands:
    example: done 1
 14.listtask
 15.open
-16.exit
-17.clear
-18.reset
+16.clear
+17.reset
+18.exit
 ````
 
 ### 2.2 Add a module: `addmod` <a name="addmod"></a>
@@ -248,6 +248,7 @@ Example of usage:
 Expected output:
 ````
 CS2113T is removed.
+All tasks under CS2113T are deleted.
 ````
 
 ### 2.8 Delete expected module workload: `deleteexp` <a name="deleteexp"></a>
@@ -537,7 +538,7 @@ Bye <username>. Hope to see you again soon!
 |Analyse actual time spent on all modules|`analyse <week number>`|
 |Deleting a module|`deletemod <module code>`|
 |Deleting expected module workload|`deleteexp <module code>`|
-|Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
+|Minus from time spent on the module|`minustime <module code> <time spent> <week number>`|
 |Deleting actual time spent on the module|`deletetime <module code> <week number>`|
 |Add tasks|`addtask <module code> <task description>`|
 |List all tasks|`listtask`|
