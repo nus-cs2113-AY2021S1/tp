@@ -4,6 +4,7 @@ import seedu.duke.database.NamesDB;
 import seedu.duke.exceptions.NameException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -32,10 +33,15 @@ public class Names {
         if (nameList.size() > 0) {
             String toMatch = match.toLowerCase().replace("filter name", "").trim();
             //System.out.println("Match: " + toMatch);
-            for (String name : (nameList.stream()
+            List<String> filteredNames = (nameList.stream()
                     .filter(x -> x.toLowerCase().contains(toMatch))
-                    .collect(Collectors.toList()))) {
-                System.out.println(name);
+                    .collect(Collectors.toList()));
+            if (filteredNames.size() == 0) {
+                throw new NameException("No names found! Try searching other names!");
+            } else {
+                for (int i = 0; i < filteredNames.size(); i++) {
+                    System.out.println(i + 1 + ". " + filteredNames.get(i));
+                }
             }
         } else {
             throw new NameException("No stored Names! Try adding some names first!");
