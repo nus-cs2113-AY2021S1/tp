@@ -33,7 +33,7 @@ public class DescFavParser extends Parser {
                 description = checkDescription(components[1]);
             } else {
                 logger.warning("Delimiter /to is missing.");
-                throw new CustomException(ExceptionType.NO_DELIMITER);
+                throw new CustomException(ExceptionType.NO_DELIMITER_DESCFAV);
             }
         } catch (StringIndexOutOfBoundsException error) {
             logger.warning("Either of the parameters is missing.");
@@ -47,7 +47,9 @@ public class DescFavParser extends Parser {
             throw new CustomException(ExceptionType.NO_INPUT);
         }
         assert !(components[0].trim().isEmpty() && components[1].trim().isEmpty()) : "Component 1 and 2 are empty.";
-
+        if (components[0].contains(DELIMITER) | components[1].contains(DELIMITER)) {
+            throw new CustomException(ExceptionType.MANY_DELIMITERS_DESCFAV);
+        }
     }
 
     private String checkDescription(String description) throws CustomException {
