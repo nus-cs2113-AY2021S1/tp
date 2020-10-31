@@ -3,6 +3,7 @@ package seedu.financeit.utils.storage;
 import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,9 +25,16 @@ public class SaveManagerTest {
         return false;
     }
 
+    private static void clear() {
+        GoalTrackerSaver.clear();
+        AutoTrackerSaver.clear();
+        ManualTrackerSaver.clear();
+    }
+
     @Test
     public void loadSaveTest() {
         try {
+            clear();
             GoalTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_gt.txt");
             AutoTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_at.txt");
             ManualTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_mt.txt");
@@ -40,6 +48,7 @@ public class SaveManagerTest {
             assertTrue(isEqual(Paths.get(path + "_mt.txt"), Paths.get("./data/tests/JunitTestCase_mt.txt")));
             assertTrue(isEqual(Paths.get(path + "_at.txt"), Paths.get("./data/tests/JunitTestCase_at.txt")));
             SaveManager.deleteSave(packet);
+            clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

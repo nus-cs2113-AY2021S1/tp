@@ -1,5 +1,6 @@
 package seedu.financeit.utils.storage;
 
+import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
@@ -32,6 +33,10 @@ public class AutoTrackerSaver extends SaveHandler {
             }
         }
         return saver;
+    }
+
+    public static void clear() {
+        RecurringTracker.getEntries().removeAllItems();
     }
 
     public void save(String... paths) throws IOException {

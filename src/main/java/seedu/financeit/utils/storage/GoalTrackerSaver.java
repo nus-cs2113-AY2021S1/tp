@@ -33,6 +33,10 @@ public class GoalTrackerSaver extends SaveHandler {
         return saver;
     }
 
+    public static void clear() {
+        GoalTracker.getTotalGoalList().getGoal().clear();
+    }
+
     public void save(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
