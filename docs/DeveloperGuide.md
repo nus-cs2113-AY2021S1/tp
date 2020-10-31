@@ -1,5 +1,11 @@
 # Developer Guide
 
+![AniChan Logo](images/AniChan-Logo.png)
+
+[![Build Status](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp.svg?branch=master)](https://travis-ci.org/AY2021S1-CS2113T-F12-2/tp) ![Open Issues](https://img.shields.io/github/issues-raw/AY2021S1-CS2113T-F12-2/tp) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) ![Last Commit](https://img.shields.io/github/last-commit/AY2021S1-CS2113T-F12-2/tp) [![codecov](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp/branch/master/graph/badge.svg?token=2H6O4KMWRA)](Codecov) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fac33332a53745f990829c425c499621)](https://www.codacy.com/gh/AY2021S1-CS2113T-F12-2/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2113T-F12-2/tp&amp;utm_campaign=Badge_Grade)
+
+<br/>
+
 ## Table of Content
 1. [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
@@ -44,7 +50,7 @@
 
 ### 1.1 Purpose
 
-This document is meant for new and current developers of AniChan. It describes the overall architecture design of AniChan, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.0.
+This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.0.
 
 <br/>
 
@@ -84,7 +90,7 @@ There is no set up required as the project comes with a GitHub Actions config fi
     
 #### 2.2.3 Learn the Design
     
-When you are ready to start writing codes, we recommended that you have a look at AniChan's overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+When you are ready to start writing codes, we recommended that you have a look at **AniChan**'s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
@@ -95,7 +101,7 @@ The following section describes the architecture design of **Anichan**. This sec
 <br/>
 
 ### 3.1 Architecture
-This section will help provide insight to the general overview of Anichan’s architecture.
+This section will help provide insight to the general overview of **Anichan**’s architecture.
 
 <br/>
 
@@ -107,14 +113,14 @@ This section will help provide insight to the general overview of Anichan’s ar
 
 <br/>
 
-The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
+The **Architecture Diagram** presented above explains the high-level design of **AniChan**, and given below is a quick overview of each component involved.
 
 The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
 *   At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
 *   At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
-The rest of AniChan consists of 6 components: 
-*   `Ui`: Manages the user interface of AniChan.
+The rest of **AniChan** consists of 6 components: 
+*   `Ui`: Manages the user interface of **AniChan**.
 *   `Parser`: Parses the user input.
 *   `Command`: Executes the command.
 *   `User`: Manages the workspace(s) and user data.
@@ -174,7 +180,7 @@ Example: The Browse command would be represented by a `BrowseCommand`.
 ![AnimeData Class Diagram](images/AnimeData-Class-Diagram.png) <br/>
 *Figure 6: AnimeData Class Diagram*
 
-The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing AniChan with an interface for the program to retrieve with the source data.
+The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing **AniChan** with an interface for the program to retrieve with the source data.
 
 The `AnimeData `component:
 *   can retrieve Anime objects using ID.
@@ -217,7 +223,7 @@ The `Storage` component consist of `StorageManager` which:
 <br/>
 
 ## 4. Implementation
-This section introduces the specific implementation details and design consideration of some features in AniChan.
+This section introduces the specific implementation details and design consideration of some features in **AniChan**.
 
 <br/>
 
@@ -467,7 +473,7 @@ Similar to a desktop, **AniChan** has a workspace feature which allows users to 
 
 <br/>
 
-`Workspace` is primarily the layer of code that sits between the user, and the rest of AniChan data management features (i.e., `Watchlist`, `Bookmark`). 
+`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (i.e., `Watchlist`, `Bookmark`). 
 
 As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
 and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
@@ -565,16 +571,18 @@ This also avoids the need to maintain an integer `ID` for each `Workspace`.
 
 Aspect: **`Workspace` name restrictions**
 
-As `Workspace` is identified by their names, and other classes like Storage relies on the name to make folders for data storage purposes.
+As `Workspace` is identified by their names, and other classes like `Storage` relies on the name to make folders for data storage purposes.
 Should we allow the user full discretion to naming `Workspace`?
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
 | Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
-| No   | No unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
+| No   | Eliminate unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
-all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented.
+all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
+
+In addition, we also prevent case-insensitive `Workspace` creation and the use of special characters, as they may cause issues when creating folders on certain file systems.
 
 <br/>
 
@@ -962,6 +970,8 @@ We use the following log levels:
 
 ### 5.3 Testing
 Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
+
+We employ both unit and integration tests for our codes. They are located in `./src/test` directory.
 
 <br/>
 
