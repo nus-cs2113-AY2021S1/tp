@@ -7,18 +7,32 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
+/**
+ * Executes the change mode functionality of the program.
+ */
 public class ChangeModeCommand extends Command {
     public static final String MODE_KW = "mode";
     public int setToMode;
 
     /**
      * Constructs a new ChangeModeCommand instance.
+     * It decodes the command received to find out the mode the user wants
+     * the program to be in.
+     * If an invalid mode or error in the command occurs, it is set to 0;
+     *
+     * @param command The command sent by the user.
      */
     public ChangeModeCommand(String command) {
         setToMode = getModeFromCommand(command);
     }
 
-
+    /**
+     * Executes ChangeModeCommand.
+     *
+     * @param bookmarks BookmarkList of the program
+     * @param timetable Timetable containing the lesson slots of the program
+     * @param ui The User Interface used to send messages to the user.
+     */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui)
             throws ZoomasterException {
@@ -36,6 +50,19 @@ public class ChangeModeCommand extends Command {
         }
     }
 
+    /**
+     * Decodes the command sent from the user.
+     * Assert line catches when a non ChangeModeCommand compatible command has called this function.
+     * Any input commands with less than equals length of 5 is an invalid input mode by default.
+     * For example "mode " is an invalid input as it has no mode input.
+     * Another example "mode1" is an invalid input too as mode command requires a space before it's
+     * mode input.
+     * Any mode input not "bookmark", "timetable" or "planner" are invalid inputs. Inputs are not
+     * case sensitive.
+     *
+     * @param input The input command from the user.
+     * @return outputData
+     */
     public int getModeFromCommand(String input) {
         int outputData;
 
@@ -46,11 +73,11 @@ public class ChangeModeCommand extends Command {
 
         String modeData = input.substring(5);
 
-        if (modeData.compareTo("bookmark") == 0) {
+        if (modeData.toLowerCase().compareTo("bookmark") == 0) {
             outputData = 1;
-        } else if (modeData.compareTo("timetable") == 0) {
+        } else if (modeData.toLowerCase().compareTo("timetable") == 0) {
             outputData = 2;
-        } else if (modeData.compareTo("planner") == 0) {
+        } else if (modeData.toLowerCase().compareTo("planner") == 0) {
             outputData = 3;
         } else {
             outputData = 0;
