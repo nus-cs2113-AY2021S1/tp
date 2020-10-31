@@ -101,23 +101,24 @@ public class BrowseCommand extends Command {
         for (int i = indexToPrint; i < indexToPrint + animePerPage; i++) {
             Anime browseAnime = usableList.get(i);
             String animeName = browseAnime.getAnimeName();
-            String animeID = Integer.toString(browseAnime.getAnimeID());
-            String dotSpace = i + 1 + DOT_SPACE;
             //Removes non-ascii and trim long titles.
             animeName = animeName.replaceAll(ASCII_ONLY_REGEX, EMPTY_STRING);
             if (animeName.length() >= 51) {
                 animeName = animeName.substring(0, 48);
                 animeName += INDICATE_MORE;
             }
-            //Pads the output if necessary
-            animeName = String.format(PERCENTAGE_STRING + (-51) + S_STRING, animeName.trim());
-            animeID = String.format(PERCENTAGE_STRING + (-3) + S_STRING, animeID);
-            dotSpace = String.format(PERCENTAGE_STRING + (-5) + S_STRING, dotSpace);
 
-            result.append(dotSpace);
+            //Pads the output if necessary
+            String currAnimeID = Integer.toString(browseAnime.getAnimeID());
+            String browseIndex = i + 1 + DOT_SPACE;
+            animeName = String.format(PERCENTAGE_STRING + (-51) + S_STRING, animeName.trim());
+            currAnimeID = String.format(PERCENTAGE_STRING + (-3) + S_STRING, currAnimeID);
+            browseIndex = String.format(PERCENTAGE_STRING + (-5) + S_STRING, browseIndex);
+
+            result.append(browseIndex);
             result.append(animeName);
             result.append(ID_HEADER);
-            result.append(animeID);
+            result.append(currAnimeID);
             result.append(ID_CLOSER);
             result.append(System.lineSeparator());
             if (i + 1 >= usableList.size()) {

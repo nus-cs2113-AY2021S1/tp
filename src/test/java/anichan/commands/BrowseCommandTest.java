@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BrowseCommandTest {
+    private static final String NORM_PAGE_NUM = "-p 1";
     private User user;
     private static AnimeData animeData;
     private static StorageManager storageManager;
@@ -42,11 +43,22 @@ public class BrowseCommandTest {
     private static final String DSC_ANIME = "41.  Trinity Blood                                       [Id: 18 ]";
     private static final String ASC_RATING = "41.  Psychic Academy                                     [Id: 304]";
     private static final String DSC_RATING = "41.  Beck: Mongolian Chop Squad                          [Id: 39 ]";
+    private static final String LONG_RESULT = "1.   Cowboy Bebop                                        [Id: 1  ]"
+            + System.lineSeparator() + "2.   Cowboy Bebop: The Movie - Knockin' on Heaven's D... [Id: 2  ]";
 
     @BeforeAll
     static void setUp() throws AniException {
         animeData = new AnimeData();
         storageManager = new StorageManager(EMPTY_STRING);
+    }
+
+    @Test
+    void execute_printLongSeries_correctlyFormattedOutput() throws AniException {
+        BrowseCommand testBrowse = testParse.parse(NORM_PAGE_NUM);
+        testBrowse.setAnimePerPage(2);
+        String result = testBrowse.execute(animeData, storageManager, user);
+        System.out.println(result);
+        assertEquals( LONG_RESULT + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
 
     @Test
