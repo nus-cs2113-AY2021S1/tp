@@ -74,6 +74,9 @@ public class Main {
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
             }
 
+            if (watchlistList.size() == 0) {
+                watchlistList.add(new Watchlist("Default"));
+            }
             Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
             workspaceList.add(workspace);
         }
@@ -124,12 +127,10 @@ public class Main {
 
         Workspace activeWorkspace = user.getActiveWorkspace();
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        if (watchlistList.size() == 0) {
-            watchlistList.add(new Watchlist("Default"));
-        }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
         // ========================== AnimeDate Setup ==========================
+
         try {
             animeData = new AnimeData();
         } catch (AniException exception) {
