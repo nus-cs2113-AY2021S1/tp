@@ -214,4 +214,9 @@ public class Ui {
         printLine();
     }
 
+    public static void printCorruptedDataRead() {
+        System.out.println("Oh no! Some of the data in FavList.txt is corrupted.\n"
+                + "Most of the corrupted data has been removed :)");
+    }
+
 }
