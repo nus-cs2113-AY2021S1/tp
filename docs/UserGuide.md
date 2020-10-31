@@ -160,6 +160,9 @@ Example:
 
 ![done_command](images/done_command.PNG)
 
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have a different task stored in the task index number 1.
+
 ![warning_done](images/warning_done.PNG)
 
 ### Adding an event:
@@ -312,6 +315,7 @@ Example of usage:
 
 ![tip_find](images/tip_find.PNG)
 
+
 #### Finding an item from the task list: 
 
 You can search the task list based on a keyword.
@@ -357,6 +361,9 @@ Format: `print tasks`
 
 ![printTasks](images/printTasks_command.png)
 
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
+
 ![tips_printtask](images/tip_printTasks.PNG)
 
 ### Printing events:
@@ -367,6 +374,9 @@ to display all events saved in the program. This feature will definitely save yo
 Format: `print events`
 
 ![printEvents](images/printEvents_command.png)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 ![tips_printevents](images/tip_printEvents.PNG)
 
@@ -379,6 +389,9 @@ Format: `print *`
 
 ![print*](images/printImportant_command..PNG)
 
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
+
 ### Printing progress: 
 
 If you have a lot of tasks and want to trace the progress of how many of the tasks have been finished, 
@@ -387,6 +400,9 @@ you can type  `print progress` command to see the fraction and percentage propor
 Format: `print progress`
 
 ![print_progress](images/printProgress_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 ### Giving suggestion: 
 
@@ -397,6 +413,9 @@ you can type the `suggestion` command to see the recommended tasks together with
 Format: `suggestion`
 
 ![suggestion_command](images/suggestion_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 ### Printing timeline
 
@@ -411,6 +430,9 @@ Print the personal calendar including all calendar items, with todo items (which
 Format: `print timeline`
 
 ![print_timeline](images/printTimeline_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 #### Printing calendar for the current week: 
 
@@ -450,6 +472,9 @@ All the unfinished deadlines will be printed before all the upcoming exams.
 Format: `countdown`
  
  ![countdown](images/countdown_command.PNG)
+ 
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have different items stored in the calendar list.
 
 #### Printing countdown for exam events only: 
 
