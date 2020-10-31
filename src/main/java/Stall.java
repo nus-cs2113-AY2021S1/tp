@@ -23,7 +23,9 @@ public class Stall {
         this.servingTimePerPersom = servingTimePerPersom;
         this.queue = 0;
     }
-
+    public List<Dish> getDish(){
+        return this.dishes;
+    }
     public void setQueue(int queue) {
         this.queue = queue;
     }

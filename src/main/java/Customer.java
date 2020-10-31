@@ -53,6 +53,13 @@ public class Customer {
         }
         return openCanteens;
     }
+    public List<Dish> checkDish(List<Dish> ListDish){
+        List<Dish> dishList = new ArrayList<>();
+        for(Dish dish: ListDish){
+            dishList.add(dish);
+        }
+        return dishList;
+    }
     public int checkWaitingTime(Stall stall){
         return stall.queue * stall.servingTimePerPersom;
     }
