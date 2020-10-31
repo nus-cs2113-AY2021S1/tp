@@ -10,11 +10,11 @@ public enum ExceptionType {
             + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
             + "bus stops in NUS."),
     NO_DELIMITER_DESCFAV("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
-            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the list"
-            + "\nand description is the new description you want for your favourite command."),
+            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the "
+            + "list\nand description is the new description you want for your favourite command."),
     MANY_DELIMITERS_DESCFAV("Oops! You have too many delimiters!\nThe format for this command is as follows:"
-            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the list"
-            + "\nand description is the new description you want for your favourite command."),
+            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the "
+            + "list\nand description is the new description you want for your favourite command."),
     NO_LOCATIONS("Oh dear! I don't have all locations."),
     MISSING_BUS_CODE("Oh no! You seem to have missed typing in the bus code!"),
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),

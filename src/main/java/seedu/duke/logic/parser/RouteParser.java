@@ -28,7 +28,7 @@ public class RouteParser extends Parser {
                 String[] components = super.splitCommands(2, DELIMITER);
                 if (components[0].contains(DELIMITER) | components[1].contains(DELIMITER)) {
                     logger.warning("Too many delimiters \"/to\".");
-                   throw new CustomException(ExceptionType.MANY_DELIMITERS_ROUTE);
+                    throw new CustomException(ExceptionType.MANY_DELIMITERS_ROUTE);
                 }
                 return new String[]{components[0], components[1]};
             } else {
