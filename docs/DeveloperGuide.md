@@ -62,13 +62,13 @@
     + [Deleting existing categories](#deleting-existing-categories)
     + [Editing an existing category](#editing-an-existing-category)
     + [Finding an existing category](#finding-an-existing-category)
-  * [Testing for Rating System for Books](#testing-for-rating-system-for-books)
+  * [Testing for Rating System for books](#testing-for-rating-system-for-books)
     + [Adding a book rating](#adding-a-book-rating)
     + [Listing all existing book ratings](#listing-all-existing-book-ratings)
     + [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
     + [Deleting a book rating](#deleting-a-book-rating)
     + [Editing a book rating](#editing-a-book-rating)
-    + [Finding a book rating](#finding-a-book-rating)
+    + [Finding book ratings](#finding-book-ratings)
 
 ## 1.0 Introduction
 **Welcome to Quotesify!**
@@ -105,17 +105,17 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify v2.0!
+Welcome to Quotesify v2.1!
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 
 What would you like to do with Quotesify?
 ```
 
-*`Note: If you have added a quote before, the quote printed will be randomized.`*
+*Note: If you have added a quote before, the quote printed will be randomized.*
 
 ## 3.0 Design
-*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
+*Note: All UML diagrams in this guide are stored in the images/ directory.*
 
 ### 3.1 Architecture
 ![Architecture Diagram](images/Architecture_Diagram.png)
@@ -199,7 +199,7 @@ On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
 
 ## 4.0 Implementation
-*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
+*Note: All UML diagrams in this guide are stored in the images/ directory.*
 
 ### 4.1 Feature: Book Management
 Given below is the class diagram for classes related to Book Management in Quotesify:
@@ -439,24 +439,32 @@ Given below is the sequence diagram for adding rating to a book:
 which extends the `AddCommand` class. The switch statement in the `execute()` method to decide the item that the user
 is adding is not shown in the diagram.
 * The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
-* In the `addRating()` method, if the user input such as book title, author or rating score is missing
+* In the `addRating()` method, if the user input such as book number or rating score is missing
 , a message will be printed to inform the user and the method is returned.
-* There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
-in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
-If all these conditions are met, the book will be rated.
+* There will also be checks implemented by the `RatingParser` to check if the rating score is within range,
+if the book to be rated exists in Quotesify and if the book has been rated before.
+This is done by checking the list of books in Quotesify. If all these conditions are met, the book will be rated.
 * When rating a book, the attribute *rating* of the book is set to the rating score. A rating object containing the
 book details and rating score will also be created and stored in the rating list.
 This list of ratings will be used when listing or finding ratings.
 
 ##### Design Consideration
-* Saving the ratings in a Rating List
-    * Pros: Helps in listing and finding ratings as not all books are rated.
-    * Cons: Increases memory usage.
-* Using both book title and author to identify a rating instead of just book title
-    * Pros: Allows books with the same title but different author to be rated.
+* Aspect: Saving the ratings in a Rating List as compared to just only using the Book List
+    * Alternative 1 (current choice): Saving the ratings in a Rating List.
+        * Pros: Helps in listing and finding ratings as not all books are rated.
+        * Cons: Increases memory usage.
+    * Alternative 2: Saving the ratings only in the Book List.
+        * Pros: Less memory usage.
+        * Cons: May be slower as not all books are rated and the list is not sorted according to rating score.
+
+* Aspect: Using both book title and author to identify a rating instead of just book title
+    * Alternative 1 (current choice): Using both book title and author to identify a rating.
+        * Pros: Allows books with the same title but different author to be rated.
+    * Alternative 2: Using only book title to identify a rating.
+        * Cons: Books with same title but different author will not be rated.
 
 #### 4.5.2 Find ratings
-The *find ratings* feature will search if the rating for a particular book exists in Quotesify
+The *find ratings* feature will search for books with title that contains the specified keyword
 and print details about the rating.
 
 Given below is the sequence diagram for finding ratings:
@@ -467,11 +475,10 @@ Given below is the sequence diagram for finding ratings:
 which extends the `FindCommand` class. The switch statement in the `execute()` method to decide the item that the
 user is finding is not shown in the diagram.
 * The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
-* In the `findRating()` method, if the user input such as the book to search for is missing, a message will be printed
+* In the `findRating()` method, if the keyword to search for is missing, a message will be printed
 to inform the user and the method is returned.
-* The list of ratings will be looped to see if the rating exists for the particular book.
-* Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
-will be printed to the user.
+* The list of ratings will be looped to see if ratings exists for books with title containing the specified keyword.
+* The details of the ratings found will be printed to the user.
 
 ## Appendix: Requirements
 
@@ -999,20 +1006,21 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No categories will be listed.
 
-### Testing for Rating System for Books
+### Testing for Rating System for books
 
 #### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
 
-2. Test case: `add -r 5 Harry Potter /by JK Rowling`
+2. Test case: `add -r 5 1`, assuming book number 1 exists.
 
    Expected: Rating is added to the book. A message will be prompted to indicate rating has been added successfully.
 
 3. Other incorrect commands to try:
-   * `add -r`: rating score, book title and/or author fields left empty
-   * `add -r 1000 Harry Potter`: rating score is out of the range
-   * `add -r 3 x`: where x is a book that does not exist
+   * `add -r`: rating score and/or book number fields left empty
+   * `add -r 6 1`: assuming book number 1 exists, but rating score is out of the range
+   * `add -r 1 x`: where x is a book number that does not exist
    
    Expected: No rating is added. A message with error details will be prompted.
     
@@ -1030,46 +1038,51 @@ Alright, have a nice day!
    Expected: The list of books with the specified rating will be shown.
    
 2. Other incorrect commands to try:
-   * `list -r 1000`: rating score is out of the range
+   * `list -r 6`: rating score is out of the range
    * `list -r AAA`: invalid rating score
    
    Expected: No rating is listed. A message with error details will be prompted.
    
 #### Deleting a book rating
 
-1. Test case: `delete -r Harry Potter /by JK Rowling`
+1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
+
+2. Test case: `delete -r 1`, assuming book number 1 exists.
 
    Expected: Rating is deleted from book. A message will be prompted to indicate rating has 
    been deleted successfully.
    
-2. Other incorrect commands to try:
-   * `delete -r`: book title and/or author fields left empty
-   * `delete -r x`: where x is a book that has not been rated
+3. Other incorrect commands to try:
+   * `delete -r`: book number field left empty
+   * `delete -r x`: where x is a book number that does not exist or has not been rated
    
    Expected: No rating is deleted. A message with error details will be prompted.
    
 #### Editing a book rating
 
-1. Test case: `edit -r 4 Harry Potter /by JK Rowling`
+1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
+
+2. Test case: `edit -r 4 1`, assuming book number 1 exists.
 
    Expected: Rating is edited to the new rating. A message will be prompted to indicate rating has
    been edited successfully.
    
-2. Other incorrect commands to try:
-   * `edit -r`: rating score, book title and/or author fields left empty
-   * `edit -r 1000 Harry Potter /by JK Rowling`: rating score is out of the range
-   * `edit -r 3 x`: where x is a book that has not been rated
+3. Other incorrect commands to try:
+   * `edit -r`: rating score and/or book number fields left empty
+   * `edit -r -1 1`: assuming book number 1 exists, but rating score is out of the range
+   * `edit -r 3 x`: where x is a book number that does not exist or has not been rated
    
    Expected: No rating is edited. A message with error details will be prompted.
    
-#### Finding a book rating
+#### Finding book ratings
 
-1. Test case: `find -r Harry Potter /by JK Rowling`
+1. Test case: `find -r POT`
 
-   Expected: The rating for book titled "Harry Potter" by JK Rowling will be shown.
+   Expected: Ratings of books with title that contains the keyword (case-insensitive) will be listed.
    
 2. Other incorrect commands to try:
-   * `find -r`: book title and/or author fields left empty
-   * `find -r x`: where x is a book that has not been rated
+   * `find -r`: keyword field left empty
    
    Expected: No rating is found and listed. A message with error details will be prompted.

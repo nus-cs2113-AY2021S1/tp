@@ -25,9 +25,7 @@ public class FindRatingCommand extends FindCommand {
         if (hasMissingInput) {
             return;
         }
-
-        System.out.println(information);
-
+        
         String keyword = information.toLowerCase().trim();
 
         boolean isFound = false;

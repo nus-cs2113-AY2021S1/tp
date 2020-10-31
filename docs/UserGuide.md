@@ -48,12 +48,12 @@
     * [Delete categories](#delete-categories-delete--c)
     * [Edit an existing category](#edit-an-existing-category-edit--c)
     * [Find an existing category](#find-an-existing-category-find--c)
-  * [Rating System for Books](#rating-system)
+  * [Rating System for books](#rating-system)
     * [Adding a book rating](#adding-a-book-rating-add--r)
     * [Listing book ratings](#listing-book-ratings-list--r)
     * [Deleting a book rating](#deleting-a-book-rating-delete--r)
     * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
-    * [Finding an existing book rating](#finding-an-existing-book-rating-find--r)
+    * [Finding book ratings](#finding-an-existing-book-rating-find--r)
 - [Getting Help in Quotesify](#getting-help-in-quotesify)
 - [Terminating the program](#terminating-the-program)
 - [FAQs](#faqs)
@@ -83,7 +83,7 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify v2.0!
+Welcome to Quotesify v2.1!
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 ```
@@ -804,20 +804,21 @@ Here is a list of categories with the keyword "man":
 1. romance - (1 items)
 ```
 
-### Rating System
+### Rating System for books
 Are you having your own opinions about the books you read? You might want to record down your favorites,
 so that you can recommend the best books to your friends and fellow book readers.
 
 #### Adding a book rating: `add -r`
 Adds a rating to a book.
 
-Format: `add -r RATING_SCORE BOOK_TITLE /by AUTHOR`
+Format: `add -r RATING_SCORE BOOK_NUMBER`
 
 * The book you would like to rate should exist in Quotesify.
+* Use `list -b` to list all existing books and get the `BOOK_NUMBER`.
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
+* `RATING_SCORE` and `BOOK_NUMBER` fields cannot be left empty.
 
-Example of usage: `add -r 5 Harry Potter /by JK Rowling`
+Example of usage: `add -r 5 1`
 
 Expected outcome:
 ```
@@ -851,11 +852,12 @@ Here are the books you rated as 5 star!
 #### Deleting a book rating: `delete -r`
 Deletes a rating from a book.
 
-Format: `delete -r BOOK_TITLE /by AUTHOR`
+Format: `delete -r BOOK_NUMBER`
 
-* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
+* Use `list -b` to list all existing books and get the `BOOK_NUMBER`.
+* `BOOK_NUMBER` field cannot be left empty.
 
-Example of usage: `delete -r Harry Potter /by JK Rowling`
+Example of usage: `delete -r 1`
 
 Expected outcome:
 ```
@@ -865,30 +867,31 @@ Rating for [Harry Potter by JK Rowling] has been deleted!
 #### Editing an existing book rating: `edit -r`
 Edits a rating of a book.
 
-Format: `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR`
+Format: `edit -r RATING_SCORE BOOK_NUMBER`
 
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
+* Use `list -b` to list all existing books and get the `BOOK_NUMBER`.
+* `RATING_SCORE` and `BOOK_NUMBER` fields cannot be left empty.
 
-Example of usage: `edit -r 4 Harry Potter /by JK Rowling`
+Example of usage: `edit -r 4 1`
 
 Expected outcome:
 ```
 Ratings for [Harry Potter by JK Rowling] has been updated to 4 star!
 ```
 
-#### Finding an existing book rating: `find -r`
-Finds a rating of a book.
+#### Finding book ratings: `find -r`
+Finds ratings of books that have the specified keyword in the title.
 
-Format: `find -r BOOK_TITLE /by AUTHOR`
+Format: `find -r KEYWORD`
 
-* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
+* `KEYWORD` field cannot be left empty.
 
-Example of usage: `find -r Harry Potter /by JK Rowling`
+Example of usage: `find -r POT`
 
 Expected outcome:
 ```
-Here is your rating for [Harry Potter by JK Rowling]!
+Here are the ratings you may be looking for!
 [Harry Potter] by JK Rowling: 4 star
 ```
 
@@ -903,7 +906,7 @@ Example of usage: `help`
 
 Expected outcome:
 ```
-Feeling stuck? Well here are the things you can do with Quotesify v2.0:
+Feeling stuck? Well here are the things you can do with Quotesify v2.1:
 
 1. Book Management
 Add book: add -b BOOK_TITLE /by AUTHOR
@@ -944,11 +947,11 @@ List categories: list -c [CATEGORY]
 Edit category: edit -c OLD_CATEGORY /to NEW_CATEGORY
 
 5. Rating System
-Add rating: add -r RATING_SCORE BOOK_TITLE /by AUTHOR
-Delete rating: delete -r BOOK_TITLE /by AUTHOR
+Add rating: add -r RATING_SCORE BOOK_NUMBER
+Delete rating: delete -r BOOK_NUMBER
 List ratings: list -r [RATING_SCORE]
-Edit rating: edit -r RATING_SCORE BOOK_TITLE /by AUTHOR
-Find rating: find -r BOOK_TITLE /by AUTHOR
+Edit rating: edit -r RATING_SCORE BOOK_NUMBER
+Find rating: find -r KEYWORD
 
 Other useful commands
 Show this help page: help
@@ -1014,7 +1017,7 @@ Enter the following command | To do this
 `add -qr QUOTE_NUMBER /reflect REFLECTION` | Add quote reflection
 `add -t TASK /by DEADLINE` | Add task
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
-`add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
+`add -r RATING_SCORE BOOK_NUMBER` | Add rating
 `bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
 `list -b [/by AUTHOR]` | List books
 `list -b BOOK_NUMBER` | List book details
@@ -1029,7 +1032,7 @@ Enter the following command | To do this
 `edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
-`edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
+`edit -r RATING_SCORE BOOK_NUMBER` | Edit rating
 `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER` | Update bookmark
 `delete -b BOOK_NUMBER` | Delete book
 `delete -q QUOTE_NUMBER` | Delete quote
@@ -1037,10 +1040,10 @@ Enter the following command | To do this
 `delete -bm BOOK_NUMBER` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
 `delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
-`delete -r BOOK_TITLE /by AUTHOR` | Delete rating
+`delete -r BOOK_NUMBER` | Delete rating
 `find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
-`find -r BOOK_TITLE /by AUTHOR` | Find rating
+`find -r KEYWORD` | Find rating
 `find -c KEYWORD` | Find categories
 `done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done

@@ -89,7 +89,7 @@ public class UiMessage {
     public static final String ADD_TODO_COMMAND = "Add task: " + "add -t TASK /by DEADLINE";
     public static final String ADD_CATEGORY_COMMAND = "Add category: "
             + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
-    public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_TITLE /by AUTHOR";
+    public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_NUMBER";
     public static final String ADD_BOOKMARK_COMMAND = "Add bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
 
     public static final String DELETE_BOOK_COMMAND = "Delete book: " + "delete -b BOOK_NUMBER";
@@ -99,7 +99,7 @@ public class UiMessage {
     public static final String DELETE_TODO_COMMAND = "Delete task: " + "delete -t TASK_NUMBER";
     public static final String DELETE_CATEGORY_COMMAND = "Delete category: "
             + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
-    public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_TITLE /by AUTHOR";
+    public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_NUMBER";
 
     public static final String EDIT_BOOK_COMMAND = "Edit book: " + "edit -b BOOK_NUMBER /to NEW_TITLE";
     public static final String EDIT_QUOTE_COMMAND = "Edit quote: " + "edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR]"
@@ -107,12 +107,12 @@ public class UiMessage {
     public static final String EDIT_QUOTE_REFLECTION_COMMAND = "Edit quote reflection: "
             + "edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION";
     public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY /to NEW_CATEGORY";
-    public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE /by AUTHOR";
+    public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_NUMBER";
     public static final String EDIT_BOOKMARK_COMMAND = "Update bookmark: " + "bookmark -b BOOK_NUMBER /pg PAGE_NUMBER";
 
     public static final String FIND_BOOK_COMMAND = "Find book: " + "find -b KEYWORD";
     public static final String FIND_QUOTE_COMMAND = "Find quote: " + "find -q QUOTE_NUMBER";
-    public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE /by AUTHOR";
+    public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r KEYWORD";
     public static final String FIND_CATEGORY_COMMAND = "Find category: " + "find -c KEYWORD";
 
     public static final String LIST_BOOK_COMMAND = "List books: " + "list -b [/by AUTHOR]";

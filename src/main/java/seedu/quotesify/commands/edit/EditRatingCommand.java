@@ -42,6 +42,9 @@ public class EditRatingCommand extends EditCommand {
 
         int ratingScore = RatingParser.checkValidityOfRatingScore(ratingValue);
         Book bookToRate = RatingParser.checkBookExists(bookNumber);
+        if (bookToRate == null) {
+            return;
+        }
         String title = bookToRate.getTitle();
         String author = bookToRate.getAuthor().getName();
         Rating existingRating = isRated(title, author, ratings);
@@ -59,7 +62,7 @@ public class EditRatingCommand extends EditCommand {
                 return rating;
             }
         }
-        System.out.println(ERROR_RATING_NOT_FOUND);
+        System.out.println(ERROR_RATING_DO_NOT_EXIST);
         return null;
     }
 }
