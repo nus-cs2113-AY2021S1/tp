@@ -1,9 +1,8 @@
 package seedu.duke.storage;
 
-import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
+import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class FavStorage extends Storage {
+    private static final String FILE_READ = "FavList.txt Read";
     private File file;
     private boolean isCorrupted = false;
 
@@ -29,9 +30,9 @@ public class FavStorage extends Storage {
             readLine(entry);
         }
         if (isCorrupted) {
-            System.out.println("Oh no! Some of the data in Fav.txt seem to have been corrupted. Most corrupted data have been removed :)");
+            Ui.printCorruptedDataRead();
         }
-        System.out.println("File Read");
+        System.out.println(FILE_READ);
     }
 
     private void readLine(String entry) {
