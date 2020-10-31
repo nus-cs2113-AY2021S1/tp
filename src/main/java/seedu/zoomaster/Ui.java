@@ -193,6 +193,9 @@ public class Ui {
         case INVALID_ADD_BOOKMARK_INPUT:
             printInvalidAddBookmarkInputMessage();
             break;
+        case EMPTY_BOOKMARK_LIST:
+            printEmptyBookmarkListMessage();
+            break;
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
@@ -244,6 +247,10 @@ public class Ui {
         }
     }
 
+    private void printEmptyBookmarkListMessage() {
+        printRedWithBorder("Bookmark list is empty!" + NEW_LINE);
+    }
+
     private void printInvalidSlotNumber(String index) {
         printRedWithBorder("Invalid slot number. Please enter a valid index number between 1 and " + index + NEW_LINE
                 + "Enter command: \"show <module>\" to view slot index" + NEW_LINE);
@@ -282,7 +289,7 @@ public class Ui {
     }
 
     private void printInvalidUrl() {
-        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.'. 'http://'"
+        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.', 'http://'"
                 + " or 'https://' and have no spaces" + NEW_LINE);
     }
 
@@ -345,7 +352,7 @@ public class Ui {
     public void printHelpMessage(String input) {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (input.equals(ClearCommand.CLEAR_KW)) {
-            printYellowWithBorder("Clears the command line screen" + NEW_LINE);
+            printYellowWithBorder("Clears the visible command line screen" + NEW_LINE);
         } else if (input.equals(ExitCommand.EXIT_KW)) {
             printYellowWithBorder("Exits the application. What else did you expect ^_^" + NEW_LINE);
         } else if (input.equals(ChangeModeCommand.MODE_KW)) {
