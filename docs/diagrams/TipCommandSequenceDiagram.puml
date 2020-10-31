@@ -3,6 +3,7 @@ participant ":Fitr" as Fitr
 participant ":TipList" as TipList
 participant ":StorageManager" as StorageManager
 participant ":TipManager" as TipManager
+participant ":Ui" as Ui <<class>>
 activate Fitr
 create TipList
 Fitr -> TipList++
