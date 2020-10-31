@@ -17,13 +17,24 @@ Please type in "help" command for information!
 --------------------------------------------------------------
 Type 'help <function name here>' to view help for each command.
 Available commands:
-noun
-verb
-adj
-settings
+help
+divider
+bunny
+list bunny
+filter bunny
+save bunny
 list
-stats
+list filter words
 start
+filter words
+stats
+reset
+name
+list name
+filter name
+add name
+delete name
+remind
 clear
 exit
 --------------------------------------------------------------
