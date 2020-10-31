@@ -97,7 +97,9 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"noun", "verb", "adj", "settings", "list", "stats", "start", "clear", "exit"};
+        String[] listCommands = {"help", "divider", "bunny", "list bunny", "filter bunny", "save bunny"
+                , "list", "list filter words", "start", "filter words", "stats", "reset", "name"
+                , "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help <function name here>' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
