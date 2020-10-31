@@ -273,7 +273,7 @@ public class TextUi {
         System.out.println(message);
     }
 
-    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
+    public void printAddRating(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
         System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, authorOfBookToRate, ratingScore);
     }
 
@@ -299,13 +299,17 @@ public class TextUi {
         System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle, author);
     }
 
-    public void printEditRatingToBook(int ratingScore, String title, String author) {
+    public void printEditRating(int ratingScore, String title, String author) {
         System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", title, author, ratingScore);
     }
 
-    public void printFoundRating(Rating rating, String title, String author) {
-        System.out.printf((UiMessage.FIND_RATING_MESSAGE) + "\n", title, author);
-        System.out.println(rating.toString());
+    public void printFoundRating(RatingList ratings, String keyword) {
+        System.out.println(UiMessage.FIND_RATING_MESSAGE);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitle().toLowerCase().contains(keyword)) {
+                System.out.println(rating.toString());
+            }
+        }
     }
 
     public void printAddToDo(ToDo toDo) {
@@ -361,7 +365,7 @@ public class TextUi {
     }
 
     public void printHelpPage() {
-        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v2.0:"
+        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v2.1:"
                 + System.lineSeparator());
 
         System.out.println("1. Book Management");

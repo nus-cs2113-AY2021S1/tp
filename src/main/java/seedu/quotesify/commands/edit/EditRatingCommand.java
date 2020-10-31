@@ -1,6 +1,6 @@
 package seedu.quotesify.commands.edit;
 
-import seedu.quotesify.commands.Command;
+import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -14,54 +14,52 @@ public class EditRatingCommand extends EditCommand {
         super(arguments);
     }
 
+    @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         editRating(ratings, ui);
     }
 
     private void editRating(RatingList ratings, TextUi ui) {
-        if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
+
+        boolean hasMissingInput = RatingParser.checkUserInput(information);
+        if (hasMissingInput) {
             return;
         }
 
         String[] ratingDetails;
-        String title;
-        String author;
+        String ratingValue;
+        String bookNumber;
+
         try {
             ratingDetails = information.split(" ", 2);
-            String[] titleAndAuthor = ratingDetails[1].split(Command.FLAG_AUTHOR, 2);
-            title = titleAndAuthor[0].trim();
-            author = titleAndAuthor[1].trim();
+            ratingValue = ratingDetails[0].trim();
+            bookNumber = ratingDetails[1].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
             return;
         }
-        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
-        Rating existingRating = checkIfRatingExists(ratings, title, author);
-        boolean isValid = ((ratingScore != 0) && (existingRating != null));
 
+        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingValue);
+        Book bookToRate = RatingParser.checkBookExists(bookNumber);
+        String title = bookToRate.getTitle();
+        String author = bookToRate.getAuthor().getName();
+        Rating existingRating = isRated(title, author, ratings);
+        boolean isValid = ((ratingScore != RatingParser.INVALID_RATING) && (existingRating != null));
         if (isValid) {
+            bookToRate.setRating(ratingScore);
             existingRating.setRating(ratingScore);
-            existingRating.getRatedBook().setRating(ratingScore);
-            ui.printEditRatingToBook(ratingScore, title, author);
+            ui.printEditRating(ratingScore, title, author);
         }
     }
 
-    private Rating checkIfRatingExists(RatingList ratings, String title, String author) {
-        Rating existingRating = null;
+    private Rating isRated(String title, String author, RatingList ratings) {
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(title)
-                    && rating.getAuthorOfRatedBook().equals(author)) {
-                existingRating = rating;
-                break;
+            if (rating.getTitle().equals(title) && rating.getAuthor().equals(author)) {
+                return rating;
             }
         }
-
-        if (existingRating == null) {
-            System.out.println(ERROR_RATING_NOT_FOUND);
-            return null;
-        }
-        return existingRating;
+        System.out.println(ERROR_RATING_NOT_FOUND);
+        return null;
     }
 }

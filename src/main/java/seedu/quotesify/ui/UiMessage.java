@@ -10,7 +10,7 @@ public class UiMessage {
             + "\\_____\\ \\_/____/ \\____/|__|  \\___  >____  >__||__|  / ____|\n"
             + "       \\__>                      \\/     \\/          \\/    ";
 
-    public static final String WELCOME_MESSAGE = "Welcome to Quotesify v2.0!";
+    public static final String WELCOME_MESSAGE = "Welcome to Quotesify v2.1!";
     public static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
     public static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
     public static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
@@ -43,7 +43,7 @@ public class UiMessage {
     public static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
     public static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
     public static final String EDIT_RATING_MESSAGE = "Ratings for [%s by %s] has been updated to %d star!";
-    public static final String FIND_RATING_MESSAGE = "Here is your rating for [%s by %s]!";
+    public static final String FIND_RATING_MESSAGE = "Here are the ratings you may be looking for!";
     public static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     public static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     public static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";

@@ -10,4 +10,11 @@ list -c action
 delete -c motivational -q 1
 list -c motivational
 list -c nice
+add -r 3 1
+list -r
+edit -r 5 1
+list -r 3
+list -r 5
+find -r oo
+delete -r 1
 delete -b 1
