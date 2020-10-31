@@ -24,7 +24,7 @@ to be completed. The user can store the flashcards under different topics, which
 subjects. The tasks can be stored under subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
-This user guide provides an in-depth documentation on the revisED installation process, the program features, and
+This user guide provides an in-depth documentation on the installation process, the program features, and
 the program usage to get you started.
 
 Here is a guide on how to use this UserGuide effectively:<br>
@@ -33,9 +33,8 @@ Here is a guide on how to use this UserGuide effectively:<br>
 2. The code is always marked out like `this` to distinguish it from the rest of the text.
 3. The **_NOTE:_** sections point out additional information that you can refer to for
 additional information regarding the application.
-4. The **_WARNING:_** sections point out to major errors that you should avoid while using 
+4. The **_WARNING:_** sections point out things that you should avoid while using 
 the application.
-
 
 
 ## 2. Quick Start <a name="start"></a>
@@ -43,13 +42,14 @@ the application.
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
 3. Transfer the jar file to the folder that you prefer to use.
-4. Open command prompt and use the command `java -jar revised.jar` to begin the application.
+4. Open command prompt and run the command `java -jar revised.jar` to begin the application.
 
 
 ## 3. Initialisation <a name="init"> </a>
 
 You will see the logo of the application, as shown below,  once u begin running it.
-<pre><code>
+
+```
 Hello from
                                     ___________
                                     |  __ |  _ \
@@ -57,8 +57,7 @@ Hello from
 |  __|/ __ \ \    / /| |  /  _____/ |   __| | | |
 | |  |  __/ \ \__/ / | | /_____  /  |  |__| |_| |
 | |   \___|  \____/  |_|/_______/   |_____|_____/
-</code></pre> 
-Figure 1: **revisED** logo
+```
 
 After that, the application shows any tasks that are due within a week.
 <pre><code>
@@ -383,7 +382,7 @@ Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
 
-> **_WARNING:_** Add the time using the HH:MM DD-MM-YYYY format. 
+> ℹ️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 >
 
 Example of usage: 
@@ -471,7 +470,7 @@ These flashcards can also be used to take quizzes, which is described in the nex
 This section describes the usage of commands that can be used to list all the available commands, 
 and add, delete and list flashcards. 
 
-NOTE: Flashcard commands can only be used when looking at a topic.
+> ℹ️ **_NOTE:_** Flashcard commands can only be used when looking at a topic.
 
 #### 4.4.1 `help` - Displaying all commands
 
@@ -495,7 +494,7 @@ delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-NOTE: Do not add extra spaces after or before help.
+> ℹ️ **_NOTE:_** Do not add extra spaces after or before help.
 
 #### 4.4.2 `add` - Adding a flashcard
 
@@ -521,7 +520,7 @@ Got it. I've added this flashcard:
 Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
-NOTE: Do not forget the semicolon, as it separates the question and the answer.
+> ℹ️ **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
 
 #### 4.4.3 `delete` - Deleting a flashcard
 
@@ -564,7 +563,7 @@ Here are the flashcard(s) under speed:
 1.What is the formula for time?; Time = Distance/Speed.
 2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
 ```
-NOTE: Do not add extra spaces after or before list.
+> ℹ️ **_NOTE:_** Do not add extra spaces after or before list.
 
 ### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
 Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
@@ -594,7 +593,7 @@ Example: `quiz speed`
 
 Output: `You are about to begin the quiz for speed.You have 1 minute.`
 
-> **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
+> ℹ️ **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
 > and has a flashcard. Else, the application will not start the quiz.
 
 Once you have entered the type of quiz you want to begin, the application starts the quiz. You
@@ -650,69 +649,76 @@ Example:`results maths` or `results speed`
 Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
-> **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
+>️ ℹ️ **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
 
 ### 4.7 Storing data <a name="store"> </a>
 When you exit the application, the data you have added to the program is automatically saved to the disk. Similarly, 
 when you launch the application, the saved data is automatically loaded from the disk. The data is stored under the 
-`data/` folder in the same folder where you run the application.
+`data/` folder in the same folder where you run the application. 
 
-> **_WARNING:_** The data is not saved if the application is closed abnormally.
+> ⚠️ **_WARNING:_** The data is not saved if the application is closed abnormally.
 
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
 `Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
-folder, as shown in the figure below.
+folder, as shown in figure 4.7.1 below. 
 
-```
-data
-└── Maths
-    ├── Algebra
+<pre>
+revised.jar                     <em>--> <b>revisED</b> Application</em>
+data                            <em>--> Data main folder</em>
+└── Maths                       <em>--> Maths subject folder</em>
+    ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
     │   ├── results.json
     │   └── flashcards.json
     ├── results.json
     └── tasks.txt
+</pre>
+<sup>***Figure 4.7.1*** Sample directory structure created</sup>
 
-```
 
 The details of the files that are created under each subject and topic folder will be explained below.
 
-> **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
-> the next time you launch the application.
+> ℹ️ **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
+> in the application the next time you launch it.
 
 #### 4.7.1 tasks.txt
 One `tasks.txt` file will be created under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
 have added to a specific subject. An example of the file content is shown below.
 
-```
-T | 1 | someTodoTask
-D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020
-E | 0 | someEventTask | 1:00 PM 10 Nov 2020
-```
+<pre>
+T | 1 | someTodoTask                                    <em>--> Todo task</em>
+D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020         <em>--> Deadline task</em>
+E | 0 | someEventTask | 1:00 PM 10 Nov 2020             <em>--> Event task</em>
+</pre>
+<sup>***Figure 4.7.2*** Sample tasks.txt content</sup>
 
-The first column of data shows the type of task, where T corresponds to Todo task, D corresponds to Deadline task, and
-E corresponds to Event task. The second column shows if a task is completed, where 0 means not completed while
-1 means completed. The third column shows the name of a task. Lastly, the fourth column shows the time and date of a 
-deadline or event task. 
+The first column of data shows the type of task, where T corresponds to `Todo` task, D corresponds to `Deadline` 
+task, and E corresponds to `Event` task. The second column shows if a task is completed, where 0 means not completed 
+while 1 means completed. The third column shows the name of a task. Lastly, the fourth column shows the time and date of 
+a deadline or event task. 
 
-> **_WARNING:_** Although you can change the content of this file manually, and the changes will be reflected the 
-> next time you launch the application, you are not advised to do so because a mismatch in format will corrupt the data. 
+> ⚠️ **_WARNING:_** Although you can change the content of this file manually, 
+> you are not advised to do so because a mismatch in the format will corrupt the data. 
 > Make a copy of the file before making changes if you have to do so manually.
 
 #### 4.7.2 results.json
 You can find this file under each subject and topic folder. It stores the quiz results you have obtained from attempting
 the quiz under a specific subject or topic. An example of the file content is shown below.
 
-```
+<pre>
 [
-  {
-    "score": 1.0,
-    "maxScore": 1.0,
-    "description": "Excellent"
+  {                                    <em>--> Result record 1</em>
+    "score": 1.0,                      <em>--> Score obtained</em>
+    "maxScore": 1.0,                   <em>--> Maximum score that can be obtained</em>
+    "description": "Excellent"         <em>--> Result description</em>
+  },
+  {                                    <em>--> Result record 2</em>
+    ...
   },
   ...
 ]
-```
+</pre>
+<sup>***Figure 4.7.3*** Sample results.json content</sup>
 
 Each entry enclosed with the curly braces ({}) corresponds to one quiz result.
 
@@ -720,57 +726,72 @@ Each entry enclosed with the curly braces ({}) corresponds to one quiz result.
 One `flashcards.json` file will be created under each topic folder. This file stores all the flashcard data you 
 have added under a specific subject and topic. An example of the file content is shown below.
 
-```
+<pre>
 [
-  {
+  {                                            <em>--> Flashcard 1</em>
     "question": "x + y = 4. y = ? ",
     "answer": "4 - x"
   },
+  {                                            <em>--> Flashcard 2</em>
+    ...
+  },
   ...
 ]
-```
+</pre>
+<sup>***Figure 4.7.4*** Sample flashcard.json content</sup>
 
 Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 
-> **_WARNING:_** Although you can change the content of this file manually, and the changes will be reflected the 
-> next time you launch the application, a mismatch in format will corrupt the data. Therefore, make a copy of the file 
+> ⚠️ **_WARNING:_** Although you can change the content of this file manually, 
+> a mismatch in the format will corrupt the data. Therefore, make a copy of the file 
 > before making changes if you have to do so.
 
 ### 4.8 Exporting data <a name= "export"> </a>
 You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
-other applications that understand the data. To export the data, run this command when you are in the subject level of 
-the application:
+other applications that understand the data. To export the data, run the following command when you are in the main 
+level of the application.
 
+Format: `export`
+
+Example of usage:
 ```
 export
 ```
 
-After running the command, the data will be exported to 
-`export/data.json` under the same folder where the application resides. An example of the file content is shown below.
-
+Expected output:
 ```
+____________________________________________________________
+Your data has been successfully exported to /path/to/revised/export/data.json.
+____________________________________________________________
+```
+
+After running the command, the data will be exported to 
+`export/data.json` under the same folder where **revisED** application resides. An example of the file content is shown 
+below.
+
+<pre>
 [
-  {
-    "title": "maths",
+  {                                                                  <em>--> Subject 1</em>
+    "title": "Maths",                                                
     "topics": {
-      "topics": [
-        {
-          "title": "algebra",
-          "flashcards": <same as the content of flashcards.json>,
+      "topics": [                                                    <em>--> Topics under Maths subject</em>
+        {                                                            <em>--> Topic 1</em>
+          "title": "Algebra",                                        
+          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
           "results": {
-            "resultList": <same as the content of results.json>
+            "resultList": <em>[same as the content of results.json]</em>      <em>--> Results under Algebra topic</em>
           }
         },
         ...
       ]
     },
-    "tasks": {
+    "tasks": {                                                       <em>--> Tasks under Maths subject</em>
       "taskList": [
-        {
+        {                                                            <em>--> Task 1</em>
           "description": "someTodoTask",
           "isDone": false
         },
-        {
+        {                                                            <em>--> Task 2</em>
           "dateTime": {
             "date": {
               "year": 2020,
@@ -787,18 +808,19 @@ After running the command, the data will be exported to
           "description": "someDeadlineTask",
           "isDone": false
         },
-        ...
+        ...                                                       
       ]
-    },
+    },                            
     "results": {
-      "resultList": <same as the content of results.json>
+      "resultList": <em>[same as the content of results.json]</em>           <em>--> Results under Maths subject</em>
     }
   },
-  ...
+  ...                                                               <em>--> More subjects</em>
 ]
-```
+</pre>
+<sup>***Figure 4.8.1*** Sample data.json content</sup>
 
-Each first-level entry corresponds to one subject, and the content inside it follows the same logical structure as that
+Note that the content of the file follows the same logical structure as that
 in the `data/` folder.
 
 ## 5. FAQ <a name = "faq"> </a>
