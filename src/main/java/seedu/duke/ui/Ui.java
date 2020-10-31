@@ -96,8 +96,6 @@ public class Ui {
         }
         if (!isPossible) {
             System.out.println("none. There are no direct bus routes. :(");
-        } else {
-            System.out.println("To add the above command to your list of favourites simply type \"/addfav\" :)");
         }
         printLine();
     }
