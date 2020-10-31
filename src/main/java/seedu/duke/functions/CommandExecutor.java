@@ -194,7 +194,7 @@ public class CommandExecutor {
                 ClearLoader.clearItems(userInput, writings, wordList);
             } catch (WrongClearCommandFormat e) {
                 System.out.println("The appropriate format is:\n"
-                    + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
+                        + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
             }
             break;
         case DELETE:

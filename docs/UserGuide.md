@@ -106,7 +106,7 @@ Basic CLI commands consist of commands that are standard CLI application command
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
 ```
-Type “help COMMAND_NAME” to figure out how to use the particular command.  
+Type 'help <function name here>' to view help for each command.
 - help
 - divider
 - bunny
