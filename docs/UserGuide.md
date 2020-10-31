@@ -90,7 +90,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
     >>> 
 
 # 2. <a name = featuresOverview> </a>Features overview
-## <a name = mainMenu> </a>2.1 Main features
+## <a name = mainFeatures> </a>2.1 Main features
 
 Feature|Command|Description|
 -------|-------|-----------|
@@ -126,7 +126,7 @@ Logger|```logger```|
 Quit|```quit```|
 
 
-## 3.1.1 Main Menu 1: Exit
+## <a name = mainMenu> </a>3.1.1 Main Menu 1: Exit
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
