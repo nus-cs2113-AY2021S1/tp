@@ -281,6 +281,12 @@ public class Ui {
         System.out.println("One date detected and chosen: " + finalDate);
     }
 
+    public void printExtractTextBodyRequestMessage() {
+        System.out.println("Copy and paste or enter the body of the text you want to extract from!");
+        System.out.println("At the end of your text, press enter to go to the next line, enter 'extractend' "
+                + "with no quotation marks and press enter once more.");
+    }
+
     /**
      * Prints exception message.
      *

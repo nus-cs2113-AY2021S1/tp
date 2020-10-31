@@ -31,16 +31,9 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        if(command.endsWith(";")) {
+        if (command.endsWith(";")) {
             textSubject = command.split(";", 2)[0];
         }
-        /*String[] arguments = command.split(";", 2);
-        if (arguments.length == 2) {
-            textSubject = arguments[0].trim();
-            textBody = arguments[1].trim();
-            System.out.println(textBody);
-            System.out.println(textBody);
-        }*/
     }
 
     /**
@@ -55,6 +48,7 @@ public class ExtractCommand extends Command {
         if (textSubject == null) {
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
+        ui.printExtractTextBodyRequestMessage();
         textBody = receiveTextBody(ui);
         if (textBody == null) {
             throw new InvalidExtractCommandException("Text body was not entered correctly!");
@@ -94,7 +88,7 @@ public class ExtractCommand extends Command {
         String fullTextBody = "";
         while (!bodyLine.equals("extractend")) {
             bodyLine = ui.receiveCommand();
-            fullTextBody = fullTextBody.concat(" "+ bodyLine);
+            fullTextBody = fullTextBody.concat(" " + bodyLine);
         }
         return fullTextBody;
     }
