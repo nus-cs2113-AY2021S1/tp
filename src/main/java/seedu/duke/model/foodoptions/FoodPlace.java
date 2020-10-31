@@ -22,4 +22,5 @@ public class FoodPlace {
     public ArrayList<DiningOptions> getInfo() {
         return info;
     }
+
 }
