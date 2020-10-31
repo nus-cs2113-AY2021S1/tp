@@ -30,7 +30,7 @@ public class RouteCommand extends Command {
         checkLocations(locations);
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(locations));
         if (possibleLocs.isEmpty()) {
-            if(areValidLocations(locations)) {
+            if (areValidLocations(locations)) {
                 ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
                 Ui.printRouteMessage(busOptions);
                 isValid = true;
@@ -41,16 +41,14 @@ public class RouteCommand extends Command {
     }
 
     private boolean areValidLocations(String[] locations) throws CustomException {
-        if(isValidBusStop(locations[0].trim())) {
-            if(isValidBusStop(locations[1].trim())) {
+        if (isValidBusStop(locations[0].trim())) {
+            if (isValidBusStop(locations[1].trim())) {
                 return true;
-            }
-            else {
+            } else {
                 throw new CustomException(ExceptionType.INVALID_DEST);
             }
-        }
-        else {
-            if(isValidBusStop(locations[1].trim())) {
+        } else {
+            if (isValidBusStop(locations[1].trim())) {
                 throw new CustomException(ExceptionType.INVALID_START_LOC);
             } else {
                 throw new CustomException(ExceptionType.INVALID_LOCATIONS);
