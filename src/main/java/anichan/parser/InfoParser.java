@@ -61,7 +61,7 @@ public class InfoParser extends CommandParser {
         case ANIME_ID_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInt(paramParts[1].trim())) {
+            if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
             infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));

@@ -1,16 +1,46 @@
+Friendly cat
+Cat
+Dog 12345
+duuuug
+
+123
 
 
+ 
+ 
+  
+  
+  -
+
+ 
+      -
+
+Male
+イングランド王
+UwU
+   
+女性
+Duuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuududududu12381828182
+495398475345939 4398594859 ---====== ''''''';;;;;;;;;//////.....445
+?????????????????????``````````````````
+BINARY 
 random name 123
 monster
 
 Other
 King                                  1
 Elf
-Abec Steiner 33rd
-Female
+Queen
+maleS
+Abec Steiner 77th
+FemaLe
 addws -n
 addws  - 
 addws
+worksace -n abced
+workspace -n 可愛い
+workspace -n <<<<<<<<<<>/[];'
+workspace -n -n -n
 workspace -n Crunchy Cinnamon
 workspace -n CrispyDonut
 workspace -n RED VELVET Crumblesss 
@@ -37,7 +67,11 @@ watchlist -n a
 watchlist -n b
 watchlist -n ops
 watchlist -s 4
+watchlist -s -1
+watchlist -s one
 watchlist -d 4
+watchlist -d -1
+watchlist -d one
 watchlist -l
 add -a 1
 add -a 3
@@ -115,6 +149,9 @@ blah blah
 blah -e
 blah -e 4234
 blah la
+workspace -ll
+workspace -l9
+workspace -9393123
 workspace -l
 workspace -d Default
 workspace -d Crunchy Cinnamon
