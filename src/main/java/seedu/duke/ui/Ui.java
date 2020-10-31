@@ -18,7 +18,6 @@ public class Ui {
 
     public Ui() {
         this.in = new Scanner(System.in);
-
     }
 
     public void printDividerLine() {
