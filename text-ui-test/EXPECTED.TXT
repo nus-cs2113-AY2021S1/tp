@@ -61,7 +61,7 @@ WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECA
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 1. Default
@@ -208,27 +208,27 @@ COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
 20. Zipang [Id: 20]
 Browsing Page: 1
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -   requires an additional field
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -.   requires an additional field.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 

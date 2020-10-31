@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Handles parsing for estimate command.
  */
 public class EstimateParser extends CommandParser {
-    private static final String WORDS_PER_HOUR_OPTION = "wph";
+    private static final String WORDS_PER_HOUR_PARAM = "wph";
     private static final String VALID_SCRIPT_FILE_FORMAT = ".txt";
     private static final String SLASH = "/";
 
@@ -20,7 +20,9 @@ public class EstimateParser extends CommandParser {
     private static final String TOO_MANY_SCRIPT_FILE = "AniChan can only process one script file at a time!";
     private static final String SPECIFIED_PATH_TO_SCRIPT_FILE = "Only specify the script file name!";
     private static final String INVALID_SCRIPT_FILE_FORMAT = "Only \".txt\" script files are accepted!";
-    private static final String INVALID_OPTION = "Only \"-wph\" is accepted!";
+    private static final String INVALID_PARAMETER = "Estimate command only accepts the parameter: wph.";
+    private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS = "Estimate command" + TOO_MUCH_FIELDS;
+    private static final String ESTIMATE_COMMAND_TOO_MANY_PARAMETERS = "Estimate command" + TOO_MUCH_PARAMETERS;
     private static final String NO_WORDS_PER_HOUR_SPECIFIED = "Words per hour information is missing!";
     private static final String MULTIPLE_WORDS_PER_HOUR_SPECIFIED = "Only one words per hour value is needed!";
     private static final String WORDS_PER_HOUR_IS_ZERO = "Words per hour cannot be zero!";
@@ -66,9 +68,11 @@ public class EstimateParser extends CommandParser {
      */
     private int parameterParser(String[] paramGiven) throws AniException {
         String[] parsedParts = paramGiven[1].split(SPLIT_WHITESPACE);
-        String option = parsedParts[0].trim();
-        if (!option.equals(WORDS_PER_HOUR_OPTION)) {
-            throw new AniException(INVALID_OPTION);
+        String parameter = parsedParts[0].trim();
+        if (!parameter.equals(WORDS_PER_HOUR_PARAM)) {
+            throw new AniException(INVALID_PARAMETER);
+        } else if (paramGiven[1].matches(REGEX_PARAMETER)) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MANY_PARAMETERS);
         }
 
         if (parsedParts.length == 1) {
@@ -78,6 +82,12 @@ public class EstimateParser extends CommandParser {
         }
 
         String wordsPerHourString = parsedParts[1].trim();
+        if (isNegativeInteger(wordsPerHourString)) {
+            throw new AniException(NOT_POSITIVE_INTEGER);
+        } else if (!isInteger(wordsPerHourString)) {
+            throw new AniException(NOT_INTEGER);
+        }
+
         int wordsPerHour = parseStringToInteger(wordsPerHourString);
         if (wordsPerHour == 0) {
             throw new AniException(WORDS_PER_HOUR_IS_ZERO);
@@ -90,7 +100,7 @@ public class EstimateParser extends CommandParser {
      * Check to ensure the user specified a valid script file.
      *
      * @param fileName script file name
-     * @return {@code true} if the file name is valid; false otherwise
+     * @return {@code true} if the file name is valid; {@code false} otherwise
      * @throws AniException when the file name is invalid
      */
     private boolean isValidFileName(String fileName) throws AniException {
@@ -100,14 +110,21 @@ public class EstimateParser extends CommandParser {
 
         String[] fileNameSplit = fileName.split(SPLIT_WHITESPACE);
         int numberOfTextFiles = 0;
+        boolean hasAdditionalFields = false;
         for (String fileNameParts : fileNameSplit) {
-            if (fileNameParts.contains(VALID_SCRIPT_FILE_FORMAT)) {
+            if (numberOfTextFiles > 0) {
+                hasAdditionalFields = true;
+            }
+
+            if (fileNameParts.endsWith(VALID_SCRIPT_FILE_FORMAT)) {
                 numberOfTextFiles++;
             }
         }
 
         if (numberOfTextFiles > 1) {
             throw new AniException(TOO_MANY_SCRIPT_FILE);
+        } else if (hasAdditionalFields) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS);
         }
 
         return fileName.trim().endsWith(VALID_SCRIPT_FILE_FORMAT);
