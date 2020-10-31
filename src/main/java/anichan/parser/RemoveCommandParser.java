@@ -63,7 +63,7 @@ public class RemoveCommandParser extends CommandParser {
         case REMOVE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInt(paramParts[1].trim())) {
+            if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
             removeCommand.setWatchlistListIndex(Integer.parseInt(paramParts[1].trim()));

@@ -108,7 +108,7 @@ WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECA
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
 1. Default
@@ -144,8 +144,16 @@ COOKIES N CREME CH33SECAKE (Default) #> Watchlist "ops" has been created success
 
 COOKIES N CREME CH33SECAKE (Default) #> "ops" is now your active watchlist!
 
+COOKIES N CREME CH33SECAKE (ops) #> OOPS!!! Please provide a positive integer instead!
+
+COOKIES N CREME CH33SECAKE (ops) #> OOPS!!! Please provide a integer instead!
+
 COOKIES N CREME CH33SECAKE (ops) #> Watchlist "ops" has been deleted successfully!
 Changed active watchlist to: "Default".
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please provide a positive integer instead!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please provide a integer instead!
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
 	1. Default
@@ -255,27 +263,27 @@ COOKIES N CREME CH33SECAKE (Default) #> 1.   Cowboy Bebop                       
 20.  Zipang                                              [Id: 20 ]
 Browsing Page: 1
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -   requires an additional field
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -.   requires an additional field.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 

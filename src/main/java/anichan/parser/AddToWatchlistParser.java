@@ -64,7 +64,7 @@ public class AddToWatchlistParser extends CommandParser {
         case ADD_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInt(paramParts[1].trim())) {
+            if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
             addToWatchlistCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));

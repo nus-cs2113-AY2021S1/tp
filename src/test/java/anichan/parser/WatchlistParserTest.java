@@ -24,7 +24,7 @@ class WatchlistParserTest {
     }
 
     @Test
-    void parse_invalidOption_throwsAniException() {
+    void parse_invalidParameter_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse(""));
         assertThrows(AniException.class, () -> watchlistParser.parse("-invalid"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-n one -one two"));
@@ -32,18 +32,19 @@ class WatchlistParserTest {
     }
 
     @Test
-    void parse_emptyOptionInformation_throwsAniException() {
+    void parse_emptyParameterValue_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse("-n"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d"));
     }
 
     @Test
-    void parse_invalidOptionInformation_throwsAniException() {
+    void parse_invalidParameterValue_throwsAniException() {
+        assertThrows(AniException.class, () -> watchlistParser.parse("-n *-*"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-l a"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s 0"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-d -1"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s one"));
-        assertThrows(AniException.class, () -> watchlistParser.parse("-d one"));
     }
 
     @Test

@@ -63,7 +63,7 @@ public class ViewWatchlistParser extends CommandParser {
         case VIEW_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInt(paramParts[1].trim())) {
+            if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
             viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
