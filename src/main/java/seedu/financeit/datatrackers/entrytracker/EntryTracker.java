@@ -101,10 +101,9 @@ public class EntryTracker {
 
         if (!isUnderTest) {
             input = UiManager.handleInput();
+            UiManager.refreshPage();
             packet = InputParser.getInstance().parseInput(input);
         }
-
-        UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "entry edit":
             // Fall through
@@ -246,7 +245,8 @@ public class EntryTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /desc {string} /cat {category} -[i/e]");
+        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /desc {string} /cat {category} -[i/e] "
+            + "/amt {Double, 2 decimal places}");
         TablePrinter.addRow("2.;Edit entry;entry edit /id {integer} {param-type/parameter to edit}");
         TablePrinter.addRow("3.;list entries;entry list");
         TablePrinter.addRow("4.;delete entry;entry delete /id {integer}");

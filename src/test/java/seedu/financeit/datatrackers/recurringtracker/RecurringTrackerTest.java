@@ -32,7 +32,6 @@ public class RecurringTrackerTest {
 
     private static final int ENTRIES_TO_CREATE = 15;
 
-    @Test
     public void handleNewEntry_validInputs_validEntriesCreated() {
         for (int i = 0; i < ENTRIES_TO_CREATE; i++) {
             CommandPacket testPacket = TestCommands.generateCreateCorrectEntryCommandAutoIncome();
