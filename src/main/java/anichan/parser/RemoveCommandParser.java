@@ -16,8 +16,7 @@ public class RemoveCommandParser extends CommandParser {
     protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "Remove command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    protected static final int MAX_INDEX_DIGITS = 4;
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID in watchlist is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
 
     private RemoveCommand removeCommand;
@@ -66,7 +65,11 @@ public class RemoveCommandParser extends CommandParser {
             if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
-            removeCommand.setWatchlistListIndex(Integer.parseInt(paramParts[1].trim()));
+            try {
+                removeCommand.setWatchlistListIndex(Integer.parseInt(paramParts[1].trim()));
+            } catch (NumberFormatException e) {
+                throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+            }
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
