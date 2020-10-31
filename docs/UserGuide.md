@@ -721,6 +721,8 @@ As shown above, the user can choose the date/time they want for the event as lon
  
  Note:<br>
  •	The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
+ 
+ •	It is also able to attach the current year to the date if it is not specified in the text.
 
 
 
