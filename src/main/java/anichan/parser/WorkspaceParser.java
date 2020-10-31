@@ -102,7 +102,7 @@ public class WorkspaceParser extends CommandParser {
 
             if (!isValid) {
                 LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
-                throw new AniException(EXCEPTION_INVALID_PARAMETERS);
+                throw new AniException("Workspace name must consist only alphanumeric characters and/or spaces.");
             }
         }
     }

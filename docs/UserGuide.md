@@ -2,6 +2,10 @@
 
 ![AniChan Logo](images/AniChan-Logo.png)
 
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) ![Support OS](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-blue) ![Size](https://img.shields.io/github/repo-size/AY2021S1-CS2113T-F12-2/tp) ![Java](https://img.shields.io/badge/built--in-java-brightgreen)
+
+<br/>
+
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
@@ -256,6 +260,8 @@ The following subsections below describes the various workspace-relation operati
 Creates a new workspace to manage your watchlist(s) and bookmark.
 
 > :memo: Every new workspace you create will generate a similarly named folder to store the watchlist(s) and bookmark. This helps to avoid accidental intermixing of data when you are working on multiple translation projects.
+
+> :bulb: Workspace name can only consist of alphanumeric characters and/or spaces.
 
 Format: `workspace -n <NAME>`
 

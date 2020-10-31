@@ -121,6 +121,14 @@ class UserTest {
     }
 
     @Test
+    void addWorkspace_similarNameExist_throwsAniException() throws AniException {
+        User user = new User("new User", "femaLe");
+        user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> user.addWorkspace("default"));
+    }
+
+    @Test
     void deleteWorkspace_invalidNames_throwsAniException() throws AniException {
         User user = new User("new User", "femaLe");
         user.addWorkspace("Default");
