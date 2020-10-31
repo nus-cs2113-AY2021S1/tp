@@ -30,7 +30,6 @@ public class BusCommand extends Command {
     @Override
     public void executeCommand() {
         if (busStop != null) {
-            assert !busStop.isBlank() : "Bus stop is empty";
             printLine();
             ArrayList<Bus> busList = BusData.busAtStop(busStop);
             System.out.print(busStop + ":  ");
