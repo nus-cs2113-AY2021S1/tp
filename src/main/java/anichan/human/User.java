@@ -120,12 +120,13 @@ public class User extends Human {
      */
     public void setActiveWorkspace(Workspace inputWorkspace) throws AniException {
         assert (inputWorkspace != null) : ASSERTION_INVALID_MESSAGE;
-        activeWorkspace = inputWorkspace;
 
         try {
             //Set the first watchlist to be the active watchlist
             inputWorkspace.setActiveWatchlist(inputWorkspace.getWatchlistList().get(0));
             LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
+
+            activeWorkspace = inputWorkspace;
         } catch (Exception e) {
             throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
         }
