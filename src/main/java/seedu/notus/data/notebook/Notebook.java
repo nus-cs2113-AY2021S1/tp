@@ -226,7 +226,7 @@ public class Notebook {
      * @return note that was filtered.
      */
     public Note getNote(String noteTitle, boolean isArchive) {
-        if (isArchive) {
+        if (!isArchive) {
             return notes.stream()
                     .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
                     .findFirst().get();
@@ -318,7 +318,7 @@ public class Notebook {
     public boolean archiveNotes(String noteTitle) {
         boolean isDeleted;
 
-        Note archivedNote = getNote(noteTitle, true);
+        Note archivedNote = getNote(noteTitle, false);
         // true if title exist and is removed from notebook
         isDeleted = deleteNote(noteTitle);
 
@@ -357,7 +357,7 @@ public class Notebook {
     public boolean unarchiveNotes(String noteTitle) {
         boolean isDeleted;
 
-        Note unarchivedNote = getNote(noteTitle, false);
+        Note unarchivedNote = getNote(noteTitle, true);
         // true if title exist and is removed from notebook
         isDeleted = archivedNotes.remove(unarchivedNote);
 

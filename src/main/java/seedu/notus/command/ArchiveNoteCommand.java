@@ -60,7 +60,6 @@ public class ArchiveNoteCommand extends Command {
                 }
             }
 
-            /*
             try {
                 storageManager.saveAllNoteDetails(false);
                 storageManager.saveAllNoteDetails(true);
@@ -72,7 +71,7 @@ public class ArchiveNoteCommand extends Command {
                 return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
             } catch (SystemException exception) {
                 return Formatter.formatString(exception.getMessage());
-            }*/
+            }
 
             return Formatter.formatString(ARCHIVE_NOTE_SUCCESSFUL_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
