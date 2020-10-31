@@ -196,9 +196,9 @@ Format: `exam <module_name> @<venue> / <date> <time>`
 
 Example of usage:
 
-`exam CS1000 @com1-b1-12 / 121020 1700` - adds CS1000 exam at 2020-10-20 5p.m. to the event list. The venue is com1-b1-12.
+`exam CS1010 @com1-b1-12 / 121020 1700` - adds CS1010 exam at 2020-10-20 5p.m. to the event list. The venue is com1-b1-12.
 
-`exam CS1221 @MPSH2 / 221120 1100` - adds CS1221 exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
+`exam CS2113T @MPSH2 / 221120 1100` - adds CS2113T exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
 
 #### Adding recurring laboratory session events:
 
@@ -208,7 +208,7 @@ Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
 Example of usage:
 
-`lab CS1000 @com1-b1-14 -r 9 / 200920 1600` - adds CS1000 lab at 2020-09-20 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
+`lab CS1010 @com1-b1-14 -r 9 / 200920 1600` - adds CS1010 lab at 2020-09-20 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
 
 `lab CG2028 @com2-2112 -r 9 / 220920 1300` - adds CG2028 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
 
@@ -232,7 +232,7 @@ Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
 Example of usage:
 
-`tut CS1000 @com1-b1-12 -r 5 / 121020 1700` - adds CS1000 lab at 2020-10-20 5p.m. to the event list, the venue is com1-b1-12 and the tutorial will happen for the next 5 weeks.
+`tut CS1010 @com1-b1-12 -r 5 / 121020 1700` - adds CS1010 lab at 2020-10-20 5p.m. to the event list, the venue is com1-b1-12 and the tutorial will happen for the next 5 weeks.
 
 `tut CS2100 @com1-1111 -r 5 / 151020 1400` - adds CS2100 lab at 2020-10-15 2p.m. to the event list, the venue is com1-1111 and the tutorial will happen for the next 5 weeks.
 
