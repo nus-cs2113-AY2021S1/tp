@@ -7,6 +7,8 @@ import seedu.duke.exceptions.CustomException;
  */
 public abstract class Command {
 
+    protected boolean isValid;
+
     /**
      * Executes the command and returns the result message.
      */
@@ -16,4 +18,7 @@ public abstract class Command {
         return true;
     }
 
+    public boolean isValid() {
+        return isValid;
+    }
 }
