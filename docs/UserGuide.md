@@ -192,11 +192,11 @@ Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 Example of usage: <br/>
- `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `event add /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `event a /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `e a /n arduino course /d 2020-12-30 /t 8pm`<br/>
- `e a /n arduino course /d next friday /t 8pm`<br/>
+ `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
+ `event add /n arduino course /d 2020-12-30 /t 23-59`<br/>
+ `event a /n arduino course /d 2020-12-30 /t 08-00`<br/>
+ `e a /n arduino course /d 2020-12-30 /t 23-59`<br/>
+ `e a /n arduino course /d next friday /t 00-00`<br/>
  
 Expected Outcome:
 

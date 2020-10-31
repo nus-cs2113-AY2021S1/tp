@@ -5,6 +5,7 @@ import seedu.duke.hr.Member;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
@@ -16,6 +17,7 @@ public class Event {
     protected String eventName;
     protected String eventTime;
     protected LocalDate date;
+    protected LocalTime time;
     protected String symbol;
     protected boolean isDone;
     public ArrayList<Member> eventParticipants = new ArrayList<>();
@@ -44,6 +46,7 @@ public class Event {
     public String getEventTime() {
         return eventTime;
     }
+
 
     public void setEventTime(String eventTime) {
         this.eventTime = eventTime;

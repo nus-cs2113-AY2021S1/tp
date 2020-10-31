@@ -2,24 +2,37 @@ package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
-import java.time.LocalDate;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class CommandEventAdd extends Command {
     private UserInput userInput;
     private Event cachedEvent;
+    private static final String PATTERN =
+            "([01]?[0-9]|2[0-3])-([0-5][0-9])";
 
     @Override
-    public String execute() {
+    public String execute()  {
+
         String output;
         if (cachedEvent == null) {
             return "Unable to create event! Please check your inputs again!";
         }
         String eventName = userInput.getArg("n");
         String eventDate = userInput.getArg("d");
+        String eventTime = userInput.getArg("t");
 
-        if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher = pattern.matcher(eventTime);
+        boolean matchFound = matcher.matches();
+
+        if (!(matchFound)) {
+            output = "Please enter time in HH-mm format. Note that it is 24 hour clock format.";
+        } else if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
             output = "This event already exists!";
         } else {
             output = EventList.addEvent(cachedEvent);
@@ -54,6 +67,6 @@ public class CommandEventAdd extends Command {
 
     @Override
     public String help() {
-        return "Syntax: event addEvent /n <Name> /d <Date YYYY-MM-DD> /t <Time>";
+        return "Syntax: event addEvent /n <Name> /d <Date YYYY-MM-DD> /t <HH-mm>";
     }
 }

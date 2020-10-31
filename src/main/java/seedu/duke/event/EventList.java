@@ -18,7 +18,7 @@ public class EventList {
     public static Scanner scanner = new Scanner(System.in);
 
     public static final String COMMAND_EVENT_NOT_EXIST =
-            "OOPS!!! The event does not exist.Please try our help command!\n";
+            "OOPS!!! The event does not exist.\n";
     public static final String ARE_YOU_SURE_THAT_YOU_WANT_TO_CLEAR_THE_LIST =
             "Are you sure you want to clear the list? Y/N\n";
     public static final String COMMAND_EVENT_LIST_CLEAR_SUCCESSFUL = "The list has been cleared!";
@@ -46,6 +46,7 @@ public class EventList {
         String userOutput;
         //User does not accidentally add an event with a past date.
         LocalDate date = event.getEventDate();
+
         if (date.isBefore(LocalDate.now())) {
             return COMMAND_NOT_VALID_DATE;
         } else {
@@ -68,11 +69,16 @@ public class EventList {
         logger.info("Deleting event\n");
         String userOutput;
         try {
-            userOutput = COMMAND_DELETE_EVENT_SUCCESSFUL;
-            userOutput = userOutput.concat(events.get(index).printEvent() + "\n");
-            events.remove(index);
-            userOutput = userOutput.concat("Now you have " + events.size() + " event in the list.");
-            logger.info("Deleted test from list\n");
+            if (events.size() == 0) {
+                logger.warning("Empty event list.\n");
+                userOutput = COMMAND_EVENT_LIST_EMPTY;
+            } else {
+                userOutput = COMMAND_DELETE_EVENT_SUCCESSFUL;
+                userOutput = userOutput.concat(events.get(index).printEvent() + "\n");
+                events.remove(index);
+                userOutput = userOutput.concat("Now you have " + events.size() + " event in the list.");
+                logger.info("Deleted test from list\n");
+            }
         } catch (IndexOutOfBoundsException e) {
             userOutput = COMMAND_EVENT_NOT_EXIST;
         }
