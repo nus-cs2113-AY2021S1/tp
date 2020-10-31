@@ -328,7 +328,7 @@ public class Notebook {
     public boolean archiveNotes(String noteTitle) {
         boolean isDeleted;
 
-        Note archivedNote = getNote(noteTitle, true);
+        Note archivedNote = getNote(noteTitle, false);
         // true if title exist and is removed from notebook
         isDeleted = deleteNote(noteTitle);
 
@@ -367,7 +367,7 @@ public class Notebook {
     public boolean unarchiveNotes(String noteTitle) {
         boolean isDeleted;
 
-        Note unarchivedNote = getNote(noteTitle, false);
+        Note unarchivedNote = getNote(noteTitle, true);
         // true if title exist and is removed from notebook
         isDeleted = archivedNotes.remove(unarchivedNote);
 
