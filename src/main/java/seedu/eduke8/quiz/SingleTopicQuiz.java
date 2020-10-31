@@ -115,6 +115,12 @@ public class SingleTopicQuiz implements Quiz {
             LOGGER.log(Level.INFO, "Question answered or time's up");
 
             command.execute(optionList, ui);
+
+            //User has to press enter so that the next question will be shown / quiz will end
+            boolean enterIsUsed = false;
+            while (!enterIsUsed) {
+                enterIsUsed = ui.getEnterFromUser();
+            }
         }
     }
 

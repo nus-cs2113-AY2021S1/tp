@@ -153,6 +153,25 @@ public class Ui {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
     }
 
+    public boolean getEnterFromUser() {
+        boolean enterIsUsed = false;
+
+        System.out.print("Press 'Enter' to proceed!");
+
+        String userInput;
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        try {
+            userInput = userInputFuture.get();
+            if (userInput.isEmpty()) {
+                enterIsUsed = true;
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
+        }
+
+        return enterIsUsed;
+    }
+
     private static String findUserOperatingSystem() {
         if (operatingSystem == null) {
             operatingSystem = System.getProperty("os.name").toLowerCase();
