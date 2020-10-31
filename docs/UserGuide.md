@@ -243,7 +243,7 @@ These are the steps to follow:
 This command lists out all dining outlets available within a chosen faculty.
 
 The format of this command is as follows:<br> 
-<code>/dine <strong>keyword</strong></code> <br>
+<code>/dine <strong>faculty</strong></code> <br>
 
 #### Examples of Usage
 **<u>Example 1</u>**<br>
