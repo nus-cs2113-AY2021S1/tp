@@ -17,7 +17,7 @@ class BrowseParserTest {
     User user;
 
     private static final String NON_INT_PAGE_NUM = "-p twenty";
-    private static final String OUTPUT_FIRST_ANIME = "1. Cowboy Bebop [Id: 1]";
+    private static final String FIRST_ANIME = "1.   Cowboy Bebop                                        [Id: 1  ]";
     private static final String BROWSING_PAGE_1 = "Browsing Page: 1";
     private static final String INVALID_ORDER_TEST = "-o whateverOrder";
     protected static final String INVALID_PARAMETERS_TEST1 = "-n name";
@@ -52,7 +52,7 @@ class BrowseParserTest {
         BrowseCommand testBrowse = testParse.parse("- ");
         testBrowse.setAnimePerPage(1);
         String result = testBrowse.execute(animeData, storageManager, user);
-        assertEquals(OUTPUT_FIRST_ANIME + System.lineSeparator() + BROWSING_PAGE_1, result);
+        assertEquals(FIRST_ANIME + System.lineSeparator() + BROWSING_PAGE_1, result);
     }
 
     @Test
