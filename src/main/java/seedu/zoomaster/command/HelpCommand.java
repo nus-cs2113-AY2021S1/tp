@@ -80,7 +80,7 @@ public class HelpCommand extends Command {
             || details.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0
             || details.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
             isValid = true;
-        }else if (Parser.getProgramMode() == 1) {
+        } else if (Parser.getProgramMode() == 1) {
             if (details.compareToIgnoreCase(AddBookmarkCommand.ADD_KW) == 0
                     || details.compareToIgnoreCase(DeleteBookmarkCommand.DEL_KW) == 0
                     || details.compareToIgnoreCase(ShowBookmarkCommand.SHOW_KW) == 0
