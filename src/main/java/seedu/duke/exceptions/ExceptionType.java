@@ -4,6 +4,9 @@ public enum ExceptionType {
     INVALID_COMMAND("I do not understand!!"),
     INVALID_BUS("Sorry,there is no such bus in our database!"),
     NO_DELIMITER("Oops! You are missing the delimiter."),
+    NO_DELIMITER("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
+            + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
+            + "bus stops in NUS."),
     NO_LOCATIONS("Oh dear! I don't have all locations."),
     MISSING_BUS_CODE("Oh no! You seem to have missed typing in the bus code!"),
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),
