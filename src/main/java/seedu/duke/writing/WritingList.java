@@ -2,6 +2,8 @@ package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.database.FileFunctions;
+import seedu.duke.exceptions.FileEmptyException;
+import seedu.duke.exceptions.ItemNotFoundedException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +48,10 @@ public class WritingList {
         writinglist = new ArrayList<>();
     }
 
+    public int getSize() {
+        return writinglist.size();
+    }
+
     public void add(Writings w) {
         writinglist.add(w);
         countWritings++;
@@ -55,25 +61,37 @@ public class WritingList {
         return writinglist.get(i);
     }
 
-    public static void removeWriting(int i) {
-        assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
-        writinglist.remove(i);
-        countWritings--;
+    public static void removeWriting(int i) throws FileEmptyException {
+        if (writinglist.size() == 0) {
+            throw new FileEmptyException();
+        } else {
+            assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
+            writinglist.remove(i);
+            countWritings--;
+        }
     }
 
-    public static void removeID(int id) {
+    public static void removeID(int id) throws FileEmptyException, ItemNotFoundedException {
         int idExists = 0;
-        for (int i = 0; i < writinglist.size(); i++) {
-            //Use "while" loop to clean out the same IDs
-            while (i < writinglist.size() && writinglist.get(i).getId() == id) {
-                System.out.println("This writing: " + writinglist.get(i).getTitle() + " has been deleted");
-                writinglist.remove(i);
-                idExists = 1;
-                System.out.println("You have " + writinglist.size() + "items remain");
-                countWritings--;
+        if (writinglist.size() == 0) {
+            throw new FileEmptyException();
+        } else {
+            for (int i = 0; i < writinglist.size(); i++) {
+                //Use "while" loop to clean out the same IDs
+                while (i < writinglist.size() && writinglist.get(i).getId() == id) {
+                    System.out.println("This writing: " + writinglist.get(i).getTitle() + " has been deleted");
+                    writinglist.remove(i);
+                    idExists = 1;
+                    System.out.println("You have " + writinglist.size() + " items remain");
+                    countWritings--;
+                }
+            }
+            if (idExists == 0) {
+                throw new ItemNotFoundedException();
+            } else {
+                return;
             }
         }
-        assert (idExists == 1) : "This ID does not exists";
     }
 
     /** Get the number of writings available in the storage. */
