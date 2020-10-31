@@ -55,10 +55,9 @@ public class Storage {
         this.resultFilename = builder.resultFilename;
         this.exportFilename = builder.exportFilename;
 
-        this.topicResultFilename = "topic" + resultFilename.substring(0, 1).toUpperCase()
-                + resultFilename.substring(1);  // prepend topic to resultFilename
-        this.subjectResultFilename = "subject" + resultFilename.substring(0, 1).toUpperCase()
-                + resultFilename.substring(1);  // prepend subject to resultFilename
+        String capResultFilename = resultFilename.substring(0, 1).toUpperCase() + resultFilename.substring(1);
+        this.topicResultFilename = "topic" + capResultFilename;  // prepend topic to resultFilename
+        this.subjectResultFilename = "subject" + capResultFilename;  // prepend subject to resultFilename
     }
 
     /**
@@ -107,15 +106,21 @@ public class Storage {
             List<Task> tasks;
             try {
                 tasks = loadTasks(subjectDir.toPath());
-            } catch (FileNotFoundException e) {
-                logger.log(Level.INFO, "Task file is not found under %s, proceeding with an empty task list.", e);
-                tasks = new ArrayList<>();  // task file may have been deleted by the user
+            } catch (Exception e) {
+                if (e instanceof FileNotFoundException) {  // task file may have been deleted by the user intentionally
+                    logger.info(String.format("Task file is not found under %s, "
+                            + "proceeding with an empty task list.", subjectDir.getAbsolutePath()));
+                } else {  // task file content may have been corrupted by the user
+                    String errMessage = Ui.fileSyntaxErrorMsg("task", subjectDir.getAbsolutePath());
+                    logger.log(Level.WARNING, errMessage, e);
+                    Ui.printErrorMsg(errMessage);
+                }
+                tasks = new ArrayList<>();
             }
             File resultFile = new File(subjectDir.toString(), getSubjectResultFilename());
             List<Result> results = loadResults(resultFile);
             Subject subject = new Subject(subjectDir.getName(), topics, tasks, results);
             subjects.add(subject);
-
         }
         subjects.sort(Comparator.comparing(Subject::getTitle));
         logger.fine(String.format("Finish loading subject data. Subjects: %s.", subjects));
@@ -152,6 +157,7 @@ public class Storage {
      * @param type     the type of the object inside the json file
      * @param jsonFile the file that stores the flashcard data
      * @return a list of populated objects with type specified loaded from the file
+     * @throws JsonSyntaxException if the file is not in json format or the content is corrupted
      */
     public static <T> List<T> loadFromJson(Type type, File jsonFile) {
         logger.info(String.format("Loading data of type %s from %s.", type, jsonFile.getAbsolutePath()));
@@ -164,9 +170,6 @@ public class Storage {
             logger.info(String.format("%s is not found, proceeding with returning an empty list.",
                     jsonFile.getAbsolutePath()));
             objects = new ArrayList<>();
-        } catch (JsonSyntaxException e) {
-            throw new JsonSyntaxException("Error reading the json data at " + jsonFile.getAbsolutePath()
-                    + ". Make sure the syntax is correct if you changed it manually.", e);
         }
 
         assert objects != null;
@@ -184,7 +187,14 @@ public class Storage {
     private List<Flashcard> loadFlashcards(File flashcardFile) {
         logger.fine(String.format("Loading flashcards from %s.", flashcardFile));
         Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
-        List<Flashcard> flashcards = loadFromJson(objectType, flashcardFile);
+        List<Flashcard> flashcards = new ArrayList<>();
+        try {
+            flashcards = loadFromJson(objectType, flashcardFile);
+        } catch (JsonSyntaxException e) {
+            String errMessage = Ui.fileSyntaxErrorMsg("flashcard", flashcardFile.getAbsolutePath());
+            logger.log(Level.WARNING, errMessage, e);
+            Ui.printErrorMsg(errMessage);
+        }
         logger.fine(String.format("Finish loading flashcards: %s.", flashcards));
         return flashcards;
     }
@@ -198,7 +208,14 @@ public class Storage {
     private List<Result> loadResults(File resultFile) {
         logger.fine(String.format("Loading results from %s.", resultFile));
         Type objectType = new TypeToken<ArrayList<Result>>() {}.getType();
-        List<Result> results = loadFromJson(objectType, resultFile);
+        List<Result> results = new ArrayList<>();
+        try {
+            results = loadFromJson(objectType, resultFile);
+        } catch (JsonSyntaxException e) {
+            String errMessage = Ui.fileSyntaxErrorMsg("result", resultFile.getAbsolutePath());
+            logger.log(Level.WARNING, errMessage, e);
+            Ui.printErrorMsg(errMessage);
+        }
         logger.fine(String.format("Finish loading results: %s.", results));
         return results;
     }
