@@ -7,7 +7,6 @@ import anichan.exception.AniException;
  * Handles parsing for search command.
  */
 public class SearchParser extends CommandParser {
-    private static final String SEARCH_TYPE_ALREADY_SET_ERROR = "Please specify only one type of search!";
     private static final String NO_PARAM_PROVIDED = "Please provide a parameter type. Search will accept -n or -g.";
     private SearchCommand searchCommand;
 
