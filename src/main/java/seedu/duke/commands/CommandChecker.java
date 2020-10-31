@@ -101,11 +101,11 @@ public enum CommandChecker {
             return CommandChecker.DELETE_NAME;
         } else if (userInput.toLowerCase().trim().startsWith("list name")) {
             return CommandChecker.LIST_NAMES;
-        } else if (userInput.toLowerCase().trim().startsWith("list filter")) {
+        } else if (userInput.toLowerCase().trim().startsWith("list filter words")) {
             return CommandChecker.LIST_FILTER;
         } else if (userInput.toLowerCase().trim().startsWith("filter name")) {
             return CommandChecker.FILTER_NAMES;
-        } else if (userInput.toLowerCase().trim().startsWith("filter")) {
+        } else if (userInput.toLowerCase().trim().startsWith("filter words")) {
             return CommandChecker.FILTER_WORDS;
         } else if (userInput.toLowerCase().trim().startsWith("start")) {
             return CommandChecker.START;

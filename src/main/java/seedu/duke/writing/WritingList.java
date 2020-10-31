@@ -169,7 +169,7 @@ public class WritingList {
             String content = "";
             String contentUserInput = getUserInput(scanner);
             while (!contentUserInput.equals("end")) {
-                content = content.concat(newUserInput + "\n");
+                content = content.concat(contentUserInput + "\n");
                 contentUserInput = getUserInput(scanner);
             }
             WritingList.printAskForReminderDate();
@@ -183,7 +183,7 @@ public class WritingList {
                 addEssay(title, newId, topic, content, user.getName(), reminderDate);
             }
             System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
-            recordListToFile(f, writings);
+            //recordListToFile(f, writings);
         } catch (Exception e) {
             System.out.println(e);
         }
