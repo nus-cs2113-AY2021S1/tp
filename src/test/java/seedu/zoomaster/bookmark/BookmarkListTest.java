@@ -1,6 +1,7 @@
 package seedu.zoomaster.bookmark;
 
 import org.junit.jupiter.api.Test;
+import seedu.zoomaster.exception.ZoomasterException;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ class BookmarkListTest {
     private final String lineSeparator = System.lineSeparator();
 
     @Test
-    void addBookmark() throws IndexOutOfBoundsException {
+    void addBookmark() throws IndexOutOfBoundsException, ZoomasterException {
         BookmarkList bookmarks = new BookmarkList();
         String description = "something";
         String url = "www.google.com";
@@ -23,7 +24,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() throws IndexOutOfBoundsException {
+    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() throws IndexOutOfBoundsException, ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("tutorial | www.google.com");
         input.add("lecture | www.yahoo.com");
@@ -68,7 +69,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void getBookmark() throws IndexOutOfBoundsException {
+    void getBookmark() throws IndexOutOfBoundsException, ZoomasterException {
         BookmarkList bookmarks = new BookmarkList();
         bookmarks.addBookmark(bookmarkTest);
         assertEquals(bookmarkTest, bookmarks.getBookmark(0));
@@ -89,7 +90,7 @@ class BookmarkListTest {
      * Checks that bookmark at index 2 changes after deletion.
      */
     @Test
-    void deleteBookmark() throws IndexOutOfBoundsException {
+    void deleteBookmark() throws IndexOutOfBoundsException, ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2113T | www.google.com");
         input.add("CS2113T | www.yahoo.com");
@@ -123,7 +124,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void findBookmark_matchingBookmark() throws IndexOutOfBoundsException {
+    void findBookmark_matchingBookmark() throws IndexOutOfBoundsException, ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2112T | www.google.com");
         input.add("CS2113T | www.yahoo.com");
@@ -153,7 +154,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void launchBookmark_matchingBookmark() throws IndexOutOfBoundsException {
+    void launchBookmark_matchingBookmark() throws IndexOutOfBoundsException, ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("tutorial | www.google.com");
         input.add("lecture | www.yahoo.com");

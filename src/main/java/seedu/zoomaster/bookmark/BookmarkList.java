@@ -1,6 +1,7 @@
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -88,7 +89,10 @@ public class BookmarkList {
      * @return The bookmark with the corresponding index in the list.
      * @throws IndexOutOfBoundsException if the index is out of range.
      */
-    public Bookmark getBookmark(int index) throws IndexOutOfBoundsException {
+    public Bookmark getBookmark(int index) throws IndexOutOfBoundsException, ZoomasterException {
+        if (bookmarks.isEmpty()) {
+            throw new  ZoomasterException(ZoomasterExceptionType.EMPTY_BOOKMARK_LIST);
+        }
         return bookmarks.get(index);
     }
 
@@ -121,7 +125,10 @@ public class BookmarkList {
      */
     public String showBookmarks() {
         String message = "Here are the bookmarks in your list:" + lineSeparator;
-        for (int i = 0; i < bookmarks.size(); i++) {
+        if (bookmarks.isEmpty()) {
+            message = message + "Bookmark list is empty" + lineSeparator;
+        }
+        else for (int i = 0; i < bookmarks.size(); i++) {
             message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
         }
         return message + lineSeparator;

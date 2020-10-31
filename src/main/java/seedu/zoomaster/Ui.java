@@ -80,7 +80,7 @@ public class Ui {
         if (Parser.getProgramMode() == 0) {
             System.out.print(ansi().fg(GREEN).a("[Main Menu] Input: ").reset());
         } else if (Parser.getProgramMode() == 1) {
-            System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
+            System.out.print(ansi().fg(CYAN).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 3) {
@@ -192,6 +192,9 @@ public class Ui {
         case INVALID_ADD_BOOKMARK_INPUT:
             printInvalidAddBookmarkInputMessage();
             break;
+        case EMPTY_BOOKMARK_LIST:
+            printEmptyBookmarkListMessage();
+            break;
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
@@ -241,6 +244,10 @@ public class Ui {
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printEmptyBookmarkListMessage() {
+        printRedWithBorder("Bookmark list is empty!" + NEW_LINE);
     }
 
     private void printInvalidSlotNumber(String index) {
