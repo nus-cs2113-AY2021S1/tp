@@ -1,6 +1,7 @@
 import command.Command;
 import eventlist.EventList;
 import exception.CreatingFileException;
+import exception.DataFileNotFoundException;
 import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
@@ -31,7 +32,9 @@ public class NuSchedule {
 
         try {
             storage = new Storage(filePaths);
-        } catch (CreatingFileException e) {
+            storage.loadBusStopData(busStops.getBusStopList());
+            storage.loadLocationData(locations.getLocationList());
+        } catch (CreatingFileException | DataFileNotFoundException e) {
             ui.showError(e.getMessage());
         }
         try {
@@ -43,8 +46,7 @@ public class NuSchedule {
         }
 
 
-        storage.loadBusStopData(busStops.getBusStopList());
-        storage.loadLocationData(locations.getLocationList());
+
         // ui.printBusStopList(busStops.getBusStopList());
         // ui.printLocationList(locations.getLocationList());
 
