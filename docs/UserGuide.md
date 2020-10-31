@@ -822,7 +822,7 @@ Prints available commands that users can enter in for manualTracker.
     | No.            | Command                 | Input Format                                               |
     --------------------------------------------------------------------------------------------------------
     | 1.             | New entry               | entry new /time {HHMM} /desc {string} /cat {category}      |
-    |                |                         | -[i/e]                                                     |
+    |                |                         | -[i/e] /amt {Double, 2 decimal places}                                                    |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     | 2.             | Edit entry              | entry edit /id {integer} {param-type/parameter to edit}    |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
