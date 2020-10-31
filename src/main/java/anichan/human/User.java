@@ -49,7 +49,7 @@ public class User extends Human {
      * @throws AniException if gender string is invalid
      */
     public void setGender(String genderString) throws AniException {
-        assert (genderString != null) : ASSERTION_INVALID_MESSAGE;
+        assert genderString != null : ASSERTION_INVALID_MESSAGE;
         genderString = genderString.toLowerCase();
 
         switch (genderString) {
@@ -119,7 +119,7 @@ public class User extends Human {
      * @throws AniException if unable to switch to current Workspace
      */
     public void setActiveWorkspace(Workspace inputWorkspace) throws AniException {
-        assert (inputWorkspace != null) : ASSERTION_INVALID_MESSAGE;
+        assert inputWorkspace != null : ASSERTION_INVALID_MESSAGE;
 
         try {
             //Set the first watchlist to be the active watchlist
@@ -148,7 +148,7 @@ public class User extends Human {
      * @throws AniException if the workplace is not found
      */
     public void switchActiveWorkspace(String switchToThisWorkspace) throws AniException {
-        assert (switchToThisWorkspace != null) : ASSERTION_INVALID_MESSAGE;
+        assert switchToThisWorkspace != null : ASSERTION_INVALID_MESSAGE;
 
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(switchToThisWorkspace)) {
@@ -178,7 +178,7 @@ public class User extends Human {
      * @throws AniException if unable to make a new Workspace
      */
     public Workspace addWorkspace(String name) throws AniException {
-        assert (name != null) : ASSERTION_INVALID_MESSAGE;
+        assert name != null : ASSERTION_INVALID_MESSAGE;
 
         if (findWorkspace(name) != null) {
             throw new AniException("Workspace already exist!");
@@ -200,7 +200,7 @@ public class User extends Human {
      * @throws AniException if Workspace is unable to be deleted
      */
     public void deleteWorkspace(String toDeleteWorkspace) throws AniException {
-        assert (toDeleteWorkspace != null) : "Workspace details should not have any null.";
+        assert toDeleteWorkspace != null : "Workspace details should not have any null.";
 
         Workspace targetWorkspace = findWorkspace(toDeleteWorkspace);
 
@@ -219,7 +219,7 @@ public class User extends Human {
      * @return Workspace object is found, else null
      */
     public Workspace findWorkspace(String findString) {
-        assert (findString != null) : ASSERTION_INVALID_MESSAGE;
+        assert findString != null : ASSERTION_INVALID_MESSAGE;
 
         for (Workspace tempWorkspace : workspaceList) {
             if (tempWorkspace.getName().equals(findString)) {
@@ -237,12 +237,10 @@ public class User extends Human {
      * @throws AniException if a workspace with same name is found
      */
     public void checkWorkspaceName(String name) throws AniException {
-        assert (name != null) : ASSERTION_INVALID_MESSAGE;
+        assert name != null : ASSERTION_INVALID_MESSAGE;
 
         for (Workspace tempWorkspace : workspaceList) {
-            String workspaceLowercaseName = tempWorkspace.getName().toLowerCase();
-
-            if (workspaceLowercaseName.equals(name)) {
+            if (tempWorkspace.getName().equalsIgnoreCase(name)) {
                 throw new AniException(EXCEPTION_SIMILAR_WORKPLACE_FOUND);
             }
         }

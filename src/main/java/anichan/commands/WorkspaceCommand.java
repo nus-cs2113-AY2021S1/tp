@@ -57,7 +57,7 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (commandOption != null) : "Option should not be null.";
+        assert commandOption != null : "Option should not be null.";
 
         switch (commandOption) {
         case CREATE_OPTION:
