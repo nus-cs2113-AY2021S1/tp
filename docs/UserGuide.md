@@ -2,7 +2,23 @@
 FinanceIt is an all-in-one desktop application that handles the finance tracking needs of university students who are comfortable with a CLI interface.
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
 
-# 1. Set-up
+# Table of Contents
+
+No. |Content|
+----|------|
+1.|[Set-up](#setUp)
+2.|[Features Overview](#featuresOverview)
+3.|[Features Documentation](featuresDoc)
+3.1|    [Manual Tracker](#manualTracker)
+3.1.1|      ROFL
+3.2|    [Entry Tracker](#entryTracker)
+3.3|    [Recurring Tracker](#recurringTracker)
+3.4|    [Finance Tools](#financeTools)
+3.5|    [Goal Tracker](#goalTracker)
+3.6|    [Save Manager]()
+4.|[Commands Summary](#commandsSummary)
+
+# 1. <a name = setUp> </a> Set-up
 ## 1.1 Setting up for Testers (IMPORTANT)
 
 Prerequisites: A computer
@@ -27,6 +43,29 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 > Output:
 
+       ||====================================================================||
+       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+       ||(100)==================|     Welcome to       |================(100)||
+       ||||$||        ~         '------========--------'                ||$||||
+       ||<< |        |$|              || ____ ||                         | >>||
+       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+       ||<<|        || ||           || <||  >)  ||                        |>>||
+       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||====================================================================||>||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+    ||(100)==================|     FinanceIt!       |================(100)||>||
+    ||||$||        ~         '------========--------'                ||$||||>||
+    ||<< |        |$|              || ____ ||                         | >>||)||
+    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+    ||<<|        || ||           || <||  >)  ||                        |>>||=||
+    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+    ||>>|  12                     *||(___)_||*   1989                  |<<||
+    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+    ||||$|                 ~| A finanace tracking app |~               |$||||
+    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+    ||====================================================================||
     Status: 
     =====================================================================================================
     = Welcome to Main Menu                                                                              =
@@ -50,7 +89,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
     ____________________________________________________________
     >>> 
 
-# 2. Features overview
+# 2. <a name = featuresOverview> </a>Features overview
 ## 2.1 Main features
 
 Feature|Command|Description|
@@ -70,13 +109,13 @@ Feature|Command|Description|
 -------|-------|-----------|
 Logger|```logger```| Toggles logger visibility. If toggled on, log information will be displayed on the console.
   
-# 3. Main Features
-# 3.1 Main Menu
+# 3. <a name = featuresDoc> </a>Features Documentation
+# 3.1 Features: Main Menu
 Gateway to the various other features of the application. 
 Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
 
 Feature|Command|
--------|-------|-----------|
+-------|-------|
 Manual Tracker|```manual```| 
 Entry Tracker|```entry```| 
 Recurring Tracker|```recur```| 
@@ -146,14 +185,14 @@ the saveStates folder. This folder will be automatically created when you first 
     >>> exit
     exit
 
-## 3.1.2 Main Menu 2: Logger
+## 3.1.2 <a name = menu> </a> Main Menu 2: Logger
 Toggle Logger mode. Developers can toggle it, and more system messages and logs will be printed onto the console.
 
 >Syntax
 
     logger
 
-> Example: 
+> Example (Logger on): 
 
     ____________________________________________________________
     >>> logger
@@ -209,7 +248,35 @@ Toggle Logger mode. Developers can toggle it, and more system messages and logs 
     ____________________________________________________________
     >>>
     
-# 3.2 Main Feature : Manual Tracker
+> Example (Logger in action):
+
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger open /date 200404
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
+    INFO: Params: {}
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
+    INFO: ParamType: /date
+    Nov 01, 2020 5:43:12 AM seedu.financeit.parser.InputParser parseInput
+    INFO:  ledger open , {/date=200404}
+
+
+
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDate
+    INFO: Checking date...
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> 
+   
+    
+# <a name = manualTracker> </a> 3.2 Features : Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
 > Example
     If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
@@ -312,7 +379,7 @@ Param Type| Param | Param Format
     ____________________________________________________________
     >>>
     
-## 3.2.3 Manual Tracker 3: Open ledger
+##  3.2.3 Manual Tracker 3: Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
 This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
@@ -481,7 +548,7 @@ Exit to main menu where users can choose another feature to use.
 
 
     
-# 3.3 Main Feature : Entry Tracker
+# 3.3 <a name = entryTracker> </a> Main Feature : Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
 Entries are specified by the following parameters:
@@ -501,11 +568,12 @@ Entries are specified by the following parameters:
    * User input texts to help them record the details of the transaction.
 
 > Example
-   Ledger of date 20-10-03
-   <br> Entry 1: Shopping at MBS : $1500
-   <br> Entry 2: Salary : $3000
-   <br>
-   <br> From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
+
+    Ledger of date 20-10-03
+        Entry 1: Shopping at MBS : $1500
+        Entry 2: Salary : $3000
+    
+    From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
 
 ## 3.3.1 Entry Tracker 1: Add entry
 Add an entry to the ledger record.
@@ -813,7 +881,7 @@ Exit to Manual tracker where users can choose another ledger.
     ____________________________________________________________
     >>>
     
-# 3.3 Features : Recurring Tracker
+# 3.3 <a name = recurringTracker> </a> Features : Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
 ## 3.3.1 Recurring Tracker 1: Add entry
@@ -899,7 +967,7 @@ Exits to main menu.
     exit
 
     
-# 3.4 Features : FinanceTools
+# 3.4 <a name = financeTools> </a> Features : FinanceTools
 FinanceTools contains tools related to financial calculations.
 
 ## 3.4.1 FinanceTools 1: Simple Interest Calculator
@@ -1081,7 +1149,7 @@ Exit FinanceTools to Main Menu.
 
 ![Example](screenshots/financetools/Exit(1).PNG)
 
-# 3.5 Features : Goal Tracker
+# 3.5 <a name = goalTracker> </a> Features : Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
 ## 3.5.1 Goal Tracker 1 : Set Goal
@@ -1168,7 +1236,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
     
 
-# 4. Commands summary
+# 4. <a name = commandsSummary> </a>Commands summary
 
 ## 4.1 Manual Tracker
 No. | Command | Syntax | 
