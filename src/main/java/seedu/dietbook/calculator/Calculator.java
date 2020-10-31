@@ -15,6 +15,10 @@ public class Calculator {
     private int totalProtein = 0;
     private int totalFat = 0;
     CalculatorData data = null;
+
+    public Calculator() {
+    }
+    
     /**
      * Construct a calculator taking in a foodList. Add up calories,
      * carbs, protein, and fats in each food item.
@@ -24,6 +28,10 @@ public class Calculator {
      */
     public Calculator(CalculatorData data) {
         assert data != null : "The foodList should not be null.";
+        this.data = data;
+    }
+
+    public void update(CalculatorData data) {
         this.data = data;
     }
 
