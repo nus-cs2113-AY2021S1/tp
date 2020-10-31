@@ -11,6 +11,7 @@ import java.util.Scanner;
 import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.InvalidClearFormat;
 import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.wordlist.WordList.listWords;
 
 public class ClearLoader {
     private static Scanner scanner = new Scanner(System.in);
@@ -131,14 +132,14 @@ public class ClearLoader {
             try {
                 clearingWordAdjective(word, wordList);
             } catch (InvalidClearFormat e) {
-                System.out.println("This noun is not founded!");
+                System.out.println("This adjective is not founded!");
             }
         } else if (item.contains("-verb")) {
             String word = item.substring("-verb".length());
             try {
                 clearingWordVerb(word, wordList);
             } catch (InvalidClearFormat e) {
-                System.out.println("This noun is not founded!");
+                System.out.println("This verb is not founded!");
             }
         } else {
             throw new InvalidClearFormat();
@@ -149,7 +150,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("noun") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("noun")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {
@@ -167,7 +169,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("adj") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("adj")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {
@@ -185,7 +188,8 @@ public class ClearLoader {
         int wordFounded = 0;
         int i = 0;
         while (i < wordList.size()) {
-            if (wordList.get(i).getType().equals("verb") && wordList.get(i).getDescription().equalsIgnoreCase(word)) {
+            if (wordList.get(i).getType().equals("verb")
+                    && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                 wordList.remove(i);
                 wordFounded = 1;
             } else {
