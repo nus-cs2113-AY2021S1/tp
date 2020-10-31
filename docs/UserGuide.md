@@ -74,7 +74,7 @@ The following table displays the list of terminologies used in this document:
 |--------|----------|
 |Task|A to-do item or a deadline item|
 |Event|An activity or a school event|
-|School event|Lectures, tutorials, laboratory sessions or examinations|
+|School event|Lectures, tutorials, laboratory sessions or examinations.|
 |Task list|List of tasks*|
 |Event list|List of events*|
 |Task number|Refers to the index of the task in the task list|
@@ -92,7 +92,7 @@ The following table displays the list of terminologies used in this document:
 1. The _Command Prompt_ should display similar output as shown in the figure below:
     ![Screen_Shot_of_welcome_message](images/Verify_setup.PNG)
 1. Type the command in the _Command Prompt_ and press _Enter_ to execute it. 
-    1. E.g. typing `help` and pressing _Enter_ will display the help information:
+    * E.g. typing `help` and pressing _Enter_ will display the help information.
 1. Refer to the [Features](#features) below for details of each command.
 
 ## Features 
@@ -194,6 +194,7 @@ Example:
 #### Adding an examination event:
 
 You can add an examination event to the calendar list by using the following format.
+Note: Only valid modules provided by NUS are allowed to be added! 
 
 Format: `exam <module_name> @<venue> / <date> <time>`
 
@@ -206,6 +207,7 @@ Example of usage:
 #### Adding recurring laboratory session events:
 
 When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
+Note: Only valid modules provided by NUS are allowed to be added! 
 
 Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -218,6 +220,7 @@ Example of usage:
 #### Adding recurring lecture events:
 
 When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
+Note: Only valid modules provided by NUS are allowed to be added! 
 
 Format: `lect <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
@@ -230,6 +233,7 @@ Example of usage:
 #### Adding recurring tutorial events:
 
 When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
+Note: Only valid modules provided by NUS are allowed to be added! 
 
 Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
 
