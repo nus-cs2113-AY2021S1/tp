@@ -144,8 +144,16 @@ COOKIES N CREME CH33SECAKE (Default) #> Watchlist "ops" has been created success
 
 COOKIES N CREME CH33SECAKE (Default) #> "ops" is now your active watchlist!
 
+COOKIES N CREME CH33SECAKE (ops) #> OOPS!!! Please provide a positive integer instead!
+
+COOKIES N CREME CH33SECAKE (ops) #> OOPS!!! Please provide a integer instead!
+
 COOKIES N CREME CH33SECAKE (ops) #> Watchlist "ops" has been deleted successfully!
 Changed active watchlist to: "Default".
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please provide a positive integer instead!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please provide a integer instead!
 
 COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
 	1. Default

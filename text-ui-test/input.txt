@@ -67,7 +67,11 @@ watchlist -n a
 watchlist -n b
 watchlist -n ops
 watchlist -s 4
+watchlist -s -1
+watchlist -s one
 watchlist -d 4
+watchlist -d -1
+watchlist -d one
 watchlist -l
 add -a 1
 add -a 3
