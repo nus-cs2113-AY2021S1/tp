@@ -103,7 +103,7 @@ Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 > :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
 
 > :bulb: Ensure the script file is in the current workspace's folder. For example, if the current workspace is "Default", then from the folder containing `AniChan.jar`, place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
-<br/><br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
+> <br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
 
