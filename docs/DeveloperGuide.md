@@ -571,7 +571,7 @@ This also avoids the need to maintain an integer `ID` for each `Workspace`.
 
 Aspect: **`Workspace` name restrictions**
 
-As `Workspace` is identified by their names, and other classes like Storage relies on the name to make folders for data storage purposes.
+As `Workspace` is identified by their names, and other classes like `Storage` relies on the name to make folders for data storage purposes.
 Should we allow the user full discretion to naming `Workspace`?
 
 | Approach | Pros | Cons  |
@@ -582,7 +582,7 @@ Should we allow the user full discretion to naming `Workspace`?
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
 
-In addition, we also prevent the use of special characters, as it may cause issue when creating folders on certain file systems.
+In addition, we also prevent case-insensitive `Workspace` creation and the use of special characters, as they may cause issues when creating folders on certain file systems.
 
 <br/>
 
@@ -970,6 +970,8 @@ We use the following log levels:
 
 ### 5.3 Testing
 Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
+
+We employ both unit and integration tests for our codes. They are located in `./src/test` directory.
 
 <br/>
 
