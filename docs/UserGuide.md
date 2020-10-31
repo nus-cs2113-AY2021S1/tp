@@ -209,7 +209,7 @@ Toggle Logger mode. Developers can toggle it, and more system messages and logs 
     ____________________________________________________________
     >>>
     
-# 3.2 Features : Manual Tracker
+# 3.2 Main Feature : Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
 > Example
     If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
@@ -481,28 +481,60 @@ Exit to main menu where users can choose another feature to use.
 
 
     
-# Features : Entry Tracker
+# 3.3 Main Feature : Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
+Entries are specified by the following parameters:
 
-## Entry Tracker 1: Add entry
+* Time of transaction
+   * Time in which the transaction ocurred
+* Type of transaction 
+   * Income or Expense
+* Category of transaction. The user is only limited to the following set of categories. 
+   * Income: {Salary, Allowance, Others}
+   * Expense: {Transport, Food, Travel, Shopping, Bills, Others}
+* Amount
+   * Amount involved in the transaction. 
+      * If the transaction type is expense, the amount is considered as a deduction to the account.
+      * If the transaction type is income, the amount is considered as a credit to the account.
+* Description
+   * User input texts to help them record the details of the transaction.
+
+> Example
+   Ledger of date 20-10-03
+   <br> Entry 1: Shopping at MBS : $1500
+   <br> Entry 2: Salary : $3000
+   <br>
+   <br> From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
+
+## 3.3.1 Entry Tracker 1: Add entry
 Add an entry to the ledger record.
+
+__Note:__
+* For transaction categories, we require the users to enter the shortcut equivalent to the categories listed above. Refer to the following table.
+
+Category|Category shortcut|Compatible transaction type
+----------|-------|------------|
+FOOD|fd|Expense
+BILLS|bll|Expense
+TRANSPORT|tpt|Expense
+TRAVEL|tvl|Expense
+SALARY|slr|Expense
+ALLOWANCE|alw|Income
+OTHERS|oth|Income
 
 >Syntax
 
     entry add <param type> <parameter> 
-        <param type> @ /time: Time of entry
-            <parameter:String>: Input string of the time in HHMM or HH*MM*SS.
-        <param type> @ /amt: Amount associated with the entry, in $.
-            <parameter:Double>: Amount of money in at most 2 decimal places.
-        <param type> @ /desc: Details of the transaction that users can refer to when they view the list.
-            <parameter:String>: Input string of the description of the transaction.
-        <param type> @ /cat: Category of transaction
-            <parameter:String>: {tpt, fd, tvl, shp, bll, slr, alw}
-                                Only the above strings are allowed for entries. 
-                                They represent shortcuts to recognised entry categories that were specified 
-                                within the application.
-        <param type> @ -i/-e: Represents income and expenses for the entry type.
+
+        
+Param Type| Param | Param Format
+----------|-------|------------|
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
+/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+-i or -e|Type of transaction. | No parameter required. 
+
 > Example: 
 
     [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
@@ -525,28 +557,26 @@ Add an entry to the ledger record.
     ____________________________________________________________
     >>>
 
-## Entry Tracker 2: Edit entry
+## 3.3.2 Entry Tracker 2: Edit entry
 Add an entry to the ledger record.
 Users only need specify the param to edit, there is no need to fill out all params.
-Parameter 1 is however compulsory, as there is a need to reference a particular entry.
+
+__Note__
+* While the index is compulsory to be provided, the rest of the params are not compulsory.
+The users will include the params that they wish to modify.
+* Hence, a sample command ```entry edit /id 1 /time 1600``` will modify entry at __index 1__ to __time 1600__.
 
 >Syntax
 
-    entry edit <param type 1> <parameter 1> <param type> <parameter> 
-        <param type 1> @ /id: Index of the ledger in the entry list to edit.
-            <parameter 1:Integer>: Input number that is between 1 and the last index in the entry list.
-        <param type> @ /time: Time of entry
-            <parameter:String>: Input string of the time in HHMM or HH*MM*SS.
-        <param type> @ /amt: Amount associated with the entry, in $.
-            <parameter:Double>: Amount of money in at most 2 decimal places.
-        <param type> @ /desc: Details of the transaction that users can refer to when they view the list.
-            <parameter:String>: Input string of the description of the transaction.
-        <param type> @ /cat: Category of transaction
-            <parameter:String>: {tpt, fd, tvl, shp, bll, slr, alw}
-                                Only the above strings are allowed for entries. 
-                                They represent shortcuts to recognised entry categories that were specified 
-                                within the application.
-        <param type> @ -i/-e: Represents income and expenses for the entry type.
+    entry edit /id <parameter> <param type> <parameter> 
+        
+Param Type| Param | Param Format
+----------|-------|------------|
+/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
+/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+-i or -e|Type of transaction. | No parameter required. 
         
 > Example: 
 
@@ -586,7 +616,7 @@ Parameter 1 is however compulsory, as there is a need to reference a particular 
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## Entry Tracker 3: Remove entry
+## 3.3.3 Entry Tracker 3: Remove entry
 Remove a specified entry from the record, referenced by id on the list.
 
 >Syntax
@@ -594,6 +624,11 @@ Remove a specified entry from the record, referenced by id on the list.
     entry delete <param type> <parameter> 
         <param type> @ /id: Index of the ledger in the entry list.
             <parameter:Integer>: Input number that is between 1 and the last index in the entry list.
+            
+Param Type| Param | Param Format
+----------|-------|------------|
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
 
 > Example: 
 
@@ -645,7 +680,7 @@ Remove a specified entry from the record, referenced by id on the list.
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## Entry Tracker 4: Show entry list
+## 3.3.4 Entry Tracker 4: Show entry list
 Shows the record of entries that has been added.
 
 >Syntax
@@ -677,7 +712,7 @@ Shows the record of entries that has been added.
     | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Entry Tracker 5: Print command list
+## 3.3.5 Entry Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -715,7 +750,7 @@ Prints available commands that users can enter in for manualTracker.
     | 6.             | exit to manual tracker  | exit                                                       |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Entry Tracker 6: Print categories
+## 3.3.6 Entry Tracker 6: Print categories
 Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
 
 >Syntax
@@ -751,8 +786,10 @@ Prints expenditure category shortcuts that the user can input in entry creation/
      - - - - - - - - - - - - - - - - -
     | fd             | FOOD           |
      - - - - - - - - - - - - - - - - -
+    | oth            | OTHERS         |
+     - - - - - - - - - - - - - - - - -
     
-## Entry Tracker 7: Exit to Manual Tracker main routine
+## 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
 Exit to Manual tracker where users can choose another ledger.
 
 >Syntax
@@ -776,10 +813,10 @@ Exit to Manual tracker where users can choose another ledger.
     ____________________________________________________________
     >>>
     
-#Features : Recurring Tracker
+# 3.3 Features : Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
-## Recurring Tracker 1: Add entry
+## 3.3.1 Recurring Tracker 1: Add entry
 Creates a recurring entry. Entries can either be income or expense. If income, entries
 can be set to "auto" which indicates that the income is automatically credited to the user's
 bank account e.g. Salary which is transferred into bank account by company. 
@@ -793,7 +830,7 @@ Vice versa for expense entries.
 
     add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
     
-##Parameters
+## Parameters
 * `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
 * `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
 is not linked to any functionality)
@@ -812,17 +849,17 @@ is not linked to any functionality)
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
     on or by 27th of every month.
     
-## Recurring Tracker 2: List all entries
+## 3.3.2 Recurring Tracker 2: List all entries
 Displays a list of all recurring entries.
 
 >Syntax
 
     list
     
-##Parameters
+## Parameters
 None
-    
-## Recurring Tracker 3: Delete entry
+ 3  
+## 3.3.3 Recurring Tracker 3: Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
 associated index in the leftmost column
 
@@ -830,14 +867,14 @@ associated index in the leftmost column
 
     delete /id <INDEX>
     
-##Parameters
+## Parameters
 * `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
 
 >Example
     
     delete /id 15
     
-## Recurring Tracker 4: Edit entry
+## 3.3.4 Recurring Tracker 4: Edit entry
 Update one or more fields of an existing entry. Overwrites any existing value corresponding to the 
 field(s) being modified.
 
@@ -854,7 +891,7 @@ field(s) being modified.
     edit /id 2 /desc Updated name!! /day 23
     //Overwrites existing description and day. Other fields are untouched.
     
-## Recurring Tracker 5: Exit tracker
+## 3.3.5 Recurring Tracker 5: Exit tracker
 Exits to main menu.
 
 >Syntax
@@ -862,10 +899,10 @@ Exits to main menu.
     exit
 
     
-# Features : FinanceTools
+# 3.4 Features : FinanceTools
 FinanceTools contains tools related to financial calculations.
 
-## FinanceTools 1: Simple Interest Calculator
+## 3.4.1 FinanceTools 1: Simple Interest Calculator
 Calculate simple interest earned.
 <br />
 Simple interest is based on the principal amount of a deposit.
@@ -883,7 +920,7 @@ Simple interest is based on the principal amount of a deposit.
     simple /a 1000 /r 5
 
 ![Example](screenshots/financetools/SimpleInterest(1).PNG)
-## FinanceTools 2: Yearly Compound Interest Calculator
+## 3.4.2 FinanceTools 2: Yearly Compound Interest Calculator
 Calculate yearly compound interest earned with optional yearly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
@@ -907,7 +944,7 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/YearlyCompoundInterest(2).PNG)
-## FinanceTools 3: Monthly Compound Interest Calculator
+## 3.4.3 FinanceTools 3: Monthly Compound Interest Calculator
 Calculate monthly compound interest earned with optional monthly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
@@ -920,7 +957,7 @@ Compound interest is based on the principal amount and the interest that accumul
 
 >Syntax:
     
-    cmonthly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}
+    cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}
    
 > Example: 
 
@@ -931,7 +968,7 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/MonthlyCompoundInterest(2).PNG)
-## FinanceTools 4: Cashback Calculator
+## 3.4.4 FinanceTools 4: Cashback Calculator
 Calculate cashback earned.
 
 ### Parameters
@@ -952,7 +989,7 @@ Calculate cashback earned.
 <br />
 <br />
 ![Example](screenshots/financetools/Cashback(2).PNG)
-## FinanceTools 5: Miles Credit Calculator
+## 3.4.5 FinanceTools 5: Miles Credit Calculator
 Calculate cashback earned.
 
 ## Parameters
@@ -968,13 +1005,13 @@ Calculate cashback earned.
     miles /a 1000 /r 5
 
 ![Example](screenshots/financetools/Miles(1).PNG)
-## FinanceTools 6: Account Storage
+## 3.4.6 FinanceTools 6: Account Storage
 Store account information.
 <br />
 
 Additionally, it implements the following operations:
 * ```info``` - list account(s) information
-* ```clearinfo``` - clear all account information
+* ```clearinfo``` - clear all information
 * ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
 
 ### Parameters
@@ -1019,7 +1056,7 @@ Additionally, it implements the following operations:
 <br />
 ![Example](screenshots/financetools/AccountStorage(7).PNG)
 
-## FinanceTools 7: Command and Calculation History
+## 3.4.7 FinanceTools 7: Command and Calculation History
 Store the commands inputted and results from calculations in FinanceTools.
 
 >Syntax:
@@ -1031,7 +1068,7 @@ Store the commands inputted and results from calculations in FinanceTools.
     history
 
 ![Example](screenshots/financetools/History(1).PNG)
-## FinanceTools 8: Exit FinanceTools
+## 3.4.8 FinanceTools 8: Exit FinanceTools
 Exit FinanceTools to Main Menu.
 
 >Syntax:
@@ -1044,11 +1081,11 @@ Exit FinanceTools to Main Menu.
 
 ![Example](screenshots/financetools/Exit(1).PNG)
 
-# Features : Goal Tracker
+# 3.5 Features : Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
-## Goal Tracker 1 : Set Goal
-### Goal Tracker 1.1 : Set Income Goal
+## 3.5.1 Goal Tracker 1 : Set Goal
+### 3.5.1.1 Set Income Goal
 Setting of income goal for respective months.
 
 >syntax
@@ -1062,7 +1099,7 @@ Setting of income goal for respective months.
 
 ![Example](screenshots/goaltracker/setincomegoal.png)
 
-### Goal Tracker 1.2 : Set Expense Goal
+### 3.5.1.2 Set Expense Goal
 Setting of expense goal for respective months.
 
 >syntax
@@ -1075,7 +1112,7 @@ Setting of expense goal for respective months.
 
 ![Example](screenshots/goaltracker/setexpensegoal.png)
 
-## Goal Tracker 2 : Display Goal
+## 3.5.2 Goal Tracker 2 : Display Goal
 Display income and expense goal for the individual month.
 
 >syntax
@@ -1090,7 +1127,7 @@ Display income and expense goal for the individual month.
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
-## Goal Tracker 3 : Exit Display Goal 
+## 3.5.3 Goal Tracker 3 : Exit Display Goal 
 The system will auto prompt the user whether they want to exit DisplayGoal and return to Goal tracker main menu.
 
 >syntax 
@@ -1104,7 +1141,7 @@ The system will auto prompt the user whether they want to exit DisplayGoal and r
 ![PromptExitDisplay](screenshots/goaltracker/PromptExitDisplay.png)
 ![ReturnMain](screenshots/goaltracker/returnmainmenu.png)
 
-## Goal Tracker 4 : Edit Goal
+## 3.5.4 Goal Tracker 4 : Edit Goal
 Edit income and expense goal for the individual month.
 
 >syntax
@@ -1119,7 +1156,7 @@ Edit income and expense goal for the individual month.
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
-## Goal Tracker 5 : Exit Goal Tracker
+## 3.5.5 Goal Tracker 5 : Exit Goal Tracker
 Exit Goal Tracker program and return to FinanceIt main UI.
 
 >syntax
@@ -1131,38 +1168,24 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
     
 
-# Summary of Features 
+# 4. Commands summary
 
-## Manual Tracker
-No. | Feature | Syntax | 
+## 4.1 Manual Tracker
+No. | Command | Syntax | 
 ----|---------|---------|
-1.|Open Ledger|_ledger open /date {YYMMDD}_|
-2.|New Ledger|_ledger new /date {YYMMDD}_|
-3.|List Ledgers|_ledger list_|
-4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
-5.|Exit to Main Menu|_exit_|
+1.|Open ledger|_ledger open /date {YYMMDD}_|
+2.|New ledger|_ledger new /date {YYMMDD}_|
+3.|list ledgers|_ledger list_|
+4.|delete ledgers|_ledger delete /date {YYMMDD}_|;
+5.|exit to main menu|_exit_|
 
-## Entry tracker
-No. | Feature | Syntax |
+## 4.2 Entry tracker
+No. | Command | Syntax |
 ----|---------|---------|
-1.|New Entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
-2.|Edit Entry|_entry edit /id {integer} {param-type/parameter to edit}_|
-3.|list Entries|_entry list_|
-4.|Delete Entry|_entry delete /id {integer}_|
-5.|List Transaction Categories|_cat_|
-6.|Exit to Manual Tracker|_exit_|
-
-## FinanceIt
-No. | Feature | Syntax |
-----|---------|---------|
-1.|Simple Interest Calculator|_simple /a {AMOUNT} /r {INTEREST_RATE}_|
-2.|Yearly Compound Interest Calculator|_cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {YEARS} /d {YEARLY_DEPOSIT}_|
-3.|Monthly Compound Interest Calculator|_cmonthly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}_|
-4.|Cashback Calculator|_cashb /a {AMOUNT} /r {CASHBACK_RATE} /c {CASHBACK_CAP}_|
-5.|Miles Credit Calculator|_miles /a {AMOUNT} /r {MILES_RATE}_|
-6.|Account Storage|_store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE} /c {CASHBACK_CAP} /o {OTHER_NOTES}_|
-7.|List Account(s) Information|_info_|
-8.|Clear All Account Information|_clearinfo_|
-9.|Command and Calculation History|_history_|
-10.|Exit to Main Menu|_exit_|
+1.|New entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
+2.|Edit entry|_entry edit /id {integer} {param-type/parameter to edit}_|
+3.|list entries|_entry list_|
+4.|delete entry|_entry delete /id {integer}_|
+5.|list transaction categories|_cat_|
+6.|exit to manual tracker|_exit_|
 
