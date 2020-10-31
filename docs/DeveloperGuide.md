@@ -356,8 +356,6 @@ The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
-
-
 #### Feature 3: FinanceTools
 ##### Overview
 FinanceTools consists of the following features
@@ -369,13 +367,13 @@ FinanceTools consists of the following features
 7. Command and Calculation History
 
 ##### Simple Interest Calculator
-Simple Interest Calculator is facilitated by ```SimpleIntest``` class. It allows user to calculate interest earned.
+Simple Interest Calculator is facilitated by ```SimpleInterest``` class. It allows user to calculate interest earned.
 When user inputs ```simple``` as a command, ```handleSimpleInterest``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```SimpleInterest``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
 
-__Parameters__
+##### Parameters
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 
@@ -401,7 +399,7 @@ is done by ```YearlyCompoundInterest``` / ```MonthlyCompoundInterest``` class. T
 ```FinanceTools.main()```.
 <br />
 
-__Parameters (Yearly/Monthly Compound Interest Calculator)__
+##### Parameters (Yearly/Monthly Compound Interest Calculator)
 
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
@@ -434,7 +432,8 @@ When user inputs ```cashb``` as a command, ```handleCashback``` from ```Handler`
 inputted parameters. The calculation is done by ```Cashback``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-__Parameters__
+
+##### Parameters 
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Cashback Rate (Mandatory)
 * ```/c``` - Cashback Cap (Mandatory)
@@ -458,7 +457,8 @@ When user inputs ```miles``` as a command, ```handleMilesCredit``` from ```Handl
 inputted parameters. The calculation is done by ```MilesCredit``` class. The result is outputted in
 ```FinanceTools.main()```.
 <br />
-__Parameters__
+
+##### Parameters
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Miles Rate (Mandatory)
 
@@ -488,7 +488,7 @@ Additionally, it implements the following operations:
 * ```clearinfo``` - clear all information
 * ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
 
-__Parameters__
+##### Parameters
 * ```/n``` - Account Name (Optional)
 * ```/ir``` - Interest Rate (Optional)
 * ```/r``` - Cashback Rate (Optional)
@@ -496,8 +496,8 @@ __Parameters__
 * ```/o``` - Other Notes (Optional)
 * ```/rm``` - Account Number (Optional)
 
-###### Details
-```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
+##### Details
+```handleInfoStorage``` stores the user inputted information into an ```ArrayList``` which is then passed into
 ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
 program again, the information is retained, and the user does not have to re-enter the account information(s) again.
 <br />
@@ -506,7 +506,7 @@ When user first enters FinanceTools in the program, ```readFileContents``` reads
 in a ```while``` loop because these 5 lines consists of information that belong to a particular account. These
 categories include: Name, Interest Rate, Cashback Rate, Cashback Cap and Notes". Doing so helps to facilitate
 the ```delete``` option where instead of deleting single lines, we can delete the entire account information
-which correspond to a particular account because the information is stored in one index of the ArrayList.
+which correspond to a particular account because the information is stored in one index of the ```ArrayList```.
 <br />
  
 The following class diagram shows how the Account Storage feature works:
@@ -526,9 +526,9 @@ The following sequence diagram shows how the Account Storage feature works:
 ![SequenceDiagram3](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(3).png)
  
 #### Command and Calculation History
-To store the commands inputted by user and results from calculations in FinanceTools, an ArrayList is used.
-The commands are stored before the params are handled and implementation is executed. The results from calculation
-is stored when the implementation has finished executed.
+To store the commands inputted by user and results from calculations in FinanceTools, an ```ArrayList``` is used.
+The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
+The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
 
 #### Feature 4: Goal Tracker
 ##### Set Expense Goal Feature
@@ -553,9 +553,11 @@ Next, it will be added to a ArrayList in class `TotalGoalList`.
 Lastly, the goal status will be displayed to the user.  
  
 This class diagram will show how the setting of expense goal works:
+<br />
 ![ExpenseClassDiagram](uml_images/goaltracker/SetExpenseGoalClassDiagram.png)
  
 This sequence diagram will show the flow of setting of expense goal:
+<br />
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
 #### Feature 5: Save Manager
@@ -631,7 +633,7 @@ bill payments
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
 
-## Instructions for manual testing
+## Instructions for Manual Testing
 
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
