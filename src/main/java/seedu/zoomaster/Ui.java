@@ -193,6 +193,9 @@ public class Ui {
         case INVALID_ADD_BOOKMARK_INPUT:
             printInvalidAddBookmarkInputMessage();
             break;
+        case EMPTY_BOOKMARK_LIST:
+            printEmptyBookmarkListMessage();
+            break;
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
@@ -242,6 +245,10 @@ public class Ui {
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printEmptyBookmarkListMessage() {
+        printRedWithBorder("Bookmark list is empty!" + NEW_LINE);
     }
 
     private void printInvalidSlotNumber(String index) {
