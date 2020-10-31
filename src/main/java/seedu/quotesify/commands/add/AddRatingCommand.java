@@ -7,6 +7,7 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
+import seedu.quotesify.ui.UiMessage;
 
 import java.util.logging.Level;
 
@@ -23,9 +24,10 @@ public class AddRatingCommand extends AddCommand {
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
-
+        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
+            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -39,6 +41,7 @@ public class AddRatingCommand extends AddCommand {
             bookNumber = ratingDetails[1].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
+            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -53,6 +56,7 @@ public class AddRatingCommand extends AddCommand {
             String author = bookToRate.getAuthor().getName();
             ui.printAddRating(ratingScore, title, author);
         }
+        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     private boolean isRated(Book bookToRate) {
