@@ -68,7 +68,7 @@
     + [Listing books of a specific book rating](#listing-books-of-a-specific-book-rating)
     + [Deleting a book rating](#deleting-a-book-rating)
     + [Editing a book rating](#editing-a-book-rating)
-    + [Finding a book rating](#finding-a-book-rating)
+    + [Finding book ratings](#finding-book-ratings)
 
 ## 1.0 Introduction
 **Welcome to Quotesify!**
@@ -105,7 +105,7 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify v2.0!
+Welcome to Quotesify v2.1!
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 
@@ -1004,15 +1004,16 @@ Alright, have a nice day!
 #### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
 
-2. Test case: `add -r 5 Harry Potter /by JK Rowling`
+2. Test case: `add -r 5 1`, assuming book number 1 exists.
 
    Expected: Rating is added to the book. A message will be prompted to indicate rating has been added successfully.
 
 3. Other incorrect commands to try:
-   * `add -r`: rating score, book title and/or author fields left empty
-   * `add -r 1000 Harry Potter`: rating score is out of the range
-   * `add -r 3 x`: where x is a book that does not exist
+   * `add -r`: rating score and/or book number fields left empty
+   * `add -r 6 1`: assuming book number 1 exists, but rating score is out of the range
+   * `add -r 1 x`: where x is a book number that does not exist
    
    Expected: No rating is added. A message with error details will be prompted.
     
@@ -1030,46 +1031,51 @@ Alright, have a nice day!
    Expected: The list of books with the specified rating will be shown.
    
 2. Other incorrect commands to try:
-   * `list -r 1000`: rating score is out of the range
+   * `list -r 6`: rating score is out of the range
    * `list -r AAA`: invalid rating score
    
    Expected: No rating is listed. A message with error details will be prompted.
    
 #### Deleting a book rating
 
-1. Test case: `delete -r Harry Potter /by JK Rowling`
+1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
+
+2. Test case: `delete -r 1`, assuming book number 1 exists.
 
    Expected: Rating is deleted from book. A message will be prompted to indicate rating has 
    been deleted successfully.
    
-2. Other incorrect commands to try:
-   * `delete -r`: book title and/or author fields left empty
-   * `delete -r x`: where x is a book that has not been rated
+3. Other incorrect commands to try:
+   * `delete -r`: book number field left empty
+   * `delete -r x`: where x is a book number that does not exist or has not been rated
    
    Expected: No rating is deleted. A message with error details will be prompted.
    
 #### Editing a book rating
 
-1. Test case: `edit -r 4 Harry Potter /by JK Rowling`
+1. Prerequisite: Book to be rated should exist in Quotesify.
+Use `list -b` to list all existing books and get book number.
+
+2. Test case: `edit -r 4 1`, assuming book number 1 exists.
 
    Expected: Rating is edited to the new rating. A message will be prompted to indicate rating has
    been edited successfully.
    
-2. Other incorrect commands to try:
-   * `edit -r`: rating score, book title and/or author fields left empty
-   * `edit -r 1000 Harry Potter /by JK Rowling`: rating score is out of the range
-   * `edit -r 3 x`: where x is a book that has not been rated
+3. Other incorrect commands to try:
+   * `edit -r`: rating score and/or book number fields left empty
+   * `edit -r -1 1`: assuming book number 1 exists, but rating score is out of the range
+   * `edit -r 3 x`: where x is a book number that does not exist or has not been rated
    
    Expected: No rating is edited. A message with error details will be prompted.
    
-#### Finding a book rating
+#### Finding book ratings
 
-1. Test case: `find -r Harry Potter /by JK Rowling`
+1. Test case: `find -r POT`
 
-   Expected: The rating for book titled "Harry Potter" by JK Rowling will be shown.
+   Expected: Ratings of books with title that contains the keyword (case-insensitive) will be listed.
    
 2. Other incorrect commands to try:
-   * `find -r`: book title and/or author fields left empty
-   * `find -r x`: where x is a book that has not been rated
+   * `find -r`: keyword field left empty
    
    Expected: No rating is found and listed. A message with error details will be prompted.
