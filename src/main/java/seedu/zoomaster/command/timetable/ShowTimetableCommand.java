@@ -187,7 +187,7 @@ public class ShowTimetableCommand extends Command {
         String currentTimeMessage = "<----" + "Current Time: " + LocalTime.now().format(hoursAndMinutes)
                 + "---->" + "\n";
 
-        return "\u001b[34m" + currentTimeMessage + "\u001b[0m";
+        return "\u001b[33m" + currentTimeMessage + "\u001b[0m";
     }
 
     public static String getHighlighBoxUpperMessage() {
