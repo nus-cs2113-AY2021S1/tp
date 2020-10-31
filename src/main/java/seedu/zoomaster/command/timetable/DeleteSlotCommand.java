@@ -21,6 +21,7 @@ public class DeleteSlotCommand extends Command {
      * @param command The user input command.
      * @throws ZoomasterException if input command is invalid.
      */
+    //@@ xingrong123
     public DeleteSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(DEL_KW);
 
@@ -35,17 +36,18 @@ public class DeleteSlotCommand extends Command {
         moduleCode = deleteCommands[0];
 
         try {
-            String something = deleteCommands[1];
-            if (something.trim().compareTo("bookmarks") == 0) {
+            String bookmarksOrSlotCommand = deleteCommands[1];
+            if (bookmarksOrSlotCommand.trim().compareTo("bookmarks") == 0) {
                 deleteBookmarks = true;
             } else {
-                slotIndex = Integer.parseInt(something) - 1;
+                slotIndex = Integer.parseInt(bookmarksOrSlotCommand) - 1;
                 if (deleteCommands[2].trim().compareTo("bookmarks") == 0) {
                     deleteBookmarks = true;
                 }
             }
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             // No slot index or delete bookmark keyword provided.
+            // The application will proceed with deleting the module.
         } catch (NumberFormatException e) {
             throw new ZoomasterException(ZoomasterExceptionType.NON_INTEGER_INPUT);
         }
@@ -53,16 +55,15 @@ public class DeleteSlotCommand extends Command {
     }
 
     /**
-     * Deletes either module or slot depending on the deleteBookmarks flag. // ADD MORE COMMENTS
+     * Deletes either module or slot depending on the deleteBookmarks flag.
      *
-     * @param bookmarks The list of bookmarks
-     * @param timetable The timetable
-     * @param ui The user interface
-     * @throws ZoomasterException INVALID_SLOT_NUMBER // ADD MORE COMMENTS
+     * @param bookmarks The list of bookmarks.
+     * @param timetable The timetable.
+     * @param ui The user interface.
+     * @throws ZoomasterException if the slot number provide is invalid.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui)
-            throws ZoomasterException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         String message = "";
         if (!timetable.moduleExists(moduleCode)) {
             message += "module does not exists\n";

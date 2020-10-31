@@ -55,7 +55,7 @@ public class Parser {
             command = new LaunchNowCommand();
         } else if (input.startsWith(ChangeModeCommand.MODE_KW)) {
             command = new ChangeModeCommand(input);
-        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+        } else if (input.compareToIgnoreCase(ClearCommand.CLEAR_KW) == 0) {
             command = new ClearCommand();
         } else if (input.startsWith(HelpCommand.HELP_KW)) {
             command = new HelpCommand(input);

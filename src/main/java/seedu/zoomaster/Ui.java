@@ -281,7 +281,7 @@ public class Ui {
     }
 
     private void printInvalidUrl() {
-        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.'"
+        printRedWithBorder("Invalid URL" + NEW_LINE + "URL must start with either 'www.'. 'http://'"
                 + " or 'https://' and have no spaces" + NEW_LINE);
     }
 
@@ -342,16 +342,16 @@ public class Ui {
     }
 
     public void printHelpMessage(String input) {
-        assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2";
+        assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (input.equals(ClearCommand.CLEAR_KW)) {
             printYellowWithBorder("Clears the command line screen" + NEW_LINE);
         } else if (input.equals(ExitCommand.EXIT_KW)) {
             printYellowWithBorder("Exits the application. What else did you expect ^_^" + NEW_LINE);
         } else if (input.equals(ChangeModeCommand.MODE_KW)) {
             System.out.println(LINE);
-            printYellow("Changes the current mode. You can change to either Bookmark "
-                    + "or Timetable mode" + NEW_LINE);
-            printCyan("Format: mode {bookmark/timetable}" + NEW_LINE);
+            printYellow("Changes the current mode. You can change to Bookmark, "
+                    + "Timetable or Planner mode" + NEW_LINE);
+            printCyan("Format: mode {bookmark/timetable/planner}" + NEW_LINE);
             System.out.println(LINE);
         } else if (input.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
             printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
@@ -400,7 +400,7 @@ public class Ui {
                 System.out.println(LINE);
                 printYellow("Adds modules and their timeslots to the timetable " + NEW_LINE);
                 printCyan("Format: add {module} {slot description} {day of the week} "
-                        + "{time interval} {URL}" + NEW_LINE);
+                        + "{start time} {end time} {URL}" + NEW_LINE);
                 printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
                 printYellow("You can also add the module first then add the slot afterwards, "
                         + "then add the bookmark to that slot. " + NEW_LINE);
@@ -481,7 +481,7 @@ public class Ui {
                 System.out.println(LINE);
                 printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
                 printCyan("Format: add {module} {slot description} {day of the week} "
-                        + "{time interval} {URL}" + NEW_LINE);
+                        + "{start time} {end time} {URL}" + NEW_LINE);
                 printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
                 printYellow("You can also add the module first then add the slot afterwards, "
                         + "then add the bookmark to that slot. " + NEW_LINE);
@@ -508,7 +508,7 @@ public class Ui {
                 printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
 
                 printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
-                printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
+                printCyan("Format: show {module} bookmarks" + NEW_LINE);
                 printGreen("eg. show CS2113" + NEW_LINE);
                 printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
                 System.out.println(LINE);
@@ -533,7 +533,7 @@ public class Ui {
 
     private void printUnknownDayMessage() {
         printRedWithBorder("Unknown day input" + NEW_LINE
-              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday" + NEW_LINE);
+              + "Valid days: mon, tue, wed, thu, fri, sat, sun" + NEW_LINE);
     }
 
     private void printEmptyTimetableMessage() {

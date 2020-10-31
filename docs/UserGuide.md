@@ -173,7 +173,7 @@ Format: clear
 <br/><br/> 
 <a name="launchnow"></a>  
 #### Launch bookmarks of current lesson: `launch now` (Xing Rong)
-You can launches the bookmarks of a current lesson slot in your timetable. 
+You can launch the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, allowing you to launch your zoom session ahead of time.
   
 ```
@@ -183,7 +183,7 @@ Format: launch now
 <br/><br/> 
 <a name="clear"></a>  
 #### 2.1.4. Clear screen: `clear`
-This feature helps you clears the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
+This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
 ```
 Format: clear
 ```
@@ -196,7 +196,7 @@ You can exit the application by using the exit command.
 ```
 Format: exit    
 ```
->You should see this message on exit
+>You should see this message on exit  
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
@@ -220,13 +220,14 @@ Adds a URL bookmark with a description.
 ```
 Format: add {DESCRIPTON} {URL}
 ``` 
-* The `DESCRIPTION` can only contain one word (no whitespace inside).  
-* The `URL` has to start with `www.` or `https://`.  
-* There should be strictly one space between the `DESCRIPTION` and `URL`.    
+* The `DESCRIPTION` must only contain one word (no whitespace inside).  
+* The `URL` has to start with `www.`, `http://` or `https://`.  
+* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link.  
   
 Example of usage:
-* `add cs2113t-website www.cs2113t.nus.edu.sg/`  
-* `add cs2113t-website https://cs2113t.nus.edu.sg/`  
+* `add google www.google.com/`  
+* `add example http://example.com`  
+* `add cs2113t-website https://nus-cs2113-ay2021s1.github.io/website/`  
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
@@ -302,18 +303,18 @@ Example of usage:
 * `show wed`
 * `show today`
 
->You will see an empty list message if your timetable is empty
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true)
->You will see your entire timetable if you use `show` input
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)
->You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)
->You will see the timetable for today if you use `show today` input.
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)
->Example of "current time" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)
->Example of "lesson now" indicator
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)
+>You will see an empty list message if your timetable is empty  
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true)  
+>You will see your entire timetable if you use `show` input  
+![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png)  
+>You will see the timetable of your selected day if you use `show {day}` input. This example uses wednesday as its selected day input.  
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true)  
+>You will see the timetable for today if you use `show today` input.  
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true)  
+>Example of "current time" indicator  
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true)  
+>Example of "lesson now" indicator  
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true)  
 
 
 
@@ -361,7 +362,6 @@ Format (chaining commands):
 * add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}, {DESCRIPTION} {URL}, ...
 ```  
 
-* You must insert **a space** between each parameter.
 * Multiple bookmarks can be added to a module and a slot.
   * To add another bookmark to an existing module, you have to enter the module code of the 
     existing module in the timetable. 
@@ -374,7 +374,13 @@ Format (chaining commands):
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
     which is valid and not a duplicate will then be added to the existing `cs2113t` module.
 * The chaining of commands only performs on one module which is {MODULE}.    
-  
+* The `DESCRIPTION` must only contain one word (no whitespace inside).  
+* The `URL` has to start with `www.`, `http://` or `https://`.  
+ 
+* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link. 
+* Parameter `DAY` takes three letter abbreviations of days in a week
+  * The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**
+
 Example of usage:   
 
 * Adding a module  
@@ -406,10 +412,14 @@ output:
 input:  
 ![](./images/addchaincommandinputnew.PNG)  
 output:  
+(The indentation of each line of the output shows the relationships between the components.
+In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
+higher than the previous line. This means that the bookmark is added to that lecture slot.
+Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
+which suggests that the bookmark is added to the module CG2271.)  
 ![](./images/addchaincommandoutput.PNG)  
 result:  
 ![](./images/addresult.PNG)  
-
 
 More examples:
 * `add cs2113t`  
@@ -422,7 +432,7 @@ More examples:
 
 <br/><br/> 
 <a name="deletetimeslot"></a>
-#### Delete module, time slot and bookmarks: `delete`   (Xing Rong)
+#### Delete module, time slot and bookmarks: `delete` (Xing Rong)
 Deletes module, time slot or bookmarks.
 ```
 Format (deleting a module): 

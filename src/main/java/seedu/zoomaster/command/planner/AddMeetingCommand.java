@@ -50,7 +50,7 @@ public class AddMeetingCommand extends AddSlotCommand {
     @Override
     protected String create(String command, Module module, Timetable timetable) throws ZoomasterException {
         String message = "";
-        List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
+        List<String> slotAndBookmark = Arrays.asList(command.trim().split("\\s+"));
         if (isAddModuleBookmark(slotAndBookmark)) {
             message = addBookmarkToModule(module, slotAndBookmark);
         } else {
