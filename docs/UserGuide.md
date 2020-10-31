@@ -72,7 +72,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 7. Try keying in `/help` and press <kbd>Enter</kbd>!
 
 ## 3. Features 
-There are 17 features available in Nav@NUS. The following are instructions for using the features.
+There are 18 features available in Nav@NUS. The following are instructions for using the features.
 
 >Notes about command format:  
 >
@@ -243,7 +243,7 @@ These are the steps to follow:
 This command lists out all dining outlets available within a chosen faculty.
 
 The format of this command is as follows:<br> 
-<code>/dine <strong>faculty</strong></code> <br>
+<code>/dine <strong>keyword</strong></code> <br>
 
 #### Examples of Usage
 **<u>Example 1</u>**<br>
@@ -261,6 +261,11 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 
 1. Type <code>/dine <strong>sci</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dine2.png" alt="output" width=600><br>
+
+>Notes about the `/dine` feature:
+>
+> * It is possible for the feature to return results from multiple faculties if the keyword used for the search is not specific to the desired faculty.<br>
+> *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
 
 ### 3.9. Search for specific dining outlet: ```/dineinfo```
