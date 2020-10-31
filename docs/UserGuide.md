@@ -9,13 +9,12 @@ No. |Content|
 1.|[Set-up](#setUp)
 2.|[Features Overview](#featuresOverview)
 3.|[Features Documentation](featuresDoc)
-3.1|    [Manual Tracker](#manualTracker)
-3.1.1|      ROFL
-3.2|    [Entry Tracker](#entryTracker)
-3.3|    [Recurring Tracker](#recurringTracker)
-3.4|    [Finance Tools](#financeTools)
-3.5|    [Goal Tracker](#goalTracker)
-3.6|    [Save Manager]()
+3.1|    &emsp;[Manual Tracker](#manualTracker)
+3.2|    &emsp;[Entry Tracker](#entryTracker)
+3.3|    &emsp;[Recurring Tracker](#recurringTracker)
+3.4|    &emsp;[Finance Tools](#financeTools)
+3.5|    &emsp;[Goal Tracker](#goalTracker)
+3.6|    &emsp;[Save Manager]()
 4.|[Commands Summary](#commandsSummary)
 
 # 1. <a name = setUp> </a> Set-up
@@ -283,8 +282,17 @@ Users can manage lists of entries, which are known as ledgers. Each list represe
     1. Use Manual Tracker to create a ledger of date 20-10-03
     2. Open the ledger of date 20-10-03 
     3. Use Entry Tracker to create entries to record the transactions for that particular date.
+    
+No. |Content|
+----|------|
+3.2.1|[Add Ledger](#manualTracker1)
+3.2.2|[Remove Ledger](#manualTracker2)
+3.2.3|[Open Ledger](#manualTracker3)
+3.2.4|[Show Ledger List](#manualTracker4)
+3.2.5|[Show commands](#manualTracker5)
+3.2.6|[Exit](#manualTracker6)
 
-## 3.2.1 Manual Tracker 1: Add ledger
+## <a name = manualTracker1> </a> 3.2.1 Manual Tracker 1: Add ledger
 Add a ledger to the record, representing a date.
 
 >Syntax
@@ -326,7 +334,7 @@ Param Type| Param | Param Format
     ____________________________________________________________
     >>>
     
-## 3.2.2 Manual Tracker 2: Remove ledger
+## 3.2.2 <a name = manualTracker2> </a> Manual Tracker 2: Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
 This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
@@ -379,7 +387,7 @@ Param Type| Param | Param Format
     ____________________________________________________________
     >>>
     
-##  3.2.3 Manual Tracker 3: Open ledger
+##  3.2.3 <a name = manualTracker3> </a> Manual Tracker 3: Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
 This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
@@ -419,7 +427,7 @@ Param Type| Param | Param Format
     ____________________________________________________________
     >>>
     
-## 3.2.4 Manual Tracker 4: Show ledger list
+## 3.2.4 <a name = manualTracker4> </a> Manual Tracker 4: Show ledger list
 Shows the record of ledgers that has been added.
 
 >Syntax
@@ -446,7 +454,7 @@ Shows the record of ledgers that has been added.
     | 2              | 2020-05-04     |
     - - - - - - - - - - - - - - - - -
 
-## 3.2.5 Manual Tracker 5: Print command list
+## 3.2.5 <a name = manualTracker5> </a> Manual Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -479,7 +487,7 @@ Prints available commands that users can enter in for manualTracker.
     | 5.             | exit to main menu  | exit                          |
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-## 3.2.6 Manual Tracker 5: Exit to Main Menu
+## 3.2.6 <a name = manualTracker6> </a> Manual Tracker 6: Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
 
 >Syntax
@@ -574,8 +582,18 @@ Entries are specified by the following parameters:
         Entry 2: Salary : $3000
     
     From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
+    
+No. |Content|
+----|------|
+3.3.1|[Add Entry](#entryTracker1)
+3.3.2|[Edit Entry](#entryTracker2)
+3.3.3|[Remove Ledger](#entryTracker3)
+3.3.4|[Show Entry List](#entryTracker4)
+3.3.5|[Show commands](#entryTracker5)
+3.3.6|[Show Categories](#entryTracker6)
+3.3.7|[Exit](#entryTracker7)
 
-## 3.3.1 Entry Tracker 1: Add entry
+## 3.3.1 <a name = entryTracker1> </a> Entry Tracker 1: Add entry
 Add an entry to the ledger record.
 
 __Note:__
@@ -625,7 +643,7 @@ Param Type| Param | Param Format
     ____________________________________________________________
     >>>
 
-## 3.3.2 Entry Tracker 2: Edit entry
+## <a name = entryTracker2> </a> 3.3.2 Entry Tracker 2: Edit entry
 Add an entry to the ledger record.
 Users only need specify the param to edit, there is no need to fill out all params.
 
@@ -684,7 +702,7 @@ Param Type| Param | Param Format
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## 3.3.3 Entry Tracker 3: Remove entry
+## <a name = entryTracker3> </a> 3.3.3 Entry Tracker 3: Remove entry
 Remove a specified entry from the record, referenced by id on the list.
 
 >Syntax
@@ -748,7 +766,7 @@ Param Type| Param | Param Format
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## 3.3.4 Entry Tracker 4: Show entry list
+## <a name = entryTracker4> </a> 3.3.4 Entry Tracker 4: Show entry list
 Shows the record of entries that has been added.
 
 >Syntax
@@ -780,7 +798,7 @@ Shows the record of entries that has been added.
     | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## 3.3.5 Entry Tracker 5: Print command list
+## <a name = entryTracker5> </a> 3.3.5 Entry Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -818,7 +836,7 @@ Prints available commands that users can enter in for manualTracker.
     | 6.             | exit to manual tracker  | exit                                                       |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## 3.3.6 Entry Tracker 6: Print categories
+## <a name = entryTracker6> </a> 3.3.6 Entry Tracker 6: Print categories
 Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
 
 >Syntax
@@ -857,7 +875,7 @@ Prints expenditure category shortcuts that the user can input in entry creation/
     | oth            | OTHERS         |
      - - - - - - - - - - - - - - - - -
     
-## 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
+## <a name = entryTracker7> </a> 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
 Exit to Manual tracker where users can choose another ledger.
 
 >Syntax
