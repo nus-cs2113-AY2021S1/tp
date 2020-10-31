@@ -195,12 +195,12 @@ on whether the user searches for tasks or events, the condition will check for t
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of tasks stored in the program.
-![print_tasks_command_sd](../images/PrintTasksCommand_SD.png)
+![print_tasks_command_sd](images/PrintTasksCommand_SD.png)
 
 ### Print events feature
 This feature is facilitated by `PrintEventsCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print the list of events stored in the program.
-![print_events_command_sd](../images/PrintEventsCommand_SD.png)
+![print_events_command_sd](images/PrintEventsCommand_SD.png)
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
@@ -239,8 +239,8 @@ Note: It uses `getEarliestDeadline()` function to get the earliest ordinary dead
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
 If no corresponding items, the functions will return null.
 
-### Printing countdown feature
-The feature is facilitated by `CountdownCommand`.
+### Print countdown feature
+This feature is facilitated by `CountdownCommand`.
 
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
@@ -248,6 +248,37 @@ The following sequence diagram shows how the `execute()` operation works when th
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
 
+
+### Saving data feature
+
+This feature is facilitated by `Storage` class and saves the data input by the users automatically into file `tasks.txt` in `/data` directory. 
+
+The file `tasks.txt` is loaded when initializing the program by calling the function `readFromFile()`.
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_load_data_SD.jpg" alt="" width="500"/><br/>
+
+The local file is updated every time when the user adds or deletes and item, 
+or changes the attributes of the item by calling the function `writeToFile()`.
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_store_data_SD.jpg" alt="" width="500"/><br/>
+
+Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
+directory, and a new text file.
+
+
+
+### Check the validity of a module code
+This feature is facilitated by `ModuleChecker` class and `NusModule` class.
+
+The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
+The `ModuleChecker` class has a *generateNusModsMap* which generates a HashMap<String, NusModule>. This is achieved by reading
+the JSON file from the NUS Mod website and parser it into a list of Module objects.
+
+After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
+valid, FALSE otherwise.
+
+The following sequence diagram further illustrates the above process. 
+![ModuleChecker_SD]()
 
 ## Documentation
 
@@ -302,6 +333,40 @@ There are two ways to run tests.
 
 ### DevOps guide
 
+### 1. Build automation
+This project uses Gradle for **build automation and dependency management.**
+**You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
+
+Given below are how to use Gradle for some important project tasks.
+
+* `clean`: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).
+e.g. `./gradlew clean`
+
+* `shadowJar`: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, if the current file is outdated.
+e.g. `./gradlew shadowJar`
+
+* `run`: Builds and run the program.
+  `runShadow`: Builds the application as a fat JAR, and then runs it.
+    
+* `checkstyleMain`: Runs the code style check for the main code base.
+  `checkstyleTest`: Runs the code style check for the test code base.
+  
+* `test`: Runs all tests.
+    * `./gradlew test` - Runs all tests
+    * `./gradlew clean test` - Cleans the project and runs tests
+
+### 2. Continuous integration (CI)
+This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files 
+(in the `.github/workflows` folder). No further setting up required.
+
+### 3. Make a release
+Here are the stpes to create a new release after you have implemented new features.
+
+1. Update the version number in `Main.java`.
+1. Generate a fat JAR file using Gradle (i.e. `gradle shadow`).
+1. Tag the repo with the version number e.g: `V2.0`.
+1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
+1. Upload the JAR file you created.
 
 ## Appendix A: About the product 
 This section provides a description of the product.
@@ -351,7 +416,14 @@ This section describes the user stories considered when implementing the feature
 
 ## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The program should work on any _mainstream_ OS as long as it has **Java 11.0.8** or above installed.
+1. The program should be able to hold up to 1000 tasks without a noticeable slowness in performance for typical usage.
+1. A user with an above average typing speed for regular English text (e.g not code, not system admin commands) should 
+find it handy to use command lines rather than using the mouse.
+1. The program should be able to detect all NUS modules, provided there is proper connection established between the program
+and the NUS Mods API.   
+
+{Give non-functional requirements; More to add}
 
 ## Appendix D: Glossary
 

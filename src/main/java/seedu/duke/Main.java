@@ -24,11 +24,8 @@ public class Main {
         ui = new Ui();
         storage = new Storage(filePath);
         calendarList = new CalendarList();
-        try {
-            storage.readFromFile(calendarList);
-        } catch (FileNotFoundException e) {
-            Ui.printFileNotFoundErrorMessage();
-        }
+        storage.readFromFile(calendarList);
+
     }
 
     /**
