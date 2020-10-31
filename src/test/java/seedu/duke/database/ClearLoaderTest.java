@@ -1,6 +1,8 @@
 package seedu.duke.database;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.FileEmptyException;
+import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
@@ -41,7 +43,13 @@ public class ClearLoaderTest {
         WritingList.clearAll(writings);
         initializeTestDatabaseForWriting();
         assertEquals(5, WritingList.getWritingSize());
-        writings.removeID(12);
+        try {
+            writings.removeID(12);
+        } catch (FileEmptyException e) {
+            System.out.println("Empty file of Writing!");
+        } catch (ItemNotFoundedException e) {
+            System.out.println("Item not found in the writing archive");
+        }
         assertEquals(0, writings.getWritingSize());
     }
 
@@ -71,5 +79,12 @@ public class ClearLoaderTest {
         initializeTestDatabase();
         String userInput = "clear type\\word item\\-non dfad";
         assertThrows(WrongClearCommandFormat.class, () -> ClearLoader.clearItems(userInput, writings, wordList));
+    }
+
+    @Test
+    public void initializeAnEmptyWritingList_FileEmptyExceptionThrown() {
+        WritingList.clearAll(writings);
+        String userInput = "clear type\\writing item\\0";
+        assertThrows(NullPointerException.class, () -> ClearLoader.clearWritingWithID("0", writings));
     }
 }
