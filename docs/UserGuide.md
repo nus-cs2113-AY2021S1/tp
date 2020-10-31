@@ -400,7 +400,7 @@ Format: `suggestion`
 
 ### Printing timeline
 
-If you want to see your calendar items in timeline format, you can always use the personalised calendar feature. 
+If you want to see your calendar items in a timeline format, you can always use the personalised calendar feature. 
 There are four kinds of personalised calendar that you can print: default calendar, weekly calendar, monthly calendar, 
 and calendar before a specific date you choose.
 

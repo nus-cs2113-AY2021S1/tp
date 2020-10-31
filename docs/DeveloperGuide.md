@@ -297,7 +297,7 @@ We use Markdown for writing documentation.
 - Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
 
 #### Editing diagrams
-- See the [[se-edu/guides] Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) to find out how to create and update the UML diagrams in the developer guide.
+- We use [diagrams.net](https://www.diagrams.net/) to draw UML diagrams used in this document.
 
 #### Converting a document to the PDF format
 - We use Google Chrome for converting documentation to PDF format.  
