@@ -237,9 +237,7 @@ be created through `StorageBuilder`, and this is enforced by disabling the publi
 #### Storage <a name = "Sstorage"> </a>
 
 `Storage` class handles every operation that involves data storage, including saving, loading, and exporting of 
-application data. As such, it depends on classes whose data should be saved, which is shown in the diagram below.
-
-![StorageClassDependency](https://user-images.githubusercontent.com/15065550/97547894-9e2f9880-198b-11eb-8463-ac4c8f67ad20.png)
+application data. 
 
 ##### Storing data 
 
@@ -253,9 +251,9 @@ shown in the figure below.
 ```
 Maths
 ├── Algebra
-│   ├── results.json
+│   ├── subjectResults.json
 │   └── flashcards.json
-├── results.json
+├── topicResults.json
 └── tasks.txt
 ```
 
@@ -263,17 +261,17 @@ This class also stores the data in a cascading manner, meaning that when a call 
 under the topics will be saved. Similarly, when a call to save subjects is made, all the data under the subjects
 including topics will be saved. The behavior mentioned is shown in the diagram below.
 
-![StorageSaveSubjects](https://user-images.githubusercontent.com/15065550/97545777-b356f800-1988-11eb-816d-7d9b343c014f.png)
+![StorageSaveSubjects](https://user-images.githubusercontent.com/15065550/97779044-cdcfd380-1b38-11eb-8e5e-a4f258a726e5.png)
 
-![StorageSaveTopics](https://user-images.githubusercontent.com/15065550/97545783-b651e880-1988-11eb-888e-c5dd6ffccb1a.png)
+![StorageSaveTopics](https://user-images.githubusercontent.com/15065550/97779045-ce686a00-1b38-11eb-821f-1b468dcb996e.png)
 
 ##### Loading data
 
 The loading of data follows a similar cascading manner as saving, as can be seen in the diagram below.
 
-![StorageLoadSubjects](https://user-images.githubusercontent.com/15065550/97545786-b7831580-1988-11eb-828c-ded78ddc150b.png)
+![StorageLoadSubjects](https://user-images.githubusercontent.com/15065550/97779041-cb6d7980-1b38-11eb-9068-1b54a561dad3.png)
 
-![StorageLoadTopics](https://user-images.githubusercontent.com/15065550/97545789-b94cd900-1988-11eb-8882-544bc47c1f4e.png)
+![StorageLoadTopics](https://user-images.githubusercontent.com/15065550/97779042-cc9ea680-1b38-11eb-9e06-f36274dd4286.png)
 
 Before returning topics and subjects, the methods sort them in alphabetical order to let the users locate their 
 subjects or topics more easily. 
