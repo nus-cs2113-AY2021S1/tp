@@ -112,10 +112,10 @@ Better days are coming, they are called Saturday and Sunday.
 What would you like to do with Quotesify?
 ```
 
-*`Note: If you have added a quote before, the quote printed will be randomized.`*
+*Note: If you have added a quote before, the quote printed will be randomized.*
 
 ## 3.0 Design
-*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
+*Note: All UML diagrams in this guide are stored in the images/ directory.*
 
 ### 3.1 Architecture
 ![Architecture Diagram](images/Architecture_Diagram.png)
@@ -199,7 +199,7 @@ On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
 
 ## 4.0 Implementation
-*`Note: All UML diagrams in this guide are stored in the images/ directory.`*
+*Note: All UML diagrams in this guide are stored in the images/ directory.*
 
 ### 4.1 Feature: Book Management
 Given below is the class diagram for classes related to Book Management in Quotesify:
@@ -439,24 +439,32 @@ Given below is the sequence diagram for adding rating to a book:
 which extends the `AddCommand` class. The switch statement in the `execute()` method to decide the item that the user
 is adding is not shown in the diagram.
 * The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
-* In the `addRating()` method, if the user input such as book title, author or rating score is missing
+* In the `addRating()` method, if the user input such as book number or rating score is missing
 , a message will be printed to inform the user and the method is returned.
-* There will also be checks implemented to check if the rating score is within range, if the book to be rated exists
-in Quotesify and if the book has been rated before. This is done by checking the list of books in Quotesify.
-If all these conditions are met, the book will be rated.
+* There will also be checks implemented by the `RatingParser` to check if the rating score is within range,
+if the book to be rated exists in Quotesify and if the book has been rated before.
+This is done by checking the list of books in Quotesify. If all these conditions are met, the book will be rated.
 * When rating a book, the attribute *rating* of the book is set to the rating score. A rating object containing the
 book details and rating score will also be created and stored in the rating list.
 This list of ratings will be used when listing or finding ratings.
 
 ##### Design Consideration
-* Saving the ratings in a Rating List
-    * Pros: Helps in listing and finding ratings as not all books are rated.
-    * Cons: Increases memory usage.
-* Using both book title and author to identify a rating instead of just book title
-    * Pros: Allows books with the same title but different author to be rated.
+* Aspect: Saving the ratings in a Rating List as compared to just only using the Book List
+    * Alternative 1 (current choice): Saving the ratings in a Rating List.
+        * Pros: Helps in listing and finding ratings as not all books are rated.
+        * Cons: Increases memory usage.
+    * Alternative 2: Saving the ratings only in the Book List.
+        * Pros: Less memory usage.
+        * Cons: May be slower as not all books are rated and the list is not sorted according to rating score.
+
+* Aspect: Using both book title and author to identify a rating instead of just book title
+    * Alternative 1 (current choice): Using both book title and author to identify a rating.
+        * Pros: Allows books with the same title but different author to be rated.
+    * Alternative 2: Using only book title to identify a rating.
+        * Cons: Books with same title but different author will not be rated.
 
 #### 4.5.2 Find ratings
-The *find ratings* feature will search if the rating for a particular book exists in Quotesify
+The *find ratings* feature will search for books with title that contains the specified keyword
 and print details about the rating.
 
 Given below is the sequence diagram for finding ratings:
@@ -467,11 +475,10 @@ Given below is the sequence diagram for finding ratings:
 which extends the `FindCommand` class. The switch statement in the `execute()` method to decide the item that the
 user is finding is not shown in the diagram.
 * The list of ratings will be retrieved from the `ListManager` class which stores all the different lists in Quotesify.
-* In the `findRating()` method, if the user input such as the book to search for is missing, a message will be printed
+* In the `findRating()` method, if the keyword to search for is missing, a message will be printed
 to inform the user and the method is returned.
-* The list of ratings will be looped to see if the rating exists for the particular book.
-* Since the ratings of book is unique, the loop will be broken when a rating is found and details of the rating
-will be printed to the user.
+* The list of ratings will be looped to see if ratings exists for books with title containing the specified keyword.
+* The details of the ratings found will be printed to the user.
 
 ## Appendix: Requirements
 
