@@ -25,6 +25,7 @@ import java.util.Scanner;
 import static org.fusesource.jansi.Ansi.Color.BLACK;
 import static org.fusesource.jansi.Ansi.Color.BLUE;
 import static org.fusesource.jansi.Ansi.Color.CYAN;
+import static org.fusesource.jansi.Ansi.Color.MAGENTA;
 import static org.fusesource.jansi.Ansi.Color.GREEN;
 import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.Color.WHITE;
@@ -80,11 +81,11 @@ public class Ui {
         if (Parser.getProgramMode() == 0) {
             System.out.print(ansi().fg(GREEN).a("[Main Menu] Input: ").reset());
         } else if (Parser.getProgramMode() == 1) {
-            System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
+            System.out.print(ansi().fg(CYAN).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 3) {
-            System.out.print(ansi().fg(WHITE).a("[Planner mode] Input: ").reset());
+            System.out.print(ansi().fg(MAGENTA).a("[Planner mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
