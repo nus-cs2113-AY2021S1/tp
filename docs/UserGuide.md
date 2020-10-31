@@ -144,30 +144,30 @@ Here are some commonly used `browse` commands to get you started. Feel free to e
 
 <br/>
 
-Example of usage: `browse -s name -o dsc`
+Example of usage: `browse -s name -o asc`
 
 The expected outcome:
 ```
-1. .hack//Gift
-2. .hack//Legend Of The Twilight
-3. .hack//Liminality
-4. .hack//Sign
-5. 3x3 Eyes
-6. A Chinese Ghost Story
-7. ARIA The ANIMATION
-8. Abashiri Ikka
-9. Ace wo Nerae!
-10. Ace wo Nerae! 2
-11. Ace wo Nerae: Final Stage
-12. After War Gundam X
-13. Agatha Christie's Great Detectives Poirot and Marple
-14. Agent Aika
-15. Ah! My Goddess: The Movie
-16. Ai Yori Aoshi
-17. Ai Yori Aoshi: Enishi
-18. Aim for the Ace! (1979)
-19. Air
-20. Air Master
+1.   .hack//Gift                                         [Id: 413]
+2.   .hack//Legend Of The Twilight                       [Id: 267]
+3.   .hack//Liminality                                   [Id: 268]
+4.   .hack//Sign                                         [Id: 30 ]
+5.   3x3 Eyes                                            [Id: 269]
+6.   A Chinese Ghost Story                               [Id: 284]
+7.   ARIA The ANIMATION                                  [Id: 436]
+8.   Abashiri Ikka                                       [Id: 274]
+9.   Ace wo Nerae!                                       [Id: 280]
+10.  Ace wo Nerae! 2                                     [Id: 283]
+11.  Ace wo Nerae: Final Stage                           [Id: 281]
+12.  After War Gundam X                                  [Id: 72 ]
+13.  Agatha Christie's Great Detectives Poirot and Ma... [Id: 213]
+14.  Agent Aika                                          [Id: 333]
+15.  Ah! My Goddess: The Movie                           [Id: 273]
+16.  Ai Yori Aoshi                                       [Id: 35 ]
+17.  Ai Yori Aoshi: Enishi                               [Id: 360]
+18.  Aim for the Ace! (1979)                             [Id: 282]
+19.  Air                                                 [Id: 81 ]
+20.  Air Master                                          [Id: 199]
 Browsing Page: 1
 ```
 
