@@ -1,5 +1,6 @@
 package seedu.financeit.utils.storage;
 
+import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -14,13 +15,12 @@ import java.util.Scanner;
 
 
 public class SaveManager {
-    private static final String fullPath = "./data/backup/names.txt";
-    private static final String dirPath = "./data/backup";
+    public static final String fullPath = "./data/backup/names.txt";
+    public static final String dirPath = "./data/backup";
     private static String prompt = "";
     private static boolean menu = true;
-    private static boolean load = false;
 
-    public static boolean main() {
+    public static void main() {
         while (true) {
             if (menu == true) {
                 helpMenu();
@@ -51,7 +51,7 @@ public class SaveManager {
                 menu = true;
                 break;
             case "exit":
-                return load;
+                return;
             default:
                 prompt = "Invalid Command";
             }
@@ -112,7 +112,7 @@ public class SaveManager {
         }
     }
 
-    private static void addSave(CommandPacket packet) {
+    public static void addSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
@@ -139,13 +139,16 @@ public class SaveManager {
         }
     }
 
-    private static void loadSave(CommandPacket packet) {
+    public static void loadSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
             String desAuto = AutoTrackerSaver.getInstance().fullPath;
             String desGoal = GoalTrackerSaver.getInstance().fullPath;
             String desManual = ManualTrackerSaver.getInstance().fullPath;
+            AutoTrackerSaver.getInstance().buildFile();
+            GoalTrackerSaver.getInstance().buildFile();
+            ManualTrackerSaver.getInstance().buildFile();
             File file = new File(fullPath);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
@@ -165,8 +168,9 @@ public class SaveManager {
 
                     sourceChannel.close();
                     destChannel.close();
-                    load = true;
-                    prompt = name + " has been loaded, restart for changes to take effect!";
+                    clear();
+                    Financeit.load();
+                    prompt = name + " has been loaded!";
                     return;
                 }
             }
@@ -176,7 +180,42 @@ public class SaveManager {
         }
     }
 
+<<<<<<< HEAD
     private static void deleteSave(CommandPacket packet) {
 
+=======
+    public static void clear() {
+        GoalTrackerSaver.clear();
+        AutoTrackerSaver.clear();
+        ManualTrackerSaver.clear();
+    }
+
+    public static void deleteSave(CommandPacket packet) {
+        try {
+            String name = packet.getParam("/name");
+            StringBuilder nameList = new StringBuilder();
+            File file = new File(fullPath);
+            Scanner scanner = new Scanner(file);
+            prompt = name + " is not found!";
+            while (scanner.hasNext()) {
+                String saveString = scanner.nextLine();
+                if (!saveString.equals(name)) {
+                    nameList.append(saveString + "\n");
+                } else {
+                    String path = dirPath + "/" + name;
+                    Files.deleteIfExists(Paths.get(path + "_gt.txt"));
+                    Files.deleteIfExists(Paths.get(path + "_mt.txt"));
+                    Files.deleteIfExists(Paths.get(path + "_at.txt"));
+                    prompt = name + " has been removed!";
+                }
+            }
+            FileWriter fileWriter = new FileWriter(fullPath, false);
+            fileWriter.write(nameList.toString());
+            fileWriter.close();
+
+        } catch (Exception e) {
+            prompt = e.toString();
+        }
+>>>>>>> upstream/master
     }
 }

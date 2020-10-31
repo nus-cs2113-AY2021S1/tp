@@ -1,6 +1,12 @@
 # FinanceIt: A finance management application with a CLI Interface.
 FinanceIt is an all-in-one desktop application that handles the finance tracking needs of university students who are comfortable with a CLI interface.
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
+## Setting up for Testers (IMPORTANT)
+
+Prerequisites: A computer
+1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
+1. Save the executable file in your preferred folder.
+1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 ## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
@@ -54,32 +60,116 @@ the saveStates folder. This folder will be automatically created when you first 
 
 > Example: 
 
-    example
+       ||====================================================================||
+       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+       ||(100)==================|     Welcome to       |================(100)||
+       ||||$||        ~         '------========--------'                ||$||||
+       ||<< |        |$|              || ____ ||                         | >>||
+       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+       ||<<|        || ||           || <||  >)  ||                        |>>||
+       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||====================================================================||>||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+    ||(100)==================|     FinanceIt!       |================(100)||>||
+    ||||$||        ~         '------========--------'                ||$||||>||
+    ||<< |        |$|              || ____ ||                         | >>||)||
+    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+    ||<<|        || ||           || <||  >)  ||                        |>>||=||
+    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+    ||>>|  12                     *||(___)_||*   1989                  |<<||
+    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+    ||||$|                 ~| A finanace tracking app |~               |$||||
+    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+    ||====================================================================||
+    Status: 
+    =====================================================================================================
+    = Welcome to Main Menu                                                                              =
+    =====================================================================================================
+    | No.            |  Feature                                           |  Commands                    |
+    -----------------------------------------------------------------------------------------------------
+    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [3]            |  Account Summary                                   |  acc                         |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [4]            |  Goals Tracker                                     |  goal                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [5]            |  Financial Calculator                              |  financial                   |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [6]            |  Save Manager                                      |  saver                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [7]            |  Toggle Log On or Off                              |  logger                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [8]            |  Quit The Program                                  |  exit                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ____________________________________________________________
+    >>> exit
 
-## Main Menu 2: 
-Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
-the saveStates folder. This folder will be automatically created when you first run the program.
+## Main Menu 2: Logger
+Toggle Logger mode. Developers can toggle it on view more system messages and logs that are otherwise hidden from view.
 
 >Syntax
 
-    exit
+    logger
 
 > Example: 
 
-    example
-    
-## Main Menu 3: 
-Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
-the saveStates folder. This folder will be automatically created when you first run the program.
+    ____________________________________________________________
+    >>> logger
 
->Syntax
 
-    exit
 
-> Example: 
 
-    example
-    
+       ||====================================================================||
+       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+       ||(100)==================|     Welcome to       |================(100)||
+       ||||$||        ~         '------========--------'                ||$||||
+       ||<< |        |$|              || ____ ||                         | >>||
+       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+       ||<<|        || ||           || <||  >)  ||                        |>>||
+       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||====================================================================||>||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+    ||(100)==================|     FinanceIt!       |================(100)||>||
+    ||||$||        ~         '------========--------'                ||$||||>||
+    ||<< |        |$|              || ____ ||                         | >>||)||
+    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+    ||<<|        || ||           || <||  >)  ||                        |>>||=||
+    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+    ||>>|  12                     *||(___)_||*   1989                  |<<||
+    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+    ||||$|                 ~| A finanace tracking app |~               |$||||
+    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+    ||====================================================================||
+    Status: Logger is on.
+    =====================================================================================================
+    = Welcome to Main Menu                                                                              =
+    =====================================================================================================
+    | No.            |  Feature                                           |  Commands                    |
+    -----------------------------------------------------------------------------------------------------
+    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [3]            |  Account Summary                                   |  acc                         |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [4]            |  Goals Tracker                                     |  goal                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [5]            |  Financial Calculator                              |  financial                   |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [6]            |  Save Manager                                      |  saver                       |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [7]            |  Toggle Log On or Off                              |  logger                      |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    | [8]            |  Quit The Program                                  |  exit                        |
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ____________________________________________________________
+    >>>
     
 # Features : Manual Tracker
 Users can manage their daily entries of expenses/ income, which is organised in ledgers representing each day of transactions.
@@ -607,6 +697,92 @@ Exit to Manual tracker where users can choose another ledger.
     ____________________________________________________________
     >>>
     
+#Features : Recurring Tracker
+Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
+
+## Recurring Tracker 1: Add entry
+Creates a recurring entry. Entries can either be income or expense. If income, entries
+can be set to "auto" which indicates that the income is automatically credited to the user's
+bank account e.g. Salary which is transferred into bank account by company. 
+Else, it will indicate a manually credited income, which requires the user to 
+collect or take action upon e.g. collecting payment from customers (as a supplier), redeeming
+of reward points on a monthly basis.
+
+Vice versa for expense entries.
+
+>Syntax
+
+    add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
+    
+##Parameters
+* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
+* `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
+is not linked to any functionality)
+* `/desc` - Description of entry (Mandatory)
+* `/amt` - Amount (Mandatory)
+* `/day` - Day of month which entry occurs on (Mandatory)
+* `/notes` - Additional notes and remarks
+
+>Example
+    
+    add -e -auto /desc Netflix /amt 40 /day 2 /notes Cancel if Homemade ends
+    //Netflix, $40 per month, auto-payment via credit card 
+    on the 2nd of every month. Saved with a note of “Cancel if Homemade ends"
+    
+    add -i /desc Redeem air miles for vouchers /amt 50 /day 27
+    //Redeem air miles for vouchers, $50 per month, user has to take manual action 
+    on or by 27th of every month.
+    
+## Recurring Tracker 2: List all entries
+Displays a list of all recurring entries.
+
+>Syntax
+
+    list
+    
+##Parameters
+None
+    
+## Recurring Tracker 3: Delete entry
+Deletes an entry at the given index. Index can be found via `list` and then checking the 
+associated index in the leftmost column
+
+>Syntax
+
+    delete /id <INDEX>
+    
+##Parameters
+* `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
+
+>Example
+    
+    delete /id 15
+    
+## Recurring Tracker 4: Edit entry
+Update one or more fields of an existing entry. Overwrites any existing value corresponding to the 
+field(s) being modified.
+
+>Syntax
+
+    edit /id <INDEX> [field(s) to edit]
+    
+##Parameters
+* `/id` - Index of entry to edit. 1-based indexing (Mandatory)
+* `field(s) to edit` - Follows the same format as add entry E.g. to edit amount, use `/amt <NEW_AMT>`
+
+>Example
+    
+    edit /id 2 /desc Updated name!! /day 23
+    //Overwrites existing description and day. Other fields are untouched.
+    
+## Recurring Tracker 5: Exit tracker
+Exits to main menu.
+
+>Syntax
+
+    exit
+
+    
 # Features : FinanceTools
 FinanceTools contains tools related to financial calculations.
 
@@ -818,7 +994,21 @@ Display income and expense goal for the individual month.
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
-## Goal Tracker 3 : Edit Goal
+## Goal Tracker 3 : Exit Display Goal 
+The system will auto prompt the user whether they want to exit DisplayGoal and return to Goal tracker main menu.
+
+>syntax 
+
+    enter *y* to exit
+
+>Example
+
+    y
+    
+![PromptExitDisplay](screenshots/goaltracker/PromptExitDisplay.png)
+![ReturnMain](screenshots/goaltracker/returnmainmenu.png)
+
+## Goal Tracker 4 : Edit Goal
 Edit income and expense goal for the individual month.
 
 >syntax
@@ -832,7 +1022,7 @@ Edit income and expense goal for the individual month.
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
-## Goal Tracker 4 : Exit Goal Tracker
+## Goal Tracker 5 : Exit Goal Tracker
 Exit Goal Tracker program and return to FinanceIt main UI.
 
 >syntax

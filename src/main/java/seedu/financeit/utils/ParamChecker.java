@@ -236,10 +236,12 @@ public class ParamChecker {
         double output = -1;
 
         clearErrorMessage();
-        System.out.println(input.length());
         LoggerCentre.loggerParamChecker.log(Level.INFO, "Checking input Double...");
         try {
-            input = input.replaceAll("[^\\w | .]", "");
+            if (RegexMatcher.alphabetMatcher(input).find()) {
+                throw new NumberFormatException();
+            }
+            input = input.replaceAll("[^\\w | [-.]]", "");
             if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
                 throw new NumberFormatException();
             }
@@ -247,6 +249,9 @@ public class ParamChecker {
             bd.setRoundingMode(RoundingMode.CEILING);
             input = bd.format(Double.parseDouble(input));
             output = Double.parseDouble(input);
+            if (output < 0) {
+                throw new NumberFormatException();
+            }
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
             if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
@@ -302,6 +307,10 @@ public class ParamChecker {
             throw new ParseFailParamException(paramType);
         }
         return output;
+    }
+
+    public String checkAndReturnDescription(String paramType) {
+        return packet.getParam(paramType).replaceAll(";", " ");
     }
 
     public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {

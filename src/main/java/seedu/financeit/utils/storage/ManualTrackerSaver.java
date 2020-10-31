@@ -40,6 +40,10 @@ public class ManualTrackerSaver extends SaveHandler {
         return saver;
     }
 
+    public static void clear() {
+        ManualTracker.getLedgerList().removeAllItems();
+    }
+
     public void save(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
