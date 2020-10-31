@@ -577,10 +577,12 @@ Should we allow the user full discretion to naming `Workspace`?
 | Approach | Pros | Cons  |
 | --- | --- | --- |
 | Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
-| No   | No unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
+| No   | Eliminate unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
-all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented.
+all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
+
+In addition, we also prevent the use of special characters, as it may cause issue when creating folders on certain file systems.
 
 <br/>
 
