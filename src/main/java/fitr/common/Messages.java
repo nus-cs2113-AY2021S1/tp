@@ -31,12 +31,16 @@ public class Messages {
     public static final String FORMAT_VIEW_GOAL = "view goal";
     public static final String FORMAT_VIEW_SUMMARY = "view summary";
     public static final String FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE = "view summary DATE/MONTH/YEAR (dd/MM/yyyy)";
-    public static final String FORMAT_EDIT_NAME = "edit name";
-    public static final String FORMAT_EDIT_AGE = "edit age";
-    public static final String FORMAT_EDIT_GENDER = "edit gender";
-    public static final String FORMAT_EDIT_HEIGHT = "edit height";
-    public static final String FORMAT_EDIT_WEIGHT = "edit weight";
-    public static final String FORMAT_EDIT_FITNESS = "edit fitness";
+    public static final String FORMAT_EDIT_NAME = "edit name NEW_NAME";
+    public static final String FORMAT_EDIT_AGE = "edit age NEW_AGE";
+    public static final String RANGE_EDIT_AGE = "Valid range for age: 1 to 130";
+    public static final String FORMAT_EDIT_GENDER = "edit gender NEW_GENDER('M' for Male or 'F' for Female)";
+    public static final String FORMAT_EDIT_HEIGHT = "edit height NEW_HEIGHT(in m)";
+    public static final String RANGE_EDIT_HEIGHT = "Valid range for height (in m): 0.50 to 4.00";
+    public static final String FORMAT_EDIT_WEIGHT = "edit weight NEW_WEIGHT(in kg)";
+    public static final String RANGE_EDIT_WEIGHT = "Valid range for weight (in kg): 2.00 to 1000.00";
+    public static final String FORMAT_EDIT_FITNESS = "edit fitness NEW_FITNESS_LEVEL(0 for Unfit; 1 for Normal; 2 for"
+            + " Fit)";
     public static final String FORMAT_EDIT_FOOD =
             "edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
     public static final String FORMAT_EDIT_EXERCISE =
@@ -122,14 +126,14 @@ public class Messages {
     public static final String EDIT_NAME_HEADER = "Change your name to: ";
     public static final String NAME_ECHO_HEADER = "Name changed to: ";
     public static final String EDIT_HEIGHT_HEADER = "Change your height (in m) to: ";
-    public static final String HEIGHT_ECHO_HEADER = "Height (in m) changed to: ";
+    public static final String HEIGHT_ECHO_HEADER = "Your current height (in m) is: ";
     public static final String EDIT_WEIGHT_HEADER = "Change your weight (in kg) to: ";
-    public static final String WEIGHT_ECHO_HEADER = "Weight (in kg) changed to: ";
+    public static final String WEIGHT_ECHO_HEADER = "Your current weight (in kg) is: ";
     public static final String EDIT_AGE_HEADER = "Change your age to: ";
-    public static final String AGE_ECHO_HEADER = "Age changed to: ";
+    public static final String AGE_ECHO_HEADER = "Your current age is: ";
     public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
-    public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
-    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " 
+    public static final String GENDER_ECHO_HEADER = "Your current gender is: ";
+    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining "
             + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
-    public static final String FITNESS_ECHO_HEADER = "Fitness level changed to: ";
+    public static final String FITNESS_ECHO_HEADER = "Your current fitness level is: ";
 }

@@ -34,6 +34,14 @@ import static fitr.common.Messages.UNFIT_STRING;
 import static fitr.common.Messages.NORMAL_STRING;
 import static fitr.common.Messages.NULL_STRING;
 import static fitr.common.Messages.INPUT_FITNESS_LEVEL;
+import static fitr.common.Messages.FORMAT_EDIT_AGE;
+import static fitr.common.Messages.FORMAT_EDIT_HEIGHT;
+import static fitr.common.Messages.FORMAT_EDIT_WEIGHT;
+import static fitr.common.Messages.FORMAT_EDIT_GENDER;
+import static fitr.common.Messages.FORMAT_EDIT_FITNESS;
+import static fitr.common.Messages.RANGE_EDIT_HEIGHT;
+import static fitr.common.Messages.RANGE_EDIT_WEIGHT;
+import static fitr.common.Messages.RANGE_EDIT_AGE;
 
 /**
  * User class keeps track of user's personal information.
@@ -65,17 +73,17 @@ public class User {
     public void setup() {
         Ui.printCustomMessage(USER_SETUP_GREET);
         Ui.printCustomMessage(INPUT_NAME);
-        setName();
+        setName(Ui.read());
         Ui.printCustomMessage(INPUT_AGE);
-        setupAge();
+        setupAge(null, false);
         Ui.printCustomMessage(INPUT_HEIGHT);
-        setupHeight();
+        setupHeight(null, false);
         Ui.printCustomMessage(INPUT_WEIGHT);
-        setupWeight();
+        setupWeight(null, false);
         Ui.printCustomMessage(INPUT_GENDER);
-        setupGender();
+        setupGender(null, false);
         Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
-        setupFitnessLevel();
+        setupFitnessLevel(null, false);
         Ui.printCustomMessage(SETUP_COMPLETE);
     }
 
@@ -99,8 +107,8 @@ public class User {
         return gender;
     }
 
-    public void setName() {
-        name = Ui.read();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAge(int age) {
@@ -123,17 +131,31 @@ public class User {
         this.userFitnessLevel = userFitnessLevel;
     }
 
-    public void setupAge() {
+    public void setupAge(String argument, Boolean edit) {
         int ageInput = 0;
-        while (ageInput <= 0) {
+        while (ageInput < 1 || ageInput > 130) {
             try {
-                ageInput = Integer.parseInt(Ui.read());
-                if (ageInput <= 0) {
+                if (edit) {
+                    ageInput = Integer.parseInt(argument);
+                } else {
+                    ageInput = Integer.parseInt(Ui.read());
+                }
+                if (ageInput < 1 || ageInput > 130) {
                     Ui.printCustomError(ERROR_INVALID_AGE_INPUT);
+                    if (edit) {
+                        Ui.printCustomError("FORMAT: " + FORMAT_EDIT_AGE + LINE_BREAK + RANGE_EDIT_AGE);
+                        return;
+                    }
                     Ui.printCustomMessage(INPUT_AGE);
+                    Ui.printCustomError(RANGE_EDIT_AGE);
                 }
             } catch (NumberFormatException e) {
                 Ui.printCustomError(ERROR_INVALID_AGE_INPUT);
+                if (edit) {
+                    Ui.printCustomError("FORMAT: " + FORMAT_EDIT_AGE + LINE_BREAK + RANGE_EDIT_AGE);
+                    return;
+                }
+                Ui.printCustomError(RANGE_EDIT_AGE);
                 Ui.printCustomMessage(INPUT_AGE);
                 ageInput = 0;
             }
@@ -141,37 +163,68 @@ public class User {
         setAge(ageInput);
     }
 
-    public void setupHeight() {
+    public void setupHeight(String argument, Boolean edit) {
         double heightInput = 0.00;
         // Height (in m)
-        while (heightInput <= 0.00) {
+        while (heightInput < 0.50 || heightInput > 4.00) {
             try {
-                heightInput = Double.parseDouble(Ui.read());
-                if (heightInput <= 0.00) {
+                if (edit) {
+                    heightInput = Double.parseDouble(argument);
+                } else {
+                    heightInput = Double.parseDouble(Ui.read());
+                }
+                if (heightInput < 0.50 || heightInput > 4.00) {
                     Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
+                    if (edit) {
+                        Ui.printCustomError("FORMAT: " + FORMAT_EDIT_HEIGHT + LINE_BREAK + RANGE_EDIT_HEIGHT);
+                        return;
+                    }
+                    Ui.printCustomError(RANGE_EDIT_HEIGHT);
                     Ui.printCustomMessage(INPUT_HEIGHT);
                 }
             } catch (NumberFormatException e) {
                 Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
+                if (edit) {
+                    Ui.printCustomError("FORMAT: " + FORMAT_EDIT_HEIGHT + LINE_BREAK + RANGE_EDIT_HEIGHT);
+                    return;
+                }
+                Ui.printCustomError(RANGE_EDIT_HEIGHT);
                 Ui.printCustomMessage(INPUT_HEIGHT);
                 heightInput = 0.00;
+                if (edit) {
+                    return;
+                }
             }
         }
         setHeight(heightInput);
     }
 
-    public void setupWeight() {
+    public void setupWeight(String argument, Boolean edit) {
         // Weight (in kg)
         double weightInput = 0.00;
-        while (weightInput <= 0.00) {
+        while (weightInput < 2.00 || weightInput > 1000.00) {
             try {
-                weightInput = Double.parseDouble(Ui.read());
-                if (weightInput <= 0.00) {
+                if (edit) {
+                    weightInput = Double.parseDouble(argument);
+                } else {
+                    weightInput = Double.parseDouble(Ui.read());
+                }
+                if (weightInput < 2.00 || weightInput > 1000.00) {
                     Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
+                    if (edit) {
+                        Ui.printCustomError("FORMAT: " + FORMAT_EDIT_WEIGHT + LINE_BREAK + RANGE_EDIT_WEIGHT);
+                        return;
+                    }
+                    Ui.printCustomError(RANGE_EDIT_WEIGHT);
                     Ui.printCustomMessage(INPUT_WEIGHT);
                 }
             } catch (NumberFormatException e) {
                 Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
+                if (edit) {
+                    Ui.printCustomError("FORMAT: " + FORMAT_EDIT_WEIGHT + LINE_BREAK + RANGE_EDIT_WEIGHT);
+                    return;
+                }
+                Ui.printCustomError(RANGE_EDIT_WEIGHT);
                 Ui.printCustomMessage(INPUT_WEIGHT);
                 weightInput = 0.00;
             }
@@ -179,10 +232,19 @@ public class User {
         setWeight(weightInput);
     }
 
-    public void setupGender() {
-        String genderInput = Ui.read();
+    public void setupGender(String argument, Boolean edit) {
+        String genderInput;
+        if (edit) {
+            genderInput = argument;
+        } else {
+            genderInput = Ui.read();
+        }
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
             Ui.printCustomError(ERROR_INVALID_GENDER_INPUT);
+            if (edit) {
+                Ui.printCustomError("FORMAT: " + FORMAT_EDIT_GENDER);
+                return;
+            }
             Ui.printCustomMessage(INPUT_GENDER);
             genderInput = Ui.read();
         }
@@ -193,17 +255,29 @@ public class User {
         }
     }
 
-    //to edit
-    public void setupFitnessLevel() {
+    public void setupFitnessLevel(String argument, Boolean edit) {
         int fitnessLevelInput = -1;
         while (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
             try {
-                fitnessLevelInput = Integer.parseInt(Ui.read());
+                if (edit) {
+                    fitnessLevelInput = Integer.parseInt(argument);
+                } else {
+                    fitnessLevelInput = Integer.parseInt(Ui.read());
+                }
                 if (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
+                    Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
+                    if (edit) {
+                        Ui.printCustomError("FORMAT: " + FORMAT_EDIT_FITNESS);
+                        return;
+                    }
                     Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 }
             } catch (NumberFormatException e) {
                 Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
+                if (edit) {
+                    Ui.printCustomError("FORMAT: " + FORMAT_EDIT_FITNESS);
+                    return;
+                }
                 Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 fitnessLevelInput = -1;
             }
