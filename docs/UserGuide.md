@@ -920,7 +920,7 @@ Compound interest is based on the principal amount and the interest that accumul
 
 >Syntax:
     
-    cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}
+    cmonthly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}
    
 > Example: 
 
@@ -974,7 +974,7 @@ Store account information.
 
 Additionally, it implements the following operations:
 * ```info``` - list account(s) information
-* ```clearinfo``` - clear all information
+* ```clearinfo``` - clear all account information
 * ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
 
 ### Parameters
@@ -1131,22 +1131,38 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
     
 
+# Summary of Features 
+
 ## Manual Tracker
-No. | Command | Syntax | 
+No. | Feature | Syntax | 
 ----|---------|---------|
-1.|Open ledger|_ledger open /date {YYMMDD}_|
-2.|New ledger|_ledger new /date {YYMMDD}_|
-3.|list ledgers|_ledger list_|
-4.|delete ledgers|_ledger delete /date {YYMMDD}_|;
-5.|exit to main menu|_exit_|
+1.|Open Ledger|_ledger open /date {YYMMDD}_|
+2.|New Ledger|_ledger new /date {YYMMDD}_|
+3.|List Ledgers|_ledger list_|
+4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
+5.|Exit to Main Menu|_exit_|
 
 ## Entry tracker
-No. | Command | Syntax |
+No. | Feature | Syntax |
 ----|---------|---------|
-1.|New entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
-2.|Edit entry|_entry edit /id {integer} {param-type/parameter to edit}_|
-3.|list entries|_entry list_|
-4.|delete entry|_entry delete /id {integer}_|
-5.|list transaction categories|_cat_|
-6.|exit to manual tracker|_exit_|
+1.|New Entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
+2.|Edit Entry|_entry edit /id {integer} {param-type/parameter to edit}_|
+3.|list Entries|_entry list_|
+4.|Delete Entry|_entry delete /id {integer}_|
+5.|List Transaction Categories|_cat_|
+6.|Exit to Manual Tracker|_exit_|
+
+## FinanceIt
+No. | Feature | Syntax |
+----|---------|---------|
+1.|Simple Interest Calculator|_simple /a {AMOUNT} /r {INTEREST_RATE}_|
+2.|Yearly Compound Interest Calculator|_cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {YEARS} /d {YEARLY_DEPOSIT}_|
+3.|Monthly Compound Interest Calculator|_cmonthly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}_|
+4.|Cashback Calculator|_cashb /a {AMOUNT} /r {CASHBACK_RATE} /c {CASHBACK_CAP}_|
+5.|Miles Credit Calculator|_miles /a {AMOUNT} /r {MILES_RATE}_|
+6.|Account Storage|_store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE} /c {CASHBACK_CAP} /o {OTHER_NOTES}_|
+7.|List Account(s) Information|_info_|
+8.|Clear All Account Information|_clearinfo_|
+9.|Command and Calculation History|_history_|
+10.|Exit to Main Menu|_exit_|
 
