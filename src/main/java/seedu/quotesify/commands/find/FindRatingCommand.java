@@ -30,7 +30,8 @@ public class FindRatingCommand extends FindCommand {
             System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
-        
+
+        assert information != null: "keyword should not be null";
         String keyword = information.toLowerCase().trim();
 
         boolean isFound = false;

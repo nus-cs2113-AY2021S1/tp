@@ -45,6 +45,7 @@ public class RatingParser {
 
     public static Book checkBookExists(String bookNumber) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        assert bookList != null: "book list should not be null";
         Book bookToRate = null;
         try {
             int indexOfBook = Integer.parseInt(bookNumber) - 1;
