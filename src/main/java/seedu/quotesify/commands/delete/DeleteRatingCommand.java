@@ -45,5 +45,6 @@ public class DeleteRatingCommand extends DeleteCommand {
                 return;
             }
         }
+        System.out.println(ERROR_RATING_DO_NOT_EXIST);
     }
 }

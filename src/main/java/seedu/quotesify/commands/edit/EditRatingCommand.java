@@ -59,7 +59,7 @@ public class EditRatingCommand extends EditCommand {
                 return rating;
             }
         }
-        System.out.println(ERROR_RATING_NOT_FOUND);
+        System.out.println(ERROR_RATING_DO_NOT_EXIST);
         return null;
     }
 }
