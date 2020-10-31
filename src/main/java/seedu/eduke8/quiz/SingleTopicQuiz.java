@@ -25,20 +25,21 @@ import java.util.logging.Logger;
 
 public class SingleTopicQuiz implements Quiz {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
 
     private Topic topic;
     private int numberOfQuestions;
     private QuizParser quizParser;
     private BookmarkList bookmarks;
-    private int timer;
+    private int userTimer;
 
-    public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks, int timer) {
+    public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks, int userTimer) {
         assert topic != null;
 
         this.topic = topic;
         this.numberOfQuestions = numberOfQuestions;
         this.bookmarks = bookmarks;
-        this.timer = timer;
+        this.userTimer = userTimer;
         quizParser = new QuizParser(bookmarks);
     }
 
@@ -85,11 +86,12 @@ public class SingleTopicQuiz implements Quiz {
                 ui.printOption((Option) options.get(i), i + 1);
             }
 
-            quizParser.setQuestion(question, timer);
+            quizParser.setQuestion(question, userTimer);
 
             ui.printQuizInputMessage();
+            long startTime = System.currentTimeMillis();
 
-            Command command = getCommand(ui, optionList, timer);
+            Command command = getCommand(ui, optionList, userTimer);
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand
                     || command instanceof BookmarkCommand || command instanceof IncompleteCommand);
@@ -97,7 +99,10 @@ public class SingleTopicQuiz implements Quiz {
             while (!(command instanceof AnswerCommand || command instanceof IncompleteCommand)) {
                 command.execute(optionList, ui);
                 ui.printQuizInputMessage();
-                command = getCommand(ui, optionList, timer);
+
+                long timePassed = (System.currentTimeMillis() - startTime) / CONVERSION_FROM_SECONDS_TO_MILLIS;
+                command = getCommand(ui, optionList, (int) (userTimer - timePassed));
+
                 if (command instanceof IncorrectCommand) {
                     LOGGER.log(Level.INFO, "Invalid answer given for question");
                 } else if (command instanceof HintCommand) {
@@ -113,9 +118,9 @@ public class SingleTopicQuiz implements Quiz {
         }
     }
 
-    private Command getCommand(Ui ui, OptionList optionList, int timer) {
+    private Command getCommand(Ui ui, OptionList optionList, int timeLeft) {
         try {
-            String userInput = ui.getQuizInputFromUser(timer);
+            String userInput = ui.getQuizInputFromUser(timeLeft);
             return quizParser.parseCommand(optionList, userInput);
         } catch (IOException e) {
             return new IncorrectCommand(e.getMessage());

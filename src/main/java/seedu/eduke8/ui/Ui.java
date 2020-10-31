@@ -28,7 +28,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
-    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
+    private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
@@ -160,7 +160,7 @@ public class Ui {
         return operatingSystem;
     }
 
-    public String getQuizInputFromUser(int timer) throws IOException {
+    public String getQuizInputFromUser(int timeLeft) throws IOException {
 
         operatingSystem = findUserOperatingSystem();
 
@@ -169,7 +169,7 @@ public class Ui {
             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
             long startingTime = System.currentTimeMillis();
 
-            while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
+            while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
                     && System.in.available() ==  0) {
             }
 
@@ -184,7 +184,7 @@ public class Ui {
             String userInput;
             Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
             try {
-                userInput = userInputFuture.get(timer, TimeUnit.SECONDS);
+                userInput = userInputFuture.get(timeLeft, TimeUnit.SECONDS);
             } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
                 try {
                     Robot robot = new Robot();
@@ -259,9 +259,9 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int userTimer) {
         System.out.println();
-        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + userTimer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
                 + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
                 + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);

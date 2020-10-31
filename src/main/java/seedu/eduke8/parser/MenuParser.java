@@ -85,7 +85,7 @@ public class MenuParser implements Parser {
         case COMMAND_QUIZ:
             int numOfQuestions = 0;
             String topicName = "";
-            int timer = 0;
+            int userTimer = 0;
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
                     if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
@@ -93,7 +93,7 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
                                 commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[1].substring(
+                        userTimer = Integer.parseInt(commandArr[1].substring(
                                 commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
@@ -101,7 +101,7 @@ public class MenuParser implements Parser {
                                 commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[2].substring(
                                 commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[1].substring(
+                        userTimer = Integer.parseInt(commandArr[1].substring(
                                 commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
 
@@ -111,7 +111,7 @@ public class MenuParser implements Parser {
                                 commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
                                 commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[2].substring(
+                        userTimer = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
@@ -119,7 +119,7 @@ public class MenuParser implements Parser {
                                 commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[2].substring(
                                 commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[3].substring(
+                        userTimer = Integer.parseInt(commandArr[3].substring(
                                 commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
 
@@ -129,7 +129,7 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[1].substring(
                                 commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[3].substring(
+                        userTimer = Integer.parseInt(commandArr[3].substring(
                                 commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TIMER_INDICATOR)) {
@@ -137,7 +137,7 @@ public class MenuParser implements Parser {
                                 commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[1].substring(
                                 commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[2].substring(
+                        userTimer = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
                 }
@@ -146,7 +146,7 @@ public class MenuParser implements Parser {
             }
 
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
-            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, timer);
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
