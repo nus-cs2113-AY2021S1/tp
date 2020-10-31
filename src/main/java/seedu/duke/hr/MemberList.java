@@ -244,7 +244,7 @@ public class MemberList {
      * @return whether the member's name matches the target content
      */
     public static boolean searchName(int index, String target) {
-        if (members.get(index).getMemberName().contains(target)) {
+        if (members.get(index).getMemberName().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
@@ -257,7 +257,7 @@ public class MemberList {
      * @return whether the member's email matches the target content
      */
     public static boolean searchEmail(int index, String target) {
-        if (members.get(index).getMemberEmail().contains(target)) {
+        if (members.get(index).getMemberEmail().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
@@ -271,7 +271,7 @@ public class MemberList {
      */
     public static boolean searchPhone(int index, String target) {
         String phone = Long.toString(members.get(index).getMemberPhone());
-        if (phone.indexOf(target) != -1) {
+        if (phone.contains(target)) {
             return true;
         }
         return false;
@@ -284,7 +284,7 @@ public class MemberList {
      * @return whether the member's role matches the target content
      */
     public static boolean searchRole(int index, String target) {
-        if (members.get(index).getMemberRole().contains(target)) {
+        if (members.get(index).getMemberRole().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
