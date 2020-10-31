@@ -6,6 +6,7 @@ import seedu.duke.model.bus.BusStops;
 import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
 import seedu.duke.model.foodoptions.DiningOptions;
+import seedu.duke.model.foodoptions.FoodPlace;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -153,13 +154,25 @@ public class Ui {
         printLine();
     }
 
-    public static int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+    public static void printFacultyResult(ArrayList<FoodPlace> foodPlaceList) {
+        int count = 0;
+        System.out.println("List of all faculties in NUS: ");
+        for (FoodPlace foodPlace : foodPlaceList) {
+            ArrayList<String> tempFacultyList = foodPlace.getFaculty();
+            for (String faculty : tempFacultyList) {
+                count++;
+                System.out.println(count + ". " + faculty);
+            }
+        }
+    }
+
+    public static void printDineResult(String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        int displayCount = 0;
         System.out.println("The dining options available at " + tempFaculty + " are:");
         for (DiningOptions info : foodPlaceInfo) {
             displayCount++;
             System.out.println(displayCount + ". " + info.getName());
         }
-        return displayCount;
     }
 
     public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
