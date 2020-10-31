@@ -7,7 +7,7 @@ import anichan.exception.AniException;
  * Handles parsing for Help command.
  */
 public class ExitParser extends CommandParser {
-    protected static final String DESCRIPTION_NOT_REQUIRED = "Please ensure there is no description after the command!";
+    protected static final String DESCRIPTION_NOT_REQUIRED = "Command does not require additional parameters!";
 
     private ExitCommand exitCommand;
 
