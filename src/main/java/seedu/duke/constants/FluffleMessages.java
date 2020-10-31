@@ -38,6 +38,7 @@ public class FluffleMessages {
     public static final String ADD_VERB_MSG = "Added the following verb: ";
     public static final String ADD_ADJECTIVE_MSG = "Added the following adjective: ";
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
+    public static final String EMPTY_WORDLIST_MSG = "Currently, there are no words in the words list.";
     public static final String EMPTY_INPUT_MSG = "Please enter a word and its description to save!";
     public static final String EMPTY_DESC_MSG = "Please enter the word's description after typing 'd\\'!";
     public static final String INVALID_NOUN_MSG = "Please use correct command format! Type 'help noun' for more info.";
