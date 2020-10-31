@@ -75,7 +75,7 @@ public class Parser {
     //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws ZoomasterException {
 
-        if (input.compareToIgnoreCase(ShowBookmarkCommand.SHOW_KW) == 0) {
+        if (input.startsWith(ShowBookmarkCommand.SHOW_KW)) {
             return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
             return new DeleteBookmarkCommand(input);
