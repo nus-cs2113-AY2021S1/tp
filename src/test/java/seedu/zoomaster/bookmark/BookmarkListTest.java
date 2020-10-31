@@ -165,7 +165,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void launchBookmark_emptyBookmarkList_returnEmptyListMessage() throws IndexOutOfBoundsException {
+    void launchBookmark_emptyBookmarkList_returnEmptyListMessage() throws IndexOutOfBoundsException, ZoomasterException {
         BookmarkList bookmarks = new BookmarkList();
         assertEquals("Empty List" + lineSeparator,
                 bookmarks.launchBookmarks("lecture"));
@@ -173,7 +173,7 @@ class BookmarkListTest {
 
 
     @Test
-    void launchBookmark_noMatchingBookmarks() {
+    void launchBookmark_noMatchingBookmarks() throws ZoomasterException {
         ArrayList<String> input = new ArrayList<>();
         input.add("tutorial | www.google.com");
         input.add("lecture | www.yahoo.com");

@@ -173,11 +173,11 @@ public class BookmarkList {
      * @param description The description to be searched
      * @return The string message containing the matching bookmarks
      */
-    public String launchBookmarks(String description) {
+    public String launchBookmarks(String description) throws ZoomasterException {
         assert !description.equals("") : "Description should not be empty!";
         String message = "";
-        if (bookmarks.size() == 0) {
-            message = "Empty List" + lineSeparator;
+        if (bookmarks.isEmpty()) {
+            throw new ZoomasterException(ZoomasterExceptionType.EMPTY_BOOKMARK_LIST);
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
             if (!message.isBlank()) {
