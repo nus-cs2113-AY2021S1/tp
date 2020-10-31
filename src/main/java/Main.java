@@ -10,13 +10,51 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
 public class Main {
-    //protected static List<Dish> dishes = new ArrayList<>();
-    //protected static List<Stall> stalls = new ArrayList<>();
+    public static String input; //input is for each statement input
+    public static Scanner in = new Scanner(System.in);
     protected static List<Canteen> canteens = new ArrayList<>();
     protected static Scanner sc = new Scanner(System.in);
     public static FileInputStream inputFile;
+    public static ArrayList<Order> Order = new ArrayList<Order>();
 
     public static void main(String[] args) {
+        List<Canteen> canteens = initialize();
+        greet(); // call greet() method to greet
+        input=sc.nextLine();
+        while(!input.equals("bye")) { //if input is not "bye"
+                /** print the list of tasks*/
+                if (input.equals("list")) {
+                    printOrder();
+                }
+                /** mark one task as done */
+                /** delete one task */
+                else if (input.startsWith("delete")) {
+                    deleteOrder();
+                }
+                /** to find tasks containing a certain keyword*/
+                else if (input.startsWith("find")) {
+                    findDishinOrder();
+                }
+                /** user decides to make orders*/
+                else if (input.startsWith("order")) {
+                    order(canteens);}
+
+                else{ //dealing with undefined type of input
+                        System.out.println("____________________________________________________________\n");
+                        System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                        System.out.println("____________________________________________________________\n");
+                    }
+                    /*exception handling of wrong input*/
+
+            input=sc.nextLine();// get next input statement
+
+            }
+        }
+
+
+
+
+    public static List<Canteen> initialize() {
         Dish porkChop = new Dish("Pork Chop",4);
         Dish fishNChip = new Dish("Fish & Chip",4);
         Dish chickenCutLet = new Dish("Chicken Cutlet",3.5);
@@ -60,8 +98,10 @@ public class Main {
         List<Canteen> canteens = new ArrayList<Canteen>();
         canteens.add(canteen1);
         canteens.add(canteen2);
+        return canteens;
+    }
 
-
+    public static void order(List<Canteen> canteens){
         System.out.println("How many people do you have?");
         int numOfPeople = sc.nextInt();
 
@@ -134,8 +174,69 @@ public class Main {
 
 
             Order order =customer.order(canteenChoosed,stallChoosed,orderedDishes,orderType);
+            Order.add(order);
             System.out.println("Your order created! Thanks.");
             System.out.println(order);
         }
     }
+
+    public static void printOrder() {
+        for (int i = 0; i < Order.size(); i++) {
+            System.out.println("____________________________________________________________\n");
+            if (Order.get(i) instanceof dineInOrder) {
+                System.out.println((i + 1) + ":" + (dineInOrder) Order.get(i));
+            }
+            if (Order.get(i) instanceof deliveryOrder) {
+                System.out.println((i + 1) + ":" + (deliveryOrder) Order.get(i));
+            }
+            if (Order.get(i) instanceof takeAwayOrder) {
+                System.out.println((i + 1) + ":" + (takeAwayOrder) Order.get(i));
+            }
+            System.out.println("____________________________________________________________\n");
+
+        }
+
+
+
+    }
+    public static void deleteOrder() {
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Noted. I've removed this order:  ");
+        int orderNumberdeleted = Integer.parseInt(input.replaceAll("\\D+", "")) - 1; //find the corresponding index of task to be deleted
+        System.out.println(Order.get(orderNumberdeleted));
+        Order.remove(orderNumberdeleted); //remove that task from arrayList
+        System.out.println("Now you have " + Order.size() + " orders in the list. ");
+        System.out.println("____________________________________________________________\n");
+    }
+    public static void findDishinOrder() {
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Here are the matching orders in your list:\n");
+        String keyword = input.substring(5); // to get the keyword string
+        int count = 1;
+        /*iterate the task arrayList to find corresponding items*/
+        for(int i=0;i< Order.size();i++){
+            for(int j=0;j<Order.get(i).getDish().size();j++)
+            if(Order.get(i).getDish().get(j).getDishName().contains(keyword)){
+                System.out.println(count +": " + Order.get(i));
+                count ++;
+            }
+        }
+        System.out.println("____________________________________________________________\n");
+    }
+    public static void greet(){
+        System.out.println("____________________________________________________________\n");
+        System.out.println(" Hello! I'm Duke\n");
+        System.out.println(" What can I do for you?\n");
+        System.out.println("____________________________________________________________\n");
+    }
+    /**
+     * method to say bye
+     * @return void
+     */
+    public static void bye(){
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("____________________________________________________________\n");
+    }
+
 }

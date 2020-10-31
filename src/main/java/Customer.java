@@ -8,7 +8,7 @@ public class Customer {
     public int ID;
     public int arriveTime;
     public int dayOfWeek;
-    List<Canteen> openCanteens;
+
 
     public Customer(String name, int ID,  int arriveTime, int dayOfWeek) {
         this.name = name;
@@ -46,6 +46,7 @@ public class Customer {
     }
 
     public List<Canteen> checkOpenCanteens(List<Canteen> ListCanteen){
+        List<Canteen> openCanteens=new ArrayList<>();
         for(Canteen canteen:ListCanteen){
             if(canteen.isOpen(this.dayOfWeek, this.arriveTime)){
                 openCanteens.add(canteen);
