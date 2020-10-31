@@ -303,7 +303,7 @@ public class Ui {
         if (Parser.programMode == 0) {
             System.out.println(LINE);
             printYellowWithBorder("Available inputs in Main menu are" + NEW_LINE
-                    + "1) mode {bookmark/timetable}" + NEW_LINE
+                    + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
                     + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
@@ -351,7 +351,7 @@ public class Ui {
             System.out.println(LINE);
             printYellow("Changes the current mode. You can change to either Bookmark "
                     + "or Timetable mode" + NEW_LINE);
-            printCyan("Format: mode {bookmark/timetable}" + NEW_LINE);
+            printCyan("Format: mode {bookmark/timetable/planner}" + NEW_LINE);
             System.out.println(LINE);
         } else if (input.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
             printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
