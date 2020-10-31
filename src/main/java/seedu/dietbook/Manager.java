@@ -87,6 +87,11 @@ public class Manager {
         return this.calculator;
     }
 
+    public void setCalculator() {
+        this.data.inputData(foodList);
+        this.calculator.update(this.data);
+    }
+
     public DataBase getDataBase() {
         return this.dataBase;
     }
