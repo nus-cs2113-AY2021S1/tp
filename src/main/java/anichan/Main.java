@@ -82,24 +82,37 @@ public class Main {
         // ========================== New User Setup ==========================
 
         if (user == null) {
-            LOGGER.log(Level.INFO, "Creating new user..");
-
-            while (true) {
-                try {
-                    String[] userDialogueInput = ui.createUserDialogue();
-                    user = new User(userDialogueInput[0], userDialogueInput[1]);
-                    LOGGER.log(Level.INFO, "Created: " + user);
-                    storageManager.saveUser(user);
-                    break;
-                } catch (AniException exception) {
-                    ui.printErrorMessage("Invalid input detected!");
-                    LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
-                }
-            }
+            newUserSetup();
         }
 
         // ========================== Workspace Setup ==========================
 
+        workspaceSetup(workspaceList);
+
+        // ========================== Watchlist Setup ==========================
+
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        if (watchlistList.size() == 0) {
+            watchlistList.add(new Watchlist("Default"));
+        }
+        activeWorkspace.setActiveWatchlist(watchlistList.get(0));
+
+        // ========================== AnimeDate Setup ==========================
+        try {
+            animeData = new AnimeData();
+        } catch (AniException exception) {
+            ui.printMessage("\tAnimeData: " + exception.getMessage());
+            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+        }
+    }
+
+    /**
+     * Setups the Workspace for User.
+     *
+     * @param workspaceList ArrayList of Workspaces the User manages
+     */
+    private void workspaceSetup(ArrayList<Workspace> workspaceList) {
         LOGGER.log(Level.INFO, "Workspace setup..");
 
         user.setWorkspaceList(workspaceList);
@@ -119,22 +132,25 @@ public class Main {
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
             }
         }
+    }
 
-        // ========================== Watchlist Setup ==========================
+    /**
+     * Setups a new User for program.
+     */
+    private void newUserSetup() {
+        LOGGER.log(Level.INFO, "Creating new user..");
 
-        Workspace activeWorkspace = user.getActiveWorkspace();
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        if (watchlistList.size() == 0) {
-            watchlistList.add(new Watchlist("Default"));
-        }
-        activeWorkspace.setActiveWatchlist(watchlistList.get(0));
-
-        // ========================== AnimeDate Setup ==========================
-        try {
-            animeData = new AnimeData();
-        } catch (AniException exception) {
-            ui.printMessage("\tAnimeData: " + exception.getMessage());
-            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+        while (true) {
+            try {
+                String[] userDialogueInput = ui.createUserDialogue();
+                user = new User(userDialogueInput[0], userDialogueInput[1]);
+                LOGGER.log(Level.INFO, "Created: " + user);
+                storageManager.saveUser(user);
+                break;
+            } catch (AniException exception) {
+                ui.printErrorMessage("Invalid input detected!");
+                LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+            }
         }
     }
 

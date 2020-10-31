@@ -33,7 +33,7 @@ public class User extends Human {
      *
      * @param name   name of User
      * @param gender gender of User
-     * @throws AniException if an error occured while creating User
+     * @throws AniException if an error occurred while creating User
      */
     public User(String name, String gender) throws AniException {
         super(name);
