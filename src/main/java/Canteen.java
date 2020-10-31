@@ -6,7 +6,6 @@ public class Canteen {
     public List<Stall> stallList;
     private List<Integer> openTime;
     private List<Integer> closeTime;
-    private Object ArrayList;
 
     Canteen(String canteenName, List<Stall> stallList, List<Integer> openTime,List<Integer> closeTime){
         this.canteenName = canteenName;
@@ -38,5 +37,10 @@ public class Canteen {
 
     public String getCanteenName() {
         return canteenName;
+    }
+
+    @Override
+    public String toString() {
+        return  canteenName;
     }
 }

@@ -22,34 +22,34 @@ public class Main {
         greet(); // call greet() method to greet
         input=sc.nextLine();
         while(!input.equals("bye")) { //if input is not "bye"
-                /** print the list of tasks*/
-                if (input.equals("list")) {
-                    printOrder();
-                }
-                /** mark one task as done */
-                /** delete one task */
-                else if (input.startsWith("delete")) {
-                    deleteOrder();
-                }
-                /** to find tasks containing a certain keyword*/
-                else if (input.startsWith("find")) {
-                    findDishinOrder();
-                }
-                /** user decides to make orders*/
-                else if (input.startsWith("order")) {
-                    order(canteens);}
+            /** print the list of tasks*/
+            if (input.equals("list")) {
+                printOrder();
+            }
+            /** mark one task as done */
+            /** delete one task */
+            else if (input.startsWith("delete")) {
+                deleteOrder();
+            }
+            /** to find tasks containing a certain keyword*/
+            else if (input.startsWith("find")) {
+                findDishinOrder();
+            }
+            /** user decides to make orders*/
+            else if (input.startsWith("order")) {
+                order(canteens);}
 
-                else{ //dealing with undefined type of input
-                        System.out.println("____________________________________________________________\n");
-                        System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-                        System.out.println("____________________________________________________________\n");
-                    }
-                    /*exception handling of wrong input*/
+            else{ //dealing with undefined type of input
+                System.out.println("____________________________________________________________\n");
+                System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                System.out.println("____________________________________________________________\n");
+            }
+            /*exception handling of wrong input*/
 
             input=sc.nextLine();// get next input statement
 
-            }
         }
+    }
 
 
 
@@ -118,21 +118,17 @@ public class Main {
     public static void order(List<Canteen> canteens){
         System.out.println("How many people do you have?");
         int numOfPeople = sc.nextInt();
+        int i = 1;
+        sc.nextLine();
+        while (i<=numOfPeople) {
 
-        for (int i = 1; i <= numOfPeople; i++) {
-
-            System.out.println("Please enter your name:");
-            sc.nextLine();
-            String customerName = sc.nextLine();
-            System.out.println("Please enter the day of the week:");
-            int dayOfWeek = sc.nextInt();
-            System.out.println("When will you arrive:");
-            int arriveTime = sc.nextInt();
-            Customer customer = new Customer(customerName, i,arriveTime,dayOfWeek);
+            System.out.println("Please enter your name/day of week/time arrive:");
+            String inputMessage = sc.nextLine();
+            Customer customer = Parser.parseCustomer(inputMessage,i);
 
 
 
-            System.out.println("Dear " + customerName + ",");
+            System.out.println("Dear " + customer.name + ",");
             System.out.println("Please choose a canteen from the list:");
             List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
             int j = 0;
@@ -191,6 +187,7 @@ public class Main {
             Order.add(order);
             System.out.println("Your order created! Thanks.");
             System.out.println(order);
+            i++;
         }
     }
 
@@ -230,10 +227,10 @@ public class Main {
         /*iterate the task arrayList to find corresponding items*/
         for(int i=0;i< Order.size();i++){
             for(int j=0;j<Order.get(i).getDish().size();j++)
-            if(Order.get(i).getDish().get(j).getDishName().contains(keyword)){
-                System.out.println(count +": " + Order.get(i));
-                count ++;
-            }
+                if(Order.get(i).getDish().get(j).getDishName().contains(keyword)){
+                    System.out.println(count +": " + Order.get(i));
+                    count ++;
+                }
         }
         System.out.println("____________________________________________________________\n");
     }
