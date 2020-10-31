@@ -107,6 +107,7 @@ the saveStates folder. This folder will be automatically created when you first 
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ____________________________________________________________
     >>> exit
+    exit
 
 ## Main Menu 2: Logger
 Toggle Logger mode. Developers can toggle it on view more system messages and logs that are otherwise hidden from view.

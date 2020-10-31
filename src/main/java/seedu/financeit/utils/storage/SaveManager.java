@@ -1,6 +1,5 @@
 package seedu.financeit.utils.storage;
 
-
 import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
@@ -51,6 +50,7 @@ public class SaveManager {
                 }
                 break;
             case "help":
+                menu = true;
                 break;
             case "exit":
                 return;
@@ -132,7 +132,7 @@ public class SaveManager {
                 }
             }
             FileWriter fileWriter = new FileWriter(fullPath, true);
-            fileWriter.write(name + "\n");
+            fileWriter.write("\n" + name);
             fileWriter.close();
             prompt = name + " has been added!";
 
