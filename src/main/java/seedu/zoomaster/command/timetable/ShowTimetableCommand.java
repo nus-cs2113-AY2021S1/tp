@@ -40,7 +40,7 @@ public class ShowTimetableCommand extends Command {
             if (Day.isDay(details)) {
                 day = Day.getDayFromCommand(details);
             } else {
-                String[] something = details.split(" ", 2);
+                String[] something = details.split("\\s+", 2);
                 module = something[0];
                 if (something.length == 2) {
                     if (something[1].compareTo("bookmarks") == 0) {
