@@ -56,10 +56,10 @@ class CalculatorTest {
 
     @Test
     void calculateRecomendedCalorieIntake_aPerson_recomendationOfCalorieIntake() {
-        Person Harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, ActivityLevel.LOW);
-        Person Erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, ActivityLevel.MEDIUM);
+        Person harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, ActivityLevel.LOW);
+        Person erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, ActivityLevel.MEDIUM);
         Calculator calculator = new Calculator(new ArrayList<Food>());
-        assertEquals(2728, calculator.calculateRecomendation(Harry));
-        assertEquals(1752, calculator.calculateRecomendation(Erica));
+        assertEquals(2728, calculator.calculateRecomendation(harry));
+        assertEquals(1752, calculator.calculateRecomendation(erica));
     }
 }

@@ -2,7 +2,6 @@ package seedu.dietbook.command;
 
 import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
-import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
 

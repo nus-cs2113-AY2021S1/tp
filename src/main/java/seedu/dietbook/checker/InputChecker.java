@@ -1,6 +1,9 @@
 package seedu.dietbook.checker;
 
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.parser.Parser;
+
+import java.time.LocalDateTime;
 
 /**
  * InputChecker class of the program.
@@ -19,9 +22,10 @@ public class InputChecker {
     public static final int WEIGHT_CAP = 500;
     public static final String[] PARAM_ACTIVITY = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
+    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
-    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
+    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/","c/"};
 
     /**
      * Takes in user input and command to check for any expected parameters after the command.
@@ -45,13 +49,74 @@ public class InputChecker {
      */
     public static void checkEmptyOption(String[] input) throws DietException {
         if (input.length > 1) {
-            if (input[1].length() > 1) {
+            if (input[1].trim().length() > 1) {
                 if (input[1].trim().charAt(1) == '/') {
                     throw new DietException("Error! Option specified with empty field!");
                 }
             }
         } else {
             throw new DietException("Error! Option specified with empty field!");
+        }
+    }
+
+    /**
+     * Takes in user input to check for repeated options.
+     *
+     * @param command command part of user input.
+     * @param options option part of user input command.
+     * @throws DietException when there are options repeatedly specified.
+     */
+    public static void checkRepeatedOption(String command, String options) throws DietException {
+        String[] paramList = FULL_PARAM_ADD;
+        if (command.equals("info")) {
+            paramList = PARAM_INFO;
+        }
+        for (String param: paramList) {
+            int countOccurrence = options.length() - options.replace(param, "").length();
+            if (countOccurrence > 2) {
+                throw new DietException("There are repeated options!");
+            }
+        }
+    }
+
+    /**
+     * Takes in user input to check if date format is present.
+     *
+     * @param userInput user input.
+     * @return boolean whereby true if date present, false otherwise.
+     */
+    public static boolean checkDate(String userInput) throws DietException {
+        String[] processedInput = userInput.split("\\s+");
+        if (processedInput[processedInput.length - 1].contains("T")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Takes in string format of date time to check if date format is correct.
+     *
+     * @param dateString string form of a potential date time.
+     * @throws DietException if date format is wrong.
+     */
+    public static void checkDateValidity(String dateString) throws DietException {
+        try {
+            LocalDateTime.parse(dateString);
+        } catch (Exception e) {
+            throw new DietException("Wrong date time format!");
+        }
+    }
+
+    /**
+     * Takes in a date time object and see if it is a future date.
+     *
+     * @param time a date time class object.
+     * @throws DietException if date is in the future.
+     */
+    public static void checkFutureDate(LocalDateTime time) throws DietException {
+        if (time.isAfter(LocalDateTime.now())) {
+            throw new DietException("The date cannot be in the future!");
         }
     }
 
@@ -70,6 +135,18 @@ public class InputChecker {
     }
 
     /**
+     * Takes in user input to check if the expected number of parameter is present for the calculate command.
+     *
+     * @param param parameter part of user input.
+     * @throws DietException when number of parameter is not as expected.
+     */
+    public static void checkCalculateParam(String[] param) throws DietException {
+        if (param.length > 3) {
+            throw new DietException("Incorrect calculate statement");
+        }
+    }
+
+    /**
      * Takes in user input to check if the expected number and type of parameter for the info command is present.
      *
      * @param userInput user input.
@@ -80,6 +157,18 @@ public class InputChecker {
             if (!userInput.contains(param)) {
                 throw new DietException("Missing or incorrect info statement");
             }
+        }
+    }
+
+    /**
+     * Takes in user input to check if the expected number of parameter is present for the list command.
+     *
+     * @param param parameter part of user input.
+     * @throws DietException when number of parameter is not as expected.
+     */
+    public static void checkList(String[] param) throws DietException {
+        if (param.length > 3) {
+            throw new DietException("Incorrect list statement");
         }
     }
 
@@ -172,8 +261,8 @@ public class InputChecker {
      * @throws DietException when value is not within the limit.
      */
     public static void checkHeightLimit(int height) throws DietException {
-        if (height < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+        if (height < 1) {
+            throw new DietException("Input value cannot be less than 1");
         } else if (height > HEIGHT_CAP) {
             throw new DietException("Input value cannot be more than 273!");
         }
@@ -186,8 +275,8 @@ public class InputChecker {
      * @throws DietException when value is not within the limit.
      */
     public static void checkWeightLimit(int weight) throws DietException {
-        if (weight < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+        if (weight < 1) {
+            throw new DietException("Input value cannot be less than 1!");
         } else if (weight > WEIGHT_CAP) {
             throw new DietException("Input value cannot be more than 443!");
         }

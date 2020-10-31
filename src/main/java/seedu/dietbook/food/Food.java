@@ -21,6 +21,7 @@ public class Food {
         this.fats = fats;
     }
 
+
     public int getFat() {
         return fats;
     }

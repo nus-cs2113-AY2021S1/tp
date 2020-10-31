@@ -61,11 +61,14 @@ class FoodListTest {
 
     @Test
     void dateFilterAfterTest() {
+        assertEquals(list.toString(), list.getAfterDateTimeToString(LocalDateTime.MIN));
+
         LocalDateTime timeNow = LocalDateTime.now();
         
         assertTrue(list.getFoodsAfterDateTime(timeNow).size() == 0);
-        assertEquals(list.getFoodsAfterDateTime(LocalDateTime.MIN).toString(), 
-                list.getFoods().toString());
+        assertEquals(list.getFoods().toString(),
+                list.getFoodsAfterDateTime(LocalDateTime.MIN).toString());
+
 
         // add new entries:
         if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
@@ -77,11 +80,17 @@ class FoodListTest {
         }
         list.addFood(1, food);
         assertEquals(food.toString(), list.getFoodsAfterDateTime(timeNow).get(0).toString());
+        
 
     }
 
     @Test
     void dateFilterRangeTest() {
+
+        assertEquals(list.getPortionedFoods().toString(), 
+                list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, LocalDateTime.MAX).toString());
+        assertEquals(list.toString(), list.getInDateTimeRangeToString(LocalDateTime.MIN, LocalDateTime.MAX));
+
         LocalDateTime timeNow = LocalDateTime.now();
 
         if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
@@ -95,8 +104,20 @@ class FoodListTest {
 
         assertTrue(list.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
 
-        assertEquals(list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, timeNow).toString(),
-                 list.getPortionedFoods().toString());
+    }
+
+    @Test
+    void getFoodEntryProperties_standardList_FoodEntryProperties() {
+        assertTrue(list.getDateTimes().get(0) instanceof LocalDateTime);
+        assertEquals(list.getPortionSizes().get(0), 3);
+        assertEquals(list.getFoods().get(0), food);
+    }
+
+    @Test
+    void addAndRetrieveEntryAtDateTime_entryAddedAtDateTimeMax_entryAtDateTimeMax() {
+        list.addFoodAtDateTime(2, food, LocalDateTime.MAX);
+        assertEquals(food, list.getFoodsAfterDateTime(LocalDateTime.now()).get(0));
+
     }
 
 }

@@ -1,0 +1,15 @@
+
+@startuml
+-> FoodSaveLoadManager : save
+
+loop all food items
+    loop every entry in a food object
+    FoodSaveLoadManager -> Saver : add()
+    end
+end
+
+FoodSaveLoadManager -> Saver : save()
+loop all entries in Saver table
+    Saver -> FileWriter : write()
+end
+@enduml

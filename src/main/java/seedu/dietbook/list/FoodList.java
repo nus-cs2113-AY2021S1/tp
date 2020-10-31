@@ -13,7 +13,7 @@ import java.util.List;
  * This is a stateful object.
  */
 public class FoodList {
-    private static ArrayList<FoodEntry> foodEntries;
+    private ArrayList<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -31,11 +31,10 @@ public class FoodList {
 
     /**
      * Adds food of portion size directly into the foodlist as an entry.
-     * When date functionality is added, this method will need to be overhauled.
-     * The adding feature will be largely pushed to FoodListManager (to figure out dates)
+     * Mainly for adding food directly from the data base of foods.
      * @param portionSize integer to designate number of servings
      * @param food food object to be added
-     * @return string representation of the food object added
+     * @return string representation of the entry added
      */
     public String addFood(int portionSize, Food food) {
         FoodEntry entry = new DatedFoodEntry(portionSize, food);
@@ -60,7 +59,7 @@ public class FoodList {
      * Currently just throws a not found exception when called in this manner.
      * @param portionSize integer to designate number of servings
      * @param name food object to be added
-     * @return string representation of the food object added
+     * @return string representation of entry added
      * @throws FoodNotFoundException custom exception to indicate search for food in database failed.
      */
     public String addFood(int portionSize, String name) throws FoodNotFoundException {
@@ -69,7 +68,7 @@ public class FoodList {
 
 
     /**
-     * Add add method for baglogged entries.
+     * Add add method for backlogged entries.
      * Allows specificiation of time via LocalDateTime param.
      * @param dateTime User specified time for backlogged entry.
      */
@@ -77,6 +76,20 @@ public class FoodList {
             int carbohydrate, int protein, int fat, LocalDateTime dateTime) {
         
         FoodEntry entry = new DatedFoodEntry(portionSize, name, calorie, carbohydrate, protein, fat, dateTime);
+        foodEntries.add(entry);
+        return entry.toString();
+    }
+
+    /**
+     * Truncated add method for the purpose of save-loading (allows adding food object directly).
+     * Can also be used to add backlogged entry via database.
+     * @param portionSize integer to designate number of servings
+     * @param food Food object to be added (from the save-load/database)
+     * @param dateTime Save-loaded date-time or user specified time for backlogged entry.
+     * @return string representation of entry added.
+     */
+    public String addFoodAtDateTime(int portionSize, Food food, LocalDateTime dateTime) {
+        FoodEntry entry = new DatedFoodEntry(portionSize, food, dateTime);
         foodEntries.add(entry);
         return entry.toString();
     }
@@ -121,7 +134,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed after specified timing.
      */
-    public static List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
+    public List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
         return FoodListManager.listToFoods(entriesAfterDateTime);
     }
@@ -137,7 +150,7 @@ public class FoodList {
     /**
      * Obtain list of foods consumed within the range of a specified timing.
      */
-    public static List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
+    public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
         return FoodListManager.listToFoods(entriesInRange);
     }
@@ -150,9 +163,47 @@ public class FoodList {
         return FoodListManager.listToPortionedFoods(entriesInRange);
     }
 
+    /**
+     * Obtain list of portion sizes.
+     * (For storage purposes)
+     */
+    public List<Integer> getPortionSizes() {
+        return FoodListManager.listToPortionSizes(foodEntries);
+    }
+
+
+    /**
+     * Obtain list of LocalDateTimes for when the entries were made.
+     * (For storage purposes)
+     */
+    public List<LocalDateTime> getDateTimes() {
+        return FoodListManager.listToLocalDateTimes(foodEntries);
+    }
+
     @Override
     public String toString() {
         return FoodListManager.listToString(foodEntries);
+    }
+
+    /**
+     * Returns toString representation of the segmented list based on DateTime.
+     * @param dateTime Start DateTime.
+     * @return string representation of FoodList
+     */
+    public String getAfterDateTimeToString(LocalDateTime dateTime) {
+        List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
+        return FoodListManager.listToString(entriesAfterDateTime);
+    }
+
+    /**
+     * Returns toString representation of the segmented list based on DateTime (within a range of 2 datetimes).
+     * @param start start DateTime.
+     * @param end   end DateTime.
+     * @return  string representation of FoodList
+     */
+    public String getInDateTimeRangeToString(LocalDateTime start, LocalDateTime end) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
+        return FoodListManager.listToString(entriesInRange);
     }
 
 }
