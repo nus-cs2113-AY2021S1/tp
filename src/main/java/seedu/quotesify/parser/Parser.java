@@ -30,7 +30,7 @@ public class Parser {
             tokens = new String[]{tokens[0], ""};
         }
 
-        String command = tokens[0];
+        String command = tokens[0].toLowerCase();
         String arguments = tokens[1];
 
         switch (command) {
