@@ -3,8 +3,6 @@ package anichan.parser;
 import anichan.commands.SearchCommand;
 import anichan.exception.AniException;
 
-import java.util.Arrays;
-
 /**
  * Handles parsing for search command.
  */
@@ -38,7 +36,6 @@ public class SearchParser extends CommandParser {
      * @throws AniException if invalid parameters are parsed in
      */
     public void parameterParser(String[] paramGiven) throws AniException {
-        System.out.println(Arrays.toString(paramGiven));
         if (paramGiven[1].isBlank()) {
             throw new AniException(NO_PARAM_PROVIDED);
         }
