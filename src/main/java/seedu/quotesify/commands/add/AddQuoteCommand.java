@@ -26,11 +26,11 @@ public class AddQuoteCommand extends AddCommand {
             Quote quote = QuoteParser.parseAddParameters(information);
             quoteList.add(quote);
             ui.printAddQuote(quote);
-            addLogger.log(Level.INFO, "add quote to quote list success");
+            quotesifyLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {
             System.out.println(e.getMessage());
-            addLogger.log(Level.INFO, "add quote to quote list failed");
-            addLogger.log(Level.WARNING, e.getMessage());
+            quotesifyLogger.log(Level.INFO, "add quote to quote list failed");
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 }

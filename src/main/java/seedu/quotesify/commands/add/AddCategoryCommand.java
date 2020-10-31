@@ -58,7 +58,7 @@ public class AddCategoryCommand extends AddCommand {
                 categoryList.updateListsInCategory(category);
             }
         } catch (QuotesifyException e) {
-            addLogger.log(Level.WARNING, e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
             ui.printErrorMessage(e.getMessage());
         }
     }
@@ -88,15 +88,15 @@ public class AddCategoryCommand extends AddCommand {
 
             book.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToBook(book.getTitle(), category.getCategoryName());
-            addLogger.log(Level.INFO, "add category to book success");
+            quotesifyLogger.log(Level.INFO, "add category to book success");
         } catch (IndexOutOfBoundsException e) {
-            addLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
+            quotesifyLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         } catch (NumberFormatException e) {
-            addLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
+            quotesifyLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
             ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         } catch (QuotesifyException e) {
-            addLogger.log(Level.WARNING, e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
             ui.printErrorMessage(e.getMessage());
         }
     }
@@ -120,15 +120,15 @@ public class AddCategoryCommand extends AddCommand {
 
             quote.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToQuote(quote.getQuote(), category.getCategoryName());
-            addLogger.log(Level.INFO, "add category to quote success");
+            quotesifyLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {
-            addLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);
+            quotesifyLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);
             ui.printErrorMessage(ERROR_NO_QUOTE_FOUND);
         } catch (NumberFormatException e) {
-            addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
+            quotesifyLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
             ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         } catch (QuotesifyException e) {
-            addLogger.log(Level.WARNING, e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
             ui.printErrorMessage(e.getMessage());
         }
     }

@@ -34,7 +34,7 @@ public class AddQuoteReflectionCommand extends AddCommand {
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add reflection to quote failed");
+            quotesifyLogger.log(Level.INFO, "add reflection to quote failed");
         }
     }
 }

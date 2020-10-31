@@ -11,6 +11,7 @@ import seedu.quotesify.ui.UiMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.logging.Level;
 
 public class ListRatingCommand extends ListCommand {
 
@@ -61,6 +62,7 @@ public class ListRatingCommand extends ListCommand {
             ui.printSpecifiedRating(ratings, ratingToPrint);
         } else {
             System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToPrint);
+            quotesifyLogger.log(Level.INFO, "ratings not found");
         }
     }
 }

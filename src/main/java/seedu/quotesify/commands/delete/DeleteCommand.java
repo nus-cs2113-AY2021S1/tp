@@ -4,7 +4,12 @@ import seedu.quotesify.commands.Command;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class DeleteCommand extends Command {
+    public static Logger quotesifyLogger = Logger.getLogger("QuotesifyLogger");
+
     public String type;
     public String information;
     private String arguments;
@@ -31,6 +36,7 @@ public class DeleteCommand extends Command {
             new DeleteBookCommand(arguments).execute(ui, storage);
             break;
         case TAG_RATING:
+            quotesifyLogger.log(Level.INFO, "going to delete rating from book");
             new DeleteRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_TODO:

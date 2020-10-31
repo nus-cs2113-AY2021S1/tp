@@ -382,3 +382,19 @@ Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
 INFO: going to add book to booklist
 Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
 INFO: added book to booklist
+Nov 01, 2020 1:53:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 1:53:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 1:53:34 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 01, 2020 1:53:43 AM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 01, 2020 1:53:51 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 1:53:55 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 1:54:05 AM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 01, 2020 1:54:11 AM seedu.quotesify.commands.delete.DeleteCommand execute
+INFO: going to delete rating from book
