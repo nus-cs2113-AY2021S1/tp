@@ -217,7 +217,7 @@ public class ViewCommand extends Command {
         //Convert date from DD/MM/YYYY to YYYYMMDD
         String newDateFormat;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyyMMdd");
         newDateFormat = LocalDate.parse(date, formatter).format(formatter2);
         return newDateFormat;
     }
@@ -255,6 +255,8 @@ public class ViewCommand extends Command {
             }
             return null;
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        date = LocalDate.parse(date,formatter).format(formatter);
         ExerciseList exercisesOnThatDate = new ExerciseList();
         for (int i = 0; i < exerciseList.getSize(); i++) {
             if (date.equals(exerciseList.getExercise(i).getDate())) {
@@ -292,7 +294,8 @@ public class ViewCommand extends Command {
             }
             return null;
         }
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        date = LocalDate.parse(date, formatter).format(formatter);
         FoodList foodOnThatDate = new FoodList();
         for (int i = 0; i < foodList.getSize(); i++) {
             if (date.equals(foodList.getFood(i).getDate())) {
