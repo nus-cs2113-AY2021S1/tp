@@ -287,7 +287,7 @@ public class TextUi {
             return;
         }
         System.out.println(UiMessage.LIST_ALL_RATINGS_MESSAGE);
-        System.out.println(ratingList.toString());
+        System.out.print(ratingList.toString());
     }
 
     public void printSpecifiedRating(RatingList ratings, int ratingToPrint) {
