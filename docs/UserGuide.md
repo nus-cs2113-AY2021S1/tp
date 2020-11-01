@@ -152,7 +152,7 @@ Example of usage:
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
 💡 The archived notes will **ONLY** be listed in chronological order. <br>
 💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
-💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will terminate. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
+💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
 
