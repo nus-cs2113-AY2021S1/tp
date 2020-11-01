@@ -1,13 +1,32 @@
 # FinanceIt: A finance management application with a CLI Interface.
 FinanceIt is an all-in-one desktop application that handles the finance tracking needs of university students who are comfortable with a CLI interface.
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
-## Setting up for Testers (IMPORTANT)
+
+# Table of Contents
+
+No. |Content|
+----|------|
+1.|[Set-up](#setUp)
+2.|[Features Overview](#featuresOverview)
+3.|[Features Documentation](featuresDoc)
+3.1|    &emsp;[Main Menu](#mainMenu)
+3.2|    &emsp;[Manual Tracker](#manualTracker)
+3.3|    &emsp;[Entry Tracker](#entryTracker)
+3.4|    &emsp;[Recurring Tracker](#recurringTracker)
+3.5|    &emsp;[Finance Tools](#financeTools)
+3.6|    &emsp;[Goal Tracker](#goalTracker)
+3.7|    &emsp;[Save Manager]()
+4.|[Commands Summary](#commandsSummary)
+
+# 1. <a name = setUp> </a> Set-up
+## 1.1 Setting up for Testers (IMPORTANT)
 
 Prerequisites: A computer
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
-## Setting up in Intellij
+
+## 1.2 Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 1. Download the latest release from the release page.
@@ -21,7 +40,32 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. Select the project directory, and click `OK`
    1. If there are any further prompts, accept the defaults.
 1. After the importing is complete, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
+
+> Output:
+
+       ||====================================================================||
+       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+       ||(100)==================|     Welcome to       |================(100)||
+       ||||$||        ~         '------========--------'                ||$||||
+       ||<< |        |$|              || ____ ||                         | >>||
+       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+       ||<<|        || ||           || <||  >)  ||                        |>>||
+       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||====================================================================||>||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+    ||(100)==================|     FinanceIt!       |================(100)||>||
+    ||||$||        ~         '------========--------'                ||$||||>||
+    ||<< |        |$|              || ____ ||                         | >>||)||
+    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+    ||<<|        || ||           || <||  >)  ||                        |>>||=||
+    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+    ||>>|  12                     *||(___)_||*   1989                  |<<||
+    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+    ||||$|                 ~| A finanace tracking app |~               |$||||
+    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+    ||====================================================================||
     Status: 
     =====================================================================================================
     = Welcome to Main Menu                                                                              =
@@ -44,13 +88,45 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ____________________________________________________________
     >>> 
-   ```
-   
-# Features : Main Menu
-Gateway to the various other features of the application. 
-Users can enter an input to access the application they wish to use.
 
-## Main Menu 1: Exit
+# 2. <a name = featuresOverview> </a>Features overview
+## <a name = mainFeatures> </a>2.1 Main features
+
+Feature|Command|Description|
+-------|-------|-----------|
+Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, the user manages daily lists of entries called Ledgers. 
+Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
+Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
+Goal Tracker|```goal```| fillme
+Save Manager|```saver```| fillme
+Finance Tools|```finance```| fillme
+
+## 2.2 Auxillary features
+
+These commands are not part of the main features, but are helpful for other functions of the program:
+
+Feature|Command|Description|
+-------|-------|-----------|
+Logger|```logger```| Toggles logger visibility. If toggled on, log information will be displayed on the console.
+  
+# 3. <a name = featuresDoc> </a>Features Documentation
+# 3.1 Features: Main Menu
+Gateway to the various other features of the application. 
+Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
+
+Feature|Command|
+-------|-------|
+Manual Tracker|```manual```| 
+Entry Tracker|```entry```| 
+Recurring Tracker|```recur```| 
+Goal Tracker|```goal```| 
+Save Manager|```saver```| 
+Finance Tools|```finance```| 
+Logger|```logger```| 
+Quit|```quit```|
+
+
+## <a name = mainMenu> </a>3.1.1 Main Menu 1: Exit
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
@@ -109,14 +185,14 @@ the saveStates folder. This folder will be automatically created when you first 
     >>> exit
     exit
 
-## Main Menu 2: Logger
-Toggle Logger mode. Developers can toggle it on view more system messages and logs that are otherwise hidden from view.
+## 3.1.2 <a name = menu> </a> Main Menu 2: Logger
+Toggle Logger mode. Developers can toggle it, and more system messages and logs will be printed onto the console.
 
 >Syntax
 
     logger
 
-> Example: 
+> Example (Logger on): 
 
     ____________________________________________________________
     >>> logger
@@ -172,33 +248,105 @@ Toggle Logger mode. Developers can toggle it on view more system messages and lo
     ____________________________________________________________
     >>>
     
-# Features : Manual Tracker
-Users can manage their daily entries of expenses/ income, which is organised in ledgers representing each day of transactions.
+> Example (Logger in action):
 
-## Manual Tracker 1: Add ledger
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger open /date 200404
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
+    INFO: Params: {}
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
+    INFO: ParamType: /date
+    Nov 01, 2020 5:43:12 AM seedu.financeit.parser.InputParser parseInput
+    INFO:  ledger open , {/date=200404}
+
+
+
+    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDate
+    INFO: Checking date...
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
+    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
+                        Enter command!
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> 
+   
+    
+# <a name = manualTracker> </a> 3.2 Features : Manual Tracker
+Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
+> Example
+    If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
+    1. Use Manual Tracker to create a ledger of date 20-10-03
+    2. Open the ledger of date 20-10-03 
+    3. Use Entry Tracker to create entries to record the transactions for that particular date.
+    
+No. |Content|
+----|------|
+3.2.1|[Add Ledger](#manualTracker1)
+3.2.2|[Remove Ledger](#manualTracker2)
+3.2.3|[Open Ledger](#manualTracker3)
+3.2.4|[Show Ledger List](#manualTracker4)
+3.2.5|[Show commands](#manualTracker5)
+3.2.6|[Exit](#manualTracker6)
+
+## <a name = manualTracker1> </a> 3.2.1 Manual Tracker 1: Add ledger
 Add a ledger to the record, representing a date.
 
 >Syntax
 
     ledger new <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
+    
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
 
 > Example: 
 
-    example
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger new /date 200504
+
+
+
+    [ SYSTEM MESSAGE ]: Ledger 1 : [ May 4 2020 ] created!
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>> ledger list
+
+
+    ==================================
+    = List of Ledgers                =
+    ==================================
+    | Ledger Number  | Ledger Date    |
+    ----------------------------------
+    | 1              | 2020-05-04     |
+     - - - - - - - - - - - - - - - - -
+    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+    [ TODO           ]: Enter a command! 
+                        Input "commands" for list of commands.
+    ____________________________________________________________
+    >>>
     
-## Manual Tracker 2: Remove ledger
+## 3.2.2 <a name = manualTracker2> </a> Manual Tracker 2: Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
+This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
 >Syntax
  
     ledger delete <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
-        <param type> @ /id: Index of the ledger on the ledger list.
-            <parameter:Integer>: Input number that is between 1 and the last index in the ledger list.
-        Note that either /date or /id is supplied.
+    
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
@@ -240,21 +388,27 @@ Remove a specified ledger from the record, referenced by date or id on the list.
     ____________________________________________________________
     >>>
     
-## Manual Tracker 3: Open ledger
-Users will gain access into the entries associated with the specified ledger.
-If the ledger do not exist, it will be created only if the param type supplied is "/date". This results in creation of the ledger instance
-in accordance to the date supplied.
-Tracker switches mode to track entries in the ledger that has been opened.
-Refer to Feature Entry Tracker onwards for instructions concerned with the 
-state of the application following this command.
+##  3.2.3 <a name = manualTracker3> </a> Manual Tracker 3: Open ledger
+Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
+This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
+
+* Automatic creation of non-existing ledgers 
+    * If the ledger specified do not exist and if the param type supplied is "/date", the program will create a new ledger
+    in accordance to the date supplied.
+    * If the user specifies a non-existing index, then the program will not have enough information to create the new ledger instance. Automatic creation
+    will not apply in this particular case.
+    
+Refer to Feature Entry Tracker onwards for further instructions.
 
 >Syntax
 
     ledger open <param type> <parameter> 
-        <param type> @ /date: Date of the ledger, and all the entries under that ledger.
-            <parameter:String>: Input string of the date in YYMMDD or YY*MM*DD.
-        <param type> @ /id: Index of the ledger on the ledger list.
-            <parameter:Integer>: Input number that is between 1 and the last index in the ledger list.
+
+
+Param Type| Param | Param Format
+----------|-------|------------|
+/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
@@ -274,7 +428,7 @@ state of the application following this command.
     ____________________________________________________________
     >>>
     
-## Manual Tracker 4: Show ledger list
+## 3.2.4 <a name = manualTracker4> </a> Manual Tracker 4: Show ledger list
 Shows the record of ledgers that has been added.
 
 >Syntax
@@ -301,7 +455,7 @@ Shows the record of ledgers that has been added.
     | 2              | 2020-05-04     |
     - - - - - - - - - - - - - - - - -
 
-## Manual Tracker 4: Print command list
+## 3.2.5 <a name = manualTracker5> </a> Manual Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -334,7 +488,7 @@ Prints available commands that users can enter in for manualTracker.
     | 5.             | exit to main menu  | exit                          |
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-## Manual Tracker 5: Exit to Main Menu
+## 3.2.6 <a name = manualTracker6> </a> Manual Tracker 6: Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
 
 >Syntax
@@ -403,28 +557,71 @@ Exit to main menu where users can choose another feature to use.
 
 
     
-# Features : Entry Tracker
+# 3.3 <a name = entryTracker> </a> Main Feature : Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
+Entries are specified by the following parameters:
 
-## Entry Tracker 1: Add entry
+* Time of transaction
+   * Time in which the transaction ocurred
+* Type of transaction 
+   * Income or Expense
+* Category of transaction. The user is only limited to the following set of categories. 
+   * Income: {Salary, Allowance, Others}
+   * Expense: {Transport, Food, Travel, Shopping, Bills, Others}
+* Amount
+   * Amount involved in the transaction. 
+      * If the transaction type is expense, the amount is considered as a deduction to the account.
+      * If the transaction type is income, the amount is considered as a credit to the account.
+* Description
+   * User input texts to help them record the details of the transaction.
+
+> Example
+
+    Ledger of date 20-10-03
+        Entry 1: Shopping at MBS : $1500
+        Entry 2: Salary : $3000
+    
+    From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
+    
+No. |Content|
+----|------|
+3.3.1|[Add Entry](#entryTracker1)
+3.3.2|[Edit Entry](#entryTracker2)
+3.3.3|[Remove Ledger](#entryTracker3)
+3.3.4|[Show Entry List](#entryTracker4)
+3.3.5|[Show commands](#entryTracker5)
+3.3.6|[Show Categories](#entryTracker6)
+3.3.7|[Exit](#entryTracker7)
+
+## 3.3.1 <a name = entryTracker1> </a> Entry Tracker 1: Add entry
 Add an entry to the ledger record.
+
+__Note:__
+* For transaction categories, we require the users to enter the shortcut equivalent to the categories listed above. Refer to the following table.
+
+Category|Category shortcut|Compatible transaction type
+----------|-------|------------|
+FOOD|fd|Expense
+BILLS|bll|Expense
+TRANSPORT|tpt|Expense
+TRAVEL|tvl|Expense
+SALARY|slr|Expense
+ALLOWANCE|alw|Income
+OTHERS|oth|Income
 
 >Syntax
 
     entry add <param type> <parameter> 
-        <param type> @ /time: Time of entry
-            <parameter:String>: Input string of the time in HHMM or HH*MM*SS.
-        <param type> @ /amt: Amount associated with the entry, in $.
-            <parameter:Double>: Amount of money in at most 2 decimal places.
-        <param type> @ /desc: Details of the transaction that users can refer to when they view the list.
-            <parameter:String>: Input string of the description of the transaction.
-        <param type> @ /cat: Category of transaction
-            <parameter:String>: {tpt, fd, tvl, shp, bll, slr, alw}
-                                Only the above strings are allowed for entries. 
-                                They represent shortcuts to recognised entry categories that were specified 
-                                within the application.
-        <param type> @ -i/-e: Represents income and expenses for the entry type.
+
+        
+Param Type| Param | Param Format
+----------|-------|------------|
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
+/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+-i or -e|Type of transaction. | No parameter required. 
+
 > Example: 
 
     [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
@@ -447,28 +644,26 @@ Add an entry to the ledger record.
     ____________________________________________________________
     >>>
 
-## Entry Tracker 2: Edit entry
+## <a name = entryTracker2> </a> 3.3.2 Entry Tracker 2: Edit entry
 Add an entry to the ledger record.
 Users only need specify the param to edit, there is no need to fill out all params.
-Parameter 1 is however compulsory, as there is a need to reference a particular entry.
+
+__Note__
+* While the index is compulsory to be provided, the rest of the params are not compulsory.
+The users will include the params that they wish to modify.
+* Hence, a sample command ```entry edit /id 1 /time 1600``` will modify entry at __index 1__ to __time 1600__.
 
 >Syntax
 
-    entry edit <param type 1> <parameter 1> <param type> <parameter> 
-        <param type 1> @ /id: Index of the ledger in the entry list to edit.
-            <parameter 1:Integer>: Input number that is between 1 and the last index in the entry list.
-        <param type> @ /time: Time of entry
-            <parameter:String>: Input string of the time in HHMM or HH*MM*SS.
-        <param type> @ /amt: Amount associated with the entry, in $.
-            <parameter:Double>: Amount of money in at most 2 decimal places.
-        <param type> @ /desc: Details of the transaction that users can refer to when they view the list.
-            <parameter:String>: Input string of the description of the transaction.
-        <param type> @ /cat: Category of transaction
-            <parameter:String>: {tpt, fd, tvl, shp, bll, slr, alw}
-                                Only the above strings are allowed for entries. 
-                                They represent shortcuts to recognised entry categories that were specified 
-                                within the application.
-        <param type> @ -i/-e: Represents income and expenses for the entry type.
+    entry edit /id <parameter> <param type> <parameter> 
+        
+Param Type| Param | Param Format
+----------|-------|------------|
+/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
+/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+-i or -e|Type of transaction. | No parameter required. 
         
 > Example: 
 
@@ -508,7 +703,7 @@ Parameter 1 is however compulsory, as there is a need to reference a particular 
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## Entry Tracker 3: Remove entry
+## <a name = entryTracker3> </a> 3.3.3 Entry Tracker 3: Remove entry
 Remove a specified entry from the record, referenced by id on the list.
 
 >Syntax
@@ -516,6 +711,11 @@ Remove a specified entry from the record, referenced by id on the list.
     entry delete <param type> <parameter> 
         <param type> @ /id: Index of the ledger in the entry list.
             <parameter:Integer>: Input number that is between 1 and the last index in the entry list.
+            
+Param Type| Param | Param Format
+----------|-------|------------|
+/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
 
 > Example: 
 
@@ -567,7 +767,7 @@ Remove a specified entry from the record, referenced by id on the list.
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     
-## Entry Tracker 4: Show entry list
+## <a name = entryTracker4> </a> 3.3.4 Entry Tracker 4: Show entry list
 Shows the record of entries that has been added.
 
 >Syntax
@@ -599,7 +799,7 @@ Shows the record of entries that has been added.
     | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Entry Tracker 5: Print command list
+## <a name = entryTracker5> </a> 3.3.5 Entry Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -623,7 +823,7 @@ Prints available commands that users can enter in for manualTracker.
     | No.            | Command                 | Input Format                                               |
     --------------------------------------------------------------------------------------------------------
     | 1.             | New entry               | entry new /time {HHMM} /desc {string} /cat {category}      |
-    |                |                         | -[i/e]                                                     |
+    |                |                         | -[i/e] /amt {Double, 2 decimal places}                                                    |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     | 2.             | Edit entry              | entry edit /id {integer} {param-type/parameter to edit}    |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -637,7 +837,7 @@ Prints available commands that users can enter in for manualTracker.
     | 6.             | exit to manual tracker  | exit                                                       |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Entry Tracker 6: Print categories
+## <a name = entryTracker6> </a> 3.3.6 Entry Tracker 6: Print categories
 Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
 
 >Syntax
@@ -673,8 +873,10 @@ Prints expenditure category shortcuts that the user can input in entry creation/
      - - - - - - - - - - - - - - - - -
     | fd             | FOOD           |
      - - - - - - - - - - - - - - - - -
+    | oth            | OTHERS         |
+     - - - - - - - - - - - - - - - - -
     
-## Entry Tracker 7: Exit to Manual Tracker main routine
+## <a name = entryTracker7> </a> 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
 Exit to Manual tracker where users can choose another ledger.
 
 >Syntax
@@ -698,10 +900,10 @@ Exit to Manual tracker where users can choose another ledger.
     ____________________________________________________________
     >>>
     
-#Features : Recurring Tracker
+# 3.3 <a name = recurringTracker> </a> Features : Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
-## Recurring Tracker 1: Add entry
+## 3.3.1 Recurring Tracker 1: Add entry
 Creates a recurring entry. Entries can either be income or expense. If income, entries
 can be set to "auto" which indicates that the income is automatically credited to the user's
 bank account e.g. Salary which is transferred into bank account by company. 
@@ -715,7 +917,7 @@ Vice versa for expense entries.
 
     add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
     
-##Parameters
+## Parameters
 * `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
 * `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
 is not linked to any functionality)
@@ -734,17 +936,17 @@ is not linked to any functionality)
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
     on or by 27th of every month.
     
-## Recurring Tracker 2: List all entries
+## 3.3.2 Recurring Tracker 2: List all entries
 Displays a list of all recurring entries.
 
 >Syntax
 
     list
     
-##Parameters
+## Parameters
 None
-    
-## Recurring Tracker 3: Delete entry
+ 3  
+## 3.3.3 Recurring Tracker 3: Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
 associated index in the leftmost column
 
@@ -752,14 +954,14 @@ associated index in the leftmost column
 
     delete /id <INDEX>
     
-##Parameters
+## Parameters
 * `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
 
 >Example
     
     delete /id 15
     
-## Recurring Tracker 4: Edit entry
+## 3.3.4 Recurring Tracker 4: Edit entry
 Update one or more fields of an existing entry. Overwrites any existing value corresponding to the 
 field(s) being modified.
 
@@ -776,7 +978,7 @@ field(s) being modified.
     edit /id 2 /desc Updated name!! /day 23
     //Overwrites existing description and day. Other fields are untouched.
     
-## Recurring Tracker 5: Exit tracker
+## 3.3.5 Recurring Tracker 5: Exit tracker
 Exits to main menu.
 
 >Syntax
@@ -784,10 +986,10 @@ Exits to main menu.
     exit
 
     
-# Features : FinanceTools
+# 3.4 <a name = financeTools> </a> Features : FinanceTools
 FinanceTools contains tools related to financial calculations.
 
-## FinanceTools 1: Simple Interest Calculator
+## 3.4.1 FinanceTools 1: Simple Interest Calculator
 Calculate simple interest earned.
 <br />
 Simple interest is based on the principal amount of a deposit.
@@ -805,7 +1007,7 @@ Simple interest is based on the principal amount of a deposit.
     simple /a 1000 /r 5
 
 ![Example](screenshots/financetools/SimpleInterest(1).PNG)
-## FinanceTools 2: Yearly Compound Interest Calculator
+## 3.4.2 FinanceTools 2: Yearly Compound Interest Calculator
 Calculate yearly compound interest earned with optional yearly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
@@ -829,7 +1031,7 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/YearlyCompoundInterest(2).PNG)
-## FinanceTools 3: Monthly Compound Interest Calculator
+## 3.4.3 FinanceTools 3: Monthly Compound Interest Calculator
 Calculate monthly compound interest earned with optional monthly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
@@ -853,7 +1055,7 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/MonthlyCompoundInterest(2).PNG)
-## FinanceTools 4: Cashback Calculator
+## 3.4.4 FinanceTools 4: Cashback Calculator
 Calculate cashback earned.
 
 ### Parameters
@@ -874,7 +1076,7 @@ Calculate cashback earned.
 <br />
 <br />
 ![Example](screenshots/financetools/Cashback(2).PNG)
-## FinanceTools 5: Miles Credit Calculator
+## 3.4.5 FinanceTools 5: Miles Credit Calculator
 Calculate cashback earned.
 
 ## Parameters
@@ -890,7 +1092,7 @@ Calculate cashback earned.
     miles /a 1000 /r 5
 
 ![Example](screenshots/financetools/Miles(1).PNG)
-## FinanceTools 6: Account Storage
+## 3.4.6 FinanceTools 6: Account Storage
 Store account information.
 <br />
 
@@ -941,7 +1143,7 @@ Additionally, it implements the following operations:
 <br />
 ![Example](screenshots/financetools/AccountStorage(7).PNG)
 
-## FinanceTools 7: Command and Calculation History
+## 3.4.7 FinanceTools 7: Command and Calculation History
 Store the commands inputted and results from calculations in FinanceTools.
 
 >Syntax:
@@ -953,7 +1155,7 @@ Store the commands inputted and results from calculations in FinanceTools.
     history
 
 ![Example](screenshots/financetools/History(1).PNG)
-## FinanceTools 8: Exit FinanceTools
+## 3.4.8 FinanceTools 8: Exit FinanceTools
 Exit FinanceTools to Main Menu.
 
 >Syntax:
@@ -966,11 +1168,11 @@ Exit FinanceTools to Main Menu.
 
 ![Example](screenshots/financetools/Exit(1).PNG)
 
-# Features : Goal Tracker
+# 3.5 <a name = goalTracker> </a> Features : Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
-## Goal Tracker 1 : Set Goal
-### Goal Tracker 1.1 : Set Income Goal
+## 3.5.1 Goal Tracker 1 : Set Goal
+### 3.5.1.1 Set Income Goal
 Setting of income goal for respective months.
 
 >syntax
@@ -984,7 +1186,7 @@ Setting of income goal for respective months.
 
 ![Example](screenshots/goaltracker/setincomegoal.png)
 
-### Goal Tracker 1.2 : Set Expense Goal
+### 3.5.1.2 Set Expense Goal
 Setting of expense goal for respective months.
 
 >syntax
@@ -997,7 +1199,7 @@ Setting of expense goal for respective months.
 
 ![Example](screenshots/goaltracker/setexpensegoal.png)
 
-## Goal Tracker 2 : Display Goal
+## 3.5.2 Goal Tracker 2 : Display Goal
 Display income and expense goal for the individual month.
 
 >syntax
@@ -1012,7 +1214,7 @@ Display income and expense goal for the individual month.
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
-## Goal Tracker 3 : Exit Display Goal 
+## 3.5.3 Goal Tracker 3 : Exit Display Goal 
 The system will auto prompt the user whether they want to exit DisplayGoal and return to Goal tracker main menu.
 
 >syntax 
@@ -1026,7 +1228,7 @@ The system will auto prompt the user whether they want to exit DisplayGoal and r
 ![PromptExitDisplay](screenshots/goaltracker/PromptExitDisplay.png)
 ![ReturnMain](screenshots/goaltracker/returnmainmenu.png)
 
-## Goal Tracker 4 : Edit Goal
+## 3.5.4 Goal Tracker 4 : Edit Goal
 Edit income and expense goal for the individual month.
 
 >syntax
@@ -1041,7 +1243,7 @@ Edit income and expense goal for the individual month.
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
-## Goal Tracker 5 : Exit Goal Tracker
+## 3.5.5 Goal Tracker 5 : Exit Goal Tracker
 Exit Goal Tracker program and return to FinanceIt main UI.
 
 >syntax
@@ -1053,7 +1255,9 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
     
 
-## Manual Tracker
+# 4. <a name = commandsSummary> </a>Commands summary
+
+## 4.1 Manual Tracker
 No. | Command | Syntax | 
 ----|---------|---------|
 1.|Open ledger|_ledger open /date {YYMMDD}_|
@@ -1062,7 +1266,7 @@ No. | Command | Syntax |
 4.|delete ledgers|_ledger delete /date {YYMMDD}_|;
 5.|exit to main menu|_exit_|
 
-## Entry tracker
+## 4.2 Entry tracker
 No. | Command | Syntax |
 ----|---------|---------|
 1.|New entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
