@@ -12,14 +12,13 @@ import java.io.IOException;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.DateManager.getCurrentDate;
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class AddGoalCommand extends Command {
-    protected String createdDate;
 
-    public AddGoalCommand(String command, String createdDate) {
+    public AddGoalCommand(String command) {
         this.command = command;
-        this.createdDate = createdDate;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class AddGoalCommand extends Command {
             //Food goal
             case COMMAND_FOOD:
                 command = command.split(" ", 2)[1].trim();
-                newGoal = formatGoal(createdDate, "F", command);
+                newGoal = formatGoal(getCurrentDate(), "F", command);
                 listManager.addGoal(newGoal);
                 Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
                         + newGoal.getGoalType() + "] " + newGoal.getDescription());
@@ -39,7 +38,7 @@ public class AddGoalCommand extends Command {
             //Exercise goal
             case COMMAND_EXERCISE:
                 command = command.split(" ", 2)[1].trim();
-                newGoal = formatGoal(createdDate, "E", command);
+                newGoal = formatGoal(getCurrentDate(), "E", command);
                 listManager.addGoal(newGoal);
                 Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
                         + newGoal.getGoalType() + "] " + newGoal.getDescription());
