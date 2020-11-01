@@ -14,7 +14,7 @@ public class DeleteCommandTest {
     @Test
     void execute_InvalidIndexGiven_DeleteNumberFormatException() {
         Assertions.assertThrows(DeleteNumberFormatException.class,() -> {
-            Command c = Parser.parse("delete f", null);
+            Command c = Parser.parse("delete f", null,0);
         });
     }
 }

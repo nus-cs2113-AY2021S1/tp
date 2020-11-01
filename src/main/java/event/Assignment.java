@@ -16,6 +16,10 @@ public class Assignment extends Event {
 
     protected LocalDateTime by;
 
+    public void setBy(LocalDateTime by) {
+        this.by = by;
+    }
+
     /**
      * Convert the information about this assignment to a string that is to be stored in a file.
      *
