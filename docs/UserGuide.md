@@ -94,7 +94,7 @@ Format: `help`
 <br/>
 
 ### 3.2 Estimate time needed to translate the script
-This command allows you to figure out the amount of time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators' speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time.
+This command allows you to estimate the time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators’ speed of 400, 500, and 600 words per hour. Hence, this would allow you to better manage and plan your time.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   It only accepts one `.txt` file (other file extensions will be supported in a future version).
@@ -102,8 +102,8 @@ Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 
 > :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
 
-> :bulb: Ensure the script file is in the current workspace's folder. For example, if the current workspace is "Default", then from the folder containing `AniChan.jar`, place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
-> <br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
+> :bulb: Put the script in the current workspace folder. If the current workspace is "Default", then from the folder containing `AniChan.jar`, put it in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
+> <br/><br/> ![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
 
@@ -343,7 +343,7 @@ Successfully deleted workspace: Default
 <!-- @@author -->
 
 ### 3.7 Watchlist management
-The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own definition and criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
+The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
 
 The following subsections below describes the various watchlist-relation operations.
 
