@@ -2,6 +2,7 @@ package command;
 
 import event.Event;
 import eventlist.EventList;
+import exception.ExistingEventInListException;
 import exception.NuScheduleException;
 import exception.WritingFileException;
 import locationlist.BusStopList;
@@ -37,7 +38,7 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
-            throws WritingFileException {
+            throws WritingFileException, ExistingEventInListException {
         ui.printConflictEvents(events.checkConflictTiming(event));
         events.addEvent(event);
         ui.printAddEventMessage(event);

@@ -44,7 +44,6 @@ public class EditCommand extends Command {
         events.editEvent(event, index);
         ui.printConflictEvents(events.checkConflictTiming(event));
         ui.printEditEventMessage(event);
-        ui.printNumEvent(events.getSize());
         storage.writeFile(events.getEventList());
     }
 }

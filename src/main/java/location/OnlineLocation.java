@@ -1,5 +1,7 @@
 package location;
 
+import event.Assignment;
+
 /**
  * Virtual location is also location!
  * This class represents the online meetings (e.g. zoom sessions) for people to attend, or the link to submit
@@ -50,5 +52,16 @@ public class OnlineLocation {
      */
     public String fileString() {
         return "online//" + link + (password != null ? "//" + password : "");
+    }
+
+    @Override
+    public boolean equals(Object object){
+        boolean isEqual = false;
+
+        if (object instanceof OnlineLocation) {
+            isEqual = (this.link.equals(((OnlineLocation) object).link)) ;
+        }
+
+        return isEqual;
     }
 }

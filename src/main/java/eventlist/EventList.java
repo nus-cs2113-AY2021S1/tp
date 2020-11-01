@@ -4,6 +4,7 @@ package eventlist;
 import event.Assignment;
 import event.Event;
 import exception.EmptyEventListException;
+import exception.ExistingEventInListException;
 import exception.UndefinedEventException;
 import ui.UI;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -42,7 +44,11 @@ public class EventList {
      *
      * @param eventToBeAdded may be Assignment/Class/Personal Event based on the usage
      */
-    public void addEvent(Event eventToBeAdded) {
+    public void addEvent(Event eventToBeAdded) throws ExistingEventInListException {
+        if (events.contains(eventToBeAdded)) {
+            throw new ExistingEventInListException();
+        }
+
         events.add(eventToBeAdded);
     }
 
@@ -186,29 +192,39 @@ public class EventList {
             eventEndDateTime = null;
         }
         ArrayList<Event> filteredEventList;
-
-        filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> s.getEndDateTime() != null)
-                .filter(s -> ((!(s instanceof Assignment))
-                        && (s.getStartDateTime().isBefore(eventStartDateTime)
-                        || s.getStartDateTime().isEqual(eventStartDateTime))
-                        && (s.getEndDateTime().isAfter(eventStartDateTime)
-                        || s.getEndDateTime().isEqual(eventStartDateTime))))
-                .collect(toList());
+        ArrayList<Event> filteredEventList2 = null;
+        try {
+            filteredEventList = (ArrayList<Event>) events.stream()
+                    .filter(s -> s.getEndDateTime() != null)
+                    .filter(s -> ((!(s instanceof Assignment))
+                            && (s.getStartDateTime().isBefore(eventStartDateTime)
+                            || s.getStartDateTime().isEqual(eventStartDateTime))
+                            && (s.getEndDateTime().isAfter(eventStartDateTime)
+                            || s.getEndDateTime().isEqual(eventStartDateTime))))
+                    .collect(toList());
+        } catch (NullPointerException e) {
+            filteredEventList = null;
+        }
         if (eventEndDateTime != null) {
             //this considers when the events already in the list lie in the duration of the new event
-            LocalDateTime finalEventEndDateTime = eventEndDateTime;
-            ArrayList<Event> filteredEventList2 = (ArrayList<Event>) events.stream()
-                    .filter(s -> ((!(s instanceof Assignment))
-                            && (s.getStartDateTime().isAfter(eventStartDateTime)
-                            || s.getStartDateTime().isEqual(eventStartDateTime))
-                            && (s.getStartDateTime().isBefore(finalEventEndDateTime)
-                            || s.getStartDateTime().isEqual(finalEventEndDateTime))))
-                    .collect(toList());
-            filteredEventList2.removeAll(filteredEventList);
-            filteredEventList.addAll(filteredEventList2);
+            try {
+                LocalDateTime finalEventEndDateTime = eventEndDateTime;
+                filteredEventList2 = (ArrayList<Event>) events.stream()
+                        .filter(s -> ((!(s instanceof Assignment))
+                                && (s.getStartDateTime().isAfter(eventStartDateTime)
+                                || s.getStartDateTime().isEqual(eventStartDateTime))
+                                && (s.getStartDateTime().isBefore(finalEventEndDateTime)
+                                || s.getStartDateTime().isEqual(finalEventEndDateTime))))
+                        .collect(toList());
+                filteredEventList2.removeAll(filteredEventList);
+            } catch (NullPointerException e) {
+                filteredEventList2 = null;
+            }
         }
-        filteredEventList.remove(event);
+        if (filteredEventList != null && filteredEventList2 != null) {
+            filteredEventList.addAll(filteredEventList2);
+            filteredEventList.remove(event);
+        }
         return filteredEventList;
     }
 }

@@ -48,6 +48,13 @@ This gives the application both simplicity and speed, setting it apart from othe
 
 ## Features 
 
+### Tips:
+In the following description, `DATE` refers to the date in the format yyyy-MM-dd. e.g. `2020-10-31` 
+`TIME` refers to the time in the format HH:mm. e.g. `10:00`  
+
+`/t` refers to the starting time for PersonalEvent and Class, and deadline for Assignment  
+`/e` refers to the ending time for PersonalEvent and Class  
+
 ### View available commands
 
 Shows list of commands and provides a link to the user guide for more details. 
@@ -59,8 +66,7 @@ Format: `help`
 
 Adds events/tasks to the schedule. Can support various types of tasks: 
 
-In the following description, `DATE` refers to the date in the format yyyy-MM-dd. e.g. `2020-10-31` 
-`TIME` refers to the time in the format HH:mm. e.g. `10:00`  
+
 
 * Personal events  
   Format: `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for underline event.  
