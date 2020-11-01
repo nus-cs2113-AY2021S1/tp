@@ -62,6 +62,9 @@ public class ListCommand extends Command {
                     .collect(toList());
 
             if (filterApplianceList.isEmpty()) {
+                if (locationList.isLocationCreated(filteredLocation)) {
+                    return new CommandResult("There is no appliance in \"" + filteredLocation + "\".");
+                }
                 return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
             }
             String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
