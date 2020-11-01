@@ -7,7 +7,6 @@ import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.Topic;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SingleTopicQuizTest extends Eduke8Test {
     public static final int TIMEOUT = 1;
@@ -34,14 +33,6 @@ public class SingleTopicQuizTest extends Eduke8Test {
                 new SingleTopicQuiz(topic, questionsInTopic + 1, bookmarks, TIMEOUT);
 
         assertThrows(Eduke8Exception.class, () -> singleTopicQuiz.startQuiz(ui));
-    }
-
-    @Test
-    void startQuiz_questionTimeOut_quizCompletes() throws Eduke8Exception {
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, 1, bookmarks, TIMEOUT);
-        singleTopicQuiz.startQuiz(ui);
-        // Reaches this point if the quiz times out and completes
-        assertTrue(true);
     }
 
 }
