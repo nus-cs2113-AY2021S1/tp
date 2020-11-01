@@ -49,7 +49,7 @@ public class Main {
             }
             else if (input.startsWith("change"))
             {
-                changeOrder();
+                changeOrder(customer);
             }
 
             else{ //dealing with undefined type of input
@@ -122,6 +122,42 @@ public class Main {
         Canteen canteen2 =new Canteen("Canteen 2",Arrays.asList(koreanStall,pizzaHut,macDonalds),
                 Arrays.asList(830,830,830,830,900,900,930), Arrays.asList(1730,1830,1830,1830,1800,1800,1830));
 
+        Dish beefNoodle = new Dish("Beef Noodle",3,
+                "The beef is really good, but I think this dish is a bit salty :(");
+        Dish tomatoEggNoodle = new Dish("Tomato Egg Noodle", 2.5,
+                "Really tasteful!!! After this, I know the reason why most Chinese like tomato and egg.");
+        Dish noodlesWithSoyBeanPaste = new Dish ("Noodles with Soy Bean Paste",3,
+                "Although my Chinese friends like this very much, but as an Indian I do not like this.");
+        Stall noodles = new Stall("Noodles",7,"20 Nanyang Cres",
+                830,1930,Arrays.asList(1,2,3,6),
+                Arrays.asList(beefNoodle,tomatoEggNoodle,noodlesWithSoyBeanPaste),3);
+
+        Dish sweetAndSourMeet = new Dish("Sweet&Sour Meet",5,
+                "The taste of the sweetness and sour are just right.");
+        Dish kungPaoTofu = new Dish("Kung Pao Tofu", 4.5,
+                "Really good, worth try, but not understand the name of this dish.");
+        Dish boiledFish = new Dish("Boiled Fish", 5.5,
+                "First try! Really spicy!!");
+        Stall siChuan = new Stall("Si Chuan",8,"24 Nanyang Ave",
+                900,1830,Arrays.asList(1,2,3,4,5),
+                Arrays.asList(sweetAndSourMeet,kungPaoTofu,boiledFish),3);
+
+        Dish spicyChicken = new Dish("Spicy Chicken",3.5,
+                "Very crispy and spicy!");
+        Dish saltedEggChicken = new Dish("Salted Egg Chicken",4,
+                "Really like this taste of chicken with salted egg.");
+        Dish mapoTofu = new Dish("Mapo Tofu",2.5,
+                "Heared of this dish before, really good.");
+        Stall mixedRice = new Stall("Mixed Rice",9,"32 Nanyang Cres",
+                800,1900,Arrays.asList(1,2,5,7),
+                Arrays.asList(spicyChicken,saltedEggChicken,mapoTofu),3);
+
+        Canteen canteen3 = new Canteen("Canteen 3",Arrays.asList(noodles,siChuan,mixedRice),
+                Arrays.asList(800,800,830,900,800,830,800), Arrays.asList(1830,1830,1830,1830,1830,1930,1900));
+
+//        Stall indian;
+//
+//        Stall maly
 
         List<Canteen> canteens = new ArrayList<Canteen>();
         canteens.add(canteen1);
@@ -199,20 +235,27 @@ public class Main {
 
 
     }
-    public static void changeOrder()
+    public static void changeOrder(Customer customer)
     {
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've changed this order:  \n");
         String[] inputWords = input.split("/"); //split the input message
         String orderNumberchenged = inputWords[1];
-        int orderNumberchanged = Integer.parseInt(orderNumberchenged);
+        int orderNumberchanged = Integer.parseInt(orderNumberchenged) - 1;
         String changedtype = inputWords[2];
         System.out.println(Order.get(orderNumberchanged) + "\n");
+        Canteen can = Order.get(orderNumberchanged).getCanteen();
+        Stall stall = Order.get(orderNumberchanged).getStall();
+        List<Dish> dishes = Order.get(orderNumberchanged).getDish();
+        Order changedOrder = customer.order(can,stall,dishes,changedtype);
+        Order.set(orderNumberchanged,changedOrder);
 
-        System.out.println("Now you have " + Order.size() + " orders in the list. ");
+        System.out.println("to \n");
+        System.out.println(Order.get(orderNumberchanged) + "\n");
         System.out.println("____________________________________________________________\n");
 
     }
+
     public static void printOrder() {
         System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
