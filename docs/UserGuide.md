@@ -284,6 +284,7 @@ Users can manage lists of entries, which are known as ledgers. Each list represe
     2. Open the ledger of date 20-10-03 
     3. Use Entry Tracker to create entries to record the transactions for that particular date.
     
+    
 No. |Content|
 ----|------|
 3.2.1|[Add Ledger](#manualTracker1)
@@ -1258,6 +1259,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
 ## 4.1 Manual Tracker
+
 No. | Feature | Syntax |
 ----|---------|---------|
 1.|Open Ledger|_ledger open /date {YYMMDD}_|
@@ -1267,6 +1269,7 @@ No. | Feature | Syntax |
 5.|Exit to Main Menu|_exit_|
 
 ## 4.2 Entry tracker
+
 No. | Feature | Syntax |
 ----|---------|---------|
 1.|New Entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
@@ -1277,6 +1280,7 @@ No. | Feature | Syntax |
 6.|Exit to Manual Tracker|_exit_|
 
 ## 4.3 FinanceTools
+
 No. | Feature | Syntax |
 ----|---------|---------|
 1.|Simple Interest Calculator|_simple /a {AMOUNT} /r {INTEREST_RATE}_|
