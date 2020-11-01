@@ -175,6 +175,8 @@ public class EventList {
             break;
         default:
             if (newLocation != null) {
+                newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+            } else {
                 newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
             }
             break;
