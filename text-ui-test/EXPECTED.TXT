@@ -275,7 +275,7 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -.   requires an additional field.
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -   requires an additional field.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
