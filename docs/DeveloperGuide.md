@@ -1,11 +1,131 @@
 # Developer Guide
 
-## Design & implementation
+## Table of content
+### [1. Introduction](#1-Introduction1)
+#### [1.1 Software Overview](#11-Software-Overview1)
+#### [1.2 Purpose](#12-Purpose1)
+#### [1.3 Scope](#13-Scope1)
+### [2. Setting up and getting started](#2-Setting-up-and-getting-started1)
+### [3. Design](#3-Design1)
+#### [3.1 Architecture](#31-Architecture1)
+#### [3.2 Classes](#32-Classes1)
+##### [3.2.1 Main class](#321-Main-class1)
+##### [3.2.2 UI class](#322-UI-class1)
+##### [3.2.3 Parser class](#323-Parser-class1)
+##### [3.2.4 Customer class](#324-Customer-class1)
+##### [3.2.5 Order class](#324-Order-class1)
+##### [3.2.5 Canteen class](#324-Canteen-class1)
+##### [3.2.4 Stall class](#324-Stall-class1)
+##### [3.2.4 Dish class](#324-Dish-class1)
+### [4. Implementation](#4-Implementation1)
+### [5. Testing](#5-Testing1)
+### [6. Appendix: Requirements](#6-Appendix-Requirements1)
+#### [6.1 Product scope](#61-Product-scope1)
+#### [6.1.1 Target user profile](#611-Target-user-profile1)
+#### [6.1.2 Value proposition](#612-Value-proposition1)
+#### [6.2 User stories](#62-User-stories1)
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## 1. Introduction
+
+### 1.1 Software Overview
+CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently.
+CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
+
+### 1.2 Purpose
+This document describes the architecture and software design of CanteenHelper. The goal of this document is to cover the high-level system architecture and design.
+The document is divided into three main parts: design, implementation and documantation. The design includes the architecture diagram and the introduction of each class. The implementation describes some details on how certain features are implemented and how the users go through our app. The documentation details the logging, testing and configuration of CanteenHelper. It also includes the requirement and the instructions for manual testing in the appendices.
+
+### 1.3 Scope
+The intended audience of this document is the developers, designers, and software testers of CEGMods.
 
 
-## Product scope
+## 2. Setting up and getting started
+
+Before you start:
+Please ensure you have Java 11 installed in you computer.
+
+Fork this repo from this link:
+
+Clone the fork to your own computer. You are highly recommended to use Git tool (like Sourcetree) to track your work.
+
+Use your own IDEA to program. You are highly recommended to use IntelliJ IDEA. Please check whether you have correct JDK version (JDK 11) in your computer and congiure the JDK.
+
+If you are using IntelliJ IDEA:
+
+Open IntelliJ
+Set up JDK 11 for Gradle
+Click Configure -> Project Defaults -> Project Structure
+Click New... and set it to the directory of the JDK 11 installed
+Import the project as a Gradle project.
+
+If you are using IntelliJ IDEA:
+Click Import Project (or Open or Import in newer version of Intellij).
+Locate the build.gradle file (not the root folder as you would do in a normal importing) and select it. Click OK.
+Click OK to accept the default settings but do ensure that the selected version of Gradle JVM matches the JDK being used for the project.
+Wait for importing process to complete
+
+Do the testing. Please follow the testing guide
+
+## 3. Design
+
+### 3.1 Architecture
+
+Feature 1. Architecture Diagram
+The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
+Main:  Our main class has one class called Main.java. It is responsible for,
+At app launch, the Main.java will initialize the UI to start waiting for the input from the users.
+UI: The user interface of our App.
+Logic: The logic flow of our whole App.
+Model: Holds the data of our App in memory.
+The following section is a more detailed description of these four components.
+
+### 3.2 Classes
+The CanteenHelper consists of six classes:
+* `Main`
+* `Ui`
+* `Parser`
+* `Customer`
+* `Order`
+* `Canteen`
+* `Stall`
+* `Dish`
+
+#### 3.2.1 Main class
+Main logic of the whole app.
+
+#### 3.2.2 UI class
+Mainly managed in MainPage, which contains several parts: showCommand, displayInfo, getInput. All of these should inherit from an abstract class UserInterface class. And this class can
+1. Show all possible executable commands in numeric order
+    E.g. 1: Get open canteens
+         2: Get open stalls
+2. Get user input (number) and use the Logic component to execute the corresponding user’s command
+3. Display the results of user and program interactions
+
+#### 3.2.3 Parser class
+Deals with making sense of the user's command and pass the command to certain functions.
+
+#### 3.2.4 Customer class
+Customer contains the list of open canteens and initializes Order objects.
+
+#### 3.2.5 Order class
+Order contains the list of dishes that are ordered.
+
+#### 3.2.6 Canteen class
+Canteen contains the list of stalls.
+
+#### 3.2.7 Stall class
+Stall contains the list of dishes.
+
+#### 3.2.8 Dish class
+Dishes that can be ordered by the user.
+
+
+## 4. Implementation
+
+## 5. Testing
+
+## 6. Appendix: Requirements
+
 ### Target user profile
 
 {Describe the target user profile}
