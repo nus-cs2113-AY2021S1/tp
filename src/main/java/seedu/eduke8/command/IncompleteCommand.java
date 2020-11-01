@@ -8,13 +8,13 @@ import seedu.eduke8.ui.Ui;
 
 public class IncompleteCommand extends Command {
     private Question question;
-    private int timer;
+    private int userTimer;
 
-    public IncompleteCommand(Question question, int timer) {
+    public IncompleteCommand(Question question, int userTimer) {
         super();
 
         this.question = question;
-        this.timer = timer;
+        this.userTimer = userTimer;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class IncompleteCommand extends Command {
         String explanation = question.getExplanation().getDescription();
         try {
             int correctOptionNumber = ((OptionList) optionList).findCorrectOptionIndex() + 1;
-            ui.printIncompleteAnswer(correctOptionNumber, explanation, timer);
+            ui.printIncompleteAnswer(correctOptionNumber, explanation, userTimer);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
         }
