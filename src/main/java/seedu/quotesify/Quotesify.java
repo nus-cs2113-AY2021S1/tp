@@ -54,7 +54,6 @@ public class Quotesify {
             ui.printDividerLine();
             if (command == null) {
                 ui.printInvalidQuotesifyCommand();
-                ui.printDividerLine();
                 continue;
             }
             command.execute(ui, storage);
