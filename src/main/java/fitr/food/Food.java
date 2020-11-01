@@ -1,21 +1,23 @@
 package fitr.food;
 
 import fitr.calorie.Calorie;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Food {
     protected String nameOfFood; // The name of the Food
     protected Calorie caloriesInFood;// Amount of calories consumed
     protected int amountOfFood = 1; // Amount of food in grams, if not it will be taken as arbitrary unit e.g, 1 banana
-    protected String date; //Date when the Food is added to the list
+    protected LocalDate date; //Date when the Food is added to the list
 
-    public Food(String nameOfFood, Calorie calories, int amount, String date) {
+    public Food(String nameOfFood, Calorie calories, int amount, LocalDate date) {
         this.nameOfFood = nameOfFood;
         this.amountOfFood = amount;
         this.caloriesInFood = new Calorie(calories.get());
         this.date = date;
     }
 
-    public Food(String name, Calorie caloriesInFood, String date) {
+    public Food(String name, Calorie caloriesInFood, LocalDate date) {
         this.nameOfFood = name;
         this.caloriesInFood = caloriesInFood;
         this.date = date;
@@ -34,7 +36,8 @@ public class Food {
     }
 
     public String getDate() {
-        return date;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        return date.format(formatter);
     }
 
     public void setNameOfFood(String nameOfFood) {
