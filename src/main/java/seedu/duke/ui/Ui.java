@@ -219,4 +219,13 @@ public class Ui {
                 + "Most of the corrupted data has been removed :)");
     }
 
+    public static void printBusAtBusStop(ArrayList<Bus> busList, String busStop) {
+        System.out.print(busStop + ":  ");
+        for (Bus bus : busList) {
+            System.out.print(bus.getBusNumber() + "   ");
+        }
+        System.out.println();
+        printLine();
+    }
+
 }
