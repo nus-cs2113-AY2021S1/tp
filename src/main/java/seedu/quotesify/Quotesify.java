@@ -41,6 +41,7 @@ public class Quotesify {
     public void exit() {
         ui.printRandomQuote();
         ui.showGoodbyeMessage();
+        ui.printDividerLine();
         System.exit(0);
     }
 
@@ -49,11 +50,14 @@ public class Quotesify {
         while (!isExit) {
             String userCommandText = ui.getUserCommand();
             Command command = parser.parseUserCommand(userCommandText);
+            ui.printDividerLine();
             if (command == null) {
                 ui.printInvalidQuotesifyCommand();
+                ui.printDividerLine();
                 continue;
             }
             command.execute(ui, storage);
+            ui.printDividerLine();
             isExit = command.isExit();
         }
     }
