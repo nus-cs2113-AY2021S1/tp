@@ -156,7 +156,9 @@ Example of usage:
 
 Expected outcome:
 ~~~
+------------------------------------------------------
 The book [Harry Potter by JK Rowling] has been added!
+------------------------------------------------------
 ~~~
 
 #### Completing a book: `done -b`
@@ -172,7 +174,9 @@ Example of usage:
 
 Expected outcome:
 ~~~
+--------------------------------------------------------------
 The book [Harry Potter by JK Rowling] has been marked as done!
+--------------------------------------------------------------
 ~~~
 
 #### Listing all existing books: `list -b`
@@ -185,11 +189,13 @@ Example of usage:
 
 Expected outcome:
 ~~~
+--------------------------------------------------------
 Here is a list of all books:
-1. Harry Potter by JK Rowling
-2. The Lion, the Witch and the Wardrobe by CS Lewis
-3. Becoming by Michelle Obama
-4. The Chronicles of Narnia by CS Lewis
+1. [x] Becoming by Michelle Obama
+2. [x] Harry Potter by JK Rowling
+3. [x] The Chronicles of Narnia by CS Lewis
+4. [x] The Lion, the Witch and the Wardrobe by CS Lewis
+--------------------------------------------------------
 ~~~
 
 #### Listing book details: `list -b`
@@ -207,35 +213,42 @@ Expected outcome:
 
 Case 1: When the book has not been rated and not completed.
 ~~~
+--------------------------------------------
 Here are the details of your book:
 Title: Harry Potter
 Author: JK Rowling
 Categories:
 There are no categories created!
+---------------------------------------------
 ~~~
 
 Case 2: When the book has been rated but not completed.
 ~~~
+---------------------------------------------
 Here are the details of your book:
 Title: Harry Potter
 Author: JK Rowling
 Categories:
 There are no categories created!
 Rating: 5
+---------------------------------------------
 ~~~
 
 Case 3: When the book has not been rated but completed.
 ~~~
+---------------------------------------------
 Here are the details of your book:
 [Completed]
 Title: Harry Potter 
 Author: JK Rowling
 Categories:
 There are no categories created!
+---------------------------------------------
 ~~~
 
 Case 4: When the book has been rated and completed.
 ~~~
+---------------------------------------------
 Here are the details of your book:
 [Completed]
 Title: Harry Potter
@@ -243,6 +256,7 @@ Author: JK Rowling
 Categories:
 There are no categories created!
 Rating: 5
+---------------------------------------------
 ~~~
 
 #### Listing books by an Author: `list -b`
@@ -258,9 +272,11 @@ Example of usage:
 
 Expected outcome:
 ~~~
+--------------------------------------------------------
 Here is a list of books by CS Lewis:
-1. The Lion, the Witch and the Wardrobe by CS Lewis
-2. The Chronicles of Narnia by CS Lewis
+1. [x] The Chronicles of Narnia by CS Lewis
+2. [x] The Lion, the Witch and the Wardrobe by CS Lewis
+--------------------------------------------------------
 ~~~
 
 #### Listing books by completion: `list -b`
@@ -274,12 +290,13 @@ Example of usage:
 
 Expected outcome:
 ~~~
+---------------------------------------------
 Here are the books you have completed:
 1. [v] Harry Potter by JK Rowling
-2. [v] Harry Potter 2 by JK Rowling
+---------------------------------------------
 ~~~
 
-##### List done books
+##### List undone books
 Format: `list -b undone`
 
 Example of usage:
@@ -287,9 +304,12 @@ Example of usage:
 
 Expected outcome:
 ~~~
+---------------------------------------------------------
 Here are the books you have yet to complete:
-1. [x] Harry Potter by JK Rowling
-2. [x] Harry Potter 2 by JK Rowling
+1. [x] Becoming by Michelle Obama
+2. [x] The Chronicles of Narnia by CS Lewis
+3. [x] The Lion, the Witch and the Wardrobe by CS Lewis
+---------------------------------------------------------
 ~~~
 
 #### Finding books by keyword: `find -b`
@@ -302,9 +322,11 @@ Example of usage:
 
 Expected outcome:
 ~~~
+---------------------------------------------------------
 Here is a list of books with the keyword "the":
-1. The Lion, the Witch and the Wardrobe by CS Lewis
-2. The Chronicles of Narnia by CS Lewis
+1. [x] The Chronicles of Narnia by CS Lewis
+2. [x] The Lion, the Witch and the Wardrobe by CS Lewis
+---------------------------------------------------------
 ~~~
 
 #### Deleting a book: `delete -b`
@@ -316,11 +338,13 @@ Format: `delete -b BOOK_NUMBER`
 * The book number must be an existing number in the list when you list ALL books.
 
 Example of usage:
-`delete -b 1`
+`delete -b 2`
 
 Expected outcome:
 ~~~
+---------------------------------------------------------
 The book [Harry Potter by JK Rowling] has been deleted!
+---------------------------------------------------------
 ~~~ 
 
 #### Editing an existing book: `edit -b`
@@ -337,7 +361,9 @@ Example of usage:
 
 Expected outcome:
 ~~~
+------------------------------------------------------------------
 The book has been edited from [Harry Potter] to [Harry Potter 2]!
+------------------------------------------------------------------
 ~~~
 
 ### Quote Management
@@ -363,22 +389,30 @@ Example of usage:
 
 Expected outcome 1:
 ```
+-----------------------------------------------------------------------------
 The quote ["Life is short, smile while you still have teeth"] has been added!
+-----------------------------------------------------------------------------
 ```
 
 Expected outcome 2:
 ```
+----------------------------------------------------------------------
 The quote ["Luke, I am your father" - by Darth Vader] has been added!
+----------------------------------------------------------------------
 ```
 
 Expected outcome 3:
 ```
+----------------------------------------------------------------------
 The quote ["Get schwifty!" - from Rick and Morty] has been added!
+----------------------------------------------------------------------
 ```
 
 Expected outcome 4:
 ```
+----------------------------------------------------------------------------------------------------------------------
 The quote ["So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)] has been added!
+----------------------------------------------------------------------------------------------------------------------
 ```
 
 #### Listing all quotes: `list -q`
@@ -390,11 +424,13 @@ Example of usage: `list -q`
 
 Expected outcome:
 ```
+---------------------------------------------------------------------------------------------
 Here are all your quotes:
 1. "Life is short, smile while you still have teeth"
 2. "Luke, I am your father" - by Darth Vader
 3. "Get schwifty!" - from Rick and Morty
 4. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+----------------------------------------------------------------------------------------------
 ```
 
 #### Listing quotes from a specific reference: `list -q`
@@ -406,9 +442,11 @@ Example of usage: `list -q /from rick and morty`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------------------
 Here is a list of quotes from rick and morty:
 "Get schwifty!" - from Rick and Morty
 "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+------------------------------------------------------------------------------------------
 ```
 
 #### Listing quotes from a specific author: `list -q`
@@ -420,8 +458,10 @@ Example of usage: `list -q /by darth vader`
 
 Expected outcome:
 ```
+---------------------------------------------------
 Here is a list of quotes by darth vader:
 "Luke, I am your father" - by Darth Vader
+---------------------------------------------------
 ```
 
 #### Listing quotes from a specific reference and author: `list -q`
@@ -433,8 +473,10 @@ Example of usage: `list -q /by rick /from rick and morty`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------------------
 Here is a list of quotes from rick and morty by rick:
 "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+------------------------------------------------------------------------------------------
 ```
 
 #### Editing an existing quote: `edit -q`
@@ -450,7 +492,9 @@ Example of usage: `edit -q 2 /to No, I am your mummy /by Darth Vader`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------------------------------------------------
 The quote has been edited from: ["Luke, I am your father" - by Darth Vader] to ["No, I am your mummy" - by Darth Vader]!
+------------------------------------------------------------------------------------------------------------------------
 ```
 
 #### Deleting a quote: `delete -q`
@@ -465,7 +509,9 @@ Example of usage: `delete -q 1`
 
 Expected outcome:
 ```
+-----------------------------------------------------------------------------
 The quote "Life is short, smile while you still have teeth" has been deleted!
+-----------------------------------------------------------------------------
 ```
 
 #### Finding quotes: `find -q`
@@ -479,9 +525,11 @@ Example of usage: `find -q sleep`
 
 Expected outcome:
 ```
+---------------------------------------------------------------------------------
 Here are the results of my search:
 "I pretty much spend all day, every day just looking forward to go back to sleep"
 "Don't give up on your dreams, keep sleeping!" - by Stranger
+---------------------------------------------------------------------------------
 ```
 
 #### Adding reflection to a quote: `add -qr`
@@ -497,8 +545,10 @@ Example of usage: `add -qr 1 /reflect No, That’s not true. It’s impossible!`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------
 Reflection has been added to quote: "No, I am your mummy" - by Darth Vader [R]
 Reflection: No, that’s not true. It’s impossible!
+------------------------------------------------------------------------------
 ```
 
 #### Listing reflection of a quote: `list -qr`
@@ -514,9 +564,11 @@ Example of usage: `list -qr 1`
 
 Expected outcome:
 ```
+-------------------------------------------------
 Here is the reflection you are looking for!
 Quote: "No, I am your mummy" - by Darth Vader [R]
 Reflection: No, that’s not true. It’s impossible!
+-------------------------------------------------
 ```
 
 #### Editing reflection of a quote: `edit -qr`
@@ -532,9 +584,11 @@ Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
 
 Expected outcome:
 ```
+-------------------------------------------------
 Reflection has been updated!
 Quote: "No, I am your mummy" - by Darth Vader [R]
 Reflection: Who is Yoda’s daddy?
+-------------------------------------------------
 ```
 
 #### Deleting reflection of a quote: `delete -qr`
@@ -550,7 +604,9 @@ Example of usage: `delete -qr 1`
 
 Expected outcome:
 ```
+-----------------------------------------------------------------------------------
 Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been deleted!
+-----------------------------------------------------------------------------------
 ```
 
 ### Progress Tracker
@@ -568,7 +624,9 @@ Example of usage: `bookmark -b 3 /pg 109`
 
 Expected outcome:
 ```
+----------------------------------------------------------
 The bookmark ["Harry Potter" at page: 109] has been added!
+----------------------------------------------------------
 ```
 
 #### List bookmarks: `list -bm`
@@ -581,9 +639,11 @@ Example of usage: `list -bm`
 
 Expected outcome:
 ```
+------------------------------------------------
 Here is the lsit of all bookmark(s) recorded:
 1. "hp" at page: 123
 2. "Harry Potter" at page: 56
+------------------------------------------------
 ```
 
 #### Delete bookmarks: `delete -bm`
@@ -596,7 +656,9 @@ Example of usage: `delete -bm 1`
 
 Expected outcome:
 ```
+---------------------------------------------------
 The bookmark ["hp" at page: 123] has been removed!
+---------------------------------------------------
 ```
 
 #### Edit bookmarks: `bookmark -b`
@@ -611,7 +673,9 @@ Example of usage: `bookmark -b 3 /pg 185`
 
 Expected outcome:
 ```
+------------------------------------------------------------
 The bookmark ["Harry Potter" at page: 185] has been updated!
+------------------------------------------------------------
 ```
 
 #### Add tasks: `add -t /by`
@@ -629,21 +693,27 @@ Example of usage:
 
 Expected outcome:
 ```
+----------------------------------------------------------------
 The task [[x] return Harry Potter (by: tmr 2pm)] has been added!
+----------------------------------------------------------------
 ```
 
 2. add a task with a formatted deadline: `add -t return Harry Potter /by 2020-10-24`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------
 The task [[x] return Harry Potter (by: Oct 24 2020, SATURDAY)] has been added!
+------------------------------------------------------------------------------
 ```
 
 3. add a task without any deadline: `add -t return Harry Potter`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------
 The task [[x] return Harry Potter (by: not specified)] has been added!
+----------------------------------------------------------------------
 ```
 
 #### List tasks: `list -t`
@@ -657,12 +727,14 @@ Example of usage: `list -t`
 
 Expected outcome:
 ```
+--------------------------------------------------------
 Here is the list of all task(s) recorded:
 1.[x] task4 (by: Sep 13 2020, Sunday)
 2.[x] task3 (by: Oct 24 2020, SATURDAY)
 3.[x] return Harry Potter (by: Oct 25 2020, SUNDAY)
 4.[x] task 1 (by: 1908008)
 5.[x] task 2 (by: 1999-12-34)
+--------------------------------------------------------
 ```
 
 #### Mark tasks as Done: `done -t`
@@ -674,7 +746,9 @@ Example of usage: `done -t 1`
 
 Expected outcome:
 ```
+--------------------------------------------------------------------------
 The task [[v] return Harry Potter (by: tmr 2pm)] has been marked as done!
+--------------------------------------------------------------------------
 ```
 
 #### Delete tasks: `delete -t`
@@ -686,7 +760,9 @@ Example of usage: `delete -t 1`
 
 Expected outcome:
 ```
+------------------------------------------------------------------
 The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
+------------------------------------------------------------------
 ```
 
 ### Category Management
@@ -712,12 +788,16 @@ Example of usage:
 
 Expected outcome 1:
 ```
+------------------------------------------------------------
 I have tagged category [fantasy] to the book [Harry Potter]!
+------------------------------------------------------------
 ```
 
 Expected outcome 2:
 ```
+----------------------------------------------------------------------
 I have tagged category [inspirational] to the quote ["Life is Great"]!
+----------------------------------------------------------------------
 ```
 
 #### List categories: `list -c`
@@ -729,10 +809,12 @@ Example of usage: `list -c`
 
 Expected outcome:
 ```
+----------------------------------------
 Here is the list of all categories:
 1. action - (2 items)
 2. inspirational - (1 items)
 3. fantasy - (1 items)
+----------------------------------------
 ```
 
 #### List items in a category: `list -c`
@@ -744,9 +826,11 @@ Example of usage: `list -c fantasy`
 
 Expected outcome:
 ```
+-------------------------------------------------
 Here are the list of items tagged as [fantasy]:
 BOOKS:
 1. Harry Potter by JK Rowling
+-------------------------------------------------
 ```
 
 #### Delete categories: `delete -c`
@@ -766,17 +850,23 @@ Example of usage:
 
 Expected outcome 1:
 ```
+--------------------------------------------------------------
 I have removed category [fantasy] from all books and quotes!
+--------------------------------------------------------------
 ```
 
 Expected outcome 2:
 ```
+----------------------------------------------------------------
 I have removed category [fantasy] from the book [Harry Potter]!
+----------------------------------------------------------------
 ```
 
 Expected outcome 3:
 ```
+-------------------------------------------------------------------------
 I have removed category [inspirational] from the quote ["Life is Great"]!
+-------------------------------------------------------------------------
 ```
 
 #### Edit an existing category: `edit -c`
@@ -788,7 +878,9 @@ Example of usage: `edit -c fantasy /to romance`
 
 Expected outcome:
 ```
+----------------------------------------------------------
 The category has been changed from [fantasy] to [romance]!
+----------------------------------------------------------
 ```
 
 #### Find an existing category: `find -c`
@@ -800,8 +892,10 @@ Example of usage: `find -c man`
 
 Expected outcome:
 ```
+-----------------------------------------------------
 Here is a list of categories with the keyword "man":
 1. romance - (1 items)
+-----------------------------------------------------
 ```
 
 ### Rating System for books
@@ -822,7 +916,9 @@ Example of usage: `add -r 5 1`
 
 Expected outcome:
 ```
+---------------------------------------------------------
 You have just rated [Harry Potter by JK Rowling] 5 star!
+---------------------------------------------------------
 ```
 
 #### Listing book ratings: `list -r`
@@ -839,14 +935,18 @@ Example of usage:
 
 Expected outcome 1:
 ```
+-------------------------------------------------------------
 Planning to recommend some books? Here are your rated books!
 [Harry Potter] by JK Rowling: 5 star
+-------------------------------------------------------------
 ```
 
 Expected outcome 2:
 ```
+--------------------------------------------
 Here are the books you rated as 5 star!
 [Harry Potter] by JK Rowling: 5 star
+--------------------------------------------
 ```
 
 #### Deleting a book rating: `delete -r`
@@ -861,7 +961,9 @@ Example of usage: `delete -r 1`
 
 Expected outcome:
 ```
+----------------------------------------------------------
 Rating for [Harry Potter by JK Rowling] has been deleted!
+----------------------------------------------------------
 ```
 
 #### Editing an existing book rating: `edit -r`
@@ -877,7 +979,9 @@ Example of usage: `edit -r 4 1`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------
 Ratings for [Harry Potter by JK Rowling] has been updated to 4 star!
+----------------------------------------------------------------------
 ```
 
 #### Finding book ratings: `find -r`
@@ -891,8 +995,10 @@ Example of usage: `find -r POT`
 
 Expected outcome:
 ```
+-----------------------------------------------
 Here are the ratings you may be looking for!
 [Harry Potter] by JK Rowling: 4 star
+-----------------------------------------------
 ```
 
 ### Getting help in Quotesify
@@ -906,61 +1012,70 @@ Example of usage: `help`
 
 Expected outcome:
 ```
+------------------------------------------------------------------------------------------------------------------------
 Feeling stuck? Well here are the things you can do with Quotesify v2.1:
-
-1. Book Management
-Add book: add -b BOOK_TITLE /by AUTHOR
-Mark book as complete: done -b BOOK_NUMBER
-Delete book: delete -b BOOK_NUMBER
-Edit book: edit -b BOOK_NUMBER /to NEW_TITLE
-List books: list -b [/by AUTHOR]
-List book details: list -b BOOK_NUMBER
-List books by completion: list -b done/undone
-
-2. Quote Management
-Add quote: add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
-Delete quote:delete -q QUOTE_NUMBER
-List quotes: list -q [/by AUTHOR] [/from BOOK_TITLE]
-Edit quote: edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
-Find quote: find -q QUOTE_NUMBER
-Add quote reflection: add -qr QUOTE_NUMBER /reflect REFLECTION
-Delete quote reflection:delete -qr QUOTE_NUMBER
-Edit quote reflection: edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
-List quote reflection: list -qr QUOTE_NUMBER
-
-3a. Bookmark Tracker
-Add bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
-Delete bookmark: delete -bm BOOK_NUMBER
-List bookmarks: list -bm
-Update bookmark: bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
-
-3b. Task Tracker
-Add task: add -t TASK /by DEADLINE
-Delete task: delete -t TASK_NUMBER
-List tasks: list -t
-Mark task as done: done -t TASK_NUMBER
-
-4. Category Management
-Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-List categories: list -c [CATEGORY]
-Edit category: edit -c OLD_CATEGORY /to NEW_CATEGORY
-
-5. Rating System
-Add rating: add -r RATING_SCORE BOOK_NUMBER
-Delete rating: delete -r BOOK_NUMBER
-List ratings: list -r [RATING_SCORE]
-Edit rating: edit -r RATING_SCORE BOOK_NUMBER
-Find rating: find -r KEYWORD
-
-Other useful commands
-Show this help page: help
-Quit Quotesify: bye
-
+------------------------------------------------------------------------------------------------------------------------
+                            1. Book Management
+------------------------------------------------------------------------------------------------------------------------
+Add book:                                           add -b BOOK_TITLE /by AUTHOR
+Mark book as complete:                              done -b BOOK_NUMBER
+Delete book:                                        delete -b BOOK_NUMBER
+Edit book:                                          edit -b BOOK_NUMBER /to NEW_TITLE
+List books:                                         list -b [/by AUTHOR]
+List book details:                                  list -b BOOK_NUMBER
+List books by completion:                           list -b done/undone
+------------------------------------------------------------------------------------------------------------------------
+                            2. Quote Management
+------------------------------------------------------------------------------------------------------------------------
+Add quote:                                          add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Delete quote:                                       delete -q QUOTE_NUMBER
+List quotes:                                        list -q [/by AUTHOR] [/from BOOK_TITLE]
+Edit quote:                                         edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
+Find quote:                                         find -q QUOTE_NUMBER
+Add quote reflection:                               add -qr QUOTE_NUMBER /reflect REFLECTION
+Delete quote reflection:                            delete -qr QUOTE_NUMBER
+Edit quote reflection:                              edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
+List quote reflection:                              list -qr QUOTE_NUMBER
+------------------------------------------------------------------------------------------------------------------------
+                            3a. Bookmark Tracker
+------------------------------------------------------------------------------------------------------------------------
+Add bookmark:                                       bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Delete bookmark:                                    delete -bm BOOK_NUMBER
+List bookmarks:                                     list -bm
+Update bookmark:                                    bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
+------------------------------------------------------------------------------------------------------------------------
+                            3b. Task Tracker
+------------------------------------------------------------------------------------------------------------------------
+Add task:                                           add -t TASK /by DEADLINE
+Delete task:                                        delete -t TASK_NUMBER
+List tasks:                                         list -t
+Mark task as done:                                  done -t TASK_NUMBER
+------------------------------------------------------------------------------------------------------------------------
+                            4. Category Management
+------------------------------------------------------------------------------------------------------------------------
+Add category:                                       add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+Delete category:                                    delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+List categories:                                    list -c [CATEGORY]
+Edit category:                                      edit -c OLD_CATEGORY /to NEW_CATEGORY
+------------------------------------------------------------------------------------------------------------------------
+                            5. Rating System
+------------------------------------------------------------------------------------------------------------------------
+Add rating:                                         add -r RATING_SCORE BOOK_NUMBER
+Delete rating:                                      delete -r BOOK_NUMBER
+List ratings:                                       list -r [RATING_SCORE]
+Edit rating:                                        edit -r RATING_SCORE BOOK_NUMBER
+Find rating:                                        find -r KEYWORD
+------------------------------------------------------------------------------------------------------------------------
+                            Other useful commands
+------------------------------------------------------------------------------------------------------------------------
+Show this help page:                                help
+Quit Quotesify:                                     bye
+------------------------------------------------------------------------------------------------------------------------
 Remember: words in [] are optional, and words in CAPS are your own input
 Hope this helps!
 
 ~ Your friends from Quotesify
+------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### Terminating the program
@@ -978,7 +1093,7 @@ Better days are coming, they are called Saturday and Sunday.
 Alright, have a nice day!
 ```
 
-*`Note: If you have added a quote before, the quote printed will be randomized.`*
+*Note: If you have added a quote before, the quote printed will be randomized.*
 
 ## FAQs
 
