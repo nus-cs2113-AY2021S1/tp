@@ -39,10 +39,12 @@ public class DoneTaskCommand extends Command {
                 if (backlogId <= proj.getProjectBacklog().getNextId()) {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     task.setAsDone();
-                    Ui.showToUserLn("The task ID: " + task.getId() +
-                            " and title: " + task.getTitle() + " has been marked as done.");
+                    Ui.showToUserLn("The task ID: " + task.getId()
+                            + " and title: " + task.getTitle() + " has been marked as done.");
                 } else {
-                    Ui.showError(Messages.MESSAGE_INVALID_ID);
+                    Ui.showError("The following task ID: " + backlogId
+                            + " doesn't exist in backlog.\nPlease enter a"
+                            + " valid ID.");
                 }
             } catch (NumberFormatException e) {
                 Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);

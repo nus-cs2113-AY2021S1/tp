@@ -29,18 +29,18 @@ public class AddTaskCommand extends Command {
         }
 
         String title;
-        String description;
-        String priority;
         boolean titleExists;
 
         title = parameters.get(TITLE);
         titleExists = doesTitleExist(title);
         if (titleExists) {
-            Ui.showError("The task title already exists! " +
-                    "Please enter an alternative name.");
+            Ui.showError("The task title already exists! "
+                    + "Please enter an alternative name.");
             return;
         }
 
+        String description;
+        String priority;
         description = parameters.get(DESCRIPTION);
         priority = parameters.get(PRIORITY).toUpperCase();
 

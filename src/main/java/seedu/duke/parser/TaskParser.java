@@ -48,8 +48,8 @@ public class TaskParser implements ExceptionsParser {
         case DELETE:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
-                throw new DukeException("Missing parameters or dashes were input. " +
-                        "Please do not enter dashes for this command.");
+                throw new DukeException("Missing parameters or dashes were input. "
+                        + "Please do not enter dashes for this command.");
             }
             if (parameters.get("0").isBlank() || !ParserManager.isStringIntParsable(parameters.get("0"))) {
                 throw new DukeException("Please enter a task number!");
@@ -59,8 +59,8 @@ public class TaskParser implements ExceptionsParser {
         case DONE:
             assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
-                throw new DukeException("Missing parameters or dashes were input. " +
-                        "Please do not enter dashes for this command.");
+                throw new DukeException("Missing parameters or dashes were input. "
+                        + "Please do not enter dashes for this command.");
             }
             if (parameters.get("0").isBlank() || !ParserManager.isStringIntParsable(parameters.get("0"))) {
                 throw new DukeException("Please enter a task number!");

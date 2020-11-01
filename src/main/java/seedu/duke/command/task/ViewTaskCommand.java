@@ -40,7 +40,9 @@ public class ViewTaskCommand extends TaskCommand {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     Ui.showToUserLn(task.toString());
                 } else {
-                    Ui.showError(Messages.MESSAGE_INVALID_ID);
+                    Ui.showError("The following task ID: " + backlogId
+                            + " doesn't exist in backlog.\nPlease enter a"
+                            + " valid ID.");
                 }
             }
         } catch (IndexOutOfBoundsException e) {
