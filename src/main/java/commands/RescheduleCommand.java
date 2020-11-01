@@ -17,6 +17,7 @@ public class RescheduleCommand extends Command {
 
     public static final String PARAMETERS = " CHAPTER_INDEX DATE(yyyy-MM-dd)";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reschedules the due date of a chapter.\n"
+            + "Only available at module level.\n"
             + "Parameters:" + PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 2020-12-12\n";
 
