@@ -87,6 +87,8 @@ public class Messages {
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
+    public static final String EXCEPTION_WRONG_DATE_FORMAT = "Please input the date string in the format "
+            + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
     public static final String MESSAGE_NEW_TASK_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
