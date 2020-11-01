@@ -248,16 +248,6 @@ public class Notebook {
     }
 
     /**
-     * Returns true if there is a matching note in the archived notes based on the note title parameter.
-     *
-     * @param noteTitle String containing the title of the note.
-     * @return if the note exist.
-     */
-    public boolean getArchiveNote(String noteTitle) {
-        return archivedNotes.stream().anyMatch(note -> note.getTitle().equalsIgnoreCase(noteTitle));
-    }
-
-    /**
      * Adds a note into the notebook.
      *
      * @param note refers to the note to be added.
