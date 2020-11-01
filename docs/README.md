@@ -4,8 +4,6 @@ Zoomaster is a Java application for the Command Line. It provides a simple and i
 
 Zoomaster can also intelligently determine the current lesson users are having, allowing them to launch the correct links quickly and elegantly from the command line.
 
-<br>
-
 ### Useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
