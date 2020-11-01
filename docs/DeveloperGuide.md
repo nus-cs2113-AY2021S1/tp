@@ -24,6 +24,10 @@
 #### [6.1.1 Target user profile](#611-Target-user-profile1)
 #### [6.1.2 Value proposition](#612-Value-proposition1)
 #### [6.2 User stories](#62-User-stories1)
+####  [6.3 Non-Functional Requirements](#63-Non-Functional-Requirements1)
+#### [6.4 Glossary](#64-Gloossary1)
+#### [6.5 Instructions for manual testing](#65-Instructions-for-manual-testing1)
+
 
 ## 1. Introduction
 
@@ -142,13 +146,10 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 
 
 ### 6.3 Non-Functional Requirements
-
 {Give non-functional requirements}
 
 ### 6.4 Glossary
-
 * *glossary item* - Definition
 
 ### 6.5 Instructions for manual testing
-
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
