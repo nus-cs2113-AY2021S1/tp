@@ -142,11 +142,11 @@ public class Ui {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
-            return userInputFuture.get();
+            return userInputFuture.get().trim();
         } catch (InterruptedException | ExecutionException e) {
             printError(ERROR_READING_INPUT);
         }
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().trim();
     }
 
     public void printQuizInputMessage() {
@@ -193,7 +193,7 @@ public class Ui {
             }
 
             if (userInput.ready()) {
-                return userInput.readLine();
+                return userInput.readLine().trim();
             } else {
                 return null;
             }
@@ -215,7 +215,7 @@ public class Ui {
                 return null;
             }
 
-            return userInput;
+            return userInput.trim();
         }
     }
 

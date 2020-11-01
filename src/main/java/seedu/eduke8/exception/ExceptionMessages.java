@@ -21,4 +21,5 @@ public class ExceptionMessages {
     public static final String ERROR_NO_RIGHT_ANSWER = "Error with question: No right answer specified";
     public static final String ERROR_NOTE_WRONG_FORMAT = "Invalid command! The command for note is as follows:"
             + System.lineSeparator() + "'note add' or 'note delete' or 'note list'";
+    public static final String ERROR_QUIZ_TIMER_NON_POSITIVE = "Please choose a timer that is greater than 0!";
 }
