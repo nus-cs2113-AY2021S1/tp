@@ -14,6 +14,8 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -180,7 +182,8 @@ public class EditEntryCommand extends Command {
         Goal goal = goalList.getGoal(index - 1);
         String createdDate = goal.getCreatedDate();
         goalType = goalType.equals(Commands.COMMAND_EXERCISE) ? "E" : "F";
-        Goal editedGoal = formatGoal(createdDate, goalType, goalDescription);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        Goal editedGoal = formatGoal(LocalDate.parse(createdDate, formatter), goalType, goalDescription);
         goal.setGoal(editedGoal, "0.0");
 
         Ui.printCustomMessage("Successfully edited goal to: [" + editedGoal.getGoalType()
