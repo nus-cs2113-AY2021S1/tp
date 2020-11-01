@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 
 public class FavStorage extends Storage {
-    private static final String FILE_READ = "FavList.txt Read";
+    private static final String FILE_READ = "FavList.txt Read with no issues";
     private File file;
     private boolean isCorrupted = false;
 
