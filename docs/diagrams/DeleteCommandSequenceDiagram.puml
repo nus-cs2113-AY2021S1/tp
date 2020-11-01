@@ -1,0 +1,43 @@
+@startuml
+participant ":Fitr" as Fitr
+participant ":Parser" as Parser <<class>>
+participant ":DeleteCommand" as DeleteCommand
+participant ":ListManager" as ListManager
+participant ":StorageManager" as StorageManager
+activate Fitr
+Fitr -> Parser++: parse("delete...")
+create DeleteCommand
+Parser -> DeleteCommand++
+DeleteCommand --> Parser
+deactivate DeleteCommand
+Parser --> Fitr
+deactivate Parser
+Fitr -> DeleteCommand++: execute()
+alt "exercise"
+    DeleteCommand -> ListManager++: deleteExercise()
+    ListManager --> DeleteCommand
+    deactivate ListManager
+    DeleteCommand -> StorageManager++: writeExerciseList(exerciseList)
+    StorageManager --> DeleteCommand
+    deactivate StorageManager
+else "food"
+    DeleteCommand -> ListManager++: deleteFood()
+    ListManager --> DeleteCommand
+    deactivate ListManager
+    DeleteCommand -> StorageManager++: writeFoodList(foodList)
+    StorageManager --> DeleteCommand
+    deactivate StorageManager
+else "goal"
+    DeleteCommand -> ListManager++: deleteGoal()
+    ListManager --> DeleteCommand
+    deactivate ListManager
+    DeleteCommand -> StorageManager++: writeGoalList(goalList)
+    StorageManager --> DeleteCommand
+    deactivate StorageManager
+end
+DeleteCommand --> Fitr
+deactivate DeleteCommand
+DeleteCommand -[hidden]-> Fitr
+destroy DeleteCommand
+hide footbox
+@enduml
