@@ -24,7 +24,6 @@ public class EditRatingCommand extends EditCommand {
     }
 
     private void editRating(RatingList ratings, TextUi ui) {
-        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
             quotesifyLogger.log(Level.INFO, "user input is missing");
@@ -43,14 +42,12 @@ public class EditRatingCommand extends EditCommand {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
             quotesifyLogger.log(Level.INFO, "invalid format provided");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
         int ratingScore = RatingParser.checkValidityOfRatingScore(ratingValue);
         Book bookToRate = RatingParser.checkBookExists(bookNumber);
         if (bookToRate == null) {
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
         String title = bookToRate.getTitle();
@@ -62,7 +59,6 @@ public class EditRatingCommand extends EditCommand {
             existingRating.setRating(ratingScore);
             ui.printEditRating(ratingScore, title, author);
         }
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     private Rating isRated(String title, String author, RatingList ratings) {

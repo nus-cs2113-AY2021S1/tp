@@ -24,11 +24,9 @@ public class DeleteRatingCommand extends DeleteCommand {
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
             quotesifyLogger.log(Level.INFO, "user input is missing");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -36,7 +34,6 @@ public class DeleteRatingCommand extends DeleteCommand {
         Book bookToDeleteRating = RatingParser.checkBookExists(bookIndex);
 
         if (bookToDeleteRating == null) {
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -53,6 +50,5 @@ public class DeleteRatingCommand extends DeleteCommand {
         }
         System.out.println(ERROR_RATING_DO_NOT_EXIST);
         quotesifyLogger.log(Level.INFO, "book has not been rated before");
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 }

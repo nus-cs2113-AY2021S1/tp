@@ -24,11 +24,9 @@ public class AddRatingCommand extends AddCommand {
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
-        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
             quotesifyLogger.log(Level.INFO, "user input is missing");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -43,7 +41,6 @@ public class AddRatingCommand extends AddCommand {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
             quotesifyLogger.log(Level.INFO, "invalid format provided");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -58,7 +55,6 @@ public class AddRatingCommand extends AddCommand {
             String author = bookToRate.getAuthor().getName();
             ui.printAddRating(ratingScore, title, author);
         }
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     private boolean isRated(Book bookToRate) {

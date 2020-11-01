@@ -23,11 +23,9 @@ public class FindRatingCommand extends FindCommand {
     }
 
     private void findRating(RatingList ratings, TextUi ui) {
-        System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
             quotesifyLogger.log(Level.INFO, "user input is missing");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
 
@@ -44,7 +42,6 @@ public class FindRatingCommand extends FindCommand {
         if (!isFound) {
             System.out.printf(ERROR_RATING_NOT_FOUND + "\n", keyword);
             quotesifyLogger.log(Level.INFO, "ratings not found");
-            System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
         ui.printFoundRating(ratings, keyword);
