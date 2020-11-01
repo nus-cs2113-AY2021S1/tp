@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -46,6 +47,9 @@ public class MenuParser implements Parser {
     private static final String COMMAND_BOOKMARK = "bookmark";
     private static final String COMMAND_EXIT = "exit";
     private static final String COMMAND_STATS = "stats";
+    private static final String COMMAND_NOTE_ADD = "add";
+    private static final String COMMAND_NOTE_DELETE = "delete";
+    private static final String COMMAND_NOTE_LIST = "list";
 
     private BookmarkList bookmarks;
 
@@ -85,7 +89,7 @@ public class MenuParser implements Parser {
         case COMMAND_QUIZ:
             int numOfQuestions = 0;
             String topicName = "";
-            int timer = 0;
+            int userTimer = 0;
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
                     if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
@@ -93,7 +97,7 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
                                 commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[1].substring(
+                        userTimer = Integer.parseInt(commandArr[1].substring(
                                 commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
@@ -101,7 +105,7 @@ public class MenuParser implements Parser {
                                 commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[2].substring(
                                 commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[1].substring(
+                        userTimer = Integer.parseInt(commandArr[1].substring(
                                 commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
 
@@ -111,7 +115,7 @@ public class MenuParser implements Parser {
                                 commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
                                 commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[2].substring(
+                        userTimer = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
@@ -119,7 +123,7 @@ public class MenuParser implements Parser {
                                 commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[2].substring(
                                 commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[3].substring(
+                        userTimer = Integer.parseInt(commandArr[3].substring(
                                 commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
 
@@ -129,7 +133,7 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[1].substring(
                                 commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[3].substring(
+                        userTimer = Integer.parseInt(commandArr[3].substring(
                                 commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
 
                     } else if (commandArr[2].contains(TIMER_INDICATOR)) {
@@ -137,23 +141,31 @@ public class MenuParser implements Parser {
                                 commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[1].substring(
                                 commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        timer = Integer.parseInt(commandArr[2].substring(
+                        userTimer = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
                 }
+
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
+            try {
+                if (userTimer < 1) {
+                    throw new Eduke8Exception(ERROR_QUIZ_TIMER_NEGATIVE);
+                }
+            } catch (Eduke8Exception e) {
+                return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
+            }
 
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
-            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, timer);
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
             try {
-                if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
-                        .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                if (commandArr[1].equalsIgnoreCase(COMMAND_NOTE_ADD) || commandArr[1]
+                        .equalsIgnoreCase(COMMAND_NOTE_DELETE) || commandArr[1].equals(COMMAND_NOTE_LIST)) {
                     LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
                     return new NoteCommand(commandArr[1], (TopicList) topicList);
                 } else {

@@ -4,15 +4,17 @@ topics
 quiz t/OOP n/1 s/2
 hint
 1
-quiz t/OOP n/1 s/2
+
+quiz t/OOP n/1 s/3
 2
+
 quiz t/OOP n/-1 s/2
 quiz t/OOP n/50 s/2
-quiz t/OOP n/1 s/2
+quiz t/OOP n/1 s/0
 a
 7
 1
-quiz n/2 t/OOP s/2
+quiz n/2 t/OOP s/-1
 quiz
 quiz t/
 quiz t/ n/1 s/2
