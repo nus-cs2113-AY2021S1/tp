@@ -21,7 +21,7 @@ The book [book1 by me] has been added!
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
-This quote has already been added!
+The quote ["quote1"] has been added!
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
@@ -31,21 +31,21 @@ I have tagged category [action] to the book [book1]!
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
-There is no such quote!
+I have tagged category [motivational] to the quote ["quote1"]!
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 I have tagged category [nice] to the book [book1]!
-There is no such quote!
+I have tagged category [nice] to the quote ["quote1"]!
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of all categories:
 1. action - (1 items)
-2. motivational - (0 items)
-3. nice - (1 items)
+2. motivational - (1 items)
+3. nice - (2 items)
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ Category [action] does not exist!
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
-There is no such quote!
+I have removed category [motivational] from the quote ["quote1"]!
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
@@ -75,6 +75,8 @@ Here are the list of items tagged as [nice]:
 BOOKS:
 1. book1 by me
 
+QUOTES:
+1. "quote1"
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
@@ -124,6 +126,6 @@ What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------
 Before you continue, here's something:
-Better days are coming, they are called Saturday and Sunday.
+"quote1"
 Alright, have a nice day!
 ---------------------------------------------------------------------------------------------------------------------------------------
