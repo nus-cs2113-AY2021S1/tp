@@ -66,6 +66,33 @@ public class FluffleMessages {
     public static final String LIST_CHARACTER_MSG = "Here are the characters stored in the program:";
     public static final String BUNNY_CHARACTER_FORMAT = "Character command wrong format";
 
+    /** Filter messages. */
+    public static final String INVALID_FILTER_CODE = "invalid filter type in the code";
+    public static final String NO_FILTER_RESULT = "Filter returns no result!!";
+    public static final String FILTER_MESSAGE = "Printing all %d word(s) in your filter list:\n";
+    public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s) "
+            + "from your filter list:\n";
+    public static final String PRINT_LIMIT_NOT_FOUND = "There are cases that\n"
+            + "- You didn't specify the print limit\n" + "- Your limit is not an integer\n"
+            + "The program will print out all the words in your filter list.\n";
+    public static final String FILTER_UNKNOWN_COMMAND = "Filter command format is incorrect.";
+    public static final String FILTER_UNKNOWN_TYPE = "Filter type was not recognized in the command.";
+    public static final String LONG_FILTER_LIST_MESSAGE = "Your filter list has more than %d word(s)\n"
+            + "Do you want to print all the words in the filter list? y/n\n";
+    public static final String INVALID_LIST_FILTER_ANSWER = "Your answer is not y/n. "
+            + "The filter list will not be printed."
+            + "You can use \"list filter words\" command to print out the filter result.";
+    public static final String INVALID_LIMIT_LIST_FILTER_WORDS =
+            "Your print limit is not valid so no words will be printed out.\n"
+                    + "You can use \"list filter words\" command to print out the filter result.";
+    public static final String INVALID_PRINT_LIMIT_MESSAGE = "Your limit is invalid.";
+
+    /** Reminder messages. */
+    public static final String NO_WRITING_DUE = "You don't have any writings due that day!!!";
+    public static final String CONTINUE_WRITINGS = "On %s, you should continue on the following writing(s):\n";
+    public static final String PARSE_DATETIME_EXCEPTION =
+            "Cannot parse date and time. Please enter date in a correct  (dd/MM/yyyy).";
+
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
 
@@ -88,4 +115,7 @@ public class FluffleMessages {
 
     /** User interactive messages. */
     public static final String HELP_MESSAGE = "Please type in \"help\" command for information!";
+
+    /** Stop execution message. */
+    public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
 }

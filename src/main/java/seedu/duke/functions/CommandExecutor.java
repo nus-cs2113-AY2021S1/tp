@@ -4,7 +4,7 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.database.ClearLoader;
 import seedu.duke.database.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
@@ -80,7 +80,7 @@ public class CommandExecutor {
             try {
                 FilterExecutor.executeFilterCommand(userInput);
             } catch (FilterCommandException e) {
-                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
+                System.out.println(FluffleMessages.FILTER_UNKNOWN_TYPE);
             }
             break;
         case LIST_FILTER:

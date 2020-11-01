@@ -1,6 +1,6 @@
 package seedu.duke.filters;
 
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.exceptions.FilterCommandException;
 
 import static seedu.duke.filters.FilterCommandSlicer.getWordPrintLimitFromFilterCommand;
@@ -51,7 +51,7 @@ public class FilterExecutor {
             }
             printFilterList(printLimit);
         } catch (FilterCommandException e) {
-            System.out.println(FilterMessages.FILTER_UNKNOWN_COMMAND);
+            System.out.println(FluffleMessages.FILTER_UNKNOWN_COMMAND);
         }
     }
 

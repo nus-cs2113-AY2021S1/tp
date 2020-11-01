@@ -1,6 +1,6 @@
 package seedu.duke.filters;
 
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.constants.Tags;
 import seedu.duke.exceptions.FilterCommandException;
 
@@ -45,7 +45,7 @@ public class FilterCommandSlicer {
             try {
                 return Integer.parseInt(limitNumber);
             } catch (NumberFormatException e) {
-                System.out.println(FilterMessages.INVALID_PRINT_LIMIT_MESSAGE);
+                System.out.println(FluffleMessages.INVALID_PRINT_LIMIT_MESSAGE);
             }
         }
 
@@ -66,7 +66,7 @@ public class FilterCommandSlicer {
             try {
                 return Integer.parseInt(cutCommand);
             } catch (NumberFormatException e) {
-                System.out.println(FilterMessages.INVALID_PRINT_LIMIT_MESSAGE);
+                System.out.println(FluffleMessages.INVALID_PRINT_LIMIT_MESSAGE);
             }
         }
         // if the print limit is not specified
