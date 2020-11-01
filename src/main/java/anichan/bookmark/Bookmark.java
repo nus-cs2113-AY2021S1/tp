@@ -34,6 +34,7 @@ public class Bookmark {
     public void removeAnimeBookmark(int bookmarkIndex) {
         this.animeBookmarkList.remove(bookmarkIndex);
         this.animeEpisode.remove(bookmarkIndex);
+        this.noteList.remove(bookmarkIndex);
     }
 
     public void editAnimeBookmarkEpisode(int bookmarkIndex, int episode) {
