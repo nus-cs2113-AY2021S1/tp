@@ -140,7 +140,7 @@ The first sequence diagram shows the program flow of starting AniChan as an exis
 The next sequence diagram shows an example command execution.
 
 ![Command Execution Sequence Diagram](images/Command-Execution-Sequence-Diagram.png) <br/>
-*Figure 3: Command execution Sequence Diagram*
+*Figure 3: Command Execution Sequence Diagram*
  
 <br/>
 
