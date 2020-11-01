@@ -91,7 +91,8 @@ public class FluffleMessages {
     public static final String NO_WRITING_DUE = "You don't have any writings due that day!!!";
     public static final String CONTINUE_WRITINGS = "On %s, you should continue on the following writing(s):\n";
     public static final String PARSE_DATETIME_EXCEPTION =
-            "Cannot parse date and time. Please enter date in a correct  (dd/MM/yyyy).";
+            "Cannot parse date and time. Please enter date in a correct format (dd/MM/yyyy)"
+                    + " with valid day, month and year.";
 
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
