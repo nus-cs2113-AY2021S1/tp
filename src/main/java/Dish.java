@@ -24,6 +24,6 @@ public class Dish {
 
     @Override
     public String toString() {
-        return this.dishName + "price: " + this.price;
+        return this.dishName + " price: " + this.price;
     }
 }
