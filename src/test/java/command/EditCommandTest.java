@@ -25,7 +25,7 @@ class EditCommandTest {
     void execute_NoIndexSpecified_emptyEventIndexException() throws NuScheduleException {
 
         Assertions.assertThrows(EmptyEventIndexException.class, () -> {
-            Command d = Parser.parse("edit", null);
+            Command d = Parser.parse("edit", null, 0);
         });
 
     }
@@ -33,7 +33,7 @@ class EditCommandTest {
     @Test
     void execute_InputIsNotInteger_WrongEditFormatException() {
         Assertions.assertThrows(WrongEditFormatException.class, () -> {
-            Command c = Parser.parse("edit c", null);
+            Command c = Parser.parse("edit c", null, 0);
         });
     }
 
@@ -43,7 +43,7 @@ class EditCommandTest {
         LocationList locations = new LocationList();
         storage.loadLocationData(locations.getLocationList());
         Assertions.assertThrows(UndefinedEventException.class, () -> {
-            Parser.parse("edit 1 assignment something /t 2020-02-02 20:00 /l somewhere", locations)
+            Parser.parse("edit 1 assignment something /t 2020-02-02 20:00 /l somewhere", locations, 0)
                     .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage);
         });
     }
@@ -51,7 +51,7 @@ class EditCommandTest {
     @Test
     void execute_NoEditDescriptionProvided_NoEditEventDescriptionException() {
         Assertions.assertThrows(NoEditEventDescriptionException.class, () -> {
-            Command c = Parser.parse("edit 1", null);
+            Command c = Parser.parse("edit 1", null,0);
         });
     }
 }

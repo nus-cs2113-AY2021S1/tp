@@ -16,6 +16,14 @@ public class Class extends Event {
     protected LocalDateTime at;
     protected LocalDateTime end;
 
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public void setAt(LocalDateTime at) {
+        this.at = at;
+    }
+
     public Class(String description, Location location, LocalDateTime at, LocalDateTime end)
             throws EndBeforeStartEventException {
         super(description, location);

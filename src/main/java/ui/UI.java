@@ -34,6 +34,20 @@ public class UI {
         in = new Scanner(System.in);
     }
 
+    public String[] readEditCommand() {
+        String[] editFields = {"TYPE: ", "DESC: ", "LOCATION: ", "START: ", "END: "};
+        String[] editInformation = new String[5];
+        System.out.println("Enter the fields for each component. Leave as blank if no changes are to be made.");
+        // populate editinformation with user data
+        for (int i =0; i<5; i++) {
+            System.out.print(editFields[i]);
+            editInformation[i] = in.nextLine();
+        }
+        return editInformation;
+    }
+
+
+
     /**
      * Reads the user input line by line.
      *

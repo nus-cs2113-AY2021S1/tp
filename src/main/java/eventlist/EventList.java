@@ -2,9 +2,14 @@ package eventlist;
 
 
 import event.Assignment;
+import event.Class;
 import event.Event;
+import event.PersonalEvent;
 import exception.EmptyEventListException;
+import exception.EndBeforeStartEventException;
 import exception.UndefinedEventException;
+import location.Location;
+import location.OnlineLocation;
 import ui.UI;
 
 import java.time.LocalDate;
@@ -64,12 +69,141 @@ public class EventList {
     /**
      * Edit the contents of an existing event.
      *
-     * @param event the new edited event
      * @param index the index of the event being edited
      */
-    public void editEvent(Event event, int index) {
+    public Event editEvent(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
+                           OnlineLocation onlineLocation) throws EndBeforeStartEventException {
         assert events != null;
-        events.set(index, event);
+
+        // create new event object with user input
+        System.out.println("Working as expected");
+
+        // no change in event type
+        if (editInformation[0].isBlank()) {
+            // set new description
+            editSameType(index, editInformation, startEnd, location, onlineLocation);
+        } else {
+            Event newEvent = null;
+            String newDescription;
+            Location newLocation = null;
+            OnlineLocation newOnlineLocation = null;
+            LocalDateTime start;
+            LocalDateTime end;
+
+            if (editInformation[0].isBlank()) {
+                newDescription = events.get(index).getDescription();
+            } else {
+                newDescription = editInformation[1];
+            }
+
+            if (location == null && onlineLocation == null) {
+                if (events.get(index).getLocation() != null) {
+                    newLocation = events.get(index).getLocation();
+                }
+                if (events.get(index).getLink() != null) {
+                    newOnlineLocation = events.get(index).getLink();
+                }
+            } else if (location != null && onlineLocation == null) {
+                newLocation = location;
+                newOnlineLocation = null;
+            } else {
+                newLocation = null;
+                newOnlineLocation = onlineLocation;
+            }
+
+            /*
+            if (onlineLocation == null) {
+                if (events.get(index).getLocation() != null) {
+                    newLocation = events.get(index).getLocation();
+                }
+                if (events.get(index).getLink() != null) {
+                    newOnlineLocation = events.get(index).getLink();
+                }
+            } else {
+                newOnlineLocation = onlineLocation;
+            }
+            */
+
+
+            if (startEnd[0] == null) {
+                start = events.get(index).getStartDateTime();
+            } else {
+                start = startEnd[0];
+            }
+
+            if (startEnd[1] == null) {
+                end = events.get(index).getEndDateTime();
+            } else {
+                end = startEnd[1];
+            }
+            switch (editInformation[0]) {
+            case "Assignment":
+                if (newLocation != null) {
+                    newEvent = new Assignment(newDescription, newLocation, start);
+                } else {
+                    newEvent = new Assignment(newDescription, newOnlineLocation, start);
+                }
+                break;
+            case "class":
+                if (newLocation != null) {
+                    newEvent = new Class(newDescription, newLocation, start, end);
+                } else {
+                    newEvent = new Class(newDescription, newOnlineLocation, start, end);
+                }
+                break;
+            case "personalEvent":
+                if (newLocation != null) {
+                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+                }
+                break;
+            }
+            events.set(index, newEvent);
+        }
+
+
+
+
+        return events.get(index);
+    }
+
+
+
+
+    private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location, OnlineLocation onlineLocation) {
+        if (!editInformation[1].isBlank()) {
+            events.get(index).setDescription(editInformation[1]);
+        }
+
+        // set new location
+        if (location != null) {
+            events.get(index).setLocation(location);
+            events.get(index).setLink(null);
+        }
+        if (onlineLocation != null) {
+            events.get(index).setLink(onlineLocation);
+            events.get(index).setLocation(null);
+        }
+
+        // set new time
+        if (events.get(index) instanceof Assignment) {
+            if (startEnd[0] != null) {
+                ((Assignment) events.get(index)).setBy(startEnd[0]);
+            }
+        } else if (events.get(index) instanceof PersonalEvent ) {
+            if (startEnd[0] != null) {
+                ((PersonalEvent) events.get(index)).setAt(startEnd[0]);
+            }
+            if (startEnd[1] != null) {
+                ((PersonalEvent) events.get(index)).setEnd(startEnd[1]);
+            }
+        } else if (events.get(index) instanceof Class) {
+            if (startEnd[0] != null) {
+                ((Class) events.get(index)).setAt(startEnd[0]);
+            }
+            if (startEnd[0] != null) {
+                ((Class) events.get(index)).setEnd(startEnd[1]);
+            }
+        }
     }
 
     /**

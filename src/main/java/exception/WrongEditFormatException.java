@@ -11,6 +11,6 @@ public class WrongEditFormatException extends NuScheduleException {
      */
     @Override
     public String getMessage() {
-        return "Please enter the index of the event that you want to edit as an integer.";
+        return "Index of an even should be an integer.";
     }
 }

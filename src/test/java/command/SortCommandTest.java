@@ -12,14 +12,14 @@ class SortCommandTest {
     @Test
     void execute_NoSortCriteria_NoSortCriteriaException() {
         Assertions.assertThrows(NoSortCriteriaException.class, () -> {
-            Command d = Parser.parse("sort",  null);
+            Command d = Parser.parse("sort",  null,0);
         });
     }
 
     @Test
     void execute_InvalidSortCriteria_InvalidSortCriteriaException() {
         Assertions.assertThrows(InvalidSortCriteriaException.class, () -> {
-            Command d = Parser.parse("sort something",  null);
+            Command d = Parser.parse("sort something",  null,0);
         });
     }
 }

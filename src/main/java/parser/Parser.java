@@ -31,6 +31,8 @@ import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
+import exception.InvalidEditLocationException;
+import exception.InvalidEditTypeException;
 import exception.InvalidSortCriteriaException;
 import exception.NoEndTimeClassException;
 import exception.NoEditEventDescriptionException;
@@ -41,6 +43,7 @@ import exception.NoEventTimeMarkerException;
 import exception.NoSortCriteriaException;
 import exception.NuScheduleException;
 import exception.TimeFormatException;
+import exception.UndefinedEventException;
 import exception.UnknownErrorException;
 import exception.WrongCommandException;
 import exception.WrongEditFormatException;
@@ -53,11 +56,13 @@ import location.OutOfNuS;
 import locationlist.LocationList;
 import usercommunication.UserInfo;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-
+import ui.UI;
+import eventlist.EventList;
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
  */
@@ -93,7 +98,7 @@ public abstract class Parser {
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
 
-    public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
+    public static Command parse(String fullCommand, LocationList locations, int size) throws NuScheduleException {
 
         //deletes all the starting and ending spaces
         fullCommand = fullCommand.trim();
@@ -153,7 +158,7 @@ public abstract class Parser {
             return new ReminderCommand();
         }
 
-        int eventIndex;//to indicate what is the Event we are dealing with. may not be used.
+        int eventIndex;
 
         //this block deals with done command
         if (words[0].equals(EVENT_DONE)) {
@@ -213,7 +218,8 @@ public abstract class Parser {
         //the position of /p
         int pwdDividerPosition = fullCommand.indexOf(PASSWORD_MARKER);
         String startDateTime;
-        Location location;
+        Location location = null;
+        OnlineLocation onlineLocation = null;
         String endDateTime;
         //the position of the space when the user enters an ending date time in the format yyyy-mm-dd HH:mm
         int endingTimeDivider;
@@ -223,13 +229,94 @@ public abstract class Parser {
         //this block will change fullCommand, but this does not affect the later block since
         //it either return an EditCommand, or throw an exception
         if (words[0].equals(EDIT)) {
+            if (fullCommand.length() == 4 ) {
+                throw new EmptyEventIndexException();
+            }
 
+            try {
+                eventIndex = Integer.parseInt(words[1]) - 1;
+            } catch (NumberFormatException e) {
+                throw new WrongEditFormatException();
+            }
+
+            // Check if the index exists
+            if (eventIndex + 1 > size || eventIndex == -1) {
+                throw new UndefinedEventException(eventIndex + 1);
+            }
+
+            // parse and format user inputs.
+            UI ui = new UI();
+            String[] editInformation = ui.readEditCommand();
+            LocalDateTime[] startEnd = new LocalDateTime[2];
+
+            if(!editInformation[0].isBlank()) {
+                if (editInformation[0].equals(ASSIGNMENT) || editInformation[0].equals(CLASS) ||
+                        editInformation[0].equals(PERSONAL_EVENT)) {
+
+                } else {
+                    throw new InvalidEditTypeException();
+                }
+            }
+
+            // user input validation for location
+            if (!editInformation[2].isBlank()) {
+                editInformation[2] = editInformation[2].trim();
+                if (editInformation[2].startsWith(LOCATION_MARKER)) {
+                    //editInformation[2] = editInformation[2].substring(3);
+                    location = parseLocation(editInformation[2].substring(3), locations);
+                }
+                else if (editInformation[2].startsWith(ONLINE_LOCATION_MARKER)) {
+                    int pwdPos = editInformation[2].indexOf(PASSWORD_MARKER);
+                    if (pwdPos == -1) {
+                        onlineLocation =
+                                new OnlineLocation(editInformation[2].substring(3));
+                    } else {
+                        onlineLocation =
+                                new OnlineLocation(editInformation[2].substring(3, pwdPos - 1),
+                                        editInformation[2].substring(pwdPos + 3));
+                    }
+                }
+                else {
+                    throw new InvalidEditLocationException();
+                }
+            }
+
+            // user input validation for start and end time
+            if (!editInformation[3].isBlank()) {
+                if (editInformation[3].length() != 16) {
+                    throw new TimeFormatException();
+                }
+                startDateTime = editInformation[3].substring(0, 10) + "T" + editInformation[3].substring(11);
+                try {
+                    startEnd[0] = LocalDateTime.parse(startDateTime);
+                    //System.out.println(startEnd[0]);
+                } catch (DateTimeException e) {
+                    throw new TimeFormatException();
+                }
+            }
+
+            if (!editInformation[4].isBlank()) {
+                if (editInformation[4].length() != 16) {
+                    throw new TimeFormatException();
+                }
+                startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
+                try {
+                    startEnd[1] = LocalDateTime.parse(startDateTime);
+                    //System.out.println(startEnd[1]);
+                } catch (DateTimeException e) {
+                    throw new TimeFormatException();
+                }
+            }
+
+            return new EditCommand(eventIndex, editInformation, startEnd, location, onlineLocation);
+            /*
             if (fullCommand.length() == 4) {
                 throw new EmptyEventIndexException();
             }
             if (fullCommand.substring(5).isBlank()) {
                 throw new EmptyEventIndexException();
             }
+
             try {
                 eventIndex = Integer.parseInt(words[1]) - 1;
             } catch (NumberFormatException e) {
@@ -252,7 +339,7 @@ public abstract class Parser {
                     throw new NoEventLocationException();
                 }
 
-                int prefixLength = words[0].length() + words[1].length() + words[2].length();
+                int prefixLength = words[0].length() + words[1].length() + words[2].length() + 2;
 
 
                 if (fullCommand.substring(prefixLength, startTimeDividerPosition).isBlank()) {
@@ -412,7 +499,7 @@ public abstract class Parser {
             } else {
                 throw new WrongCommandException();
             }
-
+*/
         }
 
         //this block deals with add command
