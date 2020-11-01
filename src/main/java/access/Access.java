@@ -1,10 +1,12 @@
 package access;
 
-import exception.IncorrectAccessLevelException;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
-import manager.history.History;
 import manager.module.Module;
+
+import static common.Messages.ADMIN;
+import static common.Messages.CHAPTER;
+import static common.Messages.MODULE;
 
 public class Access {
     protected String level;
@@ -151,8 +153,17 @@ public class Access {
         setIsModuleLevel();
     }
 
-
-
-
-
+    public String getAccessLevel() {
+        String accessLevel;
+        if (isAdminLevel()) {
+            accessLevel = ADMIN;
+        } else if (isModuleLevel()) {
+            accessLevel = MODULE;
+        } else if (isChapterLevel()) {
+            accessLevel = CHAPTER;
+        } else {
+            accessLevel = "No level";
+        }
+        return accessLevel;
+    }
 }
