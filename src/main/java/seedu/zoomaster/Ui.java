@@ -229,6 +229,9 @@ public class Ui {
         case INVALID_SLOT_INPUT:
             printInvalidSlotInput();
             break;
+        case INVALID_EDIT_INPUT:
+            printInvalidEditInput();
+            break;
         case INVALID_TIMETABLE_DAY:
             printUnknownDayMessage();
             break;
@@ -550,6 +553,11 @@ public class Ui {
 
     private void printInvalidSlotInput() {
         printRedWithBorder("Invalid slot input" + NEW_LINE);
+    }
+
+    private void printInvalidEditInput() {
+        printRedWithBorder("Invalid edit format" + NEW_LINE
+        + "Enter \"help edit\" for the correct format." + NEW_LINE);
     }
 
     private void printInvalidTimeFormat() {
