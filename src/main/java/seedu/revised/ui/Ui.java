@@ -59,7 +59,8 @@ public class Ui {
     public static final String INVALID_FLASHCARD_EXCEPTION = "Please enter a valid flashcard!";
     public static final String INVALID_DATETIME_EXCEPTION = "Enter date and time in the following format: "
             + "HH:MM DD-MM-YYYY";
-    public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";
+    public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk, "
+            + "proceeding with clean state.";
     public static final String WRITING_EXCEPTION = "Writing to file failed.";
 
     private static final Scanner scan = new Scanner(System.in);
@@ -471,6 +472,11 @@ public class Ui {
 
     public static String repeatedDateTimeException(Task task) {
         return "There is another task at that date and time:\n" + task;
+    }
+
+    public static String fileSyntaxErrorMsg(String dataType, String fileLocation) {
+        return String.format("Error reading the %s data under %s. Make sure the syntax is correct "
+                + "if you changed it manually. Proceeding with empty %ss.", dataType, fileLocation, dataType);
     }
 
     public static void printExportSuccessful(File exportFile) {

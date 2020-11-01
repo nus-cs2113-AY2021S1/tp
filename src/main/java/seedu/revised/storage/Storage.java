@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Storage {
     private final File baseDir;
@@ -41,6 +42,8 @@ public class Storage {
     private final String taskFilename;
     private final String resultFilename;
     private final String exportFilename;
+    private final String topicResultFilename;
+    private final String subjectResultFilename;
 
     private static final Logger logger = Logger.getLogger(Storage.class.getName());
 
@@ -51,6 +54,10 @@ public class Storage {
         this.taskFilename = builder.taskFilename;
         this.resultFilename = builder.resultFilename;
         this.exportFilename = builder.exportFilename;
+
+        String capResultFilename = resultFilename.substring(0, 1).toUpperCase() + resultFilename.substring(1);
+        this.topicResultFilename = "topic" + capResultFilename;  // prepend topic to resultFilename
+        this.subjectResultFilename = "subject" + capResultFilename;  // prepend subject to resultFilename
     }
 
     /**
@@ -99,15 +106,21 @@ public class Storage {
             List<Task> tasks;
             try {
                 tasks = loadTasks(subjectDir.toPath());
-            } catch (FileNotFoundException e) {
-                logger.log(Level.INFO, "Task file is not found under %s, proceeding with an empty task list.", e);
-                tasks = new ArrayList<>();  // task file may have been deleted by the user
+            } catch (Exception e) {
+                if (e instanceof FileNotFoundException) {  // task file may have been deleted by the user intentionally
+                    logger.info(String.format("Task file is not found under %s, "
+                            + "proceeding with an empty task list.", subjectDir.getAbsolutePath()));
+                } else {  // task file content may have been corrupted by the user
+                    String errMessage = Ui.fileSyntaxErrorMsg("task", subjectDir.getAbsolutePath());
+                    logger.log(Level.WARNING, errMessage, e);
+                    Ui.printErrorMsg(errMessage);
+                }
+                tasks = new ArrayList<>();
             }
-            File resultFile = new File(subjectDir.toString(), getResultFilename());
+            File resultFile = new File(subjectDir.toString(), getSubjectResultFilename());
             List<Result> results = loadResults(resultFile);
             Subject subject = new Subject(subjectDir.getName(), topics, tasks, results);
             subjects.add(subject);
-
         }
         subjects.sort(Comparator.comparing(Subject::getTitle));
         logger.fine(String.format("Finish loading subject data. Subjects: %s.", subjects));
@@ -126,7 +139,7 @@ public class Storage {
         List<Topic> topics = new ArrayList<>();
         for (File topicDir : topicDirs) {
             File flashcardFile = new File(topicDir, getFlashcardFilename());
-            File resultFile = new File(topicDir, getResultFilename());
+            File resultFile = new File(topicDir, getTopicResultFilename());
             List<Flashcard> flashcards = loadFlashcards(flashcardFile);
             List<Result> results = loadResults(resultFile);
 
@@ -144,6 +157,7 @@ public class Storage {
      * @param type     the type of the object inside the json file
      * @param jsonFile the file that stores the flashcard data
      * @return a list of populated objects with type specified loaded from the file
+     * @throws JsonSyntaxException if the file is not in json format or the content is corrupted
      */
     public static <T> List<T> loadFromJson(Type type, File jsonFile) {
         logger.info(String.format("Loading data of type %s from %s.", type, jsonFile.getAbsolutePath()));
@@ -156,9 +170,6 @@ public class Storage {
             logger.info(String.format("%s is not found, proceeding with returning an empty list.",
                     jsonFile.getAbsolutePath()));
             objects = new ArrayList<>();
-        } catch (JsonSyntaxException e) {
-            throw new JsonSyntaxException("Error reading the json data at " + jsonFile.getAbsolutePath()
-                    + ". Make sure the syntax is correct if you changed it manually.", e);
         }
 
         assert objects != null;
@@ -176,7 +187,14 @@ public class Storage {
     private List<Flashcard> loadFlashcards(File flashcardFile) {
         logger.fine(String.format("Loading flashcards from %s.", flashcardFile));
         Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
-        List<Flashcard> flashcards = loadFromJson(objectType, flashcardFile);
+        List<Flashcard> flashcards = new ArrayList<>();
+        try {
+            flashcards = loadFromJson(objectType, flashcardFile);
+        } catch (JsonSyntaxException e) {
+            String errMessage = Ui.fileSyntaxErrorMsg("flashcard", flashcardFile.getAbsolutePath());
+            logger.log(Level.WARNING, errMessage, e);
+            Ui.printErrorMsg(errMessage);
+        }
         logger.fine(String.format("Finish loading flashcards: %s.", flashcards));
         return flashcards;
     }
@@ -190,19 +208,31 @@ public class Storage {
     private List<Result> loadResults(File resultFile) {
         logger.fine(String.format("Loading results from %s.", resultFile));
         Type objectType = new TypeToken<ArrayList<Result>>() {}.getType();
-        List<Result> results = loadFromJson(objectType, resultFile);
+        List<Result> results = new ArrayList<>();
+        try {
+            results = loadFromJson(objectType, resultFile);
+        } catch (JsonSyntaxException e) {
+            String errMessage = Ui.fileSyntaxErrorMsg("result", resultFile.getAbsolutePath());
+            logger.log(Level.WARNING, errMessage, e);
+            Ui.printErrorMsg(errMessage);
+        }
         logger.fine(String.format("Finish loading results: %s.", results));
         return results;
     }
 
     /**
      * Saves the subjects along with all the contents into the storage. Quiz results under the subject will
-     * also be saved.
+     * also be saved. Note that all of the storage content will be cleared before storing of data happens so that
+     * deletion of subjects and topics will be reflected.
      *
      * @param subjects subjects to be saved
      * @throws IOException if fails to save to the storage
      */
     public void saveSubjects(List<Subject> subjects) throws IOException {
+        logger.info("Clearing old data.");
+        clearData();
+        logger.info("Finish clearing old data.");
+
         logger.info("Saving the subject data to the disk.");
         logger.fine(String.format("Subjects: %s.", subjects));
 
@@ -211,7 +241,7 @@ public class Storage {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
             Files.createDirectories(subjectPath);
 
-            File resultFile = new File(subjectPath.toString(), getResultFilename());
+            File resultFile = new File(subjectPath.toString(), getSubjectResultFilename());
             saveToJson(resultFile, subject.getResults().getList());
             saveTasks(subjectPath, subject.getTasks().getList());
             saveTopics(subjectPath, subject.getTopics().getList());
@@ -222,7 +252,7 @@ public class Storage {
     /**
      * Saves the topics along with all the contents into the storage. If the topic has no flashcards in it, the file
      * with name {@link Storage#getFlashcardFilename()} with an empty square bracket will be created under it. Similarly
-     * , the quiz result will be stored under the path with name {@link Storage#getResultFilename()}.
+     * , the quiz result will be stored under the path with name {@link Storage#getTopicResultFilename()}.
      *
      * @param subjectPath subject directory where topics will be stored under
      * @param topics      topics to be saved
@@ -237,7 +267,7 @@ public class Storage {
             Files.createDirectories(topicPath);
 
             File flashcardFile = new File(topicPath.toString(), getFlashcardFilename());
-            File resultFile = new File(topicPath.toString(), getResultFilename());
+            File resultFile = new File(topicPath.toString(), getTopicResultFilename());
             saveToJson(flashcardFile, topic.getFlashcards());
             saveToJson(resultFile, topic.getResults().getList());
         }
@@ -261,6 +291,37 @@ public class Storage {
             fileWriter.flush();  // flush to actually write the content
         }
         logger.info("Finish saving the list of data.");
+    }
+
+    /**
+     * Delete the directory and all its content.
+     *
+     * @param directory the directory to be deleted
+     * @throws IOException if any of the file fails to be deleted
+     */
+    public static void deleteDirectory(Path directory) throws IOException {
+        logger.info(String.format("Deleting directory: %s.", directory.toString()));
+        try (Stream<Path> fileStream = Files.walk(directory)) {
+            fileStream
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
+        logger.info("Finish deleting the directory.");
+    }
+
+    /**
+     * Delete baseDir and its contents.
+     *
+     * @throws IOException if any of the file fails to be deleted
+     */
+    private void clearData() throws IOException {
+        logger.fine(String.format("Clearing the directory %s.", getBaseDir().getAbsolutePath()));
+        if (getBaseDir().exists()) {  // only delete if the folder exists to avoid error
+            Path dataFolder = Paths.get(getBaseDir().toString());
+            deleteDirectory(dataFolder);
+        }
+        logger.fine("Finish clearing the directory.");
     }
 
     /**
@@ -390,6 +451,14 @@ public class Storage {
 
     public String getExportFilename() {
         return exportFilename;
+    }
+
+    public String getTopicResultFilename() {
+        return topicResultFilename;
+    }
+
+    public String getSubjectResultFilename() {
+        return subjectResultFilename;
     }
 
     public static class StorageBuilder {

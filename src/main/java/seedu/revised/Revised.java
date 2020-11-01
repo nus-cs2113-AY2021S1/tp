@@ -1,7 +1,7 @@
 package seedu.revised;
 
+import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
-import seedu.revised.list.ResultList;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.exception.storage.DataLoadingException;
 import seedu.revised.parser.SubjectParser;
@@ -11,6 +11,7 @@ import seedu.revised.ui.Ui;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -23,9 +24,8 @@ public class Revised {
     public static final String RESULT_FILENAME = "results.json";
     public static final String EXPORT_FILENAME = "data.json";
 
-    private Storage storage;
-    private SubjectList subjects;
-    private ResultList results;
+    private final Storage storage;
+    private final SubjectList subjects;
 
     private static final Logger logger = Logger.getLogger(Revised.class.getName());
 
@@ -50,7 +50,7 @@ public class Revised {
      * @param exportFilename    the name of the file that the data will be exported to
      */
     public Revised(String baseDir, String exportDir, String flashcardFilename, String taskFilename,
-                   String resultFilename, String exportFilename) throws DataLoadingException {
+                   String resultFilename, String exportFilename) {
         storage = new Storage.StorageBuilder()
                 .setBaseDir(baseDir)
                 .setExportDir(exportDir)
@@ -59,8 +59,14 @@ public class Revised {
                 .setResultFilename(resultFilename)
                 .setExportFilename(exportFilename)
                 .build();
-        subjects = new SubjectList(storage.loadSubjects());
-        results = new ResultList(new ArrayList<>());
+        List<Subject> savedSubjects = new ArrayList<>();  // initialize to empty in case data loading fails
+        try {
+            savedSubjects = storage.loadSubjects();
+        } catch (DataLoadingException e) {
+            logger.log(Level.WARNING, "Failed to load saved subjects or topics.", e);
+            Ui.printError(e);
+        }
+        subjects = new SubjectList(savedSubjects);
     }
 
     /**
@@ -89,6 +95,7 @@ public class Revised {
             storage.saveSubjects(subjects.getList());
         } catch (IOException e) {
             Ui.printErrorMsg(Ui.WRITING_EXCEPTION);
+            logger.log(Level.SEVERE, Ui.WRITING_EXCEPTION, e);
         }
 
         Ui.printBye();
@@ -99,8 +106,6 @@ public class Revised {
         try {
             new Revised(BASE_DIR, EXPORT_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME, EXPORT_FILENAME)
                     .run();
-        } catch (DataLoadingException e) {
-            Ui.printError(e);
         } finally {
             logger.info("Application exits.");
         }
