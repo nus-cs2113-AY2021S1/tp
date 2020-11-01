@@ -14,7 +14,9 @@ import seedu.eduke8.topic.TopicList;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -26,7 +28,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
-    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
+    private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
@@ -134,52 +136,87 @@ public class Ui {
     public static final String ERROR_READING_INPUT = "Error reading input.";
     public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
 
+    private static String operatingSystem = null;
+
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
-            return userInputFuture.get();
+            return userInputFuture.get().trim();
         } catch (InterruptedException | ExecutionException e) {
             printError(ERROR_READING_INPUT);
         }
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().trim();
     }
 
     public void printQuizInputMessage() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
     }
 
-    public String getQuizInputFromUser(int timer) throws IOException {
-        // May have to use this portion for Linux because Robot doesn't work on WSL
-        //        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-        //        long startingTime = System.currentTimeMillis();
-        //
-        //        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
-        //                && System.in.available() ==  0) {
-        //        }
+    public boolean getEnterFromUser() {
+        boolean enterIsUsed = false;
 
-        //        if (userInput.ready()) {
-        //            return userInput.readLine();
-        //        } else {
-        //            return null;
-        //        }
+        System.out.print("Press 'Enter' to proceed!");
 
         String userInput;
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
-            userInput = userInputFuture.get(timer, TimeUnit.SECONDS);
-        } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
-            try {
-                Robot robot = new Robot();
-                robot.keyPress(KeyEvent.VK_ENTER);
-                robot.keyRelease(KeyEvent.VK_ENTER);
-            } catch (AWTException awtException) {
-                printError(ERROR_USING_ROBOT);
+            userInput = userInputFuture.get();
+            if (userInput.isEmpty()) {
+                enterIsUsed = true;
             }
-            return null;
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
         }
 
-        return userInput;
+        return enterIsUsed;
+    }
+
+    private static String findUserOperatingSystem() {
+        if (operatingSystem == null) {
+            operatingSystem = System.getProperty("os.name").toLowerCase();
+        }
+        return operatingSystem;
+    }
+
+    public String getQuizInputFromUser(int timeLeft) throws IOException {
+
+        operatingSystem = findUserOperatingSystem();
+
+        //This is for Linus and Mac operating systems because Robot doesn't work on WSL
+        if (operatingSystem.contains("nux") || operatingSystem.contains("mac")) {
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            long startingTime = System.currentTimeMillis();
+
+            while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
+                    && System.in.available() ==  0) {
+            }
+
+            if (userInput.ready()) {
+                return userInput.readLine().trim();
+            } else {
+                return null;
+            }
+
+        //This is for the Windows operating system 
+        } else {
+            String userInput;
+            Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+            try {
+                userInput = userInputFuture.get(timeLeft, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                } catch (AWTException awtException) {
+                    printError(ERROR_USING_ROBOT);
+                }
+                return null;
+            }
+
+            return userInput.trim();
+        }
     }
 
     private static void printMessage(String message) {
@@ -241,9 +278,9 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int userTimer) {
         System.out.println();
-        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + userTimer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
                 + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
                 + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);

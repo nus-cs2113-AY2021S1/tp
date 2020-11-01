@@ -5,29 +5,34 @@ import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.Topic;
-import seedu.eduke8.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SingleTopicQuizTest extends Eduke8Test {
-    @Test
-    public void startQuiz_zeroQuestions_expectEduke8Exception() {
-        BookmarkList bookmarks = createTestBookmarkList();
-        Topic topic = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, 0, bookmarks, 10);
+    public static final int TIMEOUT = 1;
+    private BookmarkList bookmarks;
+    private Topic topic;
 
-        assertThrows(Eduke8Exception.class, () -> singleTopicQuiz.startQuiz(new Ui()));
+    SingleTopicQuizTest() {
+        bookmarks = createTestBookmarkList();
+        topic = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
     }
 
     @Test
-    public void startQuiz_tooManyQuestions_expectEduke8Exception() {
-        BookmarkList bookmarks = createTestBookmarkList();
-        Topic topic = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
+    void startQuiz_zeroQuestions_expectEduke8Exception() {
+        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, 0, bookmarks, TIMEOUT);
+
+        assertThrows(Eduke8Exception.class, () -> singleTopicQuiz.startQuiz(ui));
+    }
+
+    @Test
+    void startQuiz_tooManyQuestions_expectEduke8Exception() {
         int questionsInTopic = topic.getQuestionList().getCount();
 
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, questionsInTopic + 1, bookmarks, 10);
+        SingleTopicQuiz singleTopicQuiz =
+                new SingleTopicQuiz(topic, questionsInTopic + 1, bookmarks, TIMEOUT);
 
-        assertThrows(Eduke8Exception.class, () -> singleTopicQuiz.startQuiz(new Ui()));
+        assertThrows(Eduke8Exception.class, () -> singleTopicQuiz.startQuiz(ui));
     }
 
 }
