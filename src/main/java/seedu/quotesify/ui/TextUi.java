@@ -301,7 +301,6 @@ public class TextUi {
 
     public void printDeleteRating(String bookTitle, String author) {
         System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle, author);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printEditRating(int ratingScore, String title, String author) {
@@ -315,7 +314,6 @@ public class TextUi {
                 System.out.println(rating.toString());
             }
         }
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printAddToDo(ToDo toDo) {
