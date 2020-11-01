@@ -45,8 +45,7 @@ The intended audience of this document is the developers, designers, and softwar
 
 ## 2. Setting up and getting started
 
-### Before you start:
-Please ensure you have Java 11 installed in you computer.
+Before you start: Please ensure you have Java 11 installed in you computer.
 1) Fork this repo from this link: https://github.com/AY2021S1-CS2113-T16-2/tp
 2) Clone the fork to your own computer. You are highly recommended to use Git tool (like Sourcetree) to track your work.
 3) Use your own IDEA to program. You are highly recommended to use IntelliJ IDEA. Please check whether you have correct JDK version (JDK 11) in your computer and congiure the JDK.
