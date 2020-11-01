@@ -1,7 +1,8 @@
 package fitr.exercise;
 
 import fitr.calorie.Calorie;
-import java.time.format.DateTimeFormatter;
+import fitr.common.DateManager;
+
 import java.time.LocalDate;
 
 public class Exercise {
@@ -24,8 +25,7 @@ public class Exercise {
     }
 
     public String getDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        return date.format(formatter);
+        return date.format(DateManager.formatter);
     }
 
     public void setNameOfExercise(String nameOfExercise) {

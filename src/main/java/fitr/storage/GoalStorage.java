@@ -1,5 +1,6 @@
 package fitr.storage;
 
+import fitr.common.DateManager;
 import fitr.goal.Goal;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
@@ -12,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -54,8 +54,8 @@ public class GoalStorage {
             if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            goalList.add(new Goal(LocalDate.parse(arguments[0], formatter), arguments[1], arguments[2], arguments[3]));
+            goalList.add(new Goal(LocalDate.parse(arguments[0], DateManager.formatter),
+                    arguments[1], arguments[2], arguments[3]));
         }
 
         LOGGER.fine("Goal list file read successfully.");

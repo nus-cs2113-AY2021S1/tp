@@ -1,11 +1,11 @@
 package fitr.goal;
 
+import fitr.common.DateManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
@@ -30,8 +30,7 @@ public class Goal {
     }
 
     public String getCreatedDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        return createdDate.format(formatter);
+        return createdDate.format(DateManager.formatter);
     }
 
     public String getDescription() {
