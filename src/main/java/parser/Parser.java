@@ -268,11 +268,11 @@ public abstract class Parser {
                     int pwdPos = editInformation[2].indexOf(PASSWORD_MARKER);
                     if (pwdPos == -1) {
                         onlineLocation =
-                                new OnlineLocation(editInformation[2].substring(3));
+                                new OnlineLocation(editInformation[2].substring(3).trim());
                     } else {
                         onlineLocation =
-                                new OnlineLocation(editInformation[2].substring(3, pwdPos - 1),
-                                        editInformation[2].substring(pwdPos + 3));
+                                new OnlineLocation(editInformation[2].substring(3, pwdPos - 1).trim(),
+                                        editInformation[2].substring(pwdPos + 3).trim());
                     }
                 } else {
                     throw new InvalidEditLocationException();
