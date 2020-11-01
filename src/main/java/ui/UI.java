@@ -276,7 +276,7 @@ public class UI {
         if (conflictEvents == null) {
             return;
         }
-        if (conflictEvents.size()==0){
+        if (conflictEvents.size() == 0) {
             return;
         }
         int numPrintedEvents = 0;

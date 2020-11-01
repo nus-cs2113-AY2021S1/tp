@@ -257,7 +257,7 @@ public abstract class Parser {
                 int prefixLength = words[0].length() + words[1].length() + words[2].length();
 
 
-                if (fullCommand.substring(prefixLength+2, startTimeDividerPosition-1).isBlank()) {
+                if (fullCommand.substring(prefixLength + 2, startTimeDividerPosition - 1).isBlank()) {
                     throw new EmptyEventException();
                 }
 
@@ -353,7 +353,8 @@ public abstract class Parser {
                                     new OnlineLocation(fullCommand.substring(onlineLocationDividerPosition + 3));
                         } else {
                             try {
-                                if (fullCommand.substring(onlineLocationDividerPosition + 2, pwdDividerPosition - 1).isBlank()) {
+                                if (fullCommand.substring(onlineLocationDividerPosition + 2, pwdDividerPosition - 1)
+                                        .isBlank()) {
                                     throw new NoEventLocationException();
                                 }
                             } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -546,7 +547,8 @@ public abstract class Parser {
                                 new OnlineLocation(fullCommand.substring(onlineLocationDividerPosition + 3));
                     } else {
                         try {
-                            if (fullCommand.substring(onlineLocationDividerPosition + 2, pwdDividerPosition - 1).isBlank()) {
+                            if (fullCommand.substring(onlineLocationDividerPosition + 2, pwdDividerPosition - 1)
+                                    .isBlank()) {
                                 throw new NoEventLocationException();
                             }
                         } catch (NullPointerException | StringIndexOutOfBoundsException e) {

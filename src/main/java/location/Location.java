@@ -54,11 +54,11 @@ public class Location {
     }
 
     @Override
-    public boolean equals(Object object){
+    public boolean equals(Object object) {
         boolean isEqual = false;
 
         if (object instanceof Location) {
-            isEqual = (this.name.equals(((Location) object).name)) ;
+            isEqual = (this.name.equals(((Location) object).name));
         }
 
         return isEqual;

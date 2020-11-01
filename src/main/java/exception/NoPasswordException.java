@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * Represents the case when the user enter "/p" but did not enter password
+ * Represents the case when the user enter "/p" but did not enter password.
  */
 public class NoPasswordException extends NuScheduleException {
     /**

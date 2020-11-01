@@ -55,11 +55,11 @@ public class OnlineLocation {
     }
 
     @Override
-    public boolean equals(Object object){
+    public boolean equals(Object object) {
         boolean isEqual = false;
 
         if (object instanceof OnlineLocation) {
-            isEqual = (this.link.equals(((OnlineLocation) object).link)) ;
+            isEqual = (this.link.equals(((OnlineLocation) object).link));
         }
 
         return isEqual;
