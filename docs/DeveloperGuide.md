@@ -111,7 +111,6 @@ that manipulate the `NoteList` also make use of the package `java.util.ArrayList
 
 Each topic has an attribute of type `NoteList`, which contains `Notes`.
 
-<<<<<<< HEAD
 ![NoteListClass](images/NoteListClassDiagram.png)
 
 #### 2.2.4. Implementation of Notes
