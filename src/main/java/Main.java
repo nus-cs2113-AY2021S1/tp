@@ -239,7 +239,7 @@ public class Main {
         }
 
 
-        System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
+        System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delivery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
             if (typeChoosed == 1) {
@@ -249,7 +249,7 @@ public class Main {
                 orderType = "Take away";
             }
             else {
-                orderType = "Delevery";
+                orderType = "Delivery";
             }
 
 
