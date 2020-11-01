@@ -73,9 +73,8 @@ The rest of the App consists of:
 
 Figure 2 below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
 
-![Add food sequence diagram](images/AddFoodSequenceDiagram.png)
-
-_Figure 2: Sequence diagram when adding a food into Fitr_
+<p align="center"><img src="images/AddFoodSequenceDiagram.png"></p>
+<p align="center">Figure 2: Sequence diagram when adding a food into Fitr</p>
 
 > :information_source: **Note**: Take note that the lifeline should end at the destroy symbol. Due to a limitation of PlantUML, the lifeline continues after the delete symbol.
 
@@ -149,26 +148,23 @@ This section describes how some of the features in Fitr are implemented.
 When the user enters an edit command, it first passes through `Parser`. Once the input is parsed as an edit command, it is then passed to `EditCommandParser`, where it further parses the user's input. As the user is able to edit either the individual profile characteristics, food or exercise entries, the `EditCommandParser` is able parse what the user intends to edit. For example, if the user intends to edit a food entry, the input is then passed to `EditEntryCommand`, which parses the remaining arguments, and performs the required edit.
 Figure 4 below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
 
-![Sequence diagram for editing exercise](images/EditExerciseSequenceDiagram.png)
-
-_Figure 4: Sequence diagram for `edit` command_
+<p align="center"><img src="images/EditExerciseSequenceDiagram.png"></p>
+<p align="center">Figure 4: Sequence diagram for <code>edit</code> command</p>
 
 ### 4.2 Help command
 
 When the user enters 'help', the `Ui` class reads it and passes it through `Parser`.  Once the input is parsed as a help command, the user input is passed to `HelpCommand`, which calls `Ui` to print the help message.
 Figure 5 below shows the sequence diagram when the user enters `help`.
 
-![Sequence diagram for help command](images/HelpCommandSequenceDiagram.png)
-
-_Figure 5: Sequence diagram for `help` command_
+<p align="center"><img src="images/HelpCommandSequenceDiagram.png"></p>
+<p align="center">Figure 5: Sequence diagram for <code>help</code> command</p>
 
 ### 4.3 View command
 
 When the user enters a view command, the `Ui` class reads it and passes it through `Parser`. Once the input is parsed as a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. Then the respective view method is called to output the messages via the `Ui` class. For example, if you intend to view your goal entry, the input is passed to `ViewCommand`, which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
 
-![Sequence diagram for view goal command](images/ViewGoalSequenceDiagram.png)
-
-_Figure 6: Sequence diagram for `view goal` command_
+<p align="center"><img src="images/ViewGoalSequenceDiagram.png"></p>
+<p align="center">Figure 6: Sequence diagram for <code>view goal</code> command</p>
 
 ### 4.4 Clear command
 
@@ -178,9 +174,8 @@ The user's input is first parsed by the `Parser` class. It is then passed to the
 
 Figure 7 below shows the sequence diagram when the user inputs the `clear` command.
 
-![Sequence diagram for clear command](images/ClearCommandSequenceDiagram.png)
-
-_Figure 7: Sequence diagram for `clear` command_
+<p align="center"><img src="images/ClearCommandSequenceDiagram.png"></p>
+<p align="center">Figure 7: Sequence diagram for <code>clear</code> command</p>
 
 ### 4.5 Delete command
 
@@ -190,9 +185,8 @@ The user's input is first parsed by the `Parser` class, which returns a `DeleteC
 
 Figure 8 below shows the sequence diagram when the user inputs the `delete` command.
 
-![Sequence diagram for delete command](images/DeleteCommandSequenceDiagram.png)
-
-_Figure 8: Sequence diagram for `delete` command_
+<p align="center"><img src="images/DeleteCommandSequenceDiagram.png"></p>
+<p align="center">Figure 8: Sequence diagram for <code>delete</code> command</p>
 
 ### 4.6 Tip of the day
 
@@ -202,9 +196,8 @@ When the user opens the program, a `TipList` is automatically created by `Fitr`,
 
 Figure 9 below shows the sequence diagram for giving a tip.
 
-![Sequence diagram for delete command](images/TipCommandSequenceDiagram.png)
-
-_Figure 9: Sequence diagram for giving a tip_
+<p align="center"><img src="images/TipCommandSequenceDiagram.png"></p>
+<p align="center">Figure 9: Sequence diagram for giving a tip</p>
 
 ## Appendix A: Product Scope
 ### Target user profile
