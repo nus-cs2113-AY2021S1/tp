@@ -31,9 +31,9 @@ class Food
 class Exercise
 class Goal
 
-FoodList --o "*" Food
-ExerciseList --o "*" Exercise
-GoalList --o "*" Goal
+FoodList o-- "*" Food
+ExerciseList o-- "*" Exercise
+GoalList o-- "*" Goal
 
 Fitr --> "1" StorageManager
 
