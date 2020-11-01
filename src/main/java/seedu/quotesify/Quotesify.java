@@ -12,10 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * Main entry point for Quotesify.
+ */
 public class Quotesify {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
+
     private TextUi ui;
     private Parser parser;
 

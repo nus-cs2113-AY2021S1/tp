@@ -7,16 +7,29 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
-import seedu.quotesify.ui.UiMessage;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the DeleteRating command.
+ */
 public class DeleteRatingCommand extends DeleteCommand {
 
+    /**
+     * Constructor for the DeleteRating command.
+     *
+     * @param arguments Input by the user.
+     */
     public DeleteRatingCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the DeleteRating command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);

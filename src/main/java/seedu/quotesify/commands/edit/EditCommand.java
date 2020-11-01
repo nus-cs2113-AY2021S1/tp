@@ -7,6 +7,9 @@ import seedu.quotesify.ui.TextUi;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the Edit Command.
+ */
 public class EditCommand extends Command {
     public static Logger quotesifyLogger = Logger.getLogger("QuotesifyLogger");
 
@@ -14,11 +17,16 @@ public class EditCommand extends Command {
     public String information;
     private String arguments;
 
+    /**
+     * Constructor for the Edit command.
+     *
+     * @param arguments Input by the user.
+     */
     public EditCommand(String arguments) {
         this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
 
-        // if user did not provide arguments, let details[1] be empty string
+        /** if user did not provide arguments, let details[1] be empty string */
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }
@@ -26,6 +34,12 @@ public class EditCommand extends Command {
         information = details[1];
     }
 
+    /**
+     * Executes the Edit command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
@@ -52,6 +66,11 @@ public class EditCommand extends Command {
         storage.save();
     }
 
+    /**
+     * Decides if the program should be terminated.
+     *
+     * @return decision to terminate the program.
+     */
     @Override
     public boolean isExit() {
         return false;

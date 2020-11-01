@@ -7,6 +7,9 @@ import seedu.quotesify.ui.TextUi;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
+/**
+ * Represents the Add Command.
+ */
 public class AddCommand extends Command {
     public static Logger quotesifyLogger = Logger.getLogger("QuotesifyLogger");
 
@@ -14,6 +17,11 @@ public class AddCommand extends Command {
     public String information;
     private String arguments;
 
+    /**
+     * Constructor for the Add command.
+     *
+     * @param arguments Input by the user.
+     */
     public AddCommand(String arguments) {
         this.arguments = arguments;
         String[] details = arguments.split(" ", 2);
@@ -26,6 +34,12 @@ public class AddCommand extends Command {
         information = details[1];
     }
 
+    /**
+     * Executes the Add command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
@@ -61,6 +75,11 @@ public class AddCommand extends Command {
         storage.save();
     }
 
+    /**
+     * Decides if the program should be terminated.
+     *
+     * @return decision to terminate the program.
+     */
     public boolean isExit() {
         return false;
     }

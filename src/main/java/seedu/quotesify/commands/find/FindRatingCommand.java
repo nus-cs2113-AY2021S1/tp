@@ -6,16 +6,29 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
-import seedu.quotesify.ui.UiMessage;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the FindRating Command.
+ */
 public class FindRatingCommand extends FindCommand {
 
+    /**
+     * Constructor for the FindRating command.
+     *
+     * @param arguments Input by the user.
+     */
     public FindRatingCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the FindRating command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
