@@ -75,10 +75,10 @@ public class BrowseParser extends CommandParser {
             case PAGE_PARAM:
                 paramFieldCheck(paramParts);
                 paramExtraFieldCheck(paramParts);
-                if (!isInt(paramParts[1].trim())) {
+                if (!isInteger(paramParts[1].trim())) {
                     throw new AniException(NON_INTEGER_PROVIDED);
                 }
-                browseCommand.setPage(Integer.parseInt(paramParts[1].trim()));
+                browseCommand.setPage(parseStringToInteger(paramParts[1].trim()));
                 break;
             default:
                 String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;

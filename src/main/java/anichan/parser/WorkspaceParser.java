@@ -19,7 +19,6 @@ public class WorkspaceParser extends CommandParser {
     public static final String COMMAND_LIST = COMMAND_list;
     public static final String COMMAND_DELETE = "d";
     public static final String REGEX_SPACE_CHARACTER = " ";
-    public static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
 
     private String commandOption;
     private String commandDescription;
@@ -103,7 +102,7 @@ public class WorkspaceParser extends CommandParser {
 
             if (!isValid) {
                 LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
-                throw new AniException(EXCEPTION_INVALID_PARAMETERS);
+                throw new AniException("Workspace name must consist only alphanumeric characters and/or spaces.");
             }
         }
     }

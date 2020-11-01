@@ -65,7 +65,7 @@ public class Watchlist {
      * 
      * @param animeIndex the specified anime index in this Watchlist to be removed
      */
-    public void removeAnimeFromList(Integer animeIndex) {
+    public void removeAnimeFromList(int animeIndex) {
         this.animeList.remove(animeIndex);
     }
 
