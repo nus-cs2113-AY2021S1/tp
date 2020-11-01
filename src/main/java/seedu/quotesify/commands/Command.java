@@ -8,7 +8,7 @@ import seedu.quotesify.ui.TextUi;
  */
 public abstract class Command {
 
-    /** Tags used to identify the different features */
+    /** Tags used to identify the different features. */
     public static final String TAG_BOOK = "-b";
     public static final String TAG_QUOTE = "-q";
     public static final String TAG_QUOTE_REFLECTION = "-qr";
@@ -17,7 +17,7 @@ public abstract class Command {
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
 
-    /** Error messages for the different commands */
+    /** Error messages for the different commands. */
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_DUPLICATE_QUOTE = "This quote has already been added!";

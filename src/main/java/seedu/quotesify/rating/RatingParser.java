@@ -12,13 +12,13 @@ import java.util.logging.Level;
  */
 public class RatingParser {
 
-    /** Boundary, invalid and unrated values for rating score */
+    /** Boundary, invalid and unrated values for rating score. */
     public static final int RATING_ONE = 1;
     public static final int RATING_FIVE = 5;
     public static final int UNRATED = 0;
     public static final int INVALID_RATING = 0;
 
-    /** Error messages for inputs checked by rating parser */
+    /** Error messages for inputs checked by rating parser. */
     public static final String ERROR_INVALID_RATING_SCORE = "That score is out of our range my friend!";
     public static final String ERROR_INVALID_FORMAT_RATING = "Sorry I don't understand you";
     public static final String ERROR_RATING_MISSING_INPUTS = "I need more details from you!";
