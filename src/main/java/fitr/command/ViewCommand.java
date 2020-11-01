@@ -10,6 +10,7 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -215,8 +216,9 @@ public class ViewCommand extends Command {
     private String dateFormatter(String date) {
         //Convert date from DD/MM/YYYY to YYYYMMDD
         String newDateFormat;
-        date = date.replace("/", "");
-        newDateFormat = date.substring(4, 8) + date.substring(2, 4) + date.substring(0, 2);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        newDateFormat = LocalDate.parse(date, formatter).format(formatter2);
         return newDateFormat;
     }
 
@@ -290,6 +292,7 @@ public class ViewCommand extends Command {
             }
             return null;
         }
+
         FoodList foodOnThatDate = new FoodList();
         for (int i = 0; i < foodList.getSize(); i++) {
             if (date.equals(foodList.getFood(i).getDate())) {
