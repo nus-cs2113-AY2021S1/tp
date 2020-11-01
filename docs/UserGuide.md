@@ -16,7 +16,7 @@ No. |Content|
 3.5|    &emsp;[Finance Tools](#financeTools)
 3.6|    &emsp;[Goal Tracker](#goalTracker)
 3.7|    &emsp;[Save Manager]()
-4.|[Commands Summary](#commandsSummary)
+4.|[Features Summary](#featuresSummary)
 
 # 1. <a name = setUp> </a> Set-up
 ## 1.1 Setting up for Testers (IMPORTANT)
@@ -39,7 +39,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. Click `Open or Import`.
    1. Select the project directory, and click `OK`
    1. If there are any further prompts, accept the defaults.
-1. After the importing is complete, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. After the importing is complete, locate the `src/main/java/seedu.financeit/Financeit.java` file, right-click it, and choose `Run Financeit.main()`. If the setup is correct, you should see something like the below:
 
 > Output:
 
@@ -99,7 +99,7 @@ Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tra
 Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
 Goal Tracker|```goal```| fillme
 Save Manager|```saver```| fillme
-Finance Tools|```finance```| fillme
+Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
 ## 2.2 Auxillary features
 
@@ -1255,24 +1255,35 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
     
 
-# 4. <a name = commandsSummary> </a>Commands summary
+# 4. <a name = featuresSummary> </a>Summary of Features 
 
 ## 4.1 Manual Tracker
-No. | Command | Syntax | 
-----|---------|---------|
-1.|Open ledger|_ledger open /date {YYMMDD}_|
-2.|New ledger|_ledger new /date {YYMMDD}_|
-3.|list ledgers|_ledger list_|
-4.|delete ledgers|_ledger delete /date {YYMMDD}_|;
-5.|exit to main menu|_exit_|
+|No.|Feature|Syntax|
+|1.|Open Ledger|_ledger open /date {YYMMDD}_|
+|2.|New Ledger|_ledger new /date {YYMMDD}_|
+|3.|List Ledgers|_ledger list_|
+|4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
+|5.|Exit to Main Menu|_exit_|
 
 ## 4.2 Entry tracker
-No. | Command | Syntax |
-----|---------|---------|
-1.|New entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
-2.|Edit entry|_entry edit /id {integer} {param-type/parameter to edit}_|
-3.|list entries|_entry list_|
-4.|delete entry|_entry delete /id {integer}_|
-5.|list transaction categories|_cat_|
-6.|exit to manual tracker|_exit_|
+|No.|Feature|Syntax|
+|1.|New Entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
+|2.|Edit Entry|_entry edit /id {integer} {param-type/parameter to edit}_|
+|3.|list Entries|_entry list_|
+|4.|Delete Entry|_entry delete /id {integer}_|
+|5.|List Transaction Categories|_cat_|
+|6.|Exit to Manual Tracker|_exit_|
+
+## 4.3 FinanceTools
+|No.|Feature|Syntax|
+|1.|Simple Interest Calculator|_simple /a {AMOUNT} /r {INTEREST_RATE}_|
+|2.|Yearly Compound Interest Calculator|_cyearly /a {AMOUNT} /r {INTEREST_RATE} /p {YEARS} /d {YEARLY_DEPOSIT}_|
+|3.|Monthly Compound Interest Calculator|_cmonthly /a {AMOUNT} /r {INTEREST_RATE} /p {MONTHS} /d {MONTHLY_DEPOSIT}_|
+|4.|Cashback Calculator|_cashb /a {AMOUNT} /r {CASHBACK_RATE} /c {CASHBACK_CAP}_|
+|5.|Miles Credit Calculator|_miles /a {AMOUNT} /r {MILES_RATE}_|
+|6.|Account Storage|_store /n {ACCOUNT_NAME} /ir {INTEREST_RATE} /r {CASHBACK_RATE} /c {CASHBACK_CAP} /o {OTHER_NOTES}_|
+|7.|List Account(s) Information|_info_|
+|8.|Clear All Account Information|_clearinfo_|
+|9.|Command and Calculation History|_history_|
+|10.|Exit to Main Menu|_exit_|
 
