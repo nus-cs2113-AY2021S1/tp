@@ -63,6 +63,7 @@ import java.time.format.DateTimeParseException;
 
 import ui.UI;
 import eventlist.EventList;
+
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
  */
@@ -229,7 +230,7 @@ public abstract class Parser {
         //this block will change fullCommand, but this does not affect the later block since
         //it either return an EditCommand, or throw an exception
         if (words[0].equals(EDIT)) {
-            if (fullCommand.length() == 4 ) {
+            if (fullCommand.length() == 4) {
                 throw new EmptyEventIndexException();
             }
 
@@ -249,11 +250,9 @@ public abstract class Parser {
             String[] editInformation = ui.readEditCommand();
             LocalDateTime[] startEnd = new LocalDateTime[2];
 
-            if(!editInformation[0].isBlank()) {
-                if (editInformation[0].equals(ASSIGNMENT) || editInformation[0].equals(CLASS) ||
-                        editInformation[0].equals(PERSONAL_EVENT)) {
-
-                } else {
+            if (!editInformation[0].isBlank()) {
+                if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
+                        && !editInformation[0].equals(PERSONAL_EVENT)) {
                     throw new InvalidEditTypeException();
                 }
             }
@@ -264,8 +263,7 @@ public abstract class Parser {
                 if (editInformation[2].startsWith(LOCATION_MARKER)) {
                     //editInformation[2] = editInformation[2].substring(3);
                     location = parseLocation(editInformation[2].substring(3), locations);
-                }
-                else if (editInformation[2].startsWith(ONLINE_LOCATION_MARKER)) {
+                } else if (editInformation[2].startsWith(ONLINE_LOCATION_MARKER)) {
                     int pwdPos = editInformation[2].indexOf(PASSWORD_MARKER);
                     if (pwdPos == -1) {
                         onlineLocation =
@@ -275,8 +273,7 @@ public abstract class Parser {
                                 new OnlineLocation(editInformation[2].substring(3, pwdPos - 1),
                                         editInformation[2].substring(pwdPos + 3));
                     }
-                }
-                else {
+                } else {
                     throw new InvalidEditLocationException();
                 }
             }

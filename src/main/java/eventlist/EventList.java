@@ -142,7 +142,7 @@ public class EventList {
                     newEvent = new Class(newDescription, newOnlineLocation, start, end);
                 }
                 break;
-            case "personalEvent":
+            default:
                 if (newLocation != null) {
                     newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
                 }
@@ -155,9 +155,8 @@ public class EventList {
     }
 
 
-
-
-    private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location, OnlineLocation onlineLocation) {
+    private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
+                              OnlineLocation onlineLocation) {
         if (!editInformation[1].isBlank()) {
             events.get(index).setDescription(editInformation[1]);
         }
@@ -177,7 +176,7 @@ public class EventList {
             if (startEnd[0] != null) {
                 ((Assignment) events.get(index)).setBy(startEnd[0]);
             }
-        } else if (events.get(index) instanceof PersonalEvent ) {
+        } else if (events.get(index) instanceof PersonalEvent) {
             if (startEnd[0] != null) {
                 ((PersonalEvent) events.get(index)).setAt(startEnd[0]);
             }

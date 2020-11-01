@@ -104,7 +104,9 @@ public abstract class Event {
         return location;
     }
 
-    public OnlineLocation getLink() { return link; }
+    public OnlineLocation getLink() {
+        return link;
+    }
 
     public static Comparator<Event> descriptionComparator = (o1, o2) ->
             o1.getDescription().compareToIgnoreCase(o2.getDescription());

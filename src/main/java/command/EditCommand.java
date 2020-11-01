@@ -30,11 +30,11 @@ public class EditCommand extends Command {
 
     public EditCommand(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                        OnlineLocation onlineLocation) {
-       this.index = index;
-       this.editInformation = editInformation;
-       this.startEnd = startEnd;
-       this.location = location;
-       this.onlineLocation = onlineLocation;
+        this.index = index;
+        this.editInformation = editInformation;
+        this.startEnd = startEnd;
+        this.location = location;
+        this.onlineLocation = onlineLocation;
     }
 
     /**
