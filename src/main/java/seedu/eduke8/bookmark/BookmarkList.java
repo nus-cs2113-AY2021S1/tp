@@ -11,15 +11,14 @@ public class BookmarkList implements DisplayableList, EditableList {
 
     private ArrayList<Displayable> bookmarks;
 
-    public BookmarkList(ArrayList<Displayable> bookmarks) {
-        this.bookmarks = bookmarks;
+    public BookmarkList() {
+        bookmarks = new ArrayList<>();
     }
 
     @Override
     public ArrayList<Displayable> getInnerList() {
         return bookmarks;
     }
-
 
     @Override
     public void add(Displayable question) {
