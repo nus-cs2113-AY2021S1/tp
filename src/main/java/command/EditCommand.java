@@ -3,6 +3,7 @@ package command;
 import event.Event;
 import eventlist.EventList;
 import exception.EditIndexOutOfBoundsException;
+import exception.EditNoEndTimeException;
 import exception.EndBeforeStartEventException;
 import exception.NuScheduleException;
 import exception.UndefinedEventException;
@@ -50,22 +51,12 @@ public class EditCommand extends Command {
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
-            throws UndefinedEventException, WritingFileException, EndBeforeStartEventException {
+            throws UndefinedEventException, WritingFileException, EndBeforeStartEventException, EditNoEndTimeException {
         //events.editEvent();
-        System.out.println("Test" + index);
-        System.out.println(editInformation[0] + " " + editInformation[1] + " " + editInformation[2]);
-        System.out.println(startEnd[0] + " " + startEnd[1]);
-        if (location != null) {
-            System.out.println(location.getName());
-        }
-        if (onlineLocation != null) {
-            System.out.println(onlineLocation.toString());
-        }
-
         Event newEvent = events.editEvent(index, editInformation, startEnd, location, onlineLocation);
-        //ui.printConflictEvents(events.checkConflictTiming(event));
-        //ui.printEditEventMessage(event);
-        //ui.printNumEvent(events.getSize());
-        //storage.writeFile(events.getEventList());
+        ui.printConflictEvents(events.checkConflictTiming(newEvent));
+        ui.printEditEventMessage(newEvent);
+        ui.printNumEvent(events.getSize());
+        storage.writeFile(events.getEventList());
     }
 }

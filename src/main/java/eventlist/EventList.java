@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.Event;
 import event.PersonalEvent;
+import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
 import exception.EndBeforeStartEventException;
 import exception.UndefinedEventException;
@@ -72,17 +73,15 @@ public class EventList {
      * @param index the index of the event being edited
      */
     public Event editEvent(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
-                           OnlineLocation onlineLocation) throws EndBeforeStartEventException {
+                           OnlineLocation onlineLocation) throws EndBeforeStartEventException, EditNoEndTimeException {
         assert events != null;
 
-        // create new event object with user input
-        System.out.println("Working as expected");
 
         // no change in event type
         if (editInformation[0].isBlank()) {
-            // set new description
             editSameType(index, editInformation, startEnd, location, onlineLocation);
         } else {
+            // create new event object with user input
             Event newEvent = null;
             String newDescription;
             Location newLocation = null;
@@ -90,7 +89,7 @@ public class EventList {
             LocalDateTime start;
             LocalDateTime end;
 
-            if (editInformation[0].isBlank()) {
+            if (editInformation[1].isBlank()) {
                 newDescription = events.get(index).getDescription();
             } else {
                 newDescription = editInformation[1];
@@ -111,19 +110,6 @@ public class EventList {
                 newOnlineLocation = onlineLocation;
             }
 
-            /*
-            if (onlineLocation == null) {
-                if (events.get(index).getLocation() != null) {
-                    newLocation = events.get(index).getLocation();
-                }
-                if (events.get(index).getLink() != null) {
-                    newOnlineLocation = events.get(index).getLink();
-                }
-            } else {
-                newOnlineLocation = onlineLocation;
-            }
-            */
-
 
             if (startEnd[0] == null) {
                 start = events.get(index).getStartDateTime();
@@ -133,11 +119,16 @@ public class EventList {
 
             if (startEnd[1] == null) {
                 end = events.get(index).getEndDateTime();
+                if (end == null && !editInformation[0].equals("assignment")) {
+                    throw new EditNoEndTimeException();
+                }
             } else {
                 end = startEnd[1];
             }
+
+
             switch (editInformation[0]) {
-            case "Assignment":
+            case "assignment":
                 if (newLocation != null) {
                     newEvent = new Assignment(newDescription, newLocation, start);
                 } else {
@@ -159,9 +150,6 @@ public class EventList {
             }
             events.set(index, newEvent);
         }
-
-
-
 
         return events.get(index);
     }
