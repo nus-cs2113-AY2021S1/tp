@@ -222,11 +222,11 @@ To view food entries for a specific day, you may enter the date at the back of t
 
 Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
 
-For example, if you would like to view your exercises on 23/10/2020, you may key in `view food 23/10/2020`. The expected outcome should be similar to below:
+For example, if you would like to view your food on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
 
 ```
 Here is the list of your food:
-Date: 23/10/2020
+Date: 22/10/2020
 [1] Food: duck rice
     Cal: 500
 ```
