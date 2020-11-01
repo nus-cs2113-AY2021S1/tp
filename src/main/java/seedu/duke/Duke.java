@@ -17,7 +17,7 @@ public class Duke {
     private static final String DUMMY_PARAM = "Dummy";
     private static Parser parser;
     public static FavStorage favFile = new FavStorage("data/FavList.txt");
-    public static FreqStorage freqFile = new FreqStorage("data/freqList.txt");
+    public static FreqStorage freqFile = new FreqStorage("data/FreqList.txt");
     private static BusInfo busInfo = new BusInfo();
     private static FavList favList = new FavList();
 
@@ -36,6 +36,7 @@ public class Duke {
             favFile.readFile();
             favFile.updateFile();
             freqFile.readFile();
+            freqFile.updateFile();
         } catch (CustomException e) {
             System.out.println(e);
         }
