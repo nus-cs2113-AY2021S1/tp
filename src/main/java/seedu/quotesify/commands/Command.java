@@ -15,6 +15,7 @@ public abstract class Command {
 
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
+    public static final String ERROR_DUPLICATE_QUOTE = "This quote has already been added!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
     public static final String ERROR_INVALID_PAGE_NUM = "Invalid page number specified!";
     public static final String ERROR_INVALID_BOOKMARK_NUM = "Invalid bookmark number specified!";
