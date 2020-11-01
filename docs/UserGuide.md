@@ -27,10 +27,10 @@ This app uses a Command Line Interface (CLI).
     <br/>&nbsp;2.14 [Mark task as done: `done`](#done)
     <br/>&nbsp;2.15 [Delete a task: `deletetask`](#deletetask)
     <br/>&nbsp;2.16 [Open notification: `open`](#open)
-    <br/>&nbsp;2.17 [Exit the program : `exit`](#exit)
-    <br/>&nbsp;2.18 [Save user data](#save)
-    <br/>&nbsp;2.19 [Clear module and task data: `clear`](#clear)
-    <br/>&nbsp;2.20 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.17 [Save user data](#save)
+    <br/>&nbsp;2.18 [Clear module and task data: `clear`](#clear)
+    <br/>&nbsp;2.19 [Delete user data: `reset`](#reset)
+    <br/>&nbsp;2.20 [Exit the program : `exit`](#exit)
 1. [FAQ](#faq)
 1. [Command Summary](#summary)
 
@@ -88,7 +88,38 @@ Format: `help`
 
 Expected output:
 ````
-<A list of available commands will be shown here>
+Available Commands:
+1. addmod <module code>
+   example: addmod CS2113T
+2. addexp <module code> <expected workload>
+   example: addexp CS2113T 5
+3. addtime <module code> <actual time spent> <week number>
+   example: addtime CS2113T 2 1
+4. list <week number>
+   example: list 2
+5. deletemod <module code>
+   example: deletemod CS2113T
+6. deleteexp <module code>
+   example: deleteexp CS2113T
+7. minustime <module code> <time> <week number>
+   example: minustime CS2113T 2 1
+8. edittime <module code> <actual time spent> <week number>
+   example: edittime CS2113T 8 1
+9. deletetime <module code> <week number>
+   example: deletetime CS2113T 1
+10.analyse <week number>
+   example: analyse 1
+11.addtask <module code> <task description>
+   example: addtask CS2113T revise for exam
+12.deletetask <task number>
+   example: deletetask 1
+13.done <task number>
+   example: done 1
+14.listtask
+15.open
+16.clear
+17.reset
+18.exit
 ````
 
 ### 2.2 Add a module: `addmod` <a name="addmod"></a>
@@ -217,6 +248,7 @@ Example of usage:
 Expected output:
 ````
 CS2113T is removed.
+All tasks under CS2113T are deleted.
 ````
 
 ### 2.8 Delete expected module workload: `deleteexp` <a name="deleteexp"></a>
@@ -381,18 +413,8 @@ The harder you work, the closer you are to success!
 
 Note: The actual output may differ as the encouraging message is randomised.
 
-### 2.17 Exit the program : `exit` <a name="exit"></a>
-Exits the program.
 
-Format: `exit`
-
-Expected output:
-````
-All changes saved.
-Bye <username>. Hope to see you again soon!
-````
-
-### 2.18 Save user data <a name="save"></a>
+### 2.17 Save user data <a name="save"></a>
 The program will save your data such as your name, modules, time spent and tasks
 to the hard disk automatically. There is no need to save these manually. 
 
@@ -403,7 +425,7 @@ continuing from where you left off.
 The external file which stores your data will be locked to read-only 
 when it is not in use, keeping your data safe and secure.
 
-### 2.19 Clear module and task data: `clear` <a name="clear"></a>
+### 2.18 Clear module and task data: `clear` <a name="clear"></a>
 Deletes all module and tasks data.
 The program will also prompt the user to confirm this action.
 
@@ -435,7 +457,7 @@ Expected output:
 Clearing of data not confirmed. Your data is safe :)
 ````
  
-### 2.20 Delete user data: `reset` <a name="reset"></a>
+### 2.19 Delete user data: `reset` <a name="reset"></a>
 Deletes all module and tasks data, and the username.
 The program will also prompt the user to confirm this action.
 If confirmed, the program will restart and prompt for a new username.
@@ -482,6 +504,23 @@ Expected output:
 Reset not confirmed. Your data is safe :)
 ````
 
+### 2.20 Exit the program : `exit` <a name="exit"></a>
+Exits the program.
+
+Format: `exit`
+
+Expected output:
+````
+All changes saved.
+_______    _______
+||   \\\  //||
+||___//\\// ||___
+||   \\ ||  ||
+||___// ||  ||____
+
+Bye <username>. Hope to see you again soon!
+````
+
 ## 3. FAQ <a name="faq"></a>
 
 **Q**: Are the commands case-sensitive? 
@@ -499,14 +538,15 @@ Reset not confirmed. Your data is safe :)
 |Analyse actual time spent on all modules|`analyse <week number>`|
 |Deleting a module|`deletemod <module code>`|
 |Deleting expected module workload|`deleteexp <module code>`|
-|Minus from time spent on the module|`minus <module code> <time spent> <week number>`|
+|Minus from time spent on the module|`minustime <module code> <time spent> <week number>`|
 |Deleting actual time spent on the module|`deletetime <module code> <week number>`|
 |Add tasks|`addtask <module code> <task description>`|
 |List all tasks|`listtask`|
 |Mark task as done|`done <task number>`|
 |Delete a task|`deletetask <task number>`|
 |Open notification|`open`|
-|Exiting the program|`exit`|
+|Clear module and task data|`clear`|
 |Deleting module and task data|`reset`|
+|Exiting the program|`exit`|
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
