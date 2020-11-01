@@ -6,9 +6,9 @@ import seedu.duke.wordlist.WordList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class WordsFilterTest {
+public class WordsFilterTest {
 
-    private static void initializeTestDatabase() {
+    public static void initializeTestDatabase() {
         WordList.addNoun("noun house d\\place to live");
         WordList.addVerb("verb eat d\\put sth into your mouth");
         WordList.addAdjective("adj beautiful d\\nice to look at");

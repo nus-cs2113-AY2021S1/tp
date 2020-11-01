@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class WordList {
-    private static ArrayList<Words> wordList = new ArrayList<>();
+    public static ArrayList<Words> wordList = new ArrayList<>();
 
     public static ArrayList<Words> getWordList() {
         return wordList;
@@ -36,13 +36,23 @@ public class WordList {
             if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
                 System.out.println(FluffleMessages.INVALID_NOUN_MSG);
             } else {
-                String[] splitInput = word[1].split("d\\\\");
+                String[] splitInput = word[1].split(" d\\\\");
                 if (splitInput.length == 1) {
                     System.out.println(FluffleMessages.INVALID_NOUN_MSG);
                 } else {
                     Words toAdd = new Noun(splitInput[0], splitInput[1]);
-                    wordList.add(toAdd);
-                    UI.addNounMessage(toAdd.getDescription());
+                    // Check for duplicate word in the list
+                    boolean duplicate = false;
+                    for (Words words : wordList) {
+                        if (toAdd.getDescription().equals(words.getDescription())) {
+                            duplicate = true;
+                            System.out.println("Word already exists in word list!");
+                        }
+                    }
+                    if (!duplicate) {
+                        wordList.add(toAdd);
+                        UI.addNounMessage(toAdd.getDescription());
+                    }
                 }
             }
         }
@@ -62,13 +72,23 @@ public class WordList {
             if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
                 System.out.println(FluffleMessages.INVALID_VERB_MSG);
             } else {
-                String[] splitInput = word[1].split("d\\\\");
+                String[] splitInput = word[1].split(" d\\\\");
                 if (splitInput.length == 1) {
                     System.out.println(FluffleMessages.INVALID_VERB_MSG);
                 } else {
                     Words toAdd = new Verb(splitInput[0], splitInput[1]);
-                    wordList.add(toAdd);
-                    UI.addVerbMessage(toAdd.getDescription());
+                    // Check for duplicate word in the list
+                    boolean duplicate = false;
+                    for (Words words : wordList) {
+                        if (toAdd.getDescription().equals(words.getDescription())) {
+                            duplicate = true;
+                            System.out.println("Word already exists in word list!");
+                        }
+                    }
+                    if (!duplicate) {
+                        wordList.add(toAdd);
+                        UI.addNounMessage(toAdd.getDescription());
+                    }
                 }
             }
         }
@@ -88,22 +108,36 @@ public class WordList {
             if (word.length == 1 || word[1].equals("") || !word[1].contains(Tags.DESCRIPTION_TAG)) {
                 System.out.println(FluffleMessages.INVALID_ADJ_MSG);
             } else {
-                String[] splitInput = word[1].split("d\\\\");
+                String[] splitInput = word[1].split(" d\\\\");
                 if (splitInput.length == 1) {
                     System.out.println(FluffleMessages.INVALID_ADJ_MSG);
                 } else {
                     Words toAdd = new Adjective(splitInput[0], splitInput[1]);
-                    wordList.add(toAdd);
-                    UI.addAdjectiveMessage(toAdd.getDescription());
+                    // Check for duplicate word in the list
+                    boolean duplicate = false;
+                    for (Words words : wordList) {
+                        if (toAdd.getDescription().equals(words.getDescription())) {
+                            duplicate = true;
+                            System.out.println("Word already exists in word list!");
+                        }
+                    }
+                    if (!duplicate) {
+                        wordList.add(toAdd);
+                        UI.addNounMessage(toAdd.getDescription());
+                    }
                 }
             }
         }
     }
 
     public static void listWords() {
-        UI.listWordsMessage();
-        for (int i = 0; i < wordList.size(); i++) {
-            System.out.println((i + 1) + "." + wordList.get(i).getDescription());
+        if (wordList.size() == 0) {
+            System.out.println(FluffleMessages.EMPTY_WORDLIST_MSG);
+        } else {
+            UI.listWordsMessage();
+            for (int i = 0; i < wordList.size(); i++) {
+                System.out.println((i + 1) + "." + wordList.get(i).getDescription());
+            }
         }
     }
 
@@ -127,6 +161,17 @@ public class WordList {
             System.out.println(FluffleMessages.THREE_WORDS_MSG);
             for (int i = 0; i < 3; i++) {
                 System.out.println("   " + (i + 1) + ". " + threeWords.get(i).getDescription());
+            }
+        }
+    }
+
+    public static void clearWord(String wordToBeCleared) {
+        int i = 0;
+        while (i < wordList.size()) {
+            if (wordList.get(i).getDefinition().equalsIgnoreCase(wordToBeCleared)) {
+                wordList.remove(i);
+            } else {
+                i++;
             }
         }
     }

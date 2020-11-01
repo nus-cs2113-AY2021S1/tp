@@ -4,7 +4,7 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.database.ClearLoader;
 import seedu.duke.database.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
@@ -29,6 +29,7 @@ import seedu.duke.writing.WritingList;
 import java.io.IOException;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
+import static seedu.duke.wordlist.WordList.wordList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
@@ -79,7 +80,7 @@ public class CommandExecutor {
             try {
                 FilterExecutor.executeFilterCommand(userInput);
             } catch (FilterCommandException e) {
-                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
+                System.out.println(FluffleMessages.FILTER_UNKNOWN_TYPE);
             }
             break;
         case LIST_FILTER:
@@ -190,10 +191,10 @@ public class CommandExecutor {
             break;
         case CLEAR:
             try {
-                ClearLoader.clearItems(userInput, writings);
+                ClearLoader.clearItems(userInput, writings, wordList);
             } catch (WrongClearCommandFormat e) {
                 System.out.println("The appropriate format is:\n"
-                    + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
+                        + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
             }
             break;
         case DELETE:

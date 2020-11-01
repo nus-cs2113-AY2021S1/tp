@@ -39,6 +39,10 @@ public class Tags {
     public static final String NOUN = "noun";
     public static final String VERB = "verb";
     public static final String ADJECTIVE = "adjective";
+    public static final String Y = "y";
+    public static final String YES = "yes";
+    public static final String N = "n";
+    public static final String NO = "no";
 
     /** Tags for word list. */
     public static final String DESCRIPTION_TAG = " d\\";

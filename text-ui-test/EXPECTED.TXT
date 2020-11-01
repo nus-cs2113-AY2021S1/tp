@@ -12,18 +12,29 @@ What can I do for you?
 --------------------------------------------------------------
 What is your name?
 Hello Fluffle. Welcome to Fluffle!
-Your registration has been recorded on 2020-10-28
+Your registration has been recorded on 2020-11-01
 Please type in "help" command for information!
 --------------------------------------------------------------
 Type 'help <function name here>' to view help for each command.
 Available commands:
-noun
-verb
-adj
-settings
+help
+divider
+bunny
+list bunny
+filter bunny
+save bunny
 list
-stats
+list filter words
 start
+filter words
+stats
+reset
+name
+list name
+filter name
+add name
+delete name
+remind
 clear
 exit
 --------------------------------------------------------------
