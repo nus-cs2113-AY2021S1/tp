@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NON_POSITIVE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -145,13 +145,16 @@ public class MenuParser implements Parser {
                                 commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
                     }
                 }
-                if (userTimer < 1) {
-                    throw new Eduke8Exception(ERROR_QUIZ_TIMER_NON_POSITIVE);
-                }
+
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
+            }
+            try {
+                if (userTimer < 1) {
+                    throw new Eduke8Exception(ERROR_QUIZ_TIMER_NEGATIVE);
+                }
             } catch (Eduke8Exception e) {
-                return new IncorrectCommand(ERROR_QUIZ_TIMER_NON_POSITIVE);
+                return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
             }
 
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
