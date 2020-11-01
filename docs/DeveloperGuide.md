@@ -3,45 +3,65 @@
 
 ## **Introduction**
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
-### **Welcome to Zoomaster!**
-Zoomaster is a Java application for the Command Line. It provides you with a simple and intuitive way to store your Zoom links for your online classes, alongside other useful links for the lesson at hand.<br/>
+### Introduction to Zoomaster
+Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for online classes abd other useful links for the lesson at hand.<br/>
 
-Zoomaster can also intelligently determine the current lesson you are having, allowing you to launch the correct links quickly and elegantly from the command line.
+Zoomaster can also intelligently determine the current lesson users are having, allowing them to launch the correct links quickly and elegantly from the command line.
 
+### Target audience
+This developer guide is for experienced programmers with knowledge of object oriented programming.
+
+
+### Purpose
+This guide seeks to introduce to you the design and implementation of Zoomaster features. It will share our reasoning behind the way we implemented different features and its logic flow. With this, you would be able to tweak and furthur develop Zoomaster without confusion or introduce unwanted bug to the App.
+
+### Scope
+First, the guide will help you set up Zoomaster in its current iteration so that you can familiarise with it. <br/> 
+Secondly, the guide will explain the design of Zoomaster and its various components. <br/>
+Next, the guide will showcase how we implement various features into Zoomaster with step by step explanations and diagram. <br/>
+Finally, the guide has several appendixes explaining the scope of the product, user stories, non-function requirements, glossary and instructions for manual testing.
+
+### Navigation
+You can navigate the guide via the table of contents below. <br/>
+Otherwise, each major section is distinguished by a bold header and underline. Sub-sections are of a smaller font than major sections but still larger than normal paragraphs to distingush them.
 
 ### Table of contents
 * [Getting Started](#getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
+  * [Initialization](#initialization)
   * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
+  * [Parser component](#parser)
+  * [Commands component](#command)
+  * [Temporary list component](#temp-list)
   * [Storage component](#storage-component)
-  * [Common classes](#common-classes)
+  * [Local files component](#local-files)
+  * [Exceptions component](#exceptions)
 * [Implementation](#implementation)
-  * [Bookmark and Timetable modes feature](#bookmark-and-timetable-modes-feature-tys)
-  * [Add Module and Slot feature](#add-module-and-slot-feature-xing-rong)
-* [Documentation, logging, testing, configuration, dev-ops](#architecture)
-* [Appendix: Requirements](#architecture)
-  * [Product Scope](#architecture)
-  * [User Stories](#architecture)
-  * [Use cases](#architecture)
-  * [Non-Functional Requirements](#architecture)
-  * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#faq)
+  * [Bookmark and Timetable modes feature](#mode)
+  * [Show timetable feature](#show-timetable)
+  * [Add Module and Slot featurea](#add-module-slot)
+* [Appendix A: Product Scope](#appendix-a)
+* [Appendix B: User Stories](#appendix-b)
+* [Appendix C: Non-Functional Requirements](#appendix-c)
+* [Appendix D: Glossary](#appendix-d)
+* [Appendix E: Instructions for manual testing](#appendix-e)
   * [Launch and shutdown](#command-summary)
 
-
+<a name="getting-started"></a>a>
 ## **Getting Started**
-Refer to the setting up guide over [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
+First, download the source cod and jar file of Zoomaster [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 
+Next, follow the startup proceedures as stated in the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarise yourself with Zoomaster's features.
 
+Now, you can dive into the source code and explore the inner workings of Zoomaster with this guide.
 
-
-
-
+<a name="design"></a>
 ## **Design**
 
+This section explains the design behind Zoomaster by first sharing the grand architecture of the code then it's various components.
+
+<a name="architecture"></a>
 ### Architecture
 
 The figure below shows a high-level design for the architecture of Zoomaster. 
@@ -60,6 +80,7 @@ Our Program can be split up into 8 components
 
 These components interact with each other as shown in Figure 1.1 to execute the functionalities of Zoomaster.
 
+<a name="initialization"></a>
 ### Initialization
 The diagram below shows a class-level diagram for Zoomaster. <br/></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/initial.png)
@@ -76,6 +97,7 @@ Its main roles are:
 * Set the list of Modules for Zoomaster 
 * Initializes the User Interface object, as well as the 3 Storage  objects for `BookmarkList`, `Timetable` and `Planner`.
 
+<a name="ui-component"></a>
 ### User Interface component
 
 ![](images/UiClassDiagram.png)
@@ -99,12 +121,12 @@ Its main roles are:
 * Receiving user commands and returning it to the Main function.
 * Prints visual output in the console for the User
 
-
+<a name="parser"></a>
 ### Parser component
 
 
 
-![]()
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
 *<center/> Figure 1.4 Class diagram of Parser </center> <br/></br>*
 
 
@@ -126,6 +148,7 @@ Its main roles are:
 
 The interaction of the Parser component with the Command component is covered in greater detail below. 
 
+<a name="command"></a>
 ### Commands component
 Figures 1.3 to 1.6 below show the class-level diagrams for Parser and Command for each different mode. <br/>
 The diagrams are colour coded as such:
@@ -156,11 +179,8 @@ Its main roles are:
 * Create messages for Ui on updates to Zoomaster
 * Catch errors or conflicts in users commands and return the appropriate exception to the Main function
 
+<a name="temp-list"></a>
 ### Temp List component
-
-![]()
-
-*<center/> Figure 1.7 Class diagram of Temp List </center> <br/></br>*
 
 The Temp List component is responsible for holding on to temporary data of Zoomaster to be used by Commands.
 
@@ -170,11 +190,8 @@ Its main role is:
 
 * Hold on to temporary data about Zoomaster
 
+<a name="storage"></a>
 ### Storage component
-
-![]()
-
-*<center/> Figure 1.8 Class diagram of Storage </center> <br/></br>*
 
 The Storage component is responsible for saving and retrieving Zoomaster data to and from an external text file.
 
@@ -188,11 +205,8 @@ Its main roles are:
 * Retrieve Zoomaster data on Initialization
 * Return error messages to the users during extraction or writing
 
+<a name="local-files"></a>
 ### Local Files component
-
-![]()
-*<center/> Figure 1.9 Class diagram of Local Files </center> <br/></br>*
-
 
 The Local Files component is where Zoomaster's long term storage of data is kept
 
@@ -200,11 +214,8 @@ Its main role is:
 
 * Store Zoomaster data
 
+<a name="exceptions"></a>
 ### Exceptions component
-
-![]()
-
-*<center/> Figure 1.10 Class diagram of Exceptions </center> <br/></br>*
 
 The Exceptions component is responsible for responding to the different errors different components of Zoomaster sends back to the Main function.
 
@@ -221,6 +232,7 @@ Its main role is:
 
 This section explains the implementations of Zoomaster features. It goes through the step-by-step proccess, expected outcomes of each feature and the design considerations.
 
+<a name="mode"></a>
 ### Bookmark, Timetable and Planner modes feature (TYS)
 
 Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
@@ -263,7 +275,30 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Ensure the App does not change modes outside commands to change modes.
     * Cons: Reduces OOP standard of code by decoupling ChangeModeCommand from Command class and increases code complexity.
 
+<a name="show-timetable"></a>
+### Show timetable feature (Tan Yu Shing + Xing Rong)
+Users can see the timetable they have created in the App using the **show** command. The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. 
 
+#### Implementation
+This feature extends the command class. It is a simple retrieval algorithm which firstly gets data from the Timetable class. Then sorts it by timing and add additional indicators for the users. And finally, prints it our using the User Interface. </br> It uses SlotContainer class sortSlotsByTime method to help sort the list of lessons and it's module code by timing. </br>
+Additionally, it implements the following operations:
+* getMessageSlotsInADay(List<Module> **modules**, List<Slot> **slots**, String **day**) - Retreives all the lesson **slots** and it's respective **module** code on the **day** specified. It then sorts the lessons by timing and returns it as a **message string**. </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
+* getMessageTimetable(List<Module> **modules**, List<Slot> **slots**) - Retreives all the lesson **slots** and it's respective **module** code for the whole week. It then sorts the lessons by timing and returns it as a **message string**.  </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
+* getMessageLessonAtTime(List<Module> **modules**, List<Slot> **slots**, String **dayInput**) - Decodes the mode the user wants the timetable to be printed out in using **dayInput**. </br> Then calls the appropriate methods such as getMessageSlotsInADay and getMessageTimetable to get the **message string** which is then returned to the execute function to be printed out by the User Interface. If the the timetable is empty or an invalid **dayInput** is given, an **exception** is thrown to tell users their mistake.
+* hasLessonNow(Slot **slot**) - Checks if a **slot** timing is overlapping with the current system time. Returns a **boolean** true or false based on the check.
+* getIndicatorMessage() - Returns a **String** containing a indicator with the current system time.
+* getHighlighBoxUpperMessage() - Returns a **String** containing a indicator with a message "lesson now".
+* getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
+
+Given below is a sequential diagram of how printing the timetable occurs.
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
+
+#### Design consideration:
+
+##### <Aspect: How to store programMode variable for security>
+
+
+<a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
 This feature allows the user to add modules and lesson slots into the timetable.
 Users can also add bookmarks to specific modules and slots.
@@ -323,9 +358,16 @@ Below is the general flow on how the mechanism works:
 4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
 5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
+Below is the general flow on how the mechanism works:
+1. The different timetables must first be loaded to the `planner` folder manually.
+2. In the app, the user can enter the `load` command to load all the timetables and initialise the common empty slots.
+3. To view the slots, the user can enter the `show` command with or without the day (optional).
+4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
+5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
 
-## **Product scope**
+<a name="appendix-a"></a>
+## **Appendix A: Product scope**
 ### Target user profile
 
 * NUS student
@@ -336,7 +378,8 @@ Below is the general flow on how the mechanism works:
 
 Zoomaster was developed during the coronavirus pandemic whereby many NUS classes have been transitioned towards online lessons. NUS lessons are mainly conducted on Zoom video conferencing software. However, as Zoom does not store recurring nor past meetings, it is hard for students to easily access their online lessons. Hence, Zoomaster helps to organise students’ Zoom links for easy access to their lesson.
 
-## **User Stories**
+<a name="appendix-b"></a>
+## **Appendix B: User Stories**
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -352,12 +395,14 @@ Zoomaster was developed during the coronavirus pandemic whereby many NUS classes
 |v2.0|busy user|have an indicator telling me the current time|easily check on the time in a hurry|
 |v2.0|fast typer|to be able to type a one-shot-command when entering the details of the lessons in my timetable|add the lesson details faster|
 
-## **Non-Functional Requirements**
+<a name="appendix-c"></a>
+## **Appendix C: Non-Functional Requirements**
 
 1. The App should work on any mainstream OS as long as it has Java `11` installed.
 2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## **Glossary**
+<a name="appendix-d"></a>
+## **Appendix D Glossary**
 
 ### Zoom
 > A popular video communication program by a company of the same name
@@ -374,7 +419,8 @@ Zoomaster was developed during the coronavirus pandemic whereby many NUS classes
 ### NUS
 > National University of Singapore
 
-## **Instructions for manual testing**
+<a name="appendix-e"></a>
+## **Appendix E: Instructions for manual testing**
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
