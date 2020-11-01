@@ -66,22 +66,23 @@ public class RecommendCommand extends Command {
                     storageManager.writeExerciseList(listManager.getExerciseList());
                 }
             } else {
-                try{
-                    if(checker.split(" ").length > 4){
+                try {
+                    if (checker.split(" ").length > 4) {
                         throw new FitrException();
                     }
                     ArrayList<Integer> indexArr = new ArrayList<>();
-                    for(int i = 0; i < checker.split(" ").length; i++){
-                        if(Integer.parseInt(checker.split(" ")[i]) < 0
-                                || Integer.parseInt(checker.split(" ")[i]) > 4){
+                    for (int i = 0; i < checker.split(" ").length; i++) {
+                        if (Integer.parseInt(checker.split(" ")[i]) < 0
+                                || Integer.parseInt(checker.split(" ")[i]) > 4) {
                             throw new IndexOutOfBoundsException();
                         }
                         indexArr.add(Integer.parseInt(checker.split(" ")[i]));
                     }
                     Ui.printCustomMessage("The following Exercises has been added:");
-                    for(int i = 0; i < indexArr.size(); i++){
+                    for (int i = 0; i < indexArr.size(); i++) {
                         StandardExercise standardExercise = recommendList.getExercise(indexArr.get(i) - 1);
-                        Calorie caloriesBurnt = new Calorie((int) (standardExercise.getDuration().get(fitnessLevel)
+                        Calorie caloriesBurnt = new Calorie((int) (standardExercise.getDuration()
+                                                                            .get(fitnessLevel)
                                 * standardExercise.getMet()
                                 * standardExercise.getSets().get(fitnessLevel)
                                 * user.getWeight())
@@ -90,14 +91,15 @@ public class RecommendCommand extends Command {
                                 + EXERCISE_HEADER + standardExercise.getName()
                                 + SPACE_FORMATTING + BURNT_CAL_HEADER
                                 + caloriesBurnt.get());
-                        listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
+                        listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt,
+                                getCurrentDate()));
                         storageManager.writeExerciseList(listManager.getExerciseList());
                     }
                 } catch (FitrException e) {
                     Ui.printCustomError("You have typed in too many indexes");
-                } catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     Ui.printCustomError("The indexes have to be a number! :D");
-                } catch(IndexOutOfBoundsException e){
+                } catch (IndexOutOfBoundsException e) {
                     Ui.printCustomError("Sorry you have to key in a positive number below 4 inclusive");
                 }
             }
