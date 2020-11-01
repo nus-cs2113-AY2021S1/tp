@@ -286,7 +286,7 @@ public class Main {
                 orderType = "Take away";
             }
             else if (typeChoosed == 3){
-                orderType = "Delevery";
+                orderType = "Delivery";
             }else{
                 throw new WrongNumberException();
             }
