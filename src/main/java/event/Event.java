@@ -22,6 +22,18 @@ public abstract class Event {
     protected Location location = null;
     protected OnlineLocation link = null;
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLink(OnlineLocation link) {
+        this.link = link;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Event(String description, Location location) {
         this.description = description;
         this.isDone = false;
@@ -90,6 +102,10 @@ public abstract class Event {
 
     public Location getLocation() {
         return location;
+    }
+
+    public OnlineLocation getLink() {
+        return link;
     }
 
     public static Comparator<Event> descriptionComparator = (o1, o2) ->
