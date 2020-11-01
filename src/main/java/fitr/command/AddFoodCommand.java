@@ -54,6 +54,9 @@ public class AddFoodCommand extends Command {
                         + "Name of Food: " + nameOfFood + "\n"
                         + "Calorie Consumed: " + amountOfCalories.get());
             }
+            else{
+                throw new ArrayIndexOutOfBoundsException();
+            }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
