@@ -41,7 +41,7 @@ public class UI {
         // populate editinformation with user data
         for (int i = 0; i < 5; i++) {
             System.out.print(editFields[i]);
-            editInformation[i] = in.nextLine();
+            editInformation[i] = in.nextLine().trim();
         }
         return editInformation;
     }

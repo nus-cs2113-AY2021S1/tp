@@ -93,16 +93,29 @@ Example of usage:
 `class CS2113 Lecture /t 2020-09-23 10:00 /e 12:00 /l LT27`
 
 ### Edit an event
-Edits existing events/tasks.  
+With this command, you can edit existing tasks to change their description, start/end date, location and even the
+event type. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
+edit.  
 
-Format: `edit INDEX EVENT_TYPE DESCRIPTION /t YYYY-MM-DD HH:MM /l LOCATION`  
-`edit INDEX ` the later part of the format is the same as adding an event. 
+Format: `edit INDEX`
 
-Example: `edit 1 assignment cs2113t homework /t 2020-02-02 20:00 /l home`
+Example:
+
+Next, you will be prompted to enter the new values for the 5 fields which are type, description, location start and end 
+date respectively. Enter your desired changes and press the `ENTER` key to go through the fields.
+
+If you do not wish to make any changes to any specific field, you can just leave the field empty and just press
+enter. The field will then remain unchanged.
+
+
 
 ### Sort events
-Sorts events based on a sorting criteria. Supported criteria includes time, description and
-location.
+With this command, you can sort all events by either their end time or their description. When sorting by time, events
+will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
+dates. This way, you can prioritize the events that are due soon.   
+
+When sorting by description, the events will be sorted in alphabetical order according to their descriptions. Events 
+with descriptions starting with 'a' will be sorted on top of events with descriptions starting with 'z' for example.  
 
 Format: `sort SORT_CRITERIA`  
 
@@ -153,7 +166,7 @@ the data of your previous AddressBook home folder.
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
 |clear|`clear` |`clear`|
 |done|`done INDEX` |`done 1` |
-|edit|`edit INDEX EVENT_TYPE DESCRIPTION /t YYYY-MM-DD HH:MM /l LOCATION`|`edit 1 assignment cs2113t homework /t 2020-02-02 20:00 /l home`|
+|edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
 |help|`help`||
 |list|`list`||
 |locate|`locate n/EVENTNAME` |`locate n/CS2113t Tutorial`|

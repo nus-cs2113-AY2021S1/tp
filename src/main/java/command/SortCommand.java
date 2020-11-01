@@ -1,6 +1,7 @@
 package command;
 
 import eventlist.EventList;
+import exception.WritingFileException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
@@ -17,8 +18,10 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+            throws WritingFileException {
         events.sortEvent(type);
         ui.printSortEventMessage();
+        storage.writeFile(events.getEventList());
     }
 }
