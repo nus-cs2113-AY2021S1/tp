@@ -10,10 +10,7 @@ import java.util.Stack;
 public class CategoryParser {
     private static final String TAG_BOOK = "-b";
     private static final String TAG_QUOTE = "-q";
-
-    private static final String ERROR_MISSING_CATEGORY = "Missing category name";
-    private static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
-    private static final String ERROR_MISSING_EDIT_PARAMS = "Invalid parameters!";
+    private static final String ERROR_INVALID_PARAMS = "Invalid parameters!";
 
     private static Stack<String> convertStringArrayToStack(String[] tokens) {
         Stack<String> parameters = new Stack<>();
@@ -23,10 +20,12 @@ public class CategoryParser {
         return parameters;
     }
 
-    public static String[] getRequiredParameters(String[] tokens) {
+    public static String[] getRequiredParameters(String[] tokens) throws QuotesifyException {
         String categories;
         String bookTitle = "";
         String quoteNum = "";
+        int bookTagCount = 0;
+        int quoteTagCount = 0;
 
         Stack<String> parameters = convertStringArrayToStack(tokens);
         String line = "";
@@ -34,10 +33,12 @@ public class CategoryParser {
         while (!parameters.empty()) {
             String item = parameters.pop();
             if (item.equals(TAG_BOOK)) {
+                bookTagCount++;
                 bookTitle = line.trim();
                 line = "";
                 continue;
             } else if (item.equals(TAG_QUOTE)) {
+                quoteTagCount++;
                 quoteNum = line.trim();
                 line = "";
                 continue;
@@ -45,6 +46,11 @@ public class CategoryParser {
             line = item + " " + line;
         }
         categories = line.trim();
+
+        if (bookTagCount > 1 || quoteTagCount > 1) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMS);
+        }
+
         return new String[]{categories, bookTitle, quoteNum};
     }
 
@@ -68,7 +74,7 @@ public class CategoryParser {
             String[] oldAndNewCategory = information.split(" /to ", 2);
             return new String[]{oldAndNewCategory[0].trim(), oldAndNewCategory[1].trim()};
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS
+            throw new QuotesifyException(ERROR_INVALID_PARAMS
                     + System.lineSeparator() + UiMessage.EDIT_CATEGORY_COMMAND);
         }
     }

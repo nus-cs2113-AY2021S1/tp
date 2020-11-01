@@ -10,6 +10,8 @@ import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.logging.Level;
+
 public class EditCategoryCommand extends EditCommand {
     public EditCategoryCommand(String arguments) {
         super(arguments);
@@ -21,6 +23,7 @@ public class EditCategoryCommand extends EditCommand {
     }
 
     private void editCategory(CategoryList categoryList, TextUi ui) {
+        quotesifyLogger.log(Level.INFO, "editing category.");
         try {
             String[] oldAndNewCategories = CategoryParser.getEditParameters(information);
             String oldCategory = oldAndNewCategories[0].toLowerCase();
@@ -34,8 +37,10 @@ public class EditCategoryCommand extends EditCommand {
             category.setCategoryName(newCategory);
             editCategoryInBooksAndQuotes(oldCategory, newCategory);
             ui.printEditCategory(oldCategory, newCategory);
+            quotesifyLogger.log(Level.INFO, "edit category success!");
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
