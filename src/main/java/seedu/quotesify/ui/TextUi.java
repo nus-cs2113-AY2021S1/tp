@@ -40,6 +40,10 @@ public class TextUi {
         return "bye";
     }
 
+    public void printDividerLine() {
+        System.out.println(UiMessage.DIVIDER_LINE);
+    }
+
     public void printAddBook(Book book) {
         System.out.printf(UiMessage.ADD_BOOK_MESSAGE + "\n", book.toString());
     }
@@ -58,17 +62,17 @@ public class TextUi {
 
     public void printListDoneBook(BookList bookList) {
         System.out.println(UiMessage.LIST_DONE_BOOK_MESSAGE);
-        System.out.println(bookList.toStringWithIndex());
+        System.out.print(bookList.toStringWithIndex());
     }
 
     public void printListUndoneBook(BookList bookList) {
         System.out.println(UiMessage.LIST_UNDONE_BOOK_MESSAGE);
-        System.out.println(bookList.toStringWithIndex());
+        System.out.print(bookList.toStringWithIndex());
     }
 
     public void printAllBooks(BookList bookList) {
         System.out.println(UiMessage.LIST_BOOKS_MESSAGE);
-        System.out.println(bookList.toStringWithIndex());
+        System.out.print(bookList.toStringWithIndex());
     }
 
     public void printBookDetails(Book book) {
@@ -78,12 +82,12 @@ public class TextUi {
 
     public void printBooksByAuthor(BookList bookList, String authorName) {
         System.out.printf(UiMessage.LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
-        System.out.println(bookList.toStringWithIndex());
+        System.out.print(bookList.toStringWithIndex());
     }
 
     public void printBooksByKeyword(BookList bookList, String keyword) {
         System.out.printf(UiMessage.LIST_BOOKS_BY_KEYWORD_MESSAGE + "\n", keyword);
-        System.out.println(bookList.toStringWithIndex());
+        System.out.print(bookList.toStringWithIndex());
     }
 
     public void printAddQuote(Quote quote) {
@@ -367,9 +371,7 @@ public class TextUi {
     }
 
     public void printHelpPage() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v2.1:"
-                + System.lineSeparator());
+        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v2.1:");
         System.out.println(UiMessage.DIVIDER_LINE);
 
         System.out.println("                                1. Book Management");
@@ -437,17 +439,15 @@ public class TextUi {
         System.out.println("Quit Quotesify:                                                  " + "bye");
         System.out.println(UiMessage.DIVIDER_LINE);
 
-        System.out.println(System.lineSeparator() + "Remember: words in [] are optional, "
+        System.out.println("Remember: words in [] are optional, "
                 + "and words in CAPS are your own input" + System.lineSeparator()
                 + "Hope this helps!");
 
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printListOfAddCommands() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of Add commands you can do:\n");
+        System.out.println("Here is a list of Add commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.ADD_BOOK_COMMAND);
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
@@ -456,12 +456,10 @@ public class TextUi {
         System.out.println(UiMessage.ADD_CATEGORY_COMMAND);
         System.out.println(UiMessage.ADD_RATING_COMMAND);
         System.out.println(UiMessage.ADD_TODO_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printListOfDeleteCommands() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of Delete commands you can do:\n");
+        System.out.println("Here is a list of Delete commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.DELETE_BOOK_COMMAND);
         System.out.println(UiMessage.DELETE_BOOKMARK_COMMAND);
@@ -470,12 +468,10 @@ public class TextUi {
         System.out.println(UiMessage.DELETE_CATEGORY_COMMAND);
         System.out.println(UiMessage.DELETE_RATING_COMMAND);
         System.out.println(UiMessage.DELETE_TODO_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printListOfListCommands() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of List commands you can do:\n");
+        System.out.println("Here is a list of List commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.LIST_BOOK_COMMAND);
         System.out.println(UiMessage.LIST_BOOK_DETAILS);
@@ -486,12 +482,10 @@ public class TextUi {
         System.out.println(UiMessage.LIST_CATEGORY_COMMAND);
         System.out.println(UiMessage.LIST_RATING_COMMAND);
         System.out.println(UiMessage.LIST_TODO_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printListOfEditCommands() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of Edit commands you can do:\n");
+        System.out.println("Here is a list of Edit commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.EDIT_BOOK_COMMAND);
         System.out.println(UiMessage.EDIT_BOOKMARK_COMMAND);
@@ -499,26 +493,21 @@ public class TextUi {
         System.out.println(UiMessage.EDIT_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
         System.out.println(UiMessage.EDIT_RATING_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printListOfFindCommands() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of Find commands you can do:\n");
+        System.out.println("Here is a list of Find commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.FIND_BOOK_COMMAND);
         System.out.println(UiMessage.FIND_QUOTE_COMMAND);
         System.out.println(UiMessage.FIND_RATING_COMMAND);
         System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 
     public void printDoneCommandUsage() {
-        System.out.println(UiMessage.DIVIDER_LINE);
-        System.out.println("Here is a list of Done commands you can do:\n");
+        System.out.println("Here is a list of Done commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
         System.out.println(UiMessage.DONE_BOOK_COMMAND);
         System.out.println(UiMessage.DONE_COMMAND);
-        System.out.println(UiMessage.DIVIDER_LINE);
     }
 }
