@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,8 +39,9 @@ class FoodStorageTest {
 
     private ArrayList<Food> getValidFoodList() throws ParseException {
         ArrayList<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Test Food 1", new Calorie(100), 1, LocalDate.parse("23/10/2020")));
-        foodList.add(new Food("Test Food 2", new Calorie(50), 5, LocalDate.parse("22/10/2020")));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        foodList.add(new Food("Test Food 1", new Calorie(100), 1, LocalDate.parse("23/10/2020", formatter)));
+        foodList.add(new Food("Test Food 2", new Calorie(50), 5, LocalDate.parse("22/10/2020", formatter)));
         return foodList;
     }
 }

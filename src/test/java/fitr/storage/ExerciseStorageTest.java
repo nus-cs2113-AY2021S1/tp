@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,8 +37,9 @@ class ExerciseStorageTest {
 
     private ArrayList<Exercise> getValidExerciseList() throws ParseException {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), LocalDate.parse("22/10/2020")));
-        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), LocalDate.parse("23/10/2020")));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), LocalDate.parse("22/10/2020", formatter)));
+        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), LocalDate.parse("23/10/2020", formatter)));
         return exerciseList;
     }
 }
