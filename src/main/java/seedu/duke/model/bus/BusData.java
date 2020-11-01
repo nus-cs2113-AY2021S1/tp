@@ -40,7 +40,7 @@ public class BusData {
         return null;
     }
 
-    public static ArrayList<Bus> busAtStop(String busStop) {
+    public static ArrayList<Bus> getBusAtStop(String busStop) {
         ArrayList<Bus> busList = new ArrayList<>();
         for (Bus bus : buses) {
             ArrayList<String> stopNames = bus.getStopNames();
