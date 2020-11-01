@@ -70,7 +70,12 @@ public class EventList {
     /**
      * Edit the contents of an existing event.
      *
-     * @param index the index of the event being edited
+     * @param index           the index of the event being edited.
+     * @param editInformation array containing command type and description.
+     * @param startEnd        array containing start date and end date.
+     * @param location        new location.
+     * @param onlineLocation  new online location.
+     * @return Event new edited events
      */
     public Event editEvent(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                            OnlineLocation onlineLocation) throws EndBeforeStartEventException, EditNoEndTimeException {
@@ -82,79 +87,105 @@ public class EventList {
             editSameType(index, editInformation, startEnd, location, onlineLocation);
         } else {
             // create new event object with user input
-            Event newEvent = null;
-            String newDescription;
-            Location newLocation = null;
-            OnlineLocation newOnlineLocation = null;
-            LocalDateTime start;
-            LocalDateTime end;
-
-            if (editInformation[1].isBlank()) {
-                newDescription = events.get(index).getDescription();
-            } else {
-                newDescription = editInformation[1];
-            }
-
-            if (location == null && onlineLocation == null) {
-                if (events.get(index).getLocation() != null) {
-                    newLocation = events.get(index).getLocation();
-                }
-                if (events.get(index).getLink() != null) {
-                    newOnlineLocation = events.get(index).getLink();
-                }
-            } else if (location != null && onlineLocation == null) {
-                newLocation = location;
-                newOnlineLocation = null;
-            } else {
-                newLocation = null;
-                newOnlineLocation = onlineLocation;
-            }
-
-
-            if (startEnd[0] == null) {
-                start = events.get(index).getStartDateTime();
-            } else {
-                start = startEnd[0];
-            }
-
-            if (startEnd[1] == null) {
-                end = events.get(index).getEndDateTime();
-                if (end == null && !editInformation[0].equals("assignment")) {
-                    throw new EditNoEndTimeException();
-                }
-            } else {
-                end = startEnd[1];
-            }
-
-
-            switch (editInformation[0]) {
-            case "assignment":
-                if (newLocation != null) {
-                    newEvent = new Assignment(newDescription, newLocation, start);
-                } else {
-                    newEvent = new Assignment(newDescription, newOnlineLocation, start);
-                }
-                break;
-            case "class":
-                if (newLocation != null) {
-                    newEvent = new Class(newDescription, newLocation, start, end);
-                } else {
-                    newEvent = new Class(newDescription, newOnlineLocation, start, end);
-                }
-                break;
-            default:
-                if (newLocation != null) {
-                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
-                }
-                break;
-            }
-            events.set(index, newEvent);
+            editNewType(index, editInformation, startEnd, location, onlineLocation);
         }
 
         return events.get(index);
     }
 
+    /**
+     * Edit the contents of an existing event. Will only be called when the event type is changed.
+     *
+     * @param index           the index of the event being edited.
+     * @param editInformation array containing command type and description.
+     * @param startEnd        array containing start date and end date.
+     * @param location        new location.
+     * @param onlineLocation  new online location.
+     */
+    private void editNewType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
+                             OnlineLocation onlineLocation) throws EditNoEndTimeException,
+            EndBeforeStartEventException {
+        Event newEvent = null;
+        String newDescription;
+        Location newLocation = null;
+        OnlineLocation newOnlineLocation = null;
+        LocalDateTime start;
+        LocalDateTime end;
 
+        // newDescription is set to the user input if it is not null. Otherwise, set it to the original value.
+        if (editInformation[1].isBlank()) {
+            newDescription = events.get(index).getDescription();
+        } else {
+            newDescription = editInformation[1];
+        }
+
+        // newLocation is set to the user input if it is not null. Otherwise, set it to the original value.
+        if (location == null && onlineLocation == null) {
+            if (events.get(index).getLocation() != null) {
+                newLocation = events.get(index).getLocation();
+            }
+            if (events.get(index).getLink() != null) {
+                newOnlineLocation = events.get(index).getLink();
+            }
+        } else if (location != null && onlineLocation == null) {
+            newLocation = location;
+            newOnlineLocation = null;
+        } else {
+            newLocation = null;
+            newOnlineLocation = onlineLocation;
+        }
+
+        // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
+        if (startEnd[0] == null) {
+            start = events.get(index).getStartDateTime();
+        } else {
+            start = startEnd[0];
+        }
+
+        if (startEnd[1] == null) {
+            end = events.get(index).getEndDateTime();
+            // conversion from an assignment to other type would result in an error if END date is not specified.
+            if (end == null && !editInformation[0].equals("assignment")) {
+                throw new EditNoEndTimeException();
+            }
+        } else {
+            end = startEnd[1];
+        }
+
+        // create new event object using the new fields.
+        switch (editInformation[0]) {
+        case "assignment":
+            if (newLocation != null) {
+                newEvent = new Assignment(newDescription, newLocation, start);
+            } else {
+                newEvent = new Assignment(newDescription, newOnlineLocation, start);
+            }
+            break;
+        case "class":
+            if (newLocation != null) {
+                newEvent = new Class(newDescription, newLocation, start, end);
+            } else {
+                newEvent = new Class(newDescription, newOnlineLocation, start, end);
+            }
+            break;
+        default:
+            if (newLocation != null) {
+                newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+            }
+            break;
+        }
+        events.set(index, newEvent);
+    }
+
+    /**
+     * Edit the contents of an existing event. Will only be called when the event type remains the same.
+     *
+     * @param index           the index of the event being edited.
+     * @param editInformation array containing command type and description.
+     * @param startEnd        array containing start date and end date.
+     * @param location        new location.
+     * @param onlineLocation  new online location.
+     */
     private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                               OnlineLocation onlineLocation) {
         if (!editInformation[1].isBlank()) {
