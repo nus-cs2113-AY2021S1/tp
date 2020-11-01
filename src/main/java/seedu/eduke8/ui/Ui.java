@@ -11,19 +11,32 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
+    private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
-    private static final String LOGO = " _____        _____\n"
-            + "|  ___| ____ |  _  |\n"
-            + "| |___ |  _ \\| |_| |\n"
-            + "|  ___|| | | |  _  |\n"
-            + "| |___ | |_| | |_| |\n"
+    private static final String LOGO = " _____        _____" + System.lineSeparator()
+            + "|  ___| ____ |  _  |" + System.lineSeparator()
+            + "| |___ |  _ \\| |_| |" + System.lineSeparator()
+            + "|  ___|| | | |  _  |" + System.lineSeparator()
+            + "| |___ | |_| | |_| |" + System.lineSeparator()
             + "|_____||____/|_____|";
 
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -45,10 +58,11 @@ public class Ui {
             + System.lineSeparator() + "2) help"
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
-            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions>"
+            + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
             + System.lineSeparator() + "6) bookmark"
             + System.lineSeparator() + "7) stats"
-            + System.lineSeparator() + "8) exit";
+            + System.lineSeparator() + "8) note add / note delete / note list"
+            + System.lineSeparator() + "9) exit (saves your data too!)";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!";
@@ -62,7 +76,7 @@ public class Ui {
             + "you earn 2 points if you did not request for hint, "
             + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
-    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
+    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark':";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "
             + "available questions in each:";
     private static final String MESSAGE_EXPLANATION = "Explanation:";
@@ -73,12 +87,14 @@ public class Ui {
     private static final String MESSAGE_QUIZ_QUESTION_CHOSEN_SECOND = " question";
     private static final String MESSAGE_BOOKMARK_INDICATOR = "Bookmarked this question!";
     private static final String MESSAGE_BOOKMARK_LIST = "This is your list of bookmarks: ";
+    private static final String MESSAGE_BOOKMARKED_ALREADY_INDICATOR = "This has already been bookmarked.";
     private static final String CLOSE_BRACKET = ") ";
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "] ";
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String SPACE = " ";
     private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to";
     private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note";
     private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note";
@@ -109,16 +125,98 @@ public class Ui {
     private static final String MESSAGE_POINTS_EARNED_OUT_OF = " points earned / ";
     private static final String PERCENTAGE_SIGN = "%";
     private static final String MESSAGE_AVAILABLE_WORD = " available ";
+    private static final String MESSAGE_ANSWER_INCOMPLETE = "The correct answer is ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER = "Oops! You took more than ";
+    private static final String MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND = " seconds to answer! ";
+    private static final String DATA_LOADING = "Please wait while data is loading...";
+    private static final String DATA_LOADED = "Data loaded successfully!";
+    private static final String DATA_SAVING = "Please wait while data is saving...";
+    private static final String DATA_SAVED = "Data saved successfully!";
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
+    public static final String ERROR_READING_INPUT = "Error reading input.";
+    public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
 
+    private static String operatingSystem = null;
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
-        return SCANNER.nextLine();
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        try {
+            return userInputFuture.get().trim();
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
+        }
+        return SCANNER.nextLine().trim();
     }
 
-    public String getQuizInputFromUser() {
+    public void printQuizInputMessage() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
-        return SCANNER.nextLine();
+    }
+
+    public boolean getEnterFromUser() {
+        boolean enterIsUsed = false;
+
+        System.out.print("Press 'Enter' to proceed!");
+
+        String userInput;
+        Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+        try {
+            userInput = userInputFuture.get();
+            if (userInput.isEmpty()) {
+                enterIsUsed = true;
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
+        }
+
+        return enterIsUsed;
+    }
+
+    private static String findUserOperatingSystem() {
+        if (operatingSystem == null) {
+            operatingSystem = System.getProperty("os.name").toLowerCase();
+        }
+        return operatingSystem;
+    }
+
+    public String getQuizInputFromUser(int timeLeft) throws IOException {
+
+        operatingSystem = findUserOperatingSystem();
+
+        //This is for Linus and Mac operating systems because Robot doesn't work on WSL
+        if (operatingSystem.contains("nux") || operatingSystem.contains("mac")) {
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            long startingTime = System.currentTimeMillis();
+
+            while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
+                    && System.in.available() ==  0) {
+            }
+
+            if (userInput.ready()) {
+                return userInput.readLine().trim();
+            } else {
+                return null;
+            }
+
+        //This is for the Windows operating system 
+        } else {
+            String userInput;
+            Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+            try {
+                userInput = userInputFuture.get(timeLeft, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                } catch (AWTException awtException) {
+                    printError(ERROR_USING_ROBOT);
+                }
+                return null;
+            }
+
+            return userInput.trim();
+        }
     }
 
     private static void printMessage(String message) {
@@ -144,13 +242,11 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(questionNumber + ". " + question.getDescription() + System.lineSeparator());
+        System.out.println(questionNumber + DOT_SPACE + question.getDescription() + System.lineSeparator());
     }
 
     public void printHint(Hint hint) {
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(MESSAGE_HINT + hint.getDescription());
-        System.out.println(HORIZONTAL_LINE);
+        printMessage(MESSAGE_HINT + hint.getDescription());
     }
 
     public void printStartQuizPage(int numberOfQuestionsChosen, String topicsChosen) {
@@ -167,23 +263,26 @@ public class Ui {
     }
 
     public void printEndQuizPage() {
-        System.out.println(MESSAGE_QUIZ_END);
-        System.out.println(HORIZONTAL_LINE);
+        printMessage(MESSAGE_QUIZ_END);
     }
 
     public void printAnswerIsWrong(int correctAnswer, String explanation) {
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
-        System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
-        System.out.println(HORIZONTAL_LINE);
+        printMessage(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
+                + System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 
     public void printAnswerIsCorrect(String explanation) {
+        printMessage(MESSAGE_ANSWER_CORRECT + System.lineSeparator() + System.lineSeparator() + MESSAGE_EXPLANATION
+                + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(MESSAGE_ANSWER_CORRECT);
-        System.out.println(System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
-        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int userTimer) {
+        System.out.println();
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + userTimer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+                + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
+                + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 
@@ -204,16 +303,17 @@ public class Ui {
     }
 
     public void printTopicList(ArrayList<Displayable> topics) {
-        System.out.println(HORIZONTAL_LINE);
-
-        System.out.println(MESSAGE_PRINT_TOPIC_LIST);
+        String topicListString = MESSAGE_PRINT_TOPIC_LIST + System.lineSeparator();
         for (int i = 0; i < topics.size(); i++) {
             Topic topic = (Topic) topics.get(i);
-            System.out.println(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
-                    + topic.getDescription());
+            topicListString += OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
+                    + topic.getDescription();
+            if (i < topics.size() - 1) {
+                topicListString += System.lineSeparator();
+            }
         }
 
-        System.out.println(HORIZONTAL_LINE);
+        printMessage(topicListString);
     }
 
     public void addNoteInteractions(TopicList topicList) {
@@ -233,7 +333,7 @@ public class Ui {
                 topic.getNoteList().add(note);
                 System.out.println(ADD_NOTE_SUCCESSFULLY);
             } else {
-                System.out.println(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
+                System.out.println(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -261,10 +361,10 @@ public class Ui {
                     topic.getNoteList().delete(index - 1);
                     System.out.println(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    System.out.println(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+                    System.out.println(INVALID_TOPIC_NAME + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
             } else {
-                System.out.println(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+                System.out.println(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -318,6 +418,7 @@ public class Ui {
     }
 
     public void printPointSystemRules() {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(POINT_SYSTEM_RULE + System.lineSeparator());
     }
 
@@ -369,13 +470,14 @@ public class Ui {
         printMessage(MESSAGE_BOOKMARK_INDICATOR);
     }
 
+    public void printAlreadyBookmarkedIndicator() {
+        printMessage(MESSAGE_BOOKMARKED_ALREADY_INDICATOR);
+    }
+
     public void printListOfBookmarkedQuestions(BookmarkList bookmarks) {
         String list = listOfBookmarkedQuestions(bookmarks);
 
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(MESSAGE_BOOKMARK_LIST);
-        System.out.println(list);
-        System.out.println(HORIZONTAL_LINE);
+        printMessage(MESSAGE_BOOKMARK_LIST + System.lineSeparator() + list);
     }
 
     private String listOfBookmarkedQuestions(BookmarkList bookmarks) {
@@ -389,14 +491,30 @@ public class Ui {
             ArrayList<Displayable> optionsAvailable = properQuestion.getOptionList().getInnerList();
             int j = 1;
             for (Displayable option : optionsAvailable) {
-                optionOutput += "\n    " + j + CLOSE_BRACKET + option.getDescription()
-                        + ((j == optionsAvailable.size()) ? "\n" : "");
+                optionOutput += System.lineSeparator() + "    " + j + CLOSE_BRACKET + option.getDescription()
+                        + ((j == optionsAvailable.size()) ? System.lineSeparator() : "");
                 j++;
             }
-            output += i + DOT_SPACE + question.getDescription() + optionOutput + " "
-                    + ((i == allBookmarks.size()) ? "" : "\n");
+            output += i + DOT_SPACE + question.getDescription() + optionOutput + SPACE
+                    + ((i == allBookmarks.size()) ? "" : System.lineSeparator());
             i++;
         }
         return output;
+    }
+
+    public void printDataLoading() {
+        printMessage(DATA_LOADING);
+    }
+
+    public void printDataLoaded() {
+        printMessage(DATA_LOADED);
+    }
+
+    public void printDataSaving() {
+        printMessage(DATA_SAVING);
+    }
+
+    public void printDataSaved() {
+        printMessage(DATA_SAVED);
     }
 }

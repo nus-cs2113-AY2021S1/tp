@@ -4,6 +4,7 @@ import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.IncompleteCommand;
 import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.common.Displayable;
@@ -29,15 +30,17 @@ public class QuizParser implements Parser {
 
     private Question question;
     private BookmarkList bookmarks;
+    private int userTimer;
 
     public QuizParser(BookmarkList bookmarks) {
         this.bookmarks = bookmarks;
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(Question question, int userTimer) {
         assert question != null;
 
         this.question = question;
+        this.userTimer = userTimer;
     }
 
     /**
@@ -58,6 +61,10 @@ public class QuizParser implements Parser {
         }
 
         try {
+            if (userInput == null) {
+                LOGGER.log(Level.INFO, "Timer's up.");
+                return new IncompleteCommand(question, userTimer);
+            }
             ArrayList<Displayable> options = optionList.getInnerList();
             int chosenIndex = Integer.parseInt(userInput) - 1;
             Option chosenOption = (Option) options.get(chosenIndex);
