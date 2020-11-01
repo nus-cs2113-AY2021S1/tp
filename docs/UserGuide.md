@@ -207,6 +207,8 @@ note add
 
 What you should see:
 
+![hint](./images/noteadd.png)
+
 ### 3.10. Deleting a note: `note delete`
 
 Deletes a note from a specific topic.
@@ -216,6 +218,10 @@ Example of usage:
 note delete
 ```
 
+What you should see: 
+
+![hint](./images/notedelete.png)
+
 ### 3.11. Listing out notes: `note list`
 
 Lists out all notes belonging to a specific topic.
@@ -224,6 +230,10 @@ Example of usage:
 ```
 note list
 ```
+
+What you should see: 
+
+![hint](./images/notelist.png)
 
 ### 3.12. Displaying stats: `stats`
 
