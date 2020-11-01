@@ -18,7 +18,7 @@ public class FreqStorage extends Storage {
     private static final Logger LOGGER = Logger.getLogger(FreqStorage.class.getName());
     private boolean isCorrupted = false;
     private static final String FILE_READ = "FreqList.txt Read with no issues";
-    private final int NUMBER_OF_BUS_STOPS = 32;
+    private static final int ALL_STOPS = 32;
 
     public FreqStorage(String dir) {
         super(dir);
@@ -71,7 +71,7 @@ public class FreqStorage extends Storage {
             BusStops.values()[index].setCount(currInt);
             index++;
         }
-        if (index < NUMBER_OF_BUS_STOPS - 1) {
+        if (index < ALL_STOPS - 1) {
             isCorrupted = true;
             initialiseFile();
             throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
