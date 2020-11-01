@@ -20,6 +20,7 @@ public class Assignment extends Event {
         this.by = by;
     }
 
+
     /**
      * Convert the information about this assignment to a string that is to be stored in a file.
      *
@@ -47,6 +48,15 @@ public class Assignment extends Event {
      */
     public LocalDate getDate() {
         return LocalDate.from(by);
+    }
+
+    /**
+     * Provides the date time of the class.
+     *
+     * @return the LocalDateTime get from LocalDateTime.
+     */
+    public LocalDateTime getEndDateTime() {
+        return LocalDateTime.from(by);
     }
 
     /**

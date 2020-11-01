@@ -16,6 +16,7 @@ import location.OnlineLocation;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 import static java.util.stream.Collectors.toList;
@@ -235,18 +236,11 @@ public class EventList {
      */
     public void sortEvent(String type) {
         assert events != null;
-        switch (type) {
-        case "description":
+        if (type.equals("description")) {
             events.sort(Event.descriptionComparator);
-            break;
-        case "time":
-            events.sort(Event.timeComparator);
-            break;
-        default:
-            events.sort(Event.locationComparator);
-            break;
+        } else if (type.equals("time")) {
+            events.sort(Comparator.comparing(Event::getEndDateTime));
         }
-
     }
 
     /**

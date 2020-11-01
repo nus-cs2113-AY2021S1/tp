@@ -194,11 +194,10 @@ public abstract class Parser {
             if (fullCommand.length() == 4) {
                 throw new NoSortCriteriaException();
             }
-            String type = words[1];
+            String type = words[1].trim().toLowerCase();
             switch (type) {
             case "description":
             case "time":
-            case "location":
                 return new SortCommand(type);
             default:
                 throw new InvalidSortCriteriaException();
@@ -235,7 +234,7 @@ public abstract class Parser {
             }
 
             try {
-                eventIndex = Integer.parseInt(words[1]) - 1;
+                eventIndex = Integer.parseInt(fullCommand.substring(5).trim()) - 1;
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
             }
