@@ -1,6 +1,7 @@
 # Developer Guide
+# Table of contents
 
-## Overview of architecture
+# 1. Overview of architecture
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
 ### Architecture
