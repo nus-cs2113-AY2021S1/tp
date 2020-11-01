@@ -527,8 +527,7 @@ Expected outcome:
 ```
 ---------------------------------------------------------------------------------
 Here are the results of my search:
-"I pretty much spend all day, every day just looking forward to go back to sleep"
-"Don't give up on your dreams, keep sleeping!" - by Stranger
+"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
 ---------------------------------------------------------------------------------
 ```
 
