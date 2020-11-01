@@ -39,7 +39,7 @@ public class EstimateParser extends CommandParser {
      */
     public EstimateCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
-        String[] paramGiven = description.split(SPLIT_DASH, 2);
+        String[] paramGiven = description.split(DASH, 2);
         if (paramGiven[0].isBlank()) {
             throw new AniException(NO_SCRIPT_FILE_SPECIFIED);
         }
@@ -67,7 +67,7 @@ public class EstimateParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the parameters
      */
     private int parameterParser(String[] paramGiven) throws AniException {
-        String[] parsedParts = paramGiven[1].split(SPLIT_WHITESPACE);
+        String[] parsedParts = paramGiven[1].split(WHITESPACE, 2);
         String parameter = parsedParts[0].trim();
         if (!parameter.equals(WORDS_PER_HOUR_PARAM)) {
             throw new AniException(INVALID_PARAMETER);
@@ -77,12 +77,12 @@ public class EstimateParser extends CommandParser {
 
         if (parsedParts.length == 1) {
             throw new AniException(NO_WORDS_PER_HOUR_SPECIFIED);
-        } else if (parsedParts.length > 2) {
-            throw new AniException(MULTIPLE_WORDS_PER_HOUR_SPECIFIED);
         }
 
         String wordsPerHourString = parsedParts[1].trim();
-        if (isNegativeInteger(wordsPerHourString)) {
+        if (wordsPerHourString.contains(WHITESPACE)) {
+            throw new AniException(MULTIPLE_WORDS_PER_HOUR_SPECIFIED);
+        } else if (isNegativeInteger(wordsPerHourString)) {
             throw new AniException(NOT_POSITIVE_INTEGER);
         } else if (!isInteger(wordsPerHourString)) {
             throw new AniException(NOT_INTEGER);
@@ -108,7 +108,7 @@ public class EstimateParser extends CommandParser {
             throw new AniException(SPECIFIED_PATH_TO_SCRIPT_FILE);
         }
 
-        String[] fileNameSplit = fileName.split(SPLIT_WHITESPACE);
+        String[] fileNameSplit = fileName.split(WHITESPACE);
         int numberOfTextFiles = 0;
         boolean hasAdditionalFields = false;
         for (String fileNameParts : fileNameSplit) {
