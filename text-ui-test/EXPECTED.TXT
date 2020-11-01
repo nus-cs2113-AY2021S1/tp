@@ -8,7 +8,6 @@ Welcome to AniChan!
 
 -------------------------------------------------------------
 User: File does not exist.
--------------------------------------------------------------
 What's your name?
 Hello Friendly cat! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
@@ -62,6 +61,7 @@ Hello Queen! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
 What's your name?
 Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+-------------------------------------------------------------
 
 Default (Default) #> OOPS!!! Unknown command
 
