@@ -26,8 +26,8 @@ public abstract class EditCommand extends Command {
             + "         " + COMMAND_WORD + " 2 Chapter 2\n"
             + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
-    public static final String MESSAGE_BEFORE_EDIT = "The following %1$s will be edited:\n";
-    public static final String MESSAGE_AFTER_EDIT = "Edited %1$s:\n";
+    private static final String MESSAGE_BEFORE_EDIT = "The following %1$s will be edited:\n";
+    private static final String MESSAGE_AFTER_EDIT = "Edited %1$s:\n";
 
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage)

@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GoChapterCommand extends GoCommand {
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
+            + "Parameters:" + CHAPTER_PARAMETERS + "\n"
+            + "Example: " + COMMAND_WORD + " Chapter 1\n";
 
     private String chapter;
 

@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GoModuleCommand extends GoCommand {
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to module level. \n"
+            + "Parameters:" + MODULE_PARAMETERS + "\n"
+            + "Example: " + COMMAND_WORD + " CS2113T\n";
+
     private String module;
 
     public GoModuleCommand(String module) {

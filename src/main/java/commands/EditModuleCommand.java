@@ -16,7 +16,7 @@ public class EditModuleCommand extends EditCommand {
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 CS2113T\n";
 
-    public static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
+    private static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
 
     private final int editIndex;
     private String module;
