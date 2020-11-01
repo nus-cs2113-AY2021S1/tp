@@ -126,7 +126,7 @@ Its main roles are:
 
 
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
 *<center/> Figure 1.4 Class diagram of Parser </center> <br/></br>*
 
 
