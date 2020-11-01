@@ -1,7 +1,7 @@
 package seedu.financeit.datatrackers.entrytracker.commands;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -57,7 +57,7 @@ public class RetrieveEntryCommand extends ParamHandler {
                 PARAM_EXP
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
             break;

@@ -1,6 +1,7 @@
 package seedu.financeit.datatrackers.entrytracker;
 
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.datatrackers.entrytracker.commands.CreateEntryCommand;
 import seedu.financeit.testutil.TestUtil;
@@ -42,7 +43,7 @@ public class TypicalEntryEntries {
         CreateEntryCommand command = new CreateEntryCommand();
         try {
             command.handlePacket(this.packet);
-        } catch (InsufficientParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
         return command.getCurrEntry();
@@ -63,7 +64,7 @@ public class TypicalEntryEntries {
                 },
                 {
                     ParamChecker.PARAM_CATEGORY,
-                    "tpt"
+                    "oth"
                 },
                 {
                     ParamChecker.PARAM_INC,
@@ -82,7 +83,7 @@ public class TypicalEntryEntries {
         try {
             command.handlePacket(packet);
             this.packet = packet;
-        } catch (InsufficientParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
         return command.getCurrEntry();
@@ -103,7 +104,7 @@ public class TypicalEntryEntries {
                 },
                 {
                     ParamChecker.PARAM_CATEGORY,
-                    "bll"
+                    "oth"
                 },
                 {
                     ParamChecker.PARAM_INC,
@@ -122,7 +123,7 @@ public class TypicalEntryEntries {
         try {
             command.handlePacket(packet);
             this.packet = packet;
-        } catch (InsufficientParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
         return command.getCurrEntry();

@@ -1,7 +1,7 @@
 package seedu.financeit.financetools;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.InfoTextIndexOutOfRangeException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.ui.TablePrinter;
@@ -20,11 +20,11 @@ public abstract class Handler {
             tool.handlePacket(packet);
             return (tool.calculateSimpleInterest());
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }  finally {
             if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -42,11 +42,11 @@ public abstract class Handler {
             tool.handlePacket(packet);
             return (tool.calculateCashback());
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -63,11 +63,11 @@ public abstract class Handler {
             tool.handlePacket(packet);
             return (tool.calculateMiles());
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!tool.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -82,10 +82,10 @@ public abstract class Handler {
             tool.handlePacket(packet);
             tool.handleInfoStorage(filePath, infoText);
         } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } catch (InfoTextIndexOutOfRangeException e) {
             System.out.println(e.getMessage());
@@ -103,10 +103,10 @@ public abstract class Handler {
             tool.handlePacket(packet);
             return (tool.calculateCompoundInterest());
         } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }
         return 0;
@@ -123,10 +123,10 @@ public abstract class Handler {
             tool.handlePacket(packet);
             return (tool.calculateCompoundInterest());
         } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }
         return 0;

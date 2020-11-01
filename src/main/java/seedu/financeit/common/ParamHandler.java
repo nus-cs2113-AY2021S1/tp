@@ -44,7 +44,7 @@ public abstract class ParamHandler {
                 this.paramsSuccessfullyParsed.add(paramType);
             } catch (ParseFailParamException exception) {
                 // Report paramTypes that failed to parse.
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getParseFailParamMessage(paramType));
             }
         }

@@ -2,7 +2,7 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 //@@author Artemis-Hunt
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.parser.InputParser;
@@ -19,9 +19,9 @@ public class RecurringTracker {
 
     public static void main() {
         boolean endTracker = false;
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, WelcomeMessage);
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, WelcomeMessage);
         do {
-            UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, DirectoryMainMenu);
+            UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY, DirectoryMainMenu);
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
             CommandPacket packet = InputParser.getInstance().parseInput(input);
@@ -67,14 +67,14 @@ public class RecurringTracker {
             entry = command.getCurrEntry();
             entries.addItem(entry);
             String entryName = entry.getName();
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entryName));
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -90,14 +90,14 @@ public class RecurringTracker {
             entry = (RecurringEntry) entries.getItemAtCurrIndex();
             String entryName = entry.getName();
             entries.removeItemAtCurrIndex();
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s deleted!", entryName));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -117,14 +117,14 @@ public class RecurringTracker {
             //printing of UnrecognizedParamMessage
             editEntryCommand = new EditEntryCommand(entry);
             editEntryCommand.handlePacket(packet);
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!retrieveEntryCommand.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                         "Input failed due to param error.");
             }
         }
@@ -151,6 +151,6 @@ public class RecurringTracker {
     }
 
     static void handleInvalidCommand() {
-        UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid command. Try again.");
+        UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Invalid command. Try again.");
     }
 }

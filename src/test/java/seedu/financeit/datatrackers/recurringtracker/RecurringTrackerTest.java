@@ -2,7 +2,7 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 
 import java.util.HashMap;
 
@@ -24,7 +24,7 @@ public class RecurringTrackerTest {
         RecurringEntry entry = RecurringTracker.handleNewEntry(packet);
         assertEquals(15, entry.day);
         assertEquals("Test23123//>?>_+_~#$#@", entry.description);
-        assertEquals(Constants.EntryType.EXP, entry.entryType);
+        assertEquals(Common.EntryType.EXP, entry.entryType);
         assertEquals(3490.34, entry.amount);
         assertFalse(entry.isAuto);
         assertEquals("OIYH(*^(*ot9w3848(*&(*~~||///", entry.notes);

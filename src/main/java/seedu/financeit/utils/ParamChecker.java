@@ -2,7 +2,7 @@ package seedu.financeit.utils;
 
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InvalidCategoryException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -99,7 +99,7 @@ public class ParamChecker {
             LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("No date input supplied... Err: %s", exception.getMessage()));
 
-            errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            errorMessage = UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage(),
                 "Enter \"commands\" to check format!");
         } finally {
@@ -140,7 +140,7 @@ public class ParamChecker {
             LoggerCentre.loggerParamChecker.log(Level.WARNING,
                 String.format("No time input supplied... Err: %s", exception.getMessage()));
 
-            errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            errorMessage = UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage(),
                 "Enter \"commands\" to check format!");
         } finally {
@@ -398,28 +398,28 @@ public class ParamChecker {
      */
 
     public static String getErrorMessageDateDateTimeException() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Not a valid date on the Gregorian Calendar!",
             "Check your input again against the following format!",
             "Date format: YYMMDD");
     }
 
     public static String getErrorMessageDateInvalidFormat() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Input format is not recognised.",
             "Check your input again against the following format!",
             "Date format: YYMMDD");
     }
 
     public static String getErrorMessageTimeInvalidFormat() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Input format is not recognised.",
             "Check your input again against the following format!",
             "Time format: HHMM");
     }
 
     public static String getErrorMessageTimeDateTimeException() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Time is out of range!",
             "Check your input again against the following format!",
             "Time format: HHMM");
@@ -438,35 +438,35 @@ public class ParamChecker {
     }
 
     public static String getErrorMessageListNumberFormatException(String message) {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Cannot parse your input. Please enter a positive integer!",
             message);
     }
 
     public static String getErrorMessageListIndexOutOfBounds(String message) {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             message);
     }
 
     public static String getErrorMessageDoubleNumberFormatException() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Cannot parse your input. Please enter valid 2 d.p input!");
     }
 
     public static String getErrorMessageNumberFormatException() {
-        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Cannot parse your input. Please enter valid integer input!",
             errorMessage);
     }
 
     public static String getErrorMessageInvalidCategoryException(InvalidCategoryException exception) {
-        return errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return errorMessage = UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             exception.getMessage(),
             "Input \"exp cat\" to show valid categories!");
     }
 
     public static String getMessageMultipleParamToParamType(String paramType, HashMap params) {
-        return errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        return errorMessage = UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
             "Multiple params supplied to the same paramType is not allowed!",
             "The first instance of the param is accepted: " + params.get(paramType));
     }

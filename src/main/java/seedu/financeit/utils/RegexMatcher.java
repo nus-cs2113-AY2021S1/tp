@@ -1,6 +1,6 @@
 package seedu.financeit.utils;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +15,7 @@ public class RegexMatcher {
     public static Matcher paramMatcher(String inputString) {
         //Matches <space><PARAMS_PREFIX><string><space>
         String regex = String.format("\\s+[%s]{1}[a-zA-Z]+\\s+",
-                String.join("", Constants.DEFAULT_PARAMS_PREFIX));
+                String.join("", Common.DEFAULT_PARAMS_PREFIX));
         Matcher matcher = regexMatcher(inputString, regex);
         matcher.find();
         return matcher;

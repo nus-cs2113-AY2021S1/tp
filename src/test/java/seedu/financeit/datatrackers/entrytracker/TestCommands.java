@@ -19,11 +19,11 @@ public class TestCommands {
             ? (seed == 0) ? "5600"
             : (seed == 1) ? "-1200"
             : " -&&*&*(-"
-            : "1500" ;
+            : "1500";
 
         String paramCat = (wrongParam == "cat")
             ? "wrong"
-            : "tpt";
+            : "oth";
 
         String paramAmt = (wrongParam == "amt")
             ? (seed == 0) ? String.format("%f", (Double.MAX_VALUE - 1))
@@ -32,8 +32,6 @@ public class TestCommands {
             : "4e2"
             : "5600";
 
-        System.out.println("lol: " + paramAmt.length());
-        System.out.println("lol: " + paramAmt);
         CommandPacket testPacket = TestUtil.createCommandPacket(
             "new",
             new String[][] {
@@ -79,8 +77,8 @@ public class TestCommands {
         int seed = RandomGenerator.generateRandomPositiveIntUntilLimit(3);
         String wrongInput = (seed == 1) ? "-1000000000000"
             : (seed == 2) ? "100000000000000"
-            : (seed == 3) ? "-5":
-            "4e2";
+            : (seed == 3) ? "-5"
+            : "4e2";
         CommandPacket testPacket = TestUtil.createCommandPacket(
             "delete",
             new String[][] {
@@ -96,7 +94,7 @@ public class TestCommands {
     public static CommandPacket generateCreateEntryCorrectCommand(int seed) {
         // Generates entries with time range from 0000 to 2400 in 24-h intervals.
         String paramTime = "1500";
-        String paramCat = "tpt";
+        String paramCat = "oth";
         String paramAmt = String.valueOf(1500 + seed);
         CommandPacket testPacket = TestUtil.createCommandPacket(
             "edit",
@@ -129,7 +127,7 @@ public class TestCommands {
     public static CommandPacket generateEditEntryCorrectCommand(int seed) {
         // Generates entries with time range from 0000 to 2400 in 24-h intervals.
         String paramTime = "1500";
-        String paramCat = "tpt";
+        String paramCat = "oth";
         String paramAmt = String.valueOf(1500 + seed);
         CommandPacket testPacket = TestUtil.createCommandPacket(
             "edit",

@@ -2,8 +2,9 @@ package seedu.financeit.datatrackers.entrytracker;
 
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.DuplicateInputException;
+import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
@@ -91,9 +92,9 @@ public class EntryTracker {
     private static FiniteStateMachine.State handleMainMenu() {
         String input;
 
-        UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
+        UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY,
                 String.format("[ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER %s)", currLedger));
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("You are now in entry tracker for ledger [%s]!", currLedger),
                 "Enter command!",
                 "Input \"commands\" for list of commands."
@@ -148,14 +149,14 @@ public class EntryTracker {
             // Deletion of entry.
             entryList.removeItemAtCurrIndex();
 
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s deleted!", deletedEntry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -195,17 +196,17 @@ public class EntryTracker {
                 goalTracker.targetGoalTracker(entry);
             }
 
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } catch (DuplicateInputException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 "Duplicate item already exists in the list; not added!");
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -228,14 +229,14 @@ public class EntryTracker {
             editEntryCommand = new EditEntryCommand(entry);
             editEntryCommand.handlePacket(packet);
 
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
             if (!retrieveEntryCommand.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
