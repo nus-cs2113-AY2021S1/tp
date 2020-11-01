@@ -8,6 +8,8 @@ import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 import seedu.quotesify.ui.UiMessage;
 
+import java.util.logging.Level;
+
 public class FindRatingCommand extends FindCommand {
 
     public FindRatingCommand(String arguments) {
@@ -24,10 +26,12 @@ public class FindRatingCommand extends FindCommand {
         System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
+            quotesifyLogger.log(Level.INFO, "user input is missing");
             System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
-        
+
+        assert information != null : "keyword should not be null";
         String keyword = information.toLowerCase().trim();
 
         boolean isFound = false;
@@ -39,6 +43,7 @@ public class FindRatingCommand extends FindCommand {
         }
         if (!isFound) {
             System.out.printf(ERROR_RATING_NOT_FOUND + "\n", keyword);
+            quotesifyLogger.log(Level.INFO, "ratings not found");
             System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }

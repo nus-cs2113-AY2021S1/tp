@@ -23,12 +23,12 @@ public class RatingParser {
         try {
             ratingScore = Integer.parseInt(rating);
         } catch (NumberFormatException e) {
-            AddCommand.addLogger.log(Level.WARNING, "format error", e);
+            AddCommand.quotesifyLogger.log(Level.INFO, "invalid format provided");
             System.out.println(ERROR_INVALID_FORMAT_RATING);
             return 0;
         }
         if (!(ratingScore >= RATING_ONE && ratingScore <= RATING_FIVE)) {
-            AddCommand.addLogger.log(Level.INFO, "rating score out of range");
+            AddCommand.quotesifyLogger.log(Level.INFO, "rating score out of range");
             System.out.println(ERROR_INVALID_RATING_SCORE);
             return 0;
         }
@@ -45,11 +45,13 @@ public class RatingParser {
 
     public static Book checkBookExists(String bookNumber) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        assert bookList != null : "book list should not be null";
         Book bookToRate = null;
         try {
             int indexOfBook = Integer.parseInt(bookNumber) - 1;
             bookToRate = bookList.getBook(indexOfBook);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            AddCommand.quotesifyLogger.log(Level.INFO, "book does not exist");
             System.out.println(ERROR_NO_BOOK_FOUND);
         }
         return bookToRate;

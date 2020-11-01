@@ -42,7 +42,7 @@ public class AddBookCommand extends AddCommand {
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add book to booklist failed");
+            quotesifyLogger.log(Level.INFO, "add book to booklist failed");
         }
     }
 

@@ -4,7 +4,11 @@ import seedu.quotesify.commands.Command;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class EditCommand extends Command {
+    public static Logger quotesifyLogger = Logger.getLogger("QuotesifyLogger");
 
     public String type;
     public String information;
@@ -26,6 +30,7 @@ public class EditCommand extends Command {
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_RATING:
+            quotesifyLogger.log(Level.INFO, "going to edit rating of book");
             new EditRatingCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOK:

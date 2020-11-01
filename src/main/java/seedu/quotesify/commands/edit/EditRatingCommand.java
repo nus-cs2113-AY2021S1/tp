@@ -9,6 +9,8 @@ import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 import seedu.quotesify.ui.UiMessage;
 
+import java.util.logging.Level;
+
 public class EditRatingCommand extends EditCommand {
 
     public EditRatingCommand(String arguments) {
@@ -25,6 +27,7 @@ public class EditRatingCommand extends EditCommand {
         System.out.println(UiMessage.DIVIDER_LINE);
         boolean hasMissingInput = RatingParser.checkUserInput(information);
         if (hasMissingInput) {
+            quotesifyLogger.log(Level.INFO, "user input is missing");
             System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
@@ -39,6 +42,7 @@ public class EditRatingCommand extends EditCommand {
             bookNumber = ratingDetails[1].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
+            quotesifyLogger.log(Level.INFO, "invalid format provided");
             System.out.println(UiMessage.DIVIDER_LINE);
             return;
         }
@@ -68,6 +72,7 @@ public class EditRatingCommand extends EditCommand {
             }
         }
         System.out.println(ERROR_RATING_DO_NOT_EXIST);
+        quotesifyLogger.log(Level.INFO, "book has not been rated before");
         return null;
     }
 }
