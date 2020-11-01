@@ -84,10 +84,7 @@ public class Customer {
     public Order order(Canteen canteen,Stall stall,List<Dish> dish, String typeOfOrder) {
 
         if(typeOfOrder.compareTo("Delivery")==0){
-            Scanner s = new Scanner(System.in);
-            int phoneNum = s.nextInt();
-            String address = s.nextLine();
-            return new deliveryOrder(canteen,stall,dish,this,true,address,phoneNum);
+            return new deliveryOrder(canteen,stall,dish,this,true);
         }
         if(typeOfOrder.compareTo("Dine in")==0){
             return new dineInOrder(canteen,stall,dish,this,true);
