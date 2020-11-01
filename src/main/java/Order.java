@@ -31,6 +31,6 @@ public class Order {
         for(int i=1; i<dishes.size();i++){
             dishString = dishString  + "i+1. " + dishes.get(i).getDishName() + "\n";
         }
-        return this.canteen + "order in " + this.stall + ": \n" + dishString ;
+        return this.canteen + " order in" + this.stall + ": \n" + dishString ;
     }
 }

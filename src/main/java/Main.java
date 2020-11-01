@@ -20,6 +20,10 @@ public class Main {
     public static void main(String[] args) {
         List<Canteen> canteens = initialize();
         greet(); // call greet() method to greet
+        System.out.println("Please enter your name/day of week/time arrive:");
+        String inputMessage = sc.nextLine();
+        Customer customer = Parser.parseCustomer(inputMessage);
+        System.out.println("Please enter your command. (Type help for instruction.)");
         input=sc.nextLine();
         while(!input.equals("bye")) { //if input is not "bye"
             /** print the list of tasks*/
@@ -39,8 +43,14 @@ public class Main {
                 findDishinOrder();
             }
             /** user decides to make orders*/
-            else if (input.startsWith("order")) {
-                order(canteens);}
+            else if (input.startsWith("order"))
+            {
+                order(canteens,customer);
+            }
+            else if (input.startsWith("change"))
+            {
+                changeOrder();
+            }
 
             else{ //dealing with undefined type of input
                 System.out.println("____________________________________________________________\n");
@@ -52,6 +62,7 @@ public class Main {
             input=sc.nextLine();// get next input statement
 
         }
+        bye();
     }
 
 
@@ -118,16 +129,9 @@ public class Main {
         return canteens;
     }
 
-    public static void order(List<Canteen> canteens){
-        System.out.println("How many people do you have?");
-        int numOfPeople = sc.nextInt();
-        int i = 1;
-        sc.nextLine();
-        while (i<=numOfPeople) {
+    public static void order(List<Canteen> canteens,Customer customer){
 
-            System.out.println("Please enter your name/day of week/time arrive:");
-            String inputMessage = sc.nextLine();
-            Customer customer = Parser.parseCustomer(inputMessage,i);
+
 
 
 
@@ -190,10 +194,25 @@ public class Main {
             Order.add(order);
             System.out.println("Your order created! Thanks.");
             System.out.println(order);
-            i++;
-        }
-    }
+            sc.nextLine();
+            System.out.println("____________________________________________________________\n");
 
+
+    }
+    public static void changeOrder()
+    {
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Noted. I've changed this order:  \n");
+        String[] inputWords = input.split("/"); //split the input message
+        String orderNumberchenged = inputWords[1];
+        int orderNumberchanged = Integer.parseInt(orderNumberchenged);
+        String changedtype = inputWords[2];
+        System.out.println(Order.get(orderNumberchanged) + "\n");
+
+        System.out.println("Now you have " + Order.size() + " orders in the list. ");
+        System.out.println("____________________________________________________________\n");
+
+    }
     public static void printOrder() {
         System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
@@ -241,7 +260,7 @@ public class Main {
     }
     public static void greet(){
         System.out.println("____________________________________________________________\n");
-        System.out.println(" Hello! I'm Duke\n");
+        System.out.println(" Hello! I'm Canteenhelper\n");
         System.out.println(" What can I do for you?\n");
         System.out.println("____________________________________________________________\n");
     }
