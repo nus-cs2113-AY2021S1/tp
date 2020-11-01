@@ -21,6 +21,11 @@ data/
 export/
 *.log
 *.log.lck
+<<<<<<< HEAD
 docs/AccessSubjectSequenceDiagram.puml
 docs/AccessTopicSequenceDiagram.puml
 docs/AddSubjectSequenceDiagram.puml
+=======
+
+*.puml
+>>>>>>> 92b4dcca732f072418c0ec449d56be866707c4ea
