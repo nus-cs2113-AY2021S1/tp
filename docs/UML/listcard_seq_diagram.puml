@@ -1,28 +1,92 @@
 @startuml
--> ":ListCardsCommand" : execute(ui, access, storage)
-activate ":ListCardsCommand"
-":ListCardsCommand" -> ":ListCardsCommand" : ListCards(access, storage)
-activate ":ListCardsCommand"
-":ListCardsCommand" -> ":Access" : getChapter()
-":ListCardsCommand" <-- ":Access"
-destroy ":Access"
-":ListCardsCommand" -> ":Chapter" : getCards()
-":ListCardsCommand" <-- ":Chapter" : cards
-destroy ":Chapter"
-":ListCardsCommand" -> ":CardList" : getAllCards()
-":ListCardsCommand" <-- ":CardList" : allCards
-":ListCardsCommand" -> ":CardList" : getCardCount()
-":ListCardsCommand" <-- ":CardList" : cardCount
-destroy ":CardList"
-opt cardCount = 0
-    <-- ":ListCardsCommand" : EmptyFileException
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":ListCardsCommand" as ListCardsCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+participant ":CardList" as CardList MODEL_COLOR
+participant ":Card" as Card MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> Parser : parse("list")
+activate Parser
+
+create ListCardsCommand
+Parser -> ListCardsCommand : ListCardsCommand()
+activate ListCardsCommand
+
+ListCardsCommand --> Parser : c
+deactivate ListCardsCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> ListCardsCommand : execute(Ui, Access, Storage)
+activate ListCardsCommand
+
+ListCardsCommand -> ListCardsCommand : listCards(Access, Storage)
+activate ListCardsCommand
+
+ListCardsCommand -> Access : getChapter()
+activate Access
+
+Access --> ListCardsCommand : Chapter
+deactivate Access
+
+ListCardsCommand -> Chapter : getCards()
+activate Chapter
+
+Chapter--> ListCardsCommand : CardList
+deactivate Chapter
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- ListCardsCommand
+destroy Chapter
+
+ListCardsCommand -> CardList : getAllCards()
+activate CardList
+
+CardList --> ListCardsCommand : allCards
+deactivate CardList
+
+ListCardsCommand -> CardList : getCardCount()
+activate CardList
+
+CardList --> ListCardsCommand : cardCount
+deactivate CardList
+
+ref over ListCardsCommand
+when cardCount == 0
 end
-loop go through all cards
-":ListCardsCommand" --> ":ListCardsCommand" : result
+
+loop go through all allCards
+ListCardsCommand -[hidden]-> ListCardsCommand
 end
-deactivate ":ListCardsCommand"
-":ListCardsCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":ListCardsCommand"
-deactivate ":ListCardsCommand"
+
+activate ListCardsCommand
+ListCardsCommand --> ListCardsCommand : result
+deactivate ListCardsCommand
+
+ListCardsCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> ListCardsCommand
+deactivate Ui
+
+[<-- ListCardsCommand
+deactivate ListCardsCommand
+
+destroy CardList
+destroy Card
 @enduml

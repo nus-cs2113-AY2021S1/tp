@@ -1,28 +1,92 @@
 @startuml
--> ":ListChaptersCommand" : execute(ui, access, storage)
-activate ":ListChaptersCommand"
-":ListChaptersCommand" -> ":ListChaptersCommand" : listChapters(access, storage)
-activate ":ListChaptersCommand"
-":ListChaptersCommand" -> ":Access" : getModule()
-":ListChaptersCommand" <-- ":Access"
-destroy ":Access"
-":ListChaptersCommand" -> ":Module" : getChapters()
-":ListChaptersCommand" <-- ":Module" : chapters
-destroy ":Module"
-":ListChaptersCommand" -> ":ChapterList" : getAllChapters()
-":ListChaptersCommand" <-- ":ChapterList" : allChapters
-":ListChaptersCommand" -> ":ChapterList" : getChapterCount()
-":ListChaptersCommand" <-- ":ChapterList" : chapterCount
-destroy ":ChapterList"
-opt chapterCount = 0
-    <-- ":ListChaptersCommand" : EmptyFileException
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
+participant ":ListChaptersCommand" as ListChaptersCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":ChapterList" as ChapterList MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> Parser : parse("list")
+activate Parser
+
+create ListChaptersCommand
+Parser -> ListChaptersCommand : ListChaptersCommand()
+activate ListChaptersCommand
+
+ListChaptersCommand --> Parser : c
+deactivate ListChaptersCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> ListChaptersCommand : execute(Ui, Access, Storage)
+activate ListChaptersCommand
+
+ListChaptersCommand -> ListChaptersCommand : listChapters(Access, Storage)
+activate ListChaptersCommand
+
+ListChaptersCommand -> Access : getModule()
+activate Access
+
+Access --> ListChaptersCommand : Module
+deactivate Access
+
+ListChaptersCommand -> Module : getChapters()
+activate Module
+
+Module--> ListChaptersCommand : ChapterList
+deactivate Module
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- ListChaptersCommand
+destroy Module
+
+ListChaptersCommand -> ChapterList : getAllChapters()
+activate ChapterList
+
+ChapterList --> ListChaptersCommand : allChapters
+deactivate ChapterList
+
+ListChaptersCommand -> ChapterList : getChapterCount()
+activate ChapterList
+
+ChapterList --> ListChaptersCommand : chapterCount
+deactivate ChapterList
+
+ref over ListChaptersCommand
+when chapterCount == 0
 end
-loop go through all chapters
-":ListChaptersCommand" --> ":ListChaptersCommand" : result
+
+loop go through all allChapters
+ListChaptersCommand -[hidden]-> ListChaptersCommand
 end
-deactivate ":ListChaptersCommand"
-":ListChaptersCommand" -> ":Ui" : showToUser(result)
-destroy ":Ui"
-<-- ":ListChaptersCommand"
-deactivate ":ListChaptersCommand"
+
+activate ListChaptersCommand
+ListChaptersCommand --> ListChaptersCommand : result
+deactivate ListChaptersCommand
+
+ListChaptersCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> ListChaptersCommand
+deactivate Ui
+
+[<-- ListChaptersCommand
+deactivate ListChaptersCommand
+
+destroy ChapterList
+destroy Chapter
 @enduml
