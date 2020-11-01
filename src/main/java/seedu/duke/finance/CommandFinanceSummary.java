@@ -3,6 +3,9 @@ package seedu.duke.finance;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents list the finance summary.
+ */
 public class CommandFinanceSummary extends Command {
     private UserInput userinput;
 

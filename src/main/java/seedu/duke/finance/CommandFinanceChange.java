@@ -4,6 +4,9 @@ import seedu.duke.Command;
 import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents change information of a finance log entry.
+ */
 public class CommandFinanceChange extends Command {
     UserInput userinput;
 

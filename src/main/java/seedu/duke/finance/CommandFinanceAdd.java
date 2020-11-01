@@ -8,6 +8,9 @@ import seedu.duke.backend.UserInput;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents add finance log entry command.
+ */
 public class CommandFinanceAdd extends Command {
     private UserInput userinput;
     private Logger logger = Logger.getGlobal();

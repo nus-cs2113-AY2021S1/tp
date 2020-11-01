@@ -162,28 +162,41 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
-Search the members whose information matches user input.  
+Search the members whose information matches user input. If a member's information matches any of
+the conditions that the user inputs, it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
 Example of usage:  
 `hr search peter`  
 `hr search /n peter /r president`  
+`hr search /p 114514 /e 114@gmail.com`  
+`hr search /p 114514`  
+
+Expected outcomes:  
+
 
 
 #### view contacts of prof/admin: `list prof&admin`  
-List the contacts of the professors and administrators.  
+List the contacts of the professors and administrators. Professors and administrators are roles
+of members.  
 Format: `hr list prof&admin`  
 
 Example of usage:  
 `hr list prof&admin`  
 
+Expected outcome:  
+
+
 
 #### view contacts of connections: `list connections`  
-List the contacts of connections(alumni, speakers).  
+List the contacts of connections(alumni, speakers). Alumni and speakers are roles of members.  
 Format: `hr list connections`  
 
 Example of usage:  
 `hr list connections`  
+
+Expected outcome:  
+
 
 
 ### 4.4 Event features`event` 
@@ -357,6 +370,7 @@ Format: `finance addLog ITEM_NAME ITEM_VALUE`
 Example of usage:  
 `finance addLog have lunch 4.5`  
 `f addlog buy flight ticket 750`  
+`f a buy bread 3.3`  
 
 Expected outcomes:  
 ![Example of usage 1](userGuidePic/addlog%20outcome1.png)  
@@ -372,7 +386,8 @@ Format: `finance delLog ITEM_INDEX`
 
 Example of usage:  
 `finance dellog 3`  
-`f delLog 1`  
+`f del 1`  
+`finance d 1`  
 
 Expected outcomes:  
 ![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
@@ -388,6 +403,9 @@ Format: `finance summary`
 
 Example of usage:  
 `finance summary`  
+`f s`  
+`finance s`  
+`f summary`  
 
 Expected Outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
