@@ -2,6 +2,10 @@
 
 ![AniChan Logo](images/AniChan-Logo.png)
 
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) ![Support OS](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-blue) ![Size](https://img.shields.io/github/repo-size/AY2021S1-CS2113T-F12-2/tp) ![Java](https://img.shields.io/badge/built--in-java-brightgreen)
+
+<br/>
+
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
@@ -19,7 +23,7 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.3 [List workspaces](#363-list-workspaces)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4 [Delete workspace](#364-delete-workspace)
 <br/>&nbsp;3.7 [Watchlist management](#37-watchlist-management)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create a new watchlist](#371-create-a-new-watchlist)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create a new watchlist](#371-create-new-watchlist)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.2 [List all created watchlist(s)](#372-list-all-created-watchlists)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.3 [Select a watchlist to use](#373-select-a-watchlist-to-use)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.4 [Delete a watchlist](#374-delete-a-watchlist)
@@ -39,6 +43,8 @@
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
+<br/>
+
 ## 1. Introduction
 **Welcome to AniChan!**
 
@@ -47,7 +53,7 @@ AniChan is a free desktop command-line application aimed to improve the efficien
 AniChan can also be used on all major operating systems such as Windows and Linux. You can refer to the [Quick Start](#2-quick-start) guide located below for more information on getting your journey started with AniChan!
 
 ### 1.1 Purpose
-This guide provides you with in-depth information on setting up AniChan and how to use the various features offered. 
+This guide provides you with in-depth information on setting up AniChan and how to use the various features offered.
 
 <br/>
 
@@ -55,27 +61,27 @@ This guide provides you with in-depth information on setting up AniChan and how 
 1.  Ensure that you have Java 11 or above installed.
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
-4.  Open **Command Prompt** and change directory into the folder. Run `java -jar anichan.jar`. 
+4.  Open **Command Prompt** and change directory into the folder. Run `java -jar AniChan.jar`.
 5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
 
 <br/>
 
 ## 3. Features 
-**Some useful notes on the Command Format**
+**Some useful notes on the command format of AniChan**
 
-*   Commands are case-sensitive.
+*   Commands are case-sensitive. <br/>
 E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
 
-*   In this guide words in UPPERCASE are values that can be supplied to the command.
-E.g. in `browse -s SORT_CATEGORY -p PAGE_NO.` where SORT_CATEGORY and PAGE_NO. are parameters that can be used with `browse -s name -o asc`.
+*   Words in UPPERCASE are values that can be supplied to the command. <br/>
+E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
 
-*   Square brackets indicate optional parameters.
-E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s name`.
-  
-*   The order of parameters are not important.
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` are both acceptable and will give you the same result.
+*   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
+E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
-> :bulb: You would have an input prompt like the following: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
+*   Order of parameters (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-parameter fields. <br/>
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an parameter.
+
+> :bulb: This is what your input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
 <br/>
 
@@ -88,12 +94,16 @@ Format: `help`
 <br/>
 
 ### 3.2 Estimate time needed to translate the script
-This command allows you to figure out the amount of time needed to finish translating a script. It allows you to estimate based on the amount of words you can translate in an hour, or by using the average translators’ speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time and also to not promise your clients with inaccurate timings.
+This command allows you to figure out the amount of time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators' speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
-*   If the option `-wph` is not specified, the average translator's translation speed will be used to produce three estimation timings for you to consider.
+*   It only accepts one `.txt` file (other file extensions will be supported in a future version).
+*   If the parameter `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
 
-> :bulb: You have to specify the file extension too! E.g. `script.txt`.
+> :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
+
+> :bulb: Ensure the script file is in the current workspace's folder. For example, if the current workspace is "Default", then from the folder containing `AniChan.jar`, place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
+> <br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
 
@@ -118,13 +128,13 @@ You would need 2 hour(s) 58 minute(s).
 ### 3.3 Browse through anime
 This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
 
-`browse` will also has various options to customise each browsing session by being able to sort the anime list. This can be done through the use of its optional parameters.
+`browse` will also has various options to customise each browsing session by being able to sort the anime list.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 *   `-s` will indicate how the list is sorted and will accept the values `name` or `rating` 
 *   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`
-*   The order of the parameter does not matter
-*   If no parameters or only `-o` is specified then it will display anime in no particular order.
+*   The order of the options does not matter
+*   If no option or only `-o` is specified then it will display anime in no particular order.
 
 <br/>
 
@@ -134,30 +144,30 @@ Here are some commonly used `browse` commands to get you started. Feel free to e
 
 <br/>
 
-Example of usage: `browse -s name -o dsc`
+Example of usage: `browse -s name -o asc`
 
 The expected outcome:
 ```
-1. .hack//Gift
-2. .hack//Legend Of The Twilight
-3. .hack//Liminality
-4. .hack//Sign
-5. 3x3 Eyes
-6. A Chinese Ghost Story
-7. ARIA The ANIMATION
-8. Abashiri Ikka
-9. Ace wo Nerae!
-10. Ace wo Nerae! 2
-11. Ace wo Nerae: Final Stage
-12. After War Gundam X
-13. Agatha Christie's Great Detectives Poirot and Marple
-14. Agent Aika
-15. Ah! My Goddess: The Movie
-16. Ai Yori Aoshi
-17. Ai Yori Aoshi: Enishi
-18. Aim for the Ace! (1979)
-19. Air
-20. Air Master
+1.   .hack//Gift                                         [Id: 413]
+2.   .hack//Legend Of The Twilight                       [Id: 267]
+3.   .hack//Liminality                                   [Id: 268]
+4.   .hack//Sign                                         [Id: 30 ]
+5.   3x3 Eyes                                            [Id: 269]
+6.   A Chinese Ghost Story                               [Id: 284]
+7.   ARIA The ANIMATION                                  [Id: 436]
+8.   Abashiri Ikka                                       [Id: 274]
+9.   Ace wo Nerae!                                       [Id: 280]
+10.  Ace wo Nerae! 2                                     [Id: 283]
+11.  Ace wo Nerae: Final Stage                           [Id: 281]
+12.  After War Gundam X                                  [Id: 72 ]
+13.  Agatha Christie's Great Detectives Poirot and Ma... [Id: 213]
+14.  Agent Aika                                          [Id: 333]
+15.  Ah! My Goddess: The Movie                           [Id: 273]
+16.  Ai Yori Aoshi                                       [Id: 35 ]
+17.  Ai Yori Aoshi: Enishi                               [Id: 360]
+18.  Aim for the Ace! (1979)                             [Id: 282]
+19.  Air                                                 [Id: 81 ]
+20.  Air Master                                          [Id: 199]
 Browsing Page: 1
 ```
 
@@ -194,6 +204,15 @@ The expected outcome:
 Search for anime that has the genre matching the search term.
 
 Format: `search -g <SEARCH_TERM>`
+
+<br/>
+
+Here are some of the popular genres that you can try:
+*   Action
+*   Adventure
+*   Music
+*   Mecha
+*   Sci-Fi
 
 <br/>
 
@@ -252,6 +271,8 @@ The following subsections below describes the various workspace-relation operati
 Creates a new workspace to manage your watchlist(s) and bookmark.
 
 > :memo: Every new workspace you create will generate a similarly named folder to store the watchlist(s) and bookmark. This helps to avoid accidental intermixing of data when you are working on multiple translation projects.
+
+> :bulb: Workspace name can only consist of alphanumeric characters and/or spaces.
 
 Format: `workspace -n <NAME>`
 

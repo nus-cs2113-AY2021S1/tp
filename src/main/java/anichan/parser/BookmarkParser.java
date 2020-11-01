@@ -128,7 +128,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException when an error occurred while executing the command
      */
     private void checkIsInteger(String paramGiven, String paramPart, String bookmarkType) throws AniException {
-        if (!isInt(paramPart.trim())) {
+        if (!isInteger(paramPart.trim())) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + " Bookmark " + bookmarkType + " param requires integer.";
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
@@ -199,7 +199,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the only field is not integer or empty
      */
     private void setSingleParameter(String paramGiven) throws AniException {
-        if (!isInt(paramGiven.trim())) {
+        if (!isInteger(paramGiven.trim())) {
             String invalidBookmarkIndex = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + BOOKMARK_INDEX_INFO_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidBookmarkIndex);
