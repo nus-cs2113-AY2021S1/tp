@@ -12,6 +12,14 @@ public class Stall {
     public int queue;
     public int servingTimePerPersom;
 
+    public int getOpenTime() {
+        return openTime;
+    }
+
+    public int getCloseTime() {
+        return closeTime;
+    }
+
     public Stall(String stall_name, int stallID, String stallLocation, int openTime, int closeTime, List<Integer> openDayOfWeek, List<Dish> dishes, int servingTimePerPersom) {
         this.stall_name = stall_name;
         this.stallID = stallID;

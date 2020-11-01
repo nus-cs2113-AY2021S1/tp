@@ -33,6 +33,12 @@ public class Main {
             else if (input.equals("help")) {
                 help();
             }
+            else if (input.equals("checkcanteen")) {
+                checkCanteenOperatingTime(canteens,customer);
+            }
+            else if (input.equals("checkstall")) {
+                checkStallOperatingTime(canteens,customer);
+            }
             /** mark one task as done */
             /** delete one task */
             else if (input.startsWith("delete")) {
@@ -183,6 +189,53 @@ public class Main {
         canteens.add(canteen2);
         return canteens;
     }
+    public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer){
+        System.out.println("Choose the canteen you want to check:");
+        List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
+        int j = 0;
+        for(Canteen canteen:openCanteens) {
+            j++;
+            System.out.println(j +". " + canteen);
+        }
+        System.out.println("Enter the number in front to choose:");
+        int canteenIdChoosed = sc.nextInt();
+        Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+        System.out.println("Operating hours for the canteen you choosed is: \n");
+        System.out.println("Open Time: " + canteenChoosed.getOpenTime(customer.getDayOfWeek())/100 + ":00");
+        System.out.println("Closing Time: " + canteenChoosed.getCloseTime(customer.getDayOfWeek())/100 +":" +
+                canteenChoosed.getCloseTime(customer.getDayOfWeek())%100 );
+        System.out.println("____________________________________________________________\n");
+        sc.nextLine();
+    }
+
+
+    public static void checkStallOperatingTime(List<Canteen> canteens,Customer customer){
+        System.out.println("Input the canteen which your desired stall belongs to: \n");
+        List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
+        int j = 0;
+        for(Canteen canteen:openCanteens) {
+            j++;
+            System.out.println(j +". " + canteen);
+        }
+        System.out.println("Enter the number in front to choose:");
+        int canteenIdChoosed = sc.nextInt();
+        Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+        List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
+        j = 0;
+        for (Stall stall : openStall) {
+            j++;
+            System.out.println(j +". " + stall);
+        }
+        System.out.println("Please choose a stall:");
+        int stallIdChoosed = sc.nextInt();
+        Stall stallChoosed = openStall.get(stallIdChoosed - 1);
+        System.out.println("Operating hours for the stall you choosed is: \n");
+        System.out.println("Open Time: " + stallChoosed.getOpenTime()/100 + ":00" );
+        System.out.println("Closing Time: " + stallChoosed.getCloseTime()/100 + ":"
+            + String.format("%02d",stallChoosed.getCloseTime()%100));
+        sc.nextLine();
+        System.out.println("____________________________________________________________\n");
+    }
 
     public static void order(List<Canteen> canteens,Customer customer){
 
@@ -241,7 +294,7 @@ public class Main {
                 orderType = "Take away";
             }
             else {
-                orderType = "Delevery";
+                orderType = "Delivery";
             }
 
 
