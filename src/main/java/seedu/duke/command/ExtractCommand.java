@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.UserData;
 import seedu.duke.event.Personal;
+import seedu.duke.event.Zoom;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidExtractCommandException;
@@ -22,6 +23,9 @@ public class ExtractCommand extends Command {
     private int timeCount;
     private String textSubject = null;
     private String textBody = null;
+    private String eventType;
+    private String zoomLink;
+    private int zoomLinkCount;
 
 
     /**
@@ -34,6 +38,7 @@ public class ExtractCommand extends Command {
         if (command.endsWith(";")) {
             textSubject = command.split(";", 2)[0];
         }
+        eventType = "Personal";
     }
 
     /**
@@ -51,6 +56,7 @@ public class ExtractCommand extends Command {
         ui.printExtractTextBodyRequestMessage();
         ui.printDividerLine();
         textBody = receiveTextBody(ui);
+
         if (textBody == null) {
             throw new InvalidExtractCommandException("Text body was not entered correctly!");
         }
@@ -64,24 +70,82 @@ public class ExtractCommand extends Command {
         ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
+        ArrayList<String> zoomLinkList = detectZoomLink(textBody);
+        if (zoomLinkList.size() > 0) {
+            eventType = "Zoom";
+            zoomLink = chooseZoomLink(zoomLinkList, ui);
+        }
+
         if (finalDate == null) {
-            ui.printExtractNoDateEventMessage();
-            Personal personalEvent = new Personal(textSubject);
-            data.addToEventList("Personal", personalEvent);
+            if (eventType.equals("Personal")) {
+                ui.printExtractNoDatePersonalEventMessage();
+                data.addToEventList("Personal", new Personal(textSubject));
+            } else if (eventType.equals("Zoom")) {
+                ui.printExtractNoDateZoomEventMessage();
+                data.addToEventList("Zoom", new Zoom(textSubject, zoomLink));
+            }
         } else {
             ArrayList<LocalTime> timeList = detectTime(textBody);
             LocalTime finalTime = chooseFinalTime(timeList, ui);
             if (finalTime == null) {
-                ui.printExtractNoTimeEventMessage();
+                if (eventType.equals("Personal")) {
+                    ui.printExtractNoTimePersonalEventMessage();
+                } else if (eventType.equals("Zoom")) {
+                    ui.printExtractNoTimeZoomEventMessage();
+                }
                 Personal personalEvent = new Personal(textSubject, finalDate);
                 data.addToEventList("Personal", personalEvent);
             } else {
-                Personal personalEvent = new Personal(textSubject, finalDate, finalTime);
-                data.addToEventList("Personal", personalEvent);
+                if (eventType.equals("Personal")) {
+                    data.addToEventList("Personal", new Personal(textSubject, finalDate, finalTime));
+                } else if (eventType.equals("Zoom")) {
+                    data.addToEventList("Zoom", new Zoom(textSubject, zoomLink, finalDate, finalTime));
+                }
             }
         }
-        ui.printEventAddedMessage(data.getEventList("Personal").getNewestEvent());
-        storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
+        ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+        storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+    }
+
+    private ArrayList<String> detectZoomLink(String textBody) {
+        ArrayList<String> zoomLinkList = new ArrayList<>();
+        Pattern urlPattern = Pattern.compile("https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\." +
+                "[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)");
+        Matcher urlMatcher = urlPattern.matcher(textBody);
+
+        while (urlMatcher.find()) {
+            String url = urlMatcher.group(0);
+            if (url.contains(".zoom.")) {
+                zoomLinkList.add(url);
+            }
+        }
+        zoomLinkCount = zoomLinkList.size();
+        return zoomLinkList;
+    }
+
+    private String chooseZoomLink(ArrayList<String> zoomLinkList, Ui ui) {
+        String zoomLink = null;
+        if (zoomLinkCount > 0) {
+            ui.printExtractChooseZoomLinkMessage(zoomLinkCount, zoomLinkList);
+            boolean zoomLinkChosen = false;
+            while (!zoomLinkChosen) {
+                try {
+                    int zoomLinkNumberChosen = Integer.parseInt(ui.receiveCommand());
+                    if (zoomLinkNumberChosen > zoomLinkCount || zoomLinkNumberChosen <= 0) {
+                        ui.printExtractInvalidFieldChosenMessage("zoom link");
+                    } else {
+                        zoomLink = zoomLinkList.get(zoomLinkNumberChosen - 1);
+                        zoomLinkChosen = true;
+                    }
+                } catch (NumberFormatException e) {
+                    ui.printErrorMessage("We couldn't detect a number! Please choose again!");
+                }
+            }
+        } else {
+            zoomLink = zoomLinkList.get(0);
+            ui.printExtractSingleZoomLinkDetectedMessage(zoomLink);
+        }
+        return zoomLink;
     }
 
     private String receiveTextBody(Ui ui) {
@@ -168,7 +232,7 @@ public class ExtractCommand extends Command {
                 try {
                     int timeNumberChosen = Integer.parseInt(ui.receiveCommand());
                     if (timeNumberChosen > timeCount || timeNumberChosen <= 0) {
-                        ui.printExtractInvalidTimeChosenMessage();
+                        ui.printExtractInvalidFieldChosenMessage("timing");
                     } else {
                         finalTime = timeList.get(timeNumberChosen - 1);
                         timeChosen = true;
@@ -178,7 +242,7 @@ public class ExtractCommand extends Command {
                 }
             }
         } else if (timeCount == 0) {
-            ui.printExtractNoTimeMessage();
+            ui.printExtractNoFieldMessage("timing");
         } else {
             finalTime = timeList.get(0);
             ui.printExtractSingleTimeDetectedMessage(finalTime);
@@ -266,7 +330,7 @@ public class ExtractCommand extends Command {
                 try {
                     int dateNumberChosen = Integer.parseInt(ui.receiveCommand());
                     if (dateNumberChosen > dateCount || dateNumberChosen <= 0) {
-                        ui.printExtractInvalidDateChosenMessage();
+                        ui.printExtractInvalidFieldChosenMessage("date");
                     } else {
                         finalDate = dateList.get(dateNumberChosen - 1);
                         dateChosen = true;
@@ -276,7 +340,7 @@ public class ExtractCommand extends Command {
                 }
             }
         } else if (dateCount == 0) {
-            ui.printExtractNoDateMessage();
+            ui.printExtractNoFieldMessage("date");
         } else {
             finalDate = dateList.get(0);
             ui.printExtractSingleDateDetectedMessage(finalDate);

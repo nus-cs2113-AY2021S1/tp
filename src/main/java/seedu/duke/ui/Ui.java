@@ -225,18 +225,28 @@ public class Ui {
         System.out.println("The file does not exist or has been corrupted!");
     }
 
-    public void printExtractNoDateEventMessage() {
+    public void printExtractNoDatePersonalEventMessage() {
         System.out.println("Since no date was detected in the text body, "
                 + "the personal event will only contain the description.");
     }
 
-    public void printExtractNoTimeEventMessage() {
-        System.out.println("Since no time detected in text body, "
-                + "the personal event will only have the date and description.");
+    public void printExtractNoDateZoomEventMessage() {
+        System.out.println("Since no date was detected in the text body, "
+                + "the zoom event will only contain the description and zoom link.");
+    }
+
+    public void printExtractNoTimeZoomEventMessage() {
+        System.out.println("Since no time was detected in text body, a zoom event cannot be made. So "
+                + "a personal event with only the date and description will be created.");
+    }
+
+    public void printExtractNoTimePersonalEventMessage() {
+        System.out.println("Since no time was detected in the text body, "
+                + "the personal event will only contain the description and the date.");
     }
 
     public void printExtractChooseTimeMessage(int timeCount, ArrayList<LocalTime> timeList) {
-        System.out.println("We have detected " + timeCount + " time slots in this text body!");
+        System.out.println("We have detected " + timeCount + " timings in this text body!");
         System.out.println("Please select the time you want for this event from the list below!");
         int timeNumber = 0;
         printDividerLine();
@@ -247,16 +257,8 @@ public class Ui {
         printDividerLine();
     }
 
-    public void printExtractInvalidTimeChosenMessage() {
-        System.out.println("Invalid time slot number to choose! Please choose again!");
-    }
-
-    public void printExtractNoTimeMessage() {
-        System.out.println("No time slots detected for this text body!");
-    }
-
     public void printExtractSingleTimeDetectedMessage(LocalTime finalTime) {
-        System.out.println("One time slot detected and chosen: " + finalTime);
+        System.out.println("One timing detected and chosen: " + finalTime);
     }
 
     public void printExtractChooseDateMessage(int dateCount, ArrayList<LocalDate> dateList) {
@@ -271,14 +273,6 @@ public class Ui {
         printDividerLine();
     }
 
-    public void printExtractInvalidDateChosenMessage() {
-        System.out.println("Invalid date number to choose! Please choose again!");
-    }
-
-    public void printExtractNoDateMessage() {
-        System.out.println("No dates detected for this text body!");
-    }
-
     public void printExtractSingleDateDetectedMessage(LocalDate finalDate) {
         System.out.println("One date detected and chosen: " + finalDate);
     }
@@ -287,6 +281,30 @@ public class Ui {
         System.out.println("Copy and paste or enter the body of the text you want to extract from!");
         System.out.println("At the end of your text, press enter to go to the next line, enter 'extractend' "
                 + "with no quotation marks and press enter once more.");
+    }
+
+    public void printExtractInvalidFieldChosenMessage(String field) {
+        System.out.println("Invalid " + field + " number to choose! Please choose again!");
+    }
+
+    public void printExtractNoFieldMessage(String field) {
+        System.out.println("No " + field + " detected for this text body!");
+    }
+
+    public void printExtractChooseZoomLinkMessage(int zoomLinkCount, ArrayList<String> zoomLinkList) {
+        System.out.println("We have detected " + zoomLinkCount + " zoom links in this text body!");
+        System.out.println("Please select the zoom link you want for this event from the list below!");
+        int zoomLinkNumber = 0;
+        printDividerLine();
+        for (String zoomLink : zoomLinkList) {
+            System.out.println(zoomLinkNumber + 1 + ". " + zoomLink);
+            zoomLinkNumber++;
+        }
+        printDividerLine();
+    }
+
+    public void printExtractSingleZoomLinkDetectedMessage(String zoomLink) {
+        System.out.println("One zoom link detected and chosen: " + zoomLink);
     }
 
     /**

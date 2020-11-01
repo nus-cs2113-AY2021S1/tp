@@ -77,7 +77,7 @@ public class AddCommand extends Command {
         try {
             String[] argumentWords = argument.split(";");
             if (argumentWords[0].trim().equals("")) {
-                throw new MissingDescriptionException("This event has an empty description!");
+                    throw new MissingDescriptionException("This event has an empty description!");
             }
             switch (eventType) {
             case "Personal":

@@ -37,15 +37,18 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_emptyDescriptionForPersonalEvent_EventAddErrorException() throws DukeException {
+    void execute_emptyDescriptionForZoomEvent_printEmptyDescriptionError() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
-        String addInput = "zoom";
-        assertThrows(EventAddErrorException.class, () -> {
-            AddCommand addCommand = new AddCommand(addInput);
-            addCommand.execute(data, ui, storage);
-        });
+        String addInput = "zoom   ; ";
+
+        Command addCommand = new AddCommand(addInput);
+        addCommand.execute(data, ui, storage);
+
+        assertEquals("This event has an empty description!" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
     }
 
     @Test
@@ -77,6 +80,36 @@ class AddCommandTest {
         addCommand.execute(data, ui, storage);
 
         assertEquals("Incorrect number of parameters for Zoom event!" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+    }
+
+    @Test
+    void execute_invalidPersonalEventTiming_printTimeParseError() throws DukeException {
+        UserData data = new UserData();
+        Ui ui = new Ui();
+        Storage storage = new Storage("data", ui);
+
+        // Add personal event with invalid time
+        String zoomInput = "personal meeting; 16/9/2020; 18:89 PM";
+        Command addCommand = new AddCommand(zoomInput);
+        addCommand.execute(data, ui, storage);
+
+        assertEquals("Something is wrong with the time!" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+    }
+
+    @Test
+    void execute_invalidZoomEventDate_printDateParseError() throws DukeException {
+        UserData data = new UserData();
+        Ui ui = new Ui();
+        Storage storage = new Storage("data", ui);
+
+        // Add zoom event with invalid date
+        String zoomInput = "personal meeting; 35/9/2020; 4 PM";
+        Command addCommand = new AddCommand(zoomInput);
+        addCommand.execute(data, ui, storage);
+
+        assertEquals("Something is wrong with the date!" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 

@@ -226,7 +226,7 @@ Format: `add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/P
 - `EVENT_DESCRIPTION` is the description or name of the event.
 - `LINK/LOCATION` is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively.
 - `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
-- `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format.
+- `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format. 
 
 Each event can have different combinations of fields for example:
 
@@ -274,11 +274,14 @@ _________________________________
 
 - Only the full word will be recognized as the event type:
 `add z` will NOT add a zoom event
+
+- Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
 {{box op="end"}}
 
 {{box op="start" cssClass="boxed warningBox"}}
 **Warning!**
-Typing in the wrong format for date or time will cause the event to not be made. 
+- Typing in the wrong format for date or time will cause the event to not be made. 
+- Events cannot contain an empty description.
 {{box op="end"}}
 
 ### 3.3 List events: `list` (Marcus Ng)
