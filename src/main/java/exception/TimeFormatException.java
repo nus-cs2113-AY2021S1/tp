@@ -12,7 +12,7 @@ public class TimeFormatException extends NuScheduleException {
      */
     public String getMessage() {
         return "You entered the time in a format that is not accepted by this program.\n"
-                + "The format should be \"yyyy-MM-dd HH:mm\"\n"
+                + "The format should be \"yyyy-MM-dd HH:mm\", and both date and time should be valid.\n"
                 + "For example, 2000-01-01 00:00";
     }
 }

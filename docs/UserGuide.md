@@ -48,6 +48,13 @@ This gives the application both simplicity and speed, setting it apart from othe
 
 ## Features 
 
+### Tips:
+In the following description, `DATE` refers to the date in the format yyyy-MM-dd. e.g. `2020-10-31` 
+`TIME` refers to the time in the format HH:mm. e.g. `10:00`  
+
+`/t` refers to the starting time for PersonalEvent and Class, and deadline for Assignment  
+`/e` refers to the ending time for PersonalEvent and Class  
+
 ### View available commands
 
 Shows list of commands and provides a link to the user guide for more details. 
@@ -59,8 +66,7 @@ Format: `help`
 
 Adds events/tasks to the schedule. Can support various types of tasks: 
 
-In the following description, `DATE` refers to the date in the format yyyy-MM-dd. e.g. `2020-10-31` 
-`TIME` refers to the time in the format HH:mm. e.g. `10:00`  
+
 
 * Personal events  
   Format: `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for underline event.  
@@ -115,11 +121,9 @@ Shows you a list of all events.
 Format: `list`  
 
 ### Clear events
-Deletes events based on their index in the list.  
+Deletes all events in the list.  
 
-Format: `clear NUMBER` OR `clear ALL`  
-
-Example: `clear 3`  
+Format: `clear`  
 
 
 ### Mark event as done
@@ -147,7 +151,7 @@ the data of your previous AddressBook home folder.
 |Action|Command|Example|
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
-|clear|`clear NUMBER` OR `clear ALL` |`clear 3`|
+|clear|`clear` |`clear`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit INDEX EVENT_TYPE DESCRIPTION /t YYYY-MM-DD HH:MM /l LOCATION`|`edit 1 assignment cs2113t homework /t 2020-02-02 20:00 /l home`|
 |help|`help`||

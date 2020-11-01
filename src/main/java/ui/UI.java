@@ -194,7 +194,7 @@ public class UI {
      * @param eventEdited the Event being edited
      */
     public void printEditEventMessage(Event eventEdited) {
-        System.out.println("I've edited this Event: ");
+        System.out.println("I've edited this Event to: ");
         System.out.println(eventEdited.toString());
     }
 
@@ -286,6 +286,9 @@ public class UI {
      * @param conflictEvents an ArrayList of Events to be printed one by one.
      */
     public void printConflictEvents(ArrayList<Event> conflictEvents) {
+        if (conflictEvents == null) {
+            return;
+        }
         if (conflictEvents.size() == 0) {
             return;
         }

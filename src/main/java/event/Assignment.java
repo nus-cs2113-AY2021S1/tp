@@ -58,4 +58,21 @@ public class Assignment extends Event {
         return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
                 + "\n" + (location != null ? location : link);
     }
+
+    /**
+     * Provides the binary operator for checking whether 2 assignments are the same.
+     */
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual = false;
+
+        if (object instanceof Assignment) {
+            isEqual = (this.description.equals(((Assignment) object).description))
+                    && (this.link != null ? (this.link.equals(((Assignment) object).link))
+                    : (this.location.equals(((Assignment) object).location)))
+                    && (this.by.isEqual(((Assignment) object).by));
+        }
+
+        return isEqual;
+    }
 }

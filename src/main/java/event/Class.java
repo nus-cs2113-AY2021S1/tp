@@ -93,4 +93,20 @@ public class Class extends Event {
                 + "\n" + (location != null ? location : link);
     }
 
+    /**
+     * Provides the binary operator for checking whether 2 classes are the same.
+     */
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual = false;
+
+        if (object instanceof Class) {
+            isEqual = (this.description.equals(((Class) object).description))
+                    && (this.link != null ? (this.link.equals(((Class) object).link))
+                    : (this.location.equals(((Class) object).location)))
+                    && (this.at.isEqual(((Class) object).at));
+        }
+
+        return isEqual;
+    }
 }

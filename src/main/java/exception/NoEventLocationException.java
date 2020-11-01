@@ -10,7 +10,7 @@ public class NoEventLocationException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "Please input a valid location and mark it with \"/l\" underline locations or \"/o\" for online "
-                + "location.";
+        return "Please input a valid location and mark it with \"/l\" for underline locations or \"/o\" for online "
+                + "locations.";
     }
 }

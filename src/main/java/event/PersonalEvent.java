@@ -34,8 +34,8 @@ public class PersonalEvent extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (location != null
-                ? location.fileString() : link.fileString());
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (end != null ? end + "//" : "")
+                + (location != null ? location.fileString() : link.fileString());
     }
 
     /**
@@ -106,8 +106,25 @@ public class PersonalEvent extends Event {
      */
     public String toString() {
         return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
-                + (end != null ? "\n(end at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")" :
+                + (end != null ? "\n(end at: " + end.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")" :
                 "")
                 + "\n" + (location != null ? location : link);
+    }
+
+    /**
+     * Provides the binary operator for checking whether 2 classes are the same.
+     */
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual = false;
+
+        if (object instanceof PersonalEvent) {
+            isEqual = (this.description.equals(((PersonalEvent) object).description))
+                    && (this.link != null ? (this.link.equals(((PersonalEvent) object).link))
+                    : (this.location.equals(((PersonalEvent) object).location)))
+                    && (this.at.isEqual(((PersonalEvent) object).at));
+        }
+
+        return isEqual;
     }
 }

@@ -52,11 +52,12 @@ public class EditCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
             throws UndefinedEventException, WritingFileException, EndBeforeStartEventException, EditNoEndTimeException {
-        //events.editEvent();
+        if (index >= events.getSize() || index == -1) {
+            throw new UndefinedEventException(index + 1);
+        }
         Event newEvent = events.editEvent(index, editInformation, startEnd, location, onlineLocation);
         ui.printConflictEvents(events.checkConflictTiming(newEvent));
         ui.printEditEventMessage(newEvent);
-        ui.printNumEvent(events.getSize());
         storage.writeFile(events.getEventList());
     }
 }
