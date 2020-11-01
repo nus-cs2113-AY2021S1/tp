@@ -123,10 +123,8 @@ public class Parser {
 
         if (!command.equals("/addfav") && !command.equals("/execfav") && com.isValid()) {
             previousInput = userInput;
-            System.out.println(previousInput);
         } else {
             previousInput = null;
-            System.out.println("null");
         }
 
         return com.isOngoing();
