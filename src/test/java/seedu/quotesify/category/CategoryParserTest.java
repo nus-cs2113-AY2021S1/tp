@@ -14,9 +14,12 @@ public class CategoryParserTest {
         String param2 = "romance -q 1";
         String param3 = "fantasy -b 1 -q 1";
         try {
-            assertArrayEquals(new String[]{"action", "1", ""}, CategoryParser.getRequiredParameters(param1.split(" ")));
-            assertArrayEquals(new String[]{"romance", "", "1"}, CategoryParser.getRequiredParameters(param2.split(" ")));
-            assertArrayEquals(new String[]{"fantasy", "1", "1"}, CategoryParser.getRequiredParameters(param3.split(" ")));
+            assertArrayEquals(new String[]{"action", "1", ""},
+                    CategoryParser.getRequiredParameters(param1.split(" ")));
+            assertArrayEquals(new String[]{"romance", "", "1"},
+                    CategoryParser.getRequiredParameters(param2.split(" ")));
+            assertArrayEquals(new String[]{"fantasy", "1", "1"},
+                    CategoryParser.getRequiredParameters(param3.split(" ")));
         } catch (QuotesifyException e) {
 
         }
@@ -25,7 +28,8 @@ public class CategoryParserTest {
     @Test
     public void getRequiredParameters_throwsQuotesifyException() {
         String param = "action -b 1 -b 1";
-        Throwable exception = assertThrows(QuotesifyException.class, () -> CategoryParser.getRequiredParameters(param.split(" ")));
+        Throwable exception = assertThrows(QuotesifyException.class,
+                () -> CategoryParser.getRequiredParameters(param.split(" ")));
         assertEquals("Invalid parameters!", exception.getMessage());
     }
 }
