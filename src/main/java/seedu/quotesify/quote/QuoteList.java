@@ -85,10 +85,16 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public String getRandomQuote() {
         try {
-            Random rand = new Random();
-            int randomQuoteNumber = rand.nextInt(getSize() - 1);
-            Quote quoteToPrint = getQuote(randomQuoteNumber);
-            return quoteToPrint.toString();
+            if (getSize() > 1) {
+                Random rand = new Random();
+                int randomQuoteNumber = rand.nextInt(getSize() - 1);
+                Quote quoteToPrint = getQuote(randomQuoteNumber);
+                return quoteToPrint.toString();
+            } else if (getSize() == 1) {
+                return getQuote(0).toString();
+            } else {
+                return DEFAULT_QUOTE;
+            }
         } catch (IllegalArgumentException e) {
             return DEFAULT_QUOTE;
         }
