@@ -460,17 +460,17 @@ View Help | `help` |
 View User Profile | `view profile` |
 View User BMI | `view bmi` |
 View Food Entry | `view food` |
-View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/20/2020`
+View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/10/2020`
 View Exercise Entry | `view exercise` | 
-View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/20/2020`
+View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/10/2020`
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
-View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` |
+View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` | `view summary 26/10/2020`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
 Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
 Edit Goal Entry | `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION` | `edit goal 1 food eat healthier`
-Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/20 3`
+Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/2020 3`
 Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/2020 3`
 Delete a Goal Entry | `delete goal INDEX` | `delete goal 5`
 Clear All Food Entries | `clear food` |
