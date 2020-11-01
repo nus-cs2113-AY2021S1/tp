@@ -6,19 +6,32 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
-import seedu.quotesify.ui.UiMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
 
+/**
+ * Represents the ListRating Command.
+ */
 public class ListRatingCommand extends ListCommand {
 
+    /**
+     * Constructor for the ListRating command.
+     *
+     * @param arguments Input by the user.
+     */
     public ListRatingCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the ListRating command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
@@ -59,7 +72,7 @@ public class ListRatingCommand extends ListCommand {
         if (isFound) {
             ui.printSpecifiedRating(ratings, ratingToPrint);
         } else {
-            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToPrint);
+            System.out.printf((ERROR_LIST_SPECIFIED_RATING_NOT_FOUND) + "\n", ratingToPrint);
             quotesifyLogger.log(Level.INFO, "ratings not found");
         }
     }

@@ -11,12 +11,26 @@ import seedu.quotesify.ui.UiMessage;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the EditRating Command.
+ */
 public class EditRatingCommand extends EditCommand {
 
+    /**
+     * Constructor for the EditRating command.
+     *
+     * @param arguments Input by the user.
+     */
     public EditRatingCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the EditRating command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);

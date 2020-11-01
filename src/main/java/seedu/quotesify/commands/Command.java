@@ -3,8 +3,12 @@ package seedu.quotesify.commands;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+/**
+ * Represents a user command.
+ */
 public abstract class Command {
 
+    /** Tags used to identify the different features. */
     public static final String TAG_BOOK = "-b";
     public static final String TAG_QUOTE = "-q";
     public static final String TAG_QUOTE_REFLECTION = "-qr";
@@ -13,6 +17,7 @@ public abstract class Command {
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
 
+    /** Error messages for the different commands. */
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_DUPLICATE_QUOTE = "This quote has already been added!";
@@ -33,7 +38,7 @@ public abstract class Command {
     public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
-    public static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
+    public static final String ERROR_LIST_SPECIFIED_RATING_NOT_FOUND = "I can't find any books rated %d star!";
     public static final String ERROR_NO_AUTHOR_NAME = "Please type in the author name.";
     public static final String ERROR_NO_PAGE_NUM = "There is no page number provided!";
     public static final String ERROR_NO_TASK_NAME = "There is no task name provided!";
@@ -59,7 +64,18 @@ public abstract class Command {
     public static final String AUTHORNAME_KEYWORD = "authorName";
     public static final String DONE_KEYWORD = "done";
 
+    /**
+     * Executes the different commands.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public abstract void execute(TextUi ui, Storage storage);
 
+    /**
+     * Decides if the program should be terminated.
+     *
+     * @return decision to terminate the program.
+     */
     public abstract boolean isExit();
 }

@@ -1,30 +1,58 @@
-# Duke project template
+# Quotesify
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Quotesify is a greenfield Java project by a team of software engineering students.
 
-## Setting up in Intellij
+Quotesify is a free desktop CLI application to help users in their reading activities.
 
-Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
+With Quotesify, users can add books and quotes that they wish to remember. They can categorize their books and quotes
+by author, customized categories, and even rate their books. Quotesify also comes with a progress tracker just to
+improve the reading experience of users.
 
-1. **Configure Intellij for JDK 11**, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
-1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+Interested to contribute to the development of Quotesify? Given below are instructions on how to use it.
+
+## Setting up in IntelliJ
+
+1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp),
+and clone the fork to your computer.
+2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
+click `File` > `Close Project` to close any existing project.
+3. Set up the correct JDK version for Gradle:
+    1. Click `Configure` > `Project Defaults` > `Project Structure`.
+    2. Click `New…` and find the directory where you saved your JDK.
+4. Click `Import Project`.
+5. Locate the *build.gradle* file and select it.
+6. Click `OK`.
+7. Click `Open as Project`.
+8. Click `OK` to accept all default settings.
+9. To verify the set up, locate the `Quotesify.java` file, right-click it and select `Run Quotesify.main()`.
+If the setup is correct, you should see something like this as shown below:
+
+```
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :Quotesify.main()
+________                __                .__  _____       
+\_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.
+ /  / \  \|  |  \/  _ \   __\/ __ \ /  ___/  \   __<   |  |
+/   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
+\_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
+       \__>                      \/     \/          \/    
+Welcome to Quotesify v2.1!
+Before you continue, here's something:
+Better days are coming, they are called Saturday and Sunday.
+---------------------------------------------------------------------------------------------------------------------------------------
+
+What would you like to do with Quotesify?
+```
+
+## Documentation
+
+Documentation for Quotesify is stored in */docs* directory.
+
+Click [here](https://ay2021s1-cs2113t-t09-3.github.io/tp/) to access the documentation such as User Guide and Developer Guide.
+
 
 ## Build automation using Gradle
 
@@ -50,15 +78,3 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 ## CI using GitHub Actions
 
 The project uses [GitHub actions](https://github.com/features/actions) for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
-
-## Documentation
-
-`/docs` folder contains a skeleton version of the project documentation.
-
-Steps for publishing documentation to the public: 
-1. If you are using this project template for an individual project, go your fork on GitHub.<br>
-   If you are using this project template for a team project, go to the team fork on GitHub.
-1. Click on the `settings` tab.
-1. Scroll down to the `GitHub Pages` section.
-1. Set the `source` as `master branch /docs folder`.
-1. Optionally, use the `choose a theme` button to choose a theme for your documentation.

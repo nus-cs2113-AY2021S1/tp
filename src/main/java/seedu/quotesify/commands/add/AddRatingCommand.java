@@ -7,16 +7,29 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
-import seedu.quotesify.ui.UiMessage;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the AddRating Command.
+ */
 public class AddRatingCommand extends AddCommand {
 
+    /**
+     * Constructor for the AddRating command.
+     *
+     * @param arguments Input by the user.
+     */
     public AddRatingCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the AddRating command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
