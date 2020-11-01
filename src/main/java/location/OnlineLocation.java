@@ -42,7 +42,7 @@ public class OnlineLocation {
      * @return the link of the location. If there is password, return the password also.
      */
     public String toString() {
-        return "link:" + link + (password != null ? " password: " + password : "");
+        return "link: " + link + (password != null ? " password: " + password : "");
     }
 
     /**

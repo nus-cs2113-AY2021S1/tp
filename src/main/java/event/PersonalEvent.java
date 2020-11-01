@@ -20,6 +20,14 @@ public class PersonalEvent extends Event {
     protected LocalDateTime at;
     protected LocalDateTime end = null;
 
+    public void setAt(LocalDateTime at) {
+        this.at = at;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
     /**
      * Convert the information about this personal event to a string that is to be stored in a file.
      *
