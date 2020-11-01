@@ -1,0 +1,43 @@
+@startuml
+
+box Logic
+participant ":Parser"
+participant ":ListFavCommand"
+end box
+box Model
+participant ":FavList"
+end box
+box Ui
+participant "<<class>>\n:Ui"
+end box
+
+[-> ":Parser": user command
+activate ":Parser"
+create ":ListFavCommand"
+":Parser" -> ":ListFavCommand"
+activate ":ListFavCommand"
+":ListFavCommand" --> ":Parser"
+deactivate ":ListFavCommand"
+":Parser" -> ":ListFavCommand": executeCommand()
+activate ":ListFavCommand"
+
+":ListFavCommand" -> ":FavList"
+activate ":FavList"
+":FavList" -> ":FavList": listFav()
+activate ":FavList"
+opt empty list
+":FavList" --> ":FavList"
+":FavList" --> ":ListFavCommand"
+end
+":FavList" -> "<<class>>\n:Ui": printFavList()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" --> ":FavList"
+deactivate "<<class>>\n:Ui"
+":FavList" --> ":ListFavCommand"
+deactivate ":FavList"
+
+":ListFavCommand" --> ":Parser": list of favourites
+deactivate ":ListFavCommand"
+[<-- ":Parser": isOngoing
+deactivate ":Parser"
+@enduml
