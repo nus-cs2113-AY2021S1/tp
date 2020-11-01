@@ -4,44 +4,46 @@ CS2113T – T12 – 04 Scheduler--;
 Scheduler--; Does the job
 
 ## Table of Contents
-[About Scheduler--;](#about-scheduler--) <br>
-&nbsp;&nbsp;[What can it do?](#what-can-it-do) <br>
-&nbsp;&nbsp;[How to use this document?](#how-to-use-this-document) <br>
-&nbsp;&nbsp;[Conventions used in this document](#conventions-used-in-this-document) <br>
-[Quick Start](#quick-start) <br>
-&nbsp;&nbsp;[System Requirements](#system-requirements) <br>
-&nbsp;&nbsp;[Setup Instructions](#setup-instructions) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Windows](#windows) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Mac OS X](#mac-os-x) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Linux](#linux) <br>
-&nbsp;&nbsp;[Test run](#test-run) <br>
-[Features](#features) <br>
-&nbsp;&nbsp;[Viewing help: help](#viewing-help-help-colin-ng) <br>
-&nbsp;&nbsp;[Adding an event: add](#adding-an-event-add-matthew-gani) <br>
-&nbsp;&nbsp;[List events: list](#list-events-list-marcus-ng) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[List all events](#list-all-events) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[List all events of a type](#list-all-events-of-a-type) <br>
-&nbsp;&nbsp;[Calendar format list:calendar](#calendar-format-list-calendar-marcus-ng) <br>
-&nbsp;&nbsp;[Deadlines: deadline](#deadlines-deadline-qing-ning) <br>
-&nbsp;&nbsp;[Repeat on daily/weekly/monthly basis: repeat](#repeat-on-dailyweeklymonthly-basis-repeat-colin-ng) <br>
-&nbsp;&nbsp;[Check availability on a specific date and time: check](#check-availability-on-a-specific-date-and-time-check-marcus-tan) <br>
-&nbsp;&nbsp;[Goal setting and viewing: goal](#goal-setting-and-viewing-goal-marcus-ng) <br>
-&nbsp;&nbsp;[Mark events as done: done](#mark-events-as-done-done-marcus-tan) <br>
-&nbsp;&nbsp;[Mark events as not done: undone](#mark-events-as-not-done-undone-marcus-tan) <br>
-&nbsp;&nbsp;[Deleting an event: delete](#deleting-an-event-delete-marcus-tan) <br>
-&nbsp;&nbsp;[Note taking: note](#note-taking-note-qing-ning) <br>
-&nbsp;&nbsp;[Reminder: reminder](#reminder-reminder-qing-ning) <br>
-&nbsp;&nbsp;[Extracting events from texts: extract](#extracting-events-from-texts-extract-matthew-gani) <br>
-&nbsp;&nbsp;[Save events: save](#save-events-events-colin) <br>
-&nbsp;&nbsp;[Exiting the program](#exiting-the-program-bye) <br>
-[Command Summary](#command-summary)
+[1. About Scheduler--;](#1-about-scheduler--) <br>
+&nbsp;&nbsp;[1.1 What can it do?](#11-what-can-it-do) <br>
+&nbsp;&nbsp;[1.2 About this guide](#12-about-this-guide) <br>
+&nbsp;&nbsp;[1.3 How to use this document?](#13-how-to-use-this-document) <br>
+&nbsp;&nbsp;[1.4 Conventions used in this document](#14-conventions-used-in-this-document) <br>
+[2. Quick Start](#2-quick-start) <br>
+&nbsp;&nbsp;[2.1 System Requirements](#21-system-requirements) <br>
+&nbsp;&nbsp;[2.2 Setup Instructions](#22-setup-instructions) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 Windows](#221-windows) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 Mac OS X](#222-mac-os-x) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 Linux](#223-linux) <br>
+&nbsp;&nbsp;[2.3 Test run](#23-test-run) <br>
+[3. Features](#3-features) <br>
+&nbsp;&nbsp;[3.1 Viewing help: help](#31-viewing-help-help-colin-ng) <br>
+&nbsp;&nbsp;[3.2 Adding an event: add](#32-adding-an-event-add-matthew-gani) <br>
+&nbsp;&nbsp;[3.3 List events: list](#33-list-events-list-marcus-ng) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3.1 List all events](#331-list-all-events-of-a-type) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3.2 List all events of a type](#332-list-all-events) <br>
+&nbsp;&nbsp;[3.4 Calendar format list: calendar](#34-calendar-format-list-calendar-marcus-ng) <br>
+&nbsp;&nbsp;[3.5 Deadlines: deadline](#35-deadlines-deadline-qing-ning) <br>
+&nbsp;&nbsp;[3.6 Repeat on daily/weekly/monthly basis: repeat](#36-repeat-on-dailyweeklymonthly-basis-repeat-colin-ng) <br>
+&nbsp;&nbsp;[3.7 Check availability on a specific date and time: check](#37-check-availability-on-a-specific-date-and-time-check-marcus-tan) <br>
+&nbsp;&nbsp;[3.8 Goal setting and viewing: goal](#38-goal-setting-and-viewing-goal-marcus-ng) <br>
+&nbsp;&nbsp;[3.9 Mark events as done: done](#39-mark-events-as-done-done-marcus-tan) <br>
+&nbsp;&nbsp;[3.10 Mark events as not done: undone](#310-mark-events-as-not-done-undone-marcus-tan) <br>
+&nbsp;&nbsp;[3.11 Deleting an event: delete](#311-deleting-an-event-delete-marcus-tan) <br>
+&nbsp;&nbsp;[3.12 Note taking: note](#312-note-taking-note-qing-ning) <br>
+&nbsp;&nbsp;[3.13 Reminder: reminder](#313-reminder-reminder-qing-ning) <br>
+&nbsp;&nbsp;[3.14 Extracting events from texts: extract](#314-extracting-events-from-texts-extract-matthew-gani) <br>
+&nbsp;&nbsp;[3.15 Save events: save](#315-save-events-events-colin) <br>
+&nbsp;&nbsp;[3.16 Exiting the program: bye](#316-exiting-the-program-bye) <br>
+[4. FAQ](#4-faq) <br>
+[5. Command Summary](#5-command-summary)
 
-## About Scheduler--;
+## 1. About Scheduler--;
 Hello! Welcome to scheduler--;
 
 Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
-### What can it do?
+### 1.1 What can it do?
 
 Scheduler--; comes with the following list of features to help you keep organised of your schedule.  
 - Check if your schedule is free between a certain date and time period
@@ -52,14 +54,14 @@ Scheduler--; comes with the following list of features to help you keep organise
 - Set personal daily goals for yourself 
 - And many more... 
 
-### About this guide
+### 1.2 About this guide
 This user guide is for your reference on how to set up the Scheduler--; program on your computer. It provides you with information on how to get things done with scheduler--; and how to use the commands in the program. 
 
-### How to use this document?
+### 1.3 How to use this document?
 To get started, take a look at the section labelled “Quick Start” to set up the application to run on your computer.  
 
 Once you have set up the application, you may use the table of contents present in this document to help find the correct command, learn how to use it and what it does.  
-### Conventions used in this document
+### 1.4 Conventions used in this document
 Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
@@ -91,48 +93,49 @@ This is a warning textbox. Any user interaction with the program that may result
   e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 {{box op="end"}}
 
-## Quick Start
+## 2. Quick Start
 
-### System Requirements
+### 2.1 System Requirements
 To run Scheduler--;, your computer must meet these minimum system requirements 
 
 - Operating System: Windows 7 and above, Mac OS X or Linux 
 - Java 11 installed on computer 
 
-### Setup Instructions
+### 2.2 Setup Instructions
 
-#### Windows
+#### 2.2.1 Windows
 
 1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from here 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
 1. Copy the file to the folder you want to use as the folder for the Scheduler— 
-1. open the command prompt by entering `cmd` into the search bar and press enter 
-1. type `chcp 65001` into the command prompt and press enter 
-1. navigate to the folder `C:\Duke` in the command prompt 
-1. type `java -Dfile.encoding=UTF-8 -jar duke.jar` into the command prompt and press enter. 
+1. Open the command prompt by entering `cmd` into the search bar and press enter 
+1. Type `chcp 65001` into the command prompt and press enter 
+1. Navigate to the folder where you saved the jar file using the command prompt 
+1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler--;. 
+1. Type `java -jar scheduler.jar` into the command prompt and press enter. 
 1. The welcome message for the program should appear. 
 
-#### Mac OS X
+#### 2.2.2 Mac OS X
 
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from here 
 1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal 
 1. Navigate to the folder you have stored the jar file in the command prompt 
-1. Type `java -jar duke.jar` into the terminal and press enter. 
+1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
-#### Linux
+#### 2.2.3 Linux
 
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from here 
 1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
 1. Open the terminal in your linux distribution
 1. Navigate to the folder you have stored the jar file in the command prompt 
-1. Type `java -jar duke.jar` into the terminal and press enter. 
+1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
-### Test run
+### 2.3 Test run
 1. Type the command in the command box and press Enter to execute. 
 
 Some examples you can try: 
@@ -143,10 +146,10 @@ Some examples you can try:
 1. Refer to Features section for details of each command 
 
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
-## Features
+## 3. Features
 This section introduces and explains the features of Scheduler--;!
 
-### Viewing help: help (Colin Ng)
+### 3.1 Viewing help: help (Colin Ng)
 If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler--; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
@@ -207,39 +210,43 @@ text in uppercase surrounded by square brackets [] indicates optional arguments 
 _________________________________
 ```
 
-### Adding an event: `add` (Matthew Gani)
+### 3.2 Adding an event: `add` (Matthew Gani)
 New to creating your events using Scheduler--;?
 Utilize our simple to use yet effective add feature which comprises of 3 different event types. 
 You can add dates and times to these events and even website links and locations to some of them! 
 
-Format: `add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATON]; DD/MM/YY; HH:MM AM/PM`
+The types of events available to be added include:
+- Zoom Meetings: Zoom
+- NUS timetable/lessons: Timetable
+- Personal Events: Personal
 
-•	Types of events:
-1.	Zoom Meetings: Zoom
-2.	NUS timetable/lessons: Timetable
-3.	Personal Events: Personal 
+Format: `add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
-•	Only the full word will be recognized as a valid event type. (E.g persona will not match Personal)
+- `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
+- `EVENT_DESCRIPTION` is the description or name of the event.
+- `LINK/LOCATION` is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively.
+- `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
+- `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format.
 
-•	Time can be in the format of HHMM(24-hour) or HH:MM AM/PM (12-hour)
+Each event can have different combinations of fields for example:
 
-•	Timetable events can contain: <br>
-a.	Description, date and time <br>
-b.	Description, location, date and time
+Timetable events can contain:
+- Description, date and time 
+- Description, location, date and time
 
-•	Zoom events can contain: <br>
-a.	Description and link <br>
-b.	Description, link, date and time
+Zoom events can contain: 
+- Description and link 
+- Description, link, date and time
 
-•	Personal events can contain: <br>
-a.	Description <br>
-b.	Description and date <br>
-c.	Description, date and time
+Personal events can contain: 
+- Description 
+- Description and date 
+- Description, date and time
 
-Examples: <br>
-•	`add Zoom CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
-•	`add personal Family Meeting; 18/09/20`  <br>
-•	`add Timetable CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`
+Examples: 
+- `add Zoom CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
+- `add personal Family Meeting; 18/09/20`  <br>
+- `add Timetable CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`
 
 Expected Output:
 ```
@@ -260,19 +267,21 @@ You have successfully added this event to your list!
 [T][✕] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
 _________________________________
 ```
-Note: <br>
-•	When giving the event type, take note that it is case-insensitive:
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+- When giving the event type, take note that it is case-insensitive:
 `add Zoom` is the same as `add zoom`
 
-•	Only the full word will be recognized as the event type:
-
+- Only the full word will be recognized as the event type:
 `add z` will NOT add a zoom event
+{{box op="end"}}
 
-Warning!<br>
+{{box op="start" cssClass="boxed warningBox"}}
+**Warning!**
 Typing in the wrong format for date or time will cause the event to not be made. 
+{{box op="end"}}
 
-
-### List events: `list` (Marcus Ng)
+### 3.3 List events: `list` (Marcus Ng)
 
 After you have added your events, it is essential that you can view the events you have added.
 You can do so using the list command to print out a list of your events in the order it was added in. 
@@ -285,7 +294,7 @@ The accepted arguments for this are “personal”, “timetable” and “zoom�
 When the optional argument `[EVENT_TYPE]` is omitted,
 list will print a list of available event types.
 
-#### List all events of a type
+#### 3.3.1 List all events of a type
 
 Example: ```list Zoom```
 
@@ -307,7 +316,7 @@ _________________________________
 
 {{box op="end"}}
 
-#### List all events
+#### 3.3.2 List all events
 
 You can print a list of all events by executing the following command: ```list all```
 
@@ -318,7 +327,7 @@ You can print a list of all events by executing the following command: ```list a
 
 {{box op="end"}}
 
-### Calendar format list: `calendar` (Marcus Ng)
+### 3.4 Calendar format list: `calendar` (Marcus Ng)
 
 If you feel that the list command does not print the events in a format that you like,
 you can use the calendar command to sort everything by date and time and view your events by date.
@@ -356,7 +365,7 @@ End of calendar
 _________________________________
 ```
 
-### Deadlines: `deadline` (Qing Ning)
+### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
 
 Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM`
@@ -396,7 +405,7 @@ The event index keyed in have to be valid so that deadline can be created for th
 {{box op="end"}}
 
 
-### Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
+### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Sets a specific event to be repeated either weekly or monthly in the calendar. 
 
 Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler--; will record down the event for you.  
@@ -485,7 +494,7 @@ _________________________________
 _________________________________
 ```
 
-### Check availability on a specific date and time: `check` (Marcus Tan)
+### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
 Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_DATE]`
@@ -525,7 +534,7 @@ _________________________________
 {{box op="end"}}
 
 
-### Goal setting and viewing: `goal` (Marcus Ng)
+### 3.8 Goal setting and viewing: `goal` (Marcus Ng)
 
 Have a long term or short-term goal? The goal command helps you to keep track of it. 
 You can use the goal command to print, set, remove or change your goal. 
@@ -558,7 +567,7 @@ Goal changed to: save up $100
 _________________________________
 ```
 
-### Mark events as done: `done` (Marcus Tan)
+### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
 
 Format: `done EVENT_TYPE EVENT_INDEX [EVENT_DATE]` 
@@ -581,7 +590,7 @@ You have successfully marked this event as done!
 _________________________________
 ```
 
-### Mark events as not done: `undone` (Marcus Tan)
+### 3.10 Mark events as not done: `undone` (Marcus Tan)
 Did you accidentally mark an event as done? Not to worry, just use the undone command to set the event status back to undone.
 
 Format: `undone EVENT_TYPE EVENT_INDEX [EVENT_DATE]`
@@ -605,7 +614,7 @@ _________________________________
 ```
 
 
-### Deleting an event: `delete` (Marcus Tan)
+### 3.11 Deleting an event: `delete` (Marcus Tan)
 Want to remove an event from your schedule? Use the delete command to get rid of unnecessary events.
 
 Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
@@ -623,7 +632,7 @@ You have successfully deleted this event!
 _________________________________
 ```
 
-### Note Taking: `note` (Qing Ning)
+### 3.12 Note Taking: `note` (Qing Ning)
 Need to take last minutes meeting notes? Need to write some notes but don’t know where to keep them? Fear not! We have got you covered. Use this command to take notes and attach them to the event you are attending. You can also choose to open an empty note and type the notes. 
 
 Format: `note EVENT_TYPE; EVENT_INDEX`
@@ -671,7 +680,7 @@ The event index keyed in have to be valid so that deadline can be created for th
 
 {{box op="end"}}
 
-### Reminder: `reminder` (Qing Ning)
+### 3.13 Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
 
 Format: `reminder`
@@ -683,20 +692,37 @@ You have the following events today:
 [Z][X] math, Link: www.zoom.com/blah on 2010-10-26, 12:00
 [P][X] sleep on 2020-10-26, 23:00
 ```
-### Extracting events from texts: `extract` (Matthew Gani)
-Ever feel tired of reading long emails everyday? 
+### 3.14 Extracting events from texts: `extract` (Matthew Gani)
+Ever feel tired of reading long emails everyday? Copy and paste your email into this feature!
 You can use our extract function which will help you read any text and extract out possible dates and times. 
 You’ll be able to choose the dates and times detected and create a Personal event. 
 
-The extract feature detects dates in the DD/Month name/YYYY format or the Month name/ DD/YYYY format which is used the most in emails. 
+The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. 
 
-Format: `extract TEXT SUBJECT; TEXT BODY`
+This feature needs a 3 step process to function, please press your enter key (denoted by `<enter key>`) in between all 3 steps for it to work properly.
 
-Example: `extract CG2271 Quiz 2; Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.`
+Format: `extract TEXT_SUBJECT;` `<enter key>` `TEXT_BODY` `<enter key>` `extractend` `<enter key>`
+- `TEXT_SUBJECT` is the subject of the email or the name you want your event to be.
+- `TEXT_BODY` is the body of the email of the text to be scanned through for dates and times.
+
+
+Example: `extract CG2271 Quiz 2;` `<enter key>` <br>
+`Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.` `<enter key>`<br>
+`extractend` `<enter key>`
 
 Expected Output:
+
+After `extract CG2271 Quiz 2;` `<enter key>`:
 ````
 _________________________________
+Copy and paste or enter the body of the text you want to extract from!
+At the end of your text, press enter to go to the next line, enter 'extractend' with no quotation marks and press enter once more.
+_________________________________
+````
+After `Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.` `<enter key>`
+and `extractend` `<enter key>`:
+
+````
 We have detected 2 dates in this text body!
 Please select the date you want for this event from the list below!
 _________________________________
@@ -719,22 +745,41 @@ As shown above, the user can choose the date/time they want for the event as lon
  In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
  
  
- Note:<br>
- •	The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
- 
- •	It is also able to attach the current year to the date if it is not specified in the text.
+{{box op="start" cssClass="boxed noteBox"}}
+**Note!**
+- The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
+- It is also able to attach the current year to the date if it is not specified in the text.
+- The text body can include multiple paragraphs that are copy pasted from emails.
+{{box op="end"}}
 
 
 
-### Save events: `events` (Colin)
+### 3.15 Save events: `events` (Colin)
 
-### Exiting the program: `bye` 
+### 3.16 Exiting the program: `bye` 
 Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler--.
 
 Format: `bye`
 
 
-## Command Summary
+## 4. FAQ
+In this section, you can find some frequently asked questions(FAQ).
+
+**Q**: How do I transfer my data to another computer? <br>
+**A**:
+
+**Q**: What if I run into bugs while using Scheduler--;? <br>
+**A**:
+
+**Q**: What if I have any suggestions for Scheduler--? <br>
+**A**:
+
+**Q**: Can I create 2 events on the same date and time? <br>
+**A**:
+
+
+## 5. Command Summary
+(Insert preface)
 
 | Action | Format, Examples |
 |--------|------------------|
@@ -748,7 +793,7 @@ Format: `bye`
 |Set event as undone|undone EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: undone zoom 1 3/12/2020 <br>|
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
-|Extract|extract TEXT SUBJECT; TEXT BODY <br>|
+|Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
 |Reminder|reminder <br>|
 |Save|save <br>|
 |Help|help <br>|

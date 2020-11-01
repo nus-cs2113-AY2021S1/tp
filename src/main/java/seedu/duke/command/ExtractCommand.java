@@ -49,6 +49,7 @@ public class ExtractCommand extends Command {
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
         ui.printExtractTextBodyRequestMessage();
+        ui.printDividerLine();
         textBody = receiveTextBody(ui);
         if (textBody == null) {
             throw new InvalidExtractCommandException("Text body was not entered correctly!");
@@ -87,7 +88,7 @@ public class ExtractCommand extends Command {
         String bodyLine = "";
         String fullTextBody = "";
         while (!bodyLine.equals("extractend")) {
-            bodyLine = ui.receiveCommand();
+            bodyLine = ui.receiveCommand().trim();
             fullTextBody = fullTextBody.concat(" " + bodyLine);
         }
         return fullTextBody;
