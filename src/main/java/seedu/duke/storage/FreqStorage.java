@@ -71,6 +71,10 @@ public class FreqStorage extends Storage {
             BusStops.values()[index].setCount(currInt);
             index++;
         }
+        corruptedFileHandling(index);
+    }
+
+    private void corruptedFileHandling(int index) throws CustomException {
         if (index < ALL_STOPS - 1) {
             isCorrupted = true;
             initialiseFile();
