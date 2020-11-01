@@ -60,4 +60,10 @@ public class EditCommand extends Command {
         ui.printEditEventMessage(newEvent);
         storage.writeFile(events.getEventList());
     }
+
+    public static String[] newEditInformation() {
+        UI ui = new UI();
+        String[] editInformation = ui.readEditCommand();
+        return editInformation;
+    }
 }

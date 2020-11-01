@@ -63,8 +63,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import ui.UI;
-import eventlist.EventList;
 
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
@@ -244,9 +242,7 @@ public abstract class Parser {
                 throw new UndefinedEventException(eventIndex + 1);
             }
 
-            // parse and format user inputs.
-            UI ui = new UI();
-            String[] editInformation = ui.readEditCommand();
+            String[] editInformation = EditCommand.newEditInformation();
             LocalDateTime[] startEnd = new LocalDateTime[2];
 
 
@@ -254,7 +250,6 @@ public abstract class Parser {
                 if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
                         && !editInformation[0].equals(PERSONAL_EVENT)) {
                     throw new InvalidEditTypeException();
-
                 }
             }
 
