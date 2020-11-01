@@ -5,8 +5,9 @@ quiz t/OOP n/1 s/2
 hint
 1
 
-quiz t/OOP n/1 s/-10
+quiz t/OOP n/1 s/3
 2
+
 quiz t/OOP n/-1 s/2
 quiz t/OOP n/50 s/2
 quiz t/OOP n/1 s/0
