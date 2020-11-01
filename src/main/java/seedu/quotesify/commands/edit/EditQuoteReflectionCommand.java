@@ -26,13 +26,16 @@ public class EditQuoteReflectionCommand extends  EditCommand {
             }
 
             int quoteNumToEdit = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_EDIT);
-            String editedReflection = QuoteParser.getEditedReflection(information);
+            if (quoteList.getQuote(quoteNumToEdit).getReflection() == null) {
+                throw new QuotesifyException(ERROR_NO_REFLECTION);
+            }
 
+            String editedReflection = QuoteParser.getEditedReflection(information);
             if (!editedReflection.isEmpty()) {
                 quoteList.updateReflection(editedReflection, quoteNumToEdit);
                 ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit), editedReflection);
             } else {
-                throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());

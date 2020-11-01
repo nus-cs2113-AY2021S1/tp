@@ -30,7 +30,7 @@ public class AddQuoteReflectionCommand extends AddCommand {
                 Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
                 ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
             } else {
-                throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
