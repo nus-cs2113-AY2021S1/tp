@@ -39,7 +39,6 @@ public class Quotesify {
     }
 
     public void exit() {
-        ui.printDividerLine();
         ui.printRandomQuote();
         ui.showGoodbyeMessage();
         ui.printDividerLine();
@@ -54,6 +53,7 @@ public class Quotesify {
             ui.printDividerLine();
             if (command == null) {
                 ui.printInvalidQuotesifyCommand();
+                ui.printDividerLine();
                 continue;
             }
             command.execute(ui, storage);
