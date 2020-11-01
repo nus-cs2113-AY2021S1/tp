@@ -57,6 +57,9 @@ public class Module {
 
     public Slot getSlot(int index) throws ZoomasterException {
         Slot slot;
+        if (slots.size() == 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.ZERO_SLOTS_IN_MODULE);
+        }
         try {
             slot = slots.get(index);
         } catch (IndexOutOfBoundsException e) {

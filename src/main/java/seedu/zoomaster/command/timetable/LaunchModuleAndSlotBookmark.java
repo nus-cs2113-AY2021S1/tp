@@ -24,7 +24,7 @@ public class LaunchModuleAndSlotBookmark extends Command {
         } else if (!details.startsWith(" ")) {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-        moduleAndSlotIndex = Arrays.asList(details.trim().split(" ", 2));
+        moduleAndSlotIndex = Arrays.asList(details.trim().split("\\s+", 2));
     }
 
     @Override

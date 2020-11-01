@@ -30,6 +30,7 @@ public class AddSlotCommand extends Command {
      * @param command The user input command.
      * @throws ZoomasterException if input command is invalid.
      */
+    //@@author xingrong123
     public AddSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(ADD_KW);
         String details = command.substring(ADD_KW.length());
@@ -38,7 +39,7 @@ public class AddSlotCommand extends Command {
         } else if (!details.startsWith(" ")) {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-        String[] stringArray = details.trim().split(" ", 2);
+        String[] stringArray = details.trim().split("\\s+", 2);
         moduleCode = stringArray[0].toUpperCase();
         if (stringArray.length > 1) {
             commands = Arrays.asList(stringArray[1].split(","));
@@ -90,7 +91,7 @@ public class AddSlotCommand extends Command {
 
     protected String create(String command, Module module, Timetable timetable) throws ZoomasterException {
         String message = "";
-        List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
+        List<String> slotAndBookmark = Arrays.asList(command.trim().split("\\s+"));
         if (isAddModuleBookmark(slotAndBookmark)) {
             message = addBookmarkToModule(module, slotAndBookmark);
         } else if (slotAndBookmark.size() == 2) {
@@ -112,7 +113,7 @@ public class AddSlotCommand extends Command {
             LocalTime endTime;
             if (!Day.isDay(day)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIMETABLE_DAY,
-                        "  Invalid day input: " + day);
+                        "  Invalid day input: " + day + ". (make sure that the description only contains one word)");
             }
             try {
                 startTime = LocalTime.parse(slotAndBookmark.get(2));
@@ -178,8 +179,9 @@ public class AddSlotCommand extends Command {
     }
 
     private void createBookmark(String url, String lesson, Slot newSlot) throws ZoomasterException {
-        if (!url.startsWith("www.") && !url.startsWith("https://")) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL, "invalid url format: " + url);
+        if (!Bookmark.isUrlValid(url)) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL, "invalid url format: " + url + "\n"
+            + "URL must start with either 'www.', 'http://' or 'https://' and have no spaces\n");
         }
         Bookmark bookmark = new Bookmark(lesson, url);
         newSlot.addBookmark(bookmark);
@@ -204,4 +206,5 @@ public class AddSlotCommand extends Command {
         }
         return false;
     }
+
 }

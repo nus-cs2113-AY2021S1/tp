@@ -39,7 +39,7 @@ public class Bookmark {
      * @throws ZoomasterException if the command format is invalid or if the url is invalid.
      */
     public static List<String> extractDescriptionAndUrl(String input) throws ZoomasterException {
-        List<String> descriptionUrl = Arrays.asList(input.split(" ", 2));
+        List<String> descriptionUrl = Arrays.asList(input.split("\\s+", 2));
         if (descriptionUrl.size() != 2) {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_ADD_BOOKMARK_INPUT);
         }
@@ -49,7 +49,7 @@ public class Bookmark {
         return descriptionUrl;
     }
 
-    private static Boolean isUrlValid(String url) {
+    public static Boolean isUrlValid(String url) {
         if (url.contains(" ")) {
             return false;
         }
