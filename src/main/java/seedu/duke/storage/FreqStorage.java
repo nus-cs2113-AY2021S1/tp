@@ -59,6 +59,11 @@ public class FreqStorage extends Storage {
         File savedFile = new File(dir);
         Scanner fileScanner = new Scanner(savedFile);
         int index = 0;
+
+        if (savedFile.length() == 0) {
+            initialiseFile();
+        }
+
         while (fileScanner.hasNext() && !isCorrupted) {
             int currInt = 0;
             try {
@@ -88,7 +93,7 @@ public class FreqStorage extends Storage {
         }
     }
 
-    private void initialiseFile() throws CustomException {
+    public void initialiseFile() throws CustomException {
         BusStops.resetSearchFrequency();
         updateFile();
         isCorrupted = false;
