@@ -10,7 +10,6 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
