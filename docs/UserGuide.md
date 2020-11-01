@@ -5,8 +5,7 @@
   
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
-If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function 
-on your browser.
+If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
 
 
 <br/><br/> 
@@ -39,7 +38,10 @@ access these features.
     * [Edit slot's module, title, time:](#edittimeslot)  **edit**
     * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
   * [5.4 Planner mode](#plannermode)
-    * a
+    * [Load planner:](#loadplanner) **load**
+    * [Show planner:](#showplanner) **show**
+    * [Add meeting:](#addmeeting) **add**
+    * [Save planner:](#saveplanner) **save**
 * [6.0 FAQ](#faq)
 * [7.0 Command Summary](#command-summary)
   
@@ -158,8 +160,7 @@ Example of usage:
 <br/><br/> 
 <a name="mode"></a>  
 #### 5.1.2 Switch mode: `mode` (Yu Shing)
-You can switches between the “bookmark” and “timetable” modes. 
-Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
+You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
 
 There are three modes for Zoomaster, Bookmark, Timetable and Planner modes.
 
@@ -193,13 +194,22 @@ Format: clear
 
 <br/><br/> 
 <a name="launchnow"></a>  
+
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
-You can launches the bookmarks of a current lesson slot in your timetable. 
+You can launch the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, 
 allowing you to launch your zoom session ahead of time.
   
 ```
 Format: launch now    
+```
+
+<br/><br/> 
+<a name="clear"></a>  
+#### 2.1.4. Clear screen: `clear`
+This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
+```
+Format: clear
 ```
 
 <br/><br/> 
@@ -210,7 +220,7 @@ You can exit the application by using the exit command.
 ```
 Format: exit    
 ```
->You should see this message on exit
+>You should see this message on exit  
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
@@ -234,13 +244,14 @@ Adds a URL bookmark with a description.
 ```
 Format: add {DESCRIPTON} {URL}
 ``` 
-* The `DESCRIPTION` can only contain one word (no whitespace inside).  
-* The `URL` has to start with `www.` or `https://`.  
-* There should be strictly one space between the `DESCRIPTION` and `URL`.    
+* The `DESCRIPTION` must only contain one word (no whitespace inside).  
+* The `URL` has to start with `www.`, `http://` or `https://`.  
+* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link.  
   
 Example of usage:
-* `add cs2113t-website www.cs2113t.nus.edu.sg/`  
-* `add cs2113t-website https://cs2113t.nus.edu.sg/`  
+* `add google www.google.com/`  
+* `add example http://example.com`  
+* `add cs2113t-website https://nus-cs2113-ay2021s1.github.io/website/`  
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
@@ -397,43 +408,55 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
     which is valid and not a duplicate will then be added to the existing `cs2113t` module.
-  
+* The chaining of commands only performs on one module which is {MODULE}.    
+* The `DESCRIPTION` must only contain one word (no whitespace inside).  
+* The `URL` has to start with `www.`, `http://` or `https://`.  
+ 
+* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link. 
+* Parameter `DAY` takes three letter abbreviations of days in a week
+  * The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**
+
+
 Example of usage:   
 
 * Adding a module  
 input:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addmoduleinput.PNG?raw=true)  
+![](./images/addmoduleinput.PNG)  
 output:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
+![](./images/addbookmarktomoduleoutput.PNG)  
 
 
 * Adding a slot to a module  
 input:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleinput.PNG?raw=true)  
+![](./images/addslottomoduleinput.PNG)  
 output:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addslottomoduleoutput.PNG?raw=true)  
+![](./images/addslottomoduleoutput.PNG)  
 
 * Adding a bookmark to a module  
 input:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleinput.PNG?raw=true)  
+![](./images/addbookmarktomoduleinput.PNG)  
 output:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktomoduleoutput.PNG?raw=true)  
+![](./images/addbookmarktomoduleoutput.PNG)  
 
 * Adding a bookmark to a slot  
 input:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotinput.PNG?raw=true)  
+![](./images/addbookmarktoslotinput.PNG)  
 output:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addbookmarktoslotoutput.PNG?raw=true)  
+![](./images/addbookmarktoslotoutput.PNG)  
 
 * Chaining commands  
 input:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandinputnew.PNG?raw=true)  
+![](./images/addchaincommandinputnew.PNG)  
 output:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addchaincommandoutput.PNG?raw=true)  
+(The indentation of each line of the output shows the relationships between the components.
+In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
+higher than the previous line. This means that the bookmark is added to that lecture slot.
+Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
+which suggests that the bookmark is added to the module CG2271.)  
+![](./images/addchaincommandoutput.PNG)  
 result:  
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/addresult.PNG?raw=true)
+![](./images/addresult.PNG)
   
-
 
 
 More examples:
@@ -623,3 +646,8 @@ and save the txt file. You can now add the module in Zoomaster.
 **delete**| `delete {MODULE}` <br>example: `delete CS2113`<br/><br/>`delete {MODULE} {INDEX}` <br>example: `delete CS2113 2`<br/><br/>`delete {MODULE} bookmarks` <br>example: `delete CS2113 bookmarks`<br/><br/>`delete {MODULE} {INDEX} bookmarks` <br>example: `delete CS2113 2 bookmarks`<br/><br/>
 **edit**| `edit module {DAY} {INDEX} {new MODULE}` <br> example: `edit module fri 2 CS1010` <br/><br/> `edit title {DAY} {INDEX} {new TITLE}`<br> example: `edit title fri 2 tutorial` <br/><br/>`edit time {DAY} {INDEX} {new START_TIME} {new END_TIME}` <br> example: `edit time fri 2 16:00 18:00`
 **launch**|`launch {MODULE}` <br> example: `launch CS2113` <br/><br/> `launch {MODULE} {INDEX}` <br> example: `launch CS2113 1` 
+***Planner Mode***|
+**load**|`load`
+**show**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
+**add**|see add in timetable mode above
+**save**|`save`
