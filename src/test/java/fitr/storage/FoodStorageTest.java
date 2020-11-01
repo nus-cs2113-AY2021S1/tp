@@ -5,6 +5,8 @@ import fitr.food.Food;
 import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,10 +36,10 @@ class FoodStorageTest {
         assertThrows(InvalidFileFormatException.class, foodStorage::loadFoodList);
     }
 
-    private ArrayList<Food> getValidFoodList() {
+    private ArrayList<Food> getValidFoodList() throws ParseException {
         ArrayList<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Test Food 1", new Calorie(100), 1, "23/10/2020"));
-        foodList.add(new Food("Test Food 2", new Calorie(50), 5, "22/10/2020"));
+        foodList.add(new Food("Test Food 1", new Calorie(100), 1, LocalDate.parse("23/10/2020")));
+        foodList.add(new Food("Test Food 2", new Calorie(50), 5, LocalDate.parse("22/10/2020")));
         return foodList;
     }
 }

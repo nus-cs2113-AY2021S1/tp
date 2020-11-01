@@ -10,6 +10,8 @@ import fitr.storage.StorageManager;
 import fitr.user.User;
 import fitr.ui.Ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
@@ -35,8 +37,6 @@ import static fitr.common.Messages.ERROR_INVALID_DATE;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
 import static fitr.common.Messages.EMPTY_FOOD_LIST_DATE;
 import static fitr.common.Messages.NO_RECORDS_FOUND;
-
-import java.text.SimpleDateFormat;
 
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
@@ -201,7 +201,8 @@ public class ViewCommand extends Command {
 
     private void viewSummaryByDate(FoodList foodList, ExerciseList exerciseList, String date) {
         try {
-            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate.parse(date, formatter);
             ExerciseList exerciseListByDate = viewExerciseByDate(exerciseList, date, false);
             FoodList foodListByDate = viewFoodByDate(foodList, date, false);
             viewSummary(foodListByDate, exerciseListByDate);
@@ -244,11 +245,13 @@ public class ViewCommand extends Command {
 
     public static ExerciseList viewExerciseByDate(ExerciseList exerciseList, String date, Boolean isPrint) {
         try {
-            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate.parse(date, formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
+            return null;
         }
         ExerciseList exercisesOnThatDate = new ExerciseList();
         for (int i = 0; i < exerciseList.getSize(); i++) {
@@ -279,11 +282,13 @@ public class ViewCommand extends Command {
 
     public static FoodList viewFoodByDate(FoodList foodList, String date, Boolean isPrint) {
         try {
-            new SimpleDateFormat("dd/MM/yyyy").parse(date);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate.parse(date, formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
+            return null;
         }
         FoodList foodOnThatDate = new FoodList();
         for (int i = 0; i < foodList.getSize(); i++) {

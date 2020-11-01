@@ -5,6 +5,8 @@ import fitr.exercise.Exercise;
 import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,10 +34,10 @@ class ExerciseStorageTest {
         assertThrows(InvalidFileFormatException.class, exerciseStorage::loadExerciseList);
     }
 
-    private ArrayList<Exercise> getValidExerciseList() {
+    private ArrayList<Exercise> getValidExerciseList() throws ParseException {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500),"22/10/2020"));
-        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), "23/10/2020"));
+        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), LocalDate.parse("22/10/2020")));
+        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), LocalDate.parse("23/10/2020")));
         return exerciseList;
     }
 }

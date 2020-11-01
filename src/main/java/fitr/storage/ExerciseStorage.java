@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -58,8 +60,9 @@ public class ExerciseStorage {
             if (arguments.length != 3) {
                 throw new InvalidFileFormatException();
             }
-
-            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])), arguments[2]));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])),
+                    LocalDate.parse(arguments[2], formatter)));
         }
 
         LOGGER.fine("Exercise list file read successfully.");

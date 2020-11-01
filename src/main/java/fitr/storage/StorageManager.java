@@ -12,6 +12,7 @@ import fitr.user.User;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class StorageManager {
