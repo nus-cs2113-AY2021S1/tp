@@ -231,7 +231,15 @@ public class Main {
                 orderedDishes.add(dishChoosed);
             }
 
-            System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
+        String dummy = sc.nextLine();
+        System.out.println("Do you want to check the comment for this stall? (y/n)");
+        String isComment = sc.nextLine();
+        if (isComment.equals("y")) {
+            checkComment(orderedDishes);
+        }
+
+
+        System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
             if (typeChoosed == 1) {
@@ -346,5 +354,12 @@ public class Main {
         System.out.println("5. Exit program: 'bye' ");
         System.out.println("____________________________________________________________\n");
     }
+
+    public static void checkComment(List<Dish> dCs) {
+        for (int i = 0; i < dCs.size(); i++) {
+            System.out.println(dCs.get(i).getComment());
+        }
+    }
+
 
 }
