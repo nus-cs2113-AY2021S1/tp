@@ -250,7 +250,7 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
     + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
-![bus data](DG_Diagrams/DineSequence.png)
+![bus data](DG_Diagrams/DineInfoSequence.png)
 
 ## 4. Appendix I: Requirements
 
