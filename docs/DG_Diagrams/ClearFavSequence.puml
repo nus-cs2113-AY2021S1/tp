@@ -1,0 +1,41 @@
+@startuml
+
+box Logic
+participant ":Parser"
+participant ":ClearFavCommand"
+end box
+box Model
+participant ":FavList"
+end box
+box Ui
+participant "<<class>>\n:Ui"
+end box
+
+[-> ":Parser": user command
+activate ":Parser"
+create ":ClearFavCommand"
+":Parser" -> ":ClearFavCommand"
+activate ":ClearFavCommand"
+":ClearFavCommand" --> ":Parser"
+deactivate ":ClearFavCommand"
+":Parser" -> ":ClearFavCommand": executeCommand()
+activate ":ClearFavCommand"
+
+":ClearFavCommand" -> ":FavList"
+activate ":FavList"
+":FavList" -> ":FavList": clearFav()
+activate ":FavList"
+":FavList" -> "<<class>>\n:Ui": printClearFavMessage()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" --> ":FavList"
+deactivate "<<class>>\n:Ui"
+":FavList" --> ":FavList"
+deactivate ":FavList"
+":FavList" --> ":ClearFavCommand"
+deactivate ":FavList"
+
+":ClearFavCommand" --> ":Parser"
+deactivate ":ClearFavCommand"
+[<-- ":Parser": isOngoing
+deactivate ":Parser"
+@enduml

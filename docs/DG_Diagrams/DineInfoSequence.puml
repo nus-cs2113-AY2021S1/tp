@@ -1,7 +1,6 @@
 @startuml
-actor user
+
 box Logic
-participant ":Duke"
 participant ":Parser"
 participant ":DineInfoCommand"
 end box
@@ -9,9 +8,7 @@ box Ui
 participant "<<class>>\n:Ui"
 end box
 
-user -> ":Duke"
-box Logic
-":Duke" -> ":Parser": user command
+[-> ":Parser": user command
 activate ":Parser"
 create ":DineInfoCommand"
 ":Parser" -> ":DineInfoCommand": user input
@@ -31,17 +28,16 @@ activate ":DineInfoCommand"
 activate "<<class>>\n:Ui"
 
 alt size=0
-"<<class>>\n:Ui" --> ":DineInfoCommand"
+"<<class>>\n:Ui" --> ":DineInfoCommand": no match found
 else size>0
 "<<class>>\n:Ui" --> ":DineInfoCommand": results
 deactivate "<<class>>\n:Ui"
 end
 
-":DineInfoCommand" --> ":DineInfoCommand": results
+":DineInfoCommand" --> ":DineInfoCommand"
 deactivate ":DineInfoCommand"
 ":DineInfoCommand" --> ":Parser": outlet information
 deactivate ":DineInfoCommand"
-":Parser" --> ":Duke"
+[<-- ":Parser": isOngoing
 deactivate ":Parser"
-":Duke" --> user
 @enduml
