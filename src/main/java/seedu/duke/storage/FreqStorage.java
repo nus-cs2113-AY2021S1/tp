@@ -1,6 +1,5 @@
 package seedu.duke.storage;
 
-import seedu.duke.Duke;
 import seedu.duke.model.bus.BusData;
 import seedu.duke.model.bus.BusStops;
 import seedu.duke.exceptions.CustomException;
@@ -12,9 +11,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class FreqStorage extends Storage {
     private File file;
+    private static final Logger LOGGER = Logger.getLogger(FreqStorage.class.getName());
+    private boolean isCorrupted = false;
+    private static final String FILE_READ = "FreqList.txt Read with no issues";
+    private final int NUMBER_OF_BUS_STOPS = 32;
 
     public FreqStorage(String dir) {
         super(dir);
@@ -23,10 +27,11 @@ public class FreqStorage extends Storage {
 
     @Override
     public void readFile() throws CustomException {
+        LOGGER.fine("Attempting to read file: " + dir);
         try {
             loadFile();
         } catch (FileNotFoundException e) {
-            throw new CustomException(ExceptionType.READ_FILE_FAIL);
+            throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
         }
     }
 
@@ -54,18 +59,34 @@ public class FreqStorage extends Storage {
         File savedFile = new File(dir);
         Scanner fileScanner = new Scanner(savedFile);
         int index = 0;
-        while (fileScanner.hasNext()) {
+        while (fileScanner.hasNext() && !isCorrupted) {
             int currInt = 0;
             try {
                 currInt = Integer.parseInt(fileScanner.nextLine());
             } catch (NumberFormatException e) {
-                BusStops.resetSearchFrequency();
-                Duke.freqFile.updateFile();
-                Duke.freqFile.loadFile();
-                throw new CustomException(ExceptionType.READ_FILE_FAIL);
+                isCorrupted = true;
+                initialiseFile();
+                throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
             }
             BusStops.values()[index].setCount(currInt);
             index++;
         }
+        if (index < NUMBER_OF_BUS_STOPS - 1) {
+            isCorrupted = true;
+            initialiseFile();
+            throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
+        }
+        if (isCorrupted) {
+            initialiseFile();
+        } else {
+            LOGGER.fine("FreqList.txt file read successfully.");
+            System.out.println(FILE_READ);
+        }
+    }
+
+    private void initialiseFile() throws CustomException {
+        BusStops.resetSearchFrequency();
+        updateFile();
+        isCorrupted = false;
     }
 }
