@@ -141,7 +141,7 @@ public class QuoteParser {
             String reference = referenceFlagAndName[1].trim();
             return reference;
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+            throw new QuotesifyException(ERROR_MISSING_REFERENCE);
         }
     }
 

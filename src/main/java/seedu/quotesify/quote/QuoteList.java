@@ -57,11 +57,12 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public boolean checkDuplicateQuote(Quote newQuote) {
         for (Quote quote : getList()) {
-            if (quote.getQuote().equals(newQuote.getQuote())) {
+            String quoteToCheck = newQuote.getQuote().toLowerCase();
+            if (quote.getQuote().toLowerCase().equals(quoteToCheck)) {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     @Override
