@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static common.Messages.CARD;
 
+//@@author Jane-Ng
 public class AddCardCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"

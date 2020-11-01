@@ -19,8 +19,8 @@ public abstract class RemoveCommand extends Command {
             + "            " + CHAPTER_PARAMETER + "\n"
             + "            " + CARD_PARAMETER + "\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_SUCCESS = "Got it. I've removed this %1$s:\n";
-    public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
+    private static final String MESSAGE_SUCCESS = "Got it. I've removed this %1$s:\n";
+    private static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
 
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage) throws IOException;

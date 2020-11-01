@@ -9,7 +9,7 @@ public class Messages {
     public static final String CARD = "flashcard";
 
     public static final String MESSAGE_HELP = "[Type help to view a list of commands available]";
-    public static final String MESSAGE_INVALID_ACCESS = "Sorry, you are currently at %1$s"
+    public static final String MESSAGE_INVALID_ACCESS = "Sorry, you are currently at %1$s level"
             + ", please go to %2$s level first.";
     public static final String MESSAGE_MISSING_ARGS = "The arguments are missing.\n";
     public static final String MESSAGE_INCORRECT_ACCESS = "%s command can only be called at admin, "

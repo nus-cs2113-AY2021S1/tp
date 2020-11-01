@@ -9,7 +9,6 @@ import manager.history.History;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.chapter.DueChapter;
-import parser.Parser;
 import manager.module.Module;
 import scheduler.Scheduler;
 import ui.Ui;
@@ -364,10 +363,10 @@ public class Storage {
             String fileCommand = s.nextLine();
             String[] args = fileCommand.split(DELIMITER, 4);
             try {
-                String question = Parser.parseQuestionInFile(args[0]);
-                String answer = Parser.parseAnswerInFile(args[1]);
-                String interval = Parser.parsePreIntervalInFile(args[2]);
-                String rating = Parser.parseRatingInFile(args[3]);
+                String question = StorageParser.parseQuestionInFile(args[0]);
+                String answer = StorageParser.parseAnswerInFile(args[1]);
+                String interval = StorageParser.parsePreIntervalInFile(args[2]);
+                String rating = StorageParser.parseRatingInFile(args[3]);
                 int preInterval = Integer.parseInt(interval);
                 int intRating = Integer.parseInt(rating);
 
@@ -517,9 +516,9 @@ public class Storage {
             String[] args = revision.split("\\(", 2);
             String[] name = args[0].split("/", 2);
             try {
-                String moduleName = Parser.parseTaskNameInFile(name[0]);
-                String chapterName = Parser.parseTaskNameInFile(name[1]);
-                String percent = Parser.parsePercentInFile(args[1]);
+                String moduleName = StorageParser.parseTaskNameInFile(name[0]);
+                String chapterName = StorageParser.parseTaskNameInFile(name[1]);
+                String percent = StorageParser.parsePercentInFile(args[1]);
                 int percentage = Integer.parseInt(percent);
 
                 History history = new History(moduleName, chapterName, percentage);
