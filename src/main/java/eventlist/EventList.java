@@ -142,7 +142,11 @@ public class EventList {
 
         // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
         if (startEnd[0] == null) {
-            start = events.get(index).getStartDateTime();
+            if (events.get(index) instanceof  Assignment) {
+                start = events.get(index).getEndDateTime();
+            } else {
+                start = events.get(index).getStartDateTime();
+            }
         } else {
             start = startEnd[0];
         }
