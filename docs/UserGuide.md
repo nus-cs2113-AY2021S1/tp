@@ -222,7 +222,7 @@ To view food entries for a specific day, you may enter the date at the back of t
 
 Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
 
-For example, if you would like to view your food on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
+For example, if you would like to view your food entries on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
 
 ```
 Here is the list of your food:
@@ -230,8 +230,6 @@ Date: 22/10/2020
 [1] Food: duck rice
     Cal: 500
 ```
-
-For example, if you would like to view your food entries on 26/10/2020, you may key in `view food 26/10/2020`.
 
 ### 2.2.5 Viewing exercise entries
 You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
