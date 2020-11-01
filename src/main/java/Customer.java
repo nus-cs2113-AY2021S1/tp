@@ -7,6 +7,23 @@ public class Customer {
     public String name;
     public int ID;
     public int arriveTime;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getArriveTime() {
+        return arriveTime;
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeek;
+    }
+
     public int dayOfWeek;
 
 

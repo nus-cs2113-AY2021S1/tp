@@ -165,7 +165,7 @@ public class Main {
         Dish saltedEggChicken = new Dish("Salted Egg Chicken",4,
         "Really like this taste of chicken with salted egg.");
         Dish mapoTofu = new Dish("Mapo Tofu",2.5,
-                "Heard of this dish before, really good.");
+                "Heared of this dish before, really good.");
         Stall mixedRice = new Stall("Mixed Rice",9,"32 Nanyang Cres",
                 800,1900,Arrays.asList(1,2,5,7),
                 Arrays.asList(spicyChicken,saltedEggChicken,mapoTofu),3);
@@ -202,7 +202,7 @@ public class Main {
             int canteenIdChoosed = sc.nextInt();
             Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
 
-            System.out.println("The available stalls in " + canteenChoosed + " are:");
+            System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
 
             List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
             j = 0;
@@ -231,13 +231,6 @@ public class Main {
                 orderedDishes.add(dishChoosed);
             }
 
-            String dummy = sc.nextLine();
-            System.out.println("Do you want to check the comment for this stall? (y/n)");
-            String isComment = sc.nextLine();
-            if (isComment.equals("y")) {
-                checkComment(orderedDishes);
-            }
-
             System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
@@ -247,8 +240,8 @@ public class Main {
             else if (typeChoosed == 2) {
                 orderType = "Take away";
             }
-            else if(typeChoosed == 3){
-                orderType = "Delivery";
+            else {
+                orderType = "Delevery";
             }
 
 
@@ -352,12 +345,6 @@ public class Main {
         System.out.println("4. List order: 'list'");
         System.out.println("5. Exit program: 'bye' ");
         System.out.println("____________________________________________________________\n");
-    }
-
-    public static void checkComment(List<Dish> dCs) {
-        for (int i=0; i< dCs.size(); i++){
-            System.out.println(dCs.get(i).getComment());
-        }
     }
 
 }
