@@ -17,7 +17,7 @@ public class FlashcardParser {
      * @param fullCommand input by the user
      * @return returns a command instance to execute a command
      */
-    public static FlashcardCommand parse (String fullCommand) {
+    public static FlashcardCommand parse(String fullCommand) {
         String[] tokens = fullCommand.split(" ");
         String fullCommandLowerCase = fullCommand.toLowerCase();
         String command = tokens[0].toLowerCase();
