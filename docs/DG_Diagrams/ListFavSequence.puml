@@ -33,6 +33,8 @@ end
 activate "<<class>>\n:Ui"
 "<<class>>\n:Ui" --> ":FavList"
 deactivate "<<class>>\n:Ui"
+":FavList" --> ":FavList"
+deactivate ":FavList"
 ":FavList" --> ":ListFavCommand"
 deactivate ":FavList"
 
