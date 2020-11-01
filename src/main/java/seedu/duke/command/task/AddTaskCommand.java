@@ -13,17 +13,17 @@ import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TITLE;
 
 public class AddTaskCommand extends Command {
-    private final ProjectManager projectListManager;
+    private final ProjectManager projectManager;
     private Project proj;
 
-    public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
+    public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters, true);
-        this.projectListManager = projectListManager;
+        this.projectManager = projectManager;
     }
 
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project\n";
-        if (projectListManager.isEmpty()) {
+        assert !projectManager.isEmpty() : "No project\n";
+        if (projectManager.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;
         }
@@ -31,13 +31,20 @@ public class AddTaskCommand extends Command {
         String title;
         String description;
         String priority;
+        boolean titleExists;
 
         title = parameters.get(TITLE);
+        titleExists = doesTitleExist(title);
+        if (titleExists) {
+            Ui.showError("The task title already exists! " +
+                    "Please enter an alternative name.");
+            return;
+        }
+
         description = parameters.get(DESCRIPTION);
         priority = parameters.get(PRIORITY).toUpperCase();
 
-
-        Project proj = projectListManager.getSelectedProject();
+        Project proj = projectManager.getSelectedProject();
         if (!proj.getProjectBacklog().checkValidPriority(priority)) {
             Ui.showError("Invalid priority!");
             return;
@@ -47,6 +54,31 @@ public class AddTaskCommand extends Command {
         Ui.showToUserLn("Task successfully created.");
         Ui.showToUserLn(addedTask.toString());
     }
+
+    public boolean doesTitleExist(String title) {
+        boolean titleAlreadyExist = false;
+        if (projectManager.isEmpty()) {
+            return false;
+        }
+        for (int i = 1; i <= projectManager.getSelectedProject().getProjectBacklog().size(); i++) {
+            Task existingTask = projectManager.getSelectedProject().getProjectBacklog().getTask(i);
+            String existingTitle = existingTask.getTitle();
+            titleAlreadyExist |= compareTitle(existingTitle, title);
+        }
+        if (titleAlreadyExist) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean compareTitle(String existingTitle, String title) {
+        if (existingTitle.equals(title)) {
+            return true;
+        }
+        return false;
+    }
 }
+
 
 

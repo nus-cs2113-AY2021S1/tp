@@ -29,6 +29,47 @@ public class DateTimeParser {
         }
     }
 
+    public static String catchDateFormat(String date) throws DukeException {
+        try {
+            String monthInString = date.substring(4,6);
+            int month = Integer.parseInt(monthInString.trim());
+            boolean isThirtyDays = (month == 4 || month == 6 || month == 9 || month == 11);
+            boolean isFebruary = (month == 2);
+            String dayInString = date.substring(6, 8);
+            int day = Integer.parseInt(dayInString.trim());
+            if (isThirtyDays) {
+                if (day == 31) {
+                    throw new DukeException("There are no 31 days on the specified month.");
+                }
+            }
+            if (isFebruary) {
+                String yearInString = date.substring(0,4);
+                int year = Integer.parseInt(yearInString.trim());
+                boolean isLeapYear = checkLeapYear(year);
+                if (isLeapYear && (day > 29 && day < 32)) {
+                    throw new DukeException("There are only 29 days on the specified February.");
+                }
+                if (!isLeapYear && (day > 28 && day < 32)) {
+                    throw new DukeException("There are only 28 days on the specified February.");
+                }
+            }
+        } catch (Exception e) {
+            throw new DukeException(e.getMessage());
+        }
+        return date;
+    }
+
+    public static boolean checkLeapYear(int year) {
+        if (year % 4 == 0) {
+            if (year % 100 != 0) {
+                return true;
+            } else if (year % 400 == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static LocalDate parseDate(String date) throws DukeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {

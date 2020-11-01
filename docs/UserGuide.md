@@ -8,21 +8,21 @@
 &nbsp;&nbsp;1.3. [Features](#features)<br>
 1. [Quick Start](#quick-start)<br>
 1. [Commands](#commands)<br>
-&nbsp;&nbsp;3.1. [Project `project`](#project-project)<br> 
+&nbsp;&nbsp;3.1. [Project `project`](#project-codeprojectcode)<br> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1. [Create a New Project](#create-project)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2. [View Project Information](#view-project-information)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3. [List All Projects](#list-all-projects)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.4. [Select Project](#select-project)<br>
-&nbsp;&nbsp;3.2. [Project Member `member`](#project-member-member)<br>
+&nbsp;&nbsp;3.2. [Project Member `member`](#project-member-codemembercode)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. [Add Team Members](#add-team-members)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. [Remove Team Members](#remove-team-members)<br>
-&nbsp;&nbsp;3.3. [Project Backlog `task`](#project-backlog-task)<br>
+&nbsp;&nbsp;3.3. [Project Backlog `task`](#project-backlog-codetaskcode)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Add Tasks](#add-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [View Tasks](#view-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete Tasks](#delete-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the Priority of Tasks](#change-the-priority-of-a-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark Tasks as Complete](#mark-task-as-complete)<br>
-&nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint-sprint)<br>
+&nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint-codesprintcode)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a New Sprint](#create-a-new-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View Sprint Information](#view-sprint-information)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Edit Sprint Goal](#edit-sprint-goal)<br>
@@ -30,15 +30,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Delete Tasks from the Sprint](#delete-tasks-from-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.6. [Allocate Tasks to Team Members](#allocate-tasks-to-team-members)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.7. [Deallocate Tasks from Team Members](#deallocate-tasks-from-team-members)<br>
-&nbsp;&nbsp;3.5. [Storage `storage`](#storage-storage)<br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Clear Storage](#clear-storage)<br>
-&nbsp;&nbsp;3.6. [Help `help`](#help-help)<br>
+&nbsp;&nbsp;3.5. [Storage `storage`](#storage-codestoragecode)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Clear Storage](#clear-storage)<br>
+&nbsp;&nbsp;3.6. [Help `help`](#help-codehelpcode)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.1. [Help Menu](#help-menu)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.2. [Project Help](#project-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.3. [Member Help](#member-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4. [Task Help](#task-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.5. [Sprint Help](#sprint-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.6. [Storage Help](#storage-help)<br>
+&nbsp;&nbsp;3.7. [Exit application `bye`](#exit-application-codebyecode)<br>
 1. [Command Summary](#command-summary)
 
 
@@ -280,7 +281,7 @@ Mark specified task as complete.
 ##### Constraints:
 * There must be at least one supplied task ID for marking of completion.
 * Each task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
-##### Expected outcome: (Assuming task 1 has title `Add parser`)
+##### Expected outcome: (Assuming the tasks have titles `Add parser`, `Foo` and `Bar` respectively)
 ```
 Add parser has been marked as done.
 Foo has been marked as done.
@@ -541,7 +542,7 @@ command> storage /clear
 Data clear aborted.
 ```    
 
-### 3.6 Help `help`
+### 3.6. Help `help`
 
 #### 3.6.1 Help Menu
 Shows a list of commands needed to use SCRUMptious. You can then type in the command number
@@ -673,6 +674,12 @@ Shows the storage command, and an example of how to use it.
    Format: storage /clear
    Example: storage /clear
 ```
+
+### 3.7. Exit application `bye`
+Exits the application. Rest assured that your data have been saved by the application.
+
+##### Format: `bye`
+##### Expected Outcome: `bye` and program terminates.
 
 ## 4. Command Summary
 
