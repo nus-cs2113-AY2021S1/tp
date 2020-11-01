@@ -6,7 +6,7 @@ ________                __                .__  _____
        \__>                      \/     \/          \/    
 Welcome to Quotesify v2.1!
 Before you continue, here's something:
-"quote1"
+Better days are coming, they are called Saturday and Sunday.
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -37,15 +37,15 @@ I have tagged category [motivational] to the quote ["quote1"]!
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 I have tagged category [nice] to the book [book1]!
-Category [nice] already exists in quote ["quote1"]!
+I have tagged category [nice] to the quote ["quote1"]!
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of all categories:
-1. nice - (2 items)
-2. action - (1 items)
-3. motivational - (1 items)
+1. action - (1 items)
+2. motivational - (1 items)
+3. nice - (2 items)
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -127,6 +127,6 @@ What would you like to do with Quotesify?
 ---------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------
 Before you continue, here's something:
-"quote1"
+Better days are coming, they are called Saturday and Sunday.
 Alright, have a nice day!
 ---------------------------------------------------------------------------------------------------------------------------------------
