@@ -411,7 +411,8 @@ public class Ui {
 
                 printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
                 printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html" + NEW_LINE);
+                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
+                        + NEW_LINE);
                 System.out.println(LINE);
                 break;
             case DeleteSlotCommand.DEL_KW:
@@ -492,7 +493,8 @@ public class Ui {
 
                 printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
                 printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html" + NEW_LINE);
+                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
+                        + NEW_LINE);
                 System.out.println(LINE);
                 break;
             case LoadPlannerCommand.LOAD_KW:
