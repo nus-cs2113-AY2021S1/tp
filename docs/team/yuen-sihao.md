@@ -15,12 +15,12 @@ This section shows a brief summary of my contributions to the team project, incl
 and other helpful contributions throughout the development of Quotesify.
 
 ### Code contributed:
-Please click [here]() to access the code that I contributed in this project.
+Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yuen-sihao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=yuen-sihao&tabRepo=AY2021S1-CS2113T-T09-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) to access the code that I contributed in this project.
 
 ### Enhancements implemented:
 I added the Rating System for books feature in Quotesify.
 
-What it does:
+**What it does:**
 * The user will be able to use `add -r` command to add rating to a book that exists in Quotesify.
 * The user may use `edit -r` or `delete -r` commands to edit and delete their existing ratings respectively.
 * The user can use `list -r` to list all their existing ratings or to list books of a specific rating value.
@@ -51,4 +51,4 @@ User Stories, and Non-Functional Requirements.
 * General formatting of UG/DG as a team.
 
 ### Contributions beyond the project team:
-* Offered suggestions for other teams to consider, such as ().
+* I offered suggestions for other teams to consider for their DG, as well as potential bugs based on the version they released for PE-D.
