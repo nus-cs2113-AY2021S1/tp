@@ -43,6 +43,7 @@ public class Fitr {
     public void run() {
         boolean isExit = false;
         while (!isExit) {
+            System.out.print("> ");
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
             c.execute(listManager, storageManager, user, recommender);

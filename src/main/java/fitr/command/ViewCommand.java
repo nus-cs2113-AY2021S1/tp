@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.common.DateManager;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.list.ExerciseList;
@@ -201,8 +202,7 @@ public class ViewCommand extends Command {
 
     private void viewSummaryByDate(FoodList foodList, ExerciseList exerciseList, String date) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
             ExerciseList exerciseListByDate = viewExerciseByDate(exerciseList, date, false);
             FoodList foodListByDate = viewFoodByDate(foodList, date, false);
             viewSummary(foodListByDate, exerciseListByDate);
@@ -215,9 +215,8 @@ public class ViewCommand extends Command {
     private String dateFormatter(String date) {
         //Convert date from DD/MM/YYYY to YYYYMMDD
         String newDateFormat;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyyMMdd");
-        newDateFormat = LocalDate.parse(date, formatter).format(formatter2);
+        newDateFormat = LocalDate.parse(date, DateManager.formatter).format(formatter2);
         return newDateFormat;
     }
 
@@ -246,16 +245,14 @@ public class ViewCommand extends Command {
 
     public static ExerciseList viewExerciseByDate(ExerciseList exerciseList, String date, Boolean isPrint) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        date = LocalDate.parse(date,formatter).format(formatter);
+        date = LocalDate.parse(date, DateManager.formatter).format(DateManager.formatter);
         ExerciseList exercisesOnThatDate = new ExerciseList();
         for (int i = 0; i < exerciseList.getSize(); i++) {
             if (date.equals(exerciseList.getExercise(i).getDate())) {
@@ -285,16 +282,14 @@ public class ViewCommand extends Command {
 
     public static FoodList viewFoodByDate(FoodList foodList, String date, Boolean isPrint) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        date = LocalDate.parse(date, formatter).format(formatter);
+        date = LocalDate.parse(date, DateManager.formatter).format(DateManager.formatter);
         FoodList foodOnThatDate = new FoodList();
         for (int i = 0; i < foodList.getSize(); i++) {
             if (date.equals(foodList.getFood(i).getDate())) {
