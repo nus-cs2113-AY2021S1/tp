@@ -235,7 +235,7 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequential diagram of how changing between modes occur.
 
-![]() <br/><br/>
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
 
 *<center/>Figure 2.1 Sequential diagram for ChangeModeCommand</center> <br/></br>*
 
@@ -312,6 +312,16 @@ The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
 
+### Planner feature (Jusuf)
+
+This feature is an extension of the timetable feature that allows users to find common empty slots from each individual timetable. The users can then add a new meeting, and the app will automatically write the meeting to each timetable.
+
+Below is the general flow on how the mechanism works:
+1. The different timetables must first be loaded to the `planner` folder manually.
+2. In the app, the user can enter the `load` command to load all the timetables and initialise the common empty slots.
+3. To view the slots, the user can enter the `show` command with or without the day (optional).
+4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
+5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
 
 
