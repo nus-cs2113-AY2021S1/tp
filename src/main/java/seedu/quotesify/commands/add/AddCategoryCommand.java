@@ -27,15 +27,19 @@ public class AddCategoryCommand extends AddCommand {
     }
 
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
-        String[] tokens = information.split(" ");
-        String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        int result = CategoryParser.validateParametersResult(parameters);
-        if (result == 1) {
-            executeParameters(categories, parameters, ui);
-        } else if (result == 0) {
-            ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
-        } else {
-            ui.printErrorMessage(ERROR_MISSING_CATEGORY);
+        try {
+            String[] tokens = information.split(" ");
+            String[] parameters = CategoryParser.getRequiredParameters(tokens);
+            int result = CategoryParser.validateParametersResult(parameters);
+            if (result == 1) {
+                executeParameters(categories, parameters, ui);
+            } else if (result == 0) {
+                ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
+            } else {
+                ui.printErrorMessage(ERROR_MISSING_CATEGORY);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 

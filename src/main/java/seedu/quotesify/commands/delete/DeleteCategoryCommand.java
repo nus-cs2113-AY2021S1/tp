@@ -14,6 +14,7 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class DeleteCategoryCommand extends DeleteCommand {
     public DeleteCategoryCommand(String arguments) {
@@ -26,15 +27,21 @@ public class DeleteCategoryCommand extends DeleteCommand {
     }
 
     private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
-        String[] tokens = information.split(" ");
-        String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        int result = CategoryParser.validateParametersResult(parameters);
-        if (result == 1) {
-            executeParameters(categories, parameters, ui);
-        } else if (result == 0) {
-            deleteCategory(categories, parameters[0], ui);
-        } else {
-            ui.printErrorMessage(ERROR_MISSING_CATEGORY);
+        try {
+            String[] tokens = information.split(" ");
+            String[] parameters = CategoryParser.getRequiredParameters(tokens);
+            int result = CategoryParser.validateParametersResult(parameters);
+            if (result == 1) {
+                executeParameters(categories, parameters, ui);
+            } else if (result == 0) {
+                deleteCategory(categories, parameters[0], ui);
+            } else {
+                ui.printErrorMessage(ERROR_MISSING_CATEGORY);
+                quotesifyLogger.log(Level.WARNING, ERROR_MISSING_CATEGORY);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -61,6 +68,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -69,7 +77,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
         if (bookTitle.isEmpty()) {
             return;
         }
-
+        quotesifyLogger.log(Level.INFO, "removing category from book.");
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
             int bookNum = Integer.parseInt(bookTitle) - 1;
@@ -84,12 +92,16 @@ public class DeleteCategoryCommand extends DeleteCommand {
 
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromBook(book.getTitle(), category.getCategoryName());
+            quotesifyLogger.log(Level.INFO, "successfully removed category from book.");
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+            quotesifyLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+            quotesifyLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -98,7 +110,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
         if (index.isEmpty()) {
             return;
         }
-
+        quotesifyLogger.log(Level.INFO, "removing category from quote.");
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
         try {
@@ -114,16 +126,21 @@ public class DeleteCategoryCommand extends DeleteCommand {
 
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromQuote(quote.getQuote(), category.getCategoryName());
+            quotesifyLogger.log(Level.INFO, "successfully removed category from quote.");
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_QUOTE_FOUND);
+            quotesifyLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
+            quotesifyLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
     private void deleteCategory(CategoryList categoryList, String categories, TextUi ui) {
+        quotesifyLogger.log(Level.INFO, "removing category from all books and quotes.");
         for (String name : categories.split(" ")) {
             name = name.toLowerCase();
             try {
@@ -131,8 +148,10 @@ public class DeleteCategoryCommand extends DeleteCommand {
                 deleteCategoryInBooksAndQuotes(name);
                 categoryList.remove(category);
                 ui.printRemoveCategory(name);
+                quotesifyLogger.log(Level.INFO, "successfully removed category from all books and quotes.");
             } catch (QuotesifyException e) {
                 ui.printErrorMessage(e.getMessage());
+                quotesifyLogger.log(Level.WARNING, e.getMessage());
             }
         }
     }
