@@ -82,7 +82,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     | [5]            |  Financial Calculator                              |  financial                   |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [6]            |  Toggle Log On or Off                              | logger                       |
+    | [6]            |  Toggle Log On or Off                              |  logger                      |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     | [7]            |  Quit The Program                                  |  exit                        |
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -121,7 +121,7 @@ Entry Tracker|```entry```|
 Recurring Tracker|```recur```| 
 Goal Tracker|```goal```| 
 Save Manager|```saver```| 
-Finance Tools|```finance```| 
+Finance Tools|```financial```| 
 Logger|```logger```| 
 Quit|```quit```|
 
