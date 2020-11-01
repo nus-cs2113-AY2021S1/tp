@@ -1,8 +1,9 @@
 package fitr.food;
 
 import fitr.calorie.Calorie;
+import fitr.common.DateManager;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Food {
     protected String nameOfFood; // The name of the Food
@@ -36,8 +37,7 @@ public class Food {
     }
 
     public String getDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        return date.format(formatter);
+        return date.format(DateManager.formatter);
     }
 
     public void setNameOfFood(String nameOfFood) {

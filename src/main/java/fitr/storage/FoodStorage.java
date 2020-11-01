@@ -1,6 +1,7 @@
 package fitr.storage;
 
 import fitr.calorie.Calorie;
+import fitr.common.DateManager;
 import fitr.food.Food;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.FoodList;
@@ -10,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -61,9 +61,8 @@ public class FoodStorage {
             if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
             foodList.add(new Food(arguments[0], new Calorie(Integer.parseInt(arguments[1])),
-                    Integer.parseInt(arguments[2]), LocalDate.parse(arguments[3], formatter)));
+                    Integer.parseInt(arguments[2]), LocalDate.parse(arguments[3], DateManager.formatter)));
         }
 
         LOGGER.fine("Food list file read successfully.");
