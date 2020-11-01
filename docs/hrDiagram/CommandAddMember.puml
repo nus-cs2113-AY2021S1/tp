@@ -1,0 +1,19 @@
+@startuml
+ -> ":CommandAddMember": execute()
+
+
+activate ":CommandAddMember"
+":CommandAddMember" -> ":MemberList" : addToList()
+activate ":MemberList"
+":MemberList" -> ":Member": add()
+activate ":Member"
+return
+":MemberList" -> ":Member" : toString()
+activate ":Member"
+":Member" --> ":MemberList" : updateAttendanceRate()
+":MemberList" --> ":MemberList" : calculateAttendanceRate()
+return output
+return output
+return output
+deactivate ":CommandAddMember"
+@enduml

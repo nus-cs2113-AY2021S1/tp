@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.hr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,19 +12,21 @@ public class HrTest {
     @Test
     public void addListDelMember_executesNormally() {
         String expected1 = "Got it. I've added this member:\n"
-                + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member\n"
+                + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%\n"
                 + "Now you have 1 member in the list.\n";
 
-        String actual1 = MemberList.addToList(new Member("James Gosling", 11111111, "111111@gmail.com", "member"));
+        String actual1 = MemberList.addToList(new Member("James Gosling", 11111111,
+                "111111@gmail.com", "member"));
         assertEquals(expected1, actual1);
 
         String expected2 = "Here is the list of members in your CCA:\n"
-                + "1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member\n";
+                + "1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member "
+                + "|attendance rate: 0%\n";
         String actual2 = MemberList.listMembers();
         assertEquals(expected2, actual2);
 
         String expected3 = "Noted. I'll remove this member:\n"
-                + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member\n"
+                + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%\n"
                 + "Now you have 0 member in the list.\n";
         String actual3 = MemberList.deleteFromList(0);
         assertEquals(expected3, actual3);

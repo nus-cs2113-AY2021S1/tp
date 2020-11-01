@@ -1,5 +1,8 @@
 package seedu.duke.hr;
 
+import seedu.duke.event.EventList;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MemberList {
@@ -107,6 +110,37 @@ public class MemberList {
     }
 
     /**
+     * Finds the index of member with given member name in the arraylist.
+     * @param list array list of members.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns its index, else returns -1.
+     */
+    public static int findMemberIndex(ArrayList<Member> list, String memberName) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Checks if member with given member name exists in the arraylist.
+     * @param list array list of members.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns true, else returns false.
+     */
+    public static boolean checkMemberExistence(ArrayList<Member> list, String memberName) {
+        boolean hasExist = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                hasExist = true;
+            }
+        }
+        return hasExist;
+    }
+
+    /**
      * Changes the contact information and role of the member in the arraylist.
      * @param m member whose information is to be modified.
      * @param newPhone new phone number to replace the original phone number.
@@ -210,7 +244,7 @@ public class MemberList {
      * @return whether the member's name matches the target content
      */
     public static boolean searchName(int index, String target) {
-        if (members.get(index).getMemberName().contains(target)) {
+        if (members.get(index).getMemberName().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
@@ -223,7 +257,7 @@ public class MemberList {
      * @return whether the member's email matches the target content
      */
     public static boolean searchEmail(int index, String target) {
-        if (members.get(index).getMemberEmail().contains(target)) {
+        if (members.get(index).getMemberEmail().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
@@ -237,7 +271,7 @@ public class MemberList {
      */
     public static boolean searchPhone(int index, String target) {
         String phone = Long.toString(members.get(index).getMemberPhone());
-        if (phone.indexOf(target) != -1) {
+        if (phone.contains(target)) {
             return true;
         }
         return false;
@@ -250,7 +284,7 @@ public class MemberList {
      * @return whether the member's role matches the target content
      */
     public static boolean searchRole(int index, String target) {
-        if (members.get(index).getMemberRole().contains(target)) {
+        if (members.get(index).getMemberRole().toLowerCase().contains(target.toLowerCase())) {
             return true;
         }
         return false;
@@ -303,4 +337,38 @@ public class MemberList {
         }
         return output;
     }
+
+    /**
+     * Update attendance rate of member.
+     * @param memberName member name.
+     */
+    public static void updateAttendanceRate(String memberName) {
+        int attended = 0;
+        for (int i = 0; i < EventList.events.size(); i++) {
+            if (checkMemberExistence(EventList.events.get(i).getEventParticipants(), memberName)) {
+                attended++;
+            }
+        }
+        String attendanceRate = calculateAttendanceRate(attended, EventList.events.size());
+        Member m = findMemberByName(memberName);
+        m.setAttendanceRate(attendanceRate);
+    }
+
+    /**
+     * Calculate attendance rate of member.
+     * @param attended number of events attended.
+     * @param shouldAttend total number of events that exists.
+     * @return attendance rate which is formatted into 2 decimal places.
+     */
+    public static String calculateAttendanceRate(double attended, double shouldAttend) {
+        if (shouldAttend == 0) {
+            return "0";
+        }
+        double attendanceRate = (attended / shouldAttend) * 100;
+        DecimalFormat df = new DecimalFormat("###.##");
+        String formattedAttendanceRate = df.format(attendanceRate);
+        return formattedAttendanceRate;
+    }
+
+
 }

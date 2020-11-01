@@ -1,0 +1,38 @@
+@startuml
+
+class command
+class CommandFinanceAdd{
+}
+class CommandFinanceDel{
+}
+class CommandFinanceSummary {
+}
+class FinanceList{
+}
+class FinanceLog {
+}
+command <|-right-CommandFinanceAdd
+command <|-up-CommandFinanceDel
+command <|-down-CommandFinanceSummary
+command <|-down-CommandFinanceChange
+FinanceList <-left-FinanceLog
+FinanceLog <--FinanceList
+FinanceList <-right-CommandFinanceAdd
+CommandFinanceAdd <-- FinanceList
+FinanceList <-right- CommandFinanceDel
+CommandFinanceDel <-- FinanceList
+FinanceList <--CommandFinanceSummary
+CommandFinanceSummary <-- FinanceList
+FinanceLog <-right- CommandFinanceAdd
+FinanceList <--CommandFinanceChange
+CommandFinanceChange <-- FinanceList
+class Ui
+class FileMananger
+FinanceList <-- FileMananger
+command <-- Ui
+class Duke
+Ui <-left- Duke
+class DukeException
+command <-down- DukeException
+
+@enduml

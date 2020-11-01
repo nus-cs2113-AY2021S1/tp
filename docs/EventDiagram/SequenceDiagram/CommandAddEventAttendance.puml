@@ -1,0 +1,52 @@
+@startuml
+ -> ":CommandAddEventAttendance": execute()
+
+activate ":CommandAddEventAttendance"
+":CommandAddEventAttendance" -> ":EventList" : addAttendance()
+activate ":EventList"
+opt checkEventExistence()
+":EventList" -> ":EventList" : checkEventExistence()
+":EventList" --> ":CommandAddEventAttendance" : output
+end
+
+opt checkMemberExistence()
+":EventList" -> ":MemberList" : checkMemberExistence()
+activate ":MemberList"
+return output
+":EventList" --> ":CommandAddEventAttendance" : output
+end
+
+activate ":EventList"
+":EventList" -> ":Event" : findEventByName()
+activate ":Event"
+return e
+
+opt checkMemberExistence()
+":EventList" -> ":MemberList" : checkEventExistence()
+":MemberList" --> ":EventList"
+":EventList" -> ":Event" : getEventParticipants()
+activate ":Event"
+return
+":EventList" --> ":CommandAddEventAttendance" : output
+end
+
+activate ":MemberList"
+":EventList" -> ":MemberList" :findMemberByName()
+activate ":MemberList"
+":MemberList" -> ":Member" : findEventByName()
+activate ":Member"
+return
+return
+
+":EventList" -> ":Event" : setEventParticipants()
+activate ":Event"
+return
+
+":EventList" -> ":Event" : eventParticipants.size();
+activate ":Event"
+return output
+":EventList" --> ":CommandAddEventAttendance" : output
+deactivate ":EventList"
+deactivate ":MemberList"
+deactivate ":CommandAddEventAttendance"
+@enduml

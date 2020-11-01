@@ -20,7 +20,7 @@ public class Parser {
 
         userInput = sanitize(input);
         // Regex looks silly, you  have to escape the / so you type double \ to escape the \ used to escape the /
-        String[] output = userInput.split("\\/");
+        String[] output = userInput.split(" \\/");
         UserInput ui;
         Map<String, String> map = new HashMap<>();
         String category = checkCategory(output);
@@ -62,7 +62,6 @@ public class Parser {
                     val = "";
                     key = tmp;
                 }
-
                 map.put(key.trim().toLowerCase(), val.trim());
             }
             ui = new UserInput(base, map);
@@ -91,12 +90,14 @@ public class Parser {
     }
 
     /**
-     * TODO implement string sanitization.
      * Cleans up the string to ensure that anything else is safe for the rest of the program to handle.
      * @param s String to be sanitized
      * @return Sanitized string S
      */
     public String sanitize(String s) {
+        // Check for illegal characters
+        // This whitelist can be relaxed with more testing, but for now only basic alphanumeric is permitted
+        s = s.replaceAll("[^a-zA-Z0-9 .\\-@&/]", "");
         return s;
     }
 

@@ -1,11 +1,14 @@
 package seedu.duke.event;
 
+import seedu.duke.hr.Member;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
@@ -15,6 +18,7 @@ public class Event {
     protected LocalDate date;
     protected String symbol;
     protected boolean isDone;
+    public ArrayList<Member> eventParticipants = new ArrayList<>();
 
 
     public Event(String name, String date, String time) {
@@ -41,6 +45,7 @@ public class Event {
         return eventTime;
     }
 
+
     public void setEventTime(String eventTime) {
         this.eventTime = eventTime;
     }
@@ -50,21 +55,28 @@ public class Event {
     }
 
     /**
-    * Returns a tick or cross depending on whether a event is marked done.
-    *
-    * @return done or upcoming command
-    */
+     * Returns a tick or cross depending on whether a event is marked done.
+     *
+     * @return done or upcoming command
+     */
     public String getStatusIcon() {
         return isDone ? "[Done]" : "[Up-coming]";
 
     }
 
+    public boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean d) {
+        isDone = d;
+    }
 
     /**
-    * Returns the string format of the event.
-    *
-    * @return String format of event.
-    */
+     * Returns the string format of the event.
+     *
+     * @return String format of event.
+     */
     public String printEvent() {
         return symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
@@ -76,11 +88,11 @@ public class Event {
     }
 
     /**
-    * Attempts to read the date time. If it fails, uses relative timing to try again.
-    *
-    * @param dateStr The Date to be processed
-    * @param timeStr The time to be processed
-    */
+     * Attempts to read the date time. If it fails, uses relative timing to try again.
+     *
+     * @param dateStr The Date to be processed
+     * @param timeStr The time to be processed
+     */
     public void setDateTime(String dateStr, String timeStr) {
         eventTime = timeStr;
         try {
@@ -136,12 +148,36 @@ public class Event {
         }
     }
 
+    public void setEventParticipants(Member m) {
+        if (m != null) {
+            this.eventParticipants.add(m);
+        }
+    }
+
+    public ArrayList<Member> getEventParticipants() {
+        return eventParticipants;
+    }
+
+    public String getStringParticipants() {
+        String output = "[";
+        if (eventParticipants.size() != 0) {
+            for (int i = 0; i < eventParticipants.size(); i++) {
+                output = output.concat(eventParticipants.get(i).getMemberName());
+                if (i < (eventParticipants.size() - 1)) {
+                    output = output.concat(" & ");
+                }
+            }
+        }
+        output = output.concat("]");
+        return output;
+    }
+
     /**
-    * Used to identify if the string contains the keyword specified in its description.
-    *
-    * @param keyword The keyword to be matched with the description.
-    * @return true if list contains the keyword
-    */
+     * Used to identify if the string contains the keyword specified in its description.
+     *
+     * @param keyword The keyword to be matched with the description.
+     * @return true if list contains the keyword
+     */
     public boolean containsNameKeyword(String keyword) {
         boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
         return containsKeyword;
@@ -150,6 +186,16 @@ public class Event {
     public boolean containsDateKeyword(LocalDate localDate) {
         boolean containsKeyword = date.equals(localDate);
         return containsKeyword;
+    }
+
+    public String printEventParticipant() {
+        String output = "The following " + ((this.getEventParticipants().size() > 1) ? "members have" : "member has")
+                + " participated in this event:\n";
+        for (int i = 0; i < this.getEventParticipants().size(); i++) {
+            int index = i + 1;
+            output = output.concat(index + ". " + this.getEventParticipants().get(i).getMemberName() + "\n");
+        }
+        return output;
     }
 }
 

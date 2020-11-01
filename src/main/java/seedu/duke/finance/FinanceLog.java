@@ -51,6 +51,23 @@ public class FinanceLog {
     }
 
     /**
+     * Change the finLog of this FinanceLog.
+     * @param input the new finLog for this FinanceLog
+     */
+    public void setFinLog(String input) {
+        finLog = input;
+    }
+
+    /**
+     * Change the finLogVal of this FinanceLog.
+     * @param input the new finLogVal for this FinanceLog
+     */
+    public void setFinLogVal(double input) {
+        sum = sum - finLogVal + input;
+        finLogVal = input;
+    }
+
+    /**
      * Form a formatted string for a finance log.
      * @return the string of a formatted finance log
      */

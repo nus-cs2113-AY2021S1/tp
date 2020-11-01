@@ -27,8 +27,7 @@ public class CommandAddMember extends Command {
                     return ARGUMENT_ERR;
                 }
                 if ((input.getArg("n").equals("")) || (input.getArg("p").equals(""))
-                        || (input.getArg("e").equals("")) && (input.getArg("r").equals(""))
-                        || !isNumber(input.getArg("p"))) {
+                        || (input.getArg("e").equals("")) && (input.getArg("r").equals(""))) {
                     return ARGUMENT_ERR;
                 }
                 return ACCEPT;
@@ -42,6 +41,11 @@ public class CommandAddMember extends Command {
     @Override
     public String execute() {
         String output;
+        if (!isNumber(savedInput.getArg("p"))) {
+            output = "OOPS!!! The format of the phone number given is incorrect.\n";
+            output = output.concat("The phone number should be a whole number less than 19 digits.");
+            return output;
+        }
         long phone = Long.parseLong(savedInput.getArg("p"));
         String standardName = standardizeMemberName(savedInput.getArg("n"));
         Member test = findMemberByName(standardName);

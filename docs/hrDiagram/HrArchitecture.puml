@@ -1,0 +1,46 @@
+@startuml
+class "{abstract} \n Command"
+class CommandAddMember {
+}
+class CommandDelMember {
+}
+class CommandViewMember {
+}
+class MemberList {
+}
+class Member {
+}
+
+Rectangle HrCommands {
+"{abstract} \n Command" <|--CommandDelMember
+"{abstract} \n Command" <|--CommandAddMember
+"{abstract} \n Command" <|--CommandViewMember
+"{abstract} \n Command" <|-- CommandSearchMember
+"{abstract} \n Command" <|-- CommandListProfAdmin
+"{abstract} \n Command" <|-- CommandListConnection
+"{abstract} \n Command" <|-- CommandChangeMemberInfo
+}
+MemberList <-left-Member
+Member <--MemberList
+MemberList <--CommandAddMember
+CommandAddMember <-- MemberList
+MemberList <-- CommandDelMember
+CommandDelMember <-- MemberList
+MemberList <--CommandViewMember
+CommandViewMember <-- MemberList
+MemberList <--CommandSearchMember
+CommandSearchMember <-- MemberList
+MemberList <-- CommandListProfAdmin
+CommandListProfAdmin <-- MemberList
+MemberList <--CommandListConnection
+CommandListConnection <-- MemberList
+MemberList <--CommandChangeMemberInfo
+CommandChangeMemberInfo <-- MemberList
+class Ui
+class FileMananger
+MemberList <-- FileMananger
+"{abstract} \n Command" <-- Ui
+class Duke
+Ui <-- Duke
+
+@enduml

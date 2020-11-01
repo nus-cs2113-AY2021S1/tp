@@ -1,0 +1,26 @@
+@startuml
+ -> ":CommandViewMember" : execute()
+
+activate ":CommandViewMember"
+
+":CommandViewMember"  -> ":MemberList":listMembers()
+activate ":MemberList" #DarkSalmon
+alt Member.numOfMembers == 0
+    ":MemberList" --> ":CommandViewMember"
+else else
+    loop until end of ArrayList
+        ":MemberList" -> ":Member" : toString()
+        activate ":Member"
+        ":Member" --> ":MemberList" : updateAttendanceRate()
+        ":MemberList" --> ":MemberList" : calculateAttendanceRate()
+        return output
+        deactivate ":Member"
+        ":MemberList" --> ":CommandViewMember" : output
+        deactivate ":MemberList"
+        return output
+    end
+    deactivate ":MemberList"
+    deactivate ":MemberList"
+    deactivate ":CommandViewMember"
+end
+@enduml
