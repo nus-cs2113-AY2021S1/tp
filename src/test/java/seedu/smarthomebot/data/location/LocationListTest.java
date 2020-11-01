@@ -3,7 +3,7 @@ package seedu.smarthomebot.data.location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
+import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
 import java.util.ArrayList;
 
@@ -39,14 +39,14 @@ class LocationListTest {
     }
 
     @Test
-    void removeLocation_locationInList_locationRemovedNormally() throws InvalidRemovalLocationException {
+    void removeLocation_locationInList_locationRemovedNormally() throws InvalidLocationException {
         myHome.removeLocation("Living Room");
         assertEquals(emptyList, myHome.getAllLocations());
     }
 
     @Test
     void removeLocation_locationNotExist_throws_InvalidRemovalLocationException() {
-        assertThrows(InvalidRemovalLocationException.class, () -> myHome.removeLocation("Other Places"));
+        assertThrows(InvalidLocationException.class, () -> myHome.removeLocation("Other Places"));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
+import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
 public class CreateCommand extends Command {
 
@@ -17,10 +18,17 @@ public class CreateCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            locationList.addLocation(userEnteredLocation);
+            if (!applianceList.isApplianceExist(userEnteredLocation)) {
+                locationList.addLocation(userEnteredLocation);
+            } else {
+                throw new InvalidLocationException();
+            }
             return new CommandResult("Creating Location \"" + userEnteredLocation + "\".....CREATED!");
         } catch (DuplicateDataException e) {
             return new CommandResult(MESSAGE_LOCATION_EXIST);
+        } catch (InvalidLocationException e) {
+            return new CommandResult(MESSAGE_LOCATION_EXIST
+                    + " as a Appliance, please choose another name.");
         }
     }
 }
