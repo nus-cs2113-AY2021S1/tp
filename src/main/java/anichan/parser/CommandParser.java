@@ -14,7 +14,7 @@ public abstract class CommandParser {
     protected static final String SPLIT_DASH = "-";
     protected static final String SPLIT_WHITESPACE = " ";
     protected static final String NOT_RECOGNISED = " is not recognised!";
-    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -.";
+    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field.";
     protected static final String TOO_MUCH_FIELDS = " has too much fields.";
     protected static final String TOO_MUCH_PARAMETERS = " has too much parameters.";
