@@ -55,6 +55,15 @@ public class QuoteList extends QuotesifyList<Quote> {
         quotes.get(quoteNumber).setReflection(editedReflection);
     }
 
+    public boolean checkDuplicateQuote(Quote newQuote) {
+        for (Quote quote : getList()) {
+            if (quote.getQuote().equals(newQuote.getQuote())) {
+                return true;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
