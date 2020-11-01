@@ -20,6 +20,7 @@ public class AddFavCommand extends Command {
     public AddFavCommand(String input, String description) {
         this.input = input;
         this.description = description;
+        super.isValid = false;
     }
 
     @Override
@@ -43,6 +44,7 @@ public class AddFavCommand extends Command {
         if (!FavList.contains(item)) {
             FavList.addFav(item);
             addFavMessage(input);
+            isValid = true;
         }
     }
 }
