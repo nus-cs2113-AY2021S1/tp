@@ -101,7 +101,9 @@ Better days are coming, they are called Saturday and Sunday.
 
 ---
 
-## 3.0 Features 
+## 3.0 Features
+
+Wondering what Quotesify can do for you? Read this section to find out more!
 
 ### 3.1 Book Management
 
@@ -155,6 +157,8 @@ With Quotesify's rating system, remembering the books you love will never be an 
 ---
 
 ## 4.0 Usage
+
+This section will walk you through the features in Quotesify.
 
 ### 4.1 Book Management
 
