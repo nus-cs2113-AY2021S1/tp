@@ -22,9 +22,9 @@ class BookmarkParserTest {
     private static final String INVALID_FIELD_EDIT_TEST2 = "1 -e beepboopbeep";
     private static final String INVALID_FIELD_EDIT_TEST3 = "1 -e 123 123";
     private static final String INVALID_FIELD_EDIT_TEST4 = "a -e 1";
-    private static final String NEGATIVE_BOOKMARKID_DELETE_TEST = "-d -1";
-    private static final String NEGATIVE_ANIMEID_ADD_TEST = "-a -3";
-    private static final String NEGATIVE_BOOKMARKID_EDIT_TEST = "-1 -e 1";
+    private static final String NEGATIVE_BOOKMARK_ID_DELETE_TEST = "-d -1";
+    private static final String NEGATIVE_ANIME_ID_ADD_TEST = "-a -3";
+    private static final String NEGATIVE_BOOKMARK_ID_EDIT_TEST = "-1 -e 1";
     private static final String INVALID_FIELD_NOTE_TEST1 = "1 -n  ";
     private static final String INVALID_FIELD_NOTE_TEST2 = "1 -n  -afds";
     private static final String INVALID_FIELD_LIST = "-l test";
@@ -216,7 +216,7 @@ class BookmarkParserTest {
     void execute_negativeBookmarkIdForDelete_ThrowsAniException() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
         assertThrows(AniException.class, () -> {
-            test1.parse(NEGATIVE_BOOKMARKID_DELETE_TEST);
+            test1.parse(NEGATIVE_BOOKMARK_ID_DELETE_TEST);
         });
     }
 
@@ -224,7 +224,7 @@ class BookmarkParserTest {
     void execute_negativeBookmarkIdForEdit_ThrowsAniException() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
         assertThrows(AniException.class, () -> {
-            test1.parse(NEGATIVE_BOOKMARKID_EDIT_TEST);
+            test1.parse(NEGATIVE_BOOKMARK_ID_EDIT_TEST);
         });
     }
 
@@ -232,7 +232,7 @@ class BookmarkParserTest {
     void execute_negativeAnimeIdForAdd_ThrowsAniException() throws AniException {
         BookmarkParser test1 = new BookmarkParser();
         assertThrows(AniException.class, () -> {
-            test1.parse(NEGATIVE_ANIMEID_ADD_TEST);
+            test1.parse(NEGATIVE_ANIME_ID_ADD_TEST);
         });
     }
 

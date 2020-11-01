@@ -163,7 +163,7 @@ class StorageManagerTest {
     }
 
     // ========================== Bookmark Saving and Loading ==========================
-    
+
     @Test
     void loadBookmark_invalidDirectorySM_throwsAniException() throws AniException {
         // Invalid Directory
