@@ -33,7 +33,7 @@ public class TopicParser {
      */
     public static Command parse(String fullCommand) {
         String[] message = fullCommand.split(" ");
-        switch (message[0]) {
+        switch (message[0].toLowerCase()) {
         case "exit":
             if (fullCommand.equals("exit")) {
                 return new ExitTopicCommand();

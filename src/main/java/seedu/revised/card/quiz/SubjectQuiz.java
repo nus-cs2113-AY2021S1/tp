@@ -5,7 +5,6 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.topic.NoTopicException;
-import seedu.revised.list.ResultList;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -33,7 +32,7 @@ public class SubjectQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start setting up the quiz");
         if (subject.getTopics().getList().size() == 0) {
-            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
+            throw new NoTopicException(Ui.NO_TOPIC_YET_EXCEPTION);
         }
         int maxScore = 0;
         for (Topic topic : subject.getTopics().getList()) {

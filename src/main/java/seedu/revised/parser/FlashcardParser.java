@@ -17,24 +17,30 @@ public class FlashcardParser {
      * @param fullCommand input by the user
      * @return returns a command instance to execute a command
      */
-    public static FlashcardCommand parse(String fullCommand) {
+    public static FlashcardCommand parse (String fullCommand) {
         String[] tokens = fullCommand.split(" ");
-        String command = tokens[0];
+        String fullCommandLowerCase = fullCommand.toLowerCase();
+        String command = tokens[0].toLowerCase();
 
-        if (fullCommand.equals("exit")) {
-            return new ExitFlashcardCommand();
-        } else if (fullCommand.equals("list")) {
-            return new ListFlashcardCommand();
-        } else if (fullCommand.equals("list all")) {
-            return new ListAllFlashcardCommand();
-        } else if (command.equals("add")) {
+
+        switch (command) {
+        case "add":
             return new AddFlashcardCommand(fullCommand);
-        } else if (command.equals("delete")) {
+        case "delete":
             return new DeleteFlashcardCommand(fullCommand);
-        } else if (fullCommand.equals("help")) {
+        case "help":
             return new HelpFlashcardCommand();
-        } else {
-            return new SorryFlashcardCommand();
+        default:
+            switch (fullCommandLowerCase) {
+            case "exit":
+                return new ExitFlashcardCommand();
+            case "list":
+                return new ListFlashcardCommand();
+            case "list all":
+                return new ListAllFlashcardCommand();
+            default:
+                return new SorryFlashcardCommand();
+            }
         }
     }
 }

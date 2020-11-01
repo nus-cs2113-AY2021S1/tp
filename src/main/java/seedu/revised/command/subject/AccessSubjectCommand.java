@@ -40,7 +40,7 @@ public class AccessSubjectCommand extends SubjectCommand {
         Subject gotoSubject = null;
 
         String[] message = this.fullcommand.split(" ");
-        if (message[1].isEmpty()) {
+        if (!fullcommand.contains(" ")) {
             throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         for (Subject subject : subjectList.getList()) {
@@ -51,7 +51,7 @@ public class AccessSubjectCommand extends SubjectCommand {
         }
 
         if (gotoSubject == null) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new NoSubjectException(Ui.SUBJECT_NOT_FOUND_EXCEPTION);
         }
 
         goToSubject(gotoSubject);

@@ -20,8 +20,8 @@ public class AccessTopicCommand extends TopicCommand {
     public void execute(Subject subject) throws NoTopicException {
         String[] message = this.fullcommand.split(" ", 2);
         Topic gotoTopic = null;
-        if (message[1].isEmpty()) {
-            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
+        if (!fullcommand.contains(" ")) {
+            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
         }
         for (Topic topic : subject.getTopics().getList()) {
             if (topic.getTitle().equals(message[1].strip())) {

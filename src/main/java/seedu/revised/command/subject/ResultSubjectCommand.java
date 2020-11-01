@@ -40,7 +40,7 @@ public class ResultSubjectCommand extends SubjectCommand {
             }
         }
         if (resultSubject == null) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new NoSubjectException(Ui.SUBJECT_NOT_FOUND_EXCEPTION);
         }
         assert (resultSubject != null) : "No such subject exists!";
         Ui.printSubjectResults(resultSubject);
