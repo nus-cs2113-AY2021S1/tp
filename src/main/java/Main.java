@@ -174,9 +174,8 @@ public class Main {
                 Arrays.asList(800,800,830,900,800,830,800), Arrays.asList(1830,1830,1830,1830,1830,1930,1900));
 
 //        Stall malay;
-//
 //        Stall waffles;
-//
+//        Stall drinks;
 //        Canteen canteen4;
 
         List<Canteen> canteens = new ArrayList<Canteen>();
@@ -186,10 +185,6 @@ public class Main {
     }
 
     public static void order(List<Canteen> canteens,Customer customer){
-
-
-
-
 
             System.out.println("Dear " + customer.name + ",");
             System.out.println("Please choose a canteen from the list:");
@@ -245,7 +240,6 @@ public class Main {
                 orderType = "Delevery";
             }
 
-
             Order order =customer.order(canteenChoosed,stallChoosed,orderedDishes,orderType);
             Order.add(order);
             System.out.println("Your order created! Thanks.");
@@ -253,10 +247,9 @@ public class Main {
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
 
-
     }
-    public static void changeOrder(Customer customer)
-    {
+    public static void changeOrder(Customer customer) {
+
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've changed this order:  \n");
         String[] inputWords = input.split("/"); //split the input message
@@ -277,6 +270,7 @@ public class Main {
     }
 
     public static void printOrder() {
+
         System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
             System.out.println("____________________________________________________________\n");
@@ -294,10 +288,9 @@ public class Main {
         }
         System.out.println("____________________________________________________________\n");
 
-
-
     }
     public static void deleteOrder() {
+
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've removed this order:  ");
         int orderNumberdeleted = Integer.parseInt(input.replaceAll("\\D+", "")) - 1; //find the corresponding index of task to be deleted
@@ -305,8 +298,11 @@ public class Main {
         Order.remove(orderNumberdeleted); //remove that task from arrayList
         System.out.println("Now you have " + Order.size() + " orders in the list. ");
         System.out.println("____________________________________________________________\n");
+
     }
+
     public static void findDishinOrder() {
+
         System.out.println("____________________________________________________________\n");
         System.out.println("Here are the matching orders in your list:\n");
         String keyword = input.substring(5); // to get the keyword string
@@ -320,24 +316,31 @@ public class Main {
                 }
         }
         System.out.println("____________________________________________________________\n");
+
     }
     public static void greet(){
+
         System.out.println("____________________________________________________________\n");
         System.out.println(" Hello! I'm Canteenhelper\n");
         System.out.println(" What can I do for you?\n");
+
         System.out.println("____________________________________________________________\n");
     }
+
     /**
      * method to say bye
      * @return void
      */
     public static void bye(){
+
         System.out.println("____________________________________________________________\n");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________\n");
+
     }
 
     public static void help() {
+
         System.out.println("____________________________________________________________\n");
         System.out.println("Hello! Here is a list of commands you can try:");
         System.out.println("1. Order dish: 'order'");
@@ -346,6 +349,7 @@ public class Main {
         System.out.println("4. List order: 'list'");
         System.out.println("5. Exit program: 'bye' ");
         System.out.println("____________________________________________________________\n");
+
     }
 
 }
