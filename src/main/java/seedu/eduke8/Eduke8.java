@@ -14,7 +14,6 @@ import seedu.eduke8.ui.Ui;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,7 +37,7 @@ public class Eduke8 {
 
     private Eduke8(String dataPath, String logPath, String userPath) {
         ui = new Ui();
-        bookmarkList = new BookmarkList(new ArrayList<>());
+        bookmarkList = new BookmarkList();
 
         ui.printDataLoading();
         try {

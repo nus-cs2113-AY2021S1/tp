@@ -9,7 +9,7 @@ class StatsTest {
     @Test
     void statsConstructor_nullTopicListArgument_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            Stats stats = new Stats(null);
+            new Stats(null);
         });
     }
 }

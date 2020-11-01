@@ -19,7 +19,7 @@ public class LogStorageTest {
 
 
     @Test
-    public void save_newLogFile_newLogFileCreated() throws IOException {
+    void save_newLogFile_newLogFileCreated() throws IOException {
         LogStorage logStorage = new LogStorage(LOG_PATH);
 
         File logFile = logStorage.save();
@@ -31,7 +31,7 @@ public class LogStorageTest {
         assertEquals(logData, "INFO: Logging to file started");
     }
 
-    private String getSecondLineOfLogs(File logFile) throws FileNotFoundException {
+    String getSecondLineOfLogs(File logFile) throws FileNotFoundException {
         Scanner logReader = new Scanner(logFile);
         logReader.nextLine(); // Skip first line with datetime info
         String logData = logReader.nextLine();
