@@ -1,6 +1,6 @@
 package seedu.financeit.datatrackers.recurringtracker;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
 import seedu.financeit.utils.ParamChecker;
 
@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class RecurringEntry extends Item {
     int day;
     String description = "";
-    Constants.EntryType entryType;
+    Common.EntryType entryType;
     double amount;
     Month start = Month.of(1);
     Month end = Month.of(12);
@@ -27,7 +27,7 @@ public class RecurringEntry extends Item {
         this.amount = amount;
     }
 
-    public void setEntryType(Constants.EntryType entryType) {
+    public void setEntryType(Common.EntryType entryType) {
         this.entryType = entryType;
     }
 
@@ -98,7 +98,7 @@ public class RecurringEntry extends Item {
         HashMap<String, Object> details = getDetailsForReminder();
         details.put(ParamChecker.PARAM_DAY, String.valueOf(day));
         details.put(ParamChecker.PARAM_DESCRIPTION, description);
-        if (entryType == Constants.EntryType.EXP) {
+        if (entryType == Common.EntryType.EXP) {
             details.put(ParamChecker.PARAM_EXP, "");
         } else {
             details.put(ParamChecker.PARAM_INC, "");
@@ -114,8 +114,8 @@ public class RecurringEntry extends Item {
     public String toSave() {
 
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
-        String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
+        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
         String duration;
         if (this.start.getValue() == 1 && this.end.getValue() == 12) {
             duration = "Every month";
@@ -131,8 +131,8 @@ public class RecurringEntry extends Item {
     public String toString() {
 
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
-        String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
+        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
         String duration;
         if (this.start.getValue() == 1 && this.end.getValue() == 12) {
             duration = "Every month";

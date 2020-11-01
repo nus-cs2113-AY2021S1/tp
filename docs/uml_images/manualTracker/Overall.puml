@@ -1,0 +1,127 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+left to right direction
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle StorageOutput {
+    rectangle goalTrackerSave.txt {
+    }
+    rectangle manualTrackerSave.txt {
+    }
+    rectangle entryTrackerSave.txt {
+    }
+
+}
+
+
+rectangle FinanceIt {
+
+    rectangle InputManager {
+        rectangle Parser {
+        }
+        rectangle UiManager {
+        }
+    }
+
+    rectangle Handler {
+        rectangle ManualTracker {
+        }
+        rectangle GoalTracker {
+        }
+        rectangle EntryTracker {
+        }
+        rectangle FinanceTools {
+        }
+    }
+
+    rectangle Storage {
+    }
+
+    rectangle Logic {
+        rectangle Commands {
+        }
+
+        rectangle ParamChecker {
+        }
+        ParamChecker --> Commands
+    }
+
+    rectangle Model {
+        rectangle DataList {
+        }
+
+        rectangle Data {
+        }
+    }
+
+    Storage --> DataList : Performs save and load operations
+    DataList --> Data
+    ManualTracker --> DataList : Manages Data in DataList (Ledger)
+    EntryTracker --> DataList : Manages Data in DataList (Entry)
+    GoalTracker --> Data : Tracks entries against goals set (Entry)
+    Handler <.. InputManager : Receives processed input
+    Parser ..> UiManager : Retrieves raw input from
+    Handler <.. Logic : Handles operation control flow and logic
+    Storage --> StorageOutput : Saves program state into text files
+
+}
+rectangle Person {
+}
+
+Person --> UiManager : Supply input string
+FinanceIt -[hidden]right Person
+
+/'
+rectangle Model {
+    class Entry {
+    }
+}
+
+rectangle InputManager {
+}
+
+
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+
+    class GoalTracker {
+    }
+
+    class FinanceTools{
+    }
+
+    EntryTracker --> Model : stores entries with >
+    ManualTracker --> Model : stores ledgers with >
+}
+
+ManualTracker --> InputManager : Handles input <
+EntryTracker --> InputManager : Handles input <
+
+GoalTracker --> Entry : Tracks against \n input goal >
+GoalTracker ..> EntryTracker : Displays goal progress >
+
+
+Handler -[hidden]- Model
+'/
+@enduml

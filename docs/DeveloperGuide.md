@@ -1,135 +1,131 @@
 # Developer Guide
 # Table of contents
+# Design
 
 # 1. Overview of architecture
+__Architecture Diagram__
+![](.DeveloperGuide_images/Overall.png)
+
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
-### Architecture
-![](.DeveloperGuide_images/Overall%20Architecture.png)
-* __Feature modules__: Modules implementing the features of the application as follows:
 
-    | Feature| Purpose|
-    |-------|-------|
-    |Manual Tracker| User can manually record daily transactions into the program
-    |Recurring Tracker|
-    |Goal Tracker|
-    |Finance Tools| User can compute various finance-related calculations
-    
-* __Helper modules__: Modules that serve auxillary purposes to the program
+The design of the software can be split into 5 distinct components:
+* Handler component
+* Logic component
+* Input Manager component
+* Data component
+* Storage component
 
-    | Feature| Purpose|
-    |-------|-------|
-    |Data| Represents data relevant to the program.
-    |Ui| Handles console output and user input at user interface.
-    |Logic| Describes param handling and checking logic.
-    |Storage| Handles saving and loading of program data.
-    |Error Handling.Exceptions| Exception classes unique to each program error identified.
-    |Error Handling.LoggerCentre| Class that consolidates ```Logger``` instances used throughout the program.
+## 1.1 Handler component
+![](.DeveloperGuide_images/Handler.png)
 
-## Design & implementation
+__Description__
 
-### Summary
-* Classes which require input parameters by users require the collection of
-helper classes to handle the parsing, checking and organisation of the input string.
-* The handling of parameter input is isolated into an abstract class, whereby classes which requires a param handling
-feature will inherit from the abstract class.
-* Specific behavior towards different ```param type```-```parameter``` pairs  will be defined within their 
-own class declarations.
+The Handler component serves as the bridge between user interface and program operations.
+It includes 4 classes: 
+* ```ManualTracker```
+* ```EntryTracker```
+* ```RecurringTracker```
+* ```GoalTracker```
+* ```FinanceTools```
 
-### Architecture
-* The initialisation of ```Ledger``` and ```Entry``` instances can be
-performed with reference to input parameters supplied from the user input.
-* For ledger creation operations, the input from the user is parsed and passed into an initialized ledger instance
-to handle. That is, the handling of input parameters is abstracted out from the tracker classes. 
-<br> The handle operation will set the various attributes within the ledger in accordance to specifications inferred
-from the user input. 
-<br> If the ledger is successfully specified in full, it will be added to a ```ledgerList``` instance within the handler 
-class ```ManualTracker```.
-* For ledger deletion/open, a ledger will need to be selected from the ledger list maintained by the handler class.
-<br>Hence, the input from the user is parsed and passed into a command instance to handle. If the input
-is valid, the ledger list instance will assign a reference to the ledger selected to a public ```currLedger``` 
-attribute. 
-<br>After which, an operation of edit/open would be performed upon the ledger referenced from 
-```currLedger``` in ```ledgerList```.
+__API__
+* ```ManualTracker``` and ```EntryTracker``` maintains an instance of a ```DataList``` (```LedgerList``` and ```EntryList```) in ```Model``` respectively, 
+ and provides an interface for the user can append, remove or perform other ```Data``` operations with the contents of the ```Datalist```.
+* ```GoalTracker``` maintains a list of income or expense ```Goals``` to track against entries in the ```EntryList```, 
+and provides an interface for the user to append or remove ```Goals```.
+* ```Finance Tools``` class provides an interface for users to utilize an array of 
+finance calculator tools within it.
+* All ```Handler``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
+to perform the operation associated with the user input.
+
+## 1.2 Logic component
+![](.DeveloperGuide_images/Logic.png)
+
+__Description__
 
 
-### Logic
+__API__
 
-#### Input Parsing
 
-##### Input Conventions
-* The user input is composed of the following format:
-```
-    <command> <param type> <parameter> <param type> <parameter> ...
-```
-* The ```command``` string determines the current state of the Finite State Machine, and
-hence the function executed. 
-* The remainder of the string includes a series of  ```param type``` - ```param``` combinations, whereby
-```param type``` indicates the type of the parameter which is to be identified by the user class,
-and ```param``` indicates the parameter that is associated with the ```param type```. 
+## 1.3 Input Manager component
+![](.DeveloperGuide_images/InputManager.png)
 
-* Param types are restricted to two types: 
-    * ```/<string>```, requires a corresponding parameter.
-        * Eg. ```param type```: ```/date```
-              <br>  ```param``` : ```2020-04-04```
-    * ```-<string>```, does not require a corresponding parameter. 
-        * Reserved for param types which are used to specify a property to be true/false
-        * Eg. ```-auto```, to specify if an entry has automatic deduction. 
-        
-##### <a name="commandPacket"></a> Command Packet 
-* A helper class. Contains two particular attributes to store the user input in an organised fashion.
-    * ```commandString``` :  ```String``` Store the command string from the input.
-    * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
-        * Key: ```param type```
-        * Value:  ```param```
+__Description__
 
-##### InputParser
-* A helper class. Parses the input string and returns a corresponding [```commandPacket```](#commandPacket).
-    * ```parseInput()```: 
-        * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
-        * Calls ParamParser instance to parse the segment of the input string
-        that corresponds with the sequence of ```param type``` - ```param``` pairs, and
-        return a HashMap populated with the aforementioned pairs.
-        * Returns a fully populated ```commandPacket``` to be used by user classes.
-         
-##### ParamParser
-* A helper class. Parses the subsequence of the input string that corresponds with sequence of 
-```param type``` - ```param``` pairs.
-    * Parsing of input for params via ```parseParams()```:
-        * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
-        pattern specified in "Input conventions":
-        ```
-        Param types are restricted to two types: 
-          /<string>, requires a corresponding parameter.
-              Eg. param type: /date
-                    <br>  param : 2020-04-04
-          -<string>, does not require a corresponding parameter. 
-              Reserved for param types which are used to specify a property to be true/false
-              Eg. -auto, to specify if an entry has automatic deduction. 
-        ```
-        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line, 
-        as the ```param``` to the previously identified ```param type```. Extract it from the input string.
-        * __Step 3__: Put the ```param type``` - ```param``` pair into a ```HashMap```.
-        * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
-        * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
+The Input Manager consists of the ```UiManager``` class, and the ```Parser``` sub-component.
 
-### <a name="paramHandling"></a> Param Handling
+__API__
 
-#### ParamHandler
-* An abstract class that defines all param handling behavior. 
-    * Handling of params via```handleParams(packet)```:
-        * Initialize the state of the handler 
-            * Children class of ```ParamHandler``` call ```setRequiredParams()``` to set required Params that need to be parsed successfully to constitute an overall successful parse.
-            * Resetting String arrays in the following ```param``` arrays:
-                * ```missingRequiredParams```
-                * ```paramsSuccessfullyParsed```
-            * Set the ```CommandPacket``` instance in ```ParamChecker``` by calling ```ParamChecker.setPacket(packet)```.
-        * For every```paramType``` in the ```CommandPacket``` instance, execute ```handleSingleParam(packet)``` method. 
-            1. ```handleSingleParam(packet)``` is an abstract method, and it is implemented by children classes of ```ParamHandler``` depending on the needs and requirements of that particular class.
-        1. Check if the parse was successful. The condition below that define a successful parse is:
-            1. All ```param``` in ```createLedgerCommand.requiredParams``` string array are parsed with no exceptions thrown.
-        1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
+* ```handleInput()``` from the ```UiManager``` class is called from ```Handler``` classes to 
+retrieve the raw string input from the user.
+* ```Parser``` subcomponent classes are responsible for parsing raw String input from the user
+and produce an equivalent ```CommandPacket``` instance.
+* ```Handler``` classes will use the ```CommandPacket``` instance to call the corresponding
+```Command``` classes or perform the next operation.
 
+## 1.4 Model component
+![](.DeveloperGuide_images/Data.png)
+
+__Description__
+
+Represents data and data list in the program, whereby program operations specified
+by user input can be performed upon.
+
+__API__
+
+* ```EntryTracker``` and ```ManualTracker``` classes can interact with ```LedgerList``` and ```EntryList```
+instances to perform add, remove or edit operations on the ```Ledgers``` or ```Entry``` instances in it.
+* ```Storage``` component interact with ```DataList``` classes for save and load operations.
+    * For save, ```Storage``` component uses the ```EntryTracker``` and ```ManualTracker``` instances in the program
+    at the point of save to write to a series of text files that persists after the program closes.
+    * For load, ```Storage``` component writes data from the text files to ```EntryTracker``` and ```ManualTracker``` respectively.
+     
+
+## 1.5 Storage component
+![](.DeveloperGuide_images/Logic.png)
+
+__Description__
+
+__API__
+
+
+
+
+
+
+## 1.1 Logic component
+##### <a name="commandAndLogic"></a> Command and Logic
+
+![](uml_images/manualTracker/images/Commands_Logic_edited.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
+|```createLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
+|```retrieveEntryCommand```| Omitted and left as exercise for reader. : ^ )
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryCommand```| Omitted for brevity.
+|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
+|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
+##### <a name="handlerAndCommand"></a> Handler and Command
+
+![](uml_images/manualTracker/images/Handler_Commands.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| [Refer to section above](#commandAndLogic).
+|```createLedgerCommand```| [Refer to section above](#commandAndLogic).
+|```retrieveEntryCommand```| Omitted for brevity.
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryCommand```| Omitted for brevity.
+|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
+|```EntryTracker```| Omitted for brevity.
+
+## Handler component
+
+## 1.1 Architecture
 ### Features
 #### Main Menu
 - Loading up user data
@@ -195,33 +191,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 
 
-##### <a name="commandAndLogic"></a> Command and Logic
 
-![](uml_images/manualTracker/images/Commands_Logic_edited.png)
-
-|Class| Function |
-|--------|----------|
-|```retrieveLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
-|```createLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
-|```retrieveEntryCommand```| Omitted and left as exercise for reader. : ^ )
-|```createEntryCommand```| Omitted for brevity.
-|```editEntryCommand```| Omitted for brevity.
-|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
-|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
-
-##### <a name="handlerAndCommand"></a> Handler and Command
-
-![](uml_images/manualTracker/images/Handler_Commands.png)
-
-|Class| Function |
-|--------|----------|
-|```retrieveLedgerCommand```| [Refer to section above](#commandAndLogic).
-|```createLedgerCommand```| [Refer to section above](#commandAndLogic).
-|```retrieveEntryCommand```| Omitted for brevity.
-|```createEntryCommand```| Omitted for brevity.
-|```editEntryCommand```| Omitted for brevity.
-|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
-|```EntryTracker```| Omitted for brevity.
 
 ##### Handler and Parser
 

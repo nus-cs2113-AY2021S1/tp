@@ -1,7 +1,7 @@
 package seedu.financeit.financetools;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.FolderNotFoundException;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
@@ -28,10 +28,10 @@ public abstract class FinanceTools {
         boolean continueProgram = true;
         String outputAmount;
 
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Finance Tools!");
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Finance Tools!");
 
         while (continueProgram) {
-            UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
+            UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
             CommandPacket packet = InputParser.getInstance().parseInput(input);

@@ -1,7 +1,7 @@
 package seedu.financeit.datatrackers.entrytracker.commands;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -52,10 +52,10 @@ public class EditEntryCommand extends ParamHandler {
             this.entry.setAmount(amount);
             break;
         case PARAM_INC:
-            this.entry.setEntryType(Constants.EntryType.INC);
+            this.entry.setEntryType(Common.EntryType.INC);
             break;
         case PARAM_EXP:
-            this.entry.setEntryType(Constants.EntryType.EXP);
+            this.entry.setEntryType(Common.EntryType.EXP);
             break;
         case PARAM_DESCRIPTION:
             this.entry.setDescription(packet.getParam(paramType));
@@ -69,7 +69,7 @@ public class EditEntryCommand extends ParamHandler {
                 PARAM_INDEX
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
             break;

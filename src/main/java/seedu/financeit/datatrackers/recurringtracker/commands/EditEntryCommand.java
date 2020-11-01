@@ -1,7 +1,7 @@
 package seedu.financeit.datatrackers.recurringtracker.commands;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -44,10 +44,10 @@ public class EditEntryCommand extends ParamHandler {
             this.recurringEntry.setAmount(ParamChecker.getInstance().checkAndReturnDouble(paramType));
             break;
         case ParamChecker.PARAM_INC:
-            this.recurringEntry.setEntryType(Constants.EntryType.INC);
+            this.recurringEntry.setEntryType(Common.EntryType.INC);
             break;
         case ParamChecker.PARAM_EXP:
-            this.recurringEntry.setEntryType(Constants.EntryType.EXP);
+            this.recurringEntry.setEntryType(Common.EntryType.EXP);
             break;
         case ParamChecker.PARAM_DESCRIPTION:
             this.recurringEntry.setDescription(packet.getParam(paramType));
@@ -63,7 +63,7 @@ public class EditEntryCommand extends ParamHandler {
                 PARAM_INDEX
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
         }

@@ -1,6 +1,6 @@
 package seedu.financeit.common;
 
-public class Constants {
+public class Common {
     public static final String[] DEFAULT_EXP_CAT = {"TRANSPORT", "FOOD", "TRAVEL", "SHOPPING", "BILLS"};
     public static final String[] DEFAULT_INC_CAT = {"ALLOWANCE", "WAGES", "BONUS"};
     public static final String[] DEFAULT_PARAMS_PREFIX = {"/", "-"};
@@ -42,6 +42,20 @@ public class Constants {
             return literal;
         }
     }
+
+    public static String convertVarArgsToString(String... varArgs) {
+        String paramString = "";
+        int count = 0;
+        for (String param : varArgs) {
+            paramString += param;
+            if (count < varArgs.length - 1) {
+                paramString += ", ";
+            }
+            count++;
+        }
+        return paramString;
+    }
+
 
 
     // Regex detects the following: <whitespace>/<word><whitespace>

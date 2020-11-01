@@ -78,7 +78,7 @@ public class TestCommands {
             new String[][] {
                 {
                     PARAM_DATE,
-                    ("2020-5-".concat(String.valueOf(seed)))
+                    ("2020-".concat(String.valueOf(1 + seed % 12) + "-" + String.valueOf(1 + seed % 31)))
                 }
             }
         );

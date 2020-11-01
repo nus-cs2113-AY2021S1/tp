@@ -1,6 +1,6 @@
 package seedu.financeit.utils;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
@@ -90,14 +90,14 @@ public class ReminderGenerator {
     static String convertEntryToReminderString(RecurringEntry entry) {
         HashMap<String,Object> details = entry.getDetailsForReminder();
         int dayOfEntry = (int) details.get("day");
-        Constants.EntryType entryType = (Constants.EntryType) details.get("entryType");
+        Common.EntryType entryType = (Common.EntryType) details.get("entryType");
         boolean isAuto = (boolean) details.get("isAuto");
         String description = (String) details.get("description");
 
         String describeWhetherAuto = isAuto ? "Automatic" : "Manual";
 
         //Different phrases depending on whether entry is an expenditure or income
-        String phraseForEntryType = entryType.equals(Constants.EntryType.EXP)
+        String phraseForEntryType = entryType.equals(Common.EntryType.EXP)
                 ? " payment "
                 : " transfer into account";
 

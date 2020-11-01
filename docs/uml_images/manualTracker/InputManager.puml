@@ -1,0 +1,46 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle InputManager {
+    rectangle Parser{
+        class InputParser <<Singleton>> {
+            + parseInput(inputString:String):CommandPacket
+        }
+
+        class ParamParser <<Singleton>> {
+            + parseParams(inputString:String):HashMap
+        }
+        InputParser "1" *-> "1"ParamParser : Parse param substring with >
+
+        class CommandPacket {
+            - commandString : String
+            - paramMap : HashMap <String, String>
+        }
+    }
+
+    class UiManager {
+        + handleInput() : CommandPacket
+    }
+}
+
+UiManager ..> InputParser : Supply input String >
+Handler ..> UiManager : Outsource handling of \nuser inputs to >
+InputParser --> "1" CommandPacket : Generates from input string >
+Handler o-> "1" CommandPacket : Use in operations >
+
+
+rectangle Handler {
+
+}
+
+
+
+@enduml

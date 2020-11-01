@@ -36,20 +36,17 @@ public class ManualTrackerTest {
     public void testManualTrackerByDelete() {
         CommandPacket testPacket;
         for (int i = 1; i <= NUM_ENTRIES; i++) {
-            if (i % FREQUENCY_ERROR_ENTRY == 0) {
-                testPacket = generateCreateLedgerErrorCommand();
-            } else {
-                testPacket = generateCreateLedgerCorrectCommand(i);
-            }
+            testPacket = generateCreateLedgerCorrectCommand(i);
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleCreateLedger();
         }
-        int correctListNum = NUM_ENTRIES - (int)Math.floor((double)NUM_ENTRIES / FREQUENCY_ERROR_ENTRY);
+        int correctListNum = NUM_ENTRIES;
 
         for (int i = 1; i <= 4; i++) {
             switch (i) {
             case 1:
                 testPacket = generateDeleteLedgerByDateCorrectCommand();
+                correctListNum--;
                 break;
             case 2:
                 testPacket = generateDeleteLedgerByIdCorrectCommand();
@@ -63,7 +60,7 @@ public class ManualTrackerTest {
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleDeleteLedger();
         }
-        assertEquals(correctListNum - 2, ManualTracker.ledgerList.getItemsSize());
+        assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
     }
 
     @Test
