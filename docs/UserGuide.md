@@ -79,7 +79,7 @@ his actual workload is 13 hours or more.
     
     1. A user is considered to spend just right amount of time on a module if the user spends between 70% to 130% of the 
 expected workload. For example, if the expected workload is 10 hours, a user is considered to spend just right amount of
-time on the module if his actual workload is between 7 hours and 13 hours.
+time on the module if his actual workload is between 7 hours (inclusive) and 13 hours (exclusive).
 
 ### 2.1 View help: `help` <a name="help"></a>
 Shows a list of the commands available.

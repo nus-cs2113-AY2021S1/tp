@@ -193,12 +193,12 @@ public class ViewTimeBreakdownAnalysis {
         double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
         int expectedTime = m.getExpectedWorkload();
 
-        double percentageDifference = (actualTime - expectedTime) / expectedTime * 100.0;
+        double percentageDifference = Math.round((actualTime - (double) expectedTime) * 100.0 / expectedTime);
         if (!m.doesActualTimeExist(weekNumber)) {
             return noInput;
         } else if (percentageDifference < LOWER_BOUND_OF_JUST_NICE) {
             return tooLittleTimeSpent;
-        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE || actualTime == expectedTime) {
+        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE) {
             return justRight;
         } else {
             return tooMuchTimeSpent;
