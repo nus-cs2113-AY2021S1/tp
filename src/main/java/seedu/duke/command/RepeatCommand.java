@@ -6,6 +6,7 @@ import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.MissingRepeatListException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -119,6 +120,9 @@ public class RepeatCommand extends Command {
         EventList eventList = data.getEventList(words[0]);
         int index = Integer.parseInt(words[1]) - 1;
         Event repeatEvent = eventList.getEventByIndex(index);
+        if (repeatEvent.getRepeatEventList() == null) {
+            throw new MissingRepeatListException();
+        }
         ui.printRepeatList(repeatEvent);
     }
 
