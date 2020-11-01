@@ -78,7 +78,7 @@ class ViewTimeBreakdownAnalysisTest {
         String expected = "Total time spent: 5.0 H"
                 + System.lineSeparator() + "100% of time is spent on CS1231"
                 + System.lineSeparator() + "Seems like you didn't spend any time on CS2113t this week."
-                + System.lineSeparator() + "No input for CS2101"
+                + System.lineSeparator() + "No expected workload for CS2101"
                 + System.lineSeparator() + System.lineSeparator();
         assertEquals(expected, outContent.toString());
     }
@@ -117,7 +117,7 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().add(module1);
 
         Module module2 = new Module("CS2113t", "8");
-        module2.addActualTime("5.6", "2");
+        module2.addActualTime("5.55", "2");
         list.getData().add(module2);
 
         view.printAnalysis(list, 2);
@@ -146,7 +146,7 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().add(module1);
 
         Module module2 = new Module("CS2113t", "8");
-        module2.addActualTime("5.61", "2");
+        module2.addActualTime("5.6", "2");
         list.getData().add(module2);
 
         view.printAnalysis(list, 2);
