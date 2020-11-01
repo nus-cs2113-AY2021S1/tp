@@ -63,7 +63,7 @@ class BookmarkCommandTest {
             + "\t3. Trigun" + System.lineSeparator()
             + "\t4. Witch Hunter Robin" + System.lineSeparator();
     private static final String OUTPUT_DELETE_TEST = "Removing Cowboy Bebop: The Movie - Knockin' on Heaven's Door! :(";
-    private static final String OUTPUT_EDIT_TEST = "Editing Cowboy Bebop to have 1 episode(s).";
+    private static final String OUTPUT_EDIT_TEST = "Editing the current episode for Cowboy Bebop to episode(s) 1.";
     private static final String OUTPUT_NOTE_TEST = "Adding note:\"test\" to Cowboy Bebop!";
     private static final String OUTPUT_NOTE_TEST2 = "Adding note:\"test2\" to Cowboy Bebop!";
     private static final String OUTPUT_NOTE_TEST3 = "Adding note:\"test3\" to Cowboy Bebop!";
