@@ -165,7 +165,7 @@ public class Main {
         Dish saltedEggChicken = new Dish("Salted Egg Chicken",4,
         "Really like this taste of chicken with salted egg.");
         Dish mapoTofu = new Dish("Mapo Tofu",2.5,
-                "Heared of this dish before, really good.");
+                "Heard of this dish before, really good.");
         Stall mixedRice = new Stall("Mixed Rice",9,"32 Nanyang Cres",
                 800,1900,Arrays.asList(1,2,5,7),
                 Arrays.asList(spicyChicken,saltedEggChicken,mapoTofu),3);
@@ -186,6 +186,10 @@ public class Main {
 
     public static void order(List<Canteen> canteens,Customer customer){
 
+
+
+
+
             System.out.println("Dear " + customer.name + ",");
             System.out.println("Please choose a canteen from the list:");
             List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
@@ -198,7 +202,7 @@ public class Main {
             int canteenIdChoosed = sc.nextInt();
             Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
 
-            System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
+            System.out.println("The available stalls in " + canteenChoosed + " are:");
 
             List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
             j = 0;
@@ -227,6 +231,13 @@ public class Main {
                 orderedDishes.add(dishChoosed);
             }
 
+            String dummy = sc.nextLine();
+            System.out.println("Do you want to check the comment for this stall? (y/n)");
+            String isComment = sc.nextLine();
+            if (isComment.equals("y")) {
+                checkComment(orderedDishes);
+            }
+
             System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
@@ -236,9 +247,10 @@ public class Main {
             else if (typeChoosed == 2) {
                 orderType = "Take away";
             }
-            else {
-                orderType = "Delevery";
+            else if(typeChoosed == 3){
+                orderType = "Delivery";
             }
+
 
             Order order =customer.order(canteenChoosed,stallChoosed,orderedDishes,orderType);
             Order.add(order);
@@ -247,9 +259,10 @@ public class Main {
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
 
-    }
-    public static void changeOrder(Customer customer) {
 
+    }
+    public static void changeOrder(Customer customer)
+    {
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've changed this order:  \n");
         String[] inputWords = input.split("/"); //split the input message
@@ -270,7 +283,6 @@ public class Main {
     }
 
     public static void printOrder() {
-
         System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
             System.out.println("____________________________________________________________\n");
@@ -288,9 +300,10 @@ public class Main {
         }
         System.out.println("____________________________________________________________\n");
 
+
+
     }
     public static void deleteOrder() {
-
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've removed this order:  ");
         int orderNumberdeleted = Integer.parseInt(input.replaceAll("\\D+", "")) - 1; //find the corresponding index of task to be deleted
@@ -298,11 +311,8 @@ public class Main {
         Order.remove(orderNumberdeleted); //remove that task from arrayList
         System.out.println("Now you have " + Order.size() + " orders in the list. ");
         System.out.println("____________________________________________________________\n");
-
     }
-
     public static void findDishinOrder() {
-
         System.out.println("____________________________________________________________\n");
         System.out.println("Here are the matching orders in your list:\n");
         String keyword = input.substring(5); // to get the keyword string
@@ -310,37 +320,30 @@ public class Main {
         /*iterate the task arrayList to find corresponding items*/
         for(int i=0;i< Order.size();i++){
             for(int j=0;j<Order.get(i).getDish().size();j++)
-                if(Order.get(i).getDish().get(j).getDishName().contains(keyword)){
+                if(Order.get(i).getDish().get(j).getDishName().compareTo(keyword) == 0){
                     System.out.println(count +": " + Order.get(i));
                     count ++;
                 }
         }
         System.out.println("____________________________________________________________\n");
-
     }
     public static void greet(){
-
         System.out.println("____________________________________________________________\n");
         System.out.println(" Hello! I'm Canteenhelper\n");
         System.out.println(" What can I do for you?\n");
-
         System.out.println("____________________________________________________________\n");
     }
-
     /**
      * method to say bye
      * @return void
      */
     public static void bye(){
-
         System.out.println("____________________________________________________________\n");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________\n");
-
     }
 
     public static void help() {
-
         System.out.println("____________________________________________________________\n");
         System.out.println("Hello! Here is a list of commands you can try:");
         System.out.println("1. Order dish: 'order'");
@@ -349,7 +352,12 @@ public class Main {
         System.out.println("4. List order: 'list'");
         System.out.println("5. Exit program: 'bye' ");
         System.out.println("____________________________________________________________\n");
+    }
 
+    public static void checkComment(List<Dish> dCs) {
+        for (int i=0; i< dCs.size(); i++){
+            System.out.println(dCs.get(i).getComment());
+        }
     }
 
 }
