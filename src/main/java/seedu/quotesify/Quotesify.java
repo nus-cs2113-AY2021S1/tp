@@ -48,6 +48,7 @@ public class Quotesify {
     public void runLoopUntilExitCommand() {
         boolean isExit = false;
         while (!isExit) {
+            ui.printDividerLine();
             String userCommandText = ui.getUserCommand();
             Command command = parser.parseUserCommand(userCommandText);
             ui.printDividerLine();
@@ -57,7 +58,6 @@ public class Quotesify {
                 continue;
             }
             command.execute(ui, storage);
-            ui.printDividerLine();
             isExit = command.isExit();
         }
     }

@@ -1,65 +1,71 @@
 # User Guide
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [Quick Start](#quick-start)
-- [Features](#features)
-  * [Book Management](#1-book-management)
-  * [Quote Management](#2-quote-management)
-  * [Progress Tracker](#3-progress-tracker)
-  * [Category Management](#4-category-management)
-  * [Rating System for books](#5-rating-system-for-books)
-- [Usage](#usage)
-  * [Book Management](#book-management)
-    * [Adding a book](#adding-a-book-add--b)
-    * [Completing a book](#completing-a-book-done--b)
-    * [Listing all existing book](#listing-all-existing-books-list--b)
-    * [Listing book details](#listing-book-details-list--b)
-    * [Listing books by an Author](#listing-books-by-an-author-list--b)
-    * [Listing books by completion](#listing-books-by-completion-list--b)
-    * [Finding books by keyword](#finding-books-by-keyword-find--b)
-    * [Deleting a book](#deleting-a-book-delete--b)
-  * [Quote Management](#quote-management)
-    * [Add quotes](#adding-a-quote-add--q)
-    * [List all quotes](#listing-all-quotes-list--q)
-    * [List quotes from a specific reference](#listing-quotes-from-a-specific-reference-list--q)
-    * [List quotes from a specific author](#listing-quotes-from-a-specific-author-list--q)
-    * [List quotes from a specific reference and author](#listing-quotes-from-a-specific-reference-and-author-list--q)
-    * [Edit an existing quote](#editing-an-existing-quote-edit--q)
-    * [Delete a quote](#deleting-a-quote-delete--q)
-    * [Finding quotes](#finding-quotes-find--q)
-    * [Add quote reflection](#adding-reflection-to-a-quote-add--qr)
-    * [List quote reflection](#listing-reflection-of-a-quote-list--qr)
-    * [Edit an existing quote reflection](#editing-reflection-of-a-quote-edit--qr)
-    * [Delete a quote reflection](#deleting-reflection-of-a-quote-delete--qr)
-  * [Progress Tracker](#progress-tracker)
-    * [Add bookmarks](#add-bookmarks-bookmark--b-pg)
-    * [List bookmarks](#list-bookmarks-list--bm)
-    * [Delete bookmarks](#delete-bookmarks-delete--bm)
-    * [Edit bookmarks](#edit-bookmarks-bookmark--b)
-    * [Add tasks](#add-tasks-add--t-by)
-    * [List tasks](#list-tasks-list--t)
-    * [Mark tasks as done](#mark-tasks-as-done-done--t)
-    * [Delete tasks](#delete-tasks-delete--t)
-  * [Category Management](#category-management)
-    * [Add categories](#add-categories-add--c)
-    * [List categories](#list-categories-list--c)
-    * [List items in a category](#list-items-in-a-category-list--c)
-    * [Delete categories](#delete-categories-delete--c)
-    * [Edit an existing category](#edit-an-existing-category-edit--c)
-    * [Find an existing category](#find-an-existing-category-find--c)
-  * [Rating System for books](#rating-system)
-    * [Adding a book rating](#adding-a-book-rating-add--r)
-    * [Listing book ratings](#listing-book-ratings-list--r)
-    * [Deleting a book rating](#deleting-a-book-rating-delete--r)
-    * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
-    * [Finding book ratings](#finding-an-existing-book-rating-find--r)
-- [Getting Help in Quotesify](#getting-help-in-quotesify)
-- [Terminating the program](#terminating-the-program)
-- [FAQs](#faqs)
-- [Command Summary](#command-summary)
+- [Introduction](#10-introduction)
+- [Quick Start](#20-quick-start)
+- [Features](#30-features)
+  * [Book Management](#31-book-management)
+  * [Quote Management](#32-quote-management)
+  * [Progress Tracker](#33-progress-tracker)
+  * [Category Management](#34-category-management)
+  * [Rating System for books](#35-rating-system-for-books)
+- [Usage](#40-usage)
+  * [Book Management](#41-book-management)
+    * [Adding a book](#411-adding-a-book-add--b)
+    * [Completing a book](#412-completing-a-book-done--b)
+    * [Listing all existing book](#413-listing-all-existing-books-list--b)
+    * [Listing book details](#414-listing-book-details-list--b)
+    * [Listing books by an Author](#415-listing-books-by-an-author-list--b)
+    * [Listing books by completion](#416-listing-books-by-completion-list--b)
+    * [List done books](#417-list-done-books)
+    * [List undone books](#418-list-undone-books)
+    * [Finding books by keyword](#419-finding-books-by-keyword-find--b)
+    * [Deleting a book](#4110-deleting-a-book-delete--b)
+    * [Editing an existing book](#4111-editing-an-existing-book-edit--b)
+  * [Quote Management](#42-quote-management)
+    * [Add quotes](#421-adding-a-quote-add--q)
+    * [List all quotes](#422-listing-all-quotes-list--q)
+    * [List quotes from a specific reference](#423-listing-quotes-from-a-specific-reference-list--q)
+    * [List quotes from a specific author](#424-listing-quotes-from-a-specific-author-list--q)
+    * [List quotes from a specific reference and author](#425-listing-quotes-from-a-specific-reference-and-author-list--q)
+    * [Edit an existing quote](#426-editing-an-existing-quote-edit--q)
+    * [Delete a quote](#427-deleting-a-quote-delete--q)
+    * [Finding quotes](#428-finding-quotes-find--q)
+    * [Add quote reflection](#429-adding-reflection-to-a-quote-add--qr)
+    * [List quote reflection](#4210-listing-reflection-of-a-quote-list--qr)
+    * [Edit an existing quote reflection](#4211-editing-reflection-of-a-quote-edit--qr)
+    * [Delete a quote reflection](#4212-deleting-reflection-of-a-quote-delete--qr)
+  * [Progress Tracker](#43-progress-tracker)
+    * [Add bookmarks](#431-add-bookmarks-bookmark--b-pg)
+    * [List bookmarks](#432-list-bookmarks-list--bm)
+    * [Delete bookmarks](#433-delete-bookmarks-delete--bm)
+    * [Edit bookmarks](#434-edit-bookmarks-bookmark--b)
+    * [Add tasks](#435-add-tasks-add--t-by)
+    * [List tasks](#436-list-tasks-list--t)
+    * [Mark tasks as done](#437-mark-tasks-as-done-done--t)
+    * [Delete tasks](#438-delete-tasks-delete--t)
+  * [Category Management](#44-category-management)
+    * [Add categories](#441-add-categories-add--c)
+    * [List categories](#442-list-categories-list--c)
+    * [List items in a category](#443-list-items-in-a-category-list--c)
+    * [Delete categories](#444-delete-categories-delete--c)
+    * [Edit an existing category](#445-edit-an-existing-category-edit--c)
+    * [Find an existing category](#446-find-an-existing-category-find--c)
+  * [Rating System for books](#45-rating-system-for-books)
+    * [Adding a book rating](#451-adding-a-book-rating-add--r)
+    * [Listing book ratings](#452-listing-book-ratings-list--r)
+    * [Deleting a book rating](#453-deleting-a-book-rating-delete--r)
+    * [Editing an existing book rating](#454-editing-an-existing-book-rating-edit--r)
+    * [Finding book ratings](#455-finding-book-ratings-find--r)
+  * [Getting Help in Quotesify](#46-getting-help-in-quotesify)
+  * [Terminating the program](#47-terminating-the-program)
+- [FAQs](#50-faqs)
+- [Command Summary](#60-command-summary)
   
-## Introduction
+---
+  
+## 1.0 Introduction
+
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add 
 books and the related quotes that you wish to remember. You can categorize your books and quotes by author,
 customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
@@ -67,14 +73,17 @@ your reading experience.
 
 Quotesify is available for download on all major operating systems such as Windows and Mac.
 
-## Quick Start
+---
+
+## 2.0 Quick Start
+
 Before you begin, here's what you need to do:
 1. Ensure you have at least `Java 11` installed on your system.
 2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
 3. Open your command line or terminal and navigate into the file directory where you saved the application.
 4. Run `java -jar quotesify.jar` to launch Quotesify.
 5. Type a command in the command line and press `ENTER` to execute it. You should see the following:
-6. Refer to Features below for details of each command.
+6. Refer to [4.0 Usage](#40-usage) for details of each command.
 
 ```
 ________                __                .__  _____       
@@ -88,18 +97,24 @@ Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 ```
 
-*`Note: If you have added a quote before, the quote printed will be randomized.`*
+*Note: If you have added a quote before, the quote printed will be randomized.*
 
-## Features 
+---
 
-### 1. Book Management
+## 3.0 Features
+
+Wondering what Quotesify can do for you? Read this section to find out more!
+
+### 3.1 Book Management
+
 To manage your books, the book management feature allows you to add, delete and edit books you've already read or
 wish to read. You can then mark these books as done if you've already finished reading them, list them according to 
 their authors or completion and even find any book you want by just typing in keywords.
 
 What are you waiting for? If you've struggled with keeping up with your long booklist, Quotesify is here to help! 
 
-### 2. Quote Management
+### 3.2 Quote Management
+
 The quote management system in Quotesify allows you to add your quotes, list, edit and delete them acting as
 a log to keep track of all your favourite quotes. You can also store additional information such as the author of the 
 quote and reference from where it was taken. As the list may get large over time, you can find specific quotes from 
@@ -109,7 +124,8 @@ a reflection to it allowing you to expand and note down important ideas or why t
 If you are someone trying to remember and apply productivity tips from a book you just read, or someone trying to 
 track those all inspiring quotes to come back to, Quotesify's quote management system is the perfect fit for you!
 
-### 3. Progress Tracker
+### 3.3 Progress Tracker
+
 Progress Tracker in Quotesify allows you to add, update, list and delete bookmarks for the books you add. 
 It also allows you to add, mark as done, list and delete tasks in the todo list. 
 
@@ -120,7 +136,7 @@ and easily find the most urgent task in the list.
 If you hate flipping pages to find the page to continue reading, 
 or want to develop a reading habit by setting many goals of readling, this feature is prepared for you!
 
-### 4. Category Management
+### 3.4 Category Management
 Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
 With the categories you have created, you can simply tag them to any book or quote and list all of them in a categorised fashion.
 Whenever you have second thoughts about a given category name, simply change the name or remove it whilst Quotesify helps you
@@ -128,23 +144,30 @@ update the change across all books and quotes.
 
 If you are someone who likes being neat, organised and efficient, this feature is for you!
 
-### 5. Rating System for books
+### 3.5 Rating System for books
+
 The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
 how you feel about the books you read, and will always be ready to recommend a book to your fellow book readers.
 Ratings can be edited whenever you change your mind about the book, or be deleted when you are not interested
 in that rating anymore. Ratings can also be listed according to their rating score - with your favourites at the top -
-as well as be searched based on the book title and author.
+as well as be searched based on keywords in the title.
 
 With Quotesify's rating system, remembering the books you love will never be an issue for you!
 
-## Usage
+---
 
-### Book Management
+## 4.0 Usage
+
+This section will walk you through the features in Quotesify.
+
+### 4.1 Book Management
+
 Do you have books you are currently reading and want to keep track of them? 
 Or do you have a list of books you wish to read in the future but could never remember them? 
 You can add books to your booklist so that you can refer to it at any time. 
 
-#### Adding a book: `add -b`
+#### 4.1.1 Adding a book: `add -b`
+
 You can add a book to your current booklist. 
 
 Format: `add -b BOOK_TITLE /by AUTHOR`
@@ -161,7 +184,8 @@ The book [Harry Potter by JK Rowling] has been added!
 ------------------------------------------------------
 ~~~
 
-#### Completing a book: `done -b`
+#### 4.1.2 Completing a book: `done -b`
+
 Finished reading a book? You can now mark your book as done.
 
 Format: `done -b BOOK_NUMBER`
@@ -179,7 +203,8 @@ The book [Harry Potter by JK Rowling] has been marked as done!
 --------------------------------------------------------------
 ~~~
 
-#### Listing all existing books: `list -b`
+#### 4.1.3 Listing all existing books: `list -b`
+
 Want to see what books you have in your reading list? You can list all books currently in your booklist. 
 
 Format: `list -b`
@@ -198,7 +223,8 @@ Here is a list of all books:
 --------------------------------------------------------
 ~~~
 
-#### Listing book details: `list -b`
+#### 4.1.4 Listing book details: `list -b`
+
 Want to check a book's details? You can list the details of a book by specifying the book number.
 
 Format: `list -b BOOK_NUMBER`
@@ -259,7 +285,8 @@ Rating: 5
 ---------------------------------------------
 ~~~
 
-#### Listing books by an Author: `list -b`
+#### 4.1.5 Listing books by an Author: `list -b`
+
 You can list all books currently in your booklist with the same author. 
 
 Format: `list -b /by AUTHOR`
@@ -279,10 +306,12 @@ Here is a list of books by CS Lewis:
 --------------------------------------------------------
 ~~~
 
-#### Listing books by completion: `list -b`
+#### 4.1.6 Listing books by completion: `list -b`
+
 Only want to see the books you have finished or not finished? You can do that using the command below.
 
-##### List done books
+##### 4.1.7 List done books
+
 Format: `list -b done`
 
 Example of usage:
@@ -296,7 +325,8 @@ Here are the books you have completed:
 ---------------------------------------------
 ~~~
 
-##### List undone books
+##### 4.1.8 List undone books
+
 Format: `list -b undone`
 
 Example of usage:
@@ -312,7 +342,8 @@ Here are the books you have yet to complete:
 ---------------------------------------------------------
 ~~~
 
-#### Finding books by keyword: `find -b`
+#### 4.1.9 Finding books by keyword: `find -b`
+
 Can't recall the book title you want in your long list of books? You can find the book using a keyword.
 
 Format: `find -b KEYWORD`
@@ -329,7 +360,8 @@ Here is a list of books with the keyword "the":
 ---------------------------------------------------------
 ~~~
 
-#### Deleting a book: `delete -b`
+#### 4.1.10 Deleting a book: `delete -b`
+
 Don't need a book anymore? You can delete the book permanently. 
 
 Format: `delete -b BOOK_NUMBER`
@@ -347,7 +379,8 @@ The book [Harry Potter by JK Rowling] has been deleted!
 ---------------------------------------------------------
 ~~~ 
 
-#### Editing an existing book: `edit -b`
+#### 4.1.11 Editing an existing book: `edit -b`
+
 Accidentally typed in the wrong book title? You can edit your book titles. 
 
 Format: `edit -b BOOK_NUMBER /to NEW_TITLE`
@@ -366,12 +399,16 @@ The book has been edited from [Harry Potter] to [Harry Potter 2]!
 ------------------------------------------------------------------
 ~~~
 
-### Quote Management
+---
+
+### 4.2 Quote Management
+
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
 some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
 so you'll never forget them!  
 
-#### Adding a quote: `add -q`
+#### 4.2.1 Adding a quote: `add -q`
+
 Adds a quote to your current list of quotes.
 
 Format: `add -q QUOTE {[/by AUTHOR] | [/from REFERENCE]}`
@@ -415,7 +452,8 @@ The quote ["So everyone’s supposed to sleep every single night now?" - by Rick
 ----------------------------------------------------------------------------------------------------------------------
 ```
 
-#### Listing all quotes: `list -q`
+#### 4.2.2 Listing all quotes: `list -q`
+
 Lists all existing quotes.
 
 Format: `list -q`
@@ -433,7 +471,8 @@ Here are all your quotes:
 ----------------------------------------------------------------------------------------------
 ```
 
-#### Listing quotes from a specific reference: `list -q`
+#### 4.2.3 Listing quotes from a specific reference: `list -q`
+
 Lists all quotes tagged under the specified reference title.
 
 Format: `list -q /from REFERENCE`
@@ -449,7 +488,8 @@ Here is a list of quotes from rick and morty:
 ------------------------------------------------------------------------------------------
 ```
 
-#### Listing quotes from a specific author: `list -q`
+#### 4.2.4 Listing quotes from a specific author: `list -q`
+
 Lists all quotes tagged under the specified author.
 
 Format: `list -q /by AUTHOR`
@@ -464,7 +504,8 @@ Here is a list of quotes by darth vader:
 ---------------------------------------------------
 ```
 
-#### Listing quotes from a specific reference and author: `list -q`
+#### 4.2.5 Listing quotes from a specific reference and author: `list -q`
+
 Lists all quotes tagged under the specified reference and author.
 
 Format: `list -q /by AUTHOR /from REFERENCE`
@@ -479,7 +520,8 @@ Here is a list of quotes from rick and morty by rick:
 ------------------------------------------------------------------------------------------
 ```
 
-#### Editing an existing quote: `edit -q`
+#### 4.2.6 Editing an existing quote: `edit -q`
+
 Edits an existing quote from your list of quotes.
 
 Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
@@ -497,7 +539,8 @@ The quote has been edited from: ["Luke, I am your father" - by Darth Vader] to [
 ------------------------------------------------------------------------------------------------------------------------
 ```
 
-#### Deleting a quote: `delete -q`
+#### 4.2.7 Deleting a quote: `delete -q`
+
 Removes a quote from your current list of quotes.
 
 Format: `delete -q QUOTE_NUMBER`
@@ -514,7 +557,8 @@ The quote "Life is short, smile while you still have teeth" has been deleted!
 -----------------------------------------------------------------------------
 ```
 
-#### Finding quotes: `find -q`
+#### 4.2.8 Finding quotes: `find -q`
+
 Finds existing quotes related to a keyword.
 
 Format: `find -q KEYWORD`
@@ -525,13 +569,14 @@ Example of usage: `find -q sleep`
 
 Expected outcome:
 ```
----------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 Here are the results of my search:
 "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 ```
 
-#### Adding reflection to a quote: `add -qr`
+#### 4.2.9 Adding reflection to a quote: `add -qr`
+
 Adds your reflection to an existing quote.
 
 Format: `add -qr QUOTE_NUMBER /reflect REFLECTION`
@@ -550,7 +595,8 @@ Reflection: No, that’s not true. It’s impossible!
 ------------------------------------------------------------------------------
 ```
 
-#### Listing reflection of a quote: `list -qr`
+#### 4.2.10 Listing reflection of a quote: `list -qr`
+
 Lists reflection of an existing quote.
 
 Format: `list -qr QUOTE_NUMBER`
@@ -570,7 +616,8 @@ Reflection: No, that’s not true. It’s impossible!
 -------------------------------------------------
 ```
 
-#### Editing reflection of a quote: `edit -qr`
+#### 4.2.11 Editing reflection of a quote: `edit -qr`
+
 Edits the reflection of an existing quote.
 
 Format: `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION`
@@ -590,7 +637,8 @@ Reflection: Who is Yoda’s daddy?
 -------------------------------------------------
 ```
 
-#### Deleting reflection of a quote: `delete -qr`
+#### 4.2.12 Deleting reflection of a quote: `delete -qr`
+
 Deletes reflection of an existing quote.
 
 Format: `delete -qr QUOTE_NUMBER`
@@ -608,11 +656,15 @@ Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been delet
 -----------------------------------------------------------------------------------
 ```
 
-### Progress Tracker
+---
+
+### 4.3 Progress Tracker
+
 If you want to save your reading progress, you can do so by adding bookmarks to the books you read.
 If you want to set a goal on reading, you can do so by adding tasks (with deadlines) to your todo list. 
 
-#### Add bookmarks: `bookmark -b /pg`
+#### 4.3.1 Add bookmarks: `bookmark -b /pg`
+
 Add the only one bookmark to any book that has been already added.
 
 Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
@@ -628,7 +680,8 @@ The bookmark ["Harry Potter" at page: 109] has been added!
 ----------------------------------------------------------
 ```
 
-#### List bookmarks: `list -bm`
+#### 4.3.2 List bookmarks: `list -bm`
+
 List all bookmarks that you have already added.
 
 Format: `list -bm`
@@ -645,7 +698,8 @@ Here is the lsit of all bookmark(s) recorded:
 ------------------------------------------------
 ```
 
-#### Delete bookmarks: `delete -bm`
+#### 4.3.3 Delete bookmarks: `delete -bm`
+
 Delete the bookmark that you have already added.
 
 Format: `delete -bm BOOKMARK_NUMBER`
@@ -660,7 +714,8 @@ The bookmark ["hp" at page: 123] has been removed!
 ---------------------------------------------------
 ```
 
-#### Edit bookmarks: `bookmark -b`
+#### 4.3.4 Edit bookmarks: `bookmark -b`
+
 Update the bookmark that you have already added. 
 The command is the same as adding a new bookmark.
 
@@ -677,7 +732,7 @@ The bookmark ["Harry Potter" at page: 185] has been updated!
 ------------------------------------------------------------
 ```
 
-#### Add tasks: `add -t /by`
+#### 4.3.5 Add tasks: `add -t /by`
 
 Format: 
 1. `add -t TASK_NAME /by DEADLINE`
@@ -715,7 +770,8 @@ The task [[x] return Harry Potter (by: not specified)] has been added!
 ----------------------------------------------------------------------
 ```
 
-#### List tasks: `list -t`
+#### 4.3.6 List tasks: `list -t`
+
 If successful, you will see a full list of todo tasks added by you.
 If some tasks have formatted deadlines (YYYY-MM-DD), they will be arranged in ascending order of date 
 and displayed ahead of those with unformatted deadline. 
@@ -736,7 +792,7 @@ Here is the list of all task(s) recorded:
 --------------------------------------------------------
 ```
 
-#### Mark tasks as Done: `done -t`
+#### 4.3.7 Mark tasks as Done: `done -t`
 
 Format: `done -t TASK_NUMBER`
 * The task Number must be an integer and smaller than the total number of tasks you added.
@@ -750,7 +806,7 @@ The task [[v] return Harry Potter (by: tmr 2pm)] has been marked as done!
 --------------------------------------------------------------------------
 ```
 
-#### Delete tasks: `delete -t`
+#### 4.3.8 Delete tasks: `delete -t`
 
 Format: `delete -t TASK_NUMBER`
 * The task Number must be an integer and smaller than the total number of tasks you added.
@@ -764,12 +820,16 @@ The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
 ------------------------------------------------------------------
 ```
 
-### Category Management
+---
+
+### 4.4 Category Management
+
 If you like customising your own list, you can do so by categorising your books and quotes.
 
 Note: All categories will be stored in **lower-case** format.
 
-#### Add categories: `add -c`
+#### 4.4.1 Add categories: `add -c`
+
 Add one or more categories to a specified book or quote.
 
 Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
@@ -799,7 +859,8 @@ I have tagged category [inspirational] to the quote ["Life is Great"]!
 ----------------------------------------------------------------------
 ```
 
-#### List categories: `list -c`
+#### 4.4.2 List categories: `list -c`
+
 List all existing categories.
 
 Format: `list -c`
@@ -816,7 +877,8 @@ Here is the list of all categories:
 ----------------------------------------
 ```
 
-#### List items in a category: `list -c`
+#### 4.4.3 List items in a category: `list -c`
+
 List all books and quotes tagged under the specified category name.
 
 Format: `list -c CATEGORY`
@@ -832,7 +894,8 @@ BOOKS:
 -------------------------------------------------
 ```
 
-#### Delete categories: `delete -c`
+#### 4.4.4 Delete categories: `delete -c`
+
 Remove one or more categories from a specified book or quote.
 
 Format: `delete -c CATEGORIES [-b BOOK_NUMBER] [-q QUOTE_NUMBER]`
@@ -868,7 +931,8 @@ I have removed category [inspirational] from the quote ["Life is Great"]!
 -------------------------------------------------------------------------
 ```
 
-#### Edit an existing category: `edit -c`
+#### 4.4.5 Edit an existing category: `edit -c`
+
 Edit an existing category name.
 
 Format: `edit -c OLD_CATEGORY /to NEW_CATEGORY`
@@ -882,7 +946,8 @@ The category has been changed from [fantasy] to [romance]!
 ----------------------------------------------------------
 ```
 
-#### Find an existing category: `find -c`
+#### 4.4.6 Find an existing category: `find -c`
+
 Find existing categories related to a keyword.
 
 Format: `find -c KEYWORD`
@@ -897,11 +962,15 @@ Here is a list of categories with the keyword "man":
 -----------------------------------------------------
 ```
 
-### Rating System for books
+---
+
+### 4.5 Rating System for books
+
 Are you having your own opinions about the books you read? You might want to record down your favorites,
 so that you can recommend the best books to your friends and fellow book readers.
 
-#### Adding a book rating: `add -r`
+#### 4.5.1 Adding a book rating: `add -r`
+
 Adds a rating to a book.
 
 Format: `add -r RATING_SCORE BOOK_NUMBER`
@@ -920,7 +989,8 @@ You have just rated [Harry Potter by JK Rowling] 5 star!
 ---------------------------------------------------------
 ```
 
-#### Listing book ratings: `list -r`
+#### 4.5.2 Listing book ratings: `list -r`
+
 Lists ratings of books.
 
 Format: `list -r [RATING_SCORE]`
@@ -948,7 +1018,8 @@ Here are the books you rated as 5 star!
 --------------------------------------------
 ```
 
-#### Deleting a book rating: `delete -r`
+#### 4.5.3 Deleting a book rating: `delete -r`
+
 Deletes a rating from a book.
 
 Format: `delete -r BOOK_NUMBER`
@@ -965,7 +1036,8 @@ Rating for [Harry Potter by JK Rowling] has been deleted!
 ----------------------------------------------------------
 ```
 
-#### Editing an existing book rating: `edit -r`
+#### 4.5.4 Editing an existing book rating: `edit -r`
+
 Edits a rating of a book.
 
 Format: `edit -r RATING_SCORE BOOK_NUMBER`
@@ -983,7 +1055,8 @@ Ratings for [Harry Potter by JK Rowling] has been updated to 4 star!
 ----------------------------------------------------------------------
 ```
 
-#### Finding book ratings: `find -r`
+#### 4.5.5 Finding book ratings: `find -r`
+
 Finds ratings of books that have the specified keyword in the title.
 
 Format: `find -r KEYWORD`
@@ -1000,7 +1073,9 @@ Here are the ratings you may be looking for!
 -----------------------------------------------
 ```
 
-### Getting help in Quotesify
+---
+
+### 4.6 Getting help in Quotesify
 
 Forgotten the commands to get things done? You will not be left feeling lost.
 Quotesify got you covered with the Help page.
@@ -1077,7 +1152,9 @@ Hope this helps!
 ------------------------------------------------------------------------------------------------------------------------
 ```
 
-### Terminating the program
+---
+
+### 4.7 Terminating the program
 
 Done what you wished to do? Here's how to say goodbye and hope to see you soon!
 
@@ -1087,14 +1164,18 @@ Example of usage: `bye`
 
 Expected outcome:
 ```
+------------------------------------------------------------
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 Alright, have a nice day!
+------------------------------------------------------------
 ```
 
 *Note: If you have added a quote before, the quote printed will be randomized.*
 
-## FAQs
+---
+
+## 5.0 FAQs
 
 **Q: How do I transfer my data to another computer?** 
 
@@ -1122,7 +1203,9 @@ Alternatively, you can also reach us at *contact@quotesify.com*!
 **A**: The team at Quotesify is constantly seeking to improve and better the experience for our users! If you have a 
 suggestion for Quotesify, please do not hesitate to reach us at *contact@quotesify.com*!
 
-## Command Summary
+---
+
+## 6.0 Command Summary
 
 Enter the following command | To do this
 --------------------------- | -----------
@@ -1164,6 +1247,9 @@ Enter the following command | To do this
 `help` | Show help page
 `bye` | Terminate the program
 
+
 * Words in [] are **OPTIONAL**
 * Words in **CAPS** are your own input
 * Words are seperated by a single whitespace
+
+---

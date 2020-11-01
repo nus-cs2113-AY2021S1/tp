@@ -12,7 +12,7 @@
 - [Implementation](#40-implementation)
   * [Book Management](#41-feature-book-management)
   * [Quote Management](#42-feature-quote-management)
-  * [Progress Tracker](#43-progress-tracker)
+  * [Progress Tracker](#43-feature-progress-tracker)
   * [Category Management](#44-feature-category-management)
   * [Rating System for books](#45-feature-rating-system-for-books)
 - [Appendix: Requirements](#appendix-requirements)
@@ -70,7 +70,10 @@
     + [Editing a book rating](#editing-a-book-rating)
     + [Finding book ratings](#finding-book-ratings)
 
+---
+
 ## 1.0 Introduction
+
 **Welcome to Quotesify!**
 
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add
@@ -82,7 +85,10 @@ This guide will provide information on the design and implementation of Quotesif
 on your journey of being a contributor to Quotesify. This guide will also explain the steps to test out the program,
 so that you will have a better understanding of the current status of Quotesify.
 
+---
+
 ## 2.0 Setting up
+
 1. Fork the Quotesify repo from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp),
 and clone the fork to your computer.
 2. Open up your IDE (IntelliJ is highly recommended). If you are not at the welcome screen,
@@ -114,14 +120,19 @@ What would you like to do with Quotesify?
 
 *Note: If you have added a quote before, the quote printed will be randomized.*
 
+---
+
 ## 3.0 Design
-*Note: All UML diagrams in this guide are stored in the images/ directory.*
+
+*Note: All UML diagrams in this guide are stored in the images/directory.*
 
 ### 3.1 Architecture
 ![Architecture Diagram](images/Architecture_Diagram.png)
 
 The architecture diagram displayed above describes the high-level design of Quotesify. Below details a brief
 description of each component shown.
+
+---
 
 #### Main class: `Quotesify.java`
 * On program launch, the Main is responsible for initialising the required components in the correct sequence as well
@@ -142,7 +153,10 @@ The Sequence Diagram below shows an example of how the components work together 
 * The user command `add -b Harry Potter /by JK Rowling` will be converted into a String object named `userCommandText`, which is then
 passed into the Logic component for parsing and execution of the command.
 
+---
+
 ### 3.2 UI Component
+
 The class diagram below shows the association between classes that make up the UI component.
 
 ![Class Diagram for UI Component](images/ClassDiagram_UI.png)
@@ -154,7 +168,10 @@ The UI component is made up of main 2 classes:
 In essence, the UI is responsible for the majority display of all successful command executions, error messages
 , as well as user interaction by prompting for the next command.
 
+---
+
 ### 3.3 Logic Component
+
 The class diagram below shows the association between classes that make up the Logic component.
 
 Note: **Model** and **Storage** in this diagram represent components, not classes.
@@ -180,7 +197,10 @@ Therefore,
 * `XYCommand` class represents the command to execute from a specific model type. Such as `AddBookCommand`
 , `FindBookCommand`, `DeleteQuoteCommand`, etc.
 
+---
+
 ### 3.4 Model Component
+
 The class diagram below shows the association between classes that make up the Model component.
 
 ![Class Diagram for Model Component](images/ClassDiagram_Model.png)
@@ -188,7 +208,10 @@ The class diagram below shows the association between classes that make up the M
 The model component consists of several classes that make up the main features of Quotesify.
 Each object holds in-application data unique to each feature and is stored in a list of their own.
 
+---
+
 ### 3.5 Storage Component
+
 The storage component consists of a single `Storage` class. It is responsible for saving user data as instructed
 by the command component as well as to detect and load data on program launch.
 
@@ -201,15 +224,20 @@ model objects (e.g. Book).
 On Command execution:
 1. `Storage` parses all model objects in JSON format and writes into the save file.
 
+---
+
 ## 4.0 Implementation
+
 *Note: All UML diagrams in this guide are stored in the images/ directory.*
 
 ### 4.1 Feature: Book Management
+
 Given below is the class diagram for classes related to Book Management in Quotesify:
 
 ![Class Diagram for Book Management](images/ClassDiagram_Book.png)
 
 #### 4.1.1 Add Books
+
 The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
 
 ![Sequence Diagram for Add Books](images/SeqDiagram_AddBook.png)
@@ -224,6 +252,7 @@ new book after ensuring there are no identical books already in the BookList.
 alphabetical order.
 
 ##### Design Considerations
+
 * Title and author must be specified as <title,author> is used as the primary key.
     * Pros: Allows users to specify different books with the same title but different author.
     * Cons: Need to check for both title and author to prevent duplicates.
@@ -236,6 +265,7 @@ alphabetical order.
         * Cons: Since there are multiple listing methods, may not be the best method to keep sorting before listing.
 
 #### 4.1.2 Find Book by Keyword
+
 The sequence diagram below demonstrates the command execution process when finding books by a keyword.
 
 ![Sequence Diagram for Find Book by Keyword](images/SeqDiagram_FindBook.png)
@@ -245,6 +275,7 @@ The sequence diagram below demonstrates the command execution process when findi
 * `findByKeyword()` method filters books regardless of case. 
 
 ##### Design Considerations
+
 * Allows user to find books if either title or author contains the keyword.
     * Pros: Users can find books not just based on book title alone. The search range is increased to author name as well.
     * Cons: Need to check for both title and author for the list of results.
@@ -259,7 +290,10 @@ The sequence diagram below demonstrates the command execution process when findi
         * Pros: Users can narrow down the search using an exact phrase instead of just one word.
         * Cons: The exact phrase must be typed out for the correct result to show.
 
+---
+
 ### 4.2 Feature: Quote Management
+
 Given below is the class diagram for classes related to the Quote Management System in Quotesify:
 
 ![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
@@ -269,6 +303,7 @@ Given below is the class diagram for classes related to the Quote Management Sys
 `DeleteQuoteReflectionCommand`.
 
 #### 4.2.1 Add quote
+
 The add quote feature allows users to add quotes of multiple formats to Quotesify.
 Quotes added can be of the following format:
 * Quote with author name and reference title
@@ -291,6 +326,7 @@ not be added and an error message will be displayed.
 * Upon successful addition of a quote, the user will now be able to list, edit, delete, find and add a reflection to it.
 
 #### Design Considerations
+
 * Ability to add author name and reference title to quotes
     * Pros: Provides categorization and allows for the implementation of other useful features such as search and list
     * Cons: Increased memory overhead for each quote and implementation complexity
@@ -299,6 +335,7 @@ not be added and an error message will be displayed.
     * Cons: Increased implementation complexity due to parsing different formats.
     
 #### 4.2.2 Edit Quote Reflection
+
 The edit quote reflection feature updates current reflection of a quote into a new one, keeping the remainding 
 information such as quote, author name and reference the same.
 
@@ -314,6 +351,7 @@ reflection is not empty. If the following conditions are not met, the reflection
 message will be displayed.
 
 #### Design Considerations
+
 * Use of `/to` flag
     * Pros: Clear demarcation between quote number and start of updated reflection.
     * Cons: Additional parsing required and users are required to type more.
@@ -321,7 +359,10 @@ message will be displayed.
     * Pros: Better encapsulation and data hiding as attributes can be set to private
     * Cons: Additional methods and passing of data required
     
+---
+    
 ### 4.3 Feature: Progress Tracker
+
 Progress Tracker consists of two parts: Bookmark Management and Task Management.
 Given below is the class diagram for classes related to Bookmark Management in Quotesify:
 
@@ -332,6 +373,7 @@ Given below is the class diagram for classes related to Task Management in Quote
 ![Class Diagram for Task Management](images/ClassDiagram_ToDo.png)
 
 #### 4.3.1 Add/Update bookmark
+
 The proposed add or update bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
 be created in the process.
 * The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
@@ -346,11 +388,13 @@ The sequence diagram below demonstrates the command execution process when addin
 `BookmarkCommand` object as seen in the diagram, and then calling it's `execute()` method.
 
 #### Design Considerations
+
 * BookmarkList is always sorted in order of creation time
     * Pros: Allow user to easily find the earliest and the latest book they started to read.
     * Cons: Make user hard to find the bookmark they recently updated.
 
 #### 4.3.2 Add task
+
 The add task feature allows users to add tasks with a deadline to Quotesify. Tasks added can be of the following format:
 
 * Task without any deadline
@@ -370,6 +414,7 @@ The sequence diagram below demonstrates the command execution process when addin
 `execute()` method.
 
 #### Design Considerations
+
 * ToDoList is sorted in two ways:
     * Tasks with formatted deadline will be sorted in ascending order of time. (The one with an earlier deadline 
     is displayed ahead of the one with a later deadline)
@@ -380,7 +425,10 @@ The sequence diagram below demonstrates the command execution process when addin
         * Cons: It is hard for user to find a task with an unformatted deadline 
         even though the text in the deadline represents a high urgency.
     
+---
+    
 ### 4.4 Feature: Category Management
+
 Given below is the class diagram for classes related to Category Management in Quotesify:
 
 ![Class Diagram for Category Management](images/ClassDiagram_Category.png)
@@ -392,6 +440,7 @@ A `Category` object holds the following attributes:
 * An `int` value that indicates the total number of books/quotes tagged under the specified category.
 
 #### 4.4.1 Add Categories
+
 The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
 
 The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
@@ -406,6 +455,7 @@ The sequence diagram below demonstrates the command execution process when addin
   * The book will be added into the category's *bookList* attribute for record keeping.
 
 ##### Design Consideration
+
 * Aspect: Allowing users to specify only a single, or multiple categories at once.
   * Alternative 1 (current choice): Allowing users to specify multiple categories at once.
     * Pros: Increases efficiency for users as they could add multiple categories to a book/quote in a single command.
@@ -425,7 +475,10 @@ The sequence diagram below demonstrates the command execution process when addin
 With the addition of new categories, users can perform several commands that makes use of them. Such as editing of category name, finding a category, deleting a category,
 listing all categories, or adding the same category to other books and quotes.
 
+---
+
 ### 4.5 Feature: Rating system for books
+
 Given below is the class diagram for classes related to the Rating System in Quotesify:
 
 ![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
@@ -436,6 +489,7 @@ Given below is the class diagram for classes related to the Rating System in Quo
 * All the `XCommand` classes extends the abstract `Command` class.
 
 #### 4.5.1 Add rating
+
 The *add rating* feature will rely on an existing book object, and a rating object will then be created
 in the process.
 * The book object will store an attribute named *rating*, which will be set by this feature.
@@ -459,6 +513,7 @@ book details and rating score will also be created and stored in the rating list
 This list of ratings will be used when listing or finding ratings.
 
 ##### Design Consideration
+
 * Aspect: Saving the ratings in a Rating List as compared to just only using the Book List
     * Alternative 1 (current choice): Saving the ratings in a Rating List.
         * Pros: Helps in listing and finding ratings as not all books are rated.
@@ -474,6 +529,7 @@ This list of ratings will be used when listing or finding ratings.
         * Cons: Books with same title but different author will not be rated.
 
 #### 4.5.2 Find ratings
+
 The *find ratings* feature will search for books with title that contains the specified keyword
 and print details about the rating.
 
@@ -489,6 +545,8 @@ user is finding is not shown in the diagram.
 to inform the user and the method is returned.
 * The list of ratings will be looped to see if ratings exists for books with title containing the specified keyword.
 * The details of the ratings found will be printed to the user.
+
+---
 
 ## Appendix: Requirements
 
@@ -506,6 +564,8 @@ The intended user of Quotesify is someone that meets the following criterias:
 #### Value proposition
 Quotesify will help you to improve your reading experience with quick and easy features such as book management,
 quote management, progress tracker, category management and a rating system for your books.
+
+---
 
 #### User Stories
 
@@ -525,14 +585,20 @@ quote management, progress tracker, category management and a rating system for 
 |v2.0|long time user|be able to search for keywords|can find specific quotes I want from the list|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
+---
+
 #### Non-Functional Requirements
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 3. Users should prefer typing to GUI.
 4. Data should be stored locally inside the device's hard disk.
 
+---
+
 #### Glossary
 * *GUI* - Graphical User Interface
+
+---
 
 ## Appendix: Instructions for manual testing
 
@@ -559,11 +625,14 @@ Better days are coming, they are called Saturday and Sunday.
 Alright, have a nice day!
 ```
 
-*`Note: If you have added a quote before, the quote printed will be randomized.`*
+*Note: If you have added a quote before, the quote printed will be randomized.*
+
+---
 
 ### Testing for Book Management
 
 #### Adding a book
+
 1. Test case: `add -b Harry Potter /by JK Rowling`
     
    Expected: Book is added to Quotesify. A message will be prompted to indicate that
@@ -578,11 +647,13 @@ Alright, have a nice day!
     Expected: Book will not be added. An error message will by printed.
     
 #### List all existing books
+
 1. Test case: `list -b`
 
    Expected: All existing books in booklist will be listed.
    
 #### List book details
+
 1. Test case: `list -b 2`
 
    Expected: Book details of book with the book index 2 from list of all books will be printed.
@@ -594,6 +665,7 @@ Alright, have a nice day!
    Expected: Book details will not be printed. An error message will be printed instead.
    
 #### List books by author
+
 1. Test case: `list -b /by JK Rowling`
 
    Expected: Books with the author JK Rowling will be listed. 
@@ -604,6 +676,7 @@ Alright, have a nice day!
    Expected: Books will not be listed. An error message will be printed.
    
 #### Find books by keyword
+
 1. Test case: `find -b Harry`
 
    Expected: Books with the title or author name containing Harry will be listed. 
@@ -614,6 +687,7 @@ Alright, have a nice day!
    Expected: Books will not be listed. An error message will be printed.
 
 #### Delete books
+
 1. Test case: `delete -b 3`
 
    Expected: Book with the book index of 3 in booklist will be deleted from list.
@@ -626,6 +700,7 @@ Alright, have a nice day!
    Expected: Book will not be deleted. An error message will be printed.
 
 #### Edit book
+
 1. Test case: `edit -b 3 /to Harry Potterrrrr`
 
    Expected: Book title of book with the book index of 3 will be changed to Harry Potterrrrr.
@@ -636,6 +711,8 @@ Alright, have a nice day!
    * `edit -b 3 /to`: New title not specified. 
    
    Expected: Book title will not be edited. An error message will be printed. 
+   
+---
    
 ### Testing for Quote Management
    
@@ -809,9 +886,12 @@ Alright, have a nice day!
    
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
    
+---
+   
 ### Testing for Progress Tracker
    
 #### Adding a bookmark to book
+
 1. Test case: `bookmark -b 1 /pg 123`
 
    Expected: a page number will be marked at the book. A message will be prompted to indicate that 
@@ -824,12 +904,14 @@ Alright, have a nice day!
    Expected: Bookmark will not be added to any book. A message will error details will be shown.
 
 #### List all existing bookmarks
+
 1. Test case: `list -bm`
 
    Expected: A list of bookmarks will be displayed. Each row contains an index assigned to the bookmark in the list,
     its book’s information, and a page number marked by the bookmark. 
 
 #### Deleting an existing bookmark
+
 1. Test case: `delete -bm 1`
 
    Expected: Bookmark will be deleted from the book. A message will be prompted to indicate that 
@@ -842,6 +924,7 @@ Alright, have a nice day!
    Expected: Bookmark will not be deleted from the book. A message with error details will be shown.
 
 #### Edit an existing bookmark
+
 1. Test case: `bookmark -b 1 /pg 123`
 
    Expected: The page number will be updated in the bookmark. A message will be prompted to indicate that 
@@ -854,6 +937,7 @@ Alright, have a nice day!
    Expected: Bookmark will not be updated to any book. A message will error details will be shown.
 
 #### Adding a task to todo list
+
 1. Adding a task without deadline
    - Test case: `add -t return Harry Potter`
    
@@ -873,24 +957,30 @@ Alright, have a nice day!
      and the deadline will be formatted as ‘Oct 24 2020, Saturday’.
 
 #### Listing all existing tasks
+
 1. Test case: `list -t`
 
    Expected: A list of tasks will be displayed. The tasks with formatted deadlines will be displayed in the front, 
    and sorted in ascending order of timing, while other tasks will be displayed at the back without any order.
 
 #### Marking an existing task as done
+
 1. Test case: `done -t 1`
    
    Expected: A message will be prompted to indicate that the task has been marked as done in the todo list successfully.
 
 #### Deleting an existing task
+
 1. Test case: `delete -t 1`
 
    Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
    
+---
+   
 ### Testing for Category Management
    
 #### Adding categories
+
 1. Add one or more category to a book
    - Prerequisites: A book should exist in Quotesify.
    - Assume that the book "Harry Potter" is added into Quotesify assigned to index 1.
@@ -930,12 +1020,14 @@ Alright, have a nice day!
    Expected: An error message will be prompted. No changes will be made.
    
 #### Listing all categories
+
 1. List all existing categories
    - Test case: `list -c`
      
      Expected: A list of categories with the total number of items tagged under each category will be displayed.
 
 #### Listing a specific category
+
 1. List all books and quotes tagged by a specific category
    - Test case: `list -c action`
      
@@ -947,6 +1039,7 @@ Alright, have a nice day!
    Expected: An error message will be displayed indicating that no such category exists.
    
 #### Deleting existing categories
+
 1. Remove one or more category from a book
    - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
    - Assume the book "Harry Potter" is tagged with [action, fantasy] category and assigned with index 1.
@@ -993,6 +1086,7 @@ Alright, have a nice day!
    Expected: An error message will be prompted. No changes will be made.
          
 #### Editing an existing category
+
 1. Edit an existing category name
    - Test case: `edit -c love /to romance`
      
@@ -1005,6 +1099,7 @@ Alright, have a nice day!
    Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
 #### Finding an existing category
+
 1. Find existing categories related to a keyword.
    - Test case: `find -c man`
    
@@ -1015,6 +1110,8 @@ Alright, have a nice day!
    - `find -c 123` invalid category name
    
    Expected: An error message will be prompted. No categories will be listed.
+
+---
 
 ### Testing for Rating System for books
 
@@ -1096,3 +1193,5 @@ Use `list -b` to list all existing books and get book number.
    * `find -r`: keyword field left empty
    
    Expected: No rating is found and listed. A message with error details will be prompted.
+
+---
