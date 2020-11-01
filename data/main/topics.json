@@ -5,7 +5,7 @@
       {
         "description": "A software project may come in the form of:",
         "hint": "Recall the types of software projects that exist.",
-        "explanation": "",
+        "explanation": "A brown-field project involves developing a product to replace/update an existing software product\nwhile a green-field project involves developing a totally new system with no precedent",
         "options": [
           {
             "description": "A brown-field project and a green-field project.",
@@ -28,7 +28,7 @@
       {
         "description": "Which of the following is a characteristic of a well-defined requirement?",
         "hint": "Try to remember about what purpose requirements serve to pick out the correct answer.",
-        "explanation": "",
+        "explanation": "A well-defined requirement must be clear in what it conveys, without any confusion in meaning.",
         "options": [
           {
             "description": "Qualitative",
@@ -51,7 +51,7 @@
       {
         "description": "Requirements come from stakeholders.",
         "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
-        "explanation": "",
+        "explanation": "These people are who we are making the product for, so they provide the requirements as well.",
         "options": [
           {
             "description": "True",
@@ -74,7 +74,7 @@
       {
         "description": "Requirements should be prioritised based on:",
         "hint": "Think about how a stakeholder would rank a list of requirements in order.",
-        "explanation": "",
+        "explanation": "Deadlines are part of projects, and so it becomes important to prioritise the most important requirements\n to be cleared first.",
         "options": [
           {
             "description": "Order of creation and amount of work needed to be done to complete the requirement.",
@@ -97,7 +97,7 @@
       {
         "description": "True or False: I can omit the benefit specified in a User Story if it is obvious.",
         "hint": "If something is obvious, such that everyone knows what it does, is there a need to state it?",
-        "explanation": "",
+        "explanation": "If it's obvious, there really is no need to state it.",
         "options": [
           {
             "description": "True",

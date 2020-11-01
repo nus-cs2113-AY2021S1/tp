@@ -4,7 +4,6 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
-import seedu.eduke8.topic.TopicList;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class StatsCalculator {
         this.topics = topics;
     }
 
+    // For TopicalStatsCalculator
     public StatsCalculator() {
     }
 
@@ -37,10 +37,12 @@ public class StatsCalculator {
         }
     }
 
-    protected int calculateProgressionPercentage(int userProgress, int total) {
-        assert total > 0;
+    protected int calculateProgressionPercentage(int userProgress, int totalAvailableProgress) {
+        assert userProgress > 0;
+        assert totalAvailableProgress > 0;
+        assert userProgress < totalAvailableProgress;
 
-        double progressionLevel = (double) userProgress / total;
+        double progressionLevel = (double) userProgress / totalAvailableProgress;
 
         int progressionLevelPercentage = (int) (progressionLevel * 100);
 
