@@ -91,7 +91,7 @@ public class FluffleMessages {
     public static final String NO_WRITING_DUE = "You don't have any writings due that day!!!";
     public static final String CONTINUE_WRITINGS = "On %s, you should continue on the following writing(s):\n";
     public static final String PARSE_DATETIME_EXCEPTION =
-            "Cannot parse date and time. Please enter date in a correct format.";
+            "Cannot parse date and time. Please enter date in a correct  (dd/MM/yyyy).";
 
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
@@ -115,4 +115,7 @@ public class FluffleMessages {
 
     /** User interactive messages. */
     public static final String HELP_MESSAGE = "Please type in \"help\" command for information!";
+
+    /** Stop execution message. */
+    public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
 }
