@@ -16,6 +16,7 @@ public class InfoParser extends CommandParser {
     protected static final String SPLIT_DASH = "-";
     protected static final String TOO_MUCH_ARGUMENTS = "Info command " + TOO_MUCH_FIELDS;
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
     
     private InfoCommand infoCommand;
@@ -64,7 +65,11 @@ public class InfoParser extends CommandParser {
             if (!isInteger(paramParts[1].trim())) {
                 throw new AniException(NON_INTEGER_PROVIDED);
             }
-            infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
+            try {
+                infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
+            } catch (NumberFormatException e) {
+                throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+            }
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
