@@ -69,7 +69,7 @@ Do the testing. Please follow the testing guide
 ## 3. Design
 
 ### 3.1 Architecture
-
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/arch.png)
 Feature 1. Architecture Diagram
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
 Main:  Our main class has one class called Main.java. It is responsible for,
