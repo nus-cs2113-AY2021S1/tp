@@ -427,7 +427,7 @@ Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/r
 - Specifying [/repeat RECURRING] will set the event as a recurring event.
 - Specifying [/remind REMIND] will set the program to remind the event.
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
 💡 Repeat inputs can be `daily`, `weekly`, `monthly`, `yearly`<br>
 💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
 💡 Remind inputs can be chained to indicate multiple reminders
@@ -456,7 +456,7 @@ Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop R
 - Specifying [/remind-drop REMIND] will delete that reminder from the event if it exists.
 - Specifying [/remind-add REMIND] will remove all reminders in the event if any exists.
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
 💡 Repeat inputs can be `none`, `daily`, `weekly`, `monthly`, `yearly`<br>
 💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
 💡 Remind inputs can be chained to indicate multiple reminders
@@ -571,8 +571,8 @@ Create tag | `create-t /tag Important red`<br>`create-t /tag NUS /tag CEG yellow
 List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
-Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
+Add event | `add-e /t CS2113 /d 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
+Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`
