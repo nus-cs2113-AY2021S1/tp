@@ -1,32 +1,41 @@
 @startuml
 
-allowmixing
+hide members
+hide circle
+skinparam classAttributeIconSize 0
+
 Rectangle Logic {
 Rectangle commands {
 Rectangle commons {
 abstract class Command
-Command <|-left ExitCommand
-Command <|- HelpCommand
+'Command <|-left ExitCommand
+'Command <|- HelpCommand
 }
 Rectangle buscommand {
-Command <|-- AllBusCommand
-Command <|-left BusCommand
-Command <|-- ListStopsCommand
-Command <|-- ResetSearchFreqCommand
+'Command <|-- AllBusCommand
+Command <|-- BusCommand
+'Command <|-- ListStopsCommand
+'Command <|-- ResetSearchFreqCommand
 Command <|-- RouteCommand
-Command <|-- RouteMapCommand
+Command <|-- XYZCommand
+note right: XYZCommand = AllBusCommand,\n ListStopsCommand,\n ResetSearchFreqCommand,\n RouteMapCommand
+'Command <|-- RouteMapCommand
 }
 Rectangle dinecommand {
-Command <|-left DineCommand
-Command <|-left DineInfoCommand
+'Command <|-left DineCommand
+'Command <|-left DineInfoCommand
+Command <|-left PQRCommand
+note right: PQRCommand = DineCommand,\n DineInfoCommand
 }
 Rectangle favcommand {
-Command <|--up AddFavCommand
-Command <|--up ClearFavCommand
-Command <|--up DeleteFavCommand
+'Command <|--up AddFavCommand
+'Command <|--up ClearFavCommand
+'Command <|--up DeleteFavCommand
 Command <|--up DescFavCommand
-Command <|-- ExecFavCommand
-Command <|-- ListFavCommand
+Command <|--up ExecFavCommand
+Command <|--up ABCFavCommand
+note right: ABCFavCommand = AddFavCommand,\n ClearFavCommand,\n DeleteFavCommand,\n ListFavCommand
+'Command <|-- ListFavCommand
 }
 }
 Rectangle parser {
@@ -34,15 +43,15 @@ Parser <|-- RouteParser
 RouteParser <-down RouteCommand
 Parser <|-- DescFavParser
 DescFavParser <- DescFavCommand
-Parser <|-- ExecFavParser
+Parser <|--up ExecFavParser
 ExecFavParser <- ExecFavCommand
 }
-class SimilarityCheck
 
+Rectangle similaritycheck {
 SimilarityCheck <..down RouteCommand
 SimilarityCheck <..down BusCommand
 }
+}
 
 Parser --left> commands
-
 @enduml
