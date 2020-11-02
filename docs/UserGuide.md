@@ -24,8 +24,7 @@ By: `Team F11-3` Since: `August 2020`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.5. [Accessing the chapter level: `go`](#325-accessing-the-chapter-level-go)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.6. [Returning to admin level: `back`](#326-returning-to-admin-level-back)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.7. [Starting a revision session: `revise`](#327-starting-a-revision-session-revise)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.8. [Rating a chapter: `rate`](#328-rating-a-chapter-rate)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.9. [Rescheduling a chapter: `reschedule`](#329-rescheduling-a-chapter-reschedule)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.8. [Rescheduling a chapter: `reschedule`](#328-rescheduling-a-chapter-reschedule)<br>
 3.3. [Chapter Level](#33-chapter-level)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1. [Adding a flashcard: `add`](#331-adding-a-flashcard-add)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.2. [Listing flashcards available: `list`](#332-listing-flashcards-available-list)<br>
@@ -427,10 +426,7 @@ For instance, you are currently in the module level `CS2113T` and want to start 
 * Step 10: Once all the flashcards have been revised, the output message below will be shown: <br>
 ![Revise 8](images/Revise8.PNG)
 
-#### 3.2.8. Rating a chapter: `rate`
-(by Jiayi)
-
-#### 3.2.9. Rescheduling a chapter: `reschedule`
+#### 3.2.8. Rescheduling a chapter: `reschedule`
 (by Jane)
 
 You can reschedule the due date of an existing chapter from the list of chapters.
