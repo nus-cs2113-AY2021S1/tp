@@ -25,7 +25,7 @@ public class EditBookmarkCommand extends Command {
         assert command.startsWith(EDIT_KW);
 
         Pattern parser = Pattern.compile(
-                EDIT_KW + " (?<fieldToEdit>\\d+)\\s+(?<bookmarkIndex>[a-zA-Z]+)\\s+(?<newValue>[\\w/.:]+)"
+                EDIT_KW + " (?<fieldToEdit>[a-zA-Z]+)\\s+(?<bookmarkIndex>\\d+)\\s+(?<newValue>[\\w/.:]+)"
         );
         Matcher matcher = parser.matcher(command);
 
@@ -40,7 +40,7 @@ public class EditBookmarkCommand extends Command {
 
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
-       Bookmark bookmark = null;
+        Bookmark bookmark = null;
         try {
             bookmark = bookmarks.getBookmark(bookmarkIndex);
         } catch (ZoomasterException e) {
@@ -62,6 +62,6 @@ public class EditBookmarkCommand extends Command {
             break;
         }
 
-        ui.print(message);
+        ui.print(message + "\n");
     }
 }

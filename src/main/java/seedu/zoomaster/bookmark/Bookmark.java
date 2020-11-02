@@ -119,7 +119,7 @@ public class Bookmark {
     /**
      * Sets the URL of the bookmark.
      *
-     * @param a string of the URL.
+     * @param url String of the URL.
      */
     public void setUrl(String url) throws ZoomasterException {
         if (!isUrlValid(url)) {
