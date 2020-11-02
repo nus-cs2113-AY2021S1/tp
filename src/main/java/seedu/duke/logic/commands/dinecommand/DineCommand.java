@@ -18,6 +18,7 @@ public class DineCommand extends Command {
 
     public DineCommand(String input) {
         this.userFaculty = input;
+        super.isValid = false;
     }
 
     @Override
@@ -39,6 +40,7 @@ public class DineCommand extends Command {
             for (String tempFaculty : tempFacultyList) {
                 if (tempFaculty.toLowerCase().contains(userFaculty.trim().toLowerCase())) {
                     isFound = true;
+                    isValid = true;
                     if (count > 0) {
                         System.out.println();
                     }

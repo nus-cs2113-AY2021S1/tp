@@ -126,6 +126,9 @@ public class Ui {
     private static void printMostSearchedBusStop() {
         if (BusStops.mostSearchedBusStop() != null) {
             System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
+        } else {
+            System.out.println("As you search more, your most frequently searched bus stop will appear here "
+                    + "each time\nyou run this program!");
         }
     }
 
@@ -217,6 +220,15 @@ public class Ui {
     public static void printCorruptedDataRead() {
         System.out.println("Oh no! Some of the data in FavList.txt is corrupted.\n"
                 + "Most of the corrupted data has been removed :)");
+    }
+
+    public static void printBusAtBusStop(ArrayList<Bus> busList, String busStop) {
+        System.out.print(busStop + ":  ");
+        for (Bus bus : busList) {
+            System.out.print(bus.getBusNumber() + "   ");
+        }
+        System.out.println();
+        printLine();
     }
 
 }

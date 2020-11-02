@@ -3,9 +3,18 @@ package seedu.duke.exceptions;
 public enum ExceptionType {
     INVALID_COMMAND("I do not understand!!"),
     INVALID_BUS("Sorry,there is no such bus in our database!"),
-    NO_DELIMITER("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
+    NO_DELIMITER_ROUTE("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
             + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
             + "bus stops in NUS."),
+    MANY_DELIMITERS_ROUTE("Oops! You have too many delimiters!\nThe format for this command is as follows:"
+            + "\n/route <starting loc> /to <destination>\nwhere starting location and destination must be the names of "
+            + "bus stops in NUS."),
+    NO_DELIMITER_DESCFAV("Oops! You are missing the delimiter /to.\nThe format for this command is as follows:"
+            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the "
+            + "list\nand description is the new description you want for your favourite command."),
+    MANY_DELIMITERS_DESCFAV("Oops! You have too many delimiters!\nThe format for this command is as follows:"
+            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in the "
+            + "list\nand description is the new description you want for your favourite command."),
     NO_LOCATIONS("Oh dear! I don't have all locations."),
     MISSING_BUS_CODE("Oh no! You seem to have missed typing in the bus code!"),
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),
@@ -19,8 +28,7 @@ public enum ExceptionType {
     INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
     INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite."),
     UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
-    READ_FILE_FAIL("It is unfortunate that the program is unable to read the file, a fresh file"
-            + " has been created."),
+    FREQ_READ_FILE_FAIL("FreqList.txt Read with corrupted data! Re-initialising file!"),
     EMPTY_FAVLIST("Your favourites list is empty!"),
     NO_INPUT("Oh dear! You haven't typed in the index or changed description."),
     EMPTY_DESCRIPTION("Hmmm, I don't think you would want an empty description."),

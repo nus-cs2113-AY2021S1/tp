@@ -11,6 +11,10 @@ import static seedu.duke.ui.Ui.printLine;
 
 public class FacultyCommand extends Command {
 
+    public FacultyCommand() {
+        super.isValid = true;
+    }
+
     @Override
     public void executeCommand() {
         printLine();

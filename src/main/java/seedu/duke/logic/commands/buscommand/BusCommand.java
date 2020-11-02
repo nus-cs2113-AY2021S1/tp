@@ -15,7 +15,7 @@ import static seedu.duke.ui.Ui.printLine;
 
 public class BusCommand extends Command {
 
-    public String busStop;
+    private String busStop;
 
     public BusCommand(String busStop) throws CustomException {
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(busStop));
@@ -32,12 +32,7 @@ public class BusCommand extends Command {
         if (busStop != null) {
             printLine();
             ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
-            System.out.print(busStop + ":  ");
-            for (Bus bus : busList) {
-                System.out.print(bus.getBusNumber() + "   ");
-            }
-            System.out.println();
-            printLine();
+            Ui.printBusAtBusStop(busList, busStop);
         }
     }
 

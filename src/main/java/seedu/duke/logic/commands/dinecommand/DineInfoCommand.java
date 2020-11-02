@@ -18,6 +18,7 @@ public class DineInfoCommand extends Command {
 
     public DineInfoCommand(String input) {
         this.userFoodPlace = input;
+        super.isValid = false;
     }
 
     @Override
@@ -41,6 +42,9 @@ public class DineInfoCommand extends Command {
                     searchList.add(dineInfo);
                 }
             }
+        }
+        if (searchList.size() > 0) {
+            isValid = true;
         }
         printDineInfoResult(searchList);
     }
