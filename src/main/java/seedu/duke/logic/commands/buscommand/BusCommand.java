@@ -29,11 +29,9 @@ public class BusCommand extends Command {
 
     @Override
     public void executeCommand() {
-        if (busStop != null) {
-            printLine();
-            ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
-            Ui.printBusAtBusStop(busList, busStop);
-        }
+        printLine();
+        ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
+        Ui.printBusAtBusStop(busList, busStop);
     }
 
     private ArrayList<String> similarLocations(String location) {
