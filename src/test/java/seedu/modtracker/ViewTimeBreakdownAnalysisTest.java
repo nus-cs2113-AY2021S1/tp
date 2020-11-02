@@ -139,7 +139,7 @@ class ViewTimeBreakdownAnalysisTest {
     }
 
     @Test
-    void printAnalysis_modulesWithNoActualTime_noInput() {
+    void printAnalysis_modulesWithNoActualTime_printInsufficientData() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         outContent.reset();
@@ -153,13 +153,18 @@ class ViewTimeBreakdownAnalysisTest {
 
         view.printAnalysis(list, 2);
 
-        String expected = ViewTimeBreakdownAnalysis.ANALYSIS + System.lineSeparator();
+        String expected = ViewTimeBreakdownAnalysis.ANALYSIS + System.lineSeparator()
+                + "CS1231" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.INSUFFICIENT_DATA + System.lineSeparator()
+                + System.lineSeparator() + "CS2113t" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.INSUFFICIENT_DATA + System.lineSeparator()
+                + System.lineSeparator();
 
         assertEquals(expected, outContent.toString());
     }
 
     @Test
-    void printAnalysis_modulesWithNoExpectedInput_noInput() {
+    void printAnalysis_modulesWithNoExpectedInput_printInsufficentData() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         outContent.reset();
@@ -175,8 +180,12 @@ class ViewTimeBreakdownAnalysisTest {
 
         view.printAnalysis(list, 2);
 
-        String expected = ViewTimeBreakdownAnalysis.ANALYSIS + System.lineSeparator();
-
+        String expected = ViewTimeBreakdownAnalysis.ANALYSIS + System.lineSeparator()
+                + "CS1231" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.INSUFFICIENT_DATA + System.lineSeparator()
+                + System.lineSeparator() + "CS2113t" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.INSUFFICIENT_DATA + System.lineSeparator()
+                + System.lineSeparator();
         assertEquals(expected, outContent.toString());
     }
 

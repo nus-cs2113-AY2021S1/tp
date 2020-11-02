@@ -30,6 +30,7 @@ public class ViewTimeBreakdownAnalysis {
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
     public static final String NO_TIME_SPENT = "Seems like you didn't spend any time on your modules this week.";
+    public static final String INSUFFICIENT_DATA = "Insufficient data to compute analysis.";
 
     /**
      * Prints the breakdown and analysis of the
@@ -159,28 +160,24 @@ public class ViewTimeBreakdownAnalysis {
 
         for (Module m : modList) {
             Analysis analysis = computeAnalysisOfTimeSpent(m, weekNumber);
-
+            System.out.println(m.getModuleCode());
             switch (analysis) {
             case tooMuchTimeSpent:
-                System.out.println(m.getModuleCode());
                 System.out.println(TOO_MUCH_TIME_SPENT);
-                System.out.println();
                 break;
             case justRight:
-                System.out.println(m.getModuleCode());
                 System.out.println(JUST_RIGHT);
-                System.out.println();
                 break;
             case tooLittleTimeSpent:
-                System.out.println(m.getModuleCode());
                 System.out.println(TOO_LITTLE_TIME_SPENT);
-                System.out.println();
                 break;
             case noInput:
+                System.out.println(INSUFFICIENT_DATA);
                 break;
             default:
                 return;
             }
+            System.out.println();
         }
     }
 
