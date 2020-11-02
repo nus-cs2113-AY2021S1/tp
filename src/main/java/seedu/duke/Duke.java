@@ -69,7 +69,7 @@ public class Duke {
 
         while (commandChecker != CommandChecker.EXIT) {
             userInput = getUserInput(SCANNER);
-            echoInput(userInput); //for testing only
+            //echoInput(userInput); //for testing only
             printDivider();
             commandChecker = extractCommandType(userInput);
             executeCommand(commandChecker, userInput, writings);
