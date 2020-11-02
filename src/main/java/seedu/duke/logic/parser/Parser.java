@@ -121,7 +121,7 @@ public class Parser {
 
         com.executeCommand();
 
-        if (!command.equals("/addfav") && !command.equals("/execfav") && com.isValid()) {
+        if (com.isValid()) {
             previousInput = userInput;
         } else {
             previousInput = null;
