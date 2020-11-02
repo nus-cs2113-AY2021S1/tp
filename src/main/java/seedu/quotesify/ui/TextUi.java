@@ -181,7 +181,7 @@ public class TextUi {
     }
 
     public void printFindQuoteFail() {
-        System.out.printf(UiMessage.FIND_QUOTE_FAIL);
+        System.out.println(UiMessage.FIND_QUOTE_FAIL);
     }
 
     public void printFindQuoteSuccess(String results) {
