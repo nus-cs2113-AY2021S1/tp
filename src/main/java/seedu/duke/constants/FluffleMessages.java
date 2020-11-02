@@ -58,6 +58,25 @@ public class FluffleMessages {
     /** Bunny deletion message. */
     public static final String BUNNY_DELETED_MSG = "Bunny deleted: \n";
 
+    /** Bunny filter messages. */
+    public static final String NUMBER_BUNNY_FILTERED_MSG = "number bunny filtered: ";
+    public static final String FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG =
+            "filter bunny command missing filter options.";
+    public static final String NO_BUNNY_MATCHING_FILTER_OPTIONS_MSG = "No bunny matching filter options";
+    public static final String BUNNY_INDEX_NOT_IN_LIST_MSG = "Bunny index is not in list.";
+    public static final String DIVIDER_COMMAND_OF_WRONG_FORMAT_MSG = "Divider command of wrong format";
+    public static final String DIVIDER_INDEX_INDICATED_OUT_OF_BOUNDS_MSG = "Divider index indicated out of bounds";
+
+    /** Bunny listing messages. */
+    public static final String LIST_BUNNIES_EMPTY_MSG = "List of bunnies is empty.";
+    public static final String TOTAL_BUNNIES_IN_LIST_MSG = "Total Bunnies in list: ";
+
+    /** Bunny save and load messages. */
+    public static final String BUNNY_LIST_SAVED_MSG = "Bunny list saved!";
+    public static final String FAILED_TO_SAVE_BUNNY_LIST_MSG = "Failed to save bunny list";
+    public static final String WRITING_TO_BUNNY_FILE_MSG = "Writing to bunny file";
+    public static final String NUM_BUNNY_LOADED_MSG = "%1$s of %2$s bunnies loaded!";
+
     /** Bunny random selection message. */
     public static final String BUNNY_RANDOMLY_SELECTED_MSG = "Random Bunny: \n";
 
@@ -119,4 +138,5 @@ public class FluffleMessages {
 
     /** Stop execution message. */
     public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
+
 }

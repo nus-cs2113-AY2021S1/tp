@@ -25,6 +25,7 @@ import static seedu.duke.database.WritingsLoader.loadWritings;
 import static seedu.duke.database.WritingsLoader.recordListToFile;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.ui.UI.echoInput;
 import static seedu.duke.ui.UI.printAskForName;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
@@ -68,6 +69,7 @@ public class Duke {
 
         while (commandChecker != CommandChecker.EXIT) {
             userInput = getUserInput(SCANNER);
+            //echoInput(userInput); //for testing only
             printDivider();
             commandChecker = extractCommandType(userInput);
             executeCommand(commandChecker, userInput, writings);
