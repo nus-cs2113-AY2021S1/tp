@@ -204,7 +204,6 @@ public class EventList {
         return output;
     }
 
-
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
      *
@@ -259,6 +258,11 @@ public class EventList {
         return output;
     }
 
+    /**
+     * Displays the list of tasks containing the keyword.
+     *
+     * @param keyword The word used for search.
+     */
     private static String printFilteredEventsByDate(String keyword) {
         assert keyword != null;
         int taskNumber = 1;

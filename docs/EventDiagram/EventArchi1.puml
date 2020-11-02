@@ -1,0 +1,16 @@
+@startuml
+hide circle
+class "{abstract} \n Command" {
+}
+
+Rectangle EventCommands {
+"{abstract} \n Command" <|-down- CommandEventAdd
+"{abstract} \n Command" <|-down CommandEventDel
+"{abstract} \n Command" <|-down CommandEventList
+"{abstract} \n Command" <|-down CommandSearchEvent
+"{abstract} \n Command" <|-down CommandEventStatus
+"{abstract} \n Command" <|-down CommandEventCountdown
+"{abstract} \n Command" <|-down CommandAddEventAttendance
+"{abstract} \n Command" <|-down CommandDelEventAttendance
+"{abstract} \n Command" <|-down CommandViewEventAttendance
+@enduml

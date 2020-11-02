@@ -16,7 +16,8 @@ public class CommandEventCountdown extends Command {
     @Override
     public int validate(UserInput ui) {
         this.userInput = ui;
-        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("countdown"))) {
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("countdown")
+            || ui.getCommand().equalsIgnoreCase("c"))) {
             return ACCEPT;
         } else {
             return NO_MATCH;

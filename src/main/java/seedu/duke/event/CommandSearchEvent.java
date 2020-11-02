@@ -21,7 +21,8 @@ public class CommandSearchEvent extends Command {
     @Override
     public int validate(UserInput ui) {
         userInput = ui;
-        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("search"))) {
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("search")
+            || ui.getCommand().equalsIgnoreCase("s"))) {
             return ACCEPT;
         } else {
             return NO_MATCH;

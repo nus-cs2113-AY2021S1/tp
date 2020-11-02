@@ -73,6 +73,7 @@ class EventListTest {
                 + "Time: 08-00" + "\n" + "*".repeat(50) + "\n";
         assertEquals(expected6,EventList.searchEvents("autodesk"));
         assertEquals(expected6,EventList.searchEvents("2030-10-20"));
+        assertEquals("No matching events found!",EventList.searchEvents("arduino"));
 
         EventList.deleteEvent(0);
         String expected7 = "Oops! The event list is empty!";

@@ -46,29 +46,13 @@ This user guide provides a quick start guide for you to easily setup install CCA
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
 
-Additionally, throughout this user guide, there will be various icons used as described below:
-> :bulb: This symbol denotes a tip which you might find useful when using the application.
+[](userGuidePic/Symbol1.PNG)
 
-> :information_source: This symbol denotes some information that you will need to take note of when using the application.
-
-> :`code` : Text that appears on the CLI / in code
-
-> : [Hyperlinked]() : Leads you to the appropriate section 
->
 ## 3.Quick Start
 
-:one: Ensure that you have Java 11 or above installed.
- > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
- > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
- 
-:two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
+![Symbol](userGuidePic/Symbol2.PNG)
 
-:three: Run the program by entering java -jar cca.java in a terminal.
- > :information_source: Please resize the terminal to full screen mode
- 
-You will see this welcome message if you have done the above steps correctly. 
-
-(to add welcome message)
+![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
 This section will show the features in our program in detail.
@@ -78,9 +62,8 @@ to see the commands of all features at a glance.
 #### Command Format 
 
 Words in UPPER CASE are the parameters to be supplies by user.
-> :information_source: Our program also supports shorthand commands. 
+![Symbol](userGuidePic/Symbol3.PNG)
 
-(elaborate)
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -220,6 +203,13 @@ Expected outcome:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
+![Symbol](userGuidePic/Symbol4.PNG)
+
+
+Shorthand Command : <br/>
+event --> e <br/>
+addEvent --> add/a <br/>
+
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
  `event add /n arduino course /d 2020-12-30 /t 23-59`<br/>
@@ -234,12 +224,16 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
+
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+![Symbol](userGuidePic/Symbol5.PNG)
+ 
+ Shorthand Command : <br/>
+ event --> e <br/>
+ addEvent --> del/d <br/>
  
  Example of usage: 
  `event delEvent 1` <br/>
@@ -260,7 +254,11 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
-A confirmation message will be prompted. To clear, type `Y` in terminal.
+Shorthand Command : <br/>
+event --> e <br/>
+delEvent --> del/d <br/>
+
+![Symbol](userGuidePic/Symbol6.PNG)
 
 Expected Outcome:
 
@@ -271,6 +269,10 @@ Expected Outcome:
 #### List events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
+
+Shorthand Command : <br/>
+event --> e <br/>
+listEvent --> l <br/>
 
 Example of usage: 
 `event listEvent` <br/>
@@ -287,9 +289,14 @@ Expected Outcome:
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
-Example of usage: 
+Shorthand Command : <br/>
+event --> e <br/>
+countdown --> c <br/>
+
+Example of usage: <br/>
 `event countdown` <br/>
 `e countdown` <br/>
+`e c` <br/>
 
 Expected Outcome:
 
@@ -304,14 +311,16 @@ Format: `event done EVENT_INDEX` <br/>
 The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 The EVENT_INDEX must be an integer greater than 0. <br/>
 
-Example of usage:
+Shorthand Command : <br/>
+event --> e <br/>
+
+Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
 Expected Outcome:
-Before and the after marking event as done
 
-![EventBefore](userGuidePic/eventMarkAsDone1.PNG)  ->  ![EventAfter](userGuidePic/eventMarkAsDone.PNG)
+![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
 
@@ -319,10 +328,15 @@ Before and the after marking event as done
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
+Shorthand Command : <br/>
+event --> e <br/>
+search --> s <br/>
+
 Example of usage:
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
+`e s /s 2000-12-16` <br/>
 
 Expected Outcome:
 
