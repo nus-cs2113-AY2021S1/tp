@@ -433,7 +433,7 @@ The expected outcome is as follows:
 
 Command | Format | Example
 ------- | ---------- | ------------
-addAttendance  | `event addAttendance /n EVENT_NAME /p MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
+addAttendance  | `event addAttendance /n EVENT_NAME /m MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
 addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
