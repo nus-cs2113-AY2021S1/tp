@@ -48,7 +48,7 @@ public class EditProfileCommand extends Command {
     }
 
     private void editName(User user, String argument) {
-        user.setName(argument);
+        user.setName(argument, true);
         Ui.printCustomMessage(Messages.NAME_ECHO_HEADER + user.getName());
     }
 
