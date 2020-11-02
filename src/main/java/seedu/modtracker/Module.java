@@ -8,10 +8,10 @@ import java.util.Arrays;
  */
 public class Module {
 
-    public static final int NO_INPUT = -1;
+    public static final double NO_INPUT = -1.0;
     public static final int INDEX_OFFSET = 1;
     private String moduleCode;
-    private int expected = NO_INPUT;
+    private double expected = NO_INPUT;
     private final double[] actualTime = new double[13];
 
     public Module(String mod) {
@@ -21,7 +21,9 @@ public class Module {
 
     public Module(String mod, String expected) {
         moduleCode = mod;
-        this.expected = Integer.parseInt(expected);
+        double exp = Double.parseDouble(expected);
+        this.expected = Math.round(exp * 10) / 10.0;
+
         Arrays.fill(actualTime, NO_INPUT);
     }
 
@@ -37,11 +39,11 @@ public class Module {
         return moduleCode;
     }
 
-    public int getExpectedWorkload() {
+    public double getExpectedWorkload() {
         return expected;
     }
 
-    public void setExpectedWorkload(int expected) {
+    public void setExpectedWorkload(double expected) {
         this.expected = expected;
     }
 

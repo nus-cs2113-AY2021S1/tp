@@ -129,8 +129,10 @@ public class ModView {
         return (double) Math.round(value * scale) / scale;
     }
 
-    private boolean isTwoDigitNumber(int num) {
-        return String.valueOf(num).length() == 2;
+    private boolean isTwoDigitNumber(double num) {
+        int value = (int)num;
+        return String.valueOf(value).length() == 2;
+        //return String.valueOf(num).length() == 2;
     }
 
     private String[] updateTemplates(int extraCharsToBeAdded) {
