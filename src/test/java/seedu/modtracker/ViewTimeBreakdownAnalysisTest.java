@@ -13,7 +13,7 @@ class ViewTimeBreakdownAnalysisTest {
     private final ViewTimeBreakdownAnalysis view = new ViewTimeBreakdownAnalysis();
 
     @Test
-    void printBreakdown_modulesWithNoValidInput_printNoValidInputsReturnFalse() {
+    void printBreakdown_modulesWithNoActualTime_printNoActualTimeReturnFalse() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         outContent.reset();
@@ -33,6 +33,31 @@ class ViewTimeBreakdownAnalysisTest {
     }
 
     @Test
+    void printBreakdown_modulesWithNoExpectedTime_printNoValidInputsReturnFalse() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        outContent.reset();
+
+        ModuleList list = new ModuleList();
+        list.getData().clear();
+        Module module1 = new Module("CS1231");
+        Module module2 = new Module("CS2113t");
+        module1.addActualTime("7", "2");
+        module2.addActualTime("5", "2");
+        list.getData().add(module1);
+        list.getData().add(module2);
+
+        boolean output = view.printBreakdown(list, 2);
+        assertTrue(output);
+
+        String expected = "Total time spent: 12.0 H" + System.lineSeparator()
+                + "58% of time is spent on CS1231" + System.lineSeparator()
+                + "41% of time is spent on CS2113t" + System.lineSeparator()
+                + System.lineSeparator();
+        assertEquals(expected, outContent.toString());
+    }
+
+    @Test
     void printBreakdown_modulesWithValidInputButNoTimeSpent_printTimeSpentEqualsZeroReturnFalse() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -45,7 +70,7 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().add(module);
 
         boolean output = view.printBreakdown(list, 2);
-        assertFalse(output);
+        assertTrue(output);
 
         String expected = "Total time spent: 0.0 H" + System.lineSeparator()
                 + ViewTimeBreakdownAnalysis.NO_TIME_SPENT + System.lineSeparator()
@@ -54,7 +79,7 @@ class ViewTimeBreakdownAnalysisTest {
     }
 
     @Test
-    void printBreakdown_modulesWithTimeEqualsZeroTimeEqualsFiveAndInvalidTime_ReturnTrue() {
+    void printBreakdown_modulesWithTimeEqualsZeroTimeEqualsFiveAndNoActualTime_ReturnTrue() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         outContent.reset();
@@ -78,13 +103,43 @@ class ViewTimeBreakdownAnalysisTest {
         String expected = "Total time spent: 5.0 H"
                 + System.lineSeparator() + "100% of time is spent on CS1231"
                 + System.lineSeparator() + "Seems like you didn't spend any time on CS2113t this week."
-                + System.lineSeparator() + "No expected workload for CS2101"
+                + System.lineSeparator() + "No actual workload for CS2101"
                 + System.lineSeparator() + System.lineSeparator();
         assertEquals(expected, outContent.toString());
     }
 
     @Test
-    void printAnalysis_modulesWithInvalidInput_noInput() {
+    void printBreakdown_modulesWithNoDataTimeEqualsFiveAndNoExpectedTime_ReturnTrue() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        outContent.reset();
+
+        ModuleList list = new ModuleList();
+        list.getData().clear();
+        Module module1 = new Module("CS1231");
+        list.getData().add(module1);
+
+        Module module2 = new Module("CS2113t", "8");
+        module2.addActualTime("5", "2");
+        list.getData().add(module2);
+
+        Module module3 = new Module("CS2101");
+        module3.addActualTime("5", "2");
+        list.getData().add(module3);
+
+        boolean output = view.printBreakdown(list, 2);
+        assertTrue(output);
+
+        String expected = "Total time spent: 10.0 H"
+                + System.lineSeparator() + "No actual and expected workload for CS1231"
+                + System.lineSeparator() + "50% of time is spent on CS2113t"
+                + System.lineSeparator() + "50% of time is spent on CS2101"
+                + System.lineSeparator() + System.lineSeparator();
+        assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void printAnalysis_modulesWithNoActualTime_noInput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         outContent.reset();
@@ -93,6 +148,28 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().clear();
         Module module1 = new Module("CS1231", "8");
         Module module2 = new Module("CS2113t", "10");
+        list.getData().add(module1);
+        list.getData().add(module2);
+
+        view.printAnalysis(list, 2);
+
+        String expected = ViewTimeBreakdownAnalysis.ANALYSIS + System.lineSeparator();
+
+        assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void printAnalysis_modulesWithNoExpectedInput_noInput() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        outContent.reset();
+
+        ModuleList list = new ModuleList();
+        list.getData().clear();
+        Module module1 = new Module("CS1231");
+        Module module2 = new Module("CS2113t");
+        module1.addActualTime("8", "2");
+        module2.addActualTime("4", "2");
         list.getData().add(module1);
         list.getData().add(module2);
 
