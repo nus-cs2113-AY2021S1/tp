@@ -1113,6 +1113,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 4.  The application should utilize memory resources efficiently.
 5.  The application should be responsive.
 
+<br/>
+
 ## Appendix D: Instructions for Manual Testing
 
 ### D.1: Launch and Shutdown
