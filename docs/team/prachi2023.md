@@ -1,4 +1,7 @@
-# Prachi - Project Portfolio Page
+---
+layout : page
+title : Prachi - Project Portfolio Page
+---
 
 ### Overview
 The overview below follows the following standards: 
