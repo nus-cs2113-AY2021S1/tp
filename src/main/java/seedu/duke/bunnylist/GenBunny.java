@@ -1,6 +1,9 @@
 package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
+import seedu.duke.database.NamesDB;
+import seedu.duke.exceptions.BunnyListEmptyException;
+import seedu.duke.exceptions.NameException;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
@@ -12,13 +15,14 @@ public class GenBunny {
      * Generate a random bunny from the list of bunnies in the list.
      * @param bunniesList ArrayList of bunnies
      */
-    public static void pickRandomBunny(ArrayList<Bunny> bunniesList) {
-        Random rand = new Random();
-        int bunnySelected = rand.nextInt(bunniesList.size());
+    public static void pickRandomBunny(ArrayList<Bunny> bunniesList) throws BunnyListEmptyException {
+        Random rand = new Random(System.currentTimeMillis());
 
-        assert !(bunnySelected < 0 || bunnySelected > bunniesList.size()) : "bunny generated cannot be out of bounds";
+        if (bunniesList.size() > 0) {
+            UI.bunnyRandomlySelected(Math.abs(rand.nextInt() % bunniesList.size()));
+        } else {
+            throw new BunnyListEmptyException();
+        }
 
-        // print response
-        UI.bunnyRandomlySelected(bunnySelected);
     }
 }

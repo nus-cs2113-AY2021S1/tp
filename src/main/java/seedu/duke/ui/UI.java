@@ -264,19 +264,19 @@ public class UI {
     }
 
     public static void numBunnyLoaded(int numBunnies, int numBunniesLoaded) {
-        System.out.println(String.format("%1$s of %2$s bunnies loaded!", numBunniesLoaded, numBunnies));
+        System.out.println(String.format(FluffleMessages.NUM_BUNNY_LOADED_MSG, numBunniesLoaded, numBunnies));
     }
 
     public static void createNewBunnyFile() {
-        System.out.println("Writing to bunny file");
+        System.out.println(FluffleMessages.WRITING_TO_BUNNY_FILE_MSG);
     }
 
     public static void failedToSaveBunny() {
-        System.out.println("Failed to save bunny list");
+        System.out.println(FluffleMessages.FAILED_TO_SAVE_BUNNY_LIST_MSG);
     }
 
     public static void bunnySaved() {
-        System.out.println("Bunny list saved!");
+        System.out.println(FluffleMessages.BUNNY_LIST_SAVED_MSG);
     }
 
     public static void printFilteredBunny(int numBunny, HashMap<Integer, Bunny> filteredBunny) {
@@ -293,15 +293,15 @@ public class UI {
     }
 
     private static void bunnyFilterSummary(int bunnyFiltered) {
-        System.out.println("number bunny filtered: " + bunnyFiltered);
+        System.out.println(FluffleMessages.NUMBER_BUNNY_FILTERED_MSG + bunnyFiltered);
     }
 
     public static void bunnyMissingFilterOption() {
-        System.out.println("filter bunny command missing filter options.");
+        System.out.println(FluffleMessages.FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG);
     }
 
     public static void bunnyFilterNoneFound() {
-        System.out.println("No bunny matching filter options");
+        System.out.println(FluffleMessages.NO_BUNNY_MATCHING_FILTER_OPTIONS_MSG);
     }
 
     public static void bunnyDeleted(int bunnyNum) {
@@ -314,24 +314,24 @@ public class UI {
     }
 
     public static void bunnyIndexOutOfBounds() {
-        System.out.println("Bunny index is not in list.");
+        System.out.println(FluffleMessages.BUNNY_INDEX_NOT_IN_LIST_MSG);
     }
 
     public static void dividerCommandWrongFormat() {
-        System.out.println("Divider command of wrong format");
+        System.out.println(FluffleMessages.DIVIDER_COMMAND_OF_WRONG_FORMAT_MSG);
     }
 
     public static void dividerIndexOutOfBounds() {
-        System.out.println("Divider index indicated out of bounds");
+        System.out.println(FluffleMessages.DIVIDER_INDEX_INDICATED_OUT_OF_BOUNDS_MSG);
     }
 
     public static void bunnyRandomlySelected(int bunnySelected) {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
-        System.out.print(bunniesList.get(bunnySelected - 1).getDescription());
+        System.out.print(bunniesList.get(bunnySelected).getDescription());
     }
 
     public static void bunnyListEmpty() {
-        System.out.println("List of bunnies is empty.");
+        System.out.println(FluffleMessages.LIST_BUNNIES_EMPTY_MSG);
     }
 
     public static void printBunnyInList(String bunny) {
@@ -339,6 +339,6 @@ public class UI {
     }
 
     public static void printNumBunnies(int numBunny) {
-        System.out.println("Total Bunnies in list: " + numBunny);
+        System.out.println(FluffleMessages.TOTAL_BUNNIES_IN_LIST_MSG + numBunny);
     }
 }
