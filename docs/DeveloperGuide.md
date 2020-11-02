@@ -46,6 +46,11 @@ The flow for add command is as follows:
 The flow for the book command is shown in the sequence diagram below:
 ![image info](./pictures/bookApptSequenceDiagram.PNG)
 
+#### Edit Command
+The flow for the edit command is shown in the sequence diagram below:
+![image info](./pictures/UMLEdit.PNG)
+
+
 ## Product scope
 ### Target user profile
 
