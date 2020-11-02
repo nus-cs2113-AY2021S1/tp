@@ -68,7 +68,7 @@ Additionally, throughout this user guide, there will be various icons used as de
  
 You will see this welcome message if you have done the above steps correctly. 
 
-(to add welcome message)
+[](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
 This section will show the features in our program in detail.
@@ -80,7 +80,6 @@ to see the commands of all features at a glance.
 Words in UPPER CASE are the parameters to be supplies by user.
 > :information_source: Our program also supports shorthand commands. 
 
-(elaborate)
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -191,6 +190,8 @@ Example of usage:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
+> :information Program detects duplicate events if `EVENT_NAME` and `EVENT_DATE` matches.
+
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
  `event add /n arduino course /d 2020-12-30 /t 23-59`<br/>
@@ -231,7 +232,7 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
-A confirmation message will be prompted. To clear, type `Y` in terminal.
+>:information A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
@@ -280,9 +281,7 @@ Example of usage:
 `e done 1` <br/>
 
 Expected Outcome:
-Before and the after marking event as done
-
-![EventBefore](userGuidePic/eventMarkAsDone1.PNG)  ->  ![EventAfter](userGuidePic/eventMarkAsDone.PNG)
+ ![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
 

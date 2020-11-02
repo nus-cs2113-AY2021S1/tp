@@ -2,31 +2,29 @@
 
  -> ":CommandEventDel": execute()
 activate ":CommandEventDel"
-activate ":EventList"
-activate ":EventList" #DarkSalmon
+
 alt isInteger
    ":CommandEventDel" -> ":EventList" : deleteEvent()
     activate ":EventList"
     ":EventList" -> ":Event": remove()
     activate ":Event"
+    activate ":EventList"
     return
     ":EventList" -> ":Event" : printEvent()
    activate ":Event"
-    return output
-    return output
-    return output
+   return output
+   deactivate
+   return output
+   <-- ":CommandEventDel" : output
 else else
+
 ":CommandEventDel" -> ":EventList" : clearEvents()
- activate ":EventList"
- activate ":CommandEventDel"
- ":EventList" -> ":Event":  clear()
- activate ":Event"
+  activate ":EventList"
+ ":EventList" -> ":Event"
  destroy ":Event"
- deactivate ":Event"
- deactivate ":EventList"
  return output
- deactivate ":EventList"
- return output
+  <-- ":CommandEventDel" : output
+  deactivate ":EventList"
+  end
  deactivate ":CommandEventDel"
-end
 @enduml

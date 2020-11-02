@@ -4,9 +4,10 @@
 activate ":CommandEventList"
 
 ":CommandEventList"  -> ":EventList":printEventList()
-activate ":EventList" #DarkSalmon
+activate ":EventList"
 alt empty ArrayList
     ":EventList" --> ":CommandEventList"
+    activate ":CommandEventList"
 else else
     loop until end of ArrayList
         ":EventList" -> ":Event" : printEvent()
@@ -15,10 +16,9 @@ else else
         deactivate ":Event"
         ":EventList" --> ":CommandEventList" : output
         deactivate ":EventList"
-        return output
+          <-- ":CommandEventList" : output
     end
-    deactivate ":EventList"
-    deactivate ":EventList"
-    deactivate ":CommandEventList"
+   deactivate ":CommandEventList"
 end
+deactivate ":CommandEventList"
 @enduml

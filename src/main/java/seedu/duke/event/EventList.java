@@ -204,7 +204,6 @@ public class EventList {
         return output;
     }
 
-
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
      *
