@@ -2,13 +2,16 @@ package parser;
 
 import commands.Command;
 import commands.GoChapterCommand;
+import commands.GoCommand;
 import commands.GoModuleCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
-import static common.Messages.ADMIN;
-import static common.Messages.MESSAGE_MISSING_ARGS;
-import static common.Messages.MODULE;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static common.Messages.*;
+import static common.Messages.CHAPTER;
 
 //@@author gua-guargia
 public class GoCommandParser {
@@ -16,6 +19,9 @@ public class GoCommandParser {
 
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
+        if (checkSpecialCharacter(commandArgs)) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, GoCommand.COMMAND_WORD));
+        }
         switch (accessLevel) {
         case ADMIN:
             if (commandArgs.isEmpty()) {
@@ -30,6 +36,13 @@ public class GoCommandParser {
         default:
             throw new IncorrectAccessLevelException(MESSAGE_INCORRECT_ACCESS);
         }
+    }
+
+    private static boolean checkSpecialCharacter(String commandArgs) {
+        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(commandArgs);
+        boolean includeSpecialCharacter = matcher.find();
+        return includeSpecialCharacter;
     }
 
 }
