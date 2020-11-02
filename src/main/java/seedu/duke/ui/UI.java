@@ -327,7 +327,7 @@ public class UI {
 
     public static void bunnyRandomlySelected(int bunnySelected) {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
-        System.out.print(bunniesList.get(bunnySelected - 1).getDescription());
+        System.out.print(bunniesList.get(bunnySelected).getDescription());
     }
 
     public static void bunnyListEmpty() {

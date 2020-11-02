@@ -16,11 +16,10 @@ public class GenBunny {
      * @param bunniesList ArrayList of bunnies
      */
     public static void pickRandomBunny(ArrayList<Bunny> bunniesList) throws BunnyListEmptyException {
-        Random rand = new Random();
+        Random rand = new Random(System.currentTimeMillis());
 
         if (bunniesList.size() > 0) {
-            int bunnySelected = rand.nextInt(bunniesList.size());
-            UI.bunnyRandomlySelected(bunnySelected);
+            UI.bunnyRandomlySelected(Math.abs(rand.nextInt() % bunniesList.size()));
         } else {
             throw new BunnyListEmptyException();
         }
