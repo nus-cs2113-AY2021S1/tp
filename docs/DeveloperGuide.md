@@ -150,7 +150,7 @@ The following are some examples of the different type of Command Objects and its
 
 **AddNoteCommand**
 
-Command will be used to add notes.
+Command used to add notes.
 
 1. Created by the parserManager.
 1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
