@@ -21,8 +21,8 @@ public class ModView {
     public static final String FIRST_PART_OF_CONTENT = "|  " + REPLACE_BY_WEEK_NUMBER
             + "  | " + REPLACE_BY_MODULE_CODE;
     public static final String PADDING_CHAR = " ";
-    public static final String REPLACE_BY_EXPECTED_WORKLOAD = "YY";
-    public static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "    YY    ";
+    public static final String REPLACE_BY_EXPECTED_WORKLOAD = "YYYY";
+    public static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "   YYYY   ";
     public static final String REPLACE_BY_ACTUAL_WORKLOAD = "ZZZZ";
     public static final String REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND = "   ZZZZ   ";
     public static final String SECOND_PART_OF_CONTENT = " |" + REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND

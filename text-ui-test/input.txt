@@ -3,7 +3,7 @@ addmod CS1000
 addmod CS2113t
 addexp CS3000 6
 addexp CS3200 8
-addexp CS1000 8
+addexp CS1000 18
 addtime CS1000 7 1
 list 2
 analyse 1
