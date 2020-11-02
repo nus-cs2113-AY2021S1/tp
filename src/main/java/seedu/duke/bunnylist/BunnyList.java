@@ -36,7 +36,7 @@ public class BunnyList {
         }
 
         // check if there is task type param
-        if (commandArguments.containsKey(IDEA_TAG)) {
+        if (commandArguments.containsKey(IDEA_TAG) & !commandArguments.get(IDEA_TAG).isBlank()) {
             idea = commandArguments.get(IDEA_TAG);
         } else {
             throw new BunnyIdeaMissingException();
@@ -44,7 +44,7 @@ public class BunnyList {
 
         assert commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
 
-        if (commandArguments.containsKey(GENRE_TAG)) {
+        if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(IDEA_TAG).isBlank()) {
             genre = commandArguments.get(GENRE_TAG);
         }
 
