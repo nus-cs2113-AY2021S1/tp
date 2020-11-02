@@ -68,13 +68,13 @@ Firstly, **fork** this repo and **clone** a copy into your computer.
 If you plan to use Intellij IDEA: 
 1.  **Ensure IntelliJ is configured to use JDK 11**.
     1.  Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, and ensure the `Project SDK` is using **JDK 11**.
-    
+
 2.  **Import the project as a Gradle project**.
     1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`
     2.  If asked, choose to `Open as Project` (not `Open as File`).
     3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
     4.  The import process could take a few minutes to finish.
-    
+
 3.  **Verify the setup**: 
     1.  Run `Main.main()` and try a few commands.
     2.  You may want to refer to our [User Guide](UserGuide.md) for the list of commands supported by **AniChan**.

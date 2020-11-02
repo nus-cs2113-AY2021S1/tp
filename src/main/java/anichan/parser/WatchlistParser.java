@@ -80,7 +80,7 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when an error while parsing the parameters
      */
     private String[] parameterParser(String[] paramGiven) throws AniException {
-        String[] parsedParts = paramGiven[1].split(WHITESPACE, 2);
+        String[] parsedParts = paramGiven[1].trim().split(WHITESPACE, 2);
         String parameter = parsedParts[0].trim();
         switch (parameter) {
         case CREATE_PARAM:
@@ -132,7 +132,7 @@ public class WatchlistParser extends CommandParser {
      */
     private void checkListParameters(String[] parsedParts) throws AniException {
         assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
-        if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT && !parsedParts[1].trim().equals(BLANK)) {
+        if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT) {
             throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS);
         }
     }
