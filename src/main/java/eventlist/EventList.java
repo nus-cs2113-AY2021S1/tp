@@ -142,7 +142,7 @@ public class EventList {
 
         // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
         if (startEnd[0] == null) {
-            if (events.get(index) instanceof  Assignment) {
+            if (events.get(index) instanceof Assignment) {
                 start = events.get(index).getEndDateTime();
             } else {
                 start = events.get(index).getStartDateTime();
@@ -307,9 +307,18 @@ public class EventList {
      */
     public ArrayList<Event> filterDateWith(LocalDate date) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> s.getDate().isEqual(date))
+                .filter(s -> (s.getDate().isEqual(date) ||
+                        (s.getDate().isBefore(date) && s.getEndDate().isAfter(date))))
                 .collect(toList());
 
+        return filteredEventList;
+    }
+
+    public ArrayList<Event> filterDateDoneEventWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(Event::isDone)
+                .collect(toList());
         return filteredEventList;
     }
 

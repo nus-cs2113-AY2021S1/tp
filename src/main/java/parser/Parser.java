@@ -16,6 +16,7 @@ import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.SortCommand;
 
+import command.StudyTimeCommand;
 import command.UserInfoCommand;
 import event.Assignment;
 import event.PersonalEvent;
@@ -32,6 +33,7 @@ import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
+import exception.EmptyStudyTimeDateException;
 import exception.InvalidEditLocationException;
 import exception.InvalidEditTypeException;
 import exception.InvalidSortCriteriaException;
@@ -90,6 +92,7 @@ public abstract class Parser {
     public static final String ONLINE_LOCATION_MARKER = "/o";
     public static final String PASSWORD_MARKER = "/p";
     public static final String REMIND = "reminder";
+    public static final String STUDY_TIME = "studyTime";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -155,6 +158,19 @@ public abstract class Parser {
             }
         }
 
+        //this block deals with study time command
+        if (words[0].equals(STUDY_TIME)) {
+            if (fullCommand.substring(9).isBlank()) {
+                throw new EmptyStudyTimeDateException();
+            }
+            try {
+                return new StudyTimeCommand(LocalDate.parse(fullCommand.substring(10)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
+            }
+        }
+
+        //this block deals with remind command
         if (words[0].equals(REMIND)) {
             return new ReminderCommand();
         }

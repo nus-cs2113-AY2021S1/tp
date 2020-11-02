@@ -63,6 +63,10 @@ public class Class extends Event {
         return LocalDate.from(at);
     }
 
+    public LocalDate getEndDate() {
+        return LocalDate.from(end);
+    }
+
     /**
      * Provides the date time of the class.
      *

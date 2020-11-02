@@ -47,6 +47,10 @@ public class PersonalEvent extends Event {
         return LocalDate.from(at);
     }
 
+    public LocalDate getEndDate() {
+        return LocalDate.from(end);
+    }
+
     public PersonalEvent(String description, Location location, LocalDateTime at) {
         super(description, location);
         this.at = at;

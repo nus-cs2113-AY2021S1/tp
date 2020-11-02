@@ -51,6 +51,15 @@ public class Assignment extends Event {
     }
 
     /**
+     * A dummy method which provides the same function as getDate().
+     *
+     * @return the LocalDate get from LocalDateTime.
+     */
+    public LocalDate getEndDate() {
+        return getDate();
+    }
+
+    /**
      * Provides the date time of the class.
      *
      * @return the LocalDateTime get from LocalDateTime.

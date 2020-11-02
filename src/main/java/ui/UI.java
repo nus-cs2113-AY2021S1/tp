@@ -8,6 +8,7 @@ import location.Location;
 import locationlist.LocationList;
 import usercommunication.UserInfo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -305,6 +306,44 @@ public class UI {
 
     public void helloWithName(String name) {
         System.out.println("Hi " + name + ", nice to see you.");
+    }
+
+    /**
+     * Prints the amount of time the person spent on study on that day.
+     *
+     * @param filteredEventList the list that contains events that are academic related, happen on that day, and have
+     *                          been done.
+     * @param date              the date that the user want to know his or her study time.
+     */
+    public void printStudyTime(ArrayList<Event> filteredEventList, LocalDate date) {
+        int hour = 0, minute = 0;
+        int startHour, endHour, startMinute, endMinute;
+        for (Event event : filteredEventList) {
+            if (event.getDate().isBefore(date)) {
+                startHour = 0;
+                startMinute = 0;
+            } else {
+                startHour = event.getStartDateTime().getHour();
+                startMinute = event.getStartDateTime().getMinute();
+            }
+
+            if (event.getEndDate().isAfter(date)) {
+                endHour = 24;
+                endMinute = 0;
+            } else {
+                endHour = event.getEndDateTime().getHour();
+                endMinute = event.getEndDateTime().getMinute();
+            }
+
+            hour += endHour - startHour;
+            minute += endMinute - startMinute;
+        }
+
+        hour += minute / 60;
+        minute %= 60;
+
+        System.out.println("The amount of time you spent on study on that day is:\n"
+                + hour + " hour(s) " + minute + " minute(s)");
     }
 }
 

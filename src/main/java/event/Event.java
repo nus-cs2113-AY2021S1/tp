@@ -53,6 +53,10 @@ public abstract class Event {
         this.isDone = true;
     }
 
+    public boolean isDone(){
+        return isDone;
+    }
+
     public abstract String fileString();
 
     /**
@@ -91,6 +95,9 @@ public abstract class Event {
         return null;
     }
 
+    public LocalDate getEndDate(){
+        return null;
+    }
     /**
      * Provides the String variable of the description of this Event.
      *
