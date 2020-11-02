@@ -190,7 +190,7 @@ Example of usage:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
-> :information Program detects duplicate events if `EVENT_NAME` and `EVENT_DATE` matches.
+> :information_source: Program detects duplicate events if `EVENT_NAME` and `EVENT_DATE` matches.
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
@@ -206,12 +206,13 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
+
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
  
  Example of usage: 
  `event delEvent 1` <br/>
@@ -232,7 +233,7 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
->:information A confirmation message will be prompted. To clear, type `Y` in terminal.
+> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
