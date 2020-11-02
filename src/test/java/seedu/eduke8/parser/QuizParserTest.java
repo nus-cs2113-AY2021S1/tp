@@ -16,12 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QuizParserTest extends Eduke8Test {
 
-    @Test
-    public void quizParser_wrongStringInput_expectIncorrectCommandReturn() {
-        BookmarkList bookmarks = createTestBookmarkList();
-        OptionList optionList = createTestOptionList();
-        QuizParser quizParser = new QuizParser(bookmarks);
+    private OptionList optionList;
+    private QuizParser quizParser;
 
+    QuizParserTest() {
+        optionList = createTestOptionList();
+        BookmarkList bookmarkList = createTestBookmarkList();
+        quizParser = new QuizParser(bookmarkList);
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
+        quizParser.setQuestion(question, TIMER);
+    }
+
+    @Test
+    void quizParser_wrongStringInput_expectIncorrectCommandReturn() {
         Command badCommand = quizParser.parseCommand(optionList, "one");
         assertTrue(badCommand instanceof IncorrectCommand);
 
@@ -33,19 +40,12 @@ public class QuizParserTest extends Eduke8Test {
     }
 
     @Test
-    public void quizParser_correctStringInput_success() {
-        BookmarkList bookmarks = createTestBookmarkList();
-        OptionList optionList = createTestOptionList();
-        QuizParser quizParser = new QuizParser(bookmarks);
-        Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
-
-        quizParser.setQuestion(question, TIMER);
+    void quizParser_correctStringInput_success() {
         Command resultCommand = quizParser.parseCommand(optionList, "hint");
         assertTrue(resultCommand instanceof HintCommand);
 
         resultCommand = quizParser.parseCommand(optionList, "1");
         assertTrue(resultCommand instanceof AnswerCommand);
-
     }
 }
 

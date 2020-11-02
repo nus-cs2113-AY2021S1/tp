@@ -16,18 +16,21 @@ class StatsCalculatorTest extends Eduke8Test {
     private static final int HALF_PROGRESS_LEVEL_SCORE = 5;
     private static final int TOTAL_PROGRESS_LEVEL_SCORE = 10;
 
+    private StatsCalculator statsCalculator;
+
+    StatsCalculatorTest() {
+        statsCalculator = new StatsCalculator();
+    }
 
     @Test
     void statsCalculatorConstructorWithOneParameter_nullTopicsArgument_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            StatsCalculator statsCalculator = new StatsCalculator(null);
+            new StatsCalculator(null);
         });
     }
 
     @Test
     void calculatePointsEarnedForQuestion_questionIncorrectlyAnswered_returnsZero() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
 
         assertEquals(POINTS_FOR_INCORRECT_ANSWER, statsCalculator.calculatePointsEarnedForQuestion(question));
@@ -35,8 +38,6 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculatePointsEarnedForQuestion_questionCorrectlyAnsweredWithHintShown_returnsOne() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
         question.markAsAnsweredCorrectly();
         question.getHint().getDescription();
@@ -47,8 +48,6 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculatePointsEarnedForQuestion_questionCorrectlyAnsweredWithoutHintShown_returnsTwo() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_DESCRIPTION);
         question.markAsAnsweredCorrectly();
 
@@ -59,8 +58,6 @@ class StatsCalculatorTest extends Eduke8Test {
     // Negative partition for the calculatePointsEarnedForQuestion method
     @Test
     void calculatePointsEarnedForQuestion_nullQuestionArgument_expectsAssertionError() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         assertThrows(AssertionError.class, () -> {
             statsCalculator.calculatePointsEarnedForQuestion(null);
         });
@@ -69,16 +66,12 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculateProgressionPercentage_validProgress_returnsPercentageAsFifty() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         assertEquals(50, statsCalculator.calculateProgressionPercentage(HALF_PROGRESS_LEVEL_SCORE,
                 TOTAL_PROGRESS_LEVEL_SCORE));
     }
 
     @Test
     void calculateProgressionPercentage_invalidUserProgress_expectsAssertionError() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         assertThrows(AssertionError.class, () -> {
             statsCalculator.calculateProgressionPercentage(-1, TOTAL_PROGRESS_LEVEL_SCORE);
         });
@@ -86,8 +79,6 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculateProgressionPercentage_invalidTotalAvailableProgress_expectsAssertionError() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         assertThrows(AssertionError.class, () -> {
             statsCalculator.calculateProgressionPercentage(HALF_PROGRESS_LEVEL_SCORE, -1);
         });
@@ -95,8 +86,6 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculateProgressionPercentage_userProgressExceedTotalAvailableProgress_expectsAssertionError() {
-        StatsCalculator statsCalculator = new StatsCalculator();
-
         assertThrows(AssertionError.class, () -> {
             statsCalculator.calculateProgressionPercentage(TOTAL_PROGRESS_LEVEL_SCORE + 1,
                     TOTAL_PROGRESS_LEVEL_SCORE);
@@ -105,7 +94,7 @@ class StatsCalculatorTest extends Eduke8Test {
 
     @Test
     void calculateTotalQuestionCount_twoTopicsWithThreeQuestionsEach_returnsCorrectCount() {
-        StatsCalculator statsCalculator = new StatsCalculator(createTestTopicList().getInnerList());
+        StatsCalculator twoTopicsStatsCalculator = new StatsCalculator(createTestTopicList().getInnerList());
 
         int expectedQuestionCount = 0;
         TopicList testTopicList = createTestTopicList();
@@ -115,6 +104,6 @@ class StatsCalculatorTest extends Eduke8Test {
             expectedQuestionCount += topicQuestionList.getCount();
         }
 
-        assertEquals(expectedQuestionCount, statsCalculator.calculateTotalQuestionCount());
+        assertEquals(expectedQuestionCount, twoTopicsStatsCalculator.calculateTotalQuestionCount());
     }
 }

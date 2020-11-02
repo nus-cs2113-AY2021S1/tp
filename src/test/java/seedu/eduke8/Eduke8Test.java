@@ -4,13 +4,15 @@ import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
+import seedu.eduke8.note.Note;
+import seedu.eduke8.note.NoteList;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
-import seedu.eduke8.stats.StatsCalculator;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
+import seedu.eduke8.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +43,17 @@ public abstract class Eduke8Test {
     protected static final String DATA_TEST_WRONG_FORMAT_JSON = "data/test/wrong_format.json";
     protected static final String DATA_TEST_MISSING_KEY_JSON = "data/test/missing_key.json";
 
+    protected static final String NOTE_ONE = "First Note";
+    protected static final String NOTE_TWO = "Second Note";
+    protected static final String NOTE_THREE = "Third Note";
+    protected static final String NOTE_DESCRIPTION = "Test";
+
+    protected Ui ui;
+
+    public Eduke8Test() {
+        ui = new Ui();
+    }
+
     // Creates a TopicList object with two topics that have 3 questions each
     protected TopicList createTestTopicList() {
         Topic topic1 = createTestTopic(PLACEHOLDER_TOPIC_ONE_DESCRIPTION);
@@ -56,8 +69,9 @@ public abstract class Eduke8Test {
     // Creates a Topic object with a question list of 3 questions
     protected Topic createTestTopic(String description) {
         QuestionList questionList = createTestQuestionList();
+        NoteList noteList = createTestNoteList();
 
-        return new Topic(description, questionList);
+        return new Topic(description, questionList, noteList);
     }
 
     // Creates a QuestionList object with 3 questions
@@ -96,6 +110,22 @@ public abstract class Eduke8Test {
 
     protected BookmarkList createTestBookmarkList() {
         QuestionList questionList = createTestQuestionList();
-        return new BookmarkList(questionList.getInnerList());
+        BookmarkList bookmarkList = new BookmarkList();
+        for (Displayable question: questionList.getInnerList()) {
+            question.markAsShown();
+            bookmarkList.add(question);
+        }
+        return bookmarkList;
+    }
+
+    protected NoteList createTestNoteList() {
+        Note note1 = new Note(NOTE_ONE, NOTE_DESCRIPTION);
+        Note note2 = new Note(NOTE_TWO, NOTE_DESCRIPTION);
+
+        ArrayList<Displayable> noteArrayList = new ArrayList<>(
+                Arrays.asList(note1, note2)
+        );
+
+        return new NoteList(noteArrayList);
     }
 }

@@ -2,7 +2,6 @@ package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
-import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.hint.Hint;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +20,7 @@ class QuestionTest extends Eduke8Test {
     @Test
     void questionConstructor_nullDescriptionArgument_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            Question question = createTestQuestion(null);
+            createTestQuestion(null);
         });
     }
 

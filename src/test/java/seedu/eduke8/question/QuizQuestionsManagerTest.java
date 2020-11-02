@@ -11,9 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class QuizQuestionsManagerTest extends Eduke8Test {
-
     private static final int TOPIC_QUESTIONS_COUNT = 3;
     private static final int QUIZ_QUESTIONS_COUNT = 3;
+
+    private QuestionList topicQuestionList;
+
+    QuizQuestionsManagerTest() {
+        topicQuestionList = createTestQuestionList();
+    }
 
     /*
      * Tests for first parameter of QuizQuestionsManagerConstructor, while keeping second parameter valid.
@@ -23,8 +28,6 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void quizQuestionsManagerConstructor_validNumberOfQuestionsForQuiz_returnsCountOfThreeQuizQuestions()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
@@ -36,22 +39,16 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     // Below acceptable range of questions, negative partition
     @Test
     void quizQuestionsManagerConstructor_numberOfQuestionsForQuizTooLow_expectsEduke8Exception() {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         assertThrows(Eduke8Exception.class, () -> {
-            QuizQuestionsManager quizQuestionsManager =
-                    new QuizQuestionsManager(0, topicQuestionList.getInnerList());
+            new QuizQuestionsManager(0, topicQuestionList.getInnerList());
         });
     }
 
     // Above acceptable range of questions, negative partition
     @Test
     void quizQuestionsManagerConstructor_numberOfQuizQuestionsExceedNumberOfTopicQuestions_expectsEduke8Exception() {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         assertThrows(Eduke8Exception.class, () -> {
-            QuizQuestionsManager quizQuestionsManager =
-                    new QuizQuestionsManager(TOPIC_QUESTIONS_COUNT + 1, topicQuestionList.getInnerList());
+            new QuizQuestionsManager(TOPIC_QUESTIONS_COUNT + 1, topicQuestionList.getInnerList());
         });
     }
 
@@ -64,8 +61,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void quizQuestionsManagerConstructor_nullQuestionsInTopicArgument_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            QuizQuestionsManager quizQuestionsManager =
-                    new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, null);
+            new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, null);
         });
     }
 
@@ -73,8 +69,6 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void getNextQuestion_currentQuestionNumberAtZero_returnsCurrentQuestionNumberAtOne()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
@@ -86,8 +80,6 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     @Test
     void areAllQuestionsAnswered_fullyAnsweredQuiz_expectsTrue() throws Eduke8Exception {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
@@ -101,8 +93,6 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     @Test
     void areAllQuestionsAnswered_quizWithUnansweredQuestions_expectsFalse() throws Eduke8Exception {
-        QuestionList topicQuestionList = createTestQuestionList();
-
         // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
