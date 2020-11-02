@@ -3,11 +3,8 @@ title Yearly Compound Interest Calculator
 autoactivate on
 
 ":Handler" ->":Handler": handleYearlyCommpoundInterest(packet)
-    create ":YearlyCompoundInterest"
-   ":Handler"-> ":YearlyCompoundInterest" : calculateCompoundInterest()
-    return
 
-   ":Handler"-> ":YearlyCompoundInterest" : handlePacket
+   ":Handler"-> ":YearlyCompoundInterest" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":YearlyCompoundInterest" -> ":YearlyCompoundInterest" : handleParams

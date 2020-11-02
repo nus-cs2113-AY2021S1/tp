@@ -1,12 +1,10 @@
 @startuml
+hide footbox
 autoactivate on
 
 ":Handler" ->":Handler": handleSimpleInterest(packet)
-    create ":SimpleInterest"
-   ":Handler"-> ":SimpleInterest" : calculateSimpleInterest()
-    return
 
-   ":Handler"-> ":SimpleInterest" : handlePacket
+   ":Handler"-> ":SimpleInterest" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":SimpleInterest" -> ":SimpleInterest" : handleParams
