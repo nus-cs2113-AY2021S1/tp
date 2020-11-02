@@ -71,13 +71,13 @@ You will see this welcome message if you have done the above steps correctly.
 (to add welcome message)
 
 ## 4.Features 
-This section will show the features in our program in detail.
+This section will show the features of our program in detail.
 You can follow along as we go through each of the features if you are starting out, or skip ahead to the Command Summary
 to see the commands of all features at a glance.
 
 #### Command Format 
 
-Words in UPPER CASE are the parameters to be supplies by user.
+Words in UPPER CASE are the parameters to be supplied by user.
 > :information_source: Our program also supports shorthand commands. 
 
 (elaborate)
