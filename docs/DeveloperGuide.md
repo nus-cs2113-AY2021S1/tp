@@ -224,15 +224,33 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/descFavInternal.png)
 
 
-### 3.6. Dining options finder (`/dine` Feature)
-[Work in Progress]<br>
+### 3.6. Find dining options within a faculty (`/dine` Feature)
+
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
+
+The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
+    + Sets the `isFound` parameter to **false** if there is no match.
+    + Sets the `isFound` parameter to **true** if there is a match.
+        + Calls `Ui#printDineResult()` method to print the matching results.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
 
+### 3.7. Find specific dining outlets (`/dineinfo` Feature)
 
+`/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
+
+The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
+    + Adds any matching data to an ArrayList `searchList`.
+    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
+![bus data](DG_Diagrams/DineInfoSequence.png)
 
 ## 4. Appendix I: Requirements
 

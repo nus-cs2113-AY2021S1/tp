@@ -14,6 +14,7 @@ public class DescFavCommand extends Command {
     public DescFavCommand(String rawMessage) {
         this.rawMessage = rawMessage;
         parser = new DescFavParser(rawMessage);
+        isValid = false;
     }
 
     @Override

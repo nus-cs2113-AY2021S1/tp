@@ -71,6 +71,7 @@ public class Parser {
             com = new ListStopsCommand();
             break;
         case "/faculty":
+            isVoidFunction = true;
             com = new FacultyCommand();
             break;
         case "/dine":
