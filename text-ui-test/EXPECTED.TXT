@@ -59,14 +59,23 @@ Expected | ████████ 8.0
 
 Total time spent: 7.0 H
 100% of time is spent on CS1000
-No expected workload for CS2113T
-No expected workload for CS3000
-No expected workload for CS3200
+No actual and expected workload for CS2113T
+No actual workload for CS3000
+No actual workload for CS3200
 
 Analysis:
 CS1000
 You seem to be spending too little time on the module.
 Perhaps you should spend more time on this module.
+
+CS2113T
+Insufficient data to compute analysis.
+
+CS3000
+Insufficient data to compute analysis.
+
+CS3200
+Insufficient data to compute analysis.
 
 Got it. I've added this task under CS1000:
 [X] [CS1000] study
