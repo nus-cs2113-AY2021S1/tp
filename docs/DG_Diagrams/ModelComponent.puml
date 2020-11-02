@@ -1,15 +1,17 @@
 @startuml
+hide circle
+skinparam classAttributeIconSize 0
 
 Rectangle Model {
 Rectangle bus {
-enum BusStops {
+enum "<<Enumeration>>\nBusStops" {
 PGP
 KENTRIDGEMRTSTATION
 ...
 COLLEGEGREEN
 OEITIONGHAM
 }
-Bus ->"*" BusStops
+Bus ->"*" "<<Enumeration>>\nBusStops"
 BusData ->"*" Bus
 BusInfo ->"*" Bus
 BusInfo ..> BusData
