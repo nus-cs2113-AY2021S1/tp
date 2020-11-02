@@ -121,7 +121,7 @@ Based on the user input, the Parser handles and creates the corresponding Comman
 
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
-Commands are used to give order to control the notebook.
+Commands are used to give order to control the notebook. The majority of commands contain prefixes to distinguish between their various input forms.
 
 Command used:
 
