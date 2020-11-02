@@ -3,6 +3,7 @@ package seedu.duke.characterlist;
 import seedu.duke.character.Character;
 import seedu.duke.exceptions.CharacterAlreadyExistException;
 import seedu.duke.exceptions.CharacterNameMissingException;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
 import seedu.duke.ui.UI;
@@ -17,9 +18,8 @@ public class CharacterList {
     public static ArrayList<Character> characters = new ArrayList<>();
 
     public static void addCharacter(String userInput)
-            throws CommandMissingArgumentsException,
-            CharacterNameMissingException,
-            CharacterAlreadyExistException {
+            throws CommandMissingArgumentsException, CharacterNameMissingException,
+            CharacterAlreadyExistException, CommandInvalidException {
 
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
@@ -33,6 +33,8 @@ public class CharacterList {
             parseSingleCharacterTaggedParamsFromUserInput(userInput, commandArguments);
         } catch (MissingParamsException e) {
             throw new CommandMissingArgumentsException();
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new CommandInvalidException();
         }
 
         // check if there is task type param

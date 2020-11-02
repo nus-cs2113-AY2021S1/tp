@@ -1,6 +1,7 @@
 package seedu.duke.filters;
 
 import seedu.duke.bunny.Bunny;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.MissingParamsException;
 import seedu.duke.exceptions.NoFilteredItemsException;
@@ -28,7 +29,7 @@ public class BunnyFilter {
      * @throws NoFilteredItemsException filter function found no bunnies matching the search criteria
      */
     public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList)
-            throws MissingFilterOptionsException, NoFilteredItemsException {
+            throws MissingFilterOptionsException, NoFilteredItemsException, CommandInvalidException {
 
         // for returning filter options parsed from the user input
         HashMap<String, String> filterOptions = new HashMap<>();
@@ -46,6 +47,8 @@ public class BunnyFilter {
             parseSingleCharacterTaggedParamsFromUserInput(userInput, filterOptions);
         } catch (MissingParamsException e) {
             throw new MissingFilterOptionsException();
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new CommandInvalidException();
         }
 
         if (filterOptions.containsKey(IDEA_TAG)) {

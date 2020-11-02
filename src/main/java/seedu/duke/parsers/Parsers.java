@@ -113,7 +113,7 @@ public class Parsers {
      */
     public static void parseSingleCharacterTaggedParamsFromUserInput(String userInput,
                                                                      HashMap<String, String> parsedParams)
-            throws MissingParamsException {
+            throws MissingParamsException, StringIndexOutOfBoundsException {
 
         String parsedOption;
         String optionIndicator;
@@ -136,6 +136,7 @@ public class Parsers {
             if (endPositionIndex == -1) {
                 break;
             }
+
             // extract the option
             parsedOption = userInput.substring(startPositionIndex + 1, endPositionIndex - 1);
             optionIndicator = userInput.substring(startPositionIndex - 1, startPositionIndex);
