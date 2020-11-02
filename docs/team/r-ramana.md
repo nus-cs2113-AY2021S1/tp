@@ -1,4 +1,7 @@
-# R Ramana - Project Portfolio Page
+---
+layout : page
+title : R Ramana - Project Portfolio Page
+---
 
 ### Overview
 The overview below follows the following standards:  
