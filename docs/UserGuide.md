@@ -676,7 +676,7 @@ data                            <em>--> Data main folder</em>
     ├── subjectResults.json
     └── tasks.txt
 </pre>
-<sup>***Figure 4.7.1*** Sample directory structure created</sup>
+<sup>***Figure 4.7.1** Sample directory structure created*</sup>
 
 
 The details of the files that are created under each subject and topic folder will be explained below.
@@ -693,7 +693,7 @@ T | 1 | someTodoTask                                    <em>--> Todo task</em>
 D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020         <em>--> Deadline task</em>
 E | 0 | someEventTask | 1:00 PM 10 Nov 2020             <em>--> Event task</em>
 </pre>
-<sup>***Figure 4.7.2*** Sample tasks.txt content</sup>
+<sup>***Figure 4.7.2** Sample tasks.txt content*</sup>
 
 The first column of data shows the type of task, where T corresponds to `Todo` task, D corresponds to `Deadline` 
 task, and E corresponds to `Event` task. The second column shows if a task is completed, where 0 means not completed 
@@ -725,7 +725,7 @@ the file content is shown below.
   ...
 ]
 </pre>
-<sup>***Figure 4.7.3*** Sample subjectResults.json content</sup>
+<sup>***Figure 4.7.3** Sample subjectResults.json content*</sup>
 
 
 #### 4.7.3 flashcards.json
@@ -744,7 +744,7 @@ have added under a specific subject and topic. An example of the file content is
   ...
 ]
 </pre>
-<sup>***Figure 4.7.4*** Sample flashcard.json content</sup>
+<sup>***Figure 4.7.4** Sample flashcard.json content*</sup>
 
 Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 
@@ -757,7 +757,8 @@ Similar to <a href =#store>storing data</a>,
 when you launch the application, the saved data is automatically loaded from the disk.
 
 > ℹ️ **_NOTE:_** Loaded subjects and topics will be sorted in alphabetical order, which can be seen when running
-> <a href=#list>list</a> command.
+> <a href=#list>list</a> command. Flashcards, tasks, and results data, on the other hand, are not sorted and instead
+> follow the added order.
 
 > ⚠️ **_WARNING:_** If you have manually modified the contents of the files stored with wrong syntax, the files affected 
 > will not be loaded (and, instead, empty data will be loaded) when the application launches. 
@@ -834,7 +835,7 @@ below.
   ...                                                               <em>--> More subjects</em>
 ]
 </pre>
-<sup>***Figure 4.9.1*** Sample data.json content</sup>
+<sup>***Figure 4.9.1** Sample data.json content*</sup>
 
 Note that the content of the file follows the same logical structure as that
 in the `data/` folder.
