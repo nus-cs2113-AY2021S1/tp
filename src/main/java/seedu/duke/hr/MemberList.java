@@ -49,6 +49,7 @@ public class MemberList {
         try {
             output = "Noted. I'll remove this member:\n";
             output = output.concat(members.get(index).toString() + "\n");
+            deleteFromEvents(members.get(index).getMemberName());
             members.remove(index);
             Member.numOfMembers--;
             output = output.concat("Now you have " + Member.numOfMembers + " member");
@@ -57,6 +58,17 @@ public class MemberList {
             output = "OOPS!!! The member does not exist.\n";
         }
         return output;
+    }
+
+    /**
+     * Deletes member from all events.
+     * @param memberName memberName to be deleted.
+     */
+    public static void deleteFromEvents(String memberName) {
+        for (int i = 0; i < EventList.events.size(); i++) {
+            String eventName = EventList.events.get(i).getEventName();
+            EventList.deleteAttendance(eventName, memberName);
+        }
     }
 
     /**
