@@ -260,7 +260,7 @@ Expected Outcome:
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
-Example of usage: 
+Example of usage: <br/>
 `event countdown` <br/>
 `e countdown` <br/>
 
@@ -282,7 +282,8 @@ Example of usage:
 `e done 1` <br/>
 
 Expected Outcome:
- ![](userGuidePic/eventMarkAsDone.PNG)
+
+![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
 
