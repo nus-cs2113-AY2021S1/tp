@@ -859,6 +859,12 @@ Answer: No. You will have to start a new quiz.
 Question: Is there any limit to the number of topics/subjects that I can store in my application?<br>
 Answer: No. You can store unlimited number of topics/subjects.   
 
+Question: A file named `revisED0.log` appears in the folder after I run the application. What is it? Can I delete it?<br>
+Answer: This is the log file that logs down the activities of the application when you are running it. In the case where
+you find any bugs or the application crashes, you can send us a bug report
+[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues) along with the log file to help us with solving the bugs. 
+Nevertheless, you can delete it if you want to, and it does not affect the behavior of the application in any way.
+
 ## 6. Command Summary <a name="summary"></a>
 Action|Examples
 ------|------

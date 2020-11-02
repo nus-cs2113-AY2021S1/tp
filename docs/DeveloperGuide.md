@@ -620,12 +620,20 @@ code.
 * The .md files for the UserGuide,README,and the DeveloperGuide
 
 
-## 8. Development <a name="develop"> </a>
+## 8. Development <a name="develop"></a>
 
-### Logging < a name = "log"> </a>
+### Logging <a name = "log"> </a>
 Whenever you need to use logging in a class, add this line 
-`private static final Logger logger = Logger.getLogger(<CurrentClass>.class.getName());` to the start
-of the class, where \<CurrentClass\> is replaced by the class name you are adding the logger to.
 
-The logging configuration can be found under `src/main/resources/logging.properties`. The current configuration directs
-the logs to a file named `revisED%u.log` in the project root directory. 
+```java
+private static final Logger logger = Logger.getLogger(CurrentClass.class.getName());
+```
+
+to the start of the class to get a logger instance,
+where `CurrentClass` is replaced by the class name you are adding the logger to. To learn more about
+how logging works, read the [official logging documentation](https://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html).
+
+The current configuration logs all the messages with log levels above `FINE` into a file (`revisED%u.log`) in the same
+directory where the application is run. You can find more details about the logging configurations (and change them or add more)
+in `src/main/resources/logging.properties`. 
+For consistency, you should only change the behavior of logging via this file.
