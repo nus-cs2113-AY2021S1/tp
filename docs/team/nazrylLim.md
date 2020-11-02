@@ -1,4 +1,7 @@
-# Nazryl Lim
+---
+layout : Project Portfolio Page
+title : Nazryl Lim - Project Portfolio Page
+---
 
 ### Overview
 The overview below follows the following standards: 
