@@ -49,10 +49,12 @@ Class DescFavParser {
 }
 
 "{abstract}\nCommand" <|- DescFavCommand
+hide Parser members
 Parser <|-left DescFavParser
 DescFavParser "1"<--down DescFavCommand
 
 DescFavCommand ..> FavList
+hide CustomException members
 FavList ..> CustomException : throws
 DescFavParser ..> CustomException : throws
 

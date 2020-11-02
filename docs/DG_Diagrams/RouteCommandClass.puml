@@ -59,6 +59,7 @@ OEITIONGHAM
 '}
 
 "{abstract}\nCommand" <|-- RouteCommand
+hide Parser members
 Parser <|--up RouteParser
 RouteParser "1"<- RouteCommand
 RouteCommand .> BusData

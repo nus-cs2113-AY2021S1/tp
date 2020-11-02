@@ -2,7 +2,7 @@
 
 hide circle
 skinparam classAttributeIconSize 0
-
+hide members
 Rectangle Storage {
 "{abstract}\nStorage" <|- FavStorage
 "{abstract}\nStorage" <|-left FreqStorage

@@ -7,43 +7,43 @@ skinparam classAttributeIconSize 0
 Rectangle Logic {
 Rectangle commands {
 Rectangle commons {
-abstract class Command
+Class "{abstract}\nCommand"
 'Command <|-left ExitCommand
 'Command <|- HelpCommand
 }
 Rectangle buscommand {
 'Command <|-- AllBusCommand
-Command <|-- BusCommand
+"{abstract}\nCommand" <|-- BusCommand
 'Command <|-- ListStopsCommand
 'Command <|-- ResetSearchFreqCommand
-Command <|-- RouteCommand
-Command <|-- XYZCommand
+"{abstract}\nCommand" <|-- RouteCommand
+"{abstract}\nCommand" <|-- XYZCommand
 note right: XYZCommand = AllBusCommand,\n ListStopsCommand,\n ResetSearchFreqCommand,\n RouteMapCommand
 'Command <|-- RouteMapCommand
 }
 Rectangle dinecommand {
 'Command <|-left DineCommand
 'Command <|-left DineInfoCommand
-Command <|-left PQRCommand
+"{abstract}\nCommand" <|-left PQRCommand
 note right: PQRCommand = DineCommand,\n DineInfoCommand,\n FacultyCommand
 }
 Rectangle favcommand {
 'Command <|--up AddFavCommand
 'Command <|--up ClearFavCommand
 'Command <|--up DeleteFavCommand
-Command <|--up DescFavCommand
-Command <|--up ExecFavCommand
-Command <|--up ABCFavCommand
+"{abstract}\nCommand" <|--up DescFavCommand
+"{abstract}\nCommand" <|--up ExecFavCommand
+"{abstract}\nCommand" <|--up ABCFavCommand
 note right: ABCFavCommand = AddFavCommand,\n ClearFavCommand,\n DeleteFavCommand,\n ListFavCommand
 'Command <|-- ListFavCommand
 }
 }
 Rectangle parser {
-Parser <|-- RouteParser
+"{abstract}\nParser" <|-- RouteParser
 RouteParser <-down RouteCommand
-Parser <|-- DescFavParser
+"{abstract}\nParser" <|-- DescFavParser
 DescFavParser <- DescFavCommand
-Parser <|--up ExecFavParser
+"{abstract}\nParser" <|--up ExecFavParser
 ExecFavParser <- ExecFavCommand
 }
 
@@ -53,5 +53,5 @@ SimilarityCheck <..down BusCommand
 }
 }
 
-Parser --left> commands
+"{abstract}\nParser" --left> commands
 @enduml
