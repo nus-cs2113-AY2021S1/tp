@@ -205,6 +205,11 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 ![Symbol](userGuidePic/Symbol4.PNG)
 
+
+Shorthand Command : <br/>
+event --> e <br/>
+addEvent --> add/a <br/>
+
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
  `event add /n arduino course /d 2020-12-30 /t 23-59`<br/>
@@ -226,6 +231,10 @@ Expected Outcome:
  
 ![Symbol](userGuidePic/Symbol5.PNG)
  
+ Shorthand Command : <br/>
+ event --> e <br/>
+ addEvent --> del/d <br/>
+ 
  Example of usage: 
  `event delEvent 1` <br/>
  `event del 1` <br/>
@@ -245,6 +254,10 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
+Shorthand Command : <br/>
+event --> e <br/>
+delEvent --> del/d <br/>
+
 ![Symbol](userGuidePic/Symbol6.PNG)
 
 Expected Outcome:
@@ -256,6 +269,10 @@ Expected Outcome:
 #### List events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
+
+Shorthand Command : <br/>
+event --> e <br/>
+listEvent --> l <br/>
 
 Example of usage: 
 `event listEvent` <br/>
@@ -272,9 +289,14 @@ Expected Outcome:
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
+Shorthand Command : <br/>
+event --> e <br/>
+countdown --> c <br/>
+
 Example of usage: <br/>
 `event countdown` <br/>
 `e countdown` <br/>
+`e c` <br/>
 
 Expected Outcome:
 
@@ -288,6 +310,9 @@ Format: `event done EVENT_INDEX` <br/>
 
 The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 The EVENT_INDEX must be an integer greater than 0. <br/>
+
+Shorthand Command : <br/>
+event --> e <br/>
 
 Example of usage: <br/>
 `event done 1` <br/>
@@ -303,10 +328,15 @@ Expected Outcome:
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
+Shorthand Command : <br/>
+event --> e <br/>
+search --> s <br/>
+
 Example of usage:
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
+`e s /s 2000-12-16` <br/>
 
 Expected Outcome:
 
