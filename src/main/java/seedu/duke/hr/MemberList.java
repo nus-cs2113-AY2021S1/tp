@@ -148,15 +148,21 @@ public class MemberList {
      * @param newRole new role to replace the original role.
      * @return output message for the user.
      */
-    public static String changeMemberInfo(Member m, long newPhone, String newEmail, String newRole) {
-        Long phone = newPhone;
-        if (phone != null) {
-            m.setMemberPhone(phone);
+    public static String changeMemberInfo(Member m, String newPhone, String newEmail, String newRole) {
+        try {
+            if (newPhone != null) {
+                Long phone = Long.parseLong(newPhone);
+                m.setMemberPhone(phone);
+            }
+        } catch (Exception e) {
+            return "OOPS!!! The format of the phone number given is incorrect.\n"
+                    + "The phone number should be a whole number less than 19 digits.\n";
         }
 
         if (newEmail != null) {
             m.setMemberEmail(newEmail);
         }
+
 
         if (newRole != null) {
             m.setMemberRole(newRole);

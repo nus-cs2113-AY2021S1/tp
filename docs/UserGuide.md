@@ -76,13 +76,13 @@ You will see this welcome message if you have done the above steps correctly. <b
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
-This section will show the features in our program in detail.
+This section will show the features of our program in detail.
 You can follow along as we go through each of the features if you are starting out, or skip ahead to the Command Summary
 to see the commands of all features at a glance.
 
 #### Command Format 
 
-Words in UPPER CASE are the parameters to be supplies by user.
+Words in UPPER CASE are the parameters to be supplied by user.
 > :information_source: Our program also supports shorthand commands. 
 
 ### 4.1 Help `help`
@@ -522,7 +522,7 @@ The expected outcome is as follows:
 
 Command | Format | Example
 ------- | ---------- | ------------
-addAttendance  | `event addAttendance /n EVENT_NAME /p MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
+addAttendance  | `event addAttendance /n EVENT_NAME /m MEMBER_NAME` | `event addAttendance /n arduino course /m Peter`<br/>
 addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
