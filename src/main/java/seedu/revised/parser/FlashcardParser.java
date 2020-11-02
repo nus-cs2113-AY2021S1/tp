@@ -18,10 +18,10 @@ public class FlashcardParser {
      * @return returns a command instance to execute a command
      */
     public static FlashcardCommand parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] tokens = fullCommand.split(" ");
         String fullCommandLowerCase = fullCommand.toLowerCase();
         String command = tokens[0].toLowerCase();
-
 
         switch (command) {
         case "add":
@@ -34,7 +34,7 @@ public class FlashcardParser {
             switch (fullCommandLowerCase) {
             case "exit":
                 return new ExitFlashcardCommand();
-            case "list":
+            case "list" :
                 return new ListFlashcardCommand();
             case "list all":
                 return new ListAllFlashcardCommand();

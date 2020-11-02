@@ -26,6 +26,7 @@ public class SubjectParser {
      * @return returns a command instance to execute a command
      */
     public static SubjectCommand parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] tokens = fullCommand.split(" ");
         String fullCommandLowerCase = fullCommand.toLowerCase();
         String command = tokens[0].toLowerCase();
