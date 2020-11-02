@@ -292,7 +292,6 @@ public class UI {
 
     }
 
-
     public static void bunnyMissingFilterOption() {
         System.out.println(FluffleMessages.FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG);
     }
