@@ -77,7 +77,7 @@ public class AddCommandParser {
     }
 
     private static boolean checkSpecialCharacter(String commandArgs) {
-        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(commandArgs);
         boolean includeSpecialCharacter = matcher.find();
         return includeSpecialCharacter;
