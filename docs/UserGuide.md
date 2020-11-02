@@ -1,37 +1,13 @@
 # User Guide for E-Duke-8
-
-Table of contents:
-- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
-  - [1. Introduction](#1-introduction)
-  - [2. Quick Start](#2-quick-start)
-  - [3. Features](#3-features)
-    - [3.1. Loading Data](#31-loading-data)
-    - [3.2. Welcome Page](#32-welcome-page)
-    - [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
-    - [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
-    - [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
-    - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
-    - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
-    - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-    - [3.9. Adding a note: `note add`](#39-adding-a-note-note-add)
-    - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note-delete)
-    - [3.11. Listing out notes: `note list`](#311-listing-out-notes-note-list)
-    - [3.12. Displaying statistics: `stats`](#312-displaying-statistics-stats)
-    - [3.13. Exiting the program: `exit`](#313-exiting-the-program-exit)
-    - [3.14. Saving user data](#314-saving-user-data)
-  - [4. FAQ](#4-faq)
-  - [5. Command summary](#5-command-summary)
-  - [6. Troubleshooting](#6-troubleshooting)
-  - [7. Glossary](#7-glossary)
-        - [1. Command Line Interface (CLI)](#1-command-line-interface-cli)
-        - [2. Object-oriented Programming (OOP)](#2-object-oriented-programming-oop)
+* Table of Contents
+{:toc}
 
 ## 1. Introduction
 
-E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [OOP](#2-object-oriented-programming-oop) principles** through a gamified
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#7-glossary) principles** through a gamified
 platform and enhances their learning experience. 
 
-It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [**Command Line Interface (CLI)**](#1-command-line-interface-cli), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#7-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 On E-Duke-8, you can earn points for yourself as you attempt the quizzes! You can also view the statistics of your past quiz attempts to understand your current level of mastery of the various topics!
 
@@ -76,9 +52,9 @@ If the data has been loaded successfully you should see this message:
 
 ![data loaded](./images/data_loaded.png)
 
-If you wish to edit the data such as add questions you follow instructions found in [4. FAQ](#4-faq).
+If you wish to edit the data such as add questions you follow instructions found in [**4. FAQ**](#4-faq).
 
-If have trouble opening E-Duke-8 and receive the following warning message then please refer to section [6. Troubleshooting](#6-troubleshooting).
+If have trouble opening E-Duke-8 and receive the following warning message then please refer to section [**6. Troubleshooting**](#6-troubleshooting).
 
 ![data error](./images/data_error.png)
 
@@ -181,7 +157,7 @@ From here on you can either:
 
 1) Enter in your answer by typing '1', '2', '3' or '4' and pressing enter.
 
-2) If you do not know the answer, you can request for a hint by typing 'hint' and pressing enter. Refer to [**the Hint section**](#38-showing-a-hint-hint) for more information.
+2) If you do not know the answer, you can request for a hint by typing 'hint' and pressing enter. Refer to section [**3.8. Hint**](#38-showing-a-hint-hint) for more information.
 
 If you have entered the correct answer, this is what you will see:
 ![quiz](./images/quiz_correct.png)
@@ -244,7 +220,31 @@ Example of usage:
 note list
 ```
 
-### 3.12. Displaying statistics: `stats`
+### 3.12. Bookmarking a question: `bookmark`
+
+Stores any question encountered in a quiz in a list.
+
+Note: 
+- Bookmarking a question can only be done during a quiz
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.13. Listing out all bookmarked questions: `bookmark`
+
+Lists out all the bookmarked questions and each of their four options.
+
+Note:
+- Listing out all bookmarked questions can only be done in the main menu
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.14. Displaying stats: `stats`
 
 Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -266,7 +266,7 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 
-### 3.13. Exiting the program: `exit`
+### 3.15. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -280,7 +280,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.14. Saving user data
+### 3.16. Saving user data
 
 User data will be saved after every command that changes the data completes such as at the end of using
 `quiz`, `note`, and `bookmark`. There will be a final save confirmation message upon successful exit of the application
@@ -303,11 +303,6 @@ If you want a better score you can always reattempt a quiz!
 
 **A**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions
 already provided an example is shown below.
-Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
-and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
-`correct` key.
-
-For `topics.json`:
 
 ```json
 [
@@ -342,6 +337,10 @@ For `topics.json`:
 ]
 ```
 
+Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
+and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
+`correct` key.
+
 ## 5. Command summary
 
 | Action | Format, Examples |
@@ -365,7 +364,7 @@ Firstly, `topics.json` may not present in the right folder.
 Please check inside the `data` folder followed by the `main` folder that `topics.json` is present.
 
 Next, it is possible that the format of data inside `topics.json` or `user.json` is wrong and thus cannot be parsed
-correctly. Please ensure if you wish to edit the data in `topics.json` such as add questions you follow instructions found in [4. FAQ](#4-faq).
+correctly. Please ensure if you wish to edit the data in `topics.json` such as add questions you follow instructions found in [**4. FAQ**](#4-faq).
 
 On the other hand, `user.json` should not be manually edited. If you have accidentally changed this file, you may delete
 the file to reset the data. A new file will be created on start up. 
@@ -375,8 +374,6 @@ folder.
 
 ## 7. Glossary
 
-##### 1. Command Line Interface (CLI)
-CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
+- **Command Line Interface (CLI):** CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
 
-##### 2. Object-oriented Programming (OOP)
-OOP is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way. (From [CS2113/T textbook](https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/chapters/oop.html))
+- **Object-oriented Programming (OOP):** OOP is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way. (From [CS2113/T textbook](https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/chapters/oop.html))
