@@ -16,16 +16,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+/**
+ * Represents the delete category command.
+ */
 public class DeleteCategoryCommand extends DeleteCommand {
+    /**
+     * Constructor for delete category command with user input arguments.
+     *
+     * @param arguments user input arguments
+     */
     public DeleteCategoryCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the delete category command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
         deleteCategoryFromBookOrQuote(categories, ui);
     }
 
+    /**
+     * Prepares the deletion of category from a book, quote, or both.
+     *
+     * @param categories list of categories
+     * @param ui Ui of the program
+     */
     private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
         try {
             String[] tokens = information.split(" ");
@@ -45,6 +65,13 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Executes user specified parameters for delete category.
+     *
+     * @param categoryList list of categories
+     * @param parameters user specified parameters
+     * @param ui Ui of the program
+     */
     private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
             String categoryNames = parameters[0];
@@ -72,15 +99,23 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
-    private void deleteCategoryFromBook(Category category, String bookTitle, TextUi ui) {
+    /**
+     * Deletes a category from a book.
+     *
+     * @param category category object
+     * @param bookIndex book number
+     * @param ui Ui of the program
+     */
+    private void deleteCategoryFromBook(Category category, String bookIndex, TextUi ui) {
         // ignore this action if user did not provide book title
-        if (bookTitle.isEmpty()) {
+        if (bookIndex.isEmpty()) {
             return;
         }
+        assert category != null;
         quotesifyLogger.log(Level.INFO, "removing category from book.");
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
-            int bookNum = Integer.parseInt(bookTitle) - 1;
+            int bookNum = Integer.parseInt(bookIndex) - 1;
             Book book = bookList.getBook(bookNum);
             ArrayList<String> categories = book.getCategories();
 
@@ -105,11 +140,19 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Deletes a category from a quote.
+     *
+     * @param category category object
+     * @param index quote number
+     * @param ui Ui of the program
+     */
     private void deleteCategoryFromQuote(Category category, String index, TextUi ui) {
         // ignore this action if user did not provide quote number
         if (index.isEmpty()) {
             return;
         }
+        assert category != null;
         quotesifyLogger.log(Level.INFO, "removing category from quote.");
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
@@ -139,6 +182,13 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Prepares the deletion of category.
+     *
+     * @param categoryList list of categories
+     * @param categories user specified category names
+     * @param ui Ui of the program
+     */
     private void deleteCategory(CategoryList categoryList, String categories, TextUi ui) {
         quotesifyLogger.log(Level.INFO, "removing category from all books and quotes.");
         for (String name : categories.split(" ")) {
@@ -156,6 +206,11 @@ public class DeleteCategoryCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Deletes a category from all books and quotes.
+     *
+     * @param oldCategory category to be deleted
+     */
     private void deleteCategoryInBooksAndQuotes(String oldCategory) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);

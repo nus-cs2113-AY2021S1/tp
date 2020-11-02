@@ -24,6 +24,9 @@ public class Quotesify {
     private final Storage storage;
     private final String saveFileLocation = "/data/quotesify.json";
 
+    /**
+     * Default constructor for Quotesify.
+     */
     public Quotesify() {
         ui = new TextUi();
         parser = new Parser();
@@ -34,11 +37,17 @@ public class Quotesify {
         storage.load();
     }
 
+    /**
+     * Prints a welcome message and a random quote.
+     */
     public void start() {
         ui.showWelcomeMessage();
         ui.printRandomQuote();
     }
 
+    /**
+     * Prints a random quote and a goodbye message before exiting the program.
+     */
     public void exit() {
         ui.printRandomQuote();
         ui.showGoodbyeMessage();
@@ -46,6 +55,9 @@ public class Quotesify {
         System.exit(0);
     }
 
+    /**
+     * Reads the user command and executes it until an exit command is issued.
+     */
     public void runLoopUntilExitCommand() {
         boolean isExit = false;
         while (!isExit) {
@@ -62,16 +74,27 @@ public class Quotesify {
         }
     }
 
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         start();
         runLoopUntilExitCommand();
         exit();
     }
 
+    /**
+     * Program main method.
+     *
+     * @param args user specified arguments
+     */
     public static void main(String[] args) {
         new Quotesify().run();
     }
 
+    /**
+     * Sets up the default logger level and initialises the log file.
+     */
     private void setupLogger() {
         logger.setUseParentHandlers(false);
         logger.setLevel(Level.INFO);
