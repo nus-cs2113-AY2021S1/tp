@@ -83,9 +83,9 @@ public class QuoteParser {
     }
 
     public static void checkExtraAuthorReferenceFlags(String authorName, String reference) throws QuotesifyException {
-        if (authorName.contains(Command.FLAG_AUTHOR ) || authorName.contains(Command.FLAG_REFERENCE)) {
+        if (authorName.contains(Command.FLAG_AUTHOR) || authorName.contains(Command.FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
-        } else if (reference.contains(Command.FLAG_AUTHOR ) || reference.contains(Command.FLAG_REFERENCE)) {
+        } else if (reference.contains(Command.FLAG_AUTHOR) || reference.contains(Command.FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
         }
     }
