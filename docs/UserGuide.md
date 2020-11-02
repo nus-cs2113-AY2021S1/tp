@@ -200,7 +200,7 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
 
-💡 Content must have at least 1 line.
+💡 Note content must have at least 1 line.
 
 Example of usage: 
 
