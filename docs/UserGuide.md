@@ -1,4 +1,7 @@
-# User Guide
+---
+layout : page
+title : User Guide
+---
 
 ## Table of Contents
 #### [1. Introduction](#intro)
@@ -57,7 +60,9 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 ## 3. <a id="features">Features</a>
 
-Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. When listing the optional entries, the brackets, '[ ]', should be omitted. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+
+The following example shows how responses from the console will be displayed in this User Guide.
 
 ```css
 Example message as seen on the console
@@ -83,7 +88,11 @@ Example of usage:
 Expected output: 
 
 <p align="center">
-   <img alt="help" src="screenshots/help.png"/>
+   <img alt="help" src="screenshots/help_1.png"/>
+</p>
+
+<p align="center">
+   <img alt="help" src="screenshots/help_2.png"/>
 </p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
@@ -93,8 +102,8 @@ Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISAR
 
 💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
-💡 Set `ISPIN` to true if you want the note to be pinned.  
-💡 Set `ISARHCIVE` to true if you want the note to be archived.
+💡 Set `ISPIN` to "true" if you want the note to be pinned. Any other input value will leave the note unpinned.  
+💡 Set `ISARCHIVE` to "true" if you want the note to be archived. Any other input value will leave the note unarchived.
 
 Subsequently, the application prompts the user to enter the content of the note. 
 
@@ -146,6 +155,7 @@ Example of usage:
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
 💡 The archived notes will **ONLY** be listed in chronological order. <br>
 💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
+💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
 
@@ -160,6 +170,8 @@ Format: `view-n [/i INDEX] [/t TITLE]`
 
 - Views the note at that index or with the specific title entered. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
+- If both the fields are provided, only the first one entered will be used to search for the note.
+
 
 Example of usage: 
 
@@ -227,6 +239,7 @@ Format: `pin-n [/i INDEX] [/t TITLE]`
 
 - Pins a note to the top of the list. A pinned note will be unpinned. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+- If both fields are provided, only the first one will be used to pin the note. 
  
 Example of usage: 
 
@@ -514,7 +527,9 @@ Expected output:
 </p>
 
 ### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
-Exits the program..
+Exits the program.
+
+💡 Even if you input anything beyond exit, the program will terminate. For example, `exit the program` will still result in the program being terminated.
 
 Example of usage: 
 

@@ -1,11 +1,18 @@
-# Nazryl Lim
+---
+layout : page
+title : Nazryl Lim - Project Portfolio Page
+---
 
-## Education
-* National University of Singapore
+### Overview
+The overview below follows the following standards: 
+*Roles (short for ‘in charge of role’): Description*
 
-## Work Experience
-* Work from home
+- 
 
-## Accomplishments
-* CS2113 Student
-* Work from home
+### Summary of Contributions
+1. Set up the skeleton code used in the project, including the following classes:
+    * `InterfaceManager` Class
+
+### Contributions to User Guide
+
+### Contributions to Developer Guide

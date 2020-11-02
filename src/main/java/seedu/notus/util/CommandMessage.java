@@ -232,7 +232,9 @@ public class CommandMessage {
     public static final String UNARCHIVE_NOTE_SUCCESSFUL_MESSAGE = colorize("The following note has been unarchived: ",
             GREEN);
 
-    public static final String NOTE_UNSUCCESSFUL_MESSAGE = colorize("This note already exists in the notebook! ", RED);
+    public static final String NOTE_EXIST_MESSAGE = colorize("This note already exists in the notebook! ", RED);
+    public static final String NOTE_ARCHIVED_EXIST_MESSAGE =
+            colorize("This note can be found in the archived list! ", RED);
     public static final String NOTE_DOES_NOT_EXIST_MESSAGE =
             colorize("This note does not exist in the notebook! ", RED);
     public static final String FIND_NOTE_UNSUCCESSFUL_MESSAGE = colorize("There are no matching notes. "
