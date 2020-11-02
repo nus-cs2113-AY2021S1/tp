@@ -47,8 +47,14 @@ public class Storage<T> {
      * @param path The pathname of the file.
      */
     public Storage(String path, Class<T> storageClass) {
-        this.filePath = path.replace('/', File.separatorChar);
-        this.filePath = path.replace("./", File.separator);
+        Runtime rt = Runtime.getRuntime();
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+            this.filePath = path.replace("./", File.separator);
+        } else {
+            this.filePath = path.replace('/', File.separatorChar);
+        }
+
         this.storageClass = storageClass;
     }
 
