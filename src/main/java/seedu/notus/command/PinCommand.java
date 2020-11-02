@@ -55,6 +55,7 @@ public class PinCommand extends Command {
     @Override
     public String execute() {
         Note note = null;
+        String pinStatus;
         if (isPinByIndex) {
             try {
                 note = notebook.getNotes().get(index);
@@ -86,7 +87,13 @@ public class PinCommand extends Command {
             return Formatter.formatString(e.getMessage());
         }
 
-        return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
+        if (note.getPinned()) {
+            pinStatus = "Pinned";
+        } else {
+            pinStatus = "Unpinned";
+        }
+
+        return Formatter.formatString(note.getTitle() + " " + pinStatus);
     }
 
     private void setupLogger() {
