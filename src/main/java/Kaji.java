@@ -31,7 +31,7 @@ public class Kaji {
             Admin admin = new Admin(storage.loadModule());
             access = new Access(admin);
         } catch (FileNotFoundException e) {
-            storage.createAdmin(ui);
+            storage.createAdmin();
             access = new Access();
         }
     }

@@ -17,6 +17,13 @@ public class StorageLoad {
 
     public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
 
+    protected static void checkExists(File f) throws FileNotFoundException {
+        boolean dirExists = f.exists();
+        if (!dirExists) {
+            throw new FileNotFoundException();
+        }
+    }
+
     protected static String[] loadChaptersFromSpecifiedModule(String moduleName, String filePath)
             throws FileNotFoundException {
         File file = new File(filePath + "/" + moduleName);
@@ -125,14 +132,4 @@ public class StorageLoad {
             dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
         }
     }
-
-    protected static void chapterExists(String moduleName, String chapterName, String filePath)
-            throws FileNotFoundException {
-        File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        if (!file.exists()) {
-            throw new FileNotFoundException();
-        }
-    }
-
-
 }

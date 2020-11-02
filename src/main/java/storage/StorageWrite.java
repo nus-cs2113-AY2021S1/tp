@@ -1,14 +1,49 @@
 package storage;
 
+import common.KajiLog;
 import exception.ExclusionFileException;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 //@@ author Darticune
 public class StorageWrite {
+    private static Logger logger = KajiLog.getLogger(Storage.class.getName());
+
+    public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
+    public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
+
+    public static final String FILE = "file";
+    public static final String DIR = "directory";
+
+    protected static void createDir(File f) {
+        boolean dirExists = f.exists();
+        boolean dirCreated = false;
+        if (!dirExists) {
+            dirCreated = f.mkdir();
+        } else {
+            logger.info(String.format(MESSAGE_EXISTS, DIR, f));
+        }
+        if (dirCreated) {
+            logger.info(String.format(MESSAGE_CREATED, DIR, f));
+        }
+    }
+
+    protected static void createFile(File f) throws IOException {
+        boolean fileExists = f.exists();
+        boolean fileCreated = false;
+        if (!fileExists) {
+            fileCreated = f.createNewFile();
+        } else {
+            logger.info(String.format(MESSAGE_EXISTS, FILE, f));
+        }
+        if (fileCreated) {
+            logger.info(String.format(MESSAGE_CREATED, FILE, f));
+        }
+    }
 
     protected static void updateExclusionFile(ArrayList<String> excludedChapters, String filePath)
             throws ExclusionFileException {
@@ -38,6 +73,7 @@ public class StorageWrite {
 
     public static void createHistoryDir() {
         File f = new File("data/history");
+
         boolean historyDirExists = f.exists();
         if (!historyDirExists) {
             f.mkdir();

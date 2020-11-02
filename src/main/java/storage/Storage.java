@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static storage.StorageLoad.checkExists;
+import static storage.StorageWrite.createDir;
+import static storage.StorageWrite.createFile;
+
 public class Storage {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -29,12 +33,6 @@ public class Storage {
     public static final String ANSWER_PREFIX = "[A]";
     public static final String PREVIOUS_INTERVAL_PREFIX = "[P]";
     public static final String RATING_PREFIX = "[R]";
-    public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
-    public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
-    public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
-
-    public static final String FILE = "file";
-    public static final String DIR = "directory";
 
     protected String filePath;
 
@@ -46,70 +44,33 @@ public class Storage {
         return filePath;
     }
 
+    //@@author gua-guargia
     //create the folder --> 'data/admin'
-    public void createAdmin(Ui ui) {
+    public void createAdmin() {
         File f = new File(filePath);
-        ui.showToUser("Filepath: " + filePath);
+        logger.info("Filepath: " + filePath);
 
-        boolean dataDirExists = f.getParentFile().exists();
-        boolean dataDirCreated = false;
-        if (!dataDirExists) {
-            dataDirCreated = f.getParentFile().mkdir();
-        } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(),
-                    f.getParentFile().getName()));
-        }
-        if (dataDirCreated) {
-            logger.info(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
-        }
+        createDir(f.getParentFile());
+        createDir(f);
 
-        boolean adminDirExists = f.exists();
-        boolean adminDirCreated = false;
-        if (!adminDirExists) {
-            adminDirCreated = f.mkdir();
-        } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f));
-        }
-        if (adminDirCreated) {
-            logger.info(String.format(MESSAGE_CREATED, DIR, f));
-        }
         StorageWrite.createHistoryDir();
     }
 
+    //@@author gua-guargia
     public void createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
-        boolean moduleDirExists = f.exists();
-        boolean moduleDirCreated = false;
-        if (!moduleDirExists) {
-            moduleDirCreated = f.mkdir();
-        } else {
-            logger.info(String.format(MESSAGE_EXISTS, DIR, f));
-        }
-        if (moduleDirCreated) {
-            logger.info(String.format(MESSAGE_CREATED, DIR, f));
-        }
+        createDir(f);
     }
 
+    //@@author gua-guargia
     public void createChapter(String chapterName, String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        boolean chapterFileExists = f.exists();
-        boolean chapterFileCreated = false;
-        if (!chapterFileExists) {
-            chapterFileCreated = f.createNewFile();
-        } else {
-            logger.info(String.format(MESSAGE_EXISTS, FILE, f));
-        }
-        if (chapterFileCreated) {
-            logger.info(String.format(MESSAGE_CREATED, FILE, f));
-        }
+        createFile(f);
     }
 
     public ArrayList<Module> loadModule() throws FileNotFoundException {
         File f = new File(filePath);
-        boolean dirExists = f.exists();
-        if (!dirExists) {
-            throw new FileNotFoundException();
-        }
+        checkExists(f);
 
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
@@ -127,10 +88,7 @@ public class Storage {
 
     public ArrayList<Chapter> loadChapter(String module) throws IOException {
         File f = new File(filePath + "/" + module);
-        boolean dirExists = f.exists();
-        if (!dirExists) {
-            throw new FileNotFoundException();
-        }
+        checkExists(f);
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         String[] contents = f.list();
@@ -171,9 +129,7 @@ public class Storage {
     public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
         File admin = new File(filePath);
-        if (!admin.exists()) {
-            throw new FileNotFoundException();
-        }
+        checkExists(admin);
         String[] modules = admin.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
         return StorageLoad.checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules, filePath);
@@ -198,7 +154,8 @@ public class Storage {
     public void appendChapterToExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
             ExclusionFileException {
         ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
-        StorageLoad.chapterExists(moduleName, chapterName, filePath);
+        File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+        checkExists(file);
         String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
         if (!excludedChapters.contains(chapterEntry)) {
             excludedChapters.add(chapterEntry);
@@ -227,10 +184,7 @@ public class Storage {
 
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
-        boolean fileExists = f.exists();
-        if (!fileExists) {
-            throw new FileNotFoundException();
-        }
+        checkExists(f);
 
         ArrayList<Card> cards = new ArrayList<>();
         Scanner s = new Scanner(f);
@@ -323,21 +277,9 @@ public class Storage {
     public void createHistory(Ui ui, String date) {
         try {
             File f = new File("data/history/" + date + ".txt");
-            boolean historyFileExists = f.exists();
-            boolean historyFileCreated = false;
-            if (!historyFileExists) {
-                historyFileCreated = f.createNewFile();
-            } else {
-                logger.info("the file " + date + ".txt already exists in history folder\n"
-                        + "It stores the revision completed in the session/in a day");
-            }
-
-            if (historyFileCreated) {
-                logger.info("Successfully created new file " + date + ".txt in history folder\n"
-                        + "It stores the revision completed in the session/in a day");
-            }
+            createFile(f);
         } catch (IOException e) {
-            ui.showError("Error creating the file.");
+            ui.showError("Error creating the data/history file.");
         }
     }
 
@@ -351,10 +293,7 @@ public class Storage {
 
     public ArrayList<History> loadHistory(String date) throws FileNotFoundException {
         File f = new File("data/history/" + date + ".txt");
-        boolean fileExists = f.exists();
-        if (!fileExists) {
-            throw new FileNotFoundException();
-        }
+        checkExists(f);
 
         ArrayList<History> histories = new ArrayList<>();
         Scanner s = new Scanner(f);
