@@ -1,6 +1,6 @@
 # Developer Guide
 
-##Table of contents
+## Table of contents
 * <a href ="#intro">1. Introduction</a> <br>
 * <a href ="#design">2. Design & Implementation</a> <br>
     * <a href ="#card">2.1 Card Package</a> <br>
