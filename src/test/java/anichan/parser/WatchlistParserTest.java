@@ -21,6 +21,9 @@ class WatchlistParserTest {
         watchlistParser.parse("-l");
         watchlistParser.parse("-s 1");
         watchlistParser.parse("-d 1");
+
+        // With whitespaces
+        watchlistParser.parse("        -l        ");
     }
 
     @Test
@@ -45,10 +48,6 @@ class WatchlistParserTest {
         assertThrows(AniException.class, () -> watchlistParser.parse("-s 0"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d -1"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s one"));
-    }
-
-    @Test
-    void parse_nullDescription_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> watchlistParser.parse(null));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-d 1 2 3"));
     }
 }
