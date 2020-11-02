@@ -2,6 +2,8 @@
 hide footbox
 skinparam ParticipantPadding 20
 
+mainframe sd Create bookmark for module
+
 participant ":AddSlotCommand" as AddSlotCommand
 'participant ":Timetable" as Timetable
 participant ":Module" as Module

@@ -2,6 +2,8 @@
 hide footbox
 skinparam ParticipantPadding 20
 
+mainframe sd Create bookmark for existing slot based on its index
+
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Module" as Module
 
@@ -21,8 +23,7 @@ AddSlotCommand --> AddSlotCommand : slot
 deactivate AddSlotCommand
 
 ref over AddSlotCommand, Module
-    Create bookmark for slot.
-    Refer to Figure 2.3.5
+    Create bookmark for slot
 end ref
 
 
