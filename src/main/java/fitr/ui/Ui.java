@@ -7,8 +7,6 @@ import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Commands.COMMAND_VIEW;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
-import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
-import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 
@@ -175,8 +173,8 @@ public class Ui {
             System.out.printf(HELP_SPACER, "<TYPE>", "<DESCRIPTION>");
             System.out.printf(HELP_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
             System.out.printf(HELP_SPACER, COMMAND_VIEW_BMI, "View your BMI");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_FOOD, "View food entries");
-            System.out.printf(HELP_SPACER, COMMAND_VIEW_EXERCISE, "View exercise entries");
+            System.out.printf(HELP_SPACER, COMMAND_FOOD, "View food entries");
+            System.out.printf(HELP_SPACER, COMMAND_EXERCISE, "View exercise entries");
             System.out.printf(HELP_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             System.out.printf(HELP_SPACER, COMMAND_GOAL, "View your food and exercise goals");
             break;
