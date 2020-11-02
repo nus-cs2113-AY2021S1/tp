@@ -147,7 +147,7 @@ The `DIVIDER_OPTION` is a parameter indicating your preferable type of line divi
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Example usages:
-* `divider 1` changes divider option to 2
+* `divider 1` changes divider option to 1
 
 Example output: 
 ```
