@@ -1,4 +1,7 @@
-# Jun Xiang - Project Portfolio Page
+---
+layout : page
+title : Jun Xiang - Project Portfolio Page
+---
 
 ### Overview
 The overview below follows the following standards: 
