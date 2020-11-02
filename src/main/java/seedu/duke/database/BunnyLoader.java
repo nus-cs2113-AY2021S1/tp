@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.duke.constants.FluffleMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
 import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
 import static seedu.duke.constants.Tags.BUNNY_GENRE_TAG;
 import static seedu.duke.constants.Tags.BUNNY_IDEA_TAG;
@@ -59,7 +58,6 @@ public class BunnyLoader {
             }
         } catch (SettingObjectWrongFormatException e) {
             logger.log(Level.INFO, "bunny.txt format error detected");
-            System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
         }
 
         // load individual bunnies
@@ -101,12 +99,10 @@ public class BunnyLoader {
                 numBunniesLoaded++;
 
             } catch (SettingObjectWrongFormatException e) {
-                System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
+                logger.log(Level.INFO, "bunny.txt format error detected while reading");
             }
         }
 
-        //I tried to comment this to pass the Test .. TQMT
-        //UI.numBunnyLoaded(numBunnies, numBunniesLoaded);
     }
 
 }
