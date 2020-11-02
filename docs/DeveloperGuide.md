@@ -13,7 +13,7 @@ This developer guide is for experienced programmers with knowledge of object ori
 
 
 ### Purpose
-This guide seeks to introduce to you the design and implementation of Zoomaster features. It will share our reasoning behind the way we implemented different features and its logic flow. With this, you would be able to tweak and furthur develop Zoomaster without confusion or introduce unwanted bug to the App.
+This guide seeks to introduce to you the design and implementation of Zoomaster features. It will share our reasoning behind the way we implemented different features and its logic flow. With this, you would be able to tweak and further develop Zoomaster without confusion or introduce unwanted bugs to the App.
 
 ### Scope
 First, the guide will help you set up Zoomaster in its current iteration so that you can familiarise with it. <br/> 
@@ -52,7 +52,7 @@ Otherwise, each major section is distinguished by a bold header and underline. S
 ## **Getting Started**
 First, download the source cod and jar file of Zoomaster [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 
-Next, follow the startup proceedures as stated in the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarise yourself with Zoomaster's features.
+Next, follow the startup procedures as stated in the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarise yourself with Zoomaster's features.
 
 Now, you can dive into the source code and explore the inner workings of Zoomaster with this guide.
 
@@ -350,13 +350,6 @@ The sequence diagram below explains how this feature is executed:
 ### Planner feature (Jusuf)
 
 This feature is an extension of the timetable feature that allows users to find common empty slots from each individual timetable. The users can then add a new meeting, and the app will automatically write the meeting to each timetable.
-
-Below is the general flow on how the mechanism works:
-1. The different timetables must first be loaded to the `planner` folder manually.
-2. In the app, the user can enter the `load` command to load all the timetables and initialise the common empty slots.
-3. To view the slots, the user can enter the `show` command with or without the day (optional).
-4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
-5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
 Below is the general flow on how the mechanism works:
 1. The different timetables must first be loaded to the `planner` folder manually.
