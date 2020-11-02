@@ -73,7 +73,7 @@ public class Storage {
         if (adminDirCreated) {
             logger.info(String.format(MESSAGE_CREATED, DIR, f));
         }
-        createHistoryDir();
+        StorageWrite.createHistoryDir();
     }
 
     public void createModule(String moduleName) {
@@ -145,7 +145,7 @@ public class Storage {
             String target = content.replace(".txt", "");
             result += content;
 
-            String deadline = retrieveChapterDeadline(module, target);
+            String deadline = StorageLoad.retrieveChapterDeadline(module, target, filePath);
             assert !deadline.equals(null) : "Invalid deadline retrieved";
             if (deadline.equals("Invalid Date")) {
                 chapters.add(new Chapter(target));
@@ -154,7 +154,7 @@ public class Storage {
             if (deadline.equals("Does not exist")) {
                 String dirPath = filePath + "/" + module + "/" + "dues";
                 String duePath = filePath + "/" + module + "/" + "dues" + "/" + target + "due" + ".txt";
-                boolean success = createChapterDue(duePath, dirPath);
+                boolean success = StorageWrite.createChapterDue(duePath, dirPath);
                 if (!success) {
                     throw new IOException("Error creating chapter due file");
                 }
@@ -168,144 +168,20 @@ public class Storage {
         return chapters;
     }
 
-    public String[] loadChaptersFromSpecifiedModule(String moduleName) throws FileNotFoundException {
-        File file = new File(filePath + "/" + moduleName);
-        boolean moduleExists = file.exists();
-        if (!moduleExists) {
-            throw new FileNotFoundException();
-        }
-        return file.list();
-    }
-
-    private String retrieveChapterDeadline(String moduleName, String chapterName) {
-        File f = new File(filePath + "/" + moduleName + "/dues/" + chapterName + "due" + ".txt");
-        try {
-            Scanner s = new Scanner(f);
-            if (s.hasNext()) {
-                String deadline = s.nextLine();
-                s.close();
-                return deadline;
-            } else {
-                s.close();
-                return "Invalid Date";
-            }
-        } catch (FileNotFoundException e) {
-            return "Does not exist";
-        }
-    }
-
-    private ArrayList<String> loadExclusionFile() throws ExclusionFileException {
-        File exclusionFile = new File(getFilePath() + "/exclusions.txt");
-        ArrayList<String> excludedChapters = new ArrayList<>();
-        try {
-            if (!exclusionFile.exists()) {
-                if (!exclusionFile.createNewFile()) {
-                    throw new ExclusionFileException();
-                } else {
-                    return new ArrayList<String>();
-                }
-            }
-            Scanner exclusionFileScanner = new Scanner(exclusionFile);
-            while (exclusionFileScanner.hasNext()) {
-                //to read the card
-                String entry = exclusionFileScanner.nextLine();
-                excludedChapters.add(entry);
-            }
-            exclusionFileScanner.close();
-            return excludedChapters;
-        } catch (IOException e) {
-            throw new ExclusionFileException();
-        }
-    }
-
     public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = loadExclusionFile();
+        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
         File admin = new File(filePath);
         if (!admin.exists()) {
             throw new FileNotFoundException();
         }
         String[] modules = admin.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
-        return checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules);
-    }
-
-    private ArrayList<DueChapter> checkAllChaptersForDue(Ui ui, ArrayList<String> excludedChapters,
-                                                         ArrayList<DueChapter> dueChapters,
-                                                         String[] modules) throws FileNotFoundException {
-        for (String module : modules) {
-            if (module.equals("exclusions.txt")) {
-                continue;
-            }
-            File f2 = new File(filePath + "/" + module);
-            boolean chapterExists = f2.exists();
-            if (!chapterExists) {
-                throw new FileNotFoundException();
-            }
-            String[] chapters = f2.list();
-            if (chapters.length == 0) {
-                return dueChapters;
-            }
-            for (String chapter : chapters) {
-                processChapterForDue(ui, excludedChapters, dueChapters, module, chapter);
-            }
-        }
-        return dueChapters;
-    }
-
-    private void processChapterForDue(Ui ui, ArrayList<String> excludedChapters, ArrayList<DueChapter> dueChapters,
-                                      String module, String chapter) {
-        if (chapter.equals("dues")) {
-            return;
-        }
-        String target = chapter.replace(".txt", "");
-        String entry = "Module: " + module + "; Chapter: " + target;
-        if (excludedChapters.contains(entry)) {
-            return;
-        }
-        checkChapterDeadline(ui, dueChapters, module, target);
-    }
-
-    private void checkChapterDeadline(Ui ui, ArrayList<DueChapter> dueChapters, String module, String target) {
-        String deadline = retrieveChapterDeadline(module, target);
-        assert !deadline.equals(null) : "Invalid deadline retrieved";
-        if (deadline.equals("Invalid Date")) {
-            ui.showToUser("\nThe chapter:");
-            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-        } else if (deadline.equals("Does not exist")) {
-            deadline = "Invalid Date";
-            ui.showToUser("\nThe chapter:");
-            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-        } else {
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
-        }
-    }
-
-    public void chapterExists(String moduleName, String chapterName) throws FileNotFoundException {
-        File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        if (!file.exists()) {
-            throw new FileNotFoundException();
-        }
-    }
-
-    public void updateExclusionFile(ArrayList<String> excludedChapters) throws ExclusionFileException {
-        try {
-            FileWriter exclusionFileWriter = new FileWriter(getFilePath() + "/exclusions.txt");
-            for (String excluded : excludedChapters) {
-                exclusionFileWriter.write(excluded + "\n");
-            }
-            exclusionFileWriter.close();
-        } catch (IOException e) {
-            throw new ExclusionFileException("Sorry, there was an error in accessing the Exclusion File");
-        }
+        return StorageLoad.checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules, filePath);
     }
 
     public void appendModuleToExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = loadExclusionFile();
-        String[] chaptersInModule = loadChaptersFromSpecifiedModule(moduleName);
+        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
+        String[] chaptersInModule = StorageLoad.loadChaptersFromSpecifiedModule(moduleName, filePath);
         for (String chapter : chaptersInModule) {
             if (chapter.equals("dues")) {
                 continue;
@@ -316,37 +192,37 @@ public class Storage {
                 excludedChapters.add(chapterEntry);
             }
         }
-        updateExclusionFile(excludedChapters);
+        StorageWrite.updateExclusionFile(excludedChapters, filePath);
     }
 
     public void appendChapterToExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
             ExclusionFileException {
-        ArrayList<String> excludedChapters = loadExclusionFile();
-        chapterExists(moduleName, chapterName);
+        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
+        StorageLoad.chapterExists(moduleName, chapterName, filePath);
         String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
         if (!excludedChapters.contains(chapterEntry)) {
             excludedChapters.add(chapterEntry);
         }
-        updateExclusionFile(excludedChapters);
+        StorageWrite.updateExclusionFile(excludedChapters, filePath);
     }
 
     public void removeModuleFromExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = loadExclusionFile();
-        String[] chaptersInModule = loadChaptersFromSpecifiedModule(moduleName);
+        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
+        String[] chaptersInModule = StorageLoad.loadChaptersFromSpecifiedModule(moduleName, filePath);
         for (String chapter : chaptersInModule) {
             chapter = chapter.replace(".txt", "");
             String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapter;
             excludedChapters.remove(chapterEntry);
         }
-        updateExclusionFile(excludedChapters);
+        StorageWrite.updateExclusionFile(excludedChapters, filePath);
     }
 
     public void removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
             ExclusionFileException {
-        ArrayList<String> excludedChapters = loadExclusionFile();
+        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
         String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
         excludedChapters.remove(chapterEntry);
-        updateExclusionFile(excludedChapters);
+        StorageWrite.updateExclusionFile(excludedChapters, filePath);
     }
 
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
@@ -392,31 +268,12 @@ public class Storage {
         fw.close();
     }
 
-    private boolean createChapterDue(String duePath, String dirPath) throws IOException {
-        File due = new File(duePath);
-        File dir = new File(dirPath);
-        boolean isDirValid = dir.exists() && dir.isDirectory();
-        if (!isDirValid) {
-            return dir.mkdir() && due.createNewFile();
-        } else if (!due.exists()) {
-            return due.createNewFile();
-        } else {
-            return true;
-        }
-    }
-
-    private void writeDeadlineToChapterDue(String dueBy, String chapterPath) throws IOException {
-        FileWriter fw = new FileWriter(chapterPath);
-        fw.write(dueBy);
-        fw.close();
-    }
-
     public void saveChapterDeadline(String dueBy, String moduleName, String chapterName) {
         try {
             String dirPath = filePath + "/" + moduleName + "/" + "dues";
             String duePath = filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt";
-            if (createChapterDue(duePath, dirPath)) {
-                writeDeadlineToChapterDue(dueBy, duePath);
+            if (StorageWrite.createChapterDue(duePath, dirPath)) {
+                StorageWrite.writeDeadlineToChapterDue(dueBy, duePath);
             } else {
                 System.out.println("Unable to produce ChapterDue");
             }
@@ -462,15 +319,6 @@ public class Storage {
             throw new DuplicateDataException("A module with this name already exists.");
         }
     }
-
-    public void createHistoryDir() {
-        File f = new File("data/history");
-        boolean historyDirExists = f.exists();
-        if (!historyDirExists) {
-            f.mkdir();
-        }
-    }
-
 
     public void createHistory(Ui ui, String date) {
         try {
