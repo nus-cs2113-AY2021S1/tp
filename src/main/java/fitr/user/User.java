@@ -109,10 +109,10 @@ public class User {
     }
 
     public void setName(String name, Boolean isEdit) {
-        while(!name.matches("^[a-zA-z ]+$") || name.trim().length() == 0){
+        while (!name.matches("^[a-zA-z ]+$") || name.trim().length() == 0) {
             Ui.printCustomError("Only alphabetical and space inputs allowed for name! Please try again.");
             Ui.printCustomError("FORMAT: " + FORMAT_EDIT_NAME);
-            if(isEdit){
+            if (isEdit) {
                 return;
             }
             Ui.printCustomMessage(INPUT_NAME);
