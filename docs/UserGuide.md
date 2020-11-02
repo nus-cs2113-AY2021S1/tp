@@ -46,11 +46,32 @@ This user guide provides a quick start guide for you to easily setup install CCA
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
 
-[](userGuidePic/Symbol1.PNG)
+
+Additionally, throughout this user guide, there will be various icons used as described below:
+> :bulb: This symbol denotes a tip which you might find useful when using the application.
+
+> :information_source: This symbol denotes some information that you will need to take note of when using the application.
+
+> :`code` : Text that appears on the CLI / in code
+
+> : [Hyperlinked]() : Leads you to the appropriate section
 
 ## 3.Quick Start
 
-![Symbol](userGuidePic/Symbol2.PNG)
+This user guide provides a quick start guide for you to easily setup install CCA manager, 
+documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
+To navigate between the different sections, you could use the table of contents above.
+ 
+ :one: Ensure that you have Java 11 or above installed.
+  > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
+  > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
+  
+ :two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
+ 
+ :three: Run the program by entering java -jar cca.java in a terminal.
+  > :information_source: Please resize the terminal to full screen mode 
+
+You will see this welcome message if you have done the above steps correctly. <br/>
 
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
@@ -62,8 +83,7 @@ to see the commands of all features at a glance.
 #### Command Format 
 
 Words in UPPER CASE are the parameters to be supplies by user.
-![Symbol](userGuidePic/Symbol3.PNG)
-
+> :information_source: Our program also supports shorthand commands. 
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -208,7 +228,8 @@ Expected outcome:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
-![Symbol](userGuidePic/Symbol4.PNG)
+ > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
 
 
 Shorthand Command : <br/>
@@ -263,7 +284,7 @@ Shorthand Command : <br/>
 event --> e <br/>
 delEvent --> del/d <br/>
 
-![Symbol](userGuidePic/Symbol6.PNG)
+ > :information_source A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
@@ -313,8 +334,8 @@ Expected Outcome:
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
-The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
-The EVENT_INDEX must be an integer greater than 0. <br/>
+ > :information_source The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -354,7 +375,7 @@ Expected Outcome:
 #### Add a participant to an event: `addAttendance`
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
-> :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+ > :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>

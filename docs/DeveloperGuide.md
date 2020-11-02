@@ -252,13 +252,15 @@ The sequence diagram of changing information of a finance log entry is shown bel
 ### 3.4. Event
 The diagrams below shows the architecture for Event feature. 
 
+Diagram 1: Event Commands
 ![](EventDiagram/EventArchi1.png)
 
+Diagram 2: Event Architecture
 ![](EventDiagram/EventArchi2.png)
 
 There are a total of 6 commands under Event feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
- They are packaged under EventCommands as shown above.
+ They are packaged under EventCommands as shown in diagram 1.
  
  The implementation for each Event command is described in detail below.
                                                              
