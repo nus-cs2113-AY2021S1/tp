@@ -31,7 +31,7 @@ public class BusCommand extends Command {
     public void executeCommand() {
         if (busStop != null) {
             printLine();
-            ArrayList<Bus> busList = BusData.busAtStop(busStop);
+            ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
             Ui.printBusAtBusStop(busList, busStop);
         }
     }
