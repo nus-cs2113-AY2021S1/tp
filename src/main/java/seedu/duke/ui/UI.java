@@ -288,13 +288,10 @@ public class UI {
                 bunnyFiltered++;
             }
         }
-
-        bunnyFilterSummary(bunnyFiltered);
-    }
-
-    private static void bunnyFilterSummary(int bunnyFiltered) {
         System.out.println(FluffleMessages.NUMBER_BUNNY_FILTERED_MSG + bunnyFiltered);
+
     }
+
 
     public static void bunnyMissingFilterOption() {
         System.out.println(FluffleMessages.FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG);
@@ -327,7 +324,7 @@ public class UI {
 
     public static void bunnyRandomlySelected(int bunnySelected) {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
-        System.out.print(bunniesList.get(bunnySelected - 1).getDescription());
+        System.out.print(bunniesList.get(bunnySelected).getDescription());
     }
 
     public static void bunnyListEmpty() {
