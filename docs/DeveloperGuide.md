@@ -48,7 +48,7 @@ The flow for the book command is shown in the sequence diagram below:
 
 #### Edit Command
 The flow for the edit command is shown in the sequence diagram below:
-![image info](./pictures/UMLEdit.PNG)
+![image info](./pictures/UMLEdit.png)
 
 
 ## Product scope
