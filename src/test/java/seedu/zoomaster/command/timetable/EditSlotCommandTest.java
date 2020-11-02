@@ -12,7 +12,8 @@ import seedu.zoomaster.slot.Timetable;
 
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class EditSlotCommandTest {
 
@@ -108,7 +109,7 @@ class EditSlotCommandTest {
         String newStartTime = "15:00";
         String newEndTime = "17:00";
 
-        String input = EditSlotCommand.EDIT_KW + " time fri 1 " + newDay + " " + newStartTime + " " + newEndTime ;
+        String input = EditSlotCommand.EDIT_KW + " time fri 1 " + newDay + " " + newStartTime + " " + newEndTime;
 
         EditSlotCommand command = null;
         Slot s = null;
