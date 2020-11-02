@@ -111,21 +111,6 @@ public abstract class Event {
     public static Comparator<Event> descriptionComparator = (o1, o2) ->
             o1.getDescription().compareToIgnoreCase(o2.getDescription());
 
-    public static Comparator<Event> timeComparator = (o1, o2) -> {
-        LocalDate o2Date = o2.getDate();
-        LocalDate o1Date = o1.getDate();
-        int comparator = o1Date.getYear() - o2Date.getYear();
-        if (comparator == 0) {
-            comparator = o1Date.getMonthValue() - o2Date.getMonthValue();
-            if (comparator == 0) {
-                comparator = o1Date.getDayOfMonth() - o2Date.getDayOfMonth();
-            }
-        }
-        return comparator;
-    };
-
-    public static Comparator<Event> locationComparator = (o1, o2) ->
-            o1.getLocation().getName().compareToIgnoreCase(o2.getLocation().getName());
 }
 
 

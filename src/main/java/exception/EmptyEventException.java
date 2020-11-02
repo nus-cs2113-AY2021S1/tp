@@ -10,6 +10,6 @@ public class EmptyEventException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "Your input is incomplete. Please enter an event description.";
+        return "Event description is empty. Please give a title/description of the event.";
     }
 }

@@ -7,16 +7,17 @@ import event.Event;
 import event.PersonalEvent;
 import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
+import exception.ExistingEventInListException;
 import exception.EndBeforeStartEventException;
 import exception.UndefinedEventException;
 import location.Location;
 import location.OnlineLocation;
-import ui.UI;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+
 
 import static java.util.stream.Collectors.toList;
 
@@ -48,7 +49,11 @@ public class EventList {
      *
      * @param eventToBeAdded may be Assignment/Class/Personal Event based on the usage
      */
-    public void addEvent(Event eventToBeAdded) {
+    public void addEvent(Event eventToBeAdded) throws ExistingEventInListException {
+        if (events.contains(eventToBeAdded)) {
+            throw new ExistingEventInListException();
+        }
+
         events.add(eventToBeAdded);
     }
 
@@ -137,7 +142,11 @@ public class EventList {
 
         // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
         if (startEnd[0] == null) {
-            start = events.get(index).getStartDateTime();
+            if (events.get(index) instanceof  Assignment) {
+                start = events.get(index).getEndDateTime();
+            } else {
+                start = events.get(index).getStartDateTime();
+            }
         } else {
             start = startEnd[0];
         }
@@ -170,6 +179,8 @@ public class EventList {
             break;
         default:
             if (newLocation != null) {
+                newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+            } else {
                 newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
             }
             break;
@@ -231,18 +242,11 @@ public class EventList {
      */
     public void sortEvent(String type) {
         assert events != null;
-        switch (type) {
-        case "description":
+        if (type.equals("description")) {
             events.sort(Event.descriptionComparator);
-            break;
-        case "time":
-            events.sort(Event.timeComparator);
-            break;
-        default:
-            events.sort(Event.locationComparator);
-            break;
+        } else if (type.equals("time")) {
+            events.sort(Comparator.comparing(Event::getEndDateTime));
         }
-
     }
 
     /**
@@ -338,29 +342,39 @@ public class EventList {
             eventEndDateTime = null;
         }
         ArrayList<Event> filteredEventList;
-
-        filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> s.getEndDateTime() != null)
-                .filter(s -> ((!(s instanceof Assignment))
-                        && (s.getStartDateTime().isBefore(eventStartDateTime)
-                        || s.getStartDateTime().isEqual(eventStartDateTime))
-                        && (s.getEndDateTime().isAfter(eventStartDateTime)
-                        || s.getEndDateTime().isEqual(eventStartDateTime))))
-                .collect(toList());
+        ArrayList<Event> filteredEventList2 = null;
+        try {
+            filteredEventList = (ArrayList<Event>) events.stream()
+                    .filter(s -> s.getEndDateTime() != null)
+                    .filter(s -> ((!(s instanceof Assignment))
+                            && (s.getStartDateTime().isBefore(eventStartDateTime)
+                            || s.getStartDateTime().isEqual(eventStartDateTime))
+                            && (s.getEndDateTime().isAfter(eventStartDateTime)
+                            || s.getEndDateTime().isEqual(eventStartDateTime))))
+                    .collect(toList());
+        } catch (NullPointerException e) {
+            filteredEventList = null;
+        }
         if (eventEndDateTime != null) {
             //this considers when the events already in the list lie in the duration of the new event
-            LocalDateTime finalEventEndDateTime = eventEndDateTime;
-            ArrayList<Event> filteredEventList2 = (ArrayList<Event>) events.stream()
-                    .filter(s -> ((!(s instanceof Assignment))
-                            && (s.getStartDateTime().isAfter(eventStartDateTime)
-                            || s.getStartDateTime().isEqual(eventStartDateTime))
-                            && (s.getStartDateTime().isBefore(finalEventEndDateTime)
-                            || s.getStartDateTime().isEqual(finalEventEndDateTime))))
-                    .collect(toList());
-            filteredEventList2.removeAll(filteredEventList);
-            filteredEventList.addAll(filteredEventList2);
+            try {
+                LocalDateTime finalEventEndDateTime = eventEndDateTime;
+                filteredEventList2 = (ArrayList<Event>) events.stream()
+                        .filter(s -> ((!(s instanceof Assignment))
+                                && (s.getStartDateTime().isAfter(eventStartDateTime)
+                                || s.getStartDateTime().isEqual(eventStartDateTime))
+                                && (s.getStartDateTime().isBefore(finalEventEndDateTime)
+                                || s.getStartDateTime().isEqual(finalEventEndDateTime))))
+                        .collect(toList());
+                filteredEventList2.removeAll(filteredEventList);
+            } catch (NullPointerException e) {
+                filteredEventList2 = null;
+            }
         }
-        filteredEventList.remove(event);
+        if (filteredEventList != null && filteredEventList2 != null) {
+            filteredEventList.addAll(filteredEventList2);
+            filteredEventList.remove(event);
+        }
         return filteredEventList;
     }
 }

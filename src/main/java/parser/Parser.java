@@ -25,6 +25,7 @@ import event.PersonalEvent;
 import exception.DateFormatException;
 import exception.DeleteNumberFormatException;
 import exception.DoneNumberFormatException;
+import exception.DoubleTimeAssignmentException;
 import exception.EmptyDeleteException;
 import exception.EmptyDoneException;
 import exception.EmptyEventException;
@@ -40,6 +41,7 @@ import exception.NoEditEventDescriptionException;
 import exception.NoEventLocationException;
 import exception.NoEventTimeException;
 import exception.NoEventTimeMarkerException;
+import exception.NoPasswordException;
 import exception.NoSortCriteriaException;
 import exception.NuScheduleException;
 import exception.TimeFormatException;
@@ -61,8 +63,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import ui.UI;
-import eventlist.EventList;
 
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
@@ -167,7 +167,7 @@ public abstract class Parser {
                 throw new EmptyDoneException();
             }
             try {
-                eventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
+                eventIndex = Integer.parseInt(fullCommand.substring(5).trim()) - 1;
             } catch (NumberFormatException e) {
                 throw new DoneNumberFormatException();
             }
@@ -192,11 +192,10 @@ public abstract class Parser {
             if (fullCommand.length() == 4) {
                 throw new NoSortCriteriaException();
             }
-            String type = words[1];
+            String type = words[1].trim().toLowerCase();
             switch (type) {
             case "description":
             case "time":
-            case "location":
                 return new SortCommand(type);
             default:
                 throw new InvalidSortCriteriaException();
@@ -233,7 +232,7 @@ public abstract class Parser {
             }
 
             try {
-                eventIndex = Integer.parseInt(words[1]) - 1;
+                eventIndex = Integer.parseInt(fullCommand.substring(5).trim()) - 1;
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
             }
@@ -243,10 +242,9 @@ public abstract class Parser {
                 throw new UndefinedEventException(eventIndex + 1);
             }
 
-            // parse and format user inputs.
-            UI ui = new UI();
-            String[] editInformation = ui.readEditCommand();
+            String[] editInformation = EditCommand.newEditInformation();
             LocalDateTime[] startEnd = new LocalDateTime[2];
+
 
             if (!editInformation[0].isBlank()) {
                 if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
@@ -254,6 +252,7 @@ public abstract class Parser {
                     throw new InvalidEditTypeException();
                 }
             }
+
 
             // user input validation for location
             if (!editInformation[2].isBlank()) {
@@ -264,16 +263,18 @@ public abstract class Parser {
                     int pwdPos = editInformation[2].indexOf(PASSWORD_MARKER);
                     if (pwdPos == -1) {
                         onlineLocation =
-                                new OnlineLocation(editInformation[2].substring(3));
+                                new OnlineLocation(editInformation[2].substring(3).trim());
                     } else {
                         onlineLocation =
-                                new OnlineLocation(editInformation[2].substring(3, pwdPos - 1),
-                                        editInformation[2].substring(pwdPos + 3));
+                                new OnlineLocation(editInformation[2].substring(3, pwdPos - 1).trim(),
+                                        editInformation[2].substring(pwdPos + 3).trim());
                     }
                 } else {
                     throw new InvalidEditLocationException();
+
                 }
             }
+
 
             // user input validation for start and end time
             if (!editInformation[3].isBlank()) {
@@ -328,34 +329,35 @@ public abstract class Parser {
             }
 
             if (locationDividerPosition != -1) {
-                if (fullCommand.substring(startTimeDividerPosition + 3, locationDividerPosition - 1).isBlank()) {
+                if (fullCommand.substring(startTimeDividerPosition + 2, locationDividerPosition - 1).isBlank()) {
                     throw new NoEventTimeException();
                 }
-                if (fullCommand.substring(locationDividerPosition + 3).isBlank()) {
+                if (fullCommand.substring(locationDividerPosition + 2).isBlank()) {
                     throw new NoEventLocationException();
                 }
             } else {
-                if (fullCommand.substring(startTimeDividerPosition + 3, onlineLocationDividerPosition - 1)
+                if (fullCommand.substring(startTimeDividerPosition + 2, onlineLocationDividerPosition - 1)
                         .isBlank()) {
                     throw new NoEventTimeException();
                 }
-                if (fullCommand.substring(onlineLocationDividerPosition + 3).isBlank()) {
+                if (fullCommand.substring(onlineLocationDividerPosition + 2).isBlank()) {
                     throw new NoEventLocationException();
                 }
+
             }
 
 
             //this deals with the event holding offline
             if (locationDividerPosition != -1) {
-                if (fullCommand.substring(locationDividerPosition + 3).isBlank()) {
-                    throw new NoEventLocationException();
-                }
                 try {
                     timeDivider = fullCommand.substring(startTimeDividerPosition + 3).indexOf(SINGLE_SPACE);
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3), locations);
 
                     switch (words[0]) {
                     case ASSIGNMENT:
+                        if (endTimeDividerPosition != -1) {
+                            throw new DoubleTimeAssignmentException();
+                        }
                         startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                 locationDividerPosition);
 
@@ -417,6 +419,17 @@ public abstract class Parser {
                         virtualLocation =
                                 new OnlineLocation(fullCommand.substring(onlineLocationDividerPosition + 3));
                     } else {
+                        try {
+                            if (fullCommand.substring(onlineLocationDividerPosition + 2, pwdDividerPosition - 1)
+                                    .isBlank()) {
+                                throw new NoEventLocationException();
+                            }
+                        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+                            throw new NoEventLocationException();
+                        }
+                        if (fullCommand.substring(pwdDividerPosition + 2).isBlank()) {
+                            throw new NoPasswordException();
+                        }
                         virtualLocation =
                                 new OnlineLocation(fullCommand.substring(onlineLocationDividerPosition + 3,
                                         pwdDividerPosition - 1), fullCommand.substring(pwdDividerPosition + 3));
@@ -424,6 +437,9 @@ public abstract class Parser {
 
                     switch (words[0]) {
                     case ASSIGNMENT:
+                        if (endTimeDividerPosition != -1) {
+                            throw new DoubleTimeAssignmentException();
+                        }
                         startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                 onlineLocationDividerPosition);
 

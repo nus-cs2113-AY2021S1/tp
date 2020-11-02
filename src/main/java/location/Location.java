@@ -52,4 +52,15 @@ public class Location {
     public String fileString() {
         return null;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual = false;
+
+        if (object instanceof Location) {
+            isEqual = (this.name.equals(((Location) object).name));
+        }
+
+        return isEqual;
+    }
 }
