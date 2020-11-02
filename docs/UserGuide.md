@@ -46,29 +46,13 @@ This user guide provides a quick start guide for you to easily setup install CCA
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
 
-Additionally, throughout this user guide, there will be various icons used as described below:
-> :bulb: This symbol denotes a tip which you might find useful when using the application.
+[](userGuidePic/Symbol1.PNG)
 
-> :information_source: This symbol denotes some information that you will need to take note of when using the application.
-
-> :`code` : Text that appears on the CLI / in code
-
-> : [Hyperlinked]() : Leads you to the appropriate section 
->
 ## 3.Quick Start
 
-:one: Ensure that you have Java 11 or above installed.
- > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
- > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
- 
-:two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
+![Symbol](userGuidePic/Symbol2.PNG)
 
-:three: Run the program by entering java -jar cca.java in a terminal.
- > :information_source: Please resize the terminal to full screen mode
- 
-You will see this welcome message if you have done the above steps correctly. 
-
-[](userGuidePic/welcomeMessage.PNG)
+![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
 This section will show the features in our program in detail.
@@ -78,7 +62,7 @@ to see the commands of all features at a glance.
 #### Command Format 
 
 Words in UPPER CASE are the parameters to be supplies by user.
-> :information_source: Our program also supports shorthand commands. 
+![Symbol](userGuidePic/Symbol3.PNG)
 
 
 ### 4.1 Help `help`
@@ -190,7 +174,7 @@ Example of usage:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
-> :information_source: Program detects duplicate events if `EVENT_NAME` and `EVENT_DATE` matches.
+![Symbol](userGuidePic/Symbol4.PNG)
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
@@ -211,8 +195,7 @@ Expected Outcome:
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
-> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
-> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
+![Symbol](userGuidePic/Symbol5.PNG)
  
  Example of usage: 
  `event delEvent 1` <br/>
@@ -233,7 +216,7 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
-> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
+![Symbol](userGuidePic/Symbol6.PNG)
 
 Expected Outcome:
 
@@ -277,7 +260,7 @@ Format: `event done EVENT_INDEX` <br/>
 The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 The EVENT_INDEX must be an integer greater than 0. <br/>
 
-Example of usage:
+Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
