@@ -3,11 +3,8 @@ title Monthly Compound Interest Calculator
 autoactivate on
 
 ":Handler" ->":Handler": handleMonthlyCommpoundInterest(packet)
-    create ":MonthlyCompoundInterest"
-   ":Handler"-> ":MonthlyCompoundInterest" : calculateCompoundInterest()
-    return
 
-   ":Handler"-> ":MonthlyCompoundInterest" : handlePacket
+   ":Handler"-> ":MonthlyCompoundInterest" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : handleParams

@@ -2,11 +2,8 @@
 autoactivate on
 
 ":Handler" ->":Handler": handleCashback(packet)
-    create ":Cashback"
-   ":Handler"-> ":Cashback" : calculateCashback()
-    return
 
-   ":Handler"-> ":Cashback" : handlePacket
+   ":Handler"-> ":Cashback" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":Cashback" -> ":Cashback" : handleParams
