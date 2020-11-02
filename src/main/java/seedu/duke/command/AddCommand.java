@@ -9,6 +9,7 @@ import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.exception.EventAddErrorException;
+import seedu.duke.exception.MissingDescriptionException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -72,12 +73,12 @@ public class AddCommand extends Command {
         if (isInvalidEventType) {
             throw new EventAddErrorException("Invalid event type to be added!");
         }
-        if (argument.equals("")) {
-            throw new EventAddErrorException("Empty description for the event!");
-        }
 
         try {
             String[] argumentWords = argument.split(";");
+            if (argumentWords[0].trim().equals("")) {
+                throw new MissingDescriptionException("This event has an empty description!");
+            }
             switch (eventType) {
             case "Personal":
                 addPersonal(data, ui, argumentWords);
