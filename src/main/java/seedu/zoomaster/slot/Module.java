@@ -7,6 +7,8 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Module {
@@ -31,6 +33,13 @@ public class Module {
 
     public void addSlot(Slot slot) {
         slots.add(slot);
+
+        Collections.sort(slots, new Comparator<Slot>() {
+            @Override
+            public int compare(Slot s1, Slot s2) {
+                return s1.getStartTime().compareTo(s2.getStartTime());
+            }
+        });
     }
 
     public boolean slotExists(String lesson, String day, LocalTime startTime, LocalTime endTime) {
