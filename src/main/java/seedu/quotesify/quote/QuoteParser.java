@@ -13,6 +13,7 @@ public class QuoteParser {
     public static final String ERROR_MISSING_REFERENCE_OR_AUTHOR = "Author name and Reference cannot be empty if "
             + "\"/by\" flag and \"/from\" flag are present";
     public static final String ERROR_INVALID_QUOTE_NUM = "Quote number provided is invalid";
+    public static final String ERROR_INVALID_PARAMETERS = "Invalid parameters!";
 
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
         assert !userInput.isEmpty() : "field should not be empty";
@@ -70,6 +71,8 @@ public class QuoteParser {
                 assert !reference.isEmpty() : "reference field should not be empty";
                 assert !authorName.isEmpty() : "author field should not be empty";
             }
+            checkExtraAuthorReferenceFlags(authorName, reference);
+
         } catch (StringIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
         }
@@ -79,9 +82,17 @@ public class QuoteParser {
         return referenceAndAuthorName;
     }
 
+    public static void checkExtraAuthorReferenceFlags(String authorName, String reference) throws QuotesifyException {
+        if (authorName.contains(Command.FLAG_AUTHOR) || authorName.contains(Command.FLAG_REFERENCE)) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+        } else if (reference.contains(Command.FLAG_AUTHOR) || reference.contains(Command.FLAG_REFERENCE)) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+        }
+    }
+
     public static Quote parseQuoteWithReference(String userInput) throws QuotesifyException {
         // Throws exception if quote of reference is empty
-        String[] quoteAndReference = userInput.split(Command.FLAG_REFERENCE, 2);
+        String[] quoteAndReference = trimAndCheckReferenceFlags(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndReference[0]);
         String reference = trimAndCheckEmptyReference(quoteAndReference[1]);
         return new Quote(quote, reference);
@@ -89,10 +100,42 @@ public class QuoteParser {
 
     public static Quote parseQuoteWithAuthor(String userInput) throws QuotesifyException {
         // Throws exception if quote of author name is empty
-        String[] quoteAndAuthor = userInput.split(Command.FLAG_AUTHOR, 2);
+        String[] quoteAndAuthor = trimAndCheckAuthorFlags(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
         Author author = trimAndCheckEmptyAuthor(quoteAndAuthor[1]);
         return new Quote(quote, author);
+    }
+
+    public static String[] trimAndCheckAuthorFlags(String userInput) throws QuotesifyException {
+        String[] quoteAndAuthor = userInput.split(Command.FLAG_AUTHOR, 2);
+        if (hasExtraAuthorFlag(quoteAndAuthor[1])) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+        }
+        return quoteAndAuthor;
+    }
+
+    public static boolean hasExtraReferenceFlag(String reference) {
+        if (!reference.contains(Command.FLAG_REFERENCE)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static String[] trimAndCheckReferenceFlags(String userInput) throws QuotesifyException {
+        String[] quoteAndReference = userInput.split(Command.FLAG_REFERENCE, 2);
+        if (hasExtraReferenceFlag(quoteAndReference[1])) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+        }
+        return quoteAndReference;
+    }
+
+    public static boolean hasExtraAuthorFlag(String authorName) {
+        if (!authorName.contains(Command.FLAG_AUTHOR)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
@@ -126,9 +169,12 @@ public class QuoteParser {
     }
 
     public static String parseListWithAuthor(String userInput) throws QuotesifyException {
-        String[] authorFlagAndName = userInput.split(Command.FLAG_AUTHOR);
+        String[] authorFlagAndName = userInput.split(Command.FLAG_AUTHOR, 2);
         try {
             String authorName = authorFlagAndName[1].trim();
+            if (hasExtraAuthorFlag(authorName)) {
+                throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+            }
             return authorName;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_AUTHOR);
@@ -136,9 +182,12 @@ public class QuoteParser {
     }
 
     public static String parseListWithReference(String userInput) throws QuotesifyException {
-        String[] referenceFlagAndName = userInput.split(Command.FLAG_REFERENCE);
+        String[] referenceFlagAndName = userInput.split(Command.FLAG_REFERENCE, 2);
         try {
             String reference = referenceFlagAndName[1].trim();
+            if (hasExtraReferenceFlag(reference)) {
+                throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+            }
             return reference;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE);
@@ -172,6 +221,4 @@ public class QuoteParser {
         String updatedReflection = userInput.split(Command.FLAG_EDIT, 2)[1].trim();
         return updatedReflection;
     }
-
-
 }
