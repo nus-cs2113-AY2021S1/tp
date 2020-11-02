@@ -35,7 +35,7 @@ public class EditCommandParser {
         case Messages.EDIT_HEIGHT:
         case Messages.EDIT_WEIGHT:
         case Messages.EDIT_FITNESS:
-            return new EditProfileCommand(editType);
+            return new EditProfileCommand(editType, arguments);
         case Commands.COMMAND_EXERCISE:
         case Commands.COMMAND_FOOD:
         case Commands.COMMAND_GOAL:
