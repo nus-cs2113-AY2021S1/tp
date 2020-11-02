@@ -1,7 +1,7 @@
 package anichan.parser;
 
 import anichan.anime.AnimeData;
-import anichan.command.BrowseCommand;
+import anichan.commands.BrowseCommand;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.storage.StorageManager;
@@ -16,22 +16,25 @@ class BrowseParserTest {
     private static StorageManager storageManager;
     User user;
 
+    private static final String EMPTY_STRING = "";
     private static final String NON_INT_PAGE_NUM = "-p twenty";
-    private static final String OUTPUT_FIRST_ANIME = "1. Cowboy Bebop [Id: 1]";
+    private static final String FIRST_ANIME = "1.   Cowboy Bebop                                        [Id: 1  ]";
     private static final String BROWSING_PAGE_1 = "Browsing Page: 1";
     private static final String INVALID_ORDER_TEST = "-o whateverOrder";
-    protected static final String INVALID_PARAMETERS_TEST1 = "-n name";
-    protected static final String INVALID_PARAMETERS_TEST2 = "-sort name";
-    protected static final String INVALID_FIELD_TEST1 = "-s   ";
-    protected static final String INVALID_FIELD_TEST2 = "-s beepboopbeep";
-    protected static final String INVALID_FIELD_TEST3 = "-s -o -p";
-    protected static final String DIFF_ORDER_TEST = "-p 1 -s rating -o asc";
-    protected static final String DIFF_ORDER_TEST2 = "-s rating -o asc -p 1";
+    private static final String INVALID_PARAMETERS_TEST1 = "-n name";
+    private static final String INVALID_PARAMETERS_TEST2 = "-sort name";
+    private static final String INVALID_FIELD_TEST1 = "-s   ";
+    private static final String INVALID_FIELD_TEST2 = "-s beepboopbeep";
+    private static final String INVALID_FIELD_TEST3 = "-s -o -p";
+    private static final String INVALID_FIELD_TEST4 = "- ";
+    private static final String DIFF_ORDER_TEST = "-p 1 -s rating -o asc";
+    private static final String DIFF_ORDER_TEST2 = "-s rating -o asc -p 1";
+    private static final String INT_OVERFLOW_FIELD_TEST = "-p 999999999999999";
 
     @BeforeAll
     static void setUp() throws AniException {
         animeData = new AnimeData();
-        storageManager = new StorageManager("test");
+        storageManager = new StorageManager(EMPTY_STRING);
     }
 
     @Test
@@ -49,10 +52,10 @@ class BrowseParserTest {
     @Test
     void parse_edgeCaseDashBlank_defaultExecution() throws AniException {
         BrowseParser testParse = new BrowseParser();
-        BrowseCommand testBrowse = testParse.parse("- ");
+        BrowseCommand testBrowse = testParse.parse(INVALID_FIELD_TEST4);
         testBrowse.setAnimePerPage(1);
         String result = testBrowse.execute(animeData, storageManager, user);
-        assertEquals(OUTPUT_FIRST_ANIME + System.lineSeparator() + BROWSING_PAGE_1, result);
+        assertEquals(FIRST_ANIME + System.lineSeparator() + BROWSING_PAGE_1, result);
     }
 
     @Test
@@ -98,6 +101,14 @@ class BrowseParserTest {
         assertEquals(testBrowse.getPage(), testBrowse2.getPage());
         assertEquals(testBrowse.getSortType(), testBrowse2.getSortType());
         assertEquals(testBrowse.getOrder(), testBrowse2.getOrder());
+    }
+
+    @Test
+    void parse_setPageToIntOverflow_throwsAniException() {
+        BrowseParser testParse = new BrowseParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(INT_OVERFLOW_FIELD_TEST);
+        });
     }
 
 }

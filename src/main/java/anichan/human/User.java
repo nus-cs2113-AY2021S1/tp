@@ -5,22 +5,37 @@ import anichan.exception.AniException;
 import static anichan.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Represents the User.
+ */
 public class User extends Human {
-
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
     public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
+    public static final String EXCEPTION_SIMILAR_WORKPLACE_FOUND = "Workspace with similar name found!";
+    public static final String HONORIFIC_FEMALE = "-chan";
+    public static final String HONORIFIC_NEUTRAL = "-san";
+    public static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
 
     protected Gender gender;
     protected Workspace activeWorkspace;
     protected ArrayList<Workspace> workspaceList = new ArrayList<>();
 
+    // ========================== User related methods ==========================
+
+    /**
+     * Creates an instance of a User.
+     *
+     * @param name   name of User
+     * @param gender gender of User
+     * @throws AniException if an error occurred while creating User
+     */
     public User(String name, String gender) throws AniException {
         super(name);
 
@@ -28,10 +43,17 @@ public class User extends Human {
         activeWorkspace = null;
     }
 
+    /**
+     * Sets gender of user using Gender enum.
+     *
+     * @param genderString gender input provided by user
+     * @throws AniException if gender string is invalid
+     */
     public void setGender(String genderString) throws AniException {
-        genderString = genderString.toLowerCase();
+        assert genderString != null : ASSERTION_INVALID_MESSAGE;
+        String genderStringLowered = genderString.toLowerCase(Locale.ROOT);
 
-        switch (genderString) {
+        switch (genderStringLowered) {
         case GENDER_MALE:
             gender = Gender.Male;
             break;
@@ -51,22 +73,30 @@ public class User extends Human {
     }
 
     /**
-     * Provides the name of the user with Japanese honorifics depending on his gender.
+     * Provides the name of the User with Japanese honorifics depending on gender.
      *
-     * @return name of user with honorifics.
+     * @return name of User with honorifics.
      */
     public String getHonorificName() {
         if (gender == Gender.Female) {
-            return name + "-chan";
+            return name + HONORIFIC_FEMALE;
         } else {
-            return name + "-san";
+            return name + HONORIFIC_NEUTRAL;
         }
     }
 
-    public Workspace getActiveWorkspace() {
-        return activeWorkspace;
+    @Override
+    public String toString() {
+        return " Name: " + getHonorificName() + " | Gender: " + getGender();
     }
 
+    // ========================== User's workspace related methods ==========================
+
+    /**
+     * Initialises the ArrayList of Workspace for User to manage.
+     *
+     * @param workspaceList Workspace ArrayList
+     */
     public void setWorkspaceList(ArrayList<Workspace> workspaceList) {
         this.workspaceList = workspaceList;
         if (workspaceList.size() != 0) {
@@ -74,18 +104,42 @@ public class User extends Human {
         }
     }
 
+    /**
+     * Get Workspace ArrayList which the User manages.
+     *
+     * @return Workspace ArrayList
+     */
     public ArrayList<Workspace> getWorkspaceList() {
         return workspaceList;
     }
 
-    public void setActiveWorkspace(Workspace inputWorkspace) {
-        activeWorkspace = inputWorkspace;
+    /**
+     * Sets the active Workspace of user to the specified Workspace.
+     *
+     * @param inputWorkspace workspace to switch to
+     * @throws AniException if unable to switch to current Workspace
+     */
+    public void setActiveWorkspace(Workspace inputWorkspace) throws AniException {
+        assert inputWorkspace != null : ASSERTION_INVALID_MESSAGE;
 
-        if (activeWorkspace != null) {
+        try {
             //Set the first watchlist to be the active watchlist
             inputWorkspace.setActiveWatchlist(inputWorkspace.getWatchlistList().get(0));
             LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
+
+            activeWorkspace = inputWorkspace;
+        } catch (Exception e) {
+            throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
         }
+    }
+
+    /**
+     * Get the current Workspace User is working on.
+     *
+     * @return active Workspace which the User is using
+     */
+    public Workspace getActiveWorkspace() {
+        return activeWorkspace;
     }
 
     /**
@@ -95,6 +149,8 @@ public class User extends Human {
      * @throws AniException if the workplace is not found
      */
     public void switchActiveWorkspace(String switchToThisWorkspace) throws AniException {
+        assert switchToThisWorkspace != null : ASSERTION_INVALID_MESSAGE;
+
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(switchToThisWorkspace)) {
                 setActiveWorkspace(existingWorkspace);
@@ -106,17 +162,29 @@ public class User extends Human {
         throw new AniException("Workspace " + switchToThisWorkspace + " does not exist!");
     }
 
-
+    /**
+     * Gets total number of workspace(s) the User have.
+     *
+     * @return size of Workspace(s) the User have
+     */
     public int getTotalWorkspaces() {
         return workspaceList.size();
     }
 
+    /**
+     * Adds a new Workspace to the User.
+     *
+     * @param name of the new Workspace
+     * @return the newly created Workspace
+     * @throws AniException if unable to make a new Workspace
+     */
     public Workspace addWorkspace(String name) throws AniException {
-        assert (name != null) : "Workspace details should not have any null.";
+        assert name != null : ASSERTION_INVALID_MESSAGE;
 
-        if (doesWorkplaceExist(name)) {
+        if (findWorkspace(name) != null) {
             throw new AniException("Workspace already exist!");
         } else {
+            checkWorkspaceName(name.toLowerCase());
             Workspace newWorkspace = new Workspace(name);
 
             workspaceList.add(newWorkspace);
@@ -126,8 +194,14 @@ public class User extends Human {
         }
     }
 
+    /**
+     * Deletes an existing Workspace.
+     *
+     * @param toDeleteWorkspace name of Workspace to be deleted
+     * @throws AniException if Workspace is unable to be deleted
+     */
     public void deleteWorkspace(String toDeleteWorkspace) throws AniException {
-        assert (toDeleteWorkspace != null) : "Workspace details should not have any null.";
+        assert toDeleteWorkspace != null : "Workspace details should not have any null.";
 
         Workspace targetWorkspace = findWorkspace(toDeleteWorkspace);
 
@@ -139,7 +213,15 @@ public class User extends Human {
         }
     }
 
+    /**
+     * Finds and return the Workspace if it exists.
+     *
+     * @param findString name of Workspace to search for
+     * @return Workspace object is found, else null
+     */
     public Workspace findWorkspace(String findString) {
+        assert findString != null : ASSERTION_INVALID_MESSAGE;
+
         for (Workspace tempWorkspace : workspaceList) {
             if (tempWorkspace.getName().equals(findString)) {
                 return tempWorkspace;
@@ -149,18 +231,20 @@ public class User extends Human {
         return null;
     }
 
-    public boolean doesWorkplaceExist(String checkWorkspace) {
-        for (Workspace existingWorkspace : workspaceList) {
-            if (existingWorkspace.getName().equals(checkWorkspace)) {
-                return true;
+    /**
+     * Checks if there exist a workspace with same name (regardless of case sensitivity).
+     *
+     * @param name of new workspace to be checked
+     * @throws AniException if a workspace with same name is found
+     */
+    public void checkWorkspaceName(String name) throws AniException {
+        assert name != null : ASSERTION_INVALID_MESSAGE;
+
+        for (Workspace tempWorkspace : workspaceList) {
+            if (tempWorkspace.getName().equalsIgnoreCase(name)) {
+                throw new AniException(EXCEPTION_SIMILAR_WORKPLACE_FOUND);
             }
         }
-
-        return false;
     }
 
-    @Override
-    public String toString() {
-        return " Name: " + getHonorificName() + " | Gender: " + getGender();
-    }
 }

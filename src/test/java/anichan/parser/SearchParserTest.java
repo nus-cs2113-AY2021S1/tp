@@ -1,7 +1,7 @@
 package anichan.parser;
 
 import anichan.anime.AnimeData;
-import anichan.command.SearchCommand;
+import anichan.commands.SearchCommand;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.storage.StorageManager;
@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SearchParserTest {
     private static final String VALID_ANIME = "-n fate";
     private static final String VALID_GENRE = "-g Music";
+    private static final String NO_PARAM_PROVIDED_TEST = "search - ";
     private static AnimeData animeData;
     private static StorageManager storageManager;
     private User user;
@@ -54,9 +55,15 @@ class SearchParserTest {
         SearchParser testParse = new SearchParser();
         SearchCommand testSearch = testParse.parse(VALID_GENRE);
         String result = testSearch.execute(animeData, storageManager, user);
-        System.out.println(result);
         result = result.substring(0,34);
         assertEquals(OUTPUT_ANIME_2, result);
     }
 
+    @Test
+    void parse_noParamType_throwsAniException() {
+        SearchParser testParse = new SearchParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(NO_PARAM_PROVIDED_TEST);
+        });
+    }
 }
