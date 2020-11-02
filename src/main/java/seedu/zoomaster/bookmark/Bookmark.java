@@ -117,12 +117,28 @@ public class Bookmark {
     }
 
     /**
+     * Sets the URL of the bookmark.
+     *
+     * @param a string of the URL.
+     */
+    public void setUrl(String url) throws ZoomasterException {
+        if (!isUrlValid(url)) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL);
+        }
+        this.url = url;
+    }
+
+    /**
      * Returns the description of the bookmark.
      *
      * @return a string of the description of the bookmark.
      */
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBookmarkAsString() {
