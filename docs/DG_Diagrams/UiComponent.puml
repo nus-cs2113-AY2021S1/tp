@@ -1,13 +1,17 @@
 @startuml
+hide circle
+skinparam classAttributeIconSize 0
 
 Rectangle Ui {
 class Ui {
-{static} printLine()
-{static} printWelcomeMessage()
-{static} printHelp()
-{static} showError()
-{static} printRouteMessage()
-{static} printFullRouteMessage()
+- {static} in: Scanner
+
++ {static} printLine()
++ {static} printWelcomeMessage()
++ {static} printHelp()
++ {static} showError()
++ {static} printRouteMessage()
++ {static} printFullRouteMessage()
 }
 
 @enduml
