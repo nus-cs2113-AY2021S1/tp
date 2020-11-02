@@ -5,11 +5,8 @@ skinparam ParticipantPadding 20
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Timetable" as Timetable
 participant ":Module" as Module
-'participant ":Module" as ModuleNew
-'participant ":Slot" as Slot
-participant ":Slot" as SlotNew
-'participant ":Bookmark" as BookmarkSlot
-'participant ":Bookmark" as BookmarkModule
+participant ":Slot" as Slot
+participant ":Bookmark" as Bookmark
 participant ":Ui" as Ui
 
 
@@ -24,72 +21,47 @@ activate Timetable
 Timetable --> AddSlotCommand
 deactivate Timetable
 
-alt module exists
-    AddSlotCommand -> Timetable : getModule(moduleCode)
-    activate Timetable
-
-    Timetable -> Module : isModule(moduleCode)
-    activate Module
-
-    Module --> Timetable : true
-    deactivate Module
-
-    Timetable --> AddSlotCommand : module
-    deactivate Timetable
-
-else module does not exist
-    AddSlotCommand -> Timetable : addModule(moduleCode)
-    activate Timetable
-
-    note right of Timetable : creates new module
-
-'    Timetable -> ModuleNew ** : create(moduleCode)
-'    activate ModuleNew
-'
-'    ModuleNew --> Timetable
-'    deactivate ModuleNew
-
-    Timetable --> AddSlotCommand : module
-    deactivate Timetable
-end
+ref over AddSlotCommand, Module
+    Get module if it exists,
+    else create a new module.
+    Refer to Figure 2.3.2
+end ref
 
 opt commands is not null
-    loop command : commands
-        AddSlotCommand -> AddSlotCommand : createSlotAndBookmark(module, command)
+    loop loop through commands
+        AddSlotCommand -> AddSlotCommand : createSlotAndBookmark\n(module, command)
         activate AddSlotCommand
 
         AddSlotCommand -> AddSlotCommand : create(command, module)
         activate AddSlotCommand
 
-        AddSlotCommand -> AddSlotCommand : isAddModuleBookmark(slotAndBookmark)
+        AddSlotCommand -> AddSlotCommand : isAddModuleBookmark\n(slotAndBookmark)
         activate AddSlotCommand
 
         AddSlotCommand --> AddSlotCommand : boolean
         deactivate AddSlotCommand
 
         alt add module bookmark
-            AddSlotCommand -> AddSlotCommand : addBookmarkToModule(module, slotAndBookmark)
-            activate AddSlotCommand
 
-            note right of AddSlotCommand : create bookmark
 
-'            AddSlotCommand -> BookmarkModule ** : create(description, url)
-'            activate BookmarkModule
-'
-'            BookmarkModule --> AddSlotCommand
-'            deactivate BookmarkModule
+            ref over AddSlotCommand, Bookmark
+                Create bookmark for module.
+                Refer to Figure 2.3.3
 
-            AddSlotCommand -> Module : addBookmark(bookmark)
-            activate Module
+            end ref
 
-            Module --> AddSlotCommand
-            deactivate Module
 
-            AddSlotCommand --> AddSlotCommand : message
-            deactivate AddSlotCommand
+        else add bookmark \nto existing slot \nbased on index
+
+
+            ref over AddSlotCommand, Bookmark
+                Create bookmark for existing slot
+                based on its index.
+                Refer to Figure 2.3.4
+
+            end ref
+
         else add slot
-
-            note right of AddSlotCommand : throw exception if startTime or endTime is invalid
 
             AddSlotCommand -> Module : slotExists(lesson, day, startTime, endTime)
             activate Module
@@ -97,70 +69,21 @@ opt commands is not null
             Module --> AddSlotCommand : boolean
             deactivate Module
 
-            alt slot exists
-                AddSlotCommand -> Module : getSlot(lesson, day, startTime, endTime)
-                activate Module
+            ref over AddSlotCommand, Slot
+                Get slot if it exists,
+                else create a new slot.
+                Refer to Figure 2.3.5
 
-                note right of Module : get existing slot
+            end ref
 
-'                Module -> Slot : match(lesson, day, startTime, endTime)
-'                activate Slot
-'
-'                Slot --> Module : true
-'                deactivate Slot
-
-                Module --> AddSlotCommand : slot
-                deactivate Module
-            else slot does not exist
-                AddSlotCommand -> Module : createSlotNew(lesson, day, startTime, endTime)
-                activate Module
-
-                Module -> SlotNew ** : new Slot(lesson, day, startTime, endTime)
-                activate SlotNew
-
-                SlotNew --> Module
-                deactivate SlotNew
-
-                Module --> AddSlotCommand : slot
-                deactivate Module
-
-                AddSlotCommand -> Module : addSlot(slot)
-                activate Module
-
-                Module --> AddSlotCommand
-                deactivate Module
-            end
-
-            AddSlotCommand -> AddSlotCommand : checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, slot)
+            AddSlotCommand -> AddSlotCommand : checkForAndAddBookmarkToSlot\n(slotAndBookmark, lesson, slot)
             activate AddSlotCommand
 
-            alt valid url
-                AddSlotCommand -> AddSlotCommand : createBookmark(url, lesson, slot)
-                activate AddSlotCommand
+            ref over AddSlotCommand, Bookmark
+                Create bookmark for slot.
+                Refer to Figure 2.3.6
 
-                opt invalid url
-                    note right of AddSlotCommand : throw exception
-                end
-
-                note right of AddSlotCommand : create bookmark
-
-'                AddSlotCommand -> BookmarkSlot ** : create(lesson, url)
-'                activate BookmarkSlot
-'
-'                BookmarkSlot --> AddSlotCommand
-'                deactivate BookmarkSlot
-
-                AddSlotCommand -> SlotNew : addBookmark(bookmark)
-                activate SlotNew
-
-                SlotNew --> AddSlotCommand
-                deactivate SlotNew
-
-                AddSlotCommand --> AddSlotCommand
-                deactivate AddSlotCommand
-            else invalid url
-                note right of AddSlotCommand : throw exception
-            end
+            end ref
 
             AddSlotCommand --> AddSlotCommand : message
             deactivate AddSlotCommand
