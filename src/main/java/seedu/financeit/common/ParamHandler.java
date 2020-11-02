@@ -52,7 +52,6 @@ public abstract class ParamHandler {
             }
         }
         this.hasParsedAllRequiredParams = checkParseFailedParams();
-        this.requiredParams.clear();
         if (!this.hasParsedAllRequiredParams) {
             throw new InsufficientParamsException(this.missingRequiredParams);
         }
