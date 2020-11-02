@@ -64,4 +64,8 @@ public class OnlineLocation {
 
         return isEqual;
     }
+
+    public String getLink() {
+        return link;
+    }
 }

@@ -85,8 +85,6 @@ public class EventList {
     public Event editEvent(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                            OnlineLocation onlineLocation) throws EndBeforeStartEventException, EditNoEndTimeException {
         assert events != null;
-
-
         // no change in event type
         if (editInformation[0].isBlank()) {
             editSameType(index, editInformation, startEnd, location, onlineLocation);
@@ -199,6 +197,7 @@ public class EventList {
      */
     private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                               OnlineLocation onlineLocation) {
+        // set new description
         if (!editInformation[1].isBlank()) {
             events.get(index).setDescription(editInformation[1]);
         }
@@ -246,6 +245,8 @@ public class EventList {
             events.sort(Event.descriptionComparator);
         } else if (type.equals("time")) {
             events.sort(Comparator.comparing(Event::getEndDateTime));
+        } else {
+            events.sort(Event.locationComparator);
         }
     }
 

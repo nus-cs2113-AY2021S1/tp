@@ -196,6 +196,7 @@ public abstract class Parser {
             switch (type) {
             case "description":
             case "time":
+            case "location":
                 return new SortCommand(type);
             default:
                 throw new InvalidSortCriteriaException();
