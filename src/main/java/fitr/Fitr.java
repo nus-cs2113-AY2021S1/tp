@@ -9,6 +9,7 @@ import fitr.tip.TipManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 import fitr.parser.Parser;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
@@ -42,6 +43,7 @@ public class Fitr {
     public void run() {
         boolean isExit = false;
         while (!isExit) {
+            System.out.print("> ");
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
             c.execute(listManager, storageManager, user, recommender);
@@ -51,6 +53,8 @@ public class Fitr {
     }
 
     public static void main(String[] args) {
+        AnsiConsole.systemInstall();
         new Fitr().run();
+        AnsiConsole.systemUninstall();
     }
 }

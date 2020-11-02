@@ -12,6 +12,7 @@ import fitr.user.User;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class StorageManager {
@@ -59,7 +60,7 @@ public class StorageManager {
     public User loadUserProfile() throws FileNotFoundException {
         try {
             return userStorage.loadUserProfile();
-        } catch (InvalidFileFormatException e) {
+        } catch (InvalidFileFormatException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid user file - creating a new user!");
             return new User();
         }

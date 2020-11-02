@@ -1,6 +1,7 @@
 package fitr.storage;
 
 import fitr.calorie.Calorie;
+import fitr.common.DateManager;
 import fitr.exercise.Exercise;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
@@ -9,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -58,8 +60,8 @@ public class ExerciseStorage {
             if (arguments.length != 3) {
                 throw new InvalidFileFormatException();
             }
-
-            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])), arguments[2]));
+            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])),
+                    LocalDate.parse(arguments[2], DateManager.formatter)));
         }
 
         LOGGER.fine("Exercise list file read successfully.");

@@ -23,13 +23,12 @@ Note the formatting used in this guide:
 
 ## 1.3 Quick start
 This quick start section provides a step-by-step procedure to get you started with Fitr.
-1. Ensure that you have **Java 11** or above installed.
-2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
-4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
-5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
-6. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
-7. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
+1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
+2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
+3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
+4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
+6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
 <p align="center"><img src="images/Figure1.png" width="350"></p>
 <p align="center">Figure 1: Welcome screen of Fitr for new users</p>
@@ -223,16 +222,14 @@ To view food entries for a specific day, you may enter the date at the back of t
 
 Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
 
-For example, if you would like to view your exercises on 22/10/2020, you may key in `view food 23/10/2020`. The expected outcome should be similar to below:
+For example, if you would like to view your food entries on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
 
 ```
 Here is the list of your food:
-Date: 23/10/2020
+Date: 22/10/2020
 [1] Food: duck rice
     Cal: 500
 ```
-
-For example, if you would like to view your food entries on 26/10/2020, you may key in `view food 26/10/2020`.
 
 ### 2.2.5 Viewing exercise entries
 You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
@@ -453,7 +450,7 @@ _Table 1: Commands supported in Fitr_
 
 Action | Format | Examples
 ------ | ------ | --------
-Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD  AMOUNT_OF_FOOD` | `food apple /50 1` or `food pear /57`
+Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD AMOUNT_OF_FOOD` | `food pear /57` or `food apple /50 1`
 Add exercise entry | `exercise NAME_OF_EXERCISE /CALORIES_BURNT` | `exercise run /360`
 Add food goal | `goal food GOAL_DESCRIPTION` | `goal food eat more`
 Add smart food goal | `goal food < NUMBER_OF_CALORIES` or `goal food > NUMBER_OF_CALORIES` | `goal food < 2000` or `goal food > 3800`
@@ -463,18 +460,18 @@ View Help | `help` |
 View User Profile | `view profile` |
 View User BMI | `view bmi` |
 View Food Entry | `view food` |
-View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/20/2020`
+View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/10/2020`
 View Exercise Entry | `view exercise` | 
-View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/20/2020`
+View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/10/2020`
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
-View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` |
+View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` | `view summary 26/10/2020`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
-Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 1 green apple /50 1`
-Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 1 5km run /360`
+Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
+Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
 Edit Goal Entry | `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION` | `edit goal 1 food eat healthier`
-Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/20 3`
-Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/20 3`
+Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/2020 3`
+Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/2020 3`
 Delete a Goal Entry | `delete goal INDEX` | `delete goal 5`
 Clear All Food Entries | `clear food` |
 Clear All Exercise Entries | `clear exercise` | 

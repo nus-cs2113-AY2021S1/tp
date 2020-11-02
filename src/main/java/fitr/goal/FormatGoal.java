@@ -1,9 +1,10 @@
 package fitr.goal;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class FormatGoal {
-    public static Goal formatGoal(String createdDate, String goalType, String goalDescription) {
+    public static Goal formatGoal(LocalDate createdDate, String goalType, String goalDescription) {
         Goal newGoal = new Goal(createdDate, goalType, goalDescription);
         String descriptionPart = (goalType.equals("E")) ? "Burn" : "Eat";
         boolean isPositiveNumber = goalDescription.substring(1).trim().matches("\\d+");

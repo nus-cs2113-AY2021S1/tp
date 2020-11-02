@@ -16,9 +16,6 @@ import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
-import fitr.ui.Ui;
-
-import static fitr.common.DateManager.getCurrentDate;
 
 /**
  * Parses the user input.
@@ -62,7 +59,7 @@ public class Parser {
         case Commands.COMMAND_BYE:
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
-            return new AddGoalCommand(arguments, getCurrentDate());
+            return new AddGoalCommand(arguments);
         case Commands.COMMAND_COMPLETE:
             return new CompleteGoalCommand(arguments);
         default:

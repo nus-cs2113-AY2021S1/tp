@@ -1,13 +1,16 @@
 package fitr.exercise;
 
 import fitr.calorie.Calorie;
+import fitr.common.DateManager;
+
+import java.time.LocalDate;
 
 public class Exercise {
     protected String nameOfExercise; // The name of the Exercise
     protected Calorie caloriesBurnt;// Amount of calories burnt from exercise
-    protected String date; //Date when the Exercise is added to the list
+    protected LocalDate date; //Date when the Exercise is added to the list
 
-    public Exercise(String name, Calorie caloriesBurnt, String date) {
+    public Exercise(String name, Calorie caloriesBurnt, LocalDate date) {
         this.nameOfExercise = name;
         this.caloriesBurnt = caloriesBurnt;
         this.date = date;
@@ -22,7 +25,7 @@ public class Exercise {
     }
 
     public String getDate() {
-        return date;
+        return date.format(DateManager.formatter);
     }
 
     public void setNameOfExercise(String nameOfExercise) {
