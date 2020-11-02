@@ -86,7 +86,7 @@ public class PinCommand extends Command {
             return Formatter.formatString(e.getMessage());
         }
 
-        return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
+        return Formatter.formatString(note.getTitle() + " " + note.getPinnedString());
     }
 
     private void setupLogger() {
