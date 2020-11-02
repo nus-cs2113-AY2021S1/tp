@@ -1122,7 +1122,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.3: Estimate the time needed to translate a script
+### D.2: Estimate the time needed to translate a script
 1.  Estimating the time needed to translate a script.
     1.  Prerequisite: Have a non-empty `script.txt` file in the current workspace folder.
         1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. text of this developer guide).
@@ -1146,7 +1146,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Creating watchlist
+### D.3: Creating watchlist
 1.  Creating a watchlist with a unique name.
     1.  Prerequisite: Watchlist list does not have a watchlist named "newWatchlist".
     
@@ -1159,7 +1159,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Listing all watchlist(s)
+### D.4: Listing all watchlist(s)
 1.  Listing all created watchlist(s).
     1.  Prerequisite: The watchlist list in the current workspace is not empty.
     
@@ -1171,7 +1171,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Selecting a watchlist to be the new active watchlist
+### D.5: Selecting a watchlist to be the new active watchlist
 1.  Selecting a watchlist to be the new active watchlist.
     1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
     
@@ -1185,7 +1185,9 @@ If you wish to add new checks, simply add the check file with a filename `check-
         1.  `watchlist -s`
         2.  `watchlist -s x` (where x is a negative number, a word, or an additional parameter).
 
-### D.X: Deleting a watchlist
+<br/>
+
+### D.6: Deleting a watchlist
 1.  Deleting a watchlist.
     1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
 
