@@ -121,9 +121,36 @@ Based on the user input, the Parser handles and creates the corresponding Comman
 
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
-The following are some examples of the different type of Command Objects.
+Commands are used to give order to control the notebook. The majority of commands contain prefixes to distinguish between their various input forms.
+
+Command used:
+
+1. `help`: Shows a list of all the commands that the user can enter.
+1. `add-n`: Adds a new note to the list of note items.
+1. `list-n`: Shows a list of all the notes in the notebook.
+1. `view-n`: View selected note
+1. `edit-n`: Edits an existing note.
+1. `find-n`: Finds the notes and return a list of notes that contain the keyword(s) in the title.
+1. `archive-n`: Archives a note.
+1. `unarchive-n`: Unarchives a note.
+1. `delete-n`: Deletes an existing note.
+1. `create-t`: Create multiple tags.
+1. `list-t`: Shows a list of tags that have been created.
+1. `tag-n`: Tags or untags a note by its given tag name.
+1. `tag-e`: Tags or untags an event by its given tag name.
+1. `delete-t`: Deletes a tag from the list of tags and remove the tag from the related notes and events.
+1. `add-e`: Adds an event to the list.
+1. `edit-e`: Edits an existing event in the event list/timetable.
+1. `list-e`: Display the module timetable on the current day.
+1. `remind-e`: Reminds the specified event from the timetable.
+1. `delete-e`: Adds a new item to the list of todo items.
+1. `exit`: Exits the program.
+
+The following are some examples of the different type of Command Objects and its flow.
 
 **AddNoteCommand**
+
+Command used to add notes.
 
 1. Created by the parserManager.
 1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
@@ -139,6 +166,8 @@ The following are some examples of the different type of Command Objects.
 
 **PinCommand**
 
+Command used to pin/unpin notes.
+
 1. Created by the parserManager.
 1. Gets the note that is referenced either by title or index.
 1. Toggles the pinned status of the specified note. 
@@ -153,14 +182,26 @@ The following are some examples of the different type of Command Objects.
 
 #### <a id="note"><ins>2.5 Notebook</ins></a>
 
-The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user. The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
+The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user.
+Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
+A single note holds information such as title, contents, tags, if its pinned and if its archived.
+Tagging will be handled by a separate class. Tag helps to sort user's notes as the program allows user to retrieve notes by tags.
+The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
 
 <p align="center">
    <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
    <br><em>Figure 9</em>
 </p>
 
-Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
+There are multiple overloaded methods:
+
+1. getNote(): is used to retrieve note by integer or note title. getNote is also used to retrieve archived note.
+1. deleteNote(): is used to delete note by integer or note title.
+1. getPinnedNotes(): is used to retrieve all pinned notes from the notebook or all pinned notes from a specific notebook.
+1. getUnpinnedNotes(): is used to retrieve all unpinned notes from the notebook or all unpinned notes from a specific notebook.
+1. getSortedList(): is used to sort the notebook alphabetically or sort specified notebook alphabetically.
+1. archiveNotes(): is used to archive note by integer or note title.
+1. unarchiveNotes(): is used to unarchive note by integer or note title.
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 

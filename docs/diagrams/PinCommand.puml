@@ -1,4 +1,5 @@
 @startuml
+create NotUS
 create PinCommand
 activate PinCommand
 
