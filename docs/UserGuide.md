@@ -359,7 +359,8 @@ This list is not automatically saved.
 
 Format: `bunny i\IDEA g\[GENRE]`  
 
-Note: If you add a bunny with no genre then the genre will be left blank
+Note:
+* If the genre is not indicated it is set as "none" by default.
 
 Example usages:
 - `bunny i\test idea 1`
@@ -374,6 +375,7 @@ bunny i\test idea 2 g\ fantasy
    genre:  fantasy
  ---------------------------------------------------
 ```
+
 
 [Jump to top](#fluffle-user-guide)
 
@@ -409,7 +411,12 @@ Here are the bunnies stored in the program:
 #### Filtering bunny ideas: `filter bunny`
 Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 
-Format: `filter bunny i\IDEA g\[GENRE]`  
+Format: `filter bunny i\[IDEA] g\[GENRE]`  
+
+Note:
+* If you accidentally type duplicate parameter eg `filter i\some i\idea` it would use the last instance of that parameter.
+* If you indicate the tag but leave the parameter blank (eg `filter bunny i\`) then it will not restrict the output of filter by that tag (ie in this case all ideas are selected by the filter).
+* You must include either `i\` or `g\` tags in the command but it can be left blank.
 
 Example usages:
 - filter bunny i\test idea 1  
