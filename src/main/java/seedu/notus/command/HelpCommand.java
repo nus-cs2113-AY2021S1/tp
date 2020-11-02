@@ -26,7 +26,7 @@ public class HelpCommand extends Command {
         setupLogger();
         LOGGER.log(Level.INFO, "Logger Setup, will return HELP_STRING.");
 
-        return Formatter.formatString(HELP_COMMAND_USAGE, true);
+        return Formatter.formatString(HELP_COMMAND_USAGE, true, false);
     }
 
     public void setupLogger() {
