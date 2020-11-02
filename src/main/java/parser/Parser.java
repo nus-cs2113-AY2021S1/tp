@@ -10,6 +10,7 @@ import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
 import commands.HistoryCommand;
+import commands.IncludeCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
@@ -80,6 +81,8 @@ public class Parser {
         case RescheduleCommand.COMMAND_WORD:
             return new RescheduleCommandParser().parse(commandArgs, accessLevel);
 
+        case IncludeCommand.COMMAND_WORD:
+            return new IncludeCommandParser().parse(commandArgs);
         default:
             throw new InvalidInputException(MESSAGE_INVALID_COMMAND_TYPE);
         }
