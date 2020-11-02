@@ -92,8 +92,9 @@ public class StorageLoad {
         return dueChapters;
     }
 
-    private static void processChapterForDue(Ui ui, ArrayList<String> excludedChapters, ArrayList<DueChapter> dueChapters,
-                                      String module, String chapter, String filePath) {
+    private static void processChapterForDue(Ui ui, ArrayList<String> excludedChapters,
+                                             ArrayList<DueChapter> dueChapters, String module, String chapter,
+                                             String filePath) {
         if (chapter.equals("dues")) {
             return;
         }

@@ -10,7 +10,8 @@ import java.util.ArrayList;
 //@@ author Darticune
 public class StorageWrite {
 
-    protected static void updateExclusionFile(ArrayList<String> excludedChapters, String filePath) throws ExclusionFileException {
+    protected static void updateExclusionFile(ArrayList<String> excludedChapters, String filePath)
+            throws ExclusionFileException {
         try {
             FileWriter exclusionFileWriter = new FileWriter(filePath + "/exclusions.txt");
             for (String excluded : excludedChapters) {
