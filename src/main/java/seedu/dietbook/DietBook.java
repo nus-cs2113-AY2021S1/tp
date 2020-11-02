@@ -16,7 +16,6 @@ import seedu.dietbook.saveload.PersonSaveLoadManager;
  * @author tikimonarch
  */
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class DietBook {

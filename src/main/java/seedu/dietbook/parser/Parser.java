@@ -1,7 +1,5 @@
 package seedu.dietbook.parser;
 
-import seedu.dietbook.database.DataBase;
-import seedu.dietbook.food.Food;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.ActivityLevel;
