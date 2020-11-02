@@ -25,4 +25,6 @@ public class Messages {
     public static final String MESSAGE_NO_NAME = "The %s name is missing.\n";
     public static final String MESSAGE_DATE_FORMAT = "The date should be in the format of yyyy-MM-dd.\n";
     public static final String MESSAGE_INVALID_COMMAND_TYPE = "There is no such command type.";
+    public static final String MESSAGE_ITEM_EXISTED = "The %1$s %2$s is already existed, the name of %3$s "
+            + "cannot be duplicated";
 }
