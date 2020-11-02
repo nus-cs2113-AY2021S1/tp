@@ -132,10 +132,8 @@ public class WatchlistParser extends CommandParser {
      */
     private void checkListParameters(String[] parsedParts) throws AniException {
         assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
-        if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT) {
-            if (!parsedParts[1].trim().equals(BLANK)) {
-                throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS);
-            }
+        if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT && !parsedParts[1].trim().equals(BLANK)) {
+            throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS);
         }
     }
 
