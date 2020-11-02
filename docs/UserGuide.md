@@ -165,8 +165,9 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
-Search the members whose information matches user input. If a member's information matches any of
-the conditions that the user inputs, it will return this member.  
+Search the members whose information matches user input. If a member's information 
+matches any of the conditions that the user inputs, 
+it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
 Shorhand format:  
@@ -181,6 +182,8 @@ Expected outcomes:
 ![Example of usage 1](userGuidePic/hrsearchoutcome1.png)  
 
 ![Example of usage 2](userGuidePic/hrsearchoutcome2.png)  
+
+[Return to the top](#user-guide)  
 
 
 #### view contacts of prof/admin: `list prof&admin`  
@@ -199,6 +202,7 @@ Example of usage:
 Expected outcome:  
 ![Example of usage](userGuidePic/hrprofadminoutcome.png)  
 
+[Return to the top](#user-guide)  
 
 
 #### view contacts of connections: `list connections`  
@@ -216,6 +220,7 @@ Example of usage:
 Expected outcome:  
 ![Example of usage](userGuidePic/hrlistc.png)  
 
+[Return to the top](#user-guide)  
 
 
 ### 4.4 Event features`event` 
@@ -468,6 +473,8 @@ Example of usage:
 Expected Outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
+[Return to the top](#user-guide)  
+
 
 #### 4.5.4 Change finance log entry information: `changeLog`  
 Change the finance log entry's name and budget amount.  
@@ -482,6 +489,8 @@ Example of usage:
 
 Expected outcome:  
 ![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
+
+[Return to the top](#user-guide)
 
 
 ### 4.6 Import
