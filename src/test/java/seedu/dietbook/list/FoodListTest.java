@@ -1,8 +1,10 @@
 package seedu.dietbook.list;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
@@ -13,17 +15,27 @@ import seedu.dietbook.food.Food;
 class FoodListTest {
 
     private FoodList list;
+    private FoodList datedList;
     private Food food;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
     @BeforeEach
     protected void setUp() {
         this.list = new FoodList();
+        this.datedList = new FoodList();
 
         Food food = new Food("Kobe Beef", 480,50,40,30);
         this.food = food;
 
         list.addFood(3, food);
         list.addFood(2, "Sashimi", 100, 0, 30, 10);
+
+        this.start = LocalDateTime.of(2000, 6, 6, 12, 15);
+        this.end = LocalDateTime.of(2000, 6, 10, 0, 0);
+
+        datedList.addFoodAtDateTime(2, food, start);
+        datedList.addFoodAtDateTime(3, food, end);
 
     }
 
@@ -33,6 +45,7 @@ class FoodListTest {
      * Essentially 2 tests in 1.
      */
     @Test
+    @DisplayName("Portion scaling test")
     void foodPortionScaling_standardList_scaledFoodList() {
         FoodList testList = new FoodList();
 
@@ -45,9 +58,11 @@ class FoodListTest {
 
     @Test
     void deleteItemTest() {
-        Food food = new Food("Kobe Beef", 480,50,40,30);
+        // Positive Test:
         FoodEntry entry = new FoodEntry(3, food);
         assertEquals(entry.toString(), list.delete(1));
+        // Negative Tests:
+        assertThrows(IndexOutOfBoundsException.class, () -> list.delete(5));
     }
 
     @Test
@@ -107,6 +122,7 @@ class FoodListTest {
     }
 
     @Test
+    @DisplayName("Getter methods test")
     void getFoodEntryProperties_standardList_FoodEntryProperties() {
         assertTrue(list.getDateTimes().get(0) instanceof LocalDateTime);
         assertEquals(list.getPortionSizes().get(0), 3);
@@ -116,8 +132,25 @@ class FoodListTest {
     @Test
     void addAndRetrieveEntryAtDateTime_entryAddedAtDateTimeMax_entryAtDateTimeMax() {
         list.addFoodAtDateTime(2, food, LocalDateTime.MAX);
+        
         assertEquals(food, list.getFoodsAfterDateTime(LocalDateTime.now()).get(0));
+        // Further test that boundary is inclusive:
+        assertEquals(food, list.getFoodsAfterDateTime(LocalDateTime.MAX).get(0));
+    }
+
+    @Test
+    @DisplayName("Dated String representation test")
+    void printDatedList_datedList_matchingStrings() {
+        assertTrue(! datedList.toString().equals(datedList.toDatedString()));
+        assertTrue(datedList.toDatedString().stripTrailing().endsWith(String.format("[%s]",
+                end.format(DatedFoodEntry.DATE_TIME_FORMAT))));
+        // Bound inclusivity should render the following true:
+        assertEquals(datedList.toDatedString(), datedList.toDatedString(start));
+        assertEquals(datedList.toDatedString(), datedList.toDatedString(start, end));
+        assertTrue(datedList.toDatedString(end).stripTrailing().endsWith(String.format("[%s]",
+                end.format(DatedFoodEntry.DATE_TIME_FORMAT))));
 
     }
+
 
 }
