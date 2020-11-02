@@ -167,6 +167,8 @@ Format: `view-n [/i INDEX] [/t TITLE]`
 
 - Views the note at that index or with the specific title entered. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
+- If both the fields are provided, only the first one entered will be used to search for the note.
+
 
 Example of usage: 
 
