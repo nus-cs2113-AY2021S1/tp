@@ -8,7 +8,6 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.note.Note;
 import seedu.eduke8.note.NoteList;
-import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.stats.TopicalStatsCalculator;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class UserStorage extends LocalStorage {
-    public static final String KEY_TEXT = "text";
     private BookmarkList bookmarkList;
     private TopicList topicList;
 
@@ -94,7 +92,7 @@ public class UserStorage extends LocalStorage {
 
 
     private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
-        String topicDescription = (String) topic.get(KEY_TOPIC);
+        String topicDescription = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
         Topic topicObject = (Topic) topicList.find(topicDescription);
 
         JSONArray questions = (JSONArray) topic.get(KEY_QUESTIONS);
@@ -104,14 +102,14 @@ public class UserStorage extends LocalStorage {
         loadNotes(notes, topicObject);
     }
 
-    private void loadNotes(JSONArray notes, Topic topicObject) throws Eduke8Exception {
+    private void loadNotes(JSONArray notes, Topic topicObject) {
         NoteList noteList = topicObject.getNoteList();
         for (Object note : notes) {
             parseFromNoteJson((JSONObject) note, noteList);
         }
     }
 
-    private void parseFromNoteJson(JSONObject note, NoteList noteList) throws Eduke8Exception {
+    private void parseFromNoteJson(JSONObject note, NoteList noteList) {
         String noteDescription = (String) note.get(KEY_DESCRIPTION);
         String text = (String) note.get(KEY_TEXT);
         Note noteObject = new Note(noteDescription, text);

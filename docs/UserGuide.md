@@ -16,12 +16,13 @@ Table of contents:
     - [3.9. Adding a note: `note add`](#39-adding-a-note-note-add)
     - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note-delete)
     - [3.11. Listing out notes: `note list`](#311-listing-out-notes-note-list)
-    - [3.12. Displaying stats: `stats`](#312-displaying-stats-stats)
+    - [3.12. Displaying statistics: `stats`](#312-displaying-statistics-stats)
     - [3.13. Exiting the program: `exit`](#313-exiting-the-program-exit)
     - [3.14. Saving user data](#314-saving-user-data)
   - [4. FAQ](#4-faq)
   - [5. Command summary](#5-command-summary)
-  - [6. Glossary](#6-glossary)
+  - [6. Troubleshooting](#6-troubleshooting)
+  - [7. Glossary](#7-glossary)
         - [1. Command Line Interface (CLI)](#1-command-line-interface-cli)
         - [2. Object-oriented Programming (OOP)](#2-object-oriented-programming-oop)
 
@@ -44,7 +45,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 3. Copy the files to the folder you want to use for the application.
 4. If you download the jar file by itself, you will also need the question , `topics.json`, found in `data.zip`. After extracting, include the `data` folder and the `eduke8.jar` file in the same folder for E-Duke-8 to run smoothly. Alternatively, you can simply download `eduke8.zip` which includes both the jar file along with the data folder.
-5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to steps 5 and 6, otherwise skip to step 7.
+5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
 6. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
 7. Enter the following command `java -jar eduke8.jar`.
 8. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. Here is a list of commands you can try:
@@ -74,6 +75,12 @@ To ensure that data could be loaded successfully, ensure that the data folder th
 If the data has been loaded successfully you should see this message:
 
 ![data loaded](./images/data_loaded.png)
+
+If you wish to edit the data such as add questions you follow instructions found in [4. FAQ](#4-faq).
+
+If have trouble opening E-Duke-8 and receive the following warning message then please refer to section [6. Troubleshooting](#6-troubleshooting).
+
+![data error](./images/data_error.png)
 
 ### 3.2. Welcome Page
 
@@ -275,22 +282,65 @@ exit
 
 ### 3.14. Saving user data
 
-User data will only be saved upon successful exit of the application through the `exit` command.
+User data will be saved after every command that changes the data completes such as at the end of using
+`quiz`, `note`, and `bookmark`. There will be a final save confirmation message upon successful exit of the application
+through the `exit` command.
 You will see this message while the data saves:
 
 ![data saving](./images/data_saving.png)
 
-If the data has been saved successfully you should see this message:
+When the data has been saved successfully you should see this message:
 
 ![data saved](./images/data_saved.png)
 
-This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your own history.
+This is stored in the `user.json` file in the `data` folder and can be transferred between machines to keep your own
+history. Please do not attempt to edit this file as it will disrupt the running of application.
+If you want a better score you can always reattempt a quiz!
 
 ## 4. FAQ
 
 **Q**: How do I change the questions in the quizzes?
 
-**A**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions already provided.
+**A**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions
+already provided an example is shown below.
+Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
+and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
+`correct` key.
+
+For `topics.json`:
+
+```json
+[
+  {
+    "topic": "Topic Title", 
+    "questions": [
+      {
+        "description": "What is your question?",
+        "hint": "Put the hint here",
+        "explanation": "Put the explanation here",
+        "options": [ 
+          {
+            "description": "This is the first option and correct answer",
+            "correct": true
+          },
+          {
+            "description": "This is the second option",
+            "correct": false
+          },
+          {
+            "description": "This is the third option",
+            "correct": false
+          },
+          {
+            "description": "This is the fourth option",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
+```
 
 ## 5. Command summary
 
@@ -308,7 +358,22 @@ This is store in the `user.json` file in the `data` folder and can be transferre
 | Displaying statistics | `stats` | 
 | Exit        | `exit`                                                 |
 
-## 6. Glossary
+## 6. Troubleshooting
+
+If you have trouble starting the application there could be two sources of error for loading data.
+Firstly, `topics.json` may not present in the right folder.
+Please check inside the `data` folder followed by the `main` folder that `topics.json` is present.
+
+Next, it is possible that the format of data inside `topics.json` or `user.json` is wrong and thus cannot be parsed
+correctly. Please ensure if you wish to edit the data in `topics.json` such as add questions you follow instructions found in [4. FAQ](#4-faq).
+
+On the other hand, `user.json` should not be manually edited. If you have accidentally changed this file, you may delete
+the file to reset the data. A new file will be created on start up. 
+
+If the above fixes do not work please download `data.zip` from the release page again and use its contents as the `data`
+folder.
+
+## 7. Glossary
 
 ##### 1. Command Line Interface (CLI)
 CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))

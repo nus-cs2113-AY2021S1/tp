@@ -284,32 +284,33 @@ class which handles accessing the file as well as converting from JSON into `Top
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
-The format of the JSON file is important as it is loaded in a particular way. This format was designed as an array of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
+The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
+of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
 
 ```json
 [
   {
-    "topic": "OOP",
+    "topic": "Topic Title", 
     "questions": [
       {
-        "description": "What is encapsulation?",
-        "hint": "check the textbook",
-        "explanation": "because option A is the best answer",
-        "options": [
+        "description": "What is your question?",
+        "hint": "Put the hint here",
+        "explanation": "Put the explanation here",
+        "options": [ 
           {
-            "description": "A",
+            "description": "This is the first option and correct answer",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "This is the second option",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "This is the third option",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "This is the fourth option",
             "correct": false
           }
         ]
@@ -318,6 +319,11 @@ The format of the JSON file is important as it is loaded in a particular way. Th
   }
 ]
 ```
+
+Users may choose to edit this data as well and are provided with the following requirements from the User Guide:
+> Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
+and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
+`correct` key.
 
 #### 2.4.2. Implementation of TopicsStorage
 
@@ -344,25 +350,32 @@ The attributes will be saved in the JSON file tied to each question in a topic a
       {
         "correct":true,
         "bookmarked":true,
-        "hint":true,
-        "description":"OO is a higher level mechanism than the procedural paradigm."
+        "hint":false,
+        "description":"First Question"
       },
       {
         "correct":false,
         "bookmarked":false,
         "hint":true,
-        "description":"Which of the following is NOT a core concept of OOP?"
+        "description":"Second Question"
       }
     ],
-    "topic":"OOP"
+    "topic":"First Topic"
   },
   {
-    "notes":[],
+    "notes":[
+      {
+        "description":"Note Title",
+        "text":"Note Text"
+      }
+    ],
     "questions":[],
-    "topic":"Code_Quality"
+    "topic":"Second Topic"
   }
 ]
 ```
+
+Unlike `topics.json`, users should not be editing the `user.json` file as it is system generated.
 
 #### 2.4.4. Implementation of UserStorage
 

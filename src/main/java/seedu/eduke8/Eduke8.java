@@ -17,7 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_LOAD_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_SAVE_FAIL;
 
 public class Eduke8 {
     private static final String DATA_PATH = "data/main/topics.json";
@@ -56,6 +57,7 @@ public class Eduke8 {
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
             LOGGER.log(Level.INFO, e.getMessage());
+            System.exit(1);
         }
         ui.printDataLoaded();
 
@@ -81,11 +83,20 @@ public class Eduke8 {
             Command command = menuParser.parseCommand(topicList, userInput);
             command.execute(topicList, ui);
             isExit = command.isExit();
+            saveUserData();
         }
     }
 
     private void exit() {
         ui.printDataSaving();
+        saveUserData();
+        ui.printDataSaved();
+
+        ui.printExitMessage();
+        System.exit(0);
+    }
+
+    private void saveUserData() {
         try {
             userStorage.save();
         } catch (IOException e) {
@@ -93,10 +104,6 @@ public class Eduke8 {
             LOGGER.log(Level.WARNING, ERROR_STORAGE_SAVE_FAIL);
             System.exit(1);
         }
-        ui.printDataSaved();
-
-        ui.printExitMessage();
-        System.exit(0);
     }
 
     public static void main(String[] args) {
