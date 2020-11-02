@@ -67,14 +67,14 @@ public class ExtractCommand extends Command {
             throw new InvalidExtractCommandException("There is no text body entered!");
         }
 
-        ArrayList<LocalDate> dateList = detectDate(textBody);
-        LocalDate finalDate = chooseFinalDate(dateList, ui);
-
         ArrayList<String> zoomLinkList = detectZoomLink(textBody);
         if (zoomLinkList.size() > 0) {
             eventType = "Zoom";
             zoomLink = chooseZoomLink(zoomLinkList, ui);
         }
+
+        ArrayList<LocalDate> dateList = detectDate(textBody);
+        LocalDate finalDate = chooseFinalDate(dateList, ui);
 
         if (finalDate == null) {
             if (eventType.equals("Personal")) {
@@ -90,11 +90,11 @@ public class ExtractCommand extends Command {
             if (finalTime == null) {
                 if (eventType.equals("Personal")) {
                     ui.printExtractNoTimePersonalEventMessage();
+                    data.addToEventList("Personal", new Personal(textSubject, finalDate));
                 } else if (eventType.equals("Zoom")) {
                     ui.printExtractNoTimeZoomEventMessage();
+                    data.addToEventList("Zoom", new Zoom(textSubject, zoomLink));
                 }
-                Personal personalEvent = new Personal(textSubject, finalDate);
-                data.addToEventList("Personal", personalEvent);
             } else {
                 if (eventType.equals("Personal")) {
                     data.addToEventList("Personal", new Personal(textSubject, finalDate, finalTime));
@@ -109,8 +109,8 @@ public class ExtractCommand extends Command {
 
     private ArrayList<String> detectZoomLink(String textBody) {
         ArrayList<String> zoomLinkList = new ArrayList<>();
-        Pattern urlPattern = Pattern.compile("https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\." +
-                "[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)");
+        Pattern urlPattern = Pattern.compile("https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\."
+                + "[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)");
         Matcher urlMatcher = urlPattern.matcher(textBody);
 
         while (urlMatcher.find()) {
@@ -125,7 +125,7 @@ public class ExtractCommand extends Command {
 
     private String chooseZoomLink(ArrayList<String> zoomLinkList, Ui ui) {
         String zoomLink = null;
-        if (zoomLinkCount > 0) {
+        if (zoomLinkCount > 1) {
             ui.printExtractChooseZoomLinkMessage(zoomLinkCount, zoomLinkList);
             boolean zoomLinkChosen = false;
             while (!zoomLinkChosen) {
@@ -176,12 +176,12 @@ public class ExtractCommand extends Command {
                 time = time.replaceAll("\\.", ":");
             }
             if (time.contains("PM") || time.contains("AM")) {
-                if (!time.contains(":")) {
-                    time = time.substring(0, time.length() - 2) + ":00 " + time.substring(time.length() - 2);
-                }
                 if (!time.contains(" ")) {
                     // adds space between AM/PM for it to work with parser later
                     time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
+                }
+                if (!time.contains(":")) {
+                    time = time.substring(0, time.length() - 3) + ":00 " + time.substring(time.length() - 2);
                 }
             }
             time = time.toLowerCase();

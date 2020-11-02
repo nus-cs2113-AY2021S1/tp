@@ -236,8 +236,9 @@ public class Ui {
     }
 
     public void printExtractNoTimeZoomEventMessage() {
-        System.out.println("Since no time was detected in text body, a zoom event cannot be made. So "
-                + "a personal event with only the date and description will be created.");
+        System.out.println("Even though date was detected, time was not, in Scheduler--; "
+                + "a zoom event cannot have the date without the time. So "
+                + "a zoom event with only the date and zoom link will be created.");
     }
 
     public void printExtractNoTimePersonalEventMessage() {
@@ -285,6 +286,7 @@ public class Ui {
 
     public void printExtractInvalidFieldChosenMessage(String field) {
         System.out.println("Invalid " + field + " number to choose! Please choose again!");
+        printDividerLine();
     }
 
     public void printExtractNoFieldMessage(String field) {

@@ -87,7 +87,7 @@ class ExtractCommandTest {
         }
 
         @Test
-        void execute_CreateEventWithNoDateOrTime_printSuccessfulAdd() throws DukeException {
+        void execute_CreatePersonalEventWithNoDateOrTime_printSuccessfulAdd() throws DukeException {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
@@ -99,7 +99,8 @@ class ExtractCommandTest {
                             + System.lineSeparator()
                             + "At the end of your text, press enter to go to the next line, enter 'extractend' "
                             + "with no quotation marks and press enter once more." + System.lineSeparator()
-                            + "No dates detected for this text body!" + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "No date detected for this text body!" + System.lineSeparator()
                             + "Since no date was detected in the text body, "
                             + "the personal event will only contain the description." + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
@@ -126,7 +127,7 @@ class ExtractCommandTest {
         }
 
         @Test
-        void execute_CreateEventWithDateOnly_printSuccessfulAdd() throws DukeException {
+        void execute_CreatePersonalEventWithDateOnly_printSuccessfulAdd() throws DukeException {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
@@ -138,10 +139,12 @@ class ExtractCommandTest {
                             + System.lineSeparator()
                             + "At the end of your text, press enter to go to the next line, enter 'extractend' "
                             + "with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
                             + "One date detected and chosen: 2020-11-17" + System.lineSeparator()
-                            + "No time slots detected for this text body!" + System.lineSeparator()
-                            + "Since no time detected in text body, "
-                            + "the personal event will only have the date and description." + System.lineSeparator()
+                            + "No timing detected for this text body!" + System.lineSeparator()
+                            + "Since no time was detected in the text body, "
+                            + "the personal event will only contain the description and the date."
+                            + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
                             + "[P][✕] CS2113T Makeup Lesson on 2020-11-17" + System.lineSeparator(),
                     outputStreamCaptor.toString());
@@ -167,7 +170,7 @@ class ExtractCommandTest {
         }
 
         @Test
-        void execute_CreateEvent_printSuccessfulAdd() throws DukeException {
+        void execute_CreatePersonalEventOneDateAndTime_printSuccessfulAdd() throws DukeException {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
@@ -177,8 +180,9 @@ class ExtractCommandTest {
                             + System.lineSeparator()
                             + "At the end of your text, press enter to go to the next line, enter 'extractend' "
                             + "with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
                             + "One date detected and chosen: 2020-10-05" + System.lineSeparator()
-                            + "One time slot detected and chosen: 16:00" + System.lineSeparator()
+                            + "One timing detected and chosen: 16:00" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
                             + "[P][✕] CG2271 Quiz on 2020-10-05, 16:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
@@ -203,7 +207,7 @@ class ExtractCommandTest {
         }
 
         @Test
-        void execute_CreateEvent_printSuccessfulAdd() throws DukeException {
+        void execute_CreatePersonalEventMultipleDateAndTime_printSuccessfulAdd() throws DukeException {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
@@ -213,6 +217,7 @@ class ExtractCommandTest {
                             + System.lineSeparator()
                             + "At the end of your text, press enter to go to the next line, enter 'extractend' "
                             + "with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
                             + "We have detected 2 dates in this text body!" + System.lineSeparator()
                             + "Please select the date you want for this event from the list below!"
                             + System.lineSeparator()
@@ -220,7 +225,7 @@ class ExtractCommandTest {
                             + "1. 2020-01-30" + System.lineSeparator()
                             + "2. 2020-05-15" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
-                            + "We have detected 2 time slots in this text body!" + System.lineSeparator()
+                            + "We have detected 2 timings in this text body!" + System.lineSeparator()
                             + "Please select the time you want for this event from the list below!"
                             + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
@@ -236,5 +241,52 @@ class ExtractCommandTest {
         public void tearDown() {
             System.setOut(standardOut);
         }
+    }
+
+    @Nested
+    class Test7 {
+        @BeforeEach
+        public void setUp() {
+            String extractInput = "The seminar will be held via Zoom. You may tune in using this link:\n"
+                    + "\n" + "https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
+                    + " \r\n extractend \r\n";
+            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            System.setIn(inStream);
+            System.setOut(new PrintStream(outputStreamCaptor));
+        }
+
+        @Test
+        void execute_CreateZoomEventLinkOnly_printSuccessfulAdd() throws DukeException {
+            UserData data = new UserData();
+            Ui ui = new Ui();
+            Storage storage = new Storage("data", ui);
+            Command extractCommand = new ExtractCommand("Seminar;");
+            extractCommand.execute(data, ui, storage);
+            assertEquals("Copy and paste or enter the body of the text you want to extract from!"
+                            + System.lineSeparator()
+                            + "At the end of your text, press enter to go to the next line, enter 'extractend' "
+                            + "with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "One zoom link detected and chosen:"
+                            + " https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
+                            + System.lineSeparator()
+                            + "No date detected for this text body!" + System.lineSeparator()
+                            + "Since no date was detected in the text body,"
+                            + " the zoom event will only contain the description and zoom link."
+                            + System.lineSeparator()
+                            + "You have successfully added this event to your list!" + System.lineSeparator()
+                            + "[Z][✕] Seminar, Link:"
+                            + " https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
+                            + System.lineSeparator(),
+                    outputStreamCaptor.toString());
+        }
+
+        @AfterEach
+        public void tearDown() {
+            System.setOut(standardOut);
+        }
+
+
+
     }
 }

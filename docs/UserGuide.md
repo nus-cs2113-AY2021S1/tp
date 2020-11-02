@@ -698,9 +698,12 @@ You have the following events today:
 ### 3.14 Extracting events from texts: `extract` (Matthew Gani)
 Ever feel tired of reading long emails everyday? Copy and paste your email into this feature!
 You can use our extract function which will help you read any text and extract out possible dates and times. 
-You’ll be able to choose the dates and times detected and create a Personal event. 
+You’ll be able to choose the dates and times detected and create a Personal or Zoom event. 
 
-The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. 
+The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. <br>
+It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
+If a valid zoom link is detected, it will try to create a Zoom event for you. 
+
 
 This feature needs a 3 step process to function, please press your enter key (denoted by `<enter key>`) in between all 3 steps for it to work properly.
 
@@ -710,7 +713,8 @@ Format: `extract TEXT_SUBJECT;` `<enter key>` `TEXT_BODY` `<enter key>` `extract
 
 
 Example: `extract CG2271 Quiz 2;` `<enter key>` <br>
-`Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.` `<enter key>`<br>
+`Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
+The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`<br>
 `extractend` `<enter key>`
 
 Expected Output:
@@ -722,10 +726,11 @@ Copy and paste or enter the body of the text you want to extract from!
 At the end of your text, press enter to go to the next line, enter 'extractend' with no quotation marks and press enter once more.
 _________________________________
 ````
-After `Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm.` `<enter key>`
+After `Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`
 and `extractend` `<enter key>`:
 
 ````
+One zoom link detected and chosen: https://nus-sg.zoom.us/j/2226375MG
 We have detected 2 dates in this text body!
 Please select the date you want for this event from the list below!
 _________________________________
@@ -733,7 +738,7 @@ _________________________________
 2. 2020-10-15
 _________________________________
 2
-We have detected 2 time slots in this text body!
+We have detected 2 timings in this text body!
 Please select the time you want for this event from the list below!
 _________________________________
 1. 15:00
@@ -741,7 +746,7 @@ _________________________________
 _________________________________
 2
 You have successfully added this event to your list!
-[P][✕] CG2271 Quiz 2 on 2020-10-15, 15:30
+[Z][✕] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
 _________________________________
 ````
 As shown above, the user can choose the date/time they want for the event as long as it is a valid number in the list.
@@ -750,9 +755,12 @@ As shown above, the user can choose the date/time they want for the event as lon
  
 {{box op="start" cssClass="boxed noteBox"}}
 **Note!**
+- It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 - The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
 - It is also able to attach the current year to the date if it is not specified in the text.
-- The text body can include multiple paragraphs that are copy pasted from emails.
+- The text body can include multiple paragraphs that are copy and pasted from emails.
+- The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected.
+- The date/time/link has to be in the same line to be detected properly. For example, if the date/time/link is separated in a paragraph/by a new line it may not be detected properly. 
 {{box op="end"}}
 
 
