@@ -22,16 +22,20 @@ public class BusCommand extends Command {
         if (possibleLocs.isEmpty()) {
             this.busStop = BusStops.formatName(busStop.trim());
             BusStops.findBusStop(busStop).incrementSearchCount();
+            super.isValid = true;
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
+            super.isValid = false;
         }
     }
 
     @Override
     public void executeCommand() {
-        printLine();
-        ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
-        Ui.printBusAtBusStop(busList, busStop);
+        if(busStop != null) {
+            printLine();
+            ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
+            Ui.printBusAtBusStop(busList, busStop);
+        }
     }
 
     private ArrayList<String> similarLocations(String location) {
