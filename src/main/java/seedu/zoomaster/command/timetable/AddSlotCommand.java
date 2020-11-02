@@ -99,7 +99,7 @@ public class AddSlotCommand extends Command {
             slot = retrieveSlotFromModule(module, slotAndBookmark);
             createBookmark(slotAndBookmark.get(1), slot.getTitle(), slot);
             message = "  bookmark added to " + moduleCode + " " + slot.getTitle() + System.lineSeparator();
-        } else if (slotAndBookmark.size() >= 4){
+        } else if (slotAndBookmark.size() >= 4) {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
             LocalTime startTime;
@@ -205,7 +205,7 @@ public class AddSlotCommand extends Command {
      *     false if module does not exists in the list.
      */
     private boolean isValidModule(String module) {
-        if (Module.getModuleList() == null ) { // If unable to get list of modules, always return true.
+        if (Module.getModuleList() == null) { // If unable to get list of modules, always return true.
             return true;
         } else if (Module.getModuleList().contains(module)) {
             return true;
