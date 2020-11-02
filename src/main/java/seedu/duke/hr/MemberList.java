@@ -186,6 +186,9 @@ public class MemberList {
         if (!any && !name && !phone && !email && !role) {
             return "Please enter the content you want to search for.\n";
         }
+        if (Long.parseLong(phoneS) < 0) {
+            return "Please enter a valid phone number.\n";
+        }
         String output = "";
         int count = 0;
         for (int i = 0; i < Member.numOfMembers; i++) {
