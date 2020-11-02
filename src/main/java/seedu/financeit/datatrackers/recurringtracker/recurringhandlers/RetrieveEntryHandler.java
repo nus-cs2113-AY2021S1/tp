@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commands;
+package seedu.financeit.datatrackers.recurringtracker.recurringhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -25,30 +25,40 @@ import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
  * Command class to reference an existing entry instance with specified parameter values.
  * Entry will then be referenced for the ItemList instance as currItem.
  */
-public class RetrieveEntryCommand extends ParamHandler {
+public class RetrieveEntryHandler extends ParamHandler {
     RecurringEntryList entryList;
+    private static RetrieveEntryHandler handler = null;
 
-    public RetrieveEntryCommand() {
-        this.setRequiredParams(
+    private RetrieveEntryHandler() {
+        setRequiredParams(
             PARAM_INDEX
         );
+    }
+
+    public static RetrieveEntryHandler getInstance() {
+        if (handler == null) {
+            handler = new RetrieveEntryHandler();
+        }
+        return handler;
     }
 
     public void handlePacket(CommandPacket packet, RecurringEntryList entryList)
         throws InsufficientParamsException, ItemNotFoundException {
         this.entryList = entryList;
-        this.handleParams(packet);
+        handleParams(packet);
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException {
         switch (paramType) {
+        //RetrieveEntryHandler is only concerned with index of entry.
         case ParamChecker.PARAM_INDEX:
-            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, this.entryList.getItems());
-            this.entryList.setIndexToModify(index);
+            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, entryList.getItems());
+            entryList.setIndexToModify(index);
             return;
         default:
+            //Ignore other params, as those will be handled by EditEntryHandler
             String[] ignoreParams = {
                 PARAM_DAY,
                 PARAM_AUTO,

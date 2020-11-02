@@ -2,7 +2,7 @@ package seedu.financeit.datatrackers.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.datatrackers.manualtracker.commands.CreateLedgerCommand;
+import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.CreateLedgerHandler;
 
 import java.time.LocalDate;
 
@@ -25,13 +25,13 @@ public class TypicalLedgerEntries {
     }
 
     public Ledger generateTypicalLedgerFromSeed() {
-        CreateLedgerCommand command = new CreateLedgerCommand();
+        CreateLedgerHandler createLedgerHandler = CreateLedgerHandler.getInstance();
         try {
-            command.handlePacket(packet);
+            createLedgerHandler.handlePacket(packet);
         } catch (InsufficientParamsException exception) {
             //Fall through
         }
-        return command.getCurrLedger();
+        return createLedgerHandler.getCurrLedger();
     }
 
     public Ledger generateTypicalLedger1() {

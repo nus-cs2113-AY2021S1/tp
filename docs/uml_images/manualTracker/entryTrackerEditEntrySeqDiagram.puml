@@ -3,27 +3,27 @@ autoactivate on
 
 ":EntryTracker" ->":EntryTracker": handleCreateEntry()
     == Command 1: Retrieve Entry ==
-    create "retrieveEntryCommand:RetrieveEntryCommand"
-   ":EntryTracker"-> "retrieveEntryCommand:RetrieveEntryCommand" : "retrieveEntryCommand:RetrieveEntryCommand"()
+    create "retrieveEntryHandler:RetrieveEntryCommand"
+   ":EntryTracker"-> "retrieveEntryHandler:RetrieveEntryCommand" : "retrieveEntryHandler:RetrieveEntryCommand"()
     return
 
-       ":EntryTracker"-> "retrieveEntryCommand:RetrieveEntryCommand" : handlePacket
+       ":EntryTracker"-> "retrieveEntryHandler:RetrieveEntryCommand" : handlePacket
 
             create "entry:Entry"
-            "retrieveEntryCommand:RetrieveEntryCommand" -> "entry:Entry" : Entry()
+            "retrieveEntryHandler:RetrieveEntryCommand" -> "entry:Entry" : Entry()
             return
             == Handling of Params in packet for retrieval ==
-            "retrieveEntryCommand:RetrieveEntryCommand" -> "retrieveEntryCommand:RetrieveEntryCommand" : handleParams
-                "retrieveEntryCommand:RetrieveEntryCommand" -> ":ParamChecker" : setPacket(packet)
+            "retrieveEntryHandler:RetrieveEntryCommand" -> "retrieveEntryHandler:RetrieveEntryCommand" : handleParams
+                "retrieveEntryHandler:RetrieveEntryCommand" -> ":ParamChecker" : setPacket(packet)
                 return
                 loop For all paramType in the command packet
                     note left: "Note: The entry to be edited is first retrieved \nusing the retrieve command."
-                    "retrieveEntryCommand:RetrieveEntryCommand" -> "retrieveEntryCommand:RetrieveEntryCommand" : handleSingleParam
+                    "retrieveEntryHandler:RetrieveEntryCommand" -> "retrieveEntryHandler:RetrieveEntryCommand" : handleSingleParam
                         alt "paramType = PARAM_INDEX"
-                            "retrieveEntryCommand:RetrieveEntryCommand" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
+                            "retrieveEntryHandler:RetrieveEntryCommand" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
                             return index
                             note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved via regular\ngetter methods from entrylist"
-                            "retrieveEntryCommand:RetrieveEntryCommand" -> "entryList:EntryList" : setIndexToModify(index)
+                            "retrieveEntryHandler:RetrieveEntryCommand" -> "entryList:EntryList" : setIndexToModify(index)
                             return
                         end
                     return
@@ -36,45 +36,45 @@ autoactivate on
     return entry
 
     == Command 2: Edit Entry ==
-    create "editEntryCommand:EditEntryCommand"
-       ":EntryTracker"-> "editEntryCommand:EditEntryCommand" : "EditEntryCommand"(entry)
+    create "editEntryHandler:EditEntryCommand"
+       ":EntryTracker"-> "editEntryHandler:EditEntryCommand" : "EditEntryCommand"(entry)
         return
 
-    ":EntryTracker" -> "editEntryCommand:EditEntryCommand" : handlePacket
+    ":EntryTracker" -> "editEntryHandler:EditEntryCommand" : handlePacket
 
         create "entry:Entry"
-        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : Entry()
+        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : Entry()
         return
         == Handling of Params in packet for edit ==
-        "editEntryCommand:EditEntryCommand" -> "editEntryCommand:EditEntryCommand" : handleParams
-            "editEntryCommand:EditEntryCommand" -> ":ParamChecker" : setPacket(packet)
+        "editEntryHandler:EditEntryCommand" -> "editEntryHandler:EditEntryCommand" : handleParams
+            "editEntryHandler:EditEntryCommand" -> ":ParamChecker" : setPacket(packet)
             return
             loop For all paramType in the command packet
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
-                "editEntryCommand:EditEntryCommand" -> "editEntryCommand:EditEntryCommand" : handleSingleParam
+                "editEntryHandler:EditEntryCommand" -> "editEntryHandler:EditEntryCommand" : handleSingleParam
                     alt "paramType = PARAM_TIME"
-                        "editEntryCommand:EditEntryCommand" ->":ParamChecker": checkAndReturnTime(paramType)
+                        "editEntryHandler:EditEntryCommand" ->":ParamChecker": checkAndReturnTime(paramType)
                         return time
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setTime(time)
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setTime(time)
                         return
                     else "paramType = PARAM_AMOUNT"
-                        "editEntryCommand:EditEntryCommand" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        "editEntryHandler:EditEntryCommand" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setAmount(amount)
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setAmount(amount)
                         return
                     else "paramType = PARAM_INC"
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setEntryType(EntryType.INC)
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setEntryType(EntryType.INC)
                         return
                     else "paramType = PARAM_EXP"
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setEntryType(EntryType.EXP)
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setEntryType(EntryType.EXP)
                         return
                     else "paramType = PARAM_DESCRIPTION"
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setDescription(description)
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setDescription(description)
                         return
                     else "paramType = PARAM_CATEGORY"
-                        "editEntryCommand:EditEntryCommand" ->":ParamChecker": checkAndReturnCategory(paramType)
+                        "editEntryHandler:EditEntryCommand" ->":ParamChecker": checkAndReturnCategory(paramType)
                         return
-                        "editEntryCommand:EditEntryCommand" -> "entry:Entry" : setCategory()
+                        "editEntryHandler:EditEntryCommand" -> "entry:Entry" : setCategory()
                         return
                     end
                 return
@@ -89,8 +89,8 @@ participant ":EntryTracker"
 endBox
 
 box "Logic" #LightBlue
-participant "retrieveEntryCommand:RetrieveEntryCommand"
-participant "editEntryCommand:EditEntryCommand"
+participant "retrieveEntryHandler:RetrieveEntryCommand"
+participant "editEntryHandler:EditEntryCommand"
 participant ":ParamChecker"
 endBox
 

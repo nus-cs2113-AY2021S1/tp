@@ -47,19 +47,19 @@ rectangle Commands {
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class editEntryCommand {
+        class editEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveEntryCommand {
+        class retrieveEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
         EntryTracker --> createEntryCommand
-        EntryTracker --> retrieveEntryCommand
-        EntryTracker --> editEntryCommand
+        EntryTracker --> retrieveEntryHandler
+        EntryTracker --> editEntryHandler
 
     }
 }

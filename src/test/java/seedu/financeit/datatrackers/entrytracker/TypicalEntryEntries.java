@@ -3,7 +3,7 @@ package seedu.financeit.datatrackers.entrytracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.datatrackers.entrytracker.commands.CreateEntryCommand;
+import seedu.financeit.datatrackers.entrytracker.entryhandlers.CreateEntryHandler;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.ParamChecker;
 
@@ -40,13 +40,13 @@ public class TypicalEntryEntries {
      * @return populated Entry.
      */
     public Entry generateTypicalEntryFromSeed() {
-        CreateEntryCommand command = new CreateEntryCommand();
+        CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         try {
-            command.handlePacket(this.packet);
+            createEntryHandler.handlePacket(this.packet);
         } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
-        return command.getCurrEntry();
+        return createEntryHandler.getCurrEntry();
     }
 
     /**
@@ -54,7 +54,7 @@ public class TypicalEntryEntries {
      * @return Populated entry.
      */
     public Entry generateTypicalEntry1() {
-        CreateEntryCommand command = new CreateEntryCommand();
+        CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         CommandPacket packet = TestUtil.createCommandPacket(
             "new",
             new String[][]{
@@ -81,12 +81,12 @@ public class TypicalEntryEntries {
             }
         );
         try {
-            command.handlePacket(packet);
+            createEntryHandler.handlePacket(packet);
             this.packet = packet;
         } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
-        return command.getCurrEntry();
+        return createEntryHandler.getCurrEntry();
     }
 
     /**
@@ -94,7 +94,7 @@ public class TypicalEntryEntries {
      * @return Populated entry.
      */
     public Entry generateTypicalEntry2() {
-        CreateEntryCommand command = new CreateEntryCommand();
+        CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         CommandPacket packet = TestUtil.createCommandPacket(
             "new",
             new String[][]{
@@ -121,11 +121,11 @@ public class TypicalEntryEntries {
             }
         );
         try {
-            command.handlePacket(packet);
+            createEntryHandler.handlePacket(packet);
             this.packet = packet;
         } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             //Fall through
         }
-        return command.getCurrEntry();
+        return createEntryHandler.getCurrEntry();
     }
 }
