@@ -234,6 +234,7 @@ Format: `pin-n [/i INDEX] [/t TITLE]`
 
 - Pins a note to the top of the list. A pinned note will be unpinned. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+- If both fields are provided, only the first one will be used to pin the note. 
  
 Example of usage: 
 
