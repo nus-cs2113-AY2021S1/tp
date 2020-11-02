@@ -155,8 +155,8 @@ public class MemberList {
                 m.setMemberPhone(phone);
             }
         } catch (Exception e) {
-            return "OOPS!!! The format of the phone number given is incorrect.\n" +
-                    "The phone number should be a whole number less than 19 digits.\n";
+            return "OOPS!!! The format of the phone number given is incorrect.\n"
+                    + "The phone number should be a whole number less than 19 digits.\n";
         }
 
         if (newEmail != null) {
