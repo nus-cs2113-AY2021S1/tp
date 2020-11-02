@@ -12,10 +12,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 class SlotTest {
-
     Slot slotTest;
+
     @BeforeEach
-    public void initEachSlotTest(){
+    public void initEachSlotTest() {
         slotTest = new Slot(LocalTime.parse("10:00"), LocalTime.parse("11:00"), "mon", "tutorial");
     }
 
