@@ -1,5 +1,5 @@
 ---
-layout : Project Portfolio Page
+layout : page
 title : Nazryl Lim - Project Portfolio Page
 ---
 
