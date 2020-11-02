@@ -1,1 +1,16 @@
-theme: jekyll-theme-cayman
+
+title: "CCA Manager"
+theme: minima
+
+header_pages:
+  - UserGuide.md
+  - DeveloperGuide.md
+  - AboutUs.md
+
+markdown: kramdown
+
+repository: "AY2021S1-CS2113T-F14-1"
+github_icon: "CCAManager_logo.png"
+
+plugins:
+  - jemoji
