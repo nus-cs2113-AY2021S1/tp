@@ -13,9 +13,8 @@ import java.util.logging.Logger;
  */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
+    protected static final String TOO_MUCH_ARGUMENTS = "View command" + TOO_MUCH_FIELDS;
+    protected static final String WATCHLIST_ID = "Watchlist ID!";
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
 
@@ -56,17 +55,23 @@ public class ViewWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the parameters
      */
     private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(" ");
+        String[] paramParts = paramGiven.split(" ", 2);
 
         switch (paramParts[0].trim()) {
         case VIEW_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInteger(paramParts[1].trim())) {
-                throw new AniException(NON_INTEGER_PROVIDED);
+
+            String fieldValue = paramParts[1].trim();
+            String[] fieldParts = fieldValue.split(SPLIT_WHITESPACE);
+
+            if (fieldParts.length > 1) {
+                throw new AniException(TOO_MUCH_ARGUMENTS);
             }
+            isIntegerCheck(fieldValue, WATCHLIST_ID);
+            
             try {
-                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(fieldValue));
             } catch (NumberFormatException e) {
                 throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
             }

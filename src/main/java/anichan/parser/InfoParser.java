@@ -13,9 +13,8 @@ import java.util.logging.Logger;
  */
 public class InfoParser extends CommandParser {
     protected static final String ANIME_ID_PARAM = "a";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String TOO_MUCH_ARGUMENTS = "Info command " + TOO_MUCH_FIELDS;
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
+    protected static final String TOO_MUCH_ARGUMENTS = "Info command" + TOO_MUCH_FIELDS;
+    protected static final String ANIME_ID = "Anime ID!";
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
     
@@ -56,15 +55,21 @@ public class InfoParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the parameters
      */
     private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(" ");
+        String[] paramParts = paramGiven.split(SPLIT_WHITESPACE, 2);
 
         switch (paramParts[0].trim()) {
         case ANIME_ID_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            if (!isInteger(paramParts[1].trim())) {
-                throw new AniException(NON_INTEGER_PROVIDED);
+
+            String fieldValue = paramParts[1].trim();
+            String[] fieldParts = fieldValue.split(SPLIT_WHITESPACE);
+
+            if (fieldParts.length > 1) {
+                throw new AniException(TOO_MUCH_ARGUMENTS);
             }
+            isIntegerCheck(fieldValue, ANIME_ID);
+            
             try {
                 infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
             } catch (NumberFormatException e) {
