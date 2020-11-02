@@ -166,14 +166,18 @@ Search the members whose information matches user input. If a member's informati
 the conditions that the user inputs, it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
+Shorhand format:  
+`hr` -> `h`  
+`search` -> `s`  
+
 Example of usage:  
 `hr search peter`  
-`hr search /n peter /r president`  
-`hr search /p 114514 /e 114@gmail.com`  
-`hr search /p 114514`  
+`hr search /n peter /r president`   
 
 Expected outcomes:  
+![Example of usage 1](userGuidePic/hrsearchoutcome1.png)  
 
+![Example of usage 2](userGuidePic/hrsearchoutcome2.png)  
 
 
 #### view contacts of prof/admin: `list prof&admin`  
@@ -181,10 +185,16 @@ List the contacts of the professors and administrators. Professors and administr
 of members.  
 Format: `hr list prof&admin`  
 
+Shorthand format:  
+`hr` -> `h`  
+`list` -> `l`  
+`prof&admin` -> `pa`  
+
 Example of usage:  
 `hr list prof&admin`  
 
 Expected outcome:  
+![Example of usage](userGuidePic/hrprofadminoutcome.png)  
 
 
 
@@ -192,10 +202,16 @@ Expected outcome:
 List the contacts of connections(alumni, speakers). Alumni and speakers are roles of members.  
 Format: `hr list connections`  
 
+Shorhand format:  
+`hr` -> `h`  
+`list` -> `l`  
+`connections` -> `c`  
+
 Example of usage:  
 `hr list connections`  
 
 Expected outcome:  
+![Example of usage](userGuidePic/hrlistc.png)  
 
 
 
@@ -367,10 +383,13 @@ Expected Outcome:
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
+Shorthand format:  
+`finance` -> `f`  
+`addLog` -> `add` or `a`  
+
 Example of usage:  
 `finance addLog have lunch 4.5`  
 `f addlog buy flight ticket 750`  
-`f a buy bread 3.3`  
 
 Expected outcomes:  
 ![Example of usage 1](userGuidePic/addlog%20outcome1.png)  
@@ -384,10 +403,13 @@ Expected outcomes:
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
 
+Shorthand format:  
+`finance` -> `f`  
+`delLog` -> `del` or `d`
+
 Example of usage:  
 `finance dellog 3`  
 `f del 1`  
-`finance d 1`  
 
 Expected outcomes:  
 ![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
@@ -401,11 +423,12 @@ Expected outcomes:
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
 
+Shorthand format:  
+`finance` -> `f`  
+`summary` -> `s`
+
 Example of usage:  
 `finance summary`  
-`f s`  
-`finance s`  
-`f summary`  
 
 Expected Outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
@@ -414,6 +437,10 @@ Expected Outcome:
 #### 4.5.4 Change finance log entry information: `changeLog`  
 Change the finance log entry's name and budget amount.  
 Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
+
+Shorthand format:  
+`finance` -> `f`  
+`changeLog` -> `c`
 
 Example of usage:  
 `finance changeLog /i 1 /n buy cake 5.5`  

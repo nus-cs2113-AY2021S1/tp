@@ -30,7 +30,11 @@ public class CommandFinanceChange extends Command {
                     throw new DukeNotNumberException();
                 }
             }
-            String output = FinanceList.changeFinanceLog(index, item, Double.parseDouble(contents[length - 1]));
+            double budget = Double.parseDouble(contents[length - 1]);
+            if (budget <= 0) {
+                return "Please input a valid number for budget amount.\n";
+            }
+            String output = FinanceList.changeFinanceLog(index, item, budget);
             return output;
         } catch (NumberFormatException e) {
             throw new DukeNotNumberException();
@@ -43,7 +47,8 @@ public class CommandFinanceChange extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("changelog")
+        if (ui.getCategory().equals("finance") && (ui.getCommand().equalsIgnoreCase("changelog")
+            || ui.getCommand().equalsIgnoreCase("c"))
             && ui.getArg("i") != null && ui.getArg("n") != null) {
             userinput = ui;
             return ACCEPT;
