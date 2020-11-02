@@ -306,7 +306,22 @@ Users can enter one-shot-commands, adding multiple slots and bookmarks to a modu
 
 Given below is a sequence diagram of how the feature works.
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
-*<center/> Figure 2.3 Sequence diagram for AddSlotCommand </center> <br/></br>*
+*<center/> Figure 2.3.1 Sequence diagram for AddSlotCommand </center> <br/></br>*
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)
+*<center/> Figure 2.3.2 Sequence diagram for AddSlotCommand </center> <br/></br>*
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)
+*<center/> Figure 2.3.3 Sequence diagram for AddSlotCommand </center> <br/></br>*
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)
+*<center/> Figure 2.3.4 Sequence diagram for AddSlotCommand </center> <br/></br>*
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)
+*<center/> Figure 2.3.5 Sequence diagram for AddSlotCommand </center> <br/></br>*
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)
+*<center/> Figure 2.3.6 Sequence diagram for AddSlotCommand </center> <br/></br>*
 
 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 

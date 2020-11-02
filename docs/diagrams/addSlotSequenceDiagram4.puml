@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+skinparam ParticipantPadding 20
+
+participant ":AddSlotCommand" as AddSlotCommand
+participant ":Module" as Module
+
+
+activate AddSlotCommand
+
+AddSlotCommand -> AddSlotCommand : retrieveSlotFromModule\n(module, slotAndBookmark)
+activate AddSlotCommand
+
+AddSlotCommand -> Module : getSlot(index)
+activate Module
+
+Module --> AddSlotCommand : slot
+deactivate Module
+
+AddSlotCommand --> AddSlotCommand : slot
+deactivate AddSlotCommand
+
+ref over AddSlotCommand, Module
+    Create bookmark for slot.
+    Refer to Figure 2.3.5
+end ref
+
+
+
+@enduml
