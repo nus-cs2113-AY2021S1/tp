@@ -218,7 +218,7 @@ public class StorageLoad {
         return checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules, filePath);
     }
 
-    //@@author gua-guargia
+    //@@author Zhu-Ze-Yu
     protected static ArrayList<Card> loadCard(String module, String chapter, String filePath)
             throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
