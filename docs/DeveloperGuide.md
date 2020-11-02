@@ -248,7 +248,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 
 ### 3.7. Bus at bus stop finder (`/bus` Feature)
-
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
+![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
 
 ## 4. Appendix I: Requirements
 
