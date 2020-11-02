@@ -35,6 +35,7 @@ public class BrowseParser extends CommandParser {
     private boolean sortFlag = false;
     private boolean orderFlag = false;
     private boolean pageFlag = false;
+
     public BrowseParser() {
         browseCommand = new BrowseCommand();
     }
@@ -88,7 +89,7 @@ public class BrowseParser extends CommandParser {
             paramLoops++;
             //Skip first empty field which is a blank
             if (paramLoops == 1) {
-               continue;
+                continue;
             }
             String[] paramParts = param.split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
             switch (paramParts[0].trim()) {
@@ -115,7 +116,7 @@ public class BrowseParser extends CommandParser {
      * @param totalParams is the total numbber of parameters the user parsed in
      * @param paramLoops is the current parameter being handled
      * @param theParam is the parameter being handled
-     * @throws AniException
+     * @throws AniException if parameter stacking was found
      */
     private void checkForParamStacking(int totalParams, int paramLoops, String theParam) throws AniException {
         if (totalParams > 2) {
@@ -129,8 +130,8 @@ public class BrowseParser extends CommandParser {
     /**
      * Performs input validation of the page parameter and its field before setting it.
      *
-     * @param paramParts
-     * @throws AniException
+     * @param paramParts the parameter and field String array
+     * @throws AniException if previously page was set already.
      */
     private void parsePageParam(String[] paramParts) throws AniException {
         paramFieldCheck(paramParts);
