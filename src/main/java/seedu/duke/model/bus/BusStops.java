@@ -9,7 +9,7 @@ import static seedu.duke.ui.Ui.printLine;
 
 public enum BusStops {
     PGP("PGP", "Prince George's Park"),
-    KENTRIDGEMRTSTATION("Kent Ridge MRT Station", "Kent Ridge MRT entrance", new String[]{"kr mrt", "krmrt"}),
+    KENTRIDGEMRTSTATION("Kent Ridge MRT Station", "Kent Ridge MRT Entrance", new String[]{"kr mrt", "krmrt"}),
     OPPUNIVERSITYHEALTHCENTRE("Opp University Health Centre", "Near University Health Centre", new String[]{"opp UHC"}),
     YUSOFISHAKHOUSE("Yusof Ishak House", "Location with the Student Service center", new String[]{"YIH"}),
     CENTRALLIBRARY("Central Library", "also known as CLB", new String[]{"CLB"}),
@@ -26,19 +26,19 @@ public enum BusStops {
     OPPUNIVERSITYHALL("Opp University Hall", "Opp of University Hall, near a football field"),
     S17("S17", "outside of S17, opposite of LT27"),
     UNIVERSITYHALL("University Hall", "University Hall"),
-    TCOMS("TCOMS", "IDK"),
-    OPPHSSML("Opp HSSML", "idk"),
-    OPPNUSS("Opp NUSS", "idk"),
+    TCOMS("TCOMS", "Deepwater Ocean Basin Building"),
+    OPPHSSML("Opp HSSML", "Opposite Hon Sui Sen Memorial Library"),
+    OPPNUSS("Opp NUSS", "Opposite National University of Singapore Society - The Graduate Club"),
     COM2("COM2", "COM2, within School of Computing"),
-    VENTUS("Ventus, Opp LT13", "idk"),
+    VENTUS("Ventus, Opp LT13", "University Campus Infrastructure Building"),
     OPPYUSOFISHAKHOUSE("Opp Yusof Ishak House", "Opposite YIH, near Faculty of Engineering", new String[]{"opp YIH"}),
-    LT13("LT13", "idk"),
-    AS5("AS5", "idk"),
+    LT13("LT13", "Located in Faculty of Arts and Social Sciences"),
+    AS5("AS5", "FASS Block 5"),
     BIZ2("BIZ2", "Near Faculty of Business"),
-    OPPTCOMS("Opp TCOMS", "idk help"),
-    OEITIONGHAM("Oei Tiong Ham(BTC)", "idk"),
-    BOTANICGARDENSMRT("Botanic Gardens MRT", "MRT station"),
-    COLLEGEGREEN("College Green", "idk"),
+    OPPTCOMS("Opp TCOMS", "Opposite Deepwater Ocean Basin Building"),
+    OEITIONGHAM("Oei Tiong Ham(BTC)", "Located in Lee Kuan Yew School of Public Policy"),
+    BOTANICGARDENSMRT("Botanic Gardens MRT", "Botanic Gardens MRT station"),
+    COLLEGEGREEN("College Green", "Dunearn Road student accomodations"),
     PGPR("PGPR", "Prince George's Park Residence");
 
     private final String description;

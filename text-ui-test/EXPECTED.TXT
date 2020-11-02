@@ -1,6 +1,7 @@
 File created: FavList.txt
-File created: freqList.txt
-File Read
+File created: FreqList.txt
+FavList.txt Read with no issues
+FreqList.txt Read with no issues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hello from
  _       _       ____     __       __
@@ -10,6 +11,8 @@ Hello from
 |_|   \ \_|  / /      \ \    \_V_/    @NUS
 
 How can I help?
+As you search more, your most frequently searched bus stop will appear here each time
+you run this program!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 I do not understand!!

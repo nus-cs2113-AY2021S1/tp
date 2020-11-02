@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
+import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,24 +10,43 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class FavStorage extends Storage {
+    private static final String FILE_READ = "FavList.txt Read with no issues";
     private File file;
-    private int favCount = 0;
+    private boolean isCorrupted = false;
 
     public FavStorage(String dir) {
         super(dir);
         file = getFile();
     }
 
+
     @Override
     public void readFile() throws FileNotFoundException {
         Scanner s = new Scanner(file);
         while (s.hasNext()) {
             String entry = s.nextLine();
-            String[] entryWords = entry.split("\\|");
-            FavList.addFav(new Fav(entryWords[0], entryWords[1]));
+            readLine(entry);
         }
-        System.out.println("File Read");
+        if (isCorrupted) {
+            Ui.printCorruptedDataRead();
+        }
+        System.out.println(FILE_READ);
+    }
+
+    private void readLine(String entry) {
+        String[] entryWords = entry.split("\\|");
+        if (entryWords.length != 2) {
+            isCorrupted = true;
+            return;
+        }
+        if (!entryWords[0].contains("/")) {
+            isCorrupted = true;
+            return;
+        }
+        FavList.addFav(new Fav(entryWords[0], entryWords[1]));
+
     }
 
     @Override

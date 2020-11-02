@@ -1,0 +1,43 @@
+@startuml
+mainframe **sd** get BusStop
+
+box Logic
+participant ":BusCommand"
+participant ":SimilarityCheck" <<Class>>
+end box
+
+box Model
+participant ":BusStops" <<Class>>
+end box
+
+box Ui
+participant ":Ui" <<Class>>
+end box
+
+
+
+activate ":BusCommand"
+":BusCommand"->":BusCommand": similarLocations(busStop)
+activate ":BusCommand"
+":BusCommand"->":SimilarityCheck": similarLoc(busStop)
+activate ":SimilarityCheck"
+":SimilarityCheck"-->":BusCommand": ArrayList<String> possibleLocation
+deactivate ":SimilarityCheck"
+":BusCommand"-->":BusCommand"
+deactivate ":BusCommand"
+
+alt "possibleLocation.isEmpty()"
+":BusCommand"->":BusStops": formatName(busStop)
+activate ":BusStops"
+":BusStops"-->":BusCommand"
+deactivate ":BusStops"
+else "!possibleLocation.isEmpty()"
+":BusCommand"->":Ui": printPossibleLocsMessage(possibleLocations)
+activate ":Ui"
+":Ui"-->":BusCommand"
+deactivate ":Ui"
+
+end
+
+
+@enduml

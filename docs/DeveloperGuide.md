@@ -21,6 +21,7 @@ enhancements.
   * [3.4. Favourite command executor (`/execfav` Feature)](#34-favourite-command-executor-execfav-feature)
   * [3.5. Favourite command description modifier (`/descfav` Feature)](#35-favourite-command-description-modifier-descfav-feature)
   * [3.6. Dining options finder (`/dine` Feature)](#36-dining-options-finder-dine-feature)
+  * [3.7. Bus at bus stop finder (`/bus` Feature)](#37-bus-at-bus-stop-finder-bus-feature)
 - [4. Appendix I: Requirements](#4-appendix-i-requirements)
   * [4.1 Product scope](#41-product-scope)
     + [4.1.1 Target user profile](#411-target-user-profile)
@@ -178,11 +179,23 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 
 ### 3.4. Favourite command executor (`/execfav` Feature)
-[Work in Progress]<br>
-`/execfav <INDEX>` is the command which executes a command from the user's list of favourites
-
+`/execfav <index>` is a command to execute a command with the specific index in the list of fovourite commands. <br><br>
+The command is executed in the following steps:
+1. The user calls `Parser#setUserInput(<UserInput>)` by typing in the command `/execfav <index>`. The new user input is updated.
+2. `Parser#extractType()` is called to instantiate `FavList#getFav(<index>)` and run the user command.
+3. `ExecFavParser` is instantiated and `ExecFavParser#setIndex()` is called to parse the `<index>` input from the user.
+    - `ExecFavParser#setIndex()` method throws an exception if `<index>` cannot be parsed into an integer or if it is blank.
+4. `ExecFavCommand#executeCommand()` is called.
+5. `ExecFavCommand#getFav()` is self invoked to obtain the required Fav object from Favlist.
+    - An exception is thrown if there is no Fav object in the specified index in FavList.
+6. A new `Parser` object is instantiated to run the command in the Fav object.
+<br><br>
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
-![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand.png)
+![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
+
+####Design Considerations
+
+
 
 
 
@@ -224,15 +237,37 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/descFavInternal.png)
 
 
-### 3.6. Dining options finder (`/dine` Feature)
-[Work in Progress]<br>
+### 3.6. Find dining options within a faculty (`/dine` Feature)
+
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
+
+The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
+    + Sets the `isFound` parameter to **false** if there is no match.
+    + Sets the `isFound` parameter to **true** if there is a match.
+        + Calls `Ui#printDineResult()` method to print the matching results.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
 
+### 3.7. Find specific dining outlets (`/dineinfo` Feature)
 
+`/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
+
+The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
+    + Adds any matching data to an ArrayList `searchList`.
+    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
+![bus data](DG_Diagrams/DineInfoSequence.png)
+
+### 3.7. Bus at bus stop finder (`/bus` Feature)
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
+![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
 
 ## 4. Appendix I: Requirements
 

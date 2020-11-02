@@ -13,6 +13,7 @@ import seedu.duke.logic.commands.commons.HelpCommand;
 import seedu.duke.logic.commands.buscommand.ListStopsCommand;
 import seedu.duke.logic.commands.buscommand.RouteCommand;
 import seedu.duke.logic.commands.buscommand.RouteMapCommand;
+import seedu.duke.logic.commands.dinecommand.FacultyCommand;
 import seedu.duke.logic.commands.favcommand.AddFavCommand;
 import seedu.duke.logic.commands.favcommand.ClearFavCommand;
 import seedu.duke.logic.commands.favcommand.DeleteFavCommand;
@@ -69,6 +70,10 @@ public class Parser {
             isVoidFunction = true;
             com = new ListStopsCommand();
             break;
+        case "/faculty":
+            isVoidFunction = true;
+            com = new FacultyCommand();
+            break;
         case "/dine":
             com = new DineCommand(parts[1]);
             break;
@@ -117,7 +122,7 @@ public class Parser {
 
         com.executeCommand();
 
-        if (!command.equals("/addfav") && !command.equals("/execfav")) {
+        if (com.isValid()) {
             previousInput = userInput;
         } else {
             previousInput = null;

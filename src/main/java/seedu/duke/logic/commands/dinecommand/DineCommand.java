@@ -18,6 +18,7 @@ public class DineCommand extends Command {
 
     public DineCommand(String input) {
         this.userFaculty = input;
+        super.isValid = false;
     }
 
     @Override
@@ -32,23 +33,29 @@ public class DineCommand extends Command {
     }
 
     public void checkFaculty(ArrayList<FoodPlace> foodPlaceList) {
-        int displayCount = 0;
+        boolean isFound = false;
+        int count = 0;
         for (FoodPlace foodPlace : foodPlaceList) {
             ArrayList<String> tempFacultyList = foodPlace.getFaculty();
             for (String tempFaculty : tempFacultyList) {
                 if (tempFaculty.toLowerCase().contains(userFaculty.trim().toLowerCase())) {
+                    isFound = true;
+                    isValid = true;
+                    if (count > 0) {
+                        System.out.println();
+                    }
                     ArrayList<DiningOptions> foodPlaceInfo = foodPlace.getInfo();
                     if (foodPlaceInfo.size() == 0) {
-                        System.out.println("There are no dining options in this faculty.");
+                        System.out.println("There are no dining options in " + tempFaculty + ".");
                     } else {
-                        displayCount = printDineResult(displayCount, tempFaculty, foodPlaceInfo);
-                        break;
+                        printDineResult(tempFaculty, foodPlaceInfo);
                     }
+                    count++;
                 }
             }
         }
-        if (displayCount == 0) {
-            System.out.println("No match found.");
+        if (!isFound) {
+            System.out.println("No match found. To see the list of faculties in NUS, type /faculty");
         }
     }
 

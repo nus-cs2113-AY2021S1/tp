@@ -1,7 +1,6 @@
 @startuml
-actor user
+
 box Logic
-participant ":Duke"
 participant ":Parser"
 participant ":DineCommand"
 end box
@@ -9,9 +8,7 @@ box Ui
 participant "<<class>>\n:Ui"
 end box
 
-user -> ":Duke"
-box Logic
-":Duke" -> ":Parser": user command
+[-> ":Parser": user command
 activate ":Parser"
 create ":DineCommand"
 ":Parser" -> ":DineCommand": user input
@@ -28,20 +25,20 @@ end
 ":DineCommand" -> ":DineCommand": checkFaculty()
 activate ":DineCommand"
 
-alt displaycount = 0
-    ":DineCommand" --> ":DineCommand": no match found
-else displaycount > 0
-    ":DineCommand" -> "<<class>>\n:Ui" : printDineResult()
+alt isFound = true
+    ":DineCommand" -> "<<class>>\n:Ui": printDineResult()
     activate "<<class>>\n:Ui"
-    "<<class>>\n:Ui" --> ":DineCommand"
+    "<<class>>\n:Ui" --> ":DineCommand": results
     deactivate "<<class>>\n:Ui"
-    ":DineCommand" --> ":DineCommand": results
-deactivate ":DineCommand"
+else isFound = false
+    ":DineCommand" --> ":DineCommand": no match found
 end
+":DineCommand" --> ":DineCommand"
+deactivate ":DineCommand"
 
 ":DineCommand" --> ":Parser": list of dining options
 deactivate ":DineCommand"
-":Parser" --> ":Duke"
+[<-- ":Parser": isOngoing
 deactivate ":Parser"
-":Duke" --> user
+
 @enduml

@@ -6,6 +6,7 @@ import seedu.duke.model.bus.BusStops;
 import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
 import seedu.duke.model.foodoptions.DiningOptions;
+import seedu.duke.model.foodoptions.FoodPlace;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -50,22 +51,23 @@ public class Ui {
     public static void printHelp() {
         printLine();
         System.out.println("Here are the range of commands:\n"
-                + "1. /route : Displays possible direct bus from point to point\n"
-                + "2. /routemap: Displays the route map with its intermediate bus stops\n"
-                + "3. /bus: Displays buses available at each bus stop\n"
-                + "4. /allbus: Lists all buses available in NUS Zone a\n"
-                + "5. /liststops: Lists all bus stops in NUS Zone a\n"
-                + "6. /dine: Search for dining options within a faculty\n"
-                + "7. /dineinfo: Search for a specific dining outlet\n"
-                + "8. /addfav: Add a favourite command\n"
-                + "9. /deletefav: Delete a favourite command\n"
-                + "10. /execfav: Execute a favourite command\n"
-                + "11. /descfav: Change the description for a favourite command\n"
-                + "12. /listfav: List all favourite commands\n"
-                + "13. /clearfav: Clear the list of favourite commands\n"
-                + "14. /exit: Exit program\n"
-                + "15. /reset: Reset frequent search data\n"
-                + "16. /help: List all available commands");
+                + "1. /route : Display possible direct bus from point to point\n"
+                + "2. /routemap: Display the route map with its intermediate bus stops\n"
+                + "3. /bus: Display buses available at each bus stop\n"
+                + "4. /allbus: List all buses available in NUS Zone a\n"
+                + "5. /liststops: List all bus stops in NUS\n"
+                + "6. /faculty: List all faculties in NUS\n"
+                + "7. /dine: Search for dining options within a faculty\n"
+                + "8. /dineinfo: Search for a specific dining outlet\n"
+                + "9. /addfav: Add a favourite command\n"
+                + "10. /deletefav: Delete a favourite command\n"
+                + "11. /execfav: Execute a favourite command\n"
+                + "12. /descfav: Change the description for a favourite command\n"
+                + "13. /listfav: List all favourite commands\n"
+                + "14. /clearfav: Clear the list of favourite commands\n"
+                + "15. /exit: Exit program\n"
+                + "16. /reset: Reset frequent search data\n"
+                + "17. /help: List all available commands");
         System.out.println("https://ay2021s1-cs2113t-f14-3.github.io/tp/UserGuide.html#1-what-is-navnus");
         printLine();
     }
@@ -96,8 +98,6 @@ public class Ui {
         }
         if (!isPossible) {
             System.out.println("none. There are no direct bus routes. :(");
-        } else {
-            System.out.println("To add the above command to your list of favourites simply type \"/addfav\" :)");
         }
         printLine();
     }
@@ -126,6 +126,9 @@ public class Ui {
     private static void printMostSearchedBusStop() {
         if (BusStops.mostSearchedBusStop() != null) {
             System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
+        } else {
+            System.out.println("As you search more, your most frequently searched bus stop will appear here "
+                    + "each time\nyou run this program!");
         }
     }
 
@@ -153,13 +156,25 @@ public class Ui {
         printLine();
     }
 
-    public static int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+    public static void printFacultyResult(ArrayList<FoodPlace> foodPlaceList) {
+        int count = 0;
+        System.out.println("List of all faculties in NUS: ");
+        for (FoodPlace foodPlace : foodPlaceList) {
+            ArrayList<String> tempFacultyList = foodPlace.getFaculty();
+            for (String faculty : tempFacultyList) {
+                count++;
+                System.out.println(count + ". " + faculty);
+            }
+        }
+    }
+
+    public static void printDineResult(String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        int displayCount = 0;
         System.out.println("The dining options available at " + tempFaculty + " are:");
         for (DiningOptions info : foodPlaceInfo) {
             displayCount++;
             System.out.println(displayCount + ". " + info.getName());
         }
-        return displayCount;
     }
 
     public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
@@ -199,6 +214,20 @@ public class Ui {
         printLine();
         System.out.println("Your description for command \"" + command + "\"\nhas been successfully changed from \""
                 + oldDesc + "\"\nto \"" + newDesc + "\"");
+        printLine();
+    }
+
+    public static void printCorruptedDataRead() {
+        System.out.println("Oh no! Some of the data in FavList.txt is corrupted.\n"
+                + "Most of the corrupted data has been removed :)");
+    }
+
+    public static void printBusAtBusStop(ArrayList<Bus> busList, String busStop) {
+        System.out.print(busStop + ":  ");
+        for (Bus bus : busList) {
+            System.out.print(bus.getBusNumber() + "   ");
+        }
+        System.out.println();
         printLine();
     }
 
