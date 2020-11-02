@@ -1,6 +1,5 @@
 @startuml
-actor user
-participant ":Duke"
+skinparam BoxPadding 30
 box logic #LightBlue
 participant ":Parser"
 participant ":AddFavCommand"
@@ -12,10 +11,11 @@ end box
 box Ui #A9D1D0
 participant "<<class>>\n:Ui"
 end box
-
-user ->":Duke"
-activate ":Duke"
-":Duke" -> ":Parser" : /addfav
+[-> ":Parser" : SetUserInput("/addfav")
+activate ":Parser"
+[<-- ":Parser"
+deactivate ":Parser"
+[-> ":Parser" : extractType()
 activate ":Parser"
 create ":AddFavCommand"
 ":Parser" -> ":AddFavCommand"
@@ -26,7 +26,7 @@ deactivate ":AddFavCommand"
 activate ":AddFavCommand"
 opt null command
     ":AddFavCommand" --> ":Parser"
-    ":Parser" --> ":Duke"
+    [<--":Parser"
 end
 ":AddFavCommand" -> ":AddFavCommand" : createFav()
 activate ":AddFavCommand"
@@ -49,10 +49,6 @@ activate ":AddFavCommand"
 deactivate ":AddFavCommand"
 ":AddFavCommand" -> ":FavList" : contains(Fav)
 activate ":FavList"
-note right
-the loop is not
-affiliated with UI
-end note
 loop size of FavList times
     ":FavList" -> ":Fav" : equals()
      activate ":Fav" 
@@ -73,9 +69,7 @@ opt no duplicate Fav
     deactivate "<<class>>\n:Ui"
     ":AddFavCommand" --> ":Parser"
     deactivate ":AddFavCommand"
-    ":Parser" --> ":Duke"
+    [<--":Parser"
     deactivate ":Parser"
-    ":Duke" --> user
-    deactivate ":Duke"
 
 @enduml
