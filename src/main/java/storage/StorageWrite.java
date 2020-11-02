@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 import static storage.StorageLoad.checkExists;
 
-//@@ author Darticune
 public class StorageWrite {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -56,6 +55,7 @@ public class StorageWrite {
         }
     }
 
+    //@@author Darticune
     protected static void updateExclusionFile(ArrayList<String> excludedChapters, String filePath)
             throws ExclusionFileException {
         try {
@@ -69,6 +69,7 @@ public class StorageWrite {
         }
     }
 
+    //@@author Darticune
     protected static boolean createChapterDue(String duePath, String dirPath) throws IOException {
         File due = new File(duePath);
         File dir = new File(dirPath);
@@ -82,15 +83,13 @@ public class StorageWrite {
         }
     }
 
+    //@@author Zhu-Ze-Yu
     public static void createHistoryDir() {
         File f = new File("data/history");
-
-        boolean historyDirExists = f.exists();
-        if (!historyDirExists) {
-            f.mkdir();
-        }
+        createDir(f);
     }
 
+    //@@author Darticune
     protected static void writeDeadlineToChapterDue(String dueBy, String chapterPath) throws IOException {
         FileWriter fw = new FileWriter(chapterPath);
         fw.write(dueBy);
