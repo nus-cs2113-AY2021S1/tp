@@ -102,8 +102,8 @@ Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISAR
 
 💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
-💡 Set `ISPIN` to true if you want the note to be pinned.  
-💡 Set `ISARHCIVE` to true if you want the note to be archived.
+💡 Set `ISPIN` to "true" if you want the note to be pinned. Any other input value will leave the note unpinned.  
+💡 Set `ISARCHIVE` to "true" if you want the note to be archived. Any other input value will leave the note unarchived.
 
 Subsequently, the application prompts the user to enter the content of the note. 
 
