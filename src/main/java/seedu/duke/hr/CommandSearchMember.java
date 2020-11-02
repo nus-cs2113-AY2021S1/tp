@@ -62,7 +62,8 @@ public class CommandSearchMember extends Command {
      * @return it is the command the user is calling or not
      */
     public int validate(UserInput input) {
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("search")) {
+        if (input.getCategory().equals("hr") && (input.getCommand().equalsIgnoreCase("search")
+            || input.getCommand().equalsIgnoreCase("s"))) {
             userInput = input;
             return ACCEPT;
         } else {

@@ -4,13 +4,15 @@ import seedu.duke.Command;
 import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents change information of a finance log entry.
+ */
 public class CommandFinanceChange extends Command {
     UserInput userinput;
 
     @Override
     public String execute() throws DukeNotNumberException {
         try {
-            int index = Integer.parseInt(userinput.getArg("i"));
             String input = userinput.getArg("n");
             String[] contents = input.trim().split(" ");
             int length = contents.length;
@@ -27,7 +29,12 @@ public class CommandFinanceChange extends Command {
                     throw new DukeNotNumberException();
                 }
             }
-            String output = FinanceList.changeFinanceLog(index, item, Double.parseDouble(contents[length - 1]));
+            double budget = Double.parseDouble(contents[length - 1]);
+            if (budget <= 0) {
+                return "Please input a valid number for budget amount.\n";
+            }
+            int index = Integer.parseInt(userinput.getArg("i"));
+            String output = FinanceList.changeFinanceLog(index, item, budget);
             return output;
         } catch (NumberFormatException e) {
             throw new DukeNotNumberException();
@@ -40,7 +47,8 @@ public class CommandFinanceChange extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("changelog")
+        if (ui.getCategory().equals("finance") && (ui.getCommand().equalsIgnoreCase("changelog")
+            || ui.getCommand().equalsIgnoreCase("c"))
             && ui.getArg("i") != null && ui.getArg("n") != null) {
             userinput = ui;
             return ACCEPT;

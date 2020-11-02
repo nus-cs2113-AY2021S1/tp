@@ -8,6 +8,9 @@ import seedu.duke.backend.UserInput;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents add finance log entry command.
+ */
 public class CommandFinanceAdd extends Command {
     private UserInput userinput;
     private Logger logger = Logger.getGlobal();
@@ -38,7 +41,11 @@ public class CommandFinanceAdd extends Command {
                     throw new DukeNotNumberException();
                 }
             }
-            FinanceLog fl = new FinanceLog(item,Double.parseDouble(contents[length - 1]));
+            double budget = Double.parseDouble(contents[length - 1]);
+            if (budget <= 0) {
+                return "Please input a valid number for budget amount.\n";
+            }
+            FinanceLog fl = new FinanceLog(item,budget);
             String output = FinanceList.addLog(fl);
             logger.info("End adding...\n");
             return output;
