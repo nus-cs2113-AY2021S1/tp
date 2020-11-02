@@ -26,7 +26,7 @@ public class BunnyList {
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
         String idea;
-        String genre = "";
+        String genre = "none";
 
         // parse bunny command into segments
         try {
@@ -44,7 +44,7 @@ public class BunnyList {
 
         assert commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
 
-        if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(IDEA_TAG).isBlank()) {
+        if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(GENRE_TAG).isBlank()) {
             genre = commandArguments.get(GENRE_TAG);
         }
 
