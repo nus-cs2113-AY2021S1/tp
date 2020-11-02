@@ -44,7 +44,6 @@ public class AddFavCommand extends Command {
         if (!FavList.contains(item)) {
             FavList.addFav(item);
             addFavMessage(input);
-            isValid = true;
         }
     }
 }
