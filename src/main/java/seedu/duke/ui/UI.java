@@ -338,7 +338,7 @@ public class UI {
         System.out.println(FluffleMessages.TOTAL_BUNNIES_IN_LIST_MSG + numBunny);
     }
 
-    public static void echoInput(String input){
+    public static void echoInput(String input) {
         System.out.println(input);
     }
 }
