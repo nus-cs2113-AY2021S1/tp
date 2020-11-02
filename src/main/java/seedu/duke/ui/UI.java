@@ -338,6 +338,10 @@ public class UI {
         System.out.println(FluffleMessages.TOTAL_BUNNIES_IN_LIST_MSG + numBunny);
     }
 
+    public static void printClearCommandSuccess(String type, String word) {
+        System.out.printf(FluffleMessages.CLEAR_SUCCESS_MESSAGE, type, word);
+    }
+
     public static void echoInput(String input) {
         System.out.println(input);
     }

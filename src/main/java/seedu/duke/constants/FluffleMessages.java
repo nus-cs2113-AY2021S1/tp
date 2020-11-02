@@ -131,10 +131,13 @@ public class FluffleMessages {
             + "by keying the date in the format \"dd/MM/yyyy\"";
     public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
             + "\"start\" command to add";
-    public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
 
     /** User interactive messages. */
     public static final String HELP_MESSAGE = "Please type in \"help\" command for information!";
+
+    /** Clear messages. */
+    public static final String CLEAR_SUCCESS_MESSAGE = "Nice! The %s \"%s\" has just been deleted from the database!\n";
+    public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
 
     /** Stop execution message. */
     public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
