@@ -18,6 +18,7 @@
 <a href =#faq>5. FAQ </a>
 <a href =#summary>6. Command Summary </a>
 </pre>
+
 ## 1. Introduction <a name="intro"></a>
 
 **revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
@@ -28,14 +29,13 @@ able to revise, even if they are doing it at the last minute.
 This user guide provides an in-depth documentation on the installation process, the program features, and
 the program usage to get you started.
 
-Here is a guide on how to use this UserGuide effectively:<br>
+Note the following symbols and formatting used in this document:
 
-1. Use the hyperlinks in the table of contents to navigate about the user guide quickly.
-2. The code is always marked out like `this` to distinguish it from the rest of the text.
-3. The **_NOTE:_** sections point out additional information that you can refer to for
-additional information regarding the application.
-4. The **_WARNING:_** sections point out things that you should avoid while using 
-the application.
+Symbols / Formatting|Meaning
+------|------
+ℹ️ **_NOTE:_** | Important or additional information
+⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
+`Grey highlight` | Code or terms related to the code/application
 
 
 ## 2. Quick Start <a name="start"></a>

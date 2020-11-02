@@ -49,6 +49,15 @@ This developer guide is for developers who wish to understand and/or develop Rev
 This guide includes design, implementation, product scope, user stories, non-functional requirements, glossary, 
 testing and development sections to help developers better understand the application.
 
+Note the following symbols and formatting used in this document:
+
+Symbols / Formatting|Meaning
+------|------
+ℹ️ **_NOTE:_** | Important or additional information
+⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
+✔️ **_TODO:_** | Things that should be but have not been done
+`Grey highlight` | Code or terms related to the code/application
+
 ## 2. Design & implementation <a name= "design"> </a>
 
 This section describes how RevisED has been designed and implemented so that developers can better understand the 
