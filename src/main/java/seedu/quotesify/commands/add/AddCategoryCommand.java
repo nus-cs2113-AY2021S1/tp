@@ -15,17 +15,36 @@ import seedu.quotesify.ui.TextUi;
 import java.util.List;
 import java.util.logging.Level;
 
+/**
+ * Represents an add category command.
+ */
 public class AddCategoryCommand extends AddCommand {
 
+    /**
+     * Constructor for add cateogry command with user input arguments.
+     *
+     * @param arguments user input arguments
+     */
     public AddCategoryCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the add category command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
         addCategoryToBookOrQuote(categories, ui);
     }
 
+    /**
+     * Prepares to addition of category to a book, quote, or both.
+     * @param categories list of categories
+     * @param ui Ui of the program
+     */
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
         try {
             String[] tokens = information.split(" ");
@@ -43,6 +62,13 @@ public class AddCategoryCommand extends AddCommand {
         }
     }
 
+    /**
+     * Executes user specified parameters for add category.
+     *
+     * @param categoryList list of categories
+     * @param parameters user specified parameters
+     * @param ui Ui of the program
+     */
     private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
             String categoryNames = parameters[0];
@@ -67,18 +93,31 @@ public class AddCategoryCommand extends AddCommand {
         }
     }
 
+    /**
+     * Adds a category to the list of categories.
+     *
+     * @param categories list of categories
+     * @param categoryName category name
+     */
     private void addCategoryToList(CategoryList categories, String categoryName) {
         if (!categories.isExistingCategory(categoryName)) {
             categories.add(new Category(categoryName));
         }
     }
 
+    /**
+     * Adds a category to a book.
+     *
+     * @param category category object
+     * @param bookNum book number
+     * @param ui Ui of the program
+     */
     private void addCategoryToBook(Category category, String bookNum, TextUi ui) {
         // ignore this action if user did not provide book title
         if (bookNum.isEmpty()) {
             return;
         }
-
+        assert category != null;
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
             int bookIndex = Integer.parseInt(bookNum) - 1;
@@ -105,12 +144,19 @@ public class AddCategoryCommand extends AddCommand {
         }
     }
 
+    /**
+     * Adds a category to a quote.
+     *
+     * @param category category object
+     * @param quoteNum quote number
+     * @param ui Ui of the program
+     */
     private void addCategoryToQuote(Category category, String quoteNum, TextUi ui) {
         // ignore this action if user did not provide quote number
         if (quoteNum.isEmpty()) {
             return;
         }
-
+        assert category != null;
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         try {
             int quoteIndex = Integer.parseInt(quoteNum) - 1;

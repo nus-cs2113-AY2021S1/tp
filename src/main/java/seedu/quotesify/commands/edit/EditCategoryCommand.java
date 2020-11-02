@@ -12,16 +12,36 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the edit category command.
+ */
 public class EditCategoryCommand extends EditCommand {
+    /**
+     * Constructor for edit category command with user specified arguments.
+     *
+     * @param arguments user specified arguments
+     */
     public EditCategoryCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the edit category command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
         editCategory(categories, ui);
     }
 
+    /**
+     * Edits the specified category.
+     *
+     * @param categoryList list of categories
+     * @param ui Ui of the program
+     */
     private void editCategory(CategoryList categoryList, TextUi ui) {
         quotesifyLogger.log(Level.INFO, "editing category.");
         try {
@@ -44,6 +64,12 @@ public class EditCategoryCommand extends EditCommand {
         }
     }
 
+    /**
+     * Updates the edited category to all books and quotes tagged.
+     *
+     * @param oldCategory old category name
+     * @param newCategory new category name
+     */
     public void editCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);

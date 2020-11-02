@@ -7,11 +7,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Represents a Category Parser.
+ */
 public class CategoryParser {
     private static final String TAG_BOOK = "-b";
     private static final String TAG_QUOTE = "-q";
     private static final String ERROR_INVALID_PARAMS = "Invalid parameters!";
 
+    /**
+     * Converts a string array to a stack.
+     *
+     * @param tokens array of string
+     * @return a stack of string
+     */
     private static Stack<String> convertStringArrayToStack(String[] tokens) {
         Stack<String> parameters = new Stack<>();
         for (String token : tokens) {
@@ -20,6 +29,13 @@ public class CategoryParser {
         return parameters;
     }
 
+    /**
+     * Fetches the essential parameters from a string array.
+     *
+     * @param tokens array of string
+     * @return array of string in {categories, book number, quote number} format
+     * @throws QuotesifyException if invalid parameters are specified
+     */
     public static String[] getRequiredParameters(String[] tokens) throws QuotesifyException {
         String categories;
         String bookTitle = "";
@@ -54,6 +70,12 @@ public class CategoryParser {
         return new String[]{categories, bookTitle, quoteNum};
     }
 
+    /**
+     * Returns an integer result after validation of parameters.
+     *
+     * @param parameters array of string in {categories, book number, quote number} format
+     * @return -1 if categories is empty, 0 if book number or quote number is empty, 1 if both are specified
+     */
     public static int validateParametersResult(String[] parameters) {
         String categoryName = parameters[0];
         String bookNum = parameters[1];
@@ -69,6 +91,13 @@ public class CategoryParser {
         return 1;
     }
 
+    /**
+     * Parses the user input for edit category command into a string array of parameters.
+     *
+     * @param information user specified input
+     * @return an array of parameters
+     * @throws QuotesifyException if invalid parameters are specified
+     */
     public static String[] getEditParameters(String information) throws QuotesifyException {
         try {
             String[] oldAndNewCategory = information.split(" /to ", 2);
@@ -79,6 +108,12 @@ public class CategoryParser {
         }
     }
 
+    /**
+     * Parses a string of space delimited category names into a list.
+     *
+     * @param categories user specified categories
+     * @return a list of category names
+     */
     public static List<String> parseCategoriesToList(String categories) {
         return Arrays.asList(categories.split(" "));
     }
