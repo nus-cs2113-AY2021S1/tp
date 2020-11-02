@@ -3,6 +3,7 @@ package seedu.duke.filters;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.bunnylist.BunnyList;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NoFilteredItemsException;
 
@@ -23,6 +24,8 @@ class BunnyFilterTest {
             e.printStackTrace();
         } catch (NoFilteredItemsException e) {
             e.printStackTrace();
+        } catch (CommandInvalidException e) {
+            e.printStackTrace();
         }
         assertEquals(2, BunnyFilter.filteredBunny.size());
     }
@@ -37,6 +40,8 @@ class BunnyFilterTest {
             e.printStackTrace();
         } catch (NoFilteredItemsException e) {
             e.printStackTrace();
+        } catch (CommandInvalidException e) {
+            e.printStackTrace();
         }
         assertEquals(2, BunnyFilter.filteredBunny.size());
     }
@@ -50,6 +55,8 @@ class BunnyFilterTest {
         } catch (MissingFilterOptionsException e) {
             e.printStackTrace();
         } catch (NoFilteredItemsException e) {
+            e.printStackTrace();
+        } catch (CommandInvalidException e) {
             e.printStackTrace();
         }
         assertEquals(1, BunnyFilter.filteredBunny.size());

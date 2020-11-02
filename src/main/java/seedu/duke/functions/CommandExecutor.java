@@ -10,6 +10,7 @@ import seedu.duke.database.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.BunnyListEmptyException;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.DividerCommandWrongFormatException;
 import seedu.duke.exceptions.DividerIndexOutOfBoundsException;
@@ -95,6 +96,8 @@ public class CommandExecutor {
                 UI.bunnyWrongFormat();
             } catch (BunnyIdeaMissingException e) {
                 UI.bunnyMissingIdea();
+            } catch (CommandInvalidException e) {
+                UI.commandNotRecognisedMsg();
             }
             break;
         case LIST_BUNNY:
@@ -107,6 +110,8 @@ public class CommandExecutor {
                 UI.bunnyMissingFilterOption();
             } catch (NoFilteredItemsException e) {
                 UI.bunnyFilterNoneFound();
+            } catch (CommandInvalidException e) {
+                UI.commandNotRecognisedMsg();
             }
             break;
         case SAVE_BUNNY:

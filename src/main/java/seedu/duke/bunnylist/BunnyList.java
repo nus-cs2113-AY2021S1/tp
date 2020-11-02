@@ -2,6 +2,7 @@ package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
 import seedu.duke.ui.UI;
@@ -22,7 +23,8 @@ public class BunnyList {
      * @throws CommandMissingArgumentsException The command for the adding a bunny is missing an argument
      * @throws BunnyIdeaMissingException The idea argument of the add bunny command is missing
      */
-    public static void addBunny(String userInput) throws CommandMissingArgumentsException, BunnyIdeaMissingException {
+    public static void addBunny(String userInput)
+            throws CommandMissingArgumentsException, BunnyIdeaMissingException, CommandInvalidException {
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
         String idea;
@@ -33,6 +35,8 @@ public class BunnyList {
             parseSingleCharacterTaggedParamsFromUserInput(userInput, commandArguments);
         } catch (MissingParamsException e) {
             throw new CommandMissingArgumentsException();
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new CommandInvalidException();
         }
 
         // check if there is task type param
@@ -44,9 +48,14 @@ public class BunnyList {
 
         assert commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
 
-        if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(GENRE_TAG).isBlank()) {
-            genre = commandArguments.get(GENRE_TAG);
+        try {
+            if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(GENRE_TAG).isBlank()) {
+                genre = commandArguments.get(GENRE_TAG);
+            }
+        } catch (NullPointerException e) {
+            throw new CommandInvalidException();
         }
+
 
         // todo: add the character list to bunny in ver 2
         //ArrayList<Character> characters = new ArrayList<>();
