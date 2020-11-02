@@ -20,11 +20,10 @@ public class EstimateParser extends CommandParser {
     private static final String TOO_MANY_SCRIPT_FILE = "AniChan can only process one script file at a time!";
     private static final String SPECIFIED_PATH_TO_SCRIPT_FILE = "Only specify the script file name!";
     private static final String INVALID_SCRIPT_FILE_FORMAT = "Only \".txt\" script files are accepted!";
-    private static final String INVALID_PARAMETER = "Estimate command only accepts the parameter: wph.";
+    private static final String INVALID_PARAMETER = "Estimate command only accepts the parameter: -wph.";
     private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS = "Estimate command" + TOO_MUCH_FIELDS;
     private static final String ESTIMATE_COMMAND_TOO_MANY_PARAMETERS = "Estimate command" + TOO_MUCH_PARAMETERS;
     private static final String NO_WORDS_PER_HOUR_SPECIFIED = "Words per hour information is missing!";
-    private static final String MULTIPLE_WORDS_PER_HOUR_SPECIFIED = "Only one words per hour value is needed!";
     private static final String WORDS_PER_HOUR_IS_ZERO = "Words per hour cannot be zero!";
 
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
@@ -81,7 +80,7 @@ public class EstimateParser extends CommandParser {
 
         String wordsPerHourString = parsedParts[1].trim();
         if (wordsPerHourString.contains(WHITESPACE)) {
-            throw new AniException(MULTIPLE_WORDS_PER_HOUR_SPECIFIED);
+            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS);
         } else if (isNegativeInteger(wordsPerHourString)) {
             throw new AniException(NOT_POSITIVE_INTEGER);
         } else if (!isInteger(wordsPerHourString)) {

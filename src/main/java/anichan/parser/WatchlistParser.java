@@ -51,10 +51,6 @@ public class WatchlistParser extends CommandParser {
             throw new AniException(paramGiven[0] + NOT_RECOGNISED);
         }
 
-        if (paramGiven[1].matches(REGEX_PARAMETER)) {
-            throw new AniException(WATCHLIST_COMMAND_TOO_MANY_PARAMETERS);
-        }
-
         String[] parsedParts = parameterParser(paramGiven);
         int watchlistIndex = 0;
         if (!parsedParts[2].equals(BLANK)) {
@@ -66,7 +62,6 @@ public class WatchlistParser extends CommandParser {
 
         LOGGER.log(Level.INFO, "Returning WatchlistCommand object with parameter: "
                                     + parsedParts[0] + ", and information: " + parsedParts[1] + ", " + parsedParts[2]);
-
         String parameter = parsedParts[0];
         String watchlistName = parsedParts[1];
         return new WatchlistCommand(parameter, watchlistName, watchlistIndex);
@@ -80,6 +75,12 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when an error while parsing the parameters
      */
     private String[] parameterParser(String[] paramGiven) throws AniException {
+        if (paramGiven[1].matches(REGEX_PARAMETER)) {
+            throw new AniException(WATCHLIST_COMMAND_TOO_MANY_PARAMETERS);
+        } else if (paramGiven[1].startsWith(WHITESPACE)) {
+            throw new AniException(INVALID_PARAMETER);
+        }
+
         String[] parsedParts = paramGiven[1].trim().split(WHITESPACE, 2);
         String parameter = parsedParts[0].trim();
         switch (parameter) {
