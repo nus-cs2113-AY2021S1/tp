@@ -87,7 +87,7 @@ public class FluffleMessages {
 
     /** Filter messages. */
     public static final String INVALID_FILTER_CODE = "invalid filter type in the code";
-    public static final String NO_FILTER_RESULT = "Filter returns no result!!";
+    public static final String NO_FILTER_RESULT = "Nothing was found in the filter list!!";
     public static final String FILTER_MESSAGE = "Printing all %d word(s) in your filter list:\n";
     public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s) "
             + "from your filter list:\n";
