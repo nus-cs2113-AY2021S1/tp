@@ -1134,7 +1134,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 ### D.2: Estimate the time needed to translate a script
 1.  Estimating the time needed to translate a script.
     1.  Prerequisite: Have a non-empty `script.txt` file in the current workspace folder.
-        1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. text of this developer guide).
+        1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. random words and sentences).
         2.  Go to the folder containing `AniChan.jar`.
         3.  Open the `data` folder (if it does not exist, restart **AniChan**).
         4.  In the `data` folder, find and open the folder named after the current workspace (if the input prompt shows `Default (myWatchlist) #>`, then look for the folder named "Default" as that is the current workspace name).
