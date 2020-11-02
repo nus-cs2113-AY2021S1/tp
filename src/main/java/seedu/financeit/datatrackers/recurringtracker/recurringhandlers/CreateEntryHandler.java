@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commands;
+package seedu.financeit.datatrackers.recurringtracker.commandhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -22,11 +22,12 @@ import static seedu.financeit.utils.ParamChecker.PARAM_INC;
  * The populated entry will be stored within the class, and can be retrieved by calling a
  * corresponding getter method.
  */
-public class CreateEntryCommand extends ParamHandler {
+public class CreateEntryHandler extends ParamHandler {
     RecurringEntry recurringEntry;
+    private static CreateEntryHandler handler = null;
 
-    public CreateEntryCommand() {
-        this.setRequiredParams(
+    public CreateEntryHandler() {
+        setRequiredParams(
             PARAM_DAY,
             PARAM_DESCRIPTION,
             PARAM_AMOUNT,
@@ -34,10 +35,17 @@ public class CreateEntryCommand extends ParamHandler {
         );
     }
 
+    public static CreateEntryHandler getInstance() {
+        if(handler == null) {
+            handler = new CreateEntryHandler();
+        }
+        return handler;
+    }
+
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
-            this.recurringEntry = new RecurringEntry();
-            this.handleParams(packet);
+            recurringEntry = new RecurringEntry();
+            handleParams(packet);
         } catch (ItemNotFoundException exception) {
             // Fall-through
         }
@@ -47,27 +55,27 @@ public class CreateEntryCommand extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DAY:
-            this.recurringEntry.setDay(ParamChecker.getInstance().checkAndReturnInt(paramType));
+            recurringEntry.setDay(ParamChecker.getInstance().checkAndReturnInt(paramType));
             break;
         case ParamChecker.PARAM_AMOUNT:
-            this.recurringEntry.setAmount(ParamChecker.getInstance().checkAndReturnDouble(paramType));
+            recurringEntry.setAmount(ParamChecker.getInstance().checkAndReturnDouble(paramType));
             break;
         case ParamChecker.PARAM_INC:
-            this.recurringEntry.setEntryType(Common.EntryType.INC);
+            recurringEntry.setEntryType(Common.EntryType.INC);
             break;
         case ParamChecker.PARAM_EXP:
-            this.recurringEntry.setEntryType(Common.EntryType.EXP);
+            recurringEntry.setEntryType(Common.EntryType.EXP);
             break;
         case ParamChecker.PARAM_DESCRIPTION:
             String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);
-            this.recurringEntry.setDescription(description);
+            recurringEntry.setDescription(description);
             break;
         case ParamChecker.PARAM_AUTO:
-            this.recurringEntry.setAuto(true);
+            recurringEntry.setAuto(true);
             break;
         case ParamChecker.PARAM_NOTES:
             String notes = ParamChecker.getInstance().checkAndReturnDescription(paramType);
-            this.recurringEntry.setNotes(notes);
+            recurringEntry.setNotes(notes);
             break;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
@@ -76,6 +84,6 @@ public class CreateEntryCommand extends ParamHandler {
     }
 
     public RecurringEntry getCurrEntry() {
-        return this.recurringEntry;
+        return recurringEntry;
     }
 }

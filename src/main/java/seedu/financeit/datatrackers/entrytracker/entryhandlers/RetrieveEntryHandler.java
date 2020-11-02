@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commands;
+package seedu.financeit.datatrackers.entrytracker.commands;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -6,35 +6,34 @@ import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
-import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
+import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.util.Arrays;
 
 import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
-import static seedu.financeit.utils.ParamChecker.PARAM_AUTO;
-import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
+import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
 import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 
-//@@author Artemis-Hunt
 /**
  * Command class to reference an existing entry instance with specified parameter values.
- * Entry will then be referenced for the ItemList instance as currItem.
+ * Ledger will then be referenced for the ItemList instance as currItem.
  */
-public class RetrieveEntryCommand extends ParamHandler {
-    RecurringEntryList entryList;
+public class RetrieveEntryHandler extends ParamHandler {
+    EntryList entryList;
 
-    public RetrieveEntryCommand() {
+    public RetrieveEntryHandler(String... params) {
         this.setRequiredParams(
             PARAM_INDEX
         );
     }
 
-    public void handlePacket(CommandPacket packet, RecurringEntryList entryList)
+    public void handlePacket(CommandPacket packet, EntryList entryList)
         throws InsufficientParamsException, ItemNotFoundException {
         this.entryList = entryList;
         this.handleParams(packet);
@@ -50,12 +49,12 @@ public class RetrieveEntryCommand extends ParamHandler {
             return;
         default:
             String[] ignoreParams = {
-                PARAM_DAY,
-                PARAM_AUTO,
-                PARAM_AMOUNT,
+                PARAM_TIME,
                 PARAM_DESCRIPTION,
-                PARAM_EXP,
-                PARAM_INC
+                PARAM_CATEGORY,
+                PARAM_AMOUNT,
+                PARAM_INC,
+                PARAM_EXP
             };
             if (!Arrays.asList(ignoreParams).contains(paramType)) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,

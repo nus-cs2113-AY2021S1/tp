@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commands;
+package seedu.financeit.datatrackers.recurringtracker.commandhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -19,10 +19,18 @@ import java.util.Arrays;
  */
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
-public class EditEntryCommand extends ParamHandler {
+public class EditEntryHandler extends ParamHandler {
     RecurringEntry recurringEntry;
+    private static EditEntryHandler handler = null;
 
-    public EditEntryCommand(RecurringEntry recurringEntry) {
+    public static EditEntryHandler getInstance() {
+        if(handler == null) {
+            handler = new EditEntryHandler();
+        }
+        return handler;
+    }
+
+    public void setEntry(RecurringEntry recurringEntry) {
         this.recurringEntry = recurringEntry;
     }
 
@@ -38,10 +46,12 @@ public class EditEntryCommand extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DAY:
-            this.recurringEntry.setDay(ParamChecker.getInstance().checkAndReturnInt(paramType));
+            int day = ParamChecker.getInstance().checkAndReturnInt(paramType);
+            this.recurringEntry.setDay(day);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            this.recurringEntry.setAmount(ParamChecker.getInstance().checkAndReturnDouble(paramType));
+            double amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.recurringEntry.setAmount(amount);
             break;
         case ParamChecker.PARAM_INC:
             this.recurringEntry.setEntryType(Common.EntryType.INC);
@@ -50,13 +60,15 @@ public class EditEntryCommand extends ParamHandler {
             this.recurringEntry.setEntryType(Common.EntryType.EXP);
             break;
         case ParamChecker.PARAM_DESCRIPTION:
-            this.recurringEntry.setDescription(packet.getParam(paramType));
+            String description = packet.getParam(paramType);
+            this.recurringEntry.setDescription(description);
             break;
         case ParamChecker.PARAM_AUTO:
             this.recurringEntry.setAuto(true);
             break;
         case ParamChecker.PARAM_NOTES:
-            this.recurringEntry.setNotes(packet.getParam(paramType));
+            String notes = packet.getParam(paramType);
+            this.recurringEntry.setNotes(notes);
             break;
         default:
             String[] ignoreParams = {

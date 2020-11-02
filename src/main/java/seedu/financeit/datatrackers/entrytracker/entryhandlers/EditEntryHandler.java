@@ -25,10 +25,10 @@ import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
  * Command class to edit an existing entry instance with specified parameter values.
  * Entry to be edited must be referenced via the constructor argument.
  */
-public class EditEntryCommand extends ParamHandler {
+public class EditEntryHandler extends ParamHandler {
     Entry entry;
 
-    public EditEntryCommand(Entry entry) {
+    public EditEntryHandler(Entry entry) {
         this.entry = entry;
     }
 
