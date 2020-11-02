@@ -17,7 +17,7 @@ class InfoParserTest {
     protected static final String INVALID_PARAMETER1 = "-n 1";
     protected static final String INVALID_PARAMETER2 = "- -";
     protected static final String INVALID_PARAMETER3 = "- a";
-    protected static final String NON_INTEGER_FIELD1 = "-a Gundam";
+    protected static final String NON_INTEGER_FIELD1 = "-a Sword Art Online";
     protected static final String NON_INTEGER_FIELD2 = "-a -";
     protected static final String TOO_MANY_PARAMETERS = "-a 1 -a 2";
     protected static final String LARGE_INTEGER_ERROR = "-a 1111111111111";
