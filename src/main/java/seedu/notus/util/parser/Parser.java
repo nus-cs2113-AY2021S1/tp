@@ -186,7 +186,7 @@ public abstract class Parser {
             Scanner input = new Scanner(System.in);
             inputString = new ArrayList<>();
 
-            System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true));
+            System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true, true));
             try {
                 // Type note
                 String lastLine = "";
