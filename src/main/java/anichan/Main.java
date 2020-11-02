@@ -30,35 +30,12 @@ public class Main {
     private User user;
 
     public Main() {
-        user = null;
         ui = new Ui();
         parser = new Parser();
         storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
-
-        ui.printWelcomeMessage();
-        LOGGER.log(Level.INFO, "AniChan started! Initializing...");
-
-        // ========================== Initialize AniChan ==========================
-
-        ui.printHorizontalLine();
-        loadUserData();
-        ArrayList<Workspace> workspaceList = loadWorkspaceData();
-        ui.printHorizontalLine();
-
-        if (user == null) {
-            newUserSetup();
-        }
-
-        workspaceSetup(workspaceList);
-
-        // ========================== AnimeDate Setup ==========================
-
-        try {
-            animeData = new AnimeData();
-        } catch (AniException exception) {
-            ui.printMessage("\tAnimeData: " + exception.getMessage());
-            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
-        }
+        displayWelcome();
+        userSetup();
+        animeDataSetup();
     }
 
     public void run() {
@@ -79,8 +56,47 @@ public class Main {
         }
     }
 
+    /**
+     * The starting point of AniChan.
+     *
+     * @param args are the arguments parsed in (if any)
+     */
     public static void main(String[] args) {
         new Main().run();
+    }
+
+    /**
+     * Prints the welcome message.
+     */
+    private void displayWelcome() {
+        ui.printWelcomeMessage();
+        LOGGER.log(Level.INFO, "AniChan started! Initializing...");
+        ui.printHorizontalLine();
+    }
+
+    /**
+     * Calls the relevant methods to load or setup the user and his workspaces.
+     */
+    private void userSetup() {
+        loadUserData();
+        ArrayList<Workspace> workspaceList = loadWorkspaceData();
+        if (user == null) {
+            newUserSetup();
+        }
+        workspaceSetup(workspaceList);
+        ui.printHorizontalLine();
+    }
+
+    /**
+     * Performs the loading of the source data, AnimeData.
+     */
+    private void animeDataSetup() {
+        try {
+            animeData = new AnimeData();
+        } catch (AniException exception) {
+            ui.printMessage("\tAnimeData: " + exception.getMessage());
+            LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
+        }
     }
 
     /**
@@ -117,7 +133,6 @@ public class Main {
             Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
             workspaceList.add(workspace);
         }
-
         return workspaceList;
     }
 
