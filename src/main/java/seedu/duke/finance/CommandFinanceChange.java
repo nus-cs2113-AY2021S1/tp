@@ -13,7 +13,6 @@ public class CommandFinanceChange extends Command {
     @Override
     public String execute() throws DukeNotNumberException {
         try {
-            int index = Integer.parseInt(userinput.getArg("i"));
             String input = userinput.getArg("n");
             String[] contents = input.trim().split(" ");
             int length = contents.length;
@@ -34,6 +33,7 @@ public class CommandFinanceChange extends Command {
             if (budget <= 0) {
                 return "Please input a valid number for budget amount.\n";
             }
+            int index = Integer.parseInt(userinput.getArg("i"));
             String output = FinanceList.changeFinanceLog(index, item, budget);
             return output;
         } catch (NumberFormatException e) {
