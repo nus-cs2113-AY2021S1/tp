@@ -66,12 +66,11 @@ class FoodListTest {
     }
 
     @Test
-    void dateComparisonTest() {
+    @DisplayName("Dated entry comparison test")
+    void compareDatedEntries_datedEntriesAtDiffDate_compareToResult() {
         DatedFoodEntry entry = new DatedFoodEntry(2, food);
         DatedFoodEntry pastEntry = new DatedFoodEntry(2, food, LocalDateTime.MIN);
-
         assertTrue(entry.compareTo(pastEntry) > 0);
-
     }
 
     @Test
@@ -104,20 +103,11 @@ class FoodListTest {
 
         assertEquals(list.getPortionedFoods().toString(), 
                 list.getPortionedFoodsInDateTimeRange(LocalDateTime.MIN, LocalDateTime.MAX).toString());
-        assertEquals(list.toString(), list.getInDateTimeRangeToString(LocalDateTime.MIN, LocalDateTime.MAX));
+        assertEquals(datedList.toString(), 
+                datedList.getInDateTimeRangeToString(start, end));
 
         LocalDateTime timeNow = LocalDateTime.now();
-
-        if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
-            try {
-                TimeUnit.SECONDS.sleep(1);
-                timeNow = LocalDateTime.now();
-            } catch (InterruptedException e) {
-                System.out.println("Unexpected Interruption");
-            }
-        }
-
-        assertTrue(list.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
+        assertTrue(datedList.getFoodsInDateTimeRange(timeNow, LocalDateTime.MAX).size() == 0);
 
     }
 
@@ -130,6 +120,7 @@ class FoodListTest {
     }
 
     @Test
+    @DisplayName("Adding backlog entry test")
     void addAndRetrieveEntryAtDateTime_entryAddedAtDateTimeMax_entryAtDateTimeMax() {
         list.addFoodAtDateTime(2, food, LocalDateTime.MAX);
         
