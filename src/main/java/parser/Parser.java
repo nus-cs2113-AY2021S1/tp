@@ -1,22 +1,7 @@
 package parser;
 
 import access.Access;
-import commands.AddCommand;
-import commands.BackCommand;
-import commands.Command;
-import commands.EditCommand;
-import commands.ExcludeCommand;
-import commands.ExitCommand;
-import commands.GoCommand;
-import commands.HelpCommand;
-import commands.HistoryCommand;
-import commands.ListCommand;
-import commands.ListDueCommand;
-import commands.PreviewCommand;
-import commands.RemoveCommand;
-import commands.RescheduleCommand;
-import commands.ReviseCommand;
-import commands.ShowRateCommand;
+import commands.*;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
@@ -80,6 +65,8 @@ public class Parser {
         case RescheduleCommand.COMMAND_WORD:
             return new RescheduleCommandParser().parse(commandArgs, accessLevel);
 
+        case IncludeCommand.COMMAND_WORD:
+            return new IncludeCommandParser().parse(commandArgs);
         default:
             throw new InvalidInputException(MESSAGE_INVALID_COMMAND_TYPE);
         }
