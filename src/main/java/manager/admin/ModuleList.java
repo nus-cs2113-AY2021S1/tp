@@ -35,7 +35,7 @@ public class ModuleList {
         String newModuleName = newModule.getModuleName().toLowerCase();
         for (Module module : modules) {
             String moduleName = module.getModuleName().toLowerCase();
-            if(moduleName.equals(newModuleName)) {
+            if (moduleName.equals(newModuleName)) {
                 return true;
             }
         }

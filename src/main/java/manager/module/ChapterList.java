@@ -35,7 +35,7 @@ public class ChapterList {
         String newChapterName = newChapter.getChapterName().toLowerCase();
         for (Chapter chapter : chapters) {
             String chapterName = chapter.getChapterName().toLowerCase();
-            if(chapterName.equals(newChapterName)) {
+            if (chapterName.equals(newChapterName)) {
                 return true;
             }
         }
