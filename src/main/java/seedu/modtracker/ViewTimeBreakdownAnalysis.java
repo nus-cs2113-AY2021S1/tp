@@ -193,7 +193,7 @@ public class ViewTimeBreakdownAnalysis {
      */
     public Analysis computeAnalysisOfTimeSpent(Module m, int weekNumber) {
         double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
-        int expectedTime = m.getExpectedWorkload();
+        double expectedTime = m.getExpectedWorkload();
 
         double percentageDifference = Math.round((actualTime - (double) expectedTime) * 1000.0)
                 / (expectedTime * 10.0);
