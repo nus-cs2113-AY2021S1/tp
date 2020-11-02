@@ -149,25 +149,30 @@ public class MemberList {
      * @return output message for the user.
      */
     public static String changeMemberInfo(Member m, String newPhone, String newEmail, String newRole) {
+        String output = "";
         try {
             if (newPhone != null) {
                 Long phone = Long.parseLong(newPhone);
+                if (phone < 0) {
+                    output = "OOPS!!! The phone number should be a positive number.";
+                    return output;
+                }
                 m.setMemberPhone(phone);
             }
         } catch (Exception e) {
-            return "OOPS!!! The format of the phone number given is incorrect.\n"
+            output = "OOPS!!! The format of the phone number given is incorrect.\n"
                     + "The phone number should be a whole number less than 19 digits.\n";
+            return output;
         }
 
         if (newEmail != null) {
             m.setMemberEmail(newEmail);
         }
 
-
         if (newRole != null) {
             m.setMemberRole(newRole);
         }
-        String output = "I have changed the information of this member:\n";
+        output = "I have changed the information of this member:\n";
         output = output.concat(m.toString());
         return output;
     }
