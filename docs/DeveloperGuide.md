@@ -166,7 +166,7 @@ Command used to add notes.
 
 **PinCommand**
 
-Command will be used to pin/unpin notes.
+Command used to pin/unpin notes.
 
 1. Created by the parserManager.
 1. Gets the note that is referenced either by title or index.
