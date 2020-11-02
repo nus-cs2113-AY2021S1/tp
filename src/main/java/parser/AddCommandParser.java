@@ -56,7 +56,7 @@ public class AddCommandParser {
     //@@author gua-guargia
     private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
         try {
-            if (checkSpecialCharacter(commandArgs)) {
+            if (!checkSpecialCharacter(commandArgs)) {
                 throw new InvalidInputException();
             }
             return new AddModuleCommand(commandArgs);
@@ -67,7 +67,7 @@ public class AddCommandParser {
 
     private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
         try {
-            if (checkSpecialCharacter(commandArgs)) {
+            if (!checkSpecialCharacter(commandArgs)) {
                 throw new InvalidInputException();
             }
             return new AddChapterCommand(commandArgs);
@@ -77,9 +77,9 @@ public class AddCommandParser {
     }
 
     private static boolean checkSpecialCharacter(String commandArgs) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9\\s]+$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(commandArgs);
-        boolean includeSpecialCharacter = matcher.find();
+        boolean includeSpecialCharacter = matcher.matches();
         return includeSpecialCharacter;
     }
 
