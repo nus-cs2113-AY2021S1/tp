@@ -10,7 +10,6 @@ public class ModView {
     public static final String FIRST_PART_OF_HEADER = "| Week | Module ";
     public static final String SECOND_PART_OF_HEADER = "| Expected |  Actual  |\n";
     public static final String NO_INPUT = " No Input ";
-    private static final int DECIMAL_PLACES = 1;
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String WEEK_NUMBER_PADDING_CHAR = "0";
@@ -91,7 +90,7 @@ public class ModView {
 
         if (m.doesActualTimeExist(weekNumber)) {
             double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
-            actualTime = round(actualTime, DECIMAL_PLACES);
+            actualTime = Math.round(actualTime * 100) / 100.0;
             String actualWorkLoad = (isTwoDigitNumber((int) actualTime) ? "" : PADDING_CHAR)
                     + actualTime;
             out = out.replace(REPLACE_BY_ACTUAL_WORKLOAD, actualWorkLoad);
@@ -124,15 +123,8 @@ public class ModView {
         return true;
     }
 
-    private double round(double value, int decimalPlaces) {
-        int scale = (int) Math.pow(FACTOR, decimalPlaces);
-        return (double) Math.round(value * scale) / scale;
-    }
-
     private boolean isTwoDigitNumber(double num) {
-        int value = (int)num;
-        return String.valueOf(value).length() == 2;
-        //return String.valueOf(num).length() == 2;
+        return String.valueOf((int) num).length() == 2;
     }
 
     private String[] updateTemplates(int extraCharsToBeAdded) {
