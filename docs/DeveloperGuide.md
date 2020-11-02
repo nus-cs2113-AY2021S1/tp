@@ -80,6 +80,8 @@ Aspect: Design of parser
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
 
+[Return to top](#CCA-manager-developer-guide)
+
 ### 3.2. Commands
 **Current Implementation**  
 The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the UI and UserInput objects.
@@ -121,6 +123,7 @@ Aspect: `Command` resolution and validation
     * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
 
+[Return to top](#CCA-manager-developer-guide)
 
 ### 3.3. Finance  
 The diagram below shows the architecture of Finance feature:  
@@ -245,23 +248,24 @@ The sequence diagram of changing information of a finance log entry is shown bel
 ![](financeDiagramPic/CommandFinanceChange.png)
 
 
-
+[Return to top](#CCA-manager-developer-guide)
 ### 3.4. Event
-The diagram below shows the architecture for Event feature. 
+The diagrams below shows the architecture for Event feature. 
 
 ![](EventDiagram/EventArchi1.png)
 
 ![](EventDiagram/EventArchi2.png)
 
-
 There are a total of 6 commands under Event feature.
- `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`(coming soon),`CommandDelEventAttendance`(coming soon), `CommandViewEventAttendence`(coming soon). 
+ `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
+ They are packaged under EventCommands as shown above.
  
- The implementation for each command is described in detail below.
+ The implementation for each Event command is described in detail below.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 
-**3.4.1.1. Current Implementation**
+**3.4.1.1. Current Implementation** <br/>
+
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
@@ -291,14 +295,16 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
-**3.4.1.2. Design Considerations**
+**3.4.1.2. Design Considerations** <br/>
 Aspect : User input format for adding an event <br/>
-*Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`.
-*pros: Easy to detect if user input is valid for each parameter, `/n`,`/d`and`/t`.
-*cons : It may be hard for the user to memorise the command format at the beginning.
-*Alternative 2 : User input with the format `event addevent EVENT_NAME EVENT_DATE EVENT_TIME`
-*pros: It is more convenient for the user to type commands and easier to memorise the command format.
-*cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered.
+
+*Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
+*pros: Easy to detect if user input is valid for each parameter, `/n`,`/d`and`/t`. <br/>
+*cons : It may be hard for the user to memorise the command format at the beginning. <br/>
+
+*Alternative 2 : User input with the format `event addevent EVENT_NAME EVENT_DATE EVENT_TIME` <br/>
+*pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
+*cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
 The sequence diagram for deleting a particular event or all events is as shown below:
 
@@ -324,15 +330,15 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 
 ![](EventDiagram/EventSteps/Step2.png)
 
-**3.4.2.2. Design Considerations**
- Aspect: Repeated items  
+**3.4.2.2. Design Considerations** <br/>
+ Aspect: Repeated items  <br/>
  *Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
- When a new event is being added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
- to the event list.
- *Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid.
+ When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
+ to the event list. <br/>
+ *Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
  
- *Alternative 2 : Program accepts duplicated events and filters the duplicates for the user.
- *Cons : The duplicate list is redundant to the user.
+ *Alternative 2 : Program accepts duplicated events and filters the duplicates for the user. <br/>
+ *Cons : The duplicate list is redundant to the user. <br/>
  
 
 The sequence diagram for listing events is as shown below:
@@ -342,7 +348,7 @@ The sequence diagram for listing events is as shown below:
 **3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
 **Current Implementation**
-The `CommandSearchEvent` class in `seedu.duke.event` handles search of an event via its name or its date.
+The `CommandSearchEvent` class in `seedu.duke.event` handles searching of an event via its name or its date.
 
 It implements the following operation:  
 * `CommandSearchEvent#execute()` - Search all `Event` in `EventList` for the name or date entered by user.
@@ -448,6 +454,8 @@ Step 4.The user executes `event listAttendance` command to list the event partic
 The sequence diagram for listing participants in an event is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandViewEventAttendance.png)
+
+[Return to top](#CCA-manager-developer-guide)
 
 ### 3.5. HR
 The diagram below shows the architecture for HR feature.<br/>
@@ -577,6 +585,8 @@ Aspect: Changing member information
     *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
     command to find out the index of the target member, before he can change the member's information.  
 
+[Return to top](#CCA-manager-developer-guide)
+
 ### 3.6. Storage
 
 ![](BackendDiagram/StorageFlow.png)
@@ -629,12 +639,15 @@ Aspect: The format of the file
     * Pros: Able to tailor the design of the file format to suit the requirements of the program.
     * Cons: May not be editable by the user with a text editor. Does not offer compatability with any existing programs.
     
+[Return to top](#CCA-manager-developer-guide)
+
 ## 4. Product scope
 ### 4.1. Target user profile
 
 Our product targets people who manage interest groups and CCAs. 
 However, our software solution allows us to easily expand the target audience to target schools and corporate enterprise clients in the future.
 
+[Return to top](#CCA-manager-developer-guide)
 ### 4.2. Value proposition
 
 Management software is expensive and complex, training employees to use it is time-consuming. CCA Manager aims to solve these
@@ -642,6 +655,7 @@ problems by offering an all-in-one solution focused on simplicity and efficiency
 Our use of industry standard csv format ensures compatibility with leading industry tools. 
 Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. 
 
+[Return to top](#CCA-manager-developer-guide)
 ## 5. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -658,6 +672,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 
+[Return to top](#CCA-manager-developer-guide)
 ## 6. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -665,10 +680,12 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 3. A user with average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The program should support writing to a universally supported and easy to edit non-proprietary file format such as RFC 4180 .csv files.
 
+[Return to top](#CCA-manager-developer-guide)
 ## 7. Glossary
 
 * *glossary item* - Definition
 
+[Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
 
 This section contains information on how to test CCA Manager to ensure that the basic functionalities are working.
@@ -703,3 +720,4 @@ This section contains information on how to test CCA Manager to ensure that the 
 18. Type `bye` to exit the program
 19. Launch the application again and repeat step 3 to verify that all the entries have been deleted.
 
+[Return to top](#CCA-manager-developer-guide)
