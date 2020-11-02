@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.manualtracker.commands;
+package seedu.financeit.datatrackers.manualtracker.ledgerhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -19,13 +19,21 @@ import static seedu.financeit.utils.ParamChecker.PARAM_DATE;
  * The populated ledger will be stored within the class, and can be retrieved by calling a
  * corresponding getter method.
  */
-public class CreateLedgerCommand extends ParamHandler {
+public class CreateLedgerHandler extends ParamHandler {
     Ledger ledger;
+    private static CreateLedgerHandler handler = null;
 
-    public CreateLedgerCommand(String... paramTypes) {
+    private CreateLedgerHandler() {
         this.setRequiredParams(
             PARAM_DATE
         );
+    }
+
+    public static CreateLedgerHandler getInstance() {
+        if (handler == null) {
+            handler = new CreateLedgerHandler();
+        }
+        return handler;
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {

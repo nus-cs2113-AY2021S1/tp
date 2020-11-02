@@ -64,12 +64,12 @@ rectangle Commands {
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class editEntryCommand {
+        class editEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveEntryCommand {
+        class retrieveEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -90,14 +90,14 @@ rectangle Commands {
     ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
     ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black
     ParamChecker "1" <.[norank]. createEntryCommand #line:blue;text:black
-    ParamChecker "1" <.[norank]. editEntryCommand #line:blue;text:black
-    ParamChecker "1" <.[norank]. retrieveEntryCommand #line:blue;text:black
+    ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. XYZCommands #line:blue;text:black
     ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
     ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
     ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
+    ParamHandler <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
+    ParamHandler <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
     ParamHandler <|-[norank]- XYZCommands #line:purple;line.bold;text:red
 
     note bottom of XYZCommands: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.

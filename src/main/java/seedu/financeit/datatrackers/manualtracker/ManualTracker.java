@@ -7,8 +7,8 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.datatrackers.entrytracker.EntryTracker;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
-import seedu.financeit.datatrackers.manualtracker.commands.CreateLedgerCommand;
-import seedu.financeit.datatrackers.manualtracker.commands.RetrieveLedgerCommand;
+import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.CreateLedgerHandler;
+import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.RetrieveLedgerHandler;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -120,14 +120,14 @@ public class ManualTracker {
 
     static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        CreateLedgerCommand command = new CreateLedgerCommand();
+        CreateLedgerHandler createLedgerHandler = CreateLedgerHandler.getInstance();
 
         Ledger ledger;
         try {
             // CreateLedgerCommand instance generates a new Ledger instance
             // from the params specified in the command.
-            command.handlePacket(packet);
-            ledger = command.getCurrLedger();
+            createLedgerHandler.handlePacket(packet);
+            ledger = createLedgerHandler.getCurrLedger();
 
             // Checking of duplicates
             if (ledgerList.isItemDuplicate(ledger)) {
@@ -148,7 +148,7 @@ public class ManualTracker {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 "Duplicate item already exists in the list; not added!");
         } finally {
-            if (!command.getHasParsedAllRequiredParams()) {
+            if (!createLedgerHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -159,11 +159,11 @@ public class ManualTracker {
     static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger deletedLedger;
-        RetrieveLedgerCommand command = new RetrieveLedgerCommand();
+        RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
         try {
             // RetrieveLedgerCommand instance retrieves the corresponding ledger instance
             // from the ledgerList instance.
-            command.handlePacket(packet, ledgerList);
+            retrieveLedgerHandler.handlePacket(packet, ledgerList);
             deletedLedger = (Ledger) ledgerList.getItemAtCurrIndex();
 
             // Deletion of ledger.
@@ -174,7 +174,7 @@ public class ManualTracker {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
         } finally {
-            if (!command.getHasParsedAllRequiredParams()) {
+            if (!retrieveLedgerHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -195,11 +195,11 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger;
-        RetrieveLedgerCommand command = new RetrieveLedgerCommand();
+        RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
         try {
             // RetrieveLedgerCommand instance retrieves the corresponding ledger instance
             // from the ledgerList instance.
-            command.handlePacket(packet, ledgerList);
+            retrieveLedgerHandler.handlePacket(packet, ledgerList);
             ledger = (Ledger) ledgerList.getItemAtCurrIndex();
 
             // Set EntryTracker to access entries stored under this particular ledger instance.
@@ -224,7 +224,7 @@ public class ManualTracker {
             handleCreateLedger();
             return handleOpenLedger();
         } finally {
-            if (!command.getHasParsedAllRequiredParams()) {
+            if (!retrieveLedgerHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }

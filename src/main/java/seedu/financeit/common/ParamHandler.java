@@ -9,6 +9,9 @@ import seedu.financeit.utils.ParamChecker;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Defines a Logic class that handles user-inputted params.
+ */
 public abstract class ParamHandler {
     // Compulsory params that has to be parsed - varies based on individual subclass
     protected HashSet<String> requiredParams = new HashSet<>();

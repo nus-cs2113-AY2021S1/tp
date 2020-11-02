@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commandhandlers;
+package seedu.financeit.datatrackers.recurringtracker.recurringhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -26,7 +26,7 @@ public class CreateEntryHandler extends ParamHandler {
     RecurringEntry recurringEntry;
     private static CreateEntryHandler handler = null;
 
-    public CreateEntryHandler() {
+    private CreateEntryHandler() {
         setRequiredParams(
             PARAM_DAY,
             PARAM_DESCRIPTION,
@@ -36,7 +36,7 @@ public class CreateEntryHandler extends ParamHandler {
     }
 
     public static CreateEntryHandler getInstance() {
-        if(handler == null) {
+        if (handler == null) {
             handler = new CreateEntryHandler();
         }
         return handler;

@@ -9,9 +9,9 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
-import seedu.financeit.datatrackers.entrytracker.commands.CreateEntryCommand;
-import seedu.financeit.datatrackers.entrytracker.commands.EditEntryCommand;
-import seedu.financeit.datatrackers.entrytracker.commands.RetrieveEntryCommand;
+import seedu.financeit.datatrackers.entrytracker.entryhandlers.CreateEntryHandler;
+import seedu.financeit.datatrackers.entrytracker.entryhandlers.EditEntryHandler;
+import seedu.financeit.datatrackers.entrytracker.entryhandlers.RetrieveEntryHandler;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -137,13 +137,13 @@ public class EntryTracker {
     }
 
     static FiniteStateMachine.State handleDeleteEntry() {
-        RetrieveEntryCommand command = new RetrieveEntryCommand("/id");
+        RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry deletedEntry;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
             // from the entryList instance.
-            command.handlePacket(packet, entryList);
+            retrieveEntryHandler.handlePacket(packet, entryList);
             deletedEntry = (Entry) entryList.getItemAtCurrIndex();
 
             // Deletion of entry.
@@ -155,7 +155,7 @@ public class EntryTracker {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
-            if (!command.getHasParsedAllRequiredParams()) {
+            if (!retrieveEntryHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -172,16 +172,15 @@ public class EntryTracker {
         boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
             ? false
             : true;
-        CreateEntryCommand command = new CreateEntryCommand(
+        CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
 
-        );
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         try {
             // CreateLedgerCommand instance generates a new Ledger instance
             // from the params specified in the command.
-            command.handlePacket(packet);
-            entry = command.getCurrEntry();
+            createEntryHandler.handlePacket(packet);
+            entry = createEntryHandler.getCurrEntry();
 
             // Checking of duplicates
             if (entryList.isItemDuplicate(entry)) {
@@ -205,7 +204,7 @@ public class EntryTracker {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 "Duplicate item already exists in the list; not added!");
         } finally {
-            if (!command.getHasParsedAllRequiredParams()) {
+            if (!createEntryHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -214,28 +213,27 @@ public class EntryTracker {
     }
 
     static FiniteStateMachine.State handleEditEntry() {
-        RetrieveEntryCommand retrieveEntryCommand = new RetrieveEntryCommand();
-        EditEntryCommand editEntryCommand;
+        RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
+        EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
             // from the entryList instance.
-            retrieveEntryCommand.handlePacket(packet, entryList);
+            retrieveEntryHandler.handlePacket(packet, entryList);
             entry = (Entry) entryList.getItemAtCurrIndex();
 
             // EditEntryCommand instance edits details of the corresponding ledger instance
             // from the entryList instance.
-            editEntryCommand = new EditEntryCommand(entry);
-            editEntryCommand.handlePacket(packet);
-
+            editEntryHandler.setEntry(entry);
+            editEntryHandler.handlePacket(packet);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
-            if (!retrieveEntryCommand.getHasParsedAllRequiredParams()) {
+            if (!retrieveEntryHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }

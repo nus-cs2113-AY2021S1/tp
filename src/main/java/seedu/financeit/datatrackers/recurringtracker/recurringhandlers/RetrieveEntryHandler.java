@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.recurringtracker.commandhandlers;
+package seedu.financeit.datatrackers.recurringtracker.recurringhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -30,13 +30,13 @@ public class RetrieveEntryHandler extends ParamHandler {
     private static RetrieveEntryHandler handler = null;
 
     private RetrieveEntryHandler() {
-        this.setRequiredParams(
+        setRequiredParams(
             PARAM_INDEX
         );
     }
 
     public static RetrieveEntryHandler getInstance() {
-        if(handler == null) {
+        if (handler == null) {
             handler = new RetrieveEntryHandler();
         }
         return handler;
@@ -45,18 +45,20 @@ public class RetrieveEntryHandler extends ParamHandler {
     public void handlePacket(CommandPacket packet, RecurringEntryList entryList)
         throws InsufficientParamsException, ItemNotFoundException {
         this.entryList = entryList;
-        this.handleParams(packet);
+        handleParams(packet);
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException {
         switch (paramType) {
+        //RetrieveEntryHandler is only concerned with index of entry.
         case ParamChecker.PARAM_INDEX:
-            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, this.entryList.getItems());
-            this.entryList.setIndexToModify(index);
+            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, entryList.getItems());
+            entryList.setIndexToModify(index);
             return;
         default:
+            //Ignore other params, as those will be handled by EditEntryHandler
             String[] ignoreParams = {
                 PARAM_DAY,
                 PARAM_AUTO,

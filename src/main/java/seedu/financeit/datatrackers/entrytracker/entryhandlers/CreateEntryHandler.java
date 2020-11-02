@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.entrytracker.commands;
+package seedu.financeit.datatrackers.entrytracker.entryhandlers;
 
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
@@ -31,7 +31,7 @@ public class CreateEntryHandler extends ParamHandler {
     Entry entry;
     private static CreateEntryHandler handler = null;
 
-    public CreateEntryHandler() {
+    private CreateEntryHandler() {
         this.setRequiredParams(
             PARAM_TIME,
             PARAM_DESCRIPTION,
@@ -42,7 +42,7 @@ public class CreateEntryHandler extends ParamHandler {
     }
 
     public static CreateEntryHandler getInstance() {
-        if(handler == null) {
+        if (handler == null) {
             handler = new CreateEntryHandler();
         }
         return handler;
