@@ -125,7 +125,7 @@ Enter Note:
 `Line 2`<br>
 `/end`
 
-💡 Content must have at least 1 line.<br>
+💡 Note content must have at least 1 line.<br>
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
 
