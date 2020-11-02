@@ -38,6 +38,9 @@ activate ":BusCommand"
 
 ":BusCommand"->":BusData": getBusAtStop(busStop)
 activate ":BusData"
+'ref over ":BusData"
+'get Buses at busStop
+'end
 ":BusData" -->":BusCommand": ArrayList<Bus> busList
 deactivate ":BusData"
 

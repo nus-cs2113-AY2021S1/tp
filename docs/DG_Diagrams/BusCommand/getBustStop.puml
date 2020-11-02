@@ -1,5 +1,5 @@
 @startuml
-mainframe **sd** get exact bus stop name
+mainframe **sd** get BusStop
 
 box Logic
 participant ":BusCommand"
@@ -26,12 +26,12 @@ deactivate ":SimilarityCheck"
 ":BusCommand"-->":BusCommand"
 deactivate ":BusCommand"
 
-alt "possibleLocation is empty"
+alt "possibleLocation.isEmpty()"
 ":BusCommand"->":BusStops": formatName(busStop)
 activate ":BusStops"
 ":BusStops"-->":BusCommand"
 deactivate ":BusStops"
-else "possibleLocation is not Empty"
+else "!possibleLocation.isEmpty()"
 ":BusCommand"->":Ui": printPossibleLocsMessage(possibleLocations)
 activate ":Ui"
 ":Ui"-->":BusCommand"
