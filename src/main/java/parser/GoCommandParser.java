@@ -10,8 +10,11 @@ import exception.InvalidInputException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static common.Messages.*;
+import static common.Messages.ADMIN;
 import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_SPECIAL_CHARACTER;
+import static common.Messages.MESSAGE_MISSING_ARGS;
+import static common.Messages.MODULE;
 
 //@@author gua-guargia
 public class GoCommandParser {

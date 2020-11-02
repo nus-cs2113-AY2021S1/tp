@@ -60,8 +60,7 @@ public class AddCommandParser {
                 throw new InvalidInputException();
             }
             return new AddModuleCommand(commandArgs);
-        }
-        catch (InvalidInputException e) {
+        } catch (InvalidInputException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, MODULE));
         }
     }
@@ -72,8 +71,7 @@ public class AddCommandParser {
                 throw new InvalidInputException();
             }
             return new AddChapterCommand(commandArgs);
-        }
-        catch (InvalidInputException e) {
+        } catch (InvalidInputException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, CHAPTER));
         }
     }
