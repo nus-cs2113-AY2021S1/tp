@@ -13,8 +13,8 @@ public class ModuleList {
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
-    private static final String INVALID_EXP_HOURS = "Please input a whole number between 1 and 24 for the "
-            + "expected workload.";
+    private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
+                + "expected workload.";
     private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
     private static final String INVALID_TIME_ERROR = "Please input a number between 0 and 99 for time.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
@@ -35,7 +35,8 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
-    public static final int NO_INPUT = -1;
+    public static double NO_INPUT = -1;
+
 
     /**
      * Checks if the module exists in the list of modules.
@@ -206,7 +207,8 @@ public class ModuleList {
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
-            int expectedTime = Integer.parseInt(expTime);
+            double expectedTime = Double.parseDouble(expTime);
+            expectedTime = Math.round(expectedTime * 10) / 10.0;
             if (!checkIfExpTimeValid(expectedTime, toPrint)) {
                 return;
             }

@@ -18,11 +18,11 @@ CS1000 is added.
 
 CS2113T is added.
 
-CS3000, Expected Workload: 6h is added.
+CS3000, Expected Workload: 6.0h is added.
 
-CS3200, Expected Workload: 8h is added.
+CS3200, Expected Workload: 8.0h is added.
 
-CS1000, Expected Workload: 8h is added.
+CS1000, Expected Workload: 8.0h is added.
 
 7 hours have been added to CS1000.
 7.0 hours have been spent on this module in week 1.
@@ -30,13 +30,13 @@ CS1000, Expected Workload: 8h is added.
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
 +------+---------+----------+----------+
-|  02  | CS1000  |     8    | No Input |
+|  02  | CS1000  |     8.0    | No Input |
 +------+---------+----------+----------+
 |  02  | CS2113T | No Input | No Input |
 +------+---------+----------+----------+
-|  02  | CS3000  |     6    | No Input |
+|  02  | CS3000  |     6.0    | No Input |
 +------+---------+----------+----------+
-|  02  | CS3200  |     8    | No Input |
+|  02  | CS3200  |     8.0    | No Input |
 +------+---------+----------+----------+
 
 Module    Week 1

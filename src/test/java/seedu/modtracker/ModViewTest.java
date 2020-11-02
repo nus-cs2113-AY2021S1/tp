@@ -126,7 +126,7 @@ class ModViewTest {
         String expected = ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
                 + ModView.FIRST_PART_OF_HEADER + "  " + ModView.SECOND_PART_OF_HEADER
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
-                + "|  01  | GER1000H |     8    | No Input |\n"
+                + "|  01  | GER1000H |     8.0    | No Input |\n"
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER;
         view.printAllModuleInformation(filledList, 1);
         assertEquals(expected + System.lineSeparator(),
