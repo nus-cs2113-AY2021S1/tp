@@ -21,7 +21,8 @@ public class WatchlistParser extends CommandParser {
     private static final String WATCHLIST_COMMAND_TOO_MUCH_FIELDS = "Watchlist command" + TOO_MUCH_FIELDS;
     private static final String WATCHLIST_COMMAND_TOO_MANY_PARAMETERS = "Watchlist command" + TOO_MUCH_PARAMETERS;
     private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
-    private static final String WATCHLIST_NAME_IS_INVALID = "Watchlist name must be alphanumeric!";
+    private static final String WATCHLIST_NAME_IS_INVALID = "Watchlist name can only consist of alphanumeric "
+                                                            + "characters and spaces!";
     private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
     private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index cannot be zero!";
 
