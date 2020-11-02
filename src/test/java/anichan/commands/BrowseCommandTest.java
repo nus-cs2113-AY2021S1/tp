@@ -153,7 +153,8 @@ public class BrowseCommandTest {
             testParse.parse(NEGATIVE_PAGE_NUM);
         });
 
-        BrowseCommand testBrowse2 = testParse.parse(ZERO_PAGE_NUM);
+        BrowseParser testParse2 = new BrowseParser();
+        BrowseCommand testBrowse2 = testParse2.parse(ZERO_PAGE_NUM);
         assertEquals(testBrowse2.getPage(), 1);
     }
 }
