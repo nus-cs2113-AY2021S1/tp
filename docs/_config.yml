@@ -9,7 +9,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "AY2021S1-CS2113T-F14-1"
+repository: "AY2021S1-CS2113T-F14-1/tp"
 github_icon: "CCAManager_logo.png"
 
 plugins:
