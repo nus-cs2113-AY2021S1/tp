@@ -125,6 +125,7 @@ Enter Note:
 `Line 2`<br>
 `/end`
 
+💡 Note content must have at least 1 line.<br>
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
 
@@ -198,6 +199,8 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
+
+💡 Note content must have at least 1 line.
 
 Example of usage: 
 

@@ -112,14 +112,14 @@ public class Formatter {
     //@@author Nazryl
     public static String formatNote(String message, Note note) {
         String formattedString = "";
-        String header = message.concat(note.getTitle() + " " + note.getTagsName().trim());
+        String header = message.concat(note.getTitle() + " " + note.getTagsName());
 
         if (note.getPinned()) {
-            header = header.concat(" | ISPIN: " + note.getPinnedString());
+            header = header.concat("| ISPIN: " + note.getPinnedString() + " ");
         }
 
         if (note.getIsArchived()) {
-            header = header.concat(" | ISARCHIVE: " + note.getIsArchived());
+            header = header.concat("| ISARCHIVE: " + note.getIsArchived());
         }
 
         formattedString = formattedString.concat(generatesHeader(header));
