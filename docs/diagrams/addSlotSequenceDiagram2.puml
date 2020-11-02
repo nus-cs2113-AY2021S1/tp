@@ -2,6 +2,7 @@
 hide footbox
 skinparam ParticipantPadding 20
 
+mainframe sd Get module if it exists, else create a new module
 
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Timetable" as Timetable

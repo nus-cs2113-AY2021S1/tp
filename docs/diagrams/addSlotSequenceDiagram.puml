@@ -10,8 +10,6 @@ participant ":Bookmark" as Bookmark
 participant ":Ui" as Ui
 
 
-
-
 [-> AddSlotCommand : execute(bookmarks, timetable, ui)
 activate AddSlotCommand
 
@@ -22,9 +20,7 @@ Timetable --> AddSlotCommand
 deactivate Timetable
 
 ref over AddSlotCommand, Module
-    Get module if it exists,
-    else create a new module.
-    Refer to Figure 2.3.2
+    Get module if it exists, else create a new module
 end ref
 
 opt commands is not null
@@ -45,9 +41,7 @@ opt commands is not null
 
 
             ref over AddSlotCommand, Bookmark
-                Create bookmark for module.
-                Refer to Figure 2.3.3
-
+                Create bookmark for module
             end ref
 
 
@@ -55,10 +49,7 @@ opt commands is not null
 
 
             ref over AddSlotCommand, Bookmark
-                Create bookmark for existing slot
-                based on its index.
-                Refer to Figure 2.3.4
-
+                Create bookmark for existing slot based on its index
             end ref
 
         else add slot
@@ -70,9 +61,7 @@ opt commands is not null
             deactivate Module
 
             ref over AddSlotCommand, Slot
-                Get slot if it exists,
-                else create a new slot.
-                Refer to Figure 2.3.5
+                Get slot if it exists, else create a new slot
 
             end ref
 
@@ -80,9 +69,7 @@ opt commands is not null
             activate AddSlotCommand
 
             ref over AddSlotCommand, Bookmark
-                Create bookmark for slot.
-                Refer to Figure 2.3.6
-
+                Create bookmark for slot
             end ref
 
             AddSlotCommand --> AddSlotCommand : message
@@ -107,5 +94,9 @@ deactivate Ui
 
 AddSlotCommand -->[
 deactivate AddSlotCommand
+
+
+
+
 
 @enduml

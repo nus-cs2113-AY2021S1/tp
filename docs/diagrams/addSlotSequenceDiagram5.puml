@@ -2,6 +2,8 @@
 hide footbox
 skinparam ParticipantPadding 20
 
+mainframe sd Get slot if it exists, else create a new slot
+
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Module" as Module
 participant ":Slot" as Slot

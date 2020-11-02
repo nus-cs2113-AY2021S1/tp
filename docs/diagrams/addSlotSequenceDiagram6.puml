@@ -2,6 +2,8 @@
 hide footbox
 skinparam ParticipantPadding 20
 
+mainframe sd Create bookmark for slot
+
 participant ":AddSlotCommand" as AddSlotCommand
 participant ":Slot" as Slot
 participant ":Bookmark" as BookmarkSlot
