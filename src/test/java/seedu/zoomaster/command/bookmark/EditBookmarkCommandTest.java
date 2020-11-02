@@ -8,7 +8,8 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class EditBookmarkCommandTest {
     Timetable timetable = new Timetable();
