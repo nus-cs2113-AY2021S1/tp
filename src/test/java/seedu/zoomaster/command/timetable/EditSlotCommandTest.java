@@ -10,7 +10,6 @@ import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
 
-
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
