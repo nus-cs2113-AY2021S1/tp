@@ -25,7 +25,7 @@ Rectangle dinecommand {
 'Command <|-left DineCommand
 'Command <|-left DineInfoCommand
 Command <|-left PQRCommand
-note right: PQRCommand = DineCommand,\n DineInfoCommand
+note right: PQRCommand = DineCommand,\n DineInfoCommand,\n FacultyCommand
 }
 Rectangle favcommand {
 'Command <|--up AddFavCommand
