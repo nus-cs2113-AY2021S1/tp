@@ -1,17 +1,22 @@
 @startuml
 
-abstract class Command
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
 
 class FavList {
- {static} changeDesc(:int, :String):String
- {static} checkIndexAndDesc(:int, :String):String
++ {static} changeDesc(:int, :String) : String
+- {static} checkIndexAndDesc(:int, :String) : String
 }
 
 class Fav {
-    changeDesc(:String)
+- command: String
+- desc: String
+
+~ changeDesc(:String)
 }
 
-enum ExceptionType {
+enum "<<Enumeration>>\nExceptionType" {
 NO_INPUT
 EMPTY_DESCRIPTION
 NOT_A_NUMBER
@@ -20,20 +25,40 @@ INVALID_INDEX
 }
 
 Class Ui {
-{static} printDescChangeMessage(:String, :String, :String)
++ {static} printDescChangeMessage(:String, :String, :String)
 }
 
-Command <|- DescFavCommand
-Parser <|- DescFavParser
+Class "{abstract}\nCommand" {
+# isValid: boolean
+
++ executeCommand() ABSTRACT
+}
+
+Class DescFavCommand {
+- rawMessage: String
+
++ executeCommand()
+- getCommand(: int): String
+}
+
+Class DescFavParser {
+- index: int
+- description: String
+
++ parseInput()
+}
+
+"{abstract}\nCommand" <|- DescFavCommand
+Parser <|-left DescFavParser
 DescFavParser "1"<--down DescFavCommand
 
 DescFavCommand ..> FavList
-FavList "throws"..> CustomException
-DescFavParser "throws"..> CustomException
+FavList ..> CustomException : throws
+DescFavParser ..> CustomException : throws
 
 FavList ->"*" Fav
 
-CustomException -> ExceptionType
+CustomException -> "<<Enumeration>>\nExceptionType"
 
 DescFavCommand .> Ui
 
