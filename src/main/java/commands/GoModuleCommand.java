@@ -38,8 +38,9 @@ public class GoModuleCommand extends GoCommand {
         ModuleList modules = access.getAdmin().getModules();
         ArrayList<Module> allModules = modules.getAllModules();
         for (Module module : allModules) {
-            if (currentModule.equalsIgnoreCase(module.getModuleName())) {
-                access.setModuleLevel(currentModule);
+            String moduleName = module.getModuleName();
+            if (currentModule.equalsIgnoreCase(moduleName)) {
+                access.setModuleLevel(moduleName);
                 isLevelExist = true;
                 try {
                     ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
