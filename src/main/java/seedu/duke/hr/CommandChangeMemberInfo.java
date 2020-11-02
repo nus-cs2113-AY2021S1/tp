@@ -19,14 +19,18 @@ public class CommandChangeMemberInfo extends Command {
         if (input.getCategory().equals("hr") && (input.getCommand().equalsIgnoreCase("changeInfo")
                 || input.getCommand().equalsIgnoreCase("c"))) {
             if (input.getNumArgs() >= 2) {
-                if ((input.getArg("n") == null) || ((input.getArg("p") == null)
-                        && (input.getArg("e") == null)
+                if ((input.getArg("n") == null) || (input.getArg("n").equals(""))
+                        || ((input.getArg("p") == null) && (input.getArg("e") == null)
                         && (input.getArg("r") == null))) {
                     return ARGUMENT_ERR;
                 }
-                if ((input.getArg("n").equals("")) || ((input.getArg("p").equals("")))
-                        && (input.getArg("e").equals(""))
-                        && (input.getArg("r").equals(""))) {
+                if ((input.getArg("p") != null) && (input.getArg("p").equals(""))) {
+                    return ARGUMENT_ERR;
+                }
+                if ((input.getArg("e") != null) && (input.getArg("e").equals(""))) {
+                    return ARGUMENT_ERR;
+                }
+                if ((input.getArg("r") != null) && (input.getArg("r").equals(""))) {
                     return ARGUMENT_ERR;
                 }
                 return ACCEPT;
@@ -40,12 +44,12 @@ public class CommandChangeMemberInfo extends Command {
     @Override
     public String execute() {
         String output;
-        long phone = Long.parseLong(savedInput.getArg("p"));
         Member m = MemberList.findMemberByName(savedInput.getArg("n"));
         if (m == null) {
             return "OOPS!!! The member does not exist. You can add this member into the list instead. \n";
         }
-        output = changeMemberInfo(m, phone, savedInput.getArg("e"), savedInput.getArg("r"));
+        output = changeMemberInfo(m, savedInput.getArg("p"), savedInput.getArg("e"), savedInput.getArg("r"));
+
         return output;
     }
 
