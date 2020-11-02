@@ -300,17 +300,11 @@ Students who find it hard to keep track of their assignments would also find thi
 useful since it lets the students add their tasks. The application then reminds the students
 regarding the upcoming tasks, which would prompt the students to prepare them.
 
-<<<<<<< HEAD
-Students who find it difficult to organise woudl find this app useful since it
-offers a one stop solution to manage both their revision and their upcoming tasks.
-## User Stories
-=======
 Students who find it difficult to organise would find this app useful since it
 offers a one stop solution to manage both their revision and their upcoming tasks .
 ## User Stories <a name = "user"> </a>
 
 This section summarises various user stories of this application. These are summarised in the table below.
->>>>>>> 92b4dcca732f072418c0ec449d56be866707c4ea
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
