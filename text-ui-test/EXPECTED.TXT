@@ -22,7 +22,7 @@ CS3000, Expected Workload: 6.0h is added.
 
 CS3200, Expected Workload: 8.0h is added.
 
-CS1000, Expected Workload: 8.0h is added.
+CS1000, Expected Workload: 18.0h is added.
 
 7 hours have been added to CS1000.
 7.0 hours have been spent on this module in week 1.
@@ -30,20 +30,20 @@ CS1000, Expected Workload: 8.0h is added.
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
 +------+---------+----------+----------+
-|  02  | CS1000  |     8.0    | No Input |
+|  02  | CS1000  |   18.0   | No Input |
 +------+---------+----------+----------+
 |  02  | CS2113T | No Input | No Input |
 +------+---------+----------+----------+
-|  02  | CS3000  |     6.0    | No Input |
+|  02  | CS3000  |    6.0   | No Input |
 +------+---------+----------+----------+
-|  02  | CS3200  |     8.0    | No Input |
+|  02  | CS3200  |    8.0   | No Input |
 +------+---------+----------+----------+
 
 Module    Week 1
 
 CS1000
 Actual   | ███████ 7.0
-Expected | ████████ 8.0
+Expected | ██████████████████ 18.0
 
 CS2113T
 Actual   | NO INPUT
@@ -59,13 +59,23 @@ Expected | ████████ 8.0
 
 Total time spent: 7.0 H
 100% of time is spent on CS1000
-No input for CS2113T
-No input for CS3000
-No input for CS3200
+No actual and expected workload for CS2113T
+No actual workload for CS3000
+No actual workload for CS3200
 
 Analysis:
 CS1000
-Good Job! Great time management!
+You seem to be spending too little time on the module.
+Perhaps you should spend more time on this module.
+
+CS2113T
+Insufficient data to compute analysis.
+
+CS3000
+Insufficient data to compute analysis.
+
+CS3200
+Insufficient data to compute analysis.
 
 Got it. I've added this task under CS1000:
 [X] [CS1000] study

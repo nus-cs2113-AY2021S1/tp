@@ -23,13 +23,14 @@ public class ViewTimeBreakdownAnalysis {
             + "Do you perhaps need help for this module?";
     public static final String MODULE_WEEK = "Module    Week ";
     private static final int NONE = 0;
-    public static final String NO_VALID_INPUTS = "None of the modules has any valid inputs.";
+    public static final String NO_VALID_INPUTS = "None of the modules has any actual time input.";
     public static final int INDEX_OFFSET = 1;
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
     public static final String NO_TIME_SPENT = "Seems like you didn't spend any time on your modules this week.";
+    public static final String INSUFFICIENT_DATA = "Insufficient data to compute analysis.";
 
     /**
      * Prints the breakdown and analysis of the
@@ -95,7 +96,7 @@ public class ViewTimeBreakdownAnalysis {
         System.out.println("Total time spent: " + totalTimeSpent + " H");
         if (totalTimeSpent == NONE) {
             System.out.println(NO_TIME_SPENT + System.lineSeparator());
-            return false;
+            return true;
         }
 
         for (Module m : modList) {
@@ -108,8 +109,10 @@ public class ViewTimeBreakdownAnalysis {
                 } else {
                     System.out.println("Seems like you didn't spend any time on " + m.getModuleCode() + " this week.");
                 }
+            } else if (!m.doesActualTimeExist(weekNumber) && m.doesExpectedWorkLoadExist()) {
+                System.out.println("No actual workload for " + m.getModuleCode());
             } else {
-                System.out.println("No input for " + m.getModuleCode());
+                System.out.println("No actual and expected workload for " + m.getModuleCode());
             }
         }
         System.out.println();
@@ -157,28 +160,24 @@ public class ViewTimeBreakdownAnalysis {
 
         for (Module m : modList) {
             Analysis analysis = computeAnalysisOfTimeSpent(m, weekNumber);
-
+            System.out.println(m.getModuleCode());
             switch (analysis) {
             case tooMuchTimeSpent:
-                System.out.println(m.getModuleCode());
                 System.out.println(TOO_MUCH_TIME_SPENT);
-                System.out.println();
                 break;
             case justRight:
-                System.out.println(m.getModuleCode());
                 System.out.println(JUST_RIGHT);
-                System.out.println();
                 break;
             case tooLittleTimeSpent:
-                System.out.println(m.getModuleCode());
                 System.out.println(TOO_LITTLE_TIME_SPENT);
-                System.out.println();
                 break;
             case noInput:
+                System.out.println(INSUFFICIENT_DATA);
                 break;
             default:
                 return;
             }
+            System.out.println();
         }
     }
 
@@ -193,12 +192,13 @@ public class ViewTimeBreakdownAnalysis {
         double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
         double expectedTime = m.getExpectedWorkload();
 
-        double percentageDifference = (actualTime - expectedTime) / expectedTime * 100.0;
-        if (!m.doesActualTimeExist(weekNumber)) {
+        double percentageDifference = Math.round((actualTime - (double) expectedTime) * 1000.0)
+                / (expectedTime * 10.0);
+        if (!m.doesActualTimeExist(weekNumber) || !m.doesExpectedWorkLoadExist()) {
             return noInput;
         } else if (percentageDifference < LOWER_BOUND_OF_JUST_NICE) {
             return tooLittleTimeSpent;
-        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE || actualTime == expectedTime) {
+        } else if (percentageDifference < UPPER_BOUND_OF_JUST_NICE) {
             return justRight;
         } else {
             return tooMuchTimeSpent;

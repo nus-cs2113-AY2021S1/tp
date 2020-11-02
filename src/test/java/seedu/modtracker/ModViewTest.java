@@ -80,11 +80,14 @@ class ModViewTest {
         ArrayList<Module> modList = filledList.getData();
         modList.clear();
         modList.add(new Module("GER1000"));
+        modList.add(new Module("CS1231"));
 
         String expected = ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER
                 + ModView.FIRST_PART_OF_HEADER + " " + ModView.SECOND_PART_OF_HEADER
                 + ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER
                 + "|  01  | GER1000 | No Input | No Input |\n"
+                + ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER
+                + "|  01  | CS1231  | No Input | No Input |\n"
                 + ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER;
         view.printAllModuleInformation(filledList, 1);
         assertEquals(expected + System.lineSeparator(),
@@ -101,11 +104,14 @@ class ModViewTest {
         ArrayList<Module> modList = filledList.getData();
         modList.clear();
         modList.add(new Module("GER1000H"));
+        modList.add(new Module("CS1231"));
 
         String expected = ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
                 + ModView.FIRST_PART_OF_HEADER + "  " + ModView.SECOND_PART_OF_HEADER
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
                 + "|  01  | GER1000H | No Input | No Input |\n"
+                + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
+                + "|  01  | CS1231   | No Input | No Input |\n"
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER;
         view.printAllModuleInformation(filledList, 1);
         assertEquals(expected + System.lineSeparator(),
@@ -126,7 +132,7 @@ class ModViewTest {
         String expected = ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
                 + ModView.FIRST_PART_OF_HEADER + "  " + ModView.SECOND_PART_OF_HEADER
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
-                + "|  01  | GER1000H |     8.0    | No Input |\n"
+                + "|  01  | GER1000H |    8.0   | No Input |\n"
                 + ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER;
         view.printAllModuleInformation(filledList, 1);
         assertEquals(expected + System.lineSeparator(),
