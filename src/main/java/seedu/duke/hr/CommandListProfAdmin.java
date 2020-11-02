@@ -18,8 +18,9 @@ public class CommandListProfAdmin extends Command {
     }
 
     public int validate(UserInput input) {
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("list")
-            && input.getArg("").equals("prof&admin")) {
+        if (input.getCategory().equals("hr") && (input.getCommand().equalsIgnoreCase("list")
+            || input.getCommand().equalsIgnoreCase("l"))
+            && (input.getArg("").equals("prof&admin") || input.getArg("").equalsIgnoreCase("pa"))) {
             userInput = input;
             return ACCEPT;
         } else {

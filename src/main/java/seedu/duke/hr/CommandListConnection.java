@@ -18,8 +18,10 @@ public class CommandListConnection extends Command {
     }
 
     public int validate(UserInput input) {
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("list")
-                && input.getArg("").equals("connections")) {
+        if (input.getCategory().equals("hr") && (input.getCommand().equalsIgnoreCase("list")
+            || input.getCommand().equalsIgnoreCase("l"))
+                && (input.getArg("").equalsIgnoreCase("connections")
+                || input.getArg("").equalsIgnoreCase("c"))) {
             userInput = input;
             return ACCEPT;
         } else {

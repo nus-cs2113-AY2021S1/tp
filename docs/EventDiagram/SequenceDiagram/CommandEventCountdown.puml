@@ -2,9 +2,9 @@
  -> ":CommandEventCountdown" : execute()
 
 activate  ":CommandEventCountdown"
+
+":CommandEventCountdown" -> ":EventList":countdownView()
 activate ":EventList"
-activate ":EventList" #DarkSalmon
- ":CommandEventCountdown" -> ":EventList":countdownView()
 alt empty ArrayList
     ":EventList" -->  ":CommandEventCountdown"
 else else
@@ -17,12 +17,12 @@ else else
         activate ":Event"
         ":Event" --> ":EventList"
         deactivate ":Event"
-        ":EventList" -->  ":CommandEventCountdown" : output
-        deactivate ":EventList"
         return output
+
+        deactivate ":EventList"
     end
-    deactivate ":EventList"
-    deactivate ":EventList"
-    deactivate ":CommandEventCountdown"
+     <-- ":CommandEventCountdown" : output
 end
+
+deactivate ":CommandEventCountdown"
 @enduml

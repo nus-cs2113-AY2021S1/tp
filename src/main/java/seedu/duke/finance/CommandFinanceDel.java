@@ -4,6 +4,9 @@ import seedu.duke.Command;
 import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
+/**
+ * Represents delete a finance log entry from FinanceList.
+ */
 public class CommandFinanceDel extends Command {
     private UserInput userinput;
 

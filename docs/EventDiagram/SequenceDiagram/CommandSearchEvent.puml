@@ -2,25 +2,23 @@
  -> ":CommandSearchEvent" : execute()
 
 activate ":CommandSearchEvent"
-activate ":EventList"
-activate ":EventList"
-":CommandSearchEvent" -> ":EventList":searchEvents()
 
-":EventList" -> ":EventList" : checkIfEventMatch()
 activate ":EventList"
+":EventList" -> ":EventList" : checkIfEventNameMatch()
+activate ":EventList"
+return output
+":EventList" -> ":EventList" : checkIfEventDateMatch()
+activate ":EventList"
+return output
 ":EventList" -> ":EventList" : printFilteredEvents()
 activate ":EventList"
 ":EventList" -> ":Event" : printEvent()
 activate ":Event"
 ":EventList" <-- ":Event"
 deactivate ":Event"
-return
-return
+return output
 ":CommandSearchEvent" <-- ":EventList" : output
 deactivate ":EventList"
-return output
+  <-- ":CommandSearchEvent" : output
 deactivate ":CommandSearchEvent"
-
-
-
 @enduml

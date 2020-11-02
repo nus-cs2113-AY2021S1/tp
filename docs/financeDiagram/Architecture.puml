@@ -1,6 +1,6 @@
 @startuml
-
-class command
+hide circle
+class "{abstract}\n Command"
 class CommandFinanceAdd{
 }
 class CommandFinanceDel{
@@ -11,10 +11,10 @@ class FinanceList{
 }
 class FinanceLog {
 }
-command <|-right-CommandFinanceAdd
-command <|-up-CommandFinanceDel
-command <|-down-CommandFinanceSummary
-command <|-down-CommandFinanceChange
+"{abstract}\n Command" <|-right-CommandFinanceAdd
+"{abstract}\n Command" <|-up-CommandFinanceDel
+"{abstract}\n Command" <|-down-CommandFinanceSummary
+"{abstract}\n Command" <|-down-CommandFinanceChange
 FinanceList <-left-FinanceLog
 FinanceLog <--FinanceList
 FinanceList <-right-CommandFinanceAdd
@@ -29,10 +29,10 @@ CommandFinanceChange <-- FinanceList
 class Ui
 class FileMananger
 FinanceList <-- FileMananger
-command <-- Ui
+"{abstract}\n Command" <-- Ui
 class Duke
 Ui <-left- Duke
 class DukeException
-command <-down- DukeException
+"{abstract}\n Command" <-down- DukeException
 
 @enduml

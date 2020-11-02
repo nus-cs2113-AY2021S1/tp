@@ -46,6 +46,7 @@ This user guide provides a quick start guide for you to easily setup install CCA
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
 
+
 Additionally, throughout this user guide, there will be various icons used as described below:
 > :bulb: This symbol denotes a tip which you might find useful when using the application.
 
@@ -53,22 +54,26 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > :`code` : Text that appears on the CLI / in code
 
-> : [Hyperlinked]() : Leads you to the appropriate section 
->
+> : [Hyperlinked]() : Leads you to the appropriate section
+
 ## 3.Quick Start
 
-:one: Ensure that you have Java 11 or above installed.
- > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
- > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
+This user guide provides a quick start guide for you to easily setup install CCA manager, 
+documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
+To navigate between the different sections, you could use the table of contents above.
  
-:two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
-
-:three: Run the program by entering java -jar cca.java in a terminal.
- > :information_source: Please resize the terminal to full screen mode
+ :one: Ensure that you have Java 11 or above installed.
+  > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
+  > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
+  
+ :two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
  
-You will see this welcome message if you have done the above steps correctly. 
+ :three: Run the program by entering java -jar cca.java in a terminal.
+  > :information_source: Please resize the terminal to full screen mode 
 
-(to add welcome message)
+You will see this welcome message if you have done the above steps correctly. <br/>
+
+![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
 This section will show the features of our program in detail.
@@ -79,8 +84,6 @@ to see the commands of all features at a glance.
 
 Words in UPPER CASE are the parameters to be supplied by user.
 > :information_source: Our program also supports shorthand commands. 
-
-(elaborate)
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -162,34 +165,76 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
-Search the members whose information matches user input.  
+Search the members whose information matches user input. If a member's information 
+matches any of the conditions that the user inputs, 
+it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
+
+Shorhand format:  
+`hr` -> `h`  
+`search` -> `s`  
 
 Example of usage:  
 `hr search peter`  
-`hr search /n peter /r president`  
+`hr search /n peter /r president`   
+
+Expected outcomes:  
+![Example of usage 1](userGuidePic/hrsearchoutcome1.png)  
+
+![Example of usage 2](userGuidePic/hrsearchoutcome2.png)  
+
+[Return to the top](#user-guide)  
 
 
 #### view contacts of prof/admin: `list prof&admin`  
-List the contacts of the professors and administrators.  
+List the contacts of the professors and administrators. Professors and administrators are roles
+of members.  
 Format: `hr list prof&admin`  
+
+Shorthand format:  
+`hr` -> `h`  
+`list` -> `l`  
+`prof&admin` -> `pa`  
 
 Example of usage:  
 `hr list prof&admin`  
 
+Expected outcome:  
+![Example of usage](userGuidePic/hrprofadminoutcome.png)  
+
+[Return to the top](#user-guide)  
+
 
 #### view contacts of connections: `list connections`  
-List the contacts of connections(alumni, speakers).  
+List the contacts of connections(alumni, speakers). Alumni and speakers are roles of members.  
 Format: `hr list connections`  
+
+Shorhand format:  
+`hr` -> `h`  
+`list` -> `l`  
+`connections` -> `c`  
 
 Example of usage:  
 `hr list connections`  
+
+Expected outcome:  
+![Example of usage](userGuidePic/hrlistc.png)  
+
+[Return to the top](#user-guide)  
 
 
 ### 4.4 Event features`event` 
 #### Add an event: `addEvent`
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
+
+ > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+
+
+Shorthand Command : <br/>
+event --> e <br/>
+addEvent --> add/a <br/>
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
@@ -205,12 +250,16 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
+
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+![Symbol](userGuidePic/Symbol5.PNG)
+ 
+ Shorthand Command : <br/>
+ event --> e <br/>
+ addEvent --> del/d <br/>
  
  Example of usage: 
  `event delEvent 1` <br/>
@@ -231,7 +280,11 @@ Format to clear all events in the list: `event delEvent all`
 Example of usage:
 `event delEvent all` <br/>
 
-A confirmation message will be prompted. To clear, type `Y` in terminal.
+Shorthand Command : <br/>
+event --> e <br/>
+delEvent --> del/d <br/>
+
+ > :information_source A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
@@ -242,6 +295,10 @@ Expected Outcome:
 #### List events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
+
+Shorthand Command : <br/>
+event --> e <br/>
+listEvent --> l <br/>
 
 Example of usage: 
 `event listEvent` <br/>
@@ -258,9 +315,14 @@ Expected Outcome:
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
-Example of usage: 
+Shorthand Command : <br/>
+event --> e <br/>
+countdown --> c <br/>
+
+Example of usage: <br/>
 `event countdown` <br/>
 `e countdown` <br/>
+`e c` <br/>
 
 Expected Outcome:
 
@@ -272,17 +334,19 @@ Expected Outcome:
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
-The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
-The EVENT_INDEX must be an integer greater than 0. <br/>
+ > :information_source The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
 
-Example of usage:
+Shorthand Command : <br/>
+event --> e <br/>
+
+Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
 Expected Outcome:
-Before and the after marking event as done
 
-![EventBefore](userGuidePic/eventMarkAsDone1.PNG)  ->  ![EventAfter](userGuidePic/eventMarkAsDone.PNG)
+![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
 
@@ -290,10 +354,15 @@ Before and the after marking event as done
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
+Shorthand Command : <br/>
+event --> e <br/>
+search --> s <br/>
+
 Example of usage:
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
+`e s /s 2000-12-16` <br/>
 
 Expected Outcome:
 
@@ -306,7 +375,7 @@ Expected Outcome:
 #### Add a participant to an event: `addAttendance`
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
-> :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+ > :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>
@@ -354,6 +423,10 @@ Expected Outcome:
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
+Shorthand format:  
+`finance` -> `f`  
+`addLog` -> `add` or `a`  
+
 Example of usage:  
 `finance addLog have lunch 4.5`  
 `f addlog buy flight ticket 750`  
@@ -370,9 +443,13 @@ Expected outcomes:
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
 
+Shorthand format:  
+`finance` -> `f`  
+`delLog` -> `del` or `d`
+
 Example of usage:  
 `finance dellog 3`  
-`f delLog 1`  
+`f del 1`  
 
 Expected outcomes:  
 ![Example of usage 1](userGuidePic/dellog%20outcome1.png)  
@@ -386,22 +463,34 @@ Expected outcomes:
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
 
+Shorthand format:  
+`finance` -> `f`  
+`summary` -> `s`
+
 Example of usage:  
 `finance summary`  
 
 Expected Outcome:  
 ![Example of usage](userGuidePic/summary%20outcome.png)  
 
+[Return to the top](#user-guide)  
+
 
 #### 4.5.4 Change finance log entry information: `changeLog`  
 Change the finance log entry's name and budget amount.  
 Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
+
+Shorthand format:  
+`finance` -> `f`  
+`changeLog` -> `c`
 
 Example of usage:  
 `finance changeLog /i 1 /n buy cake 5.5`  
 
 Expected outcome:  
 ![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
+
+[Return to the top](#user-guide)
 
 
 ### 4.6 Import
