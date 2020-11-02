@@ -11,16 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MenuParserTest extends Eduke8Test {
     @Test
-    public void menuParser_wrongStringInput_expectIncorrectCommand() {
+    void menuParser_wrongStringInput_expectIncorrectCommand() {
         BookmarkList bookmarks = createTestBookmarkList();
         TopicList topicList = createTestTopicList();
         MenuParser menuParser = new MenuParser(bookmarks);
 
-        try {
-            Command badCommand = menuParser.parseCommand(topicList, "quiz t/wrongtopic n/badnnum");
-            assertTrue(badCommand instanceof IncorrectCommand);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Command badCommand = menuParser.parseCommand(topicList, "quiz t/wrongtopic n/badnnum");
+        assertTrue(badCommand instanceof IncorrectCommand);
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BookmarkCommandTest extends Eduke8Test {
 
     @Test
-    public void execute_normal_questionHasBeenBookmarked() {
+    void execute_normal_questionHasBeenBookmarked() {
         BookmarkList bookmarkList = createTestBookmarkList();
         Question question = createTestQuestion("description");
         assertFalse(question.isBookmarked());

@@ -15,10 +15,12 @@ public class ExceptionMessages {
             + " must be more than 0!";
     public static final String ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS =
             "There is not enough questions in the topic for the quiz!";
-    public static final String ERROR_TOPIC_DOES_NOT_EXIST = "No such topic exists, did you spell it correctly?";
+    public static final String ERROR_TOPIC_DOES_NOT_EXIST = "No such topic exists, did you spell it correctly?"
+            + System.lineSeparator() + "Enter in \"topics\" to get the list of topics.";
     public static final String ERROR_QUESTION_DOES_NOT_EXIST = "No such question exists, did you spell it correctly?";
     public static final String ERROR_OPTION_DOES_NOT_EXIST = "No such option exists, did you spell it correctly?";
     public static final String ERROR_NO_RIGHT_ANSWER = "Error with question: No right answer specified";
     public static final String ERROR_NOTE_WRONG_FORMAT = "Invalid command! The command for note is as follows:"
             + System.lineSeparator() + "'note add' or 'note delete' or 'note list'";
+    public static final String ERROR_QUIZ_TIMER_NEGATIVE = "Please choose a timer that is greater than 0!";
 }

@@ -167,7 +167,7 @@ After attempting all of the questions, the quiz will automatically end:
 After the quiz ends, you will be prompted to enter in a new command. At this point, you are free to choose any feature of E-Duke-8 you want to access, or you can also start a new quiz!
 
 ### 3.8. Showing a hint: `hint`
-``
+
 Shows a hint to the current question.
 
 Example of usage:

@@ -4,29 +4,32 @@ import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.topic.TopicList;
-import seedu.eduke8.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class QuizCommandTest extends Eduke8Test {
+    private BookmarkList bookmarks;
+    private TopicList topicList;
+
+    QuizCommandTest() {
+        super();
+        bookmarks = createTestBookmarkList();
+        topicList = createTestTopicList();
+    }
 
     @Test
-    public void execute_badTopicName_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
-        Ui ui = new Ui();
-        TopicList topicList = createTestTopicList();
-        BookmarkList bookmarks = createTestBookmarkList();
-        Command badQuizCommand = new QuizCommand(topicList, 1, "badname", ui, bookmarks, 10);
+    void execute_badTopicName_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
+        Command badQuizCommand =
+                new QuizCommand(topicList, 1, NONSENSE_DESCRIPTION, ui, bookmarks, TIMER);
         badQuizCommand.execute(topicList, ui);
         assertTrue(true);
     }
 
     @Test
-    public void execute_wrongTopicNum_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
-        Ui ui = new Ui();
-        TopicList topicList = createTestTopicList();
-        BookmarkList bookmarks = createTestBookmarkList();
-        Command badQuizCommand = new QuizCommand(topicList, 50, "First Topic", ui, bookmarks, 10);
+    void execute_wrongTopicNum_exceptionCaughtAndProgramContinuesWithoutLoopsOrFailing() {
+        Command badQuizCommand =
+                new QuizCommand(topicList, 50, PLACEHOLDER_TOPIC_ONE_DESCRIPTION, ui, bookmarks, TIMER);
         badQuizCommand.execute(topicList, ui);
         assertTrue(true);
     }

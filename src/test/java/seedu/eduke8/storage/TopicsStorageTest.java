@@ -14,34 +14,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TopicsStorageTest extends Eduke8Test {
-    public static final String DATA_TEST_TOPICS_JSON = "data/test/topics.json";
+    private static final String DATA_TEST_TOPICS_JSON = "data/test/topics.json";
 
     @Test
-    public void load_invalidPath_expectIoException() {
+    void load_invalidPath_expectIoException() {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_INVALID_PATH);
         assertThrows(IOException.class, topicsStorage::load);
     }
 
     @Test
-    public void load_emptyJson_expectParseException() {
+    void load_emptyJson_expectParseException() {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_EMPTY_JSON);
         assertThrows(ParseException.class, topicsStorage::load);
     }
 
     @Test
-    public void load_wrongFormatJson_expectClassCastException() {
+    void load_wrongFormatJson_expectClassCastException() {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_WRONG_FORMAT_JSON);
         assertThrows(ClassCastException.class, topicsStorage::load);
     }
 
     @Test
-    public void load_missingKeyJson_expectNullPointerException() {
+    void load_missingKeyJson_expectNullPointerException() {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_MISSING_KEY_JSON);
         assertThrows(NullPointerException.class, topicsStorage::load);
     }
 
     @Test
-    public void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException {
+    void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_TOPICS_JSON);
 
         ArrayList<Displayable> topics = topicsStorage.load();

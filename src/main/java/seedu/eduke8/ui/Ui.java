@@ -14,7 +14,9 @@ import seedu.eduke8.topic.TopicList;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -26,7 +28,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Ui {
     private static final int LAST_OPTION = 4;
-    private static final int CONVERSION_FROM_MILLIS_TO_SECONDS = 1000;
+    private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
     private static final String TEXTBOOK_WEBSITE =
             "https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html";
 
@@ -74,7 +76,7 @@ public class Ui {
             + "you earn 2 points if you did not request for hint, "
             + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
-    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark':";
+    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "
             + "available questions in each:";
     private static final String MESSAGE_EXPLANATION = "Explanation:";
@@ -93,9 +95,9 @@ public class Ui {
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
     private static final String SPACE = " ";
-    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note";
+    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to: ";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note: ";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note: ";
     private static final String ADD_NOTE_SUCCESSFULLY = "Your note has been added!";
     private static final String ADD_NOTE_UNSUCCESSFULLY = "Your note was not added successfully."
             + " Please try again!";
@@ -105,9 +107,9 @@ public class Ui {
             + " to delete?";
     private static final String DELETE_NOTE_SUCCESSFULLY = "The note has been deleted!";
     private static final String DELETE_NOTE_UNSUCCESSFULLY = "The note was not deleted successfully. Try again!";
-    private static final String INVALID_TOPIC_NAME = "Please enter a valid topic name";
+    private static final String INVALID_TOPIC_INDEX = "Please enter a valid topic index";
     private static final String LIST_NOTE_PROMPT = "Which topic's notes would you like to view?";
-    private static final String INPUT_ERROR = "Please provide a valid input!";
+    private static final String INPUT_ERROR = "Please provide a valid topic!";
     private static final String MESSAGE_SHOW_POINTS = "You have earned ";
     private static final String MESSAGE_SHOW_POINTS_SECOND = " points out of a total of ";
     private static final String MESSAGE_SHOW_POINTS_THIRD = " points available!";
@@ -133,53 +135,92 @@ public class Ui {
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
     public static final String ERROR_READING_INPUT = "Error reading input.";
     public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
+    public static final String MESSAGE_QUIZ_TO_PROCEED = "Press 'Enter' to proceed!";
+    public static final String OS_NAME = "os.name";
+    public static final String OS_LINUX = "nux";
+    public static final String OS_MAC = "mac";
+
+    private static String operatingSystem = null;
 
     public String getInputFromUser() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER);
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
-            return userInputFuture.get();
+            return userInputFuture.get().trim();
         } catch (InterruptedException | ExecutionException e) {
             printError(ERROR_READING_INPUT);
         }
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().trim();
     }
 
     public void printQuizInputMessage() {
         System.out.print(MESSAGE_GET_INPUT_FROM_USER_QUIZ);
     }
 
-    public String getQuizInputFromUser(int timer) throws IOException {
-        // May have to use this portion for Linux because Robot doesn't work on WSL
-        //        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-        //        long startingTime = System.currentTimeMillis();
-        //
-        //        while (((System.currentTimeMillis() - startingTime) < timer * CONVERSION_FROM_MILLIS_TO_SECONDS)
-        //                && System.in.available() ==  0) {
-        //        }
+    public boolean getEnterFromUser() {
+        boolean enterIsUsed = false;
 
-        //        if (userInput.ready()) {
-        //            return userInput.readLine();
-        //        } else {
-        //            return null;
-        //        }
+        System.out.print(MESSAGE_QUIZ_TO_PROCEED);
 
         String userInput;
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
         try {
-            userInput = userInputFuture.get(timer, TimeUnit.SECONDS);
-        } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
-            try {
-                Robot robot = new Robot();
-                robot.keyPress(KeyEvent.VK_ENTER);
-                robot.keyRelease(KeyEvent.VK_ENTER);
-            } catch (AWTException awtException) {
-                printError(ERROR_USING_ROBOT);
+            userInput = userInputFuture.get();
+            if (userInput.isEmpty()) {
+                enterIsUsed = true;
             }
-            return null;
+        } catch (InterruptedException | ExecutionException e) {
+            printError(ERROR_READING_INPUT);
         }
 
-        return userInput;
+        return enterIsUsed;
+    }
+
+    private static String findUserOperatingSystem() {
+        if (operatingSystem == null) {
+            operatingSystem = System.getProperty(OS_NAME).toLowerCase();
+        }
+        return operatingSystem;
+    }
+
+    public String getQuizInputFromUser(int timeLeft) throws IOException {
+
+        operatingSystem = findUserOperatingSystem();
+
+        //This is for Linus and Mac operating systems because Robot doesn't work on WSL
+        if (operatingSystem.contains(OS_LINUX) || operatingSystem.contains(OS_MAC)) {
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            long startingTime = System.currentTimeMillis();
+
+            while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
+                    && System.in.available() ==  0) {
+            }
+
+            if (userInput.ready()) {
+                return userInput.readLine().trim();
+            } else {
+                return null;
+            }
+
+        //This is for the Windows operating system 
+        } else {
+            String userInput;
+            Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
+            try {
+                userInput = userInputFuture.get(timeLeft, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException | IllegalArgumentException | TimeoutException e) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                } catch (AWTException awtException) {
+                    printError(ERROR_USING_ROBOT);
+                }
+                return null;
+            }
+
+            return userInput.trim();
+        }
     }
 
     private static void printMessage(String message) {
@@ -241,9 +282,9 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printIncompleteAnswer(int correctAnswer, String explanation, int timer) {
+    public void printIncompleteAnswer(int correctAnswer, String explanation, int userTimer) {
         System.out.println();
-        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + timer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
+        printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + userTimer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
                 + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
                 + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
@@ -280,23 +321,28 @@ public class Ui {
     }
 
     public void addNoteInteractions(TopicList topicList) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(ADD_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
         Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
+                System.out.println(HORIZONTAL_LINE);
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
-                String noteName = SCANNER.nextLine();
+                String noteName = SCANNER.nextLine().trim();
+                System.out.println(HORIZONTAL_LINE);
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
-                String noteBody = SCANNER.nextLine();
+                String noteBody = SCANNER.nextLine().trim();
+                System.out.println(HORIZONTAL_LINE);
 
                 Note note = new Note(noteName, noteBody);
                 Topic topic = (Topic) topicList.find(topicName);
                 topic.getNoteList().add(note);
                 System.out.println(ADD_NOTE_SUCCESSFULLY);
+                System.out.println(HORIZONTAL_LINE);
             } else {
-                System.out.println(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -306,8 +352,9 @@ public class Ui {
     public void deleteNoteInteractions(TopicList topicList) {
         Ui ui = new Ui();
 
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(DELETE_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -316,18 +363,18 @@ public class Ui {
                 ui.printNoteList(noteList);
 
                 System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
-                String input = SCANNER.nextLine();
+                String input = SCANNER.nextLine().trim();
 
                 if (input.matches("[0-9]+") && Integer.parseInt(input) > 0
                         && Integer.parseInt(input) <= noteList.getCount()) {
                     int index = Integer.parseInt(input);
                     topic.getNoteList().delete(index - 1);
-                    System.out.println(DELETE_NOTE_SUCCESSFULLY);
+                    printMessage(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    System.out.println(INVALID_TOPIC_NAME + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
             } else {
-                System.out.println(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -337,8 +384,9 @@ public class Ui {
     public void listInteraction(TopicList topicList) {
         Ui ui = new Ui();
 
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(LIST_NOTE_PROMPT);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -346,13 +394,12 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 ui.printNoteList(noteListTopic);
             } else {
-                System.out.println(INPUT_ERROR);
+                printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
         }
     }
-
 
     public void printNoteList(NoteList notes) {
 
