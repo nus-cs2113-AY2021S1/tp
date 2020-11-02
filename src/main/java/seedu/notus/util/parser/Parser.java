@@ -189,17 +189,19 @@ public abstract class Parser {
             System.out.println(Formatter.formatString(INSTRUCTIONS_INPUT_CONTENTS, true));
             try {
                 // Type note
+                String lastLine = "";
                 do {
                     inputString.add(input.nextLine());
+                    lastLine = inputString.get(inputString.size() - 1);
 
                     // "/del" Delete previous line if there user makes a typo
                     if (inputString.get(inputString.size() - 1)
                             .equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
                         inputString.remove(inputString.size() - 1);
+                        lastLine = inputString.get(inputString.size() - 1);
                         inputString.remove(inputString.size() - 1);
                     }
-                } while (!inputString.get(inputString.size() - 1)
-                        .equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
+                } while (!lastLine.equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
                 // Delete "/end" command when user ends the input
                 inputString.remove(inputString.size() - 1);
