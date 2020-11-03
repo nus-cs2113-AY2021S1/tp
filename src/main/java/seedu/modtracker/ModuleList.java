@@ -205,11 +205,11 @@ public class ModuleList {
     }
 
     /**
-     * Creates a module and adds the module with expected time to the
+     * Creates a module and adds the module with expected workload to the
      * list of modules if module does not exist.
-     * If module already exist, update expected time based on user input.
+     * If module already exist, update expected workload based on user input.
      *
-     * @param input   module code and expected time typed in by user.
+     * @param input   module code and expected workload typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -264,7 +264,7 @@ public class ModuleList {
     }
 
     /**
-     * Deletes the module if module exists.
+     * Deletes the module from list of modules.
      *
      * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
@@ -309,9 +309,9 @@ public class ModuleList {
     }
 
     /**
-     * Deletes the expected time of the module if module exists.
+     * Deletes the expected workload of the module.
      *
-     * @param input   module code and expected time typed in by user.
+     * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -350,6 +350,13 @@ public class ModuleList {
         }
     }
 
+    /**
+     * Deletes the actual time of the module of the particular week.
+     *
+     * @param input   module code and week number typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
+     */
     public void deleteTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 3);
         String modCode;

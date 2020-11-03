@@ -2,7 +2,6 @@ package seedu.modtracker;
 
 import static seedu.modtracker.ModuleList.modList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,7 +27,7 @@ public class Notification {
     public static final String[] lines = {MAINTAIN, SUCCESS, TIME_MANAGEMENT};
     public static final String[] pushForward = {HARD_WORK, PUSH_ON, STRONGER, CAPABLE, TODAY};
 
-    //update week number with user input
+    //update week number based on user input
     public void updateCurrentWeek() {
         currentWeek = 13;
         while (currentWeek > 0) {
@@ -46,6 +45,13 @@ public class Notification {
         return mod.doesExpectedWorkLoadExist() && mod.doesActualTimeExist(currentWeek);
     }
 
+    /**
+     * Returns the number of notifications by updating the week number, followed by
+     * checking the modules of that week if there is too much or too less time spent on the modules.
+     *
+     * @param list   list of modules.
+     * @return the number of notifications.
+     */
     public int getNumNotification(ModuleList list) {
         numOfNotification = 0;
         ArrayList<Module> modList = list.getData();
