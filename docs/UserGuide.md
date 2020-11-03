@@ -101,6 +101,7 @@ Adds a new note to the list of note items (think of it as a notebook).
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
 💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
+💡 As an extension to the above point, new notes cannot have the same title as those archived. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
 💡 Set `ISPIN` to "true" if you want the note to be pinned. Any other input value will leave the note unpinned.  
 💡 Set `ISARCHIVE` to "true" if you want the note to be archived. Any other input value will leave the note unarchived.
@@ -200,6 +201,8 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
 
+💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
+💡 As an extension to the above point, new notes cannot have the same title as those archived. <br>
 💡 Note content must have at least 1 line.
 
 Example of usage: 
