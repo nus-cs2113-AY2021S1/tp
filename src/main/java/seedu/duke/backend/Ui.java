@@ -133,7 +133,7 @@ public class Ui {
                     char c = s.charAt(i);
                     System.out.print(c);
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

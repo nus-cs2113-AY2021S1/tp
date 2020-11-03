@@ -1,5 +1,6 @@
 package seedu.duke.event;
 
+import seedu.duke.DukeArgumentException;
 import seedu.duke.hr.Member;
 
 import java.time.DayOfWeek;
@@ -145,6 +146,9 @@ public class Event {
         }
         if (start != null) {
             date = start.toLocalDate();
+        }
+        if (date == null) {
+            throw new RuntimeException();
         }
     }
 
