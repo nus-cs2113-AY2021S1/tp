@@ -20,7 +20,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_USER_JSON_LOAD;
+
 public class UserStorage extends LocalStorage {
+
     private BookmarkList bookmarkList;
     private TopicList topicList;
 
@@ -81,62 +84,114 @@ public class UserStorage extends LocalStorage {
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
+        ArrayList<Topic> topicObjects = new ArrayList<>();
         for (Object topic : topicsAsJsonArray) {
-            parseFromTopicJson((JSONObject) topic);
+            topicObjects.add(parseFromTopicJson((JSONObject) topic));
         }
 
         LOGGER.log(Level.INFO, "User data loaded from file");
+
+        for (Topic topicObject : topicObjects) {
+            if (topicObject == null) {
+                throw new Eduke8Exception(ERROR_USER_JSON_LOAD);
+            }
+        }
 
         return topicList.getInnerList();
     }
 
 
-    private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
-        String topicDescription = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
-        Topic topicObject = (Topic) topicList.find(topicDescription);
+    private Topic parseFromTopicJson(JSONObject topic) {
+        Topic topicObject;
+        JSONArray questions;
+        JSONArray notes;
 
-        JSONArray questions = (JSONArray) topic.get(KEY_QUESTIONS);
-        loadQuestionAttributes(questions, topicObject);
+        try {
+            String topicDescription = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
+            topicObject = (Topic) topicList.find(topicDescription);
+            questions = (JSONArray) topic.get(KEY_QUESTIONS);
+        } catch (Eduke8Exception | NullPointerException | ClassCastException e) {
+            return null;
+        }
 
-        JSONArray notes = (JSONArray) topic.get(KEY_NOTES);
-        loadNotes(notes, topicObject);
+        // Do this before attempting to load notes so user stats are loaded as much as possible first.
+        ArrayList<Question> questionObjects = loadQuestionAttributes(questions, topicObject);
+
+        try {
+            notes = (JSONArray) topic.get(KEY_NOTES);
+        } catch (NullPointerException | ClassCastException e) {
+            return null;
+        }
+
+        ArrayList<Note> noteObjects = loadNotes(notes, topicObject);
+
+        for (Question questionObject : questionObjects) {
+            if (questionObject == null) {
+                return null;
+            }
+        }
+
+        for (Note noteObject : noteObjects) {
+            if (noteObject == null) {
+                return null;
+            }
+        }
+
+        return topicObject;
     }
 
-    private void loadNotes(JSONArray notes, Topic topicObject) {
+    private ArrayList<Note> loadNotes(JSONArray notes, Topic topicObject) {
         NoteList noteList = topicObject.getNoteList();
+        ArrayList<Note> noteObjects = new ArrayList<>();
         for (Object note : notes) {
-            parseFromNoteJson((JSONObject) note, noteList);
+            noteObjects.add(parseFromNoteJson((JSONObject) note, noteList));
         }
+
+        return noteObjects;
     }
 
-    private void parseFromNoteJson(JSONObject note, NoteList noteList) {
-        String noteDescription = (String) note.get(KEY_DESCRIPTION);
-        String text = (String) note.get(KEY_TEXT);
+    private Note parseFromNoteJson(JSONObject note, NoteList noteList) {
+        String noteDescription;
+        String text;
+        try {
+            noteDescription = (String) note.get(KEY_DESCRIPTION);
+            text = (String) note.get(KEY_TEXT);
+        } catch (NullPointerException | ClassCastException e) {
+            return null;
+        }
         Note noteObject = new Note(noteDescription, text);
-
         noteList.add(noteObject);
+        return noteObject;
     }
 
-    private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
+    private ArrayList<Question> loadQuestionAttributes(JSONArray questions, Topic topicObject) {
         QuestionList questionList = topicObject.getQuestionList();
+        ArrayList<Question> questionObjects = new ArrayList<>();
         for (Object question : questions) {
-            parseFromQuestionJson(questionList, (JSONObject) question);
+            questionObjects.add(parseFromQuestionJson(questionList, (JSONObject) question));
         }
+        return questionObjects;
     }
 
-    private void parseFromQuestionJson(QuestionList questionList, JSONObject question) throws Eduke8Exception {
-        String questionDescription = (String) question.get(KEY_DESCRIPTION);
-        Question questionObject = (Question) questionList.find(questionDescription);
-        questionObject.markAsShown();
-        if ((boolean) question.get(KEY_CORRECT)) {
-            questionObject.markAsAnsweredCorrectly();
+    private Question parseFromQuestionJson(QuestionList questionList, JSONObject question) {
+        Question questionObject;
+        try {
+            String questionDescription = (String) question.get(KEY_DESCRIPTION);
+            questionObject = (Question) questionList.find(questionDescription);
+            questionObject.markAsShown();
+            if ((boolean) question.get(KEY_CORRECT)) {
+                questionObject.markAsAnsweredCorrectly();
+            }
+            if ((boolean) question.get(KEY_BOOKMARKED)) {
+                bookmarkList.add(questionObject);
+            }
+            if ((boolean) question.get(KEY_HINT)) {
+                questionObject.getHint().markAsShown();
+            }
+        } catch (NullPointerException | ClassCastException e) {
+            return null;
         }
-        if ((boolean) question.get(KEY_BOOKMARKED)) {
-            bookmarkList.add(questionObject);
-        }
-        if ((boolean) question.get(KEY_HINT)) {
-            questionObject.getHint().markAsShown();
-        }
+        return questionObject;
     }
 
     @SuppressWarnings("unchecked")

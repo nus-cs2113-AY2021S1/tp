@@ -339,7 +339,15 @@ already provided an example is shown below.
 
 Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
 and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
-`correct` key.
+`correct` key. If you edit the title of existing topics or description of existing questions then their associated user 
+data might be erased.
+
+**Q**: What happens if I modify the user data in `user.json`?
+
+**A**: If you still wish to modify the user data, the application may not be able to load it successfully. You will 
+receive the following message, and the affected user data will be erased.
+
+![user data error](./images/user_data_error.png)
 
 ## 5. Command summary
 
