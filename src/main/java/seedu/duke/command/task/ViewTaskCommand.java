@@ -34,9 +34,10 @@ public class ViewTaskCommand extends TaskCommand {
             for (int i = 0; i < parameters.size(); i++) {
                 Task task;
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
-                //Change to getNextId because each task's ID does not decrease with deletion.
-                if (backlogId <= proj.getProjectBacklog().getNextId()) {
+                if (backlogId <= 0) {
+                    Ui.showError("The ID: " + backlogId + " is invalid. " +
+                            "Please enter a positive integer.");
+                } else if (backlogId <= proj.getProjectBacklog().getNextId()) {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     Ui.showToUserLn(task.toString());
                 } else {
