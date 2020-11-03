@@ -1255,7 +1255,18 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
     
-## 3.7  <a name = saveManager> </a>Save Manager
+# 3.7  <a name = saveManager> </a>Feature: Save Manager
+This utility feature helps to save multiple program states and load them at will.
+
+## 3.7.1 Save Manager List Save
+
+## 3.7.2 Save Manager Add Save
+
+## 3.7.3 Save Manager Load Save
+
+## 3.7.4 Save Manager Delete Save
+
+## 3.7.4 Save Manager Reset
 
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
