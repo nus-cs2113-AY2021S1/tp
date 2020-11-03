@@ -6,19 +6,24 @@ import seedu.zoomaster.command.ChangeModeCommand;
 import seedu.zoomaster.command.ClearCommand;
 import seedu.zoomaster.command.HelpCommand;
 import seedu.zoomaster.command.LaunchNowCommand;
+
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
+import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
+import seedu.zoomaster.command.bookmark.EditBookmarkCommand;
+import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
+import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
+import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
+
 import seedu.zoomaster.command.timetable.AddSlotCommand;
-import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
-import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
-import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
 import seedu.zoomaster.command.timetable.EditSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
-import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
@@ -83,6 +88,8 @@ public class Parser {
             return new AddBookmarkCommand(input);
         } else if (input.startsWith(LaunchBookmarkCommand.LAUNCH_KW)) {
             return new LaunchBookmarkCommand(input);
+        } else if (input.startsWith(EditBookmarkCommand.EDIT_KW)) {
+            return new EditBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
             return new FindBookmarkCommand(input);
         } else {

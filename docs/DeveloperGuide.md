@@ -256,11 +256,13 @@ Given below is a sequential diagram of how changing between modes occur.
 
 2. The ChangeModeCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to change to.
 
-3. Zoomaster now executes the command and changes to the respective mode. If an invalid mode was given by the user or if the input field was empty, the execute function throws an exception and tells the user valid modes for Zoomaster.
+3. Zoomaster now executes the command and changes to the respective mode. 
+
+4. If an invalid mode was given by the user or if the input field was empty, the execute function throws an exception and tells the user valid modes for Zoomaster.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
 
 *<center/> Figure 2.2 Activity diagram for ChangeModeCommand </center> <br/></br>*
 
@@ -270,13 +272,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 1 (Current choice):** No security
     * Pros: Easy to implement
-    * Cons: May introduce errors to the App if variable is changed outside of ChangeModeCommand class objects.
+    * Cons: May introduce errors to the App if the variable is changed outside of ChangeModeCommand class objects.
 * **Alternative 2:** Private variable and implement mode changing inside Parser class
     * Pros: Ensure the App does not change modes outside commands to change modes.
     * Cons: Reduces OOP standard of code by decoupling ChangeModeCommand from Command class and increases code complexity.
 
 <a name="show-timetable"></a>
-### Show timetable feature (Tan Yu Shing + Xing Rong)
+### Show timetable feature (Tan Yu Shing)
 Users can see the timetable they have created in the App using the **show** command. The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. 
 
 #### Implementation
@@ -292,6 +294,22 @@ Additionally, it implements the following operations:
 
 Given below is a sequential diagram of how printing the timetable occurs.
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
+*<center/>Figure 2.3 Sequential diagram for ShowTimetableCommand</center> <br/></br>*
+
+1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
+
+2. The ShowTimetableCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to view the timetable in.
+
+3. If an invalid input day is entered by the user, the input day will be set as **null**.
+
+4. Zoomaster now executes the command and displays the timetable in the requested mode. 
+
+5. If the input day is **null**, no timetable will be printed out. Instead, the program checks for does checks for Show Lesson Bookmarks feature.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
+*<center/>Figure 2.4 Activity diagram for ShowTimetableCommand</center> <br/></br>*
+
 
 #### Design consideration:
 
@@ -305,8 +323,18 @@ Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
 Given below is a sequence diagram of how the feature works.
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
-*<center/> Figure 2.3 Sequence diagram for AddSlotCommand </center> <br/></br>*
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)  
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)  
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)  
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)  
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)  
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)  
+*<center/> Figure 2.5 Sequence diagram for AddSlotCommand </center> <br/></br>*
 
 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
@@ -346,6 +374,8 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
+*<center/> Figure 2.6 Sequence diagram for EditSlotCommand </center> <br/></br>*
+
 
 ### Planner feature (Jusuf)
 
