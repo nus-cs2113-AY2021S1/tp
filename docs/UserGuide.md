@@ -201,7 +201,8 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
 
-💡 Note cannot have the same title as those in the archives. <br>
+💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
+💡 As an extension to the above point, new notes cannot have the same title as those archived. <br>
 💡 Note content must have at least 1 line.
 
 Example of usage: 
