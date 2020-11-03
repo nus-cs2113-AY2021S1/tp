@@ -32,11 +32,13 @@ public class ChangeModeCommand extends BookmarkCommand {
                 ui.showModeChangeMessage(categories, categoryNumberInList);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Category Number");
         } catch (NumberFormatException e) {
             ui.showInvalidNumberError();
         } catch (InvalidBookmarkException e) {
-            ui.showInvalidLinkError();
+            ui.showInvalidError("Category Number");
+        } catch (IndexOutOfBoundsException e) {
+            ui.showInvalidNumberError();
         }
     }
 

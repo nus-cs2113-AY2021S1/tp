@@ -32,12 +32,12 @@ public class BookmarkParser extends CommandParser {
             return new RemoveLinkCommand(command, chosenCategory);
         } else if (commandModified.startsWith("list")) {
             if (commandModified.contains("star")) {
-                return new ListStarCommand(chosenCategory);
+                return new ListStarCommand(command,chosenCategory);
             } else {
-                return new ListCommand(chosenCategory);
+                return new ListCommand(command,chosenCategory);
             }
         } else if (commandModified.startsWith("back")) {
-            return new BackCommand(chosenCategory);
+            return new BackCommand(command,chosenCategory);
         } else if (commandModified.startsWith("cat")) {
             return new AddCategoryCommand(command,chosenCategory);
         } else if (commandModified.startsWith("delete")) {
