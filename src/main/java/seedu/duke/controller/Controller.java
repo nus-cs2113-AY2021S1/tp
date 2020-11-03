@@ -16,6 +16,7 @@ import seedu.duke.command.WalletCommand;
 import seedu.duke.exception.DoNotOwnStockException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InsufficientFundException;
+import seedu.duke.exception.NegativeQtyException;
 import seedu.duke.exception.InsufficientQtyException;
 import seedu.duke.model.BookmarksManager;
 import seedu.duke.model.PortfolioManager;
@@ -45,7 +46,7 @@ public class Controller {
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
                     + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
-        } catch (DukeException | InsufficientFundException e) {
+        } catch (DukeException | InsufficientFundException | NegativeQtyException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -59,7 +60,7 @@ public class Controller {
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
                     + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
-        } catch (DoNotOwnStockException | InsufficientQtyException | DukeException e) {
+        } catch (DoNotOwnStockException | InsufficientQtyException | DukeException | NegativeQtyException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
