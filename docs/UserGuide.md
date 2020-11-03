@@ -162,7 +162,7 @@ Output:
    
    ![](images/user_guide/onCommand3.png) 
 
-Example: `on bedroom1`
+Example: `on Bedroom1`
 
 Output: 
    
@@ -181,7 +181,7 @@ Output:
    ![](images/user_guide/offCommand1.png) 
 
 
-Example: `off bedroom1`
+Example: `off Bedroom1`
 
 Output: 
    
@@ -209,7 +209,7 @@ Output:
    
    ![](images/user_guide/listCommand2.png) 
 
-Example: `list appliance l/bedroom1`
+Example: `list appliance l/Bedroom1`
 
 Output: 
    
