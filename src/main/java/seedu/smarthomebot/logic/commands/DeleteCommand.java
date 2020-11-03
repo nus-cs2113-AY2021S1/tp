@@ -10,6 +10,7 @@ public class DeleteCommand extends Command {
     private final String userEnteredName;
 
     public DeleteCommand(String name) {
+        assert name.isEmpty() != true : "DeleteCommand must not accept empty parameter";
         this.userEnteredName = name;
     }
 
