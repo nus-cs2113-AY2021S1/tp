@@ -10,6 +10,9 @@ import seedu.financeit.utils.storage.AccountSaver;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Represents all features in FinanceTools.
+ */
 public abstract class FinanceTools {
 
     public static void main() {
