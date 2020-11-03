@@ -545,7 +545,7 @@ manualTrackerSaver saves manualTracker states. SaveManager class is the UI class
 ![SaveManagerClassDiagram](uml_images/fPD1RzGm48Nl_XNMdbf5hierMgqA1qGF5KX1dBZCsaDYPM97zXW9IlyxcHGQbNIhYBqzpupVViyxkSaCYSj0glCEjVN94ghS-p12Wa5RWfpVCYT_B8otDeR6_qHzhTJSqRiCt_4E0hIOTlfULTyAqIVWhjRDT2cqgd8-FIkOCSLXvEKyO2YrVXSZ8GHL3U33nQMgmBbcCXT94Pwq9OGamY4Xu.png)
 
 #### Save Manager Sequence Diagram
-![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
+![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
 ## Product scope
 ### Target user profile
