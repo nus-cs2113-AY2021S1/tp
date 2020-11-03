@@ -425,4 +425,88 @@ COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
 1. RED VELVET Crumblesss
 2. COOKIES N CREME CH33SECAKE
 
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -o requires an additional field.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -o requires an additional field.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! a is not a valid option
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! This input is not accepted, please try again!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! This input is not accepted, please try again!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please leave a spacing between each parameter!
+
 COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 77th-chan!
