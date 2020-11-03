@@ -27,7 +27,7 @@ public class CommandAddMember extends Command {
                     return ARGUMENT_ERR;
                 }
                 if ((input.getArg("n").equals("")) || (input.getArg("p").equals(""))
-                        || (input.getArg("e").equals("")) && (input.getArg("r").equals(""))) {
+                        || (input.getArg("e").equals("")) || (input.getArg("r").equals(""))) {
                     return ARGUMENT_ERR;
                 }
                 return ACCEPT;
@@ -47,8 +47,16 @@ public class CommandAddMember extends Command {
             return output;
         }
         long phone = Long.parseLong(savedInput.getArg("p"));
+        if (phone < 0) {
+            output = "OOPS!!! The phone number should be a positive number.";
+            return output;
+        }
         String standardName = standardizeMemberName(savedInput.getArg("n"));
         Member test = findMemberByName(standardName);
+        String [] email = savedInput.getArg("e").split(" ");
+        if (email.length > 1) {
+            return "Your email address must be a whole string.\n";
+        }
         if (test == null) {
             Member m = new Member(standardName, phone, savedInput.getArg("e"), savedInput.getArg("r"));
             output = MemberList.addToList(m);

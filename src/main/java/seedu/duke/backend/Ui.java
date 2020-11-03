@@ -55,6 +55,7 @@ public class Ui {
         System.out.println("Num Args: "+userInput.getNumArgs());
         System.out.println("Args: "+userInput.getArgs());
          */
+
         try {
             Command cmd = findCommand(userInput);
             printOutput(cmd.execute());

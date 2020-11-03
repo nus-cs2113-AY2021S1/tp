@@ -49,6 +49,7 @@ public class MemberList {
         try {
             output = "Noted. I'll remove this member:\n";
             output = output.concat(members.get(index).toString() + "\n");
+            deleteFromEvents(members.get(index).getMemberName());
             members.remove(index);
             Member.numOfMembers--;
             output = output.concat("Now you have " + Member.numOfMembers + " member");
@@ -57,6 +58,17 @@ public class MemberList {
             output = "OOPS!!! The member does not exist.\n";
         }
         return output;
+    }
+
+    /**
+     * Deletes member from all events.
+     * @param memberName memberName to be deleted.
+     */
+    public static void deleteFromEvents(String memberName) {
+        for (int i = 0; i < EventList.events.size(); i++) {
+            String eventName = EventList.events.get(i).getEventName();
+            EventList.deleteAttendance(eventName, memberName);
+        }
     }
 
     /**
@@ -148,10 +160,21 @@ public class MemberList {
      * @param newRole new role to replace the original role.
      * @return output message for the user.
      */
-    public static String changeMemberInfo(Member m, long newPhone, String newEmail, String newRole) {
-        Long phone = newPhone;
-        if (phone != null) {
-            m.setMemberPhone(phone);
+    public static String changeMemberInfo(Member m, String newPhone, String newEmail, String newRole) {
+        String output = "";
+        try {
+            if (newPhone != null) {
+                Long phone = Long.parseLong(newPhone);
+                if (phone < 0) {
+                    output = "OOPS!!! The phone number should be a positive number.";
+                    return output;
+                }
+                m.setMemberPhone(phone);
+            }
+        } catch (Exception e) {
+            output = "OOPS!!! The format of the phone number given is incorrect.\n"
+                    + "The phone number should be a whole number less than 19 digits.\n";
+            return output;
         }
 
         if (newEmail != null) {
@@ -161,7 +184,7 @@ public class MemberList {
         if (newRole != null) {
             m.setMemberRole(newRole);
         }
-        String output = "I have changed the information of this member:\n";
+        output = "I have changed the information of this member:\n";
         output = output.concat(m.toString());
         return output;
     }
@@ -306,7 +329,7 @@ public class MemberList {
                 count++;
                 continue;
             }
-            if (searchRole(i, "admin")) {
+            if (searchRole(i, "admin") || searchRole(i,"administrators")) {
                 output = output + (i + 1) + "." + members.get(i).toString() + "\n";
                 count++;
                 continue;
