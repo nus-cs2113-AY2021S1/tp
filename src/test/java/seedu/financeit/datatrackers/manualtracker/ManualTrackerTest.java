@@ -18,16 +18,21 @@ public class ManualTrackerTest {
     @Test
     public void testManualTrackerByList() {
         CommandPacket testPacket;
+        int correctListNum = 0;
         for (int i = 1; i <= NUM_ENTRIES; i++) {
             if (i % FREQUENCY_ERROR_ENTRY == 0) {
                 testPacket = generateCreateLedgerErrorCommand();
+                System.out.print("error!: ");
             } else {
                 testPacket = generateCreateLedgerCorrectCommand(i);
+                correctListNum++;
             }
+            System.out.println(testPacket);
+
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleCreateLedger();
         }
-        int correctListNum = NUM_ENTRIES - (int)Math.floor((double)NUM_ENTRIES / FREQUENCY_ERROR_ENTRY);
+        System.out.println(ManualTracker.ledgerList.getItemsSize());
         assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
         ManualTracker.ledgerList.removeAllItems();
     }
@@ -50,16 +55,22 @@ public class ManualTrackerTest {
                 break;
             case 2:
                 testPacket = generateDeleteLedgerByIdCorrectCommand();
+                correctListNum--;
                 break;
             case 3:
                 testPacket = generateDeleteLedgerByIdErrorCommand();
+                System.out.print("error!: ");
                 break;
             default:
                 testPacket = generateDeleteLedgerByDateErrorCommand();
+                System.out.print("error!: ");
             }
+            System.out.println(testPacket);
+
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleDeleteLedger();
         }
+        System.out.println(ManualTracker.ledgerList.getItemsSize());
         assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
         ManualTracker.ledgerList.removeAllItems();
     }
@@ -75,7 +86,9 @@ public class ManualTrackerTest {
             }
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleCreateLedger();
+            System.out.println(testPacket);
         }
+
         assertEquals(2, ManualTracker.ledgerList.getItemsSize());
         ManualTracker.ledgerList.removeAllItems();
     }
