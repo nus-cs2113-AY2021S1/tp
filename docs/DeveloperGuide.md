@@ -1,5 +1,6 @@
 # Developer Guide
 
+<a name="top"></a>
 ## Table of content
 1. [<b>Introduction</b>](#1-introduction)<br>
 1.1. [Overview](#11-overview)<br>
@@ -64,11 +65,14 @@
 ## 1. Introduction
 
 ### 1.1. Overview
+Kaji is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. Purpose
+This document contains the specified architecture and features for the application, Kaji.
 
 ### 1.3. Scope
 This documentation describes the software architecture and software design decisions for the implementation of Kaji. The intended audience of this document is the developers, designers, and software testers of Kaji.
+##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +91,8 @@ This documentation describes the software architecture and software design decis
 4. Click `Import Project` (or `Open or Import` in newer version of Intellij).
 5. Locate the `build.gradle` file (not the root folder as you would do in a normal importing) and select it. Click `OK`.
 If asked, choose to `Open as Project` (not `Open as File`).
-7. Click `OK` to accept the default settings
+6. Click `OK` to accept the default settings
+##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,6 +182,7 @@ The Model,
 
 ### 3.5. Common Classes
 
+##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -358,6 +364,8 @@ The following diagam shows how the add chapter command feature works:
 
 #### 4.1.7. Conclusion
 
+##### <a href="#top">Back to Top ^</a>
+
 ### 4.2. Module Features
 [summary + scenario]
 
@@ -495,6 +503,8 @@ The following sequence diagram shows how the remove chapter feature works:
 #### 4.2.7. Example of the Module Feature
 
 #### 4.2.8. Conclusion
+
+##### <a href="#top">Back to Top ^</a>
 
 ### 4.3. Chapter Features
 [summary + scenario]
@@ -700,6 +710,8 @@ The following diagram shows how the show overall performance feature works:
 
 #### 4.3.8. Conclusion
 
+##### <a href="#top">Back to Top ^</a>
+
 ### 4.4. Revise Feature
 (Jia Ern)
 
@@ -777,6 +789,7 @@ Step 3:
 Step 4:
 * Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
 
+##### <a href="#top">Back to Top ^</a>
 
 ### 4.5. Viewing and Customising the Schedule Feature
 KAJI schedules the user's database automatically for them based on their [revision sessions](#), chapter by chapter, using Spaced Repetition. Users should be able to view their schedule for the current day to know which tasks they need to complete on the day itself and to view their schedule for the upcoming week so that they can plan ahead. However, to effectively use the scheduling feature, users should also be able to customise their scheduling system to include or exclude chapters from their schedule with ease.
@@ -952,6 +965,8 @@ Step 2: The user executes `history` command to load and list the revision comple
 The following sequence diagram shows how the list chapters feature works:
 ![Sequence Diagram of List History](UML/listhistory_seq_diagram.png)
 
+##### <a href="#top">Back to Top ^</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Appendix: Requirements
@@ -1007,6 +1022,8 @@ The following sequence diagram shows how the list chapters feature works:
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface
+
+##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
