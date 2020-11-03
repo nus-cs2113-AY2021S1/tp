@@ -105,6 +105,7 @@ public class SaveManager {
     }
 
     public static void resetAllLists() {
+        System.out.println(ManualTracker.getLedgerList());
         ManualTracker.getLedgerList().removeAllItems();
         EntryTracker.getEntryList().removeAllItems();
         RecurringTracker.getRecurringEntryList().removeAllItems();

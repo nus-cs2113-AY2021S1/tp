@@ -25,6 +25,7 @@ public class EntryTracker {
     static EntryList entryList;
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
+    private static GoalTracker goalTracker = new GoalTracker();
 
     public static void setTestPacket(CommandPacket inputPacket) {
         setCommandPacket(inputPacket);
@@ -39,7 +40,7 @@ public class EntryTracker {
         handleCreateEntry();
     }
 
-    private static GoalTracker goalTracker = new GoalTracker();
+
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;

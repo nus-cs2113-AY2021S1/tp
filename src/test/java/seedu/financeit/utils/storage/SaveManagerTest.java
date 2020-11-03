@@ -1,5 +1,6 @@
 package seedu.financeit.utils.storage;
 
+import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 
@@ -17,6 +18,7 @@ public class SaveManagerTest {
         try {
             List<String> first = Files.readAllLines(firstFile);
             List<String> second = Files.readAllLines(secondFile);
+
             return first.equals(second);
         } catch (IOException e) {
             e.printStackTrace();
@@ -24,7 +26,7 @@ public class SaveManagerTest {
         return false;
     }
 
-
+    @Test
     public void loadSaveTest() {
         try {
             SaveManager.clear();
