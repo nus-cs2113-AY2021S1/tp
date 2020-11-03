@@ -119,11 +119,9 @@ public class BrowseParser extends CommandParser {
      * @throws AniException if parameter stacking was found
      */
     private void checkForParamStacking(int totalParams, int paramLoops, String theParam) throws AniException {
-        if (totalParams > 2) {
-            //Forgive the last param
-            if (!theParam.endsWith(" ") && paramLoops != totalParams) {
-                throw new AniException(NO_SPACE_BETWEEN_PARAM_ERROR);
-            }
+        //Forgive the last param
+        if (totalParams > 2 && !theParam.endsWith(" ") && paramLoops != totalParams) {
+            throw new AniException(NO_SPACE_BETWEEN_PARAM_ERROR);
         }
     }
 

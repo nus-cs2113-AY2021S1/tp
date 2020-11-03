@@ -166,4 +166,16 @@ workspace -d  COOKIES N CREME CH33SECAKE
 workspace -d  COOKIES N CREME CH33SECAKE
 workspace -d Default
 workspace -l
+browse -
+browse -
+browse -o
+browse -o
+browse -o a
+browse -o    asc
+browse      -o asc
+browse      -o     asc
+browse -      o asc -p           2             -aas
+browse -o asc -p 2 --
+browse ---
+browse -s rating-o asc
 exit
