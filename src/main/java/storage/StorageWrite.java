@@ -223,12 +223,12 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
-    protected static void createHistory(Ui ui, String date) {
+    protected static void createHistory(String date) throws IOException {
         try {
             File f = new File("data/history/" + date + ".txt");
             createFile(f);
         } catch (IOException e) {
-            ui.showError("Error creating the data/history file.");
+           throw new IOException("Error creating the data/history file.");
         }
     }
 

@@ -11,8 +11,8 @@ import exception.InvalidInputException;
 import static common.Messages.ADMIN;
 import static common.Messages.CARD;
 import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_ALPHANUMERIC_CHARACTERS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
-import static common.Messages.MESSAGE_INVALID_ACCESS;
 import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MESSAGE_MISSING_INDEX;
@@ -25,11 +25,6 @@ import static common.Messages.MODULE;
 public class EditCommandParser {
 
     private static final String QUESTION_ANSWER_DIVIDER = " \\| ";
-    private static final String QUESTION_PREFIX = "q:";
-    private static final String ANSWER_PREFIX = "a:";
-
-    private static final String MESSAGE_QUESTION_PREFIX = "There needs to be a \"q:\" prefix before the question.\n";
-    private static final String MESSAGE_ANSWER_PREFIX = "There needs to be a \"a:\" prefix before the answer.\n";
 
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
@@ -69,9 +64,8 @@ public class EditCommandParser {
                         + EditModuleCommand.MESSAGE_USAGE);
             }
 
-            if (containsCardPrefix(args[1].trim().toLowerCase())) {
-                throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                        ADMIN, CHAPTER));
+            if (!ParserUtil.checkAlphanumericOnly(args[1].trim().toLowerCase())) {
+                throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, MODULE));
             }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
@@ -99,9 +93,8 @@ public class EditCommandParser {
                         + EditChapterCommand.MESSAGE_USAGE);
             }
 
-            if (containsCardPrefix(args[1].trim().toLowerCase())) {
-                throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
-                        MODULE, CHAPTER));
+            if (!ParserUtil.checkAlphanumericOnly(args[1].trim().toLowerCase())) {
+                throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, CHAPTER));
             }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
@@ -126,8 +119,8 @@ public class EditCommandParser {
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
 
             String[] questionAndAnswer = args[1].trim().split(QUESTION_ANSWER_DIVIDER, 2);
-            String question = parseQuestion(questionAndAnswer[0]);
-            String answer = parseAnswer(questionAndAnswer[1]);
+            String question = ParserUtil.parseQuestion(questionAndAnswer[0], EditCardCommand.MESSAGE_USAGE);
+            String answer = ParserUtil.parseAnswer(questionAndAnswer[1], EditCardCommand.MESSAGE_USAGE);
 
             if (question.isEmpty() && answer.isEmpty()) {
                 throw new InvalidInputException(MESSAGE_NO_QUESTION_AND_ANSWER + EditCardCommand.MESSAGE_USAGE);
@@ -141,26 +134,6 @@ public class EditCommandParser {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD)
                     + EditCardCommand.MESSAGE_USAGE);
         }
-    }
-
-    private static boolean containsCardPrefix(String arg) {
-        return arg.contains(QUESTION_PREFIX) || arg.contains(ANSWER_PREFIX);
-    }
-
-    private static String parseQuestion(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
-            throw new InvalidInputException(MESSAGE_QUESTION_PREFIX + EditCardCommand.MESSAGE_USAGE);
-        }
-
-        return arg.substring(2).trim();
-    }
-
-    private static String parseAnswer(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
-            throw new InvalidInputException(MESSAGE_ANSWER_PREFIX + EditCardCommand.MESSAGE_USAGE);
-        }
-
-        return arg.substring(2).trim();
     }
 
 }

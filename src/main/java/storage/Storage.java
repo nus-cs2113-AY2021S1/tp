@@ -17,9 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import static storage.StorageWrite.createDir;
-import static storage.StorageWrite.createFile;
-
 public class Storage {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -44,8 +41,8 @@ public class Storage {
         File f = new File(filePath);
         logger.info("Filepath: " + filePath);
 
-        createDir(f.getParentFile());
-        createDir(f);
+        StorageWrite.createDir(f.getParentFile());
+        StorageWrite.createDir(f);
 
         StorageWrite.createHistoryDir();
     }
@@ -53,13 +50,13 @@ public class Storage {
     //@@author gua-guargia
     public void createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
-        createDir(f);
+        StorageWrite.createDir(f);
     }
 
     //@@author gua-guargia
     public void createChapter(String chapterName, String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        createFile(f);
+        StorageWrite.createFile(f);
     }
 
     public ArrayList<Module> loadModule() throws FileNotFoundException {
@@ -116,8 +113,8 @@ public class Storage {
         StorageWrite.renameModule(newModuleName, module, filePath);
     }
 
-    public void createHistory(Ui ui, String date) {
-        StorageWrite.createHistory(ui, date);
+    public void createHistory(String date) throws IOException {
+        StorageWrite.createHistory(date);
     }
 
     public void saveHistory(ArrayList<History> histories, String date) throws IOException {
