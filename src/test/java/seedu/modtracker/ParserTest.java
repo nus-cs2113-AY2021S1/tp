@@ -227,7 +227,7 @@ public class ParserTest {
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
-    @Test
+    /*@Test
     public void parse_doneInput_expectEmptyTaskList() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -236,7 +236,7 @@ public class ParserTest {
         parser.parse(input, modList, null, null, true, taskList);
         String expected = "The current task list is empty." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
-    }
+    }*/
 
     @Test
     public void parse_invalidDeleteTaskInput_expectPrintWrongFormat() {
@@ -251,7 +251,7 @@ public class ParserTest {
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
-    @Test
+    /*@Test
     public void parse_deleteTaskInput_expectEmptyTaskList() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -260,7 +260,7 @@ public class ParserTest {
         parser.parse(input, modList, null, null, true, taskList);
         String expected = "The current task list is empty." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
-    }
+    }*/
 
     @Test
     public void parse_invalidAddTaskInput_expectPrintWrongFormat() {
