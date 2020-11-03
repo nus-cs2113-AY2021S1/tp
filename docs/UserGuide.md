@@ -1258,16 +1258,22 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 # 3.7  <a name = saveManager> </a>Feature: Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
+## 3.7.0 Save Manager Menu
+![picture](uml_images/saveManager/Capture1.PNG)
+
 ## 3.7.1 Save Manager List Save
-
+![picture](uml_images/saveManager/Capture2.PNG)
 ## 3.7.2 Save Manager Add Save
-
+![picture](uml_images/saveManager/Capture3.PNG)
+![picture](uml_images/saveManager/Capture4.PNG)
+![picture](uml_images/saveManager/Capture5.PNG)
 ## 3.7.3 Save Manager Load Save
-
+![picture](uml_images/saveManager/Capture6.PNG)
 ## 3.7.4 Save Manager Delete Save
-
+![picture](uml_images/saveManager/Capture7.PNG)
+![picture](uml_images/saveManager/Capture8.PNG)
 ## 3.7.4 Save Manager Reset
-
+![picture](uml_images/saveManager/Capture9.PNG)
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
 ## 4.1 Manual Tracker
