@@ -4,6 +4,7 @@ package seedu.duke.model;
 import seedu.duke.exception.DoNotOwnStockException;
 import seedu.duke.exception.InsufficientFundException;
 import seedu.duke.exception.InsufficientQtyException;
+import seedu.duke.exception.NegativeQtyException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,14 +30,15 @@ public class PortfolioManager {
         load();
     }
 
-    public void buyStock(String symbol, int quantity, double buyPrice) throws InsufficientFundException {
+    public void buyStock(String symbol, int quantity, double buyPrice)
+            throws InsufficientFundException, NegativeQtyException {
         logger.log(Level.INFO, "buying stock ...");
         portfolio.buyStock(symbol, quantity, buyPrice);
         save();
     }
 
     public void sellStock(String symbol, int quantity, double sellPrice)
-            throws InsufficientQtyException, DoNotOwnStockException {
+            throws InsufficientQtyException, DoNotOwnStockException, NegativeQtyException {
         logger.log(Level.INFO, "selling stock ...");
         portfolio.sellStock(symbol, quantity, sellPrice);
         save();
