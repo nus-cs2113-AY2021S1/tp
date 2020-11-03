@@ -1,10 +1,12 @@
 # User Guide
 ![](CCAManager_logo.png) 
+
 # Table of contents
-- [1. Introduction](#1introduction)
+
+- [1.Introduction](#1introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
-- [3. Quick Start](#3quick-start)
-- [4. Features](#4features)
+- [3.Quick Start](#3quick-start)
+- [4.Features](#4features)
     - [Command Format](#command-format)
   - [4.1 Help `help`](#41-help-help)
   - [4.2 Exit the program: `bye`](#42-exit-the-program-bye)
@@ -26,12 +28,14 @@
     - [Search for an Event `search`](#search-for-an-event-search)
     - [Add a participant to an event: `addAttendance`](#add-a-participant-to-an-event-addattendance)
     - [Delete a participant from an event: `delAttendance`](#delete-a-participant-from-an-event-delattendance)
-    - [List events: `listAttendance`](#list-participants-in-an-event-listattendance)
+    - [List participants in an event: `listAttendance`](#list-participants-in-an-event-listattendance)
   - [4.5 Finance features `finance`](#45-finance-features-finance)
-    - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
-    - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
-    - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
-  - [4.6 Importing features](#46-import)
+    - [4.5.1 Add finance log entry: `addLog`](#451-add-finance-log-entry-addlog)
+    - [4.5.2 Delete finance log entry: `delLog`](#452-delete-finance-log-entry-dellog)
+    - [4.5.3 View financial summary: `summary`](#453-view-financial-summary-summary)
+    - [4.5.4 Change finance log entry information: `changeLog`](#454-change-finance-log-entry-information-changelog)
+  - [4.6 Import](#46-import)
+  - [4.7 Saving the data](#47-saving-the-data)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
@@ -251,13 +255,13 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
-
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
-![Symbol](userGuidePic/Symbol5.PNG)
- 
+ > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+ > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+
  Shorthand Command : <br/>
  event --> e <br/>
  addEvent --> del/d <br/>
@@ -516,7 +520,17 @@ The expected outcome is as follows:
 
 [Return to the top](#user-guide)
 
+### 4.7 Saving the data
+
+CCA Manager saves all your data after every command. There is no need to save manually.
+
+[Return to the top](#user-guide)
+
 ## 5. FAQ
+
+This section details the frequently asked questions (FAQ) regarding the use of the application.
+
+[Return to the top](#user-guide)
 
 ## 6. Command Summary
 
