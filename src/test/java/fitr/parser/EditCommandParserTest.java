@@ -5,7 +5,7 @@ import fitr.command.EditProfileCommand;
 import fitr.command.InvalidCommand;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EditCommandParserTest {
     @Test
