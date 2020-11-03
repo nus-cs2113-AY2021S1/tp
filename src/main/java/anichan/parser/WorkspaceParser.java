@@ -12,13 +12,18 @@ import java.util.logging.Logger;
  */
 public class WorkspaceParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
+    public static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
     public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
+    public static final String EXCEPTION_ILLEGAL_WORKSPACE_NAME = "Workspace name must consist "
+            + "only alphanumeric characters and/or spaces.";
+
     public static final String COMMAND_NEW = "n";
     public static final String COMMAND_SWITCH = "s";
     public static final String COMMAND_list = "l";
     public static final String COMMAND_LIST = COMMAND_list;
     public static final String COMMAND_DELETE = "d";
     public static final String REGEX_SPACE_CHARACTER = " ";
+    public static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
 
     private String commandOption;
     private String commandDescription;
@@ -31,7 +36,7 @@ public class WorkspaceParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public WorkspaceCommand parse(String description) throws AniException {
-        assert description != null : "Description should not be null.";
+        assert description != null : ASSERTION_INVALID_MESSAGE;
 
         String[] paramGiven = parameterSplitter(description);
         paramIsSetCheck(paramGiven);
@@ -53,7 +58,7 @@ public class WorkspaceParser extends CommandParser {
      */
     private void parameterParser(String[] paramGiven) throws AniException {
         if (paramGiven.length != 2) {
-            LOGGER.log(Level.WARNING, "Invalid number of parameters given");
+            LOGGER.log(Level.WARNING, EXCEPTION_INVALID_PARAMETERS);
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
 
@@ -100,9 +105,9 @@ public class WorkspaceParser extends CommandParser {
         if (workspaceName != null) {
             boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
 
-            if (!isValid) {
-                LOGGER.log(Level.WARNING, "Workspace name provided does not meet standards.");
-                throw new AniException("Workspace name must consist only alphanumeric characters and/or spaces.");
+            if (!isValid || workspaceName.length() > MAXIMUM_WORKSPACE_NAME_LENGTH) {
+                LOGGER.log(Level.WARNING, EXCEPTION_ILLEGAL_WORKSPACE_NAME);
+                throw new AniException(EXCEPTION_ILLEGAL_WORKSPACE_NAME);
             }
         }
     }
