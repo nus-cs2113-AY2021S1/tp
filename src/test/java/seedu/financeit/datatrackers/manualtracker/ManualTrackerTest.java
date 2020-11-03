@@ -19,6 +19,7 @@ public class ManualTrackerTest {
     public void testManualTrackerByList() {
         CommandPacket testPacket;
         int correctListNum = 0;
+        ManualTracker.ledgerList.removeAllItems();
         for (int i = 1; i <= NUM_ENTRIES; i++) {
             if (i % FREQUENCY_ERROR_ENTRY == 0) {
                 testPacket = generateCreateLedgerErrorCommand();
@@ -40,6 +41,7 @@ public class ManualTrackerTest {
     @Test
     public void testManualTrackerByDelete() {
         CommandPacket testPacket;
+        ManualTracker.ledgerList.removeAllItems();
         for (int i = 1; i <= NUM_ENTRIES; i++) {
             testPacket = generateCreateLedgerCorrectCommand(i);
             ManualTracker.setTestPacket(testPacket);
@@ -78,6 +80,7 @@ public class ManualTrackerTest {
     @Test
     public void testManualTrackerByDuplicateLedgers() {
         CommandPacket testPacket;
+        ManualTracker.ledgerList.removeAllItems();
         for (int i = 0; i < NUM_ENTRIES; i++) {
             if (i % 2 == 0) {
                 testPacket = generateCreateLedgerCorrectCommand(4);
