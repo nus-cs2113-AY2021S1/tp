@@ -4,7 +4,7 @@
 # Table of contents
 
 - [1.Introduction](#1introduction)
-  - [2. About this User Guide](#2-about-this-user-guide)
+- [2. About this User Guide](#2-about-this-user-guide)
 - [3.Quick Start](#3quick-start)
 - [4.Features](#4features)
     - [Command Format](#command-format)
@@ -524,9 +524,13 @@ The expected outcome is as follows:
 
 CCA Manager saves all your data after every command. There is no need to save manually.
 
+[Return to the top](#user-guide)
+
 ## 5. FAQ
 
 This section details the frequently asked questions (FAQ) regarding the use of the application.
+
+[Return to the top](#user-guide)
 
 ## 6. Command Summary
 
