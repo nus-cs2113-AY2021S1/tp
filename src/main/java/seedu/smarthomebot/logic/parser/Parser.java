@@ -159,7 +159,7 @@ public class Parser {
     }
 
     private static boolean checkForIllegalCharacter(String input) {
-        return (input.contains(" ") | input.contains("/"));
+        return (input.contains(" ") || input.contains("/") || input.contains("|"));
     }
 
     private Command prepareCreateCommand(String arguments) {

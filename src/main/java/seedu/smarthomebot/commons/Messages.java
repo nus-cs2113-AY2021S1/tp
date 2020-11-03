@@ -54,7 +54,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_FAN_SPEED =
             "Invalid speed is inputted, ensure that it is within 1-3 speed. \n "
                     + "Previous set speed will be set.";
-    public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or / detected in";
+    public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or /  or | detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter require parameters.";
     public static final String MESSAGE_HELP = LINE + "Here is the list of commands available:\n" + LINE
