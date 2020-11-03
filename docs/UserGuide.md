@@ -1270,7 +1270,7 @@ You can enter "help" anytime to return to this main menu
 ![picture](uml_images/saveManager/Capture2.PNG)
 <br />
 You can enter "list" to list all backup saves.
->syntax
+>example
 
     list
 
@@ -1279,7 +1279,7 @@ You can enter "list" to list all backup saves.
 ![picture](uml_images/saveManager/Capture3.PNG)
 <br />
 To create a back up save
->syntax
+>example
 
     add /name save12345
 
@@ -1296,7 +1296,7 @@ In your names.txt file, an additional entry will be appended.
 ![picture](uml_images/saveManager/Capture6.PNG)
 <br />
 To load a back up save
->syntax
+>example
 
     load /name save12345
 
@@ -1306,7 +1306,7 @@ To load a back up save
 ![picture](uml_images/saveManager/Capture7.PNG)
 <br />
 To remove a back up save
->syntax
+>example
 
     delete /name save123
 
@@ -1320,7 +1320,7 @@ names.txt file is also updated.
 ![picture](uml_images/saveManager/Capture9.PNG)
 <br />
 To reset all data currently used by the program enter "reset"
->syntax
+>example
 
     reset
 
