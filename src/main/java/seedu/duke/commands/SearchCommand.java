@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 
+import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
@@ -21,8 +22,17 @@ public class SearchCommand extends Command {
 
     public boolean processCommand() {
         String showName = inputs.get(1);
-        if (ShowList.getShowList().containsKey(showName)) {
-            Ui.printSearchSuccessful(showName);
+        String showsWithKeyword = "";
+        boolean searchSuccess = false;
+
+        for (Show show : ShowList.showList.values()) {
+            if (show.toString().contains(showName.toLowerCase())) {
+                showsWithKeyword += show.toString() + "\n\t";
+                searchSuccess = true;
+            }
+        }
+        if (searchSuccess) {
+            Ui.printSearchSuccessful(showName, showsWithKeyword);
             return true;
         } else {
             Ui.printShowNotInList();

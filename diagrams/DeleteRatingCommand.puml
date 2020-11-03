@@ -1,0 +1,38 @@
+@startuml
+
+!include style.puml
+box
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":DeleteRatingCommand" as DeleteRatingCommand LOGIC_COLOR
+participant ":Ui" as Ui LOGIC_COLOR
+participant ":ShowList" as ShowList LOGIC_COLOR
+end box
+
+[-> InputParser : deleterating("friends")
+activate InputParser
+
+InputParser -> DeleteRatingCommand: deleteShowRating("friends")
+activate DeleteRatingCommand
+
+DeleteRatingCommand -> DeleteRatingCommand : deleteRating("friends")
+activate DeleteRatingCommand
+
+DeleteRatingCommand -> ShowList: ShowList.getShow("friends")
+activate ShowList
+ShowList --> DeleteRatingCommand
+
+
+DeleteRatingCommand -> ShowList: show.setRating(-1)
+ShowList --> DeleteRatingCommand
+
+DeleteRatingCommand -> ShowList: show.setShow("friends",show)
+ShowList --> DeleteRatingCommand
+
+
+DeleteRatingCommand -> Ui : printDeleteRating()
+Ui --> DeleteRatingCommand
+
+
+[<-- DeleteRatingCommand :
+
+@enduml

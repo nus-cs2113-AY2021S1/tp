@@ -18,8 +18,8 @@
     - [4.h. `delete` - Deletes your show](#4h-delete---deletes-your-show)
     - [4.i. `deleterating` - Deletes rating of your show](#4i-deleterating---deletes-rating-of-your-show)
     - [4.j. `changerating` - Changes rating of your show](#4j-changerating---changes-rating-of-your-show)
-    - [4.k. `episode` - Changes the episode of the show you are currently watching](#4k-episode---changes-the-episode-of-the-show-you-are-currently-watching)
-    - [4.l. `season` - Changes the season of the show you are currently watching](#4l-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.k. `season` - Changes the season of the show you are currently watching](#4k-season---changes-the-season-of-the-show-you-are-currently-watching)
+    - [4.l. `episode` - Changes the episode of the show you are currently watching](#4l-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     - [4.m. Managing your watch time limit](#4m-managing-your-watch-time-limit)
     - [4.m.a. `watch` - Watch a show in your watchlist](#4ma-watch---watch-a-show-in-your-watchlist)
     - [4.m.b. `updatetimelimit` - update your watch time limit](#4mb-updatetimelimit---update-your-watch-time-limit)
@@ -138,16 +138,40 @@ Expected outcome:
      `add Friends 3 10,20,30 25` <br><br>
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
-  <br>_Note how the `10`,`20` and `30` are separated by commas without spaces in between._<br>
-  The duration of each episode is `25` minutes.<br>
- <img src = "images/addCommandUG/addInput.PNG" width = "400">
-  &nbsp;
- After keying in the input as shown in the image above, the next image shows the expected output.
- <img src = "images/addCommandUG/addResponse.PNG" width = "400">
-  &nbsp;
- If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
+>**[NOTE]**
+>Note how the `10`,`20` and `30` are separated by commas without spaces in between.
+>
 
+  The duration of each episode is `25` minutes.<br>
+ <img src = "images/addCommandUG/addInput.PNG" width = "450">
+  &nbsp;<br>
+ After keying in the input as shown in the image above, the next image shows the expected output.<br>
+ <img src = "images/addCommandUG/addResponse.PNG" width = "450">
+  &nbsp;<br>
+ If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
+ 
+ If you already have an entry with the same name in your list, the program will prompt you as follows:
+ 
+ `This action will overwrite your existing data. Continue? (y/n)`
+ 
+ If you want to replace your current entry, enter `y`. If you would like to keep your current entry, enter `n`.
+ 
+ After this, the program will carry on based on your reply. 
+ 
+ If you replied `y` you should see this:
+ 
+ ```
+________________________________________________________________________________
+friends was added to your watchlist.
+```
+<br>
+ 
+ If you replied `n`:
+ 
+ `The process is terminated. Your existing data is kept`
+ 
  >  **[NOTE]**
+ >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
  >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.
  >
@@ -171,9 +195,9 @@ Expected outcome:
   Example of usage:
       `edit friends`
     
-     <img src = "images/edit_step_1.PNG" width = "400">
+     <img src = "images/edit_step_1.PNG" width = "550">
      
-[Output](Insert picture here)
+
 
  * You will be prompted thereafter to enter the fields you want to change such as:
  name, season, episode, duration (of an episode).
@@ -317,7 +341,7 @@ The rating of your show will also be shown if you have added it using the [addre
 
  Expected outcome :
   
- <img src = "images/delete/delete.PNG" width = "400">
+ <img src = "images/delete/delete.PNG" width = "350">
 
  &nbsp;
   
@@ -377,7 +401,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Input:
  
-   <img src = "images/season/input.png" width = "400">
+   <img src = "images/season/input.png" width = "450">
     
    &nbsp;
  
@@ -385,7 +409,7 @@ The `season` command updates the current season of an existing show in your watc
  
  Expected outcome :
   
- <img src = "images/season/output.png" width = "400">
+ <img src = "images/season/output.png" width = "650">
   
  &nbsp;
 
@@ -408,7 +432,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Input: 
  
-  <img src = "images/episode/input.png" width = "400">
+  <img src = "images/episode/input.png" width = "450">
    
   &nbsp;
  
@@ -418,12 +442,12 @@ The `episode` command updates the current episode of an existing show in your wa
  
  > * In the example, the current season that you are watching is season 1
  
- > * If you are going to watch other episodes of other seasons, Please change the current season first using [season](#4k-season---Changes-the-season-of-the-show-you-are-currently-watching) command.
+ > * If you are going to watch other episodes of other seasons, Please change the current season first using [season](#4k-season---changes-the-season-of-the-show-you-are-currently-watching) command.
  
  
  Expected outcome for the example:
   
- <img src = "images/episode/output.png" width = "400">
+ <img src = "images/episode/output.png" width = "650">
   
  &nbsp;
  
@@ -507,16 +531,16 @@ The `search` command helps you search for a specific show in the watchlist and p
 
  Input:
    
- <img src = "images/search/search_input.png" width = "400"> 
+ <img src = "images/search/search_input.png" width = "550"> 
  
- &nbsp
+ &nbsp;
  
  If the show is exist in the list, the details of the show will be printed out.  
  
    
  Expected output:
  
- <img src = "images/searchshows.png" width = "400">  
+ <img src = "images/searchshows.png" width = "600">  
  
  &nbsp;
   
@@ -569,6 +593,7 @@ This section showcases the list of available features and usage examples for you
 |Action|Format|Example|
 |--------|----------|---------------|
 |Display help| `help`| `help`|
+|Display command format| `example`| `example`|
 |Add show|`add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>` |`add Friends 2 10,10 90`|
 |Edit show |`edit <SHOWNAME>`| `edit Friends`|
 |Add review |`addreview <SHOWNAME> <RATING> / <REVIEW>`| `addreview Friends 9 / very funny`|

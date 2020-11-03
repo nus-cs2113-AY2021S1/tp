@@ -48,7 +48,7 @@ public class InputParser {
         String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime", "example"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
-        String[] splitInput = input.split(" ");
+        String[] splitInput = input.toLowerCase().split(" ");
         if (splitInput.length < 2) {
             if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
                 Ui.printInvalidFormatException();
@@ -307,6 +307,7 @@ public class InputParser {
         String[] tokenizedInput = input.split(" ");
         try {
             new AddCommand(tokenizedInput);
+            AddCommand.processCommand();
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
@@ -317,7 +318,7 @@ public class InputParser {
             Ui.printAddNameFormatException();
             return;
         }
-        Ui.printShowAdded(tokenizedInput[1]);
+
     }
 
     /**
