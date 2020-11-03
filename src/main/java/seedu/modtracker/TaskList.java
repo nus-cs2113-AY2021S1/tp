@@ -98,8 +98,6 @@ public class TaskList {
             }
             if (!modList.checkIfModuleExist(modCode)) {
                 assert toPrint : "toPrint should be true";
-                /*Module currentModule = new Module(modCode);
-                modList.modList.add(currentModule);*/
                 ui.printNotExist(modCode);
                 return;
             }
