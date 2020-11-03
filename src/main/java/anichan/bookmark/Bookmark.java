@@ -74,6 +74,11 @@ public class Bookmark {
         this.noteList.get(bookmarkIndex).addNote(note);
     }
 
+    public String removeNote(int bookmarkIndex, int noteIndex) {
+        String removeNote = noteList.get(bookmarkIndex).removeNote(noteIndex);
+        return removeNote;
+    }
+
     /**
      * Retrieve all notes of a bookmark entry.
      *
@@ -93,11 +98,6 @@ public class Bookmark {
             }
         }
         return sbNoteList.toString();
-    }
-
-    public String removeNote(int bookmarkIndex, int noteIndex) {
-        String removeNote = noteList.get(bookmarkIndex).removeNote(noteIndex);
-        return removeNote;
     }
 
     /**

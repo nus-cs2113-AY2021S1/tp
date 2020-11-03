@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Note {
 
-    public ArrayList<String> notes;
+    private ArrayList<String> notes;
 
     public Note() {
         this.notes = new ArrayList<>();
