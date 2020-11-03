@@ -25,11 +25,11 @@ class ViewWatchlistCommandTest {
     Bookmark bookmark;
     Workspace workspace;
 
-    protected static final String ZERO_WATCHLIST_INDEX = "-v 0";
-    protected static final String LARGE_WATCHLIST_INDEX = "-v 3";
-    protected static final String VALID_WATCHLIST_INDEX = "-v 1";
-    protected static final String VALID_EMPTY_INPUT1 = "";
-    protected static final String VALID_EMPTY_INPUT2 = "   ";
+    private static final String ZERO_WATCHLIST_INDEX = "-v 0";
+    private static final String LARGE_WATCHLIST_INDEX = "-v 3";
+    private static final String VALID_WATCHLIST_INDEX = "-v 1";
+    private static final String VALID_EMPTY_INPUT1 = "";
+    private static final String VALID_EMPTY_INPUT2 = "   ";
 
     @BeforeEach
     void setUp() throws AniException {
@@ -82,11 +82,24 @@ class ViewWatchlistCommandTest {
     }
     
     @Test
-    void execute_emptyWatchlist_throwsAniException() throws AniException {
+    void execute_emptyWatchlistList_throwsAniException() throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         watchlistList.remove(0);
         
+        ViewWatchlistParser testParser = new ViewWatchlistParser();
+        ViewWatchlistCommand testView = testParser.parse(VALID_WATCHLIST_INDEX);
+        assertThrows(AniException.class, () -> {
+            testView.execute(animeData, storageManager, user);
+        });
+    }
+    
+    @Test
+    void execute_emptyWatchlist_throwsAniException() throws AniException {
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        activeWatchlist.removeAnimeFromList(0);
+
         ViewWatchlistParser testParser = new ViewWatchlistParser();
         ViewWatchlistCommand testView = testParser.parse(VALID_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {

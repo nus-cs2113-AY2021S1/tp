@@ -26,6 +26,15 @@ public class RemoveCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommand.class.getName());
 
     /**
+     * Creates a new instance of RemoveCommand  with the specified anime index in watchlist to remove.
+     * 
+     * @param animeIndexInWatchlist specified anime index in Watchlist to remove
+     */
+    public RemoveCommand(Integer animeIndexInWatchlist) {
+        this.animeIndexInWatchlist = animeIndexInWatchlist - 1; // 1-based to 0-based numbering
+    }
+
+    /**
      * Executes removing of anime from active Watchlist.
      *
      * @param animeData used to retrieve anime information
@@ -73,14 +82,5 @@ public class RemoveCommand extends Command {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
-    }
-
-    /**
-     * Sets the index of anime in the Watchlist to be removed.
-     * 
-     * @param animeIndexInWatchlist the specified anime index in the Watchlist to be removed.
-     */
-    public void setWatchlistListIndex(Integer animeIndexInWatchlist) {
-        this.animeIndexInWatchlist = animeIndexInWatchlist - 1;
     }
 }

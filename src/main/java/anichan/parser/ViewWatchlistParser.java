@@ -18,15 +18,6 @@ public class ViewWatchlistParser extends CommandParser {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
 
-    private ViewWatchlistCommand viewWatchlistCommand;
-
-    /**
-     * Creates a new instance of ViewWatchlistParser.
-     */
-    public ViewWatchlistParser() {
-        viewWatchlistCommand = new ViewWatchlistCommand();
-    }
-
     /**
      * Parses the specified command description.
      *
@@ -40,12 +31,13 @@ public class ViewWatchlistParser extends CommandParser {
         if (description != null && !description.isBlank()) {
             String[] paramGiven = description.split(DASH, 2);
             paramIsSetCheck(paramGiven);
-            parameterParser(paramGiven[1]);
+            Integer watchlistIndex = parameterParser(paramGiven[1]);
+            return new ViewWatchlistCommand(watchlistIndex);
         }
   
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
-        return viewWatchlistCommand;
+        return new ViewWatchlistCommand();
     }
 
     /**
@@ -54,7 +46,7 @@ public class ViewWatchlistParser extends CommandParser {
      * @param paramGiven a String Array containing the parameters and the value
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String paramGiven) throws AniException {
+    private Integer parameterParser(String paramGiven) throws AniException {
         String[] paramParts = paramGiven.split(WHITESPACE, FIELD_SPLIT_LIMIT);
 
         switch (paramParts[0].trim()) {
@@ -69,11 +61,10 @@ public class ViewWatchlistParser extends CommandParser {
             isIntegerCheck(fieldValue, WATCHLIST_ID);
             
             try {
-                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+                return Integer.parseInt(paramParts[1].trim());
             } catch (NumberFormatException e) {
                 throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
             }
-            break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
             throw new AniException(invalidParameter);

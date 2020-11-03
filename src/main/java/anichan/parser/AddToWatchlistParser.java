@@ -16,15 +16,6 @@ public class AddToWatchlistParser extends CommandParser {
     protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command" + TOO_MUCH_FIELDS;
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
-    
-    private AddToWatchlistCommand addToWatchlistCommand;
-
-    /**
-     * Creates a new instance of AddToWatchlistParser.
-     */
-    public AddToWatchlistParser() {
-        addToWatchlistCommand = new AddToWatchlistCommand();
-    }
 
     /**
      * Parses the specified command description.
@@ -40,19 +31,20 @@ public class AddToWatchlistParser extends CommandParser {
             throw new AniException(DESCRIPTION_CANNOT_BE_NULL);
         }
 
-        parameterParser(description);
+        Integer animeIndex = parameterParser(description);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
-        return addToWatchlistCommand;
+        return new AddToWatchlistCommand(animeIndex);
     }
 
     /**
-     * Parses the parameter provided in the command description.
-     *
+     * Parses the parameter provided in the command description and returns the value
+     * 
      * @param fieldGiven a String Array containing the value given
-     * @throws AniException when an error occurred while parsing the parameters
+     * @return the anime index to be added 
+     * @throws AniException when an error occurred while parsing the parameteres
      */
-    private void parameterParser(String fieldGiven) throws AniException {
+    private Integer parameterParser(String fieldGiven) throws AniException {
         String fieldValue = fieldGiven.trim();
         String[] fieldParts = fieldValue.split(WHITESPACE);
 
@@ -62,7 +54,7 @@ public class AddToWatchlistParser extends CommandParser {
         isIntegerCheck(fieldValue, ANIME_ID);
 
         try {
-            addToWatchlistCommand.setAnimeIndex(Integer.parseInt(fieldValue));
+            return Integer.parseInt(fieldValue);
         } catch (NumberFormatException e) {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
