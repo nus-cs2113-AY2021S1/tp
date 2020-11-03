@@ -44,6 +44,9 @@ public class SaveManager {
                     loadSave(packet);
                 }
                 break;
+            case "reset":
+                resetSave();
+                break;
             case "delete":
                 if (checkValidity(packet) == true) {
                     deleteSave(packet);
@@ -77,6 +80,7 @@ public class SaveManager {
         TablePrinter.addRow("[2]; Add/Overwrite save; add /name");
         TablePrinter.addRow("[3]; Load save; load /name");
         TablePrinter.addRow("[4]; Delete save; delete /name");
+        TablePrinter.addRow("[5]; Reset program; reset");
         TablePrinter.addRow("[5]; Quit to main; exit");
         TablePrinter.printList();
     }
@@ -88,6 +92,13 @@ public class SaveManager {
 
     private static void helpMsg() {
         System.out.println("Enter <help> for a list of commands");
+    }
+
+    private static void resetSave() {
+        GoalTrackerSaver.clear();
+        AutoTrackerSaver.clear();
+        ManualTrackerSaver.clear();
+        prompt = "Program has been reset";
     }
 
     private static void listSaves(CommandPacket packet) {
