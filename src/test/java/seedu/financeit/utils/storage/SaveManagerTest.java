@@ -1,6 +1,5 @@
 package seedu.financeit.utils.storage;
 
-import org.junit.jupiter.api.Test;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 
@@ -25,7 +24,7 @@ public class SaveManagerTest {
         return false;
     }
 
-    @Test
+
     public void loadSaveTest() {
         try {
             SaveManager.clear();
