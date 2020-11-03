@@ -173,8 +173,11 @@ class DukeTest {
         } finally {
             System.setIn(stdin);
             assertEquals("_________________________________" + System.lineSeparator()
-                            + "Copy and paste or enter the body of the text you want to extract from!" + System.lineSeparator()
-                            + "At the end of your text, press enter to go to the next line, enter \'extractend\' with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "Copy and paste or enter the body of the text you want to extract from!"
+                            + System.lineSeparator()
+                            + "At the end of your text, press enter to go to the next line,"
+                            + enter \'extractend\' with no quotation marks and press enter once more."
+                            + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "One date detected and chosen: 2021-01-27" + System.lineSeparator()
                             + "One timing detected and chosen: 09:00" + System.lineSeparator()
