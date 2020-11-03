@@ -28,7 +28,7 @@ public class HelpParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public HelpCommand parse(String description) throws AniException {
-        parameterParser(description);
+        parameterParser(description.trim());
         return new HelpCommand(commandOption);
     }
 
@@ -39,7 +39,6 @@ public class HelpParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public void parameterParser(String description) throws AniException {
-        description = description.trim();
         String[] splitDescription = description.split(WHITESPACE);
         
         if (splitDescription.length > 1) {
