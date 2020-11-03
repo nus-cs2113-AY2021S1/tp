@@ -160,9 +160,9 @@ COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
 	2. a
 	3. b
 
-COOKIES N CREME CH33SECAKE (Default) #> Cowboy Bebop added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
-COOKIES N CREME CH33SECAKE (Default) #> Trigun added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
 COOKIES N CREME CH33SECAKE (Default) #> Saving 1. Cowboy Bebop to bookmark.
 
@@ -235,7 +235,7 @@ COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
 	6. To Heart 2
 
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Anime is already in this watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
 COOKIES N CREME CH33SECAKE (Default) #> [ID:1] Cowboy Bebop
 [ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
