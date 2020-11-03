@@ -42,7 +42,8 @@ public class Parser {
                       boolean toPrint, TaskList taskList) {
         Notification notification = new Notification();
         Ui ui = new Ui();
-        assert input != null : "Input should not be null";
+        assert input != null : "Input not null";
+
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {

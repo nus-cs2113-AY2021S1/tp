@@ -12,7 +12,6 @@ public class ParserTest {
     ModuleList modList = new ModuleList();
     TaskList taskList = new TaskList();
     Parser parser = new Parser();
-    Ui ui = new Ui();
 
 
     @Test
