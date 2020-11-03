@@ -243,11 +243,11 @@ Hence by having seperating both list into different modes allows both lists to a
 This feature extends Command class with a way to toggle between different modes of Zoomaster. The integer variable used to control the modes is stored in the Parser class called "programMode". Additionally, it implements the following operation:
 * getModeFromCommand() - Decodes the command sent by the users to figure out which mode the user wants to move to.
 
-Given below is a sequential diagram of how changing between modes occur.
+Given below is a sequence diagram of how changing between modes occur.
 
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
 
-*<center/>Figure 2.01 Sequential diagram for ChangeModeCommand</center> <br/></br>*
+*<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
 
 1. When Zoomaster gets a command from the user to change modes, a new ChangeModeCommand object is created.
@@ -290,9 +290,9 @@ Additionally, it implements the following operations:
 * getHighlighBoxUpperMessage() - Returns a **String** containing a indicator with a message "lesson now".
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
-Given below is a sequential diagram of how printing the timetable occurs.
+Given below is a sequence diagram of how printing the timetable occurs.
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
-*<center/>Figure 2.03 Sequential diagram for ShowTimetableCommand</center> <br/></br>*
+*<center/>Figure 2.03 sequence diagram for ShowTimetableCommand</center> <br/></br>*
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
 
