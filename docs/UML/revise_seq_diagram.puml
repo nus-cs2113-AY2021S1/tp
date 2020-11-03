@@ -26,49 +26,11 @@ end box
 activate ReviseCommand
 ReviseCommand -> ReviseCommand : getChapter(reviseIndex, access)
 activate ReviseCommand
-ReviseCommand -> Access : getModule()
-activate Access
-ReviseCommand <-- Access : module
-deactivate Access
-[<-[hidden]- Access
-destroy Access
-ReviseCommand -> Module : getChapters()
-activate Module
-ReviseCommand <-- Module : chapters
-deactivate Module
-[<-[hidden]- Module
-destroy Module
-ReviseCommand -> ChapterList : getChapter()
-activate ChapterList
-ReviseCommand <-- ChapterList : chapter
-deactivate ChapterList
-[<-[hidden]- ChapterList
-destroy ChapterList
+ref over ReviseCommand, ChapterList : Get Chapter
 ReviseCommand <-- ReviseCommand : toRevise
 deactivate ReviseCommand
-opt chapter not due
-    ReviseCommand -> ReviseCommand : promptNotDue(ui, toRevise)
-    activate ReviseCommand
-    ReviseCommand -> Ui : getInput()
-    activate Ui
-    ReviseCommand <-- Ui : input
-    deactivate Ui
-    loop input is invalid
-        alt user enters Y
-        else user enters N
-        else invalid input
-            ReviseCommand -> Ui : getInput()
-            activate Ui
-            ReviseCommand <-- Ui : input
-            deactivate Ui
-        end
-    end
-    ReviseCommand --> ReviseCommand : notRevising
-    deactivate ReviseCommand
-    opt notRevising
-        <--  ReviseCommand
-    end
-end
+[<-[hidden]- ReviseCommand
+ref over ReviseCommand, Ui : Chapter is not due for revision
 ReviseCommand -> ReviseCommand : getCards(ui, access, storage)
 activate ReviseCommand
 ReviseCommand -> Storage : loadCard(module, chapter)
@@ -86,13 +48,6 @@ ReviseCommand -> Ui : showToUser(cardCount)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
-opt no cards
-    ReviseCommand -> Ui : showToUser(message)
-    activate Ui
-    ReviseCommand <-- Ui
-    deactivate Ui
-    [<-- ReviseCommand
-end
 ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
@@ -113,8 +68,6 @@ ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
-[<-[hidden]- Ui
-destroy Ui
 ReviseCommand -> Scheduler : computeDeckDeadline(cards)
 activate Scheduler
 ReviseCommand <-- Scheduler : date
@@ -131,8 +84,6 @@ ReviseCommand -> Storage : saveCards(cards, module, chapter)
 activate Storage
 ReviseCommand <-- Storage
 deactivate Storage
-[<-[hidden]- Storage
-destroy Storage
 ReviseCommand -> HistoryCommand : addHistory(ui, access, storage, reviseIndex)
 activate HistoryCommand
 ReviseCommand <-- HistoryCommand

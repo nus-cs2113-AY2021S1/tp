@@ -744,6 +744,19 @@ The following sequence diagram shows how the revise feature works:
   <br/>Figure <>. Sequence diagram of revise
 </p>
 
+* Get Chapter:
+<p align="center">
+  <img src="DG_Images/ReviseGetChap.png" width="800" alt="Sequence Diagram of Revise Get Chapter"/>
+  <br/>Figure <>. Sequence diagram of revise get chapter
+</p>
+
+* Chapter is not due for revision:
+<p align="center">
+  <img src="DG_Images/ReviseNotDue.png" width="800" alt="Sequence Diagram of Revise Not Due"/>
+  <br/>Figure <>. Sequence diagram of revise not due
+</p>
+ 
+
 #### 4.4.2. Scheduling The Chapters Feature
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
 At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute of the `Chapter` to `deckInterval` days after the day of revision.
