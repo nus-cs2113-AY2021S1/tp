@@ -7,8 +7,8 @@ import static anichan.parser.CommandParser.REGEX_ALPHANUMERIC_WITH_SPACE;
  * Abstract class to represent a Human.
  */
 public abstract class Human {
-    public static final int MAX_NAME_LENGTH = 200;
-    public static final String EXCEPTION_INVALID_NAME = "Invalid name!";
+    private static final int MAX_NAME_LENGTH = 200;
+    private static final String EXCEPTION_INVALID_NAME = "Invalid name!";
     protected String name;
 
     /**

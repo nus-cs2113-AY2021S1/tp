@@ -12,9 +12,9 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
-    public static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
+    private static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
     private Bookmark bookmark;
-    protected String workspaceName;
+    private final String workspaceName;
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 

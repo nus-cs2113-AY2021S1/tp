@@ -12,18 +12,17 @@ import java.util.logging.Logger;
  */
 public class WorkspaceParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
-    public static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
-    public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
-    public static final String EXCEPTION_ILLEGAL_WORKSPACE_NAME = "Workspace name must be shorter than "
+    private static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
+    private static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
+    private static final String EXCEPTION_ILLEGAL_WORKSPACE_NAME = "Workspace name must be shorter than "
             + "31 characters and consist only alphanumeric characters and/or spaces.";
 
-    public static final String COMMAND_NEW = "n";
-    public static final String COMMAND_SWITCH = "s";
-    public static final String COMMAND_list = "l";
-    public static final String COMMAND_LIST = COMMAND_list;
-    public static final String COMMAND_DELETE = "d";
-    public static final String REGEX_SPACE_CHARACTER = " ";
-    public static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
+    private static final String COMMAND_NEW = "n";
+    private static final String COMMAND_SWITCH = "s";
+    private static final String COMMAND_LIST = "l";
+    private static final String COMMAND_DELETE = "d";
+    private static final String REGEX_SPACE_CHARACTER = " ";
+    private static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
 
     private String commandOption;
     private String commandDescription;

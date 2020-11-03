@@ -13,19 +13,19 @@ import java.util.logging.Logger;
  * Represents the User.
  */
 public class User extends Human {
-    public static final String GENDER_MALE = "male";
-    public static final String GENDER_FEMALE = "female";
-    public static final String GENDER_OTHER = "other";
+    private static final String GENDER_MALE = "male";
+    private static final String GENDER_FEMALE = "female";
+    private static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
-    public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
-    public static final String EXCEPTION_SIMILAR_WORKPLACE_FOUND = "Workspace with similar name found!";
-    public static final String HONORIFIC_FEMALE = "-chan";
-    public static final String HONORIFIC_NEUTRAL = "-san";
-    public static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
+    private static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
+    private static final String EXCEPTION_SIMILAR_WORKPLACE_FOUND = "Workspace with similar name found!";
+    private static final String HONORIFIC_FEMALE = "-chan";
+    private static final String HONORIFIC_NEUTRAL = "-san";
+    private static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
 
-    protected Gender gender;
-    protected Workspace activeWorkspace;
-    protected ArrayList<Workspace> workspaceList = new ArrayList<>();
+    private Gender gender;
+    private Workspace activeWorkspace;
+    private ArrayList<Workspace> workspaceList = new ArrayList<>();
 
     // ========================== User related methods ==========================
 
