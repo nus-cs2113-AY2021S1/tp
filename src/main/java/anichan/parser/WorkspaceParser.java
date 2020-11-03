@@ -14,8 +14,8 @@ public class WorkspaceParser extends CommandParser {
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
     public static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
     public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
-    public static final String EXCEPTION_ILLEGAL_WORKSPACE_NAME = "Workspace name must consist "
-            + "only alphanumeric characters and/or spaces.";
+    public static final String EXCEPTION_ILLEGAL_WORKSPACE_NAME = "Workspace name must be shorter than "
+            + "31 characters and consist only alphanumeric characters and/or spaces.";
 
     public static final String COMMAND_NEW = "n";
     public static final String COMMAND_SWITCH = "s";
