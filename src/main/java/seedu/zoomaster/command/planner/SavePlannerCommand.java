@@ -50,7 +50,7 @@ public class SavePlannerCommand extends Command {
         ui.print("Planner saved." + System.lineSeparator());
     }
 
-    private void writeToFile(Timetable planner, Timetable timetable) throws ZoomasterException {
+    void writeToFile(Timetable planner, Timetable timetable) throws ZoomasterException {
         for (Module m : planner.getFullModuleList()) {
             if (!m.getModuleCode().equals("EMPTY")) {
                 if (timetable.moduleExists(m.getModuleCode())) {
