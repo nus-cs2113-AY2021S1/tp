@@ -21,7 +21,6 @@ public class Messages {
     public static final String FORMAT_EXERCISE_GOAL = "goal exercise GOAL_DESCRIPTION";
     public static final String FORMAT_SMART_EXERCISE_GOAL = "goal exercise < CALORIES_BURNT or goal exercise "
             + "> CALORIES_BURNT";
-    public static final String FORMAT_HELP = "help";
     public static final String FORMAT_VIEW_PROFILE = "view profile";
     public static final String FORMAT_VIEW_BMI = "view bmi";
     public static final String FORMAT_VIEW_FOOD = "view food";
@@ -34,12 +33,12 @@ public class Messages {
     public static final String FORMAT_EDIT_NAME = "edit name NEW_NAME";
     public static final String FORMAT_EDIT_AGE = "edit age NEW_AGE";
     public static final String RANGE_EDIT_AGE = "Valid range for age: 1 to 130";
-    public static final String FORMAT_EDIT_GENDER = "edit gender NEW_GENDER('M' for Male or 'F' for Female)";
-    public static final String FORMAT_EDIT_HEIGHT = "edit height NEW_HEIGHT(in m)";
+    public static final String FORMAT_EDIT_GENDER = "edit gender NEW_GENDER ('M' for Male or 'F' for Female)";
+    public static final String FORMAT_EDIT_HEIGHT = "edit height NEW_HEIGHT (in m)";
     public static final String RANGE_EDIT_HEIGHT = "Valid range for height (in m): 0.50 to 4.00";
-    public static final String FORMAT_EDIT_WEIGHT = "edit weight NEW_WEIGHT(in kg)";
+    public static final String FORMAT_EDIT_WEIGHT = "edit weight NEW_WEIGHT (in kg)";
     public static final String RANGE_EDIT_WEIGHT = "Valid range for weight (in kg): 2.00 to 1000.00";
-    public static final String FORMAT_EDIT_FITNESS = "edit fitness NEW_FITNESS_LEVEL(0 for Unfit; 1 for Normal; 2 for"
+    public static final String FORMAT_EDIT_FITNESS = "edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for"
             + " Fit)";
     public static final String FORMAT_EDIT_FOOD =
             "edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
@@ -52,10 +51,7 @@ public class Messages {
     public static final String FORMAT_CLEAR_FOOD = "clear food";
     public static final String FORMAT_CLEAR_EXERCISE = "clear exercise";
     public static final String FORMAT_CLEAR_GOAL = "clear goal";
-    public static final String FORMAT_CLEAR = "clear";
-    public static final String FORMAT_RECOMMEND = "recommend";
     public static final String FORMAT_MARK_GOAL_AS_COMPLETE = "complete goal INDEX";
-    public static final String FORMAT_BYE = "bye";
 
     //User class messages
     public static final String USER_SETUP_GREET = "Before we begin, let me get to know you :)";
@@ -86,10 +82,14 @@ public class Messages {
     public static final String NORMAL_STRING = "Normal";
     public static final String NULL_STRING = "NULL";
 
-    public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!";
+    public static final String ERROR_INVALID_FORMAT = "Sorry, you have keyed in an invalid format!";
+    public static final String ERROR_INVALID_COMMAND = "Sorry, this is an invalid command!";
+    public static final String ERROR_IN_FILE = "Sorry, there is an error in the file.";
+    public static final String ERROR_INVALID_CALORIE = "Sorry, invalid calorie amount entered.";
+    public static final String ERROR_FORMAT_MESSAGE = "Please input in the correct format!";
+    public static final String ERROR_INVALID_INDEX = "Sorry, that index does not exist in the list";
 
     //ViewCommand class messages
-    public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!";
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
     public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...";
     public static final String EMPTY_EXERCISE_LIST_DATE = "The exercise list on that date is empty...";
@@ -123,17 +123,27 @@ public class Messages {
     public static final String EDIT_GENDER = "gender";
     public static final String EDIT_FITNESS = "fitness";
     public static final String MISSING_FILE = "Theres no file";
-    public static final String EDIT_NAME_HEADER = "Change your name to: ";
     public static final String NAME_ECHO_HEADER = "Your current name is: ";
-    public static final String EDIT_HEIGHT_HEADER = "Change your height (in m) to: ";
     public static final String HEIGHT_ECHO_HEADER = "Your current height (in m) is: ";
-    public static final String EDIT_WEIGHT_HEADER = "Change your weight (in kg) to: ";
     public static final String WEIGHT_ECHO_HEADER = "Your current weight (in kg) is: ";
-    public static final String EDIT_AGE_HEADER = "Change your age to: ";
     public static final String AGE_ECHO_HEADER = "Your current age is: ";
-    public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
     public static final String GENDER_ECHO_HEADER = "Your current gender is: ";
     public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining "
             + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
     public static final String FITNESS_ECHO_HEADER = "Your current fitness level is: ";
+
+    public static final String SYMBOL_YES = "Y";
+    public static final String SYMBOL_NO = "N";
+    public static final String SYMBOL_EXERCISE = "E";
+    public static final String SYMBOL_FOOD = "F";
+    public static final String KEYWORD_FOOD_MORE_THAN = "Eat more than ";
+    public static final String KEYWORD_FOOD_LESS_THAN = "Eat less than ";
+    public static final String KEYWORD_EXERCISE_MORE_THAN = "Burn more than ";
+    public static final String KEYWORD_EXERCISE_LESS_THAN = "Burn less than ";
+    public static final String ECHO_ADDED_GOAL = "Okay! The following goal has been added: \n\t[";
+
+    public static final String ECHO_ADDED_EXERCISE = "The following exercise has been added:";
+    public static final String ECHO_ADDED_FOOD = "The following food has been added:\n";
+    public static final String EXERCISE_NAME_HEADER = "Name of Exercise: ";
+    public static final String FOOD_NAME_HEADER = "Name of Food: ";
 }

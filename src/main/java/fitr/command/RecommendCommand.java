@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import static fitr.common.DateManager.getCurrentDate;
 import static fitr.common.Messages.BURNT_CAL_HEADER;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
+import static fitr.common.Messages.ECHO_ADDED_EXERCISE;
+import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.INTENSITY_CAL_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
@@ -43,14 +45,14 @@ public class RecommendCommand extends Command {
         }
       
         Ui.printCustomMessage("Will you be doing this workout?\n"
-                + "type y for yes to add all 4\n"
-                + "or you can type in the index of the exercises you want to be added separated by a space\n"
+                + "type y for yes to add all 4 to your exercise list\n"
+                + "or you can type in the index of the exercises you want added to you exercise list (separated by a space)\n"
                 + "Any other key will be taken as a no :D");
 
         String checker = Ui.read();
         try {
             if (checker.toLowerCase().equals("y")) {
-                Ui.printCustomMessage("The following Exercises has been added:");
+                Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                 for (int i = 0; i < 4; i++) {
                     StandardExercise standardExercise = recommendList.getExercise(i);
                     Calorie caloriesBurnt = new Calorie((int) (standardExercise.getDuration().get(fitnessLevel)
@@ -65,6 +67,8 @@ public class RecommendCommand extends Command {
                     listManager.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt, getCurrentDate()));
                     storageManager.writeExerciseList(listManager.getExerciseList());
                 }
+            } else if (checker.chars().anyMatch(Character::isLetter)) {
+                Ui.printCustomMessage("Next time then!");
             } else {
                 try {
                     if (checker.split(" ").length > 4) {
@@ -78,7 +82,7 @@ public class RecommendCommand extends Command {
                         }
                         indexArr.add(Integer.parseInt(checker.split(" ")[i]));
                     }
-                    Ui.printCustomMessage("The following Exercises has been added:");
+                    Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                     for (int i = 0; i < indexArr.size(); i++) {
                         StandardExercise standardExercise = recommendList.getExercise(indexArr.get(i) - 1);
                         Calorie caloriesBurnt = new Calorie((int) (standardExercise.getDuration()
@@ -98,13 +102,13 @@ public class RecommendCommand extends Command {
                 } catch (FitrException e) {
                     Ui.printCustomError("You have typed in too many indexes");
                 } catch (NumberFormatException e) {
-                    Ui.printCustomError("The indexes have to be a number! :D");
+                    Ui.printCustomError("The indexes have to be a number!");
                 } catch (IndexOutOfBoundsException e) {
                     Ui.printCustomError("Sorry you have to key in a positive number below 4 inclusive");
                 }
             }
         } catch (IOException e) {
-            Ui.printCustomError("Sorry there is an error with the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         }
 
     }

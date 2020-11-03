@@ -11,6 +11,8 @@ import fitr.user.User;
 import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_IN_FILE;
 
 /**
  * Marks a particular goal as complete.
@@ -28,7 +30,7 @@ public class CompleteGoalCommand extends Command {
                 int completedGoalIndex = Integer.parseInt(command) - 1;
                 Goal completedGoal = listManager.getGoal(completedGoalIndex);
                 if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
-                        listManager.getExerciseList(), user) == "✓") {
+                        listManager.getExerciseList(), user) == "Y") {
                     Ui.printCustomError("This goal has already been completed.");
                     return;
                 }
@@ -41,11 +43,11 @@ public class CompleteGoalCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError("Sorry that index does not exist in the list");
+            Ui.printCustomError(ERROR_INVALID_INDEX);
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry index deletion must be an number");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry, there is an error in the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
             Ui.printCustomError("Wrong format!");
         }

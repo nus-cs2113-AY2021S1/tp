@@ -16,6 +16,7 @@ import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
+import fitr.ui.Ui;
 
 /**
  * Parses the user input.
@@ -47,6 +48,9 @@ public class Parser {
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
         case Commands.COMMAND_RECOMMEND:
+            if(arguments.length() != 0) {
+                return new InvalidCommand("Extra parameters");
+            }
             return new RecommendCommand();
         case Commands.COMMAND_EDIT:
             return new EditCommandParser(arguments).editCommand();

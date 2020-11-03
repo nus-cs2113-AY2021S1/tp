@@ -13,6 +13,10 @@ import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.DateManager.getCurrentDate;
+import static fitr.common.Messages.ECHO_ADDED_GOAL;
+import static fitr.common.Messages.ERROR_IN_FILE;
+import static fitr.common.Messages.SYMBOL_EXERCISE;
+import static fitr.common.Messages.SYMBOL_FOOD;
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class AddGoalCommand extends Command {
@@ -30,18 +34,16 @@ public class AddGoalCommand extends Command {
             //Food goal
             case COMMAND_FOOD:
                 command = command.split(" ", 2)[1].trim();
-                newGoal = formatGoal(getCurrentDate(), "F", command);
+                newGoal = formatGoal(getCurrentDate(), SYMBOL_FOOD, command);
                 listManager.addGoal(newGoal);
-                Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
-                        + newGoal.getGoalType() + "] " + newGoal.getDescription());
+                Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
                 break;
             //Exercise goal
             case COMMAND_EXERCISE:
                 command = command.split(" ", 2)[1].trim();
-                newGoal = formatGoal(getCurrentDate(), "E", command);
+                newGoal = formatGoal(getCurrentDate(), SYMBOL_EXERCISE, command);
                 listManager.addGoal(newGoal);
-                Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
-                        + newGoal.getGoalType() + "] " + newGoal.getDescription());
+                Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
                 break;
             default:
                 Ui.printFormatError(COMMAND_GOAL);
@@ -52,7 +54,7 @@ public class AddGoalCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printCustomError("Please input in the correct format!");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry, there is an error in the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         }
     }
 
