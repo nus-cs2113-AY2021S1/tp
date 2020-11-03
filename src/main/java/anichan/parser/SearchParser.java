@@ -22,7 +22,7 @@ public class SearchParser extends CommandParser {
      * @throws AniException if an error is encountered while parsing
      */
     public SearchCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split(SPLIT_DASH, FIELD_SPLIT_LIMIT);
+        String[] paramGiven = description.split(DASH, FIELD_SPLIT_LIMIT);
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
         return searchCommand;
@@ -38,7 +38,7 @@ public class SearchParser extends CommandParser {
         if (paramGiven[1].isBlank()) {
             throw new AniException(NO_PARAM_PROVIDED);
         }
-        String[] paramParts = paramGiven[1].split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
+        String[] paramParts = paramGiven[1].split(WHITESPACE, FIELD_SPLIT_LIMIT);
         paramFieldCheck(paramParts);
 
         switch (paramParts[0].trim()) {
