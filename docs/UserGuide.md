@@ -102,8 +102,8 @@ Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISAR
 
 💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
-💡 Set `ISPIN` to true if you want the note to be pinned.  
-💡 Set `ISARHCIVE` to true if you want the note to be archived.
+💡 Set `ISPIN` to "true" if you want the note to be pinned. Any other input value will leave the note unpinned.  
+💡 Set `ISARCHIVE` to "true" if you want the note to be archived. Any other input value will leave the note unarchived.
 
 Subsequently, the application prompts the user to enter the content of the note. 
 
@@ -125,6 +125,7 @@ Enter Note:
 `Line 2`<br>
 `/end`
 
+💡 Note content must have at least 1 line.<br>
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
 
@@ -170,6 +171,8 @@ Format: `view-n [/i INDEX] [/t TITLE]`
 
 - Views the note at that index or with the specific title entered. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
+- If both the fields are provided, only the first one entered will be used to search for the note.
+
 
 Example of usage: 
 
@@ -196,6 +199,8 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
+
+💡 Note content must have at least 1 line.
 
 Example of usage: 
 
@@ -237,6 +242,7 @@ Format: `pin-n [/i INDEX] [/t TITLE]`
 
 - Pins a note to the top of the list. A pinned note will be unpinned. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+- If both fields are provided, only the first one will be used to pin the note. 
  
 Example of usage: 
 
@@ -424,7 +430,7 @@ Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/r
 - Specifying [/repeat RECURRING] will set the event as a recurring event.
 - Specifying [/remind REMIND] will set the program to remind the event.
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
 💡 Repeat inputs can be `daily`, `weekly`, `monthly`, `yearly`<br>
 💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
 💡 Remind inputs can be chained to indicate multiple reminders
@@ -453,7 +459,7 @@ Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop R
 - Specifying [/remind-drop REMIND] will delete that reminder from the event if it exists.
 - Specifying [/remind-add REMIND] will remove all reminders in the event if any exists.
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss”<br>
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
 💡 Repeat inputs can be `none`, `daily`, `weekly`, `monthly`, `yearly`<br>
 💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
 💡 Remind inputs can be chained to indicate multiple reminders
@@ -568,8 +574,8 @@ Create tag | `create-t /tag Important red`<br>`create-t /tag NUS /tag CEG yellow
 List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
-Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
+Add event | `add-e /t CS2113 /d 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
+Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`

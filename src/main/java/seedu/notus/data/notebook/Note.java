@@ -102,7 +102,7 @@ public class Note extends TaggableObject {
     }
 
     public String getPinnedString() {
-        return (isPinned ? "Y" : "N");
+        return (isPinned ? "Pinned" : "Unpinned");
     }
 
     public void togglePinned() {
