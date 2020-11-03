@@ -12,7 +12,6 @@ import anichan.parser.AddToWatchlistParser;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
 
-import javax.swing.text.View;
 import java.io.File;
 import java.util.ArrayList;
 

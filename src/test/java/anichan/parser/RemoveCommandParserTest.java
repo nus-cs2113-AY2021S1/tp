@@ -2,7 +2,6 @@ package anichan.parser;
 
 import anichan.commands.Command;
 import anichan.commands.RemoveCommand;
-import anichan.commands.ViewWatchlistCommand;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 
