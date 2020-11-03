@@ -1,5 +1,6 @@
 package seedu.duke.backend;
 
+import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeFileFormatException;
 import seedu.duke.DukeFileHeaderException;
 import seedu.duke.event.Event;
@@ -202,8 +203,12 @@ public class FileManager {
         // Validate size of any column
         int rows = data.get("Name").size();
         for (int i = 0; i < rows; i++) {
-            FinanceLog tmp = new FinanceLog(data.get("Name").get(i), Double.parseDouble(data.get("Value").get(i)));
-            FinanceList.financeLogs.add(tmp);
+            try {
+                FinanceLog tmp = new FinanceLog(data.get("Name").get(i), Double.parseDouble(data.get("Value").get(i)));
+                FinanceList.financeLogs.add(tmp);
+            } catch (Exception e) {
+                logger.log(Level.INFO, "Save data corrupted. Parse error");
+            }
         }
     }
 
@@ -214,7 +219,13 @@ public class FileManager {
         int rows = data.get("Name").size();
 
         for (int i = 0; i < rows; i++) {
-            Event tmp = new Event(data.get("Name").get(i), data.get("Date").get(i), data.get("Time").get(i));
+            Event tmp = null;
+            try {
+                tmp = new Event(data.get("Name").get(i), data.get("Date").get(i), data.get("Time").get(i));
+            } catch (RuntimeException e) {
+                logger.log(Level.INFO, "Date parse failed when reading events");
+                continue;
+            }
             try {
                 tmp.setDone(data.get("Done").get(i).equals("1"));
             } catch (Exception e) {
@@ -241,11 +252,15 @@ public class FileManager {
         // Validate size of any column
         int rows = data.get("Name").size();
         for (int i = 0; i < rows; i++) {
-            Member tmp = new Member(data.get("Name").get(i),
-                    Long.parseLong(data.get("Phone").get(i)),
-                    data.get("Email").get(i),
-                    data.get("Role").get(i));
-            MemberList.members.add(tmp);
+            try {
+                Member tmp = new Member(data.get("Name").get(i),
+                        Long.parseLong(data.get("Phone").get(i)),
+                        data.get("Email").get(i),
+                        data.get("Role").get(i));
+                MemberList.members.add(tmp);
+            } catch (Exception e) {
+                logger.log(Level.INFO, "Parse failed when reading members");
+            }
         }
     }
 }
