@@ -15,6 +15,7 @@ public class LoggerCentre {
     public static Logger loggerParamChecker = Logger.getLogger(ParamChecker.class.getName());
     public static Logger loggerInputParser = Logger.getLogger(InputParser.class.getName());
     private static LoggerCentre loggerCentre = null;
+    public static boolean logCreated = false;
 
     private LoggerCentre() {
     }
@@ -26,7 +27,7 @@ public class LoggerCentre {
         return loggerCentre;
     }
 
-    public static void saveLog() {
+    public static void createLog() {
         try {
             LocalDateTime dateTime = RunHistory.getCurrentRunDateTime();
             DateTimeFormatter format = DateTimeFormatter.ofPattern("uuuu_MM_dd_HH_mm_ss");
