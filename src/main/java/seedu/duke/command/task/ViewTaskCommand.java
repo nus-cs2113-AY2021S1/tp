@@ -18,6 +18,7 @@ public class ViewTaskCommand extends TaskCommand {
     }
 
     public void execute() {
+        boolean validTask = false;
         assert !projectListManager.isEmpty() : "No project found!\n";
         if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
@@ -30,14 +31,16 @@ public class ViewTaskCommand extends TaskCommand {
                 Ui.showError("Missing parameters.");
                 return;
             }
-            Ui.showToUserLn("The details of the tasks are as follows: ");
+
             for (int i = 0; i < parameters.size(); i++) {
                 Task task;
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                if (backlogId <= 0) {
-                    Ui.showError("The ID: " + backlogId + " is invalid. "
-                            + "Please enter a positive integer.");
-                } else if (backlogId <= proj.getProjectBacklog().getNextId()) {
+
+                if (backlogId <= proj.getProjectBacklog().getNextId() && backlogId > 0) {
+                    if (!validTask) {
+                        Ui.showToUserLn("The details of the tasks are as follows: ");
+                        validTask = true;
+                    }
                     task = proj.getProjectBacklog().getTask(backlogId);
                     Ui.showToUserLn(task.toString());
                 } else {
