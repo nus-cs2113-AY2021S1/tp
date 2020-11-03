@@ -9,6 +9,9 @@ import seedu.quotesify.lists.ListManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Represents a test class for RatingList.
+ */
 public class RatingListTest {
 
     private RatingList ratings;
@@ -16,6 +19,9 @@ public class RatingListTest {
     private Book book;
     private Rating rating;
 
+    /**
+     * Sets up the book and rating.
+     */
     @BeforeEach
     void setUp() {
         ListManager.initialiseAllLists();
@@ -29,12 +35,20 @@ public class RatingListTest {
         rating = new Rating(book, 5);
     }
 
+    /**
+     * Tests a rating added into the rating list.
+     * Checks by returning a string of the book details.
+     */
     @Test
     public void add_validRating_ratingAdded() {
         ratings.add(rating);
         assertEquals(ratings.toString(), "[Harry Potter] by JK Rowling: 5 star" + System.lineSeparator());
     }
 
+    /**
+     * Tests a rating deleted from the rating list.
+     * Checks if the rating in book is set to unrated (0) and if the rating list is of size 0.
+     */
     @Test
     public void delete_validRating_ratingDeleted() {
         ratings.add(rating);

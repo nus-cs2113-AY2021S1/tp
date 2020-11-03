@@ -10,6 +10,9 @@ import seedu.quotesify.lists.ListManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Represents a test class for Rating.
+ */
 public class RatingTest {
 
     private RatingList ratings;
@@ -17,8 +20,11 @@ public class RatingTest {
     private BookList books;
     private Book book;
 
+    /**
+     * Sets up the book.
+     */
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         ListManager.initialiseAllLists();
         books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
@@ -27,11 +33,11 @@ public class RatingTest {
         Author author = new Author(name);
         book = new Book(author, title);
         books.add(book);
-        rating = new Rating(book, 5);
     }
 
     @Test
     public void accessingAttributes_valid_success() {
+        rating = new Rating(book, 5);
         assertEquals(rating.getTitle(), "Harry Potter");
         assertEquals(rating.getAuthor(), "JK Rowling");
         assertEquals(rating.getRating(), 5);
