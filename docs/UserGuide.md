@@ -679,7 +679,8 @@ Shows the storage command, and an example of how to use it.
 Exits the application. Rest assured that your data have been saved by the application.
 
 ##### Format: `bye`
-##### Expected Outcome: `bye` and program terminates.
+##### Expected Outcome:
+`bye` and program terminates.
 
 ## 4. Command Summary
 
