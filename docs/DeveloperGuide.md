@@ -185,7 +185,7 @@ Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
-![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_sequenceDiagram.png)
+![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_Sequence.png)
 
 ###Timetable Component
 
