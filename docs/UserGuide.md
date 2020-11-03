@@ -65,9 +65,10 @@ has successfully executed.
 ## 2. Features <a name="features"></a>
 
 ### Notes:
-1. Items in <> are the parameters to be supplied by the user.
+1. Items in <> are the parameters to be supplied by the user,
    e.g. in `addmod <module code>`, `module code` is a parameter which can be used as such: `addmod CS2113T`.
-1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits and an optional character.
+1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits and an optional character without 
+   any spacing.
 1. Definition of too much / too little time spent on a module: 
     1. A user spends too little time on a module if the user's actual workload is less than the expected 
 workload by more than 30%. For example, if the expected workload is 10 hours,
@@ -130,7 +131,8 @@ Adds a new module to track your time spent on it and tasks related to it.
 Format: `addmod <module code>`
 
 * The `module code` needs to be valid. 
-* The `module code` should not exist in the database.
+* The `module code` does not exist in the database.
+* The leading and trailing spaces of the `module code` is removed.
 
 Example of usage:
 
@@ -250,7 +252,8 @@ together with all its related data, such as the time you have spent on it.
 Format: `deletemod <module code>`
 
 * The `module code` needs to be valid.
-* The `module code` should exist in the database.
+* The `module code` exists in the database.
+* The leading and trailing spaces of the `module code` is removed.
 
 Example of usage:
 
@@ -269,6 +272,7 @@ Format: `deleteexp <module code>`
 
 * The `module code` is valid.
 * The `module code` exists in the database.
+* The leading and trailing spaces of the `module code` is removed.
 
 Example of usage:
 

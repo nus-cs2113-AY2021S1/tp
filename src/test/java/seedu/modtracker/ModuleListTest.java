@@ -53,19 +53,25 @@ class ModuleListTest {
     public void addModule_invalidModuleSpacing_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expected = "Please type module code without any spacing." + System.lineSeparator();
+        String expectedStart = "The module code should have 2 - 3 characters, followed by "
+                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedEnd = "The accepted module code is of the following forms: CG1111, "
+                + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
         modulesTest.addMod("addmod cs 1010", true, storage);
-        assertEquals(expected + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
     }
 
     @Test
     public void addModule_invalidModuleChar_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expected = "Please check module code again. The module code should have 6 - 8 "
-                + "characters without any spacing." + System.lineSeparator();
+        String expectedStart = "The module code should have 2 - 3 characters, followed by "
+                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedEnd = "The accepted module code is of the following forms: CG1111, "
+                + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
+
         modulesTest.addMod("addmod cs1234567", true, storage);
-        assertEquals(expected + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
     }
 
     @Test

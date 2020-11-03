@@ -9,13 +9,9 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
     public static final String INVALID_MODULETYPE = "The module code should have 2 - 3 characters, followed by "
-        + "4 digits, followed by an optional character.";
+        + "4 digits, followed by an optional character without any spacing.";
     public static final String MODULETYPE_EXAMPLE = "The accepted module code is of the following forms: CG1111, "
         + "CS2113T, GER1000, GES1000T.";
-    public static final String MODULECODE_SPACING = "Please type module code without any spacing.";
-    public static final String INVALID_MODULECODE = "Please check module code again.";
-    public static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
-
     public static final String INVALID_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String ENTER_HELP = "Enter <help> for a quick view of available commands.";
     public static final String HELP_LIST = "Available Commands:\n"
@@ -140,25 +136,6 @@ public class Ui {
     }
 
     /**
-     * Prints the message when module code has spacing.
-     */
-    public void printInvalidModuleSpacing(boolean toPrint) {
-        if (toPrint) {
-            System.out.println(MODULECODE_SPACING + System.lineSeparator());
-        }
-    }
-
-    /**
-     * Prints the message when the length of module code is invalid.
-     */
-    public void printInvalidModuleLength(boolean toPrint) {
-        if (toPrint) {
-            System.out.println(INVALID_MODULECODE + " " + MODULECODE_LENGTH + System.lineSeparator());
-        }
-    }
-
-
-    /**
      * Prints the message when module type is invalid.
      */
     public void printInvalidModuleType(boolean toPrint) {
@@ -200,8 +177,30 @@ public class Ui {
     /**
      * Prints the message when module is added to modList.
      */
-    public void printAdd(Module moduleDetail) {
-        System.out.println(moduleDetail + " is added." + System.lineSeparator());
+    public void printAdd(Module moduleDetail, boolean toPrint) {
+        if (toPrint) {
+            System.out.println(moduleDetail + " is added." + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when there is no change in expected workload.
+     */
+    public void printExpAlreadyUpdated(double expectedTime, boolean toPrint) {
+        if (toPrint) {
+            System.out.print("The expected workload is already " + expectedTime + "h.");
+            System.out.println(System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when expected workload is updated.
+     */
+    public void printExpUpdated(String modCode, double exp, boolean toPrint) {
+        if (toPrint) {
+            System.out.print("Expected workload of " + modCode + " is changed to " + exp + "h.");
+            System.out.println(System.lineSeparator());
+        }
     }
 
     /**

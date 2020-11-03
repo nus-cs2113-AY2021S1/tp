@@ -12,7 +12,7 @@ public class ModuleList {
 
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
-    private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
+    private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
                 + "expected workload with a maximum of 1 decimal place.";
     private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
@@ -74,41 +74,31 @@ public class ModuleList {
         Pattern secondPattern;
         Matcher secondMatcher;
         boolean matchFound;
-        String trimmedMod = module.trim();
-        if (trimmedMod.contains(" ")) {
-            ui.printInvalidModuleSpacing(toPrint);
-        } else if (trimmedMod.length() < MIN_MOD_LENGTH || trimmedMod.length() > MAX_MOD_LENGTH) {
-            ui.printInvalidModuleLength(toPrint);
-        } else if (trimmedMod.length() == MIN_MOD_LENGTH) {
+        if (module.length() == MIN_MOD_LENGTH) {
             pattern = Pattern.compile(regexType1);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             matchFound = matcher.find();
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
-        } else if (trimmedMod.length() == (MIN_MOD_LENGTH + 1)) {
+        } else if (module.length() == (MIN_MOD_LENGTH + 1)) {
             pattern = Pattern.compile(regexType2);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             secondPattern = Pattern.compile(regexType3);
-            secondMatcher = secondPattern.matcher(trimmedMod);
+            secondMatcher = secondPattern.matcher(module);
             matchFound = (matcher.find() || secondMatcher.find());
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
         } else {
             pattern = Pattern.compile(regexType4);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             matchFound = matcher.find();
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
         }
+        ui.printInvalidModuleType(toPrint);
         return false;
     }
 
@@ -187,6 +177,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
 
             if (!checkIfModuleValid(modCode, toPrint)) {
@@ -201,8 +192,8 @@ public class ModuleList {
             } else {
                 Module currentModule = new Module(modCode);
                 modList.add(currentModule);
+                ui.printAdd(currentModule, toPrint);
                 if (toPrint) {
-                    ui.printAdd(currentModule);
                     storage.appendToFile(input);
                 }
             }
@@ -243,12 +234,22 @@ public class ModuleList {
             Module currentMod = new Module(modCode, expTime);
             if (!checkIfModuleExist(modCode)) {
                 modList.add(currentMod);
+                ui.printAdd(currentMod, toPrint);
             } else {
                 int index = modList.indexOf(currentMod);
-                modList.get(index).setExpectedWorkload(expectedTime);
+                double initialExp = modList.get(index).getExpectedWorkload();
+                if (initialExp == expectedTime) {
+                    ui.printExpAlreadyUpdated(expectedTime, toPrint);
+                    return;
+                } else if (initialExp == NO_INPUT) {
+                    modList.get(index).setExpectedWorkload(expectedTime);
+                    ui.printAdd(currentMod, toPrint);
+                } else {
+                    modList.get(index).setExpectedWorkload(expectedTime);
+                    ui.printExpUpdated(modCode, expectedTime, toPrint);
+                }
             }
             if (toPrint) {
-                ui.printAdd(currentMod);
                 storage.appendToFile(input);
             }
         } catch (IndexOutOfBoundsException e) {
@@ -273,6 +274,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
@@ -317,6 +319,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
