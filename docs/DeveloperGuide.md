@@ -439,13 +439,13 @@ The view information command is currently implemented by the `InfoCommand`. The 
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
 
-**Step 1:** `Ui` would receive input in form of `info -a <ANIME_ID>` in the `Main` class and pass it into `Parser` class
+**Step 1:** `Ui` would receive input in form of `info <ANIME_ID>` in the `Main` class and pass it into `Parser` class
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object, in which `InfoCommand` object is constructed as well.
 
-**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
+**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the field given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
 
 Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature
 
@@ -478,7 +478,7 @@ We decided to go with approach 2, as it would enhance the user experience of not
 <br/>
 
 ### 4.4 Workspace Feature
-Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate containers and switch between them to avoid intermixing of information.
 
 <br/>
 
@@ -585,13 +585,13 @@ Should we allow the user full discretion to naming `Workspace`?
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
+| Yes  | Allows user more flexibility | Confusing or unexpected names may lead to unexpected outcomes |
 | No   | Eliminate unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
 
-In addition, we also prevent case-insensitive `Workspace` creation and the use of special characters, as they may cause issues when creating folders on certain file systems.
+In addition, we also prevent case-insensitive `Workspace` creation, use of special characters, and long names (i.e. length above 30), as they may cause issues when creating folders on certain file systems.
 
 <br/>
 
@@ -718,19 +718,19 @@ While both alternatives are valid in their own ways, we have decided to **restri
 The `add` feature allows users to add an anime into the active watchlist they are currently at. This helps them keep track of the anime they would like to watch next.
 
 #### 4.6.1 Current Implementation
-The current implementation of the add to watchlist command requires the user to give an input in the form of `add -a <ANIME_ID>`. This will allow users to add the ANIME_ID of the anime they want to add by calling the `addAnimeToList` method in the active `Watchlist` object. 
+The current implementation of the add to watchlist command requires the user to give an input in the form of `add <ANIME_ID>`. This will allow users to add the ANIME_ID of the anime they want to add by calling the `addAnimeToList` method in the active `Watchlist` object. 
 
 Add to watchlist command extends the `Command` class, and the `parse` method in `AddToWatchlistParser` class is being called to validate the parameter that the user has entered.
 
 Below is an example usage scenario of how add to watchlist command behaves at each step.
 
-**Step 1:** Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser` through `Parser#getCommand(userInput)`. 
+**Step 1:** Starting from the `Main` class, the user first inputs `add <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser` through `Parser#getCommand(userInput)`. 
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
 
-**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
+**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the field that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
 
 The figure below shows the sequence diagram of steps 1 to 3.
 
@@ -768,7 +768,7 @@ Similarly, we decided to go with the second approach as this would be much easie
 The remove from watchlist feature allows users to remove a particular anime from their currently active watchlist. This would allow them to keep their watchlist clean of the anime that they have watched, leaving only those that they have not watched.
 
 #### 4.7.1 Current Implementation
-The remove from watchlist command currently requires the user to give an input in the format: `remove -d <ANIME_ID_IN_WATCHLIST>`. The implementation of remove from watchlist command is similar to the add to watchlist feature with the only difference being that the user has to delete the index of the anime in that watchlist, instead of the actual ANIME_ID.
+The remove from watchlist command currently requires the user to give an input in the format: `remove <ANIME_ID_IN_WATCHLIST>`. The implementation of remove from watchlist command is similar to the add to watchlist feature with the only difference being that the user has to delete the index of the anime in that watchlist, instead of the actual ANIME_ID.
 
 The usage scenario of remove from watchlist is similar to the add to watchlist command, but we will be using `RemoveCommand`, `RemoveCommandParser` and `Watchlist#removeAnimeFromList()`.
 
@@ -796,11 +796,11 @@ The `view` command is currently implemented by the `ViewWatchlistCommand`. It is
 
 An example usage scenario on how view anime in watchlist behaves is given below.
 
-**Step 1:** In the `Main` class, the user will input `view -v <WATCHLIST_ID>`. `Ui` will take in this input and is passed into `Parser`.
+**Step 1:** In the `Main` class, the user will input `view [-v <WATCHLIST_ID>]`. `Ui` will take in this input and is passed into `Parser`.
 
 **Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
 
-**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. 
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user, if given. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. If no parameter is given, then the active `Watchlist` object will be used.
 
 **Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
@@ -810,7 +810,7 @@ The sequence diagram for steps 1 to 4 is as shown in the figure below.
 
 **Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
 
-**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the active `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
+**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the seleceted `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
 
 **Step 7:** `ViewWatchlistCommand` is terminated
 

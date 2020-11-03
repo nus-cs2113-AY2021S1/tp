@@ -1,3 +1,7 @@
+Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on. Increasing sufficient everything men him admiration unpleasing coke. Around really his use uneasy longer him man. His our pulled nature elinor talked now for excuse result. Admitted add peculiar get joy doubtful
+Male
+Uneasy barton seeing remark happen his has Am possible offering at contempt mr distance stronger amis
+feMale5
 Friendly cat
 Cat
 Dog 12345
@@ -33,7 +37,11 @@ Elf
 Queen
 maleS
 Abec Steiner 77th
-FemaLe
+F3maLe
+Abec Steiner 77th
+MaLes
+Abec Steiner 77th
+female
 addws -n
 addws  - 
 addws
@@ -52,6 +60,19 @@ workspace -l
 workspace -d WHITE CHoC MACADAMIA
 workspace -d non existing workspace
 workspace -n COOKIES N CREME CH33SECAKE
+workspace -n APPLE ORANGE OREO PANCAKE APPLE ORANGE OREO PANCAKE
+workspace -n APPLES ORANGES OREOS PANCAKESS
+workspace -n APPLES ORANGES OREOS PANCAKESSS
+workspace -n -999999
+workspace -n 999999
+workspace -d 999999 
+workspace -l
+workspace -n APPLES ORANGES OREOS PANCAKESSS 
+workspace -n APPLES ORANGES OREOS PANCAKESSS  
+workspace -l
+workspace -l  APPLES ORANGES OREOS PANCAKESSS  
+workspace -n   APPLES ORANGES OREOS PANCAKESSS  
+workspace -l
 workspace -s COOKIES N CREME CH33SECAKE
 workspace -d WHITE CHoC MACADAMIA
 workspace 1
@@ -178,4 +199,25 @@ browse -      o asc -p           2             -aas
 browse -o asc -p 2 --
 browse ---
 browse -s rating-o asc
+workspace -l
+workspace -d  COOKIES N CREME CH33SECAKE
+workspace -d Default
+workspace -d ./*
+workspace -d .//*
+workspace -d  ./data
+workspace -l
+workspace -n Triple Fromage Cheesecake
+Triple Fromage Cheesecake
+workspace -n Triple Fromage Cheesecake 
+workspace -n   Triple Fromage Cheesecake 
+workspace -l
+workspace -s   Triple Fromage Cheesecake 
+workspace -s  Triple Fromage Cheesecake
+workspace -s Triple Fromage Cheesecake
+workspace -l
+workspace -n Triple Fromage Cheesecake
+workspace -n   Triple Fromage Cheesecake 
+workspace -d   Triple Fromage Cheesecake 
+workspace -d Triple Fromage Cheesecake
+workspace -l
 exit
