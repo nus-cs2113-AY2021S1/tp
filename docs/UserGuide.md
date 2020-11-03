@@ -183,7 +183,7 @@ Expected output:
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
 
-#### <a id="edit-n">3.5 Edit Note: `edit-n`</a>
+### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
 
 Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONTENTS] OR [/del INDEX]) [/c CONTENT] [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...]`
