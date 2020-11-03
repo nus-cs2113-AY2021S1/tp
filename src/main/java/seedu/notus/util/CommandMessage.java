@@ -195,6 +195,11 @@ public class CommandMessage {
             + "in the specified time period: ";
 
     public static final String ADD_EVENT_SUCCESSFUL_MESSAGE = colorize("Added the following event:", GREEN);
+    public static final String ADD_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
+            + "The specified timing already has an event ongoing. The following event is still added:", GREEN);
+    public static final String ADD_EVENT_DUPLICATE_WARNING = colorize("Warning! "
+            + "The event is very similar to one already stored. Please ensure the input details are correct. "
+            + "The following event is still added:", GREEN);
     public static final String DELETE_EVENT_SUCCESSFUL_MESSAGE = colorize("Event deleted", GREEN);
     public static final String EDIT_TITLE_MESSAGE = colorize("Title edited!", GREEN);
     public static final String EDIT_START_DATE_MESSAGE = colorize("Start Date edited!", GREEN);

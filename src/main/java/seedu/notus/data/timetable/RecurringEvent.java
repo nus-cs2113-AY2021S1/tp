@@ -126,10 +126,13 @@ public abstract class RecurringEvent extends Event {
      */
     public boolean toReoccur(LocalDate date) {
         LocalDate eventDate = getStartDate();
-        while (eventDate.compareTo(date) < 0) {
-            eventDate = timeStep(eventDate);
+        LocalDate finalDate = getStartDate();
+        int steps = 1;
+        while (finalDate.compareTo(date) < 0) {
+            finalDate = timeStep(eventDate, steps);
+            steps++;
         }
-        return eventDate.equals(date);
+        return finalDate.equals(date);
     }
 
     @Override
@@ -158,4 +161,12 @@ public abstract class RecurringEvent extends Event {
      */
     public abstract LocalDate timeStep(LocalDate date);
 
+    /**
+     * Provides time steps of a specified date by a specified number of time units and return it as a LocalDate object.
+     *
+     * @param date Date to step forward
+     * @param steps Steps to take.
+     * @return Future date
+     */
+    public abstract LocalDate timeStep(LocalDate date, int steps);
 }

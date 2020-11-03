@@ -52,4 +52,9 @@ public class WeeklyEvent extends RecurringEvent {
     public LocalDate timeStep(LocalDate date) {
         return date.plusWeeks(TIME_STEP);
     }
+
+    @Override
+    public LocalDate timeStep(LocalDate date, int steps) {
+        return date.plusWeeks(steps * TIME_STEP);
+    }
 }

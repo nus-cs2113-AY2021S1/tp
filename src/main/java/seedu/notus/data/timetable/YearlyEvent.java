@@ -52,4 +52,9 @@ public class YearlyEvent extends RecurringEvent {
     public LocalDate timeStep(LocalDate date) {
         return date.plusYears(TIME_STEP);
     }
+
+    @Override
+    public LocalDate timeStep(LocalDate date, int steps) {
+        return date.plusYears(steps * TIME_STEP);
+    }
 }

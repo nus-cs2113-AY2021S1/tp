@@ -6,8 +6,11 @@ import seedu.notus.ui.Formatter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
+import static seedu.notus.util.CommandMessage.ADD_EVENT_DUPLICATE_WARNING;
 import static seedu.notus.util.CommandMessage.ADD_EVENT_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.ADD_EVENT_SUCCESSFUL_WARNING;
 import static seedu.notus.util.CommandMessage.ADD_EVENT_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
 
@@ -48,6 +51,7 @@ public class AddEventCommand extends Command {
             event.setEndDateTime(endDateTime);
         }
 
+        ArrayList<Event> clashes = timetable.getClashingEvents(event);
         timetable.addEvent(event);
 
         try {
@@ -55,7 +59,14 @@ public class AddEventCommand extends Command {
         } catch (IOException exception) {
             return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }
-
-        return Formatter.formatEventString(ADD_EVENT_SUCCESSFUL_MESSAGE, event);
+        String header = ADD_EVENT_SUCCESSFUL_MESSAGE;
+        for (Event clashEvent : clashes) {
+            if (clashEvent.equals(event)) {
+                header = ADD_EVENT_DUPLICATE_WARNING;
+                break;
+            }
+            header = ADD_EVENT_SUCCESSFUL_WARNING;
+        }
+        return Formatter.formatEventString(header, event);
     }
 }

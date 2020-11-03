@@ -245,6 +245,20 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return dates;
     }
 
+    public boolean occursBetweenEvent(Event event) {
+        if (checkClash(event.startDateTime, event.endDateTime, startDateTime)) {
+            return !startDateTime.equals(event.endDateTime);
+        }
+        if (checkClash(startDateTime, endDateTime, event.startDateTime)) {
+            return !event.startDateTime.equals(endDateTime);
+        }
+        return false;
+    }
+
+    public boolean checkClash(LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime timeToCheck) {
+        return (timeToCheck.compareTo(startDateTime) >= 0 && timeToCheck.compareTo(endDateTime) <= 0);
+    }
+
     /**
      * Converts an Event to a format for a reminder.
      *
@@ -272,5 +286,16 @@ public class Event extends TaggableObject implements Comparable<Event> {
     @Override
     public int compareTo(Event o) {
         return startDateTime.compareTo(o.startDateTime);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event event = (Event) o;
+            if (compareTo(event) == 0 && title.equals(event.title)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

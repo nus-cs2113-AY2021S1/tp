@@ -212,8 +212,8 @@ public class Timetable {
     /**
      * Provides a method to get all events, including re-occurring events in an arraylist in a specified period.
      *
-     * @param startDate Start of time period.
-     * @param endDate End of time period.
+     * @param startDate Start of time period. Inclusive of date.
+     * @param endDate End of time period. Inclusive of date.
      * @return ArrayList of all events. Re-occurring events are initialized as a new event.
      */
     public ArrayList<Event> getAllEvents(LocalDate startDate, LocalDate endDate) {
@@ -322,4 +322,15 @@ public class Timetable {
         return todayReminders;
     }
 
+    public ArrayList<Event> getClashingEvents(Event event) {
+        ArrayList<Event> clashedEvents = new ArrayList<>();
+        LocalDate eventDate = event.getStartDate();
+        ArrayList<Event> eventsHappening = getAllEvents(eventDate, eventDate);
+        for (Event storedEvent : eventsHappening) {
+            if (event.occursBetweenEvent(storedEvent)) {
+                clashedEvents.add(storedEvent);
+            }
+        }
+        return clashedEvents;
+    }
 }
