@@ -12,9 +12,8 @@ import java.util.logging.Logger;
  * Handles parsing for remove command.
  */
 public class RemoveCommandParser extends CommandParser {
-    protected static final String TOO_MUCH_ARGUMENTS = "Remove command" + TOO_MUCH_FIELDS;
-    protected static final String ANIME_ID_IN_WATCHLIST = "Anime ID in Watchlist!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID in watchlist is invalid!";
+    private static final String TOO_MUCH_ARGUMENTS = "Remove command" + TOO_MUCH_FIELDS;
+    private static final String ANIME_ID_IN_WATCHLIST = "Anime ID in Watchlist!";
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
 
     /**
@@ -32,7 +31,7 @@ public class RemoveCommandParser extends CommandParser {
         }
 
         Integer animeIndexInWatchlist = parameterParser(description);
-        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        LOGGER.log(Level.INFO, PARAMETER_PARSED);
         
         return new RemoveCommand(animeIndexInWatchlist);
     }
@@ -52,10 +51,6 @@ public class RemoveCommandParser extends CommandParser {
         }
         isIntegerCheck(fieldValue, ANIME_ID_IN_WATCHLIST);
 
-        try {
-            return Integer.parseInt(fieldValue);
-        } catch (NumberFormatException e) {
-            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-        }
+        return parseStringToInteger(fieldValue);
     }
 }

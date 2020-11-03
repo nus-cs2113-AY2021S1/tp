@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  * Represents the command to view all anime in a certain Watchlist.
  */
 public class ViewWatchlistCommand extends Command {
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
-    protected static final String NO_WATCHLIST_ERROR = "There are no watchlists in your workspace!";
-    protected static final String EMPTY_WATCHLIST_ERROR = "There are no anime in ";
+    private static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
+    private static final String NO_WATCHLIST_ERROR = "There are no watchlists in your workspace!";
+    private static final String EMPTY_WATCHLIST_ERROR = "There are no anime in ";
     
     private Integer watchlistIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());

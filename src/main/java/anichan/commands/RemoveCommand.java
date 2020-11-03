@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  * Represents the command to remove an anime from the active Watchlist.
  */
 public class RemoveCommand extends Command {
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Invalid Watchlist Index!";
-    protected static final String EMPTY_WATCHLIST_ERROR = "Watchlist is empty!";
-    protected static final String SUCCESSFUL_REMOVE = "Successfully removed anime from active watchlist";
+    private static final String OUT_OF_BOUND_INDEX_ERROR = "Invalid Watchlist Index!";
+    private static final String EMPTY_WATCHLIST_ERROR = "Watchlist is empty!";
+    private static final String SUCCESSFUL_REMOVE = "Successfully removed anime from active watchlist";
 
     private Integer animeIndexInWatchlist;
     private Integer animeIndex;
@@ -76,7 +76,7 @@ public class RemoveCommand extends Command {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         } 
         
-        assert this.animeIndexInWatchlist >= 0 : "anime index has to be valid";
+        assert this.animeIndexInWatchlist >= 0 : "anime index in watchlist has to be valid";
         animeIndex = activeWatchlist.getWatchlistListAnimeIndex(animeIndexInWatchlist);
         activeWatchlist.removeAnimeFromList(animeIndexInWatchlist);
 

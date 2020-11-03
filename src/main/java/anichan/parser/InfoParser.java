@@ -12,10 +12,10 @@ import java.util.logging.Logger;
  * Handles parsing for info command.
  */
 public class InfoParser extends CommandParser {
-    protected static final String TOO_MUCH_ARGUMENTS = "Info command" + TOO_MUCH_FIELDS;
-    protected static final String ANIME_ID = "Anime ID!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    private static final String TOO_MUCH_ARGUMENTS = "Info command" + TOO_MUCH_FIELDS;
+    private static final String ANIME_ID = "Anime ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
+    
 
     /**
      * Parses the specified command description.
@@ -32,7 +32,7 @@ public class InfoParser extends CommandParser {
         }
 
         Integer animeIndex = parameterParser(description);
-        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        LOGGER.log(Level.INFO, PARAMETER_PARSED);
         
         return new InfoCommand(animeIndex);
     }
@@ -52,10 +52,6 @@ public class InfoParser extends CommandParser {
         }
         isIntegerCheck(fieldValue, ANIME_ID);
 
-        try {
-            return Integer.parseInt(fieldValue);
-        } catch (NumberFormatException e) {
-            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-        }
+        return parseStringToInteger(fieldValue);
     }
 }

@@ -12,10 +12,9 @@ import java.util.logging.Logger;
  * Handles parsing for view watchlist command.
  */
 public class ViewWatchlistParser extends CommandParser {
-    protected static final String VIEW_PARAM = "v";
-    protected static final String TOO_MUCH_ARGUMENTS = "View command" + TOO_MUCH_FIELDS;
-    protected static final String WATCHLIST_ID = "Watchlist ID!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
+    private static final String VIEW_PARAM = "v";
+    private static final String TOO_MUCH_ARGUMENTS = "View command" + TOO_MUCH_FIELDS;
+    private static final String WATCHLIST_ID = "Watchlist ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
 
     /**
@@ -35,7 +34,7 @@ public class ViewWatchlistParser extends CommandParser {
             return new ViewWatchlistCommand(watchlistIndex);
         }
   
-        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        LOGGER.log(Level.INFO, PARAMETER_PARSED);
 
         return new ViewWatchlistCommand();
     }
@@ -59,12 +58,7 @@ public class ViewWatchlistParser extends CommandParser {
                 throw new AniException(TOO_MUCH_ARGUMENTS);
             }
             isIntegerCheck(fieldValue, WATCHLIST_ID);
-            
-            try {
-                return Integer.parseInt(paramParts[1].trim());
-            } catch (NumberFormatException e) {
-                throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-            }
+            return parseStringToInteger(fieldValue);
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
             throw new AniException(invalidParameter);

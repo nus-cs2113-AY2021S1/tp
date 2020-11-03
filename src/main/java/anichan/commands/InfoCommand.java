@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Represents the command to view the information of an anime.
  */
 public class InfoCommand extends Command {
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    private static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     
     private Integer animeIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoCommand.class.getName());
