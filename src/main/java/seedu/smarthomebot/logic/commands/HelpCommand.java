@@ -1,9 +1,10 @@
 package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.Messages;
+
 //@@author zongxian-ctrl
 /**
- * Represent the command for showing help instructions
+ * Represent the command for showing help instructions.
  */
 public class HelpCommand extends Command {
 
