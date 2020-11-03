@@ -115,7 +115,10 @@ public class Formatter {
         String header = message.concat(note.getTitle() + " " + note.getTagsName());
 
         header = header.concat("| " + note.getPinnedString() + " ");
-        header = header.concat("| " + note.getIsArchivedString());
+
+        if (note.getIsArchived()) {
+            header = header.concat("| " + note.getIsArchivedString());
+        }
 
         formattedString = formattedString.concat(generatesHeader(header));
         for (String line : note.getContent()) {
