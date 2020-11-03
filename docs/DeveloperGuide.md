@@ -313,7 +313,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-##### <Aspect: How to store programMode variable for security>
+##### Aspect: What keyword for the user to input to get show timetable feature.
+
+* **Alternative 1 (Current choice):** Using `show` keyword and a valid `DAY(optional)` input.
+    * Pros: Able to use `show` keyword for the show module and slot details feature too.
+    * Cons: Unable to show error message for an invalid `DAY(optional)` input 
+    as the program reads the input as a `MODULE` input instead. Users have to use `help` command or
+    to refer to the User Guide to receive help.
+* **Alternative 2:** Using `list` keyword and a valid `DAY(optional)` input.
+    * Pros: Easier to create code. No need to have an algorithm figure out if user wants to access show timetable
+    feature or show module and slot details feature.
+    * Cons: Less user-friendly. Users have to remember another keyword for showing data from Zoomaster.
+* **Alternative 3:** Using `show timetable` keyword and a valid `DAY(optional)` input.
+    * Pros: Less complex code. An additional keyword allows program to easily recognise show timetable feature.
+    * Cons: Less user-friendly. Users have to type an additional phrase to show their timetable. Experienced users
+    whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
+    additional keyword troublesome.
 
 
 <a name="add-module-slot"></a>
