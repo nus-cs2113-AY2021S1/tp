@@ -329,7 +329,7 @@ public class MemberList {
                 count++;
                 continue;
             }
-            if (searchRole(i, "admin")) {
+            if (searchRole(i, "admin") || searchRole(i,"administrators")) {
                 output = output + (i + 1) + "." + members.get(i).toString() + "\n";
                 count++;
                 continue;

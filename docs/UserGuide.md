@@ -165,8 +165,8 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
-Search the members whose information matches user input. If a member's information 
-matches any of the conditions that the user inputs, 
+Search the members whose information matches user input.  
+:bulb: If a member's information matches any of the conditions that the user inputs, 
 it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
@@ -187,8 +187,8 @@ Expected outcomes:
 
 
 #### view contacts of prof/admin: `list prof&admin`  
-List the contacts of the professors and administrators. Professors and administrators are roles
-of members.  
+List the contacts of the professors and administrators.  
+:bulb: Professor/prof and administrator/admin are roles of members.  
 Format: `hr list prof&admin`  
 
 Shorthand format:  
@@ -206,7 +206,8 @@ Expected outcome:
 
 
 #### view contacts of connections: `list connections`  
-List the contacts of connections(alumni, speakers). Alumni and speakers are roles of members.  
+List the contacts of connections(alumni, speakers).  
+:bulb: Alumni and speaker are roles of members.  
 Format: `hr list connections`  
 
 Shorhand format:  
