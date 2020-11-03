@@ -88,8 +88,9 @@ E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result,
 ### 3.1 View the help
 This command will provide the details of all available commands and their usage. 
 This is done by displaying the ‘Command Summary’ as listed below to the user. 
+You can also provide the optional `COMMAND_TYPE` to view the details for that specific command.
 
-Format: `help`
+Format: `help [COMMAND_TYPE]`
 
 <br/>
 
