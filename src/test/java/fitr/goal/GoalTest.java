@@ -2,10 +2,8 @@ package fitr.goal;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 import static fitr.common.DateManager.getCurrentDate;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GoalTest {
 
