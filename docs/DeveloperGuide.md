@@ -1262,7 +1262,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.X: Viewing the information of a specific anime
-1. Viewing the information of a specific anime.
+1.  Viewing the information of a specific anime.
     1.  Prerequisite:
     
     2.  Test case: `info 1` <br/>
