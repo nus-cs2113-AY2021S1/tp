@@ -35,6 +35,9 @@ public class Reminder extends ReadOnlyCommand {
 
     public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
         Task task = tasks.get(key);
+        if (task == null) {
+            throw new InvalidTaskNumberException();
+        }
         Calendar calendar = Calendar.getInstance();
         TaskMap taskReminder = new TaskMap();
         taskReminder.addTask(task);
@@ -47,9 +50,6 @@ public class Reminder extends ReadOnlyCommand {
                     task.getStartTime().getMinute(),0);
         }
         Date date = calendar.getTime();
-        if (task == null) {
-            throw new InvalidTaskNumberException();
-        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
