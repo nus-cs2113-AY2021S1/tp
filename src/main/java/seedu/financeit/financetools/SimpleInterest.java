@@ -26,14 +26,6 @@ public class SimpleInterest extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
-    }
-
     public double calculateSimpleInterest() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
@@ -42,8 +34,7 @@ public class SimpleInterest extends ParamHandler {
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
