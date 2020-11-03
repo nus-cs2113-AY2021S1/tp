@@ -11,6 +11,7 @@
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
 
 2.  [Setting up](#2-setting-up)
+
 3.  [Design](#3-design)
 <br/>&nbsp;3.1  [Architecture](#31-architecture)
 <br/>&nbsp;3.2  [UI Component](#32-ui-component)
@@ -18,7 +19,7 @@
 <br/>&nbsp;3.4  [Command Component](#34-command-component)
 <br/>&nbsp;3.5  [AnimeData Component](#35-animedata-component)
 <br/>&nbsp;3.6  [User Component](#36-user-component)
-<br/>&nbsp;3.7  [Storage Component](#37-storage-component)
+<br/>&nbsp;3.7  [StorageManager Component](#37-storagemanager-component)
 
 4.  [Implementation](#4-implementation)
 <br/>&nbsp;4.1  [Estimate Feature](#41-estimate-feature)
@@ -107,7 +108,7 @@ This section will help provide insight to the general overview of **Anichan**’
 
 <br/>
 
-![Architectural Diagram](images/Architectural-Design.png)
+![Architecture Diagram](images/Architecture-Design.png)
 
 *Figure 1: Architecture Design Diagram*
 
@@ -127,7 +128,7 @@ The rest of **AniChan** consists of 6 components:
 *   `Command`: Executes the command.
 *   `User`: Manages the workspace(s) and user data.
 *   `AnimeData`: Provides data from the anime source file.
-*   `Storage`: Reads data from, and writes data to, the hard disk.
+*   `StorageManager`: Reads data from, and writes data to, the hard disk.
 
 <br/>
 
@@ -217,11 +218,11 @@ The `Workspace` component:
 
 <br/>
 
-### 3.7 Storage Component
-![Storage Class Diagram](images/Storage-Class-Diagram.png) <br/>
-*Figure 9: Storage Class Diagram*
+### 3.7 StorageManager Component
+![StorageManager Class Diagram](images/StorageManager-Class-Diagram.png) <br/>
+*Figure 9: StorageManager Class Diagram*
 
-The `Storage` component consist of `StorageManager` which:
+The `StorageManager` component:
 *   can **save** workspace created by the user as a folder.
 *   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
 *   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
@@ -703,14 +704,14 @@ Having considered both of these alternatives, we have decided to save watchlist 
 
 <br/>
 
-Aspect: **Length of watchlist name**
+Aspect: **Watchlist name restriction**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| No restriction | Users have more flexibility | This may hinder user's vision of the input prompt |
-| Restricted to 30 characters **(current design)** | Ensures users have proper view of the input prompt | Users have less flexibility in naming |
+| No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
+| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only **(current design)**. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
-While both alternatives are valid in their own ways, we have decided to **restrict the length of watchlist name to 30 characters** because we find that long names can muddle up the readability. We also believe that most users would probably prefer to use short names as that makes it easier for them to identify what the watchlist is.
+While both alternatives are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
 
 <br/>
 

@@ -8,7 +8,9 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
@@ -40,7 +42,9 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.7 [View information of a bookmark entry](#387-view-information-of-a-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
+
 4. [FAQ](#4-faq)
+
 5. [Command Summary](#5-command-summary)
 
 <br/>
@@ -356,7 +360,7 @@ Creates a new watchlist to keep track of anime(s).
 
 Format: `watchlist -n <WATCHLIST_NAME>`
 
-> :bulb: Watchlist name can only consist of alphanumeric characters and/or spaces.
+> :bulb: Watchlist name can only contain a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only.
 > :warning: Watchlist name has to be unique in the workspace.
 
 <br/>
