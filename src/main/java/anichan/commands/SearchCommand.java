@@ -26,6 +26,7 @@ public class SearchCommand extends Command {
     private static final int NO_SEARCH_SELECTED = -1;
 
     private static final Logger LOGGER = AniLogger.getAniLogger(SearchCommand.class.getName());
+    private static final String INIT_STRING = "";
 
     private String searchTerm;
     private String result;
@@ -36,13 +37,13 @@ public class SearchCommand extends Command {
         this.searchTerm = searchTerm;
         this.searchGenre = searchGenre;
         this.searchType = searchType;
-        result = "";
+        result = INIT_STRING;
     }
 
     public SearchCommand() {
-        searchTerm = "";
-        searchGenre = "";
-        result = "";
+        searchTerm = INIT_STRING;
+        searchGenre = INIT_STRING;
+        result = INIT_STRING;
         searchType = NO_SEARCH_SELECTED;
     }
 
@@ -132,11 +133,6 @@ public class SearchCommand extends Command {
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm.toLowerCase();
         setSearchType(SEARCH_BY_NAME);
-    }
-
-    public void setSearchGenre(String searchGenre) {
-        this.searchGenre = searchGenre.toLowerCase();
-        setSearchType(SEARCH_BY_GENRE);
     }
 
     public void setSearchType(int searchType) {
