@@ -243,6 +243,7 @@ A similar procedure is being employed by the `TopicalStatsCalculator` object to 
 ### 2.4. Storage Component
 
 The storage component is implemented locally and mainly saves and loads files in JavaScript Object Notation (JSON) format, except for log files which are stored as normal text files.
+The JSON format was chosen as it follows a well-known standard which is easy to parse.
 
 #### 2.4.1. Design of TopicsStorage
 
@@ -343,6 +344,8 @@ The attributes will be saved in the JSON file tied to each question in a topic a
 ```
 
 Unlike `topics.json`, users should not be editing the `user.json` file as it is system generated.
+If the user edits this file and does not follow the correct format then the affected parts of the data will be lost but the 
+program will continue to run.
 
 #### 2.4.4. Implementation of UserStorage
 
@@ -351,6 +354,7 @@ Unlike `TopicStorage`, `UserStorage` accesses existing objects in order to extra
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
 A similar method is used to extract the attributes from each `Question` object inside the `Topic`.
+It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` as continues to persist until the program shuts down.
 
 ### 2.5. UI Component
 
