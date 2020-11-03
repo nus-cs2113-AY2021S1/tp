@@ -26,7 +26,7 @@ public class TestCommands {
             new String[][] {
                 {
                     PARAM_DATE,
-                    "2020-5-4"
+                    "2020-5-5"
                 }
             }
         );

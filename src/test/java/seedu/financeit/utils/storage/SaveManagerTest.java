@@ -18,6 +18,7 @@ public class SaveManagerTest {
         try {
             List<String> first = Files.readAllLines(firstFile);
             List<String> second = Files.readAllLines(secondFile);
+
             return first.equals(second);
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,6 +46,7 @@ public class SaveManagerTest {
 
             SaveManager.deleteSave(packet);
             SaveManager.clear();
+            SaveManager.resetAllLists();
         } catch (Exception e) {
             e.printStackTrace();
         }
