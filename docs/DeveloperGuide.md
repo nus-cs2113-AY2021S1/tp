@@ -298,11 +298,11 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `admin` level. 
+* Step 1: The user is currently in `admin` level. 
 
-Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
+* Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
 
-Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
+* Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
 The following sequence diagram shows how the remove module feature works:
 
@@ -473,11 +473,11 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `CS2113T` at the module level. 
+* Step 1: The user is currently in `CS2113T` at the module level. 
 
-Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
+* Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
 
-Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
+* Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
 The following sequence diagram shows how the remove chapter feature works:
 
@@ -608,13 +608,13 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
+* Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
 
-Step 2: The user enters `remove 1` command to delete the first flashcard in the list of flashcards — which in this case is `[Q] 1+1 | [A] 2`. The `remove` command creates `RemoveCardCommand` which will then be executed. 
+* Step 2: The user enters `remove 1` command to delete the first flashcard in the list of flashcards — which in this case is `[Q] 1+1 | [A] 2`. The `remove` command creates `RemoveCardCommand` which will then be executed. 
 
-Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
+* Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
 
-Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
+* Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
 The following sequence diagram shows how the remove flashcard feature works:
 
@@ -634,11 +634,11 @@ In addition, it implements the following operation:
 
 For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
+* Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
 
-Step 2: The user enters `back` command to return to `CS2113T`. The `back` command creates `BackModuleCommand` which will then be executed.
+* Step 2: The user enters `back` command to return to `CS2113T`. The `back` command creates `BackModuleCommand` which will then be executed.
 
-Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
+* Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
 The following sequence diagram shows how the return to module level feature works:
 
@@ -719,29 +719,47 @@ In addition, it implements the following operations:
 
 For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `CS2113T` at the module level.
+* Step 1: The user is currently in `CS2113T` at the module level.
 
-Step 2: The user enters `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
+* Step 2: The user enters `revise 1` command to revise the first chapter in the module — which in this case is `Chapter 1`. The `revise` command creates `ReviseCommand` which will then be executed.
 
-Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
+* Step 3: `ReviseCommand#execute` gets `Chapter1` based on the index provided as well as a list of `card` under the particular chapter by calling `ReviseCommand#getChapter` and `ReviseCommand#getCards` respectively.
 
-Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
+* Step 4: If the `chapter` is not due for revision yet, `ReviseCommand#promptNotDue()` will prompt the user if he still wants to revise a `chapter` that is not due. If the user enters `Y`, the Revise feature will continue execution, else it will return to the main class Kaji, and wait for the next command.
 
-Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
+* Step 5: `ReviseCommand#execute` loops through each flashcard and shows the user its contents by calling `ReviseCommand#reviseCard()`  and inside it, `ReviseCommand#rateCard()` is called and makes use of `Ui#getUserInput()` to get user to rate the difficulty of each flashcard. 
 
-Step 6: A success message of completeing the revision will be shown to the user through `Ui#showToUser()`.
+* Step 6: A success message of completing the revision will be shown to the user through `Ui#showToUser()`.
 
-Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
+* Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
 
-Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
+* Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer if any.
 
-Step 7: Lastly, `ReviseCommand#execute()` calls `HistoryCommand#addHistory()` to keep a record of the chapter revised so that the user can review what revision has been completed.
+* Step 7: Lastly, `ReviseCommand#execute()` calls `HistoryCommand#addHistory()` to keep a record of the chapter revised so that the user can review what revision has been completed.
 
 The following sequence diagram shows how the revise feature works:
 
 <p align="center">
   <img src="DG_Images/revise_seq_diagram.png" width="800" alt="Sequence Diagram of Revise"/>
   <br/>Figure <>. Sequence diagram of revise
+</p>
+
+* Get Chapter:
+<p align="center">
+  <img src="DG_Images/ReviseGetChap.png" width="800" alt="Sequence Diagram of Revise Get Chapter"/>
+  <br/>Figure <>. Sequence diagram of get chapter for revision
+</p>
+
+* Chapter is not due for revision:
+<p align="center">
+  <img src="DG_Images/ReviseNotDue.png" width="800" alt="Sequence Diagram of Revise Not Due"/>
+  <br/>Figure <>. Sequence diagram of revise for chapter that is not due
+</p>
+ 
+* Get Cards:
+<p align="center">
+  <img src="DG_Images/ReviseGetCards.png" width="800" alt="Sequence Diagram of Revise Get Chapter"/>
+  <br/>Figure <>. Sequence diagram of get cards for revision
 </p>
 
 #### 4.4.2. Scheduling The Chapters Feature

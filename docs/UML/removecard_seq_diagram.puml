@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":RemoveCardCommand" as RemoveCardCommand LOGIC_COLOR
 participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
 end box
@@ -21,21 +20,6 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-[-> Parser : parse("remove 1")
-activate Parser
-
-create RemoveCardCommand
-Parser -> RemoveCardCommand : RemoveCardCommand(1)
-activate RemoveCardCommand
-
-RemoveCardCommand --> Parser : command
-deactivate RemoveCardCommand
-
-[<-- Parser : command
-deactivate Parser
-[<-[hidden]- Parser
-destroy Parser
-
 -> RemoveCardCommand : execute(ui, access, storage)
 activate RemoveCardCommand
 RemoveCardCommand -> RemoveCardCommand : removeCard(access, storage)
@@ -44,8 +28,6 @@ RemoveCardCommand -> Access : getChapter()
 activate Access
 RemoveCardCommand <-- Access
 deactivate Access
-[<-[hidden]- Access
-destroy Access
 RemoveCardCommand -> Chapter : getCards()
 activate Chapter
 RemoveCardCommand <-- Chapter : cards
@@ -62,8 +44,6 @@ RemoveCardCommand -> Storage : saveCards(cards, module, chapter)
 activate Storage
 RemoveCardCommand <-- Storage
 deactivate Storage
-[<-[hidden]- Storage
-destroy Storage
 RemoveCardCommand -> RemoveCommand : prepareResult(type, card, count)
 activate RemoveCommand
 RemoveCardCommand <-- RemoveCommand : result
@@ -76,8 +56,6 @@ RemoveCardCommand -> Ui : showToUser(result)
 activate Ui
 RemoveCardCommand <-- Ui
 deactivate Ui
-[<-[hidden]- Ui
-destroy Ui
 <-- RemoveCardCommand
 deactivate RemoveCardCommand
 @enduml
