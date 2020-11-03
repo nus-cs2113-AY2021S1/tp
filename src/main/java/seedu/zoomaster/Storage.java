@@ -153,16 +153,6 @@ public class Storage<T> {
         }
     }
 
-    //@@author
-    private ArrayList<String> getData(File f) throws FileNotFoundException {
-        ArrayList<String> items = new ArrayList<>();
-        Scanner s = new Scanner(f);
-        while (s.hasNextLine()) {
-            items.add(s.nextLine());
-        }
-        return items;
-    }
-
     /**
      * This method creates the file if it does not exist and saves tasks data in the file.
      *

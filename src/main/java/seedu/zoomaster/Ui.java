@@ -298,7 +298,7 @@ public class Ui {
 
     private void printInvalidAddBookmarkInputMessage() {
         printRedWithBorder("Invalid bookmark input" + NEW_LINE
-                + "Format: add {module(optional)} {description} {URL}" + NEW_LINE);
+                + "Format: add {description} {URL}" + NEW_LINE);
     }
 
     private void printEmptyBookmarkDescriptionMessage() {
@@ -566,4 +566,10 @@ public class Ui {
         printRedWithBorder("Invalid time format" + NEW_LINE);
     }
 
+    public void showParsingErrorAndExit() {
+        printRedWithBorder("File corrupted! Please check data files or delete them." + NEW_LINE
+                + "Zoomaster will now shut down" + NEW_LINE);
+        AnsiConsole.systemUninstall();
+        System.exit(0);
+    }
 }
