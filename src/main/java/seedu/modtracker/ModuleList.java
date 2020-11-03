@@ -14,11 +14,13 @@ public class ModuleList {
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
-                + "expected workload.";
+                + "expected workload with a maximum of 1 decimal place.";
     private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
     private static final String INVALID_TIME_ERROR = "Please input a number between 0 and 99 for time.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
+    private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
+            + "with a maximum of 1 decimal place.";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
     private static final String NO_WORKLOAD_ERROR = "Cannot minus actual time as there is no actual time inputted.";
@@ -35,7 +37,7 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
-    public static double NO_INPUT = -1;
+    public static double NO_INPUT = -1.0;
 
 
     /**
@@ -108,6 +110,28 @@ public class ModuleList {
             }
         }
         return false;
+    }
+
+    /**
+     * Checks if the expected workload has less than or equal to 1 decimal place.
+     *
+     * @param exp   expected workload typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if expected workload is valid, false otherwise.
+     */
+    public boolean checkIfExpStringValid(String exp, boolean toPrint) {
+        if (!exp.contains(".")) {
+            return true;
+        }
+        String[] arrayOfExp = exp.split("\\.", 2);
+        if (arrayOfExp[1].length() > 1) {
+            if (toPrint) {
+                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -207,6 +231,9 @@ public class ModuleList {
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
+            if (!checkIfExpStringValid(expTime, toPrint)) {
+                return;
+            }
             double expectedTime = Double.parseDouble(expTime);
             expectedTime = Math.round(expectedTime * 10) / 10.0;
             if (!checkIfExpTimeValid(expectedTime, toPrint)) {
@@ -230,8 +257,7 @@ public class ModuleList {
             }
         } catch (NumberFormatException nfe) {
             if (toPrint) {
-                System.out.println(ERROR_ADDEXP);
-                System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
+                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
             }
         }
     }
@@ -298,6 +324,12 @@ public class ModuleList {
             if (checkIfModuleExist(modCode)) {
                 Module inputMod = new Module(modCode);
                 int index = modList.indexOf(inputMod);
+                if (modList.get(index).getExpectedWorkload() == NO_INPUT) {
+                    if (toPrint) {
+                        System.out.println("There is no input in the expected workload." + System.lineSeparator());
+                    }
+                    return;
+                }
                 modList.get(index).setExpectedWorkload(NO_INPUT);
                 if (toPrint) {
                     ui.printDeleteExp(modCode);
@@ -334,6 +366,12 @@ public class ModuleList {
             int week = Integer.parseInt(commandInfo[2]);
             if (week < 1 || week > 13) {
                 System.out.println("The week number should be between 1 and 13." + System.lineSeparator());
+                return;
+            }
+            if (modList.get(index).getActualTimeInSpecificWeek(commandInfo[2]) == -1.0) {
+                if (toPrint) {
+                    System.out.println("There is no input in the actual time." + System.lineSeparator());
+                }
                 return;
             }
             modList.get(index).deleteActualTime(week);

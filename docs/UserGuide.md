@@ -145,7 +145,8 @@ Adds the expected workload of the module to the database.
 Format: `addexp <module code> <expected workload>`
 
 * The `module code` is valid.
-* The `expected workload` is expressed in hours. It has to be a whole number between 1 and 24 inclusive.
+* The `expected workload` is expressed in hours. It has to be a number between 1 and 24 inclusive with a maximum of 1 
+decimal place.
 * If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 

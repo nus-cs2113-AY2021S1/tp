@@ -21,8 +21,8 @@ public class Notification {
     public static final String CAPABLE = "You are capable of achieving better.";
     public static final String TODAY = "Today is a perfect day to become better.";
 
-    public static final String TOO_MUCH_TIME = "Beware! Seems like you are spending too much time on %s.";
-    public static final String TOO_LITTLE_TIME = "Oh no! It appears you are spending too little time on %s.";
+    public static final String TOO_MUCH_TIME = "Beware! Seems like you are spending too much time on %s in week %d.";
+    public static final String TOO_LITTLE_TIME = "Oh no! It appears you are spending too little time on %s in week %d.";
     public static final String OPEN = "Please type `open` to view the notification and an encouraging message.";
 
     public static final String[] lines = {MAINTAIN, SUCCESS, TIME_MANAGEMENT};
@@ -87,7 +87,6 @@ public class Notification {
         }
         ArrayList<Module> modList = list.getData();
         boolean isBehind = false;
-        boolean isFine = true;
         for (Module mod : modList) {
             ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();
             Analysis analysis;
@@ -95,11 +94,11 @@ public class Notification {
                 analysis = breakDown.computeAnalysisOfTimeSpent(mod, currentWeek);
                 switch (analysis) {
                 case tooMuchTimeSpent:
-                    System.out.println(String.format(TOO_MUCH_TIME, mod.getModuleCode()));
+                    System.out.println(String.format(TOO_MUCH_TIME, mod.getModuleCode(), currentWeek));
                     System.out.println();
                     break;
                 case tooLittleTimeSpent:
-                    System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode()));
+                    System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode(), currentWeek));
                     System.out.println();
                     isBehind = true;
                     break;
