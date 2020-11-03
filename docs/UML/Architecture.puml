@@ -5,12 +5,14 @@ rectangle Ui
 rectangle PortfolioManager
 rectangle Parser
 rectangle StockPriceFetcher
-rectangle Storage
+rectangle Portfolio
+rectangle Wallet
 
 PaperTrade --> Controller
 Controller --> Ui
 Controller --> PortfolioManager
-PortfolioManager --> Storage
+PortfolioManager --> Portfolio
+PortfolioManager --> Wallet
 Controller --> Parser
 Controller --> StockPriceFetcher
 @enduml
