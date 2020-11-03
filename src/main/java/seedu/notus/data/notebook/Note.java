@@ -121,6 +121,10 @@ public class Note extends TaggableObject {
         return this.isArchived;
     }
 
+    public String getIsArchivedString() {
+        return (isArchived ? "Archived" : "Unarchived");
+    }
+
     public void setArchived(boolean archived) {
         isArchived = archived;
     }
