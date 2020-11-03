@@ -6,12 +6,8 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 
 public class Slot {
-
-    private static final String SEPARATOR = " | ";
     private LocalTime startTime;
     private LocalTime endTime;
     private String day;
@@ -27,8 +23,8 @@ public class Slot {
     }
 
     public boolean match(String lesson, String day, LocalTime startTime, LocalTime endTime) {
-        if (title.compareTo(lesson) == 0
-                && this.day.compareTo(day) == 0
+        if (title.compareToIgnoreCase(lesson) == 0
+                && this.day.compareToIgnoreCase(day) == 0
                 && this.startTime.equals(startTime)
                 && this.endTime.equals(endTime)) {
             return true;
@@ -41,7 +37,7 @@ public class Slot {
         try {
             bookmark = bookmarks.getBookmark(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, "" 
+            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                                          + bookmarks.getSize());
         }
         return bookmark;
@@ -49,10 +45,6 @@ public class Slot {
 
     public BookmarkList getBookmarkList() {
         return bookmarks;
-    }
-
-    public void removeBookmark(Bookmark bookmark) {
-        bookmarks.deleteBookmark(bookmark);
     }
 
     public void removeAllBookmarks() {
@@ -117,21 +109,6 @@ public class Slot {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getExport() {
-        return startTime.toString() + SEPARATOR + endTime.toString() + SEPARATOR + day + SEPARATOR + title;
-    }
-
-    public static Slot initSlot(String data) {
-        List<String> details = Arrays.asList(data.split("\\|"));
-
-        LocalTime startTime = LocalTime.parse(details.get(0).trim());
-        LocalTime endTime = LocalTime.parse(details.get(1).trim());
-        String day = details.get(2).trim();
-        String title = details.get(3).trim();
-
-        return new Slot(startTime, endTime, day, title);
     }
 
     @Override

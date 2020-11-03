@@ -1,5 +1,6 @@
 package seedu.zoomaster;
 
+import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.command.Command;
@@ -42,6 +43,8 @@ public class Zoomaster {
             ui.showErrorMessage(e);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JsonParseException e) {
+            ui.showParsingErrorAndExit();
         }
     }
 
