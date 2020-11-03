@@ -16,7 +16,9 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
 
 public class TextUi {
 
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
+    /**
+     * Format of a comment input line. Comment lines are silently consumed when reading user input.
+     */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     private static final String ENTER_COMMAND = "Enter command: ";
     private final Scanner in;
@@ -73,7 +75,7 @@ public class TextUi {
     /**
      * Prompts for the command and reads the text entered by the user.
      *
-     * @return command (full line) entered by the user
+     * @return command (full line) entered by the user.
      */
     public String getUserCommand() {
         printDivider();
