@@ -696,13 +696,10 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 7. Glossary
 
-(By: Varsha)
-* *glossary item* - Definition
-
-CCA - Co-curricular Activity
-CLI - Command Line interface
-UML - Unified Modelling Language
-CSV - Comma-seperated values
+CCA - Co-curricular Activity <br/>
+CLI - Command Line interface <br/>
+UML - Unified Modelling Language <br/>
+CSV - Comma-seperated values <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
