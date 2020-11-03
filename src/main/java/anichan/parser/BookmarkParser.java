@@ -249,7 +249,7 @@ public class BookmarkParser extends CommandParser {
      */
     private void checkForParamStacking(String firstParam) throws AniException {
         //Forgive the last param
-        if (!firstParam.endsWith(" ")) {
+        if (!firstParam.endsWith(WHITESPACE)) {
             throw new AniException(NO_SPACE_BETWEEN_PARAM_ERROR);
         }
     }

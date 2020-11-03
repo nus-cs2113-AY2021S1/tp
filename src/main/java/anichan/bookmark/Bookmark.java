@@ -75,8 +75,9 @@ public class Bookmark {
     }
 
     public String removeNote(int bookmarkIndex, int noteIndex) {
-        String removeNote = noteList.get(bookmarkIndex).removeNote(noteIndex);
-        return removeNote;
+        Note note = noteList.get(bookmarkIndex);
+        String removeNoteOutput = note.removeNote(noteIndex);
+        return removeNoteOutput;
     }
 
     /**
