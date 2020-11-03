@@ -13,6 +13,10 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXI
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_LOCATION_CONFLICT;
 
+//@@author zongxian-ctrl
+/**
+ * Represent the command for adding an appliance to the ApplianceList.
+ */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
@@ -60,7 +64,6 @@ public class AddCommand extends Command {
             return new CommandResult(MESSAGE_LOCATION_NOT_EXIST);
         } catch (InvalidApplianceNameException e) {
             return new CommandResult(MESSAGE_APPLIANCE_LOCATION_CONFLICT);
-
         }
     }
 }

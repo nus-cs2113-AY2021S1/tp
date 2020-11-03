@@ -2,6 +2,10 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 
+//@@author zongxian-ctrl
+/**
+ * Represent the command for creating a location in the LocationList.
+ */
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";

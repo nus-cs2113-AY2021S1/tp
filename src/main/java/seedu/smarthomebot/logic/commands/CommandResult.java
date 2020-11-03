@@ -1,5 +1,8 @@
 package seedu.smarthomebot.logic.commands;
 
+/**
+ * Represents the result of a command execution.
+ */
 public class CommandResult {
 
     public final String feedbackToUser;

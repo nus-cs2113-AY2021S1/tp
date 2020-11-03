@@ -6,7 +6,10 @@ import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_NOT_EXIST;
-
+//@@author zongxian-ctrl
+/**
+ * Represent the command for removing a location in the LocationList.
+ */
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";

@@ -9,6 +9,9 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 import static seedu.smarthomebot.commons.Messages.LINE;
 
+/**
+ * Represent the command to turn off appliance.
+ */
 public class OffCommand extends Command {
 
     public static final String COMMAND_WORD = "off";
