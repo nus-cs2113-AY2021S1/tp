@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class Main {
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
-    public static final String DEFAULT_NAME = "Default";
+    private static final String DEFAULT_NAME = "Default";
 
     private final Ui ui;
     private final Parser parser;
