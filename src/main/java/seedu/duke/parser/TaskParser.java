@@ -2,14 +2,27 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.project.ViewProjectCommand;
-import seedu.duke.command.task.*;
+import seedu.duke.command.task.AddTaskCommand;
+import seedu.duke.command.task.ChangeTaskPriorityCommand;
+import seedu.duke.command.task.DeleteTaskCommand;
+import seedu.duke.command.task.DoneTaskCommand;
+import seedu.duke.command.task.PriorityViewCommand;
+import seedu.duke.command.task.ViewTaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.ADD;
+import static seedu.duke.command.CommandSummary.DELETE;
+import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.DONE;
+import static seedu.duke.command.CommandSummary.PRIORITY;
+import static seedu.duke.command.CommandSummary.PRIORITYVIEW;
+import static seedu.duke.command.CommandSummary.TASK_ID;
+import static seedu.duke.command.CommandSummary.TITLE;
+import static seedu.duke.command.CommandSummary.VIEW;
 
 public class TaskParser implements ExceptionsParser {
 

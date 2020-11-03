@@ -34,8 +34,8 @@ public class DeleteTaskCommand extends Command {
             try {
                 int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
                 if (taskId <= 0) {
-                    Ui.showError("The ID: " + taskId + " is invalid. " +
-                            "Please enter a positive integer.");
+                    Ui.showError("The ID: " + taskId + " is invalid. "
+                            + "Please enter a positive integer.");
                 } else if (proj.getProjectBacklog().checkTaskExist(taskId)) {
                     Task task = proj.getProjectBacklog().getTask(taskId);
                     Ui.showToUserLn("The corresponding task "

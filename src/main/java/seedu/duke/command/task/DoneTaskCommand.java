@@ -36,8 +36,8 @@ public class DoneTaskCommand extends Command {
             try {
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
                 if (backlogId <= 0) {
-                    Ui.showError("The ID: " + backlogId + " is invalid. " +
-                            "Please enter a positive integer.");
+                    Ui.showError("The ID: " + backlogId + " is invalid. "
+                            + "Please enter a positive integer.");
                 } else if (backlogId <= proj.getProjectBacklog().getNextId()) {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     task.setAsDone();
