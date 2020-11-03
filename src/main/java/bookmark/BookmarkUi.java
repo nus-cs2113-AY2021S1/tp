@@ -43,6 +43,7 @@ public class BookmarkUi {
     }
 
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
+        showStarBookmarks(categories);
         System.out.println("Here is the list");
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
@@ -58,12 +59,12 @@ public class BookmarkUi {
         System.out.println("Please choose a category.");
     }
 
-    public void showEmptyLinkError() {
-        System.out.println("Empty link :(");
+    public void showEmptyError(String item) {
+        System.out.println("Empty " + item + " :(");
     }
 
-    public void showInvalidLinkError() {
-        System.out.println("Not a valid link, please enter a valid link.");
+    public void showInvalidError(String item) {
+        System.out.println("Not a valid " + item + ", please enter a valid link.");
     }
 
     public void showInvalidNumberError() {
@@ -91,6 +92,9 @@ public class BookmarkUi {
                     System.out.println(i + "." + link);
                 }
             }
+        }
+        if (i == 0){
+            System.out.println("\t<empty>");
         }
 
     }

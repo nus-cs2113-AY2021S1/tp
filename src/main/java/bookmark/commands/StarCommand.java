@@ -34,9 +34,9 @@ public class StarCommand extends BookmarkCommand {
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Star Number");
         } catch (InvalidBookmarkException e) {
-            ui.showInvalidLinkError();
+            ui.showInvalidError("Star Number");
         } catch (NumberFormatException e) {
             ui.showInvalidNumberError();
         } catch (IndexOutOfBoundsException e) {

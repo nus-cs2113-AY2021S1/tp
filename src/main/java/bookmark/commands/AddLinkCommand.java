@@ -37,9 +37,9 @@ public class AddLinkCommand extends BookmarkCommand {
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Link");
         } catch (InvalidBookmarkException e) {
-            ui.showInvalidLinkError();
+            ui.showInvalidError("Link");
         } catch (ExistingBookmarkException e) {
             ui.showExistingBookmarkError();
         }
