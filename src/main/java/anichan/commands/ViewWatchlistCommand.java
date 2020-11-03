@@ -22,7 +22,7 @@ public class ViewWatchlistCommand extends Command {
     protected static final String NO_WATCHLIST_ERROR = "There are no watchlists in your workspace!";
     protected static final String EMPTY_WATCHLIST_ERROR = "There are no anime in ";
     
-    private Integer watchlistIndex;
+    private Integer watchlistIndex = 0;
     private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());
 
     /**
@@ -52,7 +52,12 @@ public class ViewWatchlistCommand extends Command {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
         
-        Watchlist selectedWatchlist = watchlistList.get(watchlistIndex);
+        Watchlist selectedWatchlist;
+        if (watchlistIndex == null) {
+            selectedWatchlist = activeWorkspace.getActiveWatchlist();
+        } else {
+            selectedWatchlist = watchlistList.get(watchlistIndex);
+        }
         ArrayList<Integer> animeInWatchlist = selectedWatchlist.getAnimeList();
         String selectedWatchlistName = selectedWatchlist.getName();
         
