@@ -32,6 +32,8 @@ class WatchlistParserTest {
         assertThrows(AniException.class, () -> watchlistParser.parse("-invalid"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-n one -one two"));
         assertThrows(AniException.class, () -> watchlistParser.parse("hello -n testing"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-nnewWatchlistName"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("- n newWatchlistName"));
     }
 
     @Test
