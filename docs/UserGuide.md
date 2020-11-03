@@ -488,7 +488,7 @@ The expected outcome:
 ```
 Here are the anime in To Translate watchlist:
 	1. Naruto
-    2. Yakitate!! Japan
+        2. Yakitate!! Japan
 ```
 <br/>
 
