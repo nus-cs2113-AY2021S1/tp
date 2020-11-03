@@ -19,7 +19,7 @@ public class Goal {
         this.createdDate = createdDate;
         this.goalType = goalType;
         this.description = description;
-        this.goalStatus = "0.0";
+        this.goalStatus = "N";
     }
 
     public Goal(LocalDate createdDate, String goalType, String goalStatus, String description) {
@@ -43,16 +43,16 @@ public class Goal {
 
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
         String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + "%";
-        if (rawStatus.equals("0.0%") || rawStatus.equals("✘%")) {
-            return "✘";
-        } else if (rawStatus.equals("100.0%") || rawStatus.equals("✓%")) {
-            return "✓";
+        if (rawStatus.equals("0.0%") || rawStatus.equals("N%")) {
+            return "N";
+        } else if (rawStatus.equals("100.0%") || rawStatus.equals("Y%")) {
+            return "Y";
         }
         return rawStatus;
     }
 
     public void markAsCompleted() {
-        this.goalStatus = "✓";
+        this.goalStatus = "Y";
     }
 
     public void setGoal(Goal goal, String goalStatus) {
