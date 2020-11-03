@@ -32,6 +32,13 @@ public class SearchCommand extends Command {
     private String searchGenre;
     private int searchType;
 
+    public SearchCommand(String searchTerm, String searchGenre, int searchType) {
+        this.searchTerm = searchTerm;
+        this.searchGenre = searchGenre;
+        this.searchType = searchType;
+        result = "";
+    }
+
     public SearchCommand() {
         searchTerm = "";
         searchGenre = "";
@@ -61,7 +68,6 @@ public class SearchCommand extends Command {
             LOGGER.log(Level.SEVERE, SEARCH_TYPE_INVALID_LOG);
             throw new AniException(SEARCH_TYPE_INVALID);
         }
-
         if (result.isEmpty()) {
             return NO_RESULTS_FOUND;
         }
@@ -135,9 +141,5 @@ public class SearchCommand extends Command {
 
     public void setSearchType(int searchType) {
         this.searchType = searchType;
-    }
-
-    public int getSearchType() {
-        return searchType;
     }
 }
