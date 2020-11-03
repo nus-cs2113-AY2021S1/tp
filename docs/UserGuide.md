@@ -374,7 +374,7 @@ The `changerating` command changes the rating for an existing show which already
   > * The `<NEWRATING>` is out of 10. The rating will not be added if it is not a value between 0 and 10.
   
  Example of usage:
- `changerating Friends 10`
+ `changerating Friends 9`
  
  Expected outcome:
   
@@ -601,7 +601,7 @@ This section showcases the list of available features and usage examples for you
 |Delete review |`deletereview <SHOWNAME>`| `deletereview Friends`|
 |Show watchlist |`list`|  `list`|
 |Delete show |`delete <SHOWNAME>`| `delete Friends`|
-|Change rating |`changerating <SHOWNAME> <NEWSCORE>`| `changerating Friends 10`|
+|Change rating |`changerating <SHOWNAME> <NEWSCORE>`| `changerating Friends 9`|
 |Delete rating |`deleterating <SHOWNAME>`|  `deleterating Friends`|
 |Update episode |`episode <SHOWNAME> <EPISODE>`|  `episode Friends 10`|
 |Update season |`season <SHOWNAME> <SEASON>`|   `season Friends 3`|
