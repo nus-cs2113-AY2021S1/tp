@@ -22,8 +22,10 @@ public class BusCommand extends Command {
         if (possibleLocs.isEmpty()) {
             this.busStop = BusStops.formatName(busStop.trim());
             BusStops.findBusStop(busStop).incrementSearchCount();
+            super.isValid = true;
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
+            super.isValid = false;
         }
     }
 
