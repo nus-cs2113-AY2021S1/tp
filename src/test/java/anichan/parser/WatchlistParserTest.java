@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author OngDeZhi
@@ -16,14 +17,26 @@ class WatchlistParserTest {
     }
 
     @Test
-    void parse_validParameters_success() throws AniException {
-        watchlistParser.parse("-n correct");
-        watchlistParser.parse("-l");
-        watchlistParser.parse("-s 1");
-        watchlistParser.parse("-d 1");
+    void parse_validParameters_success() {
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-n correct");
+        });
 
-        // With whitespaces
-        watchlistParser.parse("        -l        ");
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-l");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-s 1");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-d 1");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("        -l        ");
+        });
     }
 
     @Test

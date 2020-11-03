@@ -4,6 +4,7 @@ import anichan.exception.AniException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author OngDeZhi
@@ -16,22 +17,53 @@ public class EstimateParserTest {
     }
 
     @Test
-    void parse_validParametersWithoutWordsPerHour_success() throws AniException {
-        estimateParser.parse("script.txt");
-        estimateParser.parse("script.txt  ");
-        estimateParser.parse("script-wph.txt");
-        estimateParser.parse("script.txt.txt");
-        estimateParser.parse("script a b c d.txt");
-        estimateParser.parse("script a b c d .txt");
+    void parse_validParametersWithoutWordsPerHour_success() {
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script.txt");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script.txt  ");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script-wph.txt");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script.txt.txt");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script a b c d.txt");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script a b c d .txt");
+        });
     }
 
     @Test
-    void parse_validParametersWithWordsPerHour_success() throws AniException {
-        estimateParser.parse("script.txt -wph 777");
-        estimateParser.parse("script-wph.txt -wph 777");
-        estimateParser.parse("script.txt.txt -wph 777");
-        estimateParser.parse("script a b c d.txt -wph 777");
-        estimateParser.parse("script a b c d .txt -wph 777");
+    void parse_validParametersWithWordsPerHour_success() {
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script.txt -wph 777");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script-wph.txt -wph 777");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script.txt.txt -wph 777");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script a b c d.txt -wph 777");
+        });
+
+        assertDoesNotThrow(() -> {
+            estimateParser.parse("script a b c d .txt -wph 777");
+        });
     }
 
     @Test
