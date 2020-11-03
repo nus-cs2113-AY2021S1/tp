@@ -5,7 +5,7 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-public class SaveCommand extends Command{
+public class SaveCommand extends Command {
 
     public SaveCommand() {
         isExit = false;
