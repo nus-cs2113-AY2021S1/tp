@@ -273,6 +273,7 @@ Format: `deleteexp <module code>`
 * The `module code` is valid.
 * The `module code` exists in the database.
 * The leading and trailing spaces of the `module code` is removed.
+* There is an input in the expected workload of the `module code`.
 
 Example of usage:
 
@@ -329,7 +330,10 @@ Deletes the actual time you have spent on a specified module for that week.
 Format: `deletetime <module code> <week number>` 
 
 * The `module code` needs to be valid.
+* The `module code` exists in the database.
 * The `week number` must be a whole number between 1 and 13 inclusive.
+* There is an input in the actual time of the `module code`.
+
 
 Example of usage:
 

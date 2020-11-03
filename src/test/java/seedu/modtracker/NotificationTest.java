@@ -109,7 +109,7 @@ class NotificationTest {
                 msgIsPresent = true;
             }
         }
-        String expected = "You are on track. Well Done!";
+        String expected = "You are on track in week 1. Well Done!";
         if (outContent.toString().contains(expected)) {
             expIsPresent = true;
         }

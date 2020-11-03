@@ -9,7 +9,7 @@ public class Notification {
 
     public static int numOfNotification = 0;
     public static int currentWeek;
-    public static final String ON_TRACK = "You are on track. Well Done!";
+    public static final String ON_TRACK = "You are on track in week %d. Well Done!";
     public static final String MAINTAIN = "Keep up the good work!";
     public static final String SUCCESS = "Good time management boosts productivity!";
     public static final String TIME_MANAGEMENT = "Good time management is the key to success!";
@@ -87,7 +87,8 @@ public class Notification {
     public void printNotification(ModuleList list) {
         numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
-            System.out.println(ON_TRACK);
+            System.out.println(String.format(ON_TRACK, currentWeek));
+            //System.out.println(ON_TRACK);
             randomise(lines);
             return;
         }
