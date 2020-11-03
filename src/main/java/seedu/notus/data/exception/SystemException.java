@@ -21,7 +21,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_TITLE("Missing title!"),
 
         EXCEPTION_MISSING_TIMING_PREFIX("Please include the timing prefix."),
-        EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
+        EXCEPTION_MISSING_START_TIMING("This event does not have a timing specified!"),
+        EXCEPTION_MISSING_END_TIMING("This event does not have a timing specified!"),
 
         EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
         EXCEPTION_MISSING_TAG("Missing tag name!"),

@@ -199,10 +199,22 @@ public class CommandMessage {
     public static final String EDIT_TITLE_MESSAGE = colorize("Title edited!", GREEN);
     public static final String EDIT_START_DATE_MESSAGE = colorize("Start Date edited!", GREEN);
     public static final String EDIT_REMINDER_MESSAGE = colorize("Reminders edited!", GREEN);
-    public static final String EDIT_RECURRENCE_MESSAGE = colorize("Recurrence type edited!", GREEN);
-    public static final String EDIT_RECURRENCE_DATE_MESSAGE = colorize("End recurrence date edited!", GREEN);
+    public static final String EDIT_RECURRENCE_TYPE_MESSAGE = colorize("Recurrence type edited!", GREEN);
+    public static final String EDIT_END_RECURRENCE_DATE_MESSAGE = colorize("End recurrence date edited!", GREEN);
+    public static final String EDIT_EVENT_START_TIME_SUCCESS_MESSAGE = colorize("Event start time "
+            + "successfully changed.", GREEN);
+    public static final String EDIT_EVENT_END_TIME_SUCCESS_MESSAGE = colorize("Event end time "
+            + "successfully changed.", GREEN);
+    public static final String EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE = colorize("Event end time shifted "
+            + "to maintain event time duration.", GREEN);
+    public static final String EDIT_EVENT_START_TIME_SUCCESS_WARNING = colorize("Event start time "
+            + "successfully changed. However, event duration is compressed and end time is set at 23:59.", GREEN);
+    public static final String EDIT_EVENT_END_TIME_AFTER_START_WARNING = colorize("Event end time cannot be before "
+            + "the start time.", RED);
 
     public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete", RED);
+    public static final String ADD_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Failed to add event: "
+            + "The event cannot end before it starts!", RED);
     public static final String EDIT_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Perhaps try editing something!", RED);
     public static final String EDIT_WARNING_REMINDER_MESSAGE = colorize("There was no changes made. "
             + "Perhaps you tried to add a reminder that already exists or delete reminders that do not exist.", RED);
@@ -210,6 +222,8 @@ public class CommandMessage {
             + "No changes are made to it's recurrence type.", RED);
     public static final String EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = colorize("You attempted to put a "
             + "recurrence date on a non-recurring event. No recurrence date was set.", RED);
+    public static final String EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING = colorize("Event end date cannot be "
+            + "different from the start date in this version.", RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events in the timetable!",
             RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = colorize("Failed to find any events "
