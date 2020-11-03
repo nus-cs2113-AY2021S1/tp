@@ -62,39 +62,40 @@ public class HelpCommand extends Command {
         LOGGER.log(Level.INFO, "Start of build help output");
 
         switch (commandOption) {
-            case COMMAND_EMPTY:
-                result = buildFullResult();
-                break;
-            case COMMAND_ESTIMATE:
-                result = buildEstimateResult();
-                break;
-            case COMMAND_BROWSE:
-                result = buildBrowseResult();
-                break;
-            case COMMAND_SEARCH:
-                result = buildSearchResult();
-                break;
-            case COMMAND_INFO:
-                result = buildInfoResult();
-                break;
-            case COMMAND_WORKSPACE:
-                result = buildWorkspaceResult();
-                break;
-            case COMMAND_WATCHLIST:
-                result = buildWatchlistResult();
-                break;
-            case COMMAND_ADD:
-                result = buildAddResult();
-                break;
-            case COMMAND_REMOVE:
-                result = buildRemoveResult();
-                break;
-            case COMMAND_VIEW:
-                result = buildViewResult();
-                break;
-            case COMMAND_BOOKMARK:
-                result = buildBookmarkResult();
-                break;
+        case COMMAND_EMPTY:
+            result = buildFullResult();
+            break;
+        case COMMAND_ESTIMATE:
+            result = buildEstimateResult();
+            break;
+        case COMMAND_BROWSE:
+            result = buildBrowseResult();
+            break;
+        case COMMAND_SEARCH:
+            result = buildSearchResult();
+            break;
+        case COMMAND_INFO:
+            result = buildInfoResult();
+            break;
+        case COMMAND_WORKSPACE:
+            result = buildWorkspaceResult();
+            break;
+        case COMMAND_WATCHLIST:
+            result = buildWatchlistResult();
+            break;
+        case COMMAND_ADD:
+            result = buildAddResult();
+            break;
+        case COMMAND_REMOVE:
+            result = buildRemoveResult();
+            break;
+        case COMMAND_VIEW:
+            result = buildViewResult();
+            break;
+        case COMMAND_BOOKMARK:
+            result = buildBookmarkResult();
+            break;
+        default:
         }
         LOGGER.log(Level.INFO, "End of build help output");
         
