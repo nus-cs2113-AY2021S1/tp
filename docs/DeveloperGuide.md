@@ -533,7 +533,7 @@ This sequence diagram will show the flow of setting of expense goal:
 
 ### Feature 5: Save Manager Utility
 #### What it does
-Save Manager utitty is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
+Save Manager utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.
 
 #### Overview
