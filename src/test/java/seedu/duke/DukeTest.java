@@ -146,6 +146,45 @@ class DukeTest {
 
     }
 
+    /*
+    @Test
+    public void multiParser_extractNoteCommand_commandRunOneAtATime() {
+
+        System.setOut(new PrintStream(outputStreamCaptor));
+        String inputExtract = "extract meeting; |";
+        String inputEventDetail = "Dont forget your meeting on 27 Jan 2021 at 9am\r\nextractend\r\n";
+        String inputNote = "note personal; 1;\r\n";
+        String inputNoteDetail = "Meeting is fun!\r\n;\r\n";
+        String inputString = inputExtract + inputNote + inputEventDetail + inputNoteDetail;
+
+        try {
+            setupComponents(inputString);
+            String userInput = ui.receiveCommand();
+            ArrayList<String> allCommandInputs = currentParse.multiParse(userInput);
+            for (String commInputs : allCommandInputs) {
+                ui.printDividerLine();
+                Command c = currentParse.parse(commInputs);
+                c.execute(data, ui, storage);
+            }
+
+
+        } catch (DukeException e) {
+            fail("No exception should occur");
+        } finally {
+            System.setIn(stdin);
+            assertEquals("_________________________________" + System.lineSeparator()
+                            + "Copy and paste or enter the body of the text you want to extract from!" + System.lineSeparator()
+                            + "At the end of your text, press enter to go to the next line, enter \'extractend\' with no quotation marks and press enter once more." + System.lineSeparator()
+                            + "_________________________________" + System.lineSeparator()
+                            + "One date detected and chosen: 2021-01-27" + System.lineSeparator()
+                            + "One timing detected and chosen: 09:00" + System.lineSeparator()
+                            + "You have successfully added this event to your list!" + System.lineSeparator()
+                            + "[P][✕] meeting on 2021-01-27, 09:00" + System.lineSeparator(),
+                    outputStreamCaptor.toString());
+        }
+
+    } */
+
     @Test
     public void sampleTest() {
         assertTrue(true);
