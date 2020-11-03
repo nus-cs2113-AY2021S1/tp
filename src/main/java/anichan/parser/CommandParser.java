@@ -11,8 +11,8 @@ public abstract class CommandParser {
     //Shared Constants by Parsers
     protected static final String NAME_PARAM = "n";
     protected static final String GENRE_PARAM = "g";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String SPLIT_WHITESPACE = " ";
+    protected static final String DASH = "-";
+    protected static final String WHITESPACE = " ";
     protected static final String NOT_RECOGNISED = " is not recognised!";
     protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field.";
