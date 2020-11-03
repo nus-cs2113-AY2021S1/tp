@@ -222,7 +222,7 @@ public class Main {
                 storageManager.saveUser(user);
                 break;
             } catch (AniException exception) {
-                ui.printErrorMessage("Invalid input detected!");
+                ui.printErrorMessage(exception.getMessage());
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
             }
         }
