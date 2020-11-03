@@ -259,7 +259,6 @@ Genre: [Action, Adventure, Drama, Sci-Fi]
 
 <br/>
 
-<!-- @@author ChanJianHao -->
 ### 3.6 Workspace management
 The workspace management feature provides translators the flexibility of organising their application data like watchlist and bookmark easily.
 
@@ -340,7 +339,6 @@ Successfully deleted workspace: Default
 ```
 
 <br/>
-<!-- @@author -->
 
 ### 3.7 Watchlist management
 The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
