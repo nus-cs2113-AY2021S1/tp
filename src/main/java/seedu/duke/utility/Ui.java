@@ -191,7 +191,7 @@ public class Ui {
             System.out.println("Watch time remaining: " + WatchTime.getTimeLeftToday() + " minutes.");
         } else if (!isWatchLimitSet) {
             System.out.println("Daily time limit for watching shows has not been set.");
-            System.out.println("To update the time allocated to watching shows, use the 'updateTimeLimit' command.");
+            System.out.println("To update the time allocated to watching shows, use the 'updatetimeLimit' command.");
             System.out.println("Time spent on shows today: " + WatchTime.getDurationWatchedToday() + " minutes.");
         } else {
             System.out.println("Unable to locate user watch time details. Please try running the program again.");
