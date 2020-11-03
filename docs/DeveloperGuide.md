@@ -249,6 +249,7 @@ The sequence diagram of changing information of a finance log entry is shown bel
 
 
 [Return to top](#CCA-manager-developer-guide)
+
 ### 3.4. Event
 The diagrams below shows the architecture for Event feature. 
 
@@ -260,7 +261,7 @@ Diagram 2: Event Architecture
 
 There are a total of 6 commands under Event feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
- They are packaged under EventCommands as shown in diagram 1.
+ They are packaged under EventCommands as shown above in Diagram 1.
  
  The implementation for each Event command is described in detail below.
                                                              
@@ -438,17 +439,17 @@ Given below is an example usage scenario and how the program list the participan
 Step 1. After a `event addEvent` commands, the user has created a `EventList` with a `Event`. 
         The`Event` has the name arduino course on 30 December 2020 at 8pm.
         
-![](EventDiagramPic/7Step1.png)
+![](EventDiagram/EventSteps/7Step1.png)
 
 Step 2. After some `hr addMember` commands, the user created a `MemberList` with some `Member`. Assuming there are 2 members in the list.
         The first `Member` has the name "John Sterling" with phone number "12345678", email "123@gmail.com", role "member".
         The second `Member` has the name "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
         
-![](EventDiagramPic/7Step2.png)
+![](EventDiagram/EventSteps/7Step2.png)
 
 Step 3. After some `event addAttendance` commands, the user created a `MemberList` with some `Member`. Assuming the 2 participants in the event participants list are the 2 members in the `MemberList`.
         
-![](EventDiagramPic/7Step3.png)
+![](EventDiagram/EventSteps/7Step3.png)
 
 Step 4.The user executes `event listAttendance` command to list the event participants list. The `event listAttendance` command calls 
 `CommandViewEventAttendance#execute()`, then every `Member` in event participants list of the `Event` will be printed out. Nothing will be changed in the event participants list.  
@@ -675,6 +676,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 
 [Return to top](#CCA-manager-developer-guide)
+
 ## 6. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -686,6 +688,11 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 ## 7. Glossary
 
 * *glossary item* - Definition
+
+CCA - Co-curricular Activity
+CLI - Command Line interface
+UML - Unified Modelling Language
+CSV - Comma-seperated values
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
