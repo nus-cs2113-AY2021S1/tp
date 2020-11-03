@@ -22,7 +22,7 @@ public class GoCommandParser {
 
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (checkSpecialCharacter(commandArgs)) {
+        if (!checkSpecialCharacter(commandArgs)) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, GoCommand.COMMAND_WORD));
         }
         switch (accessLevel) {
