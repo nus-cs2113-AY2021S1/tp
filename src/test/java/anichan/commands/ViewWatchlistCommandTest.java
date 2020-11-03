@@ -25,9 +25,9 @@ class ViewWatchlistCommandTest {
     Bookmark bookmark;
     Workspace workspace;
 
-    protected static final String ZERO_WATCHLIST_INDEX = "0";
-    protected static final String LARGE_WATCHLIST_INDEX = "3";
-    protected static final String VALID_WATCHLIST_INDEX = "1";
+    protected static final String ZERO_WATCHLIST_INDEX = "-v 0";
+    protected static final String LARGE_WATCHLIST_INDEX = "-v 3";
+    protected static final String VALID_WATCHLIST_INDEX = "-v 1";
     protected static final String VALID_EMPTY_INPUT1 = "";
     protected static final String VALID_EMPTY_INPUT2 = "   ";
 

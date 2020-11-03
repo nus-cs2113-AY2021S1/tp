@@ -54,7 +54,7 @@ public class RemoveCommandParser extends CommandParser {
      */
     private void parameterParser(String fieldGiven) throws AniException {
         String fieldValue = fieldGiven.trim();
-        String[] fieldParts = fieldValue.split(SPLIT_WHITESPACE);
+        String[] fieldParts = fieldValue.split(WHITESPACE);
 
         if (fieldParts.length > 1) {
             throw new AniException(TOO_MUCH_ARGUMENTS);
