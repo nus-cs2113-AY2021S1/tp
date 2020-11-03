@@ -8,6 +8,9 @@ import commands.Command;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static common.Messages.ADMIN;
 import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
@@ -15,6 +18,7 @@ import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MESSAGE_NO_QUESTION_OR_ANSWER;
 import static common.Messages.MODULE;
+import static common.Messages.MESSAGE_INVALID_SPECIAL_CHARACTER;
 
 public class AddCommandParser {
 
@@ -50,12 +54,33 @@ public class AddCommandParser {
     }
 
     //@@author gua-guargia
-    private static Command prepareAddModule(String commandArgs) {
-        return new AddModuleCommand(commandArgs);
+    private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
+        try {
+            if (!checkSpecialCharacter(commandArgs)) {
+                throw new InvalidInputException();
+            }
+            return new AddModuleCommand(commandArgs);
+        } catch (InvalidInputException e) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, MODULE));
+        }
     }
 
-    private static Command prepareAddChapter(String commandArgs) {
-        return new AddChapterCommand(commandArgs);
+    private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
+        try {
+            if (!checkSpecialCharacter(commandArgs)) {
+                throw new InvalidInputException();
+            }
+            return new AddChapterCommand(commandArgs);
+        } catch (InvalidInputException e) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_SPECIAL_CHARACTER, CHAPTER));
+        }
+    }
+
+    private static boolean checkSpecialCharacter(String commandArgs) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9\\s]+$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(commandArgs);
+        boolean includeSpecialCharacter = matcher.matches();
+        return includeSpecialCharacter;
     }
 
     //@@author Jane-Ng

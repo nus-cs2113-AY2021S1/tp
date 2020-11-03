@@ -10,6 +10,7 @@ import ui.Ui;
 import java.io.IOException;
 
 import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_ITEM_EXISTED;
 
 public class AddChapterCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
@@ -24,7 +25,7 @@ public class AddChapterCommand extends AddCommand {
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
-        Chapter chapter = new Chapter(this.chapter, rateChapter(), storage, access);
+        Chapter chapter = new Chapter(this.chapter);
         String result = addChapter(access, storage, chapter);
         ui.showToUser(result);
     }
@@ -32,7 +33,13 @@ public class AddChapterCommand extends AddCommand {
     private String addChapter(Access access, Storage storage, Chapter chapter) throws IOException {
         Module newModule = access.getModule();
         ChapterList chapters = newModule.getChapters();
-        chapters.addChapter(chapter);
+        boolean isChapterExist = chapters.checkChapterExistence(chapter);
+        if (isChapterExist) {
+            String result = String.format(MESSAGE_ITEM_EXISTED, CHAPTER, chapter.getChapterName(), CHAPTER);
+            return result;
+        }
+        Chapter newChapter = new Chapter(this.chapter, rateChapter(), storage, access);
+        chapters.addChapter(newChapter);
         int chapterCount = chapters.getChapterCount();
         access.setModule(newModule);
         storage.createChapter(chapter.getChapterName(), access.getModuleLevel());

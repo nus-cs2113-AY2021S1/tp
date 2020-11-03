@@ -7,7 +7,9 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
+import static common.Messages.MESSAGE_ITEM_EXISTED;
 
 public class AddModuleCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
@@ -31,6 +33,11 @@ public class AddModuleCommand extends AddCommand {
     private String addModule(Access access, Storage storage, Module module) {
         Admin newAdmin = access.getAdmin();
         ModuleList modules = newAdmin.getModules();
+        boolean isModuleExist = modules.checkModuleExistence(module);
+        if (isModuleExist) {
+            String result = String.format(MESSAGE_ITEM_EXISTED, MODULE, module.getModuleName(), MODULE);
+            return result;
+        }
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);

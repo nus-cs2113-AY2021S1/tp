@@ -37,8 +37,9 @@ public class GoChapterCommand extends GoCommand {
         ChapterList chapters = access.getModule().getChapters();
         ArrayList<Chapter> allChapters = chapters.getAllChapters();
         for (Chapter chapter : allChapters) {
-            if (currentChapter.equalsIgnoreCase(chapter.getChapterName())) {
-                access.setChapterLevel(currentChapter);
+            String chapterName = chapter.getChapterName();
+            if (currentChapter.equalsIgnoreCase(chapterName)) {
+                access.setChapterLevel(chapterName);
                 isLevelExist = true;
                 try {
                     ArrayList<Card> allCards = storage.loadCard(access.getModuleLevel(), chapter.getChapterName());
