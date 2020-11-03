@@ -15,7 +15,7 @@ No. |Content|
 3.4|    &emsp;[Recurring Tracker](#recurringTracker)
 3.5|    &emsp;[Finance Tools](#financeTools)
 3.6|    &emsp;[Goal Tracker](#goalTracker)
-3.7|    &emsp;[Save Manager]()
+3.7|    &emsp;[Save Manager](#saveManager)
 4.|[Features Summary](#featuresSummary)
 
 # 1. <a name = setUp> </a> Set-up
@@ -98,7 +98,7 @@ Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, th
 Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
 Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
 Goal Tracker|```goal```| fillme
-Save Manager|```saver```| fillme
+Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
 ## 2.2 Auxillary features
@@ -1255,6 +1255,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
     
+## 3.7  <a name = featuresOverview> </a>Save Manager
 
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
