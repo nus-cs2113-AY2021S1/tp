@@ -108,7 +108,7 @@ public class ViewWatchlistCommand extends Command {
     }
 
     /**
-     * Checks if watchlist index given is negative or larger than size of watchlist list
+     * Checks if watchlist index given is negative or larger than size of watchlist list.
      * 
      * @param watchlistSize size of the list of watchlists
      * @param watchlistIndex the specified watchlist index to be viewed

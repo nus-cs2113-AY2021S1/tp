@@ -22,7 +22,7 @@ public class ViewWatchlistParser extends CommandParser {
      * Parses the specified command description.
      *
      * @param description the specified command description
-     * @return initialised {@code RemoveCommand} object
+     * @return initialised {@code ViewCommand} object
      * @throws AniException when an error occurred while parsing the command description
      */
     public ViewWatchlistCommand parse(String description) throws AniException {

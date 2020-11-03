@@ -38,7 +38,7 @@ public class AddToWatchlistParser extends CommandParser {
     }
 
     /**
-     * Parses the parameter provided in the command description and returns the value
+     * Parses the parameter provided in the command description and returns the field value.
      * 
      * @param fieldGiven a String Array containing the value given
      * @return the anime index to be added 
