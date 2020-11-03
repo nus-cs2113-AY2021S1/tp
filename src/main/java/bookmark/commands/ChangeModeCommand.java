@@ -37,6 +37,8 @@ public class ChangeModeCommand extends BookmarkCommand {
             ui.showInvalidNumberError();
         } catch (InvalidBookmarkException e) {
             ui.showInvalidLinkError();
+        } catch (IndexOutOfBoundsException e) {
+            ui.showInvalidNumberError();
         }
     }
 

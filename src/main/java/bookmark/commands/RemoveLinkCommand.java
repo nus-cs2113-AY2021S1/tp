@@ -44,6 +44,8 @@ public class RemoveLinkCommand extends BookmarkCommand {
             ui.showInvalidLinkError();
         } catch (NumberFormatException e) {
             ui.showInvalidNumberError();
+        } catch (IndexOutOfBoundsException e) {
+            ui.showInvalidNumberError();
         }
     }
 

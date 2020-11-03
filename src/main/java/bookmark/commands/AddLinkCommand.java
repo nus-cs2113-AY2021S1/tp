@@ -2,7 +2,9 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkStorage;
+import bookmark.BookmarkList;
 import bookmark.BookmarkUi;
+import exceptions.ExistingBookmarkException;
 import exceptions.InvalidBookmarkException;
 import exceptions.EmptyBookmarkException;
 
@@ -29,6 +31,7 @@ public class AddLinkCommand extends BookmarkCommand {
             } else {
                 assert categoryNumber > 0 : "Category number is not chosen";
                 evaluateLink();
+                checkLink(categories);
                 categories.get(categoryNumber - 1).addLink(link,title);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
                 storage.saveLinksToFile(categories);
@@ -37,6 +40,8 @@ public class AddLinkCommand extends BookmarkCommand {
             ui.showEmptyLinkError();
         } catch (InvalidBookmarkException e) {
             ui.showInvalidLinkError();
+        } catch (ExistingBookmarkException e) {
+            ui.showExistingBookmarkError();
         }
     }
 
@@ -62,6 +67,13 @@ public class AddLinkCommand extends BookmarkCommand {
         assert link.contains(".") && !link.contains(" ") : "Invalid link";
     }
 
+    private void checkLink(ArrayList<BookmarkCategory> categories) throws ExistingBookmarkException{
+        for(BookmarkList existingLink : categories.get(categoryNumber - 1).getLinks()) {
+            if(link.equals(existingLink.getLink())){
+                throw new ExistingBookmarkException();
+            }
+        }
+    }
     public int getCategoryNumber() {
         return categoryNumber;
     }

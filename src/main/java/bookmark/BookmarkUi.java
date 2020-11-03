@@ -94,4 +94,8 @@ public class BookmarkUi {
         }
 
     }
+
+    public void showExistingBookmarkError(){
+        System.out.println("Sorry your link already exist in your list!");
+    }
 }

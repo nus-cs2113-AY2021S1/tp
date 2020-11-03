@@ -140,7 +140,7 @@ If you encounter any errors, take note of the following warnings. If problems st
 
 **Warning:** 
 * Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to 1.1) 
-* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (does not contain “https://” and a “.”). 
+* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " " or does not contain “.”). 
 
 ###1.7 Deleting a link: 
 `rm LINK_NUMBER `
