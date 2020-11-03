@@ -91,7 +91,7 @@ public class BrowseParser extends CommandParser {
             if (paramLoops == 1) {
                 continue;
             }
-            String[] paramParts = param.split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
+            String[] paramParts = param.split(WHITESPACE, FIELD_SPLIT_LIMIT);
             switch (paramParts[0].trim()) {
             case SORT_PARAM:
                 parseSortParam(paramParts);
