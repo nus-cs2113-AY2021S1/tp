@@ -18,8 +18,8 @@ public class BackCommand extends BookmarkCommand {
             ui.printGoodbyeMessage();
         } else {
             ui.showBookmarkCategoryList(categories);
+            assert categoryNumber > 0 : "Category number more than 0";
             categoryNumber = 0;
-            assert categoryNumber == 0 : "Category number not updated";
         }
     }
 
