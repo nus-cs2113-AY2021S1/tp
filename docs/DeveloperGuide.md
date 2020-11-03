@@ -541,6 +541,9 @@ Save Manager is the backup storage and Ui program for the various save handler s
 will only save one copy of goal tracker, manual tracker and auto tracker information upon exiting the program and load them upon
 start up.
 
+##### Save Manager Class Diagram
+![SaveManagerClassDiagram](uml_images/fPD1RzGm48Nl_XNMdbf5hierMgqA1qGF5KX1dBZCsaDYPM97zXW9IlyxcHGQbNIhYBqzpupVViyxkSaCYSj0glCEjVN94ghS-p12Wa5RWfpVCYT_B8otDeR6_qHzhTJSqRiCt_4E0hIOTlfULTyAqIVWhjRDT2cqgd8-FIkOCSLXvEKyO2YrVXSZ8GHL3U33nQMgmBbcCXT94Pwq9OGamY4Xu.png)
+
 ##### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
