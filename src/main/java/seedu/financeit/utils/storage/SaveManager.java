@@ -2,6 +2,9 @@ package seedu.financeit.utils.storage;
 
 import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.datatrackers.entrytracker.EntryTracker;
+import seedu.financeit.datatrackers.manualtracker.ManualTracker;
+import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -99,6 +102,12 @@ public class SaveManager {
         AutoTrackerSaver.clear();
         ManualTrackerSaver.clear();
         prompt = "Program has been reset";
+    }
+
+    public static void resetAllLists() {
+        ManualTracker.getLedgerList().removeAllItems();
+        EntryTracker.getEntryList().removeAllItems();
+        RecurringTracker.getRecurringEntryList().removeAllItems();
     }
 
     private static void listSaves(CommandPacket packet) {

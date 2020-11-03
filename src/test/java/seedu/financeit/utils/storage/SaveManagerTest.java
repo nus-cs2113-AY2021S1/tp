@@ -45,6 +45,7 @@ public class SaveManagerTest {
 
             SaveManager.deleteSave(packet);
             SaveManager.clear();
+            SaveManager.resetAllLists();
         } catch (Exception e) {
             e.printStackTrace();
         }
