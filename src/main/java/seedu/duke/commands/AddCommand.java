@@ -1,9 +1,10 @@
 package seedu.duke.commands;
 
-import java.util.Scanner;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
+
+import java.util.Scanner;
 
 public class AddCommand extends Command {
     static String[] input;
