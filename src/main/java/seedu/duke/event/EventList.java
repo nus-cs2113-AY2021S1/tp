@@ -35,6 +35,7 @@ public class EventList {
         return events.get(index);
     }
 
+
     /**
      * Adds member to the arraylist.
      *
@@ -58,6 +59,7 @@ public class EventList {
 
         return userOutput;
     }
+
 
     /**
      * To delete an event based on the given index.
@@ -85,6 +87,7 @@ public class EventList {
         return userOutput;
     }
 
+
     /**
      * Deletes all the events in the list.
      * @return output String informing if list is emptied
@@ -108,6 +111,7 @@ public class EventList {
         }
         return output;
     }
+
 
     /**
      * Marks a event as done.
@@ -182,6 +186,7 @@ public class EventList {
         return userOutput;
     }
 
+
     /**
      * Displays the list of tasks containing the keyword.
      *
@@ -204,6 +209,7 @@ public class EventList {
         return output;
     }
 
+
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
      *
@@ -220,6 +226,7 @@ public class EventList {
         }
         return hasMatchedTask;
     }
+
 
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
@@ -240,6 +247,7 @@ public class EventList {
         return hasMatchedTask;
     }
 
+
     /**
      * Displays the list of tasks containing the keyword.
      *
@@ -257,6 +265,7 @@ public class EventList {
         }
         return output;
     }
+
 
     /**
      * Displays the list of tasks containing the keyword.
@@ -276,6 +285,7 @@ public class EventList {
         return output;
     }
 
+
     /**
      * Used to find Event with the given event name.
      *
@@ -290,6 +300,7 @@ public class EventList {
         }
         return null;
     }
+
 
     /**
      * Check if Event with the given member name exists.
@@ -306,6 +317,7 @@ public class EventList {
         }
         return hasExist;
     }
+
 
     /**
      * Adds Member with the given member name into participant list of event with the given event name.
@@ -339,6 +351,7 @@ public class EventList {
         return output;
     }
 
+
     /**
      * Displays participant list of event with the given event name.
      *
@@ -359,6 +372,7 @@ public class EventList {
         }
         return output;
     }
+
 
     /**
      * Deletes Member with the given member name from participant list of event with the given event name.

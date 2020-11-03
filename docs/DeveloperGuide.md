@@ -251,6 +251,8 @@ The sequence diagram of changing information of a finance log entry is shown bel
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.4. Event
+
+(By: Varsha)<br/>
 The diagrams below shows the architecture for Event feature. 
 
 Diagram 1: Event Commands
@@ -267,6 +269,7 @@ There are a total of 6 commands under Event feature.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 
+(By: Varsha)<br/>
 **3.4.1.1. Current Implementation** <br/>
 
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
@@ -315,6 +318,7 @@ The sequence diagram for deleting a particular event or all events is as shown b
 
 **3.4.2. Listing Events** `CommandEventList`
 
+(By: Varsha)<br/>
 **3.4.2.1 Current implementation**
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
@@ -350,6 +354,7 @@ The sequence diagram for listing events is as shown below:
 
 **3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
+(By: Varsha)<br/>
 **Current Implementation**
 The `CommandSearchEvent` class in `seedu.duke.event` handles searching of an event via its name or its date.
 
@@ -364,6 +369,7 @@ It implements the following operation:
  
 **3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
+(By: Varsha)<br/>
 **Current Implementation**
 The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
  
@@ -376,6 +382,7 @@ The sequence diagram for displaying countdown is as shown below:
 
 **3.4.5. Mark an event as completed** `CommandEventStatus`
 
+(By: Varsha)<br/>
 **Current Implementation**
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
  
@@ -661,6 +668,8 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 5. User Stories
 
+(By: Varsha)
+
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|user|add/delete members to the list |keep track of the members in the CCA|
@@ -687,12 +696,10 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 7. Glossary
 
-* *glossary item* - Definition
-
-CCA - Co-curricular Activity
-CLI - Command Line interface
-UML - Unified Modelling Language
-CSV - Comma-seperated values
+CCA - Co-curricular Activity <br/>
+CLI - Command Line interface <br/>
+UML - Unified Modelling Language <br/>
+CSV - Comma-seperated values <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
