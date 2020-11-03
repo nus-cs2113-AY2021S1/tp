@@ -22,7 +22,7 @@ public class ListStarCommand extends BookmarkCommand {
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
-        if (input.substring(LIST_STAR_LENGTH).length() > 0){
+        if (input.substring(LIST_STAR_LENGTH).length() > 0) {
             System.out.println("I think you meant list star...");
             System.out.println("Executing list star command...");
         }

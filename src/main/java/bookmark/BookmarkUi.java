@@ -92,13 +92,13 @@ public class BookmarkUi {
                 }
             }
         }
-        if (i == 0){
+        if (i == 0) {
             System.out.println("\t<empty>");
         }
 
     }
 
-    public void showExistingBookmarkError(){
+    public void showExistingBookmarkError() {
         System.out.println("Sorry your link already exist in your list!");
     }
 }

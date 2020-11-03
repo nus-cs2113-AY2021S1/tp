@@ -67,13 +67,14 @@ public class AddLinkCommand extends BookmarkCommand {
         assert link.contains(".") && !link.contains(" ") : "Invalid link";
     }
 
-    private void checkLink(ArrayList<BookmarkCategory> categories) throws ExistingBookmarkException{
-        for(BookmarkList existingLink : categories.get(categoryNumber - 1).getLinks()) {
-            if(link.equals(existingLink.getLink())){
+    private void checkLink(ArrayList<BookmarkCategory> categories) throws ExistingBookmarkException {
+        for (BookmarkList existingLink : categories.get(categoryNumber - 1).getLinks()) {
+            if (link.equals(existingLink.getLink())) {
                 throw new ExistingBookmarkException();
             }
         }
     }
+
     public int getCategoryNumber() {
         return categoryNumber;
     }
