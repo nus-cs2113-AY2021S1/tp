@@ -67,6 +67,10 @@ public class Financeit {
                         ? "Logger is off."
                         : "Logger is on.";
                 LoggerCentre.getInstance().setLevel(mode);
+                if (LoggerCentre.logCreated == false) {
+                    LoggerCentre.createLog();
+                    LoggerCentre.logCreated = true;
+                }
                 break;
             case "exit":
                 save();

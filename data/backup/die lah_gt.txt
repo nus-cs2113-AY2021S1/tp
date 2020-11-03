@@ -1,3 +1,0 @@
-Expense;4500;JANUARY
-Income;5500;JANUARY
-Expense;6500;FEBRUARY
