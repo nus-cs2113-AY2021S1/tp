@@ -67,7 +67,7 @@ This section guides you through the steps to setup the project on your computer.
 
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-W13-1/tp) and clone the fork to your computer. Alternatively,
 download the source code from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-2. Open a console in the folder where `build.gradle` resides, and run the command `gradlew run` if you are using Windows 
+2. Open a console in the folder where `build.gradle` resides, and run the command `gradlew.bat run` if you are using Windows 
 or `./gradlew run` if you are using Mac/Linux.
 3. If the setup is successful, you should see the greeting screen:
 ```
@@ -506,57 +506,51 @@ For consistency, you should only change the behavior of logging via this file.
 
 ## 6. Testing <a name="testing"></a>
 
-This section describes how to carry out testing of the application. It focuses on testing the jar file and the source code.
+This section describes different types of tests used in the application and the ways to carry them out. 
 
-### Testing the Jar File 
-1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
-2. Open the application in command prompt.
-3. Try out various commands in the userguide to check if it works.
-4. Try out invalid commands and check if the application responds correspondingly.
-5. Exit the application and check the data files to check if all the data has been saved.
-6. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
+### 6.1 JUnit Tests
+We use JUnit to write all unit tests and integration tests for the project. If you are new to JUnit, 
+refer to the [JUnit Tutorial](https://se-education.org/guides/tutorials/junit.html).
 
-#### Build Automation Using Gradle
-* This project uses Gradle for build automation and dependency management.
- It includes a basic build script as well (i.e. the build.gradle file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
+All the JUnit Tests are located under `src/test` folder. To run all the tests available in the project,
+open a console in the project root directory and run `gradlew.bat test` if you are using Windows or `./gradlew test` if 
+you are using Mac/Linux.
 
-#### I/O redirection tests
+Alternatively, you can run the `test` task under `Tasks > verification > test` in the Gradle tool window if 
+you are using IntelliJ.
 
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` folder. Open it in the terminal
-by right-clicking on the folder and click `open in terminal`.
-*  Run the `runtest(.bat/.sh)` script.
-* If the tests are successful, you would see this:
-<pre><code>
-BUILD SUCCESSFUL in 2s
-4 actionable tasks: 4 executed
+### 6.2 I/O Redirection Tests
+We use I/O redirection to test the actual output of the application against the expected output using a set of different
+inputs.
+
+To run the test, open a console in the `text-ui-test` folder under the project root and run `runtest.bat` if you
+are using Windows or `./runtest.sh` if you are using Mac/Linux. If the test is successful,
+you will see the following message in the last line of the output.
+```
 Test passed!
-</code></pre>
-* If the test fails, you would see this :
-<pre><code>
-BUILD SUCCESSFUL in 2s
-4 actionable tasks: 4 executed
-Test failed!</code></pre>
-* Navigate to the `text-ui-test` folder and compare the `ACTUAL.txt` file and the `EXPECTED.txt` file to 
-observe the error.
+```
+If the test fails, you will instead see the following message in the last line of the output.
+```
+Test failed!
+```
+To see what goes wrong, you can compare the content of `ACTUAL.txt` and the content of `EXPECTED.txt` inside the same folder,
+where `ACTUAL.txt` contains the actual output of the application and `EXPECTED.txt` shows the expected output of the 
+application given the inputs.
 
-#### JUnit tests
-The project has multiple JUnit tests for different functions.
-* A skeleton JUnit test (`src/test/java/seedu/revised/RevisedTest.java`) is provided with this project template. 
-* Under the `src/test/java/seedu/revised` folder, you would be able to access the different tests for
-the functionalities. Right click on the folder and click the `Run Tests in ...` option to run the tests
-in the folder.  
-* The results would be displayed in the terminal.If a test fails, click on the hyperlink provided
-to navigate to the failed test.
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+> ℹ️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
+> test more aspects of the application or if the input/expected output changes due to code modification.
 
-#### Checkstyle
+### 6.3 Checkstyle
+We use [Checkstyle](https://checkstyle.sourceforge.io/) 
+to check if all the developers comply to the coding standards. The rules and configurations can be found
+in `checkstyle.xml` under `config/checkstyle` folder in the project root. Refer to the official documentation
+to learn more about how to configure the rules.
 
-* A sample CheckStyle rule configuration is provided in this project.
-* Right click on the Gradle bar on the right of the IDE and click `tp/Tasks/other/checkstyleMain` to test the checkstyle in the
-code.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+To run the checks, open a console in the project root directory and run `gradlew.bat checkstyleMain` if you are using Windows 
+or `./gradlew checkstyleMain` if you are using Mac/Linux. 
 
+Alternatively, you can run the `checkstyleMain` task under `Tasks > other > checkstyleMain` in the Gradle tool window if 
+you are using IntelliJ.
 
 ## 7. Product scope <a name="product-scope"></a>
 
