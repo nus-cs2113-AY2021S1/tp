@@ -25,5 +25,6 @@ return
 TipManager -[hidden]-> Fitr
 destroy TipManager
 destroy TipList
+deactivate Fitr
 hide footbox
 @enduml

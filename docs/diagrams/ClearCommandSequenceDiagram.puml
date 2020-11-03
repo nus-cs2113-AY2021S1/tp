@@ -48,5 +48,7 @@ deactivate ":ClearCommand"
 ":ClearCommand" -[hidden]-> ":Fitr"
 destroy ":ClearCommand"
 
+deactivate ":Fitr"
+
 hide footbox
 @enduml
