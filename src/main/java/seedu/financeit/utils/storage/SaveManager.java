@@ -178,20 +178,19 @@ public class SaveManager {
                 String saveString = scanner.nextLine();
                 if (saveString.equals(name)) {
                     FileInputStream inGt = new FileInputStream(path + "_gt.txt");
-                    FileInputStream inMt = new FileInputStream(path + "_mt.txt");
-                    FileInputStream inAt = new FileInputStream(path + "_at.txt");
                     FileOutputStream outGt = new FileOutputStream(desGoal);
-                    FileOutputStream outMt = new FileOutputStream(desManual);
-                    FileOutputStream outAt = new FileOutputStream(desAuto);
-
                     FileChannel sourceChannel = inGt.getChannel();
                     FileChannel destChannel = outGt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
+                    FileInputStream inMt = new FileInputStream(path + "_mt.txt");
+                    FileOutputStream outMt = new FileOutputStream(desManual);
                     sourceChannel = inMt.getChannel();
                     destChannel = outMt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
+                    FileInputStream inAt = new FileInputStream(path + "_at.txt");
+                    FileOutputStream outAt = new FileOutputStream(desAuto);
                     sourceChannel = inAt.getChannel();
                     destChannel = outAt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
