@@ -12,10 +12,8 @@ import java.util.logging.Logger;
  * Handles parsing for add to watchlist command.
  */
 public class AddToWatchlistParser extends CommandParser {
-    protected static final String ADD_PARAM = "a";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command " + TOO_MUCH_FIELDS;
+    protected static final String ANIME_ID = "Anime ID!";
+    protected static final String TOO_MUCH_ARGUMENTS = "Add To Watchlist command" + TOO_MUCH_FIELDS;
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
     
@@ -36,14 +34,13 @@ public class AddToWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public AddToWatchlistCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split(SPLIT_DASH, 2);
-
-        paramIsSetCheck(paramGiven);
-        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
-            throw new AniException(NO_PARAMETER_PROVIDED);
-        }
+        description = description.trim();
         
-        parameterParser(paramGiven[1]);
+        if (description == null || description.isBlank()) {
+            throw new AniException(DESCRIPTION_CANNOT_BE_NULL);
+        }
+
+        parameterParser(description);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
         return addToWatchlistCommand;
@@ -52,29 +49,22 @@ public class AddToWatchlistParser extends CommandParser {
     /**
      * Parses the parameter provided in the command description.
      *
-     * @param paramGiven a String Array containing the parameters and the value
+     * @param fieldGiven a String Array containing the value given
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String paramGiven) throws AniException {
+    private void parameterParser(String fieldGiven) throws AniException {
+        String fieldValue = fieldGiven.trim();
+        String[] fieldParts = fieldValue.split(WHITESPACE);
 
-        String[] paramParts = paramGiven.split(" ");
+        if (fieldParts.length > 1) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
+        }
+        isIntegerCheck(fieldValue, ANIME_ID);
 
-        switch (paramParts[0].trim()) {
-        case ADD_PARAM:
-            paramFieldCheck(paramParts);
-            paramExtraFieldCheck(paramParts);
-            if (!isInteger(paramParts[1].trim())) {
-                throw new AniException(NON_INTEGER_PROVIDED);
-            }
-            try {
-                addToWatchlistCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
-            } catch (NumberFormatException e) {
-                throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-            }
-            break;
-        default:
-            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
-            throw new AniException(invalidParameter);
+        try {
+            addToWatchlistCommand.setAnimeIndex(Integer.parseInt(fieldValue));
+        } catch (NumberFormatException e) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
     }
 }
