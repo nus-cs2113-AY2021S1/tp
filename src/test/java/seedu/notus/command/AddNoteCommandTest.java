@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.notus.util.CommandMessage.NOTE_EXIST_MESSAGE;
 
-//@@author Narzyl
+//@@author Nazryl
 class AddNoteCommandTest {
     Notebook notebook;
     Timetable timetable;
