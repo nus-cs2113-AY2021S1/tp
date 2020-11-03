@@ -1255,7 +1255,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
     
-## 3.7  <a name = featuresOverview> </a>Save Manager
+## 3.7  <a name = saveManager> </a>Save Manager
 
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
