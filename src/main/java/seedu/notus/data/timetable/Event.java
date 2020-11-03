@@ -245,7 +245,7 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return dates;
     }
 
-    public boolean occursBetweenEvent(Event event) {
+    public boolean occursDuringEvent(Event event) {
         if (checkClash(event.startDateTime, event.endDateTime, startDateTime)) {
             return !startDateTime.equals(event.endDateTime);
         }

@@ -327,7 +327,7 @@ public class Timetable {
         LocalDate eventDate = event.getStartDate();
         ArrayList<Event> eventsHappening = getAllEvents(eventDate, eventDate);
         for (Event storedEvent : eventsHappening) {
-            if (event.occursBetweenEvent(storedEvent)) {
+            if (event.occursDuringEvent(storedEvent)) {
                 clashedEvents.add(storedEvent);
             }
         }
