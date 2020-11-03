@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Deals with loading tasks from and saving tasks to a file.
@@ -13,21 +15,30 @@ public class Storage {
     private final String filePath;
     private File file;
 
+    private final Logger logger = Logger.getLogger(Storage.class.getName());
+
     /**
      * Creates a new Storage object with a File created at the specified file path.
      *
      * @param filePath File path whereby data is loaded from and stored at.
      */
     public Storage(String filePath) {
+        logger.setLevel(Level.INFO);
+
         if (filePath == null) {
+            logger.log(Level.WARNING, "null file path");
             throw new NullPointerException();
         }
 
         this.filePath = filePath;
         try {
             file = new File(filePath);
-            file.getParentFile().mkdirs();
-            file.createNewFile();
+            if (file.getParentFile().mkdirs()) {
+                logger.log(Level.INFO, "new file directory created");
+            }
+            if (file.createNewFile()) {
+                logger.log(Level.INFO, "new file created");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
