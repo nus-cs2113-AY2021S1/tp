@@ -542,7 +542,7 @@ saver child classes. goalTrackerSaver produce text file to save goalTracker stat
 manualTrackerSaver saves manualTracker states. SaveManager class is the UI class that uses the 3 saver classes to do load and save operations.
 
 #### Save Manager Class Diagram
-![SaveManagerClassDiagram](uml_images/SaveManagerClass.png)
+![SaveManagerClassDiagram](uml_images/saveManager/SaveManagerClass.png)
 
 #### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
