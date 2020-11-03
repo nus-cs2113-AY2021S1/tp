@@ -1,0 +1,5 @@
+package anichan;
+
+class MainTest {
+
+}

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
@@ -41,18 +42,26 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "anichan.Main"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "main"
     archiveClassifier = null
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 checkstyle {
     toolVersion = '8.23'
 }
 
-run{
+run {
+    enableAssertions = true
     standardInput = System.in
 }
