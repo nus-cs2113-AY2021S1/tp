@@ -51,7 +51,7 @@ public class FoodPlacesData {
             {"Subway - Halal Certified", "YIH", "Mon-Sun, 10.00am-10.00pm"},
             {"Old Chang Kee - Halal Certified", "YIH", "Mon-Fri, 7.30am-9.00pm Sat, 7.30am-4.00pm"},
             {"Goh Bros", "YIH", "Mon-Fri, 7.30am-9.00pm Sat, 7.30am-4.00pm"},
-            {"Platypus Food Bar", "Design & Environment Block SDE4", "Mon-Fri, 8.30am-8.00pm"},
+            {"Platypus Food Bar (SDE)", "Design & Environment Block SDE4", "Mon-Fri, 8.30am-8.00pm"},
             {"Platypus Food Bar", "Engineering Block E2A", "Mon-Fri, 9.00am-7.30pm"},
             {"E2 Halal Cafeteria - Halal Certified", "Engineering Block E2", "Mon-Fri, 7.00am-7.00pm Sat, "
                     + "08.00-am-1.00pm"},
