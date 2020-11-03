@@ -10,6 +10,7 @@ public class Watchlist {
     private final ArrayList<Integer> animeList;
     private static final String EMPTY_WATCHLIST_MESSAGE = "Uhh.. It's empty.. :(";
 
+    //@@author OngDeZhi
     /**
      * Creates a new instance of Watchlist with the specified name.
      *
@@ -49,22 +50,45 @@ public class Watchlist {
         return animeList;
     }
 
+    //@@author michaeldinata
+    /**
+     * Adds an anime into this Watchlist.
+     * 
+     * @param animeIndex the specified anime index to be added
+     */
     public void addAnimeToList(Integer animeIndex) {
         this.animeList.add(animeIndex);
     }
 
-    public void removeAnimeFromList(Integer animeIndex) {
+    /**
+     * Removes an anime from this Watchlist.
+     * 
+     * @param animeIndex the specified anime index in this Watchlist to be removed
+     */
+    public void removeAnimeFromList(int animeIndex) {
         this.animeList.remove(animeIndex);
     }
 
+    /**
+     * Returns the total number of anime in this Watchlist.
+     * 
+     * @return the total number of anime in this Watchlist
+     */
     public int getWatchlistSize() {
         return this.animeList.size();
     }
 
-    public int getWatchlistListAnimeIndex(int watchlistListIndex) {
-        return this.animeList.get(watchlistListIndex);
+    /**
+     * Returns the actual anime index.
+     * 
+     * @param animeIndexInWatchlist the specified index of anime in this Watchlist
+     * @return the actual anime index
+     */
+    public int getWatchlistListAnimeIndex(int animeIndexInWatchlist) {
+        return this.animeList.get(animeIndexInWatchlist);
     }
 
+    //@@author OngDeZhi
     /**
      * Returns a string representation of the anime list in this Watchlist.
      *

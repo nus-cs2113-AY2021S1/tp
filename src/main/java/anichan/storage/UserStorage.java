@@ -8,8 +8,9 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
- * Manages the storage of AniChan's user data.
+ * Represents the class to manage user data.
  */
 public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";
@@ -109,7 +110,7 @@ public class UserStorage extends Storage {
      * Validates the string representation read from the user data file.
      *
      * @param fileContentSplit encoded string representation of the usr object
-     * @return {@code true} if the string representation is valid; false otherwise
+     * @return {@code true} if the string representation is valid; {@code false} otherwise
      */
     private boolean isValidUserString(String[] fileContentSplit) {
         return (fileContentSplit.length == 2);

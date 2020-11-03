@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author michaeldinata
+/**
+ * Represents the command to add an anime to active Watchlist.
+ */
 public class AddToWatchlistCommand extends Command {
     protected static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
@@ -20,12 +24,14 @@ public class AddToWatchlistCommand extends Command {
     private Integer animeIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
-    public AddToWatchlistCommand() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
-
     /**
-     * Adds an anime to current watchlist.
+     * Executes addition of anime into active Watchlist.
+     * 
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return result after executing the command
+     * @throws AniException when an error occurred while executing the command
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
@@ -37,7 +43,15 @@ public class AddToWatchlistCommand extends Command {
 
         return animeName + " added to watchlist!";
     }
-    
+
+    /**
+     * Adds selected anime to active Watchlist.
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save watchlist data
+     * @param activeWorkspace used to update watchlist list and save watchlist data to correct folder
+     * @throws AniException when an error occurred while creating the watchlist
+     */
     public void addToWatchlist(AnimeData animeData, StorageManager storageManager, 
                                Workspace activeWorkspace) throws AniException {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
@@ -62,7 +76,12 @@ public class AddToWatchlistCommand extends Command {
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
     }
-       
+
+    /**
+     * Sets the anime index to be added into the active Watchlist.
+     * 
+     * @param animeIndex the specified anime index to be added
+     */
     public void setAnimeIndex(Integer animeIndex) {
         this.animeIndex = animeIndex - 1;
     }

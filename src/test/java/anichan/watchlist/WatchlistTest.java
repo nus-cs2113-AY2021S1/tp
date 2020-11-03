@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static junit.framework.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+//@@author OngDeZhi
 class WatchlistTest {
     private static final int SAMPLE_ANIME_INDEX_ONE = 1;
     private static final int SAMPLE_ANIME_INDEX_TWO = 2;

@@ -5,14 +5,16 @@ import anichan.exception.AniException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Manages the all anime data.
+ */
 public class AnimeData {
     private ArrayList<Anime> animeDataList;
-    //private ArrayList<Anime> animeOriginalDataList;
+
 
     public AnimeData(ArrayList<Anime> animeDataList) {
         Anime.setTotalAnime(0);
         this.animeDataList = animeDataList;
-        //this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
     }
 
     public AnimeData() throws AniException {

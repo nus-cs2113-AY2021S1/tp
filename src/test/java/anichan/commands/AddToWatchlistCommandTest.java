@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class AddToWatchlistCommandTest {
     AnimeData animeData;
     User user;

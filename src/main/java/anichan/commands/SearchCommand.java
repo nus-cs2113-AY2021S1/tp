@@ -7,12 +7,13 @@ import anichan.human.User;
 import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the command that allows the user to search for a specific anime series.
+ */
 public class SearchCommand extends Command {
-    private static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
     private static final String ID_HEADER = "[ID:";
     private static final String ID_CLOSER = "] ";
     private static final String NO_RESULTS_FOUND = "No results found!";
@@ -38,6 +39,15 @@ public class SearchCommand extends Command {
         searchType = NO_SEARCH_SELECTED;
     }
 
+    /**
+     * Handles the execution of the search and the returning of a printable result.
+     *
+     * @param animeData used to retrieve anime information
+     * @param storageManager used to save or read AniChan data
+     * @param user used to modify user data
+     * @return a printable string that contains the browse output
+     * @throws AniException when an invalid searchType is being executed
+     */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         switch (searchType) {
@@ -58,35 +68,76 @@ public class SearchCommand extends Command {
         return result;
     }
 
+    /**
+     * Finds all anime that contains the genre that is within the search term.
+     *
+     * @param animeData the data to search from
+     */
     private void searchForGenre(AnimeData animeData) {
         LOGGER.log(Level.INFO, SEARCHING_BY_GENRE);
+        StringBuilder searchOutput = new StringBuilder();
         for (Anime anime : animeData.getAnimeDataList()) {
-            if (Arrays.asList(anime.getGenre()).contains(searchGenre)) {
-                result += ID_HEADER + anime.getAnimeID() + ID_CLOSER + anime.getAnimeName() + System.lineSeparator();
+            if (doesAnimeContainThatGenre(anime)) {
+                searchOutput.append(ID_HEADER);
+                searchOutput.append(anime.getAnimeID());
+                searchOutput.append(ID_CLOSER);
+                searchOutput.append(anime.getAnimeName());
+                searchOutput.append(System.lineSeparator());
             }
         }
+        result = searchOutput.toString();
     }
 
-    private void searchForAnime(AnimeData animeData) {
-        LOGGER.log(Level.INFO, SEARCHING_BY_ANIME_NAME);
-        for (Anime anime : animeData.getAnimeDataList()) {
-            if (anime.getAnimeName().toLowerCase().contains(searchTerm)) {
-                result += ID_HEADER + anime.getAnimeID() + ID_CLOSER + anime.getAnimeName() + System.lineSeparator();
+    /**
+     * Loops through all genre that the anime has and find the search term.
+     *
+     * @param anime the anime to check.
+     * @return true if a genre matches the search term
+     */
+    private boolean doesAnimeContainThatGenre(Anime anime) {
+        for (String genre: anime.getGenre()) {
+            if (genre.equalsIgnoreCase(searchGenre)) {
+                return true;
             }
         }
+        return false;
+    }
+
+    /**
+     * Finds all anime that contains the keyword or matches the keyword exactly.
+     *
+     * @param animeData the data to search from
+     */
+    private void searchForAnime(AnimeData animeData) {
+        LOGGER.log(Level.INFO, SEARCHING_BY_ANIME_NAME);
+        StringBuilder searchOutput = new StringBuilder();
+        for (Anime anime : animeData.getAnimeDataList()) {
+            if (anime.getAnimeName().toLowerCase().contains(searchTerm)) {
+                searchOutput.append(ID_HEADER);
+                searchOutput.append(anime.getAnimeID());
+                searchOutput.append(ID_CLOSER);
+                searchOutput.append(anime.getAnimeName());
+                searchOutput.append(System.lineSeparator());
+            }
+        }
+        result = searchOutput.toString();
     }
 
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm.toLowerCase();
-        this.searchType = SEARCH_BY_NAME;
+        setSearchType(SEARCH_BY_NAME);
     }
 
     public void setSearchGenre(String searchGenre) {
-        this.searchGenre = searchGenre;
-        this.searchType = SEARCH_BY_GENRE;
+        this.searchGenre = searchGenre.toLowerCase();
+        setSearchType(SEARCH_BY_GENRE);
     }
 
     public void setSearchType(int searchType) {
         this.searchType = searchType;
+    }
+
+    public int getSearchType() {
+        return searchType;
     }
 }

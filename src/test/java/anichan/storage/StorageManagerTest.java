@@ -1,5 +1,6 @@
 package anichan.storage;
 
+import anichan.bookmark.Bookmark;
 import anichan.human.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,9 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author OngDeZhi
 class StorageManagerTest {
+    private static final String TEST_WORKSPACE_NAME = "Test";
     private static final String VALID_WORKSPACE = "ValidWorkspace";
     private static final String EMPTY_FILE_WORKSPACE = "EmptyFileWorkspace";
     private static final String EMPTY_WORKSPACE = "EmptyWorkspace";
@@ -37,6 +40,7 @@ class StorageManagerTest {
     private StorageManager invalidDirectorySM;
     private User userToSave;
     private User userToLoad;
+    private Bookmark bookmarkToLoad;
     private ArrayList<Watchlist> watchlistListForLoad;
 
     @BeforeEach
@@ -48,6 +52,8 @@ class StorageManagerTest {
 
         userToLoad = null;
         userToSave = new User("Testing", "Male");
+
+        bookmarkToLoad = null;
 
         watchlistListForLoad = new ArrayList<>();
 
@@ -154,6 +160,25 @@ class StorageManagerTest {
         assertThrows(AniException.class, () -> {
             emptySM.loadScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
         });
+    }
+
+    // ========================== Bookmark Saving and Loading ==========================
+
+    @Test
+    void loadBookmark_invalidDirectorySM_throwsAniException() throws AniException {
+        // Invalid Directory
+        assertThrows(AniException.class, () ->  invalidDirectorySM.loadBookmark(TEST_WORKSPACE_NAME, bookmarkToLoad));
+    }
+
+    @Test
+    void loadBookmark_emptyBookmarkFile_throwsAniException() {
+
+        assertThrows(AniException.class, () ->  emptySM.loadBookmark(TEST_WORKSPACE_NAME,bookmarkToLoad));
+    }
+
+    @Test
+    void loadBookmark_invalidBookmarkFile_throwsAniException() {
+        assertThrows(AniException.class, () ->  invalidFileSM.loadBookmark(TEST_WORKSPACE_NAME,bookmarkToLoad));
     }
 
 }
