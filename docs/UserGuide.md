@@ -428,8 +428,12 @@ Expected output:
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
-Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
+Format: `add-e /t TITLE /timing DATETIME [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
 
+- Events have a default duration of 1 hour if [/end] is not specified.
+- Events must end on the same day they start.
+- Events cannot end before they start
+- Specifying [/end DATETIME] will set the event to end a specific time.
 - Specifying [/repeat RECURRING] will set the event as a recurring event.
 - Specifying [/remind REMIND] will set the program to remind the event.
 
@@ -440,7 +444,7 @@ Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/r
 
 Example of usage: 
 
-`add-e /t CS2113 Tutorial /timing 2020-10-30 13:00 /repeat weekly /remind 1-day 3-day`
+`add-e /t CS2113 Tutorial /timing 2020-10-30 13:00 /end 2020-10-30 19:00 /repeat weekly /remind 1-day 3-day`
 
 Expected output:
 
@@ -451,12 +455,14 @@ Expected output:
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
-Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
+Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
 
 - Edits the event at the specified INDEX. The index refers to the index number shown in the displayed events list. The index must be a **positive integer** (1, 2, 3, …).​
-- At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
+- At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/end DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
+- End date time must be on the same day as start date time.
 
+- Specifying [/timing DATETIME] without [/end DATETIME] will have event duration maintained and end datetime changed. If end datetime would be past 2359, end datetime would be set at 2359.
 - Specifying [/repeat RECURRING] will set the event that type of event.
 - Specifying [/remind-add REMIND] will add that reminder to the event if it does not exist.
 - Specifying [/remind-drop REMIND] will delete that reminder from the event if it exists.
@@ -577,7 +583,7 @@ Create tag | `create-t /tag Important red`<br>`create-t /tag NUS /tag CEG yellow
 List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
-Add event | `add-e /t CS2113 /d 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
+Add event | `add-e /t CS2113 /timing 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /timing 16-10-2020 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 16-10-2020 16:00 /end 16-10-2020 18:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
 Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
