@@ -100,9 +100,6 @@ Its main roles are:
 <a name="ui-component"></a>
 ### User Interface component
 
-![](images/UiClassDiagram.png)
-*<center/> Figure 1.3 Class diagram of User Interface </center> <br/></br>*
-
 **API**:`Ui.java`
 
 The UI component is responsible for all visual output to the User from the app. 
@@ -124,10 +121,8 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-
-
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
-*<center/> Figure 1.4 Class diagram of Parser </center> <br/></br>*
+*<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
 The Parser component is responsible for decoding the user's input and telling the Main function which command to execute.
@@ -158,14 +153,17 @@ The diagrams are colour coded as such:
 * Red -> Planner Mode
 
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode1.png)
-*<center/> Figure 1.3 Class diagram of Commands valid in all modes (Global) </center> <br/></br>*
+*<center/> Figure 1.4 Class diagram of Commands valid in all modes (Global) </center> <br/></br>*
+<br></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode2.png)
-*<center/> Figure 1.4 Class diagram of Commands valid in Bookmark Mode </center> <br/></br>*
+*<center/> Figure 1.5 Class diagram of Commands valid in Bookmark Mode </center> <br/></br>*
+<br></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode3.png)
-*<center/> Figure 1.5 Class diagram of Commands valid in Timetable Mode</center> <br/></br>*
+*<center/> Figure 1.6 Class diagram of Commands valid in Timetable Mode</center> <br/></br>*
+<br></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode4.png)
-*<center/> Figure 1.6 Class diagram of Commands valid in Planner Mode</center> <br/></br>*
-
+*<center/> Figure 1.7 Class diagram of Commands valid in Planner Mode</center> <br/></br>*
+<br></br>
 The Command component is responsible for carrying out the functions of Zoomaster.
 
 Usually, a successful command will return a message to indicate a successful execution or updates to Zoomaster. Otherwide it will create error messages for the Ui to display to the users.
@@ -249,7 +247,7 @@ Given below is a sequential diagram of how changing between modes occur.
 
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
 
-*<center/>Figure 2.1 Sequential diagram for ChangeModeCommand</center> <br/></br>*
+*<center/>Figure 2.01 Sequential diagram for ChangeModeCommand</center> <br/></br>*
 
 
 1. When Zoomaster gets a command from the user to change modes, a new ChangeModeCommand object is created.
@@ -264,7 +262,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
 
-*<center/> Figure 2.2 Activity diagram for ChangeModeCommand </center> <br/></br>*
+*<center/> Figure 2.02 Activity diagram for ChangeModeCommand </center> <br/></br>*
 
 #### Design consideration:
 
@@ -294,7 +292,7 @@ Additionally, it implements the following operations:
 
 Given below is a sequential diagram of how printing the timetable occurs.
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
-*<center/>Figure 2.3 Sequential diagram for ShowTimetableCommand</center> <br/></br>*
+*<center/>Figure 2.03 Sequential diagram for ShowTimetableCommand</center> <br/></br>*
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
 
@@ -308,7 +306,7 @@ Given below is a sequential diagram of how printing the timetable occurs.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
-*<center/>Figure 2.4 Activity diagram for ShowTimetableCommand</center> <br/></br>*
+*<center/>Figure 2.04 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
 
 #### Design consideration:
@@ -339,18 +337,28 @@ Users can enter one-shot-commands, adding multiple slots and bookmarks to a modu
 
 Given below is a sequence diagram of how the feature works.
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)  
-
+*<center/> Figure 2.05 Sequence diagram for AddSlotCommand </center> <br/></br>*
+<br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)  
-
+*<center/> Figure 2.06 Sequence diagram for 
+"Get module if it exist, else create a new module" Block </center> <br/></br>*
+<br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)  
-
+*<center/> Figure 2.07 Sequence diagram for 
+"Create bookmark for module" Block </center> <br/></br>*
+<br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)  
-
+*<center/> Figure 2.08 Sequence diagram for 
+"Create bookmark for existing slot base on its index" Block </center> <br/></br>*
+<br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)  
-
+*<center/> Figure 2.09 Sequence diagram for 
+"Get slot if it exist, else create a new slot" Block </center> <br/></br>*
+<br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)  
-*<center/> Figure 2.5 Sequence diagram for AddSlotCommand </center> <br/></br>*
-
+*<center/> Figure 2.10 Sequence diagram for 
+"Create bookmark for slot" Block </center> <br/></br>*
+<br></br>
 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
 2. There will then be a check for additional commands pertaining to the module entered by the user.
@@ -389,7 +397,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.6 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.11 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)
@@ -408,13 +416,16 @@ Below is the general flow on how the mechanism works:
 ## **Appendix A: Product scope**
 ### Target user profile
 
-* NUS student
-* has fast typing skills 
-* comfortable with using the command line interface
+* NUS students
+* Students with fast typing skills 
+* Students comfortable using the command line interface
 
 ### Value proposition
 
-Zoomaster was developed during the coronavirus pandemic whereby many NUS classes have been transitioned towards online lessons. NUS lessons are mainly conducted on Zoom video conferencing software. However, as Zoom does not store recurring nor past meetings, it is hard for students to easily access their online lessons. Hence, Zoomaster helps to organise students’ Zoom links for easy access to their lesson.
+Zoomaster was developed during the coronavirus pandemic whereby many NUS classes have been transitioned towards online lessons. 
+NUS lessons are mainly conducted on Zoom video conferencing software. 
+However, as Zoom does not store recurring nor past meetings, it is hard for students to easily access their online lessons. 
+Hence, Zoomaster helps to organise students’ Zoom links for easy access to their lesson.
 
 <a name="appendix-b"></a>
 ## **Appendix B: User Stories**
@@ -460,9 +471,15 @@ Zoomaster was developed during the coronavirus pandemic whereby many NUS classes
 <a name="appendix-e"></a>
 ## **Appendix E: Instructions for manual testing**
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
     2. Open the command prompt and change directory to the location of the jar file.
     3. Enter `java -jar zoomaster.jar` in the command line. You should expect to see the welcome screen of the application.
+2. Testing
+    1. Download the test cases text file from github [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/text-ui-test). <br></br>
+    It's name is input.txt. 
+    2. These are some the sample test cases used to test if the program is working as intended. You should get the same results <br></br>
+    as shown in EXPECTED.txt file.
+    3. You can refer to the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) for the full list <br></br>
+    of features and available commands for Zoomaster.
+    4. Now you can manually input test cases into Zoomaster and see the results.
