@@ -43,7 +43,6 @@ public class BookmarkUi {
     }
 
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
-        showStarBookmarks(categories);
         System.out.println("Here is the list");
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
