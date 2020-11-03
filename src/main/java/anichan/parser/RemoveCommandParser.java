@@ -12,19 +12,9 @@ import java.util.logging.Logger;
  * Handles parsing for remove command.
  */
 public class RemoveCommandParser extends CommandParser {
-    protected static final String TOO_MUCH_ARGUMENTS = "Remove command" + TOO_MUCH_FIELDS;
-    protected static final String ANIME_ID_IN_WATCHLIST = "Anime ID in Watchlist!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID in watchlist is invalid!";
+    private static final String TOO_MUCH_ARGUMENTS = "Remove command" + TOO_MUCH_FIELDS;
+    private static final String ANIME_ID_IN_WATCHLIST = "Anime ID in Watchlist!";
     private static final Logger LOGGER = AniLogger.getAniLogger(RemoveCommandParser.class.getName());
-
-    private RemoveCommand removeCommand;
-
-    /**
-     * Creates a new instance of RemoveCommandParser.
-     */
-    public RemoveCommandParser() {
-        removeCommand = new RemoveCommand();
-    }
 
     /**
      * Parses the specified command description.
@@ -40,10 +30,10 @@ public class RemoveCommandParser extends CommandParser {
             throw new AniException(DESCRIPTION_CANNOT_BE_NULL);
         }
 
-        parameterParser(description);
-        LOGGER.log(Level.INFO, "Parameter parsed properly");
+        Integer animeIndexInWatchlist = parameterParser(description);
+        LOGGER.log(Level.INFO, PARAMETER_PARSED);
         
-        return removeCommand;
+        return new RemoveCommand(animeIndexInWatchlist);
     }
 
     /**
@@ -52,7 +42,7 @@ public class RemoveCommandParser extends CommandParser {
      * @param fieldGiven a String Array containing the value given
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String fieldGiven) throws AniException {
+    private Integer parameterParser(String fieldGiven) throws AniException {
         String fieldValue = fieldGiven.trim();
         String[] fieldParts = fieldValue.split(WHITESPACE);
 
@@ -61,10 +51,6 @@ public class RemoveCommandParser extends CommandParser {
         }
         isIntegerCheck(fieldValue, ANIME_ID_IN_WATCHLIST);
 
-        try {
-            removeCommand.setWatchlistListIndex(Integer.parseInt(fieldValue));
-        } catch (NumberFormatException e) {
-            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-        }
+        return parseStringToInteger(fieldValue);
     }
 }
