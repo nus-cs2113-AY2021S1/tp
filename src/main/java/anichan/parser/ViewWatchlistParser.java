@@ -38,10 +38,6 @@ public class ViewWatchlistParser extends CommandParser {
         String[] paramGiven = description.split(SPLIT_DASH, 2);
 
         paramIsSetCheck(paramGiven);
-        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
-            throw new AniException(NO_PARAMETER_PROVIDED);
-        }
-        
         parameterParser(paramGiven[1]);
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
@@ -55,7 +51,7 @@ public class ViewWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the parameters
      */
     private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(" ", 2);
+        String[] paramParts = paramGiven.split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
 
         switch (paramParts[0].trim()) {
         case VIEW_PARAM:
