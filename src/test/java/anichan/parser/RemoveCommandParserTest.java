@@ -11,18 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //@@author michaeldinata
 class RemoveCommandParserTest {
-    protected static final String EMPTY_DESCRIPTION1 = "";
-    protected static final String EMPTY_DESCRIPTION2 = "     ";
-    protected static final String EMPTY_FIELD1 = "-d";
-    protected static final String EMPTY_FIELD2 = "-d     ";
-    protected static final String INVALID_PARAMETER1 = "-n 1";
-    protected static final String INVALID_PARAMETER2 = "- -";
-    protected static final String INVALID_PARAMETER3 = "- d";
-    protected static final String NON_INTEGER_FIELD1 = "-d Trigun";
-    protected static final String NON_INTEGER_FIELD2 = "-d -";
-    protected static final String TOO_MANY_PARAMETERS = "-d 1 -d 2";
-    protected static final String LARGE_INTEGER_ERROR = "-d 1111111111111";
-    protected static final String VALID_PARAMETER_VALUE = "-d 1";
+    private static final String EMPTY_DESCRIPTION1 = "";
+    private static final String EMPTY_DESCRIPTION2 = "     ";
+    private static final String NON_INTEGER_FIELD1 = "Trigun";
+    private static final String NON_INTEGER_FIELD2 = "-a";
+    private static final String TOO_MANY_FIELDS = "123 211";
+    private static final String LARGE_INTEGER_ERROR = "1111111111111";
+    private static final String VALID_FIELD_VALUE1 = "1";
+    private static final String VALID_FIELD_VALUE2 = "   1";
+    private static final String VALID_FIELD_VALUE3 = "1   ";
 
     @Test
     void parse_emptyDescription_throwsAniException() {
@@ -34,37 +31,6 @@ class RemoveCommandParserTest {
         RemoveCommandParser testParse2 = new RemoveCommandParser();
         assertThrows(AniException.class, () -> {
             testParse2.parse(EMPTY_DESCRIPTION2);
-        });
-    }
-
-    @Test
-    void parse_emptyField_throwsAniException() {
-        RemoveCommandParser testParse1 = new RemoveCommandParser();
-        assertThrows(AniException.class, () -> {
-            testParse1.parse(EMPTY_FIELD1);
-        });
-
-        RemoveCommandParser testParse2 = new RemoveCommandParser();
-        assertThrows(AniException.class, () -> {
-            testParse2.parse(EMPTY_FIELD2);
-        });
-    }
-
-    @Test
-    void parse_invalidOption_throwsAniException() {
-        RemoveCommandParser testParse1 = new RemoveCommandParser();
-        assertThrows(AniException.class, () -> {
-            testParse1.parse(INVALID_PARAMETER1);
-        });
-
-        RemoveCommandParser testParse2 = new RemoveCommandParser();
-        assertThrows(AniException.class, () -> {
-            testParse2.parse(INVALID_PARAMETER2);
-        });
-
-        RemoveCommandParser testParse3 = new RemoveCommandParser();
-        assertThrows(AniException.class, () -> {
-            testParse3.parse(INVALID_PARAMETER3);
         });
     }
 
@@ -85,7 +51,7 @@ class RemoveCommandParserTest {
     void parse_tooManyParameters_throwsAniException() {
         RemoveCommandParser testParse = new RemoveCommandParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse(TOO_MANY_PARAMETERS);
+            testParse.parse(TOO_MANY_FIELDS);
         });
     }
 
@@ -98,9 +64,17 @@ class RemoveCommandParserTest {
     }
 
     @Test
-    void parse_validParameterAndValue_returnsInfoCommand() throws AniException {
-        RemoveCommandParser testParse = new RemoveCommandParser();
-        Command command = testParse.parse(VALID_PARAMETER_VALUE);
-        assertTrue(command instanceof RemoveCommand);
+    void parse_validValue_returnsInfoCommand() throws AniException {
+        RemoveCommandParser testParse1 = new RemoveCommandParser();
+        Command command1 = testParse1.parse(VALID_FIELD_VALUE1);
+        assertTrue(command1 instanceof RemoveCommand);
+
+        RemoveCommandParser testParse2 = new RemoveCommandParser();
+        Command command2 = testParse2.parse(VALID_FIELD_VALUE2);
+        assertTrue(command2 instanceof RemoveCommand);
+
+        RemoveCommandParser testParse3 = new RemoveCommandParser();
+        Command command3 = testParse3.parse(VALID_FIELD_VALUE3);
+        assertTrue(command3 instanceof RemoveCommand);
     }
 }
