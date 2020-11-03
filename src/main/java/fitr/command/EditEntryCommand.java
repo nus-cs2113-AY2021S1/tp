@@ -16,12 +16,14 @@ import fitr.user.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class EditEntryCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(EditEntryCommand.class.getName());
     private static final String EXERCISE_FORMAT_REGEX =
             "(?<date>\\S+)\\s+(?<index>\\d+)\\s+(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)";
     private static final String FOOD_FORMAT_REGEX =
@@ -59,10 +61,12 @@ public class EditEntryCommand extends Command {
         }
 
         try {
+            LOGGER.fine("Writing to exercise, food and goal lists to local storage...");
             storageManager.writeExerciseList(listManager.getExerciseList());
             storageManager.writeFoodList(listManager.getFoodList());
             storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                     listManager.getExerciseList(), user);
+            LOGGER.fine("Exercise, food and goal lists successfully written to local storage.");
         } catch (IOException e) {
             Ui.printCustomError(Messages.MISSING_FILE);
         }
@@ -74,6 +78,7 @@ public class EditEntryCommand extends Command {
     }
 
     private void editExercise(ExerciseList exerciseList, String arguments) {
+        LOGGER.fine("Editing an exercise entry...");
         Matcher matcher = EXERCISE_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
@@ -110,6 +115,7 @@ public class EditEntryCommand extends Command {
     }
 
     private void editFood(FoodList foodList, String arguments) {
+        LOGGER.fine("Editing a food entry...");
         Matcher matcher = FOOD_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
@@ -153,6 +159,7 @@ public class EditEntryCommand extends Command {
     }
 
     private void editGoal(GoalList goalList, String arguments) {
+        LOGGER.fine("Editing a goal entry...");
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
